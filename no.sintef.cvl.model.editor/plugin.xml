@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="CVLMetamodelMaster.Main.presentation.MainModelWizardID"
+            name="%_UI_MainModelWizard_label"
+            class="CVLMetamodelMaster.Main.presentation.MainModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MainModelFile.gif">
+         <description>%_UI_MainModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="CVLMetamodelMaster.Main.presentation.MainEditorID"
+            name="%_UI_MainEditor_label"
+            icon="icons/full/obj16/MainModelFile.gif"
+            extensions="main"
+            class="CVLMetamodelMaster.Main.presentation.MainEditor"
+            contributorClass="CVLMetamodelMaster.Main.presentation.MainActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
