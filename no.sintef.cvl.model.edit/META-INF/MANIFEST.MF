@@ -4,11 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: no.sintef.cvl.model.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: CVLMetamodelMaster.Main.provider.CVLMetamodelEditPlugin$Implementation
+Bundle-Activator: cvl.provider.CVLMetamodelEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: CVLMetamodelMaster.Main.provider
+Export-Package: cvl.provider
 Require-Bundle: org.eclipse.core.runtime,
  no.sintef.cvl.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport

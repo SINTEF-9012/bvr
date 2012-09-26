@@ -8,8 +8,8 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http:///CVLMetamodelMaster/Main.ecore"
-            class="CVLMetamodelMaster.Main.provider.MainItemProviderAdapterFactory"
+            uri="http:///cvl.ecore"
+            class="cvl.provider.cvlItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
