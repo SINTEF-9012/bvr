@@ -5,4 +5,4 @@ This repository contains the source code of the Common Variabiliy Language (CVL)
 
 These tools support the revised submission of the CVL, currently under standardization process at the OMG: http://variabilitymodeling.org/
 
----- end of file.
+---- end of file ----
