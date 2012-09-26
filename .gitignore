@@ -1,0 +1,15 @@
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.class
+*.tmp
+*.bak
+*.swp
+local.properties
+.classpath
+.settings/
+.loadpath
+target/
+test_out/
+.directory
