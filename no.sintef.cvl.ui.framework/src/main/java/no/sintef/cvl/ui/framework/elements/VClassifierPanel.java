@@ -15,6 +15,7 @@
 package no.sintef.cvl.ui.framework.elements;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,33 +26,37 @@ import no.sintef.cvl.ui.framework.ErrorHighlightableElement;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.ThreePartRectanglePanel;
 import no.sintef.cvl.ui.framework.TitledElement;
+import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 
+import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
 
 public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPanel, SelectElement, TitledElement, ErrorHighlightableElement {
 	
-    JXTitledSeparator name = new JXTitledSeparator();
+	JXLabel name = new JXLabel();
     JXTitledSeparator separatorbar = new JXTitledSeparator();
-    Map<String, JXTitledSeparator> attributesbar = new HashMap<String, JXTitledSeparator>();
+    Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
     ConfigurableUnitPanel model;
 
     public VClassifierPanel(ConfigurableUnitPanel model) {
     	this.model = model;
     	
-        name.setForeground(Color.WHITE);
+        name.setForeground(Color.BLACK);
         name.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setForeground(Color.WHITE);
+        separatorbar.setForeground(Color.BLACK);
         separatorbar.setTitle("");
         separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
         separatorbar.setVisible(true);
         
         addCenter(name);
         addCenter(separatorbar);
+        
+        setOptionalState(OPTION_STATE.MANDATORY);
     }
     
-    public void addVSpec(VSpecPanel vspec) {
-        Binding b = new Binding(Binding.Type.input);
+    /*public void addVSpec(VSpecPanel vspec) {
+        Binding b = new Binding(OPTION_STATE.MANDATORY);
         b.setSelected(false);
         b.setFrom(this);
         b.setTo((JComponent)vspec);
@@ -62,15 +67,16 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
         ((JComponent)vspec).move(getX(), getY()+getHeight()+50);
         
         System.out.println(((JComponent)vspec).getX() + ", " + ((JComponent)vspec).getX());
-    }
+    }*/
 
     public void addAttribute(String name, String type) {
-    	JXTitledSeparator att = new JXTitledSeparator();
+    	JXLabel att = new JXLabel();
     	
-    	att.setForeground(Color.WHITE);
-        att.setTitle(name + " : " + type);
-        att.setHorizontalAlignment(SwingConstants.CENTER);
+    	att.setForeground(Color.BLACK);
+        att.setText(name + " : " + type);
+        att.setHorizontalAlignment(SwingConstants.LEFT);
         att.setVisible(true);
+        att.setFont(new Font(null, Font.PLAIN, 11));
 
         attributesbar.put(name, att);
         addCenter(att);
@@ -86,7 +92,7 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     
     @Override
     public void setTitle(String title) {
-        name.setTitle(title);
+        name.setText(title);
         this.setToolTipText("VClassifier "+title);
     }
 
@@ -109,9 +115,9 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     public void setState(STATE state) {
         _state = state;
         if (_state.equals(STATE.IN_ERROR)) {
-            this.setBackground(new Color(239, 50, 50, 150));
+            this.setBackground(new Color(239, 50, 50, 180));
         } else {
-            this.setBackground(new Color(0, 0, 0, 200));
+            setOptionalState(optionalState);
         }
     }
 
@@ -119,5 +125,21 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     public STATE getCurrentState() {
         return _state;
     }
+    
+    private OPTION_STATE optionalState = OPTION_STATE.MANDATORY;
+    
+	public void setOptionalState(OPTION_STATE state) {
+		this.optionalState = state;
+		
+        if (optionalState.equals(OPTION_STATE.MANDATORY)) {
+            this.setBackground(new Color(0, 0, 0, 25));
+        } else {
+        	this.setBackground(new Color(0, 0, 0, 5));
+        }
+	}
+
+	public OPTION_STATE getOptionalState() {
+		return optionalState;
+	}
 
 }

@@ -13,6 +13,8 @@
  */
 package no.sintef.cvl.ui.framework.elements;
 
-public interface VSpecPanel {
+import no.sintef.cvl.ui.framework.OptionalElement;
+
+public interface VSpecPanel extends OptionalElement {
 
 }

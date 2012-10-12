@@ -34,21 +34,19 @@ import java.awt.*;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
 
 /**
  *
  * @author ffouquet
  */
-public class RectangleTitledPanel extends RectanglePanel implements TitledElement {
+public class ParallelogramTitledPanel extends ParallelogramPanel implements TitledElement {
 
     private JPanel contentPanel = new JPanel();
     private JPanel layoutPanel = new JPanel();
-    private JXLabel title = new JXLabel();
+    private JXTitledSeparator title = new JXTitledSeparator();
 
-    public RectangleTitledPanel() {
+    public ParallelogramTitledPanel() {
         contentPanel.setOpaque(false);
         layoutPanel.setOpaque(false);
         layoutPanel.setLayout(new BorderLayout());
@@ -73,10 +71,10 @@ public class RectangleTitledPanel extends RectanglePanel implements TitledElemen
 
     @Override
     public void setTitle(String _title) {
-        title.setText(_title);
+        title.setTitle(_title);
     }
 
     public String getTitle(){
-        return title.getText();
+        return title.getTitle();
     }
 }

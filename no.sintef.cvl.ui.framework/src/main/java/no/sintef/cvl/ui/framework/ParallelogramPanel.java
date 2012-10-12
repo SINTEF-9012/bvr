@@ -12,18 +12,17 @@
  * limitations under the License.
  */
 
-package no.sintef.cvl.ui.framework.elements;
+package no.sintef.cvl.ui.framework;
 
-import no.sintef.cvl.ui.framework.IconPanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
-public class GroupPanel extends IconPanel {
+public class ParallelogramPanel extends RectanglePanel {
 
-    public GroupPanel() {
-    	super("1349960253_triangle.png");
-    }
-    
-    public void setCardinality(int lower, int upper) {
-    	 setTitle(/*"[" + */lower + ".." + upper/* +"]"*/);
-    }
+	@Override
+	protected void paintComponent(Graphics g) {
+		((Graphics2D)g).shear(0.4, 0);
+		super.paintComponent(g);
+	}
 
 }

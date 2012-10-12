@@ -62,7 +62,7 @@ public class RectanglePanel extends JPanel implements ChangeAwareComponent {
     private static final int SHADOW_SIZE = 12;
     private BufferedImage shadow;
     protected boolean active = false;
-    private Color backgroundColor = new Color(0, 0, 0, 200);
+    protected Color backgroundColor = new Color(0, 0, 0, 200);
 
     @Override
     public void setBackground(Color newc) {
@@ -141,7 +141,7 @@ public class RectanglePanel extends JPanel implements ChangeAwareComponent {
             if (active) {
                 g2.setColor(new Color(243, 238, 39, 150));
             } else {
-                g2.setColor(Color.WHITE);
+                g2.setColor(Color.BLACK);
             }
 
             //g2.setComposite(AlphaComposite.Clear);

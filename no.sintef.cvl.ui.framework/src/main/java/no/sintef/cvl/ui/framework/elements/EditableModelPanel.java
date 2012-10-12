@@ -31,19 +31,18 @@
 package no.sintef.cvl.ui.framework.elements;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 import com.explodingpixels.macwidgets.HudWindow;
-import com.explodingpixels.macwidgets.plaf.HudButtonUI;
-import org.jdesktop.swingx.JXPanel;
 
 /**
  * @author ffouquet
@@ -90,49 +89,14 @@ public class EditableModelPanel extends JLayeredPane {
     HudWindow hud = new HudWindow("Properties editor");
 
     public void displayProperties(JPanel prop) {
-
-
         hud.getJDialog().setSize(320, 440);
         hud.getJDialog().setLocationRelativeTo(null);
         hud.getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         hud.setContentPane(prop);
         hud.getJDialog().setVisible(true);
-
-
-        /*
-        if (previousPropertiesPanel != null) {
-            previousPropertiesPanel.setVisible(false);
-            propertiesPanel.remove(previousPropertiesPanel);
-            previousPropertiesPanel = null;
-        }
-        JPanel tempLayout = new JPanel();
-        tempLayout.setOpaque(false);
-        tempLayout.add(Box.createGlue());
-        tempLayout.add(prop);
-        tempLayout.add(Box.createGlue());
-        propertiesPanel.add(tempLayout, BorderLayout.EAST);
-        previousPropertiesPanel = prop;
-        propertiesPanel.doLayout();
-        this.doLayout();
-        propertiesPanel.revalidate();
-        propertiesPanel.repaint();
-        repaint();
-        revalidate();
-        */
     }
 
     public void undisplayProperties() {
         hud.getJDialog().setVisible(false);
-
-        /*
-        if (previousPropertiesPanel != null) {
-            previousPropertiesPanel.setVisible(false);
-            propertiesPanel.remove(previousPropertiesPanel);
-            previousPropertiesPanel = null;
-        }
-        propertiesPanel.repaint();
-        propertiesPanel.revalidate();
-        repaint();
-        revalidate();*/
     }
 }

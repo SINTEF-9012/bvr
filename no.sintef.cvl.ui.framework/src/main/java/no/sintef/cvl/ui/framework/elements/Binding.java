@@ -37,11 +37,12 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.framework.AbstractSelectElement;
 import no.sintef.cvl.ui.framework.ErrorHighlightableElement;
+import no.sintef.cvl.ui.framework.OptionalElement;
 
 /**
  * @author ffouquet
  */
-public class Binding extends AbstractSelectElement implements ErrorHighlightableElement {
+public class Binding extends AbstractSelectElement implements ErrorHighlightableElement, OptionalElement {
 
     private JComponent from = null;
     private JComponent to = null;
@@ -89,29 +90,19 @@ public class Binding extends AbstractSelectElement implements ErrorHighlightable
         return currentState;
     }
 
-    public enum Type {
-        input, ouput, groupLink
-    }
-
-    public Binding(Type t) {
-        if (t.equals(Type.input)) {
-            selectedcolor = new Color(254, 238, 100, 180);
-            unselectedcolor = new Color(200, 238, 39, 180);
-            stroke = new BasicStroke(5, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
-            focusedStroke  = new BasicStroke(8, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
+    public Binding(OPTION_STATE t) {
+        if (t.equals(OPTION_STATE.MANDATORY)) {
+            selectedcolor = new Color(0, 0, 0, 230);
+            unselectedcolor = new Color(0, 0, 0, 230);
+            stroke = new BasicStroke(3, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
+            focusedStroke  = new BasicStroke(5, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
         }
-        if (t.equals(Type.ouput)) {
-            selectedcolor = new Color(254, 0, 0, 180);
-            unselectedcolor = new Color(200, 0, 0, 180);
-            stroke = new BasicStroke(5, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
-            focusedStroke  = new BasicStroke(8, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE);
-        }
-        if (t.equals(Type.groupLink)) {
-            selectedcolor = new Color(45, 236, 64, 200);
-            unselectedcolor = new Color(45, 236, 64, 200);
+        else if (t.equals(OPTION_STATE.OPTIONAL)) {
+        	selectedcolor = new Color(0, 0, 0, 200);
+            unselectedcolor = new Color(0, 0, 0, 200);
             float dash1[] = {8.0f};
-            stroke = new BasicStroke(5.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 8.0f, dash1, 0.0f);
-            focusedStroke = new BasicStroke(8.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 8.0f, dash1, 0.0f);
+            stroke = new BasicStroke(3, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE, 8, dash1, 0);
+            focusedStroke  = new BasicStroke(5, BasicStroke.CAP_SQUARE, BasicStroke.CAP_SQUARE, 8, dash1, 0);
         }
     }
 
@@ -134,5 +125,15 @@ public class Binding extends AbstractSelectElement implements ErrorHighlightable
     public Color getActualColor() {
         return this.getSelected() ? selectedcolor : unselectedcolor;
     }
+
+    private OPTION_STATE optionalState = OPTION_STATE.MANDATORY;
+    
+	public void setOptionalState(OPTION_STATE state) {
+		this.optionalState = state;
+	}
+
+	public OPTION_STATE getOptionalState() {
+		return optionalState;
+	}
 
 }

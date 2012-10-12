@@ -12,18 +12,17 @@
  * limitations under the License.
  */
 
-package no.sintef.cvl.ui.framework.elements;
+package no.sintef.cvl.ui.framework;
 
-import no.sintef.cvl.ui.framework.IconPanel;
 
-public class GroupPanel extends IconPanel {
+public interface OptionalElement {
 
-    public GroupPanel() {
-    	super("1349960253_triangle.png");
+    public enum OPTION_STATE {
+        OPTIONAL,MANDATORY
     }
-    
-    public void setCardinality(int lower, int upper) {
-    	 setTitle(/*"[" + */lower + ".." + upper/* +"]"*/);
-    }
+
+    public void setOptionalState(OPTION_STATE state);
+
+    public OPTION_STATE getOptionalState();
 
 }

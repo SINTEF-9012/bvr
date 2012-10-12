@@ -40,6 +40,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
 
 /**
@@ -47,7 +48,7 @@ import org.jdesktop.swingx.JXTitledSeparator;
  */
 public class IconPanel extends JPanel implements SelectElement, TitledElement, ErrorHighlightableElement {
 
-    JXTitledSeparator titlebar = new JXTitledSeparator();
+    JXLabel titlebar = new JXLabel();
     private BufferedImage image;
 
     public IconPanel(String imgPath) {
@@ -66,7 +67,7 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
 
     @Override
     public void setTitle(String title) {
-        titlebar.setTitle(title);
+        titlebar.setText(title);
         this.setToolTipText("Component "+title);
     }
 
