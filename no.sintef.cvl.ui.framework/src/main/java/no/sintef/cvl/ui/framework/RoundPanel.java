@@ -132,7 +132,7 @@ public class RoundPanel extends JPanel implements ChangeAwareComponent {
             if (active) {
                 g2.setColor(new Color(243, 238, 39, 150));
             } else {
-                g2.setColor(Color.WHITE);
+                g2.setColor(Color.BLACK);
             }
 
             //g2.setComposite(AlphaComposite.Clear);

@@ -31,13 +31,13 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
     JXTitledSeparator typebar = new JXTitledSeparator();
 
     public ChoicePanel() {
-        titlebar.setForeground(Color.WHITE);
+        titlebar.setForeground(Color.BLACK);
         titlebar.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setForeground(Color.WHITE);
+        separatorbar.setForeground(Color.BLACK);
         separatorbar.setTitle("");
         separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
         separatorbar.setVisible(false);
-        typebar.setForeground(Color.WHITE);
+        typebar.setForeground(Color.BLACK);
         typebar.setTitle("");
         typebar.setHorizontalAlignment(SwingConstants.CENTER);
         typebar.setVisible(false);
@@ -46,6 +46,7 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
         addCenter(separatorbar);
         addCenter(typebar);
 
+        setState(STATE.NO_ERROR);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
         if (_state.equals(STATE.IN_ERROR)) {
             this.setBackground(new Color(239, 50, 50, 150));
         } else {
-            this.setBackground(new Color(0, 0, 0, 200));
+            this.setBackground(new Color(0, 0, 0, 5));
         }
     }
 
