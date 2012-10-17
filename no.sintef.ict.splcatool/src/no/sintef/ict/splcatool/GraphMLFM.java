@@ -22,6 +22,7 @@ import org.jgrapht.traverse.TopologicalOrderIterator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import cvl.Choice;
@@ -476,22 +477,25 @@ public class GraphMLFM {
 */
 		// Identify
 		String tag = getTag(root);
-		System.out.println(root + " (" + tag + ")");
+		//System.out.println(root + " (" + tag + ")");
 		
 		// Create
 		VSpec v = null;
 		if(tag.equals("roundrectangle")){
 			Choice c = cvlFactory.eINSTANCE.createChoice();
-			c.setName(root);
+			c.setName(getLabel(root));
 			v = c;
 		}else if(tag.equals("rectangle")){
 			VClassifier c = cvlFactory.eINSTANCE.createVClassifier();
-			c.setName(root);
+			String mstr = getMultiplicity(root);
+			c.setName(getLabel(root).replace("[" + mstr + "]", ""));
 			v = c;
 		}else if(tag.equals("parallelogram")){
 			//v = (VSpec) cvlFactory.eINSTANCE.createOpaqueConstraint();
 		}else if(tag.equals("UMLClassNode")){
 			v = (VSpec) cvlFactory.eINSTANCE.createVClassifier();
+			String mstr = getMultiplicity(root);
+			v.setName(getLabel(root).replace("[" + mstr + "]", ""));
 		}else{
 			throw new UnsupportedOperationException("Unsupported type: " + tag);
 		}
@@ -506,18 +510,7 @@ public class GraphMLFM {
 					String childtag = getTag(g.getEdgeTarget(e));
 					if(childtag.equals("triangle")){
 						String mstr = getMultiplicity(g.getEdgeTarget(e)).trim();
-						System.out.println(mstr);
-						String lstr = mstr.split("\\.\\.")[0];
-						String ustr = mstr.split("\\.\\.")[1];
-						int li = -1;
-						if(!lstr.equals("*")) li = Integer.parseInt(lstr);
-						int ui = -1;
-						if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-						//System.out.println(li + " -> " + ui);
-						MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
-						mi.setLower(li);
-						mi.setUpper(ui);
-						c.setGroupMultiplicity(mi);
+						setGroupMultiplicity(c, mstr);
 						
 						// restart
 						root = g.getEdgeTarget(e);
@@ -532,25 +525,16 @@ public class GraphMLFM {
 			}
 		}else if(tag.equals("rectangle")){
 			VClassifier c = (VClassifier) v;
+			String mstr = getMultiplicity(root);
+			setInstanceMultiplicity(c, mstr);
 			restartloop: for(;;){
 				for(DefaultEdge e : g.edgesOf(root)){
 					if(g.getEdgeTarget(e).equals(root)) continue;
 					
 					String childtag = getTag(g.getEdgeTarget(e));
 					if(childtag.equals("triangle")){
-						String mstr = getMultiplicity(g.getEdgeTarget(e)).trim();
-						System.out.println(mstr);
-						String lstr = mstr.split("\\.\\.")[0];
-						String ustr = mstr.split("\\.\\.")[1];
-						int li = -1;
-						if(!lstr.equals("*")) li = Integer.parseInt(lstr);
-						int ui = -1;
-						if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-						//System.out.println(li + " -> " + ui);
-						MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
-						mi.setLower(li);
-						mi.setUpper(ui);
-						c.setGroupMultiplicity(mi);
+						mstr = getMultiplicity(g.getEdgeTarget(e)).trim();
+						setGroupMultiplicity(c, mstr);
 						
 						// restart
 						root = g.getEdgeTarget(e);
@@ -567,25 +551,16 @@ public class GraphMLFM {
 			// TODO
 		}else if(tag.equals("UMLClassNode")){
 			VClassifier c = (VClassifier) v;
+			String mstr = getMultiplicity(root);
+			setInstanceMultiplicity(c, mstr);
 			restartloop: for(;;){
 				for(DefaultEdge e : g.edgesOf(root)){
 					if(g.getEdgeTarget(e).equals(root)) continue;
 					
 					String childtag = getTag(g.getEdgeTarget(e));
 					if(childtag.equals("triangle")){
-						String mstr = getMultiplicity(g.getEdgeTarget(e)).trim();
-						System.out.println(mstr);
-						String lstr = mstr.split("\\.\\.")[0];
-						String ustr = mstr.split("\\.\\.")[1];
-						int li = -1;
-						if(!lstr.equals("*")) li = Integer.parseInt(lstr);
-						int ui = -1;
-						if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-						//System.out.println(li + " -> " + ui);
-						MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
-						mi.setLower(li);
-						mi.setUpper(ui);
-						c.setGroupMultiplicity(mi);
+						mstr = getMultiplicity(g.getEdgeTarget(e)).trim();
+						setGroupMultiplicity(c, mstr);
 						
 						// restart
 						root = g.getEdgeTarget(e);
@@ -606,15 +581,65 @@ public class GraphMLFM {
 		return v;
 	}
 
-	private String getTag(String root) {
+	private void setInstanceMultiplicity(VClassifier c, String mstr) {
+		String lstr = mstr.split("\\.\\.")[0];
+		String ustr = mstr.split("\\.\\.")[1];
+		int li = -1;
+		if(!lstr.equals("*")) li = Integer.parseInt(lstr);
+		int ui = -1;
+		if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
+		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		mi.setLower(li);
+		mi.setUpper(ui);
+		c.setInstanceMultiplicity(mi);
+	}
+
+	private void setGroupMultiplicity(VSpec c, String mstr) {
+		String lstr = mstr.split("\\.\\.")[0];
+		String ustr = mstr.split("\\.\\.")[1];
+		int li = -1;
+		if(!lstr.equals("*")) li = Integer.parseInt(lstr);
+		int ui = -1;
+		if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
+		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		mi.setLower(li);
+		mi.setUpper(ui);
+		c.setGroupMultiplicity(mi);
+	}
+
+	private String getLabel(String id) {
+		Node element = getXMLNode(graph, id);
+		
+		NodeList nl = graph.getElementsByTagName("y:NodeLabel");
+		
+		String name = null;
+		for(int i = 0; i < nl.getLength(); i++){
+			Node n = nl.item(i);
+			Node p = n.getParentNode().getParentNode().getParentNode();
+			if(p == element){
+				name =  n.getTextContent().trim();
+			}
+		}
+		
+		return name;
+	}
+	
+	private Node getXMLNode(Element graph, String id){
 		Node element = null;
+		
 		for(int i = 0; i < graph.getChildNodes().getLength(); i++){
 			Node x = graph.getChildNodes().item(i);
 			if(!x.getNodeName().equals("node")) continue;
 			//System.out.println(x.getAttributes().getNamedItem("id").getNodeValue());
-			if(x.getAttributes().getNamedItem("id").getNodeValue().equals(root))
+			if(x.getAttributes().getNamedItem("id").getNodeValue().equals(id))
 				element = x;
 		}
+		return element;
+	}
+
+	private String getTag(String root) {
+		Node element = getXMLNode(graph, root);
+
 		String tag = null;
 		if(element != null){
 			tag = element.getNodeName();
@@ -623,17 +648,17 @@ public class GraphMLFM {
 				if(node.getNodeName().equals("#text")){
 					node = element.getChildNodes().item(1);
 				}
-				System.out.println("trying: " + node);
+				//System.out.println("trying: " + node);
 				for(int i = 0; i < element.getChildNodes().getLength(); i++){
 					Node n = element.getChildNodes().item(i);
 					if(n.getNodeName().equals("data")){
-						System.out.println(n.getNodeName() + ", " + n.getAttributes().getNamedItem("key").getNodeValue());
+						//System.out.println(n.getNodeName() + ", " + n.getAttributes().getNamedItem("key").getNodeValue());
 					}
 					if(n.getNodeName().equals("data") && n.getAttributes().getNamedItem("key").getNodeValue().equals("d6"))
 						node = n;
 				}
 				
-				System.out.println("reached: " + node);
+				//System.out.println("reached: " + node);
 
 				Node node2 = node.getChildNodes().item(0);
 				if(node2.getNodeName().equals("#text")){
@@ -641,7 +666,7 @@ public class GraphMLFM {
 				}
 				node = node2;
 				
-				System.out.println(node.getNodeName());
+				//System.out.println(node.getNodeName());
 				if(node.getNodeName().equals("y:UMLClassNode")){
 					//shape = node;
 					tag = "UMLClassNode";
@@ -654,7 +679,7 @@ public class GraphMLFM {
 					Node n = node.getChildNodes().item(i);
 					if(n.getNodeName().equals("y:Shape")){
 						shape = n;
-						System.out.println(n.getNodeName());
+						//System.out.println(n.getNodeName());
 						tag = shape.getAttributes().getNamedItem("type").getNodeValue();
 					}
 				}
@@ -665,41 +690,13 @@ public class GraphMLFM {
 		return tag;
 	}
 	
-	private String getMultiplicity(String root) {
-		Node element = null;
-		for(int i = 0; i < graph.getChildNodes().getLength(); i++){
-			Node x = graph.getChildNodes().item(i);
-			if(!x.getNodeName().equals("node")) continue;
-			//System.out.println(x.getAttributes().getNamedItem("id").getNodeValue());
-			if(x.getAttributes().getNamedItem("id").getNodeValue().equals(root))
-				element = x;
+	private String getMultiplicity(String id) {
+		String m = getLabel(id);
+		if(m.contains("[")){
+			m = m.split("\\[")[1].trim();
+			m = m.replace("]", "").trim();
 		}
-		String tag = null;
-		if(element != null){
-			tag = element.getNodeName();
-			try{
-				Node node = element.getChildNodes().item(0);
-				if(node.getNodeName().equals("#text")){
-					node = element.getChildNodes().item(1);
-				}
-				Node node2 = node.getChildNodes().item(0);
-				if(node2.getNodeName().equals("#text")){
-					node2 = node.getChildNodes().item(1);
-				}
-				node = node2;
-				Node nodelabel = null;
-				for(int i = 0; i < node.getChildNodes().getLength(); i++){
-					Node n = node.getChildNodes().item(i);
-					if(n.getNodeName().equals("y:NodeLabel")){
-						nodelabel = n;
-						//System.out.println(n.getNodeName());
-					}
-				}
-				tag = nodelabel.getTextContent();
-			}catch(NullPointerException ne){
-				//System.out.println(ne);
-			}
-		}
-		return tag;
+		System.out.println(m);
+		return m;
 	}
 }
