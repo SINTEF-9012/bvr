@@ -10,10 +10,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import cvl.Choice;
+import cvl.ConfigurableUnit;
 import cvl.VSpec;
 
 public class CVLModel {
-	protected VSpec c;
+	protected ConfigurableUnit cu;
+	//protected VSpec c;
 
 	public void writeToFile(String filename) throws IOException {
 /*		EPackage.Registry.INSTANCE.put(cvlPackage.eNS_URI, cvlPackage.eINSTANCE);
@@ -23,7 +25,7 @@ public class CVLModel {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 	    ResourceSet resSet = new ResourceSetImpl();
 	    Resource resource = resSet.createResource(URI.createURI("file:///" + filename));
-	    resource.getContents().add(c);
+	    resource.getContents().add(cu);
 	    resource.save(Collections.EMPTY_MAP);
 	}
 }

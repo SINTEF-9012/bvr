@@ -18,7 +18,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -182,6 +184,32 @@ public class GUIDSL {
 		
 		for(Node c : fma.getPropositionalNodes()){
 			g.addConstraint(c.toString());
+		}
+		
+		return g;
+	}
+
+	public GraphMLFM getGraphMLFMConf(CoveringArray ca) throws ParserConfigurationException, SAXException {
+		GraphMLFM g = new GraphMLFM();
+		
+		for(int i = 0; i < ca.getRowCount(); i++){
+		
+			for(Feature f : fma.getFeatures()){
+				Integer row[] = ca.getRow(i);
+				Integer nr = ca.idnr.get(f.getName());
+				boolean assignment = (row[nr-1]==0)?true:false;
+				
+				g.addNode(f.getName()+"_"+i, f.getName() + "=" + assignment);
+			}
+			
+			for(Feature source : fma.getFeatures()){
+				String sourcename = source.getName();
+				
+				for(Feature target : source.getChildren()){
+					g.addEdge(sourcename+"_"+i, target.getName()+"_"+i, true);
+				}
+			}
+			
 		}
 		
 		return g;

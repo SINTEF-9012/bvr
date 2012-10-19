@@ -2,6 +2,8 @@ package no.sintef.ict.splcatool;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -109,8 +111,12 @@ public class GraphMLFM {
  
 		//System.out.println("File saved!");	
 	}
-
+	
 	public void addNode(String name) {
+		addNode(name, name);
+	}
+
+	public void addNode(String name, String label) {
 		Element node = doc.createElementNS("http://graphml.graphdrawing.org/xmlns", "node");
 		node.setAttribute("id", name);
 		graph.appendChild(node);
@@ -154,7 +160,7 @@ public class GraphMLFM {
 		nodelabel.setAttribute("modelName", "custom");
 		nodelabel.setAttribute("textColor", "#000000");
 		nodelabel.setAttribute("visible", "true");
-		nodelabel.setTextContent(name);
+		nodelabel.setTextContent(label);
 		shapenode.appendChild(nodelabel);
 	}
 	
@@ -415,10 +421,12 @@ public class GraphMLFM {
 		nodelabel.setTextContent(constraint);
 		shapenode.appendChild(nodelabel);
 	}
+	
+	CVLModel cvl;
 
 	public CVLModel getCVLModel() {
 		// Make empty CVL model
-		CVLModel cvl = new CVLModel();
+		cvl = new CVLModel();
 		cvlPackageImpl.init();
 		//cvlFactory cvlf = cvlFactory.eINSTANCE;
 		
@@ -460,7 +468,9 @@ public class GraphMLFM {
 		// Iterate
 		TopologicalOrderIterator<String, DefaultEdge> ti = new TopologicalOrderIterator<String, DefaultEdge>(g);
 		String root = ti.next();
-		cvl.c = traverse(g, root);
+		cvl.cu = cvlFactory.eINSTANCE.createConfigurableUnit();
+		VSpec vs = traverse(g, root);
+		cvl.cu.getOwnedVSpec().add(vs);
 		
 		// Return
 		return cvl;
@@ -469,6 +479,8 @@ public class GraphMLFM {
 	VSpec traverse(DirectedGraph<String, DefaultEdge> g, String root){
 		return traverse(g, root, 0);
 	}
+	
+	Map<String, VSpec> idmap = new HashMap<String, VSpec>();
 	
 	VSpec traverse(DirectedGraph<String, DefaultEdge> g, String root, int level){
 		// Print
@@ -483,17 +495,28 @@ public class GraphMLFM {
 		VSpec v = null;
 		if(tag.equals("roundrectangle")){
 			Choice c = cvlFactory.eINSTANCE.createChoice();
+			idmap.put(root, c);
 			c.setName(getLabel(root));
 			v = c;
 		}else if(tag.equals("rectangle")){
 			VClassifier c = cvlFactory.eINSTANCE.createVClassifier();
+			idmap.put(root, c);
 			String mstr = getMultiplicity(root);
 			c.setName(getLabel(root).replace("[" + mstr + "]", ""));
 			v = c;
 		}else if(tag.equals("parallelogram")){
-			//v = (VSpec) cvlFactory.eINSTANCE.createOpaqueConstraint();
+			OpaqueConstraint c =  cvlFactory.eINSTANCE.createOpaqueConstraint();
+			String l = getLabel(root);
+			c.setConstraint(l);
+			for(DefaultEdge e : g.edgesOf(root)){
+				if(!g.getEdgeTarget(e).equals(root)) continue;
+				//System.out.println("Constrain of " + g.getEdgeSource(e));
+				c.setContext(idmap.get(g.getEdgeSource(e)));
+			}
+			cvl.cu.getOwnedConstraint().add(c);
 		}else if(tag.equals("UMLClassNode")){
 			v = (VSpec) cvlFactory.eINSTANCE.createVClassifier();
+			idmap.put(root, v);
 			String mstr = getMultiplicity(root);
 			v.setName(getLabel(root).replace("[" + mstr + "]", ""));
 		}else{
@@ -696,7 +719,7 @@ public class GraphMLFM {
 			m = m.split("\\[")[1].trim();
 			m = m.replace("]", "").trim();
 		}
-		System.out.println(m);
+		//System.out.println(m);
 		return m;
 	}
 }
