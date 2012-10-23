@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore">
+  <ownedVSpec xsi:type="cvl:Choice" name="GPL">
+    <groupMultiplicity upper="1" lower="1"/>
+    <child xsi:type="cvl:Choice" name="MainGpl">
+      <child xsi:type="cvl:Choice" name="TestProg"/>
+      <child xsi:type="cvl:Choice" name="Alg">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Number"/>
+        <child xsi:type="cvl:Choice" name="Connected"/>
+        <child xsi:type="cvl:Choice" name="StrongC">
+          <child xsi:type="cvl:Choice" name="Transpose"/>
+          <child xsi:type="cvl:Choice" name="StronglyConnected"/>
+        </child>
+        <child xsi:type="cvl:Choice" name="Cycle"/>
+        <child xsi:type="cvl:Choice" name="MSTPrim"/>
+        <child xsi:type="cvl:Choice" name="MSTKruskal"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Src">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="BFS"/>
+        <child xsi:type="cvl:Choice" name="DFS"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="HiddenWgt">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="WeightOptions">
+          <child xsi:type="cvl:Choice" name="WeightedWithEdges"/>
+          <child xsi:type="cvl:Choice" name="WeightedWithNeighbors"/>
+          <child xsi:type="cvl:Choice" name="WeightedOnlyVertices"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="Wgt">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Weighted"/>
+        <child xsi:type="cvl:Choice" name="Unweighted"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="HiddenGtp">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="DirectedWithEdges"/>
+        <child xsi:type="cvl:Choice" name="DirectedWithNeighbors"/>
+        <child xsi:type="cvl:Choice" name="DirectedOnlyVertices"/>
+        <child xsi:type="cvl:Choice" name="UndirectedWithEdges"/>
+        <child xsi:type="cvl:Choice" name="UndirectedWithNeighbors"/>
+        <child xsi:type="cvl:Choice" name="UndirectedOnlyVertices"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Gtp">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Directed"/>
+        <child xsi:type="cvl:Choice" name="Undirected"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Implementation">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="OnlyVertices"/>
+        <child xsi:type="cvl:Choice" name="WithNeighbors"/>
+        <child xsi:type="cvl:Choice" name="WithEdges"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Base"/>
+    </child>
+  </ownedVSpec>
+</cvl:ConfigurableUnit>

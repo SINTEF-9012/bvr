@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore">
+  <ownedVSpec xsi:type="cvl:Choice" name="BerkeleyDb">
+    <groupMultiplicity upper="1" lower="1"/>
+    <child xsi:type="cvl:Choice" name="BerkeleyDB">
+      <child xsi:type="cvl:Choice" name="FLogging">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Logging">
+          <child xsi:type="cvl:Choice" name="featureLoggingFile"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingConsole"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingDbLog"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingFinest"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingFiner"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingFine"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingInfo"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingConfig"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingSevere"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingBase"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="FPersistency">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Persistency">
+          <child xsi:type="cvl:Choice" name="FPersistencyFeatures">
+            <groupMultiplicity upper="-1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="featureChecksum"/>
+            <child xsi:type="cvl:Choice" name="featureFileHandleCache"/>
+            <child xsi:type="cvl:Choice" name="featureHandleFullDiscError"/>
+            <child xsi:type="cvl:Choice" name="featureEnvironmentLock"/>
+            <child xsi:type="cvl:Choice" name="Checkpointer">
+              <child xsi:type="cvl:Choice" name="featureCustomizableCheckpointerTime"/>
+              <child xsi:type="cvl:Choice" name="featureCustomizableCheckpointerBytes"/>
+              <child xsi:type="cvl:Choice" name="featureCheckpointerDaemon"/>
+            </child>
+            <child xsi:type="cvl:Choice" name="Cleaner">
+              <child xsi:type="cvl:Choice" name="featureLookAheadCache"/>
+              <child xsi:type="cvl:Choice" name="featureCleanerDaemon"/>
+            </child>
+          </child>
+          <child xsi:type="cvl:Choice" name="FIOFeature">
+            <groupMultiplicity upper="1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="NIO">
+              <child xsi:type="cvl:Choice" name="featureDirectNIO"/>
+              <child xsi:type="cvl:Choice" name="FNIOType">
+                <groupMultiplicity upper="1" lower="1"/>
+                <child xsi:type="cvl:Choice" name="NotChunked">
+                  <child xsi:type="cvl:Choice" name="featureNIO"/>
+                </child>
+                <child xsi:type="cvl:Choice" name="Chunked">
+                  <child xsi:type="cvl:Choice" name="featureChunkedNIO"/>
+                </child>
+              </child>
+            </child>
+            <child xsi:type="cvl:Choice" name="IO">
+              <child xsi:type="cvl:Choice" name="featureSynchronizedIO"/>
+              <child xsi:type="cvl:Choice" name="featureIO"/>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="FStatistics">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Statistics">
+          <child xsi:type="cvl:Choice" name="FStatisticsFeatures">
+            <groupMultiplicity upper="-1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="EnvStats">
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvLog"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvINCompressor"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvFSync"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvEvictor"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvCleaner"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvCheckpointer"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvCaching"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvBase"/>
+            </child>
+            <child xsi:type="cvl:Choice" name="featureStatisticsDatabase"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsLock"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsPreload"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsSequence"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsTransaction"/>
+          </child>
+          <child xsi:type="cvl:Choice" name="featureStatisticsBase"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="featureMemoryBudget"/>
+      <child xsi:type="cvl:Choice" name="FConcurrency">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="featureLatch"/>
+        <child xsi:type="cvl:Choice" name="featureFSync"/>
+        <child xsi:type="cvl:Choice" name="featureTransaction"/>
+        <child xsi:type="cvl:Choice" name="dummyFeatureLocking"/>
+        <child xsi:type="cvl:Choice" name="featureCheckLeaks"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="FDbOperation">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="featureDeleteDb"/>
+        <child xsi:type="cvl:Choice" name="featureTruncateDb"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="FBtree">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="BTree">
+          <child xsi:type="cvl:Choice" name="featureVerifier"/>
+          <child xsi:type="cvl:Choice" name="featureTreeVisitor"/>
+          <child xsi:type="cvl:Choice" name="featureINCompressor"/>
+          <child xsi:type="cvl:Choice" name="FEvictor">
+            <groupMultiplicity upper="1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="Evictor">
+              <child xsi:type="cvl:Choice" name="featureCriticalEviction"/>
+              <child xsi:type="cvl:Choice" name="featureEvictorDaemon"/>
+              <child xsi:type="cvl:Choice" name="featureEvictor"/>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="BASE"/>
+    </child>
+  </ownedVSpec>
+</cvl:ConfigurableUnit>

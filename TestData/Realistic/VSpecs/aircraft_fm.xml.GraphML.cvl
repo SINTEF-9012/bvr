@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore"
+    xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore">
+  <ownedVSpec xsi:type="cvl:Choice" name="Aircraft">
+    <child xsi:type="cvl:Choice" name="Wing">
+      <groupMultiplicity upper="-1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="High"/>
+      <child xsi:type="cvl:Choice" name="Shoulder"/>
+      <child xsi:type="cvl:Choice" name="Low"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Engine">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Jet"/>
+      <child xsi:type="cvl:Choice" name="Piston"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Materials">
+      <groupMultiplicity upper="-1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Metal"/>
+      <child xsi:type="cvl:Choice" name="Wood"/>
+      <child xsi:type="cvl:Choice" name="Cloth"/>
+      <child xsi:type="cvl:Choice" name="Plastic"/>
+    </child>
+  </ownedVSpec>
+</cvl:ConfigurableUnit>

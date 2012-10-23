@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore">
+  <ownedVSpec xsi:type="cvl:Choice" name="EclipseIDE">
+    <child xsi:type="cvl:Choice" name="RCP_Platform">
+      <child xsi:type="cvl:Choice" name="JDT">
+        <child xsi:type="cvl:Choice" name="PDE">
+          <child xsi:type="cvl:Choice" name="Scout"/>
+        </child>
+        <child xsi:type="cvl:Choice" name="Maven"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="EMF">
+        <child xsi:type="cvl:Choice" name="GMF"/>
+        <child xsi:type="cvl:Choice" name="Datatools">
+          <child xsi:type="cvl:Choice" name="BIRT"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="GEF"/>
+      <child xsi:type="cvl:Choice" name="CDT"/>
+      <child xsi:type="cvl:Choice" name="CVS"/>
+      <child xsi:type="cvl:Choice" name="WebTools"/>
+      <child xsi:type="cvl:Choice" name="SVN">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="SVN15"/>
+        <child xsi:type="cvl:Choice" name="SVN16"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Mylyn"/>
+      <child xsi:type="cvl:Choice" name="PTP"/>
+      <child xsi:type="cvl:Choice" name="Jubula"/>
+      <child xsi:type="cvl:Choice" name="RAP"/>
+      <child xsi:type="cvl:Choice" name="EGit"/>
+      <child xsi:type="cvl:Choice" name="RSE"/>
+      <child xsi:type="cvl:Choice" name="EclipseLink"/>
+      <child xsi:type="cvl:Choice" name="WindowBuilder"/>
+    </child>
+  </ownedVSpec>
+</cvl:ConfigurableUnit>
