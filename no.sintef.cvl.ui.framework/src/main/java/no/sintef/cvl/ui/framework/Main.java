@@ -51,9 +51,9 @@ public class Main {
         c1.setNameAndCardinality("PrinterPool", "[0..*]");
         
         
-        ParallelogramTitledPanel par = new ParallelogramTitledPanel();
+       /* ParallelogramTitledPanel par = new ParallelogramTitledPanel();
         par.setTitle("resolution = 300");
-        model.add(par);
+        model.add(par);*/
         
         
         

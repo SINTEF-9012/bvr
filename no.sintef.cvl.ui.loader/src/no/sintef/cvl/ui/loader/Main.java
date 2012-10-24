@@ -13,11 +13,14 @@ import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
 import cvl.Choice;
 import cvl.ConfigurableUnit;
+import cvl.Constraint;
 import cvl.MultiplicityInterval;
+import cvl.OpaqueConstraint;
 import cvl.VClassifier;
 import cvl.VSpec;
 
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
+import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.elements.Binding;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
@@ -61,11 +64,11 @@ public class Main {
     
 	private static void loadCVLView(ConfigurableUnit cu, ConfigurableUnitPanel model) throws CVLModelException {
 		for(VSpec v : cu.getOwnedVSpec()){
-			loadCVLView(v, model, null);
+			loadCVLView(v, model, null, cu);
 		}
 	}
 
-	private static void loadCVLView(VSpec v, ConfigurableUnitPanel model, JComponent parent) throws CVLModelException {
+	private static void loadCVLView(VSpec v, ConfigurableUnitPanel model, JComponent parent, ConfigurableUnit cu) throws CVLModelException {
 		JComponent currentpanel = null;
 		JComponent nextparent = null;
 		OPTION_STATE edgetype = OPTION_STATE.MANDATORY;
@@ -90,7 +93,7 @@ public class Main {
 	        cp.setTitle(c.getName());
 	        model.addNode(cp);
 	        
-	        if(!c.isIsImpliedByParent()){
+	        if(c.isIsImpliedByParent()){
 	        	edgetype = OPTION_STATE.OPTIONAL;
 	        }
 	        
@@ -106,7 +109,7 @@ public class Main {
 	        group.setCardinality(l, u);
 	        model.addNode(group);
 	        
-		    Binding b4 = new Binding(edgetype);
+		    Binding b4 = new Binding(OPTION_STATE.MANDATORY);
 		    b4.setFrom(currentpanel);
 		    b4.setTo(group);
 		    model.addBinding(b4);
@@ -115,14 +118,34 @@ public class Main {
 		}
 		
 		if(currentpanel != null && parent != null){
+			if(parent instanceof GroupPanel){
+				edgetype = OPTION_STATE.OPTIONAL;
+			}
 	        Binding b4 = new Binding(edgetype);
 	        b4.setFrom(parent);
 	        b4.setTo(currentpanel);
 	        model.addBinding(b4);
 		}
 		
+		for(Constraint c : cu.getOwnedConstraint()){
+			if(c instanceof OpaqueConstraint){
+				OpaqueConstraint oc = (OpaqueConstraint) c;
+				if(c.getContext() == v){
+			        ConstraintPanel constraint1 = new ConstraintPanel(model);
+			        constraint1.setTitle("--------------");
+			        constraint1.setConstraint(oc.getConstraint());
+			        model.addNode(constraint1);
+			        
+			        Binding b4 = new Binding(OPTION_STATE.MANDATORY);
+			        b4.setFrom(constraint1);
+			        b4.setTo(currentpanel);
+			        model.addBinding(b4);
+				}
+			}
+		}
+		
 		for(VSpec vs : v.getChild()){
-			loadCVLView(vs, model, nextparent);
+			loadCVLView(vs, model, nextparent, cu);
 		}
 	}
 }
