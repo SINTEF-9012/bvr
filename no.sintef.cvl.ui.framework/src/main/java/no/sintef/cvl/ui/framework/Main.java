@@ -49,7 +49,7 @@ public class Main {
         
         VClassifierPanel c1 = new VClassifierPanel(model);
         c1.setNameAndCardinality("PrinterPool", "[0..*]");
-/*        
+        
         
         ParallelogramTitledPanel par = new ParallelogramTitledPanel();
         par.setTitle("resolution = 300");
@@ -144,14 +144,13 @@ public class Main {
         model.addBinding(b3);
         
                 
-*/        model.addNode(c1);
-/*        model.addNode(c2);
+        model.addNode(c1);
+        model.addNode(c2);
         model.addNode(c3);
         model.addNode(group);
         model.addNode(x300dpi_print);
         model.addNode(x600dpi_print);
         model.addNode(constraint1);
-*/
 
         JScrollPane scrollPane = new JScrollPane(model, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         IAppWidgetFactory.makeIAppScrollPane(scrollPane);
