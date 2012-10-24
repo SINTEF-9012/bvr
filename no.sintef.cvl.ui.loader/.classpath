@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="src" path="/no.sintef.cvl.ui.framework"/>
+	<classpathentry kind="lib" path="C:/Users/mjoha/.m2/repository/org/kevoree/extra/org.kevoree.extra.macwidgets/0.9.6/org.kevoree.extra.macwidgets-0.9.6.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.kevoree.extra"/>
+			<attribute name="maven.artifactId" value="org.kevoree.extra.macwidgets"/>
+			<attribute name="maven.version" value="0.9.6"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="/no.sintef.ict.splcatool"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
