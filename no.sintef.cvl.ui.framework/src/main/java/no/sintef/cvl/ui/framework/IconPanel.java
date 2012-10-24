@@ -65,7 +65,6 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
         add(titlebar,BorderLayout.CENTER);
     }
 
-    @Override
     public void setTitle(String title) {
         titlebar.setText(title);
         this.setToolTipText("Component "+title);
@@ -74,20 +73,17 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
     private Boolean selected = false;
     private Boolean active = false;
 
-    @Override
     public void setSelected(Boolean _selected) {
         selected = _selected;
         active = _selected;
     }
 
-    @Override
     public Boolean getSelected() {
         return selected;
     }
 
     private STATE _state = STATE.NO_ERROR;
 
-    @Override
     public void setState(STATE state) {
         _state = state;
         if (_state.equals(STATE.IN_ERROR)) {
@@ -97,7 +93,6 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
         }
     }
 
-    @Override
     public STATE getCurrentState() {
         return _state;
     }

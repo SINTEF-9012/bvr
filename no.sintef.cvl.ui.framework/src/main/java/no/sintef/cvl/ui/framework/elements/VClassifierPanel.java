@@ -98,20 +98,17 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
 
     private Boolean selected = false;
 
-    @Override
     public void setSelected(Boolean _selected) {
         selected = _selected;
         active = _selected;
     }
 
-    @Override
     public Boolean getSelected() {
         return selected;
     }
 
     private STATE _state = STATE.NO_ERROR;
 
-    @Override
     public void setState(STATE state) {
         _state = state;
         if (_state.equals(STATE.IN_ERROR)) {
@@ -121,7 +118,6 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
         }
     }
 
-    @Override
     public STATE getCurrentState() {
         return _state;
     }

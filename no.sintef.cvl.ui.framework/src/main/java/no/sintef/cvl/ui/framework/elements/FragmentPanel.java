@@ -30,12 +30,10 @@ public class FragmentPanel extends JPanel implements ErrorHighlightableElement {
 
 	private STATE currentState = STATE.NO_ERROR;
 
-    @Override
     public void setState(STATE state) {
         currentState = state;
     }
 
-    @Override
     public STATE getCurrentState() {
         return currentState;
     }

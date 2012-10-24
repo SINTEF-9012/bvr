@@ -71,17 +71,14 @@ public class InstanceDragSourceListener extends DragSourceAdapter implements Dra
         dragSource.addDragSourceMotionListener(this);
         transferable = new Transferable() {
 
-            @Override
             public DataFlavor[] getTransferDataFlavors() {
                 return new DataFlavor[0];
             }
 
-            @Override
             public boolean isDataFlavorSupported(DataFlavor arg0) {
                 return true;
             }
 
-            @Override
             public Object getTransferData(DataFlavor arg0) {
                 return flightComponent;
             }
@@ -91,7 +88,6 @@ public class InstanceDragSourceListener extends DragSourceAdapter implements Dra
 
     private DropTargetListener tempDropTarget = null;
 
-    @Override
     public void dragGestureRecognized(DragGestureEvent dge) {
         dragOriginEvent = dge;
         Point origin = dragOriginEvent.getDragOrigin();

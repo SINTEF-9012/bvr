@@ -69,7 +69,6 @@ public class ParallelogramTitledPanel extends ParallelogramPanel implements Titl
         contentPanel.remove(comp);
     }
 
-    @Override
     public void setTitle(String _title) {
         title.setTitle(_title);
     }

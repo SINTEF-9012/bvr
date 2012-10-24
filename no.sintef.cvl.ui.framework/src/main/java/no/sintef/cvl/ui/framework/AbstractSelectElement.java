@@ -16,12 +16,10 @@ package no.sintef.cvl.ui.framework;
 
 public class AbstractSelectElement implements SelectElement {
 
-    @Override
     public Boolean getSelected() {
         return selected;
     }
 
-    @Override
     public void setSelected(Boolean selected) {
         this.selected = selected;
     }

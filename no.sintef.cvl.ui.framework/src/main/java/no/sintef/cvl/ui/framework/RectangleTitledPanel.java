@@ -71,7 +71,6 @@ public class RectangleTitledPanel extends RectanglePanel implements TitledElemen
         contentPanel.remove(comp);
     }
 
-    @Override
     public void setTitle(String _title) {
         title.setText(_title);
     }

@@ -185,7 +185,6 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
         vspecPanel.removeAll();
     }
 
-    @Override
     public void clearBuffer() {
         for(Component c : getComponents()){
             if(c instanceof BufferedElement){

@@ -176,7 +176,6 @@ public class RoundPanel extends JPanel implements ChangeAwareComponent {
 
     private BufferedImage bufferGhost;
 
-    @Override
     public void notifyUIChanged() {
         bufferGhost = null;
     }

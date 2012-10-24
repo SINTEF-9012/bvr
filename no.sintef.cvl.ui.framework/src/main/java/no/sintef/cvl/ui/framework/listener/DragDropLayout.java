@@ -45,27 +45,22 @@ import javax.swing.JPanel;
 public class DragDropLayout implements LayoutManager {
 
     //private List<Component> l = new ArrayList();
-    @Override
     public void addLayoutComponent(String name, Component comp) {
         //l.add(comp);
     }
 
-    @Override
     public void removeLayoutComponent(Component comp) {
         //l.remove(comp);
     }
 
-    @Override
     public Dimension preferredLayoutSize(Container parent) {
         return new Dimension();
     }
 
-    @Override
     public Dimension minimumLayoutSize(Container parent) {
         return new Dimension();
     }
 
-    @Override
     public void layoutContainer(Container p) {
 
         int n = p.getComponents().length;

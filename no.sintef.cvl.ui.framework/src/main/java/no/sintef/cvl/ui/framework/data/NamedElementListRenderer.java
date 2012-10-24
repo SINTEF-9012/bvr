@@ -23,7 +23,6 @@ import java.awt.Component;
 public class NamedElementListRenderer implements ListCellRenderer {
 
 
-    @Override
     public JLabel getListCellRendererComponent(JList jList, Object o, int i, boolean b, boolean b1) {
         JLabel renderer = null;
         System.out.println("Redering " + o.getClass());

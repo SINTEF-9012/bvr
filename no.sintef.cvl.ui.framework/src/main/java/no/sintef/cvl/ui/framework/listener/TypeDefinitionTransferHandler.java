@@ -41,17 +41,14 @@ public class TypeDefinitionTransferHandler extends TransferHandler {
 
     protected Transferable createTransferable(JComponent c) {
         return new Transferable() {
-            @Override
             public DataFlavor[] getTransferDataFlavors() {
                 return new DataFlavor[0];  //To change body of implemented methods use File | Settings | File Templates.
             }
 
-            @Override
             public boolean isDataFlavorSupported(DataFlavor dataFlavor) {
                 return true;
             }
 
-            @Override
             public Object getTransferData(DataFlavor dataFlavor) throws UnsupportedFlavorException, IOException {
                 return null;
             }
