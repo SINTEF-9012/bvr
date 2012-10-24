@@ -88,6 +88,7 @@ public class Main {
         model.addBinding(b0);
         
         
+        
         VClassifierPanel c3 = new VClassifierPanel(model);
         c3.setNameAndCardinality("Scanner", "[0..*]");
         c3.addAttribute("resolution", "int");
