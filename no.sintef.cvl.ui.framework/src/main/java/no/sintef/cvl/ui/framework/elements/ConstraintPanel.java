@@ -89,7 +89,7 @@ public class ConstraintPanel extends ThreePartRectanglePanel implements SelectEl
 		active = _selected;
 	}
 
-	public Boolean getSelected() {
+	public Boolean isSelected() {
 		return selected;
 	}
 

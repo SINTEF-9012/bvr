@@ -16,11 +16,11 @@ package no.sintef.cvl.ui.framework.command;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
 
 public interface Command {
 
-    Command init(ConfigurableUnitPanel rootPanel, Object p, JComponent parent);
+    Command init(CVLUIKernel rootPanel, Object p, JComponent parent);
     
     JComponent execute();
 

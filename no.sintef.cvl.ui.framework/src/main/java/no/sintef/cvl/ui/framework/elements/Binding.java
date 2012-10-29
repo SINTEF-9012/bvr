@@ -121,7 +121,7 @@ public class Binding extends AbstractSelectElement implements ErrorHighlightable
     }
 
     public Color getActualColor() {
-        return this.getSelected() ? selectedcolor : unselectedcolor;
+        return this.isSelected() ? selectedcolor : unselectedcolor;
     }
 
     private OPTION_STATE optionalState = OPTION_STATE.MANDATORY;

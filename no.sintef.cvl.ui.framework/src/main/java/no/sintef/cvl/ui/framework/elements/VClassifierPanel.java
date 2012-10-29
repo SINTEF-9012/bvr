@@ -39,6 +39,15 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     
     ConfigurableUnitPanel model;
 
+	public String getName() {
+		return name.getName();
+	}
+	
+
+	public void setName(String name) {
+		setTitle(name);
+	}
+    
     public VClassifierPanel(ConfigurableUnitPanel model) {
     	this.model = model;
     	
@@ -103,7 +112,7 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
         active = _selected;
     }
 
-    public Boolean getSelected() {
+    public Boolean isSelected() {
         return selected;
     }
 

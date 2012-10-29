@@ -12,7 +12,7 @@ import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddGroupMultiplicity;
 import no.sintef.cvl.ui.commands.AddOpaqueConstraint;
 import no.sintef.cvl.ui.commands.AddVClassifier;
-import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.ict.splcatool.CVLModel;
 
@@ -43,11 +43,11 @@ public class Main {
         jframe.setPreferredSize(new Dimension(800, 600));
         
         // Add stuff
-        ConfigurableUnitPanel model = new ConfigurableUnitPanel();
+        CVLUIKernel model = new CVLUIKernel();
         loadCVLView(cvlm.cu, model);
 
         // Done
-        JScrollPane scrollPane = new JScrollPane(model, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane scrollPane = new JScrollPane(model.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         IAppWidgetFactory.makeIAppScrollPane(scrollPane);
         EditableModelPanel epanel = new EditableModelPanel(scrollPane);
         jframe.add(epanel, BorderLayout.CENTER);
@@ -55,13 +55,13 @@ public class Main {
         jframe.setVisible(true);
     }
     
-	private static void loadCVLView(ConfigurableUnit cu, ConfigurableUnitPanel model) throws CVLModelException {
+	private static void loadCVLView(ConfigurableUnit cu, CVLUIKernel model) throws CVLModelException {
 		for(VSpec v : cu.getOwnedVSpec()){
 			loadCVLView(v, model, null, cu);
 		}
 	}
 
-	private static void loadCVLView(VSpec v, ConfigurableUnitPanel model, JComponent parent, ConfigurableUnit cu) throws CVLModelException {
+	private static void loadCVLView(VSpec v, CVLUIKernel model, JComponent parent, ConfigurableUnit cu) throws CVLModelException {
 		JComponent nextParent = null;
 		
 		if(v instanceof VClassifier){

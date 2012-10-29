@@ -68,7 +68,7 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
         active = _selected;
     }
 
-    public Boolean getSelected() {
+    public Boolean isSelected() {
         return selected;
     }
 

@@ -78,7 +78,7 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
         active = _selected;
     }
 
-    public Boolean getSelected() {
+    public Boolean isSelected() {
         return selected;
     }
 

@@ -16,5 +16,6 @@ package no.sintef.cvl.ui.framework.elements;
 import no.sintef.cvl.ui.framework.OptionalElement;
 
 public interface VSpecPanel extends OptionalElement {
-
+	String getName();
+	void setName(String name);
 }

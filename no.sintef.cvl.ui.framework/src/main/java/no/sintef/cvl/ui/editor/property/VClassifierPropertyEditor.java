@@ -11,20 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package no.sintef.cvl.ui.editor.property;
 
-package no.sintef.cvl.ui.framework;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
+import no.sintef.cvl.ui.framework.elements.VSpecPanel;
 
-public class AbstractSelectElement implements SelectElement {
+public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
-    public Boolean isSelected() {
-        return selected;
-    }
+	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifierPanel elem) {
+		super(kernel, (VSpecPanel) elem);
+	}
 
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
-    }
-
-    private Boolean selected = false;
-
-    
 }

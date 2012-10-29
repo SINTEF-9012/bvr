@@ -19,6 +19,8 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editor.panel.CVLEditorPanel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.Binding;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -45,9 +47,13 @@ public class Main {
         jframe.setPreferredSize(new Dimension(800, 600));
 
 
-        ConfigurableUnitPanel model = new ConfigurableUnitPanel();
         
-        VClassifierPanel c1 = new VClassifierPanel(model);
+        //ConfigurableUnitPanel model = new ConfigurableUnitPanel();
+        CVLUIKernel model = new CVLUIKernel();
+        CVLEditorPanel editorPanel = new CVLEditorPanel();
+        model.setEditorPanel(editorPanel);
+        
+        VClassifierPanel c1 = new VClassifierPanel(model.getModelPanel());
         c1.setNameAndCardinality("PrinterPool", "[0..*]");
         
         
@@ -70,7 +76,7 @@ public class Main {
         p12.setTitle("Replacement");
         
         
-        VClassifierPanel c2 = new VClassifierPanel(model);
+        VClassifierPanel c2 = new VClassifierPanel(model.getModelPanel());
         c2.setNameAndCardinality("Printer", "[1..*]");
         c2.addAttribute("resolution", "int");
         c2.addAttribute("speed", "int");
@@ -85,11 +91,11 @@ public class Main {
         b0.setSelected(false);
         b0.setFrom(c1);
         b0.setTo(c2);
-        model.addBinding(b0);
+        model.getModelPanel().addBinding(b0);
         
         
         
-        VClassifierPanel c3 = new VClassifierPanel(model);
+        VClassifierPanel c3 = new VClassifierPanel(model.getModelPanel());
         c3.setNameAndCardinality("Scanner", "[0..*]");
         c3.addAttribute("resolution", "int");
         c3.setOptionalState(OPTION_STATE.OPTIONAL);
@@ -98,7 +104,7 @@ public class Main {
         b4.setSelected(false);
         b4.setFrom(c1);
         b4.setTo(c3);
-        model.addBinding(b4);
+        model.getModelPanel().addBinding(b4);
         
         
         GroupPanel group = new GroupPanel();
@@ -109,7 +115,7 @@ public class Main {
         b.setSelected(false);
         b.setFrom(c2);
         b.setTo(group);
-        model.addBinding(b);
+        model.getModelPanel().addBinding(b);
         
         
         
@@ -120,10 +126,10 @@ public class Main {
         b2.setSelected(false);
         b2.setFrom(group);
         b2.setTo(x300dpi_print);
-        model.addBinding(b2);
+        model.getModelPanel().addBinding(b2);
         
         
-        ConstraintPanel constraint1 = new ConstraintPanel(model);
+        ConstraintPanel constraint1 = new ConstraintPanel(model.getModelPanel());
         constraint1.setTitle("Resolution");
         constraint1.setConstraint("resolution = 300");
         
@@ -131,7 +137,7 @@ public class Main {
         b5.setSelected(false);
         b5.setFrom(x300dpi_print);
         b5.setTo(constraint1);
-        model.addBinding(b5);
+        model.getModelPanel().addBinding(b5);
         
         
         ChoicePanel x600dpi_print = new ChoicePanel();
@@ -141,21 +147,21 @@ public class Main {
         b3.setSelected(false);
         b3.setFrom(group);
         b3.setTo(x600dpi_print);
-        model.addBinding(b3);
+        model.getModelPanel().addBinding(b3);
         
                 
-        model.addNode(c1);
+        model.getModelPanel().addNode(c1);
         c1.setLocation(200, 0);
-        model.addNode(c2);
+        model.getModelPanel().addNode(c2);
         c2.setLocation(100, 50);
-        model.addNode(c3);
+        model.getModelPanel().addNode(c3);
         c2.setLocation(300, 50);
-        model.addNode(group);
-        model.addNode(x300dpi_print);
-        model.addNode(x600dpi_print);
-        model.addNode(constraint1);
+        model.getModelPanel().addNode(group);
+        model.getModelPanel().addNode(x300dpi_print);
+        model.getModelPanel().addNode(x600dpi_print);
+        model.getModelPanel().addNode(constraint1);
 
-        JScrollPane scrollPane = new JScrollPane(model, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane scrollPane = new JScrollPane(model.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         IAppWidgetFactory.makeIAppScrollPane(scrollPane);
 
 

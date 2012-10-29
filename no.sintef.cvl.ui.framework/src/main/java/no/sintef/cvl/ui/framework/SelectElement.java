@@ -18,6 +18,6 @@ public interface SelectElement {
 
     public void setSelected(Boolean selected);
 
-    public Boolean getSelected();
+    public Boolean isSelected();
     
 }
