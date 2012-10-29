@@ -145,8 +145,11 @@ public class Main {
         
                 
         model.addNode(c1);
+        c1.setLocation(200, 0);
         model.addNode(c2);
+        c2.setLocation(100, 50);
         model.addNode(c3);
+        c2.setLocation(300, 50);
         model.addNode(group);
         model.addNode(x300dpi_print);
         model.addNode(x600dpi_print);
