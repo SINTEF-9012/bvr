@@ -18,4 +18,6 @@ public interface TitledElement {
 
     public void setTitle(String title);
 
+	public String getTitle();
+
 }

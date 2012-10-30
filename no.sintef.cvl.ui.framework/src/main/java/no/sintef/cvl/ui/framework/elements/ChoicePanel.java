@@ -54,6 +54,11 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
         titlebar.setTitle(title);
         this.setToolTipText("Component "+title);
     }
+    
+    @Override
+    public String getTitle(){
+    	return titlebar.getTitle();
+    }
 
     public void setTypeName(String title) {
         typebar.setTitle(title);

@@ -6,6 +6,7 @@ import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.command.Command;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
+import no.sintef.cvl.ui.loader.Main;
 import cvl.MultiplicityInterval;
 import cvl.VSpec;
 
@@ -28,6 +29,7 @@ public class AddGroupMultiplicity implements Command {
 		if(v.getGroupMultiplicity() != null){
 			MultiplicityInterval m = v.getGroupMultiplicity();
 			GroupPanel group = new GroupPanel();
+			Main.nodes.add(group);
 			int l = m.getLower();
 			int u = m.getUpper();
 			group.setCardinality(l, u);

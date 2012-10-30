@@ -15,5 +15,7 @@
 	<classpathentry kind="src" path="/no.sintef.ict.splcatool"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>
+	<classpathentry kind="src" path="/org.abego.treelayout.core"/>
+	<classpathentry kind="src" path="/org.abego.treelayout.demo"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

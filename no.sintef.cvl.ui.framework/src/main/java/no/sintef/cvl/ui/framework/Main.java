@@ -40,29 +40,21 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-
         JFrame jframe = new JFrame("CVL UI Tester");
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setPreferredSize(new Dimension(800, 600));
-
-
         
         //ConfigurableUnitPanel model = new ConfigurableUnitPanel();
         CVLUIKernel model = new CVLUIKernel();
-        CVLEditorPanel editorPanel = new CVLEditorPanel();
+        CVLEditorPanel editorPanel = new CVLEditorPanel(model);
         model.setEditorPanel(editorPanel);
         
         VClassifierPanel c1 = new VClassifierPanel(model.getModelPanel());
         c1.setNameAndCardinality("PrinterPool", "[0..*]");
         
-        
        /* ParallelogramTitledPanel par = new ParallelogramTitledPanel();
         par.setTitle("resolution = 300");
         model.add(par);*/
-        
-        
-        
     
         FragmentPanel p11 = new FragmentPanel();
         p11.setType(PortType.PROVIDED);
@@ -83,9 +75,6 @@ public class Main {
         
         c2.addLeft(p11);
         c2.addRight(p12);
-        
-        //c1.addVSpec(c2);
-        
         
         Binding b0 = new Binding(OPTION_STATE.MANDATORY);
         b0.setSelected(false);

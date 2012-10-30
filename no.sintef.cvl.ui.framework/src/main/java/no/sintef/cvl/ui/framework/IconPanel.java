@@ -103,4 +103,8 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
         g.drawImage(image, 0, 0, null);
     }
 
+	public String getTitle() {
+		return titlebar.getText();
+	}
+
 }
