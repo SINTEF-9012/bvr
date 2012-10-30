@@ -36,7 +36,7 @@ import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
 public class CVLEditorPanel extends JPanel {
 
-    private CVLUIKernel kernel = new CVLUIKernel();
+    private CVLUIKernel kernel/* = new CVLUIKernel()*/;
 
     public CVLUIKernel getKernel() {
         return kernel;
@@ -48,7 +48,8 @@ public class CVLEditorPanel extends JPanel {
     private EditableModelPanel editableModelPanel = null;
     private JSplitPane splitPane = null;
 
-    public CVLEditorPanel() {
+    public CVLEditorPanel(CVLUIKernel _kernel) {
+    	this.kernel = _kernel;
         kernel.setEditorPanel(this);
 
         leftpanel.setOpaque(false);

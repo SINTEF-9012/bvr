@@ -49,6 +49,8 @@ public class SelectInstanceCommand implements Command {
 	public JComponent execute() {
 		alreadySelected.setSelected(!alreadySelected.isSelected());
         if (alreadySelected.isSelected()) {
+        	System.out.println("kernel = " + kernel);
+        	System.out.println("kernel.getEditorPanel() = " + kernel.getEditorPanel());
             kernel.getEditorPanel().showPropertyFor((JPanel) alreadySelected);
         } else {
             kernel.getEditorPanel().unshowPropertyEditor();

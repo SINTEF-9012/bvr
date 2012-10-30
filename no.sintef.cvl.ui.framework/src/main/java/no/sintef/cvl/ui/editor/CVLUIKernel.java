@@ -10,7 +10,7 @@ public class CVLUIKernel {
 	
 	public CVLUIKernel() {
 		modelPanel = new ConfigurableUnitPanel();
-		//editorPanel = new CVLEditorPanel();
+		editorPanel = new CVLEditorPanel(this);
 	}
 	
 	public CVLEditorPanel getEditorPanel() {
