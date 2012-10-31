@@ -42,6 +42,8 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import no.sintef.cvl.ui.framework.command.SelectInstanceCommand;
+
 import com.explodingpixels.macwidgets.HudWindow;
 
 /**
@@ -54,6 +56,7 @@ public class EditableModelPanel extends JLayeredPane {
     private JComponent modelPanel = null;
 
     public EditableModelPanel(JComponent _modelPanel) {
+    	    	
         modelPanel = _modelPanel;
         closeProperties.setOpaque(false);
         closeProperties.addMouseListener(new MouseAdapter() {
@@ -78,6 +81,12 @@ public class EditableModelPanel extends JLayeredPane {
                 repaint();
                 revalidate();
             }
+            
+            @Override
+            public void componentHidden(ComponentEvent e) {
+            	System.out.println("   hidden!");
+                undisplayProperties();
+            }
         });
 
         add(modelPanel, JLayeredPane.DEFAULT_LAYER);
@@ -98,5 +107,6 @@ public class EditableModelPanel extends JLayeredPane {
 
     public void undisplayProperties() {
         hud.getJDialog().setVisible(false);
+        SelectInstanceCommand.unselect();
     }
 }

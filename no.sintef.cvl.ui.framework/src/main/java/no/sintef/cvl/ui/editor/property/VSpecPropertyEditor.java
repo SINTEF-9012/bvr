@@ -43,19 +43,19 @@ public class VSpecPropertyEditor  extends JPanel {
 
         kernel = _kernel;
         gui = _gui;
+        
+        //Name
         JPanel p = new JPanel(new SpringLayout());
         p.setBorder(null);
         p.setOpaque(false);
+        
         JLabel l = new JLabel("Name", JLabel.TRAILING);
         l.setUI(new HudLabelUI());
 
-       // l.setOpaque(false);
-       // l.setForeground(Color.WHITE);
         p.add(l);
         JTextField textField = new JTextField(15);
         textField.setUI(new HudTextFieldUI());
 
-       // textField.setOpaque(false);
         l.setLabelFor(textField);
         p.add(textField);
         textField.setText(gui.getName());
@@ -100,12 +100,14 @@ public class VSpecPropertyEditor  extends JPanel {
                 }
             }
         });
-
-
+        
     }
+    
+
+
 
     public void updateName(String newname) {
-        gui.setName(newname);
-        //kernel.getModelHandler().notifyChanged();
+        //TODO update name in the model and refresh/regenerate diagram
     }	
+   
 }

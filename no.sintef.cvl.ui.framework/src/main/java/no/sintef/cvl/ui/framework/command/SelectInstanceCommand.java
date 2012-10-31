@@ -16,14 +16,21 @@ package no.sintef.cvl.ui.framework.command;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import no.sintef.cvl.ui.framework.SelectElement;
-import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.framework.SelectElement;
 
 public class SelectInstanceCommand implements Command {
 
     private CVLUIKernel kernel;
-    private static SelectElement alreadySelected = null;
+    private static SelectElement currentlySelected = null;//only one element can be selected
+    
+    private SelectElement selectableElement;
+    
+	public static void unselect() {
+		System.out.println("unselect");
+		if (currentlySelected != null)
+			currentlySelected.setSelected(false);
+	}
 
 	public Command init(CVLUIKernel rootPanel, Object p,
 			JComponent parent) {
@@ -33,31 +40,28 @@ public class SelectInstanceCommand implements Command {
 		System.out.println("init " + p);
 		
         if (p instanceof SelectElement) {
-
-            //org.kevoree.Instance instance = (Instance) bObject;
-            
-            SelectElement component = (SelectElement) p;
-            if (alreadySelected != null && alreadySelected != component ) {
-                alreadySelected.setSelected(false);
-            }
-            alreadySelected = component;
-            
+        	selectableElement = (SelectElement) p;
         }
         return this;
 	}
 
 	public JComponent execute() {
-		alreadySelected.setSelected(!alreadySelected.isSelected());
-        if (alreadySelected.isSelected()) {
+		if (currentlySelected != null && currentlySelected != selectableElement) {
+            currentlySelected.setSelected(false);
+        }
+        currentlySelected = selectableElement;
+		
+		currentlySelected.setSelected(!currentlySelected.isSelected());
+        if (currentlySelected.isSelected()) {
         	System.out.println("kernel = " + kernel);
         	System.out.println("kernel.getEditorPanel() = " + kernel.getEditorPanel());
-            kernel.getEditorPanel().showPropertyFor((JPanel) alreadySelected);
+            kernel.getEditorPanel().showPropertyFor((JPanel) currentlySelected);
         } else {
             kernel.getEditorPanel().unshowPropertyEditor();
         }
 
-        ((JPanel)alreadySelected).repaint();
-        ((JPanel)alreadySelected).revalidate();
+        ((JPanel)currentlySelected).repaint();
+        ((JPanel)currentlySelected).revalidate();
         kernel.getModelPanel().repaint();
         kernel.getModelPanel().revalidate();
 

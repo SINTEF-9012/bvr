@@ -18,8 +18,6 @@ public class AddVClassifier implements Command {
 	CVLUIKernel rootPanel;
 	VClassifier vc;
 	JComponent parent;
-
-	CommandMouseListener listener;
 	
 	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent) {
 		if(p instanceof VClassifier){
@@ -35,7 +33,7 @@ public class AddVClassifier implements Command {
 		VClassifierPanel c1 = new VClassifierPanel(rootPanel.getModelPanel());
 		Main.nodes.add(c1);
 		
-        listener = new CommandMouseListener();
+		CommandMouseListener listener = new CommandMouseListener();
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, c1, parent);
         listener.setLeftClickCommand(command);
