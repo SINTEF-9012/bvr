@@ -47,6 +47,8 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
         addCenter(typebar);
 
         setState(STATE.NO_ERROR);
+        
+        setBackground(Color.WHITE);
     }
 
     @Override
@@ -80,12 +82,13 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
     private STATE _state = STATE.NO_ERROR;
 
     public void setState(STATE state) {
-        _state = state;
+/*        _state = state;
         if (_state.equals(STATE.IN_ERROR)) {
             this.setBackground(new Color(239, 50, 50, 150));
         } else {
             this.setBackground(new Color(0, 0, 0, 5));
         }
+        */
     }
 
     public STATE getCurrentState() {

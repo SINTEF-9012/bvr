@@ -58,11 +58,11 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
         } catch (IOException ex) {
             System.out.println(ex);
         }
-        titlebar.setForeground(Color.WHITE);
+        titlebar.setForeground(Color.BLACK);
         titlebar.setHorizontalAlignment(SwingConstants.CENTER);
-        setSize(image.getWidth(),image.getHeight());
+        setSize(image.getWidth(), image.getHeight());
         setPreferredSize(getSize());
-        add(titlebar,BorderLayout.CENTER);
+        add(titlebar,BorderLayout.EAST);
     }
 
     public void setTitle(String title) {

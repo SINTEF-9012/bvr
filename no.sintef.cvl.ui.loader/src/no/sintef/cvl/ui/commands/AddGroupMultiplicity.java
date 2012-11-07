@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.commands;
 
+import java.util.Map;
+
 import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
@@ -16,7 +18,7 @@ public class AddGroupMultiplicity implements Command {
 	VSpec v;
 	JComponent parent;
 	
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap) {
 		if(p instanceof VSpec){
 			this.rootPanel = rootPanel;
 			this.v = (VSpec) p;

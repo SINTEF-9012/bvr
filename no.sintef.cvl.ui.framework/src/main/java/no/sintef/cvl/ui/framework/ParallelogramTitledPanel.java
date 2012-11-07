@@ -54,7 +54,7 @@ public class ParallelogramTitledPanel extends ParallelogramPanel implements Titl
         layoutPanel.add(title, BorderLayout.NORTH);
         layoutPanel.add(contentPanel, BorderLayout.CENTER);
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setForeground(Color.WHITE);
+        title.setForeground(Color.BLACK);
 
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
     }

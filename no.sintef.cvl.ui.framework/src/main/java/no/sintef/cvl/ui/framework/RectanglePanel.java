@@ -62,7 +62,7 @@ public class RectanglePanel extends JPanel implements ChangeAwareComponent {
     private static final int SHADOW_SIZE = 12;
     private BufferedImage shadow;
     protected boolean active = false;
-    protected Color backgroundColor = new Color(0, 0, 0, 200);
+    protected Color backgroundColor = new Color(255, 255, 255, 255);
 
     @Override
     public void setBackground(Color newc) {

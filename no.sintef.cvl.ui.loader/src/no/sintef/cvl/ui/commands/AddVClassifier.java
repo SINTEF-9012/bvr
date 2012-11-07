@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.commands;
 
+import java.util.Map;
+
 import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
@@ -12,6 +14,7 @@ import no.sintef.cvl.ui.framework.listener.CommandMouseListener;
 import no.sintef.cvl.ui.loader.Main;
 import cvl.MultiplicityInterval;
 import cvl.VClassifier;
+import cvl.VSpec;
 
 public class AddVClassifier implements Command {
 	
@@ -21,7 +24,7 @@ public class AddVClassifier implements Command {
 
 	CommandMouseListener listener;
 	
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
 			this.vc = (VClassifier) p;
@@ -32,14 +35,15 @@ public class AddVClassifier implements Command {
 	}
 	
 	public JComponent execute() {
-		VClassifierPanel c1 = new VClassifierPanel(rootPanel.getModelPanel());
-		Main.nodes.add(c1);
+		VClassifierPanel c = new VClassifierPanel(rootPanel.getModelPanel());
+		Main.nodes.add(c);
 		
         listener = new CommandMouseListener();
         SelectInstanceCommand command = new SelectInstanceCommand();
-        command.init(rootPanel, c1, parent);
+        command.init(rootPanel, c, parent, Main.vmMap);
         listener.setLeftClickCommand(command);
-        c1.addMouseListener(listener);
+        c.addMouseListener(new ClassifierDropDownListener(c));
+        c.addMouseListener(listener);
 		
         MultiplicityInterval m = vc.getInstanceMultiplicity();
 
@@ -49,13 +53,13 @@ public class AddVClassifier implements Command {
         }*/
         int l = m.getLower();
         int u = m.getUpper();
-        c1.setNameAndCardinality(vc.getName(), "[" + l + "," + ((u==-1)?"*":u) + "]");
+        c.setNameAndCardinality(vc.getName(), "[" + l + "," + ((u==-1)?"*":u) + "]");
         
-        rootPanel.getModelPanel().addNode(c1);
+        rootPanel.getModelPanel().addNode(c);
         
-        Helper.bind(parent, c1, rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY);
+        Helper.bind(parent, c, rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY);
         
-        return c1;
+        return c;
 	}
 
 }

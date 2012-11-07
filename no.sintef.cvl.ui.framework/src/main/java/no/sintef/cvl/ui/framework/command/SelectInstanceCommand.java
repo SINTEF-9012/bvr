@@ -13,8 +13,12 @@
  */
 package no.sintef.cvl.ui.framework.command;
 
+import java.util.Map;
+
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+
+import cvl.VSpec;
 
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
@@ -26,11 +30,11 @@ public class SelectInstanceCommand implements Command {
     private static SelectElement alreadySelected = null;
 
 	public Command init(CVLUIKernel rootPanel, Object p,
-			JComponent parent) {
+			JComponent parent, Map<JComponent, VSpec> vmMap) {
 		
 		kernel = rootPanel;
 		
-		System.out.println("init " + p);
+		//System.out.println("init " + p);
 		
         if (p instanceof SelectElement) {
 

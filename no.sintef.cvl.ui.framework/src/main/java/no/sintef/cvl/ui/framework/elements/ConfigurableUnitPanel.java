@@ -82,17 +82,17 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
         MattePainter matte = new MattePainter(grad);
         CompoundPainter p = new CompoundPainter(matte);
 
-        ImagePainter background = new ImagePainter();
+/*        ImagePainter background = new ImagePainter();
         background.setHorizontalRepeat(true);
         background.setVerticalRepeat(true);
         try {
             background.setImage(ImageIO.read(this.getClass().getClassLoader().getResource("TT16s_light.jpg")));
             vspecPanel.setBackgroundPainter(background);
-        } catch (IOException e) {
-            vspecPanel.setBackgroundPainter(p);
+        } cah (IOException e) {
+            //vspecPanel.setBackgroundPainter(p);
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-
+*/
 
 
         addComponentListener(new ComponentAdapter() {

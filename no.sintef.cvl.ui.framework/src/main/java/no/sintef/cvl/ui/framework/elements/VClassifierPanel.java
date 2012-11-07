@@ -62,6 +62,8 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
         addCenter(separatorbar);
         
         setOptionalState(OPTION_STATE.MANDATORY);
+        
+        setBackground(Color.WHITE);
     }
     
     /*public void addVSpec(VSpecPanel vspec) {

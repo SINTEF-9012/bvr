@@ -23,7 +23,7 @@ public class GroupPanel extends IconPanel {
     }
     
     public void setCardinality(int lower, int upper) {
-    	 setTitle(/*"[" + */lower + ".." + upper/* +"]"*/);
+    	 setTitle(lower + ".." + upper);
     }
 
 }
