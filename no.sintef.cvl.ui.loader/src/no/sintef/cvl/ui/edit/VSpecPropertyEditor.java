@@ -13,6 +13,9 @@
  */
 package no.sintef.cvl.ui.edit;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,6 +34,18 @@ import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.VSpecPanel;
 
 public class VSpecPropertyEditor  extends JPanel {
+	
+	protected Timer timer = new Timer();
+	protected TimerUpdate task = new TimerUpdate();
+	
+	protected class TimerUpdate extends TimerTask {
+		@Override
+		public void run() {
+			no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+		}		
+	}
+	
+	
 
 	protected CVLUIKernel kernel;
 	protected VSpec vSpec;
@@ -109,8 +124,11 @@ public class VSpecPropertyEditor  extends JPanel {
 
 
     public void updateName(String newname) {
-        vSpec.setName(newname);
-        no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+    	task.cancel();
+    	task = new TimerUpdate();
+    	vSpec.setName(newname);
+        //no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+        timer.schedule(task, 500);
     }	
    
 }

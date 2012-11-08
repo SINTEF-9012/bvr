@@ -27,6 +27,7 @@ import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 import cvl.VClassifier;
 import cvl.VSpec;
 
+import no.sintef.cvl.ui.edit.VSpecPropertyEditor.TimerUpdate;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 import no.sintef.cvl.ui.framework.elements.VSpecPanel;
@@ -157,13 +158,19 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 	}
 	
     public void updateLower(int lower) {
+    	task.cancel();
+    	task = new TimerUpdate();
         ((VClassifier)vSpec).getInstanceMultiplicity().setLower(lower);	
-        no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+        //no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+        timer.schedule(task, 500);
     }
     
     public void updateUpper(int upper) {
+    	task.cancel();
+    	task = new TimerUpdate();
     	((VClassifier)vSpec).getInstanceMultiplicity().setUpper(upper);
-    	no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+    	//no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+    	timer.schedule(task, 500);
     }
 
 }
