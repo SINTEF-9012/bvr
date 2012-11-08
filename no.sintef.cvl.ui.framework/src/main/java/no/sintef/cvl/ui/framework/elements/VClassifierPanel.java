@@ -33,14 +33,14 @@ import org.jdesktop.swingx.JXTitledSeparator;
 
 public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPanel, SelectElement, TitledElement, ErrorHighlightableElement {
 	
-	JXLabel name = new JXLabel();
+	JXLabel display_name = new JXLabel();
     JXTitledSeparator separatorbar = new JXTitledSeparator();
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
     ConfigurableUnitPanel model;
 
 	public String getName() {
-		return name.getName();
+		return display_name.getName();
 	}
 	
 
@@ -51,14 +51,14 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     public VClassifierPanel(ConfigurableUnitPanel model) {
     	this.model = model;
     	
-        name.setForeground(Color.BLACK);
-        name.setHorizontalAlignment(SwingConstants.CENTER);
+        display_name.setForeground(Color.BLACK);
+        display_name.setHorizontalAlignment(SwingConstants.CENTER);
         separatorbar.setForeground(Color.BLACK);
         separatorbar.setTitle("");
         separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
         separatorbar.setVisible(true);
         
-        addCenter(name);
+        addCenter(display_name);
         addCenter(separatorbar);
         
         setOptionalState(OPTION_STATE.MANDATORY);
@@ -97,13 +97,13 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     	
     }
     
-    public void setNameAndCardinality(String name, String cardinality) {
-    	setTitle(name + " : " + cardinality);
+    public void setNameAndCardinality(String name, int lower, int upper) {
+    	setTitle(name + " : [" + lower + ", " + ((upper==-1)?"*":upper) + "]");
     }
     
     @Override
     public void setTitle(String title) {
-        name.setText(title);
+    	this.display_name.setText(title);
         this.setToolTipText("VClassifier "+title);
     }
 

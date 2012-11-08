@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package no.sintef.cvl.ui.editor.property;
+package no.sintef.cvl.ui.edit;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,14 +24,18 @@ import javax.swing.text.BadLocationException;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
+import cvl.VClassifier;
+import cvl.VSpec;
+
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 import no.sintef.cvl.ui.framework.elements.VSpecPanel;
+import no.sintef.cvl.ui.loader.Main;
 
 public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
-	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifierPanel elem) {
-		super(kernel, (VSpecPanel) elem);
+	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem) {
+		super(kernel, (VSpec) elem);
 		
 		
         //Lower bound
@@ -48,7 +52,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
         l2.setLabelFor(textField2);
         p2.add(textField2);
-        textField2.setText(gui.getName());
+        textField2.setText(String.valueOf(((VClassifier)vSpec).getInstanceMultiplicity().getLower()));
         
         this.addCenter(p2);
         SpringUtilities.makeCompactGrid(p2,
@@ -71,7 +75,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
         l3.setLabelFor(textField3);
         p3.add(textField3);
-        textField3.setText(gui.getName());
+        textField3.setText(String.valueOf(((VClassifier)vSpec).getInstanceMultiplicity().getUpper()));
         
         this.addCenter(p3);
         SpringUtilities.makeCompactGrid(p3,
@@ -89,6 +93,8 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
                     updateLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (java.lang.NumberFormatException nfe) {
+                	//Do not update the value cannot be parsed
                 }
             }
 
@@ -97,6 +103,8 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
                     updateLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (java.lang.NumberFormatException nfe) {
+                	//Do not update the value cannot be parsed
                 }
             }
 
@@ -105,6 +113,8 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
                     updateLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (java.lang.NumberFormatException nfe) {
+                	//Do not update the value cannot be parsed
                 }
             }
         });
@@ -118,6 +128,8 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
                     updateUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (java.lang.NumberFormatException nfe) {
+                 	//Do not update the value cannot be parsed
                 }
             }
 
@@ -126,6 +138,8 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
                     updateUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (java.lang.NumberFormatException nfe) {
+                	//Do not update the value cannot be parsed
                 }
             }
 
@@ -134,6 +148,8 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
                     updateUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (java.lang.NumberFormatException nfe) {
+                	//Do not update the value cannot be parsed
                 }
             }
         });
@@ -141,11 +157,13 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 	}
 	
     public void updateLower(int lower) {
-        //TODO update lower bound in the model and refresh/regenerate diagram    	
+        ((VClassifier)vSpec).getInstanceMultiplicity().setLower(lower);	
+        no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
     }
     
     public void updateUpper(int upper) {
-        //TODO update upper bound in the model and refresh/regenerate diagram
+    	((VClassifier)vSpec).getInstanceMultiplicity().setUpper(upper);
+    	no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
     }
 
 }

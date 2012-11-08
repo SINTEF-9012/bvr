@@ -1,6 +1,6 @@
 package no.sintef.cvl.ui.editor;
 
-import no.sintef.cvl.ui.editor.panel.CVLEditorPanel;
+import no.sintef.cvl.ui.edit.CVLEditorPanel;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
 
 public class CVLUIKernel {
@@ -10,7 +10,7 @@ public class CVLUIKernel {
 	
 	public CVLUIKernel() {
 		modelPanel = new ConfigurableUnitPanel();
-		editorPanel = new CVLEditorPanel(this);
+		editorPanel = new CVLEditorPanel(this, no.sintef.cvl.ui.loader.Main.vmMap);
 	}
 	
 	public CVLEditorPanel getEditorPanel() {

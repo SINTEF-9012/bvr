@@ -42,7 +42,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import no.sintef.cvl.ui.framework.command.SelectInstanceCommand;
+//import no.sintef.cvl.ui.commands.SelectInstanceCommand;
 
 import com.explodingpixels.macwidgets.HudWindow;
 
@@ -107,6 +107,6 @@ public class EditableModelPanel extends JLayeredPane {
 
     public void undisplayProperties() {
         hud.getJDialog().setVisible(false);
-        SelectInstanceCommand.unselect();
+        //SelectInstanceCommand.unselect();
     }
 }

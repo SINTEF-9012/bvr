@@ -6,11 +6,8 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
-import no.sintef.cvl.ui.framework.command.Command;
-import no.sintef.cvl.ui.framework.command.SelectInstanceCommand;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
-import no.sintef.cvl.ui.framework.listener.CommandMouseListener;
 import no.sintef.cvl.ui.loader.Main;
 import cvl.MultiplicityInterval;
 import cvl.VClassifier;
@@ -51,7 +48,7 @@ public class AddVClassifier implements Command {
         }*/
         int l = m.getLower();
         int u = m.getUpper();
-        c.setNameAndCardinality(vc.getName(), "[" + l + "," + ((u==-1)?"*":u) + "]");
+        c.setNameAndCardinality(vc.getName(), l, u);
         
         rootPanel.getModelPanel().addNode(c);
         

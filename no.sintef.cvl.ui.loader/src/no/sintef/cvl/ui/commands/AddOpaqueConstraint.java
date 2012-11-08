@@ -7,7 +7,6 @@ import javax.swing.JComponent;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
-import no.sintef.cvl.ui.framework.command.Command;
 import no.sintef.cvl.ui.framework.elements.ConstraintPanel;
 import no.sintef.cvl.ui.loader.Main;
 import cvl.OpaqueConstraint;

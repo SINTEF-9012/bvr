@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package no.sintef.cvl.ui.framework.command;
+package no.sintef.cvl.ui.commands;
 
 import java.util.Map;
 

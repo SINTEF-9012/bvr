@@ -12,21 +12,22 @@
  * limitations under the License.
  */
 
-package no.sintef.cvl.ui.editor.panel;
+package no.sintef.cvl.ui.edit;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Point;
+import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import no.sintef.cvl.ui.commands.SelectInstanceCommand;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
-import no.sintef.cvl.ui.editor.property.VClassifierPropertyEditor;
 import no.sintef.cvl.ui.framework.SelectElement;
-import no.sintef.cvl.ui.framework.command.SelectInstanceCommand;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 
@@ -36,8 +37,13 @@ import org.jdesktop.swingx.painter.MattePainter;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
+import cvl.VClassifier;
+import cvl.VSpec;
+
 public class CVLEditorPanel extends JPanel {
 
+	private Map<JComponent, VSpec> vmMap;
+	
     private CVLUIKernel kernel/* = new CVLUIKernel()*/;
 
     public CVLUIKernel getKernel() {
@@ -52,7 +58,8 @@ public class CVLEditorPanel extends JPanel {
     
     private SelectElement current;
 
-    public CVLEditorPanel(CVLUIKernel _kernel) {
+    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, VSpec> vmMap) {
+    	this.vmMap = vmMap;
     	this.kernel = _kernel;
         kernel.setEditorPanel(this);
 
@@ -95,7 +102,7 @@ public class CVLEditorPanel extends JPanel {
     	
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel)p;
-        	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, elem);
+        	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) vmMap.get(elem));
             editableModelPanel.displayProperties(prop);
         }
         this.invalidate();

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package no.sintef.cvl.ui.editor.property;
+package no.sintef.cvl.ui.edit;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -25,24 +25,26 @@ import javax.swing.text.BadLocationException;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
+import cvl.VSpec;
+
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.VSpecPanel;
 
 public class VSpecPropertyEditor  extends JPanel {
 
 	protected CVLUIKernel kernel;
-	protected VSpecPanel gui;
+	protected VSpec vSpec;
 	
     public void addCenter(JComponent p) {
         this.add(p);
     }
 
-    public VSpecPropertyEditor(CVLUIKernel _kernel, VSpecPanel _gui) {
+    public VSpecPropertyEditor(CVLUIKernel _kernel, VSpec _vspec) {
         this.setOpaque(false);
         this.setBorder(null);
 
         kernel = _kernel;
-        gui = _gui;
+        vSpec = _vspec;
         
         //Name
         JPanel p = new JPanel(new SpringLayout());
@@ -58,7 +60,7 @@ public class VSpecPropertyEditor  extends JPanel {
 
         l.setLabelFor(textField);
         p.add(textField);
-        textField.setText(gui.getName());
+        textField.setText(vSpec.getName());
 
         this.addCenter(p);
         SpringUtilities.makeCompactGrid(p,
@@ -107,7 +109,8 @@ public class VSpecPropertyEditor  extends JPanel {
 
 
     public void updateName(String newname) {
-        //TODO update name in the model and refresh/regenerate diagram
+        vSpec.setName(newname);
+        no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
     }	
    
 }

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package no.sintef.cvl.ui.framework;
+package no.sintef.cvl.ui.editor;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -19,8 +19,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
-import no.sintef.cvl.ui.editor.panel.CVLEditorPanel;
+import no.sintef.cvl.ui.edit.CVLEditorPanel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.Binding;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -46,11 +45,11 @@ public class Main {
         
         //ConfigurableUnitPanel model = new ConfigurableUnitPanel();
         CVLUIKernel model = new CVLUIKernel();
-        CVLEditorPanel editorPanel = new CVLEditorPanel(model);
-        model.setEditorPanel(editorPanel);
+        /*CVLEditorPanel editorPanel = new CVLEditorPanel(model);
+        model.setEditorPanel(editorPanel);*/
         
         VClassifierPanel c1 = new VClassifierPanel(model.getModelPanel());
-        c1.setNameAndCardinality("PrinterPool", "[0..*]");
+        c1.setNameAndCardinality("PrinterPool", 0, -1);
         
        /* ParallelogramTitledPanel par = new ParallelogramTitledPanel();
         par.setTitle("resolution = 300");
@@ -69,7 +68,7 @@ public class Main {
         
         
         VClassifierPanel c2 = new VClassifierPanel(model.getModelPanel());
-        c2.setNameAndCardinality("Printer", "[1..*]");
+        c2.setNameAndCardinality("Printer", 1, -1);
         c2.addAttribute("resolution", "int");
         c2.addAttribute("speed", "int");
         
@@ -85,7 +84,7 @@ public class Main {
         
         
         VClassifierPanel c3 = new VClassifierPanel(model.getModelPanel());
-        c3.setNameAndCardinality("Scanner", "[0..*]");
+        c3.setNameAndCardinality("Scanner", 0, -1);
         c3.addAttribute("resolution", "int");
         c3.setOptionalState(OPTION_STATE.OPTIONAL);
         

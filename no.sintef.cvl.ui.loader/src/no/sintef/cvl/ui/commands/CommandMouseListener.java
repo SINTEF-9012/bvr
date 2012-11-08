@@ -12,12 +12,11 @@
  * limitations under the License.
  */
 
-package no.sintef.cvl.ui.framework.listener;
+package no.sintef.cvl.ui.commands;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import no.sintef.cvl.ui.framework.command.Command;
 
 public class CommandMouseListener extends MouseAdapter {
 
