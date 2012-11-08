@@ -2,7 +2,6 @@ package no.sintef.cvl.ui.loader;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.geom.Rectangle2D.Double;
 import java.io.File;
@@ -11,19 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-
-import org.abego.treelayout.TreeLayout;
-import org.abego.treelayout.demo.TextInBox;
-import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
-import org.abego.treelayout.demo.swing.TextInBoxTreePane;
-import org.abego.treelayout.util.DefaultConfiguration;
-import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddGroupMultiplicity;
@@ -34,6 +24,12 @@ import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
 import no.sintef.ict.splcatool.CVLModel;
+
+import org.abego.treelayout.TreeLayout;
+import org.abego.treelayout.demo.TextInBox;
+import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
+import org.abego.treelayout.util.DefaultConfiguration;
+import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 

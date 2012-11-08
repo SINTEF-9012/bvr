@@ -25,6 +25,8 @@ import javax.swing.JSplitPane;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.editor.property.VClassifierPropertyEditor;
+import no.sintef.cvl.ui.framework.SelectElement;
+import no.sintef.cvl.ui.framework.command.SelectInstanceCommand;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 
@@ -47,6 +49,8 @@ public class CVLEditorPanel extends JPanel {
 
     private EditableModelPanel editableModelPanel = null;
     private JSplitPane splitPane = null;
+    
+    private SelectElement current;
 
     public CVLEditorPanel(CVLUIKernel _kernel) {
     	this.kernel = _kernel;
@@ -85,6 +89,10 @@ public class CVLEditorPanel extends JPanel {
     }
 
     public void showPropertyFor(Object p) {
+    	if (p instanceof SelectElement) {
+    		current = (SelectElement) p;
+    	}
+    	
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel)p;
         	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, elem);
@@ -96,6 +104,5 @@ public class CVLEditorPanel extends JPanel {
 
     public void unshowPropertyEditor() {
         editableModelPanel.undisplayProperties();
-
     }
 }
