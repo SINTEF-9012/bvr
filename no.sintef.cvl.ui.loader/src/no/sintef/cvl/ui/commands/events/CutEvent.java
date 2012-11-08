@@ -8,7 +8,6 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.loader.Main;
-import cvl.Choice;
 import cvl.VSpec;
 
 public class CutEvent implements ActionListener {
@@ -21,7 +20,6 @@ public class CutEvent implements ActionListener {
 		this.vmMap = vmMap;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		VSpec v = vmMap.get(p);
 		//System.out.println("we are here " + p.getTitle() + ", " + v);

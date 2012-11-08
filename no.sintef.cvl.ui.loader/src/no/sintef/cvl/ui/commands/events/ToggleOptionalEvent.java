@@ -20,7 +20,6 @@ public class ToggleOptionalEvent implements ActionListener {
 		this.vmMap = vmMap;
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Choice v = (Choice)vmMap.get(p);
 		

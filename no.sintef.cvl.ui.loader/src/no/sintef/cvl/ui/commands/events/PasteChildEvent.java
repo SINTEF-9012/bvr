@@ -20,7 +20,6 @@ public class PasteChildEvent implements ActionListener {
 		this.vmMap = vmMap;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		VSpec v = vmMap.get(p);
 		//System.out.println("we are here " + p.getTitle() + ", " + v);

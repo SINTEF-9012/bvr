@@ -6,10 +6,11 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import org.eclipse.emf.common.util.EList;
-
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.loader.Main;
+
+import org.eclipse.emf.common.util.EList;
+
 import cvl.VSpec;
 
 public class PasteSiblingEvent implements ActionListener {
@@ -22,7 +23,6 @@ public class PasteSiblingEvent implements ActionListener {
 		this.vmMap = vmMap;
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		VSpec v = vmMap.get(p);
 		//System.out.println("we are here " + p.getTitle() + ", " + v);

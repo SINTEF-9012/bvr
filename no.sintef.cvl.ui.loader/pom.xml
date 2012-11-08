@@ -6,9 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.sintef</groupId>
-    <artifactId>no.sintef.cvl.ui.framework</artifactId>
+    <artifactId>no.sintef.cvl.ui.loader</artifactId>
     <packaging>jar</packaging>
-    <name>CVL :: UI :: Framework</name>
+    <name>CVL :: UI :: Loader</name>
     <version>1.0.0</version>
 
  <!-- <parent>
@@ -21,10 +21,22 @@
 
     <dependencies>
         <dependency>
+            <groupId>no.sintef</groupId>
+            <artifactId>no.sintef.cvl.ui.framework</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
+        <dependency>
             <groupId>org.abego.treelayout</groupId>
             <artifactId>org.abego.treelayout.core</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.abego.treelayout</groupId>
+            <artifactId>org.abego.treelayout.demo</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.swinglabs</groupId>
             <artifactId>swingx-core</artifactId>
