@@ -26,6 +26,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
@@ -37,11 +38,12 @@ public class VSpecPropertyEditor  extends JPanel {
 	protected Timer timer = new Timer();
 	protected TimerUpdate task = new TimerUpdate();
 	protected final long delay = 500;
+	protected CVLView view;
 	
 	protected class TimerUpdate extends TimerTask {
 		@Override
 		public void run() {
-			//no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+			view.notifyVspecViewUpdate();
 		}		
 	}
 
@@ -52,10 +54,11 @@ public class VSpecPropertyEditor  extends JPanel {
         this.add(p);
     }
 
-    public VSpecPropertyEditor(CVLUIKernel _kernel, VSpec _vspec) {
+    public VSpecPropertyEditor(CVLUIKernel _kernel, VSpec _vspec, CVLView _view) {
         this.setOpaque(false);
         this.setBorder(null);
 
+        view = _view;
         kernel = _kernel;
         vSpec = _vspec;
         

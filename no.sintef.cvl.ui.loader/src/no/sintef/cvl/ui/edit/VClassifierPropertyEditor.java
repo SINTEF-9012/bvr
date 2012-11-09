@@ -22,6 +22,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
@@ -31,8 +32,8 @@ import cvl.VSpec;
 
 public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
-	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem) {
-		super(kernel, (VSpec) elem);
+	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, CVLView view) {
+		super(kernel, (VSpec) elem, view);
 		
 		
         //Lower bound

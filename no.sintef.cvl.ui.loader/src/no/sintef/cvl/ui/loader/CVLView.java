@@ -71,7 +71,7 @@ public class CVLView {
 		modelPane = new JTabbedPane();
 		
 		// VSpec pane
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap);
+		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
         try {
 			loadCVLVSpecView(m.getCVLM().cu, vSpeccvluikernel);
 		} catch (CVLModelException e) {
@@ -153,7 +153,7 @@ public class CVLView {
 		if(cu.getOwnedVSpecResolution().size() == 0) return;
 		
 		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
-			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap);
+			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap, this);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	        IAppWidgetFactory.makeIAppScrollPane(scrollPane);
@@ -311,7 +311,7 @@ public class CVLView {
 		vspecvmMap = new HashMap<JComponent, VSpec>();
 		
         // Add stuff
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap);
+		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
         try {
 			loadCVLVSpecView(m.getCVLM().cu, vSpeccvluikernel);
 		} catch (CVLModelException e) {

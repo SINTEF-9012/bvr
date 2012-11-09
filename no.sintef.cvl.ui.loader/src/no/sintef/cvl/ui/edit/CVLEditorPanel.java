@@ -30,6 +30,7 @@ import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
+import no.sintef.cvl.ui.loader.CVLView;
 
 import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.painter.CompoundPainter;
@@ -43,6 +44,7 @@ import cvl.VSpec;
 public class CVLEditorPanel extends JPanel {
 
 	private Map<JComponent, VSpec> vmMap;
+	private CVLView view;
 	
     private CVLUIKernel kernel/* = new CVLUIKernel()*/;
 
@@ -58,9 +60,10 @@ public class CVLEditorPanel extends JPanel {
     
     private SelectElement current;
 
-    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, VSpec> vmMap) {
+    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, VSpec> vmMap, CVLView view) {
     	this.vmMap = vmMap;
     	this.kernel = _kernel;
+    	this.view = view;
         kernel.setEditorPanel(this);
 
         leftpanel.setOpaque(false);
@@ -102,7 +105,7 @@ public class CVLEditorPanel extends JPanel {
     	
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel)p;
-        	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) vmMap.get(elem));
+        	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) vmMap.get(elem), view);
             editableModelPanel.displayProperties(prop);
         }
         this.invalidate();
