@@ -111,7 +111,8 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
     public void addNode(JPanel p) {
         vspecPanel.add(p);
         p.setBounds(50, 50, (int) p.getLayout().preferredLayoutSize(p).getWidth(), (int) p.getLayout().preferredLayoutSize(p).getHeight());
-        InstanceDragSourceListener listener = new InstanceDragSourceListener(p);
+        //Uncomment this lign if you want to be able to move nodes...
+        //InstanceDragSourceListener listener = new InstanceDragSourceListener(p);
         repaint();
         revalidate();
     }

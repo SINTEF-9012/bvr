@@ -21,17 +21,13 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.cvl.ui.editor.CVLUIKernel;
+
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
 import cvl.VClassifier;
 import cvl.VSpec;
-
-import no.sintef.cvl.ui.edit.VSpecPropertyEditor.TimerUpdate;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
-import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
-import no.sintef.cvl.ui.framework.elements.VSpecPanel;
-import no.sintef.cvl.ui.loader.Main;
 
 public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
@@ -162,7 +158,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
     	task = new TimerUpdate();
         ((VClassifier)vSpec).getInstanceMultiplicity().setLower(lower);	
         //no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
-        timer.schedule(task, 500);
+        timer.schedule(task, delay);
     }
     
     public void updateUpper(int upper) {
@@ -170,7 +166,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
     	task = new TimerUpdate();
     	((VClassifier)vSpec).getInstanceMultiplicity().setUpper(upper);
     	//no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
-    	timer.schedule(task, 500);
+    	timer.schedule(task, delay);
     }
 
 }

@@ -25,18 +25,18 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.cvl.ui.editor.CVLUIKernel;
+
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
 import cvl.VSpec;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
-import no.sintef.cvl.ui.framework.elements.VSpecPanel;
-
 public class VSpecPropertyEditor  extends JPanel {
 	
 	protected Timer timer = new Timer();
 	protected TimerUpdate task = new TimerUpdate();
+	protected final long delay = 500;
 	
 	protected class TimerUpdate extends TimerTask {
 		@Override
@@ -128,7 +128,7 @@ public class VSpecPropertyEditor  extends JPanel {
     	task = new TimerUpdate();
     	vSpec.setName(newname);
         //no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
-        timer.schedule(task, 500);
+        timer.schedule(task, delay);
     }	
    
 }
