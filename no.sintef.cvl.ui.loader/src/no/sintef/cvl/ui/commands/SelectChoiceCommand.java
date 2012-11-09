@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.commands;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -10,7 +11,9 @@ import cvl.cvlFactory;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
+import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
+import no.sintef.cvl.ui.loader.Pair;
 
 
 public class SelectChoiceCommand implements Command {
@@ -19,12 +22,15 @@ public class SelectChoiceCommand implements Command {
 	private ChoicePanel p;
 	private JComponent parent;
 	private Map<JComponent, VSpec> vmMap;
+	private CVLView view;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.rootPanel = rootPanel;
 		this.p = (ChoicePanel)p;
 		this.parent = parent;
 		this.vmMap = vmMap;
+		
+		this.view = view;
 		
 		return null;
 	}
@@ -42,7 +48,7 @@ public class SelectChoiceCommand implements Command {
 		v.getChild().add(c);
 		
 		// Regenerate view
-		Main.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 		
 		return null;
 	}

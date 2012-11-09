@@ -84,7 +84,7 @@ public class EditableModelPanel extends JLayeredPane {
             
             @Override
             public void componentHidden(ComponentEvent e) {
-            	System.out.println("   hidden!");
+            	//System.out.println("   hidden!");
                 undisplayProperties();
             }
         });

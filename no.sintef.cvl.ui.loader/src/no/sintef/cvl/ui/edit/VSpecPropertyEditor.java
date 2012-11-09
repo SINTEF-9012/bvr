@@ -41,11 +41,9 @@ public class VSpecPropertyEditor  extends JPanel {
 	protected class TimerUpdate extends TimerTask {
 		@Override
 		public void run() {
-			no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
+			//no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
 		}		
 	}
-	
-	
 
 	protected CVLUIKernel kernel;
 	protected VSpec vSpec;

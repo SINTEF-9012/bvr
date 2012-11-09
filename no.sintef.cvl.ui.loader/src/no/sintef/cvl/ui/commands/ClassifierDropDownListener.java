@@ -2,10 +2,15 @@ package no.sintef.cvl.ui.commands;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+
+import cvl.VSpec;
 
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
@@ -16,13 +21,23 @@ import no.sintef.cvl.ui.commands.events.SetGroupToOrEvent;
 import no.sintef.cvl.ui.commands.events.ToggleOptionalEvent;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
+import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
+import no.sintef.cvl.ui.loader.Pair;
 
 class ClassifierDropDownListener extends MouseAdapter {
 	private VClassifierPanel cp;
+	private Map<JComponent, VSpec> vmMap;
+	private List<JComponent> nodes;
+	private List<Pair<JComponent, JComponent>> bindings;
+	private CVLView view;
 
-	ClassifierDropDownListener(VClassifierPanel cp){
+	ClassifierDropDownListener(VClassifierPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
+		this.vmMap = vmMap;
+		this.nodes = nodes;
+		this.bindings = bindings;
+		this.view = view;
 	}
 	
     public void mousePressed(MouseEvent e){
@@ -36,7 +51,7 @@ class ClassifierDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	ClassifierDropdown menu = new ClassifierDropdown(cp);
+    	ClassifierDropdown menu = new ClassifierDropdown(cp, vmMap, nodes, bindings, view);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
@@ -44,33 +59,33 @@ class ClassifierDropDownListener extends MouseAdapter {
 class ClassifierDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ClassifierDropdown(VClassifierPanel cp){
+    public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
-    	addchoice.addActionListener(new AddChoiceEvent(cp, Main.vmMap));
+    	addchoice.addActionListener(new AddChoiceEvent(cp, vmMap, nodes, bindings, view));
     	add.add(addchoice);
     	JMenuItem addclassifier = new JMenuItem("classifier");
-    	addclassifier.addActionListener(new AddClassifierEvent(cp, Main.vmMap));
+    	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
     	add.add(addclassifier);
     	add.add(new JMenuItem("constraint"));
 		add(add);
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveChoiceEvent(cp, Main.vmMap));
+		removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
 		add(removechoice);
 		
 		// Set group
 		JMenu group = new JMenu("set group");
 		JMenuItem none = new JMenuItem("none (0..*)");
-		none.addActionListener(new SetGroupToNoneEvent(cp, Main.vmMap));
+		none.addActionListener(new SetGroupToNoneEvent(cp, vmMap, nodes, bindings, view));
 		group.add(none);
 		JMenuItem alt = new JMenuItem("alternative/xor (1..1)");
-		alt.addActionListener(new SetGroupToAltEvent(cp, Main.vmMap));
+		alt.addActionListener(new SetGroupToAltEvent(cp, vmMap, nodes, bindings, view));
 		group.add(alt);
 		JMenuItem or = new JMenuItem("or (1..*)");
-		or.addActionListener(new SetGroupToOrEvent(cp, Main.vmMap));
+		or.addActionListener(new SetGroupToOrEvent(cp, vmMap, nodes, bindings, view));
 		group.add(or);
 		group.add(new JMenuItem("custom..."));
 		add(group);
