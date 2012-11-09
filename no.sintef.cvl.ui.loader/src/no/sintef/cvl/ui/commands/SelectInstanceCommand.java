@@ -13,6 +13,7 @@
  */
 package no.sintef.cvl.ui.commands;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -22,6 +23,8 @@ import cvl.VSpec;
 
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.SelectElement;
+import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.loader.Pair;
 
 public class SelectInstanceCommand implements Command {
 
@@ -36,8 +39,7 @@ public class SelectInstanceCommand implements Command {
 			currentlySelected.setSelected(false);
 	}
 
-	public Command init(CVLUIKernel rootPanel, Object p,
-			JComponent parent, Map<JComponent, VSpec> vmMap) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		
 		kernel = rootPanel;
 		

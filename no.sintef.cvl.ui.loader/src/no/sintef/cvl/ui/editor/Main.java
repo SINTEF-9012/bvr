@@ -38,7 +38,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         JFrame jframe = new JFrame("CVL UI Tester");
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setPreferredSize(new Dimension(800, 600));
@@ -48,14 +48,14 @@ public class Main {
         /*CVLEditorPanel editorPanel = new CVLEditorPanel(model);
         model.setEditorPanel(editorPanel);*/
         
-        VClassifierPanel c1 = new VClassifierPanel(model.getModelPanel());
+/*        VClassifierPanel c1 = new VClassifierPanel(model.getModelPanel());
         c1.setNameAndCardinality("PrinterPool", 0, -1);
         
        /* ParallelogramTitledPanel par = new ParallelogramTitledPanel();
         par.setTitle("resolution = 300");
         model.add(par);*/
     
-        FragmentPanel p11 = new FragmentPanel();
+/*        FragmentPanel p11 = new FragmentPanel();
         p11.setType(PortType.PROVIDED);
         p11.setNature(FragmentPanel.PortNature.SERVICE);
 
@@ -168,7 +168,7 @@ public class Main {
         epanel.displayProperties(prop);*/
 
 
-        jframe.pack();
+/*        jframe.pack();
         jframe.setVisible(true);
 
 
@@ -185,5 +185,5 @@ public class Main {
 
 
 
-    }
+//    }
 }
