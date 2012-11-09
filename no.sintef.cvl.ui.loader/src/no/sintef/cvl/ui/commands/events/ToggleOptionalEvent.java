@@ -32,6 +32,6 @@ public class ToggleOptionalEvent implements ActionListener {
 		v.setIsImpliedByParent(!v.isIsImpliedByParent());
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 }

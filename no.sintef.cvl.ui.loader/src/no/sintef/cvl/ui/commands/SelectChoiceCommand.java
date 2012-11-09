@@ -48,7 +48,7 @@ public class SelectChoiceCommand implements Command {
 		v.getChild().add(c);
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 		
 		return null;
 	}

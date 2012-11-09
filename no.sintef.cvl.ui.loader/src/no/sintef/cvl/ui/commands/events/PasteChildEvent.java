@@ -36,7 +36,7 @@ public class PasteChildEvent implements ActionListener {
 		}
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 
 }

@@ -41,7 +41,7 @@ public class CutEvent implements ActionListener {
 		Main.vSpecCut = v;
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 
 }

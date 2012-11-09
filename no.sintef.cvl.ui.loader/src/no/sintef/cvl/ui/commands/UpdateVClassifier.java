@@ -48,7 +48,7 @@ public class UpdateVClassifier implements Command {
 		vc.getInstanceMultiplicity().setUpper(upper);
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 		return c;
 	}
 

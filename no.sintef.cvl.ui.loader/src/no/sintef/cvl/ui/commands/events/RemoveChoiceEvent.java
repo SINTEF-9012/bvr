@@ -36,6 +36,6 @@ public class RemoveChoiceEvent implements ActionListener {
 		parent.getChild().remove(v);
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 }

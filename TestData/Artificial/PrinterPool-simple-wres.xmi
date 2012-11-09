@@ -7,87 +7,73 @@
     xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore"
     name="PrinterSPL">
   <ownedVSpec
-      xsi:type="cvl:Choice"
-      name="Printerpool"
-      resolutionTime="">
-    <child xsi:type="cvl:VClassifier"
-        name="Printer">
+      xsi:type="cvl:VClassifier"
+      name="Printer">
+    <child xsi:type="cvl:Choice"
+        name="Color"/>
+    <child xsi:type="cvl:Choice"
+        name="Speed"
+        isImpliedByParent="true">
+      <groupMultiplicity
+          upper="1"
+          lower="1"/>
       <child
           xsi:type="cvl:Choice"
-          name="Color"/>
+          name="X20"/>
       <child
           xsi:type="cvl:Choice"
-          name="Speed"
-          isImpliedByParent="true">
-        <groupMultiplicity
-            upper="1"
-            lower="1"/>
-        <child
-            xsi:type="cvl:Choice"
-            name="X20"/>
-        <child
-            xsi:type="cvl:Choice"
-            name="X22"/>
-      </child>
-      <instanceMultiplicity
-          upper="-1"/>
+          name="X22"/>
     </child>
+    <instanceMultiplicity
+        upper="-1"/>
   </ownedVSpec>
   <ownedVSpecResolution
-      xsi:type="cvl:ChoiceResolutuion"
+      xsi:type="cvl:VInstance"
+      name="VInst2"
       resolvedVSpec="//@ownedVSpec.0"
-      resolvedChoice="//@ownedVSpec.0"
-      decision="true">
-    <child xsi:type="cvl:VInstance"
-        name="VInst1"
+      type="//@ownedVSpec.0">
+    <child xsi:type="cvl:ChoiceResolutuion"
+        name=""
         resolvedVSpec="//@ownedVSpec.0/@child.0"
-        type="//@ownedVSpec.0/@child.0">
+        resolvedChoice="//@ownedVSpec.0/@child.0"/>
+    <child xsi:type="cvl:ChoiceResolutuion"
+        resolvedVSpec="//@ownedVSpec.0/@child.1"
+        resolvedChoice="//@ownedVSpec.0/@child.1"
+        decision="true">
       <child
           xsi:type="cvl:ChoiceResolutuion"
-          name=""
-          resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0"
-          resolvedChoice="//@ownedVSpec.0/@child.0/@child.0"
+          resolvedVSpec="//@ownedVSpec.0/@child.1/@child.0"
+          resolvedChoice="//@ownedVSpec.0/@child.1/@child.0"/>
+      <child
+          xsi:type="cvl:ChoiceResolutuion"
+          resolvedVSpec="//@ownedVSpec.0/@child.1/@child.1"
+          resolvedChoice="//@ownedVSpec.0/@child.1/@child.1"
+          decision="true"/>
+    </child>
+  </ownedVSpecResolution>
+  <ownedVSpecResolution
+      xsi:type="cvl:VInstance"
+      name="VInst1"
+      resolvedVSpec="//@ownedVSpec.0"
+      type="//@ownedVSpec.0">
+    <child xsi:type="cvl:ChoiceResolutuion"
+        name=""
+        resolvedVSpec="//@ownedVSpec.0/@child.0"
+        resolvedChoice="//@ownedVSpec.0/@child.0"
+        decision="true"/>
+    <child xsi:type="cvl:ChoiceResolutuion"
+        resolvedVSpec="//@ownedVSpec.0/@child.1"
+        resolvedChoice="//@ownedVSpec.0/@child.1"
+        decision="true">
+      <child
+          xsi:type="cvl:ChoiceResolutuion"
+          resolvedVSpec="//@ownedVSpec.0/@child.1/@child.0"
+          resolvedChoice="//@ownedVSpec.0/@child.1/@child.0"
           decision="true"/>
       <child
           xsi:type="cvl:ChoiceResolutuion"
-          resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1"
-          resolvedChoice="//@ownedVSpec.0/@child.0/@child.1"
-          decision="true">
-        <child
-            xsi:type="cvl:ChoiceResolutuion"
-            resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1/@child.0"
-            resolvedChoice="//@ownedVSpec.0/@child.0/@child.1/@child.0"
-            decision="true"/>
-        <child
-            xsi:type="cvl:ChoiceResolutuion"
-            resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1/@child.1"
-            resolvedChoice="//@ownedVSpec.0/@child.0/@child.1/@child.1"/>
-      </child>
-    </child>
-    <child xsi:type="cvl:VInstance"
-        name="VInst2"
-        resolvedVSpec="//@ownedVSpec.0/@child.0"
-        type="//@ownedVSpec.0/@child.0">
-      <child
-          xsi:type="cvl:ChoiceResolutuion"
-          name=""
-          resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0"
-          resolvedChoice="//@ownedVSpec.0/@child.0/@child.0"/>
-      <child
-          xsi:type="cvl:ChoiceResolutuion"
-          resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1"
-          resolvedChoice="//@ownedVSpec.0/@child.0/@child.1"
-          decision="true">
-        <child
-            xsi:type="cvl:ChoiceResolutuion"
-            resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1/@child.0"
-            resolvedChoice="//@ownedVSpec.0/@child.0/@child.1/@child.0"/>
-        <child
-            xsi:type="cvl:ChoiceResolutuion"
-            resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1/@child.1"
-            resolvedChoice="//@ownedVSpec.0/@child.0/@child.1/@child.1"
-            decision="true"/>
-      </child>
+          resolvedVSpec="//@ownedVSpec.0/@child.1/@child.1"
+          resolvedChoice="//@ownedVSpec.0/@child.1/@child.1"/>
     </child>
   </ownedVSpecResolution>
 </cvl:ConfigurableUnit>

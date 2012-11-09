@@ -44,7 +44,7 @@ public class AddClassifierEvent implements ActionListener {
 		v.getChild().add(c);
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 
 }

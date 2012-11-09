@@ -49,7 +49,7 @@ public class PasteSiblingEvent implements ActionListener {
 		}
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 
 }

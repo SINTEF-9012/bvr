@@ -35,6 +35,6 @@ public class SetGroupToAltEvent implements ActionListener {
 		v.setGroupMultiplicity(mi);
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 }

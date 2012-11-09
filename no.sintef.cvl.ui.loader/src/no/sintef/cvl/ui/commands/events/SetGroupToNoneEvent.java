@@ -30,6 +30,6 @@ public class SetGroupToNoneEvent implements ActionListener {
 		v.setGroupMultiplicity(null);
 		
 		// Regenerate view
-		view.notifyViewUpdate();
+		view.notifyVspecViewUpdate();
 	}
 }

@@ -152,8 +152,7 @@ public class CVLView {
 	private void loadCVLResolutionView(ConfigurableUnit cu, List<CVLUIKernel> resolutionkernels, JTabbedPane resPane) throws CVLModelException{
 		if(cu.getOwnedVSpecResolution().size() == 0) return;
 		
-		VSpecResolution x = cu.getOwnedVSpecResolution().get(0);
-		for(VSpecResolution v : x.getChild()){
+		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
 			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -263,7 +262,8 @@ public class CVLView {
 				}
 			}
 			TextInBox b = nodemap.get(p.b);
-			tree.addChild(a, b);
+			if(!(p.b instanceof GroupPanel))
+				tree.addChild(a, b);
 		}
 		
 		// setup the tree layout configuration
@@ -277,14 +277,12 @@ public class CVLView {
 		
 		// Set positions
 		for(JComponent c : vspecNodes){
-			TextInBox t = nodemap.get(c);
-			Map<TextInBox, Double> x = treeLayout.getNodeBounds();
-			Double z = x.get(t);
-			c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
-		}
-		
-		for(JComponent c : vspecNodes){
-			if(c instanceof GroupPanel){
+			if(!(c instanceof GroupPanel)){
+				TextInBox t = nodemap.get(c);
+				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
+				Double z = x.get(t);
+				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
+			}else{
 				// Find parent
 				JComponent p = null;
 				for(Pair<JComponent, JComponent> x : vspecBindings){
@@ -298,22 +296,11 @@ public class CVLView {
 			}
 		}
 		
-		// Print
-/*		TextInBoxTreePane panel = new TextInBoxTreePane(treeLayout);
-		//return panel;
-		JDialog dialog = new JDialog();
-		Container contentPane = dialog.getContentPane();
-		((JComponent) contentPane).setBorder(BorderFactory.createEmptyBorder(
-				10, 10, 10, 10));
-		contentPane.add(panel);
-		dialog.pack();
-		dialog.setLocationRelativeTo(null);
-		dialog.setVisible(true);
-*/	}
+	}
 
 
 
-	public void notifyViewUpdate() {
+	public void notifyVspecViewUpdate() {
 		// Clear everything
 		vSpeccvluikernel.getModelPanel().removeAll();
 		vspecScrollPane.remove(vSpeccvluikernel.getModelPanel());
