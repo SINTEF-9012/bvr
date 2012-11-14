@@ -9,7 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
+
 
 import cvl.VSpec;
 
@@ -37,16 +39,39 @@ public class Main {
         
         // Add menu bar
         JMenuBar menuBar = new JMenuBar();
+        jframe.setJMenuBar(menuBar);
+        
+        // File
         JMenu filemenu = new JMenu("File");
-        filemenu.add(new JMenuItem("New"));
+        JMenuItem x = new JMenuItem("New");
+        x.addActionListener(new NewModelEvent(models, views, filePane));
+        filemenu.add(x);
         JMenuItem openfile = new JMenuItem("Open...");
         openfile.addActionListener(new OpenModelEvent(filePane, models, views));
         filemenu.add(openfile);
+        filemenu.add(new JSeparator());
         filemenu.add(new JMenuItem("Save"));
-        filemenu.add(new JMenuItem("Save as..."));
+        filemenu.add(new JMenuItem("Save all"));
+        filemenu.add(new JMenuItem("Save as ..."));
         filemenu.add(new JMenuItem("Close"));
+        filemenu.add(new JSeparator());
+        filemenu.add(new JMenuItem("Exit"));
         menuBar.add(filemenu);
-        jframe.setJMenuBar(menuBar);
+        
+        // VSpec
+        JMenu vsmenu = new JMenu("VSpec");
+        vsmenu.add(new JMenuItem("Import ..."));
+        vsmenu.add(new JMenuItem("Export ..."));
+        vsmenu.add(new JMenuItem("Count Solutions"));
+        menuBar.add(vsmenu);
+        
+        // Resolutions
+        JMenu camenu = new JMenu("Resolutions");
+        camenu.add(new JMenuItem("Import ..."));
+        camenu.add(new JMenuItem("Export ..."));
+        camenu.add(new JMenuItem("Generate Covering Array ..."));
+        camenu.add(new JMenuItem("Calculate Coverage ..."));
+        menuBar.add(camenu);
         
         // Done
         jframe.add(filePane, BorderLayout.CENTER);

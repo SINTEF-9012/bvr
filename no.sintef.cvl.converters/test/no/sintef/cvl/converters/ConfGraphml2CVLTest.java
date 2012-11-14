@@ -7,6 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import no.sintef.ict.splcatool.CSVException;
+import no.sintef.ict.splcatool.CVLModel;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayFile;
 import no.sintef.ict.splcatool.FileUtility;
@@ -29,26 +30,16 @@ public class ConfGraphml2CVLTest {
 		for(String file : new FileUtility().traverseDirCollectFiles("TestData/Realistic")){
 			//if(i++ == 0) continue;
 			
-			if(!file.endsWith(".m") && !file.endsWith(".xml")) continue;
-			if(!new File(file + ".csv").exists()) continue;
+			if(!file.endsWith(".m.cvl") && !file.endsWith(".xml.cvl")) continue;
+			if(!new File(file + ".conf.GraphML").exists()) continue;
 			
-			System.out.println("Converting configuration of: " + file);
+			System.out.println("Injecting configurations of: " + new File(file).getName()+".conf.GraphML" + " into " + new File(file).getName());
 			
-			GUIDSL m = null;
-			if(file.endsWith(".m")){
-				m = new GUIDSL(new File(file));
-			}
-			if(file.endsWith(".xml")){
-				SXFM sxfm = new SXFM(file);
-				m = sxfm.getGUIDSL();
-			}
+			CVLModel cvl = new CVLModel(file);
+			GraphMLFM gfm = new GraphMLFM(file + ".conf.GraphML");
+			cvl.injectConfigurations(gfm);
 			
-			CoveringArray ca = new CoveringArrayFile(file + ".csv");
-			GraphMLFM gmfm = m.getGraphMLFMConf(ca);
-			
-			gmfm.writeToFile(file + ".conf.GraphML");
-		
-			//break;
+			cvl.writeToFile(file + ".conf.cvl");
 		}
 	}
 }

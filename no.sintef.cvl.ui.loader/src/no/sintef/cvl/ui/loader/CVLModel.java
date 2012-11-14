@@ -11,11 +11,22 @@ public class CVLModel {
 		cvlm = new no.sintef.ict.splcatool.CVLModel(f);
 	}
 	
+	public CVLModel(File sf, no.sintef.ict.splcatool.CVLModel x) {
+		cvlm = x;
+		f = sf;
+	}
+
+	public CVLModel() {
+		cvlm = new no.sintef.ict.splcatool.CVLModel();
+	}
+
 	String getShortFileName(){
+		if(f == null) return "unnamed model";
 		return f.getName();
 	}
 
 	String getLongFileName(){
+		if(f == null) return "unnamed model";
 		return f.getAbsolutePath();
 	}
 	

@@ -73,7 +73,7 @@ public class CVLView {
 		// VSpec pane
 		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
         try {
-			loadCVLVSpecView(m.getCVLM().cu, vSpeccvluikernel);
+			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
 			e.printStackTrace();
 		}
@@ -99,7 +99,7 @@ public class CVLView {
     	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
         
         try {
-			loadCVLResolutionView(m.getCVLM().cu, resolutionkernels, resPane);
+			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
 		} catch (CVLModelException e) {
 			e.printStackTrace();
 		}
@@ -178,12 +178,12 @@ public class CVLView {
 		
 		// Add view
 		if(v instanceof VInstance){
-			System.out.println(v + ", " + cvluikernel);
+			//System.out.println(v + ", " + cvluikernel);
 			
 			nextParent = new AddVInstance().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
 		}else if(v instanceof ChoiceResolutuion){
-			System.out.println(v);
+			//System.out.println(v);
 			
 			nextParent = new AddChoiceResolutuion().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
@@ -313,7 +313,7 @@ public class CVLView {
         // Add stuff
 		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
         try {
-			loadCVLVSpecView(m.getCVLM().cu, vSpeccvluikernel);
+			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
 			e.printStackTrace();
 		}

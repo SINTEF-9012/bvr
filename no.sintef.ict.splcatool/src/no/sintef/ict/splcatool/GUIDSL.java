@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.prop4j.Node;
+import org.prop4j.NodeWriter;
 import org.xml.sax.SAXException;
 
 import de.ovgu.featureide.fm.core.Constraint;
@@ -57,6 +58,10 @@ public class GUIDSL {
 
 	public GUIDSL(FeatureModel fma) {
 		this.fma = fma;
+	}
+
+	public GUIDSL(String mfile) throws UnsupportedModelException, IOException {
+		this(new File(mfile));
 	}
 
 	public void writeToFile(String fileName) throws IOException {
@@ -183,7 +188,7 @@ public class GUIDSL {
 		}
 		
 		for(Node c : fma.getPropositionalNodes()){
-			g.addConstraint(c.toString());
+			g.addConstraint(c.toString(NodeWriter.textualSymbols));
 		}
 		
 		return g;

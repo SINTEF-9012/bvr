@@ -24,7 +24,7 @@ public class GraphML2CVLTest {
 		for(String file : ls){
 			if(!file.endsWith(".GraphML")) continue;
 			if(file.endsWith("Eshop-fm.xml.GraphML")) continue; //TODO Fix this: Has cycle
-			System.out.println("Test converting of file: " + file + ".cvl");
+			System.out.println("Test converting to file: " + file + ".cvl");
 			GraphMLFM gmfm = new GraphMLFM(file);
 			CVLModel cvl = gmfm.getCVLModel();
 			cvl.writeToFile(file + ".cvl");

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,6 +29,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import cvl.Choice;
+import cvl.ConfigurableUnit;
 import cvl.MultiplicityInterval;
 import cvl.OpaqueConstraint;
 import cvl.VClassifier;
@@ -40,9 +42,9 @@ import de.ovgu.featureide.fm.core.Feature;
 public class GraphMLFM {
 	private Document doc;
 	private Schema schema;
-	private Element graph;
+	Element graph;
 	private Schema schemayed;
-	private Element root;
+	Element root;
 	
 	public GraphMLFM() throws ParserConfigurationException, SAXException{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -91,6 +93,13 @@ public class GraphMLFM {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
 		doc = docBuilder.parse (new File(file));
+		root = doc.getDocumentElement();
+		for(int i = 0; i < root.getChildNodes().getLength(); i++){
+			org.w3c.dom.Node x = root.getChildNodes().item(i);
+			//System.out.println(x.getNodeName());
+			if(x.getNodeName().equals("graph"))
+				graph = (Element) x;
+		}
 	}
 
 	public void writeToFile(String filename) throws TransformerException, SAXException, IOException {
@@ -423,12 +432,13 @@ public class GraphMLFM {
 	}
 	
 	CVLModel cvl;
+	Map<String, Boolean> mandatories = new HashMap<String, Boolean>();
 
 	public CVLModel getCVLModel() {
 		// Make empty CVL model
-		cvl = new CVLModel();
 		cvlPackageImpl.init();
-		//cvlFactory cvlf = cvlFactory.eINSTANCE;
+		ConfigurableUnit cu = cvlFactory.eINSTANCE.createConfigurableUnit();
+		cvl = new CVLModel(cu);
 		
 		// Make graph
 		DirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
@@ -460,7 +470,27 @@ public class GraphMLFM {
 				
 				//System.out.println(srcName + " -> " + targetName);
 				
-				g.addEdge(srcName, targetName);
+				DefaultEdge e = g.addEdge(srcName, targetName);
+				
+				if(!mandatories.containsKey(srcName)) mandatories.put(srcName, true);
+				if(!mandatories.containsKey(targetName)) mandatories.put(targetName, true);
+				boolean mandatory = true;
+				String type = "";
+				try{
+					type = x.getFirstChild().getFirstChild().getFirstChild().getAttributes().getNamedItem("type").getTextContent();
+				}catch(NullPointerException ne){
+				}
+				if(type.equals("")){
+					try{
+						type = x.getFirstChild().getNextSibling().getFirstChild().getFirstChild().getAttributes().getNamedItem("type").getTextContent();
+					}catch(NullPointerException ne){
+					}
+				}
+				if(type.equals("dashed")){
+					mandatory = false;
+				}
+				mandatories.put(targetName, mandatory);
+				
 				//g.addVertex(x.getAttributes().getNamedItem("source").getTextContent());
 			}
 		}
@@ -468,9 +498,29 @@ public class GraphMLFM {
 		// Iterate
 		TopologicalOrderIterator<String, DefaultEdge> ti = new TopologicalOrderIterator<String, DefaultEdge>(g);
 		String root = ti.next();
-		cvl.cu = cvlFactory.eINSTANCE.createConfigurableUnit();
+		cu.setName(root);
 		VSpec vs = traverse(g, root);
-		cvl.cu.getOwnedVSpec().add(vs);
+		cu.getOwnedVSpec().add(vs);
+		
+		// Do global constraints
+		Set<String> done = mandatories.keySet();
+		for(int i = 0; i < graph.getChildNodes().getLength(); i++){
+			Node x = graph.getChildNodes().item(i);
+			String id = "";
+			try{
+				id = x.getAttributes().getNamedItem("id").getTextContent();
+			}catch(NullPointerException ne){
+				continue;
+			}
+			if(!done.contains(id)){
+				if(x.getNodeName().equals("edge")) continue;
+				//System.out.println(id);
+				
+				OpaqueConstraint e = cvlFactory.eINSTANCE.createOpaqueConstraint();
+				e.setConstraint(getLabel(id));
+				cu.getOwnedConstraint().add(e);
+			}
+		}
 		
 		// Return
 		return cvl;
@@ -489,14 +539,15 @@ public class GraphMLFM {
 */
 		// Identify
 		String tag = getTag(root);
-		//System.out.println(root + " (" + tag + ")");
 		
 		// Create
 		VSpec v = null;
+		//System.out.println(tag);
 		if(tag.equals("roundrectangle")){
 			Choice c = cvlFactory.eINSTANCE.createChoice();
 			idmap.put(root, c);
 			c.setName(getLabel(root));
+			c.setIsImpliedByParent(mandatories.get(root));
 			v = c;
 		}else if(tag.equals("rectangle")){
 			VClassifier c = cvlFactory.eINSTANCE.createVClassifier();
@@ -513,7 +564,8 @@ public class GraphMLFM {
 				//System.out.println("Constrain of " + g.getEdgeSource(e));
 				c.setContext(idmap.get(g.getEdgeSource(e)));
 			}
-			cvl.cu.getOwnedConstraint().add(c);
+
+			cvl.getCU().getOwnedConstraint().add(c);
 		}else if(tag.equals("UMLClassNode")){
 			v = (VSpec) cvlFactory.eINSTANCE.createVClassifier();
 			idmap.put(root, v);
