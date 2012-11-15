@@ -2,6 +2,8 @@ package no.sintef.cvl.ui.loader;
 
 import java.io.File;
 
+import cvl.VSpec;
+
 public class CVLModel {
 	private no.sintef.ict.splcatool.CVLModel cvlm;
 	private File f;
@@ -32,5 +34,10 @@ public class CVLModel {
 	
 	no.sintef.ict.splcatool.CVLModel getCVLM(){
 		return cvlm;
+	}
+
+	public void setVSpec(VSpec vSpec) {
+		cvlm.getCU().getOwnedVSpec().remove(0);
+		cvlm.getCU().getOwnedVSpec().add(vSpec);
 	}
 }

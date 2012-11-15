@@ -46,7 +46,7 @@ public class Main {
         JMenuItem x = new JMenuItem("New");
         x.addActionListener(new NewModelEvent(models, views, filePane));
         filemenu.add(x);
-        JMenuItem openfile = new JMenuItem("Open...");
+        JMenuItem openfile = new JMenuItem("Open ...");
         openfile.addActionListener(new OpenModelEvent(filePane, models, views));
         filemenu.add(openfile);
         filemenu.add(new JSeparator());
@@ -60,7 +60,9 @@ public class Main {
         
         // VSpec
         JMenu vsmenu = new JMenu("VSpec");
-        vsmenu.add(new JMenuItem("Import ..."));
+        JMenuItem importvspec = new JMenuItem("Import ...");
+        importvspec.addActionListener(new ImportVSpecEvent(filePane, models, views));
+        vsmenu.add(importvspec);
         vsmenu.add(new JMenuItem("Export ..."));
         vsmenu.add(new JMenuItem("Count Solutions"));
         menuBar.add(vsmenu);
