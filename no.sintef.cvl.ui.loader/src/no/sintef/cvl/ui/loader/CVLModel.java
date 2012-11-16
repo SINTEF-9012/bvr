@@ -2,6 +2,7 @@ package no.sintef.cvl.ui.loader;
 
 import java.io.File;
 
+import cvl.ConfigurableUnit;
 import cvl.VSpec;
 
 public class CVLModel {
@@ -36,8 +37,11 @@ public class CVLModel {
 		return cvlm;
 	}
 
-	public void setVSpec(VSpec vSpec) {
-		cvlm.getCU().getOwnedVSpec().remove(0);
+	public void addVSpec(VSpec vSpec) {
 		cvlm.getCU().getOwnedVSpec().add(vSpec);
+	}
+
+	public ConfigurableUnit getCU() {
+		return cvlm.getCU();
 	}
 }

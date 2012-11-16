@@ -39,13 +39,15 @@ public class CVLModel {
 		cvlPackage.eINSTANCE.eClass();
 		cvlFactory factory = cvlFactory.eINSTANCE;
 		cu = factory.createConfigurableUnit();
-		VClassifier vc = factory.createVClassifier();
+		cu.setName("Configurable Unit 1");
+/*		VClassifier vc = factory.createVClassifier();
 		vc.setName("Classifier1");
 		MultiplicityInterval mi = factory.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
 		vc.setInstanceMultiplicity(mi);
 		cu.getOwnedVSpec().add(vc);
+*/
 	}
 
 	public CVLModel(File f) {

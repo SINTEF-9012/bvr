@@ -18,6 +18,7 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddChoiceResolutuion;
+import no.sintef.cvl.ui.commands.AddConfigurableUnit;
 import no.sintef.cvl.ui.commands.AddGroupMultiplicity;
 import no.sintef.cvl.ui.commands.AddOpaqueConstraint;
 import no.sintef.cvl.ui.commands.AddVClassifier;
@@ -198,8 +199,10 @@ public class CVLView {
 	}
 
 	private void loadCVLVSpecView(ConfigurableUnit cu, CVLUIKernel model) throws CVLModelException {
+		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+		
 		for(VSpec v : cu.getOwnedVSpec()){
-			loadCVLVSpecView(v, model, null, cu);
+			loadCVLVSpecView(v, model, c, cu);
 		}
 	}
 
@@ -237,6 +240,8 @@ public class CVLView {
 	private void autoLayoutVSpec() {
 		Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
 		Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
+		
+		// Add VSpecs
 		for(JComponent c : vspecNodes){
 			String title = ((TitledElement)c).getTitle();
 			//System.out.println(title);
@@ -328,5 +333,9 @@ public class CVLView {
         
         modelPane.setComponentAt(0, vspecEpanel);
 		//jframe.repaint();
+	}
+
+	public ConfigurableUnit getCU() {
+		return m.getCU();
 	}
 }
