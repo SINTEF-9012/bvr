@@ -15,5 +15,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.ovgu.featureide.fm.core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SPLAR"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
