@@ -12,6 +12,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
+
 
 import cvl.VSpec;
 
@@ -69,6 +71,10 @@ public class Main {
         
         // Resolutions
         JMenu camenu = new JMenu("Resolutions");
+        JMenuItem newres = new JMenuItem("New");
+        newres.addActionListener(new NewResolutionEvent(filePane, models, views));
+        camenu.add(newres);
+        camenu.add(new JSeparator());
         camenu.add(new JMenuItem("Import ..."));
         camenu.add(new JMenuItem("Export ..."));
         camenu.add(new JMenuItem("Generate Covering Array ..."));

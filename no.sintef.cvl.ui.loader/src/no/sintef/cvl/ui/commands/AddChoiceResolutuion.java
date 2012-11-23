@@ -22,6 +22,7 @@ public class AddChoiceResolutuion implements Command {
 	private JComponent parent;
 	private CVLUIKernel rootPanel;
 	private ChoiceResolutuion c;
+	private CommandMouseListener listener;
 
 	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof ChoiceResolutuion){
@@ -43,11 +44,16 @@ public class AddChoiceResolutuion implements Command {
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		
-        /*listener = new CommandMouseListener();
-        cp.addMouseListener(new ChoiceDropDownListener(cp, vmMap, nodes, bindings, view));
-        cp.addMouseListener(listener);*/
+        listener = new CommandMouseListener();
+        cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, view));
+        cp.addMouseListener(listener);
 		
-        cp.setTitle(c.getResolvedChoice().getName() + " = " + c.isDecision());
+		String choicename = "null";
+		if(c.getResolvedChoice() != null){
+			choicename = c.getResolvedChoice().getName();
+		}
+		
+        cp.setTitle(choicename + " = " + c.isDecision());
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         return cp;

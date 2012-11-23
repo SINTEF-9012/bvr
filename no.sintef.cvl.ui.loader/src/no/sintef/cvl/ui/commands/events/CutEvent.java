@@ -11,6 +11,7 @@ import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
+import cvl.ConfigurableUnit;
 import cvl.VSpec;
 
 public class CutEvent implements ActionListener {
@@ -35,7 +36,13 @@ public class CutEvent implements ActionListener {
 			if(c.getChild().contains(v))
 				parent = c;
 		}
-		parent.getChild().remove(v);
+		
+		if(parent != null){
+			parent.getChild().remove(v);
+		}else{
+			ConfigurableUnit cu = view.getCU();
+			cu.getOwnedVSpec().remove(v);
+		}
 		
 		// Save cut
 		Main.vSpecCut = v;

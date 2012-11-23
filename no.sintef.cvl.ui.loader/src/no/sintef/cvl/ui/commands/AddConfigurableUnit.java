@@ -8,6 +8,8 @@ import javax.swing.JComponent;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
+import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.cvl.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
@@ -37,11 +39,11 @@ public class AddConfigurableUnit {
 	}
 
 	public JComponent execute() {
-		ChoicePanel cp = new ChoicePanel();
+		ConfigurableUnitSymbolPanel cp = new ConfigurableUnitSymbolPanel(rootPanel.getModelPanel());
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
-        cp.addMouseListener(new ChoiceDropDownListener(cp, vmMap, nodes, bindings, view));
+        cp.addMouseListener(new ConfigurableUnitDropDownListener(cp, vmMap, nodes, bindings, view));
         cp.addMouseListener(listener);
 		
         cp.setTitle(cu.getName());

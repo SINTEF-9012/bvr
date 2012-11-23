@@ -54,6 +54,7 @@ public class CVLView {
 	private CVLUIKernel vSpeccvluikernel;
 	
 	// Resolutions
+	private JTabbedPane resPane;
 	private List<JScrollPane> resolutionPanes;
 	private List<EditableModelPanel> resolutionEpanels;
 	private List<CVLUIKernel> resolutionkernels;
@@ -89,7 +90,7 @@ public class CVLView {
         modelPane.addTab("VSpec", null, vspecEpanel, "");
         
         // Resolution panes
-        JTabbedPane resPane = new JTabbedPane();
+        resPane = new JTabbedPane();
         modelPane.addTab("Resolution", null, resPane, "");
         
         resolutionPanes = new ArrayList<JScrollPane>();
@@ -149,6 +150,8 @@ public class CVLView {
 			}
 		}
 	}
+	
+	int choiceCount = 1;
 
 	private void loadCVLResolutionView(ConfigurableUnit cu, List<CVLUIKernel> resolutionkernels, JTabbedPane resPane) throws CVLModelException{
 		if(cu.getOwnedVSpecResolution().size() == 0) return;
@@ -162,7 +165,7 @@ public class CVLView {
 	        
 	        resolutionPanes.add(scrollPane);
 	        resolutionEpanels.add(epanel);
-	        Map<JComponent, VSpec> vmMap = new HashMap<JComponent,VSpec>();
+	        Map<JComponent, VSpec> vmMap = new HashMap<JComponent, VSpec>();
 	    	resolutionvmMaps.add(vmMap);
 	        List<JComponent> nodes = new ArrayList<JComponent>();
 	    	resolutionNodes.add(nodes);
@@ -170,7 +173,20 @@ public class CVLView {
 	    	resolutionBindings.add(bindings);
 			
 			loadCVLResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings);
-			resPane.addTab(v.getName(), null, epanel, "");
+			String tabtitle = "";
+			if(v instanceof ChoiceResolutuion){
+				ChoiceResolutuion cr = (ChoiceResolutuion) v;
+				String choicename = "null";
+				if(cr.getResolvedChoice() != null){
+					choicename = cr.getResolvedChoice().getName();
+				}
+				tabtitle = choicename + " " + choiceCount;
+				choiceCount++;
+			}else if(v instanceof VInstance){
+				VInstance vi = (VInstance) v;
+				tabtitle = vi.getName() + ":" + vi.getResolvedVSpec().getName();
+			}
+			resPane.addTab(tabtitle, null, epanel, "");
 		}
 	}
 
@@ -303,8 +319,6 @@ public class CVLView {
 		
 	}
 
-
-
 	public void notifyVspecViewUpdate() {
 		// Clear everything
 		vSpeccvluikernel.getModelPanel().removeAll();
@@ -337,5 +351,25 @@ public class CVLView {
 
 	public ConfigurableUnit getCU() {
 		return m.getCU();
+	}
+
+	public void notifyResolutionViewUpdate() {
+		resPane.removeAll();
+        resolutionPanes = new ArrayList<JScrollPane>();
+        resolutionEpanels = new ArrayList<EditableModelPanel>();
+        resolutionkernels = new ArrayList<CVLUIKernel>();
+    	resolutionvmMaps = new ArrayList<Map<JComponent,VSpec>>();
+    	resolutionNodes = new ArrayList<List<JComponent>>();
+    	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
+    	
+    	choiceCount = 1;
+        
+        try {
+			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
+		} catch (CVLModelException e) {
+			e.printStackTrace();
+		}
+        
+        autoLayoutResolutions();
 	}
 }

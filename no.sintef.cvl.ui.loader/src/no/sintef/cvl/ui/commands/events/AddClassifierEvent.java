@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
+import cvl.ConfigurableUnit;
 import cvl.MultiplicityInterval;
 import cvl.VClassifier;
 import cvl.VSpec;
@@ -41,7 +42,13 @@ public class AddClassifierEvent implements ActionListener {
 		mi.setUpper(1);
 		c.setInstanceMultiplicity(mi);
 		x++;
-		v.getChild().add(c);
+		
+		if(v != null){
+			v.getChild().add(c);
+		}else{
+			ConfigurableUnit cu = view.getCU();
+			cu.getOwnedVSpec().add(c);
+		}
 		
 		// Regenerate view
 		view.notifyVspecViewUpdate();
