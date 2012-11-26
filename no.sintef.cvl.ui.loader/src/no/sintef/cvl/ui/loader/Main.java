@@ -52,9 +52,13 @@ public class Main {
         openfile.addActionListener(new OpenModelEvent(filePane, models, views));
         filemenu.add(openfile);
         filemenu.add(new JSeparator());
-        filemenu.add(new JMenuItem("Save"));
+        JMenuItem save = new JMenuItem("Save");
+        filemenu.add(save);
+        save.addActionListener(new SaveModelAsEvent(filePane, models, views, true));
         filemenu.add(new JMenuItem("Save all"));
-        filemenu.add(new JMenuItem("Save as ..."));
+        JMenuItem saveas = new JMenuItem("Save as ...");
+        saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false));
+        filemenu.add(saveas);
         filemenu.add(new JMenuItem("Close"));
         filemenu.add(new JSeparator());
         filemenu.add(new JMenuItem("Exit"));
@@ -75,9 +79,13 @@ public class Main {
         newres.addActionListener(new NewResolutionEvent(filePane, models, views));
         camenu.add(newres);
         camenu.add(new JSeparator());
-        camenu.add(new JMenuItem("Import ..."));
+        JMenuItem importres = new JMenuItem("Import ...");
+        importres.addActionListener(new ImportResolutions(filePane, models, views));
+        camenu.add(importres);
         camenu.add(new JMenuItem("Export ..."));
-        camenu.add(new JMenuItem("Generate Covering Array ..."));
+        JMenuItem genca = new JMenuItem("Generate Covering Array ...");
+        genca.addActionListener(new GenerateCoveringArray(filePane, models, views));
+        camenu.add(genca);
         camenu.add(new JMenuItem("Calculate Coverage ..."));
         menuBar.add(camenu);
         

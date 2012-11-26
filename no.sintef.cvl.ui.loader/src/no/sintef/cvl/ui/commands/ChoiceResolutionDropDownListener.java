@@ -25,6 +25,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
+import cvl.ConfigurableUnit;
 import cvl.VSpec;
 import cvl.VSpecResolution;
 
@@ -101,11 +102,17 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		add(value);
 		
 		// Change to
-		EList<VSpec> vspecs = view.getCU().getOwnedVSpec();
-		// - Find parent
-		JComponent parent = null;
-		
-		// Add menus
+		EList<VSpec> vspecs = null;
+		if(c.getResolvedVSpec() == null){
+			vspecs = view.getCU().getOwnedVSpec();
+		}else{
+			VSpec parent = getParent(view.getCU(), c.getResolvedVSpec());
+			if(parent == null)
+				vspecs = view.getCU().getOwnedVSpec();
+			else
+				vspecs = getParent(view.getCU(), c.getResolvedVSpec()).getChild();
+		}
+		// -Add menus
     	JMenu change = new JMenu("Resolve");
     	for(VSpec x : vspecs){
     		JMenuItem i = new JMenuItem(x.getName());
@@ -113,5 +120,27 @@ class ChoiceResolutionDropdown extends JPopupMenu {
     		change.add(i);
     	}
 		add(change);
+    }
+    
+    private VSpec getParent(ConfigurableUnit cu, VSpec child){
+    	for(VSpec c : cu.getOwnedVSpec())
+    		if(c == child)
+    			return null;
+    	for(VSpec r : cu.getOwnedVSpec()){
+    		VSpec found = getParent(r, child);
+    		if(found != null) return found;
+    	}
+    	return null;
+    }
+    
+    private VSpec getParent(VSpec root, VSpec child){
+    	for(VSpec r : root.getChild())
+    		if(r == child)
+    			return root;
+    	for(VSpec r : root.getChild()){
+    		VSpec found = getParent(r, child);
+    		if(found != null) return found;
+    	}
+    	return null;
     }
 }

@@ -17,7 +17,6 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.ict.splcatool.GUIDSL;
 
 public class ImportVSpecEvent implements ActionListener {
-
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
 	private List<CVLView> views;

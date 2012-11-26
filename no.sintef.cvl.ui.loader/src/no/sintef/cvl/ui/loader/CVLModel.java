@@ -44,4 +44,12 @@ public class CVLModel {
 	public ConfigurableUnit getCU() {
 		return cvlm.getCU();
 	}
+	
+	public void setFile(File f){
+		this.f = f;
+	}
+
+	public File getFile() {
+		return f;
+	}
 }
