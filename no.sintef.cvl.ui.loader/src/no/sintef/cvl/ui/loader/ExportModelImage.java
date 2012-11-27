@@ -43,13 +43,14 @@ public class ExportModelImage implements ActionListener {
 				
 				Dimension size = view.getKernel().getModelPanel().getSize();
 				BufferedImage bi = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+				
 				final Graphics2D g2 = bi.createGraphics();
 
 				view.getKernel().getModelPanel().paintComponents(g2);
 				view.getKernel().getModelPanel().paint(g2);
 
 
-				ImageIO.write(bi, "PNG", new File(filechooser.getSelectedFile().getAbsoluteFile(), i + ".png"));
+				ImageIO.write(bi, "PNG", new File(filechooser.getSelectedFile().getAbsoluteFile(), "cvl_" + i + ".png"));
 				i++;
 				
 				}

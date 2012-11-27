@@ -17,34 +17,17 @@ package no.sintef.cvl.ui.framework.elements;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Collection;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JViewport;
-import javax.swing.Scrollable;
 
 import no.sintef.cvl.ui.framework.BufferedElement;
 import no.sintef.cvl.ui.framework.listener.DragDropLayout;
-import no.sintef.cvl.ui.framework.listener.InstanceDragSourceListener;
 
 import org.jdesktop.swingx.JXPanel;
-import org.jdesktop.swingx.painter.CompoundPainter;
-import org.jdesktop.swingx.painter.ImagePainter;
-import org.jdesktop.swingx.painter.MattePainter;
 
 public class ConfigurableUnitPanel extends JLayeredPane implements BufferedElement {
 
@@ -63,12 +46,13 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
 
 
     public ConfigurableUnitPanel() {
-
+    	this.setBackground(Color.WHITE);
         vspecPanel = new JXPanel();
         vspecPanel.setLayout(new DragDropLayout());
         dragPanel = new JPanel();
         dragPanel.setOpaque(false);
         bindingPanel = new BindingPanel();
+        bindingPanel.setOpaque(false);
         //layeredPane = new JLayeredPane();
 
         setOpaque(false);
@@ -77,22 +61,9 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
         add(dragPanel, JLayeredPane.DRAG_LAYER);
         add(bindingPanel, JLayeredPane.PALETTE_LAYER);
 
-
-        GradientPaint grad = new GradientPaint(new Point(0, 0), new Color(63, 128, 187), new Point(0, getHeight()), new Color(51, 51, 51));
-        MattePainter matte = new MattePainter(grad);
-        CompoundPainter p = new CompoundPainter(matte);
-
-/*        ImagePainter background = new ImagePainter();
-        background.setHorizontalRepeat(true);
-        background.setVerticalRepeat(true);
-        try {
-            background.setImage(ImageIO.read(this.getClass().getClassLoader().getResource("TT16s_light.jpg")));
-            vspecPanel.setBackgroundPainter(background);
-        } cah (IOException e) {
-            //vspecPanel.setBackgroundPainter(p);
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-*/
+        vspecPanel.setBackground(Color.WHITE);
+        dragPanel.setBackground(Color.WHITE);
+        bindingPanel.setBackground(Color.WHITE);
 
 
         addComponentListener(new ComponentAdapter() {
@@ -116,22 +87,6 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
         repaint();
         revalidate();
     }
-
-    /*public void addHub(JPanel p) {
-        vspecPanel.add(p);
-        p.setBounds(50, 50, (int) p.getPreferredSize().getWidth(), (int) p.getPreferredSize().getHeight());
-        InstanceDragSourceListener listener = new InstanceDragSourceListener(p);
-        repaint();
-        revalidate();
-    }
-
-    public void addGroup(JPanel p) {
-        vspecPanel.add(p);
-        p.setBounds(50, 50, (int) p.getPreferredSize().getWidth(), (int) p.getPreferredSize().getHeight());
-        InstanceDragSourceListener listener = new InstanceDragSourceListener(p);
-        repaint();
-        revalidate();
-    }*/
 
 
     public void addBinding(Binding b) {

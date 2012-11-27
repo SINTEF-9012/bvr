@@ -73,6 +73,7 @@ public class BindingPanel extends JPanel {
     }
 
     public BindingPanel() {
+    	this.setBackground(Color.WHITE);
         this.setOpaque(false);
         mySelf = this;
         this.addMouseListener(new MouseAdapter() {

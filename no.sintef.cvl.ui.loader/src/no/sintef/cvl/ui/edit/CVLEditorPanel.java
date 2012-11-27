@@ -64,6 +64,7 @@ public class CVLEditorPanel extends JPanel {
     	this.vmMap = vmMap;
     	this.kernel = _kernel;
     	this.view = view;
+    	this.setBackground(Color.WHITE);
         kernel.setEditorPanel(this);
 
         leftpanel.setOpaque(false);
@@ -88,6 +89,7 @@ public class CVLEditorPanel extends JPanel {
         splitPane.setDividerLocation(180);
         splitPane.setResizeWeight(0.0);
         splitPane.setBorder(null);
+        splitPane.setBackground(Color.WHITE);
 
 
         scrollpane.setOpaque(false);

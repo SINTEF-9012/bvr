@@ -3,15 +3,12 @@ package no.sintef.cvl.ui.loader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
-
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -22,7 +19,7 @@ public class OpenModelEvent implements ActionListener {
 	private JTabbedPane c;
 	private List<CVLModel> models;
 	private List<CVLView> views;
-	private static File lastDir = new File("C:\\Users\\mjoha\\workspace-CVLTool2\\cvl\\TestData");
+	//private static File lastDir = new File("C:\\Users\\mjoha\\workspace-CVLTool2\\cvl\\TestData");
 
 	OpenModelEvent(JTabbedPane c, List<CVLModel> models, List<CVLView> views){
 		this.c = c;
@@ -32,8 +29,8 @@ public class OpenModelEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		final JFileChooser fc = new JFileChooser();
-		if(lastDir != null)
-			fc.setCurrentDirectory(lastDir);
+		if(FileHelper.lastLocation() != null)
+			fc.setCurrentDirectory(new File(FileHelper.lastLocation()));
 		fc.addChoosableFileFilter(new FMFilter());
 		fc.addChoosableFileFilter(new CVLFilter());
 		fc.showOpenDialog(c);
@@ -41,7 +38,7 @@ public class OpenModelEvent implements ActionListener {
 		File sf = fc.getSelectedFile();
 		
 		if(sf == null) return;
-		lastDir = fc.getCurrentDirectory();
+		FileHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
 		
 		String ext = Utils.getExtension(sf);
 		

@@ -1,6 +1,7 @@
 package no.sintef.cvl.ui.loader;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
-
-
 import cvl.VSpec;
 
 public class Main {
@@ -35,6 +34,7 @@ public class Main {
 		jframe = new JFrame("CVL UI");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setPreferredSize(new Dimension(1000, 800));
+		jframe.setBackground(Color.WHITE);
 
 		// Tabbed pane
 		JTabbedPane filePane = new JTabbedPane();

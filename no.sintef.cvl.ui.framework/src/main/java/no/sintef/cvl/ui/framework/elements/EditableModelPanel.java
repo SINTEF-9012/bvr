@@ -31,6 +31,7 @@
 package no.sintef.cvl.ui.framework.elements;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -56,7 +57,7 @@ public class EditableModelPanel extends JLayeredPane {
     private JComponent modelPanel = null;
 
     public EditableModelPanel(JComponent _modelPanel) {
-    	    	
+    	this.setBackground(Color.WHITE);    	
         modelPanel = _modelPanel;
         closeProperties.setOpaque(false);
         closeProperties.addMouseListener(new MouseAdapter() {
