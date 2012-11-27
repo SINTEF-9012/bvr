@@ -62,6 +62,10 @@ public class CVLView {
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 
+	public CVLUIKernel getKernel() {
+		return vSpeccvluikernel;
+	}
+	
 	public CVLView(CVLModel m, JTabbedPane tp) {
 		vspecvmMap = new HashMap<JComponent, VSpec>();
 		vspecNodes = new ArrayList<JComponent>();
