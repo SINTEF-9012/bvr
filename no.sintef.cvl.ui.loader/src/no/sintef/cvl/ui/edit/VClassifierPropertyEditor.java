@@ -21,6 +21,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.cvl.ui.commands.UpdateVClassifier;
+import no.sintef.cvl.ui.commands.UpdateVSpec;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -31,10 +33,14 @@ import cvl.VClassifier;
 import cvl.VSpec;
 
 public class VClassifierPropertyEditor extends VSpecPropertyEditor {
+	
+    protected void init() {
+    	command = new UpdateVClassifier();
+    	command.init(null, vSpec, null, null, null, null, view);
+    }
 
 	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, CVLView view) {
 		super(kernel, (VSpec) elem, view);
-		
 		
         //Lower bound
         JPanel p2 = new JPanel(new SpringLayout());
@@ -52,7 +58,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
         p2.add(textField2);
         textField2.setText(String.valueOf(((VClassifier)vSpec).getInstanceMultiplicity().getLower()));
         
-        this.addCenter(p2);
+        top.add(p2);
         SpringUtilities.makeCompactGrid(p2,
                 1, 2, //rows, cols
                 6, 6,        //initX, initY
@@ -75,20 +81,20 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
         p3.add(textField3);
         textField3.setText(String.valueOf(((VClassifier)vSpec).getInstanceMultiplicity().getUpper()));
         
-        this.addCenter(p3);
+        top.add(p3);
         SpringUtilities.makeCompactGrid(p3,
                 1, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
         
         
-        
+        pack(3,1);
         
         textField2.getDocument().addDocumentListener(new DocumentListener() {
 
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    updateLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+                    ((UpdateVClassifier) command).setLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {
@@ -98,7 +104,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
             public void removeUpdate(DocumentEvent e) {
                 try {
-                    updateLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+                	((UpdateVClassifier) command).setLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {
@@ -108,7 +114,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
             public void changedUpdate(DocumentEvent e) {
                 try {
-                    updateLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+                	((UpdateVClassifier) command).setLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {
@@ -123,7 +129,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    updateUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+                	((UpdateVClassifier) command).setUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {
@@ -133,7 +139,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
             public void removeUpdate(DocumentEvent e) {
                 try {
-                    updateUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+                	((UpdateVClassifier) command).setUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {
@@ -143,7 +149,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
             public void changedUpdate(DocumentEvent e) {
                 try {
-                    updateUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+                	((UpdateVClassifier) command).setUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {
@@ -153,21 +159,4 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
         });
         
 	}
-	
-    public void updateLower(int lower) {
-    	task.cancel();
-    	task = new TimerUpdate();
-        ((VClassifier)vSpec).getInstanceMultiplicity().setLower(lower);	
-        //no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
-        timer.schedule(task, delay);
-    }
-    
-    public void updateUpper(int upper) {
-    	task.cancel();
-    	task = new TimerUpdate();
-    	((VClassifier)vSpec).getInstanceMultiplicity().setUpper(upper);
-    	//no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
-    	timer.schedule(task, delay);
-    }
-
 }

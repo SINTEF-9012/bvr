@@ -13,9 +13,6 @@
  */
 package no.sintef.cvl.ui.edit;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +22,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.cvl.ui.commands.Command;
+import no.sintef.cvl.ui.commands.UpdateVSpec;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -35,32 +34,57 @@ import cvl.VSpec;
 
 public class VSpecPropertyEditor  extends JPanel {
 	
-	protected Timer timer = new Timer();
-	protected TimerUpdate task = new TimerUpdate();
-	protected final long delay = 500;
 	protected CVLView view;
 	
-	protected class TimerUpdate extends TimerTask {
-		@Override
-		public void run() {
-			view.notifyVspecViewUpdate();
-		}		
-	}
-
+	protected JPanel top;
+	protected JPanel bottom;
+	
 	protected CVLUIKernel kernel;
 	protected VSpec vSpec;
 	
     public void addCenter(JComponent p) {
         this.add(p);
     }
+    
+    public void pack(int rows, int cols){
+    	SpringUtilities.makeCompactGrid(top,
+                rows, cols, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
 
+    }
+    
+    protected Command command;
+    
+    protected void init() {
+    	command = new UpdateVSpec();
+    	command.init(null, vSpec, null, null, null, null, view);
+    }
+    
     public VSpecPropertyEditor(CVLUIKernel _kernel, VSpec _vspec, CVLView _view) {
+
         this.setOpaque(false);
         this.setBorder(null);
 
         view = _view;
         kernel = _kernel;
         vSpec = _vspec;
+        
+    	init();
+        
+        top = new JPanel(new SpringLayout());
+        top.setBorder(null);
+        top.setOpaque(false);
+        
+        bottom = new JPanel();
+        bottom.setBorder(null);
+        bottom.setOpaque(false);
+        
+        this.addCenter(top);
+        this.addCenter(bottom);
+        
+        JCommandButton okButton = new JCommandButton("OK", command);
+        bottom.add(okButton);
         
         //Name
         JPanel p = new JPanel(new SpringLayout());
@@ -78,25 +102,19 @@ public class VSpecPropertyEditor  extends JPanel {
         p.add(textField);
         textField.setText(vSpec.getName());
 
-        this.addCenter(p);
+        top.add(p);
         SpringUtilities.makeCompactGrid(p,
                 1, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
 
-
-
-        /*JCommandButton btDelete = new JCommandButton("Delete");
-        RemoveInstanceCommand removecmd = new RemoveInstanceCommand(elem);
-        removecmd.setKernel(kernel);
-        btDelete.setCommand(removecmd);
-        this.addCenter(btDelete);*/
+        pack(1,1);
 
         textField.getDocument().addDocumentListener(new DocumentListener() {
 
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    updateName(e.getDocument().getText(0, e.getDocument().getLength()));
+                    ((UpdateVSpec) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -104,7 +122,7 @@ public class VSpecPropertyEditor  extends JPanel {
 
             public void removeUpdate(DocumentEvent e) {
                 try {
-                    updateName(e.getDocument().getText(0, e.getDocument().getLength()));
+                	((UpdateVSpec) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -112,24 +130,13 @@ public class VSpecPropertyEditor  extends JPanel {
 
             public void changedUpdate(DocumentEvent e) {
                 try {
-                    updateName(e.getDocument().getText(0, e.getDocument().getLength()));
+                	((UpdateVSpec) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
         
-    }
-    
-
-
-
-    public void updateName(String newname) {
-    	task.cancel();
-    	task = new TimerUpdate();
-    	vSpec.setName(newname);
-        //no.sintef.cvl.ui.loader.Main.notifyViewUpdate();
-        timer.schedule(task, delay);
     }	
    
 }
