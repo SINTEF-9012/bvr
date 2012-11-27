@@ -59,9 +59,13 @@ public class Main {
 		JMenuItem saveas = new JMenuItem("Save as ...");
 		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false));
 
-		JMenuItem saveasImage = new JMenuItem("Save as Image ...");
+		JMenuItem saveasImage = new JMenuItem("Save as PNG ...");
 		filemenu.add(saveasImage);
 		saveasImage.addActionListener(new ExportModelImage(views, filePane));
+		
+		JMenuItem saveasSVG = new JMenuItem("Save as SVG ...");
+		filemenu.add(saveasSVG);
+		saveasSVG.addActionListener(new ExportModelSVG(views, filePane));
 	
 		
 
