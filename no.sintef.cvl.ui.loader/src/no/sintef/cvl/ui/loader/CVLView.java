@@ -23,6 +23,7 @@ import no.sintef.cvl.ui.commands.AddGroupMultiplicity;
 import no.sintef.cvl.ui.commands.AddOpaqueConstraint;
 import no.sintef.cvl.ui.commands.AddVClassifier;
 import no.sintef.cvl.ui.commands.AddVInstance;
+import no.sintef.cvl.ui.commands.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
@@ -191,6 +192,7 @@ public class CVLView {
 				tabtitle = vi.getName() + ":" + vi.getResolvedVSpec().getName();
 			}
 			resPane.addTab(tabtitle, null, epanel, "");
+			resPane.addMouseListener(new VSpecResDropDownListener(cu, v, this));
 		}
 	}
 

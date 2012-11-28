@@ -185,7 +185,8 @@ public class CNF {
 				given_p = new Integer(line.split(" ")[2]);
 				given_c = new Integer(line.split(" ")[3]);
 			}else{
-				throw new IOException("Error loading file due to: " + line);
+				if(!line.trim().equals(""))
+					throw new IOException("Error loading file due to: " + line);
 			}
 		}
 		

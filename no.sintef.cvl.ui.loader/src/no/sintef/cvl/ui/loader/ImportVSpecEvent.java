@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 import no.sintef.ict.splcatool.GUIDSL;
+import no.sintef.ict.splcatool.SXFM;
 
 public class ImportVSpecEvent implements ActionListener {
 	private JTabbedPane filePane;
@@ -40,7 +41,10 @@ public class ImportVSpecEvent implements ActionListener {
 		File sf = fc.getSelectedFile();
 		no.sintef.ict.splcatool.CVLModel cvlm = null;
 		try {
-			cvlm = new GUIDSL(sf).getGraphMLFM().getCVLModel();
+			if(sf.getName().endsWith(".m"))
+				cvlm = new GUIDSL(sf).getGraphMLFM().getCVLModel();
+			else if(sf.getName().endsWith(".xml"))
+				cvlm = new SXFM(sf.getAbsolutePath()).getGUIDSL().getGraphMLFM().getCVLModel();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
