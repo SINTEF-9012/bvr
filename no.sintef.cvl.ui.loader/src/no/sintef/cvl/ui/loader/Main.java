@@ -58,20 +58,20 @@ public class Main {
 		filemenu.add(new JMenuItem("Save all"));
 		JMenuItem saveas = new JMenuItem("Save as ...");
 		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false));
-
-		JMenuItem saveasImage = new JMenuItem("Save as PNG ...");
-		filemenu.add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(views, filePane));
-		
-		JMenuItem saveasSVG = new JMenuItem("Save as SVG ...");
-		filemenu.add(saveasSVG);
-		saveasSVG.addActionListener(new ExportModelSVG(views, filePane));
-	
-		
-
 		filemenu.add(saveas);
 		filemenu.add(new JMenuItem("Close"));
+		
 		filemenu.add(new JSeparator());
+		
+		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
+		filemenu.add(saveasImage);
+		saveasImage.addActionListener(new ExportModelImage(views, filePane));
+		JMenuItem saveasSVG = new JMenuItem("Export Diagram as SVG ...");
+		filemenu.add(saveasSVG);
+		saveasSVG.addActionListener(new ExportModelSVG(views, filePane));
+		
+		filemenu.add(new JSeparator());
+		
 		filemenu.add(new JMenuItem("Exit"));
 		menuBar.add(filemenu);
 

@@ -2,20 +2,24 @@ package no.sintef.cvl.ui.loader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+/*
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+*/
 import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTabbedPane;
 
+/*
 import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGeneratorContext;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
+*/
 
 public class ExportModelSVG implements ActionListener {
 
@@ -38,7 +42,7 @@ public class ExportModelSVG implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+/*		filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		filechooser.showOpenDialog(filePane);
 		if (filechooser.getSelectedFile() != null) {
 			try {
@@ -66,5 +70,6 @@ public class ExportModelSVG implements ActionListener {
 				ex.printStackTrace();
 			}	
 		}
+		*/
 	}
 }
