@@ -8,3 +8,4 @@ Require-Bundle: org.junit,
  de.ovgu.featureide.fm.core,
  no.sintef.cvl.model
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: cvl

@@ -18,16 +18,17 @@ import org.prop4j.NodeReader;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import cvl.CVSpec;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
-import cvl.Constraint;
 import cvl.MultiplicityInterval;
 import cvl.OpaqueConstraint;
 import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.cvlFactory;
 import cvl.cvlPackage;
+import cvl.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
