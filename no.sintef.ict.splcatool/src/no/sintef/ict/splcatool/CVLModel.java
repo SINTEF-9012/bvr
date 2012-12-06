@@ -41,18 +41,11 @@ public class CVLModel {
 		cvlFactory factory = cvlFactory.eINSTANCE;
 		cu = factory.createConfigurableUnit();
 		cu.setName("Configurable Unit 1");
-/*		VClassifier vc = factory.createVClassifier();
-		vc.setName("Classifier1");
-		MultiplicityInterval mi = factory.createMultiplicityInterval();
-		mi.setLower(1);
-		mi.setUpper(1);
-		vc.setInstanceMultiplicity(mi);
-		cu.getOwnedVSpec().add(vc);
-*/
 	}
 
 	public CVLModel(File f) {
 		cvlPackage.eINSTANCE.eClass();
+		System.out.println(Resource.Factory.Registry.DEFAULT_EXTENSION);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createURI("file:///" + f.getAbsolutePath()), true);
