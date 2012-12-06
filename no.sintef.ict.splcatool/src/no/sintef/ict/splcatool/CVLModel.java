@@ -45,7 +45,6 @@ public class CVLModel {
 
 	public CVLModel(File f) {
 		cvlPackage.eINSTANCE.eClass();
-		System.out.println(Resource.Factory.Registry.DEFAULT_EXTENSION);
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createURI("file:///" + f.getAbsolutePath()), true);

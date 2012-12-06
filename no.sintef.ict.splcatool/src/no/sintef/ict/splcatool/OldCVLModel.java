@@ -2,7 +2,7 @@ package no.sintef.ict.splcatool;
 
 import java.io.File;
 
-import oldcvl.VariabilitySpecification;
+//import oldcvl.VariabilitySpecification;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,7 @@ import cvl.cvlFactory;
 
 
 public class OldCVLModel {
-	private oldcvl.CVLModel m;
+/*	private oldcvl.CVLModel m;
 	private ConfigurableUnit cu;
 
 	public OldCVLModel(File f) {
@@ -72,5 +72,5 @@ public class OldCVLModel {
 			}
 		}
 	}
-
+*/
 }

@@ -15,6 +15,5 @@
 	<classpathentry kind="lib" path="lib/apoi/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.8.0.v20120606-0717.jar" sourcepath="C:/Users/mjoha/.m2/repository/org/eclipse/birt/runtime/org.eclipse.emf.ecore.xmi/2.8.0.v20120606-0717/org.eclipse.emf.ecore.xmi-2.8.0.v20120606-0717-sources.jar"/>
 	<classpathentry kind="lib" path="lib/jgrapht-jdk1.6.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.variabilitymodeling.cvl1.2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
