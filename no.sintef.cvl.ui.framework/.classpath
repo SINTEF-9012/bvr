@@ -28,6 +28,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="/no.sintef.cvl.model"/>
-	<classpathentry kind="lib" path="/no.sintef.cvl.ui.loader/lib/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
