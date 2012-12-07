@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.loader;
 
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -226,6 +228,16 @@ public class CVLView {
 		for(VSpec v : cu.getOwnedVSpec()){
 			loadCVLVSpecView(v, model, c, cu);
 		}
+		
+		// Add context-free constraints
+		for(Constraint cs : cu.getOwnedConstraint()){
+			if(cs instanceof OpaqueConstraint){
+				OpaqueConstraint oc = (OpaqueConstraint) cs;
+				if(oc.getContext() == null){
+					new AddOpaqueConstraint().init(model, oc, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+				}
+			}
+		}
 	}
 
 	private void loadCVLVSpecView(VSpec v, CVLUIKernel model, JComponent parent, ConfigurableUnit cu) throws CVLModelException {
@@ -259,73 +271,10 @@ public class CVLView {
 		}
 	}
 	
-	private void autoLayoutVSpec() {
-		Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
-		Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
-		
-		// Add VSpecs
-		for(JComponent c : vspecNodes){
-			String title = ((TitledElement)c).getTitle();
-			//System.out.println(title);
-			TextInBox t = new TextInBox(title, c.getWidth(), c.getHeight());
-			if(c instanceof GroupPanel){
-				t = new TextInBox(title, 17, 15);
-			}
-			nodemap.put(c, t);
-			nodemapr.put(t, c);
-		}
-		
-		TextInBox root = nodemap.get(vspecNodes.get(0));
-
-		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(root);
-		
-		for(Pair<JComponent, JComponent> p : vspecBindings){
-			TextInBox a = nodemap.get(p.a);
-			if(p.a instanceof GroupPanel){
-				for(Pair<JComponent, JComponent> pc : vspecBindings){
-					if(pc.b == p.a){
-						a = nodemap.get(pc.a);
-					}
-				}
-			}
-			TextInBox b = nodemap.get(p.b);
-			if(!(p.b instanceof GroupPanel))
-				tree.addChild(a, b);
-		}
-		
-		// setup the tree layout configuration
-		double gapBetweenLevels = 30;
-		double gapBetweenNodes = 10;
-		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(gapBetweenLevels, gapBetweenNodes);
-
-		// create the NodeExtentProvider for TextInBox nodes
-		TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
-		TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree, nodeExtentProvider, configuration);
-		
-		// Set positions
-		for(JComponent c : vspecNodes){
-			if(!(c instanceof GroupPanel)){
-				TextInBox t = nodemap.get(c);
-				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
-				Double z = x.get(t);
-				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
-			}else{
-				// Find parent
-				JComponent p = null;
-				for(Pair<JComponent, JComponent> x : vspecBindings){
-					if(x.b == c){
-						p = x.a;
-					}
-				}
-				
-				// Set pos
-				c.setBounds(p.getX()-15+(p.getWidth()-20)/2, p.getY()+p.getHeight()-10, c.getWidth(), c.getHeight());
-			}
-		}
-		
-	}
-
 	public void notifyVspecViewUpdate() {
+		// Save scroll coordinates
+		Point vpos = vspecScrollPane.getViewport().getViewPosition();
+		
 		// Clear everything
 		vSpeccvluikernel.getModelPanel().removeAll();
 		vspecScrollPane.remove(vSpeccvluikernel.getModelPanel());
@@ -353,6 +302,9 @@ public class CVLView {
         
         modelPane.setComponentAt(0, vspecEpanel);
 		//jframe.repaint();
+        
+        // Restore scroll coordinates
+        vspecScrollPane.getViewport().setViewPosition(vpos);
 	}
 
 	public ConfigurableUnit getCU() {
@@ -360,22 +312,104 @@ public class CVLView {
 	}
 
 	public void notifyResolutionViewUpdate() {
+		// Save
+		boolean isEmpty = resPane.getTabCount() == 0;
+		int selected = 0;
+		Point pos = null;
+		if(!isEmpty){
+			selected = resPane.getSelectedIndex();
+			pos = resolutionPanes.get(selected).getViewport().getViewPosition();
+		}
+		
+		// Clean up
 		resPane.removeAll();
-        resolutionPanes = new ArrayList<JScrollPane>();
-        resolutionEpanels = new ArrayList<EditableModelPanel>();
-        resolutionkernels = new ArrayList<CVLUIKernel>();
-    	resolutionvmMaps = new ArrayList<Map<JComponent,VSpec>>();
-    	resolutionNodes = new ArrayList<List<JComponent>>();
-    	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
-    	
-    	choiceCount = 1;
-        
-        try {
+	    resolutionPanes = new ArrayList<JScrollPane>();
+	    resolutionEpanels = new ArrayList<EditableModelPanel>();
+	    resolutionkernels = new ArrayList<CVLUIKernel>();
+		resolutionvmMaps = new ArrayList<Map<JComponent,VSpec>>();
+		resolutionNodes = new ArrayList<List<JComponent>>();
+		resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
+		
+		choiceCount = 1;
+	    
+	    try {
 			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
 		} catch (CVLModelException e) {
 			e.printStackTrace();
 		}
-        
-        autoLayoutResolutions();
+	    
+	    autoLayoutResolutions();
+	    
+	    // Restore positions
+	    if(!isEmpty){
+		    resPane.setSelectedIndex(selected);
+		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
+	    }
+	}
+
+	private void autoLayoutVSpec() {
+		Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
+		Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
+		
+		// Add VSpecs
+		for(JComponent c : vspecNodes){
+			String title = ((TitledElement)c).getTitle();
+			//System.out.println(title);
+			TextInBox t = new TextInBox(title, c.getWidth(), c.getHeight());
+			if(c instanceof GroupPanel){
+				t = new TextInBox(title, 17, 15);
+			}
+			nodemap.put(c, t);
+			nodemapr.put(t, c);
+		}
+		
+		TextInBox root = nodemap.get(vspecNodes.get(0));
+	
+		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(root);
+		
+		for(Pair<JComponent, JComponent> p : vspecBindings){
+			TextInBox a = nodemap.get(p.a);
+			if(p.a instanceof GroupPanel){
+				for(Pair<JComponent, JComponent> pc : vspecBindings){
+					if(pc.b == p.a){
+						a = nodemap.get(pc.a);
+					}
+				}
+			}
+			TextInBox b = nodemap.get(p.b);
+			if(!(p.b instanceof GroupPanel))
+				tree.addChild(a, b);
+		}
+		
+		// setup the tree layout configuration
+		double gapBetweenLevels = 30;
+		double gapBetweenNodes = 10;
+		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(gapBetweenLevels, gapBetweenNodes);
+	
+		// create the NodeExtentProvider for TextInBox nodes
+		TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
+		TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree, nodeExtentProvider, configuration);
+		
+		// Set positions
+		for(JComponent c : vspecNodes){
+			if(!(c instanceof GroupPanel)){
+				TextInBox t = nodemap.get(c);
+				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
+				Double z = x.get(t);
+				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
+			}else{
+				// Find parent
+				JComponent p = null;
+				for(Pair<JComponent, JComponent> x : vspecBindings){
+					if(x.b == c){
+						p = x.a;
+					}
+				}
+				
+				// Set pos
+				c.setBounds(p.getX()-15+(p.getWidth()-20)/2, p.getY()+p.getHeight()-10, c.getWidth(), c.getHeight());
+			}
+		}
+		
 	}
 }
