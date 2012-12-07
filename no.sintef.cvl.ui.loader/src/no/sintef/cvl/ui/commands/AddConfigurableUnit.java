@@ -46,7 +46,9 @@ public class AddConfigurableUnit {
         cp.addMouseListener(new ConfigurableUnitDropDownListener(cp, vmMap, nodes, bindings, view));
         cp.addMouseListener(listener);
 		
-        cp.setTitle(cu.getName());
+        String name = cu.getName();
+        if(name == null) name = "(unnamed)";
+        cp.setTitle(name);
         rootPanel.getModelPanel().addNode(cp);
         //Helper.bind(parent, cp, rootPanel.getModelPanel(), (c.isIsImpliedByParent() || parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;

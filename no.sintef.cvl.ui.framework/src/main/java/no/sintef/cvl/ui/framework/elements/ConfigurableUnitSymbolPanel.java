@@ -38,13 +38,8 @@ public class ConfigurableUnitSymbolPanel extends ThreePartRectanglePanel impleme
     	
         display_name.setForeground(Color.BLACK);
         display_name.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setForeground(Color.BLACK);
-        separatorbar.setTitle("");
-        separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setVisible(true);
         
         addCenter(display_name);
-        addCenter(separatorbar);
         
         setOptionalState(OPTION_STATE.MANDATORY);
         

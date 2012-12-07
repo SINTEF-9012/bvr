@@ -15,6 +15,7 @@ import no.sintef.cvl.ui.loader.Pair;
 import cvl.MultiplicityInterval;
 import cvl.VClassifier;
 import cvl.VSpec;
+import cvl.Variable;
 
 public class AddVClassifier implements Command {
 	
@@ -53,14 +54,19 @@ public class AddVClassifier implements Command {
         c.addMouseListener(listener);
 		
         MultiplicityInterval m = vc.getInstanceMultiplicity();
-
-        //I would prefer not to mix concerns (here validation. We should assume a valid CVL model as input).
-        /*if(m == null){
-        	throw new CVLModelException("VClassifier instance must have InstanceMultiplicity");
-        }*/
         int l = m.getLower();
         int u = m.getUpper();
         c.setNameAndCardinality(vc.getName(), l, u);
+        
+        for(VSpec vs : vc.getChild()){
+        	if(vs instanceof Variable){
+        		Variable v = (Variable) vs;
+        		//c.addAttribute(v.getName(), v.getType()??);
+        		String name = v.getName().split(":")[0];
+        		String type = v.getName().split(":")[1];
+        		c.addAttribute(name, type);
+        	}
+        }
         
         rootPanel.getModelPanel().addNode(c);
         

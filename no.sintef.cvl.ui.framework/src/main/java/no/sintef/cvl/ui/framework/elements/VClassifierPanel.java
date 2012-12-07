@@ -34,7 +34,7 @@ import org.jdesktop.swingx.JXTitledSeparator;
 public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPanel, SelectElement, TitledElement, ErrorHighlightableElement {
 	
 	JXLabel display_name = new JXLabel();
-    JXTitledSeparator separatorbar = new JXTitledSeparator();
+    JXTitledSeparator separatorbar = null;
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
     ConfigurableUnitPanel model;
@@ -53,18 +53,22 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     	
         display_name.setForeground(Color.BLACK);
         display_name.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setForeground(Color.BLACK);
-        separatorbar.setTitle("");
-        separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setVisible(true);
-        
         addCenter(display_name);
-        addCenter(separatorbar);
-        
+               
         setOptionalState(OPTION_STATE.MANDATORY);
         
         setBackground(Color.WHITE);
     }
+
+
+	private void addSepBar() {
+		separatorbar = new JXTitledSeparator();
+		separatorbar.setForeground(Color.BLACK);
+	    separatorbar.setTitle("");
+	    separatorbar.setHorizontalAlignment(SwingConstants.LEFT);
+	    separatorbar.setVisible(true);
+	    addCenter(separatorbar);
+	}
     
     /*public void addVSpec(VSpecPanel vspec) {
         Binding b = new Binding(OPTION_STATE.MANDATORY);
@@ -81,6 +85,9 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
     }*/
 
     public void addAttribute(String name, String type) {
+    	if(separatorbar == null)
+    		addSepBar();
+    	
     	JXLabel att = new JXLabel();
     	
     	att.setForeground(Color.BLACK);
