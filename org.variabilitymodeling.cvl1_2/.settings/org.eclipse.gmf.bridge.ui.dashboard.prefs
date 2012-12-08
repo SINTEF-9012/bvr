@@ -1,0 +1,8 @@
+#Thu Sep 10 11:26:58 CEST 2009
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.variabilitymodeling.cvl1.1/model/cvl_visitor.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.variabilitymodeling.cvl1.1/model/cvl_visitor.ecore
+gmf_dashboard/generationModel=platform\:/resource/org.variabilitymodeling.cvl1.1/model/cvl_visitor.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.variabilitymodeling.cvl1.1/model/cvl_visitor.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.variabilitymodeling.cvl1.1/model/cvl_visitor.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.variabilitymodeling.cvl1.1/model/cvl_visitor.gmftool

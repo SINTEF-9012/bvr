@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.variabilitymodeling.cvl1.2/src"
+    editDirectory="/org.variabilitymodeling.cvl1.2.edit/src" editorDirectory="/org.variabilitymodeling.cvl1.2.editor/src"
+    modelPluginID="org.variabilitymodeling.cvl1.2" modelName="Cvl_visitor" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.variabilitymodeling.cvl1.2.edit"
+    editorPluginID="org.variabilitymodeling.cvl1.2.editor">
+  <foreignModel>cvl_visitor.ecore</foreignModel>
+  <genPackages prefix="Cvl" disposableProviderFactory="true" ecorePackage="cvl_visitor.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cvl_visitor.ecore#//PlacementFragmentUsage">
+      <genEnumLiterals ecoreEnumLiteral="cvl_visitor.ecore#//PlacementFragmentUsage/REPLACE"/>
+      <genEnumLiterals ecoreEnumLiteral="cvl_visitor.ecore#//PlacementFragmentUsage/ADD"/>
+      <genEnumLiterals ecoreEnumLiteral="cvl_visitor.ecore#//PlacementFragmentUsage/ADD_REPLACE"/>
+    </genEnums>
+    <genClasses ecoreClass="cvl_visitor.ecore#//CVLModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//CVLModel/variabilitySpecification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//CVLModel/resolutionSpecification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//CVLModel/base"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//CVLModel/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//CVLModel/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//CVLModel/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//CVLModel/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//CVLModel/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//Substitution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Substitution/replacementInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ReferenceSubstitution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ReferenceSubstitution/placement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ReferenceSubstitution/replacement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ReferenceSubstitution/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReferenceSubstitution/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReferenceSubstitution/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReferenceSubstitution/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReferenceSubstitution/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ValueSubstitution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ValueSubstitution/placement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ValueSubstitution/replacement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ValueSubstitution/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ValueSubstitution/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ValueSubstitution/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ValueSubstitution/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ValueSubstitution/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//FragmentSubstitution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FragmentSubstitution/placement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FragmentSubstitution/replacement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FragmentSubstitution/rfRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FragmentSubstitution/boundaryElementBinding"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//FragmentSubstitution/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FragmentSubstitution/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FragmentSubstitution/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FragmentSubstitution/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FragmentSubstitution/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//PlacementFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//PlacementFragment/boundaryElement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//PlacementFragment/usage"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//PlacementFragment/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//PlacementFragment/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//PlacementFragment/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//PlacementFragment/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//PlacementFragment/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ReplacementFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ReplacementFragment/boundaryElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ReplacementFragment/placements"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ReplacementFragment/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementFragment/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementFragment/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementFragment/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementFragment/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//PlacementBoundaryElement"/>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//ReplacementBoundaryElement"/>
+    <genClasses ecoreClass="cvl_visitor.ecore#//FromPlacement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromPlacement/outsideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromPlacement/replacementBoundaryElement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//FromPlacement/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FromPlacement/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FromPlacement/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FromPlacement/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FromPlacement/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ToPlacement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//ToPlacement/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToPlacement/insideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToPlacement/outsideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToPlacement/outsideRef"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ToPlacement/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ToPlacement/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ToPlacement/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ToPlacement/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ToPlacement/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ToReplacement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToReplacement/insideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToReplacement/placementBoundaryElement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ToReplacement/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ToReplacement/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ToReplacement/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ToReplacement/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ToReplacement/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//FromReplacement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//FromReplacement/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromReplacement/outsideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromReplacement/insideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromReplacement/insideRef"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//FromReplacement/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FromReplacement/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FromReplacement/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FromReplacement/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FromReplacement/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//CVLElement">
+      <genOperations ecoreOperation="cvl_visitor.ecore#//CVLElement/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//CVLElement/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//CVLElement/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//CVLElement/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//CVLElement/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//BoundaryElementBinding"/>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ToBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToBinding/toPlacement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ToBinding/toReplacement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ToBinding/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ToBinding/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ToBinding/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ToBinding/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ToBinding/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//FromBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromBinding/fromPlacement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//FromBinding/fromReplacement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//FromBinding/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FromBinding/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//FromBinding/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FromBinding/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//FromBinding/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//CompositeVariability">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//CompositeVariability/variabilitySpecification"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//CompositeVariability/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//CompositeVariability/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//CompositeVariability/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//CompositeVariability/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//CompositeVariability/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//VariabilitySpecification"/>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//CVLNamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//CVLNamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//PlacementLiteral"/>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//ReplacementLiteral"/>
+    <genClasses ecoreClass="cvl_visitor.ecore#//PlacementValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//PlacementValue/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//PlacementValue/targetObject"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//PlacementValue/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//PlacementValue/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//PlacementValue/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//PlacementValue/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//PlacementValue/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//PlacementObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//PlacementObject/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//PlacementObject/targetObject"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//PlacementObject/referredObject"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//PlacementObject/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//PlacementObject/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//PlacementObject/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//PlacementObject/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//PlacementObject/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ReplacementValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//ReplacementValue/value"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ReplacementValue/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementValue/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementValue/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementValue/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementValue/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ReplacementObject">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ReplacementObject/targetObject"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ReplacementObject/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementObject/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementObject/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementObject/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementObject/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//ResolutionSpecification"/>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ResolutionElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ResolutionElement/element"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ResolutionElement/resolution"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ResolutionElement/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ResolutionElement/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ResolutionElement/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ResolutionElement/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ResolutionElement/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//Type">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Type/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Type/replacement"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//Type/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Type/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Type/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Type/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Type/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//Invocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Invocation/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Invocation/resolutionSpecification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Invocation/rfRef"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//Invocation/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Invocation/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Invocation/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Invocation/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Invocation/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//IteratorResolution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//IteratorResolution/iterator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//IteratorResolution/choice"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//IteratorResolution/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//IteratorResolution/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//IteratorResolution/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//IteratorResolution/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//IteratorResolution/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//Iterator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//Iterator/upperLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//Iterator/lowerLimit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//Iterator/isUnique"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//Iterator/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Iterator/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Iterator/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Iterator/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Iterator/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ReplacementFragmentReference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ReplacementFragmentReference/rfRef"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ReplacementFragmentReference/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementFragmentReference/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ReplacementFragmentReference/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementFragmentReference/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ReplacementFragmentReference/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//ReplacementFragmentAbstract"/>
+    <genClasses ecoreClass="cvl_visitor.ecore#//Assignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Assignment/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Assignment/target"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//Assignment/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Assignment/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Assignment/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Assignment/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Assignment/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//Declaration"/>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//ExecutablePrimitive"/>
+    <genClasses ecoreClass="cvl_visitor.ecore#//Constraint">
+      <genOperations ecoreOperation="cvl_visitor.ecore#//Constraint/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Constraint/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//Constraint/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Constraint/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//Constraint/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//NOT">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//NOT/term"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//NOT/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//NOT/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//NOT/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//NOT/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//NOT/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//OR">
+      <genOperations ecoreOperation="cvl_visitor.ecore#//OR/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//OR/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//OR/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//OR/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//OR/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//IMPLIES">
+      <genOperations ecoreOperation="cvl_visitor.ecore#//IMPLIES/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//IMPLIES/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//IMPLIES/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//IMPLIES/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//IMPLIES/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ExecutablePrimitiveTerm">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//ExecutablePrimitiveTerm/primitive"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ExecutablePrimitiveTerm/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ExecutablePrimitiveTerm/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ExecutablePrimitiveTerm/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ExecutablePrimitiveTerm/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ExecutablePrimitiveTerm/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//AND_">
+      <genOperations ecoreOperation="cvl_visitor.ecore#//AND_/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//AND_/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//AND_/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//AND_/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//AND_/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cvl_visitor.ecore#//Binary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Binary/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cvl_visitor.ecore#//Binary/right"/>
+    </genClasses>
+    <genClasses ecoreClass="cvl_visitor.ecore#//ResolutionValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cvl_visitor.ecore#//ResolutionValue/value"/>
+      <genOperations ecoreOperation="cvl_visitor.ecore#//ResolutionValue/accept">
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ResolutionValue/accept/visitor"/>
+        <genParameters ecoreParameter="cvl_visitor.ecore#//ResolutionValue/accept/context"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ResolutionValue/accept/C"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//ResolutionValue/accept/R"/>
+      </genOperations>
+    </genClasses>
+    <nestedGenPackages prefix="Visitors" disposableProviderFactory="true" ecorePackage="cvl_visitor.ecore#//visitors">
+      <genClasses image="false" ecoreClass="cvl_visitor.ecore#//visitors/Visitable">
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitable/accept">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitable/accept/visitor"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitable/accept/context"/>
+          <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//visitors/Visitable/accept/C"/>
+          <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//visitors/Visitable/accept/R"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="cvl_visitor.ecore#//visitors/Visitor">
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//visitors/Visitor/ContextType"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//visitors/Visitor/ResultType"/>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitCVLModel">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitCVLModel/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitCVLModel/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitReferenceSubstitution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReferenceSubstitution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReferenceSubstitution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitValueSubstitution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitValueSubstitution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitValueSubstitution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitFragmentSubstitution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFragmentSubstitution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFragmentSubstitution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitPlacementFragment">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitPlacementFragment/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitPlacementFragment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitReplacementFragment">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementFragment/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementFragment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitFromPlacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFromPlacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFromPlacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitToPlacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitToPlacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitToPlacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitToReplacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitToReplacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitToReplacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitFromReplacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFromReplacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFromReplacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitCVLElement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitCVLElement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitCVLElement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitToBinding">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitToBinding/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitToBinding/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitFromBinding">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFromBinding/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitFromBinding/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitCompositeVariability">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitCompositeVariability/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitCompositeVariability/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitPlacementValue">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitPlacementValue/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitPlacementValue/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitPlacementObject">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitPlacementObject/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitPlacementObject/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitReplacementValue">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementValue/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementValue/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitReplacementObject">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementObject/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementObject/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitResolutionElement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitResolutionElement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitResolutionElement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitType">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitType/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitType/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitInvocation">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitInvocation/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitInvocation/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitIteratorResolution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitIteratorResolution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitIteratorResolution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitIterator">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitIterator/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitIterator/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitReplacementFragmentReference">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementFragmentReference/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitReplacementFragmentReference/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitAssignment">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitAssignment/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitAssignment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitConstraint">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitConstraint/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitConstraint/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitNOT">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitNOT/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitNOT/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitOR">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitOR/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitOR/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitIMPLIES">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitIMPLIES/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitIMPLIES/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitExecutablePrimitiveTerm">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitExecutablePrimitiveTerm/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitExecutablePrimitiveTerm/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitAND_">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitAND_/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitAND_/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/Visitor/visitResolutionValue">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitResolutionValue/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/Visitor/visitResolutionValue/context"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="cvl_visitor.ecore#//visitors/TopDownVisitor">
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/ContextType"/>
+        <genTypeParameters ecoreTypeParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/ResultType"/>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCVLModel">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCVLModel/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCVLModel/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReferenceSubstitution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReferenceSubstitution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReferenceSubstitution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitValueSubstitution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitValueSubstitution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitValueSubstitution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFragmentSubstitution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFragmentSubstitution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFragmentSubstitution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementFragment">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementFragment/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementFragment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementFragment">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementFragment/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementFragment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromPlacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromPlacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromPlacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToPlacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToPlacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToPlacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToReplacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToReplacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToReplacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromReplacement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromReplacement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromReplacement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCVLElement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCVLElement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCVLElement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToBinding">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToBinding/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitToBinding/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromBinding">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromBinding/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitFromBinding/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCompositeVariability">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCompositeVariability/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitCompositeVariability/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementValue">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementValue/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementValue/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementObject">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementObject/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitPlacementObject/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementValue">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementValue/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementValue/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementObject">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementObject/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementObject/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitResolutionElement">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitResolutionElement/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitResolutionElement/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitType">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitType/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitType/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitInvocation">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitInvocation/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitInvocation/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIteratorResolution">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIteratorResolution/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIteratorResolution/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIterator">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIterator/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIterator/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementFragmentReference">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementFragmentReference/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitReplacementFragmentReference/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitAssignment">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitAssignment/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitAssignment/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitConstraint">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitConstraint/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitConstraint/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitNOT">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitNOT/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitNOT/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitOR">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitOR/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitOR/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIMPLIES">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIMPLIES/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitIMPLIES/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitExecutablePrimitiveTerm">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitExecutablePrimitiveTerm/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitExecutablePrimitiveTerm/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitAND_">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitAND_/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitAND_/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="cvl_visitor.ecore#//visitors/TopDownVisitor/visitResolutionValue">
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitResolutionValue/node"/>
+          <genParameters ecoreParameter="cvl_visitor.ecore#//visitors/TopDownVisitor/visitResolutionValue/context"/>
+        </genOperations>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
