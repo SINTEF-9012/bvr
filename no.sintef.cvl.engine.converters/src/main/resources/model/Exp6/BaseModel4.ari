@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ari:ExpressionModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ari="http:///org.sintef.ari"
+    xsi:schemaLocation="http:///org.sintef.ari ari.ecore">
+  <expressionNode
+      name="zxc">
+    <expression
+        xsi:type="ari:Plus">
+      <left
+          xsi:type="ari:IntegerLiteral"
+          literalValue="12"/>
+      <right
+          xsi:type="ari:Mult">
+        <left
+            xsi:type="ari:IntegerLiteral"
+            literalValue="1"/>
+        <right
+            xsi:type="ari:IntegerLiteral"
+            literalValue="2"/>
+      </right>
+    </expression>
+  </expressionNode>
+  <expressionNode
+      name="">
+    <expression
+        xsi:type="ari:Plus">
+      <left
+          xsi:type="ari:IntegerLiteral"
+          name=""
+          literalValue="234234"/>
+      <right
+          xsi:type="ari:IntegerLiteral"
+          literalValue="324"/>
+    </expression>
+  </expressionNode>
+</ari:ExpressionModel>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+  
+  <bean id="defaultLogger"
+    class="no.sintef.cvl.engine.logging.impl.ConsoleLogger"/>
+    
+  <bean id="engineContext"
+  	class="no.sintef.cvl.engine.context.impl.EngineContext"/>
+  
+  <bean id="vSpecWTreeNodeLoggingInterceptor"
+  	class="no.sintef.cvl.engine.logging.interceptor.VSpecWTreeNodeLoggingInterceptor">
+  		<property name="LOG">
+  			<ref bean="defaultLogger"/>
+  		</property>
+  </bean>
+    	
+	<!-- AOP part -->
+	
+	<aop:config>
+		<aop:pointcut id="addVarSpecPointcut" expression="execution( * no.sintef.cvl.engine.common.VSpecWTreeNode.addVarSpec(*) ) and args(element)"/>
+		
+		<aop:aspect id="addVarSpecAspect" ref="vSpecWTreeNodeLoggingInterceptor">
+			<aop:before pointcut-ref="addVarSpecPointcut" method="addVarSpecBeforeAspect" arg-names="element"/>
+		</aop:aspect>
+		
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="getPropertyNameByClassBeforePointcut" expression="execution( * no.sintef.cvl.engine.common.VSpecWTreeNode.getPropertyNameByClass(*) ) and args(element)"/>
+		
+		<aop:aspect id="getPropertyNameByClassBeforeAspect" ref="vSpecWTreeNodeLoggingInterceptor">
+			<aop:before pointcut-ref="getPropertyNameByClassBeforePointcut" method="getPropertyNameByClassBeforeAspect" arg-names="element"/>
+		</aop:aspect>
+		
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="getPropertyNameByClassAfterPointcut" expression="execution( * no.sintef.cvl.engine.common.VSpecWTreeNode.getPropertyNameByClass(*) )"/>
+		
+		<aop:aspect id="getPropertyNameByClassAfterAspect" ref="vSpecWTreeNodeLoggingInterceptor">
+			<aop:after-returning pointcut-ref="getPropertyNameByClassAfterPointcut" method="getPropertyNameByClassAfterAspect" returning="retVal"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

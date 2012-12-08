@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ari:ExpressionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ari="http:///org.sintef.ari" xsi:schemaLocation="http:///org.sintef.ari ari.ecore">
+  <expressionNode name="qeqweqw">
+    <expression xsi:type="ari:Mult">
+      <left xsi:type="ari:IntegerLiteral"/>
+      <right xsi:type="ari:Div">
+        <left xsi:type="ari:IntegerLiteral" literalValue="88"/>
+        <right xsi:type="ari:IntegerLiteral" literalValue="99"/>
+      </right>
+    </expression>
+  </expressionNode>
+</ari:ExpressionModel>

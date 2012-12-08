@@ -1,0 +1,282 @@
+<class-diagram version="1.0.11" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.common.Engine" 
+    project="no.sintef.cvl.engine" file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/common/Engine.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="403" y="80"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.stage.Stage" 
+    project="no.sintef.cvl.engine" file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/stage/Stage.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="399" y="270"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.stage.impl.BasicStage" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/stage/impl/BasicStage.java" binary="false">    
+    <position height="-1" width="-1" x="401" y="403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.stage.impl.BuildStage" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/stage/impl/BuildStage.java" binary="false">    
+    <position height="-1" width="-1" x="148" y="543"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.stage.impl.MaterializationStage" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/stage/impl/MaterializationStage.java" binary="false">    
+    <position height="-1" width="-1" x="605" y="547"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.stage.impl.ResolveStage" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/stage/impl/ResolveStage.java" binary="false">    
+    <position height="-1" width="-1" x="380" y="565"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.context.Context" 
+    project="no.sintef.cvl.engine" file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/context/Context.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1053" y="375"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface id="8" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.Rule" 
+    project="no.sintef.cvl.engine" file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/Rule.java" 
+    binary="false">    
+    <position height="-1" width="-1" x="1419" y="170"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.impl.BasicRule" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/impl/BasicRule.java" binary="false">    
+    <position height="-1" width="-1" x="1417" y="377"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="10" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.RuleContainer" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/RuleContainer.java" binary="false">    
+    <position height="-1" width="-1" x="1752" y="69"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.impl.BasicRuleContainer" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/impl/BasicRuleContainer.java" binary="false">    
+    <position height="-1" width="-1" x="1762" y="260"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="12" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.impl.BuildRContainer" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/impl/BuildRContainer.java" binary="false">    
+    <position height="-1" width="-1" x="1767" y="439"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="13" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.impl.VSpecRule" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/impl/VSpecRule.java" binary="false">    
+    <position height="-1" width="-1" x="1745" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="14" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.rule.impl.VSpecChildrenRule" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/rule/impl/VSpecChildrenRule.java" binary="false">    
+    <position height="-1" width="-1" x="1371" y="599"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="15" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.common.VSpecWTreeNode" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/common/VSpecWTreeNode.java" binary="false">    
+    <position height="-1" width="-1" x="670" y="174"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="16" corner="BOTTOM_RIGHT" language="java" name="no.sintef.cvl.engine.context.impl.EngineContext" 
+    project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/context/impl/EngineContext.java" binary="false">    
+    <position height="146" width="227" x="933" y="49"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <bendpoint x="1243" y="73"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="18" name="buildRuleContainer"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="21" name="children"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="24">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="25" name="resModels"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="28" name="parent"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="31" name="context"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="34" name="buildStage"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="36">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="41" name="currentModel"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="43">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="44">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="45" name="context"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="48" name="resolveStage"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="51">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="52" name="rules"/>      
+      <multiplicity id="53" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <realization id="55">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="57">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="58" name="materializationStage"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

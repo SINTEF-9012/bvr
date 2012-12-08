@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" name="Exp">
+  <variabilitySpecification xsi:type="cvl:CompositeVariability" name="varModel">
+    <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Exp">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="left">
+        <variabilitySpecification xsi:type="cvl:PlacementFragment" name="pl_left">
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:ExpressionNode].expression" propertyName="expression">
+            <insideBoundaryElement href="BaseModel4.ari#//@expressionNode/@expression"/>
+            <outsideBoundaryElement href="BaseModel4.ari#//@expressionNode"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromPlacement" name=":Mult[1]">
+            <outsideBoundaryElement href="BaseModel4.ari#//@expressionNode/@expression/@right"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="cvl:ReplacementFragment" name="rp_left">
+          <boundaryElement xsi:type="cvl:ToReplacement" name=":Div[1]">
+            <insideBoundaryElement href="LibraryModel4.ari#//@expressionNode/@expression/@right"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Div].right" propertyName="right">
+            <outsideBoundaryElement href="LibraryModel4.ari#//@expressionNode/@expression/@right/@right"/>
+            <insideBoundaryElement href="LibraryModel4.ari#//@expressionNode/@expression/@right"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="pl_left->rp_left" placement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0" replacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1">
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:ExpressionNode].expression" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.0" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.0"/>
+          <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Div].right" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.1" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.1"/>
+        </variabilitySpecification>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="right">
+        <variabilitySpecification xsi:type="cvl:PlacementFragment" name="pl_right">
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:ExpressionNode].expression" propertyName="expression">
+            <insideBoundaryElement href="BaseModel4.ari#//@expressionNode/@expression"/>
+            <outsideBoundaryElement href="BaseModel4.ari#//@expressionNode"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromPlacement" name=":IntegerLiteral[1]">
+            <outsideBoundaryElement href="BaseModel4.ari#//@expressionNode/@expression/@left"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="cvl:ReplacementFragment" name="rp_right">
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Div].left" propertyName="left">
+            <outsideBoundaryElement href="LibraryModel4.ari#//@expressionNode/@expression/@right/@left"/>
+            <insideBoundaryElement href="LibraryModel4.ari#//@expressionNode/@expression/@right"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToReplacement" name=":Div[1]">
+            <insideBoundaryElement href="LibraryModel4.ari#//@expressionNode/@expression/@right"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="pl_right->rp_right" placement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@variabilitySpecification.0" replacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@variabilitySpecification.1">
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:ExpressionNode].expression" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@variabilitySpecification.0/@boundaryElement.0" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@variabilitySpecification.1/@boundaryElement.1"/>
+          <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Div].left" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@variabilitySpecification.0/@boundaryElement.1" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@variabilitySpecification.1/@boundaryElement.0"/>
+        </variabilitySpecification>
+      </variabilitySpecification>
+    </variabilitySpecification>
+  </variabilitySpecification>
+  <base href="BaseModel4.ari#//@expressionNode"/>
+</cvl:CVLModel>
