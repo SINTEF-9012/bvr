@@ -4,40 +4,40 @@
     <child xsi:type="cvl:Choice" name="exp"/>
   </ownedVSpec>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.3"/>
+    <sourceObject href="base.node#//@contains.3"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.4"/>
+    <sourceObject href="base.node#//@contains.4"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.5"/>
+    <sourceObject href="base.node#//@contains.5"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#/"/>
+    <sourceObject href="base.node#/"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.3"/>
+    <sourceObject href="base.node#//@contains.3"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.0"/>
+    <sourceObject href="base.node#//@contains.0"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.3"/>
+    <sourceObject href="base.node#//@contains.3"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.1"/>
+    <sourceObject href="base.node#//@contains.1"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.4"/>
+    <sourceObject href="base.node#//@contains.4"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.2"/>
+    <sourceObject href="base.node#//@contains.2"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.6"/>
+    <sourceObject href="base.node#//@contains.6"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="base.node#//@contains.5"/>
+    <sourceObject href="base.node#//@contains.5"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="p1">
     <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="contains" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0 //@ownedVariationPoint.1/@sourceObject.0 //@ownedVariationPoint.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.0"/>
@@ -47,34 +47,34 @@
     <placementBoundaryElement xsi:type="cvl:FromPlacement" outsideBoundaryElement="//@ownedVariationPoint.10/@sourceObject.0" insideBoundaryElement="//@ownedVariationPoint.11/@sourceObject.0"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.3"/>
+    <sourceObject href="lib.node#//@contains.3"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.4"/>
+    <sourceObject href="lib.node#//@contains.4"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.5"/>
+    <sourceObject href="lib.node#//@contains.5"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#/"/>
+    <sourceObject href="lib.node#/"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.3"/>
+    <sourceObject href="lib.node#//@contains.3"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.0"/>
+    <sourceObject href="lib.node#//@contains.0"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.4"/>
+    <sourceObject href="lib.node#//@contains.4"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.2"/>
+    <sourceObject href="lib.node#//@contains.2"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.6"/>
+    <sourceObject href="lib.node#//@contains.6"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
-    <sourceObject MOFRef="lib.node#//@contains.5"/>
+    <sourceObject href="lib.node#//@contains.5"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1" bindingChoice="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.12" replacement="//@ownedVariabletype.0">
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.12/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>

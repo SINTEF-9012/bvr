@@ -20,6 +20,7 @@ public class OldCvlToNewCvlMain {
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/VM1.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/PrinterPool.xmi"));
 		con.run();
+		//con.run1();
 	}
 
 }
