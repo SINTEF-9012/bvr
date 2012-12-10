@@ -1,6 +1,6 @@
 package no.sintef.cvl.engine.converters.common;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -10,7 +10,6 @@ import org.variabilitymodeling.cvl.PlacementBoundaryElement;
 import org.variabilitymodeling.cvl.PlacementFragment;
 import org.variabilitymodeling.cvl.ToPlacement;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 public class PlacementElementHolder {
@@ -23,6 +22,9 @@ public class PlacementElementHolder {
 	private HashSet<EObject> plBElementsInternal; 
 	private HashSet<EObject> plBElementsExternal;
 	private HashSet<EObject> plElementsInternal;
+	private HashSet<EObject> plBElementsExternalWCopy;
+	private HashSet<EObject> plElementsInternalWCopy;
+	private HashMap<FromPlacement, EObject> fPlInsideMap;
 	
 	public PlacementElementHolder(PlacementFragment pf) {
 		tbe = new BasicEList<ToPlacement>();
@@ -32,9 +34,17 @@ public class PlacementElementHolder {
 		plBElementsInternal = new HashSet<EObject>();
 		plBElementsExternal = new HashSet<EObject>();
 		plElementsInternal = new HashSet<EObject>();
+		fPlInsideMap = new HashMap<FromPlacement, EObject>();
 		this.locate(pf);
 		plElementsOriginal = new HashSet<EObject>(plElements);
-		this.calculatePlElementsInternal();	
+		this.calculatePlElementsInternal();
+		plBElementsExternalWCopy = new HashSet<EObject>(plBElementsExternal);
+		plElementsInternalWCopy =  new HashSet<EObject>(plElementsInternal);
+	}
+	
+	public HashMap<FromPlacement, EObject> getInsideBoundaryMapForPlacement(){
+		this.findInsideBoundaryElements();
+		return this.fPlInsideMap;
 	}
 	
 	public HashSet<EObject> getElements(){
@@ -53,20 +63,59 @@ public class PlacementElementHolder {
 		return this.plElementsInternal;
 	}
 	
+	private EObject getInsideBoundaryElementFromPlacement(FromPlacement fp){
+		EList<EObject> outsideBoundaryElements = fp.getOutsideBoundaryElement();
+		for(EObject pbee : plBElementsExternalWCopy){
+			EList<EObject> outsideBoundaryElementsWCopy = this.getAllReferencedElements(pbee);
+			if(outsideBoundaryElementsWCopy.equals(outsideBoundaryElements)){
+				plBElementsExternalWCopy.remove(pbee);
+				return pbee;
+			}
+		}
+		return null;
+	}
+	
+	public void findInsideBoundaryElements(){
+		for(FromPlacement fp : this.fbe){
+			EObject insideBoundaryElement = this.getInsideBoundaryElementFromPlacement(fp);
+			this.fPlInsideMap.put(fp, insideBoundaryElement);
+			if(insideBoundaryElement == null){
+				System.out.println("WARNING: can not fine insideBoundaryElement for " + fp);
+			}
+		}
+	}
+	
+	private EList<EObject> getAllReferencedElements(EObject pbee){
+		EList<EObject> refs = pbee.eCrossReferences();
+		EList<EObject> conts = pbee.eContents();
+		HashSet<EObject> elementsSet = new HashSet<EObject>();
+		elementsSet.addAll(refs);
+		elementsSet.addAll(conts);
+		EList<EObject> elements = new BasicEList<EObject>();
+		elements.addAll(elementsSet);
+		return elements;
+	}
+	
 	private void locate(PlacementFragment pf){
 		EList<PlacementBoundaryElement> pbes = pf.getBoundaryElement();
-		System.out.println(pbes);
+		HashSet<EObject> obes = new HashSet<EObject>();
 		for(PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof ToPlacement){
 				tbe.add((ToPlacement)pbe);
+				obes.add(((ToPlacement)pbe).getOutsideBoundaryElement());
+				//fpobes.add(((ToPlacement)pbe).getOutsideBoundaryElement());
 			}
 			if(pbe instanceof FromPlacement){
 				fbe.add((FromPlacement) pbe);
-				fpobes.addAll(((FromPlacement) pbe).getOutsideBoundaryElement());
+				obes.addAll(((FromPlacement) pbe).getOutsideBoundaryElement());
+				//fpobes.addAll(((FromPlacement) pbe).getOutsideBoundaryElement());
 			}
 		}
+		fpobes.addAll(obes);
 		this.calculatePlBElementsInternal();
-		this.findAllElements(Lists.newArrayList(plBElementsInternal.iterator()));
+		EList<EObject> list = new BasicEList<EObject>();
+		list.addAll(plBElementsInternal);
+		this.findAllElements(list);
 	}
 		
 	private void calculatePlElementsInternal(){
@@ -78,12 +127,11 @@ public class PlacementElementHolder {
 	private void calculatePlBElementsInternal(){
 		for(ToPlacement tp : tbe){
 			EList<EObject> ibes = tp.getInsideBoundaryElement();
-			System.out.println(ibes);
 			plBElementsInternal.addAll(ibes);
 		}
 	}
 
-	private void findAllElements(ArrayList<EObject> arrayList) {
+	private void findAllElements(EList<EObject> arrayList) {
 		for(EObject o : arrayList){
 			this.traversRelation(o);
 		}

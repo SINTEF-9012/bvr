@@ -43,16 +43,9 @@ public class CVLModelOld {
 
 	public CVLModel load(File file) throws IOException{
 		CvlPackage.eINSTANCE.eClass();
-		nodePackage.eINSTANCE.eClass();
+		//nodePackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
-		//ResourceSet resSet = new ResourceSetImpl();
-		
-		//URI uri = URI.createFileURI(file.getName());
-		//URI uri1 = URI.createURI("file:///" + file.getAbsolutePath());
-		//System.out.println(System.getProperty("user.dir"));
-		//System.out.println(System.setProperty( "user.dir", "D:/JOBB/GitHub/cvl/no.sintef.cvl.engine.converters/src/main/resources/model/"));
-		//System.out.println(file.getPath());
-		//resSet.getLoadOptions();
+
 		Resource resource = resSet.getResource(URI.createFileURI(file.getName()), true);
 		CVLModel cv = (CVLModel) resource.getContents().get(0);
 		//this.checkCross(resSet);

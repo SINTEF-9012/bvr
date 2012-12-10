@@ -77,6 +77,16 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.5.8</version>
-    </dependency>         
+    </dependency> 
+    <dependency>
+    	<groupId>com.google.guava</groupId>
+    	<artifactId>guava</artifactId>
+    	<version>13.0.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.variabilitymodeling.cvl1.2</groupId>
+		<artifactId>org.variabilitymodeling.cvl1.2</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>     
   </dependencies>
 </project>

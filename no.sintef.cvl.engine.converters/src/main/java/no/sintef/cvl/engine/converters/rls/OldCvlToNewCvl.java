@@ -2,31 +2,32 @@ package no.sintef.cvl.engine.converters.rls;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 import no.sintef.cvl.engine.converters.common.CVLModelNew;
 import no.sintef.cvl.engine.converters.common.CVLModelOld;
 import no.sintef.cvl.engine.converters.common.PlacementElementHolder;
+import no.sintef.cvl.engine.converters.common.ReplacementElementHolder;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
+import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
+
 import org.variabilitymodeling.cvl.BoundaryElementBinding;
 import org.variabilitymodeling.cvl.CVLModel;
 import org.variabilitymodeling.cvl.CompositeVariability;
 import org.variabilitymodeling.cvl.PlacementBoundaryElement;
 import org.variabilitymodeling.cvl.ReplacementBoundaryElement;
-
-import ari.ariPackage;
-import ari.impl.ariPackageImpl;
 
 import cvl.Choice;
 import cvl.ConfigurableUnit;
@@ -68,7 +69,6 @@ public class OldCvlToNewCvl {
 		}
 		String path = this.oldcvlfile.getAbsolutePath();
 		path = path.replaceAll(oldcvl.getName(), "");
-		System.out.println(path);
 		System.setProperty( "user.dir", path);
 	}
 
@@ -82,19 +82,11 @@ public class OldCvlToNewCvl {
 		CVLModel cv = cvo.load(this.oldcvlfile);
 		
 		this.parseOldTree(cv, cu);
+				
 		cvn.writeToFile(this.newcvlfile, cu);
-		
-		for(org.variabilitymodeling.cvl.PlacementFragment pf : this.plMap.keySet()){
-			PlacementElementHolder pef = new PlacementElementHolder(pf);
-			System.out.println(pef.getElements());
-			System.out.println(pef.getBElementsInternal());
-			System.out.println(pef.getBElementsExternal());
-			System.out.println(pef.getElementsInternal());
-		}
 	}
 	
 	private void parseOldTree(EObject node, EObject newnode) throws Exception{
-	//	System.out.println(node);
 		if(node instanceof CVLModel){
 			((ConfigurableUnit) newnode).setName(((CVLModel) node).getName());
 		}
@@ -116,6 +108,8 @@ public class OldCvlToNewCvl {
 				PlacementFragment pf = factory.createPlacementFragment();
 				pf.setName(opf.getName());
 				this.plMap.put(opf, pf);
+				PlacementElementHolder pef = new PlacementElementHolder(opf);
+				HashMap<org.variabilitymodeling.cvl.FromPlacement, EObject> mapFromPlacementInside = pef.getInsideBoundaryMapForPlacement();
 				
 				EList<PlacementBoundaryElement> opbes = opf.getBoundaryElement();
 				for(PlacementBoundaryElement element : opbes){
@@ -131,7 +125,6 @@ public class OldCvlToNewCvl {
 						for(EObject ibeo : ibeos){	
 							ObjectHandle obh = factory.createObjectHandle();
 							obh.setMOFRef(this.getProxyURI(ibeo));
-							//obh.setMOFRef(((InternalEObject) ibeo).eProxyURI().toString());
 							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
 							ovp.getSourceObject().add(obh);
 							this.cu.getOwnedVariationPoint().add(ovp);
@@ -141,12 +134,12 @@ public class OldCvlToNewCvl {
 						EObject obeo = tpbe.getOutsideBoundaryElement();
 						ObjectHandle obh = factory.createObjectHandle();
 						obh.setMOFRef(this.getProxyURI(obeo));
-						//obh.setMOFRef(((InternalEObject) obeo).eProxyURI().toString());
 						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
 						ovp.getSourceObject().add(obh);
 						this.cu.getOwnedVariationPoint().add(ovp);
 						tpbeNew.setOutsideBoundaryElement(obh);
 					}
+					
 					if(element instanceof org.variabilitymodeling.cvl.FromPlacement){
 						org.variabilitymodeling.cvl.FromPlacement fpbe = (org.variabilitymodeling.cvl.FromPlacement) element;
 						FromPlacement fpbeNew = factory.createFromPlacement();
@@ -158,17 +151,20 @@ public class OldCvlToNewCvl {
 						for(EObject obeo : obeos){
 							ObjectHandle obh = factory.createObjectHandle();
 							obh.setMOFRef(this.getProxyURI(obeo));
-							//obh.setMOFRef(((InternalEObject) obeo).eProxyURI().toString());
 							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
 							ovp.getSourceObject().add(obh);
 							this.cu.getOwnedVariationPoint().add(ovp);
 							fpbeNew.getOutsideBoundaryElement().add(obh);
 							
-							//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
-							//System.out.println(this.getProxyURI(obeo));
-							//System.out.println(obeo.eContents());
-							//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
 						}
+						
+						EObject insideBoundaryElementOld = mapFromPlacementInside.get(fpbe);
+						ObjectHandle obh = factory.createObjectHandle();
+						obh.setMOFRef(this.getProxyURI(insideBoundaryElementOld));
+						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
+						ovp.getSourceObject().add(obh);
+						this.cu.getOwnedVariationPoint().add(ovp);
+						fpbeNew.setInsideBoundaryElement(obh);
 					}
 				}
 				this.cu.getOwnedVariationPoint().add(pf);
@@ -179,6 +175,9 @@ public class OldCvlToNewCvl {
 				ReplacementFragmentType rft = factory.createReplacementFragmentType();
 				rft.setName(orf.getName());
 				this.rplMap.put(orf, rft);
+				
+				ReplacementElementHolder reh = new ReplacementElementHolder(orf);
+				HashMap<org.variabilitymodeling.cvl.ToReplacement, EObject> mapToReplacementOutside = reh.getOutsideBoundaryElementMap();
 				
 				EList<ReplacementBoundaryElement> orbes = orf.getBoundaryElement();
 				for(ReplacementBoundaryElement element : orbes){
@@ -194,7 +193,6 @@ public class OldCvlToNewCvl {
 						for(EObject obeo : obeos){
 							ObjectHandle obh = factory.createObjectHandle();
 							obh.setMOFRef(this.getProxyURI(obeo));
-							//obh.setMOFRef(((InternalEObject) obeo).eProxyURI().toString());
 							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
 							ovp.getSourceObject().add(obh);
 							this.cu.getOwnedVariationPoint().add(ovp);
@@ -204,7 +202,6 @@ public class OldCvlToNewCvl {
 						EObject ibeo = frbe.getInsideBoundaryElement();
 						ObjectHandle obh = factory.createObjectHandle();
 						obh.setMOFRef(this.getProxyURI(ibeo));
-						//obh.setMOFRef(((InternalEObject) ibeo).eProxyURI().toString());
 						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
 						ovp.getSourceObject().add(obh);
 						this.cu.getOwnedVariationPoint().add(ovp);
@@ -220,13 +217,20 @@ public class OldCvlToNewCvl {
 						EList<EObject> ibeos = trbe.getInsideBoundaryElement();
 						for(EObject ibeo : ibeos){
 							ObjectHandle obh = factory.createObjectHandle();
-							//obh.setMOFRef(((InternalEObject) ibeo).eProxyURI().toString());
 							obh.setMOFRef(this.getProxyURI(ibeo));
 							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
 							ovp.getSourceObject().add(obh);
 							this.cu.getOwnedVariationPoint().add(ovp);
 							trbeNew.getInsideBoundaryElement().add(obh);
 						}
+						
+						EObject outsideBoundaryElement = mapToReplacementOutside.get(trbe);
+						ObjectHandle obh = factory.createObjectHandle();
+						obh.setMOFRef(this.getProxyURI(outsideBoundaryElement));
+						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
+						ovp.getSourceObject().add(obh);
+						this.cu.getOwnedVariationPoint().add(ovp);
+						trbeNew.setOutsideBoundaryElement(obh);
 					}
 				}
 				this.cu.getOwnedVariabletype().add(rft);
