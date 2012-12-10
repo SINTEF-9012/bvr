@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore" name="exp">
+  <ownedVSpec xsi:type="cvl:Choice" name="varModel">
+    <child xsi:type="cvl:Choice" name="exp"/>
+  </ownedVSpec>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.3"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.4"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.6"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.7"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.8"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.9"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.10"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.11"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.12"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.13"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#/"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.3"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.0"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.4"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.2"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.15"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.16"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.11"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.14"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.12"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.15"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="base.node#//@contains.13"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="p1">
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="contains" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0 //@ownedVariationPoint.1/@sourceObject.0 //@ownedVariationPoint.2/@sourceObject.0 //@ownedVariationPoint.3/@sourceObject.0 //@ownedVariationPoint.4/@sourceObject.0 //@ownedVariationPoint.5/@sourceObject.0 //@ownedVariationPoint.6/@sourceObject.0 //@ownedVariationPoint.7/@sourceObject.0 //@ownedVariationPoint.8/@sourceObject.0 //@ownedVariationPoint.9/@sourceObject.0 //@ownedVariationPoint.10/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.11/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.12/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.13/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.14/@sourceObject.0 //@ownedVariationPoint.15/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.16/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.17/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.18/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" outsideBoundaryElement="//@ownedVariationPoint.19/@sourceObject.0 //@ownedVariationPoint.20/@sourceObject.0" insideBoundaryElement="//@ownedVariationPoint.21/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" outsideBoundaryElement="//@ownedVariationPoint.22/@sourceObject.0" insideBoundaryElement="//@ownedVariationPoint.23/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" outsideBoundaryElement="//@ownedVariationPoint.24/@sourceObject.0" insideBoundaryElement="//@ownedVariationPoint.25/@sourceObject.0"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.3"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.4"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.6"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.7"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.8"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.9"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.10"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.11"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.12"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.13"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#/"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.3"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.0"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.4"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.2"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.15"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.16"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.11"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.14"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.12"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.15"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:OpaqueVariationPoint">
+    <sourceObject href="lib.node#//@contains.13"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1" bindingChoice="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.26" replacement="//@ownedVariabletype.0">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.2" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.3" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.3"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.4" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.4"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.5" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.5"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.26/@placementBoundaryElement.6" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.6"/>
+  </ownedVariationPoint>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="r1">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.27/@sourceObject.0 //@ownedVariationPoint.28/@sourceObject.0 //@ownedVariationPoint.29/@sourceObject.0 //@ownedVariationPoint.30/@sourceObject.0 //@ownedVariationPoint.31/@sourceObject.0 //@ownedVariationPoint.32/@sourceObject.0 //@ownedVariationPoint.33/@sourceObject.0 //@ownedVariationPoint.34/@sourceObject.0 //@ownedVariationPoint.35/@sourceObject.0 //@ownedVariationPoint.36/@sourceObject.0 //@ownedVariationPoint.37/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.38/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.39/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.40/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.41/@sourceObject.0 //@ownedVariationPoint.42/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.43/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.44/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.45/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.48/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.46/@sourceObject.0 //@ownedVariationPoint.47/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.50/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.49/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.52/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.51/@sourceObject.0"/>
+  </ownedVariabletype>
+</cvl:ConfigurableUnit>

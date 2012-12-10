@@ -23,10 +23,13 @@ public class PlacementElementHolder {
 	private HashSet<EObject> plBElementsExternal;
 	private HashSet<EObject> plElementsInternal;
 	private HashSet<EObject> plBElementsExternalWCopy;
-	private HashSet<EObject> plElementsInternalWCopy;
 	private HashMap<FromPlacement, EObject> fPlInsideMap;
+	private PlacementFragment placement;
+	private EList<Object> vertexes;
 	
 	public PlacementElementHolder(PlacementFragment pf) {
+		vertexes = new BasicEList<Object>();
+		placement = pf;
 		tbe = new BasicEList<ToPlacement>();
 		fbe = new BasicEList<FromPlacement>();
 		fpobes = new BasicEList<EObject>();
@@ -39,11 +42,22 @@ public class PlacementElementHolder {
 		plElementsOriginal = new HashSet<EObject>(plElements);
 		this.calculatePlElementsInternal();
 		plBElementsExternalWCopy = new HashSet<EObject>(plBElementsExternal);
-		plElementsInternalWCopy =  new HashSet<EObject>(plElementsInternal);
+		new HashSet<EObject>(plElementsInternal);
+		this.findInsideBoundaryElements();
+		this.printStat();
 	}
 	
+	private void printStat() {
+		System.out.println("************************************");
+		System.out.println("Fragment placement :" + placement);
+		System.out.println("Elements " + this.getElements());
+		System.out.println("Internal boundary elements " + this.getBElementsInternal());
+		System.out.println("External boundary elements " + this.getBElementsExternal());
+		System.out.println("Internal elements " + this.getElementsInternal());
+		System.out.println("Map(FromPlacement, insideBoundaryElement): " + this.getInsideBoundaryMapForPlacement());
+	}
+
 	public HashMap<FromPlacement, EObject> getInsideBoundaryMapForPlacement(){
-		this.findInsideBoundaryElements();
 		return this.fPlInsideMap;
 	}
 	
@@ -133,14 +147,16 @@ public class PlacementElementHolder {
 
 	private void findAllElements(EList<EObject> arrayList) {
 		for(EObject o : arrayList){
+			vertexes.clear();
 			this.traversRelation(o);
 		}
 		
 	}
 
 	private void traversRelation(EObject o) {
-		if(fpobes.indexOf(o) < 0){
+		if(fpobes.indexOf(o) < 0 && vertexes.indexOf(o) < 0){
 			plElements.add(o);
+			vertexes.add(o);
 			EList<EObject> references = o.eCrossReferences();
 			for(EObject ref : references){
 				this.addPlBElementsExternal(o, ref);

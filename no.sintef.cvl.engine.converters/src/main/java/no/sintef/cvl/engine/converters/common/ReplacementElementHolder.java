@@ -31,9 +31,10 @@ public class ReplacementElementHolder {
 	private HashSet<EObject> rlBElementsExternal;
 	private HashSet<EObject> rlElementsInternal;
 	private HashMap<ToReplacement, EObject> tRlOtsideMap;
-	
+	private EList<Object> vertexes;
 	
 	public ReplacementElementHolder(ReplacementFragment rf) {
+		this.vertexes = new BasicEList<Object>();
 		this.replacement = rf;
 		this.tre = new BasicEList<ToReplacement>();
 		this.fre = new BasicEList<FromReplacement>();
@@ -47,8 +48,19 @@ public class ReplacementElementHolder {
 		this.rlElementsOriginal = new HashSet<EObject>(rlElements);
 		this.frobesOriginal = new BasicEList<EObject>(this.frobes);
 		this.findOutsideBoundaryElementsReplacement();
+		this.printStat();
 	}
 
+	private void printStat() {
+		System.out.println("************************************");
+		System.out.println("Replacements fragment :" + replacement);
+		System.out.println("Elements " + this.getElements());
+		System.out.println("Internal boundary elements " + this.getBElementsInternal());
+		System.out.println("External boundary elements " + this.getBElementsExternal());
+		System.out.println("Internal elements " + this.getElementsInternal());
+		System.out.println("Map(ToReplacement, outsideBoundaryElement): " + this.getOutsideBoundaryElementMap());
+	}
+	
 	public HashSet<EObject> getElements(){
 		return this.rlElementsOriginal;
 	}
@@ -160,14 +172,16 @@ public class ReplacementElementHolder {
 		this.rlElements.addAll(this.rlBElementsInternal);
 		this.rlElements.addAll(this.rlBElementsExternal);
 		HashSet<EObject> internalBEl = new HashSet<EObject>(this.rlElements);
+		this.vertexes.clear();
 		for(EObject o : internalBEl){
 			this.traversRelation(o);
 		}
 	}
 	
 	private void traversRelation(EObject o) {
-		if(this.frobes.indexOf(o) < 0){
+		if(this.frobes.indexOf(o) < 0 && this.vertexes.indexOf(o) < 0){
 			this.rlElements.add(o);
+			this.vertexes.add(o);
 			EList<EObject> references = o.eCrossReferences();
 			for(EObject ref : references){
 				this.traversRelation(ref);
