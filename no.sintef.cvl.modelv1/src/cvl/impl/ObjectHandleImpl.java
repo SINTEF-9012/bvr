@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link cvl.impl.ObjectHandleImpl#getMOFRef <em>MOF Ref</em>}</li>
+ *   <li>{@link cvl.impl.ObjectHandleImpl#getHref <em>Href</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,24 +26,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandle {
 	/**
-	 * The default value of the '{@link #getMOFRef() <em>MOF Ref</em>}' attribute.
+	 * The default value of the '{@link #getHref() <em>Href</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMOFRef()
+	 * @see #getHref()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MOF_REF_EDEFAULT = null;
+	protected static final String HREF_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMOFRef() <em>MOF Ref</em>}' attribute.
+	 * The cached value of the '{@link #getHref() <em>Href</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMOFRef()
+	 * @see #getHref()
 	 * @generated
 	 * @ordered
 	 */
-	protected String mofRef = MOF_REF_EDEFAULT;
+	protected String href = HREF_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,8 +69,8 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMOFRef() {
-		return mofRef;
+	public String getHref() {
+		return href;
 	}
 
 	/**
@@ -78,11 +78,11 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMOFRef(String newMOFRef) {
-		String oldMOFRef = mofRef;
-		mofRef = newMOFRef;
+	public void setHref(String newHref) {
+		String oldHref = href;
+		href = newHref;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OBJECT_HANDLE__MOF_REF, oldMOFRef, mofRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OBJECT_HANDLE__HREF, oldHref, href));
 	}
 
 	/**
@@ -93,8 +93,8 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_HANDLE__MOF_REF:
-				return getMOFRef();
+			case cvlPackage.OBJECT_HANDLE__HREF:
+				return getHref();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,8 +107,8 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_HANDLE__MOF_REF:
-				setMOFRef((String)newValue);
+			case cvlPackage.OBJECT_HANDLE__HREF:
+				setHref((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,8 +122,8 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_HANDLE__MOF_REF:
-				setMOFRef(MOF_REF_EDEFAULT);
+			case cvlPackage.OBJECT_HANDLE__HREF:
+				setHref(HREF_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -137,8 +137,8 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_HANDLE__MOF_REF:
-				return MOF_REF_EDEFAULT == null ? mofRef != null : !MOF_REF_EDEFAULT.equals(mofRef);
+			case cvlPackage.OBJECT_HANDLE__HREF:
+				return HREF_EDEFAULT == null ? href != null : !HREF_EDEFAULT.equals(href);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -153,8 +153,8 @@ public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandl
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (MOFRef: ");
-		result.append(mofRef);
+		result.append(" (href: ");
+		result.append(href);
 		result.append(')');
 		return result.toString();
 	}

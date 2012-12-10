@@ -99,7 +99,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ObjectSubstitution/replacementObject"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//ObjectHandle">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//ObjectHandle/MOFRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//ObjectHandle/href"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//BaseModelHandle"/>
     <genClasses ecoreClass="CVLMetamodel.ecore#//Variable">

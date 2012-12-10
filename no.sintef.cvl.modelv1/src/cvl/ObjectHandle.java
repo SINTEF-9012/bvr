@@ -18,7 +18,7 @@ package cvl;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}</li>
+ *   <li>{@link cvl.ObjectHandle#getHref <em>Href</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,28 +28,28 @@ package cvl;
  */
 public interface ObjectHandle extends BaseModelHandle {
 	/**
-	 * Returns the value of the '<em><b>MOF Ref</b></em>' attribute.
+	 * Returns the value of the '<em><b>Href</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Representing a MOF Reference.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>MOF Ref</em>' attribute.
-	 * @see #setMOFRef(String)
-	 * @see cvl.cvlPackage#getObjectHandle_MOFRef()
+	 * @return the value of the '<em>Href</em>' attribute.
+	 * @see #setHref(String)
+	 * @see cvl.cvlPackage#getObjectHandle_Href()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	String getMOFRef();
+	String getHref();
 
 	/**
-	 * Sets the value of the '{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}' attribute.
+	 * Sets the value of the '{@link cvl.ObjectHandle#getHref <em>Href</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>MOF Ref</em>' attribute.
-	 * @see #getMOFRef()
+	 * @param value the new value of the '<em>Href</em>' attribute.
+	 * @see #getHref()
 	 * @generated
 	 */
-	void setMOFRef(String value);
+	void setHref(String value);
 
 } // ObjectHandle

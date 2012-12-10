@@ -213,7 +213,8 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 		// TODO: implement this method to return the 'Unit Usage Interface' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+		return null;
 	}
 
 	/**
@@ -224,7 +225,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	public void setUnitUsageInterface(VInterface newUnitUsageInterface) {
 		// TODO: implement this method to set the 'Unit Usage Interface' reference
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -1062,13 +1062,13 @@ public interface cvlPackage extends EPackage {
 	int OBJECT_HANDLE = 21;
 
 	/**
-	 * The feature id for the '<em><b>MOF Ref</b></em>' attribute.
+	 * The feature id for the '<em><b>Href</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_HANDLE__MOF_REF = BASE_MODEL_HANDLE_FEATURE_COUNT + 0;
+	int OBJECT_HANDLE__HREF = BASE_MODEL_HANDLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Object Handle</em>' class.
@@ -4009,15 +4009,15 @@ public interface cvlPackage extends EPackage {
 	EClass getObjectHandle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
+	 * Returns the meta object for the attribute '{@link cvl.ObjectHandle#getHref <em>Href</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>MOF Ref</em>'.
-	 * @see cvl.ObjectHandle#getMOFRef()
+	 * @return the meta object for the attribute '<em>Href</em>'.
+	 * @see cvl.ObjectHandle#getHref()
 	 * @see #getObjectHandle()
 	 * @generated
 	 */
-	EAttribute getObjectHandle_MOFRef();
+	EAttribute getObjectHandle_Href();
 
 	/**
 	 * Returns the meta object for class '{@link cvl.BaseModelHandle <em>Base Model Handle</em>}'.
@@ -5996,12 +5996,12 @@ public interface cvlPackage extends EPackage {
 		EClass OBJECT_HANDLE = eINSTANCE.getObjectHandle();
 
 		/**
-		 * The meta object literal for the '<em><b>MOF Ref</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Href</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
+		EAttribute OBJECT_HANDLE__HREF = eINSTANCE.getObjectHandle_Href();
 
 		/**
 		 * The meta object literal for the '{@link cvl.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.

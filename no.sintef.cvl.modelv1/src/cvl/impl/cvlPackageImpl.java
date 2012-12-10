@@ -1128,7 +1128,7 @@ public class cvlPackageImpl extends EPackageImpl implements cvlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getObjectHandle_MOFRef() {
+	public EAttribute getObjectHandle_Href() {
 		return (EAttribute)objectHandleEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2509,7 +2509,7 @@ public class cvlPackageImpl extends EPackageImpl implements cvlPackage {
 		createEReference(objectSubstitutionEClass, OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT);
 
 		objectHandleEClass = createEClass(OBJECT_HANDLE);
-		createEAttribute(objectHandleEClass, OBJECT_HANDLE__MOF_REF);
+		createEAttribute(objectHandleEClass, OBJECT_HANDLE__HREF);
 
 		baseModelHandleEClass = createEClass(BASE_MODEL_HANDLE);
 
@@ -2872,7 +2872,7 @@ public class cvlPackageImpl extends EPackageImpl implements cvlPackage {
 		initEReference(getObjectSubstitution_ReplacementObject(), this.getObjectHandle(), null, "replacementObject", null, 1, 1, ObjectSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(objectHandleEClass, ObjectHandle.class, "ObjectHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getObjectHandle_MOFRef(), ecorePackage.getEString(), "MOFRef", null, 1, 1, ObjectHandle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getObjectHandle_Href(), ecorePackage.getEString(), "href", null, 1, 1, ObjectHandle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(baseModelHandleEClass, BaseModelHandle.class, "BaseModelHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
