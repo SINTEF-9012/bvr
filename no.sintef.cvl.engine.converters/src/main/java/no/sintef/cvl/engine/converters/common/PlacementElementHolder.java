@@ -23,6 +23,8 @@ public class PlacementElementHolder {
 	private HashSet<EObject> plElementsOriginal;
 	private HashSet<EObject> plBElementsInternal; 
 	private HashSet<EObject> plBElementsExternal;
+	private HashSet<EObject> plBElementsExternalLink;
+	private HashSet<EObject> plBElementsExternalCont;
 	private HashSet<EObject> plElementsInternal;
 	private HashSet<EObject> plBElementsExternalWCopy;
 	private HashMap<FromPlacement, EObject> fPlInsideMap;
@@ -38,6 +40,8 @@ public class PlacementElementHolder {
 		plElements = new HashSet<EObject>();
 		plBElementsInternal = new HashSet<EObject>();
 		plBElementsExternal = new HashSet<EObject>();
+		plBElementsExternalLink = new HashSet<EObject>();
+		plBElementsExternalCont = new HashSet<EObject>();
 		plElementsInternal = new HashSet<EObject>();
 		fPlInsideMap = new HashMap<FromPlacement, EObject>();
 		this.locate(pf);
@@ -81,14 +85,30 @@ public class PlacementElementHolder {
 	
 	private EObject getInsideBoundaryElementFromPlacement(FromPlacement fp){
 		Set<EObject> outsideBoundaryElements = new HashSet<EObject>(fp.getOutsideBoundaryElement());
-		for(EObject pbee : plBElementsExternalWCopy){
+		/*for(EObject pbee : plBElementsExternalWCopy){
 			Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElements(pbee));
 			Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
 			if(powerSetRefs.contains(outsideBoundaryElements)){
 				plBElementsExternalWCopy.remove(pbee);
 				return pbee;
 			}
+		}*/
+		for(EObject pbee : plBElementsExternalLink){
+		Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElementsLinks(pbee));
+		Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
+			if(powerSetRefs.contains(outsideBoundaryElements)){
+				plBElementsExternalLink.remove(pbee);
+				return pbee;
+			}
 		}
+		for(EObject pbee : plBElementsExternalCont){
+		Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElementsCont(pbee));
+		Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
+			if(powerSetRefs.contains(outsideBoundaryElements)){
+				plBElementsExternalCont.remove(pbee);
+				return pbee;
+			}
+		}	
 		return null;
 	}
 	
@@ -102,7 +122,25 @@ public class PlacementElementHolder {
 		}
 	}
 	
-	private EList<EObject> getAllReferencedElements(EObject pbee){
+	private EList<EObject> getAllReferencedElementsLinks(EObject pbee){
+		EList<EObject> refs = pbee.eCrossReferences();
+		HashSet<EObject> elementsSet = new HashSet<EObject>();
+		elementsSet.addAll(refs);
+		EList<EObject> elements = new BasicEList<EObject>();
+		elements.addAll(elementsSet);
+		return elements;
+	}
+
+	private EList<EObject> getAllReferencedElementsCont(EObject pbee){
+		EList<EObject> conts = pbee.eContents();
+		HashSet<EObject> elementsSet = new HashSet<EObject>();
+		elementsSet.addAll(conts);
+		EList<EObject> elements = new BasicEList<EObject>();
+		elements.addAll(elementsSet);
+		return elements;
+	}
+	
+	/*private EList<EObject> getAllReferencedElements(EObject pbee){
 		EList<EObject> refs = pbee.eCrossReferences();
 		EList<EObject> conts = pbee.eContents();
 		HashSet<EObject> elementsSet = new HashSet<EObject>();
@@ -111,7 +149,7 @@ public class PlacementElementHolder {
 		EList<EObject> elements = new BasicEList<EObject>();
 		elements.addAll(elementsSet);
 		return elements;
-	}
+	}*/
 	
 	private void locate(PlacementFragment pf){
 		EList<PlacementBoundaryElement> pbes = pf.getBoundaryElement();
@@ -162,20 +200,36 @@ public class PlacementElementHolder {
 			vertexes.add(o);
 			EList<EObject> references = o.eCrossReferences();
 			for(EObject ref : references){
-				this.addPlBElementsExternal(o, ref);
+				//this.addPlBElementsExternal(o, ref);
+				this.addPlBElementsExternalLink(o, ref);
 				this.traversRelation(ref);
 			}
 			EList<EObject> contents = o.eContents();
 			for(EObject con : contents){
-				this.addPlBElementsExternal(o, con);
+				//this.addPlBElementsExternal(o, con);
+				this.addPlBElementsExternalCont(o, con);
 				this.traversRelation(con);
 			}	
 		}
 	}
 	
-	private void addPlBElementsExternal(EObject o, EObject ref){
+	/*private void addPlBElementsExternal(EObject o, EObject ref){
 		if(fpobes.indexOf(ref) >= 0){
 			plBElementsExternal.add(o);
+		}
+	}*/
+	
+	private void addPlBElementsExternalLink(EObject o, EObject ref){
+		if(fpobes.indexOf(ref) >= 0){
+			plBElementsExternal.add(o);
+			plBElementsExternalLink.add(o);
+		}
+	}
+	
+	private void addPlBElementsExternalCont(EObject o, EObject ref){
+		if(fpobes.indexOf(ref) >= 0){
+			plBElementsExternal.add(o);
+			plBElementsExternalCont.add(o);
 		}
 	}
 }
