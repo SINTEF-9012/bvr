@@ -2,6 +2,8 @@ package no.sintef.cvl.engine.converters.common;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -78,10 +80,11 @@ public class PlacementElementHolder {
 	}
 	
 	private EObject getInsideBoundaryElementFromPlacement(FromPlacement fp){
-		EList<EObject> outsideBoundaryElements = fp.getOutsideBoundaryElement();
+		Set<EObject> outsideBoundaryElements = new HashSet<EObject>(fp.getOutsideBoundaryElement());
 		for(EObject pbee : plBElementsExternalWCopy){
-			EList<EObject> outsideBoundaryElementsWCopy = this.getAllReferencedElements(pbee);
-			if(outsideBoundaryElementsWCopy.equals(outsideBoundaryElements)){
+			Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElements(pbee));
+			Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
+			if(powerSetRefs.contains(outsideBoundaryElements)){
 				plBElementsExternalWCopy.remove(pbee);
 				return pbee;
 			}
