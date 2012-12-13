@@ -17,7 +17,8 @@ public class OldCvlToNewCvlMain {
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node2/node.cvl"), new File("src/main/resources/model/node2/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node3/node.cvl"), new File("src/main/resources/model/node3/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node4/node.cvl"), new File("src/main/resources/model/node4/node.new.cvl"));
-		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node5/node.cvl"), new File("src/main/resources/model/node5/node.new.cvl"));
+		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node5/node.cvl"), new File("src/main/resources/model/node5/node.new.cvl"));
+		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node6/node.cvl"), new File("src/main/resources/model/node6/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/ARI.cvl"), new File("src/main/resources/model/ARI1.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/VM1.cvl"), new File("src/main/resources/model/PrinterPool.xmi"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/VM1.new.cvl"));
