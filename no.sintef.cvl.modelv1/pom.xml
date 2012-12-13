@@ -2,8 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>no.sintef</groupId>
   <artifactId>no.sintef.cvl.model</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <name>no.sintef.cvl.model</name>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>no.sintef.cvl.modelv1</name>
   <description>CVL model</description>
   
   <dependencies>
