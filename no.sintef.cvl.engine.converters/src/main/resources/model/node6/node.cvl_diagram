@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cvl="http://org.variabilitymodeling.cvl" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jcpeAEYaEeKQlaYGXPanBg" type="Cvl_visitor" measurementUnit="Pixel">
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_jcpeAUYaEeKQlaYGXPanBg"/>
+  <element xmi:type="cvl:CVLModel" href="node.cvl#/"/>
+</notation:Diagram>
