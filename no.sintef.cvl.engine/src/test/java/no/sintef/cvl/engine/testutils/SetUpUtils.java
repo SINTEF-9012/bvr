@@ -2,8 +2,10 @@ package no.sintef.cvl.engine.testutils;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -30,6 +32,15 @@ public class SetUpUtils {
 	
 	public static void tearDown(HashMap<String, Object> map){
 		System.setProperty( "user.dir", (String) map.get("wsdir"));
+	}
+	
+	public static HashSet<String> getPropertiesValues(HashSet<EObject> set, String name){
+		HashSet<String> props = new HashSet<String>();
+		for(EObject obj : set){
+			String value = (String) obj.eGet(obj.eClass().getEStructuralFeature(name));
+			props.add((value == null) ? "null" : value);
+		}
+		return props;
 	}
 	
 }

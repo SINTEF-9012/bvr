@@ -2,30 +2,79 @@ package no.sintef.cvl.engine.fragment.impl;
 
 import java.util.HashSet;
 
+import no.sintef.cvl.engine.fragment.ElementHolderOIF;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import cvl.FragmentSubstitution;
 import cvl.FromReplacement;
+import cvl.ReplacementBoundaryElement;
 import cvl.ToReplacement;
 
-import no.sintef.cvl.engine.fragment.ElementHolderOIF;
-
-public class ReplacementElementHolder extends BasicReplacementElementHolder
-		implements ElementHolderOIF {
-
-	private HashSet<EObject> outerElements;
-	private HashSet<EObject> innerElements;
+public class ReplacementElementHolder extends BasicElementHolder implements ElementHolderOIF {
+	
+	protected EList<ToReplacement> tbe;
+	protected EList<FromReplacement> fbe;
+	protected HashSet<EObject> outerElements;
+	protected HashSet<EObject> innerElements;
+	private HashSet<EObject> vVertices;
 
 	public ReplacementElementHolder(FragmentSubstitution f) {
 		super(f);
-		innerElements = frElementsOriginal;
+		this.locate();
+	}
+
+	public void locate(){
+		super.locate();
+		vVertices = new HashSet<EObject>();
 		outerElements = new HashSet<EObject>();
-		for(ToReplacement tr : tbe){
-			outerElements.add(tr.getOutsideBoundaryElement());
+		tbe = new BasicEList<ToReplacement>();
+		fbe = new BasicEList<FromReplacement>();
+		
+		EList<ReplacementBoundaryElement> rbes = fragment.getReplacement().getReplacementBoundaryElement();
+		for(ReplacementBoundaryElement rbe : rbes){
+			if(rbe instanceof ToReplacement){
+				tbe.add((ToReplacement)rbe);
+				frBElementsInternal.addAll(((ToReplacement)rbe).getInsideBoundaryElement());
+				outerElements.add(((ToReplacement)rbe).getOutsideBoundaryElement());
+			}
+			if(rbe instanceof FromReplacement){
+				fbe.add((FromReplacement) rbe);
+				frBElementsExternal.add(((FromReplacement)rbe).getInsideBoundaryElement());
+				outerElements.addAll(((FromReplacement)rbe).getOutsideBoundaryElement());
+			}
 		}
-		for(FromReplacement fr : fbe){
-			outerElements.addAll(fr.getOutsideBoundaryElement());
+		this.calculatePlElementsInternal();
+		frElementsOriginal.addAll(frBElementsExternal);
+		frElementsOriginal.addAll(frBElementsInternal);
+		frElementsOriginal.addAll(frElementsInternal);
+		innerElements = frElementsOriginal;
+	}
+	
+	private void calculatePlElementsInternal(){
+		for(EObject element : frBElementsInternal){
+			this.traversRelation(element);
 		}
+	}
+	
+	private void traversRelation(EObject element) {
+		if(!vVertices.contains(element) && !frBElementsExternal.contains(element) && !outerElements.contains(element)){
+			vVertices.add(element);
+			if(!frBElementsInternal.contains(element)){
+				frElementsInternal.add(element);
+			}
+			EList<EObject> references = element.eCrossReferences();
+			for(EObject ref : references){
+				this.traversRelation(ref);
+			}
+			EList<EObject> contents = element.eContents();
+			for(EObject con : contents){
+				this.traversRelation(con);
+			}
+		}
+		
 	}
 
 	@Override
@@ -37,5 +86,4 @@ public class ReplacementElementHolder extends BasicReplacementElementHolder
 	public HashSet<EObject> getOuterFragmentElements() {
 		return outerElements;
 	}
-
 }

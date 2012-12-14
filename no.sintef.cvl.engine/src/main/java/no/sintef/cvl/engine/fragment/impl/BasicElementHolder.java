@@ -43,8 +43,6 @@ public abstract class BasicElementHolder implements ElementHolder {
 	public FragmentSubstitution getFragmentSubstitution() {
 		return fragment;
 	}
-
-	
 	
 	@Override
 	public void locate() {
