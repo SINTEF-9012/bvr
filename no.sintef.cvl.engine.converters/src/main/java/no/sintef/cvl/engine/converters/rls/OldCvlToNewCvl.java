@@ -274,7 +274,9 @@ public class OldCvlToNewCvl {
 						HashMap<ToPlacement, ToReplacement> pr = this.getToPlacementReplacement(tob);
 						tnb.setToPlacement(pr.keySet().iterator().next());
 						tnb.setToReplacement(pr.values().iterator().next());
-						fsn.getBoundaryElementBinding().add(tnb);	
+						fsn.getBoundaryElementBinding().add(tnb);
+						pr.keySet().iterator().next().setToReplacement(pr.values().iterator().next());
+						pr.values().iterator().next().setToPlacement(pr.keySet().iterator().next());
 					}
 					if(ob instanceof org.variabilitymodeling.cvl.FromBinding){
 						org.variabilitymodeling.cvl.FromBinding fob = (org.variabilitymodeling.cvl.FromBinding) ob;
@@ -282,7 +284,9 @@ public class OldCvlToNewCvl {
 						HashMap<FromPlacement, FromReplacement> pr = this.getFromPlacementReplacement(fob);
 						fnb.setFromPlacement(pr.keySet().iterator().next());
 						fnb.setFromReplacement(pr.values().iterator().next());
-						fsn.getBoundaryElementBinding().add(fnb);	
+						fsn.getBoundaryElementBinding().add(fnb);
+						pr.keySet().iterator().next().setFromReplacement(pr.values().iterator().next());
+						pr.values().iterator().next().setFromPlacement(pr.keySet().iterator().next());
 					}
 				}
 				
