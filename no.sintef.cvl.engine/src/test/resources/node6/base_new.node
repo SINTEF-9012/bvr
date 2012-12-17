@@ -1,27 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:node="http:///node" xsi:schemaLocation="http:///node node.ecore">
-  <contains links="//@contains.3" name="0"/>
-  <contains links="//@contains.3" name="0"/>
-  <contains name="2"/>
-  <contains name="4"/>
-  <contains links="//@contains.1 //@contains.2" name="5">
-    <contains links="//@contains.3" name="3"/>
-  </contains>
-  <contains name="7"/>
-  <contains links="//@contains.4 //@contains.8" name="8"/>
-  <contains links="//@contains.5" name="9">
-    <contains links="//@contains.5" name="6"/>
-  </contains>
-  <contains links="//@contains.7" name="10"/>
-  <contains name="11"/>
-  <contains links="//@contains.13 //@contains.14" name="12"/>
-  <contains name="14"/>
-  <contains links="//@contains.11" name="15"/>
-  <contains links="//@contains.10 //@contains.17" name="16"/>
-  <contains links="//@contains.10 //@contains.17" name="17"/>
-  <contains links="//@contains.11" name="18">
-    <contains links="//@contains.9" name="13"/>
-  </contains>
-  <contains links="//@contains.12" name="19"/>
-  <contains name="20"/>
-</node:Node>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:node="http:///node" xsi:schemaLocation="http:///node node.ecore">
+  <node:Node>
+    <contains links="/0/@contains.3" name="0"/>
+    <contains links="/0/@contains.3" name="1"/>
+    <contains name="2"/>
+    <contains name="4"/>
+    <contains links="/0/@contains.1 /0/@contains.2" name="5">
+      <contains links="/0/@contains.3" name="3"/>
+    </contains>
+    <contains name="7"/>
+    <contains links="/0/@contains.4 /0/@contains.8" name="8"/>
+    <contains links="/0/@contains.5" name="9">
+      <contains links="/0/@contains.5" name="6"/>
+    </contains>
+    <contains links="/0/@contains.7" name="10"/>
+    <contains name="11"/>
+    <contains links="/0/@contains.13 /0/@contains.14" name="12"/>
+    <contains name="14"/>
+    <contains links="/0/@contains.11" name="15"/>
+    <contains links="/0/@contains.10 /0/@contains.17" name="16"/>
+    <contains links="/0/@contains.10 /0/@contains.17" name="17"/>
+    <contains links="/0/@contains.11" name="18">
+      <contains links="/0/@contains.9" name="13"/>
+    </contains>
+    <contains links="/0/@contains.12" name="19"/>
+    <contains name="20"/>
+  </node:Node>
+  <node:Node links="/7" name="r14"/>
+  <node:Node links="/8" name="r15"/>
+  <node:Node links="/14 /8/@contains.0" name="r17"/>
+  <node:Node name="r17">
+    <links href="lib.node#//@contains.6"/>
+    <links href="base_new.node#/6/@contains.0"/>
+  </node:Node>
+  <node:Node links="/15 /13 /7" name="r6"/>
+  <node:Node links="/4 /11" name="r16">
+    <contains name="r20"/>
+  </node:Node>
+  <node:Node links="/5" name="r9"/>
+  <node:Node links="/3 /13" name="r16">
+    <contains name="r20"/>
+  </node:Node>
+  <node:Node name="r5">
+    <links href="lib.node#//@contains.1"/>
+    <contains links="/15" name="r1"/>
+    <contains name="r2"/>
+  </node:Node>
+  <node:Node name="r5">
+    <links href="lib.node#//@contains.1"/>
+    <contains name="r1">
+      <links href="lib.node#//@contains.2"/>
+    </contains>
+    <contains name="r2"/>
+  </node:Node>
+  <node:Node name="r7">
+    <links href="lib.node#//@contains.10"/>
+    <links href="lib.node#//@contains.13"/>
+  </node:Node>
+  <node:Node name="r13"/>
+  <node:Node name="r7">
+    <links href="base_new.node#/2"/>
+    <links href="lib.node#//@contains.13"/>
+  </node:Node>
+  <node:Node links="/9 /13" name="r8"/>
+  <node:Node name="r4"/>
+</xmi:XMI>

@@ -1,9 +1,8 @@
 package no.sintef.cvl.engine.operation;
 
-import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
-import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
+import no.sintef.cvl.engine.error.BasicCVLEngineException;
 
 public interface Substitution extends Operation{
 
-	public void substitute(PlacementElementHolder placement, ReplacementElementHolder replacement, boolean replace);
+	public void execute(boolean replace) throws BasicCVLEngineException;
 }

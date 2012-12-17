@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+  <node:Node links="/1" name="1"/>
+  <node:Node links="/2" name="2"/>
+  <node:Node links="/3" name="3"/>
+  <node:Node links="/4" name="4"/>
+  <node:Node links="/5" name="5"/>
+  <node:Node name="6"/>
+</xmi:XMI>
