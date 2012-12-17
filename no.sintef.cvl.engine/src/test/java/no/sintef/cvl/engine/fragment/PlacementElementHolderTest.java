@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
-import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
 
 import org.eclipse.emf.common.util.EList;
@@ -23,7 +22,6 @@ import com.google.common.collect.Sets;
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.VariationPoint;
-import cvl.cvlPackage;
 
 public class PlacementElementHolderTest {
 
@@ -34,7 +32,7 @@ public class PlacementElementHolderTest {
 	private static final String[] BEEXT = new String[] {"5", "16"};
 	private static final String[] BEINT = new String[] {"10", "7", "5", "4", "17", "9", "15", "16", "8", "13", "14", "11", "12"};
 	private static final String[] EINT = new String[] {"6"};
-	private static final String[] INT = new String[] {"10", "7", "6", "5", "4", "17", "15", "9", "16", "8", "13", "14", "11", "12"};
+	private static final String[] INT = new String[] {"10", "7", "5", "4", "17", "15", "9", "8", "16", "13", "14", "11", "12"};
 	private static final String[] EXT = new String[] {"null", "3", "20", "2", "1", "0", "19", "18"};
 
 	@BeforeClass

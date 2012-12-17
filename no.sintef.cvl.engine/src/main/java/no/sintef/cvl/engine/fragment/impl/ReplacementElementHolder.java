@@ -30,6 +30,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		super.locate();
 		vVertices = new HashSet<EObject>();
 		outerElements = new HashSet<EObject>();
+		innerElements = new HashSet<EObject>();
 		tbe = new BasicEList<ToReplacement>();
 		fbe = new BasicEList<FromReplacement>();
 		
@@ -39,18 +40,19 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 				tbe.add((ToReplacement)rbe);
 				frBElementsInternal.addAll(((ToReplacement)rbe).getInsideBoundaryElement());
 				outerElements.add(((ToReplacement)rbe).getOutsideBoundaryElement());
+				innerElements.addAll(((ToReplacement)rbe).getInsideBoundaryElement());
 			}
 			if(rbe instanceof FromReplacement){
 				fbe.add((FromReplacement) rbe);
 				frBElementsExternal.add(((FromReplacement)rbe).getInsideBoundaryElement());
 				outerElements.addAll(((FromReplacement)rbe).getOutsideBoundaryElement());
+				innerElements.add(((FromReplacement)rbe).getInsideBoundaryElement());
 			}
 		}
 		this.calculatePlElementsInternal();
 		frElementsOriginal.addAll(frBElementsExternal);
 		frElementsOriginal.addAll(frBElementsInternal);
 		frElementsOriginal.addAll(frElementsInternal);
-		innerElements = frElementsOriginal;
 	}
 	
 	private void calculatePlElementsInternal(){
@@ -85,5 +87,13 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	@Override
 	public HashSet<EObject> getOuterFragmentElements() {
 		return outerElements;
+	}
+	
+	public EList<ToReplacement> getToReplacementBoundaries(){
+		return tbe;
+	}
+	
+	public EList<FromReplacement> getFromReplacementBoundaries(){
+		return fbe;
 	}
 }
