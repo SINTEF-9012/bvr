@@ -16,7 +16,5 @@ public interface ElementHolder {
 	
 	public HashSet<EObject> getElementsInternal();
 	
-	public FragmentSubstitution getFragmentSubstitution();
-	
 	public void locate();
 }

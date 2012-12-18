@@ -66,7 +66,7 @@ public class ReplacementElementHolderTest {
 		InnerElements = new HashSet<String>(Arrays.asList(INT));
 		OuterElements = new HashSet<String>(Arrays.asList(EXT));
 			
-		replacement = new ReplacementElementHolder(fragSub);
+		replacement = new ReplacementElementHolder(fragSub.getReplacement());
 	}
 
 	@Test

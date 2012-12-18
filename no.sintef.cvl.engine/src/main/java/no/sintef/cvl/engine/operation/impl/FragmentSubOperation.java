@@ -36,6 +36,7 @@ import no.sintef.cvl.engine.common.CVLFragmentCopier;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.error.UnimplementedException;
+import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.Substitution;
@@ -46,18 +47,20 @@ public class FragmentSubOperation implements Substitution {
 	private ReplacementElementHolder replacement;
 	private CVLFragmentCopier rplCopier;
 	private boolean replace;
+	private FragmentSubstitutionHolder fragSubHolder;
 
 
-	public FragmentSubOperation(PlacementElementHolder placement, ReplacementElementHolder replacement){
-		this.placement = placement;
-		this.replacement = replacement;
+	public FragmentSubOperation(FragmentSubstitutionHolder fsh){
+		fragSubHolder = fsh;
+		this.placement = fsh.getPlacement();
+		this.replacement = fsh.getReplacement();
 	}
 	
 	@Override
 	public void execute(boolean replace) throws BasicCVLEngineException {
 		this.copyReplacementElements();
 		this.replace = replace;
-		this.bindBounderies();
+		this.bindBounderies1();
 	}
 	
 	private void copyReplacementElements() {
@@ -88,8 +91,19 @@ public class FragmentSubOperation implements Substitution {
 		return copyEList;
 	}
 	
-	private void bindBounderies() throws BasicCVLEngineException {
-		FragmentSubstitution fragSub = placement.getFragmentSubstitution();
+	private void bindBounderies() throws BasicCVLEngineException{
+		EList<ToBinding> toBindings = fragSubHolder.getToBindings();
+		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
+		for(ToBinding toBinding : toBindings){
+			
+		}
+		for(FromBinding fromBinding : fromBindings){
+			
+		}
+	}
+	
+	private void bindBounderies1() throws BasicCVLEngineException {
+		FragmentSubstitution fragSub = fragSubHolder.getFragment();
 		EList<BoundaryElementBinding> bindings = fragSub.getBoundaryElementBinding();
 		for(BoundaryElementBinding be : bindings){
 			if(be instanceof ToBinding){

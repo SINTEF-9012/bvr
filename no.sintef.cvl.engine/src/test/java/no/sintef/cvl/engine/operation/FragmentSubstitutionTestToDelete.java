@@ -1,11 +1,9 @@
 package no.sintef.cvl.engine.operation;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.util.HashMap;
 
-import no.sintef.cvl.engine.error.GeneralCVLEngineException;
+import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
@@ -33,6 +31,7 @@ public class FragmentSubstitutionTestToDelete {
 	private PlacementElementHolder placement;
 	private ReplacementElementHolder replacement;
 	private Resource baseModel;
+	private FragmentSubstitutionHolder fragmentSubHolder;
 
 	@Before
 	public void setUp() throws Exception {
@@ -49,8 +48,7 @@ public class FragmentSubstitutionTestToDelete {
 		}
 		
 		Assert.assertNotNull("can not locate a fragment substitution, the test can not be executed", fragSub);
-		placement = new PlacementElementHolder(fragSub);
-		replacement = new ReplacementElementHolder(fragSub);
+		fragmentSubHolder = new FragmentSubstitutionHolder(fragSub);
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}
@@ -62,8 +60,8 @@ public class FragmentSubstitutionTestToDelete {
 	
 	@Test
 	public void testSingleSubstitution() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(placement, replacement);
-		fso.execute(false);
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}

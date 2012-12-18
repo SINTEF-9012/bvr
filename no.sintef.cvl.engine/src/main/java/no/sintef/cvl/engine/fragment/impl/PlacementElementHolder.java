@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.PlacementBoundaryElement;
+import cvl.PlacementFragment;
 import cvl.ToPlacement;
 
 public class PlacementElementHolder extends BasicElementHolder implements ElementHolderOIF {
@@ -19,9 +20,10 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	protected HashSet<EObject> innerElements;
 	protected HashSet<EObject> outerElements;
 	private HashSet<EObject> vVertices;
+	private PlacementFragment placement;
 	
-	public PlacementElementHolder(FragmentSubstitution f) {
-		super(f);
+	public PlacementElementHolder(PlacementFragment pf) {
+		placement = pf;
 		this.locate();
 	}
 		
@@ -33,7 +35,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		tbe = new BasicEList<ToPlacement>();
 		fbe = new BasicEList<FromPlacement>();
 		
-		EList<PlacementBoundaryElement> pbes = fragment.getPlacement().getPlacementBoundaryElement();
+		EList<PlacementBoundaryElement> pbes = placement.getPlacementBoundaryElement();
 		for(PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof ToPlacement){
 				tbe.add((ToPlacement)pbe);
@@ -93,5 +95,9 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	
 	public EList<FromPlacement> getFromPlacementBoundaries(){
 		return fbe;
+	}
+
+	public PlacementFragment getPlacementFragment() {
+		return placement;
 	}
 }

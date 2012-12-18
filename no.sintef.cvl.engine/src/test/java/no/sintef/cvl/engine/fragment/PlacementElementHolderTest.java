@@ -66,7 +66,7 @@ public class PlacementElementHolderTest {
 		InnerElements = new HashSet<String>(Arrays.asList(INT));
 		OuterElements = new HashSet<String>(Arrays.asList(EXT));
 			
-		placement = new PlacementElementHolder(fragSub);
+		placement = new PlacementElementHolder(fragSub.getPlacement());
 	}
 
 	@Test

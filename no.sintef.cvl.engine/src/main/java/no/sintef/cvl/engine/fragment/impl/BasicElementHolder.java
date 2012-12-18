@@ -13,11 +13,6 @@ public abstract class BasicElementHolder implements ElementHolder {
 	protected HashSet<EObject> frBElementsInternal; 
 	protected HashSet<EObject> frBElementsExternal;
 	protected HashSet<EObject> frElementsInternal;
-	protected FragmentSubstitution fragment;
-	
-	public BasicElementHolder(FragmentSubstitution f) {
-		fragment = f;
-	}
 	
 	@Override
 	public HashSet<EObject> getElements() {
@@ -38,12 +33,7 @@ public abstract class BasicElementHolder implements ElementHolder {
 	public HashSet<EObject> getElementsInternal() {
 		return frElementsInternal;
 	}
-	
-	@Override
-	public FragmentSubstitution getFragmentSubstitution() {
-		return fragment;
-	}
-	
+		
 	@Override
 	public void locate() {
 		frElementsOriginal = new HashSet<EObject>();

@@ -3,6 +3,7 @@ package no.sintef.cvl.engine.operation;
 import java.io.File;
 import java.util.HashMap;
 
+import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
@@ -25,9 +26,8 @@ public class FragmentSubstitutionTest {
 	private static HashMap<String, Object> map;
 	private static ConfigurableUnit cu;
 	private static FragmentSubstitution fragSub;
-	private ReplacementElementHolder replacement;
-	private PlacementElementHolder placement;
 	private Resource baseModel;
+	private FragmentSubstitutionHolder fragmentSubHolder;
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,8 +43,7 @@ public class FragmentSubstitutionTest {
 		}
 		
 		Assert.assertNotNull("can not locate a fragment substitution, the test can not be executed", fragSub);
-		placement = new PlacementElementHolder(fragSub);
-		replacement = new ReplacementElementHolder(fragSub);
+		fragmentSubHolder = new FragmentSubstitutionHolder(fragSub);
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}
@@ -56,7 +55,7 @@ public class FragmentSubstitutionTest {
 	
 	@Test
 	public void testSingleSubstitutiontTrue() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(placement, replacement);
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -64,7 +63,7 @@ public class FragmentSubstitutionTest {
 	
 	@Test
 	public void testSingleSubstitutionFalse() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(placement, replacement);
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(false);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
@@ -72,7 +71,7 @@ public class FragmentSubstitutionTest {
 	
 	@Test
 	public void testSeveralSubstitutionsReplaceTrue() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(placement, replacement);
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -83,7 +82,7 @@ public class FragmentSubstitutionTest {
 	
 	@Test
 	public void testSeveralSubstitutionsReplaceTrueFalse() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(placement, replacement);
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -94,7 +93,7 @@ public class FragmentSubstitutionTest {
 
 	@Test
 	public void testSeveralSubstitutionsReplaceFalseTrue() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(placement, replacement);
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(false);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));

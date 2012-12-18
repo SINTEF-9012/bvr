@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import cvl.FragmentSubstitution;
 import cvl.FromReplacement;
 import cvl.ReplacementBoundaryElement;
+import cvl.ReplacementFragmentType;
 import cvl.ToReplacement;
 
 public class ReplacementElementHolder extends BasicElementHolder implements ElementHolderOIF {
@@ -20,9 +21,10 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	protected HashSet<EObject> outerElements;
 	protected HashSet<EObject> innerElements;
 	private HashSet<EObject> vVertices;
+	private ReplacementFragmentType replacement;
 
-	public ReplacementElementHolder(FragmentSubstitution f) {
-		super(f);
+	public ReplacementElementHolder(ReplacementFragmentType rft) {
+		replacement = rft;
 		this.locate();
 	}
 
@@ -34,7 +36,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		tbe = new BasicEList<ToReplacement>();
 		fbe = new BasicEList<FromReplacement>();
 		
-		EList<ReplacementBoundaryElement> rbes = fragment.getReplacement().getReplacementBoundaryElement();
+		EList<ReplacementBoundaryElement> rbes = replacement.getReplacementBoundaryElement();
 		for(ReplacementBoundaryElement rbe : rbes){
 			if(rbe instanceof ToReplacement){
 				tbe.add((ToReplacement)rbe);
@@ -95,5 +97,9 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	
 	public EList<FromReplacement> getFromReplacementBoundaries(){
 		return fbe;
+	}
+	
+	public ReplacementFragmentType getReplacementFragment(){
+		return replacement;
 	}
 }
