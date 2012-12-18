@@ -61,7 +61,7 @@ public class FragmentSubstitutionTestToDelete {
 	@Test
 	public void testSingleSubstitution() throws Exception {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
-		fso.execute(true);
+		fso.execute(false);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}
