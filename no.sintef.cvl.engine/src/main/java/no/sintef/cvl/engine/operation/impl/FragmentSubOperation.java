@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import cvl.FromBinding;
 import cvl.FromPlacement;
@@ -195,6 +196,10 @@ public class FragmentSubOperation implements Substitution {
 						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 					}				
 				}
+				
+				//update insideBoundaryElementReference for fromPlacement;
+				EObject insideBoundaryElemement = this.getReplCopyElementFromOriginal(fromReplacement.getInsideBoundaryElement());
+				fromPlacement.setInsideBoundaryElement(insideBoundaryElemement);
 			}else if(fromReplacement != null && fromPlacement == null){
 				String propertyName = fromReplacement.getPropertyName();
 				EObject insideBERepl = fromReplacement.getInsideBoundaryElement();
@@ -232,8 +237,55 @@ public class FragmentSubOperation implements Substitution {
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
 			}	
 		}
+		this.checkOutsideBoundaryElementsContainment();
 	}
-		
+	
+	private void checkOutsideBoundaryElementsContainment() throws BasicCVLEngineException{
+		HashSet<EObject> placementElements = placement.getElements();
+		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
+		for(FromBinding fromBinding : fromBindings){
+			EList<EObject> outsideBoundaryElements = fromBinding.getFromPlacement().getOutsideBoundaryElement();
+			for(EObject outsideBoundaryElement : outsideBoundaryElements){
+				EObject container = outsideBoundaryElement.eContainer();
+				if(placementElements.contains(container)){
+					EObject referencer = fromBinding.getFromPlacement().getInsideBoundaryElement();
+					EObject referencerContainer = referencer.eContainer();
+					EStructuralFeature feature = referencer.eContainingFeature();
+					int upperBound = feature.getUpperBound();
+					if(upperBound == -1 || upperBound > 1){
+						EList<EObject> propertyValue = this.getListPropertyValue(referencerContainer, feature);
+						if(upperBound != -1 && propertyValue.size() >= upperBound){
+							throw new IncorrectCVLModel("cordinality of the containment property is less than amount of the contined elements " + fragSubHolder.getFragment() + " property " + feature + "values " + propertyValue);
+						}
+						propertyValue.add(outsideBoundaryElement);
+						propertyValue = new BasicEList<EObject>(propertyValue);
+						referencerContainer.eSet(feature, propertyValue);
+						
+						EList<EObject> propertySet = this.getListPropertyValue(referencerContainer, feature);
+						if(!propertySet.equals(propertyValue)){
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + feature + "of" + fragSubHolder.getFragment());
+						}
+					}else{
+						//upperBound == 0 || == 1
+						Object propertyValue = referencerContainer.eGet(feature);
+						if(upperBound == 0){
+							throw new IncorrectCVLModel("cordinality of the containment is 0, but we need to add an element " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
+						}
+						if(propertyValue != null){
+							throw new IncorrectCVLModel("cordinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
+						}
+						referencerContainer.eSet(feature, outsideBoundaryElement);
+						
+						Object propertySet = referencerContainer.eGet(feature);
+						if(propertySet.equals(outsideBoundaryElement)){
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + feature + "of" + fragSubHolder.getFragment());
+						}
+					}
+				}
+			}
+		}
+	}
+	
 	private EList<EObject> subtractAugmentList(EList<EObject> elementsOrig, EList<EObject> elementsToRemove, EList<EObject> elementsToAdd){
 		elementsOrig.removeAll(elementsToRemove);
 		elementsOrig.addAll(elementsToAdd);
