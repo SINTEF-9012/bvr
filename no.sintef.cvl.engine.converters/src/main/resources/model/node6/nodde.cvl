@@ -27,10 +27,6 @@
           <outsideBoundaryElement href="base.node#//@contains.1"/>
         </boundaryElement>
         <boundaryElement xsi:type="cvl:ToPlacement" name="[:Node].links" propertyName="links">
-          <insideBoundaryElement href="base.node#//@contains.3"/>
-          <outsideBoundaryElement href="base.node#//@contains.4/@contains.0"/>
-        </boundaryElement>
-        <boundaryElement xsi:type="cvl:ToPlacement" name="[:Node].links" propertyName="links">
           <insideBoundaryElement href="base.node#//@contains.11"/>
           <outsideBoundaryElement href="base.node#//@contains.15"/>
         </boundaryElement>
@@ -52,9 +48,12 @@
         <boundaryElement xsi:type="cvl:FromPlacement" name=":Node[1]">
           <outsideBoundaryElement href="base.node#//@contains.17"/>
         </boundaryElement>
+        <boundaryElement xsi:type="cvl:FromPlacement" name=":Node[1]">
+          <outsideBoundaryElement href="base.node#//@contains.18"/>
+        </boundaryElement>
       </variabilitySpecification>
       <variabilitySpecification xsi:type="cvl:ReplacementFragment" name="r1">
-        <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[11]">
+        <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[12]">
           <insideBoundaryElement href="lib.node#//@contains.2"/>
           <insideBoundaryElement href="lib.node#//@contains.3"/>
           <insideBoundaryElement href="lib.node#//@contains.4"/>
@@ -66,54 +65,52 @@
           <insideBoundaryElement href="lib.node#//@contains.10"/>
           <insideBoundaryElement href="lib.node#//@contains.11"/>
           <insideBoundaryElement href="lib.node#//@contains.12"/>
+          <insideBoundaryElement href="lib.node#//@contains.13"/>
         </boundaryElement>
         <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[1]">
           <insideBoundaryElement href="lib.node#//@contains.2"/>
         </boundaryElement>
-        <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[2]">
-          <insideBoundaryElement href="lib.node#//@contains.8"/>
-          <insideBoundaryElement href="lib.node#//@contains.9"/>
-        </boundaryElement>
         <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[1]">
+          <insideBoundaryElement href="lib.node#//@contains.3"/>
+        </boundaryElement>
+        <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[2]">
+          <insideBoundaryElement href="lib.node#//@contains.9"/>
           <insideBoundaryElement href="lib.node#//@contains.10"/>
         </boundaryElement>
-        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].links" propertyName="links">
-          <outsideBoundaryElement href="lib.node#//@contains.1"/>
-          <insideBoundaryElement href="lib.node#//@contains.3"/>
-        </boundaryElement>
-        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].contains" propertyName="contains">
-          <outsideBoundaryElement href="lib.node#//@contains.3/@contains.0"/>
-          <outsideBoundaryElement href="lib.node#//@contains.3/@contains.1"/>
-          <insideBoundaryElement href="lib.node#//@contains.3"/>
-        </boundaryElement>
-        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].links" propertyName="links">
-          <outsideBoundaryElement href="lib.node#//@contains.13"/>
-          <insideBoundaryElement href="lib.node#//@contains.5"/>
-        </boundaryElement>
-        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].contains" propertyName="contains">
-          <outsideBoundaryElement href="lib.node#//@contains.11/@contains.0"/>
+        <boundaryElement xsi:type="cvl:ToReplacement" name=":Node[1]">
           <insideBoundaryElement href="lib.node#//@contains.11"/>
         </boundaryElement>
         <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].links" propertyName="links">
-          <outsideBoundaryElement href="lib.node#//@contains.11/@contains.0"/>
+          <outsideBoundaryElement href="lib.node#//@contains.1"/>
+          <insideBoundaryElement href="lib.node#//@contains.4"/>
+        </boundaryElement>
+        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].contains" propertyName="contains">
+          <outsideBoundaryElement href="lib.node#//@contains.4/@contains.0"/>
+          <outsideBoundaryElement href="lib.node#//@contains.4/@contains.1"/>
+          <insideBoundaryElement href="lib.node#//@contains.4"/>
+        </boundaryElement>
+        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].contains" propertyName="contains">
+          <outsideBoundaryElement href="lib.node#//@contains.12/@contains.0"/>
           <insideBoundaryElement href="lib.node#//@contains.12"/>
+        </boundaryElement>
+        <boundaryElement xsi:type="cvl:FromReplacement" name="[:Node].links" propertyName="links">
+          <outsideBoundaryElement href="lib.node#//@contains.12/@contains.0"/>
+          <insideBoundaryElement href="lib.node#//@contains.13"/>
         </boundaryElement>
       </variabilitySpecification>
       <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="p1->r1" placement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0" replacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1">
         <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].contains" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.0" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.0"/>
         <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.1" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.1"/>
-        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.2" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.1"/>
-        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.3" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.1"/>
-        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.4" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.2"/>
-        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].contains" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.5" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.2"/>
-        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.6" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.3"/>
-        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].links" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.8" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.4"/>
-        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.7" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
-        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.9" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.7"/>
+        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.2" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.2"/>
+        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.3" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.3"/>
+        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].contains" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.4" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.3"/>
+        <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.5" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.4"/>
+        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].links" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.6" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.6" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.6"/>
+        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.8" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.7"/>
         <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].links" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.9" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.8"/>
       </variabilitySpecification>
     </variabilitySpecification>
   </variabilitySpecification>
-  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="simple"/>
   <base href="base.node#/"/>
 </cvl:CVLModel>

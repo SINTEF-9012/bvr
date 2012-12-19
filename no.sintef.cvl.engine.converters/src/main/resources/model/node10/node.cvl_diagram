@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_CznskElrEeKkN80aBXXyRA" type="Cvl_visitor" name="node.cvl_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_C77UAElrEeKkN80aBXXyRA" type="2004">
+    <children xmi:type="notation:BasicCompartment" xmi:id="_C77UBElrEeKkN80aBXXyRA" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_C77UBUlrEeKkN80aBXXyRA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_C77UBklrEeKkN80aBXXyRA"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_C77UAUlrEeKkN80aBXXyRA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_C77UAklrEeKkN80aBXXyRA" fontName="Segoe UI"/>
+    <element xmi:type="cvl:CompositeVariability" href="node.cvl#//@variabilitySpecification"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_C77UA0lrEeKkN80aBXXyRA"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_Dae4QElrEeKkN80aBXXyRA" type="2009">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Dae4RElrEeKkN80aBXXyRA" type="5008"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Dae4RUlrEeKkN80aBXXyRA" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Dae4RklrEeKkN80aBXXyRA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Dae4R0lrEeKkN80aBXXyRA"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_Dae4QUlrEeKkN80aBXXyRA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Dae4QklrEeKkN80aBXXyRA" fontName="Segoe UI"/>
+    <element xmi:type="cvl:CompositeVariability" href="node.cvl#//@variabilitySpecification/@variabilitySpecification.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Dae4Q0lrEeKkN80aBXXyRA" x="264" y="60"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_13eJwElrEeKkN80aBXXyRA" type="2005">
+    <children xmi:type="notation:DecorationNode" xmi:id="_13ew0ElrEeKkN80aBXXyRA" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_13eJwUlrEeKkN80aBXXyRA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_13eJwklrEeKkN80aBXXyRA" fontName="Segoe UI"/>
+    <element xmi:type="cvl:FragmentSubstitution" href="node.cvl#//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_13eJw0lrEeKkN80aBXXyRA" x="324" y="225"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_CzoToElrEeKkN80aBXXyRA"/>
+  <element xmi:type="cvl:CVLModel" href="node.cvl#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_33WW0ElrEeKkN80aBXXyRA" type="4002" source="_Dae4QElrEeKkN80aBXXyRA" target="_13eJwElrEeKkN80aBXXyRA">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_33WW0UlrEeKkN80aBXXyRA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_33WW0klrEeKkN80aBXXyRA" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_33WW00lrEeKkN80aBXXyRA" points="[5, 11, -42, -80]$[52, 111, 5, 20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_33Xk8ElrEeKkN80aBXXyRA" id="(0.6083333333333333,0.8952380952380953)"/>
+  </edges>
+</notation:Diagram>

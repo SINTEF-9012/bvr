@@ -8,6 +8,8 @@ import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
+import no.sintef.dsl.node.nodePackage;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -20,7 +22,7 @@ import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionTest {
+public class FragmentSubstitutionContainment1Test {
 
 	private static File file;
 	private static HashMap<String, Object> map;
@@ -31,7 +33,8 @@ public class FragmentSubstitutionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/node9-7/node.new.cvl");
+		file = new File("src/test/resources/nodeContainment1/node.new.cvl");
+		nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -54,7 +57,10 @@ public class FragmentSubstitutionTest {
 	}
 	
 	@Test
-	public void testSingleSubstitutiontTrue() throws Exception {
+	public void testSingleSubstitutiontContainmentTrue() throws Exception {
+		// (a) A-)-->B (A belongs to placement, while B is outside boundary element)
+		// (b) rA<>-)-->rB (B belongs to replacement, while rb is outside boundary element)
+		// if we bind (a) to (b) than B should be replaced correctly
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
@@ -62,43 +68,42 @@ public class FragmentSubstitutionTest {
 	}
 	
 	@Test
-	public void testSingleSubstitutionFalse() throws Exception {
+	public void testSingleSubstitutiontContainmentFalse() throws Exception {
+		// (a) A-)-->B (A belongs to placement, while B is outside boundary element)
+		// (b) rA<>-)-->rB (B belongs to replacement, while rb is outside boundary element)
+		// if we bind (a) to (b) than B should be replaced correctly
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
-		fso.execute(false);
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
-	}
-	
-	@Test
-	public void testSeveralSubstitutionsReplaceTrue() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
-		fso.execute(true);
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
-		fso.execute(true);
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
-	}
-	
-	@Test
-	public void testSeveralSubstitutionsReplaceTrueFalse() throws Exception {
-		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
-		fso.execute(true);
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 		fso.execute(false);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 	}
-
+	
 	@Test
-	public void testSeveralSubstitutionsReplaceFalseTrue() throws Exception {
+	public void testSingleSubstitutiontContainmentFalseTrue() throws Exception {
+		// (a) A-)-->B (A belongs to placement, while B is outside boundary element)
+		// (b) rA<>-)-->rB (B belongs to replacement, while rb is outside boundary element)
+		// if we bind (a) to (b) than B should be replaced correctly
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(false);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
+		fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		//basically the same is prod0.node
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testSingleSubstitutiontContainmentTrueFalse() throws Exception {
+		// (a) A-)-->B (A belongs to placement, while B is outside boundary element)
+		// (b) rA<>-)-->rB (B belongs to replacement, while rb is outside boundary element)
+		// if we bind (a) to (b) than B should be replaced correctly
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod3.node", "base_new.node"));
 	}
 }
