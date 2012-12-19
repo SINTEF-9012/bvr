@@ -1,6 +1,8 @@
 package no.sintef.cvl.engine.operation.impl;
 
 import java.util.HashSet;
+import java.util.List;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -243,8 +245,7 @@ public class FragmentSubOperation implements Substitution {
 	private void copyReplacementElements() {
 		rplCopier = new CVLFragmentCopier();
 		HashSet<EObject> replacementInnerElements = replacement.getElements();
-		rplCopier.copyAll(replacementInnerElements);
-		rplCopier.copyReferences();
+		rplCopier.copyFragment(replacementInnerElements);
 	}
 
 
@@ -282,7 +283,7 @@ public class FragmentSubOperation implements Substitution {
 		if(!(propertyValue instanceof EList)){
 			throw new GeneralCVLEngineException("property is not the list " + propertyValue);
 		}
-		EList<EObject> eList = (EList<EObject>) propertyValue;
+		@SuppressWarnings("unchecked") EList<EObject> eList = (EList<EObject>) propertyValue;
 		return eList;
 	}
 }
