@@ -29,7 +29,7 @@ public class PlacementElementHolderTest {
 	private static HashMap<String, Object> map;
 	private static ConfigurableUnit cu;
 	private static FragmentSubstitution fragSub;
-	private static final String[] BEEXT = new String[] {"5", "16"};
+	private static final String[] BEEXT = new String[] {"5", "17"}; //can be 16? check it later
 	private static final String[] BEINT = new String[] {"10", "7", "5", "4", "17", "9", "15", "16", "8", "13", "14", "11", "12"};
 	private static final String[] EINT = new String[] {"6"};
 	private static final String[] INT = new String[] {"10", "7", "5", "4", "17", "15", "9", "8", "16", "13", "14", "11", "12"};
