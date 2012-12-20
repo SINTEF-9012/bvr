@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:node="http:///node" xsi:schemaLocation="http:///node node.ecore">
   <contains links="//@contains.3" name="0"/>
   <contains links="//@contains.1/@contains.0 //@contains.1/@contains.1" name="18">
     <contains name="r13"/>
@@ -12,10 +12,7 @@
     <contains name="2"/>
   </contains>
   <contains links="//@contains.3 //@contains.6 //@contains.8" name="r6"/>
-  <contains name="r7">
-    <links href="base_new.node#//@contains.9"/>
-    <links href="lib.node#//@contains.13"/>
-  </contains>
+  <contains links="//@contains.9 //@contains.10/@contains.0" name="r7"/>
   <contains links="//@contains.4 //@contains.6" name="r8"/>
   <contains links="//@contains.5" name="r9"/>
   <contains links="//@contains.10" name="r15"/>

@@ -19,11 +19,11 @@
       <insideBoundaryElement href="base.node#//@contains.14"/>
       <outsideBoundaryElement href="base.node#/"/>
     </placementBoundaryElement>
-    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="links">
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1" propertyName="links">
       <insideBoundaryElement href="base.node#//@contains.3"/>
       <outsideBoundaryElement href="base.node#//@contains.0"/>
     </placementBoundaryElement>
-    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="links">
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1" propertyName="links">
       <insideBoundaryElement href="base.node#//@contains.3"/>
       <outsideBoundaryElement href="base.node#//@contains.1"/>
     </placementBoundaryElement>
@@ -31,7 +31,7 @@
       <insideBoundaryElement href="base.node#//@contains.3"/>
       <outsideBoundaryElement href="base.node#//@contains.4/@contains.0"/>
     </placementBoundaryElement>
-    <placementBoundaryElement xsi:type="cvl:ToPlacement" propertyName="links">
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2" propertyName="links">
       <insideBoundaryElement href="base.node#//@contains.11"/>
       <outsideBoundaryElement href="base.node#//@contains.15"/>
     </placementBoundaryElement>
@@ -56,6 +56,10 @@
       <outsideBoundaryElement href="base.node#//@contains.17"/>
       <insideBoundaryElement href="base.node#//@contains.14"/>
     </placementBoundaryElement>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.6">
+      <outsideBoundaryElement href="base.node#//@contains.17"/>
+      <insideBoundaryElement href="base.node#//@contains.14"/>
+    </placementBoundaryElement>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1" bindingChoice="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
@@ -69,6 +73,7 @@
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.7" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.5"/>
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.9" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.7"/>
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.9" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.8"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.10" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.6"/>
   </ownedVariationPoint>
   <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="r1">
     <replacementBoundaryElement xsi:type="cvl:ToReplacement" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0">
@@ -107,11 +112,11 @@
       <outsideBoundaryElement href="lib.node#//@contains.3/@contains.0"/>
       <outsideBoundaryElement href="lib.node#//@contains.3/@contains.1"/>
     </replacementBoundaryElement>
-    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="links">
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="links" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.10">
       <insideBoundaryElement href="lib.node#//@contains.5"/>
       <outsideBoundaryElement href="lib.node#//@contains.13"/>
     </replacementBoundaryElement>
-    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="contains">
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="contains" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.9">
       <insideBoundaryElement href="lib.node#//@contains.11"/>
       <outsideBoundaryElement href="lib.node#//@contains.11/@contains.0"/>
     </replacementBoundaryElement>
