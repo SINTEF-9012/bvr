@@ -19,7 +19,7 @@ import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionCardinalityTest {
+public class FragmentSubstitutionCardinalityNTest {
 
 	private File file;
 	private HashMap<String, Object> map;
@@ -30,7 +30,7 @@ public class FragmentSubstitutionCardinalityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/nodeCardinality1/node.new.cvl");
+		file = new File("src/test/resources/nodeCardinalityN/node.new.cvl");
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -63,24 +63,44 @@ public class FragmentSubstitutionCardinalityTest {
 	@Test
 	public void testSingleSubstitutionFalse() throws Exception {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 		try{
 			fso.execute(false);
 		}catch(IllegalCVLOperation e){
 			return;
 		}
-		Assert.assertTrue("Cardinality is 1, but we try to execute substitution with replace=false, exception not raised", false);
+		Assert.assertTrue("IllegalCVLOperation is not raised, cardinality is 2", false);
+		
 	}
 	
 	@Test
 	public void testSingleSubstitutionTrueFalse() throws Exception {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testSingleSubstitutionTrueFalseFalse() throws Exception {
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
 		try{
 			fso.execute(false);
 		}catch(IllegalCVLOperation e){
 			return;
 		}
-		Assert.assertTrue("Cardinality is 1, but we try to execute substitution with replace=false, exception not raised", false);
+		Assert.assertTrue("IllegalCVLOperation is not raised, cardinality is 2", false);
 	}
 	
 	@Test
@@ -88,6 +108,7 @@ public class FragmentSubstitutionCardinalityTest {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}
 

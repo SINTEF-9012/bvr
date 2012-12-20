@@ -60,7 +60,7 @@ public class FragmentSubstitutionCardinalityInvalidTest {
 		}catch(IncorrectCVLModel e){
 			return;
 		}
-		Assert.assertTrue("Expected transformation is different", false);
+		Assert.assertTrue("The model is incorrect, the cardinality is 0, but no exeption", false);
 	}
 	
 	@Test
@@ -71,6 +71,6 @@ public class FragmentSubstitutionCardinalityInvalidTest {
 		}catch(IncorrectCVLModel e){
 			return;
 		}
-		Assert.assertTrue("Expected transformation is different", false);
+		Assert.assertTrue("The model is incorrect, the cardinality is 0, but no exeption", false);
 	}
 }
