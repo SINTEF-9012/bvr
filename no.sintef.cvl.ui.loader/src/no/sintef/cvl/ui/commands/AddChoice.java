@@ -54,7 +54,7 @@ public class AddChoice implements Command {
 		
         cp.setTitle(c.getName());
         rootPanel.getModelPanel().addNode(cp);
-        Helper.bind(parent, cp, rootPanel.getModelPanel(), (c.isIsImpliedByParent() || parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
+        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!c.isIsImpliedByParent() || parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
 	}
 
