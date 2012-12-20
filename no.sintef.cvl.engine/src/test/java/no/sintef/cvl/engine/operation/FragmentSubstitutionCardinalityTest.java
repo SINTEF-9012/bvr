@@ -30,7 +30,7 @@ public class FragmentSubstitutionCardinalityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/nodeCordinality1/node.new.cvl");
+		file = new File("src/test/resources/nodeCardinality1/node.new.cvl");
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();

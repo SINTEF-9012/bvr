@@ -1,12 +1,9 @@
 package no.sintef.cvl.engine.operation.impl;
 
 import java.util.HashSet;
-import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import cvl.FromBinding;
 import cvl.FromPlacement;
@@ -67,7 +64,7 @@ public class FragmentSubOperation implements Substitution {
 					EList<EObject> elemenetsToRemove = (replace) ? insideBEPlacCurrent : new BasicEList<EObject>();
 					EList<EObject> propertyValueNew = this.subtractAugmentList(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
 					if(upperBound != -1 && propertyValueNew.size() > upperBound){
-						throw new IllegalCVLOperation("Cordinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					outsideBEPlac.eSet(property, propertyValueNew);
 					EList<EObject> propertyValueSet = this.getListPropertyValue(outsideBEPlac, property);
@@ -82,17 +79,17 @@ public class FragmentSubOperation implements Substitution {
 				}else{
 					//property.getUpperBound() == 0 || == 1
 					if(upperBound == 0){
-						throw new IncorrectCVLModel("Model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
+						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
 					}
 					if(insideBERepl.size() != upperBound){
-						throw new IllegalCVLOperation("Cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
+						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					Object propertyValueOutBEPlac = outsideBEPlac.eGet(property);
 					if(propertyValueOutBEPlac != null && !replace){
-						throw new IllegalCVLOperation("Replace flag is set to false, but the cardinality is 1 and property is not empty already");
+						throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
 					}
 					if(insideBEPlacCurrent.size() > 1){
-						throw new GeneralCVLEngineException("EPIC FAIL: Holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
+						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
 					}
 					
 					EObject propertyValueNew = insideBERepl.get(0);
@@ -119,7 +116,7 @@ public class FragmentSubOperation implements Substitution {
 					EList<EObject> propertyValueOutBEPlac = this.getListPropertyValue(outsideBEPlac, property);
 					EList<EObject> propertyValueNew = this.subtractAugmentList(propertyValueOutBEPlac, insideBEPlacCurrent, new BasicEList<EObject>());
 					if(upperBound != -1 && propertyValueNew.size() > upperBound){
-						throw new IllegalCVLOperation("Cordinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					outsideBEPlac.eSet(property, propertyValueNew);
 					EList<EObject> propertyValueSet = this.getListPropertyValue(outsideBEPlac, property);
@@ -131,10 +128,10 @@ public class FragmentSubOperation implements Substitution {
 					insideBEPlacCurrent.clear();
 				}else{
 					if(upperBound == 0){
-						throw new IncorrectCVLModel("Model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
+						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
 					}
 					if(insideBEPlacCurrent.size() > 1){
-						throw new GeneralCVLEngineException("EPIC FAIL: Holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
+						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
 					}
 					outsideBEPlac.eSet(property, null);
 					Object propertyValueSet = outsideBEPlac.eGet(property);
@@ -166,7 +163,7 @@ public class FragmentSubOperation implements Substitution {
 					EList<EObject> propertyValueInsBERepl = this.getListPropertyValue(insideBERepl, property);
 					EList<EObject> propertyValueNew = this.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
 					if(upperBound != -1 && propertyValueNew.size() > upperBound){
-						throw new IllegalCVLOperation("Cordinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					insideBERepl.eSet(property, propertyValueNew);
 					EList<EObject> propertyValueSet = this.getListPropertyValue(insideBERepl, property);
@@ -176,17 +173,17 @@ public class FragmentSubOperation implements Substitution {
 				}else{
 					//property.getUpperBound() == 0 || == 1
 					if(upperBound == 0){
-						throw new IncorrectCVLModel("Model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
+						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
 					}
 					if(outsideBEPlac.size() != upperBound){
-						throw new IllegalCVLOperation("Cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
+						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					Object propertyValueInsBERepl = insideBERepl.eGet(property);
 					if(propertyValueInsBERepl != null && !replace){
-						throw new IllegalCVLOperation("Replace flag is set to false, but the cardinality is 1 and property is not empty already");
+						throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
 					}
 					if(outsideBEReplCurrent.size() > 1){
-						throw new GeneralCVLEngineException("EPIC FAIL: Holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
+						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
 					}
 					
 					EObject propertyValueNew = outsideBEPlac.get(0);
@@ -213,7 +210,7 @@ public class FragmentSubOperation implements Substitution {
 					EList<EObject> propertyValueInsBERepl = this.getListPropertyValue(insideBERepl, property);
 					EList<EObject> propertyValueNew = this.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, new BasicEList<EObject>());
 					if(upperBound != -1 && propertyValueNew.size() > upperBound){
-						throw new IllegalCVLOperation("Cordinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					insideBERepl.eSet(property, propertyValueNew);
 					EList<EObject> propertyValueSet = this.getListPropertyValue(insideBERepl, property);
@@ -222,10 +219,10 @@ public class FragmentSubOperation implements Substitution {
 					}
 				}else{
 					if(upperBound == 0){
-						throw new IncorrectCVLModel("Model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
+						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
 					}
 					if(outsideBEReplCurrent.size() > 1){
-						throw new GeneralCVLEngineException("EPIC FAIL: Holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
+						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
 					}
 					insideBERepl.eSet(property, null);
 					Object propertyValueSet = insideBERepl.eGet(property);
@@ -255,7 +252,7 @@ public class FragmentSubOperation implements Substitution {
 					if(upperBound == -1 || upperBound > 1){
 						EList<EObject> propertyValue = this.getListPropertyValue(referencerContainer, feature);
 						if(upperBound != -1 && propertyValue.size() >= upperBound){
-							throw new IncorrectCVLModel("cordinality of the containment property is less than amount of the contined elements " + fragSubHolder.getFragment() + " property " + feature + "values " + propertyValue);
+							throw new IncorrectCVLModel("cardinality of the containment property is less than amount of the contined elements " + fragSubHolder.getFragment() + " property " + feature + "values " + propertyValue);
 						}
 						propertyValue.add(outsideBoundaryElement);
 						propertyValue = new BasicEList<EObject>(propertyValue);
@@ -269,10 +266,10 @@ public class FragmentSubOperation implements Substitution {
 						//upperBound == 0 || == 1
 						Object propertyValue = referencerContainer.eGet(feature);
 						if(upperBound == 0){
-							throw new IncorrectCVLModel("cordinality of the containment is 0, but we need to add an element " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
+							throw new IncorrectCVLModel("cardinality of the containment is 0, but we need to add an element " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
 						}
 						if(propertyValue != null){
-							throw new IncorrectCVLModel("cordinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
+							throw new IncorrectCVLModel("cardinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
 						}
 						referencerContainer.eSet(feature, outsideBoundaryElement);
 						
