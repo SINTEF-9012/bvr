@@ -7,9 +7,7 @@
   </contains>
   <contains links="//@contains.9" name="19"/>
   <contains name="r4"/>
-  <contains name="r5">
-    <contains links="//@contains.3" name="r1"/>
-    <contains name="r2"/>
+  <contains links="//@contains.12" name="r5">
     <contains links="//@contains.3" name="1"/>
     <contains name="2"/>
   </contains>
@@ -22,8 +20,8 @@
   <contains links="//@contains.5" name="r9"/>
   <contains links="//@contains.10" name="r15"/>
   <contains links="//@contains.11 //@contains.6" name="r16">
-    <contains name="r20"/>
     <contains name="20"/>
   </contains>
-  <contains links="//@contains.7 //@contains.10/@contains.0 //@contains.10/@contains.1" name="r17"/>
+  <contains links="//@contains.7 //@contains.10/@contains.0" name="r17"/>
+  <contains links="//@contains.3" name="3"/>
 </node:Node>

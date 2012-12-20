@@ -34,7 +34,6 @@ public class FragmentSubstitutionContainment1Test {
 	@Before
 	public void setUp() throws Exception {
 		file = new File("src/test/resources/nodeContainment1/node.new.cvl");
-		nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
