@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.Diff;
@@ -52,6 +54,30 @@ public class SetUpUtils {
 			props.add((value == null) ? "null" : value);
 		}
 		return props;
+	}
+	
+	public static EList<String> getPropertiesValuesList(HashSet<EObject> set, String name){
+		EList<String> props = new BasicEList<String>();
+		for(EObject obj : set){
+			String value = (String) obj.eGet(obj.eClass().getEStructuralFeature(name));
+			props.add((value == null) ? "null" : value);
+		}
+		return props;
+	}
+	
+	public static boolean compareLists(EList<String> list1, EList<String> list2){
+		if(list1.size() != list2.size()){
+			return false;
+		}
+		EList<String> listBuf = new BasicEList<String>(list2);
+		list1.containsAll(listBuf);
+		for(Object element : list1){
+			listBuf.remove(element);
+		}
+		if(listBuf.size() != 0){
+			return false;
+		}
+		return true;
 	}
 	
 	public static void writeToFile(Resource resource, String name) throws IOException{

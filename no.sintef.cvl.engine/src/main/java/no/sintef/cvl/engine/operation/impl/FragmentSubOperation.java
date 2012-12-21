@@ -235,7 +235,7 @@ public class FragmentSubOperation implements Substitution {
 			}	
 		}
 		this.checkOutsideBoundaryElementsContainment();
-		placement.update();
+		placement.update(replace);
 	}
 	
 	private void checkOutsideBoundaryElementsContainment() throws BasicCVLEngineException{

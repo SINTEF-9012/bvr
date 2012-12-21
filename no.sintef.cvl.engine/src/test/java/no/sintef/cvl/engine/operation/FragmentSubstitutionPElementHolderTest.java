@@ -11,6 +11,7 @@ import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
 import no.sintef.dsl.node.nodePackage;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,7 +34,7 @@ public class FragmentSubstitutionPElementHolderTest {
 	private static HashMap<String, Object> map;
 	private static ConfigurableUnit cu;
 	private static FragmentSubstitution fragSub;
-	private static final String[] BEEXT = new String[] {"5", "17"}; //can be 16? check it later
+	private static final String[] BEEXT = new String[] {"5", "17", "16"}; //can be 16? check it later
 	private static final String[] BEINT = new String[] {"10", "7", "5", "4", "17", "9", "15", "16", "8", "13", "14", "11", "12"};
 	private static final String[] EINT = new String[] {"6"};
 	private static final String[] INT = new String[] {"10", "7", "5", "4", "17", "15", "9", "8", "16", "13", "14", "11", "12"};
@@ -57,6 +58,11 @@ public class FragmentSubstitutionPElementHolderTest {
 	private HashSet<String> ROuterElements;
 	private FragmentSubstitutionHolder fragmentSubHolder;
 	private Resource baseModel;
+	private HashSet<String> RBElementsExternalBuf;
+	private HashSet<String> RBElementsInternalBuf;
+	private HashSet<String> RElementsInternalBuf;
+	private HashSet<String> RInnerElementsBuf;
+	private HashSet<String> ROuterElementsBuf;
 
 	@Before
 	public void setUp() throws Exception {
@@ -76,16 +82,20 @@ public class FragmentSubstitutionPElementHolderTest {
 		BElementsExternal = new HashSet<String>(Arrays.asList(BEEXT));
 		BElementsInternal = new HashSet<String>(Arrays.asList(BEINT));
 		ElementsInternal = new HashSet<String>(Arrays.asList(EINT));
-		ElementsInternal = new HashSet<String>(Arrays.asList(EINT));
 		InnerElements = new HashSet<String>(Arrays.asList(INT));
 		OuterElements = new HashSet<String>(Arrays.asList(EXT));
 		
 		RBElementsExternal = new HashSet<String>(Arrays.asList(RBEEXT));
 		RBElementsInternal = new HashSet<String>(Arrays.asList(RBEINT));
 		RElementsInternal = new HashSet<String>(Arrays.asList(REINT));
-		RElementsInternal = new HashSet<String>(Arrays.asList(REINT));
 		RInnerElements = new HashSet<String>(Arrays.asList(RINT));
 		ROuterElements = new HashSet<String>(Arrays.asList(REXT));
+		
+		RBElementsExternalBuf = new HashSet<String>(RBElementsExternal);
+		RBElementsInternalBuf = new HashSet<String>(RBElementsInternal);
+		RElementsInternalBuf = new HashSet<String>(RElementsInternal);
+		RInnerElementsBuf = new HashSet<String>(RInnerElements);
+		ROuterElementsBuf = new HashSet<String>(ROuterElements);
 		
 		fragmentSubHolder = new FragmentSubstitutionHolder(fragSub);
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
@@ -118,7 +128,73 @@ public class FragmentSubstitutionPElementHolderTest {
 		PlacementElementHolder placement = fragmentSubHolder.getPlacement();
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(false);
-		//fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		RBElementsExternal.addAll(BElementsExternal);
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + RBElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(RBElementsExternal, BElementsExternalExp).isEmpty());
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsInternal(), "name");
+		RBElementsInternal.addAll(BElementsInternal);
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
+		RElementsInternal.addAll(ElementsInternal);
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		RInnerElements.addAll(InnerElements);
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testFragmentSubstitutionPlacementFalseTrue() throws Exception{
+		PlacementElementHolder placement = fragmentSubHolder.getPlacement();
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		RBElementsExternal.addAll(BElementsExternal);
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + RBElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(RBElementsExternal, BElementsExternalExp).isEmpty());
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsInternal(), "name");
+		RBElementsInternal.addAll(BElementsInternal);
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
+		RElementsInternal.addAll(ElementsInternal);
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		RInnerElements.addAll(InnerElements);
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
+		
+		fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + RBElementsExternalBuf + " actual->" + BElementsExternalExp, Sets.symmetricDifference(RBElementsExternalBuf, BElementsExternalExp).isEmpty());
+		BElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsInternal(), "name");
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternalBuf + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternalBuf, BElementsInternalExp).isEmpty());
+		ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternalBuf + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternalBuf, ElementsInternalExp).isEmpty());
+		InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElementsBuf + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElementsBuf, InnerElementsExp).isEmpty());
+		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		//actually the same as prod0, but some elements have different order
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testFragmentSubstitutionPlacementTrueTrue() throws Exception{
+		PlacementElementHolder placement = fragmentSubHolder.getPlacement();
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
@@ -133,8 +209,87 @@ public class FragmentSubstitutionPElementHolderTest {
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+		
+		fso.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + RBElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(RBElementsExternal, BElementsExternalExp).isEmpty());
+		BElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsInternal(), "name");
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
+		ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
+		InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
+		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		//actually the same as prod0, but some elements have different order
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
 	}
 
+	@Test
+	public void testFragmentSubstitutionPlacementFalseFalse() throws Exception{
+		PlacementElementHolder placement = fragmentSubHolder.getPlacement();
+		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		RBElementsExternal.addAll(BElementsExternal);
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + RBElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(RBElementsExternal, BElementsExternalExp).isEmpty());
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsInternal(), "name");
+		RBElementsInternal.addAll(BElementsInternal);
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
+		RElementsInternal.addAll(ElementsInternal);
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		RInnerElements.addAll(InnerElements);
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
+		
+		
+		fso.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		EList<String> BElementsExternalL = SetUpUtils.getPropertiesValuesList(placement.getBElementsExternal(), "name");
+		EList<String> BElementsExternalE = new BasicEList<String>();
+		BElementsExternalE.addAll(BElementsExternal);
+		BElementsExternalE.addAll(RBElementsExternalBuf);
+		BElementsExternalE.addAll(RBElementsExternalBuf);
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternalE + " actual->" + BElementsExternalL, SetUpUtils.compareLists(BElementsExternalL, BElementsExternalE));
+		
+		EList<String> BElementsInternalL = SetUpUtils.getPropertiesValuesList(placement.getBElementsInternal(), "name");
+		EList<String> BElementsInternalE = new BasicEList<String>();
+		BElementsInternalE.addAll(BElementsInternal);
+		BElementsInternalE.addAll(RBElementsInternalBuf);
+		BElementsInternalE.addAll(RBElementsInternalBuf);
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternalE + " actual->" + BElementsInternalL, SetUpUtils.compareLists(BElementsInternalE, BElementsInternalL));
+		
+		EList<String> ElementsInternalL = SetUpUtils.getPropertiesValuesList(placement.getElementsInternal(), "name");
+		EList<String> ElementsInternalE = new BasicEList<String>();
+		ElementsInternalE.addAll(ElementsInternal);
+		ElementsInternalE.addAll(RElementsInternalBuf);
+		ElementsInternalE.addAll(RElementsInternalBuf);
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternalE + " actual->" + ElementsInternalL, SetUpUtils.compareLists(ElementsInternalE, ElementsInternalL));
+		
+		EList<String> InnerElementsL = SetUpUtils.getPropertiesValuesList(placement.getInnerFragmentElements(), "name");
+		EList<String> InnerElementsE = new BasicEList<String>();
+		InnerElementsE.addAll(InnerElements);
+		InnerElementsE.addAll(RInnerElementsBuf);
+		InnerElementsE.addAll(RInnerElementsBuf);
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElementsE + " actual->" + InnerElementsL, SetUpUtils.compareLists(InnerElementsE, InnerElementsL));
+		
+		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod3.node", "base_new.node"));
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 		SetUpUtils.tearDown(map);

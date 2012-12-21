@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+  <contains links="//@contains.1 //@contains.15 //@contains.25" name="0"/>
+  <contains name="4"/>
+  <contains links="//@contains.26/@contains.0 //@contains.26/@contains.1" name="5"/>
+  <contains name="7"/>
+  <contains links="//@contains.2 //@contains.6" name="8"/>
+  <contains links="//@contains.3" name="9">
+    <contains links="//@contains.3" name="6"/>
+  </contains>
+  <contains links="//@contains.5" name="10"/>
+  <contains name="11"/>
+  <contains links="//@contains.11 //@contains.12" name="12"/>
+  <contains name="14"/>
+  <contains links="//@contains.9" name="15"/>
+  <contains links="//@contains.8 //@contains.32/@contains.0" name="16"/>
+  <contains links="//@contains.8 //@contains.32/@contains.0" name="17"/>
+  <contains links="//@contains.9 //@contains.13/@contains.1 //@contains.13/@contains.2 //@contains.13/@contains.3 //@contains.13/@contains.4" name="18">
+    <contains links="//@contains.7" name="13"/>
+    <contains name="r13"/>
+    <contains links="//@contains.20" name="r14"/>
+    <contains name="r13"/>
+    <contains links="//@contains.30" name="r14"/>
+  </contains>
+  <contains links="//@contains.10 //@contains.21 //@contains.31" name="19"/>
+  <contains name="r4"/>
+  <contains links="//@contains.24" name="r5"/>
+  <contains links="//@contains.15 //@contains.18 //@contains.20" name="r6"/>
+  <contains links="//@contains.21 //@contains.32/@contains.0" name="r7"/>
+  <contains links="//@contains.16 //@contains.18" name="r8"/>
+  <contains links="//@contains.17" name="r9"/>
+  <contains links="//@contains.22" name="r15"/>
+  <contains links="//@contains.23 //@contains.18" name="r16"/>
+  <contains links="//@contains.19 //@contains.32/@contains.0" name="r17"/>
+  <contains links="//@contains.1 //@contains.15 //@contains.25" name="3"/>
+  <contains name="r4"/>
+  <contains links="//@contains.24" name="r5">
+    <contains links="//@contains.1 //@contains.15 //@contains.25" name="1"/>
+    <contains name="2"/>
+  </contains>
+  <contains links="//@contains.25 //@contains.28 //@contains.30" name="r6"/>
+  <contains links="//@contains.31 //@contains.32/@contains.0" name="r7"/>
+  <contains links="//@contains.26 //@contains.28" name="r8"/>
+  <contains links="//@contains.27" name="r9"/>
+  <contains links="//@contains.32" name="r15"/>
+  <contains links="//@contains.33 //@contains.28" name="r16">
+    <contains name="20"/>
+  </contains>
+  <contains links="//@contains.29 //@contains.32/@contains.0" name="r17"/>
+</node:Node>

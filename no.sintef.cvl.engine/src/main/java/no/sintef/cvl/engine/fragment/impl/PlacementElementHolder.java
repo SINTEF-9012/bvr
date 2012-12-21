@@ -1,5 +1,6 @@
 package no.sintef.cvl.engine.fragment.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
@@ -20,13 +21,16 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	protected HashSet<EObject> outerElements;
 	private HashSet<EObject> vVertices;
 	private PlacementFragment placement;
+	private HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap;
 	
 	public PlacementElementHolder(PlacementFragment pf) {
 		placement = pf;
+		fromPlacementInsBoundaryMap = new HashMap<FromPlacement, HashSet<EObject>>();
 		this.locate();
 	}
 	
-	public void update(){
+	public void update(boolean replace){
+		fromPlacementInsBoundaryMap = (replace) ? new HashMap<FromPlacement, HashSet<EObject>>() : fromPlacementInsBoundaryMap;
 		this.locate();
 	}
 	
@@ -52,6 +56,12 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 				frBElementsExternal.add(((FromPlacement)pbe).getInsideBoundaryElement());
 				outerElements.addAll(((FromPlacement)pbe).getOutsideBoundaryElement());
 				innerElements.add(((FromPlacement)pbe).getInsideBoundaryElement());
+				
+				//if we do not replace a fragment we need to keep track of insideBoundaryElements 
+				HashSet<EObject> insideBoundaryFromPlacemenent = fromPlacementInsBoundaryMap.get((FromPlacement) pbe);
+				insideBoundaryFromPlacemenent = (insideBoundaryFromPlacemenent == null) ? new HashSet<EObject>() : insideBoundaryFromPlacemenent;
+				insideBoundaryFromPlacemenent.add(((FromPlacement)pbe).getInsideBoundaryElement());
+				fromPlacementInsBoundaryMap.put((FromPlacement) pbe, insideBoundaryFromPlacemenent);
 			}
 		}
 		this.calculatePlElementsInternal();
@@ -85,7 +95,21 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	
 	@Override
 	public HashSet<EObject> getInnerFragmentElements() {
-		return innerElements;
+		HashSet<EObject> innElements = new HashSet<EObject>();
+		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
+			innElements.addAll(innerEl);
+		}
+		innElements.addAll(innerElements);
+		return innElements;
+	}
+	
+	@Override
+	public HashSet<EObject> getBElementsExternal() {
+		HashSet<EObject> innElements = new HashSet<EObject>();
+		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
+			innElements.addAll(innerEl);
+		}
+		return innElements;
 	}
 
 	@Override
