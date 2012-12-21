@@ -7,7 +7,6 @@ import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
@@ -26,8 +25,13 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		placement = pf;
 		this.locate();
 	}
-		
-	public void locate(){
+	
+	public void update(){
+		this.locate();
+	}
+	
+	@Override
+	protected void locate(){
 		super.locate();
 		vVertices = new HashSet<EObject>();
 		outerElements = new HashSet<EObject>();

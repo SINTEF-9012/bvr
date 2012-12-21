@@ -10,5 +10,4 @@ public interface ElementHolderOIF {
 	
 	public HashSet<EObject> getOuterFragmentElements();
 	
-	public void locate();
 }

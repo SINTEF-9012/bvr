@@ -2,6 +2,7 @@ package no.sintef.cvl.engine.testutils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,6 +17,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import com.google.common.collect.Sets;
+
 import cvl.cvlPackage;
 
 
@@ -68,8 +72,5 @@ public class SetUpUtils {
 		Comparison result = EMFCompare.builder().build().compare(scope);
 		Iterator<Diff> it = result.getDifferences().iterator();
 		return (it.hasNext()) ? false : true;
-	}
-	
-
-	
+	}	
 }

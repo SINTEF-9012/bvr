@@ -16,5 +16,4 @@ public interface ElementHolder {
 	
 	public HashSet<EObject> getElementsInternal();
 	
-	public void locate();
 }

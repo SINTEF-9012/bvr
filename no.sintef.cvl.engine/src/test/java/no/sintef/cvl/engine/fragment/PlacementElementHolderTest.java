@@ -29,7 +29,7 @@ public class PlacementElementHolderTest {
 	private static HashMap<String, Object> map;
 	private static ConfigurableUnit cu;
 	private static FragmentSubstitution fragSub;
-	private static final String[] BEEXT = new String[] {"5", "17"}; //can be 16? check it later
+	private static final String[] BEEXT = new String[] {"5", "17", "16"};
 	private static final String[] BEINT = new String[] {"10", "7", "5", "4", "17", "9", "15", "16", "8", "13", "14", "11", "12"};
 	private static final String[] EINT = new String[] {"6"};
 	private static final String[] INT = new String[] {"10", "7", "5", "4", "17", "15", "9", "8", "16", "13", "14", "11", "12"};
@@ -72,15 +72,15 @@ public class PlacementElementHolderTest {
 	@Test
 	public void test() {
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsExternal(), "name");
-		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.difference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
 		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getBElementsInternal(), "name");
-		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.difference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
-		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.difference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
 		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
-		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.difference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
 		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
-		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.difference(OuterElements, OuterElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 	}
 
 	@After

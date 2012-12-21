@@ -8,7 +8,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import cvl.FragmentSubstitution;
 import cvl.FromReplacement;
 import cvl.ReplacementBoundaryElement;
 import cvl.ReplacementFragmentType;
@@ -28,7 +27,8 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		this.locate();
 	}
 
-	public void locate(){
+	@Override
+	protected void locate(){
 		super.locate();
 		vVertices = new HashSet<EObject>();
 		outerElements = new HashSet<EObject>();

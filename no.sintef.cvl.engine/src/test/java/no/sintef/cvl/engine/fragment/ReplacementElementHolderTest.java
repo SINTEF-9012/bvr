@@ -72,15 +72,15 @@ public class ReplacementElementHolderTest {
 	@Test
 	public void test() {
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(replacement.getBElementsExternal(), "name");
-		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.difference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
 		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(replacement.getBElementsInternal(), "name");
-		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.difference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(replacement.getElementsInternal(), "name");
-		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.difference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
 		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(replacement.getInnerFragmentElements(), "name");
-		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.difference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
 		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(replacement.getOuterFragmentElements(), "name");
-		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.difference(OuterElements, OuterElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 	}
 
 	@After

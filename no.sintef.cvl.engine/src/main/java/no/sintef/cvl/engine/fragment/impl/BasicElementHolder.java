@@ -34,8 +34,7 @@ public abstract class BasicElementHolder implements ElementHolder {
 		return frElementsInternal;
 	}
 		
-	@Override
-	public void locate() {
+	protected void locate() {
 		frElementsOriginal = new HashSet<EObject>();
 		frBElementsInternal = new HashSet<EObject>();
 		frBElementsExternal = new HashSet<EObject>();

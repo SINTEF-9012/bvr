@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
-import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
 import no.sintef.dsl.node.nodePackage;
@@ -28,15 +26,13 @@ public class FragmentSubstitutionTestToDelete {
 	private HashMap<String, Object> map;
 	private ConfigurableUnit cu;
 	private FragmentSubstitution fragSub;
-	private PlacementElementHolder placement;
-	private ReplacementElementHolder replacement;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder;
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/nodeCordinality1/node.new.cvl");
-		//nodePackage.eINSTANCE.eClass();
+		file = new File("src/test/resources/node6/node.new.cvl");
+		nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -63,6 +59,7 @@ public class FragmentSubstitutionTestToDelete {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		fso.execute(true);
 		fso.execute(false);
+		System.out.println(fragmentSubHolder.getPlacement().getElements());
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}
