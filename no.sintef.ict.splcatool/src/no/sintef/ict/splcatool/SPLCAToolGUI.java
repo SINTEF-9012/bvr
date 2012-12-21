@@ -448,7 +448,7 @@ class SelectFileAction implements ActionListener{
 		if(fn.endsWith(".csv") || fn.endsWith(".xlsx")){
 			CoveringArrayFile ca;
 			try {
-				ca = new CoveringArrayFile(fn);
+				ca = new CoveringArrayFile(new File(fn));
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(frame, "There are errors in the covering array: \n\n" + e.getMessage(), "Covering Array Error", JOptionPane.ERROR_MESSAGE);
 				return false;
@@ -457,7 +457,7 @@ class SelectFileAction implements ActionListener{
 				CNF cnf = (CNF) lfs.get("FM");
 				if(ca.weights.isEmpty()){
 					try {
-						boolean ok = CALib.verifyCA(cnf, ca, true);
+						boolean ok = CALib.verifyCA(cnf, ca, true, new ArrayList<String>());
 						if(!ok)
 							throw new CoveringArrayGenerationException("See standard output for details.");
 					} catch (Exception e) {

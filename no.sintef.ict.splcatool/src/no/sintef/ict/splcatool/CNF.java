@@ -114,7 +114,7 @@ public class CNF {
 	}
 
 	public CNF(CNFFormula cnf, String fmfile) {
-		//this(fmfile);
+		this.fmdir = new File(new File(fmfile).getParent());
 		this.cnf = cnf;
 		
 		// Init id-number mappings

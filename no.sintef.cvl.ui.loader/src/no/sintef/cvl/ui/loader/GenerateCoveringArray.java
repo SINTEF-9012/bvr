@@ -20,11 +20,13 @@ public class GenerateCoveringArray implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
 	private List<CVLView> views;
+	private int t;
 
-	public GenerateCoveringArray(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public GenerateCoveringArray(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, int t) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
+		this.t = t;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -35,7 +37,7 @@ public class GenerateCoveringArray implements ActionListener {
 		try {
 			GUIDSL gdsl = m.getCVLM().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
-			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", 2, 1);
+			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", t, 1);
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
 			m.getCVLM().injectConfigurations(gfm);

@@ -13,6 +13,7 @@ package no.sintef.ict.splcatool;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class TestLimitCoverAndCalculation {
 		}
 		
 		{
-			CoveringArray partial = new CoveringArrayFile("test.csv");
+			CoveringArray partial = new CoveringArrayFile(new File("test.csv"));
 			SXFM fm = new SXFM("TestData/Realistic/Eshop-fm.xml");
 			CNF cnf = fm.getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", 2, 4);

@@ -41,7 +41,7 @@ public class ImportResolutions implements ActionListener {
 		File sf = fc.getSelectedFile();
 		GraphMLFM gfm = null;
 		try {
-			CoveringArray ca = new CoveringArrayFile(sf.getAbsolutePath());
+			CoveringArray ca = new CoveringArrayFile(sf);
 			GUIDSL gdsl = m.getCVLM().getGUIDSL();
 			gfm = gdsl.getGraphMLFMConf(ca);
 		} catch (Exception e) {

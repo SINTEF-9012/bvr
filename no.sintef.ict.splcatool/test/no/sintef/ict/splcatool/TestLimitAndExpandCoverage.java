@@ -32,7 +32,7 @@ import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 public class TestLimitAndExpandCoverage {
-	@Test
+	@Test(timeout=10000)
 	public void testLimitCoverage() throws IOException, UnsupportedModelException, FeatureModelException, TimeoutException, CoveringArrayGenerationException{
 		GUIDSL m1 = new GUIDSL(new File("TestData/Realistic/Apl.m"));
 		SXFM fm = m1.getSXFM();

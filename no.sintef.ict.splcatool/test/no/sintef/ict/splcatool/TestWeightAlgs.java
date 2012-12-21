@@ -32,7 +32,7 @@ public class TestWeightAlgs {
 		
 		for(int t = 1; t < 4; t++){
 			CNF cnf = new GUIDSL(new File(fmfile)).getSXFM().getCNF();
-			CoveringArray ca = new CoveringArrayFile(labfile);
+			CoveringArray ca = new CoveringArrayFile(new File(labfile));
 			double coverage = CALib.calc_coverage_weighted(cnf, t, ca, fmfile, 1, marketfile, false);
 			assertEquals(100, (int)coverage);
 		}

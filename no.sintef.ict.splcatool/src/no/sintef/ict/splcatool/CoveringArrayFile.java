@@ -30,16 +30,25 @@ public class CoveringArrayFile extends CoveringArray{
 		return weights.get(nr);
 	}
 	
-	public CoveringArrayFile(String filename) throws IOException, CSVException {
+	public CoveringArrayFile(File file) throws IOException, CSVException{
 		String csvString = "";
-		if(filename.endsWith(".xlsx")){
-			csvString = XLSXLib.getCSV(new File(filename));
-		}else if(filename.endsWith(".csv")){
-			csvString = new FileUtility().readFileAsString(filename);
-		}else{
-			throw new CSVException("Only XSLX and CSV supported: " + filename);
-		}	
 		
+		if(file.getAbsolutePath().endsWith(".xlsx")){
+			csvString = XLSXLib.getCSV(file);
+		}else if(file.getAbsolutePath().endsWith(".csv")){
+			csvString = new FileUtility().readFileAsString(file.getAbsolutePath());
+		}else{
+			throw new CSVException("Only XSLX and CSV supported: " + file.getAbsolutePath());
+		}
+		
+		loadCaFromString(csvString);
+	}
+	
+	public CoveringArrayFile(String csvString) throws CSVException{
+		loadCaFromString(csvString);
+	}
+	
+	private void loadCaFromString(String csvString) throws CSVException {
 		// Read CSV data from file
 		String csv[][];
 		int x;
@@ -61,7 +70,7 @@ public class CoveringArrayFile extends CoveringArray{
 					try{
 						csv[j][i] = elements[i];
 					}catch(ArrayIndexOutOfBoundsException e){
-						System.err.println("CSV-file " + filename + " is required to have a equal length rows.");
+						System.err.println("CSV is required to have a equal length rows.");
 						throw new CSVException();
 					}
 				}

@@ -78,7 +78,7 @@ public class TestCmdLineInteraction3 {
 	
 		int oldrows = 0;
 		{
-			CoveringArray ca = new CoveringArrayFile( testFile.getAbsoluteFile().toString());
+			CoveringArray ca = new CoveringArrayFile(testFile);
 			oldrows = ca.getRowCount();
 		}
 		
@@ -95,7 +95,7 @@ public class TestCmdLineInteraction3 {
 		assertTrue(testFile.exists());
 		int newrows = 0;
 		{
-			CoveringArray ca = new CoveringArrayFile( testFile.getAbsoluteFile().toString());
+			CoveringArray ca = new CoveringArrayFile( testFile);
 			newrows = ca.getRowCount();
 		}
 		assertEquals(newrows, oldrows+2);
@@ -155,7 +155,7 @@ public class TestCmdLineInteraction3 {
 	
 		int oldrows = 0;
 		{
-			CoveringArray ca = new CoveringArrayFile(testFile.getAbsoluteFile().toString());
+			CoveringArray ca = new CoveringArrayFile(testFile);
 			oldrows = ca.getRowCount();
 		}
 		
@@ -173,7 +173,7 @@ public class TestCmdLineInteraction3 {
 		assertTrue(testFile.exists());
 		int newrows = 0;
 		{
-			CoveringArray ca = new CoveringArrayFile( testFile.getAbsoluteFile().toString());
+			CoveringArray ca = new CoveringArrayFile( testFile);
 			newrows = ca.getRowCount();
 		}
 		assertEquals(oldrows+2, newrows);
@@ -233,7 +233,7 @@ public class TestCmdLineInteraction3 {
 	
 		int oldrows = 0;
 		{
-			CoveringArray ca = new CoveringArrayFile(testFile.getAbsoluteFile().toString());
+			CoveringArray ca = new CoveringArrayFile(testFile);
 			oldrows = ca.getRowCount();
 		}
 		
@@ -251,7 +251,7 @@ public class TestCmdLineInteraction3 {
 		assertTrue(testFile.exists());
 		int newrows = 0;
 		{
-			CoveringArray ca = new CoveringArrayFile( testFile.getAbsoluteFile().toString());
+			CoveringArray ca = new CoveringArrayFile( testFile);
 			newrows = ca.getRowCount();
 		}
 		assertEquals(oldrows+2, newrows);

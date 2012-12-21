@@ -94,10 +94,29 @@ public class Main {
 		importres.addActionListener(new ImportResolutions(filePane, models, views));
 		camenu.add(importres);
 		camenu.add(new JMenuItem("Export ..."));
-		JMenuItem genca = new JMenuItem("Generate Covering Array ...");
-		genca.addActionListener(new GenerateCoveringArray(filePane, models, views));
+		
+		camenu.add(new JSeparator());
+		JMenuItem valres = new JMenuItem("Validate Resolutions");
+		valres.addActionListener(new ValidateResolutions(filePane, models, views));
+		camenu.add(valres);
+		JMenu cc1 = new JMenu("Calculate Coverage");
+		cc1.add(new JMenuItem("1-wise"));
+		cc1.add(new JMenuItem("2-wise"));
+		cc1.add(new JMenuItem("3-wise"));
+		camenu.add(cc1);
+		camenu.add(new JSeparator());
+		
+		JMenu genca = new JMenu("Generate Covering Array");
+		JMenuItem genca1 = new JMenuItem("1-wise");
+		genca1.addActionListener(new GenerateCoveringArray(filePane, models, views, 1));
+		genca.add(genca1);
+		JMenuItem genca2 = new JMenuItem("2-wise");
+		genca2.addActionListener(new GenerateCoveringArray(filePane, models, views, 2));
+		genca.add(genca2);
+		JMenuItem genca3 = new JMenuItem("3-wise");
+		genca3.addActionListener(new GenerateCoveringArray(filePane, models, views, 3));
+		genca.add(genca3);
 		camenu.add(genca);
-		camenu.add(new JMenuItem("Calculate Coverage ..."));
 		menuBar.add(camenu);
 
 		// Done
