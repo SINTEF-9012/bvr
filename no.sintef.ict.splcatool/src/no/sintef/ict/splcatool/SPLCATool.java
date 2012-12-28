@@ -42,8 +42,8 @@ public class SPLCATool {
 	}
 	
 	public void mainObj(String[] args){
-		System.out.println("SPL Covering Array Tool v0.4 (MODELS 2012)");
-		System.out.println("http://heim.ifi.uio.no/martifag/models2012/");
+		System.out.println("SPL Covering Array Tool v0.41 (CVL 2 Version)");
+		System.out.println("http://www.variabilitymodeling.org/");
 		
 		// Defaults
 		Map<String, String> argsMap = new HashMap<String, String>();

@@ -51,6 +51,15 @@ public class AddChoice implements Command {
         listener = new CommandMouseListener();
         cp.addMouseListener(new ChoiceDropDownListener(cp, vmMap, nodes, bindings, view));
         cp.addMouseListener(listener);
+        
+		/**/
+		//CommandMouseListener listener = new CommandMouseListener();
+        SelectInstanceCommand command = new SelectInstanceCommand();
+        command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
+        listener.setLeftClickCommand(command);
+        //c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
+        //c.addMouseListener(listener);
+        /**/
 		
         cp.setTitle(c.getName());
         rootPanel.getModelPanel().addNode(cp);

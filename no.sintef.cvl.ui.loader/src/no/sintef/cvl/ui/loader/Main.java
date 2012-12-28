@@ -31,7 +31,7 @@ public class Main {
 		models = new ArrayList<CVLModel>();
 
 		// Create window
-		jframe = new JFrame("CVL UI");
+		jframe = new JFrame("CVL 2 Editor by SINTEF");
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setPreferredSize(new Dimension(1000, 800));
 		jframe.setBackground(Color.WHITE);
@@ -55,11 +55,11 @@ public class Main {
 		JMenuItem save = new JMenuItem("Save");
 		filemenu.add(save);
 		save.addActionListener(new SaveModelAsEvent(filePane, models, views, true));
-		filemenu.add(new JMenuItem("Save all"));
+		//TODO: filemenu.add(new JMenuItem("Save all"));
 		JMenuItem saveas = new JMenuItem("Save as ...");
 		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false));
 		filemenu.add(saveas);
-		filemenu.add(new JMenuItem("Close"));
+		//TODO: filemenu.add(new JMenuItem("Close"));
 		
 		filemenu.add(new JSeparator());
 		
@@ -70,9 +70,9 @@ public class Main {
 		filemenu.add(saveasSVG);
 		saveasSVG.addActionListener(new ExportModelSVG(views, filePane));
 		
-		filemenu.add(new JSeparator());
+		//TODO: filemenu.add(new JSeparator());
 		
-		filemenu.add(new JMenuItem("Exit"));
+		//TODO: filemenu.add(new JMenuItem("Exit"));
 		menuBar.add(filemenu);
 
 		// VSpec
@@ -80,8 +80,8 @@ public class Main {
 		JMenuItem importvspec = new JMenuItem("Import ...");
 		importvspec.addActionListener(new ImportVSpecEvent(filePane, models, views));
 		vsmenu.add(importvspec);
-		vsmenu.add(new JMenuItem("Export ..."));
-		vsmenu.add(new JMenuItem("Count Solutions"));
+		//TODO: vsmenu.add(new JMenuItem("Export ..."));
+		//TODO: vsmenu.add(new JMenuItem("Count Solutions"));
 		menuBar.add(vsmenu);
 
 		// Resolutions
@@ -93,16 +93,22 @@ public class Main {
 		JMenuItem importres = new JMenuItem("Import ...");
 		importres.addActionListener(new ImportResolutions(filePane, models, views));
 		camenu.add(importres);
-		camenu.add(new JMenuItem("Export ..."));
+		//TODO: camenu.add(new JMenuItem("Export ..."));
 		
 		camenu.add(new JSeparator());
 		JMenuItem valres = new JMenuItem("Validate Resolutions");
 		valres.addActionListener(new ValidateResolutions(filePane, models, views));
 		camenu.add(valres);
 		JMenu cc1 = new JMenu("Calculate Coverage");
-		cc1.add(new JMenuItem("1-wise"));
-		cc1.add(new JMenuItem("2-wise"));
-		cc1.add(new JMenuItem("3-wise"));
+		JMenuItem calccov1 = new JMenuItem("1-wise");
+		calccov1.addActionListener(new CalculateCoverage(filePane, models, views, 1));
+		cc1.add(calccov1);
+		JMenuItem calccov2 = new JMenuItem("2-wise");
+		calccov2.addActionListener(new CalculateCoverage(filePane, models, views, 2));
+		cc1.add(calccov2);
+		JMenuItem calccov3 = new JMenuItem("3-wise");
+		calccov3.addActionListener(new CalculateCoverage(filePane, models, views, 3));
+		cc1.add(calccov3);
 		camenu.add(cc1);
 		camenu.add(new JSeparator());
 		

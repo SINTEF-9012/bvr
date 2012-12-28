@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" name="UMLWatch-contained.xmi" xsi:schemaLocation="http://org.variabilitymodeling.cvl cvl.ecore">
+  <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Watches">
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Watch Name" upperLimit="1" lowerLimit="1">
+      <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Celestra" placement="//@variabilitySpecification/@variabilitySpecification.1" replacement="//@variabilitySpecification/@variabilitySpecification.2"/>
+      <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Ace" placement="//@variabilitySpecification/@variabilitySpecification.1" replacement="//@variabilitySpecification/@variabilitySpecification.3"/>
+      <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Sporty" placement="//@variabilitySpecification/@variabilitySpecification.1" replacement="//@variabilitySpecification/@variabilitySpecification.4"/>
+      <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Celestron" placement="//@variabilitySpecification/@variabilitySpecification.1" replacement="//@variabilitySpecification/@variabilitySpecification.5"/>
+      <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Delicia" placement="//@variabilitySpecification/@variabilitySpecification.1" replacement="//@variabilitySpecification/@variabilitySpecification.6"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementValue" name="Watch Name" propertyName="name">
+      <targetObject href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="Celestra" value="Celestra"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="Ace" value="Ace"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="Sporty" value="Sporty"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="Celestron" value="Celestron"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="Delicia" value="Delicia"/>
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Initial Application" upperLimit="1" lowerLimit="1">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Time 1">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Time" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Time" placement="//@variabilitySpecification/@variabilitySpecification.8" replacement="//@variabilitySpecification/@variabilitySpecification.17"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="initial fix source Time" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Time to" placement="//@variabilitySpecification/@variabilitySpecification.10" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="World Time 1">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="World Time" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="World Time" placement="//@variabilitySpecification/@variabilitySpecification.8" replacement="//@variabilitySpecification/@variabilitySpecification.18"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="initial fix source World Time" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="World Time to" placement="//@variabilitySpecification/@variabilitySpecification.10" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Timer 1">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Timer" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Timer" placement="//@variabilitySpecification/@variabilitySpecification.8" replacement="//@variabilitySpecification/@variabilitySpecification.19"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="initial fix source Timer" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Timer to" placement="//@variabilitySpecification/@variabilitySpecification.10" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Stop Watch 1">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Stop Watch" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Stop Watch" placement="//@variabilitySpecification/@variabilitySpecification.8" replacement="//@variabilitySpecification/@variabilitySpecification.20"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="initial fix source Stop Watch" placement="//@variabilitySpecification/@variabilitySpecification.11" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="StopWatch to" placement="//@variabilitySpecification/@variabilitySpecification.10" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Alarm Clock 1">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Alarm Clock" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="Alarm Clock" placement="//@variabilitySpecification/@variabilitySpecification.8" replacement="//@variabilitySpecification/@variabilitySpecification.21"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="initial fix source Alarm clock" placement="//@variabilitySpecification/@variabilitySpecification.9" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="Alarm clock to" placement="//@variabilitySpecification/@variabilitySpecification.10" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+      </variabilitySpecification>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementValue" name="Initial Transition Name" propertyName="name">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t6tuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Initial Application to (initial)" propertyName="target">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t6tuCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tqNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Initial application to" propertyName="target">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tqNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Initial application from" propertyName="source">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t69uCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tqNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementObject" name="Time Application">
+      <targetObject href="UMLWatch-contained.xmi#_2x5tqNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementObject" name="World Time Application">
+      <targetObject href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementObject" name="Timer Application">
+      <targetObject href="UMLWatch-contained.xmi#_2x5txNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementObject" name="StopWatch Application">
+      <targetObject href="UMLWatch-contained.xmi#_2x5tgtuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementObject" name="AlarmClock Application">
+      <targetObject href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="To_Time_Transition" value="To_Time_Transition"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="To_WorldTime_Transition" value="To_WorldTime_Transition"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="To_Timer_Transition" value="To_Timer_Transition"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="To_StopWatch_Transition" value="To_StopWatch_Transition"/>
+    <variabilitySpecification xsi:type="cvl:ReplacementValue" name="To_AlarmClock_Transition" value="To_AlarmClock_Transition"/>
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Second application" upperLimit="1" lowerLimit="1">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Time 2">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.25" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.24" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.23" replacement="//@variabilitySpecification/@variabilitySpecification.17"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Timer 2">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.25" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.24" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.23" replacement="//@variabilitySpecification/@variabilitySpecification.19"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="StopWatch 2">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.25" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.24" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.23" replacement="//@variabilitySpecification/@variabilitySpecification.20"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="AlarmClock 2">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.25" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.24" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.23" replacement="//@variabilitySpecification/@variabilitySpecification.21"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="WorldTime 2">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.25" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.24" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.23" replacement="//@variabilitySpecification/@variabilitySpecification.18"/>
+      </variabilitySpecification>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementValue" name="Second Transition Name" propertyName="name">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t69uCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Second application to" propertyName="target">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t69uCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Second application from" propertyName="source">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7NuCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Third application" upperLimit="1" lowerLimit="1">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Time 3">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.29" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.28" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.27" replacement="//@variabilitySpecification/@variabilitySpecification.17"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Timer 3">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.29" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.28" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.27" replacement="//@variabilitySpecification/@variabilitySpecification.19"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="StopWatch 3">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.29" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.28" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.27" replacement="//@variabilitySpecification/@variabilitySpecification.20"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="AlarmClock 3">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.29" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.28" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.27" replacement="//@variabilitySpecification/@variabilitySpecification.21"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="WorldTime 3">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.29" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.28" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.27" replacement="//@variabilitySpecification/@variabilitySpecification.18"/>
+      </variabilitySpecification>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementValue" name="Third Transition Name" propertyName="name">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7NuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Third application to" propertyName="target">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7NuCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tgtuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Third application from" propertyName="source">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7duCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tgtuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Fourth application" upperLimit="1" lowerLimit="1">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Time 4">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.33" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.32" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.31" replacement="//@variabilitySpecification/@variabilitySpecification.17"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Timer 4">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.33" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.32" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.31" replacement="//@variabilitySpecification/@variabilitySpecification.19"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="StopWatch 4">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.33" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.32" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.31" replacement="//@variabilitySpecification/@variabilitySpecification.20"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="AlarmClock 4">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.33" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.32" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.31" replacement="//@variabilitySpecification/@variabilitySpecification.21"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="WorldTime 4">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.33" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.32" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.31" replacement="//@variabilitySpecification/@variabilitySpecification.18"/>
+      </variabilitySpecification>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementValue" name="Fourth Transition Name" propertyName="name">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7duCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Fourth application to" propertyName="target">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7duCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5txNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Fourth application from" propertyName="source">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5txNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Fifth application" upperLimit="1" lowerLimit="1">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Time 5">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.37" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.36" replacement="//@variabilitySpecification/@variabilitySpecification.12"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.35" replacement="//@variabilitySpecification/@variabilitySpecification.17"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="Timer 5">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.37" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.36" replacement="//@variabilitySpecification/@variabilitySpecification.14"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.35" replacement="//@variabilitySpecification/@variabilitySpecification.19"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="StopWatch 5">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.37" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.36" replacement="//@variabilitySpecification/@variabilitySpecification.15"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.35" replacement="//@variabilitySpecification/@variabilitySpecification.20"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="AlarmClock 5">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.37" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.36" replacement="//@variabilitySpecification/@variabilitySpecification.16"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.35" replacement="//@variabilitySpecification/@variabilitySpecification.21"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="WorldTime 5">
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="from" placement="//@variabilitySpecification/@variabilitySpecification.37" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ReferenceSubstitution" name="to" placement="//@variabilitySpecification/@variabilitySpecification.36" replacement="//@variabilitySpecification/@variabilitySpecification.13"/>
+        <variabilitySpecification xsi:type="cvl:ValueSubstitution" name="fix name" placement="//@variabilitySpecification/@variabilitySpecification.35" replacement="//@variabilitySpecification/@variabilitySpecification.18"/>
+      </variabilitySpecification>
+      <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="Remove 5" placement="//@variabilitySpecification/@variabilitySpecification.38" replacement="//@variabilitySpecification/@variabilitySpecification.40"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementValue" name="Fifth Transition Name" propertyName="name">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Fifth application to" propertyName="target">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementObject" name="Fifth application from" propertyName="source">
+      <targetObject href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+      <referredObject href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementFragment" name="Fifth transition">
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Region[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Classifier[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":State[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5txNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":State[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].transition" propertyName="transition">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:State].incoming" propertyName="incoming">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tqNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:State].outgoing" propertyName="outgoing">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:State].incoming" propertyName="incoming">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:State].outgoing" propertyName="outgoing">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5txNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":State[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tqNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:Iterator" name="Remove Application" upperLimit="4">
+      <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="Time" replacement="//@variabilitySpecification/@variabilitySpecification.40"/>
+      <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="Timer" replacement="//@variabilitySpecification/@variabilitySpecification.40"/>
+      <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="StopWatch" replacement="//@variabilitySpecification/@variabilitySpecification.40"/>
+      <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="AlarmClock (remove)" placement="//@variabilitySpecification/@variabilitySpecification.42" replacement="//@variabilitySpecification/@variabilitySpecification.40"/>
+      <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="World time (remove)" placement="//@variabilitySpecification/@variabilitySpecification.41" replacement="//@variabilitySpecification/@variabilitySpecification.40"/>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:ReplacementFragment" name="Empty"/>
+    <variabilitySpecification xsi:type="cvl:PlacementFragment" name="Worldtime fragment">
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Region[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Classifier[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Transition[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Transition[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:UMLAndProfileDataContainer].watchApplication" propertyName="watchApplication">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoNNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2yMoMNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:UMLAndProfileDataContainer].watchDisplay" propertyName="watchDisplay">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoPtuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoQduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2yMoMNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uQduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uQduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uQduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedBehavior" propertyName="ownedBehavior">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uQduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].subvertex" propertyName="subvertex">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Transition].target" propertyName="target">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7tuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Transition].source" propertyName="source">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tuNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t79uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:StateMachine].submachineState" propertyName="submachineState">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tvNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uGNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":StateMachine[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uGNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":SignalEvent[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uVtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":SignalEvent[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uVduCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+    </variabilitySpecification>
+    <variabilitySpecification xsi:type="cvl:PlacementFragment" name="Alarmclock fragment">
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Class[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:UMLAndProfileDataContainer].watchApplication" propertyName="watchApplication">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoMduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2yMoMNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:UMLAndProfileDataContainer].watchDisplay" propertyName="watchDisplay">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoQNuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoRNuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2yMoRduCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2yMoMNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Model].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uUduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uV9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uWduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uaNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Model].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uUduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uV9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uWduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uaNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Model].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uUduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uV9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uWduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uaNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Model].ownedType" propertyName="ownedType">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uUduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uWduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uaNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Model].packagedElement" propertyName="packagedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uUduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uV9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uWduCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uaNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uBNuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uBNuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uBNuCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].feature" propertyName="feature">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].attribute" propertyName="attribute">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedAttribute" propertyName="ownedAttribute">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].part" propertyName="part">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].role" propertyName="role">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedBehavior" propertyName="ownedBehavior">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uBNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Class].ownedReception" propertyName="ownedReception">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5uS9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t8NuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t8NuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t8NuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].transition" propertyName="transition">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t8NuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:State].outgoing" propertyName="outgoing">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5t8NuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedElement" propertyName="ownedElement">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].member" propertyName="member">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].ownedMember" propertyName="ownedMember">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Region].subvertex" propertyName="subvertex">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Transition].target" propertyName="target">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t69uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:Transition].source" propertyName="source">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tXNuCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7NuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:ToPlacement" name="[:StateMachine].submachineState" propertyName="submachineState">
+        <insideBoundaryElement href="UMLWatch-contained.xmi#_2x5tX9uCEd-FJro_gfgaPw"/>
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uGNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Region[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tW9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Transition[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t7NuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Transition[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5t69uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":StateMachine[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uGNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Classifier[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tVNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":SignalEvent[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uVNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":SignalEvent[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uU9uCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":SignalEvent[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uVtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":SignalEvent[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uVduCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Region[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":State[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tWtuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Model[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5tQNuCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+      <boundaryElement xsi:type="cvl:FromPlacement" name=":Element[1]">
+        <outsideBoundaryElement href="UMLWatch-contained.xmi#_2x5uZduCEd-FJro_gfgaPw"/>
+      </boundaryElement>
+    </variabilitySpecification>
+  </variabilitySpecification>
+  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="Sporty" element="//@variabilitySpecification">
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.0">
+      <choice element="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.2"/>
+    </resolution>
+    <resolution iterator="//@variabilitySpecification/@variabilitySpecification.7">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.7/@variabilitySpecification.0"/>
+    </resolution>
+    <resolution name="Second application" iterator="//@variabilitySpecification/@variabilitySpecification.22">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.22/@variabilitySpecification.2"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.26">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.26/@variabilitySpecification.1"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.30">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.30/@variabilitySpecification.0"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.34">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.34/@variabilitySpecification.5"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.39">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.39/@variabilitySpecification.4"/>
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.39/@variabilitySpecification.3"/>
+    </resolution>
+  </resolutionSpecification>
+  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="Ace" element="//@variabilitySpecification">
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.0">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1"/>
+    </resolution>
+  </resolutionSpecification>
+  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="Delicia" element="//@variabilitySpecification">
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.0">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.4"/>
+    </resolution>
+    <resolution iterator="//@variabilitySpecification/@variabilitySpecification.7">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.7/@variabilitySpecification.0"/>
+    </resolution>
+    <resolution name="Second application" iterator="//@variabilitySpecification/@variabilitySpecification.22">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.22/@variabilitySpecification.3"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.26">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.30/@variabilitySpecification.2"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.30">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.30/@variabilitySpecification.1"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.34">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.34/@variabilitySpecification.0"/>
+    </resolution>
+    <resolution name="" iterator="//@variabilitySpecification/@variabilitySpecification.39">
+      <choice name="" element="//@variabilitySpecification/@variabilitySpecification.39/@variabilitySpecification.4"/>
+    </resolution>
+  </resolutionSpecification>
+  <base href="UMLWatch-contained.xmi#_2yMoMNuCEd-FJro_gfgaPw"/>
+</cvl:CVLModel>

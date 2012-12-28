@@ -28,6 +28,7 @@ import javax.swing.JSplitPane;
 import no.sintef.cvl.ui.commands.SelectInstanceCommand;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.SelectElement;
+import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -38,6 +39,7 @@ import org.jdesktop.swingx.painter.MattePainter;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
+import cvl.Choice;
 import cvl.VClassifier;
 import cvl.VSpec;
 
@@ -109,7 +111,13 @@ public class CVLEditorPanel extends JPanel {
         	VClassifierPanel elem = (VClassifierPanel)p;
         	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) vmMap.get(elem), view);
             editableModelPanel.displayProperties(prop);
+        }else if (p instanceof ChoicePanel) {
+        	ChoicePanel elem = (ChoicePanel)p;
+        	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, (Choice) vmMap.get(elem), view);
+            editableModelPanel.displayProperties(prop);
+        	//System.out.println("Here!");
         }
+        
         this.invalidate();
 
     }

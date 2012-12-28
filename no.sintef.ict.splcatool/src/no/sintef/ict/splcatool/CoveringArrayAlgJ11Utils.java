@@ -321,12 +321,6 @@ public class CoveringArrayAlgJ11Utils extends CoveringArray {
 			result = solutions;
 			
 			System.out.println("1-wise done, solutions: "+solutions.size()+", invalid: " + invalid1w.size());
-			
-			// Write to cache
-			try {
-				writeToFile(fmdir.getAbsoluteFile() + "/ca1.csv");
-			} catch (Exception e) {
-			}
 		}
 
 	private void generate2(int coverLimit, Integer sizelimit) throws TimeoutException, org.sat4j.specs.TimeoutException{
@@ -561,15 +555,6 @@ public class CoveringArrayAlgJ11Utils extends CoveringArray {
 		result = solutions;
 		
 		System.out.println("2-wise done, solutions: "+solutions.size()+", invalid: " + invalid2w.size());
-		
-		// Write to cache
-		try {
-			writeToFile(fmdir.getAbsoluteFile() + "/ca2.csv");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void generate3(int coverLimit, Integer sizelimit) throws TimeoutException, org.sat4j.specs.TimeoutException{
@@ -740,15 +725,6 @@ public class CoveringArrayAlgJ11Utils extends CoveringArray {
 	
 			result = solutions;
 			System.out.println("Invalid: " + invalid3w.size());
-			
-			// Write to cache
-			try {
-				writeToFile(fmdir.getAbsoluteFile() + "/ca3.csv");
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 
 	private List<Pair2> getInvalid(int coveredInitially, List<Pair2> uncovered) {

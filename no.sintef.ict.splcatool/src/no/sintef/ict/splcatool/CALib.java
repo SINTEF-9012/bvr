@@ -208,6 +208,41 @@ public class CALib {
 		collection.removeAll(zeros);
 	}
 	
+	public static double calc_coverage(CNF cnf, int t, CoveringArray ca){
+		if(t==1){
+			return calc_coverage_1(cnf, ca);
+		}else if(t==2){
+			return calc_coverage_2(cnf, ca);
+		}else if(t==3){
+			return calc_coverage_3(cnf, ca);
+		}else{
+			System.out.println("Unsupported value of t: " + t);
+			
+			return 0;
+		}
+	}
+	
+	private static double calc_coverage_1(CNF cnf, CoveringArray ca) {
+		List<Pair> uncovered = cnf.getU1();
+		List<List<Integer>> sols = ca.getSolutionsAsList();
+		Set<Pair> coveredPairs = ca.getCovInv1(sols, uncovered);
+		return (double)coveredPairs.size()*100/uncovered.size();
+	}
+	
+	private static double calc_coverage_2(CNF cnf, CoveringArray ca) {
+		List<Pair2> uncovered = cnf.getU2();
+		List<List<Integer>> sols = ca.getSolutionsAsList();
+		Set<Pair2> coveredPairs = ca.getCovInv(sols, uncovered);
+		return (double)coveredPairs.size()*100/uncovered.size();
+	}
+
+	private static double calc_coverage_3(CNF cnf, CoveringArray ca) {
+		List<Pair3> uncovered = cnf.getU3();
+		List<List<Integer>> sols = ca.getSolutionsAsList();
+		Set<Pair3> coveredPairs = ca.getCovInv3(sols, uncovered);
+		return (double)coveredPairs.size()*100/uncovered.size();
+	}
+
 	public static double calc_coverage_weighted(CNF cnf, int t, CoveringArray ca,
 			String fmFileName, int threads, String weightFileName, boolean silent)
 			throws UnsupportedModelException, IOException,

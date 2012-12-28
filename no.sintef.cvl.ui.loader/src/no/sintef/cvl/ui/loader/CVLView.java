@@ -314,6 +314,9 @@ public class CVLView {
 	public void notifyResolutionViewUpdate() {
 		// Save
 		boolean isEmpty = resPane.getTabCount() == 0;
+		int resmodels = getCU().getOwnedVSpecResolution().size();
+		boolean modelIsEmpty = getCU().getOwnedVSpecResolution().size() == 0;
+		
 		int selected = 0;
 		Point pos = null;
 		if(!isEmpty){
@@ -341,7 +344,7 @@ public class CVLView {
 	    autoLayoutResolutions();
 	    
 	    // Restore positions
-	    if(!isEmpty){
+	    if(!isEmpty && !modelIsEmpty && selected <= resmodels){
 		    resPane.setSelectedIndex(selected);
 		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 	    }
