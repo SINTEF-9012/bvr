@@ -57,6 +57,7 @@ public class FragmentSubstitutionTestToDelete {
 	@Test
 	public void testSingleSubstitution() throws Exception {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
+		System.out.println(fragmentSubHolder.getPlacement().getElements());
 		fso.execute(true);
 		fso.execute(false);
 		System.out.println(fragmentSubHolder.getPlacement().getElements());
