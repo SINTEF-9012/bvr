@@ -59,6 +59,7 @@ public class OldCvlToNewCvl {
 	private HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement> placBoundMap = new HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement>();
 	private HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement> replBoundMap = new HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement>();
 	private ResourceSet resSet;
+	private EList<ObjectHandle> objectHandleList = new BasicEList<ObjectHandle>();
 	
 	public OldCvlToNewCvl(File oldcvl, File newcvl){
 		this.oldcvlfile = oldcvl;
@@ -130,14 +131,16 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> ibeos = tpbe.getInsideBoundaryElement();
 						for(EObject ibeo : ibeos){
-							ObjectHandle obh = factory.createObjectHandle();
-							obh.setMOFRef(ibeo);
+							//ObjectHandle obh = factory.createObjectHandle();
+							//obh.setMOFRef(ibeo);
+							ObjectHandle obh = this.getObjectHandle(ibeo);
 							tpbeNew.getInsideBoundaryElement().add(obh);
 						}
 						
 						EObject obeo = tpbe.getOutsideBoundaryElement();
-						ObjectHandle obh = factory.createObjectHandle();
-						obh.setMOFRef(obeo);
+						//ObjectHandle obh = factory.createObjectHandle();
+						//obh.setMOFRef(obeo);
+						ObjectHandle obh = this.getObjectHandle(obeo);
 						tpbeNew.setOutsideBoundaryElement(obh);
 					}
 					
@@ -150,14 +153,16 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> obeos = fpbe.getOutsideBoundaryElement();
 						for(EObject obeo : obeos){
-							ObjectHandle obh = factory.createObjectHandle();
-							obh.setMOFRef(obeo);
+							//ObjectHandle obh = factory.createObjectHandle();
+							//obh.setMOFRef(obeo);
+							ObjectHandle obh = this.getObjectHandle(obeo);
 							fpbeNew.getOutsideBoundaryElement().add(obh);
 						}
 						
 						EObject insideBoundaryElementOld = mapFromPlacementInside.get(fpbe);
-						ObjectHandle obh = factory.createObjectHandle();
-						obh.setMOFRef(insideBoundaryElementOld);
+						//ObjectHandle obh = factory.createObjectHandle();
+						//obh.setMOFRef(insideBoundaryElementOld);
+						ObjectHandle obh = this.getObjectHandle(insideBoundaryElementOld);
 						fpbeNew.setInsideBoundaryElement(obh);
 					}
 				}
@@ -185,14 +190,16 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> obeos = frbe.getOutsideBoundaryElement();
 						for(EObject obeo : obeos){
-							ObjectHandle obh = factory.createObjectHandle();
-							obh.setMOFRef(obeo);
+							//ObjectHandle obh = factory.createObjectHandle();
+							//obh.setMOFRef(obeo);
+							ObjectHandle obh = this.getObjectHandle(obeo);
 							frbeNew.getOutsideBoundaryElement().add(obh);
 						}
 						
 						EObject ibeo = frbe.getInsideBoundaryElement();
-						ObjectHandle obh = factory.createObjectHandle();
-						obh.setMOFRef(ibeo);
+						//ObjectHandle obh = factory.createObjectHandle();
+						//obh.setMOFRef(ibeo);
+						ObjectHandle obh = this.getObjectHandle(ibeo);
 						frbeNew.setInsideBoundaryElement(obh);
 					}
 					if(element instanceof org.variabilitymodeling.cvl.ToReplacement){
@@ -204,14 +211,16 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> ibeos = trbe.getInsideBoundaryElement();
 						for(EObject ibeo : ibeos){
-							ObjectHandle obh = factory.createObjectHandle();
-							obh.setMOFRef(ibeo);
+							//ObjectHandle obh = factory.createObjectHandle();
+							//obh.setMOFRef(ibeo);
+							ObjectHandle obh = this.getObjectHandle(ibeo);
 							trbeNew.getInsideBoundaryElement().add(obh);
 						}
 						
 						EObject outsideBoundaryElement = mapToReplacementOutside.get(trbe);
-						ObjectHandle obh = factory.createObjectHandle();
-						obh.setMOFRef(outsideBoundaryElement);
+						//ObjectHandle obh = factory.createObjectHandle();
+						//obh.setMOFRef(outsideBoundaryElement);
+						ObjectHandle obh = this.getObjectHandle(outsideBoundaryElement);
 						trbeNew.setOutsideBoundaryElement(obh);
 					}
 				}
@@ -257,6 +266,19 @@ public class OldCvlToNewCvl {
 				this.cu.getOwnedVariationPoint().add(fsn);
 			}
 		}
+	}
+	
+	private ObjectHandle getObjectHandle(EObject object){
+		for(ObjectHandle oh : this.objectHandleList){
+			EObject mofRef = oh.getMOFRef();
+			if(mofRef.equals(object)){
+				return oh;
+			}
+		}
+		ObjectHandle obh = factory.createObjectHandle();
+		obh.setMOFRef(object);
+		this.objectHandleList.add(obh);
+		return obh;
 	}
 	
 	private EList<ObjectHandle> getObjectHandlesPlacemenet(PlacementFragment pf){
