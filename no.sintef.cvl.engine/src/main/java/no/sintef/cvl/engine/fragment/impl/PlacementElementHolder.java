@@ -3,6 +3,7 @@ package no.sintef.cvl.engine.fragment.impl;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -47,20 +48,20 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		for(PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof ToPlacement){
 				tbe.add((ToPlacement)pbe);
-				frBElementsInternal.addAll(((ToPlacement)pbe).getInsideBoundaryElement());
-				outerElements.add(((ToPlacement)pbe).getOutsideBoundaryElement());
-				innerElements.addAll(((ToPlacement)pbe).getInsideBoundaryElement());
+				frBElementsInternal.addAll(Utility.resolveProxies(((ToPlacement)pbe).getInsideBoundaryElement()));
+				outerElements.add(Utility.resolveProxies(((ToPlacement)pbe).getOutsideBoundaryElement()));
+				innerElements.addAll(Utility.resolveProxies(((ToPlacement)pbe).getInsideBoundaryElement()));
 			}
 			if(pbe instanceof FromPlacement){
 				fbe.add((FromPlacement) pbe);
-				frBElementsExternal.add(((FromPlacement)pbe).getInsideBoundaryElement());
-				outerElements.addAll(((FromPlacement)pbe).getOutsideBoundaryElement());
-				innerElements.add(((FromPlacement)pbe).getInsideBoundaryElement());
+				frBElementsExternal.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
+				outerElements.addAll(Utility.resolveProxies(((FromPlacement)pbe).getOutsideBoundaryElement()));
+				innerElements.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
 				
 				//if we do not replace a fragment we need to keep track of insideBoundaryElements 
 				HashSet<EObject> insideBoundaryFromPlacemenent = fromPlacementInsBoundaryMap.get((FromPlacement) pbe);
 				insideBoundaryFromPlacemenent = (insideBoundaryFromPlacemenent == null) ? new HashSet<EObject>() : insideBoundaryFromPlacemenent;
-				insideBoundaryFromPlacemenent.add(((FromPlacement)pbe).getInsideBoundaryElement());
+				insideBoundaryFromPlacemenent.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
 				fromPlacementInsBoundaryMap.put((FromPlacement) pbe, insideBoundaryFromPlacemenent);
 			}
 		}

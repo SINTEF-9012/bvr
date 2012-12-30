@@ -31,7 +31,7 @@ public class FragmentSubstitutionTestToDelete {
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/node6/node.new.cvl");
+		file = new File("src/test/resources/node9-7/node.new.cvl");
 		nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
@@ -57,10 +57,10 @@ public class FragmentSubstitutionTestToDelete {
 	@Test
 	public void testSingleSubstitution() throws Exception {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
-		System.out.println(fragmentSubHolder.getPlacement().getElements());
-		fso.execute(true);
 		fso.execute(false);
-		System.out.println(fragmentSubHolder.getPlacement().getElements());
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
+		fso.execute(true);
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}

@@ -2,6 +2,7 @@ package no.sintef.cvl.engine.fragment.impl;
 
 import java.util.HashSet;
 
+import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -40,15 +41,15 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		for(ReplacementBoundaryElement rbe : rbes){
 			if(rbe instanceof ToReplacement){
 				tbe.add((ToReplacement)rbe);
-				frBElementsInternal.addAll(((ToReplacement)rbe).getInsideBoundaryElement());
-				outerElements.add(((ToReplacement)rbe).getOutsideBoundaryElement());
-				innerElements.addAll(((ToReplacement)rbe).getInsideBoundaryElement());
+				frBElementsInternal.addAll(Utility.resolveProxies(((ToReplacement)rbe).getInsideBoundaryElement()));
+				outerElements.add(Utility.resolveProxies(((ToReplacement)rbe).getOutsideBoundaryElement()));
+				innerElements.addAll(Utility.resolveProxies(((ToReplacement)rbe).getInsideBoundaryElement()));
 			}
 			if(rbe instanceof FromReplacement){
 				fbe.add((FromReplacement) rbe);
-				frBElementsExternal.add(((FromReplacement)rbe).getInsideBoundaryElement());
-				outerElements.addAll(((FromReplacement)rbe).getOutsideBoundaryElement());
-				innerElements.add(((FromReplacement)rbe).getInsideBoundaryElement());
+				frBElementsExternal.add(Utility.resolveProxies(((FromReplacement)rbe).getInsideBoundaryElement()));
+				outerElements.addAll(Utility.resolveProxies(((FromReplacement)rbe).getOutsideBoundaryElement()));
+				innerElements.add(Utility.resolveProxies(((FromReplacement)rbe).getInsideBoundaryElement()));
 			}
 		}
 		this.calculatePlElementsInternal();
