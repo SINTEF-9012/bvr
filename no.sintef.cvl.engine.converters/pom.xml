@@ -37,7 +37,7 @@
     </dependency>
   	<dependency>
 		<groupId>no.sintef</groupId>
-		<artifactId>no.sintef.cvl.modelv2</artifactId>
+		<artifactId>no.sintef.cvl.modelv3</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>

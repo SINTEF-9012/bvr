@@ -13,6 +13,7 @@ import no.sintef.cvl.engine.converters.common.CVLModelOld;
 import no.sintef.cvl.engine.converters.common.PlacementElementHolder;
 import no.sintef.cvl.engine.converters.common.ReplacementElementHolder;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -129,25 +130,15 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> ibeos = tpbe.getInsideBoundaryElement();
 						for(EObject ibeo : ibeos){
-							/*ObjectHandle obh = factory.createObjectHandle();
-							//obh.setMOFRef(this.getProxyURI(ibeo));
-							obh.setHref(this.getProxyURI(ibeo));
-							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-							ovp.getSourceObject().add(obh);
-							this.cu.getOwnedVariationPoint().add(ovp);
-							tpbeNew.getInsideBoundaryElement().add(obh);*/
-							tpbeNew.getInsideBoundaryElement().add(ibeo);
+							ObjectHandle obh = factory.createObjectHandle();
+							obh.setMOFRef(ibeo);
+							tpbeNew.getInsideBoundaryElement().add(obh);
 						}
 						
 						EObject obeo = tpbe.getOutsideBoundaryElement();
-						/*ObjectHandle obh = factory.createObjectHandle();
-						//obh.setMOFRef(this.getProxyURI(obeo));
-						obh.setHref(this.getProxyURI(obeo));
-						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-						ovp.getSourceObject().add(obh);
-						this.cu.getOwnedVariationPoint().add(ovp);
-						tpbeNew.setOutsideBoundaryElement(obh);*/
-						tpbeNew.setOutsideBoundaryElement(obeo);
+						ObjectHandle obh = factory.createObjectHandle();
+						obh.setMOFRef(obeo);
+						tpbeNew.setOutsideBoundaryElement(obh);
 					}
 					
 					if(element instanceof org.variabilitymodeling.cvl.FromPlacement){
@@ -159,25 +150,15 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> obeos = fpbe.getOutsideBoundaryElement();
 						for(EObject obeo : obeos){
-							/*ObjectHandle obh = factory.createObjectHandle();
-							//obh.setMOFRef(this.getProxyURI(obeo));
-							obh.setHref(this.getProxyURI(obeo));
-							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-							ovp.getSourceObject().add(obh);
-							this.cu.getOwnedVariationPoint().add(ovp);
-							fpbeNew.getOutsideBoundaryElement().add(obh);*/
-							fpbeNew.getOutsideBoundaryElement().add(obeo);
+							ObjectHandle obh = factory.createObjectHandle();
+							obh.setMOFRef(obeo);
+							fpbeNew.getOutsideBoundaryElement().add(obh);
 						}
 						
 						EObject insideBoundaryElementOld = mapFromPlacementInside.get(fpbe);
-						/*ObjectHandle obh = factory.createObjectHandle();
-						//obh.setMOFRef(this.getProxyURI(insideBoundaryElementOld));
-						obh.setHref(this.getProxyURI(insideBoundaryElementOld));
-						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-						ovp.getSourceObject().add(obh);
-						this.cu.getOwnedVariationPoint().add(ovp);
-						fpbeNew.setInsideBoundaryElement(obh);*/
-						fpbeNew.setInsideBoundaryElement(insideBoundaryElementOld);
+						ObjectHandle obh = factory.createObjectHandle();
+						obh.setMOFRef(insideBoundaryElementOld);
+						fpbeNew.setInsideBoundaryElement(obh);
 					}
 				}
 				this.cu.getOwnedVariationPoint().add(pf);
@@ -204,25 +185,15 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> obeos = frbe.getOutsideBoundaryElement();
 						for(EObject obeo : obeos){
-							/*ObjectHandle obh = factory.createObjectHandle();
-							//obh.setMOFRef(this.getProxyURI(obeo));
-							obh.setHref(this.getProxyURI(obeo));
-							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-							ovp.getSourceObject().add(obh);
-							this.cu.getOwnedVariationPoint().add(ovp);
-							frbeNew.getOutsideBoundaryElement().add(obh);*/
-							frbeNew.getOutsideBoundaryElement().add(obeo);
+							ObjectHandle obh = factory.createObjectHandle();
+							obh.setMOFRef(obeo);
+							frbeNew.getOutsideBoundaryElement().add(obh);
 						}
 						
 						EObject ibeo = frbe.getInsideBoundaryElement();
-						/*ObjectHandle obh = factory.createObjectHandle();
-						//obh.setMOFRef(this.getProxyURI(ibeo));
-						obh.setHref(this.getProxyURI(ibeo));
-						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-						ovp.getSourceObject().add(obh);
-						this.cu.getOwnedVariationPoint().add(ovp);
-						frbeNew.setInsideBoundaryElement(obh);*/
-						frbeNew.setInsideBoundaryElement(ibeo);
+						ObjectHandle obh = factory.createObjectHandle();
+						obh.setMOFRef(ibeo);
+						frbeNew.setInsideBoundaryElement(obh);
 					}
 					if(element instanceof org.variabilitymodeling.cvl.ToReplacement){
 						org.variabilitymodeling.cvl.ToReplacement trbe = (org.variabilitymodeling.cvl.ToReplacement) element;
@@ -233,25 +204,15 @@ public class OldCvlToNewCvl {
 						
 						EList<EObject> ibeos = trbe.getInsideBoundaryElement();
 						for(EObject ibeo : ibeos){
-							/*ObjectHandle obh = factory.createObjectHandle();
-							//obh.setMOFRef(this.getProxyURI(ibeo));
-							obh.setHref(this.getProxyURI(ibeo));
-							OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-							ovp.getSourceObject().add(obh);
-							this.cu.getOwnedVariationPoint().add(ovp);
-							trbeNew.getInsideBoundaryElement().add(obh);*/
-							trbeNew.getInsideBoundaryElement().add(ibeo);
+							ObjectHandle obh = factory.createObjectHandle();
+							obh.setMOFRef(ibeo);
+							trbeNew.getInsideBoundaryElement().add(obh);
 						}
 						
 						EObject outsideBoundaryElement = mapToReplacementOutside.get(trbe);
-						/*ObjectHandle obh = factory.createObjectHandle();
-						//obh.setMOFRef(this.getProxyURI(outsideBoundaryElement));
-						obh.setHref(this.getProxyURI(outsideBoundaryElement));
-						OpaqueVariationPoint ovp = factory.createOpaqueVariationPoint();
-						ovp.getSourceObject().add(obh);
-						this.cu.getOwnedVariationPoint().add(ovp);
-						trbeNew.setOutsideBoundaryElement(obh);*/
-						trbeNew.setOutsideBoundaryElement(outsideBoundaryElement);
+						ObjectHandle obh = factory.createObjectHandle();
+						obh.setMOFRef(outsideBoundaryElement);
+						trbeNew.setOutsideBoundaryElement(obh);
 					}
 				}
 				this.cu.getOwnedVariabletype().add(rft);
@@ -262,9 +223,12 @@ public class OldCvlToNewCvl {
 				fsn.setName(fso.getName());
 				PlacementFragment pf = this.getPlacement(fso.getPlacement());
 				ReplacementFragmentType rft = this.getReplacement(fso.getReplacement());
+				
 				fsn.setPlacement(pf);
 				fsn.setReplacement(rft);				
 				this.bindFragmentSubstitution(fsn, newnode);
+				fsn.getSourceObject().addAll(this.getObjectHandlesPlacemenet(pf));
+				fsn.getSourceObject().addAll(this.getObjectHandlesReplacment(rft));
 				
 				EList<BoundaryElementBinding> obs = fso.getBoundaryElementBinding();
 				for (BoundaryElementBinding ob: obs){
@@ -293,6 +257,42 @@ public class OldCvlToNewCvl {
 				this.cu.getOwnedVariationPoint().add(fsn);
 			}
 		}
+	}
+	
+	private EList<ObjectHandle> getObjectHandlesPlacemenet(PlacementFragment pf){
+		EList<ObjectHandle> ohl = new BasicEList<ObjectHandle>();
+		EList<cvl.PlacementBoundaryElement> pbes = pf.getPlacementBoundaryElement();
+		for(cvl.PlacementBoundaryElement pbe : pbes){
+			if(pbe instanceof cvl.ToPlacement){
+				ToPlacement tp = (cvl.ToPlacement) pbe;
+				ohl.addAll(tp.getInsideBoundaryElement());
+				ohl.add(tp.getOutsideBoundaryElement());
+			}
+			if(pbe instanceof cvl.FromPlacement){
+				FromPlacement fp = (cvl.FromPlacement) pbe;
+				ohl.add(fp.getInsideBoundaryElement());
+				ohl.addAll(fp.getOutsideBoundaryElement());
+			}
+		}
+		return ohl;
+	}
+	
+	private EList<ObjectHandle> getObjectHandlesReplacment(ReplacementFragmentType rft){
+		EList<ObjectHandle> ohl = new BasicEList<ObjectHandle>();
+		EList<cvl.ReplacementBoundaryElement> rbes = rft.getReplacementBoundaryElement();
+		for(cvl.ReplacementBoundaryElement rbe : rbes){
+			if(rbe instanceof cvl.ToReplacement){
+				ToReplacement tr = (cvl.ToReplacement) rbe;
+				ohl.addAll(tr.getInsideBoundaryElement());
+				ohl.add(tr.getOutsideBoundaryElement());
+			}
+			if(rbe instanceof cvl.FromReplacement){
+				FromReplacement fr = (cvl.FromReplacement) rbe;
+				ohl.add(fr.getInsideBoundaryElement());
+				ohl.addAll(fr.getOutsideBoundaryElement());
+			}
+		}
+		return ohl;
 	}
 	
 	private String getProxyURI(EObject object) throws Exception{
