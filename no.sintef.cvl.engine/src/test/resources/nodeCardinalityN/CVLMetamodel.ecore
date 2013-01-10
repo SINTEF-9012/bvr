@@ -255,6 +255,8 @@
         <details key="documentation" value="&lt;p>Specifies the replacement to be utilized.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" upperBound="-1"
+        eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChoiceVariationPoint" abstract="true"
       eSuperTypes="#//VariationPoint">
@@ -349,12 +351,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>&#xD;&#xA;    An object handle identifies an object of the base model. This Class abstracts over the cross-domain referencing&#xD;&#xA;    mechanism needed to refer from CVL elements to base model objects.&#xD;&#xA;&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="href" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>Representing a MOF Reference.&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MOFRef" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BaseModelHandle">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -576,8 +574,8 @@
         <details key="documentation" value="&lt;p>The owned VSpec derivations.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVariabletype" upperBound="-1"
-        eType="#//Variabletype" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVariabletype" ordered="false"
+        upperBound="-1" eType="#//Variabletype" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeVariationPoint" abstract="true"
       eSuperTypes="#//VariationPoint">
@@ -748,13 +746,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="insideBoundaryElement"
-        ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        ordered="false" upperBound="-1" eType="#//ObjectHandle">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Model elements that are referred to by outside model elements. Used to distinguish miltiplicity references."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outsideBoundaryElement"
-        ordered="false" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        ordered="false" eType="#//ObjectHandle">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Outside model elements that refer model elements inside the fragment."/>
       </eAnnotations>
@@ -765,19 +763,19 @@
       <details key="documentation" value="&lt;p>&#xD;&#xA;    ToReplacement is the kind of boundary element that defines the inwards boundary of the owning replacement fragment. The&#xD;&#xA;    insideBoundaryElement defines the starting points for the traversal to isolate the model elements that as part of a&#xD;&#xA;    fragment substitution will be copied into the placement fragment.&#xD;&#xA;&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="insideBoundaryElement"
-        ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        ordered="false" upperBound="-1" eType="#//ObjectHandle">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Model elements that are referred to by outside model elements."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outsideBoundaryElement"
+        ordered="false" eType="#//ObjectHandle"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toPlacement" ordered="false"
         eType="#//ToPlacement" eOpposite="#//ToPlacement/toReplacement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference to a ToPlacement contained by the replacement fragment."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outsideBoundaryElement"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FromBinding" eSuperTypes="#//BoundaryElementBinding">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -807,13 +805,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outsideBoundaryElement"
-        ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        ordered="false" upperBound="-1" eType="#//ObjectHandle">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Outside Model Element that are referred by the model elements inside the placement fragment."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="insideBoundaryElement"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        ordered="false" eType="#//ObjectHandle"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FromReplacement" eSuperTypes="#//ReplacementBoundaryElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -826,13 +824,13 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="insideBoundaryElement"
-        ordered="false" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        ordered="false" eType="#//ObjectHandle">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Inside model elements that refer outside model elements."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outsideBoundaryElement"
-        ordered="false" upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+        ordered="false" upperBound="-1" eType="#//ObjectHandle">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Outside model elements that are referred by model elements inside the fragment. Used to distinguish multiplicity references.&lt;/p>"/>
       </eAnnotations>
@@ -1230,7 +1228,7 @@
       <details key="documentation" value="&lt;p>A literal expression that represents floating-point numbers.&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="real" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The real value of this RealLiteralExpression.&lt;/p>"/>
       </eAnnotations>
