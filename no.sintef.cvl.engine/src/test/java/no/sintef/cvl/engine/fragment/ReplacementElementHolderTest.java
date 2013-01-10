@@ -29,11 +29,11 @@ public class ReplacementElementHolderTest {
 	private static HashMap<String, Object> map;
 	private static ConfigurableUnit cu;
 	private static FragmentSubstitution fragSub;
-	private static final String[] BEEXT = new String[] {"r17", "r16", "r7", "r5"};
-	private static final String[] BEINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5"};
+	private static final String[] BEEXT = new String[] {"r17", "r16", "r5"};
+	private static final String[] BEINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5", "r41"};
 	private static final String[] EINT = new String[] {};
-	private static final String[] INT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5"};
-	private static final String[] EXT = new String[] {"r19", "r18", "r1", "r2", "r20", "r3", "null"};
+	private static final String[] INT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5", "r41"};
+	private static final String[] EXT = new String[] {"r19", "r18", "r1", "r2", "r20", "r3", "null", "r0"};
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

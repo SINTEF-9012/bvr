@@ -33,7 +33,7 @@ public class PlacementElementHolderTest {
 	private static final String[] BEINT = new String[] {"10", "7", "5", "4", "17", "9", "15", "16", "8", "13", "14", "11", "12"};
 	private static final String[] EINT = new String[] {"6"};
 	private static final String[] INT = new String[] {"10", "7", "5", "4", "17", "15", "9", "8", "16", "13", "14", "11", "12"};
-	private static final String[] EXT = new String[] {"null", "3", "20", "2", "1", "0", "19", "18"};
+	private static final String[] EXT = new String[] {"null", "3", "20", "2", "1", "0", "19", "18", "21"};
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

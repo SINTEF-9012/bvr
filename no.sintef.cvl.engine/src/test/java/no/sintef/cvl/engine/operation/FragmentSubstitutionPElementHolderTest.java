@@ -38,13 +38,13 @@ public class FragmentSubstitutionPElementHolderTest {
 	private static final String[] BEINT = new String[] {"10", "7", "5", "4", "17", "9", "15", "16", "8", "13", "14", "11", "12"};
 	private static final String[] EINT = new String[] {"6"};
 	private static final String[] INT = new String[] {"10", "7", "5", "4", "17", "15", "9", "8", "16", "13", "14", "11", "12"};
-	private static final String[] EXT = new String[] {"null", "3", "20", "2", "1", "0", "19", "18"};
+	private static final String[] EXT = new String[] {"null", "3", "20", "2", "1", "0", "19", "18", "21"};
 	
-	private static final String[] RBEEXT = new String[] {"r17", "r16", "r7", "r5"};
-	private static final String[] RBEINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5"};
+	private static final String[] RBEEXT = new String[] {"r17", "r16", "r5"};
+	private static final String[] RBEINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5", "r41"};
 	private static final String[] REINT = new String[] {};
-	private static final String[] RINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5"};
-	private static final String[] REXT = new String[] {"r19", "r18", "r1", "r2", "r20", "r3", "null"};
+	private static final String[] RINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5", "r41"};
+	private static final String[] REXT = new String[] {"r19", "r18", "r1", "r2", "r20", "r3", "null", "r0"};
 
 	private HashSet<String> BElementsExternal;
 	private HashSet<String> BElementsInternal;
@@ -186,8 +186,7 @@ public class FragmentSubstitutionPElementHolderTest {
 		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
-		//actually the same as prod0, but some elements have different order
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}
 	
 	@Test
@@ -224,8 +223,7 @@ public class FragmentSubstitutionPElementHolderTest {
 		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
-		//actually the same as prod0, but some elements have different order
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}
 
 	@Test
