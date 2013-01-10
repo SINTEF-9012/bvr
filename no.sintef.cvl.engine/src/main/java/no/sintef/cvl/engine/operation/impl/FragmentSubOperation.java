@@ -180,7 +180,7 @@ public class FragmentSubOperation implements Substitution {
 			for(EObject outsideBoundaryElement : outsideBoundaryElements){
 				EObject container = outsideBoundaryElement.eContainer();
 				if(placementElements.contains(container)){
-					EObject referencer = fromBinding.getFromPlacement().getInsideBoundaryElement();
+					EObject referencer = Utility.resolveProxies(fromBinding.getFromPlacement().getInsideBoundaryElement());
 					EObject referencerContainer = referencer.eContainer();
 					EStructuralFeature feature = referencer.eContainingFeature();
 					int upperBound = feature.getUpperBound();
