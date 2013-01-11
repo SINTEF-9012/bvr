@@ -96,7 +96,7 @@ public class ReplacementElementHolder {
 	}
 	
 	private EObject getOutsideBoundaryElement(ToReplacement tr){
-		Set<EObject> ibesSet = new HashSet<EObject>(tr.getInsideBoundaryElement());
+		Set<EObject> ibesSet = new HashSet<EObject>(Utility.resolveProxies(tr.getInsideBoundaryElement()));
 		for(EObject obe : this.frobes){
 			HashSet<EObject> refs = this.getAllReferences(obe);
 			Set<Set<EObject>> powerSet = Sets.powerSet(refs);
@@ -120,12 +120,12 @@ public class ReplacementElementHolder {
 		for(ReplacementBoundaryElement rbe : rbes){
 			if(rbe instanceof ToReplacement){
 				this.tre.add((ToReplacement) rbe);
-				this.rlBElementsInternal.addAll(((ToReplacement) rbe).getInsideBoundaryElement());
+				this.rlBElementsInternal.addAll(Utility.resolveProxies(((ToReplacement) rbe).getInsideBoundaryElement()));
 			}
 			if(rbe instanceof FromReplacement){
 				this.fre.add((FromReplacement) rbe);
-				this.rlBElementsExternal.add(((FromReplacement) rbe).getInsideBoundaryElement());
-				this.frobes.addAll(((FromReplacement) rbe).getOutsideBoundaryElement());
+				this.rlBElementsExternal.add(Utility.resolveProxies(((FromReplacement) rbe).getInsideBoundaryElement()));
+				this.frobes.addAll(Utility.resolveProxies(((FromReplacement) rbe).getOutsideBoundaryElement()));
 			}
 		}
 		this.findInsideElements();
@@ -137,7 +137,7 @@ public class ReplacementElementHolder {
 	private void findAllOusideBoundaryElements(){
 		//have not found method that can return inwards references to an object, i believe it is possible to find...,
 		//but so far do that
-		Resource r = this.tre.get(0).getInsideBoundaryElement().get(0).eResource();
+		Resource r = Utility.resolveProxies(this.tre.get(0).getInsideBoundaryElement()).get(0).eResource();
 		TreeIterator<EObject> conts = r.getAllContents();
 		EList<EObject> intElements = new BasicEList<EObject>();
 		intElements.addAll(this.rlElements);

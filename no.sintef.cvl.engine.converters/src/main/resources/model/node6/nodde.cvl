@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" xsi:schemaLocation="http://org.variabilitymodeling.cvl cvl.ecore" name="exp">
+<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" name="exp">
   <variabilitySpecification xsi:type="cvl:CompositeVariability" name="varModel">
     <variabilitySpecification xsi:type="cvl:CompositeVariability" name="exp">
       <variabilitySpecification xsi:type="cvl:PlacementFragment" name="p1">
@@ -106,11 +106,13 @@
         <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].contains" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.4" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.3"/>
         <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Node].links" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.5" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.4"/>
         <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].links" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.6" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
-        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.6" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.6"/>
+        <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.7" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.6"/>
         <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].contains" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.8" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.7"/>
         <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Node].links" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.9" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.8"/>
       </variabilitySpecification>
     </variabilitySpecification>
   </variabilitySpecification>
+  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="prod"/>
+  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="prod"/>
   <base href="base.node#/"/>
 </cvl:CVLModel>

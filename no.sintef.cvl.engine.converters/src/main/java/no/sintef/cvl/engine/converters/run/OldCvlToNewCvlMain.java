@@ -18,16 +18,16 @@ public class OldCvlToNewCvlMain {
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node3/node.cvl"), new File("src/main/resources/model/node3/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node4/node.cvl"), new File("src/main/resources/model/node4/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node5/node.cvl"), new File("src/main/resources/model/node5/node.new.cvl"));
-		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node6/nodde.cvl"), new File("src/main/resources/model/node6/node.new.cvl"));
+		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node6/nodde.cvl"), new File("src/main/resources/model/node6/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node10/node.cvl"), new File("src/main/resources/model/node10/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node7-1/node.cvl"), new File("src/main/resources/model/node7-1/node.new.cvl"));
-		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node9-7/node.cvl"), new File("src/main/resources/model/node9-7/node.new.cvl"));
+		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/node9-7/node.cvl"), new File("src/main/resources/model/node9-7/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/ARI.cvl"), new File("src/main/resources/model/ARI1.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/VM1.cvl"), new File("src/main/resources/model/PrinterPool.xmi"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/VM1.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/PrinterPool.xmi"));
 		con.run();
-		//con.run1();
+		//con.run1();		
 	}
 
 }

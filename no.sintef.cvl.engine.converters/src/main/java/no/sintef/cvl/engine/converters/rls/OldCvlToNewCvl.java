@@ -119,6 +119,9 @@ public class OldCvlToNewCvl {
 				PlacementElementHolder pef = new PlacementElementHolder(opf);
 				HashMap<org.variabilitymodeling.cvl.FromPlacement, EObject> mapFromPlacementInside = pef.getInsideBoundaryMapForPlacement();
 				
+				//dummy fromPlacement
+				//this.addDummyBoundariesForPF(pf);
+				
 				EList<PlacementBoundaryElement> opbes = opf.getBoundaryElement();
 				for(PlacementBoundaryElement element : opbes){
 					if(element instanceof org.variabilitymodeling.cvl.ToPlacement){
@@ -150,7 +153,7 @@ public class OldCvlToNewCvl {
 						this.placBoundMap.put(fpbe, fpbeNew);
 						
 						pf.getPlacementBoundaryElement().add(fpbeNew);
-						
+												
 						EList<EObject> obeos = fpbe.getOutsideBoundaryElement();
 						for(EObject obeo : obeos){
 							//ObjectHandle obh = factory.createObjectHandle();
@@ -177,6 +180,9 @@ public class OldCvlToNewCvl {
 				
 				ReplacementElementHolder reh = new ReplacementElementHolder(orf);
 				HashMap<org.variabilitymodeling.cvl.ToReplacement, EObject> mapToReplacementOutside = reh.getOutsideBoundaryElementMap();
+				
+				//dummy toReplacement
+				//this.addDummyBoundariesForRF(rft);
 				
 				EList<ReplacementBoundaryElement> orbes = orf.getBoundaryElement();
 				for(ReplacementBoundaryElement element : orbes){
@@ -268,10 +274,26 @@ public class OldCvlToNewCvl {
 		}
 	}
 	
+	private void addDummyBoundariesForPF(PlacementFragment placFrag){
+		FromPlacement fromPlacement = factory.createFromPlacement();
+		ObjectHandle oh = this.getObjectHandle(null);
+		fromPlacement.getOutsideBoundaryElement().add(oh);
+		fromPlacement.setInsideBoundaryElement(oh);
+		placFrag.getPlacementBoundaryElement().add(fromPlacement);
+	}
+	
+	private void addDummyBoundariesForRF(ReplacementFragmentType replacFrag){
+		ToReplacement toReplacment = factory.createToReplacement();
+		ObjectHandle oh = this.getObjectHandle(null);
+		toReplacment.setOutsideBoundaryElement(oh);
+		toReplacment.getInsideBoundaryElement().add(oh);
+		replacFrag.getReplacementBoundaryElement().add(toReplacment);
+	}
+	
 	private ObjectHandle getObjectHandle(EObject object){
 		for(ObjectHandle oh : this.objectHandleList){
 			EObject mofRef = oh.getMOFRef();
-			if(mofRef.equals(object)){
+			if(mofRef != null && mofRef.equals(object)){
 				return oh;
 			}
 		}

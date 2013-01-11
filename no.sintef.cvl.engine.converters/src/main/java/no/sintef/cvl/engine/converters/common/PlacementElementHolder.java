@@ -84,7 +84,7 @@ public class PlacementElementHolder {
 	}
 	
 	private EObject getInsideBoundaryElementFromPlacement(FromPlacement fp){
-		Set<EObject> outsideBoundaryElements = new HashSet<EObject>(fp.getOutsideBoundaryElement());
+		Set<EObject> outsideBoundaryElements = new HashSet<EObject>(Utility.resolveProxies(fp.getOutsideBoundaryElement()));
 		/*for(EObject pbee : plBElementsExternalWCopy){
 			Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElements(pbee));
 			Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
@@ -94,8 +94,8 @@ public class PlacementElementHolder {
 			}
 		}*/
 		for(EObject pbee : plBElementsExternalLink){
-		Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElementsLinks(pbee));
-		Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
+			Set<EObject> refs = new HashSet<EObject>(this.getAllReferencedElementsLinks(pbee));
+			Set<Set<EObject>> powerSetRefs = Sets.powerSet(refs);
 			if(powerSetRefs.contains(outsideBoundaryElements)){
 				plBElementsExternalLink.remove(pbee);
 				return pbee;
@@ -157,12 +157,12 @@ public class PlacementElementHolder {
 		for(PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof ToPlacement){
 				tbe.add((ToPlacement)pbe);
-				obes.add(((ToPlacement)pbe).getOutsideBoundaryElement());
+				obes.add(Utility.resolveProxies(((ToPlacement)pbe).getOutsideBoundaryElement()));
 				//fpobes.add(((ToPlacement)pbe).getOutsideBoundaryElement());
 			}
 			if(pbe instanceof FromPlacement){
 				fbe.add((FromPlacement) pbe);
-				obes.addAll(((FromPlacement) pbe).getOutsideBoundaryElement());
+				obes.addAll(Utility.resolveProxies(((FromPlacement) pbe).getOutsideBoundaryElement()));
 				//fpobes.addAll(((FromPlacement) pbe).getOutsideBoundaryElement());
 			}
 		}
