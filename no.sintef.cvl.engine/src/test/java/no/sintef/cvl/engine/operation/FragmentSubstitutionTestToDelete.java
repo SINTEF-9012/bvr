@@ -29,10 +29,10 @@ public class FragmentSubstitutionTestToDelete {
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder;
 
-	@Before
+	//@Before
 	public void setUp() throws Exception {
 		file = new File("src/test/resources/node9-7/node.new.cvl");
-		nodePackage.eINSTANCE.eClass();
+		//nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -49,12 +49,12 @@ public class FragmentSubstitutionTestToDelete {
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}
 
-	@After
+	//@After
 	public void tearDown() throws Exception {
 		SetUpUtils.tearDown(map);
 	}
 	
-	@Test
+	//@Test
 	public void testSingleSubstitution() throws Exception {
 		//FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		//fso.execute(false);
