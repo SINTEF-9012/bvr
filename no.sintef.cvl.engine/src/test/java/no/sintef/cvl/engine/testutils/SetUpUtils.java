@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import com.google.common.collect.Sets;
 
+import cvl.ObjectHandle;
 import cvl.cvlPackage;
 
 
@@ -65,7 +67,13 @@ public class SetUpUtils {
 		return props;
 	}
 	
-	public static boolean compareLists(EList<String> list1, EList<String> list2){
+	public static boolean compareLists(List<EObject> list1, List<EObject> list2){
+		HashSet<EObject> set1 = new HashSet<EObject>(list1);
+		HashSet<EObject> set2 = new HashSet<EObject>(list2);
+		return Sets.symmetricDifference(set1, set2).isEmpty();
+	}
+	
+	public static boolean compareStringLists(List<String> list1, List<String> list2){
 		if(list1.size() != list2.size()){
 			return false;
 		}
@@ -98,5 +106,17 @@ public class SetUpUtils {
 		Comparison result = EMFCompare.builder().build().compare(scope);
 		Iterator<Diff> it = result.getDifferences().iterator();
 		return (it.hasNext()) ? false : true;
-	}	
+	}
+	
+	public static EList<EObject> resolveObjectHandles(EList<ObjectHandle> objectHandles){
+		EList<EObject> list = new BasicEList<EObject>();
+		for(ObjectHandle oh : objectHandles){
+			list.add(oh.getMOFRef());
+		}
+		return list;
+	}
+	
+	public static EObject resolveObjectHandles(ObjectHandle objectHandles){
+		return objectHandles.getMOFRef();
+	}
 }

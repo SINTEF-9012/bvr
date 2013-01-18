@@ -259,28 +259,28 @@ public class FragmentSubstitutionPElementHolderTest {
 		BElementsExternalE.addAll(BElementsExternal);
 		BElementsExternalE.addAll(RBElementsExternalBuf);
 		BElementsExternalE.addAll(RBElementsExternalBuf);
-		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternalE + " actual->" + BElementsExternalL, SetUpUtils.compareLists(BElementsExternalL, BElementsExternalE));
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternalE + " actual->" + BElementsExternalL, SetUpUtils.compareStringLists(BElementsExternalL, BElementsExternalE));
 		
 		EList<String> BElementsInternalL = SetUpUtils.getPropertiesValuesList(placement.getBElementsInternal(), "name");
 		EList<String> BElementsInternalE = new BasicEList<String>();
 		BElementsInternalE.addAll(BElementsInternal);
 		BElementsInternalE.addAll(RBElementsInternalBuf);
 		BElementsInternalE.addAll(RBElementsInternalBuf);
-		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternalE + " actual->" + BElementsInternalL, SetUpUtils.compareLists(BElementsInternalE, BElementsInternalL));
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternalE + " actual->" + BElementsInternalL, SetUpUtils.compareStringLists(BElementsInternalE, BElementsInternalL));
 		
 		EList<String> ElementsInternalL = SetUpUtils.getPropertiesValuesList(placement.getElementsInternal(), "name");
 		EList<String> ElementsInternalE = new BasicEList<String>();
 		ElementsInternalE.addAll(ElementsInternal);
 		ElementsInternalE.addAll(RElementsInternalBuf);
 		ElementsInternalE.addAll(RElementsInternalBuf);
-		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternalE + " actual->" + ElementsInternalL, SetUpUtils.compareLists(ElementsInternalE, ElementsInternalL));
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternalE + " actual->" + ElementsInternalL, SetUpUtils.compareStringLists(ElementsInternalE, ElementsInternalL));
 		
 		EList<String> InnerElementsL = SetUpUtils.getPropertiesValuesList(placement.getInnerFragmentElements(), "name");
 		EList<String> InnerElementsE = new BasicEList<String>();
 		InnerElementsE.addAll(InnerElements);
 		InnerElementsE.addAll(RInnerElementsBuf);
 		InnerElementsE.addAll(RInnerElementsBuf);
-		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElementsE + " actual->" + InnerElementsL, SetUpUtils.compareLists(InnerElementsE, InnerElementsL));
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElementsE + " actual->" + InnerElementsL, SetUpUtils.compareStringLists(InnerElementsE, InnerElementsL));
 		
 		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
