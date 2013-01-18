@@ -8,6 +8,7 @@ import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFragmentImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
+import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
@@ -84,7 +85,7 @@ public class FragmentSubstitutionTestToDelete {
 		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
 		fso1.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder1);
-
+		
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
@@ -92,17 +93,7 @@ public class FragmentSubstitutionTestToDelete {
 		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
 		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
-		
-		TreeIterator<EObject> iterator = baseModel.getAllContents();
-		while(iterator.hasNext()){
-			EObject eObject = iterator.next();
-			System.out.println(".....................");
-			System.out.println(eObject);
-			System.out.println(eObject.eResource());
-			System.out.println(eObject.eCrossReferences());
-			System.out.println(".....................");
-		}
-		
+						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		
 		

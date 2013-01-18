@@ -1,13 +1,12 @@
 package no.sintef.cvl.engine.adjacent.impl;
 
 import java.util.HashMap;
+import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import cvl.BoundaryElementBinding;
 import cvl.FromBinding;
 import cvl.ObjectHandle;
 import cvl.ToBinding;
@@ -43,97 +42,62 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 		}
 		for(AdjacentFragment adjacentFragment : adjacentFragments){
 			FragSubHolder fragHolder = adjacentFragment.getFragmentHolder();
-			EList<FromBinding> fromBindings = fragHolder.getFromBinding();
-			EList<ToBinding> toBindings = fragHolder.getToBindings();
-			
-			for(FromBinding fromBinding : fromBindings){
+			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = Utility.reverseMap(aFrag.getAdjacentBindingsRev(adjacentFragment));
+			adjacentBindingsToCurrent = (adjacentBindingsToCurrent != null) ? adjacentBindingsToCurrent : new HashMap<FromBinding, ToBinding>();
+			for(Map.Entry<FromBinding, ToBinding> entry : adjacentBindingsToCurrent.entrySet()){
+				FromBinding fromBinding = entry.getKey();
+				ToBinding toBinding = entry.getValue();
 				EList<ObjectHandle> outsideBOHElmtsPlc = fromBinding.getFromPlacement().getOutsideBoundaryElement();
-								
-				if(this.isOutsideBoundaryInvalid(outsideBOHElmtsPlc)){		
-					//update references of the object which point to outside elements
-					HashMap<FromBinding, ToBinding> adjacentBindings = Utility.reverseMap(aFrag.getAdjacentBindingsRev(adjacentFragment));
-					EList<ObjectHandle> insideBOHElmtsPlcReplaced = adjacentBindings.get(fromBinding).getToPlacement().getInsideBoundaryElement();
-					EObject insideBoundaryElementPlc = Utility.resolveProxies(fromBinding.getFromPlacement().getInsideBoundaryElement());
-					String propertyName = fromBinding.getFromReplacement().getPropertyName();
-					EStructuralFeature property = insideBoundaryElementPlc.eClass().getEStructuralFeature(propertyName);
-					if(property == null){
-						throw new GeneralCVLEngineException("failed to find property to adjust, property name : " + propertyName);
+				EList<ObjectHandle> insideBOHElmtsPlcReplaced = toBinding.getToPlacement().getInsideBoundaryElement();
+				EObject insideBoundaryElementPlc = Utility.resolveProxies(fromBinding.getFromPlacement().getInsideBoundaryElement());
+				String propertyName = fromBinding.getFromReplacement().getPropertyName();
+				EStructuralFeature property = insideBoundaryElementPlc.eClass().getEStructuralFeature(propertyName);
+				if(property == null){
+					throw new GeneralCVLEngineException("failed to find property to adjust, property name : " + propertyName);
+				}
+				int upperBound = property.getUpperBound();
+				if(upperBound == -1 || upperBound > 1){
+					EList<EObject> values = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
+					EList<EObject> propertyValueNew = Utility.subtractAugmentList(values, Utility.resolveProxies(outsideBOHElmtsPlc), Utility.resolveProxies(insideBOHElmtsPlcReplaced));
+					if(upperBound != -1 && propertyValueNew.size() > upperBound){
+						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolder.getFragment());
 					}
-					int upperBound = property.getUpperBound();
-					if(upperBound == -1 || upperBound > 1){
-						EList<EObject> values = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
-						EList<EObject> propertyValueNew = Utility.subtractAugmentList(values, Utility.resolveProxies(outsideBOHElmtsPlc), Utility.resolveProxies(insideBOHElmtsPlcReplaced));
-						if(upperBound != -1 && propertyValueNew.size() > upperBound){
-							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolder.getFragment());
-						}
-						insideBoundaryElementPlc.eSet(property, propertyValueNew);
-						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
-						if(!propertyValueNew.equals(propertyValueSet)){
-							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolder.getFragment());
-						}
-					}else{
-						//property.getUpperBound() == 0 || == 1
-						if(upperBound == 0){
-							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBoundaryElementPlc.eGet(property));
-						}
-						if(insideBOHElmtsPlcReplaced.size() != upperBound){
-							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolder.getFragment());
-						}
+					insideBoundaryElementPlc.eSet(property, propertyValueNew);
+					EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
+					if(!propertyValueNew.equals(propertyValueSet)){
+						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolder.getFragment());
+					}
+				}else{
+					//property.getUpperBound() == 0 || == 1
+					if(upperBound == 0){
+						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBoundaryElementPlc.eGet(property));
+					}
+					if(insideBOHElmtsPlcReplaced.size() != upperBound){
+						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolder.getFragment());
+					}
 
-						EObject propertyValueNew = Utility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
-						insideBoundaryElementPlc.eSet(property, propertyValueNew);
-						Object propertyValueSet = insideBoundaryElementPlc.eGet(property);
-						if(!propertyValueNew.equals(propertyValueSet)){
-							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolder.getFragment());
-						}						
-					}
-					
-					//update variability model : boundaries so the point to the correct elements
-					fromBinding.getFromPlacement().getOutsideBoundaryElement().clear();
-					fromBinding.getFromPlacement().getOutsideBoundaryElement().addAll(insideBOHElmtsPlcReplaced);
+					EObject propertyValueNew = Utility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
+					insideBoundaryElementPlc.eSet(property, propertyValueNew);
+					Object propertyValueSet = insideBoundaryElementPlc.eGet(property);
+					if(!propertyValueNew.equals(propertyValueSet)){
+						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolder.getFragment());
+					}						
 				}
-			}
-			for(ToBinding toBinding : toBindings){
-				ObjectHandle outsideBOHElmtPlc = toBinding.getToPlacement().getOutsideBoundaryElement();
-				ObjectHandle outsideBOHElmtRplc = toBinding.getToReplacement().getOutsideBoundaryElement();
 				
-				EList<ObjectHandle> outsideList = new BasicEList<ObjectHandle>();
-				outsideList.add(outsideBOHElmtPlc);
-				if(this.isOutsideBoundaryInvalid(outsideList)){
-					toBinding.getToPlacement().setOutsideBoundaryElement(outsideBOHElmtRplc);
-				}
+				//update variability model : boundaries so the point to the correct elements
+				fromBinding.getFromPlacement().getOutsideBoundaryElement().clear();
+				fromBinding.getFromPlacement().getOutsideBoundaryElement().addAll(insideBOHElmtsPlcReplaced);
+			}
+			
+			HashMap<FromBinding, ToBinding> adjacentBindingsFromCurrent = aFrag.getAdjacentBindings(adjacentFragment);
+			adjacentBindingsFromCurrent = (adjacentBindingsFromCurrent != null) ? adjacentBindingsFromCurrent : new HashMap<FromBinding, ToBinding>();
+			for(Map.Entry<FromBinding, ToBinding> entry : adjacentBindingsFromCurrent.entrySet()){
+				FromBinding fromBinding = entry.getKey();
+				ToBinding toBinding = entry.getValue();
+				
+				ObjectHandle insideBOHElmtsPlcReplaced = fromBinding.getFromPlacement().getInsideBoundaryElement();
+				toBinding.getToPlacement().setOutsideBoundaryElement(insideBOHElmtsPlcReplaced);
 			}
 		}
-	}
-	
-	private boolean isOutsideBoundaryInvalid(EList<ObjectHandle> objectHandles) throws GeneralCVLEngineException{
-		EList<EObject> resolvedObjects = Utility.resolveProxies(objectHandles);
-		if(resolvedObjects.size() != objectHandles.size()){
-			throw new GeneralCVLEngineException("EPIC FAIL: we lose something after resolution");
-		}
-		boolean allInvalid = this.isAllInvalid(resolvedObjects);
-		boolean allValid = this.isAllValid(resolvedObjects);
-		if(!allInvalid && !allValid){
-			throw new GeneralCVLEngineException("EPIC FAIL: Some elements in the resource, while others not");
-		}
-		return allInvalid;
-	}
-	
-	private boolean isAllValid(EList<EObject> objectList){
-		for(EObject eObject : objectList){
-			if(eObject.eResource() == null){
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	private boolean isAllInvalid(EList<EObject> objectList){
-		for(EObject eObject : objectList){
-			if(eObject.eResource() != null){
-				return false;
-			}
-		}
-		return true;
 	}
 }

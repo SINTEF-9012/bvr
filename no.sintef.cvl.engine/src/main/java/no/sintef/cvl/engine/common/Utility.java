@@ -83,6 +83,8 @@ public class Utility {
 	}
 	
 	public static <K,V> HashMap<V,K> reverseMap(Map<K,V> map) {
+		if(map == null)
+			return null;
 	    HashMap<V,K> rev = new HashMap<V, K>();
 	    for(Map.Entry<K,V> entry : map.entrySet())
 	        rev.put(entry.getValue(), entry.getKey());

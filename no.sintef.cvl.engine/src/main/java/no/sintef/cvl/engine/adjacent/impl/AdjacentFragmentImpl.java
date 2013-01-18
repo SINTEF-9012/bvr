@@ -5,7 +5,6 @@ import java.util.HashMap;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import cvl.BoundaryElementBinding;
 import cvl.FromBinding;
 import cvl.ToBinding;
 

@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
-import cvl.BoundaryElementBinding;
 import cvl.FromBinding;
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
