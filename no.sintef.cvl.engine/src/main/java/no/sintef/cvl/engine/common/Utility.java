@@ -1,11 +1,15 @@
 package no.sintef.cvl.engine.common;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
 
-import org.aspectj.runtime.reflect.Factory;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import cvl.FragmentSubstitution;
 import cvl.ObjectHandle;
@@ -59,5 +63,29 @@ public class Utility {
 			}
 		}
 		return null;
+	}
+	
+	public static EList<EObject> getListPropertyValue(EObject holder, EStructuralFeature property) throws GeneralCVLEngineException{
+		Object propertyValue = holder.eGet(property);
+		if(!(propertyValue instanceof EList)){
+			throw new GeneralCVLEngineException("property is not the list " + propertyValue);
+		}
+		@SuppressWarnings("unchecked") EList<EObject> eList = (EList<EObject>) propertyValue;
+		return eList;
+	}
+	
+	public static EList<EObject> subtractAugmentList(EList<EObject> elementsOrig, EList<EObject> elementsToRemove, EList<EObject> elementsToAdd){
+		elementsOrig.removeAll(elementsToRemove);
+		elementsOrig.addAll(elementsToAdd);
+		EList<EObject> eList = new BasicEList<EObject>();
+		eList.addAll(elementsOrig);
+		return eList;
+	}
+	
+	public static <K,V> HashMap<V,K> reverseMap(Map<K,V> map) {
+	    HashMap<V,K> rev = new HashMap<V, K>();
+	    for(Map.Entry<K,V> entry : map.entrySet())
+	        rev.put(entry.getValue(), entry.getKey());
+	    return rev;
 	}
 }

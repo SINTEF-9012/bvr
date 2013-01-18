@@ -2,16 +2,22 @@ package no.sintef.cvl.engine.adjacent.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
+import cvl.BoundaryElementBinding;
+import cvl.FromBinding;
+import cvl.FromPlacement;
+import cvl.ObjectHandle;
+import cvl.ToBinding;
+import cvl.ToPlacement;
+
 import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.AdjacentFinder;
+import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
@@ -45,6 +51,11 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 					AdjacentFragment adjacentFragment1 = this.testAdjacentFragment((fragmentHolder1));
 					adjacentFragment.setAdjacentFragment(adjacentFragment1);
 					adjacentFragment1.setAdjacentFragment(adjacentFragment);
+					
+					HashMap<FromBinding, ToBinding> adjacentBindings = this.getAdjacentBindings(fragmentHolder, fragmentHolder1);
+					adjacentFragment.setAdjacentBindings(adjacentFragment1, adjacentBindings);
+					HashMap<ToBinding, FromBinding> adjacentBindingsRev = Utility.reverseMap(adjacentBindings);
+					adjacentFragment1.setAdjacentBindingsRev(adjacentFragment, adjacentBindingsRev);
 				}
 			}
 		}
@@ -70,6 +81,26 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 			this.adjacentMap.put(fragmentHolder, adjacentFragment);
 		}
 		return adjacentFragment;
+	}
+	
+	private HashMap<FromBinding, ToBinding> getAdjacentBindings(FragSubHolder fragmentHolder, FragSubHolder fragmentHolder1){
+		HashMap<FromBinding, ToBinding> boundariesMap = new HashMap<FromBinding, ToBinding>();
+		EList<FromBinding> fromBindings = fragmentHolder.getFromBinding();
+		for(FromBinding fromBinding : fromBindings){
+			FromPlacement fromPlacement = fromBinding.getFromPlacement();
+			ObjectHandle insideBoundaryElement = fromPlacement.getInsideBoundaryElement();
+			EList<ObjectHandle> outsideBoundatyElements = fromPlacement.getOutsideBoundaryElement();
+			EList<ToBinding> toBindings = fragmentHolder1.getToBindings();
+			for(ToBinding toBinding : toBindings){
+				ToPlacement toPlacement = toBinding.getToPlacement();
+				ObjectHandle outsideBoundaryElement = toPlacement.getOutsideBoundaryElement();
+				EList<ObjectHandle> insideBoundaryElements = toPlacement.getInsideBoundaryElement();
+				if(insideBoundaryElement.equals(outsideBoundaryElement) && Sets.symmetricDifference(new HashSet<ObjectHandle>(outsideBoundatyElements), new HashSet<ObjectHandle>(insideBoundaryElements)).isEmpty()){
+					boundariesMap.put(fromBinding, toBinding);
+				}
+			}
+		}
+		return boundariesMap;
 	}
 
 }

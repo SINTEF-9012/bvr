@@ -15,6 +15,7 @@ import no.sintef.dsl.node.nodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,11 +42,12 @@ public class FragmentSubstitutionTestToDelete {
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder1;
 	private FragmentSubstitutionHolder fragmentSubHolder2;
+	private FragmentSubstitutionHolder fragmentSubHolder3;
 
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeWorkingCopy/node.new.cvl");
+		file = new File("src/test/resources/nodeWorkingCopy/adjacent/exp1/node.new.cvl");
 		nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
@@ -56,9 +58,10 @@ public class FragmentSubstitutionTestToDelete {
 			}
 		}
 		
-		Assert.assertTrue("can not locate a fragment substitution, the test can not be executed", fragSubs.size() == 2);
-		fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(1));
-		fragmentSubHolder2 = new FragmentSubstitutionHolder(fragSubs.get(0));
+		Assert.assertTrue("can not locate a fragment substitution, the test can not be executed", fragSubs.size() > 0);
+		fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(2));
+		fragmentSubHolder2 = new FragmentSubstitutionHolder(fragSubs.get(1));
+		fragmentSubHolder3 = new FragmentSubstitutionHolder(fragSubs.get(0));
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}
@@ -71,6 +74,39 @@ public class FragmentSubstitutionTestToDelete {
 	@Test
 	public void testSingleSubstitution() throws Exception {
 		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+				
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		TreeIterator<EObject> iterator = baseModel.getAllContents();
+		while(iterator.hasNext()){
+			EObject eObject = iterator.next();
+			System.out.println(".....................");
+			System.out.println(eObject);
+			System.out.println(eObject.eResource());
+			System.out.println(eObject.eCrossReferences());
+			System.out.println(".....................");
+		}
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		
+		/*BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);
 		
@@ -105,7 +141,7 @@ public class FragmentSubstitutionTestToDelete {
 		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 		//fso.execute(true);
 		//SetUpUtils.writeToFile(baseModel, "base_new.node");
-		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));*/
 	}
 	
 	private EList<EObject> resolveObjectHandles(EList<ObjectHandle> objectHandles){

@@ -6,5 +6,5 @@ import no.sintef.cvl.engine.fragment.FragSubHolder;
 
 public interface AdjacentFinder {
 
-	public HashMap<FragSubHolder, AdjacentFragment> getAdjacentMap(); 
+	public HashMap<FragSubHolder, AdjacentFragment> getAdjacentMap();
 }
