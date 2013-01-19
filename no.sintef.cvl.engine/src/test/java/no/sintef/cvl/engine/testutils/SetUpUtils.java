@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -65,6 +66,30 @@ public class SetUpUtils {
 			props.add((value == null) ? "null" : value);
 		}
 		return props;
+	}
+	
+	public static <K,V> boolean compareHashMaps(HashMap<K,V> map1, HashMap<K,V> map2){
+		if(map1.size() != map2.size()){
+			return false;
+		}
+		for(Map.Entry<K, V> entry : map1.entrySet()){
+			K key1 = entry.getKey();
+			V value1 = entry.getValue();
+			V value2 = map2.get(key1);
+			if(!value1.equals(value2)){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static <K,V> HashMap<V,K> reverseMap(Map<K,V> map) {
+		if(map == null)
+			return null;
+	    HashMap<V,K> rev = new HashMap<V, K>();
+	    for(Map.Entry<K,V> entry : map.entrySet())
+	        rev.put(entry.getValue(), entry.getKey());
+	    return rev;
 	}
 	
 	public static boolean compareLists(List<EObject> list1, List<EObject> list2){

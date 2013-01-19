@@ -17,12 +17,16 @@ public interface AdjacentFragment {
 	
 	public void setAdjacentFragment(AdjacentFragment adjacentFragment);
 	
-	public HashMap<FromBinding, ToBinding> getAdjacentBindings(AdjacentFragment adjacentFragment);
+	public HashMap<FromBinding, ToBinding> getAdjacentFromBindings(AdjacentFragment adjacentFragment);
 	
-	public void setAdjacentBindings(AdjacentFragment adjacentFragment, HashMap<FromBinding, ToBinding> adjacentBindings);
+	public void setAdjacentFromBindings(AdjacentFragment adjacentFragment, HashMap<FromBinding, ToBinding> adjacentBindings);
 	
-	public HashMap<ToBinding, FromBinding> getAdjacentBindingsRev(AdjacentFragment adjacentFragment);
+	public HashMap<ToBinding, FromBinding> getAdjacentToBindings(AdjacentFragment adjacentFragment);
 	
-	public void setAdjacentBindingsRev(AdjacentFragment adjacentFragment, HashMap<ToBinding, FromBinding> adjacentBindings);
+	public void setAdjacentToBindings(AdjacentFragment adjacentFragment, HashMap<ToBinding, FromBinding> adjacentBindings);
+	
+	public HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>> getAllAdjacentFromBindings();
+	
+	public HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>> getAllAdjacentToBindings();
 	
 }

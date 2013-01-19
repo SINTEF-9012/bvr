@@ -90,7 +90,7 @@ public class FragmentSubstitutionAdjacentTest {
 	}
 	
 	@Test
-	public void testSingleSubstitution() throws Exception {
+	public void testAdjacent() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
 		

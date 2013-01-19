@@ -42,7 +42,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 		}
 		for(AdjacentFragment adjacentFragment : adjacentFragments){
 			FragSubHolder fragHolder = adjacentFragment.getFragmentHolder();
-			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = Utility.reverseMap(aFrag.getAdjacentBindingsRev(adjacentFragment));
+			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = Utility.reverseMap(aFrag.getAdjacentToBindings(adjacentFragment));
 			adjacentBindingsToCurrent = (adjacentBindingsToCurrent != null) ? adjacentBindingsToCurrent : new HashMap<FromBinding, ToBinding>();
 			for(Map.Entry<FromBinding, ToBinding> entry : adjacentBindingsToCurrent.entrySet()){
 				FromBinding fromBinding = entry.getKey();
@@ -89,7 +89,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				fromBinding.getFromPlacement().getOutsideBoundaryElement().addAll(insideBOHElmtsPlcReplaced);
 			}
 			
-			HashMap<FromBinding, ToBinding> adjacentBindingsFromCurrent = aFrag.getAdjacentBindings(adjacentFragment);
+			HashMap<FromBinding, ToBinding> adjacentBindingsFromCurrent = aFrag.getAdjacentFromBindings(adjacentFragment);
 			adjacentBindingsFromCurrent = (adjacentBindingsFromCurrent != null) ? adjacentBindingsFromCurrent : new HashMap<FromBinding, ToBinding>();
 			for(Map.Entry<FromBinding, ToBinding> entry : adjacentBindingsFromCurrent.entrySet()){
 				FromBinding fromBinding = entry.getKey();

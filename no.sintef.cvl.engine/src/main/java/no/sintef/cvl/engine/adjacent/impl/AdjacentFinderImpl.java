@@ -52,9 +52,9 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 					adjacentFragment1.setAdjacentFragment(adjacentFragment);
 					
 					HashMap<FromBinding, ToBinding> adjacentBindings = this.getAdjacentBindings(fragmentHolder, fragmentHolder1);
-					adjacentFragment.setAdjacentBindings(adjacentFragment1, adjacentBindings);
+					adjacentFragment.setAdjacentFromBindings(adjacentFragment1, adjacentBindings);
 					HashMap<ToBinding, FromBinding> adjacentBindingsRev = Utility.reverseMap(adjacentBindings);
-					adjacentFragment1.setAdjacentBindingsRev(adjacentFragment, adjacentBindingsRev);
+					adjacentFragment1.setAdjacentToBindings(adjacentFragment, adjacentBindingsRev);
 				}
 			}
 		}
