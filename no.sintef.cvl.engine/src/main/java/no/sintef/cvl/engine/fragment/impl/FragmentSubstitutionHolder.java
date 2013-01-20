@@ -56,6 +56,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 	
 	public void update(){
 		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
+		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
 		placement.update();
 	}
 	

@@ -10,6 +10,7 @@ import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
@@ -25,10 +26,26 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	private HashSet<EObject> vVertices;
 	private PlacementFragment placement;
 	private HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap;
+	private HashMap<ToPlacement, HashSet<EObject>> toPlacementOutBoundaryMap;
 
 	public PlacementElementHolder(PlacementFragment pf) {
 		placement = pf;
 		fromPlacementInsBoundaryMap = new HashMap<FromPlacement, HashSet<EObject>>();
+		toPlacementOutBoundaryMap = new HashMap<ToPlacement, HashSet<EObject>>();
+		for(PlacementBoundaryElement pbe : placement.getPlacementBoundaryElement()){
+			if(pbe instanceof ToPlacement){
+				ToPlacement toPlacement = (ToPlacement) pbe;
+				HashSet<EObject> set = new HashSet<EObject>();
+				set.add(Utility.resolveProxies(toPlacement.getOutsideBoundaryElement()));
+				toPlacementOutBoundaryMap.put(toPlacement, set);
+			}
+			if(pbe instanceof FromPlacement){
+				FromPlacement fromPlacement = (FromPlacement) pbe;
+				HashSet<EObject> set = new HashSet<EObject>();
+				set.add(Utility.resolveProxies(fromPlacement.getInsideBoundaryElement()));
+				fromPlacementInsBoundaryMap.put(fromPlacement, set);
+			}
+		}
 		this.locate();
 	}
 		
@@ -58,12 +75,6 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 				frBElementsExternal.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
 				outerElements.addAll(Utility.resolveProxies(((FromPlacement)pbe).getOutsideBoundaryElement()));
 				innerElements.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
-				
-				//if we do not replace a fragment we need to keep track of insideBoundaryElements 
-				HashSet<EObject> insideBoundaryFromPlacemenent = fromPlacementInsBoundaryMap.get((FromPlacement) pbe);
-				insideBoundaryFromPlacemenent = (insideBoundaryFromPlacemenent == null) ? new HashSet<EObject>() : insideBoundaryFromPlacemenent;
-				insideBoundaryFromPlacemenent.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
-				fromPlacementInsBoundaryMap.put((FromPlacement) pbe, insideBoundaryFromPlacemenent);
 			}
 		}
 		this.calculatePlElementsInternal();
@@ -143,5 +154,15 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 			map.put(key, new HashSet<EObject>(Utility.resolveProxies(new BasicEList<ObjectHandle>(value))));
 		}
 		this.fromPlacementInsBoundaryMap = map;
+	}
+
+	public void setToPlacementOutBoundaryMap(HashMap<ToPlacement, HashSet<ObjectHandle>> toPlacementOHOutsideBoundaryMap) {
+		HashMap<ToPlacement, HashSet<EObject>> map = new HashMap<ToPlacement, HashSet<EObject>>();
+		for(Map.Entry<ToPlacement, HashSet<ObjectHandle>> entry : toPlacementOHOutsideBoundaryMap.entrySet()){
+			ToPlacement key = entry.getKey();
+			HashSet<ObjectHandle> value = entry.getValue();
+			map.put(key, new HashSet<EObject>(Utility.resolveProxies(new BasicEList<ObjectHandle>(value))));
+		}
+		this.toPlacementOutBoundaryMap = map;
 	}
 }
