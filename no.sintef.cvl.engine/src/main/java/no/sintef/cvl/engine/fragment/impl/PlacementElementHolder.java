@@ -23,7 +23,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	private HashSet<EObject> vVertices;
 	private PlacementFragment placement;
 	private HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap;
-	
+
 	public PlacementElementHolder(PlacementFragment pf) {
 		placement = pf;
 		fromPlacementInsBoundaryMap = new HashMap<FromPlacement, HashSet<EObject>>();
@@ -128,5 +128,9 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 
 	public PlacementFragment getPlacementFragment() {
 		return placement;
+	}
+	
+	public HashMap<FromPlacement, HashSet<EObject>> getFromPlacementInsBoundaryMap(){
+		return this.fromPlacementInsBoundaryMap;
 	}
 }

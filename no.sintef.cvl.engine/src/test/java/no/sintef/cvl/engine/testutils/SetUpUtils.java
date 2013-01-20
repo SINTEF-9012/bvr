@@ -144,4 +144,14 @@ public class SetUpUtils {
 	public static EObject resolveObjectHandles(ObjectHandle objectHandles){
 		return objectHandles.getMOFRef();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T[] concatArrays(T[] array1, T[] array2) {
+	    final int array1len = array1.length;
+	    final int array2len = array2.length;
+	    final T[] result = (T[]) java.lang.reflect.Array.newInstance(array1.getClass().getComponentType(), array1len + array2len);
+	    System.arraycopy(array1, 0, result, 0, array1len);
+	    System.arraycopy(array2, 0, result, array1len, array2len);
+	    return result;
+	}
 }

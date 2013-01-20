@@ -1,5 +1,6 @@
 package no.sintef.cvl.engine.operation.impl;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -161,13 +162,13 @@ public class FragmentSubOperation implements Substitution {
 				//update insideBoundaryElementReference for fromPlacement;
 				EObject insideBoundaryElement = this.getReplCopyElementFromOriginal(Utility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
 				ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
-				this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle);
+				this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 			}else{
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
 			}	
 		}
 		this.checkOutsideBoundaryElementsContainment();
-		placement.update(replace);
+		fragSubHolder.update(replace);
 	}
 	
 	private void checkOutsideBoundaryElementsContainment() throws BasicCVLEngineException{
@@ -271,13 +272,22 @@ public class FragmentSubOperation implements Substitution {
 		return objectHandles.get(0);
 	}
 	
-	private void updateInsideBoundaryElementObjectHandleBoundaries(ObjectHandle objectHandle, ObjectHandle replacementObjectHandle){
+	private void updateInsideBoundaryElementObjectHandleBoundaries(ObjectHandle objectHandle, ObjectHandle replacementObjectHandle, boolean replace) throws GeneralCVLEngineException{
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementFragment().getPlacementBoundaryElement();
 		for(PlacementBoundaryElement boundary : placementBoundaries){
 			if(boundary instanceof FromPlacement){
 				FromPlacement fromPlacement = (FromPlacement) boundary;
 				if(fromPlacement.getInsideBoundaryElement().equals(objectHandle)){
 					fromPlacement.setInsideBoundaryElement(replacementObjectHandle);
+					//we should keep all insideBoundary references if we do not replace a placement fragment 
+					HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementMap = fragSubHolder.getFromPlacementInsideBoundaryElementMap();
+					HashSet<ObjectHandle> insideBoundaryElementsSet = (replace) ? new HashSet<ObjectHandle>() : fromPlacementMap.get(fromPlacement);
+					if(insideBoundaryElementsSet == null){
+						throw new GeneralCVLEngineException("insideBoundaryElement set is null for given fromPlacement, should not happen");
+					}
+					insideBoundaryElementsSet.add(replacementObjectHandle);
+					fromPlacementMap.put(fromPlacement, insideBoundaryElementsSet);
+					fragSubHolder.setFromPlacementInsideBoundaryElementMap(fromPlacementMap);
 				}
 			}
 		}

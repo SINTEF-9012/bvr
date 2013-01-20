@@ -50,6 +50,7 @@ public class Utility {
 			if(oh == null){
 				oh = factory.createObjectHandle();
 				oh.setMOFRef(eObject);
+				fragSub.getSourceObject().add(oh);
 			}
 			objectHandles.add(oh);
 		}

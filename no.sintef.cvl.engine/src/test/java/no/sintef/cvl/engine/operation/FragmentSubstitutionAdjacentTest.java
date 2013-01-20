@@ -58,9 +58,13 @@ public class FragmentSubstitutionAdjacentTest {
 	private static final String[] p1 = new String[] {"r1", "r2", "r3", "r4", "r5"};
 	private static final String[] p2 = new String[] {"r6", "r7", "r8", "r9", "r10"};
 	private static final String[] p3 = new String[] {"r11", "r12", "r13"};
+	private static final String[] p1orig = new String[] {"1", "2", "3", "4", "5"};
+	private static final String[] p2orig = new String[] {"6", "7", "8", "9", "10"};
+	private static final String[] p3orig = new String[] {"11", "12", "13"};
 
 	@Before
 	public void setUp() throws Exception {
+		//nodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
 		file = new File("src/test/resources/nodeAdjacent/exp1/node.new.cvl");
 		map = SetUpUtils.load(file);
@@ -90,7 +94,7 @@ public class FragmentSubstitutionAdjacentTest {
 	}
 	
 	@Test
-	public void testAdjacent() throws Exception {
+	public void testAdjacentTrue() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
 		
@@ -107,7 +111,7 @@ public class FragmentSubstitutionAdjacentTest {
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(p1) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(p1), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder1);
 		
-		EList<EObject> outsideBoundaryElementToPlacement2 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder2.getToBindings());
+		EList<EObject> outsideBoundaryElementToPlacement2 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder2);
 		//the difference should be empty, but there is outside reference to root element with name null
 		SetView<EObject> diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement2), innerElements);
 		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
@@ -122,10 +126,20 @@ public class FragmentSubstitutionAdjacentTest {
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(p2) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(p2), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder2);
 		
-		EList<EObject> outsideBoundaryElementFromPlacement1 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder1.getFromBinding());
+		EList<EObject> outsideBoundaryElementFromPlacement1 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder1);
 		Assert.assertTrue("fromPlacement has not been updated for adjacent fs", Sets.difference(new HashSet<EObject>(outsideBoundaryElementFromPlacement1), innerElements).isEmpty());
 		
-		EList<EObject> outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3.getToBindings());
+		outsideBoundaryElementToPlacement2 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder2);
+		EList<String> outsideBoundaryElementToPlacement2Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement2), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement2Names + " expected ->" + Arrays.asList(new String[]{"r4", "r5", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement2Names, Arrays.asList(new String[]{"r4", "r5", "null"})));
+		HashSet<EObject> innerElements1 = fragmentSubHolder1.getPlacement().getInnerFragmentElements();
+		diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement2), innerElements1);
+		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
+		
+		EList<EObject> outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
+		outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
+		EList<String> outsideBoundaryElementToPlacement3Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement3), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement3Names + " expected ->" + Arrays.asList(new String[]{"r7", "r9", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement3Names, Arrays.asList(new String[]{"r7", "r9", "null"})));
 		//the difference should be empty, but there is outside reference to root element with name null
 		diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement3), innerElements);
 		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
@@ -140,11 +154,13 @@ public class FragmentSubstitutionAdjacentTest {
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(p3) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(p3), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder3);
 		
-		EList<EObject> outsideBoundaryElementFromPlacement2 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder2.getFromBinding());
+		EList<EObject> outsideBoundaryElementFromPlacement2 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder2);
 		Assert.assertTrue("fromPlacement has not been updated for adjacent fs", Sets.difference(new HashSet<EObject>(outsideBoundaryElementFromPlacement2), innerElements).isEmpty());
 		
 		HashSet<EObject> innerElements2 = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
-		outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3.getToBindings());
+		outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
+		outsideBoundaryElementToPlacement3Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement3), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement3Names + " expected ->" + Arrays.asList(new String[]{"r7", "r9", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement3Names, Arrays.asList(new String[]{"r7", "r9", "null"})));
 		//the difference should be empty, but there is outside reference to root element with name null
 		diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement3), innerElements2);
 		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
@@ -159,16 +175,126 @@ public class FragmentSubstitutionAdjacentTest {
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
 	}
 	
-	private EList<EObject> getOutsideBoundaryElemenetsToPlacements(EList<ToBinding> toBindings){
+	@Test
+	public void testAdjacentFalse() throws Exception {
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		EList<EObject> outsideBoundaryElementsOld1 = this.getOutsideBoundaryElementsFragment(fragmentSubHolder1);
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		EList<EObject> outsideBoundaryElementsNew1 = this.getOutsideBoundaryElementsFragment(fragmentSubHolder1);
+		Assert.assertTrue("Incorrect set of the outsideBoundary elements, expected -> " +outsideBoundaryElementsOld1 + " actual ->" + outsideBoundaryElementsNew1, SetUpUtils.compareLists(outsideBoundaryElementsOld1, outsideBoundaryElementsNew1));
+		
+		EList<EObject> insideBoundaryElements = this.getInsideBoundaryElementsFragment(fragmentSubHolder1);
+		EList<String> insideBoundaryElementsNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(insideBoundaryElements), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + insideBoundaryElementsNames + " expected ->" + Arrays.asList(new String[]{"1", "2", "3", "4", "5", "r1", "r2", "r3", "r4", "r5"}), SetUpUtils.compareStringLists(insideBoundaryElementsNames, Arrays.asList(new String[]{"1", "2", "3", "4", "5", "r1", "r2", "r3", "r4", "r5"})));
+		
+		HashSet<EObject> innerElements = fragmentSubHolder1.getPlacement().getInnerFragmentElements();
+		EList<String> innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(SetUpUtils.concatArrays(p1, p1orig)) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(SetUpUtils.concatArrays(p1, p1orig)), innerElementNames));
+		this.checkInsideBoundaryElements(fragmentSubHolder1);
+		
+		EList<EObject> outsideBoundaryElementToPlacement2 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder2);
+		//the difference should be empty, but there is outside reference to root element with name null
+		SetView<EObject> diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement2), innerElements);
+		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
+		
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		insideBoundaryElements = this.getInsideBoundaryElementsFragment(fragmentSubHolder2);
+		insideBoundaryElementsNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(insideBoundaryElements), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + insideBoundaryElementsNames + " expected ->" + Arrays.asList(new String[]{"6", "7", "8", "9", "10", "r6", "r7", "r8", "r9", "r10"}), SetUpUtils.compareStringLists(insideBoundaryElementsNames, Arrays.asList(new String[]{"6", "7", "8", "9", "10", "r6", "r7", "r8", "r9", "r10"})));
+		
+		innerElements = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
+		innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)), innerElementNames));
+		this.checkInsideBoundaryElements(fragmentSubHolder2);
+		
+		EList<EObject> outsideBoundaryElementsFragment = this.getOutsideBoundaryElementsFragment(fragmentSubHolder2);
+		EList<String> outsideBoundaryElementsFragmentNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementsFragment), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementsFragmentNames + " expected ->" + Arrays.asList(new String[]{"4", "5", "r4", "r5", "11", "12", "13", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementsFragmentNames, Arrays.asList(new String[]{"4", "5", "r4", "r5", "11", "12", "13", "null"})));
+				
+		EList<EObject> outsideBoundaryElementToPlacement21 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder2);
+		EList<String> outsideBoundaryElementToPlacement21Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement21), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement21Names + " expected ->" + Arrays.asList(new String[]{"4", "5", "r4", "r5", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement21Names, Arrays.asList(new String[]{"4", "5", "r4", "r5", "null"})));
+		
+		EList<EObject> outsideBoundaryElementFromPlacement1 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder1);
+		EList<String> outsideBoundaryElementFromPlacement1Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementFromPlacement1), "name");
+		Assert.assertTrue("Incorrect set of referenced elements", SetUpUtils.compareStringLists(outsideBoundaryElementFromPlacement1Names, Arrays.asList(new String[]{"10", "8", "6", "r10", "r8", "r6"})));
+		Assert.assertTrue("fromPlacement has not been updated for adjacent fs", Sets.difference(new HashSet<EObject>(outsideBoundaryElementFromPlacement1), innerElements).isEmpty());
+		
+		EList<EObject> outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
+		EList<String> outsideBoundaryElementToPlacement3Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement3), "name");
+		Assert.assertTrue("Incorrect set of referenced elements", SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement3Names, Arrays.asList(new String[]{"7", "9", "r7", "r9", "null"})));
+		//the difference should be empty, but there is outside reference to root element with name null
+		diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement3), innerElements);
+		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
+		
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		insideBoundaryElements = this.getInsideBoundaryElementsFragment(fragmentSubHolder3);
+		insideBoundaryElementsNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(insideBoundaryElements), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + insideBoundaryElementsNames + " expected ->" + Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"}), SetUpUtils.compareStringLists(insideBoundaryElementsNames, Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"})));
+		
+		innerElements = fragmentSubHolder3.getPlacement().getInnerFragmentElements();
+		innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(SetUpUtils.concatArrays(p3, p3orig)) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(SetUpUtils.concatArrays(p3, p3orig)), innerElementNames));
+		this.checkInsideBoundaryElements(fragmentSubHolder3);
+		
+		EList<EObject> outsideBoundaryElementFromPlacement2 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder2);
+		EList<String> outsideBoundaryElementFromPlacement2Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementFromPlacement2), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementFromPlacement2Names + " expected ->" + Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"}), SetUpUtils.compareStringLists(outsideBoundaryElementFromPlacement2Names, Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"})));
+		Assert.assertTrue("fromPlacement has not been updated for adjacent fs", Sets.difference(new HashSet<EObject>(outsideBoundaryElementFromPlacement2), innerElements).isEmpty());
+		
+		HashSet<EObject> innerElements2 = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
+		outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
+		outsideBoundaryElementToPlacement3Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement3), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement3Names + " expected ->" + Arrays.asList(new String[]{"7", "9", "r7", "r8", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement3Names, Arrays.asList(new String[]{"7", "9", "r7", "r9", "null"})));
+		//the difference should be empty, but there is outside reference to root element with name null
+		diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement3), innerElements2);
+		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
+		
+		outsideBoundaryElementsFragment = this.getOutsideBoundaryElementsFragment(fragmentSubHolder2);
+		outsideBoundaryElementsFragmentNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementsFragment), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementsFragmentNames + " expected ->" + Arrays.asList(new String[]{"4", "5", "r4", "r5", "11", "12", "13", "r11", "r12", "r13", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementsFragmentNames, Arrays.asList(new String[]{"4", "5", "r4", "r5", "11", "12", "13", "r11", "r12", "r13", "null"})));
+		
+		outsideBoundaryElementsFragment = this.getOutsideBoundaryElementsFragment(fragmentSubHolder3);
+		outsideBoundaryElementsFragmentNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementsFragment), "name");
+		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementsFragmentNames + " expected ->" + Arrays.asList(new String[]{"7", "9", "r7", "r9", "14", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementsFragmentNames, Arrays.asList(new String[]{"7", "9", "r7", "r9", "14", "null"})));
+		
+		HashSet<EObject> elements = this.fecthContent();
+		for(EObject object : elements){
+			Assert.assertNotNull("object has not resource " + object, object.eResource());
+			Assert.assertTrue("wrong recourse " + object + " " + object.eResource(), baseModel.equals(object.eResource()));
+		}
+						
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
+	}
+	
+	private EList<EObject> getOutsideBoundaryElemenetsToPlacements(FragmentSubstitutionHolder fragmentHolder){
+		EList<ToBinding> toBindings = fragmentHolder.getToBindings();
+		HashMap<ToPlacement, HashSet<ObjectHandle>> outsideBoundaryMap = fragmentHolder.getToPlacementOutsideBoundaryElementMap();
 		EList<EObject> list = new BasicEList<EObject>();
 		for(ToBinding toBinding : toBindings){
 			ToPlacement toPlacement = toBinding.getToPlacement();
-			list.add(SetUpUtils.resolveObjectHandles(toPlacement.getOutsideBoundaryElement()));
+			HashSet<ObjectHandle> outsideBoundaryElements = outsideBoundaryMap.get(toPlacement);
+			list.addAll(SetUpUtils.resolveObjectHandles(new BasicEList<ObjectHandle>(outsideBoundaryElements)));
 		}
 		return list;
 	}
 	
-	private EList<EObject> getOutsideBoundaryElemenetsFromPlacements(EList<FromBinding> fromBindings){
+	private EList<EObject> getOutsideBoundaryElemenetsFromPlacements(FragmentSubstitutionHolder fragmentHolder){
+		EList<FromBinding> fromBindings = fragmentHolder.getFromBinding();
 		EList<EObject> list = new BasicEList<EObject>();
 		for(FromBinding fromBinding : fromBindings){
 			FromPlacement fromPlacement = fromBinding.getFromPlacement();
@@ -216,14 +342,31 @@ public class FragmentSubstitutionAdjacentTest {
 	private EList<EObject> getOutsideBoundaryElementsFragment(FragmentSubstitutionHolder fragmentSubHolder){
 		EList<EObject> list = new BasicEList<EObject>();
 		EList<ToBinding> toBindings = fragmentSubHolder.getToBindings();
+		HashMap<ToPlacement, HashSet<ObjectHandle>> outsideBoundaryMap = fragmentSubHolder.getToPlacementOutsideBoundaryElementMap();
 		for(ToBinding toBinding : toBindings){
-			HashSet<ObjectHandle> elements = this.getOutsideBoundaryElements(toBinding.getToPlacement());
-			list.addAll(SetUpUtils.resolveObjectHandles(new BasicEList<ObjectHandle>(elements)));
+			HashSet<ObjectHandle> outsideBoundaryElements = outsideBoundaryMap.get(toBinding.getToPlacement());
+			list.addAll(SetUpUtils.resolveObjectHandles(new BasicEList<ObjectHandle>(outsideBoundaryElements)));
 		}
 		EList<FromBinding> fromBindings = fragmentSubHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
 			HashSet<ObjectHandle> elements = this.getOutsideBoundaryElements(fromBinding.getFromPlacement());
 			list.addAll(SetUpUtils.resolveObjectHandles(new BasicEList<ObjectHandle>(elements)));
+		}
+		return list;
+	}
+	
+	private EList<EObject> getInsideBoundaryElementsFragment(FragmentSubstitutionHolder fragmentSubHolder){
+		EList<EObject> list = new BasicEList<EObject>();
+		HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryMap = fragmentSubHolder.getFromPlacementInsideBoundaryElementMap();
+		EList<ToBinding> toBindings = fragmentSubHolder.getToBindings();
+		for(ToBinding toBinding : toBindings){
+			EList<ObjectHandle> insideBoundary = toBinding.getToPlacement().getInsideBoundaryElement();
+			list.addAll(SetUpUtils.resolveObjectHandles(insideBoundary));
+		}
+		EList<FromBinding> fromBindings = fragmentSubHolder.getFromBinding();
+		for(FromBinding fromBinding : fromBindings){
+			HashSet<ObjectHandle> insideBoundary = insideBoundaryMap.get(fromBinding.getFromPlacement());
+			list.addAll(SetUpUtils.resolveObjectHandles(new BasicEList<ObjectHandle>(insideBoundary)));
 		}
 		return list;
 	}
