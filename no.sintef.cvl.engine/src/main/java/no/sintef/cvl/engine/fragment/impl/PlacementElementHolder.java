@@ -2,6 +2,7 @@ package no.sintef.cvl.engine.fragment.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
@@ -10,6 +11,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import cvl.FromPlacement;
+import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
 import cvl.ToPlacement;
@@ -29,9 +31,8 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		fromPlacementInsBoundaryMap = new HashMap<FromPlacement, HashSet<EObject>>();
 		this.locate();
 	}
-	
-	public void update(boolean replace){
-		fromPlacementInsBoundaryMap = (replace) ? new HashMap<FromPlacement, HashSet<EObject>>() : fromPlacementInsBoundaryMap;
+		
+	public void update(){
 		this.locate();
 	}
 	
@@ -132,5 +133,15 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	
 	public HashMap<FromPlacement, HashSet<EObject>> getFromPlacementInsBoundaryMap(){
 		return this.fromPlacementInsBoundaryMap;
+	}
+	
+	public void setFromPlacementInsBoundaryMap(HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementInsBoundaryMap){
+		HashMap<FromPlacement, HashSet<EObject>> map = new HashMap<FromPlacement, HashSet<EObject>>();
+		for(Map.Entry<FromPlacement, HashSet<ObjectHandle>> entry : fromPlacementInsBoundaryMap.entrySet()){
+			FromPlacement key = entry.getKey();
+			HashSet<ObjectHandle> value = entry.getValue();
+			map.put(key, new HashSet<EObject>(Utility.resolveProxies(new BasicEList<ObjectHandle>(value))));
+		}
+		this.fromPlacementInsBoundaryMap = map;
 	}
 }

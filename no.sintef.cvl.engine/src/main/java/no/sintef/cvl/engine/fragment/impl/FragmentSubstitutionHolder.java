@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;
@@ -53,8 +54,9 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		}
 	}
 	
-	public void update(boolean replace){
-		placement.update(replace);
+	public void update(){
+		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
+		placement.update();
 	}
 	
 	@Override
