@@ -62,7 +62,6 @@ public class PlacementElementHolderTest {
 		BElementsExternal = new HashSet<String>(Arrays.asList(BEEXT));
 		BElementsInternal = new HashSet<String>(Arrays.asList(BEINT));
 		ElementsInternal = new HashSet<String>(Arrays.asList(EINT));
-		ElementsInternal = new HashSet<String>(Arrays.asList(EINT));
 		InnerElements = new HashSet<String>(Arrays.asList(INT));
 		OuterElements = new HashSet<String>(Arrays.asList(EXT));
 			

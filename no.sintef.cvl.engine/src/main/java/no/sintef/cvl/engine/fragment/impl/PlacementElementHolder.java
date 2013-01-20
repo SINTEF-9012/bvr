@@ -137,6 +137,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
 			innElements.addAll(innerEl);
 		}
+		innElements.addAll(frBElementsExternal);
 		return innElements;
 	}
 

@@ -5,8 +5,6 @@ import java.util.HashSet;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
 import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;
 import cvl.FromBinding;

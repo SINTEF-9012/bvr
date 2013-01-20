@@ -319,7 +319,57 @@ public class FragmentSubstitutionAdjacentTest {
 		String[] bElementsExternalNamesExp = new String[]{"4", "5", "r4", "r5"};
 		String[] innerFragmentElementsNamesExp = new String[]{"1", "2", "3", "4", "5", "r1", "r2", "r3", "r4", "r5"};
 		String[] outerFragmentElementsNamesExp = new String[]{"0", "00", "6", "8", "10", "null", "r6", "r8", "r10"};
-		String[] elementsInternalNamesExp = new String[]{"1", "2", "3", "4", "5", "r1", "r2", "r3", "r4", "r5"};
+		String[] elementsInternalNamesExp = new String[]{};
+		
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(bElementsInternalNamesExp) + " actual ->" + bElementsInternalNames, SetUpUtils.compareStringLists(Arrays.asList(bElementsInternalNamesExp), bElementsInternalNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(bElementsExternalNamesExp) + " actual ->" + bElementsExternalNames, SetUpUtils.compareStringLists(Arrays.asList(bElementsExternalNamesExp), bElementsExternalNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(innerFragmentElementsNamesExp) + " actual ->" + innerFragmentElementsNames, SetUpUtils.compareStringLists(Arrays.asList(innerFragmentElementsNamesExp), innerFragmentElementsNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(outerFragmentElementsNamesExp) + " actual ->" + outerFragmentElementsNames, SetUpUtils.compareStringLists(Arrays.asList(outerFragmentElementsNamesExp), outerFragmentElementsNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(elementsInternalNamesExp) + " actual ->" + elementsInternalNames, SetUpUtils.compareStringLists(Arrays.asList(elementsInternalNamesExp), elementsInternalNames));
+		
+		
+		bElementsInternal = placement2.getBElementsInternal();
+		bElementsExternal = placement2.getBElementsExternal();
+		innerFragmentElements = placement2.getInnerFragmentElements();
+		outerFragmentElements = placement2.getOuterFragmentElements();
+		elementsInternal = placement2.getElementsInternal();
+		
+		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
+		bElementsExternalNames = SetUpUtils.getPropertiesValuesList(bElementsExternal, "name");
+		innerFragmentElementsNames = SetUpUtils.getPropertiesValuesList(innerFragmentElements, "name");
+		outerFragmentElementsNames = SetUpUtils.getPropertiesValuesList(outerFragmentElements, "name");
+		elementsInternalNames = SetUpUtils.getPropertiesValuesList(elementsInternal, "name");
+		
+		bElementsInternalNamesExp = new String[]{"6", "7", "8", "9", "10", "r6", "r7", "r8", "r9", "r10"};
+		bElementsExternalNamesExp = new String[]{"7", "9", "r7", "r9"};
+		innerFragmentElementsNamesExp = new String[]{"6", "7", "8", "9", "10", "r6", "r7", "r8", "r9", "r10"};
+		outerFragmentElementsNamesExp = new String[]{"5", "4", "r5", "r4", "null", "r11", "r12", "r13", "11", "12", "13"};
+		elementsInternalNamesExp = new String[]{};
+		
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(bElementsInternalNamesExp) + " actual ->" + bElementsInternalNames, SetUpUtils.compareStringLists(Arrays.asList(bElementsInternalNamesExp), bElementsInternalNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(bElementsExternalNamesExp) + " actual ->" + bElementsExternalNames, SetUpUtils.compareStringLists(Arrays.asList(bElementsExternalNamesExp), bElementsExternalNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(innerFragmentElementsNamesExp) + " actual ->" + innerFragmentElementsNames, SetUpUtils.compareStringLists(Arrays.asList(innerFragmentElementsNamesExp), innerFragmentElementsNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(outerFragmentElementsNamesExp) + " actual ->" + outerFragmentElementsNames, SetUpUtils.compareStringLists(Arrays.asList(outerFragmentElementsNamesExp), outerFragmentElementsNames));
+		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(elementsInternalNamesExp) + " actual ->" + elementsInternalNames, SetUpUtils.compareStringLists(Arrays.asList(elementsInternalNamesExp), elementsInternalNames));
+		
+		
+		bElementsInternal = placement3.getBElementsInternal();
+		bElementsExternal = placement3.getBElementsExternal();
+		innerFragmentElements = placement3.getInnerFragmentElements();
+		outerFragmentElements = placement3.getOuterFragmentElements();
+		elementsInternal = placement3.getElementsInternal();
+		
+		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
+		bElementsExternalNames = SetUpUtils.getPropertiesValuesList(bElementsExternal, "name");
+		innerFragmentElementsNames = SetUpUtils.getPropertiesValuesList(innerFragmentElements, "name");
+		outerFragmentElementsNames = SetUpUtils.getPropertiesValuesList(outerFragmentElements, "name");
+		elementsInternalNames = SetUpUtils.getPropertiesValuesList(elementsInternal, "name");
+		
+		bElementsInternalNamesExp = new String[]{"11", "12", "13", "r11", "r12", "r13"};
+		bElementsExternalNamesExp = new String[]{"11", "13", "r11", "r13"};
+		innerFragmentElementsNamesExp = new String[]{"11", "12", "13", "r11", "r12", "r13"};
+		outerFragmentElementsNamesExp = new String[]{"7", "9", "r7", "r9", "null", "14"};
+		elementsInternalNamesExp = new String[]{};
 		
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(bElementsInternalNamesExp) + " actual ->" + bElementsInternalNames, SetUpUtils.compareStringLists(Arrays.asList(bElementsInternalNamesExp), bElementsInternalNames));
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(bElementsExternalNamesExp) + " actual ->" + bElementsExternalNames, SetUpUtils.compareStringLists(Arrays.asList(bElementsExternalNamesExp), bElementsExternalNames));
