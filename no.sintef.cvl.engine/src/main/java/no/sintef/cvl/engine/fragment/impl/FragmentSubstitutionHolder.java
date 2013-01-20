@@ -14,6 +14,7 @@ import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.ToBinding;
 import cvl.ToPlacement;
+import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 
 public class FragmentSubstitutionHolder implements FragSubHolder {
@@ -27,7 +28,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 	private HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementOHInsideBoundaryMap;
 	private HashMap<ToPlacement, HashSet<ObjectHandle>> toPlacementOHOutsideBoundaryMap;
 
-	public FragmentSubstitutionHolder(FragmentSubstitution fs) {
+	public FragmentSubstitutionHolder(FragmentSubstitution fs) throws BasicCVLEngineException {
 		fragment = fs;
 		fromPlacementOHInsideBoundaryMap = new HashMap<FromPlacement, HashSet<ObjectHandle>>();
 		toPlacementOHOutsideBoundaryMap = new HashMap<ToPlacement, HashSet<ObjectHandle>>();
@@ -54,7 +55,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		}
 	}
 	
-	public void update(){
+	public void update() throws BasicCVLEngineException{
 		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
 		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
 		placement.update();

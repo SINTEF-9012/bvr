@@ -3,6 +3,7 @@ package no.sintef.cvl.engine.fragment.impl;
 import java.util.HashSet;
 
 import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -23,13 +24,13 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	private HashSet<EObject> vVertices;
 	private ReplacementFragmentType replacement;
 
-	public ReplacementElementHolder(ReplacementFragmentType rft) {
+	public ReplacementElementHolder(ReplacementFragmentType rft) throws BasicCVLEngineException {
 		replacement = rft;
 		this.locate();
 	}
 
 	@Override
-	protected void locate(){
+	protected void locate() throws BasicCVLEngineException{
 		super.locate();
 		vVertices = new HashSet<EObject>();
 		outerElements = new HashSet<EObject>();

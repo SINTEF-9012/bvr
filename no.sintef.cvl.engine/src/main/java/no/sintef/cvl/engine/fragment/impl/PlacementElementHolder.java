@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.error.BasicCVLEngineException;
+import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -28,7 +30,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	private HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap;
 	private HashMap<ToPlacement, HashSet<EObject>> toPlacementOutBoundaryMap;
 
-	public PlacementElementHolder(PlacementFragment pf) {
+	public PlacementElementHolder(PlacementFragment pf) throws BasicCVLEngineException {
 		placement = pf;
 		fromPlacementInsBoundaryMap = new HashMap<FromPlacement, HashSet<EObject>>();
 		toPlacementOutBoundaryMap = new HashMap<ToPlacement, HashSet<EObject>>();
@@ -49,12 +51,12 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		this.locate();
 	}
 		
-	public void update(){
+	public void update() throws BasicCVLEngineException{
 		this.locate();
 	}
 	
 	@Override
-	protected void locate(){
+	protected void locate() throws BasicCVLEngineException{
 		super.locate();
 		vVertices = new HashSet<EObject>();
 		outerElements = new HashSet<EObject>();
@@ -69,12 +71,25 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 				frBElementsInternal.addAll(Utility.resolveProxies(((ToPlacement)pbe).getInsideBoundaryElement()));
 				outerElements.add(Utility.resolveProxies(((ToPlacement)pbe).getOutsideBoundaryElement()));
 				innerElements.addAll(Utility.resolveProxies(((ToPlacement)pbe).getInsideBoundaryElement()));
+				
+				HashSet<EObject> outsideBoundaryElements = toPlacementOutBoundaryMap.get((ToPlacement)pbe);
+				if(outsideBoundaryElements == null){
+					throw new GeneralCVLEngineException("failed to locate given toPlacement in the map");
+				}
+				outerElements.addAll(outsideBoundaryElements);
 			}
 			if(pbe instanceof FromPlacement){
 				fbe.add((FromPlacement) pbe);
 				frBElementsExternal.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
 				outerElements.addAll(Utility.resolveProxies(((FromPlacement)pbe).getOutsideBoundaryElement()));
 				innerElements.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
+				
+				HashSet<EObject> insideBoundaryElements = fromPlacementInsBoundaryMap.get((FromPlacement) pbe);
+				if(insideBoundaryElements == null){
+					throw new GeneralCVLEngineException("failed to locate given fromPlacement in the map");
+				}
+				frBElementsExternal.addAll(insideBoundaryElements);
+				innerElements.addAll(insideBoundaryElements);
 			}
 		}
 		this.calculatePlElementsInternal();

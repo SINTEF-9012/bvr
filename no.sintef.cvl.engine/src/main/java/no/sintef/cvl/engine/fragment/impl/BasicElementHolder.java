@@ -5,6 +5,7 @@ import java.util.HashSet;
 import org.eclipse.emf.ecore.EObject;
 
 import cvl.FragmentSubstitution;
+import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.ElementHolder;
 
 public abstract class BasicElementHolder implements ElementHolder {
@@ -34,7 +35,7 @@ public abstract class BasicElementHolder implements ElementHolder {
 		return frElementsInternal;
 	}
 		
-	protected void locate() {
+	protected void locate() throws BasicCVLEngineException {
 		frElementsOriginal = new HashSet<EObject>();
 		frBElementsInternal = new HashSet<EObject>();
 		frBElementsExternal = new HashSet<EObject>();
