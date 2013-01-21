@@ -12,12 +12,13 @@
     <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1" propertyName="contains" insideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.2 //@ownedVariationPoint.3/@sourceObject.3 //@ownedVariationPoint.3/@sourceObject.4" outsideBoundaryElement="//@ownedVariationPoint.5/@sourceObject.5"/>
     <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.2 //@ownedVariationPoint.3/@sourceObject.3" outsideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.0"/>
     <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.3" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.4" outsideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.0" insideBoundaryElement="//@ownedVariationPoint.3/@sourceObject.2"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p3-r3" bindingChoice="//@ownedVSpec.0/@child.0/@child.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.3" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.3"/>
-    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.4" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.4"/>
     <sourceObject>
       <MOFRef href="base.node#//@contains.15"/>
