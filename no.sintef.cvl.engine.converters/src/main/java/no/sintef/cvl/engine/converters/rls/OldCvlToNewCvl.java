@@ -59,8 +59,8 @@ public class OldCvlToNewCvl {
 	private HashMap<org.variabilitymodeling.cvl.PlacementFragment, cvl.PlacementFragment> plMap = new HashMap<org.variabilitymodeling.cvl.PlacementFragment, cvl.PlacementFragment>();
 	private HashMap<org.variabilitymodeling.cvl.ReplacementFragment, cvl.ReplacementFragmentType> rplMap = new HashMap<org.variabilitymodeling.cvl.ReplacementFragment, cvl.ReplacementFragmentType>();
 	private HashMap<CompositeVariability, VSpec> compositeVSpecMap = new HashMap<CompositeVariability, VSpec>();
-	private HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement> placBoundMap = new HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement>();
-	private HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement> replBoundMap = new HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement>();
+	private HashMap<FragmentSubstitution, HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement>> placBoundMap = new HashMap<FragmentSubstitution, HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement>>();
+	private HashMap<FragmentSubstitution, HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement>> replBoundMap = new HashMap<FragmentSubstitution ,HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement>>();
 	private ResourceSet resSet;
 	private EList<ObjectHandle> objectHandleList = new BasicEList<ObjectHandle>();
 	
@@ -80,8 +80,8 @@ public class OldCvlToNewCvl {
 			e.printStackTrace();
 		}
 		
-		//UMLPackage.eINSTANCE.eClass();
-		nodePackage.eINSTANCE.eClass();
+		UMLPackage.eINSTANCE.eClass();
+		//nodePackage.eINSTANCE.eClass();
 		
 		CVLModelNew cvn = new CVLModelNew(this.resSet);
 		this.cu = cvn.creat();
@@ -92,6 +92,7 @@ public class OldCvlToNewCvl {
 		this.parseOldTree(cv, cu);
 				
 		cvn.writeToFile(this.newcvlfile, cu);
+		System.out.println("DONE!!!");
 	}
 	
 	public void run1(){
@@ -123,6 +124,8 @@ public class OldCvlToNewCvl {
 				fsn.setName(fso.getName());
 				PlacementFragment pf = this.createPlacementFragment(fso.getPlacement(), fsn);
 				ReplacementFragmentType rft = this.createReplacementFragment(fso.getReplacement(), fsn);
+				this.addDummyBoundariesForPF(pf, fsn);
+				this.addDummyBoundariesForRF(rft, fsn);
 				
 				fsn.setPlacement(pf);
 				fsn.setReplacement(rft);				
@@ -133,7 +136,7 @@ public class OldCvlToNewCvl {
 					if(ob instanceof org.variabilitymodeling.cvl.ToBinding){
 						org.variabilitymodeling.cvl.ToBinding tob = (org.variabilitymodeling.cvl.ToBinding) ob;
 						ToBinding tnb = factory.createToBinding();
-						HashMap<ToPlacement, ToReplacement> pr = this.getToPlacementReplacement(tob);
+						HashMap<ToPlacement, ToReplacement> pr = this.getToPlacementReplacement(tob, fsn);
 						tnb.setToPlacement(pr.keySet().iterator().next());
 						tnb.setToReplacement(pr.values().iterator().next());
 						fsn.getBoundaryElementBinding().add(tnb);
@@ -143,7 +146,7 @@ public class OldCvlToNewCvl {
 					if(ob instanceof org.variabilitymodeling.cvl.FromBinding){
 						org.variabilitymodeling.cvl.FromBinding fob = (org.variabilitymodeling.cvl.FromBinding) ob;
 						FromBinding fnb = factory.createFromBinding();
-						HashMap<FromPlacement, FromReplacement> pr = this.getFromPlacementReplacement(fob);
+						HashMap<FromPlacement, FromReplacement> pr = this.getFromPlacementReplacement(fob, fsn);
 						fnb.setFromPlacement(pr.keySet().iterator().next());
 						fnb.setFromReplacement(pr.values().iterator().next());
 						fsn.getBoundaryElementBinding().add(fnb);
@@ -163,16 +166,14 @@ public class OldCvlToNewCvl {
 		this.plMap.put(opf, pf);
 		PlacementElementHolder pef = new PlacementElementHolder(opf);
 		HashMap<org.variabilitymodeling.cvl.FromPlacement, EObject> mapFromPlacementInside = pef.getInsideBoundaryMapForPlacement();
-		
-		//dummy fromPlacement
-		//this.addDummyBoundariesForPF(pf);
-		
+				
+		HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement> map = new HashMap<org.variabilitymodeling.cvl.PlacementBoundaryElement, cvl.PlacementBoundaryElement>();
 		EList<PlacementBoundaryElement> opbes = opf.getBoundaryElement();
 		for(PlacementBoundaryElement element : opbes){
 			if(element instanceof org.variabilitymodeling.cvl.ToPlacement){
 				org.variabilitymodeling.cvl.ToPlacement tpbe = (org.variabilitymodeling.cvl.ToPlacement) element;
 				ToPlacement tpbeNew = factory.createToPlacement();
-				this.placBoundMap.put(tpbe, tpbeNew);
+				map.put(tpbe, tpbeNew);
 				
 				tpbeNew.setPropertyName(tpbe.getPropertyName());
 				pf.getPlacementBoundaryElement().add(tpbeNew);
@@ -191,7 +192,7 @@ public class OldCvlToNewCvl {
 			if(element instanceof org.variabilitymodeling.cvl.FromPlacement){
 				org.variabilitymodeling.cvl.FromPlacement fpbe = (org.variabilitymodeling.cvl.FromPlacement) element;
 				FromPlacement fpbeNew = factory.createFromPlacement();
-				this.placBoundMap.put(fpbe, fpbeNew);
+				map.put(fpbe, fpbeNew);
 				
 				pf.getPlacementBoundaryElement().add(fpbeNew);
 										
@@ -206,6 +207,7 @@ public class OldCvlToNewCvl {
 				fpbeNew.setInsideBoundaryElement(obh);
 			}
 		}
+		this.placBoundMap.put(fsn, map);
 		this.cu.getOwnedVariationPoint().add(pf);
 		return pf;
 	}
@@ -219,15 +221,13 @@ public class OldCvlToNewCvl {
 		ReplacementElementHolder reh = new ReplacementElementHolder(orf);
 		HashMap<org.variabilitymodeling.cvl.ToReplacement, EObject> mapToReplacementOutside = reh.getOutsideBoundaryElementMap();
 		
-		//dummy toReplacement
-		//this.addDummyBoundariesForRF(rft);
-		
+		HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement> map = new  HashMap<org.variabilitymodeling.cvl.ReplacementBoundaryElement, cvl.ReplacementBoundaryElement>();
 		EList<ReplacementBoundaryElement> orbes = orf.getBoundaryElement();
 		for(ReplacementBoundaryElement element : orbes){
 			if(element instanceof org.variabilitymodeling.cvl.FromReplacement){
 				org.variabilitymodeling.cvl.FromReplacement frbe = (org.variabilitymodeling.cvl.FromReplacement) element;
 				FromReplacement frbeNew = factory.createFromReplacement();
-				this.replBoundMap.put(frbe, frbeNew);
+				map.put(frbe, frbeNew);
 				
 				frbeNew.setPropertyName(frbe.getPropertyName());
 				rft.getReplacementBoundaryElement().add(frbeNew);
@@ -245,7 +245,7 @@ public class OldCvlToNewCvl {
 			if(element instanceof org.variabilitymodeling.cvl.ToReplacement){
 				org.variabilitymodeling.cvl.ToReplacement trbe = (org.variabilitymodeling.cvl.ToReplacement) element;
 				ToReplacement trbeNew = factory.createToReplacement();
-				this.replBoundMap.put(trbe, trbeNew);
+				map.put(trbe, trbeNew);
 				
 				rft.getReplacementBoundaryElement().add(trbeNew);
 				
@@ -260,6 +260,7 @@ public class OldCvlToNewCvl {
 				trbeNew.setOutsideBoundaryElement(obh);
 			}
 		}
+		this.replBoundMap.put(fsn, map);
 		this.cu.getOwnedVariabletype().add(rft);
 		return rft;
 	}
@@ -268,7 +269,7 @@ public class OldCvlToNewCvl {
 		EList<ObjectHandle> objectHandles = fs.getSourceObject();
 		for(ObjectHandle objectHanldle : objectHandles){
 			EObject resolved = objectHanldle.getMOFRef();
-			if(resolved.equals(eObject)){
+			if((resolved != null && resolved.equals(eObject)) || eObject == resolved){
 				return objectHanldle;
 			}
 		}
@@ -278,38 +279,32 @@ public class OldCvlToNewCvl {
 		return objectHandle;
 	}
 	
-	private void addDummyBoundariesForPF(PlacementFragment placFrag){
+	private void addDummyBoundariesForPF(PlacementFragment placFrag, FragmentSubstitution fsn){
 		FromPlacement fromPlacement = factory.createFromPlacement();
-		ObjectHandle oh = this.getObjectHandle(null);
+		ObjectHandle oh = this.getObjectHandleInFS(null, fsn);
 		fromPlacement.getOutsideBoundaryElement().add(oh);
 		fromPlacement.setInsideBoundaryElement(oh);
 		placFrag.getPlacementBoundaryElement().add(fromPlacement);
+		HashMap<PlacementBoundaryElement, cvl.PlacementBoundaryElement> map = this.placBoundMap.get(fsn);
+		map.put(null, fromPlacement);
+		this.placBoundMap.put(fsn, map);
 	}
 	
-	private void addDummyBoundariesForRF(ReplacementFragmentType replacFrag){
+	private void addDummyBoundariesForRF(ReplacementFragmentType replacFrag, FragmentSubstitution fsn){
 		ToReplacement toReplacment = factory.createToReplacement();
-		ObjectHandle oh = this.getObjectHandle(null);
+		ObjectHandle oh = this.getObjectHandleInFS(null, fsn);
 		toReplacment.setOutsideBoundaryElement(oh);
 		toReplacment.getInsideBoundaryElement().add(oh);
 		replacFrag.getReplacementBoundaryElement().add(toReplacment);
+		HashMap<ReplacementBoundaryElement, cvl.ReplacementBoundaryElement> map = this.replBoundMap.get(fsn);
+		map.put(null, toReplacment);
+		this.replBoundMap.put(fsn, map);
 	}
 	
-	private ObjectHandle getObjectHandle(EObject object){
-		for(ObjectHandle oh : this.objectHandleList){
-			EObject mofRef = oh.getMOFRef();
-			if(mofRef != null && mofRef.equals(object)){
-				return oh;
-			}
-		}
-		ObjectHandle obh = factory.createObjectHandle();
-		obh.setMOFRef(object);
-		this.objectHandleList.add(obh);
-		return obh;
-	}
 	
-	private HashMap<FromPlacement, FromReplacement> getFromPlacementReplacement(org.variabilitymodeling.cvl.FromBinding fob) throws Exception {
-		cvl.PlacementBoundaryElement nfp = this.placBoundMap.get(fob.getFromPlacement());
-		cvl.ReplacementBoundaryElement nfr = this.replBoundMap.get(fob.getFromReplacement());
+	private HashMap<FromPlacement, FromReplacement> getFromPlacementReplacement(org.variabilitymodeling.cvl.FromBinding fob, FragmentSubstitution fsn) throws Exception {
+		cvl.PlacementBoundaryElement nfp = this.placBoundMap.get(fsn).get(fob.getFromPlacement());
+		cvl.ReplacementBoundaryElement nfr = this.replBoundMap.get(fsn).get(fob.getFromReplacement());
 		if(nfp == null){
 			throw new Exception("can not find FromPlacement matching " + fob.getFromPlacement() + " in " + fob);
 		}
@@ -321,9 +316,9 @@ public class OldCvlToNewCvl {
 		return val;
 	}
 
-	private HashMap<ToPlacement, ToReplacement> getToPlacementReplacement(org.variabilitymodeling.cvl.ToBinding tb) throws Exception{
-		cvl.PlacementBoundaryElement ntp = this.placBoundMap.get(tb.getToPlacement());
-		cvl.ReplacementBoundaryElement ntr = this.replBoundMap.get(tb.getToReplacement());
+	private HashMap<ToPlacement, ToReplacement> getToPlacementReplacement(org.variabilitymodeling.cvl.ToBinding tb, FragmentSubstitution fsn) throws Exception{
+		cvl.PlacementBoundaryElement ntp = this.placBoundMap.get(fsn).get(tb.getToPlacement());
+		cvl.ReplacementBoundaryElement ntr = this.replBoundMap.get(fsn).get(tb.getToReplacement());
 		if(ntp == null){
 			throw new Exception("can not find ToPlacement matching " + tb.getToPlacement() + " in " + tb);
 		}
@@ -344,37 +339,6 @@ public class OldCvlToNewCvl {
 			fs.setBindingVSpec((VSpec) vspec);
 		}else{
 			throw new Exception("vspec is of the wrong type" + vspec);
-		}
-	}
-	
-	private PlacementFragment getPlacement(org.variabilitymodeling.cvl.PlacementFragment pl) throws Exception{
-		PlacementFragment pf = this.plMap.get(pl);
-		if(pl == null){
-			throw new Exception("there is no PlacementFragment in the new model matching " + pl);
-		}
-		return pf;
-	}
-	
-	private ReplacementFragmentType getReplacement(org.variabilitymodeling.cvl.ReplacementFragmentAbstract rl) throws Exception{
-		ReplacementFragmentType rlt = this.rplMap.get((org.variabilitymodeling.cvl.ReplacementFragment) rl);
-		if(rlt == null){
-			throw new Exception("there is no ReplacementFragment in the new model matching " + rl);
-		}
-		return rlt;
-	}
-	
-	private VSpec getVSpec(org.variabilitymodeling.cvl.CompositeVariability cv) throws Exception{
-		VSpec vs = this.compositeVSpecMap.get(cv);
-		if(vs == null){
-			throw new Exception("there is no VSpec in the new model matching " + cv);
-		}
-		return vs;
-	}
-	
-	private void parseOldTree1(EObject node){
-		System.out.println(node);
-		for(EObject child : node.eContents()){
-			this.parseOldTree1(child);
 		}
 	}
 }
