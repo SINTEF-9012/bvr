@@ -1,15 +1,20 @@
 package no.sintef.cvl.engine.converters.common;
 
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.variabilitymodeling.cvl.FromReplacement;
 import org.variabilitymodeling.cvl.ReplacementBoundaryElement;
 import org.variabilitymodeling.cvl.ReplacementFragment;
@@ -31,6 +36,7 @@ public class ReplacementElementHolder {
 	private HashSet<EObject> rlBElementsExternal;
 	private HashSet<EObject> rlElementsInternal;
 	private HashMap<ToReplacement, EObject> tRlOtsideMap;
+	private HashMap<EObject, HashSet<EObject>> outsideBoundaryInsideBoundariesMap;
 	private EList<Object> vertexes;
 	
 	public ReplacementElementHolder(ReplacementFragment rf) {
@@ -44,6 +50,7 @@ public class ReplacementElementHolder {
 		this.rlBElementsExternal = new HashSet<EObject>();
 		this.rlElementsInternal = new HashSet<EObject>();
 		this.tRlOtsideMap = new HashMap<ToReplacement, EObject>();
+		this.outsideBoundaryInsideBoundariesMap = new HashMap<EObject, HashSet<EObject>>();
 		this.locate();
 		this.rlElementsOriginal = new HashSet<EObject>(rlElements);
 		this.frobesOriginal = new BasicEList<EObject>(this.frobes);
@@ -97,24 +104,82 @@ public class ReplacementElementHolder {
 	
 	private EObject getOutsideBoundaryElement(ToReplacement tr){
 		Set<EObject> ibesSet = new HashSet<EObject>(Utility.resolveProxies(tr.getInsideBoundaryElement()));
-		for(EObject obe : this.frobes){
-			HashSet<EObject> refs = this.getAllReferences(obe);
-			Set<Set<EObject>> powerSet = Sets.powerSet(refs);
-			if(powerSet.contains(ibesSet)){
-				this.frobes.remove(obe);
-				return obe;
+		HashMap<EObject, HashSet<EObject>> linkingOutsideMap = new HashMap<EObject, HashSet<EObject>>();
+		HashMap<EObject, EObject> parentOutsidMap = new HashMap<EObject, EObject>();
+		
+		for(EObject object : ibesSet){
+			EObject parentElement = (rlElements.contains(object.eContainer())) ? null : object.eContainer();
+			parentOutsidMap.put(object, parentElement);
+			Collection<Setting> referencers = EcoreUtil.UsageCrossReferencer.find(object, object.eResource());
+			HashSet<EObject> ref = new HashSet<EObject>();
+			Iterator<Setting> iterator = referencers.iterator();
+			while(iterator.hasNext()){
+				ref.add(iterator.next().getEObject());
+			}
+			SetView<EObject> outsideBoundaryElements = Sets.difference(ref, rlElements);
+			linkingOutsideMap.put(object, new HashSet<EObject>(outsideBoundaryElements));
+		}
+		Collection<HashSet<EObject>> linkingValues = linkingOutsideMap.values();
+		Iterator<HashSet<EObject>> iterator = linkingValues.iterator();
+		HashSet<EObject> outsideBoundaryElements = iterator.next();
+		while(iterator.hasNext()){
+			outsideBoundaryElements = new HashSet<EObject>(Sets.intersection(outsideBoundaryElements, iterator.next()));
+		}
+		if(outsideBoundaryElements.size() > 1){
+			System.out.println("Found more the one outsideBoudnaryElement, " + outsideBoundaryElements);
+			outsideBoundaryElements = this.chooseOutsideBoundaryElement(outsideBoundaryElements, ibesSet);
+			if(outsideBoundaryElements.size() > 1 || outsideBoundaryElements.size() == 0){
+				System.out.println("!!!!WARNING: can not choose outsideBoundaryElement for the toReplacement in CrossReferences " + outsideBoundaryElements);
 			}
 		}
+		
+		EObject outsideBoundaryElement = (outsideBoundaryElements.size() >= 1) ? outsideBoundaryElements.iterator().next() : null;
+		
+		Collection<EObject> parentValues = parentOutsidMap.values();
+		Iterator<EObject> iter = parentValues.iterator();
+		HashSet<EObject> outsideBoundaryElementsParent = new HashSet<EObject>();
+		outsideBoundaryElementsParent.add(iter.next());
+		while(iter.hasNext()){
+			HashSet<EObject> set = new HashSet<EObject>();
+			set.add(iter.next());
+			outsideBoundaryElementsParent = new HashSet<EObject>(Sets.intersection(outsideBoundaryElementsParent, set));
+		}
+		
+		EObject outsideBoundaryElementParent = (outsideBoundaryElementsParent.size() == 1) ? outsideBoundaryElementsParent.iterator().next() : null;
+		
+		if(outsideBoundaryElement != null && outsideBoundaryElementParent != null){
+			HashSet<EObject> insideBoundaryElements = this.outsideBoundaryInsideBoundariesMap.get(outsideBoundaryElement);
+			insideBoundaryElements = (insideBoundaryElements == null) ? new HashSet<EObject>() : insideBoundaryElements;
+			if(Sets.symmetricDifference(insideBoundaryElements, ibesSet).isEmpty()){
+				return outsideBoundaryElementParent;
+			}
+			this.outsideBoundaryInsideBoundariesMap.put(outsideBoundaryElement, new HashSet<EObject>(ibesSet));
+			return outsideBoundaryElement;
+		}
+		
+		if(outsideBoundaryElement != null){
+			return outsideBoundaryElement;
+		}
+		
+		if(outsideBoundaryElementParent != null){
+			return outsideBoundaryElementParent;
+		}
+		
 		return null;
 	}
 	
-	private HashSet<EObject> getAllReferences(EObject obj){
-		HashSet<EObject> refs = new HashSet<EObject>();
-		refs.addAll(obj.eCrossReferences());
-		refs.addAll(obj.eContents());
-		return refs;
+	private HashSet<EObject> chooseOutsideBoundaryElement(HashSet<EObject> outsideBoundaryElements, Set<EObject> ibesSet) {
+		HashSet<EObject> outsideBoundaryElementsNew = new HashSet<EObject>();
+		for(EObject outsideBoundaryElement : outsideBoundaryElements){
+			EList<EObject> referenced = outsideBoundaryElement.eCrossReferences();
+			SetView<EObject> insideBoundaryElements = Sets.intersection(new HashSet<EObject>(referenced), this.rlElements);
+			if(Sets.symmetricDifference(ibesSet, insideBoundaryElements).isEmpty()){
+				outsideBoundaryElementsNew.add(outsideBoundaryElement);
+			}
+		}
+		return outsideBoundaryElementsNew;
 	}
-	
+
 	private void locate() {
 		EList<ReplacementBoundaryElement> rbes = this.replacement.getBoundaryElement();
 		for(ReplacementBoundaryElement rbe : rbes){
@@ -130,13 +195,11 @@ public class ReplacementElementHolder {
 		}
 		this.findInsideElements();
 		this.calculateInternalElements();
-		this.findAllOusideBoundaryElements();
+		//this.findAllOusideBoundaryElements();
 	}
 
 
 	private void findAllOusideBoundaryElements(){
-		//have not found method that can return inwards references to an object, i believe it is possible to find...,
-		//but so far do that
 		Resource r = Utility.resolveProxies(this.tre.get(0).getInsideBoundaryElement()).get(0).eResource();
 		TreeIterator<EObject> conts = r.getAllContents();
 		EList<EObject> intElements = new BasicEList<EObject>();

@@ -12,6 +12,7 @@ import no.sintef.cvl.engine.converters.common.CVLModelNew;
 import no.sintef.cvl.engine.converters.common.CVLModelOld;
 import no.sintef.cvl.engine.converters.common.PlacementElementHolder;
 import no.sintef.cvl.engine.converters.common.ReplacementElementHolder;
+import no.sintef.dsl.node.nodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.ExternalCrossReferencer;
 import org.eclipse.emf.ecore.util.EcoreUtil.UsageCrossReferencer;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import org.variabilitymodeling.cvl.BoundaryElementBinding;
 import org.variabilitymodeling.cvl.CVLModel;
@@ -77,6 +79,9 @@ public class OldCvlToNewCvl {
 			e.printStackTrace();
 		}
 		
+		UMLPackage.eINSTANCE.eClass();
+		//nodePackage.eINSTANCE.eClass();
+		
 		CVLModelNew cvn = new CVLModelNew(this.resSet);
 		this.cu = cvn.creat();
 		
@@ -115,6 +120,7 @@ public class OldCvlToNewCvl {
 				org.variabilitymodeling.cvl.PlacementFragment opf = (org.variabilitymodeling.cvl.PlacementFragment) child;
 				PlacementFragment pf = factory.createPlacementFragment();
 				pf.setName(opf.getName());
+				//System.out.println("11111111111111111111111111111111111 " + opf + " !!!!!!!!!!" + pf);
 				this.plMap.put(opf, pf);
 				PlacementElementHolder pef = new PlacementElementHolder(opf);
 				HashMap<org.variabilitymodeling.cvl.FromPlacement, EObject> mapFromPlacementInside = pef.getInsideBoundaryMapForPlacement();
@@ -236,6 +242,7 @@ public class OldCvlToNewCvl {
 				org.variabilitymodeling.cvl.FragmentSubstitution fso = (org.variabilitymodeling.cvl.FragmentSubstitution) child;
 				FragmentSubstitution fsn = factory.createFragmentSubstitution();
 				fsn.setName(fso.getName());
+				//System.out.println("???????????????????? " + fso.getPlacement());
 				PlacementFragment pf = this.getPlacement(fso.getPlacement());
 				ReplacementFragmentType rft = this.getReplacement(fso.getReplacement());
 				
@@ -305,6 +312,7 @@ public class OldCvlToNewCvl {
 	
 	private EList<ObjectHandle> getObjectHandlesPlacemenet(PlacementFragment pf){
 		EList<ObjectHandle> ohl = new BasicEList<ObjectHandle>();
+		//System.out.println("!!!!!!!!!!!!!!!!!!!!!" + pf);
 		EList<cvl.PlacementBoundaryElement> pbes = pf.getPlacementBoundaryElement();
 		for(cvl.PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof cvl.ToPlacement){
