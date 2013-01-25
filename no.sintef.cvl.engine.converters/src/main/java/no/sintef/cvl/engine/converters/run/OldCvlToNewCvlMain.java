@@ -27,10 +27,11 @@ public class OldCvlToNewCvlMain {
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/VM1.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/SafetyModule.cvl"), new File("src/main/resources/model/PrinterPool.xmi"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/adjacent/exp0/node.cvl"), new File("src/main/resources/model/adjacent/exp0/node.new.cvl"));
-		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/adjacent/exp1/node.cvl"), new File("src/main/resources/model/adjacent/exp0/node.new.cvl"));
+		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/adjacent/exp1/node.cvl"), new File("src/main/resources/model/adjacent/exp0/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/realistic/iter0/SafetyModule.cvl"), new File("src/main/resources/model/realistic/iter0/SafetyModule.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/realistic/iter1/SafetyModule.cvl"), new File("src/main/resources/model/realistic/iter1/SafetyModule.new.cvl"));
-		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/realistic/iter2/SafetyModule.cvl"), new File("src/main/resources/model/realistic/iter2/SafetyModule.new.cvl"));
+		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/realistic/iter2/SafetyModule.cvl"), new File("src/main/resources/model/realistic/iter2/SafetyModule.new.cvl"));
+		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/nodeNull/node.cvl"), new File("src/main/resources/model/nodeNull/node.new.cvl"));
 		con.run();
 		//con.run1();		
 	}

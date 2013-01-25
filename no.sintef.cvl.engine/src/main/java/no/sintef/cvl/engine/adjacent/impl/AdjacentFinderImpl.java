@@ -88,13 +88,17 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 		for(FromBinding fromBinding : fromBindings){
 			FromPlacement fromPlacement = fromBinding.getFromPlacement();
 			ObjectHandle insideBoundaryElement = fromPlacement.getInsideBoundaryElement();
+			EObject insideBoundaryElementEObject = Utility.resolveProxies(insideBoundaryElement);
 			EList<ObjectHandle> outsideBoundatyElements = fromPlacement.getOutsideBoundaryElement();
+			EList<EObject> outsideBoundatyElementsEObject = Utility.resolveProxies(outsideBoundatyElements);
 			EList<ToBinding> toBindings = fragmentHolder1.getToBindings();
 			for(ToBinding toBinding : toBindings){
 				ToPlacement toPlacement = toBinding.getToPlacement();
 				ObjectHandle outsideBoundaryElement = toPlacement.getOutsideBoundaryElement();
+				EObject outsideBoundaryElementEObject = Utility.resolveProxies(outsideBoundaryElement);
 				EList<ObjectHandle> insideBoundaryElements = toPlacement.getInsideBoundaryElement();
-				if(insideBoundaryElement.equals(outsideBoundaryElement) && Sets.symmetricDifference(new HashSet<ObjectHandle>(outsideBoundatyElements), new HashSet<ObjectHandle>(insideBoundaryElements)).isEmpty()){
+				EList<EObject> insideBoundaryElementsEObject = Utility.resolveProxies(insideBoundaryElements);
+				if(insideBoundaryElementEObject.equals(outsideBoundaryElementEObject) && Sets.symmetricDifference(new HashSet<EObject>(outsideBoundatyElementsEObject), new HashSet<EObject>(insideBoundaryElementsEObject)).isEmpty()){
 					boundariesMap.put(fromBinding, toBinding);
 				}
 			}
