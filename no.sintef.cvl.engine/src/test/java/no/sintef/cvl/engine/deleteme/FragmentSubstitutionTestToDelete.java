@@ -83,56 +83,19 @@ public class FragmentSubstitutionTestToDelete {
 		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
 		
 		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
-		fso1.execute(true);
+		fso1.execute(false);
 		adjacentResolver.resolve(fragmentSubHolder1);
 		
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		fso2.execute(true);
+		fso2.execute(false);
 		adjacentResolver.resolve(fragmentSubHolder2);
 				
 		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
-		fso3.execute(true);
+		fso3.execute(false);
 		adjacentResolver.resolve(fragmentSubHolder3);
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		
-		
-		/*BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
-		fragmentSubHolderList.add(fragmentSubHolder1);
-		fragmentSubHolderList.add(fragmentSubHolder2);
-		
-		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		ArrayList<AdjacentFragment> adjacentFragments = Lists.newArrayList(adjacenFinder.getAdjacentMap().values());
-		//System.out.println(adjacentFragments.get(0).getAdjacentFragments());
-		//System.out.println(adjacentFragments.get(1).getAdjacentFragments());
-		
-		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
-				
-		System.out.println("!!!!!!!!!!!!!!!!!!!!");
-		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		fso2.execute(true);
-		ToBinding toBinding = fragmentSubHolder2.getToBindings().get(1);
-		//System.out.println(this.resolveObjectHandles(toBinding.getToPlacement().getOutsideBoundaryElement()));
-		System.out.println(this.resolveObjectHandles(toBinding.getToPlacement().getInsideBoundaryElement()));
-		//System.out.println(fragmentSubHolder2.getPlacement().getInnerFragmentElements());
-		//System.out.println(fragmentSubHolder2.getPlacement().getOuterFragmentElements());
-		
-		adjacentResolver.resolve(fragmentSubHolder2);
-		
-		System.out.println("!!!!!!!!!!!!!!!!!!!!");
-		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
-		fso1.execute(true);
-		FromBinding fromBinding = fragmentSubHolder1.getFromBinding().get(0);
-		System.out.println(this.resolveObjectHandles(fromBinding.getFromPlacement().getOutsideBoundaryElement()));
-		//System.out.println(this.resolveObjectHandles(fromBinding.getFromPlacement().getInsideBoundaryElement()));
-		//System.out.println(fragmentSubHolder1.getPlacement().getInnerFragmentElements());
-		//System.out.println(fragmentSubHolder1.getPlacement().getOuterFragmentElements());
-		
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
-		//fso.execute(true);
-		//SetUpUtils.writeToFile(baseModel, "base_new.node");
-		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));*/
 	}
 	
 	private EList<EObject> resolveObjectHandles(EList<ObjectHandle> objectHandles){

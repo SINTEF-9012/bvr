@@ -1,0 +1,1456 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:JavaFrameProfile="http:///schemas/JavaFrameProfile/_ahpfcEZVEdy9t6Wk6JM5SQ/6" xmlns:UTP="http://Profile/schemas/UTP/_63s1MI7pEeGE1-LPAXnViw/3" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks http:///schemas/JavaFrameProfile/_ahpfcEZVEdy9t6Wk6JM5SQ/6 JavaFrame.profile.uml#_ahpfcUZVEdy9t6Wk6JM5SQ http://Profile/schemas/UTP/_63s1MI7pEeGE1-LPAXnViw/3 ../../UTP/model.uml#_NfubpZKgEeG4LNsoPvl1hw">
+  <uml:Model name="SafetyDrive">
+    <packageImport>
+      <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport>
+      <importedPackage href="JavaFrame.profile.uml#_67mDkEAFEdyZYqAbua80Fg"/>
+    </packageImport>
+    <packageImport>
+      <importedPackage href="JavaFrame.library.uml#_fuZI0FSeEd2Z3t2I7YooXw"/>
+    </packageImport>
+    <packageImport>
+      <importedPackage href="SMSPorts.library.uml#_AVf8EED5EdySQJDgucYlqA"/>
+    </packageImport>
+    <packagedElement xsi:type="uml:Package" name="SafetyDrive">
+      <packagedElement xsi:type="uml:Signal" name="RequestedSpeed_Motor">
+        <ownedAttribute name="speed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="GetCurrentSpeed">
+        <ownedAttribute name="speedDirection" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute name="increment" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="CurrentSpeed">
+        <ownedAttribute name="speed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="EstimatedSpeed">
+        <ownedAttribute name="speed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="GetCurrentAnomalySpeed">
+        <ownedAttribute name="anomalySpeed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="ForceCurrentSpeed">
+        <ownedAttribute name="speed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="STO"/>
+      <packagedElement xsi:type="uml:Signal" name="SBC"/>
+      <packagedElement xsi:type="uml:Signal" name="PowerOn_Wheel"/>
+      <packagedElement xsi:type="uml:Signal" name="PowerOff_Wheel"/>
+      <packagedElement xsi:type="uml:Signal" name="Power_Wheel"/>
+      <packagedElement xsi:type="uml:Signal" name="SLS">
+        <ownedAttribute name="suggestedSpeed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Signal" name="CommunicationCheck"/>
+      <packagedElement xsi:type="uml:Signal" name="CommunicationCheckAck"/>
+      <packagedElement xsi:type="uml:Signal" name="StartMotor"/>
+      <packagedElement xsi:type="uml:Signal" name="StopMotor"/>
+      <packagedElement xsi:type="uml:Signal" name="ExternalStop"/>
+      <packagedElement xsi:type="uml:Signal" name="ActivateSLS"/>
+      <packagedElement xsi:type="uml:Signal" name="DeactivateSLS"/>
+      <packagedElement xsi:type="uml:Signal" name="PowerOn"/>
+      <packagedElement xsi:type="uml:Signal" name="PowerOff"/>
+      <packagedElement xsi:type="uml:Signal" name="EmergencyStop_FaultReset"/>
+      <packagedElement xsi:type="uml:Signal" name="Config_SafetyModule"/>
+      <packagedElement xsi:type="uml:Signal" name="AnomalyInput">
+        <ownedAttribute name="speed" visibility="public" isUnique="false">
+          <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_STO" signal="/0/SafetyDrive/STO"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_SBC" signal="/0/SafetyDrive/SBC"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_EmergencyStop_FaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_RequestedSpeed_Motor" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_GetCurrentSpeed" signal="/0/SafetyDrive/GetCurrentSpeed"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_GetCurrentAnomalySpeed" signal="/0/SafetyDrive/GetCurrentAnomalySpeed"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_CurrentSpeed" signal="/0/SafetyDrive/CurrentSpeed"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_ForceCurrentSpeed" signal="/0/SafetyDrive/ForceCurrentSpeed"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_EstimatedSpeed" signal="/0/SafetyDrive/EstimatedSpeed"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_Power_Wheel" signal="/0/SafetyDrive/Power_Wheel"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_SLS" signal="/0/SafetyDrive/SLS"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_AnomalyInput" signal="/0/SafetyDrive/AnomalyInput"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_PowerOn_Wheel" signal="/0/SafetyDrive/PowerOn_Wheel"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_PowerOff_Wheel" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_DeactivateSLS" signal="/0/SafetyDrive/DeactivateSLS"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_ActivateSLS" signal="/0/SafetyDrive/ActivateSLS"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_PowerOff" signal="/0/SafetyDrive/PowerOff"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_PowerOn" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_CommunicationCheck" signal="/0/SafetyDrive/CommunicationCheck"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_CommunicationCheckAck" signal="/0/SafetyDrive/CommunicationCheckAck"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_StartMotor" signal="/0/SafetyDrive/StartMotor"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_StopMotor" signal="/0/SafetyDrive/StopMotor"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_ExternalStop" signal="/0/SafetyDrive/ExternalStop"/>
+      <packagedElement xsi:type="uml:SignalEvent" name="SignalEvent_ConfigSafetyModule" signal="/0/SafetyDrive/Config_SafetyModule"/>
+      <packagedElement xsi:type="uml:Class" name="CommandMCInputMediator">
+        <ownedReception name="Reception_RequestedSpeed_Motor" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+        <ownedReception name="Reception_PowerOff_Wheel" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+        <ownedReception name="Reception_PowerOn_Wheel" signal="/0/SafetyDrive/PowerOn_Wheel"/>
+        <ownedReception name="Reception_StartMotor" signal="/0/SafetyDrive/StartMotor"/>
+        <ownedReception name="Reception_StopMotor" signal="/0/SafetyDrive/StopMotor"/>
+        <ownedReception name="Reception_ActivateSLS" signal="/0/SafetyDrive/ActivateSLS"/>
+        <ownedReception name="Reception_DeactivateSLS" signal="/0/SafetyDrive/DeactivateSLS"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="DigitalInputSM">
+        <ownedReception name="Reception_EmergencyStopFaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+        <ownedReception name="Reception_ExternalStop" signal="/0/SafetyDrive/ExternalStop"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="AnomalyInputMediator">
+        <ownedReception name="Reception_AnomalyInput" signal="/0/SafetyDrive/AnomalyInput"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="PowerInputMediator">
+        <ownedReception name="PowerOn" signal="/0/SafetyDrive/PowerOn"/>
+        <ownedReception name="PowerOff" signal="/0/SafetyDrive/PowerOff"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="SafetyDrive" classifierBehavior="/0/SafetyDrive/SafetyDrive/testBasic">
+        <ownedAttribute name="mc" visibility="public" type="/0/SafetyDrive/MotorController/MotorController" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="command_MC0" visibility="public" type="/0/SafetyDrive/CommandMCInputMediator" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="anomalyInput" visibility="public" type="/0/SafetyDrive/AnomalyInputMediator" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute name="m" type="/0/SafetyDrive/Motor" aggregation="composite"/>
+        <ownedAttribute xsi:type="uml:Port" name="DigitalInputSM_0" visibility="public" type="/0/SafetyDrive/DigitalInputSM" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="DigitalOutputSM_1" visibility="public" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="power" visibility="public" type="/0/SafetyDrive/PowerInputMediator" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute name="sm1" visibility="public" type="/0/SafetyDrive/SafetyDrive" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+        </ownedAttribute>
+        <ownedConnector name="toMC_fromSM">
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/toMC" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+          <end role="/0/SafetyDrive/MotorController/MotorController/fromSM" partWithPort="/0/SafetyDrive/SafetyDrive/mc"/>
+        </ownedConnector>
+        <ownedConnector name="command_MC0_MC1">
+          <end role="/0/SafetyDrive/SafetyDrive/command_MC0"/>
+          <end role="/0/SafetyDrive/MotorController/MotorController/command_MC1" partWithPort="/0/SafetyDrive/SafetyDrive/mc"/>
+        </ownedConnector>
+        <ownedConnector name="brake_0_1">
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/brake0" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+          <end role="/0/SafetyDrive/Motor/brake1" partWithPort="/0/SafetyDrive/SafetyDrive/m"/>
+        </ownedConnector>
+        <ownedConnector name="speedReading_3_4">
+          <end role="/0/SafetyDrive/Motor/speedReading3" partWithPort="/0/SafetyDrive/SafetyDrive/m"/>
+          <end role="/0/SafetyDrive/MotorController/MotorController/speedReading4" partWithPort="/0/SafetyDrive/SafetyDrive/mc"/>
+        </ownedConnector>
+        <ownedConnector name="speedReading_3_5">
+          <end role="/0/SafetyDrive/Motor/speedReading3" partWithPort="/0/SafetyDrive/SafetyDrive/m"/>
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/speedReading5" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+        </ownedConnector>
+        <ownedConnector name="anomaly_Input_M">
+          <end role="/0/SafetyDrive/SafetyDrive/anomalyInput"/>
+          <end role="/0/SafetyDrive/Motor/anomaly_M" partWithPort="/0/SafetyDrive/SafetyDrive/m"/>
+        </ownedConnector>
+        <ownedConnector name="power_W0_W1">
+          <end role="/0/SafetyDrive/MotorController/MotorController/power_W0" partWithPort="/0/SafetyDrive/SafetyDrive/mc"/>
+          <end role="/0/SafetyDrive/Motor/power_W1" partWithPort="/0/SafetyDrive/SafetyDrive/m"/>
+        </ownedConnector>
+        <ownedConnector name="DigitalInputSM_0_1">
+          <end role="/0/SafetyDrive/SafetyDrive/DigitalInputSM_0"/>
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/DigitalInputSM_1" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+        </ownedConnector>
+        <ownedConnector name="toSM_fromMC">
+          <end role="/0/SafetyDrive/MotorController/MotorController/toSM" partWithPort="/0/SafetyDrive/SafetyDrive/mc"/>
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/fromMC" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+        </ownedConnector>
+        <ownedConnector name="Connector0">
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/DigitalOutputSM_0" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+          <end role="/0/SafetyDrive/SafetyDrive/DigitalOutputSM_1"/>
+        </ownedConnector>
+        <ownedConnector name="Connector1">
+          <end role="/0/SafetyDrive/SafetyDrive/power"/>
+          <end role="/0/SafetyDrive/MotorController/MotorController/powerMC" partWithPort="/0/SafetyDrive/SafetyDrive/mc"/>
+        </ownedConnector>
+        <ownedConnector name="Connector2">
+          <end role="/0/SafetyDrive/SafetyDrive/power"/>
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/powerSM" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+        </ownedConnector>
+        <ownedConnector name="Connector4">
+          <end role="/0/SafetyDrive/SafetyModule/SafetyModule/STO_SM" partWithPort="/0/SafetyDrive/SafetyDrive/sm1"/>
+          <end role="/0/SafetyDrive/Motor/power_W1" partWithPort="/0/SafetyDrive/SafetyDrive/m"/>
+        </ownedConnector>
+        <ownedBehavior xsi:type="uml:Interaction" name="testBasic" covered="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2">
+          <lifeline name="power" represents="/0/SafetyDrive/SafetyDrive/power" coveredBy="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message0Send0 /0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message1Send0"/>
+          <lifeline name="mc" represents="/0/SafetyDrive/SafetyDrive/mc" coveredBy="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message1Recv0 /0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheck_Message0Send0 /0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheckAck_Message0Recv0 /0/SafetyDrive/SafetyDrive/testBasic/Config_SafetyModule_Message0Recv0 /0/SafetyDrive/SafetyDrive/testBasic/ConfigureSM"/>
+          <lifeline name="Lifeline2" visibility="public" coveredBy="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message0Recv0 /0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheck_Message0Recv0 /0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheckAck_Message0Send0 /0/SafetyDrive/SafetyDrive/testBasic/Config_SafetyModule_Message0Send0 /0/SafetyDrive/SafetyDrive/testBasic/Operational /0/SafetyDrive/SafetyDrive/testBasic"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message0Send0" covered="/0/SafetyDrive/SafetyDrive/testBasic/power" event="/0/SafetyDrive/SendSignalEvent5" message="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message1Send0" covered="/0/SafetyDrive/SafetyDrive/testBasic/power" event="/0/SafetyDrive/SendSignalEvent6" message="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message1"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message0Recv0" covered="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2" event="/0/SafetyDrive/ReceiveSignalEvent5" message="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message1Recv0" covered="/0/SafetyDrive/SafetyDrive/testBasic/mc" event="/0/SafetyDrive/ReceiveSignalEvent6" message="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message1"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheck_Message0Send0" covered="/0/SafetyDrive/SafetyDrive/testBasic/mc" event="/0/SafetyDrive/SendSignalEvent7" message="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheck_Message0Recv0" covered="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2" event="/0/SafetyDrive/ReceiveSignalEvent7" message="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheckAck_Message0Send0" covered="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2" event="/0/SafetyDrive/SendSignalEvent8" message="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheckAck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheckAck_Message0Recv0" covered="/0/SafetyDrive/SafetyDrive/testBasic/mc" event="/0/SafetyDrive/ReceiveSignalEvent8" message="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheckAck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="Config_SafetyModule_Message0Send0" covered="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2" event="/0/SafetyDrive/SendSignalEvent9" message="/0/SafetyDrive/SafetyDrive/testBasic/Config_SafetyModule_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="Operational" covered="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="Config_SafetyModule_Message0Recv0" covered="/0/SafetyDrive/SafetyDrive/testBasic/mc" event="/0/SafetyDrive/ReceiveSignalEvent9" message="/0/SafetyDrive/SafetyDrive/testBasic/Config_SafetyModule_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="ConfigureSM" covered="/0/SafetyDrive/SafetyDrive/testBasic/mc">
+            <invariant name=""/>
+          </fragment>
+          <message name="PowerOn_Message0" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message0Send0"/>
+          <message name="PowerOn_Message1" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message1Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/testBasic/PowerOn_Message1Send0"/>
+          <message name="CommunicationCheck_Message0" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheck_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheck_Message0Send0"/>
+          <message name="CommunicationCheckAck_Message0" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheckAck_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/testBasic/CommunicationCheckAck_Message0Send0"/>
+          <message name="Config_SafetyModule_Message0" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/testBasic/Config_SafetyModule_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/testBasic/Config_SafetyModule_Message0Send0"/>
+        </ownedBehavior>
+        <ownedBehavior xsi:type="uml:Interaction" name="Level3StartUp">
+          <lifeline name="command_MC0" visibility="public" represents="/0/SafetyDrive/SafetyDrive/command_MC0" coveredBy="/0/SafetyDrive/SafetyDrive/Level3StartUp/RequestedSpeed_Motor_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/StartMotor_Message0Send0"/>
+          <lifeline name="power" visibility="public" represents="/0/SafetyDrive/SafetyDrive/power" coveredBy="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message1Send0"/>
+          <lifeline name="mc" visibility="public" represents="/0/SafetyDrive/SafetyDrive/mc" coveredBy="/0/SafetyDrive/SafetyDrive/Level3StartUp/RequestedSpeed_Motor_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheck_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheckAck_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOff /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn /0/SafetyDrive/SafetyDrive/Level3StartUp/ConfigureSM /0/SafetyDrive/SafetyDrive/Level3StartUp/Config_SafetyModule_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/TargetSpeedSet /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message1Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/MotorStandby /0/SafetyDrive/SafetyDrive/Level3StartUp/StartMotor_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/Power_Wheel_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/GetCurrentSpeed_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/EngagingMotor /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/EstimatedSpeed_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/currentSpeed_Motor"/>
+          <lifeline name="sm" visibility="public" coveredBy="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message1Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheck_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheckAck_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerDown /0/SafetyDrive/SafetyDrive/Level3StartUp/StartUp /0/SafetyDrive/SafetyDrive/Level3StartUp/Configuration /0/SafetyDrive/SafetyDrive/Level3StartUp/Config_SafetyModule_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/Operational /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/EstimatedSpeed_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message1Recv0"/>
+          <lifeline name="m" visibility="public" represents="/0/SafetyDrive/SafetyDrive/m" coveredBy="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/GetCurrentSpeed_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message1Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/Power_Wheel_Message0Recv0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message0Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message1Send0 /0/SafetyDrive/SafetyDrive/Level3StartUp/s.currentSpeed_Motor"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="RequestedSpeed_Motor_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/command_MC0" event="/0/SafetyDrive/SendSignalEvent_RequestedSpeed_Motor" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/RequestedSpeed_Motor_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="PowerOff" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message1Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/power" event="/0/SafetyDrive/SendSignalEvent_PowerOn" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message1"/>
+          <fragment xsi:type="uml:StateInvariant" name="PowerDown" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/power" event="/0/SafetyDrive/SendSignalEvent_PowerOn" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message1Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm" event="/0/SafetyDrive/SendSignalEvent_PowerOn" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message1"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Wheel_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/command_MC0" event="/0/SafetyDrive/SendSignalEvent_PowerOn_Wheel" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/SendSignalEvent_PowerOn" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="StartMotor_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/command_MC0" event="/0/SafetyDrive/SendSignalEvent_StartMotor" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/StartMotor_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="StartUp" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:StateInvariant" name="PowerOn" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheck_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/SendSignalEvent_CommunicationCheck" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheck_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm" event="/0/SafetyDrive/ReceiveSignalEvent_CommunicationCheck" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheck_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="Configuration" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheckAck_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm" event="/0/SafetyDrive/SendSignalEvent_CommunicationCheckAck" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheckAck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CommunicationCheckAck_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/ReceiveSignalEvent_CommunicationCheckAck" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheckAck_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="Config_SafetyModule_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm" event="/0/SafetyDrive/SendSignalEvent_Config_SafetyModule" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/Config_SafetyModule_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="Config_SafetyModule_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/ReceiveSignalEvent_Config_SafetyModule" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/Config_SafetyModule_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="Operational" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:StateInvariant" name="ConfigureSM" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name="">
+              <specification xsi:type="uml:OpaqueExpression" name="properties" language="">
+                <body>manual->true</body>
+              </specification>
+            </invariant>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="RequestedSpeed_Motor_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/ReceiveSignalEvent_RequestedSpeed_Motor" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/RequestedSpeed_Motor_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="TargetSpeedSet" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Wheel_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/ReceiveSignalEvent_PowerOn_Wheel" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Wheel_Message1Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/SendSignalEvent_PowerOn_Wheel" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message1"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="PowerOn_Wheel_Message1Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/m" event="/0/SafetyDrive/ReceiveSignalEvent_PowerOn_Wheel" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message1"/>
+          <fragment xsi:type="uml:StateInvariant" name="MotorStandby" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="StartMotor_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/ReceiveSignalEvent_StartMotor" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/StartMotor_Message0"/>
+          <fragment xsi:type="uml:StateInvariant" name="EngagingMotor" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name=""/>
+          </fragment>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="Power_Wheel_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/SendSignalEvent_Power_Wheel" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/Power_Wheel_Message0"/>
+          <fragment xsi:type="uml:MessageOccurrenceSpecification" name="Power_Wheel_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/m" event="/0/SafetyDrive/ReceiveSignalEvent_Power_Wheel" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/Power_Wheel_Message0"/>
+          <fragment xsi:type="uml:CombinedFragment" name="CombinedFragment0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc /0/SafetyDrive/SafetyDrive/Level3StartUp/sm /0/SafetyDrive/SafetyDrive/Level3StartUp/m" interactionOperator="loop">
+            <operand name="InteractionOperand0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc /0/SafetyDrive/SafetyDrive/Level3StartUp/sm /0/SafetyDrive/SafetyDrive/Level3StartUp/m">
+              <guard>
+                <specification xsi:type="uml:LiteralString" value=""/>
+                <minint xsi:type="uml:LiteralInteger"/>
+                <maxint xsi:type="uml:LiteralInteger" value="10000"/>
+              </guard>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="GetCurrentSpeed_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/SendSignalEvent_GetCurrentSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/GetCurrentSpeed_Message0"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="EstimatedSpeed_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/SendSignalEvent_EstimatedSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/EstimatedSpeed_Message0"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="GetCurrentSpeed_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/m" event="/0/SafetyDrive/ReceiveSignalEvent_GetCurrentSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/GetCurrentSpeed_Message0"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="EstimatedSpeed_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm" event="/0/SafetyDrive/ReceiveSignalEvent_EstimatedSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/EstimatedSpeed_Message0"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CurrentSpeed_Message0Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/m" event="/0/SafetyDrive/SendSignalEvent_CurrentSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CurrentSpeed_Message0"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CurrentSpeed_Message1Send0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/m" event="/0/SafetyDrive/SendSignalEvent_CurrentSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CurrentSpeed_Message1"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CurrentSpeed_Message0Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc" event="/0/SafetyDrive/ReceiveSignalEvent_CurrentSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CurrentSpeed_Message0"/>
+              <fragment xsi:type="uml:MessageOccurrenceSpecification" name="CurrentSpeed_Message1Recv0" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm" event="/0/SafetyDrive/ReceiveSignalEvent_CurrentSpeed" message="/0/SafetyDrive/SafetyDrive/Level3StartUp/CurrentSpeed_Message1"/>
+            </operand>
+          </fragment>
+          <fragment xsi:type="uml:StateInvariant" name="s.currentSpeed_Motor" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/m">
+            <invariant name="">
+              <specification xsi:type="uml:OpaqueExpression" name="properties" language="">
+                <body>assert->assertTrue(&quot;Required speed is not reached, the speed is &quot; + &lt;this>.&lt;stateName>, &lt;this>.&lt;stateName> > 100-10 &amp;&amp; &lt;this>.&lt;stateName> &lt; 100+10)</body>
+              </specification>
+            </invariant>
+          </fragment>
+          <fragment xsi:type="uml:StateInvariant" name="currentSpeed_Motor" visibility="public" covered="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc">
+            <invariant name="">
+              <specification xsi:type="uml:OpaqueExpression" name="properties" language="">
+                <body>assert->assertTrue(&quot;Required speed is not reached, the speed is &quot; + &lt;this>.&lt;stateName>, &lt;this>.&lt;stateName> > 100-10 &amp;&amp; &lt;this>.&lt;stateName> &lt; 100+10)</body>
+              </specification>
+            </invariant>
+          </fragment>
+          <message name="PowerOn_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message0Send0"/>
+          <message name="PowerOn_Message1" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message1Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Message1Send0"/>
+          <message name="CommunicationCheck_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheck_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheck_Message0Send0"/>
+          <message name="CommunicationCheckAck_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheckAck_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CommunicationCheckAck_Message0Send0"/>
+          <message name="Config_SafetyModule_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/Config_SafetyModule_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/Config_SafetyModule_Message0Send0"/>
+          <message name="RequestedSpeed_Motor_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/RequestedSpeed_Motor_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/RequestedSpeed_Motor_Message0Send0">
+            <argument xsi:type="uml:LiteralInteger" name="speed" value="100"/>
+          </message>
+          <message name="PowerOn_Wheel_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message0Send0"/>
+          <message name="PowerOn_Wheel_Message1" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message1Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/PowerOn_Wheel_Message1Send0"/>
+          <message name="StartMotor_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/StartMotor_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/StartMotor_Message0Send0"/>
+          <message name="Power_Wheel_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/Power_Wheel_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/Power_Wheel_Message0Send0"/>
+          <message name="GetCurrentSpeed_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/GetCurrentSpeed_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/GetCurrentSpeed_Message0Send0"/>
+          <message name="EstimatedSpeed_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/EstimatedSpeed_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/EstimatedSpeed_Message0Send0"/>
+          <message name="CurrentSpeed_Message0" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message0Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message0Send0"/>
+          <message name="CurrentSpeed_Message1" visibility="public" messageSort="asynchSignal" receiveEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message1Recv0" sendEvent="/0/SafetyDrive/SafetyDrive/Level3StartUp/CombinedFragment0/InteractionOperand0/CurrentSpeed_Message1Send0"/>
+        </ownedBehavior>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="Motor">
+        <ownedAttribute name="w" visibility="public" type="/0/SafetyDrive/Wheel/Wheel" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute name="s" visibility="public" type="/0/SafetyDrive/Sensor/Sensor" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute name="b" type="/0/SafetyDrive/Brake/Brake" aggregation="composite"/>
+        <ownedAttribute xsi:type="uml:Port" name="speedReading3" visibility="public" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="power_W1" visibility="public" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="brake1" visibility="public" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xsi:type="uml:Port" name="anomaly_M" visibility="public" aggregation="composite">
+          <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+          <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          <defaultValue xsi:type="uml:LiteralString">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedConnector name="power_W1_W2">
+          <end role="/0/SafetyDrive/Motor/power_W1"/>
+          <end role="/0/SafetyDrive/Wheel/Wheel/power_W2" partWithPort="/0/SafetyDrive/Motor/w"/>
+        </ownedConnector>
+        <ownedConnector name="brake_1_2">
+          <end role="/0/SafetyDrive/Motor/brake1"/>
+          <end role="/0/SafetyDrive/Brake/Brake/brake2" partWithPort="/0/SafetyDrive/Motor/b"/>
+        </ownedConnector>
+        <ownedConnector name="brake_3_4">
+          <end role="/0/SafetyDrive/Brake/Brake/brake3" partWithPort="/0/SafetyDrive/Motor/b"/>
+          <end role="/0/SafetyDrive/Wheel/Wheel/brake4" partWithPort="/0/SafetyDrive/Motor/w"/>
+        </ownedConnector>
+        <ownedConnector name="speedReading_0_1">
+          <end role="/0/SafetyDrive/Wheel/Wheel/speedReading0" partWithPort="/0/SafetyDrive/Motor/w"/>
+          <end role="/0/SafetyDrive/Sensor/Sensor/speedReading1" partWithPort="/0/SafetyDrive/Motor/s"/>
+        </ownedConnector>
+        <ownedConnector name="speedReading_2_3">
+          <end role="/0/SafetyDrive/Sensor/Sensor/speedReading2" partWithPort="/0/SafetyDrive/Motor/s"/>
+          <end role="/0/SafetyDrive/Motor/speedReading3"/>
+        </ownedConnector>
+        <ownedConnector name="anomaly_M_W">
+          <end role="/0/SafetyDrive/Motor/anomaly_M"/>
+          <end role="/0/SafetyDrive/Wheel/Wheel/anomaly_W" partWithPort="/0/SafetyDrive/Motor/w"/>
+        </ownedConnector>
+        <ownedConnector name="forceSpeedReadingFromBrake">
+          <end role="/0/SafetyDrive/Brake/Brake/speedReadingBrake" partWithPort="/0/SafetyDrive/Motor/b"/>
+          <end role="/0/SafetyDrive/Sensor/Sensor/speedReading1" partWithPort="/0/SafetyDrive/Motor/s"/>
+        </ownedConnector>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="Wheel">
+        <ownedBehavior xsi:type="uml:StateMachine" name="Wheel">
+          <ownedAttribute xsi:type="uml:Port" name="speedReading0" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="power_W2" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="brake4" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="anomaly_W" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute name="powerSwitch">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="acceleration">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <region name="Region0">
+            <subvertex xsi:type="uml:Pseudostate" name="Initial0"/>
+            <subvertex xsi:type="uml:State" name="PowerOff"/>
+            <subvertex xsi:type="uml:State" name="PowerOn"/>
+            <subvertex xsi:type="uml:State" name="Running"/>
+            <transition name="Initialize" source="/0/SafetyDrive/Wheel/Wheel/Region0/Initial0" target="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOff"/>
+            <transition name="PowerOn" source="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOff" target="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOn">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOnWheel">
+                <body>csm.powerSwitch=true;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOnWheel" event="/0/SafetyDrive/SignalEvent_PowerOn_Wheel"/>
+            </transition>
+            <transition name="MotorStarted" source="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOn" target="/0/SafetyDrive/Wheel/Wheel/Region0/Running">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOnWheel">
+                <body>output(new GetCurrentSpeed(1,50), csm.speedReading0, csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="Power2Wheel" event="/0/SafetyDrive/SignalEvent_Power_Wheel"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/Wheel/Wheel/Region0/Running" target="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffWheel">
+                <body>csm.powerSwitch=false;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffWheel" event="/0/SafetyDrive/SignalEvent_PowerOff_Wheel"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOn" target="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffWheel">
+                <body>csm.powerSwitch=false;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffWheel" event="/0/SafetyDrive/SignalEvent_PowerOff_Wheel"/>
+            </transition>
+            <transition name="AnomalyInput" source="/0/SafetyDrive/Wheel/Wheel/Region0/Running" target="/0/SafetyDrive/Wheel/Wheel/Region0/Running">
+              <effect xsi:type="uml:OpaqueBehavior" name="SetRequestedCurrentSpeed">
+                <body>output(new GetCurrentAnomalySpeed(sig.speed), csm.speedReading0, csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="AnomalyInput" event="/0/SafetyDrive/SignalEvent_AnomalyInput"/>
+            </transition>
+            <transition name="RequestedCurrentSpeedReceived" source="/0/SafetyDrive/Wheel/Wheel/Region0/Running" target="/0/SafetyDrive/Wheel/Wheel/Region0/Running">
+              <effect xsi:type="uml:OpaqueBehavior" name="SetRequestedCurrentSpeed">
+                <body>output(new GetCurrentSpeed(sig.speedDirection, sig.increment), csm.speedReading0, csm);&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="Power2Wheel" event="/0/SafetyDrive/SignalEvent_GetCurrentSpeed"/>
+            </transition>
+            <transition name="SimulatedSpeedDecrease" source="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOff" target="/0/SafetyDrive/Wheel/Wheel/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="SetRequestedCurrentSpeed">
+                <body>output(new GetCurrentSpeed(-1,50), csm.speedReading0, csm);&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="Power2Wheel" event="/0/SafetyDrive/SignalEvent_Power_Wheel"/>
+            </transition>
+          </region>
+        </ownedBehavior>
+        <ownedReception name="Reception_Power_Wheel" signal="/0/SafetyDrive/Power_Wheel"/>
+        <ownedReception name="Reception_PowerOff_Wheel" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+        <ownedReception name="Reception_PowerOn_Wheel" signal="/0/SafetyDrive/PowerOn_Wheel"/>
+        <ownedReception name="Reception_AnomalyInput" signal="/0/SafetyDrive/AnomalyInput"/>
+        <ownedReception name="Reception_GetCurrentSpeed" signal="/0/SafetyDrive/GetCurrentSpeed"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="SafetyModule">
+        <ownedBehavior xsi:type="uml:StateMachine" name="SafetyModule">
+          <ownedAttribute xsi:type="uml:Port" name="speedReading5" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="brake0" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="toMC" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="DigitalInputSM_1"/>
+          <ownedAttribute xsi:type="uml:Port" name="fromMC" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="DigitalOutputSM_0" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="powerSM" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="STO_SM" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute name="sto_timeToZeroSpeed">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sbc_delaySTO">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sbc_brakeDelay">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sbc_sse_ss1_speed">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sar_rampTimeToZero">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sar_minRampTimeToZero">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xsi:type="uml:LiteralInteger" value="5"/>
+          </ownedAttribute>
+          <ownedAttribute name="sar_maxRampTimeToZero">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xsi:type="uml:LiteralInteger" value="50"/>
+          </ownedAttribute>
+          <ownedAttribute name="ss1_delayForSTO">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sse_delayForSTO">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sls_timeDelay">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sls_speedLimitLower">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sls_speedLimitUpper">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sms_minSpeed">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="sms_maxSpeed">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="currentSpeed_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xsi:type="uml:LiteralString" value="-1"/>
+          </ownedAttribute>
+          <ownedAttribute name="currentEstimatedSpeed_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xsi:type="uml:LiteralString" value="-1"/>
+          </ownedAttribute>
+          <ownedAttribute name="currentAcc_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="lastSpeedReading">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="lastEstimatedSpeedReading">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="TimerMsg"/>
+          <ownedAttribute name="STOActivated">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="SLSActivated">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="SBCActivated">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="currentSpeedReceived">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="powerSwitch">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="rampOK">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="rampMonitoring">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="isFault">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedBehavior xsi:type="uml:StateMachine" name="STO" submachineState="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/STO_SM">
+            <region name="region0">
+              <subvertex xsi:type="uml:Pseudostate" name="enterSTO"/>
+              <subvertex xsi:type="uml:Pseudostate" name="enterFaultSTO" kind="entryPoint"/>
+              <subvertex xsi:type="uml:FinalState" name="leaveSTO"/>
+              <subvertex xsi:type="uml:Pseudostate" name="leaveFaultSTO" kind="exitPoint"/>
+              <subvertex xsi:type="uml:Pseudostate" name="leaveSTO" kind="exitPoint"/>
+              <subvertex xsi:type="uml:State" name="SBC_before" visibility="public">
+                <entry xsi:type="uml:OpaqueBehavior" name="activateBrakeAndStartTimer">
+                  <body>try {&#xD;&#xA;output(new SBC(), csm.brake0, csm);&#xD;&#xA;GUIHelper.brake();&#xD;&#xA;} catch (NullPointerException npe) {&#xD;&#xA;&#x9;System.err.println(&quot;Brake not connected&quot;);&#xD;&#xA;}&#xD;&#xA;GUIHelper.setSpeed(csm.currentSpeed_Motor);</body>
+                  <language>java</language>
+                </entry>
+              </subvertex>
+              <subvertex xsi:type="uml:Pseudostate" name="checkSpeedLimit_before" visibility="public" kind="choice"/>
+              <subvertex xsi:type="uml:State" name="STO_before" visibility="public">
+                <entry xsi:type="uml:OpaqueBehavior" name="activateSTO">
+                  <body>output(new PowerOff_Wheel(),csm.STO_SM,csm);&#xD;&#xA;output(new STO(),csm.toMC,csm);&#xD;&#xA;csm.STOActivated=true;&#xD;&#xA;GUIHelper.sto();&#xD;&#xA;GUIHelper.setSpeed(csm.currentSpeed_Motor);</body>
+                  <language>java</language>
+                </entry>
+              </subvertex>
+              <subvertex xsi:type="uml:State" name="WaitForReboot" visibility="public"/>
+              <subvertex xsi:type="uml:State" name="WaitForReset" visibility="public"/>
+              <transition name="enterSBC" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/enterSTO" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before">
+                <effect xsi:type="uml:OpaqueBehavior" name="flag">
+                  <body>csm.isFault = false;&#xD;&#xA;csm.TimerMsg.startTimer(csm.sbc_delaySTO);</body>
+                  <language>java</language>
+                </effect>
+              </transition>
+              <transition name="reboot" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/WaitForReboot" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/leaveFaultSTO">
+                <trigger name="PowerDown" visibility="public" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+              </transition>
+              <transition name="reset" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/WaitForReset" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/leaveSTO.1">
+                <trigger name="FaultReset" visibility="public" event="/0/SafetyDrive/SignalEvent_EmergencyStop_FaultReset"/>
+              </transition>
+              <transition name="TimerMsg" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/STO_before"/>
+              <transition name="speedLimitZero" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/checkSpeedLimit_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/WaitForReset" guard="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/speedLimitZero/!(csm.isFault%20%7C%7C%20csm.currentSpeed_Motor!=0)">
+                <ownedRule name="!(csm.isFault || csm.currentSpeed_Motor!=0)">
+                  <specification xsi:type="uml:OpaqueExpression" name="!(csm.isFault || csm.currentSpeed_Motor!=0)">
+                    <body>!(csm.isFault || csm.currentSpeed_Motor!=0)</body>
+                    <language>java</language>
+                  </specification>
+                </ownedRule>
+              </transition>
+              <transition name="speedLimitNotZero" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/checkSpeedLimit_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/WaitForReboot" guard="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/speedLimitNotZero/csm.isFault%20%7C%7C%20csm.currentSpeed_Motor!=0">
+                <ownedRule name="csm.isFault || csm.currentSpeed_Motor!=0">
+                  <specification xsi:type="uml:OpaqueExpression" name="csm.isFault || csm.currentSpeed_Motor!=0">
+                    <body>csm.isFault || csm.currentSpeed_Motor!=0</body>
+                    <language>java</language>
+                  </specification>
+                </ownedRule>
+              </transition>
+              <transition name="ReceiveSpeedReadingSTO" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/STO_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/checkSpeedLimit_before">
+                <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                  <body>csm.lastSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;csm.currentSpeedReceived=true;&#xD;&#xA;csm.currentAcc_Motor = Math.abs(sig.speed - csm.currentSpeed_Motor);&#xD;&#xA;csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;&#xD;&#xA;</body>
+                  <language>java</language>
+                </effect>
+                <trigger name="SpeedReading" visibility="public" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+              </transition>
+              <transition name="ReceiveEstimatedSpeedSTO" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/STO_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/checkSpeedLimit_before">
+                <effect xsi:type="uml:OpaqueBehavior" name="ReceiveEstimatedSpeed">
+                  <body>csm.lastEstimatedSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;if (Math.abs(csm.lastEstimatedSpeedReading - csm.lastSpeedReading) > 2500) {&#xD;&#xA;  csm.currentSpeedReceived=true;&#xD;&#xA;  csm.currentAcc_Motor = Math.abs(sig.speed - csm.currentSpeed_Motor);&#xD;&#xA;  csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;</body>
+                  <language>java</language>
+                </effect>
+                <trigger name="EstimatedSpeed" visibility="public" event="/0/SafetyDrive/SignalEvent_EstimatedSpeed"/>
+              </transition>
+              <transition name="enterSBC_fault" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/enterFaultSTO" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before">
+                <effect xsi:type="uml:OpaqueBehavior" name="flag">
+                  <body>csm.isFault = true;&#xD;&#xA;csm.TimerMsg.startTimer(csm.sbc_delaySTO);</body>
+                  <language>java</language>
+                </effect>
+              </transition>
+              <transition name="ReceiveSpeedReadingSBC" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before">
+                <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                  <body>csm.lastSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;csm.currentSpeedReceived=true;&#xD;&#xA;csm.currentAcc_Motor = Math.abs(sig.speed - csm.currentSpeed_Motor);&#xD;&#xA;csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;&#xD;&#xA;</body>
+                  <language>java</language>
+                </effect>
+                <trigger name="SpeedReading" visibility="public" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+              </transition>
+              <transition name="ReceiveEstimatedSpeedSBC" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before" target="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/SBC_before">
+                <effect xsi:type="uml:OpaqueBehavior" name="ReceiveEstimatedSpeed">
+                  <body>csm.lastEstimatedSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;if (Math.abs(csm.lastEstimatedSpeedReading - csm.lastSpeedReading) > 2500) {&#xD;&#xA;  csm.currentSpeedReceived=true;&#xD;&#xA;  csm.currentAcc_Motor = Math.abs(sig.speed - csm.currentSpeed_Motor);&#xD;&#xA;  csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;</body>
+                  <language>java</language>
+                </effect>
+                <trigger name="EstimatedSpeed" visibility="public" event="/0/SafetyDrive/SignalEvent_EstimatedSpeed"/>
+              </transition>
+            </region>
+          </ownedBehavior>
+          <region name="Region0">
+            <subvertex xsi:type="uml:Pseudostate" name="Initial0"/>
+            <subvertex xsi:type="uml:State" name="Operational">
+              <entry xsi:type="uml:OpaqueBehavior" name="deactivateSTO">
+                <body>csm.STOActivated=false;&#xD;&#xA;GUIHelper.unsto();&#xD;&#xA;csm.SLSActivated=false;&#xD;&#xA;GUIHelper.setSpeed(csm.currentSpeed_Motor);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="StartUp">
+              <entry xsi:type="uml:OpaqueBehavior" name="setup">
+                <body>csm.STOActivated=true;&#xD;&#xA;csm.SLSActivated=false;&#xD;&#xA;csm.SBCActivated=false;</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="PowerDown">
+              <entry xsi:type="uml:OpaqueBehavior" name="powerDown">
+                <body>GUIHelper.init();&#xD;&#xA;csm.powerSwitch=false;&#xD;&#xA;csm.currentSpeed_Motor=0;&#xD;&#xA;csm.STOActivated=true;&#xD;&#xA;GUIHelper.sto();&#xD;&#xA;csm.SLSActivated=false;&#xD;&#xA;csm.SBCActivated=false;&#xD;&#xA;GUIHelper.unbrake();&#xD;&#xA;csm.currentSpeedReceived=false;</body>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="Configuration">
+              <entry xsi:type="uml:OpaqueBehavior" name="ActivateTimer">
+                <body>csm.TimerMsg.startTimer(250);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="SS1">
+              <entry xsi:type="uml:OpaqueBehavior" name="updateSpeed">
+                <body>GUIHelper.setSpeed(csm.currentSpeed_Motor);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:Pseudostate" name="rampMonitoring" kind="choice"/>
+            <subvertex xsi:type="uml:State" name="STO_SM" submachine="/0/SafetyDrive/SafetyModule/SafetyModule/STO">
+              <connection name="faultSTO" entry="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/enterFaultSTO" exit="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/leaveFaultSTO"/>
+              <connection name="normalSTO" entry="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/enterSTO" exit="/0/SafetyDrive/SafetyModule/SafetyModule/STO/region0/leaveSTO.1"/>
+            </subvertex>
+            <transition name="Initialize" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Initial0" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/PowerDown"/>
+            <transition name="TimerMsg" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Configuration" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational">
+              <effect xsi:type="uml:OpaqueBehavior" name="ConfigSM">
+                <body>ConfigurationHelper.init(csm);&#xD;&#xA;output(new Config_SafetyModule(),csm.toMC,csm);</body>
+                <language>java</language>
+              </effect>
+            </transition>
+            <transition name="PowerOn" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/PowerDown" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/StartUp">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOn">
+                <body>csm.powerSwitch=true;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOn" event="/0/SafetyDrive/SignalEvent_PowerOn"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/StartUp" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/PowerDown">
+              <trigger name="PowerOff" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/PowerDown">
+              <trigger name="PowerOff" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="ProbeReceived" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/StartUp" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Configuration">
+              <effect xsi:type="uml:OpaqueBehavior" name="SendAck">
+                <body>output(new CommunicationCheckAck(),csm.toMC,csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ProbeReceived" event="/0/SafetyDrive/SignalEvent_CommunicationCheck"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Configuration" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/PowerDown">
+              <trigger name="PowerOff" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="ExternalStopWhileNormal" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/SS1">
+              <effect xsi:type="uml:OpaqueBehavior" name="ActivateExternalStopWhileNormal">
+                <body>csm.rampMonitoring = false;&#xD;&#xA;csm.rampOK = true;&#xD;&#xA;output(new RequestedSpeed_Motor(0),csm.toMC,csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ExternalStop" event="/0/SafetyDrive/SignalEvent_ExternalStop"/>
+            </transition>
+            <transition name="ReceiveEstimatedSpeed" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/SS1" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampMonitoring">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveEstimatedSpeed">
+                <body>csm.lastEstimatedSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;if (Math.abs(csm.lastEstimatedSpeedReading - csm.lastSpeedReading) > 2500) {&#xD;&#xA;  csm.currentSpeedReceived=true;&#xD;&#xA;  csm.currentAcc_Motor = Math.abs(sig.speed - csm.currentSpeed_Motor);&#xD;&#xA;  csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;  csm.rampOK = !csm.rampMonitoring || csm.currentSpeed_Motor &lt;= csm.sls_speedLimitUpper || !(!(csm.currentAcc_Motor &lt;= csm.sar_maxRampTimeToZero) || !(csm.currentAcc_Motor >= csm.sar_minRampTimeToZero));&#xD;&#xA;  csm.rampMonitoring = true;&#xD;&#xA;}&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="EstimatedSpeed" event="/0/SafetyDrive/SignalEvent_EstimatedSpeed"/>
+            </transition>
+            <transition name="rampNOK" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampMonitoring" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/STO_SM/faultSTO" guard="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampNOK/!csm.rampOK">
+              <ownedRule name="!csm.rampOK">
+                <specification xsi:type="uml:OpaqueExpression" name="!csm.rampOK">
+                  <body>!csm.rampOK</body>
+                  <language>java</language>
+                </specification>
+              </ownedRule>
+            </transition>
+            <transition name="ReceiveCurrentSpeed" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/SS1" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampMonitoring">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                <body>&#x9;&#x9;&#x9;&#x9;csm.lastSpeedReading = new Long(System.currentTimeMillis())&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.intValue();&#xD;&#xA;&#x9;&#x9;csm.currentSpeedReceived = true;&#xD;&#xA;&#x9;&#x9;csm.currentAcc_Motor = Math.abs(sig.speed&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;- csm.currentSpeed_Motor);&#xD;&#xA;&#x9;&#x9;csm.currentSpeed_Motor = sig.speed;&#xD;&#xA;&#x9;&#x9;csm.rampOK = !csm.rampMonitoring&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| csm.currentSpeed_Motor &lt;= csm.sls_speedLimitUpper&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| !(!(csm.currentAcc_Motor &lt;= csm.sar_maxRampTimeToZero) || !(csm.currentAcc_Motor >= csm.sar_minRampTimeToZero));&#xD;&#xA;&#x9;&#x9;csm.rampMonitoring = true;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="SpeedReadingFromWheel" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+            </transition>
+            <transition name="ReceiveEstimatedSpeed" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveEstimatedSpeed">
+                <body>csm.lastEstimatedSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;if (Math.abs(csm.lastEstimatedSpeedReading - csm.lastSpeedReading) > 2500) {&#xD;&#xA;  csm.currentSpeedReceived=true;&#xD;&#xA;  csm.currentAcc_Motor = Math.abs(sig.speed - csm.currentSpeed_Motor);&#xD;&#xA;  csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;  csm.rampOK = !csm.rampMonitoring || csm.currentSpeed_Motor &lt;= csm.sls_speedLimitUpper || !(!(csm.currentAcc_Motor &lt;= csm.sar_maxRampTimeToZero) || !(csm.currentAcc_Motor >= csm.sar_minRampTimeToZero));&#xD;&#xA;  csm.rampMonitoring = true;&#xD;&#xA;}&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="EstimatedSpeed" event="/0/SafetyDrive/SignalEvent_EstimatedSpeed"/>
+            </transition>
+            <transition name="ReceiveCurrentSpeed" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                <body>csm.currentSpeedReceived=true;&#xD;&#xA;csm.currentAcc_Motor = sig.speed - csm.currentSpeed_Motor;&#xD;&#xA;csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="SpeedReadingFromWheel" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+            </transition>
+            <transition name="EmergencyFaultReset" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/STO_SM/normalSTO" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/Operational">
+              <effect xsi:type="uml:OpaqueBehavior" name="FaultReset">
+                <body>output(new PowerOn_Wheel(),csm.STO_SM,csm);&#xD;&#xA;output(new EmergencyStop_FaultReset(),csm.toMC,csm);&#xD;&#xA;csm.STOActivated=false;&#xD;&#xA;try {&#xD;&#xA;&#x9;output(new EmergencyStop_FaultReset(), csm.brake0, csm);&#xD;&#xA;} catch (NullPointerException npe) {&#xD;&#xA;&#x9;System.err.println(&quot;Brake not connected&quot;);&#xD;&#xA;}&#xD;&#xA;csm.SBCActivated=false;&#xD;&#xA;csm.SLSActivated=false;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="FaultReset" event="/0/SafetyDrive/SignalEvent_EmergencyStop_FaultReset"/>
+            </transition>
+            <transition name="reboot" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/STO_SM/faultSTO" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/PowerDown">
+              <effect xsi:type="uml:OpaqueBehavior" name="FaultReset">
+                <body>output(new PowerOn_Wheel(),csm.STO_SM,csm);&#xD;&#xA;output(new EmergencyStop_FaultReset(),csm.toMC,csm);&#xD;&#xA;csm.STOActivated=false;&#xD;&#xA;try {&#xD;&#xA;&#x9;output(new EmergencyStop_FaultReset(), csm.brake0, csm);&#xD;&#xA;} catch (NullPointerException npe) {&#xD;&#xA;&#x9;System.err.println(&quot;Brake not connected&quot;);&#xD;&#xA;}&#xD;&#xA;csm.SBCActivated=false;&#xD;&#xA;csm.SLSActivated=false;</body>
+                <language>java</language>
+              </effect>
+            </transition>
+            <transition name="rampOK" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampMonitoring" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/SS1" guard="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampOK/!(!csm.rampOK%20%7C%7C%20csm.currentSpeed_Motor%20%3C=%20csm.sbc_sse_ss1_speed)">
+              <ownedRule name="!(!csm.rampOK || csm.currentSpeed_Motor &lt;= csm.sbc_sse_ss1_speed)">
+                <specification xsi:type="uml:OpaqueExpression" name="!(!csm.rampOK || csm.currentSpeed_Motor &lt;= csm.sbc_sse_ss1_speed)">
+                  <body>!(!csm.rampOK || csm.currentSpeed_Motor &lt;= csm.sbc_sse_ss1_speed)</body>
+                  <language>java</language>
+                </specification>
+              </ownedRule>
+            </transition>
+            <transition name="belowSBC" visibility="public" source="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/rampMonitoring" target="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/STO_SM" guard="/0/SafetyDrive/SafetyModule/SafetyModule/Region0/belowSBC/!(!csm.rampOK%20%7C%7C%20!(csm.currentSpeed_Motor%20%3C=%20csm.sbc_sse_ss1_speed))">
+              <ownedRule name="!(!csm.rampOK || !(csm.currentSpeed_Motor &lt;= csm.sbc_sse_ss1_speed))">
+                <specification xsi:type="uml:OpaqueExpression" name="!(!csm.rampOK || !(csm.currentSpeed_Motor &lt;= csm.sbc_sse_ss1_speed))">
+                  <body>!(!csm.rampOK || !(csm.currentSpeed_Motor &lt;= csm.sbc_sse_ss1_speed))</body>
+                  <language>java</language>
+                </specification>
+              </ownedRule>
+              <effect xsi:type="uml:OpaqueBehavior" name="StartTimerAndBrake" language="">
+                <body>csm.isFault = false;&#xD;&#xA;output(new RequestedSpeed_Motor(0),csm.toMC,csm);&#xD;&#xA;//output(new SBC(),csm.brake0,csm);&#xD;&#xA;//csm.TimerMsg.startTimer(csm.sbc_delaySTO);</body>
+              </effect>
+            </transition>
+          </region>
+        </ownedBehavior>
+        <ownedReception name="Reception_PowerOnSafetyModule" signal="/0/SafetyDrive/PowerOn"/>
+        <ownedReception name="Reception_PowerOffSafetyModule" signal="/0/SafetyDrive/PowerOff"/>
+        <ownedReception name="Reception_CurrentSpeed" signal="/0/SafetyDrive/CurrentSpeed"/>
+        <ownedReception name="Reception_CurrentEstimatedSpeed" signal="/0/SafetyDrive/EstimatedSpeed"/>
+        <ownedReception name="Reception_EmergencyStop_FaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+        <ownedReception name="Reception_CommunicationCheck" signal="/0/SafetyDrive/CommunicationCheck"/>
+        <ownedReception name="Reception_ExternalStop" signal="/0/SafetyDrive/ExternalStop"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="MotorController">
+        <ownedBehavior xsi:type="uml:StateMachine" name="MotorController">
+          <ownedAttribute xsi:type="uml:Port" name="power_W0" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="speedReading4" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="fromSM" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="command_MC1" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="toSM" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="powerMC" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute name="currentSpeed_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="requestedSpeed_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="powerSwitch">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="communication2SMThrough">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="lastSpeedReading">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="TimerMsg"/>
+          <region name="Region0">
+            <subvertex xsi:type="uml:Pseudostate" name="Initial0"/>
+            <subvertex xsi:type="uml:State" name="PowerOff"/>
+            <subvertex xsi:type="uml:State" name="EngagingMotor">
+              <entry xsi:type="uml:OpaqueBehavior" name="AdjustMotorSpeed">
+                <body>&#x9;&#x9;int increment = 50;&#xD;&#xA;&#x9;&#x9;if (Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) &lt;= 5) {&#xD;&#xA;&#x9;&#x9;&#x9;increment = Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor);&#xD;&#xA;&#x9;&#x9;} else if (Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) &lt; 75) {&#xD;&#xA;&#x9;&#x9;&#x9;increment = Math.max(Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) / 2, 5);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;if (csm.currentSpeed_Motor > csm.requestedSpeed_Motor) {&#xD;&#xA;&#x9;&#x9;&#x9;csm.currentSpeed_Motor -= increment;&#xD;&#xA;&#x9;&#x9;&#x9;output(new GetCurrentSpeed(-1, increment), csm.power_W0, csm);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;} else if (csm.currentSpeed_Motor &lt; csm.requestedSpeed_Motor) {&#xD;&#xA;&#x9;&#x9;&#x9;csm.currentSpeed_Motor += increment;&#xD;&#xA;&#x9;&#x9;&#x9;output(new GetCurrentSpeed(1, increment), csm.power_W0, csm);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;output(new EstimatedSpeed(csm.currentSpeed_Motor), csm.toSM, csm);&#xD;&#xA;&#x9;&#x9;csm.TimerMsg.startTimer(1000);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="STO">
+              <entry xsi:type="uml:OpaqueBehavior" name="AdjustMotorSpeed">
+                <body>&#x9;&#x9;int increment = 50;&#xD;&#xA;&#x9;&#x9;if (Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) &lt;= 5) {&#xD;&#xA;&#x9;&#x9;&#x9;increment = Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor);&#xD;&#xA;&#x9;&#x9;} else if (Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) &lt; 75) {&#xD;&#xA;&#x9;&#x9;&#x9;increment = Math.max(Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) / 2, 5);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;if (csm.currentSpeed_Motor > csm.requestedSpeed_Motor) {&#xD;&#xA;&#x9;&#x9;&#x9;csm.currentSpeed_Motor -= increment;&#xD;&#xA;&#x9;&#x9;&#x9;output(new GetCurrentSpeed(-1, increment), csm.power_W0, csm);&#xD;&#xA;&#x9;&#x9;} else if (csm.currentSpeed_Motor &lt; csm.requestedSpeed_Motor) {&#xD;&#xA;&#x9;&#x9;&#x9;csm.currentSpeed_Motor += increment;&#xD;&#xA;&#x9;&#x9;&#x9;output(new GetCurrentSpeed(1, increment), csm.power_W0, csm);&#xD;&#xA;&#x9;&#x9;} &#xD;&#xA;&#xD;&#xA;&#x9;&#x9;output(new EstimatedSpeed(csm.currentSpeed_Motor), csm.toSM, csm);&#xD;&#xA;&#x9;&#x9;csm.TimerMsg.startTimer(1000);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="SLS">
+              <entry xsi:type="uml:OpaqueBehavior" name="AdjustMotorSpeed">
+                <body>&#x9;&#x9;int increment = 50;&#xD;&#xA;&#x9;&#x9;if (Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) &lt;= 5) {&#xD;&#xA;&#x9;&#x9;&#x9;increment = Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor);&#xD;&#xA;&#x9;&#x9;} else if (Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) &lt; 75) {&#xD;&#xA;&#x9;&#x9;&#x9;increment = Math.max(Math.abs(csm.currentSpeed_Motor - csm.requestedSpeed_Motor) / 2, 5);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;if (csm.currentSpeed_Motor > csm.requestedSpeed_Motor) {&#xD;&#xA;&#x9;&#x9;&#x9;csm.currentSpeed_Motor -= increment;&#xD;&#xA;&#x9;&#x9;&#x9;output(new GetCurrentSpeed(-1, increment), csm.power_W0, csm);&#xD;&#xA;&#x9;&#x9;} else if (csm.currentSpeed_Motor &lt; csm.requestedSpeed_Motor) {&#xD;&#xA;&#x9;&#x9;&#x9;csm.currentSpeed_Motor += increment;&#xD;&#xA;&#x9;&#x9;&#x9;output(new GetCurrentSpeed(1, increment), csm.power_W0, csm);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;output(new EstimatedSpeed(csm.currentSpeed_Motor), csm.toSM, csm);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;csm.TimerMsg.startTimer(1000);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="PowerOn">
+              <entry xsi:type="uml:OpaqueBehavior" name="CommunicationCheck">
+                <body>output(new CommunicationCheck(),csm.toSM,csm);</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <subvertex xsi:type="uml:State" name="ReadyForSMConfiguration"/>
+            <subvertex xsi:type="uml:State" name="ConfigureSM"/>
+            <subvertex xsi:type="uml:State" name="TargetSpeedSet"/>
+            <subvertex xsi:type="uml:State" name="MotorStandby"/>
+            <transition name="Initialize" source="/0/SafetyDrive/MotorController/MotorController/Region0/Initial0" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff"/>
+            <transition name="PowerOnMotor" source="/0/SafetyDrive/MotorController/MotorController/Region0/TargetSpeedSet" target="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOnWheel">
+                <body>output(new PowerOn_Wheel(),csm.power_W0,csm);&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOnMotor" event="/0/SafetyDrive/SignalEvent_PowerOn_Wheel"/>
+            </transition>
+            <transition name="STOWhileSLS" source="/0/SafetyDrive/MotorController/MotorController/Region0/SLS" target="/0/SafetyDrive/MotorController/MotorController/Region0/STO">
+              <trigger name="STOActivated" event="/0/SafetyDrive/SignalEvent_STO"/>
+            </transition>
+            <transition name="STOFaultReset" source="/0/SafetyDrive/MotorController/MotorController/Region0/STO" target="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby">
+              <effect xsi:type="uml:OpaqueBehavior" name="Reset">
+                <body>csm.currentSpeed_Motor = 0;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="FaultReset" event="/0/SafetyDrive/SignalEvent_EmergencyStop_FaultReset"/>
+            </transition>
+            <transition name="ActivateSLS" source="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" target="/0/SafetyDrive/MotorController/MotorController/Region0/SLS">
+              <effect xsi:type="uml:OpaqueBehavior" name="UpdateRequestedMotorSpeed">
+                <body>csm.requestedSpeed_Motor=sig.suggestedSpeed;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="SLSActivated" event="/0/SafetyDrive/SignalEvent_SLS"/>
+            </transition>
+            <transition name="NewSpeedCommand" source="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" target="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor">
+              <ownedRule name="csm.requestedSpeed_Motor>0">
+                <specification xsi:type="uml:OpaqueExpression" name="csm.requestedSpeed_Motor>0">
+                  <body>csm.requestedSpeed_Motor>0</body>
+                  <language>java</language>
+                </specification>
+              </ownedRule>
+              <effect xsi:type="uml:OpaqueBehavior" name="UpdatedRequestedMotorSpeed">
+                <body>csm.requestedSpeed_Motor=sig.speed;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="NewSpeedCommand" event="/0/SafetyDrive/SignalEvent_RequestedSpeed_Motor"/>
+            </transition>
+            <transition name="DeactivateSLS" source="/0/SafetyDrive/MotorController/MotorController/Region0/SLS" target="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor">
+              <trigger name="DeactivateSLS" event="/0/SafetyDrive/SignalEvent_DeactivateSLS"/>
+            </transition>
+            <transition name="PowerOn" source="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOn">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOnMC">
+                <body>csm.powerSwitch=true;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOnMotorController" event="/0/SafetyDrive/SignalEvent_PowerOn"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOn" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffMC">
+                <body>csm.powerSwitch=false;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffMotorController" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffMC">
+                <body>csm.powerSwitch=false;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffMotorController" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="CommunicationOK" source="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOn" target="/0/SafetyDrive/MotorController/MotorController/Region0/ReadyForSMConfiguration">
+              <effect xsi:type="uml:OpaqueBehavior" name="CommunicationOK">
+                <body>csm.communication2SMThrough=true;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="GotAck" event="/0/SafetyDrive/SignalEvent_CommunicationCheckAck"/>
+            </transition>
+            <transition name="PowerOff" source="/0/SafetyDrive/MotorController/MotorController/Region0/ReadyForSMConfiguration" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffMC">
+                <body>csm.powerSwitch=false;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffMotorController" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="ConfigureSM" source="/0/SafetyDrive/MotorController/MotorController/Region0/ReadyForSMConfiguration" target="/0/SafetyDrive/MotorController/MotorController/Region0/ConfigureSM">
+              <trigger name="ReceiveConfig4SM" event="/0/SafetyDrive/SignalEvent_ConfigSafetyModule"/>
+            </transition>
+            <transition name="PowerOff" visibility="public" source="/0/SafetyDrive/MotorController/MotorController/Region0/ConfigureSM" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffMC">
+                <body>csm.powerSwitch=false;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffMotorController" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="SetTargetSpeed" source="/0/SafetyDrive/MotorController/MotorController/Region0/ConfigureSM" target="/0/SafetyDrive/MotorController/MotorController/Region0/TargetSpeedSet">
+              <effect xsi:type="uml:OpaqueBehavior" name="SetTargetSpeed">
+                <body>csm.requestedSpeed_Motor=sig.speed;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ReceiveTargetSpeed" event="/0/SafetyDrive/SignalEvent_RequestedSpeed_Motor"/>
+            </transition>
+            <transition name="StartMotor" source="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby" target="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" guard="/0/SafetyDrive/MotorController/MotorController/Region0/StartMotor/csm.requestedSpeed_Motor%3E0">
+              <ownedRule name="csm.requestedSpeed_Motor>0">
+                <specification xsi:type="uml:OpaqueExpression" name="csm.requestedSpeed_Motor>0">
+                  <body>csm.requestedSpeed_Motor>0</body>
+                  <language>java</language>
+                </specification>
+              </ownedRule>
+              <effect xsi:type="uml:OpaqueBehavior" name="Start">
+                <body>output(new Power_Wheel(), csm.power_W0, csm);</body>
+              </effect>
+              <trigger name="StartMotor" event="/0/SafetyDrive/SignalEvent_StartMotor"/>
+            </transition>
+            <transition name="StopMotor" source="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" target="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby">
+              <effect xsi:type="uml:OpaqueBehavior" name="UpdateRequestedSpeed">
+                <body>csm.requestedSpeed_Motor=0;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="StopMotor" event="/0/SafetyDrive/SignalEvent_StopMotor"/>
+            </transition>
+            <transition name="PowerOffMotor" source="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby" target="/0/SafetyDrive/MotorController/MotorController/Region0/TargetSpeedSet">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffMotor">
+                <body>output(new PowerOff_Wheel(),csm.power_W0,csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffMotor" event="/0/SafetyDrive/SignalEvent_PowerOff_Wheel"/>
+            </transition>
+            <transition name="SetTargetSpeed" source="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby" target="/0/SafetyDrive/MotorController/MotorController/Region0/MotorStandby">
+              <effect xsi:type="uml:OpaqueBehavior" name="SetTargetSpeed">
+                <body>csm.requestedSpeed_Motor=sig.speed;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ReceiveTargetSpeed" event="/0/SafetyDrive/SignalEvent_RequestedSpeed_Motor"/>
+            </transition>
+            <transition name="STOWhileNormal" source="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" target="/0/SafetyDrive/MotorController/MotorController/Region0/STO">
+              <trigger name="STOActivated" event="/0/SafetyDrive/SignalEvent_STO"/>
+            </transition>
+            <transition name="reboot" source="/0/SafetyDrive/MotorController/MotorController/Region0/STO" target="/0/SafetyDrive/MotorController/MotorController/Region0/PowerOff">
+              <effect xsi:type="uml:OpaqueBehavior" name="PowerOffMC">
+                <body>csm.powerSwitch=false;&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="PowerOffMotorController" event="/0/SafetyDrive/SignalEvent_PowerOff"/>
+            </transition>
+            <transition name="ReceiveSpeedReading" source="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor" target="/0/SafetyDrive/MotorController/MotorController/Region0/EngagingMotor">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                <body>csm.lastSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;//output(new CurrentSpeed(csm.currentSpeed_Motor, sig.speedDirection), csm.toSM, csm);&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="CurrentSpeedReading" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+            </transition>
+            <transition name="ReceiveSpeedReading" source="/0/SafetyDrive/MotorController/MotorController/Region0/SLS" target="/0/SafetyDrive/MotorController/MotorController/Region0/SLS">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                <body>csm.lastSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;//output(new CurrentSpeed(csm.currentSpeed_Motor, sig.speedDirection), csm.toSM, csm);&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="CurrentSpeedReading" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+            </transition>
+            <transition name="ReceiveSpeedReading" source="/0/SafetyDrive/MotorController/MotorController/Region0/STO" target="/0/SafetyDrive/MotorController/MotorController/Region0/STO">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReceiveSpeedReading">
+                <body>csm.lastSpeedReading = new Long(System.currentTimeMillis()).intValue();&#xD;&#xA;csm.currentSpeed_Motor=sig.speed;&#xD;&#xA;//output(new CurrentSpeed(csm.currentSpeed_Motor, sig.speedDirection), csm.toSM, csm);&#xD;&#xA;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="CurrentSpeedReading" event="/0/SafetyDrive/SignalEvent_CurrentSpeed"/>
+            </transition>
+          </region>
+        </ownedBehavior>
+        <ownedReception name="Reception_CurrentSpeed" signal="/0/SafetyDrive/CurrentSpeed"/>
+        <ownedReception name="Reception_EmergencyStop_FaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+        <ownedReception name="Reception_SLS" signal="/0/SafetyDrive/SLS"/>
+        <ownedReception name="Reception_STO" signal="/0/SafetyDrive/STO"/>
+        <ownedReception name="Reception_RequestedSpeed_Motor" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+        <ownedReception name="Reception_DeactivateSLS" signal="/0/SafetyDrive/DeactivateSLS"/>
+        <ownedReception name="Reception_PowerOnMotorController" signal="/0/SafetyDrive/PowerOn"/>
+        <ownedReception name="Reception_PowerOffMotorController" signal="/0/SafetyDrive/PowerOff"/>
+        <ownedReception name="Reception_CommunicationCheckAck" signal="/0/SafetyDrive/CommunicationCheckAck"/>
+        <ownedReception name="Reception_Config_SafetyModule" signal="/0/SafetyDrive/Config_SafetyModule"/>
+        <ownedReception name="Reception_StartMotor" signal="/0/SafetyDrive/StartMotor"/>
+        <ownedReception name="Reception_StopMotor" signal="/0/SafetyDrive/StopMotor"/>
+        <ownedReception name="Reception_PowerOff_Wheel" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+        <ownedReception name="Reception_PowerOn_Wheel" signal="/0/SafetyDrive/PowerOn_Wheel"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="Brake">
+        <ownedBehavior xsi:type="uml:StateMachine" name="Brake">
+          <ownedAttribute xsi:type="uml:Port" name="brake2" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="brake3" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="speedReadingBrake" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute name="activated">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <region name="Region0">
+            <subvertex xsi:type="uml:Pseudostate" name="Initial0"/>
+            <subvertex xsi:type="uml:State" name="Idle"/>
+            <subvertex xsi:type="uml:State" name="SBC"/>
+            <transition name="Intialize" source="/0/SafetyDrive/Brake/Brake/Region0/Initial0" target="/0/SafetyDrive/Brake/Brake/Region0/Idle"/>
+            <transition name="ApplyBrake" source="/0/SafetyDrive/Brake/Brake/Region0/Idle" target="/0/SafetyDrive/Brake/Brake/Region0/SBC">
+              <effect xsi:type="uml:OpaqueBehavior" name="ApplyBrake">
+                <body>csm.activated=true;&#xD;&#xA;GUIHelper.brake();&#xD;&#xA;output(new ForceCurrentSpeed(0), csm.speedReadingBrake, csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="SBCActivated" event="/0/SafetyDrive/SignalEvent_SBC"/>
+            </transition>
+            <transition name="ResetBrake" source="/0/SafetyDrive/Brake/Brake/Region0/SBC" target="/0/SafetyDrive/Brake/Brake/Region0/Idle">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReleaseBrake">
+                <body>csm.activated=false;&#xD;&#xA;GUIHelper.unbrake();</body>
+                <language>java</language>
+              </effect>
+              <trigger name="FaultReset" event="/0/SafetyDrive/SignalEvent_EmergencyStop_FaultReset"/>
+            </transition>
+          </region>
+        </ownedBehavior>
+        <ownedReception name="Reception_SBC" signal="/0/SafetyDrive/SBC"/>
+        <ownedReception name="Reception_EmergencyStop_FaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Class" name="Sensor">
+        <ownedBehavior xsi:type="uml:StateMachine" name="Sensor">
+          <ownedAttribute xsi:type="uml:Port" name="speedReading1" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute xsi:type="uml:Port" name="speedReading2" visibility="public" aggregation="composite">
+            <upperValue xsi:type="uml:LiteralUnlimitedNatural" value="1"/>
+            <lowerValue xsi:type="uml:LiteralInteger" value="1"/>
+            <defaultValue xsi:type="uml:LiteralString">
+              <value xsi:nil="true"/>
+            </defaultValue>
+          </ownedAttribute>
+          <ownedAttribute name="currentSpeed_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="previousSpeed_Motor">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="timerActivated">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute name="load">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <defaultValue xsi:type="uml:LiteralString" value="50"/>
+          </ownedAttribute>
+          <ownedAttribute name="speedDirection">
+            <type xsi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute name="TimerMsg"/>
+          <region name="Region0">
+            <subvertex xsi:type="uml:Pseudostate" name="Initial0"/>
+            <subvertex xsi:type="uml:State" name="Idle">
+              <entry xsi:type="uml:OpaqueBehavior" name="activateTimerIfNeeded">
+                <body>if (!csm.timerActivated){&#xD;&#xA;  if (Math.abs(csm.previousSpeed_Motor - csm.currentSpeed_Motor) >= 1) {&#xD;&#xA;&#x9;csm.TimerMsg.startTimer(1000);&#xD;&#xA;&#x9;csm.timerActivated = true;&#xD;&#xA;  }&#xD;&#xA;}</body>
+                <language>java</language>
+              </entry>
+            </subvertex>
+            <transition name="Initialize" source="/0/SafetyDrive/Sensor/Sensor/Region0/Initial0" target="/0/SafetyDrive/Sensor/Sensor/Region0/Idle">
+              <effect xsi:type="uml:OpaqueBehavior" name="init">
+                <body>csm.timerActivated = false;&#xD;&#xA;csm.previousSpeed_Motor = -1;&#xD;&#xA;csm.currentSpeed_Motor = 0;&#x9;</body>
+                <language>java</language>
+              </effect>
+            </transition>
+            <transition name="ReportSpeedReading" source="/0/SafetyDrive/Sensor/Sensor/Region0/Idle" target="/0/SafetyDrive/Sensor/Sensor/Region0/Idle">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReportSpeedReading">
+                <body>float loadFactor = Math.min(100.0f, new Float(csm.load)) / 100.0f;&#xD;&#xA;float speedFactor = 1.0f - (Math.min(125.0f, new Float(csm.currentSpeed_Motor)) / 125.0f);&#xD;&#xA;&#xD;&#xA;csm.currentSpeed_Motor += (1.0f - loadFactor / 2 - speedFactor / 2) * sig.increment * sig.speedDirection;//TODO&#xD;&#xA;csm.currentSpeed_Motor = Math.max(0, csm.currentSpeed_Motor);&#xD;&#xA;csm.speedDirection = sig.speedDirection;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ReadSpeed" event="/0/SafetyDrive/SignalEvent_GetCurrentSpeed"/>
+            </transition>
+            <transition name="ReportSpeedReading" source="/0/SafetyDrive/Sensor/Sensor/Region0/Idle" target="/0/SafetyDrive/Sensor/Sensor/Region0/Idle">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReportErroneousSpeedReading">
+                <body>if (sig.anomalySpeed > csm.currentSpeed_Motor) {&#xD;&#xA;&#x9;csm.speedDirection = 1;&#xD;&#xA;} else {&#xD;&#xA;&#x9;csm.speedDirection = -1;&#xD;&#xA;}&#xD;&#xA;csm.currentSpeed_Motor = sig.anomalySpeed;</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ReadSpeed" event="/0/SafetyDrive/SignalEvent_GetCurrentAnomalySpeed"/>
+            </transition>
+            <transition name="ReportForcedSpeedReading" source="/0/SafetyDrive/Sensor/Sensor/Region0/Idle" target="/0/SafetyDrive/Sensor/Sensor/Region0/Idle">
+              <effect xsi:type="uml:OpaqueBehavior" name="ReportForcedSpeedReading">
+                <body>if (sig.speed > csm.currentSpeed_Motor) {&#xD;&#xA;&#x9;csm.speedDirection = 1;&#xD;&#xA;} else {&#xD;&#xA;&#x9;csm.speedDirection = -1;&#xD;&#xA;}&#xD;&#xA;csm.currentSpeed_Motor = sig.speed;&#xD;&#xA;output(new CurrentSpeed(csm.currentSpeed_Motor), csm.speedReading2, csm);</body>
+                <language>java</language>
+              </effect>
+              <trigger name="ReadSpeed" event="/0/SafetyDrive/SignalEvent_ForceCurrentSpeed"/>
+            </transition>
+            <transition name="TimerMsg" source="/0/SafetyDrive/Sensor/Sensor/Region0/Idle" target="/0/SafetyDrive/Sensor/Sensor/Region0/Idle">
+              <effect xsi:type="uml:OpaqueBehavior" name="timeout">
+                <body>output(new CurrentSpeed(csm.currentSpeed_Motor), csm.speedReading2, csm);&#xD;&#xA;csm.previousSpeed_Motor = csm.currentSpeed_Motor;&#xD;&#xA;csm.timerActivated = false;</body>
+                <language>java</language>
+              </effect>
+            </transition>
+          </region>
+        </ownedBehavior>
+        <ownedReception name="Reception_GetCurrentSpeed" signal="/0/SafetyDrive/CurrentSpeed"/>
+        <ownedReception name="Reception_GetCurrentAnomalySpeed" signal="/0/SafetyDrive/GetCurrentAnomalySpeed"/>
+        <ownedReception name="Reception_ForceCurrentSpeed" signal="/0/SafetyDrive/ForceCurrentSpeed"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_PowerOn" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_PowerOn" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_EmergencyStop_FaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_EmergencyStop_FaultReset" signal="/0/SafetyDrive/EmergencyStop_FaultReset"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_Power_Wheel" signal="/0/SafetyDrive/Power_Wheel"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_Power_Wheel" signal="/0/SafetyDrive/Power_Wheel"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_AnomalyInput" signal="/0/SafetyDrive/AnomalyInput"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_AnomalyInput" signal="/0/SafetyDrive/AnomalyInput"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_PowerOff" signal="/0/SafetyDrive/PowerOff"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_PowerOff" signal="/0/SafetyDrive/PowerOff"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_ExternalStop" signal="/0/SafetyDrive/ExternalStop"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent__ExternalStop" signal="/0/SafetyDrive/ExternalStop"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_PowerOn_Wheel" signal="/0/SafetyDrive/PowerOn_Wheel"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_PowerOn_Wheel" signal="/0/SafetyDrive/PowerOn_Wheel"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_StartMotor" signal="/0/SafetyDrive/StartMotor"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_StartMotor" signal="/0/SafetyDrive/StartMotor"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_CommunicationCheck" signal="/0/SafetyDrive/CommunicationCheck"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_CommunicationCheck" signal="/0/SafetyDrive/CommunicationCheck"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_CommunicationCheckAck" signal="/0/SafetyDrive/CommunicationCheckAck"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_CommunicationCheckAck" signal="/0/SafetyDrive/CommunicationCheckAck"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_StopMotor" signal="/0/SafetyDrive/StopMotor"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_StopMotor" signal="/0/SafetyDrive/StopMotor"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_DeactivateSLS" signal="/0/SafetyDrive/DeactivateSLS"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_DeactivateSLS" signal="/0/SafetyDrive/DeactivateSLS"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_SBC" signal="/0/SafetyDrive/SBC"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_SBC" signal="/0/SafetyDrive/SBC"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_SLS" signal="/0/SafetyDrive/SLS"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_SLS" signal="/0/SafetyDrive/SLS"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_STO" signal="/0/SafetyDrive/STO"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_STO" signal="/0/SafetyDrive/STO"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_PowerOff_Wheel" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_PowerOff_Wheel" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_EstimatedSpeed" signal="/0/SafetyDrive/EstimatedSpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_EstimatedSpeed" signal="/0/SafetyDrive/EstimatedSpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_CurrentSpeed" signal="/0/SafetyDrive/CurrentSpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_CurrentSpeed" signal="/0/SafetyDrive/CurrentSpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_RequestedSpeed_Motor" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_RequestedSpeed_Motor" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_GetCurrentSpeed" signal="/0/SafetyDrive/GetCurrentSpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_GetCurrentSpeed" signal="/0/SafetyDrive/GetCurrentSpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_GetCurrentAnomalySpeed" signal="/0/SafetyDrive/GetCurrentAnomalySpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_GetCurrentAnomalySpeed" signal="/0/SafetyDrive/GetCurrentAnomalySpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_ForceCurrentSpeed" signal="/0/SafetyDrive/ForceCurrentSpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_ForceCurrentSpeed" signal="/0/SafetyDrive/ForceCurrentSpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_ActivateSLS" signal="/0/SafetyDrive/ActivateSLS"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_ActivateSLS" signal="/0/SafetyDrive/ActivateSLS"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent_Config_SafetyModule" signal="/0/SafetyDrive/Config_SafetyModule"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent_Config_SafetyModule" signal="/0/SafetyDrive/Config_SafetyModule"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent0" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent0" signal="/0/SafetyDrive/RequestedSpeed_Motor"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent1" signal="/0/SafetyDrive/GetCurrentSpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent1" signal="/0/SafetyDrive/GetCurrentSpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent2" signal="/0/SafetyDrive/EstimatedSpeed"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent2" signal="/0/SafetyDrive/EstimatedSpeed"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent3" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent3" signal="/0/SafetyDrive/PowerOff_Wheel"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent4" signal="/0/SafetyDrive/STO"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent4" signal="/0/SafetyDrive/STO"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent5" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent5" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent6" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent6" signal="/0/SafetyDrive/PowerOn"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent7" signal="/0/SafetyDrive/CommunicationCheck"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent7" signal="/0/SafetyDrive/CommunicationCheck"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent8" signal="/0/SafetyDrive/CommunicationCheckAck"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent8" signal="/0/SafetyDrive/CommunicationCheckAck"/>
+      <packagedElement xsi:type="uml:SendSignalEvent" name="SendSignalEvent9" signal="/0/SafetyDrive/Config_SafetyModule"/>
+      <packagedElement xsi:type="uml:ReceiveSignalEvent" name="ReceiveSignalEvent9" signal="/0/SafetyDrive/Config_SafetyModule"/>
+      <profileApplication>
+        <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references href="../../UTP/model.uml#_NfubpZKgEeG4LNsoPvl1hw"/>
+        </eAnnotations>
+        <appliedProfile href="../../UTP/model.uml#_WUWk8Gx3EeGW2qfqbTOcPw"/>
+      </profileApplication>
+    </packagedElement>
+    <profileApplication>
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication>
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references href="JavaFrame.profile.uml#_ahpfcUZVEdy9t6Wk6JM5SQ"/>
+      </eAnnotations>
+      <appliedProfile href="JavaFrame.profile.uml#_67mDkEAFEdyZYqAbua80Fg"/>
+    </profileApplication>
+  </uml:Model>
+  <Blocks:NestedConnectorEnd propertyPath="/0/SafetyDrive/SafetyDrive/mc /0/SafetyDrive/MotorController/MotorController/power_W0"/>
+  <Blocks:NestedConnectorEnd/>
+  <JavaFrameProfile:TimerMsg time="10000" base_Property="/0/SafetyDrive/SafetyModule/SafetyModule/TimerMsg"/>
+  <JavaFrameProfile:Composite main="true" base_Class="/0/SafetyDrive/SafetyDrive"/>
+  <JavaFrameProfile:Composite base_Class="/0/SafetyDrive/Motor"/>
+  <JavaFrameProfile:InputEdgeMediator base_Class="/0/SafetyDrive/CommandMCInputMediator"/>
+  <JavaFrameProfile:InputEdgeMediator base_Class="/0/SafetyDrive/AnomalyInputMediator"/>
+  <JavaFrameProfile:MultiCastMediator base_Class="/0/SafetyDrive/Motor/speedReading3"/>
+  <JavaFrameProfile:InputEdgeMediator base_Class="/0/SafetyDrive/DigitalInputSM"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/DigitalInputSM_0_1/@end.1"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/DigitalInputSM_0_1/@end.1"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/DigitalInputSM_0_1/@end.1"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/toMC_fromSM/@end.0"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/toMC_fromSM/@end.0"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/toMC_fromSM/@end.1"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/toMC_fromSM/@end.1"/>
+  <JavaFrameProfile:InputEdgeMediator base_Class="/0/SafetyDrive/PowerInputMediator"/>
+  <JavaFrameProfile:MultiCastMediator base_Class="/0/SafetyDrive/SafetyDrive/power"/>
+  <JavaFrameProfile:OutputEdgeMediator base_Port="/0/SafetyDrive/SafetyDrive/DigitalOutputSM_1"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/Connector4/@end.0"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/Connector4/@end.0"/>
+  <Blocks:NestedConnectorEnd base_ConnectorEnd="/0/SafetyDrive/SafetyDrive/Connector4/@end.0"/>
+  <JavaFrameProfile:TimerMsg base_Property="/0/SafetyDrive/Sensor/Sensor/TimerMsg"/>
+  <JavaFrameProfile:TimerMsg base_Property="/0/SafetyDrive/MotorController/MotorController/TimerMsg"/>
+  <UTP:TestContext base_StructuredClassifier="/0/SafetyDrive/SafetyDrive" base_BehavioredClassifier="/0/SafetyDrive/SafetyDrive"/>
+  <UTP:TestComponent base_StructuredClassifier="/0/SafetyDrive/MotorController"/>
+  <UTP:TestComponent base_StructuredClassifier="/0/SafetyDrive/Motor"/>
+  <UTP:TestCase base_Behavior="/0/SafetyDrive/SafetyDrive/Level3StartUp"/>
+  <UTP:TestComponent base_Property="/0/SafetyDrive/SafetyDrive/m"/>
+  <UTP:TestComponent base_Property="/0/SafetyDrive/SafetyDrive/mc"/>
+  <UTP:SUT base_Property="/0/SafetyDrive/SafetyDrive/sm1"/>
+  <UTP:TestComponent/>
+  <UTP:TestComponent/>
+  <UTP:SUT base_Lifeline="/0/SafetyDrive/SafetyDrive/Level3StartUp/sm"/>
+  <UTP:TestComponent base_Lifeline="/0/SafetyDrive/SafetyDrive/Level3StartUp/mc"/>
+  <UTP:TestComponent base_Lifeline="/0/SafetyDrive/SafetyDrive/Level3StartUp/m"/>
+  <UTP:TestComponent base_Lifeline="/0/SafetyDrive/SafetyDrive/Level3StartUp/power"/>
+  <UTP:TestComponent base_Lifeline="/0/SafetyDrive/SafetyDrive/Level3StartUp/command_MC0"/>
+  <UTP:TestComponent/>
+  <UTP:TestComponent base_Property="/0/SafetyDrive/SafetyDrive/anomalyInput"/>
+  <UTP:TestComponent base_Property="/0/SafetyDrive/SafetyDrive/command_MC0"/>
+  <UTP:TestComponent base_Property="/0/SafetyDrive/SafetyDrive/DigitalInputSM_0"/>
+  <UTP:TestComponent base_Property="/0/SafetyDrive/SafetyDrive/power"/>
+  <UTP:TestComponent/>
+  <UTP:TestComponent/>
+  <UTP:TestComponent/>
+  <UTP:SUT/>
+  <UTP:TestComponent/>
+  <UTP:TestCase/>
+  <UTP:TestCase base_Behavior="/0/SafetyDrive/SafetyDrive/testBasic"/>
+  <UTP:SUT/>
+  <UTP:TestComponent/>
+  <UTP:TestComponent base_Lifeline="/0/SafetyDrive/SafetyDrive/testBasic/power"/>
+  <UTP:TestComponent base_Lifeline="/0/SafetyDrive/SafetyDrive/testBasic/mc"/>
+  <UTP:SUT base_Lifeline="/0/SafetyDrive/SafetyDrive/testBasic/Lifeline2"/>
+</xmi:XMI>

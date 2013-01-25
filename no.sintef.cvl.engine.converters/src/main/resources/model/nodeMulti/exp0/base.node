@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+  <contains links="//@contains.3 //@contains.4 //@contains.2" name="0"/>
+  <contains links="//@contains.3 //@contains.4 //@contains.2" name="1"/>
+  <contains links="//@contains.5" name="2"/>
+  <contains links="//@contains.6" name="3"/>
+  <contains name="4"/>
+  <contains links="//@contains.7 //@contains.8" name="5"/>
+  <contains links="//@contains.7 //@contains.8" name="6"/>
+  <contains name="7"/>
+  <contains name="8"/>
+</node:Node>

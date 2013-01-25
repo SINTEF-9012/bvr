@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" xsi:schemaLocation="http://org.variabilitymodeling.cvl cvl.ecore" name="exp">
+<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" name="exp">
   <variabilitySpecification xsi:type="cvl:CompositeVariability" name="varModel">
     <variabilitySpecification xsi:type="cvl:CompositeVariability" name="exp0">
       <variabilitySpecification xsi:type="cvl:CompositeVariability" name="exp1">
