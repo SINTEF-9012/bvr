@@ -85,7 +85,7 @@ public class FragmentSubOperation implements Substitution {
 					if(upperBound == 0){
 						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
 					}
-					if(insideBERepl.size() != upperBound){
+					if(insideBERepl.size() > upperBound){
 						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					Object propertyValueOutBEPlac = outsideBEPlac.eGet(property);
@@ -96,10 +96,10 @@ public class FragmentSubOperation implements Substitution {
 						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
 					}
 					
-					EObject propertyValueNew = insideBERepl.get(0);
+					EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
 					outsideBEPlac.eSet(property, propertyValueNew);
 					Object propertyValueSet = outsideBEPlac.eGet(property);
-					if(!propertyValueNew.equals(propertyValueSet)){
+					if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					
@@ -116,6 +116,7 @@ public class FragmentSubOperation implements Substitution {
 			if(fromPlacement != null && fromReplacement != null){
 				String propertyName = fromReplacement.getPropertyName();
 				EList<EObject> outsideBEPlac = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
+				outsideBEPlac = (outsideBEPlac.size() == 1 && outsideBEPlac.get(0) == null) ? new BasicEList<EObject>() : outsideBEPlac; 
 				EObject insideBERepl = this.getInsideBEFromReplacement(fromReplacement);
 				EStructuralFeature property = insideBERepl.eClass().getEStructuralFeature(propertyName);
 				if(property == null){
@@ -140,7 +141,7 @@ public class FragmentSubOperation implements Substitution {
 					if(upperBound == 0){
 						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
 					}
-					if(outsideBEPlac.size() != upperBound){
+					if(outsideBEPlac.size() > upperBound){
 						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
 					}
 					Object propertyValueInsBERepl = insideBERepl.eGet(property);
@@ -151,10 +152,10 @@ public class FragmentSubOperation implements Substitution {
 						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
 					}
 					
-					EObject propertyValueNew = outsideBEPlac.get(0);
+					EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
 					insideBERepl.eSet(property, propertyValueNew);
 					Object propertyValueSet = insideBERepl.eGet(property);
-					if(!propertyValueNew.equals(propertyValueSet)){
+					if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 					}				
 				}
@@ -176,6 +177,7 @@ public class FragmentSubOperation implements Substitution {
 		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
 			EList<EObject> outsideBoundaryElements = Utility.resolveProxies(fromBinding.getFromPlacement().getOutsideBoundaryElement());
+			outsideBoundaryElements = (outsideBoundaryElements.size() == 1 && outsideBoundaryElements.get(0) == null) ? new BasicEList<EObject>() : outsideBoundaryElements;
 			for(EObject outsideBoundaryElement : outsideBoundaryElements){
 				EObject container = outsideBoundaryElement.eContainer();
 				if(placementElements.contains(container)){
@@ -244,8 +246,9 @@ public class FragmentSubOperation implements Substitution {
 	}
 	
 	private EList<EObject> getInsideBEToReplacement(ToReplacement toReplacement) throws GeneralCVLEngineException{
-		EList<EObject> insideBERepl = Utility.resolveProxies(toReplacement.getInsideBoundaryElement());
-		return this.getReplCopyElementFromOriginal(insideBERepl);
+		EList<EObject> nullList = new BasicEList<EObject>();
+		EList<EObject> insideBERepl = (!Utility.isDummyToReplacement(toReplacement)) ? this.getReplCopyElementFromOriginal(Utility.resolveProxies(toReplacement.getInsideBoundaryElement())) : nullList;
+		return insideBERepl;
 	}
 	
 	private EObject getInsideBEFromReplacement(FromReplacement fromReplacement) throws GeneralCVLEngineException{

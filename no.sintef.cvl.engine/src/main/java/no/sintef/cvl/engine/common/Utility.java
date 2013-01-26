@@ -12,7 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import cvl.FragmentSubstitution;
+import cvl.FromPlacement;
 import cvl.ObjectHandle;
+import cvl.ToReplacement;
 import cvl.cvlFactory;
 
 public class Utility {
@@ -59,7 +61,8 @@ public class Utility {
 	
 	private static ObjectHandle getObjectHandle(EObject eObject, EList<ObjectHandle> objectHandles){
 		for(ObjectHandle oh : objectHandles){
-			if(oh.getMOFRef().equals(eObject)){
+			EObject eObjectBuf = oh.getMOFRef();
+			if((eObjectBuf == null && eObjectBuf == eObject) || (eObjectBuf !=null && eObjectBuf.equals(eObject))){
 				return oh;
 			}
 		}
@@ -90,5 +93,23 @@ public class Utility {
 	    for(Map.Entry<K,V> entry : map.entrySet())
 	        rev.put(entry.getValue(), entry.getKey());
 	    return rev;
+	}
+	
+	public static boolean isDummyToReplacement(ToReplacement toReplacement){
+		EList<ObjectHandle> insideBoundaryElements = toReplacement.getInsideBoundaryElement();
+		ObjectHandle outsideBoundaryElement = toReplacement.getOutsideBoundaryElement();
+		if(insideBoundaryElements.size() == 1 && outsideBoundaryElement.equals(insideBoundaryElements.get(0)) && outsideBoundaryElement.getMOFRef() == null){
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean isDummyFromPlacement(FromPlacement fromPlacement) {
+		ObjectHandle insideBoundaryElement = fromPlacement.getInsideBoundaryElement();
+		EList<ObjectHandle> outsideBoundaryelements = fromPlacement.getOutsideBoundaryElement();
+		if(outsideBoundaryelements.size() == 1 && insideBoundaryElement.equals(outsideBoundaryelements.get(0)) && insideBoundaryElement.getMOFRef() == null){
+			return true;
+		}
+		return false;
 	}
 }
