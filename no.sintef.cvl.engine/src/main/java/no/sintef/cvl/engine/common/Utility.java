@@ -1,6 +1,7 @@
 package no.sintef.cvl.engine.common;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
@@ -29,7 +30,9 @@ public class Utility {
 			}else{
 				resolvedProxy = proxy;
 			}
-			resolvedList.add(resolvedProxy);
+			if(resolvedProxy != null){
+				resolvedList.add(resolvedProxy);
+			}
 		}
 		return resolvedList;
 	}
@@ -111,5 +114,12 @@ public class Utility {
 			return true;
 		}
 		return false;
+	}
+	
+	public static HashSet<EObject> clearSet(HashSet<EObject> set){
+		if(set.contains(null)){
+			set.remove(null);
+		}
+		return set;
 	}
 }

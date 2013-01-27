@@ -13,11 +13,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import com.google.common.collect.Sets;
+
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
 import cvl.ToPlacement;
+import cvl.ToReplacement;
 
 public class PlacementElementHolder extends BasicElementHolder implements ElementHolderOIF {
 
@@ -67,35 +70,68 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		EList<PlacementBoundaryElement> pbes = placement.getPlacementBoundaryElement();
 		for(PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof ToPlacement){
-				tbe.add((ToPlacement)pbe);
-				frBElementsInternal.addAll(Utility.resolveProxies(((ToPlacement)pbe).getInsideBoundaryElement()));
-				outerElements.add(Utility.resolveProxies(((ToPlacement)pbe).getOutsideBoundaryElement()));
-				innerElements.addAll(Utility.resolveProxies(((ToPlacement)pbe).getInsideBoundaryElement()));
+				ToPlacement toPlacement = (ToPlacement)pbe;
+				tbe.add(toPlacement);
+				HashSet<EObject> insideBoundaryElements = new HashSet<EObject>(Utility.resolveProxies(toPlacement.getInsideBoundaryElement()));
+				frBElementsInternal.addAll(Utility.clearSet(insideBoundaryElements));
+				EObject outsideBoundaryElement = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());
+				if(outsideBoundaryElement != null){
+					testOutsideBoundaryElement(outsideBoundaryElement, Utility.clearSet(insideBoundaryElements));
+				}
+				innerElements.addAll(Utility.clearSet(new HashSet<EObject>(Utility.resolveProxies(toPlacement.getInsideBoundaryElement()))));
 				
-				HashSet<EObject> outsideBoundaryElements = toPlacementOutBoundaryMap.get((ToPlacement)pbe);
+				HashSet<EObject> outsideBoundaryElements = toPlacementOutBoundaryMap.get(toPlacement);
 				if(outsideBoundaryElements == null){
 					throw new GeneralCVLEngineException("failed to locate given toPlacement in the map");
 				}
-				outerElements.addAll(outsideBoundaryElements);
+				testOutsideBoundaryElements(Utility.clearSet(outsideBoundaryElements), Utility.clearSet(insideBoundaryElements));
 			}
 			if(pbe instanceof FromPlacement){
 				fbe.add((FromPlacement) pbe);
-				frBElementsExternal.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
-				outerElements.addAll(Utility.resolveProxies(((FromPlacement)pbe).getOutsideBoundaryElement()));
-				innerElements.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
+				EList<EObject> outsideBoundaryElements = Utility.resolveProxies(((FromPlacement)pbe).getOutsideBoundaryElement());
+				if(outsideBoundaryElements.size() != 0){
+					frBElementsExternal.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
+					outerElements.addAll(outsideBoundaryElements);
+				}
+				EObject insideBoundaryElement = Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement());
+				if(insideBoundaryElement != null){
+					innerElements.add(Utility.resolveProxies(((FromPlacement)pbe).getInsideBoundaryElement()));
+				}
 				
 				HashSet<EObject> insideBoundaryElements = fromPlacementInsBoundaryMap.get((FromPlacement) pbe);
 				if(insideBoundaryElements == null){
 					throw new GeneralCVLEngineException("failed to locate given fromPlacement in the map");
 				}
-				frBElementsExternal.addAll(insideBoundaryElements);
-				innerElements.addAll(insideBoundaryElements);
+				if(outsideBoundaryElements.size() != 0){
+					frBElementsExternal.addAll(insideBoundaryElements);
+				}
+				innerElements.addAll(Utility.clearSet(insideBoundaryElements));
 			}
 		}
 		this.calculatePlElementsInternal();
 		frElementsOriginal.addAll(frBElementsExternal);
 		frElementsOriginal.addAll(frBElementsInternal);
 		frElementsOriginal.addAll(frElementsInternal);
+	}
+	
+	private void testOutsideBoundaryElement(EObject outsideBoundaryElement, HashSet<EObject> insideBoundaryElements){
+		EList<EObject> allRefs = new BasicEList<EObject>();
+		allRefs.addAll(outsideBoundaryElement.eCrossReferences());
+		allRefs.addAll(outsideBoundaryElement.eContents());
+		if(!Sets.intersection(new HashSet<EObject>(allRefs), insideBoundaryElements).isEmpty()){
+			outerElements.add(outsideBoundaryElement);
+		}
+	}
+	
+	private void testOutsideBoundaryElements(HashSet<EObject> outsideBoudaryElements, HashSet<EObject> insideBoundaryElements){
+		for(EObject outsideBoundaryElement : outsideBoudaryElements){
+			EList<EObject> allRefs = new BasicEList<EObject>();
+			allRefs.addAll(outsideBoundaryElement.eCrossReferences());
+			allRefs.addAll(outsideBoundaryElement.eContents());
+			if(!Sets.intersection(new HashSet<EObject>(allRefs), insideBoundaryElements).isEmpty()){
+				outerElements.add(outsideBoundaryElement);
+			}
+		}
 	}
 	
 	private void calculatePlElementsInternal(){
@@ -125,7 +161,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	public HashSet<EObject> getInnerFragmentElements() {
 		HashSet<EObject> innElements = new HashSet<EObject>();
 		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
-			innElements.addAll(innerEl);
+			innElements.addAll(Utility.clearSet(innerEl));
 		}
 		innElements.addAll(innerElements);
 		return innElements;
@@ -134,8 +170,12 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	@Override
 	public HashSet<EObject> getBElementsExternal() {
 		HashSet<EObject> innElements = new HashSet<EObject>();
-		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
-			innElements.addAll(innerEl);
+		for(Map.Entry<FromPlacement, HashSet<EObject>> entry : fromPlacementInsBoundaryMap.entrySet()){
+			FromPlacement fromPlacement = entry.getKey();
+			HashSet<EObject> innerEl = entry.getValue();
+			if(Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()).size() != 0){
+				innElements.addAll(innerEl);;
+			}
 		}
 		innElements.addAll(frBElementsExternal);
 		return innElements;

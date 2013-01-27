@@ -2,17 +2,21 @@ package no.sintef.cvl.engine.fragment.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;
 import cvl.FromBinding;
 import cvl.FromPlacement;
+import cvl.FromReplacement;
 import cvl.ObjectHandle;
+import cvl.PlacementBoundaryElement;
 import cvl.ToBinding;
 import cvl.ToPlacement;
 import no.sintef.cvl.engine.common.Utility;
@@ -51,7 +55,16 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		}
 	}
 	
-	public void update() throws BasicCVLEngineException{
+	public void update(boolean replace) throws BasicCVLEngineException{
+		if(replace){
+			this.removeNotBoundBoundaries();
+		}
+		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
+		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
+		placement.update();
+	}
+	
+	public void refresh() throws BasicCVLEngineException{
 		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
 		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
 		placement.update();
@@ -118,5 +131,20 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 			toPlacementOHOutsideBoundaryMap.put(toPlacement, setObjectHandles);
 		}		
 		return toPlacementOHOutsideBoundaryMap;
+	}
+	
+	private void removeNotBoundBoundaries() {
+		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementFragment().getPlacementBoundaryElement();
+		for(Iterator<PlacementBoundaryElement> iter = placementBoundaries.iterator(); iter.hasNext();){
+			PlacementBoundaryElement placementBoundaryElement = iter.next();
+			if(placementBoundaryElement instanceof FromPlacement){
+				FromPlacement fromPlacement = (FromPlacement) placementBoundaryElement;
+				FromReplacement fromReplacement = fromPlacement.getFromReplacement();
+				if(fromReplacement == null){
+					iter.remove();
+					fromPlacementOHInsideBoundaryMap.remove(fromPlacement);
+				}
+			}
+		}
 	}
 }

@@ -169,7 +169,7 @@ public class FragmentSubOperation implements Substitution {
 			}	
 		}
 		this.checkOutsideBoundaryElementsContainment();
-		fragSubHolder.update();
+		fragSubHolder.update(replace);
 	}
 	
 	private void checkOutsideBoundaryElementsContainment() throws BasicCVLEngineException{

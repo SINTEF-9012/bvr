@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node" xsi:schemaLocation="http:///node node.ecore">
   <contains links="//@contains.3 //@contains.18 //@contains.28" name="0"/>
   <contains links="//@contains.3 //@contains.19 //@contains.29" name="1"/>
   <contains name="2"/>

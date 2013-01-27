@@ -127,8 +127,8 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				outsideBoundaryElementsToPlacementMap.put(toBinding.getToPlacement(), outsideBoundaryElementsToPlacement);
 				((FragmentSubstitutionHolder) fragHolderAdjacent).setToPlacementOutsideBoundaryElementMap(outsideBoundaryElementsToPlacementMap);
 			}
-			((FragmentSubstitutionHolder) fragHolderAdjacent).update();
+			((FragmentSubstitutionHolder) fragHolderAdjacent).refresh();
 		}
-		((FragmentSubstitutionHolder) fragmentHolderCurrent).update();
+		((FragmentSubstitutionHolder) fragmentHolderCurrent).refresh();
 	}
 }

@@ -66,7 +66,7 @@ public class FragmentSubstitutionPElementHolderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		nodePackage.eINSTANCE.eClass();
+		//nodePackage.eINSTANCE.eClass();
 		file = new File("src/test/resources/node6/node.new.cvl");
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
