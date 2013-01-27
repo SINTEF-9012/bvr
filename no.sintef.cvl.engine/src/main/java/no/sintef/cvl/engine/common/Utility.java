@@ -82,10 +82,13 @@ public class Utility {
 	}
 	
 	public static EList<EObject> subtractAugmentList(EList<EObject> elementsOrig, EList<EObject> elementsToRemove, EList<EObject> elementsToAdd){
-		elementsOrig.removeAll(elementsToRemove);
-		elementsOrig.addAll(elementsToAdd);
-		EList<EObject> eList = new BasicEList<EObject>();
-		eList.addAll(elementsOrig);
+		EList<EObject> eList = new BasicEList<EObject>(elementsOrig);
+		eList.removeAll(elementsToRemove);
+		for(EObject eObject : elementsToAdd){
+			if(!eList.contains(eObject)){
+				eList.add(eObject);
+			}
+		}
 		return eList;
 	}
 	
