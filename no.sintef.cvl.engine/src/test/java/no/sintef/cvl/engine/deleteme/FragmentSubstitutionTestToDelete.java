@@ -11,6 +11,7 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFragmentImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
@@ -85,54 +86,27 @@ public class FragmentSubstitutionTestToDelete {
 		
 	@Test
 	public void testSingleSubstitution() throws Exception {
+		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		
-		HashSet<String> Elements = new HashSet<String>(Arrays.asList(p2orig));
-		HashSet<String> ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
-		HashSet<String> BElementsInternal = new HashSet<String>(Arrays.asList(p2orig));
-		HashSet<String> BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"9", "7"}));
-		HashSet<String> InnerElements = new HashSet<String>(Arrays.asList(p2orig));
-		HashSet<String> OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "5", "4", "11", "12", "13"}));
-		
-		HashSet<String> ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElements(), "name");
-		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
-		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
-		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
-		
-		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
-		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
-		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
-		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
-		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
-		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());		
-		
 		fso2.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
-
-		Elements = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)));
-		ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
-		BElementsInternal = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)));
-		BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"7","9","r9"}));
-		InnerElements = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)));
-		OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "5", "13", "4", "11", "12"}));
-		
-		ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElements(), "name");
-		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
-		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
-		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
-		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
-		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
-		
-		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
-		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
-		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
-		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
-		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
-		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
-		
-		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod4.node", "base_new.node"));
 	}
 	
 	private EList<EObject> resolveObjectHandles(EList<ObjectHandle> objectHandles){

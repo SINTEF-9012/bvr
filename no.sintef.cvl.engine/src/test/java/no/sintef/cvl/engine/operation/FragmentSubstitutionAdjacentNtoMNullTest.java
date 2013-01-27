@@ -783,6 +783,58 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To21)));
 	}
 	
+	@Test
+	public void testAdjacentSubstituteTrue() throws Exception {
+		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod5.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentSubstituteFalse() throws Exception {
+		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod6.node", "base_new.node"));
+	}
+	
 	private EList<FragmentSubstitutionHolder> getFragmentSubstitutionHolders(EList<AdjacentFragment> adjacentFragmants){
 		EList<FragmentSubstitutionHolder> fragSubHolders = new BasicEList<FragmentSubstitutionHolder>();
 		for(AdjacentFragment adjacentFragment : adjacentFragmants){
