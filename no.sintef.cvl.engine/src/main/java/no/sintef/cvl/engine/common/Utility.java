@@ -44,7 +44,7 @@ public class Utility {
 		return resolvedProxy;
 	}
 	
-	public static EList<ObjectHandle> getObjectHandlesByEObjects(FragmentSubstitution fragSub, EList<EObject> eObjectList) throws UnexpectedOperationFailure{
+	public static EList<ObjectHandle> getObjectHandlesByEObjects(FragmentSubstitution fragSub, EList<EObject> eObjectList) {
 		EList<ObjectHandle> objectHandles = new BasicEList<ObjectHandle>();
 		EList<ObjectHandle> objectHandlesAll = fragSub.getSourceObject();
 		for(EObject eObject : eObjectList){

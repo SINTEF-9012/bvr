@@ -162,6 +162,10 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		return this.fromPlacementInsBoundaryMap;
 	}
 	
+	public HashMap<ToPlacement,HashSet<EObject>> getToPlacementOutBoundaryMap(){
+		return this.toPlacementOutBoundaryMap;
+	}
+	
 	public void setFromPlacementInsBoundaryMap(HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementInsBoundaryMap){
 		HashMap<FromPlacement, HashSet<EObject>> map = new HashMap<FromPlacement, HashSet<EObject>>();
 		for(Map.Entry<FromPlacement, HashSet<ObjectHandle>> entry : fromPlacementInsBoundaryMap.entrySet()){

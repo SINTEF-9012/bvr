@@ -2,9 +2,12 @@ package no.sintef.cvl.engine.fragment.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
 import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;
 import cvl.FromBinding;
@@ -12,6 +15,7 @@ import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.ToBinding;
 import cvl.ToPlacement;
+import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 
@@ -21,34 +25,28 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 	private PlacementElementHolder placement;
 	private ReplacementElementHolder replacement;
 	private EList<BoundaryElementBinding> bindings;
-	private EList<ToBinding> toBinding;
-	private EList<FromBinding> fromBinding;
+	private EList<ToBinding> toBindings;
+	private EList<FromBinding> fromBindings;
 	private HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementOHInsideBoundaryMap;
 	private HashMap<ToPlacement, HashSet<ObjectHandle>> toPlacementOHOutsideBoundaryMap;
 
 	public FragmentSubstitutionHolder(FragmentSubstitution fs) throws BasicCVLEngineException {
 		fragment = fs;
-		fromPlacementOHInsideBoundaryMap = new HashMap<FromPlacement, HashSet<ObjectHandle>>();
-		toPlacementOHOutsideBoundaryMap = new HashMap<ToPlacement, HashSet<ObjectHandle>>();
 		placement = new PlacementElementHolder(fragment.getPlacement());
 		replacement = new ReplacementElementHolder(fragment.getReplacement());
+		//if we do not replace a placement, it may bring multiply insideBoundaryElement references for FromPlacement
+		fromPlacementOHInsideBoundaryMap = testFromPlacementOHInsideBoundaryMap(placement.getFromPlacementInsBoundaryMap());
+		//adjacentness may bring multiply outsideBoundaryElement reference for ToPlacement
+		toPlacementOHOutsideBoundaryMap = testToPlacementOHOutsideBoundaryMap(placement.getToPlacementOutBoundaryMap());
 		bindings = fragment.getBoundaryElementBinding();
-		toBinding = new BasicEList<ToBinding>();
-		fromBinding = new BasicEList<FromBinding>();
+		toBindings = new BasicEList<ToBinding>();
+		fromBindings = new BasicEList<FromBinding>();
 		for(BoundaryElementBinding binding : bindings){
 			if(binding instanceof ToBinding){
-				toBinding.add((ToBinding) binding);
-				//adjacentness may bring multiply outsideBoundaryElement reference for ToPlacement 
-				HashSet<ObjectHandle> set = new HashSet<ObjectHandle>();
-				set.add(((ToBinding) binding).getToPlacement().getOutsideBoundaryElement());
-				toPlacementOHOutsideBoundaryMap.put(((ToBinding) binding).getToPlacement(), set);
+				toBindings.add((ToBinding) binding);
 			}
 			if(binding instanceof FromBinding){
-				fromBinding.add((FromBinding) binding);
-				//if we do not replace a placement, it may bring multiply insideBoundaryElement reference for FromPlacement
-				HashSet<ObjectHandle> set = new HashSet<ObjectHandle>();
-				set.add(((FromBinding) binding).getFromPlacement().getInsideBoundaryElement());
-				fromPlacementOHInsideBoundaryMap.put(((FromBinding) binding).getFromPlacement(), set);
+				fromBindings.add((FromBinding) binding);
 			}
 		}
 	}
@@ -76,12 +74,12 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 
 	@Override
 	public EList<ToBinding> getToBindings() {
-		return toBinding;
+		return toBindings;
 	}
 
 	@Override
 	public EList<FromBinding> getFromBinding() {
-		return fromBinding;
+		return fromBindings;
 	}
 	
 	public void setFromPlacementInsideBoundaryElementMap(HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryMap){
@@ -100,4 +98,25 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		return this.toPlacementOHOutsideBoundaryMap;
 	}
 
+	private HashMap<FromPlacement, HashSet<ObjectHandle>> testFromPlacementOHInsideBoundaryMap(HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap) {
+		HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementOHInsideBoundaryMap = new HashMap<FromPlacement, HashSet<ObjectHandle>>();
+		for(Map.Entry<FromPlacement, HashSet<EObject>> entry : fromPlacementInsBoundaryMap.entrySet()){
+			FromPlacement fromPlacement = entry.getKey();
+			HashSet<EObject> setEObjects = entry.getValue();
+			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getObjectHandlesByEObjects(fragment, new BasicEList<EObject>(setEObjects)));
+			fromPlacementOHInsideBoundaryMap.put(fromPlacement, setObjectHandles);
+		}
+		return fromPlacementOHInsideBoundaryMap;
+	}
+	
+	private HashMap<ToPlacement, HashSet<ObjectHandle>> testToPlacementOHOutsideBoundaryMap(HashMap<ToPlacement, HashSet<EObject>> toPlacementOutBoundaryMap) {
+		HashMap<ToPlacement, HashSet<ObjectHandle>> toPlacementOHOutsideBoundaryMap = new HashMap<ToPlacement, HashSet<ObjectHandle>>();
+		for(Map.Entry<ToPlacement, HashSet<EObject>> entry : toPlacementOutBoundaryMap.entrySet()){
+			ToPlacement toPlacement = entry.getKey();
+			HashSet<EObject> setEObjects = entry.getValue();
+			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getObjectHandlesByEObjects(fragment, new BasicEList<EObject>(setEObjects)));
+			toPlacementOHOutsideBoundaryMap.put(toPlacement, setObjectHandles);
+		}		
+		return toPlacementOHOutsideBoundaryMap;
+	}
 }

@@ -48,30 +48,7 @@ public class FragmentSubstitutionTestToDelete {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeWorkingCopy/nodeNtoM/exp1/node.new.cvl");
-		nodePackage.eINSTANCE.eClass();
-		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
-		for(VariationPoint vp : vps){
-			if(vp instanceof FragmentSubstitution){
-				fragSubs.add((FragmentSubstitution) vp);
-			}
-		}
-		
-		Assert.assertTrue("can not locate a fragment substitution, the test can not be executed", fragSubs.size() > 0);
-		//fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(2));
-		//fragmentSubHolder2 = new FragmentSubstitutionHolder(fragSubs.get(1));
-		//fragmentSubHolder3 = new FragmentSubstitutionHolder(fragSubs.get(0));
-		fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(0));
-		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
-		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
-	}	
-	
-	/*@Before
-	public void setUp() throws Exception {
-		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeWorkingCopy/adjacent/exp1/node.new.cvl");
+		file = new File("src/test/resources/nodeWorkingCopy/adjacent/exp2/node.new.cvl");
 		nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
@@ -88,64 +65,40 @@ public class FragmentSubstitutionTestToDelete {
 		fragmentSubHolder3 = new FragmentSubstitutionHolder(fragSubs.get(0));
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
-	}*/
-
+	}	
+	
 	@After
 	public void tearDown() throws Exception {
 		SetUpUtils.tearDown(map);
 	}
-	
+		
 	@Test
-	public void testSingleSubstitution() throws Exception {
-		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
-		fragmentSubHolderList.add(fragmentSubHolder1);
-		//fragmentSubHolderList.add(fragmentSubHolder2);
-		//fragmentSubHolderList.add(fragmentSubHolder3);
-		
-		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
-		
-		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
-		fso1.execute(true);
-		adjacentResolver.resolve(fragmentSubHolder1);
-		
-		/*FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		fso2.execute(false);
-		adjacentResolver.resolve(fragmentSubHolder2);
-				
-		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
-		fso3.execute(false);
-		adjacentResolver.resolve(fragmentSubHolder3);*/
-						
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
-		
-	}
-	
-	/*@Test
 	public void testSingleSubstitution() throws Exception {
 		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);
 		fragmentSubHolderList.add(fragmentSubHolder3);
 		
-		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		//AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		//AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
 		
 		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
 		fso1.execute(false);
-		adjacentResolver.resolve(fragmentSubHolder1);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		
+		/*adjacentResolver.resolve(fragmentSubHolder1);
 		
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		fso2.execute(false);
+		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
 				
 		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
-		fso3.execute(false);
+		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
 						
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		SetUpUtils.writeToFile(baseModel, "base_new.node");*/
 		
-	}*/
+	}
 	
 	private EList<EObject> resolveObjectHandles(EList<ObjectHandle> objectHandles){
 		EList<EObject> list = new BasicEList<EObject>();
