@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -60,8 +61,8 @@ public class FragmentSubstitutionTestToDelete {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeWorkingCopy/adjacent/exp2/node.new.cvl");
-		nodePackage.eINSTANCE.eClass();
+		file = new File("src/test/resources/nodeWorkingCopy/realistic/iter2/SafetyModule.new.cvl");
+		UMLPackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -72,10 +73,9 @@ public class FragmentSubstitutionTestToDelete {
 		}
 		
 		Assert.assertTrue("can not locate a fragment substitution, the test can not be executed", fragSubs.size() > 0);
-		fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(2));
+		fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(0));
 		fragmentSubHolder2 = new FragmentSubstitutionHolder(fragSubs.get(1));
-		fragmentSubHolder3 = new FragmentSubstitutionHolder(fragSubs.get(0));
-		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
+		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("model.uml"), false);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}	
 	
@@ -89,36 +89,22 @@ public class FragmentSubstitutionTestToDelete {
 		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);
-		fragmentSubHolderList.add(fragmentSubHolder3);
+		System.out.println(fragmentSubHolder1.getPlacement().getElements());
+		System.out.println(fragmentSubHolder2.getPlacement().getOuterFragmentElements());
 		
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		System.out.println(adjacenFinder.getAdjacentMap());
 		
 		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
-		fso1.execute(false);
+		fso1.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder1);
 		
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		fso2.execute(false);
+		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
 		
-		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
-		fso3.execute(false);
-		adjacentResolver.resolve(fragmentSubHolder3);
-		
-		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		SetUpUtils.writeToFile(baseModel, "model_new.new");
 	}
 	
-	private EList<EObject> resolveObjectHandles(EList<ObjectHandle> objectHandles){
-		EList<EObject> list = new BasicEList<EObject>();
-		for(ObjectHandle oh : objectHandles){
-			list.add(oh.getMOFRef());
-		}
-		return list;
-	}
-	
-	private EObject resolveObjectHandles(ObjectHandle objectHandles){
-		return objectHandles.getMOFRef();
-	}
-
 }
