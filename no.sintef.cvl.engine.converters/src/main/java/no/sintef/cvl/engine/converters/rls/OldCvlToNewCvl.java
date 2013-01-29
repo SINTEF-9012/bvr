@@ -80,7 +80,7 @@ public class OldCvlToNewCvl {
 			e.printStackTrace();
 		}
 		
-		UMLPackage.eINSTANCE.eClass();
+		//UMLPackage.eINSTANCE.eClass();
 		//nodePackage.eINSTANCE.eClass();
 		
 		CVLModelNew cvn = new CVLModelNew(this.resSet);

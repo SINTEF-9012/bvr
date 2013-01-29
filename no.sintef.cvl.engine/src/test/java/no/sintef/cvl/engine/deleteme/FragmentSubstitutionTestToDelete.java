@@ -61,8 +61,8 @@ public class FragmentSubstitutionTestToDelete {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeWorkingCopy/realistic/iter2/SafetyModule.new.cvl");
-		UMLPackage.eINSTANCE.eClass();
+		file = new File("src/test/resources/nodeWorkingCopy/realistic/modelSafetyModule/SafetyDrive.new.cvl");
+		//UMLPackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -101,10 +101,10 @@ public class FragmentSubstitutionTestToDelete {
 		adjacentResolver.resolve(fragmentSubHolder1);
 		
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
-		fso2.execute(true);
-		adjacentResolver.resolve(fragmentSubHolder2);
+		//fso2.execute(true);
+		//adjacentResolver.resolve(fragmentSubHolder2);
 		
-		SetUpUtils.writeToFile(baseModel, "model_new.new");
+		SetUpUtils.writeToFile(baseModel, "model_new.uml");
 	}
 	
 }

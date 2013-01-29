@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.common.collect.Sets;
+import com.google.common.collect.Sets.SetView;
 
 import cvl.FromBinding;
 import cvl.FromPlacement;
@@ -64,6 +65,16 @@ public class FragmentSubOperation implements Substitution {
 				if(property == null){
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
+				
+				Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+				if(!isChangeable){
+					property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+				}
+				isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+				if(!isChangeable){
+					throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+				}
+				
 				EList<ObjectHandle> insideBoundaryObjectHandlesCurrentPlc = toPlacement.getInsideBoundaryElement();
 				EList<EObject> insideBEPlacCurrent = Utility.resolveProxies(insideBoundaryObjectHandlesCurrentPlc);
 				int upperBound = property.getUpperBound();
@@ -125,6 +136,16 @@ public class FragmentSubOperation implements Substitution {
 				if(property == null){
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
+				
+				Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+				if(!isChangeable){
+					property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+				}
+				isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+				if(!isChangeable){
+					throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+				}
+				
 				ObjectHandle insideBoundaryObjectHandleCurrentPlc = fromPlacement.getInsideBoundaryElement();
 				EList<EObject> outsideBEReplCurrent = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
 				int upperBound = property.getUpperBound();
@@ -133,7 +154,7 @@ public class FragmentSubOperation implements Substitution {
 					EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
 					if(upperBound != -1 && propertyValueNew.size() > upperBound){
 						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
-					}
+					}					
 					insideBERepl.eSet(property, propertyValueNew);
 					EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
 					if(!propertyValueNew.equals(propertyValueSet)){
@@ -153,8 +174,7 @@ public class FragmentSubOperation implements Substitution {
 					}
 					if(outsideBEReplCurrent.size() > 1){
 						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
-					}
-					
+					}					
 					EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
 					insideBERepl.eSet(property, propertyValueNew);
 					Object propertyValueSet = insideBERepl.eGet(property);
