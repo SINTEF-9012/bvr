@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_1y7KcGxpEeKLKpp68Sjmyg" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_1y7KcWxpEeKLKpp68Sjmyg" name="SafetyDrive">
+    <packagedElement xmi:type="uml:Class" xmi:id="_1y7KcmxpEeKLKpp68Sjmyg" name="SafetyDrive" classifierBehavior="_1y7LCGxpEeKLKpp68Sjmyg">
+      <ownedAttribute xmi:id="_1y7Kc2xpEeKLKpp68Sjmyg" name="m" visibility="public" type="_1y7LYmxpEeKLKpp68Sjmyg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KdGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KdWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KdmxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1y7Kd2xpEeKLKpp68Sjmyg" name="mc" visibility="public" type="_1y7LTWxpEeKLKpp68Sjmyg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KeGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KeWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KemxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Ke2xpEeKLKpp68Sjmyg" name="Port1" visibility="public" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KfGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KfWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KfmxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Kf2xpEeKLKpp68Sjmyg" name="Port2" visibility="public" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KgGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KgWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KgmxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Kg2xpEeKLKpp68Sjmyg" name="Port3" visibility="public" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KhGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KhWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KhmxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Kh2xpEeKLKpp68Sjmyg" name="power" visibility="public" type="_1y7La2xpEeKLKpp68Sjmyg" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KiGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KiWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KimxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Ki2xpEeKLKpp68Sjmyg" name="Port5" visibility="public" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KjGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KjWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KjmxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Kj2xpEeKLKpp68Sjmyg" name="Port6" visibility="public" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KkGxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KkWxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7KkmxpEeKLKpp68Sjmyg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7Kk2xpEeKLKpp68Sjmyg" name="Port7" aggregation="composite"/>
+      <ownedAttribute xmi:id="_1y7KlGxpEeKLKpp68Sjmyg" name="sm1" visibility="public" type="_1y7LIGxpEeKLKpp68Sjmyg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KlWxpEeKLKpp68Sjmyg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KlmxpEeKLKpp68Sjmyg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7Kl2xpEeKLKpp68Sjmyg"/>
+      </ownedAttribute>
+      <ownedConnector xmi:id="_1y7KmGxpEeKLKpp68Sjmyg" name="Connector1">
+        <end xmi:id="_1y7KmWxpEeKLKpp68Sjmyg" role="_1y7Ke2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KmmxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7Km2xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7KnGxpEeKLKpp68Sjmyg" role="_1y7LIWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KnWxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KnmxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7Kn2xpEeKLKpp68Sjmyg" name="Connector2">
+        <end xmi:id="_1y7KoGxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KoWxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KomxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7Ko2xpEeKLKpp68Sjmyg" role="_1y7Kf2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KpGxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KpWxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7KpmxpEeKLKpp68Sjmyg" name="Connector3">
+        <end xmi:id="_1y7Kp2xpEeKLKpp68Sjmyg" role="_1y7LJWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KqGxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KqWxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7KqmxpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LTmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7Kq2xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KrGxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7KrWxpEeKLKpp68Sjmyg" name="Connector4">
+        <end xmi:id="_1y7KrmxpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LUmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7Kr2xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KsGxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7KsWxpEeKLKpp68Sjmyg" role="_1y7LKWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KsmxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7Ks2xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7KtGxpEeKLKpp68Sjmyg" name="Connector5">
+        <end xmi:id="_1y7KtWxpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LVmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KtmxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7Kt2xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7KuGxpEeKLKpp68Sjmyg" role="_1y7Kh2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KuWxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KumxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7Ku2xpEeKLKpp68Sjmyg" name="Connector6">
+        <end xmi:id="_1y7KvGxpEeKLKpp68Sjmyg" role="_1y7Ki2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KvWxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KvmxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7Kv2xpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LWmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KwGxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KwWxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7KwmxpEeKLKpp68Sjmyg" name="Connector7">
+        <end xmi:id="_1y7Kw2xpEeKLKpp68Sjmyg" role="_1y7LLWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KxGxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KxWxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7KxmxpEeKLKpp68Sjmyg" role="_1y7Kh2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7Kx2xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KyGxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7KyWxpEeKLKpp68Sjmyg" name="Connector8">
+        <end xmi:id="_1y7KymxpEeKLKpp68Sjmyg" partWithPort="_1y7Kc2xpEeKLKpp68Sjmyg" role="_1y7LY2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7Ky2xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7KzGxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7KzWxpEeKLKpp68Sjmyg" role="_1y7Kj2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7KzmxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7Kz2xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K0GxpEeKLKpp68Sjmyg" name="Connector9">
+        <end xmi:id="_1y7K0WxpEeKLKpp68Sjmyg" partWithPort="_1y7Kc2xpEeKLKpp68Sjmyg" role="_1y7LZ2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K0mxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K02xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K1GxpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LXmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K1WxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K1mxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K12xpEeKLKpp68Sjmyg" name="Connector10">
+        <end xmi:id="_1y7K2GxpEeKLKpp68Sjmyg" partWithPort="_1y7Kc2xpEeKLKpp68Sjmyg" role="_1y7LZ2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K2WxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K2mxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K22xpEeKLKpp68Sjmyg" role="_1y7LMWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K3GxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K3WxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K3mxpEeKLKpp68Sjmyg" name="Connector11">
+        <end xmi:id="_1y7K32xpEeKLKpp68Sjmyg" role="_1y7Kh2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K4GxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K4WxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K4mxpEeKLKpp68Sjmyg" partWithPort="_1y7KlGxpEeKLKpp68Sjmyg" role="_1y7LNWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K42xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K5GxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K5WxpEeKLKpp68Sjmyg" name="Connector12">
+        <end xmi:id="_1y7K5mxpEeKLKpp68Sjmyg" role="_1y7Ke2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K52xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K6GxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K6WxpEeKLKpp68Sjmyg" partWithPort="_1y7KlGxpEeKLKpp68Sjmyg" role="_1y7LOWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K6mxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K62xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K7GxpEeKLKpp68Sjmyg" name="Connector13">
+        <end xmi:id="_1y7K7WxpEeKLKpp68Sjmyg" partWithPort="_1y7KlGxpEeKLKpp68Sjmyg" role="_1y7LPWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K7mxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K72xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K8GxpEeKLKpp68Sjmyg" role="_1y7Kf2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K8WxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K8mxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K82xpEeKLKpp68Sjmyg" name="Connector14">
+        <end xmi:id="_1y7K9GxpEeKLKpp68Sjmyg" partWithPort="_1y7Kc2xpEeKLKpp68Sjmyg" role="_1y7LZ2xpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K9WxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K9mxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K92xpEeKLKpp68Sjmyg" partWithPort="_1y7KlGxpEeKLKpp68Sjmyg" role="_1y7LQWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K-GxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K-WxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7K-mxpEeKLKpp68Sjmyg" name="Connector15">
+        <end xmi:id="_1y7K-2xpEeKLKpp68Sjmyg" partWithPort="_1y7KlGxpEeKLKpp68Sjmyg" role="_1y7LRWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K_GxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7K_WxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7K_mxpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LTmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7K_2xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LAGxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedConnector xmi:id="_1y7LAWxpEeKLKpp68Sjmyg" name="Connector16">
+        <end xmi:id="_1y7LAmxpEeKLKpp68Sjmyg" partWithPort="_1y7Kd2xpEeKLKpp68Sjmyg" role="_1y7LUmxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LA2xpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LBGxpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+        <end xmi:id="_1y7LBWxpEeKLKpp68Sjmyg" partWithPort="_1y7KlGxpEeKLKpp68Sjmyg" role="_1y7LSWxpEeKLKpp68Sjmyg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LBmxpEeKLKpp68Sjmyg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LB2xpEeKLKpp68Sjmyg" value="1"/>
+        </end>
+      </ownedConnector>
+      <ownedBehavior xmi:type="uml:Interaction" xmi:id="_1y7LCGxpEeKLKpp68Sjmyg" name="behavSafetyDrive">
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LCWxpEeKLKpp68Sjmyg" name="PowerOn_MessageSend" covered="_1y7LF2xpEeKLKpp68Sjmyg" message="_1y7LGmxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LCmxpEeKLKpp68Sjmyg" name="PowerOn_MessageRecv" covered="_1y7LGGxpEeKLKpp68Sjmyg" message="_1y7LGmxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LC2xpEeKLKpp68Sjmyg" name="PowerOn_MessageSend0" covered="_1y7LF2xpEeKLKpp68Sjmyg" message="_1y7LG2xpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LDGxpEeKLKpp68Sjmyg" name="PowerOn_MessageRecv0" covered="_1y7LGWxpEeKLKpp68Sjmyg" message="_1y7LG2xpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LDWxpEeKLKpp68Sjmyg" name="CommunicationCheck_MessageSend" covered="_1y7LGWxpEeKLKpp68Sjmyg" message="_1y7LHGxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LDmxpEeKLKpp68Sjmyg" name="CommunicationCheck_MessageRecv" covered="_1y7LGGxpEeKLKpp68Sjmyg" message="_1y7LHGxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LD2xpEeKLKpp68Sjmyg" name="CommunicationCheckAck_MessageSend" covered="_1y7LGGxpEeKLKpp68Sjmyg" message="_1y7LHWxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LEGxpEeKLKpp68Sjmyg" name="CommunicationCheckAck_MessageRecv" covered="_1y7LGWxpEeKLKpp68Sjmyg" message="_1y7LHWxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LEWxpEeKLKpp68Sjmyg" name="ConfigSafetyModule_MessageSend" covered="_1y7LGWxpEeKLKpp68Sjmyg" message="_1y7LHmxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:StateInvariant" xmi:id="_1y7LEmxpEeKLKpp68Sjmyg" name="ConfigureSM" covered="_1y7LGWxpEeKLKpp68Sjmyg">
+          <invariant xmi:id="_1y7LE2xpEeKLKpp68Sjmyg" name=""/>
+        </fragment>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_1y7LFGxpEeKLKpp68Sjmyg" name="ConfigSafetyModule_MessageRecv" covered="_1y7LGGxpEeKLKpp68Sjmyg" message="_1y7LHmxpEeKLKpp68Sjmyg"/>
+        <fragment xmi:type="uml:StateInvariant" xmi:id="_1y7LFWxpEeKLKpp68Sjmyg" name="Operational" covered="_1y7LGGxpEeKLKpp68Sjmyg">
+          <invariant xmi:id="_1y7LFmxpEeKLKpp68Sjmyg" name=""/>
+        </fragment>
+        <lifeline xmi:id="_1y7LF2xpEeKLKpp68Sjmyg" name="power" represents="_1y7Kh2xpEeKLKpp68Sjmyg" coveredBy="_1y7LCWxpEeKLKpp68Sjmyg _1y7LC2xpEeKLKpp68Sjmyg"/>
+        <lifeline xmi:id="_1y7LGGxpEeKLKpp68Sjmyg" name="sm" represents="_1y7KlGxpEeKLKpp68Sjmyg" coveredBy="_1y7LCmxpEeKLKpp68Sjmyg _1y7LDmxpEeKLKpp68Sjmyg _1y7LD2xpEeKLKpp68Sjmyg _1y7LFGxpEeKLKpp68Sjmyg _1y7LFWxpEeKLKpp68Sjmyg"/>
+        <lifeline xmi:id="_1y7LGWxpEeKLKpp68Sjmyg" name="m" represents="_1y7Kd2xpEeKLKpp68Sjmyg" coveredBy="_1y7LDGxpEeKLKpp68Sjmyg _1y7LDWxpEeKLKpp68Sjmyg _1y7LEGxpEeKLKpp68Sjmyg _1y7LEWxpEeKLKpp68Sjmyg _1y7LEmxpEeKLKpp68Sjmyg"/>
+        <message xmi:id="_1y7LGmxpEeKLKpp68Sjmyg" name="1:PowerOn_Message" messageSort="asynchSignal" receiveEvent="_1y7LCmxpEeKLKpp68Sjmyg" sendEvent="_1y7LCWxpEeKLKpp68Sjmyg" signature="_1y7LcGxpEeKLKpp68Sjmyg"/>
+        <message xmi:id="_1y7LG2xpEeKLKpp68Sjmyg" name="2:PowerOn_Message" messageSort="asynchSignal" receiveEvent="_1y7LDGxpEeKLKpp68Sjmyg" sendEvent="_1y7LC2xpEeKLKpp68Sjmyg" signature="_1y7LcGxpEeKLKpp68Sjmyg"/>
+        <message xmi:id="_1y7LHGxpEeKLKpp68Sjmyg" name="3:CommunicationCheck_Message" messageSort="asynchSignal" receiveEvent="_1y7LDmxpEeKLKpp68Sjmyg" sendEvent="_1y7LDWxpEeKLKpp68Sjmyg" signature="_1y7LcWxpEeKLKpp68Sjmyg"/>
+        <message xmi:id="_1y7LHWxpEeKLKpp68Sjmyg" name="4:CommunicationCheckAck_Message" messageSort="asynchSignal" receiveEvent="_1y7LEGxpEeKLKpp68Sjmyg" sendEvent="_1y7LD2xpEeKLKpp68Sjmyg" signature="_1y7Lc2xpEeKLKpp68Sjmyg"/>
+        <message xmi:id="_1y7LHmxpEeKLKpp68Sjmyg" name="5:ConfigSafetyModule_Message" messageSort="asynchSignal" receiveEvent="_1y7LFGxpEeKLKpp68Sjmyg" sendEvent="_1y7LEWxpEeKLKpp68Sjmyg" signature="_1y7LcmxpEeKLKpp68Sjmyg"/>
+      </ownedBehavior>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_1y7LH2xpEeKLKpp68Sjmyg" name="motor"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7LIGxpEeKLKpp68Sjmyg" name="SafetyModule">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LIWxpEeKLKpp68Sjmyg" name="Port1" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LImxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LI2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LJGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LJWxpEeKLKpp68Sjmyg" name="Port2" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LJmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LJ2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LKGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LKWxpEeKLKpp68Sjmyg" name="Port3" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LKmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LK2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LLGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LLWxpEeKLKpp68Sjmyg" name="powerSM" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LLmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LL2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LMGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LMWxpEeKLKpp68Sjmyg" name="Port5" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LMmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LM2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LNGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LNWxpEeKLKpp68Sjmyg" name="powerSM" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LNmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LN2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LOGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LOWxpEeKLKpp68Sjmyg" name="Port6" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LOmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LO2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LPGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LPWxpEeKLKpp68Sjmyg" name="Port7" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LPmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LP2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LQGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LQWxpEeKLKpp68Sjmyg" name="Port8" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LQmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LQ2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LRGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LRWxpEeKLKpp68Sjmyg" name="Port9" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LRmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LR2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LSGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LSWxpEeKLKpp68Sjmyg" name="Port10" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LSmxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LS2xpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LTGxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7LTWxpEeKLKpp68Sjmyg" name="MotorController">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LTmxpEeKLKpp68Sjmyg" name="Port1" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LT2xpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LUGxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LUWxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LUmxpEeKLKpp68Sjmyg" name="Port2" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LU2xpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LVGxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LVWxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LVmxpEeKLKpp68Sjmyg" name="powerMC" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LV2xpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LWGxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LWWxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LWmxpEeKLKpp68Sjmyg" name="Port4" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LW2xpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LXGxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LXWxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LXmxpEeKLKpp68Sjmyg" name="Port5" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LX2xpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LYGxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LYWxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7LYmxpEeKLKpp68Sjmyg" name="Motor">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LY2xpEeKLKpp68Sjmyg" name="Port1" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LZGxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LZWxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LZmxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_1y7LZ2xpEeKLKpp68Sjmyg" name="Port2" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1y7LaGxpEeKLKpp68Sjmyg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1y7LaWxpEeKLKpp68Sjmyg" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_1y7LamxpEeKLKpp68Sjmyg">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7La2xpEeKLKpp68Sjmyg" name="PowerInputMediator"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7LbGxpEeKLKpp68Sjmyg" name="PowerOn"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7LbWxpEeKLKpp68Sjmyg" name="CommunicationCheck"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7LbmxpEeKLKpp68Sjmyg" name="CommunicationCheckAck"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1y7Lb2xpEeKLKpp68Sjmyg" name="ConfigSafetyModule"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="_1y7LcGxpEeKLKpp68Sjmyg" name="PowerOn"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="_1y7LcWxpEeKLKpp68Sjmyg" name="CommunicationCheck"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="_1y7LcmxpEeKLKpp68Sjmyg" name="ConfigSafetyModule"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="_1y7Lc2xpEeKLKpp68Sjmyg" name="CommunicationCheckAck"/>
+</uml:Model>

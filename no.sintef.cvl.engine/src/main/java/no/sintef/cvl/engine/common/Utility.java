@@ -1,5 +1,7 @@
 package no.sintef.cvl.engine.common;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -9,8 +11,10 @@ import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
@@ -124,5 +128,10 @@ public class Utility {
 			set.remove(null);
 		}
 		return set;
+	}
+	
+	public static void writeToFile(Resource resource, String name) throws IOException{
+		resource.setURI(URI.createFileURI(name));
+		resource.save(Collections.EMPTY_MAP);
 	}
 }

@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.uml2.uml.UMLPackage;
+//import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -100,7 +100,7 @@ public class FragmentSubstitutionTestToDelete {
 		fso1.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder1);
 		
-		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		//FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		//fso2.execute(true);
 		//adjacentResolver.resolve(fragmentSubHolder2);
 		

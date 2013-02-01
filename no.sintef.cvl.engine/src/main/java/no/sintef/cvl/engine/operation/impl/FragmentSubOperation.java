@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.EAttributeImpl;
 
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
@@ -66,59 +67,65 @@ public class FragmentSubOperation implements Substitution {
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
-				Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
-				if(!isChangeable){
-					property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
-				}
-				isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
-				if(!isChangeable){
-					throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
-				}
-				
-				EList<ObjectHandle> insideBoundaryObjectHandlesCurrentPlc = toPlacement.getInsideBoundaryElement();
-				EList<EObject> insideBEPlacCurrent = Utility.resolveProxies(insideBoundaryObjectHandlesCurrentPlc);
-				int upperBound = property.getUpperBound();
-				if(upperBound == -1 || upperBound > 1){
-					EList<EObject> propertyValueOutBEPlac = Utility.getListPropertyValue(outsideBEPlac, property);
-					EList<EObject> elemenetsToRemove = (replace) ? insideBEPlacCurrent : new BasicEList<EObject>();
-					EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
-					if(upperBound != -1 && propertyValueNew.size() > upperBound){
-						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
+				if(!isDerived){
+					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+					if(!isChangeable){
+						property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 					}
-					outsideBEPlac.eSet(property, propertyValueNew);
-					EList<EObject> propertyValueSet = Utility.getListPropertyValue(outsideBEPlac, property);
-					if(!propertyValueNew.equals(propertyValueSet)){
-						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
+					isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+					if(!isChangeable){
+						throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
 					}
 					
-					//update insideBoundaryElements of the reference 
-					EList<EObject> insideBEPlacNew = Utility.subtractAugmentList(insideBEPlacCurrent, elemenetsToRemove, insideBERepl);
-					this.updateToPlacementInsideBoundaryElements(toPlacement, insideBEPlacNew);
+					EList<ObjectHandle> insideBoundaryObjectHandlesCurrentPlc = toPlacement.getInsideBoundaryElement();
+					EList<EObject> insideBEPlacCurrent = Utility.resolveProxies(insideBoundaryObjectHandlesCurrentPlc);
+					int upperBound = property.getUpperBound();
+					if(upperBound == -1 || upperBound > 1){
+						EList<EObject> propertyValueOutBEPlac = Utility.getListPropertyValue(outsideBEPlac, property);
+						EList<EObject> elemenetsToRemove = (replace) ? insideBEPlacCurrent : new BasicEList<EObject>();
+						EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
+						if(upperBound != -1 && propertyValueNew.size() > upperBound){
+							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+						}
+						
+						outsideBEPlac.eSet(property, propertyValueNew);
+						EList<EObject> propertyValueSet = Utility.getListPropertyValue(outsideBEPlac, property);
+						if(!propertyValueNew.equals(propertyValueSet)){
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
+						}
+						
+						//update insideBoundaryElements of the reference 
+						EList<EObject> insideBEPlacNew = Utility.subtractAugmentList(insideBEPlacCurrent, elemenetsToRemove, insideBERepl);
+						this.updateToPlacementInsideBoundaryElements(toPlacement, insideBEPlacNew);
+					}else{
+						//property.getUpperBound() == 0 || == 1
+						if(upperBound == 0){
+							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
+						}
+						if(insideBERepl.size() > upperBound){
+							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
+						}
+						Object propertyValueOutBEPlac = outsideBEPlac.eGet(property);
+						if(propertyValueOutBEPlac != null && !replace){
+							throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
+						}
+						if(insideBEPlacCurrent.size() > 1){
+							throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
+						}
+						
+						EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
+						outsideBEPlac.eSet(property, propertyValueNew);
+						Object propertyValueSet = outsideBEPlac.eGet(property);
+						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
+						}
+						
+						//update insideBoundaryElements of the reference
+						this.updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
+					}
 				}else{
-					//property.getUpperBound() == 0 || == 1
-					if(upperBound == 0){
-						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
-					}
-					if(insideBERepl.size() > upperBound){
-						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
-					}
-					Object propertyValueOutBEPlac = outsideBEPlac.eGet(property);
-					if(propertyValueOutBEPlac != null && !replace){
-						throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
-					}
-					if(insideBEPlacCurrent.size() > 1){
-						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
-					}
-					
-					EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
-					outsideBEPlac.eSet(property, propertyValueNew);
-					Object propertyValueSet = outsideBEPlac.eGet(property);
-					if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
-						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
-					}
-					
-					//update insideBoundaryElements of the reference
-					this.updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
+					System.out.println("WARNING: derived properties should not been used for toBinding, skip it " + property);
 				}
 			}else {
 				throw new IncorrectCVLModel("toPlacement and toReplacement are null or toPlacement is null! It seems to be incorrect!");
@@ -137,56 +144,62 @@ public class FragmentSubOperation implements Substitution {
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
-				Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
-				if(!isChangeable){
-					property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
-				}
-				isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
-				if(!isChangeable){
-					throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
-				}
-				
-				ObjectHandle insideBoundaryObjectHandleCurrentPlc = fromPlacement.getInsideBoundaryElement();
-				EList<EObject> outsideBEReplCurrent = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
-				int upperBound = property.getUpperBound();
-				if(upperBound == -1 || upperBound > 1){
-					EList<EObject> propertyValueInsBERepl = Utility.getListPropertyValue(insideBERepl, property);
-					EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
-					if(upperBound != -1 && propertyValueNew.size() > upperBound){
-						throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
-					}					
-					insideBERepl.eSet(property, propertyValueNew);
-					EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
-					if(!propertyValueNew.equals(propertyValueSet)){
-						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
+				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
+				if(!isDerived){
+					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+					if(!isChangeable){
+						property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 					}
+					isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+					if(!isChangeable){
+						throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+					}
+					
+					ObjectHandle insideBoundaryObjectHandleCurrentPlc = fromPlacement.getInsideBoundaryElement();
+					EList<EObject> outsideBEReplCurrent = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
+					int upperBound = property.getUpperBound();
+					if(upperBound == -1 || upperBound > 1){
+						EList<EObject> propertyValueInsBERepl = Utility.getListPropertyValue(insideBERepl, property);
+						EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
+						if(upperBound != -1 && propertyValueNew.size() > upperBound){
+							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+						}
+						insideBERepl.eSet(property, propertyValueNew);
+						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
+						if(!propertyValueNew.equals(propertyValueSet)){
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
+						}
+					}else{
+						//property.getUpperBound() == 0 || == 1
+						if(upperBound == 0){
+							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
+						}
+						if(outsideBEPlac.size() > upperBound){
+							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
+						}
+						Object propertyValueInsBERepl = insideBERepl.eGet(property);
+						if(propertyValueInsBERepl != null && !replace){
+							throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
+						}
+						if(outsideBEReplCurrent.size() > 1){
+							throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
+						}
+						
+						EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
+						insideBERepl.eSet(property, propertyValueNew);
+						Object propertyValueSet = insideBERepl.eGet(property);
+						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
+						}				
+					}
+					
+					//update insideBoundaryElementReference for fromPlacement;
+					EObject insideBoundaryElement = this.getReplCopyElementFromOriginal(Utility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
+					ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
+					this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 				}else{
-					//property.getUpperBound() == 0 || == 1
-					if(upperBound == 0){
-						throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
-					}
-					if(outsideBEPlac.size() > upperBound){
-						throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
-					}
-					Object propertyValueInsBERepl = insideBERepl.eGet(property);
-					if(propertyValueInsBERepl != null && !replace){
-						throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
-					}
-					if(outsideBEReplCurrent.size() > 1){
-						throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
-					}					
-					EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
-					insideBERepl.eSet(property, propertyValueNew);
-					Object propertyValueSet = insideBERepl.eGet(property);
-					if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
-						throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
-					}				
+					System.out.println("WARNING: derived properties should not been used for fromBinding, skip it " + property);
 				}
-				
-				//update insideBoundaryElementReference for fromPlacement;
-				EObject insideBoundaryElement = this.getReplCopyElementFromOriginal(Utility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
-				ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
-				this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 			}else{
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
 			}	

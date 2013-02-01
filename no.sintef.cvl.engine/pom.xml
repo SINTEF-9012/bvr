@@ -9,17 +9,46 @@
 
   <name>no.sintef.cvl.engine</name>
   <url>http://www.omgwiki.org/variability/doku.php</url>
+  
+  <repositories>
+  	<repository>
+  		<id>repo1-maven</id>
+  		<name>The Maven Central</name>
+  		<url>http://repo1.maven.org/maven2/</url>
+  	</repository>
+  	<repository>
+    	<id>springsource-repo</id>
+    	<name>SpringSource Repository</name>
+    	<url>http://repo.springsource.org/release</url>
+	</repository>
+  </repositories>
 
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.0</version>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.7</source>
+          <target>1.7</target> 
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.0</version>
+        <configuration>
+          <finalName>${project.artifactId}-${project.version}-dependencies</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -27,14 +56,6 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
-	<repositories>
-		<repository>
-    		<id>springsource-repo</id>
-    		<name>SpringSource Repository</name>
-    		<url>http://repo.springsource.org/release</url>
-		</repository>
-	</repositories>
 
   <dependencies>
   	<dependency>
@@ -77,7 +98,7 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.5.8</version>
     </dependency> 
-    <dependency>
+    <!--<dependency>
     	<groupId>com.google.guava</groupId>
     	<artifactId>guava</artifactId>
     	<version>13.0.1</version>
@@ -86,8 +107,8 @@
 		<groupId>org.variabilitymodeling.cvl1.2</groupId>
 		<artifactId>org.variabilitymodeling.cvl1.2</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  	  	<dependency>
+  	</dependency>-->
+  	<dependency>
 		<groupId>org.eclipse.birt.runtime</groupId>
 		<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
 		<version>2.8.0.v20120606-0717</version>
@@ -102,10 +123,60 @@
 		<artifactId>org.eclipse.emf.common</artifactId>
 		<version>2.8.0.v20120606-0717</version>
 	</dependency>
+	<!--<dependency>
+		<groupId>org.eclipse.birt.runtime</groupId>
+		<artifactId>org.eclipse.core.resources</artifactId>
+		<version>3.8.1.v20120802-154922</version>
+	</dependency>
+	<dependency>
+		<groupId>org.eclipse.birt.runtime</groupId>
+		<artifactId>org.eclipse.core.runtime</artifactId>
+		<version>3.8.0.v20120521-2346</version>
+	</dependency>-->
 	<dependency>
 		<groupId>no.sintef.dsl</groupId>
 		<artifactId>no.sintef.dsl.node</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</dependency>
+	<dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.emf.compare_3.0.0.201211131624.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-com.google.guava_10.0.1.v201203051515.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml_4.0.1.v20120913-1441.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2_4.0.1.v20120913-1441.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.types_1.0.0.v20120913-1441.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.common_1.7.0.v20120913-1441.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml.profile.l2_1.0.1.v20120913-1441.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>no.sintef</groupId>
+      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml.profile.l3_1.0.1.v20120913-1441.jar</artifactId>
+      <version>2.0.0</version>
+    </dependency>
   </dependencies>
 </project>
