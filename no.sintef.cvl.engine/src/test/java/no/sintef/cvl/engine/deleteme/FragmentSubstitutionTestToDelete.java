@@ -107,7 +107,6 @@ public class FragmentSubstitutionTestToDelete {
 		
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
-		System.out.println(adjacenFinder.getAdjacentMap());
 		//this.fecthContent1();
 		//fecthContent();
 		
