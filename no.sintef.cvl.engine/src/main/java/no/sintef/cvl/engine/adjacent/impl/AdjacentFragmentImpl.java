@@ -1,6 +1,7 @@
 package no.sintef.cvl.engine.adjacent.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -14,13 +15,13 @@ import no.sintef.cvl.engine.fragment.FragSubHolder;
 public class AdjacentFragmentImpl implements AdjacentFragment {
 
 	private FragSubHolder fragmentHolder;
-	private EList<AdjacentFragment> adjacentFragments;
+	private HashSet<AdjacentFragment> adjacentFragments;
 	private HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>> adjacentFromBindings;
 	private HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>> adjacentToBindings;
 
 	public AdjacentFragmentImpl(FragSubHolder fragmentHolder){
 		this.fragmentHolder = fragmentHolder;
-		adjacentFragments = new BasicEList<AdjacentFragment>();
+		adjacentFragments = new HashSet<AdjacentFragment>();
 		adjacentFromBindings = new HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>>();
 		adjacentToBindings = new HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>>();
 	}
@@ -31,12 +32,19 @@ public class AdjacentFragmentImpl implements AdjacentFragment {
 	}
 
 	@Override
-	public EList<AdjacentFragment> getAdjacentFragments() {
+	public HashSet<AdjacentFragment> getAdjacentFragments() {
 		return this.adjacentFragments;
+	}
+	
+	@Override
+	public EList<AdjacentFragment> getAdjacentFragmentsList() {
+		return new BasicEList<AdjacentFragment>(this.adjacentFragments);
 	}
 
 	@Override
 	public void setAdjacentFragment(AdjacentFragment adjacentFragment) {
+		if(this.adjacentFragments.contains(adjacentFragment))
+			return;
 		this.adjacentFragments.add(adjacentFragment);
 	}
 

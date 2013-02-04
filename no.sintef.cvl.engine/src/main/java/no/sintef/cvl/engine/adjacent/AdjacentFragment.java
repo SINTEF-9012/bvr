@@ -1,6 +1,7 @@
 package no.sintef.cvl.engine.adjacent;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -12,9 +13,7 @@ import no.sintef.cvl.engine.fragment.FragSubHolder;
 public interface AdjacentFragment {
 
 	public FragSubHolder getFragmentHolder();
-	
-	public EList<AdjacentFragment> getAdjacentFragments();
-	
+		
 	public void setAdjacentFragment(AdjacentFragment adjacentFragment);
 	
 	public HashMap<FromBinding, ToBinding> getAdjacentFromBindings(AdjacentFragment adjacentFragment);
@@ -28,5 +27,9 @@ public interface AdjacentFragment {
 	public HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>> getAllAdjacentFromBindings();
 	
 	public HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>> getAllAdjacentToBindings();
+
+	public HashSet<AdjacentFragment> getAdjacentFragments();
+	
+	public EList<AdjacentFragment> getAdjacentFragmentsList();
 	
 }

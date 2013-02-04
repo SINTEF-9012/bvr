@@ -6,11 +6,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EAttributeImpl;
-
-import com.google.common.collect.Sets;
-import com.google.common.collect.Sets.SetView;
-
 import cvl.FromBinding;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
@@ -67,7 +62,7 @@ public class FragmentSubOperation implements Substitution {
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
+				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));				
 				if(!isDerived){
 					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
 					if(!isChangeable){

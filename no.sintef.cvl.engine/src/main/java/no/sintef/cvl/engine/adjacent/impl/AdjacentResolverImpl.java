@@ -40,7 +40,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 		if(aFrag == null){
 			return;
 		}
-		EList<AdjacentFragment> adjacentFragments = aFrag.getAdjacentFragments();
+		HashSet<AdjacentFragment> adjacentFragments = aFrag.getAdjacentFragments();
 		if(adjacentFragments.isEmpty()){
 			throw new GeneralCVLEngineException("can not find any adjacent fragments to the fragment that seems to be adjacent" + fragmentHolderCurrent);
 		}

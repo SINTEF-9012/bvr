@@ -38,23 +38,25 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 	}
 	
 	private void findAdjacentness(){
-		EList<FragSubHolder> viewedFragments = new BasicEList<FragSubHolder>();
 		for(FragSubHolder fragmentHolder : this.fragmentList){
+			EList<FragSubHolder> viewedFragments = new BasicEList<FragSubHolder>();
 			viewedFragments.add(fragmentHolder);
 			PlacementElementHolder placementHolder = fragmentHolder.getPlacement();
 			SetView<FragSubHolder> toViewFragments = Sets.symmetricDifference(new HashSet<FragSubHolder>(this.fragmentList), new HashSet<FragSubHolder>(viewedFragments));
 			for(FragSubHolder fragmentHolder1 : toViewFragments){
 				PlacementElementHolder placementHolder1 = fragmentHolder1.getPlacement();
 				if(this.isAdjacent(placementHolder, placementHolder1)){
-					AdjacentFragment adjacentFragment = this.testAdjacentFragment(fragmentHolder);
-					AdjacentFragment adjacentFragment1 = this.testAdjacentFragment((fragmentHolder1));
-					adjacentFragment.setAdjacentFragment(adjacentFragment1);
-					adjacentFragment1.setAdjacentFragment(adjacentFragment);
-					
 					HashMap<FromBinding, ToBinding> adjacentBindings = this.getAdjacentBindings(fragmentHolder, fragmentHolder1);
-					adjacentFragment.setAdjacentFromBindings(adjacentFragment1, adjacentBindings);
-					HashMap<ToBinding, FromBinding> adjacentBindingsRev = Utility.reverseMap(adjacentBindings);
-					adjacentFragment1.setAdjacentToBindings(adjacentFragment, adjacentBindingsRev);
+					if(!adjacentBindings.isEmpty()){
+						AdjacentFragment adjacentFragment = this.testAdjacentFragment(fragmentHolder);
+						AdjacentFragment adjacentFragment1 = this.testAdjacentFragment((fragmentHolder1));
+						adjacentFragment.setAdjacentFragment(adjacentFragment1);
+						adjacentFragment1.setAdjacentFragment(adjacentFragment);
+						
+						adjacentFragment.setAdjacentFromBindings(adjacentFragment1, adjacentBindings);
+						HashMap<ToBinding, FromBinding> adjacentBindingsRev = Utility.reverseMap(adjacentBindings);
+						adjacentFragment1.setAdjacentToBindings(adjacentFragment, adjacentBindingsRev);
+					}
 				}
 			}
 		}

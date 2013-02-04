@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvl:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" name="SafetyDrive">
+  <variabilitySpecification xsi:type="cvl:CompositeVariability" name="varModel">
+    <variabilitySpecification xsi:type="cvl:CompositeVariability" name="SafetyDrive">
+      <variabilitySpecification xsi:type="cvl:CompositeVariability" name="SafetyModule">
+        <variabilitySpecification xsi:type="cvl:PlacementFragment" name="SD_sm_plcm">
+          <boundaryElement xsi:type="cvl:FromPlacement" name=":Interaction[1]">
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromPlacement" name=":Property[1]">
+            <outsideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromPlacement" name=":InteractionFragment[5]">
+            <outsideBoundaryElement href="model.uml#_0paVMGlqEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_-QPFgGlqEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_AZ8kAGlrEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_GkFyEGlrEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_O3PUAGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:Interaction].ownedElement" propertyName="ownedElement">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:Interaction].ownedMember" propertyName="ownedMember">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:Interaction].member" propertyName="member">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:Interaction].lifeline" propertyName="lifeline">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_0paVMGlqEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_-QPFgGlqEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_AZ8kAGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_GkFyEGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToPlacement" name="[:StateInvariant].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_O3PUAGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="cvl:ReplacementFragment" name="SD_sm_rplcm">
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Lifeline].owner" propertyName="owner">
+            <outsideBoundaryElement href="lib.uml#_IFedkGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Lifeline].namespace" propertyName="namespace">
+            <outsideBoundaryElement href="lib.uml#_IFedkGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Lifeline].interaction" propertyName="interaction">
+            <outsideBoundaryElement href="lib.uml#_IFedkGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Lifeline].represents" propertyName="represents">
+            <outsideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:FromReplacement" name="[:Lifeline].coveredBy" propertyName="coveredBy">
+            <outsideBoundaryElement href="lib.uml#_xtvKEGlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#_3lrN0WlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#_5rzz4GlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#_7ZZ-IWlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#__HTzQGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="cvl:ToReplacement" name=":Element[1]">
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="cvl:FragmentSubstitution" name="SD_sm_plcm-SD_sm_rplcm" placement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0" replacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1">
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:Interaction].lifeline" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.6" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.7" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.8" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.9" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.10" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="cvl:ToBinding" name="[:StateInvariant].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.11" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Lifeline].interaction" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.0" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.2"/>
+          <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Lifeline].represents" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.1" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.3"/>
+          <boundaryElementBinding xsi:type="cvl:FromBinding" name="[:Lifeline].coveredBy" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.0" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.4"/>
+        </variabilitySpecification>
+      </variabilitySpecification>
+    </variabilitySpecification>
+  </variabilitySpecification>
+  <resolutionSpecification xsi:type="cvl:ResolutionElement" name="simple"/>
+  <base href="model.uml#_lqFFkGleEeKcJOdUfTHW_g"/>
+</cvl:CVLModel>
