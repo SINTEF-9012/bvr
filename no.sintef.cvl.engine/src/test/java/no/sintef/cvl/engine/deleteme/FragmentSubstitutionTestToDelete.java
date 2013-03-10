@@ -13,9 +13,11 @@ import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFragmentImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
+import no.sintef.cvl.engine.common.SubstitutionContext;
 import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.cvl.engine.logging.Logger;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
 import no.sintef.dsl.node.nodePackage;
@@ -99,6 +101,8 @@ public class FragmentSubstitutionTestToDelete {
 		
 	@Test
 	public void testSingleSubstitution() throws Exception {
+		Logger logger = SubstitutionContext.ME.getLogger();
+		logger.info("adasd");
 		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);

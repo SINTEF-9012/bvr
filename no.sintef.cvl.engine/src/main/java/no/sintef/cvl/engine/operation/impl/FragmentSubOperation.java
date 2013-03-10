@@ -16,6 +16,7 @@ import cvl.ToPlacement;
 import cvl.ToReplacement;
 
 import no.sintef.cvl.engine.common.CVLFragmentCopier;
+import no.sintef.cvl.engine.common.SubstitutionContext;
 import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
@@ -25,6 +26,7 @@ import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
+import no.sintef.cvl.engine.logging.Logger;
 import no.sintef.cvl.engine.operation.Substitution;
 
 public class FragmentSubOperation implements Substitution {
@@ -33,6 +35,7 @@ public class FragmentSubOperation implements Substitution {
 	private ReplacementElementHolder replacement;
 	private CVLFragmentCopier rplCopier;
 	private FragmentSubstitutionHolder fragSubHolder;
+	private Logger logger = SubstitutionContext.ME.getLogger();
 
 
 	public FragmentSubOperation(FragmentSubstitutionHolder fsh){
@@ -120,7 +123,7 @@ public class FragmentSubOperation implements Substitution {
 						this.updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
 					}
 				}else{
-					System.out.println("WARNING: derived properties should not been used for toBinding, skip it " + property);
+					logger.warn("derived properties should not been used for toBinding, skip it " + property);
 				}
 			}else {
 				throw new IncorrectCVLModel("toPlacement and toReplacement are null or toPlacement is null! It seems to be incorrect!");
@@ -193,7 +196,7 @@ public class FragmentSubOperation implements Substitution {
 					ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
 					this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 				}else{
-					System.out.println("WARNING: derived properties should not been used for fromBinding, skip it " + property);
+					logger.warn("derived properties should not been used for fromBinding, skip it " + property);
 				}
 			}else{
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
