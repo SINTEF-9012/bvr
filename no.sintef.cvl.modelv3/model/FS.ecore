@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fs" nsURI="http://fs/1.0" nsPrefix="fs">
+  <eClassifiers xsi:type="ecore:EClass" name="RepeatableVariationPoint" eSuperTypes="#//VariationPoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="" eType="#//VariationPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariationPoint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentSubstitution" eSuperTypes="#//RepeatableVariationPoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundaryElementBinding"
+        lowerBound="1" upperBound="-1" eType="#//BoundaryElementBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="palcement" lowerBound="1"
+        upperBound="-1" eType="#//PlacementFragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="replacement" lowerBound="1"
+        upperBound="-1" eType="#//ReplacementFragmentType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoundaryElementBinding"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ToBinding" eSuperTypes="#//BoundaryElementBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toPlacement" lowerBound="1"
+        eType="#//ToPlacement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toReplacement" lowerBound="1"
+        eType="#//ToReplacement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FromBinding" eSuperTypes="#//BoundaryElementBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromPlacement" lowerBound="1"
+        eType="#//FromPlacement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromReplacement" lowerBound="1"
+        eType="#//FromReplacement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementFragment" eSuperTypes="#//VariationPoint #//PlacementBoundaryElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="placementBoundaryElement"
+        lowerBound="1" upperBound="-1" eType="#//PlacementBoundaryElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementFragmentType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="placementFragment" lowerBound="1"
+        upperBound="-1" eType="#//PlacementFragment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="replacementBoundaryElement"
+        lowerBound="1" upperBound="-1" eType="#//ReplacementBoundaryElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ToPlacement" eSuperTypes="#//PlacementBoundaryElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toPlacement" eType="#//ToReplacement"
+        eOpposite="#//ToReplacement/toReplacement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FromPlacement" eSuperTypes="#//PlacementBoundaryElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromReplacement" eType="#//FromReplacement"
+        eOpposite="#//FromReplacement/fromPlacement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ToReplacement" eSuperTypes="#//ReplacementBoundaryElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toReplacement" eType="#//ToPlacement"
+        eOpposite="#//ToPlacement/toPlacement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FromReplacement" eSuperTypes="#//ReplacementBoundaryElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromPlacement" eType="#//FromPlacement"
+        eOpposite="#//FromPlacement/fromReplacement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass0"/>
+</ecore:EPackage>
