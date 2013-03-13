@@ -10,17 +10,22 @@ public class ConsoleLogger implements Logger {
 
 	@Override
 	public void error(String message) {
-		System.out.println("[ERROR] " + calendar.getTime().toString() + ": " + message);
+		this.debug(message);
 	}
 
 	@Override
 	public void warn(String message) {
-		System.out.println("[WARNING] " + calendar.getTime().toString() + ": " + message);
+		this.debug(message);
 	}
 
 	@Override
 	public void info(String message) {
-		System.out.println("[INFO] " + calendar.getTime().toString() + ": " + message);
+		this.debug(message);
+	}
+
+	@Override
+	public void debug(String message) {
+		System.out.println("[DEBUG] " + calendar.getTime().toString() + ": " + message);
 	}
 
 }

@@ -7,4 +7,6 @@ public interface Logger {
 	public void warn(String message);
 	
 	public void info(String message);
+	
+	public void debug(String message);
 }
