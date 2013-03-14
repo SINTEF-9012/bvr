@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <interface id="1" language="java" name="no.sintef.cvl.engine.logging.Logger" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/logging/Logger.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="57" width="126" x="165" y="59"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="no.sintef.cvl.engine.logging.impl.ConsoleLogger" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/logging/impl/ConsoleLogger.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="57" width="145" x="328" y="58"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <realization id="3">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,4 +1,4 @@
-package no.sintef.cvl.engine.operation;
+package no.sintef.cvl.engine.adjacent;
 
 import java.io.File;
 import java.util.Arrays;

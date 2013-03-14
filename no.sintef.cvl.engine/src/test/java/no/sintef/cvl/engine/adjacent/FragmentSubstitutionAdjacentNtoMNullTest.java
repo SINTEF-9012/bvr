@@ -1,19 +1,16 @@
-package no.sintef.cvl.engine.operation;
+package no.sintef.cvl.engine.adjacent;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 
 import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
-import no.sintef.cvl.engine.adjacent.impl.AdjacentFragmentImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
 import no.sintef.dsl.node.nodePackage;
@@ -29,7 +26,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
@@ -43,7 +39,7 @@ import cvl.ToBinding;
 import cvl.ToPlacement;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionAdjacentBasicTest {
+public class FragmentSubstitutionAdjacentNtoMNullTest {
 
 	private File file;
 	private HashMap<String, Object> map;
@@ -59,11 +55,15 @@ public class FragmentSubstitutionAdjacentBasicTest {
 	private static final String[] p1 = new String[] {"r1", "r2", "r3", "r4", "r5"};
 	private static final String[] p2 = new String[] {"r6", "r7", "r8", "r9", "r10"};
 	private static final String[] p3 = new String[] {"r11", "r12", "r13"};
+	private static final String[] p1orig = new String[] {"1", "2", "3", "4", "5"};
+	private static final String[] p2orig = new String[] {"6", "7", "8", "9", "10"};
+	private static final String[] p3orig = new String[] {"11", "12", "13"};
 
 	@Before
 	public void setUp() throws Exception {
+		//nodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeAdjacent/exp1/node.new.cvl");
+		file = new File("src/test/resources/nodeAdjacent/exp2/node.new.cvl");
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -91,7 +91,220 @@ public class FragmentSubstitutionAdjacentBasicTest {
 	}
 	
 	@Test
-	public void testAdjacentTest1() throws Exception {
+	public void testSingleSubstitution1True() throws Exception {
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		
+		HashSet<String> Elements = new HashSet<String>(Arrays.asList(p1orig));
+		HashSet<String> ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		HashSet<String> BElementsInternal = new HashSet<String>(Arrays.asList(p1orig));
+		HashSet<String> BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"5", "4"}));
+		HashSet<String> InnerElements = new HashSet<String>(Arrays.asList(p1orig));
+		HashSet<String> OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "6", "00", "8", "0", "10"}));
+		
+		HashSet<String> ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElements(), "name");
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());		
+		
+		fso1.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+
+		Elements = new HashSet<String>(Arrays.asList(p1));
+		ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		BElementsInternal = new HashSet<String>(Arrays.asList(p1));
+		BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"r5"}));
+		InnerElements = new HashSet<String>(Arrays.asList(p1));
+		OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "6", "00", "8", "0"}));
+		
+		ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElements(), "name");
+		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
+		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
+		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testSingleSubstitution1False() throws Exception {
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		
+		HashSet<String> Elements = new HashSet<String>(Arrays.asList(p1orig));
+		HashSet<String> ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		HashSet<String> BElementsInternal = new HashSet<String>(Arrays.asList(p1orig));
+		HashSet<String> BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"5", "4"}));
+		HashSet<String> InnerElements = new HashSet<String>(Arrays.asList(p1orig));
+		HashSet<String> OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "6", "00", "8", "0", "10"}));
+		
+		HashSet<String> ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElements(), "name");
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());		
+		
+		fso1.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+
+		Elements = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p1,p1orig)));
+		ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		BElementsInternal = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p1,p1orig)));
+		BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"5", "4", "r5"}));
+		InnerElements = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p1,p1orig)));
+		OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "6", "00", "8", "0", "10"}));
+		
+		ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElements(), "name");
+		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
+		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
+		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testSingleSubstitution2True() throws Exception {
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		
+		HashSet<String> Elements = new HashSet<String>(Arrays.asList(p2orig));
+		HashSet<String> ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		HashSet<String> BElementsInternal = new HashSet<String>(Arrays.asList(p2orig));
+		HashSet<String> BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"9", "7"}));
+		HashSet<String> InnerElements = new HashSet<String>(Arrays.asList(p2orig));
+		HashSet<String> OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "5", "4", "11", "12", "13"}));
+		
+		HashSet<String> ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElements(), "name");
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());		
+		
+		fso2.execute(true);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+
+		Elements = new HashSet<String>(Arrays.asList(p2));
+		ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		BElementsInternal = new HashSet<String>(Arrays.asList(p2));
+		BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"r9"}));
+		InnerElements = new HashSet<String>(Arrays.asList(p2));
+		OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "5", "13"}));
+		
+		ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElements(), "name");
+		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
+		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
+		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod3.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testSingleSubstitution2False() throws Exception {
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		
+		HashSet<String> Elements = new HashSet<String>(Arrays.asList(p2orig));
+		HashSet<String> ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		HashSet<String> BElementsInternal = new HashSet<String>(Arrays.asList(p2orig));
+		HashSet<String> BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"9", "7"}));
+		HashSet<String> InnerElements = new HashSet<String>(Arrays.asList(p2orig));
+		HashSet<String> OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "5", "4", "11", "12", "13"}));
+		
+		HashSet<String> ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElements(), "name");
+		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
+		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
+		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());		
+		
+		fso2.execute(false);
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+
+		Elements = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)));
+		ElementsInternal = new HashSet<String>(Arrays.asList(new String[]{}));
+		BElementsInternal = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)));
+		BElementsExternal = new HashSet<String>(Arrays.asList(new String[]{"7","9","r9"}));
+		InnerElements = new HashSet<String>(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)));
+		OuterElements = new HashSet<String>(Arrays.asList(new String[]{"null", "5", "13", "4", "11", "12"}));
+		
+		ElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElements(), "name");
+		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
+		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
+		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		
+		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
+		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
+		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
+		
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod4.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentSimple1() throws Exception {
+		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
@@ -110,28 +323,28 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To2 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To2);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From3 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To1 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From3.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To1.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From3.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To1.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From2, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings3From2 = adjacent3.getAdjacentFromBindings(adjacent2);
 		HashMap<ToBinding, FromBinding> adjacentBindings3To2 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From2);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From3, SetUpUtils.reverseMap(adjacentBindings3To2)));
 	}
 	
 	@Test
-	public void testAdjacentTest2() throws Exception {
+	public void testAdjacentSimple2() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
@@ -150,22 +363,22 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To2 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To2);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From3 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To1 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From3.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To1.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From3.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To1.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From2, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings3From2 = adjacent3.getAdjacentFromBindings(adjacent2);
 		HashMap<ToBinding, FromBinding> adjacentBindings3To2 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From2);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From3, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		
@@ -196,15 +409,15 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To21 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To21);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From31 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To11 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From31.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To11.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From31.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To11.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To11)));
 		
@@ -212,14 +425,14 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings3To21 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From21);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To21)));
 	}
 	
 	@Test
-	public void testAdjacentTest3() throws Exception {
+	public void testAdjacentSimple3() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
@@ -238,22 +451,22 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To2 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To2);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From3 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To1 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From3.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To1.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From3.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To1.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From2, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings3From2 = adjacent3.getAdjacentFromBindings(adjacent2);
 		HashMap<ToBinding, FromBinding> adjacentBindings3To2 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From2);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From3, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		
@@ -284,15 +497,15 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To21 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To21);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From31 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To11 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From31.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To11.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From31.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To11.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To11)));
 		
@@ -300,14 +513,14 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings3To21 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From21);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To21)));
 	}
 	
 	@Test
-	public void testAdjacentTest4() throws Exception {
+	public void testAdjacentSimple4() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
@@ -326,22 +539,22 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To2 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To2);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From3 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To1 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From3.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To1.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From3.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To1.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From2, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings3From2 = adjacent3.getAdjacentFromBindings(adjacent2);
 		HashMap<ToBinding, FromBinding> adjacentBindings3To2 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From2);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From3, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		
@@ -372,15 +585,15 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To21 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To21);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From31 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To11 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From31.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To11.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From31.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To11.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To11)));
 		
@@ -388,14 +601,14 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings3To21 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From21);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To21)));
 	}
 	
 	@Test
-	public void testAdjacentTest5() throws Exception {
+	public void testAdjacentSimple5() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
@@ -414,22 +627,22 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To2 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To2);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From3 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To1 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From3.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To1.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From3.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To1.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From2, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings3From2 = adjacent3.getAdjacentFromBindings(adjacent2);
 		HashMap<ToBinding, FromBinding> adjacentBindings3To2 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From2);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From3, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		
@@ -460,15 +673,15 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To21 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To21);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From31 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To11 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From31.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To11.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From31.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To11.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To11)));
 		
@@ -476,14 +689,14 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings3To21 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From21);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To21)));
 	}
 
 	@Test
-	public void testAdjacentTest6() throws Exception {
+	public void testAdjacentSimple6() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
 		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
@@ -502,22 +715,22 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To2 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To2);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From3 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To1 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From3.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To1.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From3.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To1.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From2, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings3From2 = adjacent3.getAdjacentFromBindings(adjacent2);
 		HashMap<ToBinding, FromBinding> adjacentBindings3To2 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To2.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To2.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From2);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From3, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		
@@ -548,15 +761,15 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings1To21 = adjacent1.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent1.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent1.getAllAdjacentToBindings().size() == 0);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings1From21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings1From21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent ToBinding", adjacentBindings1To21);
 		
 		HashMap<FromBinding, ToBinding> adjacentBindings2From31 = adjacent2.getAdjacentFromBindings(adjacent3);
 		HashMap<ToBinding, FromBinding> adjacentBindings2To11 = adjacent2.getAdjacentToBindings(adjacent1);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent2.getAllAdjacentFromBindings().size() == 1);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent2.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent FromBinding", adjacentBindings2From31.size() == 2);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings2To11.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent FromBinding", adjacentBindings2From31.size() == 1);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings2To11.size() == 1);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To1)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings1From21, SetUpUtils.reverseMap(adjacentBindings2To11)));
 		
@@ -564,10 +777,62 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		HashMap<ToBinding, FromBinding> adjacentBindings3To21 = adjacent3.getAdjacentToBindings(adjacent2);
 		Assert.assertTrue("the set of adjacent FromBinding-s is wrong", adjacent3.getAllAdjacentFromBindings().size() == 0);
 		Assert.assertTrue("the set of adjacent ToBinding-s is wrong", adjacent3.getAllAdjacentToBindings().size() == 1);
-		Assert.assertTrue("the fragment should have 2 adjacent ToBinding", adjacentBindings3To21.size() == 2);
+		Assert.assertTrue("the fragment should have 1 adjacent ToBinding", adjacentBindings3To21.size() == 1);
 		Assert.assertNull("the fragment shoudl to have any adjacent FromBinding", adjacentBindings3From21);
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To2)));
 		Assert.assertTrue("wrong set of adjacent bindings", SetUpUtils.compareHashMaps(adjacentBindings2From31, SetUpUtils.reverseMap(adjacentBindings3To21)));
+	}
+	
+	@Test
+	public void testAdjacentSubstituteTrue() throws Exception {
+		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod5.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentSubstituteFalse() throws Exception {
+		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
+		fragmentSubHolderList.add(fragmentSubHolder1);
+		fragmentSubHolderList.add(fragmentSubHolder2);
+		fragmentSubHolderList.add(fragmentSubHolder3);
+		
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(false);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod6.node", "base_new.node"));
 	}
 	
 	private EList<FragmentSubstitutionHolder> getFragmentSubstitutionHolders(EList<AdjacentFragment> adjacentFragmants){
