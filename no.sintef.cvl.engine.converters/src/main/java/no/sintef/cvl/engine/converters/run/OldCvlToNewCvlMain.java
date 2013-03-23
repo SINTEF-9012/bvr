@@ -36,7 +36,7 @@ public class OldCvlToNewCvlMain {
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/nodeNtoM/exp1/node.cvl"), new File("src/main/resources/model/nodeNtoM/exp1/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/adjacent/exp2/node.cvl"), new File("src/main/resources/model/adjacent/exp2/node.new.cvl"));
 		//OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/realistic/modelSafetyModule/SafetyDrive.cvl"), new File("src/main/resources/model/realistic/modelSafetyModule/SafetyDrive.new.cvl"));
-		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/realistic/modelSafetyModule0/SafetyDrive.cvl"), new File("src/main/resources/model/realistic/modelSafetyModule0/SafetyDrive.new.cvl"));
+		OldCvlToNewCvl con = new OldCvlToNewCvl(new File("src/main/resources/model/estimate/size/exp1/node.cvl"), new File("src/main/resources/model/estimate/size/exp1/node.new.cvl"));
 		con.run();
 		//con.run1();		
 	}
