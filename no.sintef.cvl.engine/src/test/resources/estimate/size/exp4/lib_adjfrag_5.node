@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+  <contains links="//@contains.1" name="r1"/>
+  <contains links="//@contains.2 //@contains.3" name="r2"/>
+  <contains links="//@contains.5" name="r3"/>
+  <contains links="//@contains.2 //@contains.4 //@contains.5" name="r4"/>
+  <contains name="r5"/>
+  <contains links="//@contains.6" name="r6"/>
+  <contains links="//@contains.7 //@contains.8" name="r7"/>
+  <contains links="//@contains.10" name="r8"/>
+  <contains links="//@contains.9 //@contains.10" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.11" name="r11"/>
+  <contains name="r12"/>
+  <contains links="//@contains.7 //@contains.8" name="r7"/>
+  <contains links="//@contains.12" name="r6"/>
+  <contains links="//@contains.15 //@contains.16" name="r7"/>
+  <contains links="//@contains.18" name="r8"/>
+  <contains links="//@contains.17 //@contains.18" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.11" name="r11"/>
+  <contains links="//@contains.15 //@contains.16" name="r7"/>
+  <contains links="//@contains.19" name="r6"/>
+  <contains links="//@contains.14" name="r6"/>
+  <contains links="//@contains.23 //@contains.24" name="r7"/>
+  <contains links="//@contains.26" name="r8"/>
+  <contains links="//@contains.25 //@contains.26" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.11" name="r11"/>
+  <contains links="//@contains.23 //@contains.24" name="r7"/>
+  <contains links="//@contains.27" name="r6"/>
+  <contains links="//@contains.22" name="r6"/>
+  <contains links="//@contains.31 //@contains.32" name="r7"/>
+  <contains links="//@contains.34" name="r8"/>
+  <contains links="//@contains.33 //@contains.34" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.11" name="r11"/>
+  <contains links="//@contains.31 //@contains.32" name="r7"/>
+  <contains links="//@contains.35" name="r6"/>
+  <contains links="//@contains.30" name="r6"/>
+  <contains links="//@contains.39 //@contains.40" name="r7"/>
+  <contains links="//@contains.42" name="r8"/>
+  <contains links="//@contains.41 //@contains.42" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.11" name="r11"/>
+  <contains links="//@contains.39 //@contains.40" name="r7"/>
+  <contains links="//@contains.43" name="r6"/>
+  <contains links="//@contains.38" name="r6"/>
+  <contains links="//@contains.47 //@contains.48" name="r7"/>
+  <contains links="//@contains.50" name="r8"/>
+  <contains links="//@contains.49 //@contains.50" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.11" name="r11"/>
+  <contains links="//@contains.47 //@contains.48" name="r7"/>
+  <contains links="//@contains.51" name="r6"/>
+  <contains links="//@contains.46" name="r6"/>
+</node:Node>

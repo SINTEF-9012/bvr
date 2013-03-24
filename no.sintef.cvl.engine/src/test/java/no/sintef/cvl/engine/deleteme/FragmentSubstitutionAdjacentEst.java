@@ -2,9 +2,12 @@ package no.sintef.cvl.engine.deleteme;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+
+import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
@@ -49,7 +52,10 @@ public class FragmentSubstitutionAdjacentEst {
 	public void setUp() throws Exception {
 		nodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/estimate/size/exp1/node_new_1000.cvl");
+		file = new File("src/test/resources/estimate/size/exp4/node_new_adjfrag_5.cvl");
+		//file = new File("src/test/resources/estimate/size/exp2/node_new_binding_5000.cvl");
+		//file = new File("src/test/resources/estimate/size/exp3/node_new_adjbinding_1.cvl");
+		//file = new File("src/test/resources/estimate/size/exp1/node_new_1000.cvl");
 		//file = new File("src/test/resources/nodeAdjacent/exp1mod/node_new_9.cvl");
 		//file = new File("src/test/resources/nodeAdjacent/exp1adjless/node_new_10.cvl");
 		//file = new File("src/test/resources/estimate/boundarySize/exp1/node_new_binding_1000.cvl");
@@ -75,7 +81,11 @@ public class FragmentSubstitutionAdjacentEst {
 	
 	@Test
 	public void testAdjacentTrue() throws Exception {
-		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_1000.node"), true);
+		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_adjfrag_5.node"), true);
+		//baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_adjbinding_1.node"), true);
+		//baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_binding_5000.node"), true);
+		//baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_binding_1000.node"), true);
+		//baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_1000.node"), true);
 		//baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_9.node"), true);
 		//baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base_10.node"), true);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
@@ -92,14 +102,13 @@ public class FragmentSubstitutionAdjacentEst {
 		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
 		
 		for(FragmentSubstitutionHolder fsh : fragmentSubHolderList){
-			//System.out.println("!!!!!");
-			//System.out.println(date.toString());
+			//System.out.println(fsh.getFragment().getName());
+			//System.out.println(adjacenFinder.getAdjacentMap().get(fsh).getAdjacentFragments());
+			//System.out.println(adjacenFinder.getAdjacentMap().get(fsh).getAllAdjacentFromBindings());
+			//System.out.println(adjacenFinder.getAdjacentMap().get(fsh).getAllAdjacentToBindings());
 			FragmentSubOperation fso = new FragmentSubOperation(fsh);
 			fso.execute(true);
-			//System.out.println(date.toString());
 			adjacentResolver.resolve(fsh);
-			//System.out.println(date.toString());
-			//break;
 		}
 		System.out.println((new Date()).toString());
 					

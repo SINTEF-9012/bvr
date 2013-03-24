@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="varexp">
+  <ownedVSpec xsi:type="cvl:Choice" name="varModel">
+    <child xsi:type="cvl:Choice" name="exp"/>
+  </ownedVSpec>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="p1">
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0" propertyName="contains" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.0 //@ownedVariationPoint.1/@sourceObject.1 //@ownedVariationPoint.1/@sourceObject.2 //@ownedVariationPoint.1/@sourceObject.3 //@ownedVariationPoint.1/@sourceObject.4 //@ownedVariationPoint.1/@sourceObject.16 //@ownedVariationPoint.1/@sourceObject.20 //@ownedVariationPoint.1/@sourceObject.24 //@ownedVariationPoint.1/@sourceObject.28 //@ownedVariationPoint.1/@sourceObject.32 //@ownedVariationPoint.1/@sourceObject.36 //@ownedVariationPoint.1/@sourceObject.40 //@ownedVariationPoint.1/@sourceObject.44 //@ownedVariationPoint.1/@sourceObject.48 //@ownedVariationPoint.1/@sourceObject.52" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.5"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.6"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.7" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.4"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.3" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.16" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.17"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.4" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.20" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.21"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.5" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.24" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.25"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.6" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.28" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.29"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.7" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.32" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.33"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.8" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.36" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.37"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.9" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.40" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.41"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.10" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.44" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.45"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.11" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.48" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.49"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.12" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.52" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.53"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1" bindingChoice="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.3" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.3"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.4" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.4"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.5" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.5"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.6" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.6"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.7" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.7"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.8" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.8"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.9" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.9"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.10" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.10"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.11" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.11"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.12" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.12"/>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.2"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.3"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.4"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.5"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#/"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.6"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.2"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.3"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.4"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.5"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#/"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.6"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.7"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.8"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.7"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.8"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.9"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.10"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.9"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.10"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.11"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.12"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.11"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.12"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.13"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.14"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.13"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.14"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.15"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.16"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.15"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.16"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.17"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.18"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.17"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.18"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.19"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.20"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.19"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.20"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.21"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.22"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.21"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.22"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.23"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.24"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.23"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.24"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.25"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base_binding_10.node#//@contains.26"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.25"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib_binding_10.node#//@contains.26"/>
+    </sourceObject>
+  </ownedVariationPoint>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="r1">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.8 //@ownedVariationPoint.1/@sourceObject.9 //@ownedVariationPoint.1/@sourceObject.10 //@ownedVariationPoint.1/@sourceObject.11 //@ownedVariationPoint.1/@sourceObject.12 //@ownedVariationPoint.1/@sourceObject.18 //@ownedVariationPoint.1/@sourceObject.22 //@ownedVariationPoint.1/@sourceObject.26 //@ownedVariationPoint.1/@sourceObject.30 //@ownedVariationPoint.1/@sourceObject.34 //@ownedVariationPoint.1/@sourceObject.38 //@ownedVariationPoint.1/@sourceObject.42 //@ownedVariationPoint.1/@sourceObject.46 //@ownedVariationPoint.1/@sourceObject.50 //@ownedVariationPoint.1/@sourceObject.54" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.13" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.8" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.14" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.12" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.15" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.18" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.19" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.22" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.23" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.4"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.26" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.27" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.5"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.30" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.31" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.6"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.34" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.35" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.7"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.38" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.39" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.8"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.42" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.43" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.9"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.46" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.47" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.10"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.50" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.51" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.11"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.54" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.55" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.12"/>
+  </ownedVariabletype>
+</cvl:ConfigurableUnit>
