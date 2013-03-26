@@ -30,6 +30,18 @@ import cvl.cvlPackage;
 
 public class SetUpUtils {
 
+	public static HashMap<String, Object> loadSimple(File file){
+		cvlPackage.eINSTANCE.eClass();
+		ResourceSetImpl resSet = new ResourceSetImpl();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		Resource resource = resSet.getResource(URI.createFileURI(file.getName()), true);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		//map.put("wsdir", wsdir);
+		map.put("resSet", resSet);
+		map.put("resource", resource);
+		return map;
+	}
+	
 	public static HashMap<String, Object> load(File file){
 		String path = file.getAbsolutePath();
 		path = path.replaceAll(file.getName(), "");

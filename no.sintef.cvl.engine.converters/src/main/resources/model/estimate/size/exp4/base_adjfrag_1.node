@@ -12,14 +12,10 @@
   <contains name="10"/>
   <contains links="//@contains.11" name="11"/>
   <contains name="12"/>
-  <contains links="//@contains.7 //@contains.8" name="7"/>
-  <contains links="//@contains.12" name="6"/>
-  <contains links="//@contains.15 //@contains.16" name="7"/>
-  <contains links="//@contains.18" name="8"/>
-  <contains links="//@contains.17 //@contains.18" name="9"/>
+  <contains links="//@contains.13 //@contains.14" name="7"/>
+  <contains links="//@contains.16" name="8"/>
+  <contains links="//@contains.15 //@contains.16" name="9"/>
   <contains name="10"/>
   <contains links="//@contains.11" name="11"/>
-  <contains links="//@contains.15 //@contains.16" name="7"/>
-  <contains links="//@contains.19" name="6"/>
-  <contains links="//@contains.14" name="6"/>
+  <contains links="//@contains.12" name="6"/>
 </node:Node>

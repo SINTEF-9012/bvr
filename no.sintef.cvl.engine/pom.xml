@@ -22,10 +22,51 @@
     	<url>http://repo.springsource.org/release</url>
 	</repository>
   </repositories>
+<!-- Comment if we do not use maven-jar-plugin and  onejar-maven-plugin-->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>onejar-maven-plugin.googlecode.com</id>
+      <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+    </pluginRepository>
+  </pluginRepositories>
 
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
+      <!-- added to create executable jar -->
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-jar-plugin</artifactId>
+         <configuration>
+           <archive>
+             <manifest>
+               <mainClass>no.sintef.cvl.engine.todelete.RunExp</mainClass>
+             </manifest>
+           </archive>
+         </configuration>
+      </plugin>
+      <!-- added to create executable jar -->
+      <plugin>
+         <groupId>org.dstovall</groupId>
+         <artifactId>onejar-maven-plugin</artifactId>
+         <version>1.4.4</version>
+           <executions>
+             <execution>
+               <configuration>
+                 <!-- Optional -->
+                 <onejarVersion>0.97</onejarVersion>
+                 <!-- Optional, default is false -->
+                 <attachToBuild>true</attachToBuild>
+                 <!-- Optional, default is "onejar" -->
+                 <classifier>onejar</classifier>
+               </configuration>
+               <goals>
+                  <goal>one-jar</goal>
+               </goals>
+             </execution>
+           </executions>
+        </plugin>
+      
       <plugin>
 		<groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-dependency-plugin</artifactId>
@@ -39,7 +80,7 @@
           <target>1.7</target> 
         </configuration>
       </plugin>
-      <plugin>
+      <!--<plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.0</version>
@@ -54,10 +95,10 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
     </plugins>
   </build>
-
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -143,7 +184,7 @@
 		<groupId>no.sintef.dsl</groupId>
 		<artifactId>no.sintef.dsl.node</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<scope>test</scope>
+		<!-- <scope>test</scope>-->
 	</dependency>
 	<dependency>
       <groupId>no.sintef</groupId>

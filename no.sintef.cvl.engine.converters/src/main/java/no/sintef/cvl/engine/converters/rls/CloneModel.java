@@ -55,6 +55,7 @@ public class CloneModel {
 	private cvlFactory factory = cvlFactory.eINSTANCE;
 	private String fs1_name;
 	private String fs2_name;
+	private String wdir;
 
 	public CloneModel(File base, File lib, File cvlmodel, int times){
 		this.base = base;
@@ -83,6 +84,7 @@ public class CloneModel {
 		this.times = times;
 		String path = this.base.getAbsolutePath();
 		path = path.replaceAll(this.base.getName(), "");
+		wdir = System.getProperty( "user.dir");
 		System.setProperty( "user.dir", path);
 		this.resSet = new ResourceSetImpl();
 		this.baseEls = baseEls;
@@ -99,6 +101,7 @@ public class CloneModel {
 		this.times = times;
 		String path = this.base.getAbsolutePath();
 		path = path.replaceAll(this.base.getName(), "");
+		wdir = System.getProperty( "user.dir");
 		System.setProperty( "user.dir", path);
 		this.resSet = new ResourceSetImpl();
 		this.fs1_name = fs1_name;
@@ -168,9 +171,13 @@ public class CloneModel {
 	}
 	
 	public void dubllicateToBinding() throws IOException {
-		this.base_new = new File("base_binding_" + times + ".node");
-		this.lib_new = new File("lib_binding_" + times + ".node");
-		this.cvlmodel_new = new File("node_new_binding_" + times + ".cvl");
+		String basic_base_name = this.base.getName().replace(".node", "");
+		String basic_lib_name = this.lib.getName().replace(".node", "");
+		String basic_cvlmode_name = this.cvlmodel.getName().replace(".cvl", "");
+		
+		this.base_new = new File(basic_base_name + "_binding_" + times + ".node");
+		this.lib_new = new File(basic_lib_name + "_binding_" + times + ".node");
+		this.cvlmodel_new = new File(basic_cvlmode_name + "_binding_" + times + ".cvl");
 		
 		nodePackage.eINSTANCE.eClass();
 		cvlPackage.eINSTANCE.eClass();
@@ -230,7 +237,9 @@ public class CloneModel {
 	    resourceLib.save(Collections.EMPTY_MAP);
 	    
 	    resourceCvl.setURI(URI.createFileURI(this.cvlmodel_new.getName()));
-	    resourceCvl.save(Collections.EMPTY_MAP);		
+	    resourceCvl.save(Collections.EMPTY_MAP);
+	    
+	    System.setProperty( "user.dir", wdir);
 	}
 	
 	private void copyToBinding(FragmentSubstitution fs, Node rootNodeBase, Node rootNodeLib, int times){
@@ -345,9 +354,13 @@ public class CloneModel {
 	}
 	
 	public void dublicate() throws IOException {
-		this.base_new = new File("base_elem_" + times + ".node");
-		this.lib_new = new File("lib_elem_" + times + ".node");
-		this.cvlmodel_new = new File("node_new_elem_" + times + ".cvl");
+		String basic_base_name = this.base.getName().replace(".node", "");
+		String basic_lib_name = this.lib.getName().replace(".node", "");
+		String basic_cvlmode_name = this.cvlmodel.getName().replace(".cvl", "");
+		
+		this.base_new = new File(basic_base_name + "_elem_" + times + ".node");
+		this.lib_new = new File(basic_lib_name + "_elem_" + times + ".node");
+		this.cvlmodel_new = new File(basic_cvlmode_name + "_elem_" + times + ".cvl");
 		
 		nodePackage.eINSTANCE.eClass();
 		cvlPackage.eINSTANCE.eClass();
@@ -396,10 +409,17 @@ public class CloneModel {
 		rootNodeLib.getContains().clear();
 		rootNodeLib.getContains().addAll(libContentsCopy);
 		
-		for(FragmentSubstitution fs : fsList){
+		/*for(FragmentSubstitution fs : fsList){
 			this.dubElementsToPlacement(fs, fs.getPlacement(), baseEls, rootNodeBase, times);
 			this.dubElementsToReplacement(fs, fs.getReplacement(), libEls, rootNodeLib, times);
-		}
+		}*/
+		
+		//for(FragmentSubstitution fs : fsList){
+		FragmentSubstitution fs = fsList.get(0);
+		System.out.println(fs.getName());
+		this.dubElementsToPlacement(fs, fs.getPlacement(), baseEls, rootNodeBase, times);
+		this.dubElementsToReplacement(fs, fs.getReplacement(), libEls, rootNodeLib, times);
+		//}
 		
 	    resourceBase.setURI(URI.createFileURI(this.base_new.getName()));
 	    resourceBase.save(Collections.EMPTY_MAP);
@@ -409,6 +429,8 @@ public class CloneModel {
 	    
 	    resourceCvl.setURI(URI.createFileURI(this.cvlmodel_new.getName()));
 	    resourceCvl.save(Collections.EMPTY_MAP);
+	    
+	    System.setProperty( "user.dir", wdir);
 	}
 	
 	private void dubElementsToPlacement(FragmentSubstitution fs, PlacementFragment pf, String[] elms, Node rootNodeBase, int times){
@@ -494,9 +516,13 @@ public class CloneModel {
 	}
 	
 	public void createAdjBindings() throws IOException{
-		this.base_new = new File("base_adjbinding_" + times + ".node");
-		this.lib_new = new File("lib_adjbinding_" + times + ".node");
-		this.cvlmodel_new = new File("node_new_adjbinding_" + times + ".cvl");
+		String basic_base_name = this.base.getName().replace(".node", "");
+		String basic_lib_name = this.lib.getName().replace(".node", "");
+		String basic_cvlmode_name = this.cvlmodel.getName().replace(".cvl", "");
+		
+		this.base_new = new File(basic_base_name + "_adjbinding_" + times + ".node");
+		this.lib_new = new File(basic_lib_name + "_adjbinding_" + times + ".node");
+		this.cvlmodel_new = new File(basic_cvlmode_name + "_adjbinding_" + times + ".cvl");
 		
 		nodePackage.eINSTANCE.eClass();
 		cvlPackage.eINSTANCE.eClass();
@@ -571,6 +597,8 @@ public class CloneModel {
 	    
 	    resourceCvl.setURI(URI.createFileURI(this.cvlmodel_new.getName()));
 	    resourceCvl.save(Collections.EMPTY_MAP);
+	    
+	    System.setProperty( "user.dir", wdir);
 	}
 	
 	private void dublicateAdjBinding(FragmentSubstitution fs1, FragmentSubstitution fs2, int times, Node rootNodeBase, Node rootNodeLib){
@@ -715,9 +743,12 @@ public class CloneModel {
 	}
 	
 	public void createAdjFragment() throws IOException{
-		this.base_new = new File("base_adjfrag_" + times + ".node");
-		this.lib_new = new File("lib_adjfrag_" + times + ".node");
-		this.cvlmodel_new = new File("node_new_adjfrag_" + times + ".cvl");
+		String basic_base_name = this.base.getName().replace(".node", "");
+		String basic_lib_name = this.lib.getName().replace(".node", "");
+		String basic_cvlmode_name = this.cvlmodel.getName().replace(".cvl", "");
+		this.base_new = new File(basic_base_name + "_adjfrag_" + times + ".node");
+		this.lib_new = new File(basic_lib_name + "_adjfrag_" + times + ".node");
+		this.cvlmodel_new = new File(basic_cvlmode_name + "_adjfrag_" + times + ".cvl");
 		
 		nodePackage.eINSTANCE.eClass();
 		cvlPackage.eINSTANCE.eClass();
@@ -792,7 +823,9 @@ public class CloneModel {
 	    resourceLib.save(Collections.EMPTY_MAP);
 	    
 	    resourceCvl.setURI(URI.createFileURI(this.cvlmodel_new.getName()));
-	    resourceCvl.save(Collections.EMPTY_MAP);		
+	    resourceCvl.save(Collections.EMPTY_MAP);
+	    
+	    System.setProperty( "user.dir", wdir);
 	}
 	
 	private void dublicateAdjFragment(ConfigurableUnit cu, FragmentSubstitution fs1, FragmentSubstitution fs2, int times, Node rootNodeBase, Node rootNodeLib){
