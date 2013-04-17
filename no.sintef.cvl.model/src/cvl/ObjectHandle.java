@@ -2,6 +2,8 @@
  */
 package cvl;
 
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -22,34 +24,31 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getObjectHandle()
+ * @see cvl.CvlPackage#getObjectHandle()
  * @model
  * @generated
  */
 public interface ObjectHandle extends BaseModelHandle {
 	/**
-	 * Returns the value of the '<em><b>MOF Ref</b></em>' attribute.
+	 * Returns the value of the '<em><b>MOF Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Representing a MOF Reference.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>MOF Ref</em>' attribute.
-	 * @see #setMOFRef(String)
-	 * @see cvl.cvlPackage#getObjectHandle_MOFRef()
-	 * @model required="true" ordered="false"
+	 * @return the value of the '<em>MOF Ref</em>' reference.
+	 * @see #setMOFRef(EObject)
+	 * @see cvl.CvlPackage#getObjectHandle_MOFRef()
+	 * @model required="true"
 	 * @generated
 	 */
-	String getMOFRef();
+	EObject getMOFRef();
 
 	/**
-	 * Sets the value of the '{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}' attribute.
+	 * Sets the value of the '{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>MOF Ref</em>' attribute.
+	 * @param value the new value of the '<em>MOF Ref</em>' reference.
 	 * @see #getMOFRef()
 	 * @generated
 	 */
-	void setMOFRef(String value);
+	void setMOFRef(EObject value);
 
 } // ObjectHandle

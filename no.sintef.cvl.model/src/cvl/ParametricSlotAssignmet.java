@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getParametricSlotAssignmet()
+ * @see cvl.CvlPackage#getParametricSlotAssignmet()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface ParametricSlotAssignmet extends ParametricVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Slot Identifier</em>' attribute.
 	 * @see #setSlotIdentifier(String)
-	 * @see cvl.cvlPackage#getParametricSlotAssignmet_SlotIdentifier()
+	 * @see cvl.CvlPackage#getParametricSlotAssignmet_SlotIdentifier()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface ParametricSlotAssignmet extends ParametricVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Slot Owner</em>' containment reference.
 	 * @see #setSlotOwner(ObjectHandle)
-	 * @see cvl.cvlPackage#getParametricSlotAssignmet_SlotOwner()
+	 * @see cvl.CvlPackage#getParametricSlotAssignmet_SlotOwner()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

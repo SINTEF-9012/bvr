@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.PlacementFragment;
 import cvl.ReplacementBoundaryElement;
 import cvl.ReplacementFragmentType;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -70,7 +70,7 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE;
+		return CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	 */
 	public EList<ReplacementBoundaryElement> getReplacementBoundaryElement() {
 		if (replacementBoundaryElement == null) {
-			replacementBoundaryElement = new EObjectContainmentEList<ReplacementBoundaryElement>(ReplacementBoundaryElement.class, this, cvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT);
+			replacementBoundaryElement = new EObjectContainmentEList<ReplacementBoundaryElement>(ReplacementBoundaryElement.class, this, CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT);
 		}
 		return replacementBoundaryElement;
 	}
@@ -92,7 +92,7 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	 */
 	public EList<PlacementFragment> getPlacementFragment() {
 		if (placementFragment == null) {
-			placementFragment = new EObjectContainmentEList<PlacementFragment>(PlacementFragment.class, this, cvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT);
+			placementFragment = new EObjectContainmentEList<PlacementFragment>(PlacementFragment.class, this, CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT);
 		}
 		return placementFragment;
 	}
@@ -105,9 +105,9 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
 				return ((InternalEList<?>)getReplacementBoundaryElement()).basicRemove(otherEnd, msgs);
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
 				return ((InternalEList<?>)getPlacementFragment()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -121,9 +121,9 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
 				return getReplacementBoundaryElement();
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
 				return getPlacementFragment();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -138,11 +138,11 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
 				getReplacementBoundaryElement().clear();
 				getReplacementBoundaryElement().addAll((Collection<? extends ReplacementBoundaryElement>)newValue);
 				return;
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
 				getPlacementFragment().clear();
 				getPlacementFragment().addAll((Collection<? extends PlacementFragment>)newValue);
 				return;
@@ -158,10 +158,10 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
 				getReplacementBoundaryElement().clear();
 				return;
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
 				getPlacementFragment().clear();
 				return;
 		}
@@ -176,9 +176,9 @@ public class ReplacementFragmentTypeImpl extends VariabletypeImpl implements Rep
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
 				return replacementBoundaryElement != null && !replacementBoundaryElement.isEmpty();
-			case cvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
 				return placementFragment != null && !placementFragment.isEmpty();
 		}
 		return super.eIsSet(featureID);

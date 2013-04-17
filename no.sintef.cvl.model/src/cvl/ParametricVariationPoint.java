@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getParametricVariationPoint()
+ * @see cvl.CvlPackage#getParametricVariationPoint()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface ParametricVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Binding Variable</em>' reference.
 	 * @see #setBindingVariable(Variable)
-	 * @see cvl.cvlPackage#getParametricVariationPoint_BindingVariable()
+	 * @see cvl.CvlPackage#getParametricVariationPoint_BindingVariable()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

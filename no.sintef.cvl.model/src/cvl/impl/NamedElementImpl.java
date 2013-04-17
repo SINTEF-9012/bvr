@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.NamedElement;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -62,7 +62,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.NAMED_ELEMENT;
+		return CvlPackage.Literals.NAMED_ELEMENT;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.NAMED_ELEMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.NAMED_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.NAMED_ELEMENT__NAME:
+			case CvlPackage.NAMED_ELEMENT__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.NAMED_ELEMENT__NAME:
+			case CvlPackage.NAMED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.NAMED_ELEMENT__NAME:
+			case CvlPackage.NAMED_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public abstract class NamedElementImpl extends EObjectImpl implements NamedEleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.NAMED_ELEMENT__NAME:
+			case CvlPackage.NAMED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

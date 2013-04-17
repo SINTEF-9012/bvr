@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getToBinding()
+ * @see cvl.CvlPackage#getToBinding()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface ToBinding extends BoundaryElementBinding {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>To Placement</em>' reference.
 	 * @see #setToPlacement(ToPlacement)
-	 * @see cvl.cvlPackage#getToBinding_ToPlacement()
+	 * @see cvl.CvlPackage#getToBinding_ToPlacement()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface ToBinding extends BoundaryElementBinding {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>To Replacement</em>' reference.
 	 * @see #setToReplacement(ToReplacement)
-	 * @see cvl.cvlPackage#getToBinding_ToReplacement()
+	 * @see cvl.CvlPackage#getToBinding_ToReplacement()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

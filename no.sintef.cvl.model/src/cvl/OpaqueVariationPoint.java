@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getOpaqueVariationPoint()
+ * @see cvl.CvlPackage#getOpaqueVariationPoint()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Place Holder</em>' containment reference.
 	 * @see #setPlaceHolder(BaseModelHandle)
-	 * @see cvl.cvlPackage#getOpaqueVariationPoint_PlaceHolder()
+	 * @see cvl.CvlPackage#getOpaqueVariationPoint_PlaceHolder()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * <p>The source objects of the OpaqueVariationPoint.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Object</em>' containment reference list.
-	 * @see cvl.cvlPackage#getOpaqueVariationPoint_SourceObject()
+	 * @see cvl.CvlPackage#getOpaqueVariationPoint_SourceObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -76,7 +76,7 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(OVPType)
-	 * @see cvl.cvlPackage#getOpaqueVariationPoint_Type()
+	 * @see cvl.CvlPackage#getOpaqueVariationPoint_Type()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

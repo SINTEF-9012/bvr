@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ToBinding;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -65,7 +65,7 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.TO_BINDING;
+		return CvlPackage.Literals.TO_BINDING;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 			toPlacement = (ToPlacement)eResolveProxy(oldToPlacement);
 			if (toPlacement != oldToPlacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.TO_BINDING__TO_PLACEMENT, oldToPlacement, toPlacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.TO_BINDING__TO_PLACEMENT, oldToPlacement, toPlacement));
 			}
 		}
 		return toPlacement;
@@ -103,7 +103,7 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 		ToPlacement oldToPlacement = toPlacement;
 		toPlacement = newToPlacement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.TO_BINDING__TO_PLACEMENT, oldToPlacement, toPlacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.TO_BINDING__TO_PLACEMENT, oldToPlacement, toPlacement));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 			toReplacement = (ToReplacement)eResolveProxy(oldToReplacement);
 			if (toReplacement != oldToReplacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.TO_BINDING__TO_REPLACEMENT, oldToReplacement, toReplacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.TO_BINDING__TO_REPLACEMENT, oldToReplacement, toReplacement));
 			}
 		}
 		return toReplacement;
@@ -141,7 +141,7 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 		ToReplacement oldToReplacement = toReplacement;
 		toReplacement = newToReplacement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.TO_BINDING__TO_REPLACEMENT, oldToReplacement, toReplacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.TO_BINDING__TO_REPLACEMENT, oldToReplacement, toReplacement));
 	}
 
 	/**
@@ -152,10 +152,10 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.TO_BINDING__TO_PLACEMENT:
+			case CvlPackage.TO_BINDING__TO_PLACEMENT:
 				if (resolve) return getToPlacement();
 				return basicGetToPlacement();
-			case cvlPackage.TO_BINDING__TO_REPLACEMENT:
+			case CvlPackage.TO_BINDING__TO_REPLACEMENT:
 				if (resolve) return getToReplacement();
 				return basicGetToReplacement();
 		}
@@ -170,10 +170,10 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.TO_BINDING__TO_PLACEMENT:
+			case CvlPackage.TO_BINDING__TO_PLACEMENT:
 				setToPlacement((ToPlacement)newValue);
 				return;
-			case cvlPackage.TO_BINDING__TO_REPLACEMENT:
+			case CvlPackage.TO_BINDING__TO_REPLACEMENT:
 				setToReplacement((ToReplacement)newValue);
 				return;
 		}
@@ -188,10 +188,10 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.TO_BINDING__TO_PLACEMENT:
+			case CvlPackage.TO_BINDING__TO_PLACEMENT:
 				setToPlacement((ToPlacement)null);
 				return;
-			case cvlPackage.TO_BINDING__TO_REPLACEMENT:
+			case CvlPackage.TO_BINDING__TO_REPLACEMENT:
 				setToReplacement((ToReplacement)null);
 				return;
 		}
@@ -206,9 +206,9 @@ public class ToBindingImpl extends BoundaryElementBindingImpl implements ToBindi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.TO_BINDING__TO_PLACEMENT:
+			case CvlPackage.TO_BINDING__TO_PLACEMENT:
 				return toPlacement != null;
-			case cvlPackage.TO_BINDING__TO_REPLACEMENT:
+			case CvlPackage.TO_BINDING__TO_REPLACEMENT:
 				return toReplacement != null;
 		}
 		return super.eIsSet(featureID);

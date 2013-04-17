@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.RealLiteralExp;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -33,7 +33,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double REAL_EDEFAULT = 0.0;
+	protected static final String REAL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getReal() <em>Real</em>}' attribute.
@@ -43,7 +43,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 * @generated
 	 * @ordered
 	 */
-	protected double real = REAL_EDEFAULT;
+	protected String real = REAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.REAL_LITERAL_EXP;
+		return CvlPackage.Literals.REAL_LITERAL_EXP;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getReal() {
+	public String getReal() {
 		return real;
 	}
 
@@ -78,11 +78,11 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReal(double newReal) {
-		double oldReal = real;
+	public void setReal(String newReal) {
+		String oldReal = real;
 		real = newReal;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.REAL_LITERAL_EXP__REAL, oldReal, real));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.REAL_LITERAL_EXP__REAL, oldReal, real));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.REAL_LITERAL_EXP__REAL:
+			case CvlPackage.REAL_LITERAL_EXP__REAL:
 				return getReal();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,8 +107,8 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.REAL_LITERAL_EXP__REAL:
-				setReal((Double)newValue);
+			case CvlPackage.REAL_LITERAL_EXP__REAL:
+				setReal((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,7 +122,7 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.REAL_LITERAL_EXP__REAL:
+			case CvlPackage.REAL_LITERAL_EXP__REAL:
 				setReal(REAL_EDEFAULT);
 				return;
 		}
@@ -137,8 +137,8 @@ public class RealLiteralExpImpl extends NumericLiteralExpImpl implements RealLit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.REAL_LITERAL_EXP__REAL:
-				return real != REAL_EDEFAULT;
+			case CvlPackage.REAL_LITERAL_EXP__REAL:
+				return REAL_EDEFAULT == null ? real != null : !REAL_EDEFAULT.equals(real);
 		}
 		return super.eIsSet(featureID);
 	}

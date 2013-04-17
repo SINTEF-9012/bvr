@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.MultiplicityInterval;
 import cvl.VClassifier;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -54,7 +54,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VCLASSIFIER;
+		return CvlPackage.Literals.VCLASSIFIER;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 		MultiplicityInterval oldInstanceMultiplicity = instanceMultiplicity;
 		instanceMultiplicity = newInstanceMultiplicity;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, oldInstanceMultiplicity, newInstanceMultiplicity);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, oldInstanceMultiplicity, newInstanceMultiplicity);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -90,14 +90,14 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 		if (newInstanceMultiplicity != instanceMultiplicity) {
 			NotificationChain msgs = null;
 			if (instanceMultiplicity != null)
-				msgs = ((InternalEObject)instanceMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, null, msgs);
+				msgs = ((InternalEObject)instanceMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, null, msgs);
 			if (newInstanceMultiplicity != null)
-				msgs = ((InternalEObject)newInstanceMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, null, msgs);
+				msgs = ((InternalEObject)newInstanceMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, null, msgs);
 			msgs = basicSetInstanceMultiplicity(newInstanceMultiplicity, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, newInstanceMultiplicity, newInstanceMultiplicity));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY, newInstanceMultiplicity, newInstanceMultiplicity));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
+			case CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				return basicSetInstanceMultiplicity(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -122,7 +122,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
+			case CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				return getInstanceMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -136,7 +136,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
+			case CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				setInstanceMultiplicity((MultiplicityInterval)newValue);
 				return;
 		}
@@ -151,7 +151,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
+			case CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				setInstanceMultiplicity((MultiplicityInterval)null);
 				return;
 		}
@@ -166,7 +166,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
+			case CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				return instanceMultiplicity != null;
 		}
 		return super.eIsSet(featureID);

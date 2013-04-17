@@ -23,10 +23,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link cvl.ConfigurableUnit#getOwnedVSpecResolution <em>Owned VSpec Resolution</em>}</li>
  *   <li>{@link cvl.ConfigurableUnit#getUnitInterface <em>Unit Interface</em>}</li>
  *   <li>{@link cvl.ConfigurableUnit#getOwnedVSpecDerivation <em>Owned VSpec Derivation</em>}</li>
+ *   <li>{@link cvl.ConfigurableUnit#getOwnedVariabletype <em>Owned Variabletype</em>}</li>
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getConfigurableUnit()
+ * @see cvl.CvlPackage#getConfigurableUnit()
  * @model
  * @generated
  */
@@ -40,7 +41,7 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * <p>Internal VSpecs of the CU</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned VSpec</em>' containment reference list.
-	 * @see cvl.cvlPackage#getConfigurableUnit_OwnedVSpec()
+	 * @see cvl.CvlPackage#getConfigurableUnit_OwnedVSpec()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -55,7 +56,7 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * Internal variation points against the content of the base model object referenced by the unit.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Variation Point</em>' containment reference list.
-	 * @see cvl.cvlPackage#getConfigurableUnit_OwnedVariationPoint()
+	 * @see cvl.CvlPackage#getConfigurableUnit_OwnedVariationPoint()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -70,7 +71,7 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * The constraints wrt the internal VSPecs of the unit.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' containment reference list.
-	 * @see cvl.cvlPackage#getConfigurableUnit_OwnedConstraint()
+	 * @see cvl.CvlPackage#getConfigurableUnit_OwnedConstraint()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -85,7 +86,7 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Configurable Container Object</em>' containment reference.
 	 * @see #setConfigurableContainerObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getConfigurableUnit_ConfigurableContainerObject()
+	 * @see cvl.CvlPackage#getConfigurableUnit_ConfigurableContainerObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -110,7 +111,7 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * <p>The owned VSpec resolutions.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned VSpec Resolution</em>' containment reference list.
-	 * @see cvl.cvlPackage#getConfigurableUnit_OwnedVSpecResolution()
+	 * @see cvl.CvlPackage#getConfigurableUnit_OwnedVSpecResolution()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -125,7 +126,7 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Unit Interface</em>' reference.
 	 * @see #setUnitInterface(VInterface)
-	 * @see cvl.cvlPackage#getConfigurableUnit_UnitInterface()
+	 * @see cvl.CvlPackage#getConfigurableUnit_UnitInterface()
 	 * @model required="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
@@ -150,10 +151,26 @@ public interface ConfigurableUnit extends CompositeVariationPoint {
 	 * <p>The owned VSpec derivations.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned VSpec Derivation</em>' containment reference list.
-	 * @see cvl.cvlPackage#getConfigurableUnit_OwnedVSpecDerivation()
+	 * @see cvl.CvlPackage#getConfigurableUnit_OwnedVSpecDerivation()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<VSpecDerivation> getOwnedVSpecDerivation();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Variabletype</b></em>' containment reference list.
+	 * The list contents are of type {@link cvl.Variabletype}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Variabletype</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Variabletype</em>' containment reference list.
+	 * @see cvl.CvlPackage#getConfigurableUnit_OwnedVariabletype()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Variabletype> getOwnedVariabletype();
 
 } // ConfigurableUnit

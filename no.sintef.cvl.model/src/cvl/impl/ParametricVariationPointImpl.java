@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ParametricVariationPoint;
 import cvl.Variable;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PARAMETRIC_VARIATION_POINT;
+		return CvlPackage.Literals.PARAMETRIC_VARIATION_POINT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 			bindingVariable = (Variable)eResolveProxy(oldBindingVariable);
 			if (bindingVariable != oldBindingVariable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE, oldBindingVariable, bindingVariable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE, oldBindingVariable, bindingVariable));
 			}
 		}
 		return bindingVariable;
@@ -91,7 +91,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 		Variable oldBindingVariable = bindingVariable;
 		bindingVariable = newBindingVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE, oldBindingVariable, bindingVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE, oldBindingVariable, bindingVariable));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
+			case CvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
 				if (resolve) return getBindingVariable();
 				return basicGetBindingVariable();
 		}
@@ -117,7 +117,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
+			case CvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
 				setBindingVariable((Variable)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
+			case CvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
 				setBindingVariable((Variable)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public abstract class ParametricVariationPointImpl extends VariationPointImpl im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
+			case CvlPackage.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE:
 				return bindingVariable != null;
 		}
 		return super.eIsSet(featureID);

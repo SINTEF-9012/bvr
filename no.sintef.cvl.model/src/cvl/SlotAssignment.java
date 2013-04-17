@@ -21,7 +21,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getSlotAssignment()
+ * @see cvl.CvlPackage#getSlotAssignment()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface SlotAssignment extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Slot Identifier</em>' attribute.
 	 * @see #setSlotIdentifier(String)
-	 * @see cvl.cvlPackage#getSlotAssignment_SlotIdentifier()
+	 * @see cvl.CvlPackage#getSlotAssignment_SlotIdentifier()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -60,7 +60,7 @@ public interface SlotAssignment extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
 	 * @see #setValue(ValueSpecification)
-	 * @see cvl.cvlPackage#getSlotAssignment_Value()
+	 * @see cvl.CvlPackage#getSlotAssignment_Value()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -85,7 +85,7 @@ public interface SlotAssignment extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Slot Owner</em>' containment reference.
 	 * @see #setSlotOwner(ObjectHandle)
-	 * @see cvl.cvlPackage#getSlotAssignment_SlotOwner()
+	 * @see cvl.CvlPackage#getSlotAssignment_SlotOwner()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

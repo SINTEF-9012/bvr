@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.PrimitiveTypeEnum;
 import cvl.PrimitveType;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -62,7 +62,7 @@ public class PrimitveTypeImpl extends VariabletypeImpl implements PrimitveType {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PRIMITVE_TYPE;
+		return CvlPackage.Literals.PRIMITVE_TYPE;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class PrimitveTypeImpl extends VariabletypeImpl implements PrimitveType {
 		PrimitiveTypeEnum oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PRIMITVE_TYPE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PRIMITVE_TYPE__TYPE, oldType, type));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class PrimitveTypeImpl extends VariabletypeImpl implements PrimitveType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.PRIMITVE_TYPE__TYPE:
+			case CvlPackage.PRIMITVE_TYPE__TYPE:
 				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public class PrimitveTypeImpl extends VariabletypeImpl implements PrimitveType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.PRIMITVE_TYPE__TYPE:
+			case CvlPackage.PRIMITVE_TYPE__TYPE:
 				setType((PrimitiveTypeEnum)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public class PrimitveTypeImpl extends VariabletypeImpl implements PrimitveType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PRIMITVE_TYPE__TYPE:
+			case CvlPackage.PRIMITVE_TYPE__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public class PrimitveTypeImpl extends VariabletypeImpl implements PrimitveType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PRIMITVE_TYPE__TYPE:
+			case CvlPackage.PRIMITVE_TYPE__TYPE:
 				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

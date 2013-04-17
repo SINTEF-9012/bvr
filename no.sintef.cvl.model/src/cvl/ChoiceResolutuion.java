@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getChoiceResolutuion()
+ * @see cvl.CvlPackage#getChoiceResolutuion()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface ChoiceResolutuion extends VSpecResolution {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resolved Choice</em>' reference.
 	 * @see #setResolvedChoice(Choice)
-	 * @see cvl.cvlPackage#getChoiceResolutuion_ResolvedChoice()
+	 * @see cvl.CvlPackage#getChoiceResolutuion_ResolvedChoice()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface ChoiceResolutuion extends VSpecResolution {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Decision</em>' attribute.
 	 * @see #setDecision(boolean)
-	 * @see cvl.cvlPackage#getChoiceResolutuion_Decision()
+	 * @see cvl.CvlPackage#getChoiceResolutuion_Decision()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

@@ -22,7 +22,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getConfigurableUnitUsage()
+ * @see cvl.CvlPackage#getConfigurableUnitUsage()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface ConfigurableUnitUsage extends CompositeVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Used Unit</em>' reference.
 	 * @see #setUsedUnit(ConfigurableUnit)
-	 * @see cvl.cvlPackage#getConfigurableUnitUsage_UsedUnit()
+	 * @see cvl.CvlPackage#getConfigurableUnitUsage_UsedUnit()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface ConfigurableUnitUsage extends CompositeVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Usage Reference</em>' containment reference.
 	 * @see #setUsageReference(LinkHandle)
-	 * @see cvl.cvlPackage#getConfigurableUnitUsage_UsageReference()
+	 * @see cvl.CvlPackage#getConfigurableUnitUsage_UsageReference()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -86,7 +86,7 @@ public interface ConfigurableUnitUsage extends CompositeVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Link End Identifier</em>' attribute.
 	 * @see #setLinkEndIdentifier(String)
-	 * @see cvl.cvlPackage#getConfigurableUnitUsage_LinkEndIdentifier()
+	 * @see cvl.CvlPackage#getConfigurableUnitUsage_LinkEndIdentifier()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -111,7 +111,7 @@ public interface ConfigurableUnitUsage extends CompositeVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Unit Usage Interface</em>' reference.
 	 * @see #setUnitUsageInterface(VInterface)
-	 * @see cvl.cvlPackage#getConfigurableUnitUsage_UnitUsageInterface()
+	 * @see cvl.CvlPackage#getConfigurableUnitUsage_UnitUsageInterface()
 	 * @model required="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */

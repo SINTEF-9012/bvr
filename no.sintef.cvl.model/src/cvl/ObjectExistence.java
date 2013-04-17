@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getObjectExistence()
+ * @see cvl.CvlPackage#getObjectExistence()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface ObjectExistence extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Optional Object</em>' containment reference.
 	 * @see #setOptionalObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getObjectExistence_OptionalObject()
+	 * @see cvl.CvlPackage#getObjectExistence_OptionalObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

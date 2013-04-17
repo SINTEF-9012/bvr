@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.MultiplicityInterval;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -83,7 +83,7 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.MULTIPLICITY_INTERVAL;
+		return CvlPackage.Literals.MULTIPLICITY_INTERVAL;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 		int oldUpper = upper;
 		upper = newUpper;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.MULTIPLICITY_INTERVAL__UPPER, oldUpper, upper));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.MULTIPLICITY_INTERVAL__UPPER, oldUpper, upper));
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 		int oldLower = lower;
 		lower = newLower;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.MULTIPLICITY_INTERVAL__LOWER, oldLower, lower));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.MULTIPLICITY_INTERVAL__LOWER, oldLower, lower));
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.MULTIPLICITY_INTERVAL__UPPER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__UPPER:
 				return getUpper();
-			case cvlPackage.MULTIPLICITY_INTERVAL__LOWER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__LOWER:
 				return getLower();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -152,10 +152,10 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.MULTIPLICITY_INTERVAL__UPPER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__UPPER:
 				setUpper((Integer)newValue);
 				return;
-			case cvlPackage.MULTIPLICITY_INTERVAL__LOWER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__LOWER:
 				setLower((Integer)newValue);
 				return;
 		}
@@ -170,10 +170,10 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.MULTIPLICITY_INTERVAL__UPPER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__UPPER:
 				setUpper(UPPER_EDEFAULT);
 				return;
-			case cvlPackage.MULTIPLICITY_INTERVAL__LOWER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__LOWER:
 				setLower(LOWER_EDEFAULT);
 				return;
 		}
@@ -188,9 +188,9 @@ public class MultiplicityIntervalImpl extends EObjectImpl implements Multiplicit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.MULTIPLICITY_INTERVAL__UPPER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__UPPER:
 				return upper != UPPER_EDEFAULT;
-			case cvlPackage.MULTIPLICITY_INTERVAL__LOWER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__LOWER:
 				return lower != LOWER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

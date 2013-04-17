@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getNamedElement()
+ * @see cvl.CvlPackage#getNamedElement()
  * @model abstract="true"
  * @generated
  */
@@ -34,7 +34,7 @@ public interface NamedElement extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see cvl.cvlPackage#getNamedElement_Name()
+	 * @see cvl.CvlPackage#getNamedElement_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getPlacementFragment()
+ * @see cvl.CvlPackage#getPlacementFragment()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface PlacementFragment extends VariationPoint {
 	 * The boundary elements captures all the relations from and to the fragment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement Boundary Element</em>' containment reference list.
-	 * @see cvl.cvlPackage#getPlacementFragment_PlacementBoundaryElement()
+	 * @see cvl.CvlPackage#getPlacementFragment_PlacementBoundaryElement()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

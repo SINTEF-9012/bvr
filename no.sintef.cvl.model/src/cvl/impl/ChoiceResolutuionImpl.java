@@ -4,7 +4,7 @@ package cvl.impl;
 
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -74,7 +74,7 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CHOICE_RESOLUTUION;
+		return CvlPackage.Literals.CHOICE_RESOLUTUION;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 			resolvedChoice = (Choice)eResolveProxy(oldResolvedChoice);
 			if (resolvedChoice != oldResolvedChoice) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE, oldResolvedChoice, resolvedChoice));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE, oldResolvedChoice, resolvedChoice));
 			}
 		}
 		return resolvedChoice;
@@ -112,7 +112,7 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 		Choice oldResolvedChoice = resolvedChoice;
 		resolvedChoice = newResolvedChoice;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE, oldResolvedChoice, resolvedChoice));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE, oldResolvedChoice, resolvedChoice));
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 		boolean oldDecision = decision;
 		decision = newDecision;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE_RESOLUTUION__DECISION, oldDecision, decision));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE_RESOLUTUION__DECISION, oldDecision, decision));
 	}
 
 	/**
@@ -144,10 +144,10 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
+			case CvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
 				if (resolve) return getResolvedChoice();
 				return basicGetResolvedChoice();
-			case cvlPackage.CHOICE_RESOLUTUION__DECISION:
+			case CvlPackage.CHOICE_RESOLUTUION__DECISION:
 				return isDecision();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -161,10 +161,10 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
+			case CvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
 				setResolvedChoice((Choice)newValue);
 				return;
-			case cvlPackage.CHOICE_RESOLUTUION__DECISION:
+			case CvlPackage.CHOICE_RESOLUTUION__DECISION:
 				setDecision((Boolean)newValue);
 				return;
 		}
@@ -179,10 +179,10 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
+			case CvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
 				setResolvedChoice((Choice)null);
 				return;
-			case cvlPackage.CHOICE_RESOLUTUION__DECISION:
+			case CvlPackage.CHOICE_RESOLUTUION__DECISION:
 				setDecision(DECISION_EDEFAULT);
 				return;
 		}
@@ -197,9 +197,9 @@ public class ChoiceResolutuionImpl extends VSpecResolutionImpl implements Choice
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
+			case CvlPackage.CHOICE_RESOLUTUION__RESOLVED_CHOICE:
 				return resolvedChoice != null;
-			case cvlPackage.CHOICE_RESOLUTUION__DECISION:
+			case CvlPackage.CHOICE_RESOLUTUION__DECISION:
 				return decision != DECISION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

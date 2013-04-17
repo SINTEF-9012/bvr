@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getToPlacement()
+ * @see cvl.CvlPackage#getToPlacement()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ToPlacement extends PlacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>To Replacement</em>' reference.
 	 * @see #setToReplacement(ToReplacement)
-	 * @see cvl.cvlPackage#getToPlacement_ToReplacement()
+	 * @see cvl.CvlPackage#getToPlacement_ToReplacement()
 	 * @see cvl.ToReplacement#getToPlacement
 	 * @model opposite="toPlacement" ordered="false"
 	 * @generated
@@ -64,7 +64,7 @@ public interface ToPlacement extends PlacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Property Name</em>' attribute.
 	 * @see #setPropertyName(String)
-	 * @see cvl.cvlPackage#getToPlacement_PropertyName()
+	 * @see cvl.CvlPackage#getToPlacement_PropertyName()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -89,7 +89,7 @@ public interface ToPlacement extends PlacementBoundaryElement {
 	 * Model elements that are referred to by outside model elements. Used to distinguish miltiplicity references.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inside Boundary Element</em>' reference list.
-	 * @see cvl.cvlPackage#getToPlacement_InsideBoundaryElement()
+	 * @see cvl.CvlPackage#getToPlacement_InsideBoundaryElement()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -104,7 +104,7 @@ public interface ToPlacement extends PlacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Outside Boundary Element</em>' reference.
 	 * @see #setOutsideBoundaryElement(ObjectHandle)
-	 * @see cvl.cvlPackage#getToPlacement_OutsideBoundaryElement()
+	 * @see cvl.CvlPackage#getToPlacement_OutsideBoundaryElement()
 	 * @model ordered="false"
 	 * @generated
 	 */

@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VClassifier;
 import cvl.VInstance;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VINSTANCE;
+		return CvlPackage.Literals.VINSTANCE;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 			type = (VClassifier)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VINSTANCE__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VINSTANCE__TYPE, oldType, type));
 			}
 		}
 		return type;
@@ -91,7 +91,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 		VClassifier oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VINSTANCE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VINSTANCE__TYPE, oldType, type));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VINSTANCE__TYPE:
+			case CvlPackage.VINSTANCE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
@@ -117,7 +117,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VINSTANCE__TYPE:
+			case CvlPackage.VINSTANCE__TYPE:
 				setType((VClassifier)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VINSTANCE__TYPE:
+			case CvlPackage.VINSTANCE__TYPE:
 				setType((VClassifier)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class VInstanceImpl extends VSpecResolutionImpl implements VInstance {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VINSTANCE__TYPE:
+			case CvlPackage.VINSTANCE__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);

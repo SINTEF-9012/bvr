@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VSpec;
 import cvl.VSpecDerivation;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VSPEC_DERIVATION;
+		return CvlPackage.Literals.VSPEC_DERIVATION;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 			derivedVSpec = (VSpec)eResolveProxy(oldDerivedVSpec);
 			if (derivedVSpec != oldDerivedVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC, oldDerivedVSpec, derivedVSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC, oldDerivedVSpec, derivedVSpec));
 			}
 		}
 		return derivedVSpec;
@@ -91,7 +91,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 		VSpec oldDerivedVSpec = derivedVSpec;
 		derivedVSpec = newDerivedVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC, oldDerivedVSpec, derivedVSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC, oldDerivedVSpec, derivedVSpec));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
+			case CvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
 				if (resolve) return getDerivedVSpec();
 				return basicGetDerivedVSpec();
 		}
@@ -117,7 +117,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
+			case CvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
 				setDerivedVSpec((VSpec)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
+			case CvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
 				setDerivedVSpec((VSpec)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class VSpecDerivationImpl extends VPackageableImpl implements VSpecDeriva
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
+			case CvlPackage.VSPEC_DERIVATION__DERIVED_VSPEC:
 				return derivedVSpec != null;
 		}
 		return super.eIsSet(featureID);

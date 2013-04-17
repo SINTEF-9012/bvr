@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.UnlimitedLiteralExp;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -61,7 +61,7 @@ public class UnlimitedLiteralExpImpl extends NumericLiteralExpImpl implements Un
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.UNLIMITED_LITERAL_EXP;
+		return CvlPackage.Literals.UNLIMITED_LITERAL_EXP;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class UnlimitedLiteralExpImpl extends NumericLiteralExpImpl implements Un
 		int oldUnlimited = unlimited;
 		unlimited = newUnlimited;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED, oldUnlimited, unlimited));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED, oldUnlimited, unlimited));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class UnlimitedLiteralExpImpl extends NumericLiteralExpImpl implements Un
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
+			case CvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
 				return getUnlimited();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class UnlimitedLiteralExpImpl extends NumericLiteralExpImpl implements Un
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
+			case CvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
 				setUnlimited((Integer)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class UnlimitedLiteralExpImpl extends NumericLiteralExpImpl implements Un
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
+			case CvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
 				setUnlimited(UNLIMITED_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class UnlimitedLiteralExpImpl extends NumericLiteralExpImpl implements Un
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
+			case CvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
 				return unlimited != UNLIMITED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

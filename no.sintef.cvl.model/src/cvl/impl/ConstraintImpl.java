@@ -3,8 +3,8 @@
 package cvl.impl;
 
 import cvl.Constraint;
+import cvl.CvlPackage;
 import cvl.VSpec;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CONSTRAINT;
+		return CvlPackage.Literals.CONSTRAINT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 			context = (VSpec)eResolveProxy(oldContext);
 			if (context != oldContext) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CONSTRAINT__CONTEXT, oldContext, context));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CONSTRAINT__CONTEXT, oldContext, context));
 			}
 		}
 		return context;
@@ -91,7 +91,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 		VSpec oldContext = context;
 		context = newContext;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CONSTRAINT__CONTEXT, oldContext, context));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CONSTRAINT__CONTEXT, oldContext, context));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CONSTRAINT__CONTEXT:
+			case CvlPackage.CONSTRAINT__CONTEXT:
 				if (resolve) return getContext();
 				return basicGetContext();
 		}
@@ -117,7 +117,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CONSTRAINT__CONTEXT:
+			case CvlPackage.CONSTRAINT__CONTEXT:
 				setContext((VSpec)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CONSTRAINT__CONTEXT:
+			case CvlPackage.CONSTRAINT__CONTEXT:
 				setContext((VSpec)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class ConstraintImpl extends VPackageableImpl implements Constraint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CONSTRAINT__CONTEXT:
+			case CvlPackage.CONSTRAINT__CONTEXT:
 				return context != null;
 		}
 		return super.eIsSet(featureID);

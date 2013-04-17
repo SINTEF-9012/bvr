@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.NumericLiteralExp;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -33,7 +33,7 @@ public class NumericLiteralExpImpl extends BCLExpressionImpl implements NumericL
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.NUMERIC_LITERAL_EXP;
+		return CvlPackage.Literals.NUMERIC_LITERAL_EXP;
 	}
 
 } //NumericLiteralExpImpl

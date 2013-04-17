@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getRealLiteralExp()
+ * @see cvl.CvlPackage#getRealLiteralExp()
  * @model
  * @generated
  */
@@ -32,12 +32,12 @@ public interface RealLiteralExp extends NumericLiteralExp {
 	 * <p>The real value of this RealLiteralExpression.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Real</em>' attribute.
-	 * @see #setReal(double)
-	 * @see cvl.cvlPackage#getRealLiteralExp_Real()
+	 * @see #setReal(String)
+	 * @see cvl.CvlPackage#getRealLiteralExp_Real()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	double getReal();
+	String getReal();
 
 	/**
 	 * Sets the value of the '{@link cvl.RealLiteralExp#getReal <em>Real</em>}' attribute.
@@ -47,6 +47,6 @@ public interface RealLiteralExp extends NumericLiteralExp {
 	 * @see #getReal()
 	 * @generated
 	 */
-	void setReal(double value);
+	void setReal(String value);
 
 } // RealLiteralExp

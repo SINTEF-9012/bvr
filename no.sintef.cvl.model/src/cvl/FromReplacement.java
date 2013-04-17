@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getFromReplacement()
+ * @see cvl.CvlPackage#getFromReplacement()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface FromReplacement extends ReplacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Property Name</em>' attribute.
 	 * @see #setPropertyName(String)
-	 * @see cvl.cvlPackage#getFromReplacement_PropertyName()
+	 * @see cvl.CvlPackage#getFromReplacement_PropertyName()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -67,7 +67,7 @@ public interface FromReplacement extends ReplacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inside Boundary Element</em>' reference.
 	 * @see #setInsideBoundaryElement(ObjectHandle)
-	 * @see cvl.cvlPackage#getFromReplacement_InsideBoundaryElement()
+	 * @see cvl.CvlPackage#getFromReplacement_InsideBoundaryElement()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -92,7 +92,7 @@ public interface FromReplacement extends ReplacementBoundaryElement {
 	 * <p>Outside model elements that are referred by model elements inside the fragment. Used to distinguish multiplicity references.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Outside Boundary Element</em>' reference list.
-	 * @see cvl.cvlPackage#getFromReplacement_OutsideBoundaryElement()
+	 * @see cvl.CvlPackage#getFromReplacement_OutsideBoundaryElement()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -108,7 +108,7 @@ public interface FromReplacement extends ReplacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>From Placement</em>' reference.
 	 * @see #setFromPlacement(FromPlacement)
-	 * @see cvl.cvlPackage#getFromReplacement_FromPlacement()
+	 * @see cvl.CvlPackage#getFromReplacement_FromPlacement()
 	 * @see cvl.FromPlacement#getFromReplacement
 	 * @model opposite="fromReplacement" ordered="false"
 	 * @generated

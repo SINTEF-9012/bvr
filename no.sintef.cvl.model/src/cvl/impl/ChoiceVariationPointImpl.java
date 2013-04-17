@@ -4,7 +4,7 @@ package cvl.impl;
 
 import cvl.Choice;
 import cvl.ChoiceVariationPoint;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CHOICE_VARIATION_POINT;
+		return CvlPackage.Literals.CHOICE_VARIATION_POINT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 			bindingChoice = (Choice)eResolveProxy(oldBindingChoice);
 			if (bindingChoice != oldBindingChoice) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE, oldBindingChoice, bindingChoice));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE, oldBindingChoice, bindingChoice));
 			}
 		}
 		return bindingChoice;
@@ -91,7 +91,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 		Choice oldBindingChoice = bindingChoice;
 		bindingChoice = newBindingChoice;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE, oldBindingChoice, bindingChoice));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE, oldBindingChoice, bindingChoice));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
+			case CvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
 				if (resolve) return getBindingChoice();
 				return basicGetBindingChoice();
 		}
@@ -117,7 +117,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
+			case CvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
 				setBindingChoice((Choice)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
+			case CvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
 				setBindingChoice((Choice)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public abstract class ChoiceVariationPointImpl extends VariationPointImpl implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
+			case CvlPackage.CHOICE_VARIATION_POINT__BINDING_CHOICE:
 				return bindingChoice != null;
 		}
 		return super.eIsSet(featureID);

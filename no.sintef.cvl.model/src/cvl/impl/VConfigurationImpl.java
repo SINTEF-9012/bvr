@@ -3,9 +3,9 @@
 package cvl.impl;
 
 import cvl.CVSpec;
+import cvl.CvlPackage;
 import cvl.VConfiguration;
 import cvl.VSpecResolution;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -94,7 +94,7 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VCONFIGURATION;
+		return CvlPackage.Literals.VCONFIGURATION;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	 */
 	public EList<VSpecResolution> getMember() {
 		if (member == null) {
-			member = new EObjectContainmentEList<VSpecResolution>(VSpecResolution.class, this, cvlPackage.VCONFIGURATION__MEMBER);
+			member = new EObjectContainmentEList<VSpecResolution>(VSpecResolution.class, this, CvlPackage.VCONFIGURATION__MEMBER);
 		}
 		return member;
 	}
@@ -127,7 +127,7 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 		boolean oldIsPartial = isPartial;
 		isPartial = newIsPartial;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VCONFIGURATION__IS_PARTIAL, oldIsPartial, isPartial));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VCONFIGURATION__IS_PARTIAL, oldIsPartial, isPartial));
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 			resolvedCVSpec = (CVSpec)eResolveProxy(oldResolvedCVSpec);
 			if (resolvedCVSpec != oldResolvedCVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC, oldResolvedCVSpec, resolvedCVSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC, oldResolvedCVSpec, resolvedCVSpec));
 			}
 		}
 		return resolvedCVSpec;
@@ -165,7 +165,7 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 		CVSpec oldResolvedCVSpec = resolvedCVSpec;
 		resolvedCVSpec = newResolvedCVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC, oldResolvedCVSpec, resolvedCVSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC, oldResolvedCVSpec, resolvedCVSpec));
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VCONFIGURATION__MEMBER:
+			case CvlPackage.VCONFIGURATION__MEMBER:
 				return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -190,11 +190,11 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VCONFIGURATION__MEMBER:
+			case CvlPackage.VCONFIGURATION__MEMBER:
 				return getMember();
-			case cvlPackage.VCONFIGURATION__IS_PARTIAL:
+			case CvlPackage.VCONFIGURATION__IS_PARTIAL:
 				return isIsPartial();
-			case cvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
+			case CvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
 				if (resolve) return getResolvedCVSpec();
 				return basicGetResolvedCVSpec();
 		}
@@ -210,14 +210,14 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VCONFIGURATION__MEMBER:
+			case CvlPackage.VCONFIGURATION__MEMBER:
 				getMember().clear();
 				getMember().addAll((Collection<? extends VSpecResolution>)newValue);
 				return;
-			case cvlPackage.VCONFIGURATION__IS_PARTIAL:
+			case CvlPackage.VCONFIGURATION__IS_PARTIAL:
 				setIsPartial((Boolean)newValue);
 				return;
-			case cvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
+			case CvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
 				setResolvedCVSpec((CVSpec)newValue);
 				return;
 		}
@@ -232,13 +232,13 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VCONFIGURATION__MEMBER:
+			case CvlPackage.VCONFIGURATION__MEMBER:
 				getMember().clear();
 				return;
-			case cvlPackage.VCONFIGURATION__IS_PARTIAL:
+			case CvlPackage.VCONFIGURATION__IS_PARTIAL:
 				setIsPartial(IS_PARTIAL_EDEFAULT);
 				return;
-			case cvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
+			case CvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
 				setResolvedCVSpec((CVSpec)null);
 				return;
 		}
@@ -253,11 +253,11 @@ public class VConfigurationImpl extends VSpecResolutionImpl implements VConfigur
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VCONFIGURATION__MEMBER:
+			case CvlPackage.VCONFIGURATION__MEMBER:
 				return member != null && !member.isEmpty();
-			case cvlPackage.VCONFIGURATION__IS_PARTIAL:
+			case CvlPackage.VCONFIGURATION__IS_PARTIAL:
 				return isPartial != IS_PARTIAL_EDEFAULT;
-			case cvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
+			case CvlPackage.VCONFIGURATION__RESOLVED_CV_SPEC:
 				return resolvedCVSpec != null;
 		}
 		return super.eIsSet(featureID);

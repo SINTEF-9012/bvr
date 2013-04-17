@@ -3,10 +3,10 @@
 package cvl.impl;
 
 import cvl.BaseModelHandle;
+import cvl.CvlPackage;
 import cvl.OVPType;
 import cvl.ObjectHandle;
 import cvl.OpaqueVariationPoint;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -85,7 +85,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OPAQUE_VARIATION_POINT;
+		return CvlPackage.Literals.OPAQUE_VARIATION_POINT;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 		BaseModelHandle oldPlaceHolder = placeHolder;
 		placeHolder = newPlaceHolder;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, oldPlaceHolder, newPlaceHolder);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, oldPlaceHolder, newPlaceHolder);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -121,14 +121,14 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 		if (newPlaceHolder != placeHolder) {
 			NotificationChain msgs = null;
 			if (placeHolder != null)
-				msgs = ((InternalEObject)placeHolder).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, null, msgs);
+				msgs = ((InternalEObject)placeHolder).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, null, msgs);
 			if (newPlaceHolder != null)
-				msgs = ((InternalEObject)newPlaceHolder).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, null, msgs);
+				msgs = ((InternalEObject)newPlaceHolder).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, null, msgs);
 			msgs = basicSetPlaceHolder(newPlaceHolder, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, newPlaceHolder, newPlaceHolder));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, newPlaceHolder, newPlaceHolder));
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 */
 	public EList<ObjectHandle> getSourceObject() {
 		if (sourceObject == null) {
-			sourceObject = new EObjectContainmentEList<ObjectHandle>(ObjectHandle.class, this, cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT);
+			sourceObject = new EObjectContainmentEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT);
 		}
 		return sourceObject;
 	}
@@ -154,7 +154,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 			type = (OVPType)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.OPAQUE_VARIATION_POINT__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.OPAQUE_VARIATION_POINT__TYPE, oldType, type));
 			}
 		}
 		return type;
@@ -178,7 +178,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 		OVPType oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OPAQUE_VARIATION_POINT__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OPAQUE_VARIATION_POINT__TYPE, oldType, type));
 	}
 
 	/**
@@ -189,9 +189,9 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
+			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				return basicSetPlaceHolder(null, msgs);
-			case cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
+			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				return ((InternalEList<?>)getSourceObject()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -205,11 +205,11 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
+			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				return getPlaceHolder();
-			case cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
+			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				return getSourceObject();
-			case cvlPackage.OPAQUE_VARIATION_POINT__TYPE:
+			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
@@ -225,14 +225,14 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
+			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				setPlaceHolder((BaseModelHandle)newValue);
 				return;
-			case cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
+			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				getSourceObject().clear();
 				getSourceObject().addAll((Collection<? extends ObjectHandle>)newValue);
 				return;
-			case cvlPackage.OPAQUE_VARIATION_POINT__TYPE:
+			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				setType((OVPType)newValue);
 				return;
 		}
@@ -247,13 +247,13 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
+			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				setPlaceHolder((BaseModelHandle)null);
 				return;
-			case cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
+			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				getSourceObject().clear();
 				return;
-			case cvlPackage.OPAQUE_VARIATION_POINT__TYPE:
+			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				setType((OVPType)null);
 				return;
 		}
@@ -268,11 +268,11 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
+			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				return placeHolder != null;
-			case cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
+			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				return sourceObject != null && !sourceObject.isEmpty();
-			case cvlPackage.OPAQUE_VARIATION_POINT__TYPE:
+			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);

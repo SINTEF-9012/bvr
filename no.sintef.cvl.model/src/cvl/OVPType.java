@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getOVPType()
+ * @see cvl.CvlPackage#getOVPType()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface OVPType extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Spec</em>' containment reference.
 	 * @see #setSpec(OVPSemanticSpec)
-	 * @see cvl.cvlPackage#getOVPType_Spec()
+	 * @see cvl.CvlPackage#getOVPType_Spec()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

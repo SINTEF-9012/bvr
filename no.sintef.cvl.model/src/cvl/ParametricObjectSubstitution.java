@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getParametricObjectSubstitution()
+ * @see cvl.CvlPackage#getParametricObjectSubstitution()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface ParametricObjectSubstitution extends ParametricVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement Object</em>' containment reference.
 	 * @see #setPlacementObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getParametricObjectSubstitution_PlacementObject()
+	 * @see cvl.CvlPackage#getParametricObjectSubstitution_PlacementObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

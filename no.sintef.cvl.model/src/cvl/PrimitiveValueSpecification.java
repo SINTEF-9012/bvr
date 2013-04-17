@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getPrimitiveValueSpecification()
+ * @see cvl.CvlPackage#getPrimitiveValueSpecification()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface PrimitiveValueSpecification extends ValueSpecification {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(BCLExpression)
-	 * @see cvl.cvlPackage#getPrimitiveValueSpecification_Expression()
+	 * @see cvl.CvlPackage#getPrimitiveValueSpecification_Expression()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

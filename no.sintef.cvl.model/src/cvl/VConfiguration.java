@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVConfiguration()
+ * @see cvl.CvlPackage#getVConfiguration()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface VConfiguration extends VSpecResolution, VPackageable {
 	 * <p>The members of the VConfiguration.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVConfiguration_Member()
+	 * @see cvl.CvlPackage#getVConfiguration_Member()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -51,7 +51,7 @@ public interface VConfiguration extends VSpecResolution, VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Partial</em>' attribute.
 	 * @see #setIsPartial(boolean)
-	 * @see cvl.cvlPackage#getVConfiguration_IsPartial()
+	 * @see cvl.CvlPackage#getVConfiguration_IsPartial()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -76,7 +76,7 @@ public interface VConfiguration extends VSpecResolution, VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resolved CV Spec</em>' reference.
 	 * @see #setResolvedCVSpec(CVSpec)
-	 * @see cvl.cvlPackage#getVConfiguration_ResolvedCVSpec()
+	 * @see cvl.CvlPackage#getVConfiguration_ResolvedCVSpec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

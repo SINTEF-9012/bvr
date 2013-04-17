@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * <p>An enumeration of the most primitive types: String, Boolean, Integer, Real and UnlimitedNatural.</p>
  * <!-- end-model-doc -->
- * @see cvl.cvlPackage#getPrimitiveTypeEnum()
+ * @see cvl.CvlPackage#getPrimitiveTypeEnum()
  * @model
  * @generated
  */

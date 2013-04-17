@@ -4,7 +4,7 @@ package cvl.impl;
 
 import cvl.CVSpec;
 import cvl.CompositeVariationPoint;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.COMPOSITE_VARIATION_POINT;
+		return CvlPackage.Literals.COMPOSITE_VARIATION_POINT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 			bindingCVSpec = (CVSpec)eResolveProxy(oldBindingCVSpec);
 			if (bindingCVSpec != oldBindingCVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC, oldBindingCVSpec, bindingCVSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC, oldBindingCVSpec, bindingCVSpec));
 			}
 		}
 		return bindingCVSpec;
@@ -91,7 +91,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 		CVSpec oldBindingCVSpec = bindingCVSpec;
 		bindingCVSpec = newBindingCVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC, oldBindingCVSpec, bindingCVSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC, oldBindingCVSpec, bindingCVSpec));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
+			case CvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
 				if (resolve) return getBindingCVSpec();
 				return basicGetBindingCVSpec();
 		}
@@ -117,7 +117,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
+			case CvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
 				setBindingCVSpec((CVSpec)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
+			case CvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
 				setBindingCVSpec((CVSpec)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public abstract class CompositeVariationPointImpl extends VariationPointImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
+			case CvlPackage.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC:
 				return bindingCVSpec != null;
 		}
 		return super.eIsSet(featureID);

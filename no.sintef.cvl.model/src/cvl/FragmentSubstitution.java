@@ -20,10 +20,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link cvl.FragmentSubstitution#getPlacement <em>Placement</em>}</li>
  *   <li>{@link cvl.FragmentSubstitution#isMulti <em>Multi</em>}</li>
  *   <li>{@link cvl.FragmentSubstitution#getReplacement <em>Replacement</em>}</li>
+ *   <li>{@link cvl.FragmentSubstitution#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getFragmentSubstitution()
+ * @see cvl.CvlPackage#getFragmentSubstitution()
  * @model
  * @generated
  */
@@ -39,7 +40,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * </p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Boundary Element Binding</em>' containment reference list.
-	 * @see cvl.cvlPackage#getFragmentSubstitution_BoundaryElementBinding()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_BoundaryElementBinding()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -56,7 +57,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement</em>' reference.
 	 * @see #setPlacement(PlacementFragment)
-	 * @see cvl.cvlPackage#getFragmentSubstitution_Placement()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_Placement()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -81,7 +82,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multi</em>' attribute.
 	 * @see #setMulti(boolean)
-	 * @see cvl.cvlPackage#getFragmentSubstitution_Multi()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_Multi()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -106,7 +107,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement</em>' reference.
 	 * @see #setReplacement(ReplacementFragmentType)
-	 * @see cvl.cvlPackage#getFragmentSubstitution_Replacement()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_Replacement()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -121,5 +122,21 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * @generated
 	 */
 	void setReplacement(ReplacementFragmentType value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
+	 * The list contents are of type {@link cvl.ObjectHandle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Object</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Object</em>' containment reference list.
+	 * @see cvl.CvlPackage#getFragmentSubstitution_SourceObject()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ObjectHandle> getSourceObject();
 
 } // FragmentSubstitution

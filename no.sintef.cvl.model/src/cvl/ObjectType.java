@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getObjectType()
+ * @see cvl.CvlPackage#getObjectType()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface ObjectType extends Variabletype {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Meta Class</em>' attribute.
 	 * @see #setMetaClass(String)
-	 * @see cvl.cvlPackage#getObjectType_MetaClass()
+	 * @see cvl.CvlPackage#getObjectType_MetaClass()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

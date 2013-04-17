@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.OpaqueConstraint;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -82,7 +82,7 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OPAQUE_CONSTRAINT;
+		return CvlPackage.Literals.OPAQUE_CONSTRAINT;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 		String oldConstraint = constraint;
 		constraint = newConstraint;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT, oldConstraint, constraint));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT, oldConstraint, constraint));
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 		String oldConstraintLanguage = constraintLanguage;
 		constraintLanguage = newConstraintLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE, oldConstraintLanguage, constraintLanguage));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE, oldConstraintLanguage, constraintLanguage));
 	}
 
 	/**
@@ -135,9 +135,9 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
 				return getConstraint();
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
 				return getConstraintLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,10 +151,10 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
 				setConstraint((String)newValue);
 				return;
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
 				setConstraintLanguage((String)newValue);
 				return;
 		}
@@ -169,10 +169,10 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
 				setConstraint(CONSTRAINT_EDEFAULT);
 				return;
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
 				setConstraintLanguage(CONSTRAINT_LANGUAGE_EDEFAULT);
 				return;
 		}
@@ -187,9 +187,9 @@ public class OpaqueConstraintImpl extends ConstraintImpl implements OpaqueConstr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
 				return CONSTRAINT_EDEFAULT == null ? constraint != null : !CONSTRAINT_EDEFAULT.equals(constraint);
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
 				return CONSTRAINT_LANGUAGE_EDEFAULT == null ? constraintLanguage != null : !CONSTRAINT_LANGUAGE_EDEFAULT.equals(constraintLanguage);
 		}
 		return super.eIsSet(featureID);

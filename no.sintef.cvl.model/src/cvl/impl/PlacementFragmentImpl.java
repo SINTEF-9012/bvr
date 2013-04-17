@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -58,7 +58,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PLACEMENT_FRAGMENT;
+		return CvlPackage.Literals.PLACEMENT_FRAGMENT;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	 */
 	public EList<PlacementBoundaryElement> getPlacementBoundaryElement() {
 		if (placementBoundaryElement == null) {
-			placementBoundaryElement = new EObjectContainmentEList<PlacementBoundaryElement>(PlacementBoundaryElement.class, this, cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT);
+			placementBoundaryElement = new EObjectContainmentEList<PlacementBoundaryElement>(PlacementBoundaryElement.class, this, CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT);
 		}
 		return placementBoundaryElement;
 	}
@@ -81,7 +81,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				return ((InternalEList<?>)getPlacementBoundaryElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +95,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				return getPlacementBoundaryElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +110,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				getPlacementBoundaryElement().clear();
 				getPlacementBoundaryElement().addAll((Collection<? extends PlacementBoundaryElement>)newValue);
 				return;
@@ -126,7 +126,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				getPlacementBoundaryElement().clear();
 				return;
 		}
@@ -141,7 +141,7 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				return placementBoundaryElement != null && !placementBoundaryElement.isEmpty();
 		}
 		return super.eIsSet(featureID);

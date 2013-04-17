@@ -5,7 +5,7 @@ package cvl.impl;
 import cvl.Choice;
 import cvl.ChoiceDerivation;
 import cvl.Constraint;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -66,7 +66,7 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CHOICE_DERIVATION;
+		return CvlPackage.Literals.CHOICE_DERIVATION;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 		Constraint oldDerivingConstraint = derivingConstraint;
 		derivingConstraint = newDerivingConstraint;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, oldDerivingConstraint, newDerivingConstraint);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, oldDerivingConstraint, newDerivingConstraint);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 		if (newDerivingConstraint != derivingConstraint) {
 			NotificationChain msgs = null;
 			if (derivingConstraint != null)
-				msgs = ((InternalEObject)derivingConstraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, null, msgs);
+				msgs = ((InternalEObject)derivingConstraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, null, msgs);
 			if (newDerivingConstraint != null)
-				msgs = ((InternalEObject)newDerivingConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, null, msgs);
+				msgs = ((InternalEObject)newDerivingConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, null, msgs);
 			msgs = basicSetDerivingConstraint(newDerivingConstraint, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, newDerivingConstraint, newDerivingConstraint));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT, newDerivingConstraint, newDerivingConstraint));
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 			derivedChoice = (Choice)eResolveProxy(oldDerivedChoice);
 			if (derivedChoice != oldDerivedChoice) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE, oldDerivedChoice, derivedChoice));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE, oldDerivedChoice, derivedChoice));
 			}
 		}
 		return derivedChoice;
@@ -147,7 +147,7 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 		Choice oldDerivedChoice = derivedChoice;
 		derivedChoice = newDerivedChoice;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE, oldDerivedChoice, derivedChoice));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE, oldDerivedChoice, derivedChoice));
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
+			case CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
 				return basicSetDerivingConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -172,9 +172,9 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
+			case CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
 				return getDerivingConstraint();
-			case cvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
+			case CvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
 				if (resolve) return getDerivedChoice();
 				return basicGetDerivedChoice();
 		}
@@ -189,10 +189,10 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
+			case CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
 				setDerivingConstraint((Constraint)newValue);
 				return;
-			case cvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
+			case CvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
 				setDerivedChoice((Choice)newValue);
 				return;
 		}
@@ -207,10 +207,10 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
+			case CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
 				setDerivingConstraint((Constraint)null);
 				return;
-			case cvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
+			case CvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
 				setDerivedChoice((Choice)null);
 				return;
 		}
@@ -225,9 +225,9 @@ public class ChoiceDerivationImpl extends VSpecDerivationImpl implements ChoiceD
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
+			case CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
 				return derivingConstraint != null;
-			case cvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
+			case CvlPackage.CHOICE_DERIVATION__DERIVED_CHOICE:
 				return derivedChoice != null;
 		}
 		return super.eIsSet(featureID);

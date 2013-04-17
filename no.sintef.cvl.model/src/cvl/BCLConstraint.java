@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getBCLConstraint()
+ * @see cvl.CvlPackage#getBCLConstraint()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface BCLConstraint extends Constraint {
 	 * <p>The constraining expression of this BCLConstraint.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Expression</em>' containment reference list.
-	 * @see cvl.cvlPackage#getBCLConstraint_Expression()
+	 * @see cvl.CvlPackage#getBCLConstraint_Expression()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

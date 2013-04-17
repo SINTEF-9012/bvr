@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.MultiplicityInterval;
 import cvl.VSpec;
 import cvl.VSpecDerivation;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -105,7 +105,7 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VSPEC;
+		return CvlPackage.Literals.VSPEC;
 	}
 
 	/**
@@ -126,7 +126,7 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 		MultiplicityInterval oldGroupMultiplicity = groupMultiplicity;
 		groupMultiplicity = newGroupMultiplicity;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.VSPEC__GROUP_MULTIPLICITY, oldGroupMultiplicity, newGroupMultiplicity);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.VSPEC__GROUP_MULTIPLICITY, oldGroupMultiplicity, newGroupMultiplicity);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -141,14 +141,14 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 		if (newGroupMultiplicity != groupMultiplicity) {
 			NotificationChain msgs = null;
 			if (groupMultiplicity != null)
-				msgs = ((InternalEObject)groupMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VSPEC__GROUP_MULTIPLICITY, null, msgs);
+				msgs = ((InternalEObject)groupMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VSPEC__GROUP_MULTIPLICITY, null, msgs);
 			if (newGroupMultiplicity != null)
-				msgs = ((InternalEObject)newGroupMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VSPEC__GROUP_MULTIPLICITY, null, msgs);
+				msgs = ((InternalEObject)newGroupMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VSPEC__GROUP_MULTIPLICITY, null, msgs);
 			msgs = basicSetGroupMultiplicity(newGroupMultiplicity, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VSPEC__GROUP_MULTIPLICITY, newGroupMultiplicity, newGroupMultiplicity));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VSPEC__GROUP_MULTIPLICITY, newGroupMultiplicity, newGroupMultiplicity));
 	}
 
 	/**
@@ -169,7 +169,7 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 		String oldResolutionTime = resolutionTime;
 		resolutionTime = newResolutionTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VSPEC__RESOLUTION_TIME, oldResolutionTime, resolutionTime));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VSPEC__RESOLUTION_TIME, oldResolutionTime, resolutionTime));
 	}
 
 	/**
@@ -179,7 +179,7 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 */
 	public EList<VSpecDerivation> getOwnedVSpecDerivation() {
 		if (ownedVSpecDerivation == null) {
-			ownedVSpecDerivation = new EObjectContainmentEList<VSpecDerivation>(VSpecDerivation.class, this, cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION);
+			ownedVSpecDerivation = new EObjectContainmentEList<VSpecDerivation>(VSpecDerivation.class, this, CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION);
 		}
 		return ownedVSpecDerivation;
 	}
@@ -191,7 +191,7 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 */
 	public EList<VSpec> getChild() {
 		if (child == null) {
-			child = new EObjectContainmentEList<VSpec>(VSpec.class, this, cvlPackage.VSPEC__CHILD);
+			child = new EObjectContainmentEList<VSpec>(VSpec.class, this, CvlPackage.VSPEC__CHILD);
 		}
 		return child;
 	}
@@ -204,11 +204,11 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VSPEC__GROUP_MULTIPLICITY:
+			case CvlPackage.VSPEC__GROUP_MULTIPLICITY:
 				return basicSetGroupMultiplicity(null, msgs);
-			case cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
 				return ((InternalEList<?>)getOwnedVSpecDerivation()).basicRemove(otherEnd, msgs);
-			case cvlPackage.VSPEC__CHILD:
+			case CvlPackage.VSPEC__CHILD:
 				return ((InternalEList<?>)getChild()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -222,13 +222,13 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VSPEC__GROUP_MULTIPLICITY:
+			case CvlPackage.VSPEC__GROUP_MULTIPLICITY:
 				return getGroupMultiplicity();
-			case cvlPackage.VSPEC__RESOLUTION_TIME:
+			case CvlPackage.VSPEC__RESOLUTION_TIME:
 				return getResolutionTime();
-			case cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
 				return getOwnedVSpecDerivation();
-			case cvlPackage.VSPEC__CHILD:
+			case CvlPackage.VSPEC__CHILD:
 				return getChild();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -243,17 +243,17 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VSPEC__GROUP_MULTIPLICITY:
+			case CvlPackage.VSPEC__GROUP_MULTIPLICITY:
 				setGroupMultiplicity((MultiplicityInterval)newValue);
 				return;
-			case cvlPackage.VSPEC__RESOLUTION_TIME:
+			case CvlPackage.VSPEC__RESOLUTION_TIME:
 				setResolutionTime((String)newValue);
 				return;
-			case cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
 				getOwnedVSpecDerivation().clear();
 				getOwnedVSpecDerivation().addAll((Collection<? extends VSpecDerivation>)newValue);
 				return;
-			case cvlPackage.VSPEC__CHILD:
+			case CvlPackage.VSPEC__CHILD:
 				getChild().clear();
 				getChild().addAll((Collection<? extends VSpec>)newValue);
 				return;
@@ -269,16 +269,16 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC__GROUP_MULTIPLICITY:
+			case CvlPackage.VSPEC__GROUP_MULTIPLICITY:
 				setGroupMultiplicity((MultiplicityInterval)null);
 				return;
-			case cvlPackage.VSPEC__RESOLUTION_TIME:
+			case CvlPackage.VSPEC__RESOLUTION_TIME:
 				setResolutionTime(RESOLUTION_TIME_EDEFAULT);
 				return;
-			case cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
 				getOwnedVSpecDerivation().clear();
 				return;
-			case cvlPackage.VSPEC__CHILD:
+			case CvlPackage.VSPEC__CHILD:
 				getChild().clear();
 				return;
 		}
@@ -293,13 +293,13 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC__GROUP_MULTIPLICITY:
+			case CvlPackage.VSPEC__GROUP_MULTIPLICITY:
 				return groupMultiplicity != null;
-			case cvlPackage.VSPEC__RESOLUTION_TIME:
+			case CvlPackage.VSPEC__RESOLUTION_TIME:
 				return RESOLUTION_TIME_EDEFAULT == null ? resolutionTime != null : !RESOLUTION_TIME_EDEFAULT.equals(resolutionTime);
-			case cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
 				return ownedVSpecDerivation != null && !ownedVSpecDerivation.isEmpty();
-			case cvlPackage.VSPEC__CHILD:
+			case CvlPackage.VSPEC__CHILD:
 				return child != null && !child.isEmpty();
 		}
 		return super.eIsSet(featureID);

@@ -4,8 +4,8 @@ package cvl.impl;
 
 import cvl.CVSpec;
 import cvl.CVSpecDerivation;
+import cvl.CvlPackage;
 import cvl.VSpecDerivation;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -84,7 +84,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CV_SPEC_DERIVATION;
+		return CvlPackage.Literals.CV_SPEC_DERIVATION;
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	 */
 	public EList<VSpecDerivation> getMemberDerivation() {
 		if (memberDerivation == null) {
-			memberDerivation = new EObjectContainmentEList<VSpecDerivation>(VSpecDerivation.class, this, cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION);
+			memberDerivation = new EObjectContainmentEList<VSpecDerivation>(VSpecDerivation.class, this, CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION);
 		}
 		return memberDerivation;
 	}
@@ -110,7 +110,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 			derivingCVspec = (CVSpec)eResolveProxy(oldDerivingCVspec);
 			if (derivingCVspec != oldDerivingCVspec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC, oldDerivingCVspec, derivingCVspec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC, oldDerivingCVspec, derivingCVspec));
 			}
 		}
 		return derivingCVspec;
@@ -134,7 +134,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 		CVSpec oldDerivingCVspec = derivingCVspec;
 		derivingCVspec = newDerivingCVspec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC, oldDerivingCVspec, derivingCVspec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC, oldDerivingCVspec, derivingCVspec));
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 			derivedCVSpec = (CVSpec)eResolveProxy(oldDerivedCVSpec);
 			if (derivedCVSpec != oldDerivedCVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC, oldDerivedCVSpec, derivedCVSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC, oldDerivedCVSpec, derivedCVSpec));
 			}
 		}
 		return derivedCVSpec;
@@ -172,7 +172,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 		CVSpec oldDerivedCVSpec = derivedCVSpec;
 		derivedCVSpec = newDerivedCVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC, oldDerivedCVSpec, derivedCVSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC, oldDerivedCVSpec, derivedCVSpec));
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
+			case CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
 				return ((InternalEList<?>)getMemberDerivation()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -197,12 +197,12 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
+			case CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
 				return getMemberDerivation();
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
 				if (resolve) return getDerivingCVspec();
 				return basicGetDerivingCVspec();
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
 				if (resolve) return getDerivedCVSpec();
 				return basicGetDerivedCVSpec();
 		}
@@ -218,14 +218,14 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
+			case CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
 				getMemberDerivation().clear();
 				getMemberDerivation().addAll((Collection<? extends VSpecDerivation>)newValue);
 				return;
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
 				setDerivingCVspec((CVSpec)newValue);
 				return;
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
 				setDerivedCVSpec((CVSpec)newValue);
 				return;
 		}
@@ -240,13 +240,13 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
+			case CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
 				getMemberDerivation().clear();
 				return;
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
 				setDerivingCVspec((CVSpec)null);
 				return;
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
 				setDerivedCVSpec((CVSpec)null);
 				return;
 		}
@@ -261,11 +261,11 @@ public class CVSpecDerivationImpl extends VSpecDerivationImpl implements CVSpecD
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
+			case CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
 				return memberDerivation != null && !memberDerivation.isEmpty();
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVING_CVSPEC:
 				return derivingCVspec != null;
-			case cvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
+			case CvlPackage.CV_SPEC_DERIVATION__DERIVED_CV_SPEC:
 				return derivedCVSpec != null;
 		}
 		return super.eIsSet(featureID);

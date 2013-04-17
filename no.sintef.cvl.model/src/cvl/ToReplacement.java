@@ -21,11 +21,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link cvl.ToReplacement#getInsideBoundaryElement <em>Inside Boundary Element</em>}</li>
+ *   <li>{@link cvl.ToReplacement#getOutsideBoundaryElement <em>Outside Boundary Element</em>}</li>
  *   <li>{@link cvl.ToReplacement#getToPlacement <em>To Placement</em>}</li>
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getToReplacement()
+ * @see cvl.CvlPackage#getToReplacement()
  * @model
  * @generated
  */
@@ -39,11 +40,37 @@ public interface ToReplacement extends ReplacementBoundaryElement {
 	 * Model elements that are referred to by outside model elements.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inside Boundary Element</em>' reference list.
-	 * @see cvl.cvlPackage#getToReplacement_InsideBoundaryElement()
+	 * @see cvl.CvlPackage#getToReplacement_InsideBoundaryElement()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ObjectHandle> getInsideBoundaryElement();
+
+	/**
+	 * Returns the value of the '<em><b>Outside Boundary Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Outside Boundary Element</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Outside Boundary Element</em>' reference.
+	 * @see #setOutsideBoundaryElement(ObjectHandle)
+	 * @see cvl.CvlPackage#getToReplacement_OutsideBoundaryElement()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	ObjectHandle getOutsideBoundaryElement();
+
+	/**
+	 * Sets the value of the '{@link cvl.ToReplacement#getOutsideBoundaryElement <em>Outside Boundary Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Outside Boundary Element</em>' reference.
+	 * @see #getOutsideBoundaryElement()
+	 * @generated
+	 */
+	void setOutsideBoundaryElement(ObjectHandle value);
 
 	/**
 	 * Returns the value of the '<em><b>To Placement</b></em>' reference.
@@ -55,7 +82,7 @@ public interface ToReplacement extends ReplacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>To Placement</em>' reference.
 	 * @see #setToPlacement(ToPlacement)
-	 * @see cvl.cvlPackage#getToReplacement_ToPlacement()
+	 * @see cvl.CvlPackage#getToReplacement_ToPlacement()
 	 * @see cvl.ToPlacement#getToReplacement
 	 * @model opposite="toReplacement" ordered="false"
 	 * @generated

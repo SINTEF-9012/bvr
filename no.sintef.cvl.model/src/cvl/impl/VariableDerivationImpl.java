@@ -3,9 +3,9 @@
 package cvl.impl;
 
 import cvl.BCLExpression;
+import cvl.CvlPackage;
 import cvl.Variable;
 import cvl.VariableDerivation;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -66,7 +66,7 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VARIABLE_DERIVATION;
+		return CvlPackage.Literals.VARIABLE_DERIVATION;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 		BCLExpression oldDerivingExpression = derivingExpression;
 		derivingExpression = newDerivingExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, oldDerivingExpression, newDerivingExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, oldDerivingExpression, newDerivingExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -102,14 +102,14 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 		if (newDerivingExpression != derivingExpression) {
 			NotificationChain msgs = null;
 			if (derivingExpression != null)
-				msgs = ((InternalEObject)derivingExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)derivingExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, null, msgs);
 			if (newDerivingExpression != null)
-				msgs = ((InternalEObject)newDerivingExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)newDerivingExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, null, msgs);
 			msgs = basicSetDerivingExpression(newDerivingExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, newDerivingExpression, newDerivingExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION, newDerivingExpression, newDerivingExpression));
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 			derivedVariable = (Variable)eResolveProxy(oldDerivedVariable);
 			if (derivedVariable != oldDerivedVariable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE, oldDerivedVariable, derivedVariable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE, oldDerivedVariable, derivedVariable));
 			}
 		}
 		return derivedVariable;
@@ -147,7 +147,7 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 		Variable oldDerivedVariable = derivedVariable;
 		derivedVariable = newDerivedVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE, oldDerivedVariable, derivedVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE, oldDerivedVariable, derivedVariable));
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
 				return basicSetDerivingExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -172,9 +172,9 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
 				return getDerivingExpression();
-			case cvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
 				if (resolve) return getDerivedVariable();
 				return basicGetDerivedVariable();
 		}
@@ -189,10 +189,10 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
 				setDerivingExpression((BCLExpression)newValue);
 				return;
-			case cvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
 				setDerivedVariable((Variable)newValue);
 				return;
 		}
@@ -207,10 +207,10 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
 				setDerivingExpression((BCLExpression)null);
 				return;
-			case cvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
 				setDerivedVariable((Variable)null);
 				return;
 		}
@@ -225,9 +225,9 @@ public class VariableDerivationImpl extends VSpecDerivationImpl implements Varia
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
 				return derivingExpression != null;
-			case cvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVED_VARIABLE:
 				return derivedVariable != null;
 		}
 		return super.eIsSet(featureID);

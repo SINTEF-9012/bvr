@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getCompositeVariationPoint()
+ * @see cvl.CvlPackage#getCompositeVariationPoint()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface CompositeVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Binding CV Spec</em>' reference.
 	 * @see #setBindingCVSpec(CVSpec)
-	 * @see cvl.cvlPackage#getCompositeVariationPoint_BindingCVSpec()
+	 * @see cvl.CvlPackage#getCompositeVariationPoint_BindingCVSpec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

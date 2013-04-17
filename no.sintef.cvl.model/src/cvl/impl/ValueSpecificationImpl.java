@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ValueSpecification;
 import cvl.Variabletype;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -41,7 +41,7 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VALUE_SPECIFICATION;
+		return CvlPackage.Literals.VALUE_SPECIFICATION;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VALUE_SPECIFICATION__TYPE:
+			case CvlPackage.VALUE_SPECIFICATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
@@ -100,7 +100,7 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VALUE_SPECIFICATION__TYPE:
+			case CvlPackage.VALUE_SPECIFICATION__TYPE:
 				setType((Variabletype)newValue);
 				return;
 		}
@@ -115,7 +115,7 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VALUE_SPECIFICATION__TYPE:
+			case CvlPackage.VALUE_SPECIFICATION__TYPE:
 				setType((Variabletype)null);
 				return;
 		}
@@ -130,7 +130,7 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VALUE_SPECIFICATION__TYPE:
+			case CvlPackage.VALUE_SPECIFICATION__TYPE:
 				return basicGetType() != null;
 		}
 		return super.eIsSet(featureID);

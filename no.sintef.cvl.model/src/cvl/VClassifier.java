@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVClassifier()
+ * @see cvl.CvlPackage#getVClassifier()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface VClassifier extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Instance Multiplicity</em>' containment reference.
 	 * @see #setInstanceMultiplicity(MultiplicityInterval)
-	 * @see cvl.cvlPackage#getVClassifier_InstanceMultiplicity()
+	 * @see cvl.CvlPackage#getVClassifier_InstanceMultiplicity()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

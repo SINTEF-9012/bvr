@@ -3,9 +3,9 @@
 package cvl.impl;
 
 import cvl.Constraint;
+import cvl.CvlPackage;
 import cvl.VInterface;
 import cvl.VSpec;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -70,7 +70,7 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VINTERFACE;
+		return CvlPackage.Literals.VINTERFACE;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	 */
 	public EList<VSpec> getMember() {
 		if (member == null) {
-			member = new EObjectContainmentEList<VSpec>(VSpec.class, this, cvlPackage.VINTERFACE__MEMBER);
+			member = new EObjectContainmentEList<VSpec>(VSpec.class, this, CvlPackage.VINTERFACE__MEMBER);
 		}
 		return member;
 	}
@@ -92,7 +92,7 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	 */
 	public EList<Constraint> getOwnedConstraint() {
 		if (ownedConstraint == null) {
-			ownedConstraint = new EObjectContainmentEList<Constraint>(Constraint.class, this, cvlPackage.VINTERFACE__OWNED_CONSTRAINT);
+			ownedConstraint = new EObjectContainmentEList<Constraint>(Constraint.class, this, CvlPackage.VINTERFACE__OWNED_CONSTRAINT);
 		}
 		return ownedConstraint;
 	}
@@ -105,9 +105,9 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VINTERFACE__MEMBER:
+			case CvlPackage.VINTERFACE__MEMBER:
 				return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
-			case cvlPackage.VINTERFACE__OWNED_CONSTRAINT:
+			case CvlPackage.VINTERFACE__OWNED_CONSTRAINT:
 				return ((InternalEList<?>)getOwnedConstraint()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -121,9 +121,9 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VINTERFACE__MEMBER:
+			case CvlPackage.VINTERFACE__MEMBER:
 				return getMember();
-			case cvlPackage.VINTERFACE__OWNED_CONSTRAINT:
+			case CvlPackage.VINTERFACE__OWNED_CONSTRAINT:
 				return getOwnedConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -138,11 +138,11 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VINTERFACE__MEMBER:
+			case CvlPackage.VINTERFACE__MEMBER:
 				getMember().clear();
 				getMember().addAll((Collection<? extends VSpec>)newValue);
 				return;
-			case cvlPackage.VINTERFACE__OWNED_CONSTRAINT:
+			case CvlPackage.VINTERFACE__OWNED_CONSTRAINT:
 				getOwnedConstraint().clear();
 				getOwnedConstraint().addAll((Collection<? extends Constraint>)newValue);
 				return;
@@ -158,10 +158,10 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VINTERFACE__MEMBER:
+			case CvlPackage.VINTERFACE__MEMBER:
 				getMember().clear();
 				return;
-			case cvlPackage.VINTERFACE__OWNED_CONSTRAINT:
+			case CvlPackage.VINTERFACE__OWNED_CONSTRAINT:
 				getOwnedConstraint().clear();
 				return;
 		}
@@ -176,9 +176,9 @@ public class VInterfaceImpl extends VPackageableImpl implements VInterface {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VINTERFACE__MEMBER:
+			case CvlPackage.VINTERFACE__MEMBER:
 				return member != null && !member.isEmpty();
-			case cvlPackage.VINTERFACE__OWNED_CONSTRAINT:
+			case CvlPackage.VINTERFACE__OWNED_CONSTRAINT:
 				return ownedConstraint != null && !ownedConstraint.isEmpty();
 		}
 		return super.eIsSet(featureID);

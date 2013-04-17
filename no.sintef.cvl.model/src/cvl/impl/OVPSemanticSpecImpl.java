@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.OVPSemanticSpec;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -83,7 +83,7 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OVP_SEMANTIC_SPEC;
+		return CvlPackage.Literals.OVP_SEMANTIC_SPEC;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 		String oldModelTransformation = modelTransformation;
 		modelTransformation = newModelTransformation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION, oldModelTransformation, modelTransformation));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION, oldModelTransformation, modelTransformation));
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 		String oldTransfromationLanguage = transfromationLanguage;
 		transfromationLanguage = newTransfromationLanguage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE, oldTransfromationLanguage, transfromationLanguage));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE, oldTransfromationLanguage, transfromationLanguage));
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
+			case CvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
 				return getModelTransformation();
-			case cvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
+			case CvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
 				return getTransfromationLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -152,10 +152,10 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
+			case CvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
 				setModelTransformation((String)newValue);
 				return;
-			case cvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
+			case CvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
 				setTransfromationLanguage((String)newValue);
 				return;
 		}
@@ -170,10 +170,10 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
+			case CvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
 				setModelTransformation(MODEL_TRANSFORMATION_EDEFAULT);
 				return;
-			case cvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
+			case CvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
 				setTransfromationLanguage(TRANSFROMATION_LANGUAGE_EDEFAULT);
 				return;
 		}
@@ -188,9 +188,9 @@ public class OVPSemanticSpecImpl extends EObjectImpl implements OVPSemanticSpec 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
+			case CvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
 				return MODEL_TRANSFORMATION_EDEFAULT == null ? modelTransformation != null : !MODEL_TRANSFORMATION_EDEFAULT.equals(modelTransformation);
-			case cvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
+			case CvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
 				return TRANSFROMATION_LANGUAGE_EDEFAULT == null ? transfromationLanguage != null : !TRANSFROMATION_LANGUAGE_EDEFAULT.equals(transfromationLanguage);
 		}
 		return super.eIsSet(featureID);

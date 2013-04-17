@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ReplacementFragmentSpecification;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -33,7 +33,7 @@ public class ReplacementFragmentSpecificationImpl extends ValueSpecificationImpl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.REPLACEMENT_FRAGMENT_SPECIFICATION;
+		return CvlPackage.Literals.REPLACEMENT_FRAGMENT_SPECIFICATION;
 	}
 
 } //ReplacementFragmentSpecificationImpl

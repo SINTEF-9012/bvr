@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ObjectExistence;
 import cvl.ObjectHandle;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -54,7 +54,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OBJECT_EXISTENCE;
+		return CvlPackage.Literals.OBJECT_EXISTENCE;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 		ObjectHandle oldOptionalObject = optionalObject;
 		optionalObject = newOptionalObject;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, oldOptionalObject, newOptionalObject);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, oldOptionalObject, newOptionalObject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -90,14 +90,14 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 		if (newOptionalObject != optionalObject) {
 			NotificationChain msgs = null;
 			if (optionalObject != null)
-				msgs = ((InternalEObject)optionalObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, null, msgs);
+				msgs = ((InternalEObject)optionalObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, null, msgs);
 			if (newOptionalObject != null)
-				msgs = ((InternalEObject)newOptionalObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, null, msgs);
+				msgs = ((InternalEObject)newOptionalObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, null, msgs);
 			msgs = basicSetOptionalObject(newOptionalObject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, newOptionalObject, newOptionalObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT, newOptionalObject, newOptionalObject));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
+			case CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
 				return basicSetOptionalObject(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -122,7 +122,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
+			case CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
 				return getOptionalObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -136,7 +136,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
+			case CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
 				setOptionalObject((ObjectHandle)newValue);
 				return;
 		}
@@ -151,7 +151,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
+			case CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
 				setOptionalObject((ObjectHandle)null);
 				return;
 		}
@@ -166,7 +166,7 @@ public class ObjectExistenceImpl extends ChoiceVariationPointImpl implements Obj
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
+			case CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
 				return optionalObject != null;
 		}
 		return super.eIsSet(featureID);

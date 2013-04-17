@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getChoice()
+ * @see cvl.CvlPackage#getChoice()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface Choice extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Default Resolution</em>' attribute.
 	 * @see #setDefaultResolution(boolean)
-	 * @see cvl.cvlPackage#getChoice_DefaultResolution()
+	 * @see cvl.CvlPackage#getChoice_DefaultResolution()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface Choice extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Implied By Parent</em>' attribute.
 	 * @see #setIsImpliedByParent(boolean)
-	 * @see cvl.cvlPackage#getChoice_IsImpliedByParent()
+	 * @see cvl.CvlPackage#getChoice_IsImpliedByParent()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.IntegerLiteralExp;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -61,7 +61,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.INTEGER_LITERAL_EXP;
+		return CvlPackage.Literals.INTEGER_LITERAL_EXP;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 		int oldInteger = integer;
 		integer = newInteger;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.INTEGER_LITERAL_EXP__INTEGER, oldInteger, integer));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.INTEGER_LITERAL_EXP__INTEGER, oldInteger, integer));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.INTEGER_LITERAL_EXP__INTEGER:
+			case CvlPackage.INTEGER_LITERAL_EXP__INTEGER:
 				return getInteger();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.INTEGER_LITERAL_EXP__INTEGER:
+			case CvlPackage.INTEGER_LITERAL_EXP__INTEGER:
 				setInteger((Integer)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.INTEGER_LITERAL_EXP__INTEGER:
+			case CvlPackage.INTEGER_LITERAL_EXP__INTEGER:
 				setInteger(INTEGER_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class IntegerLiteralExpImpl extends NumericLiteralExpImpl implements Inte
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.INTEGER_LITERAL_EXP__INTEGER:
+			case CvlPackage.INTEGER_LITERAL_EXP__INTEGER:
 				return integer != INTEGER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

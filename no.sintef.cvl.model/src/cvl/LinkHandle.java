@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getLinkHandle()
+ * @see cvl.CvlPackage#getLinkHandle()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface LinkHandle extends BaseModelHandle {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>MOF Ref</em>' attribute.
 	 * @see #setMOFRef(String)
-	 * @see cvl.cvlPackage#getLinkHandle_MOFRef()
+	 * @see cvl.CvlPackage#getLinkHandle_MOFRef()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getLinkExistence()
+ * @see cvl.CvlPackage#getLinkExistence()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface LinkExistence extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Optional Link</em>' containment reference.
 	 * @see #setOptionalLink(LinkHandle)
-	 * @see cvl.cvlPackage#getLinkExistence_OptionalLink()
+	 * @see cvl.CvlPackage#getLinkExistence_OptionalLink()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

@@ -21,7 +21,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVariable()
+ * @see cvl.CvlPackage#getVariable()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface Variable extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement Fragment Typesubsetstype</em>' reference.
 	 * @see #setReplacementFragmentTypesubsetstype(ReplacementFragmentType)
-	 * @see cvl.cvlPackage#getVariable_ReplacementFragmentTypesubsetstype()
+	 * @see cvl.CvlPackage#getVariable_ReplacementFragmentTypesubsetstype()
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -60,7 +60,7 @@ public interface Variable extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Defaul Value</em>' containment reference.
 	 * @see #setDefaulValue(ValueSpecification)
-	 * @see cvl.cvlPackage#getVariable_DefaulValue()
+	 * @see cvl.CvlPackage#getVariable_DefaulValue()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -85,7 +85,7 @@ public interface Variable extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Variabletype)
-	 * @see cvl.cvlPackage#getVariable_Type()
+	 * @see cvl.CvlPackage#getVariable_Type()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

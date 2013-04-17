@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getStringLiteralExp()
+ * @see cvl.CvlPackage#getStringLiteralExp()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface StringLiteralExp extends BCLExpression {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>String</em>' attribute.
 	 * @see #setString(String)
-	 * @see cvl.cvlPackage#getStringLiteralExp_String()
+	 * @see cvl.CvlPackage#getStringLiteralExp_String()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

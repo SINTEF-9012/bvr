@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getBooleanLiteralExp()
+ * @see cvl.CvlPackage#getBooleanLiteralExp()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface BooleanLiteralExp extends BCLExpression {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bool</em>' attribute.
 	 * @see #setBool(boolean)
-	 * @see cvl.cvlPackage#getBooleanLiteralExp_Bool()
+	 * @see cvl.CvlPackage#getBooleanLiteralExp_Bool()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

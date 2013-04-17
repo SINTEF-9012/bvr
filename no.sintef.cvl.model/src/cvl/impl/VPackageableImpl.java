@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VPackageable;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -33,7 +33,7 @@ public abstract class VPackageableImpl extends NamedElementImpl implements VPack
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VPACKAGEABLE;
+		return CvlPackage.Literals.VPACKAGEABLE;
 	}
 
 } //VPackageableImpl

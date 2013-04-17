@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getPrimitveType()
+ * @see cvl.CvlPackage#getPrimitveType()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface PrimitveType extends Variabletype {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see cvl.PrimitiveTypeEnum
 	 * @see #setType(PrimitiveTypeEnum)
-	 * @see cvl.cvlPackage#getPrimitveType_Type()
+	 * @see cvl.CvlPackage#getPrimitveType_Type()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

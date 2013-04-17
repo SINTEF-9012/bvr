@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getReplacementFragmentType()
+ * @see cvl.CvlPackage#getReplacementFragmentType()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ReplacementFragmentType extends Variabletype {
 	 * The boundary elements captures all the relations from and to the fragment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement Boundary Element</em>' containment reference list.
-	 * @see cvl.cvlPackage#getReplacementFragmentType_ReplacementBoundaryElement()
+	 * @see cvl.CvlPackage#getReplacementFragmentType_ReplacementBoundaryElement()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -50,7 +50,7 @@ public interface ReplacementFragmentType extends Variabletype {
 	 * Set of placements contained by the replacement fragment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement Fragment</em>' containment reference list.
-	 * @see cvl.cvlPackage#getReplacementFragmentType_PlacementFragment()
+	 * @see cvl.CvlPackage#getReplacementFragmentType_PlacementFragment()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

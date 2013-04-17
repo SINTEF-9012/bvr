@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVInterface()
+ * @see cvl.CvlPackage#getVInterface()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface VInterface extends VPackageable {
 	 * <p>The members of the interface.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVInterface_Member()
+	 * @see cvl.CvlPackage#getVInterface_Member()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -50,7 +50,7 @@ public interface VInterface extends VPackageable {
 	 * Constraints&nbsp;over&nbsp;the&nbsp;VSPecs&nbsp;over&nbsp;this&nbsp;VInterface
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVInterface_OwnedConstraint()
+	 * @see cvl.CvlPackage#getVInterface_OwnedConstraint()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

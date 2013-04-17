@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getObjectSpecification()
+ * @see cvl.CvlPackage#getObjectSpecification()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface ObjectSpecification extends ValueSpecification {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Object</em>' reference.
 	 * @see #setObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getObjectSpecification_Object()
+	 * @see cvl.CvlPackage#getObjectSpecification_Object()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

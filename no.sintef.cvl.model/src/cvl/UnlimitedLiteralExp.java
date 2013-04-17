@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getUnlimitedLiteralExp()
+ * @see cvl.CvlPackage#getUnlimitedLiteralExp()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface UnlimitedLiteralExp extends NumericLiteralExp {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Unlimited</em>' attribute.
 	 * @see #setUnlimited(int)
-	 * @see cvl.cvlPackage#getUnlimitedLiteralExp_Unlimited()
+	 * @see cvl.CvlPackage#getUnlimitedLiteralExp_Unlimited()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

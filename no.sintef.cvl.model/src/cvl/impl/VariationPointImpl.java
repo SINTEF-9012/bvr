@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VSpec;
 import cvl.VariationPoint;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VARIATION_POINT;
+		return CvlPackage.Literals.VARIATION_POINT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 			bindingVSpec = (VSpec)eResolveProxy(oldBindingVSpec);
 			if (bindingVSpec != oldBindingVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VARIATION_POINT__BINDING_VSPEC, oldBindingVSpec, bindingVSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VARIATION_POINT__BINDING_VSPEC, oldBindingVSpec, bindingVSpec));
 			}
 		}
 		return bindingVSpec;
@@ -91,7 +91,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 		VSpec oldBindingVSpec = bindingVSpec;
 		bindingVSpec = newBindingVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIATION_POINT__BINDING_VSPEC, oldBindingVSpec, bindingVSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIATION_POINT__BINDING_VSPEC, oldBindingVSpec, bindingVSpec));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VARIATION_POINT__BINDING_VSPEC:
+			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				if (resolve) return getBindingVSpec();
 				return basicGetBindingVSpec();
 		}
@@ -117,7 +117,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VARIATION_POINT__BINDING_VSPEC:
+			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				setBindingVSpec((VSpec)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIATION_POINT__BINDING_VSPEC:
+			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				setBindingVSpec((VSpec)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIATION_POINT__BINDING_VSPEC:
+			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				return bindingVSpec != null;
 		}
 		return super.eIsSet(featureID);

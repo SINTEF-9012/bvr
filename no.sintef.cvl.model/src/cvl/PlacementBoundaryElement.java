@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getPlacementBoundaryElement()
+ * @see cvl.CvlPackage#getPlacementBoundaryElement()
  * @model abstract="true"
  * @generated
  */

@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ReplacementBoundaryElement;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -35,7 +35,7 @@ public abstract class ReplacementBoundaryElementImpl extends EObjectImpl impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.REPLACEMENT_BOUNDARY_ELEMENT;
+		return CvlPackage.Literals.REPLACEMENT_BOUNDARY_ELEMENT;
 	}
 
 } //ReplacementBoundaryElementImpl

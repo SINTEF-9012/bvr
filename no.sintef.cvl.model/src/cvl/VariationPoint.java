@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVariationPoint()
+ * @see cvl.CvlPackage#getVariationPoint()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface VariationPoint extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Binding VSpec</em>' reference.
 	 * @see #setBindingVSpec(VSpec)
-	 * @see cvl.cvlPackage#getVariationPoint_BindingVSpec()
+	 * @see cvl.CvlPackage#getVariationPoint_BindingVSpec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

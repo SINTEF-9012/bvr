@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.LinkHandle;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -61,7 +61,7 @@ public class LinkHandleImpl extends BaseModelHandleImpl implements LinkHandle {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.LINK_HANDLE;
+		return CvlPackage.Literals.LINK_HANDLE;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class LinkHandleImpl extends BaseModelHandleImpl implements LinkHandle {
 		String oldMOFRef = mofRef;
 		mofRef = newMOFRef;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_HANDLE__MOF_REF, oldMOFRef, mofRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_HANDLE__MOF_REF, oldMOFRef, mofRef));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class LinkHandleImpl extends BaseModelHandleImpl implements LinkHandle {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.LINK_HANDLE__MOF_REF:
+			case CvlPackage.LINK_HANDLE__MOF_REF:
 				return getMOFRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class LinkHandleImpl extends BaseModelHandleImpl implements LinkHandle {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.LINK_HANDLE__MOF_REF:
+			case CvlPackage.LINK_HANDLE__MOF_REF:
 				setMOFRef((String)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class LinkHandleImpl extends BaseModelHandleImpl implements LinkHandle {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.LINK_HANDLE__MOF_REF:
+			case CvlPackage.LINK_HANDLE__MOF_REF:
 				setMOFRef(MOF_REF_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class LinkHandleImpl extends BaseModelHandleImpl implements LinkHandle {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.LINK_HANDLE__MOF_REF:
+			case CvlPackage.LINK_HANDLE__MOF_REF:
 				return MOF_REF_EDEFAULT == null ? mofRef != null : !MOF_REF_EDEFAULT.equals(mofRef);
 		}
 		return super.eIsSet(featureID);
