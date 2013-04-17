@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.CompositeVariationPoint;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class CompositeVariationPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CompositeVariationPoint_bindingCVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CompositeVariationPoint_bindingCVSpec_feature", "_UI_CompositeVariationPoint_type"),
-				 cvlPackage.Literals.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC,
+				 CvlPackage.Literals.COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC,
 				 true,
 				 false,
 				 true,

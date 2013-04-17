@@ -3,7 +3,7 @@
 package cvl.provider;
 
 
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -55,6 +55,7 @@ public class ToReplacementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addInsideBoundaryElementPropertyDescriptor(object);
+			addOutsideBoundaryElementPropertyDescriptor(object);
 			addToPlacementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -73,7 +74,29 @@ public class ToReplacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToReplacement_insideBoundaryElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToReplacement_insideBoundaryElement_feature", "_UI_ToReplacement_type"),
-				 cvlPackage.Literals.TO_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT,
+				 CvlPackage.Literals.TO_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Outside Boundary Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOutsideBoundaryElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ToReplacement_outsideBoundaryElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ToReplacement_outsideBoundaryElement_feature", "_UI_ToReplacement_type"),
+				 CvlPackage.Literals.TO_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -95,7 +118,7 @@ public class ToReplacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToReplacement_toPlacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToReplacement_toPlacement_feature", "_UI_ToReplacement_type"),
-				 cvlPackage.Literals.TO_REPLACEMENT__TO_PLACEMENT,
+				 CvlPackage.Literals.TO_REPLACEMENT__TO_PLACEMENT,
 				 true,
 				 false,
 				 true,

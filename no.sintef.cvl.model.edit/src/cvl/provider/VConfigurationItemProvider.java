@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VConfiguration;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -79,7 +79,7 @@ public class VConfigurationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VConfiguration_isPartial_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VConfiguration_isPartial_feature", "_UI_VConfiguration_type"),
-				 cvlPackage.Literals.VCONFIGURATION__IS_PARTIAL,
+				 CvlPackage.Literals.VCONFIGURATION__IS_PARTIAL,
 				 true,
 				 false,
 				 false,
@@ -101,7 +101,7 @@ public class VConfigurationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VConfiguration_resolvedCVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VConfiguration_resolvedCVSpec_feature", "_UI_VConfiguration_type"),
-				 cvlPackage.Literals.VCONFIGURATION__RESOLVED_CV_SPEC,
+				 CvlPackage.Literals.VCONFIGURATION__RESOLVED_CV_SPEC,
 				 true,
 				 false,
 				 true,
@@ -122,7 +122,7 @@ public class VConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VCONFIGURATION__MEMBER);
+			childrenFeatures.add(CvlPackage.Literals.VCONFIGURATION__MEMBER);
 		}
 		return childrenFeatures;
 	}
@@ -177,10 +177,10 @@ public class VConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VConfiguration.class)) {
-			case cvlPackage.VCONFIGURATION__IS_PARTIAL:
+			case CvlPackage.VCONFIGURATION__IS_PARTIAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.VCONFIGURATION__MEMBER:
+			case CvlPackage.VCONFIGURATION__MEMBER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -200,23 +200,23 @@ public class VConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VCONFIGURATION__MEMBER,
-				 cvlFactory.eINSTANCE.createChoiceResolutuion()));
+				(CvlPackage.Literals.VCONFIGURATION__MEMBER,
+				 CvlFactory.eINSTANCE.createChoiceResolutuion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VCONFIGURATION__MEMBER,
-				 cvlFactory.eINSTANCE.createVInstance()));
+				(CvlPackage.Literals.VCONFIGURATION__MEMBER,
+				 CvlFactory.eINSTANCE.createVInstance()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VCONFIGURATION__MEMBER,
-				 cvlFactory.eINSTANCE.createVariableValueAssignment()));
+				(CvlPackage.Literals.VCONFIGURATION__MEMBER,
+				 CvlFactory.eINSTANCE.createVariableValueAssignment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VCONFIGURATION__MEMBER,
-				 cvlFactory.eINSTANCE.createVConfiguration()));
+				(CvlPackage.Literals.VCONFIGURATION__MEMBER,
+				 CvlFactory.eINSTANCE.createVConfiguration()));
 	}
 
 	/**
@@ -231,8 +231,8 @@ public class VConfigurationItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == cvlPackage.Literals.VSPEC_RESOLUTION__CHILD ||
-			childFeature == cvlPackage.Literals.VCONFIGURATION__MEMBER;
+			childFeature == CvlPackage.Literals.VSPEC_RESOLUTION__CHILD ||
+			childFeature == CvlPackage.Literals.VCONFIGURATION__MEMBER;
 
 		if (qualify) {
 			return getString

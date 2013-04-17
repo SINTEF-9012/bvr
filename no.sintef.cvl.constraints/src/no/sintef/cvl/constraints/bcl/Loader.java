@@ -19,7 +19,7 @@ import cvl.ConfigurableUnit;
 import cvl.MultiplicityInterval;
 import cvl.VClassifier;
 import cvl.Variable;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 public class Loader {
 	public static void main(String [] args) throws FileNotFoundException, IOException{
@@ -32,7 +32,7 @@ public class Loader {
 		CVLModel cm = new CVLModel();
 		ConfigurableUnit cu = buildExampleCVL(cm);
 		
-		Variable minSpeed = cvlFactory.eINSTANCE.createVariable();
+		Variable minSpeed = CvlFactory.eINSTANCE.createVariable();
 		//Variabletype minSpeedType = cvlFactory.eINSTANCE.createVariabletype();
 		minSpeed.setName("minSpeed");
 		//minSpeed.setType(minSpeedType);
@@ -40,7 +40,7 @@ public class Loader {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, true);
 		c.getExpression().add(e);
@@ -53,35 +53,35 @@ public class Loader {
 	private static ConfigurableUnit buildExampleCVL(CVLModel cm) {
 		ConfigurableUnit cu = cm.getCU();
 		
-		Choice printer = cvlFactory.eINSTANCE.createChoice();
+		Choice printer = CvlFactory.eINSTANCE.createChoice();
 		printer.setName("printer");
 		
-		Choice fax = cvlFactory.eINSTANCE.createChoice();
+		Choice fax = CvlFactory.eINSTANCE.createChoice();
 		fax.setName("fax");
 		
-		Choice copier = cvlFactory.eINSTANCE.createChoice();
+		Choice copier = CvlFactory.eINSTANCE.createChoice();
 		copier.setName("copier");
 		cu.getOwnedVSpec().add(copier);
 		
-		Choice scan = cvlFactory.eINSTANCE.createChoice();
+		Choice scan = CvlFactory.eINSTANCE.createChoice();
 		scan.setName("scan");
 		cu.getOwnedVSpec().add(scan);
 		
-		Choice HighSpeed = cvlFactory.eINSTANCE.createChoice();
+		Choice HighSpeed = CvlFactory.eINSTANCE.createChoice();
 		HighSpeed.setName("HighSpeed");
 		cu.getOwnedVSpec().add(HighSpeed);
 		
-		Choice Speed = cvlFactory.eINSTANCE.createChoice();
+		Choice Speed = CvlFactory.eINSTANCE.createChoice();
 		Speed.setName("Speed");
 		cu.getOwnedVSpec().add(Speed);
 		
-		Choice threshold = cvlFactory.eINSTANCE.createChoice();
+		Choice threshold = CvlFactory.eINSTANCE.createChoice();
 		threshold.setName("threshold");
 		cu.getOwnedVSpec().add(threshold);
 		
-		VClassifier PrinterPool = cvlFactory.eINSTANCE.createVClassifier();
+		VClassifier PrinterPool = CvlFactory.eINSTANCE.createVClassifier();
 		PrinterPool.setName("PrinterPool");
-		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(0);
 		mi.setUpper(-1);
 		PrinterPool.setInstanceMultiplicity(mi);

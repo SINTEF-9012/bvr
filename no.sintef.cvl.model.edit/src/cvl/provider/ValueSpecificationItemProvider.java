@@ -3,7 +3,7 @@
 package cvl.provider;
 
 
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public class ValueSpecificationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ValueSpecification_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ValueSpecification_type_feature", "_UI_ValueSpecification_type"),
-				 cvlPackage.Literals.VALUE_SPECIFICATION__TYPE,
+				 CvlPackage.Literals.VALUE_SPECIFICATION__TYPE,
 				 true,
 				 false,
 				 true,

@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.IntegerLiteralExp;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public class IntegerLiteralExpItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IntegerLiteralExp_integer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_IntegerLiteralExp_integer_feature", "_UI_IntegerLiteralExp_type"),
-				 cvlPackage.Literals.INTEGER_LITERAL_EXP__INTEGER,
+				 CvlPackage.Literals.INTEGER_LITERAL_EXP__INTEGER,
 				 true,
 				 false,
 				 false,
@@ -119,7 +119,7 @@ public class IntegerLiteralExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(IntegerLiteralExp.class)) {
-			case cvlPackage.INTEGER_LITERAL_EXP__INTEGER:
+			case CvlPackage.INTEGER_LITERAL_EXP__INTEGER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

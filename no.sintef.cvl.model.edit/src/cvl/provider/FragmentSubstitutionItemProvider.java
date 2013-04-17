@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.FragmentSubstitution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -81,7 +81,7 @@ public class FragmentSubstitutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RepeatableVariationPoint_bindingClassifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RepeatableVariationPoint_bindingClassifier_feature", "_UI_RepeatableVariationPoint_type"),
-				 cvlPackage.Literals.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER,
+				 CvlPackage.Literals.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER,
 				 true,
 				 false,
 				 true,
@@ -103,7 +103,7 @@ public class FragmentSubstitutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FragmentSubstitution_placement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FragmentSubstitution_placement_feature", "_UI_FragmentSubstitution_type"),
-				 cvlPackage.Literals.FRAGMENT_SUBSTITUTION__PLACEMENT,
+				 CvlPackage.Literals.FRAGMENT_SUBSTITUTION__PLACEMENT,
 				 true,
 				 false,
 				 true,
@@ -125,7 +125,7 @@ public class FragmentSubstitutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FragmentSubstitution_multi_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FragmentSubstitution_multi_feature", "_UI_FragmentSubstitution_type"),
-				 cvlPackage.Literals.FRAGMENT_SUBSTITUTION__MULTI,
+				 CvlPackage.Literals.FRAGMENT_SUBSTITUTION__MULTI,
 				 true,
 				 false,
 				 false,
@@ -147,7 +147,7 @@ public class FragmentSubstitutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FragmentSubstitution_replacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FragmentSubstitution_replacement_feature", "_UI_FragmentSubstitution_type"),
-				 cvlPackage.Literals.FRAGMENT_SUBSTITUTION__REPLACEMENT,
+				 CvlPackage.Literals.FRAGMENT_SUBSTITUTION__REPLACEMENT,
 				 true,
 				 false,
 				 true,
@@ -168,7 +168,8 @@ public class FragmentSubstitutionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING);
+			childrenFeatures.add(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING);
+			childrenFeatures.add(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -223,10 +224,11 @@ public class FragmentSubstitutionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FragmentSubstitution.class)) {
-			case cvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -246,13 +248,18 @@ public class FragmentSubstitutionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING,
-				 cvlFactory.eINSTANCE.createToBinding()));
+				(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING,
+				 CvlFactory.eINSTANCE.createToBinding()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING,
-				 cvlFactory.eINSTANCE.createFromBinding()));
+				(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING,
+				 CvlFactory.eINSTANCE.createFromBinding()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 }

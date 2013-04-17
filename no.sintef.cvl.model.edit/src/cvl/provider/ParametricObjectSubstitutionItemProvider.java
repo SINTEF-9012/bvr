@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.ParametricObjectSubstitution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class ParametricObjectSubstitutionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class ParametricObjectSubstitutionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ParametricObjectSubstitution.class)) {
-			case cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +149,8 @@ public class ParametricObjectSubstitutionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 }

@@ -24,7 +24,7 @@ import org.junit.Test;
 import cvl.BCLConstraint;
 import cvl.BCLExpression;
 import cvl.ConfigurableUnit;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 public class testBCL {
 
@@ -84,7 +84,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -108,7 +108,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -132,7 +132,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -156,7 +156,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -180,7 +180,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -204,7 +204,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -228,7 +228,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);
@@ -252,7 +252,7 @@ public class testBCL {
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
-		BCLConstraint c = cvlFactory.eINSTANCE.createBCLConstraint();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
 		
 		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
 		c.getExpression().add(e);

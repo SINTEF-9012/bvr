@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.VariationPoint;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class VariationPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VariationPoint_bindingVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VariationPoint_bindingVSpec_feature", "_UI_VariationPoint_type"),
-				 cvlPackage.Literals.VARIATION_POINT__BINDING_VSPEC,
+				 CvlPackage.Literals.VARIATION_POINT__BINDING_VSPEC,
 				 true,
 				 false,
 				 true,

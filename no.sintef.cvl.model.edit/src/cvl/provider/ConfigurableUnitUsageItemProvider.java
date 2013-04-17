@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.ConfigurableUnitUsage;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -80,7 +80,7 @@ public class ConfigurableUnitUsageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ConfigurableUnitUsage_usedUnit_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurableUnitUsage_usedUnit_feature", "_UI_ConfigurableUnitUsage_type"),
-				 cvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__USED_UNIT,
+				 CvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__USED_UNIT,
 				 true,
 				 false,
 				 true,
@@ -102,7 +102,7 @@ public class ConfigurableUnitUsageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ConfigurableUnitUsage_linkEndIdentifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurableUnitUsage_linkEndIdentifier_feature", "_UI_ConfigurableUnitUsage_type"),
-				 cvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER,
+				 CvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -124,7 +124,7 @@ public class ConfigurableUnitUsageItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ConfigurableUnitUsage_unitUsageInterface_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurableUnitUsage_unitUsageInterface_feature", "_UI_ConfigurableUnitUsage_type"),
-				 cvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE,
+				 CvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE,
 				 true,
 				 false,
 				 true,
@@ -145,7 +145,7 @@ public class ConfigurableUnitUsageItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE);
 		}
 		return childrenFeatures;
 	}
@@ -200,10 +200,10 @@ public class ConfigurableUnitUsageItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConfigurableUnitUsage.class)) {
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -223,8 +223,8 @@ public class ConfigurableUnitUsageItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE,
-				 cvlFactory.eINSTANCE.createLinkHandle()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE,
+				 CvlFactory.eINSTANCE.createLinkHandle()));
 	}
 
 }

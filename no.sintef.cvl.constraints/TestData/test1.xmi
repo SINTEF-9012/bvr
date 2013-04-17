@@ -27,7 +27,9 @@
           name="EmergencyPower">
         <child
             xsi:type="cvl:Variable"
-            name="threshold"/>
+            name="threshold"
+            resolutionTime=""
+            type="//@ownedVariabletype.0"/>
       </child>
     </child>
     <child xsi:type="cvl:Choice"
@@ -35,4 +37,6 @@
     <child xsi:type="cvl:Choice"
         name="scan"/>
   </ownedVSpec>
+  <ownedVariabletype
+      name="Int"/>
 </cvl:ConfigurableUnit>

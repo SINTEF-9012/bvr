@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VSpec;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class VSpecItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VSpec_resolutionTime_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_resolutionTime_feature", "_UI_VSpec_type"),
-				 cvlPackage.Literals.VSPEC__RESOLUTION_TIME,
+				 CvlPackage.Literals.VSPEC__RESOLUTION_TIME,
 				 true,
 				 false,
 				 false,
@@ -99,9 +99,9 @@ public class VSpecItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VSPEC__GROUP_MULTIPLICITY);
-			childrenFeatures.add(cvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION);
-			childrenFeatures.add(cvlPackage.Literals.VSPEC__CHILD);
+			childrenFeatures.add(CvlPackage.Literals.VSPEC__GROUP_MULTIPLICITY);
+			childrenFeatures.add(CvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION);
+			childrenFeatures.add(CvlPackage.Literals.VSPEC__CHILD);
 		}
 		return childrenFeatures;
 	}
@@ -145,12 +145,12 @@ public class VSpecItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VSpec.class)) {
-			case cvlPackage.VSPEC__RESOLUTION_TIME:
+			case CvlPackage.VSPEC__RESOLUTION_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.VSPEC__GROUP_MULTIPLICITY:
-			case cvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-			case cvlPackage.VSPEC__CHILD:
+			case CvlPackage.VSPEC__GROUP_MULTIPLICITY:
+			case CvlPackage.VSPEC__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.VSPEC__CHILD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -170,48 +170,48 @@ public class VSpecItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__GROUP_MULTIPLICITY,
-				 cvlFactory.eINSTANCE.createMultiplicityInterval()));
+				(CvlPackage.Literals.VSPEC__GROUP_MULTIPLICITY,
+				 CvlFactory.eINSTANCE.createMultiplicityInterval()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createVSpecDerivation()));
+				(CvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createVSpecDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createChoiceDerivation()));
+				(CvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createChoiceDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createVariableDerivation()));
+				(CvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createVariableDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createCVSpecDerivation()));
+				(CvlPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createCVSpecDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__CHILD,
-				 cvlFactory.eINSTANCE.createChoice()));
+				(CvlPackage.Literals.VSPEC__CHILD,
+				 CvlFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__CHILD,
-				 cvlFactory.eINSTANCE.createVClassifier()));
+				(CvlPackage.Literals.VSPEC__CHILD,
+				 CvlFactory.eINSTANCE.createVClassifier()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__CHILD,
-				 cvlFactory.eINSTANCE.createVariable()));
+				(CvlPackage.Literals.VSPEC__CHILD,
+				 CvlFactory.eINSTANCE.createVariable()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC__CHILD,
-				 cvlFactory.eINSTANCE.createCVSpec()));
+				(CvlPackage.Literals.VSPEC__CHILD,
+				 CvlFactory.eINSTANCE.createCVSpec()));
 	}
 
 }

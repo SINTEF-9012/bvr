@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.SlotAssignment;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class SlotAssignmentItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SlotAssignment_slotIdentifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SlotAssignment_slotIdentifier_feature", "_UI_SlotAssignment_type"),
-				 cvlPackage.Literals.SLOT_ASSIGNMENT__SLOT_IDENTIFIER,
+				 CvlPackage.Literals.SLOT_ASSIGNMENT__SLOT_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -99,8 +99,8 @@ public class SlotAssignmentItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.SLOT_ASSIGNMENT__VALUE);
-			childrenFeatures.add(cvlPackage.Literals.SLOT_ASSIGNMENT__SLOT_OWNER);
+			childrenFeatures.add(CvlPackage.Literals.SLOT_ASSIGNMENT__VALUE);
+			childrenFeatures.add(CvlPackage.Literals.SLOT_ASSIGNMENT__SLOT_OWNER);
 		}
 		return childrenFeatures;
 	}
@@ -155,11 +155,11 @@ public class SlotAssignmentItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SlotAssignment.class)) {
-			case cvlPackage.SLOT_ASSIGNMENT__SLOT_IDENTIFIER:
+			case CvlPackage.SLOT_ASSIGNMENT__SLOT_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.SLOT_ASSIGNMENT__VALUE:
-			case cvlPackage.SLOT_ASSIGNMENT__SLOT_OWNER:
+			case CvlPackage.SLOT_ASSIGNMENT__VALUE:
+			case CvlPackage.SLOT_ASSIGNMENT__SLOT_OWNER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,23 +179,23 @@ public class SlotAssignmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.SLOT_ASSIGNMENT__VALUE,
-				 cvlFactory.eINSTANCE.createObjectSpecification()));
+				(CvlPackage.Literals.SLOT_ASSIGNMENT__VALUE,
+				 CvlFactory.eINSTANCE.createObjectSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.SLOT_ASSIGNMENT__VALUE,
-				 cvlFactory.eINSTANCE.createReplacementFragmentSpecification()));
+				(CvlPackage.Literals.SLOT_ASSIGNMENT__VALUE,
+				 CvlFactory.eINSTANCE.createReplacementFragmentSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.SLOT_ASSIGNMENT__VALUE,
-				 cvlFactory.eINSTANCE.createPrimitiveValueSpecification()));
+				(CvlPackage.Literals.SLOT_ASSIGNMENT__VALUE,
+				 CvlFactory.eINSTANCE.createPrimitiveValueSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.SLOT_ASSIGNMENT__SLOT_OWNER,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.SLOT_ASSIGNMENT__SLOT_OWNER,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 }

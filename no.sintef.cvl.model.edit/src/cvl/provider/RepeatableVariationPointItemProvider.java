@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.RepeatableVariationPoint;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class RepeatableVariationPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RepeatableVariationPoint_bindingClassifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RepeatableVariationPoint_bindingClassifier_feature", "_UI_RepeatableVariationPoint_type"),
-				 cvlPackage.Literals.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER,
+				 CvlPackage.Literals.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER,
 				 true,
 				 false,
 				 true,

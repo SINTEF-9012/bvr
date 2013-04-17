@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.OpaqueVariationPoint;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,7 +77,7 @@ public class OpaqueVariationPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_OpaqueVariationPoint_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OpaqueVariationPoint_type_feature", "_UI_OpaqueVariationPoint_type"),
-				 cvlPackage.Literals.OPAQUE_VARIATION_POINT__TYPE,
+				 CvlPackage.Literals.OPAQUE_VARIATION_POINT__TYPE,
 				 true,
 				 false,
 				 true,
@@ -98,8 +98,8 @@ public class OpaqueVariationPointItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER);
-			childrenFeatures.add(cvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER);
+			childrenFeatures.add(CvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -154,8 +154,8 @@ public class OpaqueVariationPointItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OpaqueVariationPoint.class)) {
-			case cvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
-			case cvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
+			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
+			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -175,23 +175,23 @@ public class OpaqueVariationPointItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
-				 cvlFactory.eINSTANCE.createBaseModelHandle()));
+				(CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
+				 CvlFactory.eINSTANCE.createBaseModelHandle()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
-				 cvlFactory.eINSTANCE.createLinkHandle()));
+				(CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
+				 CvlFactory.eINSTANCE.createLinkHandle()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 	/**
@@ -206,8 +206,8 @@ public class OpaqueVariationPointItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == cvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER ||
-			childFeature == cvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT;
+			childFeature == CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER ||
+			childFeature == CvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT;
 
 		if (qualify) {
 			return getString

@@ -19,7 +19,7 @@ import cvl.RealLiteralExp;
 import cvl.StringLiteralExp;
 import cvl.VSpec;
 import cvl.VSpecRef;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 class BCLBuilder{
 	
@@ -67,7 +67,7 @@ class BCLBuilder{
 				rt = (VspecContext) rt.getChild(2);
 				fcname.add(rt.getChild(0).toString());
 			}
-			VSpecRef r = cvlFactory.eINSTANCE.createVSpecRef();
+			VSpecRef r = CvlFactory.eINSTANCE.createVSpecRef();
 			VSpec prev = null, cur = null;
 			for(String s : fcname){
 				if(prev == null){
@@ -84,16 +84,16 @@ class BCLBuilder{
 		}else if(root instanceof LiteralexpContext){
 			String s = root.getChild(0).toString();
 			if(s.startsWith("\"") && s.endsWith("\"")){
-				StringLiteralExp r = cvlFactory.eINSTANCE.createStringLiteralExp();
+				StringLiteralExp r = CvlFactory.eINSTANCE.createStringLiteralExp();
 				s = s.substring(1, s.length()-1);
 				r.setString(s);
 				e = r;
 			}else if(s.contains(".")){
-				RealLiteralExp r = cvlFactory.eINSTANCE.createRealLiteralExp();
-				r.setReal(new Double(s));
+				RealLiteralExp r = CvlFactory.eINSTANCE.createRealLiteralExp();
+				r.setReal(s);
 				e = r;
 			}else{
-				IntegerLiteralExp r = cvlFactory.eINSTANCE.createIntegerLiteralExp();
+				IntegerLiteralExp r = CvlFactory.eINSTANCE.createIntegerLiteralExp();
 				r.setInteger(new Integer(s));
 				e = r;
 			}
@@ -101,7 +101,7 @@ class BCLBuilder{
 			if(verbose)
 				System.out.println(" " + s);
 		}else{
-			OperationCallExp o = cvlFactory.eINSTANCE.createOperationCallExp();
+			OperationCallExp o = CvlFactory.eINSTANCE.createOperationCallExp();
 			
 			if(verbose)
 				System.out.println();

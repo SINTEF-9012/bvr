@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.ParametricLinkEndSubstitution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class ParametricLinkEndSubstitutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ParametricLinkEndSubstitution_linkEndIdentifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ParametricLinkEndSubstitution_linkEndIdentifier_feature", "_UI_ParametricLinkEndSubstitution_type"),
-				 cvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER,
+				 CvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -99,7 +99,7 @@ public class ParametricLinkEndSubstitutionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION__LINK);
+			childrenFeatures.add(CvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION__LINK);
 		}
 		return childrenFeatures;
 	}
@@ -154,10 +154,10 @@ public class ParametricLinkEndSubstitutionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ParametricLinkEndSubstitution.class)) {
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -177,8 +177,8 @@ public class ParametricLinkEndSubstitutionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION__LINK,
-				 cvlFactory.eINSTANCE.createLinkHandle()));
+				(CvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION__LINK,
+				 CvlFactory.eINSTANCE.createLinkHandle()));
 	}
 
 }

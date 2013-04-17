@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.ToPlacement;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class ToPlacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToPlacement_toReplacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToPlacement_toReplacement_feature", "_UI_ToPlacement_type"),
-				 cvlPackage.Literals.TO_PLACEMENT__TO_REPLACEMENT,
+				 CvlPackage.Literals.TO_PLACEMENT__TO_REPLACEMENT,
 				 true,
 				 false,
 				 true,
@@ -100,7 +100,7 @@ public class ToPlacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToPlacement_propertyName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToPlacement_propertyName_feature", "_UI_ToPlacement_type"),
-				 cvlPackage.Literals.TO_PLACEMENT__PROPERTY_NAME,
+				 CvlPackage.Literals.TO_PLACEMENT__PROPERTY_NAME,
 				 true,
 				 false,
 				 false,
@@ -122,7 +122,7 @@ public class ToPlacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToPlacement_insideBoundaryElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToPlacement_insideBoundaryElement_feature", "_UI_ToPlacement_type"),
-				 cvlPackage.Literals.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT,
+				 CvlPackage.Literals.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -144,7 +144,7 @@ public class ToPlacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToPlacement_outsideBoundaryElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToPlacement_outsideBoundaryElement_feature", "_UI_ToPlacement_type"),
-				 cvlPackage.Literals.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
+				 CvlPackage.Literals.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -190,7 +190,7 @@ public class ToPlacementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ToPlacement.class)) {
-			case cvlPackage.TO_PLACEMENT__PROPERTY_NAME:
+			case CvlPackage.TO_PLACEMENT__PROPERTY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

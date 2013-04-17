@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.VInstance;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class VInstanceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VInstance_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VInstance_type_feature", "_UI_VInstance_type"),
-				 cvlPackage.Literals.VINSTANCE__TYPE,
+				 CvlPackage.Literals.VINSTANCE__TYPE,
 				 true,
 				 false,
 				 true,

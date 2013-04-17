@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.OVPSemanticSpec;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -79,7 +79,7 @@ public class OVPSemanticSpecItemProvider
 				 getResourceLocator(),
 				 getString("_UI_OVPSemanticSpec_modelTransformation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OVPSemanticSpec_modelTransformation_feature", "_UI_OVPSemanticSpec_type"),
-				 cvlPackage.Literals.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION,
+				 CvlPackage.Literals.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION,
 				 true,
 				 false,
 				 false,
@@ -101,7 +101,7 @@ public class OVPSemanticSpecItemProvider
 				 getResourceLocator(),
 				 getString("_UI_OVPSemanticSpec_transfromationLanguage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OVPSemanticSpec_transfromationLanguage_feature", "_UI_OVPSemanticSpec_type"),
-				 cvlPackage.Literals.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE,
+				 CvlPackage.Literals.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE,
 				 true,
 				 false,
 				 false,
@@ -147,8 +147,8 @@ public class OVPSemanticSpecItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OVPSemanticSpec.class)) {
-			case cvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
-			case cvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
+			case CvlPackage.OVP_SEMANTIC_SPEC__MODEL_TRANSFORMATION:
+			case CvlPackage.OVP_SEMANTIC_SPEC__TRANSFROMATION_LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

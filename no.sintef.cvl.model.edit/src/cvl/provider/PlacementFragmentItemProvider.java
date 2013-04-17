@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.PlacementFragment;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class PlacementFragmentItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT);
+			childrenFeatures.add(CvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class PlacementFragmentItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PlacementFragment.class)) {
-			case cvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,13 +149,13 @@ public class PlacementFragmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT,
-				 cvlFactory.eINSTANCE.createToPlacement()));
+				(CvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT,
+				 CvlFactory.eINSTANCE.createToPlacement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT,
-				 cvlFactory.eINSTANCE.createFromPlacement()));
+				(CvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT,
+				 CvlFactory.eINSTANCE.createFromPlacement()));
 	}
 
 }

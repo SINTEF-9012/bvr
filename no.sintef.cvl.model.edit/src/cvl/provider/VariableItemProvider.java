@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.Variable;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class VariableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Variable_replacementFragmentTypesubsetstype_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_replacementFragmentTypesubsetstype_feature", "_UI_Variable_type"),
-				 cvlPackage.Literals.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE,
+				 CvlPackage.Literals.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE,
 				 true,
 				 false,
 				 true,
@@ -100,7 +100,7 @@ public class VariableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Variable_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_type_feature", "_UI_Variable_type"),
-				 cvlPackage.Literals.VARIABLE__TYPE,
+				 CvlPackage.Literals.VARIABLE__TYPE,
 				 true,
 				 false,
 				 true,
@@ -121,7 +121,7 @@ public class VariableItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VARIABLE__DEFAUL_VALUE);
+			childrenFeatures.add(CvlPackage.Literals.VARIABLE__DEFAUL_VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -176,7 +176,7 @@ public class VariableItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Variable.class)) {
-			case cvlPackage.VARIABLE__DEFAUL_VALUE:
+			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,18 +196,18 @@ public class VariableItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE__DEFAUL_VALUE,
-				 cvlFactory.eINSTANCE.createObjectSpecification()));
+				(CvlPackage.Literals.VARIABLE__DEFAUL_VALUE,
+				 CvlFactory.eINSTANCE.createObjectSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE__DEFAUL_VALUE,
-				 cvlFactory.eINSTANCE.createReplacementFragmentSpecification()));
+				(CvlPackage.Literals.VARIABLE__DEFAUL_VALUE,
+				 CvlFactory.eINSTANCE.createReplacementFragmentSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE__DEFAUL_VALUE,
-				 cvlFactory.eINSTANCE.createPrimitiveValueSpecification()));
+				(CvlPackage.Literals.VARIABLE__DEFAUL_VALUE,
+				 CvlFactory.eINSTANCE.createPrimitiveValueSpecification()));
 	}
 
 }

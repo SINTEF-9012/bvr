@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.ConfigurableUnit;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,7 +77,7 @@ public class ConfigurableUnitItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ConfigurableUnit_unitInterface_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurableUnit_unitInterface_feature", "_UI_ConfigurableUnit_type"),
-				 cvlPackage.Literals.CONFIGURABLE_UNIT__UNIT_INTERFACE,
+				 CvlPackage.Literals.CONFIGURABLE_UNIT__UNIT_INTERFACE,
 				 true,
 				 false,
 				 true,
@@ -98,12 +98,13 @@ public class ConfigurableUnitItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION);
-			childrenFeatures.add(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION);
+			childrenFeatures.add(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE);
 		}
 		return childrenFeatures;
 	}
@@ -158,12 +159,13 @@ public class ConfigurableUnitItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConfigurableUnit.class)) {
-			case cvlPackage.CONFIGURABLE_UNIT__OWNED_VSPEC:
-			case cvlPackage.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT:
-			case cvlPackage.CONFIGURABLE_UNIT__OWNED_CONSTRAINT:
-			case cvlPackage.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT:
-			case cvlPackage.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION:
-			case cvlPackage.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.CONFIGURABLE_UNIT__OWNED_VSPEC:
+			case CvlPackage.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT:
+			case CvlPackage.CONFIGURABLE_UNIT__OWNED_CONSTRAINT:
+			case CvlPackage.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT:
+			case CvlPackage.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION:
+			case CvlPackage.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION:
+			case CvlPackage.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -183,153 +185,173 @@ public class ConfigurableUnitItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
-				 cvlFactory.eINSTANCE.createChoice()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
+				 CvlFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
-				 cvlFactory.eINSTANCE.createVClassifier()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
+				 CvlFactory.eINSTANCE.createVClassifier()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
-				 cvlFactory.eINSTANCE.createVariable()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
+				 CvlFactory.eINSTANCE.createVariable()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
-				 cvlFactory.eINSTANCE.createCVSpec()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC,
+				 CvlFactory.eINSTANCE.createCVSpec()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createFragmentSubstitution()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createFragmentSubstitution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createPlacementFragment()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createPlacementFragment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createObjectSubstitution()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createObjectSubstitution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createSlotAssignment()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createSlotAssignment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createObjectExistence()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createObjectExistence()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createLinkEndSubstitution()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createLinkEndSubstitution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createConfigurableUnit()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createConfigurableUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createLinkExistence()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createLinkExistence()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createOpaqueVariationPoint()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createOpaqueVariationPoint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createSlotValueExistence()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createSlotValueExistence()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createParametricLinkEndSubstitution()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createParametricLinkEndSubstitution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createParametricObjectSubstitution()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createParametricObjectSubstitution()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createParametricSlotAssignmet()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createParametricSlotAssignmet()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 cvlFactory.eINSTANCE.createConfigurableUnitUsage()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createConfigurableUnitUsage()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createConstraint()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createOpaqueConstraint()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createOpaqueConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createBCLConstraint()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createBCLConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
-				 cvlFactory.eINSTANCE.createChoiceResolutuion()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
+				 CvlFactory.eINSTANCE.createChoiceResolutuion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
-				 cvlFactory.eINSTANCE.createVInstance()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
+				 CvlFactory.eINSTANCE.createVInstance()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
-				 cvlFactory.eINSTANCE.createVariableValueAssignment()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
+				 CvlFactory.eINSTANCE.createVariableValueAssignment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
-				 cvlFactory.eINSTANCE.createVConfiguration()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION,
+				 CvlFactory.eINSTANCE.createVConfiguration()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createVSpecDerivation()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createVSpecDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createChoiceDerivation()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createChoiceDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createVariableDerivation()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createVariableDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
-				 cvlFactory.eINSTANCE.createCVSpecDerivation()));
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION,
+				 CvlFactory.eINSTANCE.createCVSpecDerivation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
+				 CvlFactory.eINSTANCE.createVariabletype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
+				 CvlFactory.eINSTANCE.createReplacementFragmentType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
+				 CvlFactory.eINSTANCE.createPrimitveType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
+				 CvlFactory.eINSTANCE.createObjectType()));
 	}
 
 }

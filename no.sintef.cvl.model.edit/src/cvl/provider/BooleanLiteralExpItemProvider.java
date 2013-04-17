@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.BooleanLiteralExp;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public class BooleanLiteralExpItemProvider
 				 getResourceLocator(),
 				 getString("_UI_BooleanLiteralExp_bool_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_BooleanLiteralExp_bool_feature", "_UI_BooleanLiteralExp_type"),
-				 cvlPackage.Literals.BOOLEAN_LITERAL_EXP__BOOL,
+				 CvlPackage.Literals.BOOLEAN_LITERAL_EXP__BOOL,
 				 true,
 				 false,
 				 false,
@@ -119,7 +119,7 @@ public class BooleanLiteralExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BooleanLiteralExp.class)) {
-			case cvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
+			case CvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

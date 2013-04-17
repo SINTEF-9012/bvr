@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.NamedElement;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class NamedElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NamedElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
-				 cvlPackage.Literals.NAMED_ELEMENT__NAME,
+				 CvlPackage.Literals.NAMED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
@@ -113,7 +113,7 @@ public class NamedElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NamedElement.class)) {
-			case cvlPackage.NAMED_ELEMENT__NAME:
+			case CvlPackage.NAMED_ELEMENT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

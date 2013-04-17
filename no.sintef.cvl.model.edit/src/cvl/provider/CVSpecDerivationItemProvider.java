@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.CVSpecDerivation;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class CVSpecDerivationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CVSpecDerivation_derivingCVspec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CVSpecDerivation_derivingCVspec_feature", "_UI_CVSpecDerivation_type"),
-				 cvlPackage.Literals.CV_SPEC_DERIVATION__DERIVING_CVSPEC,
+				 CvlPackage.Literals.CV_SPEC_DERIVATION__DERIVING_CVSPEC,
 				 true,
 				 false,
 				 true,
@@ -100,7 +100,7 @@ public class CVSpecDerivationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CVSpecDerivation_derivedCVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CVSpecDerivation_derivedCVSpec_feature", "_UI_CVSpecDerivation_type"),
-				 cvlPackage.Literals.CV_SPEC_DERIVATION__DERIVED_CV_SPEC,
+				 CvlPackage.Literals.CV_SPEC_DERIVATION__DERIVED_CV_SPEC,
 				 true,
 				 false,
 				 true,
@@ -121,7 +121,7 @@ public class CVSpecDerivationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION);
+			childrenFeatures.add(CvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION);
 		}
 		return childrenFeatures;
 	}
@@ -176,7 +176,7 @@ public class CVSpecDerivationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CVSpecDerivation.class)) {
-			case cvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
+			case CvlPackage.CV_SPEC_DERIVATION__MEMBER_DERIVATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -196,23 +196,23 @@ public class CVSpecDerivationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
-				 cvlFactory.eINSTANCE.createVSpecDerivation()));
+				(CvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
+				 CvlFactory.eINSTANCE.createVSpecDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
-				 cvlFactory.eINSTANCE.createChoiceDerivation()));
+				(CvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
+				 CvlFactory.eINSTANCE.createChoiceDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
-				 cvlFactory.eINSTANCE.createVariableDerivation()));
+				(CvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
+				 CvlFactory.eINSTANCE.createVariableDerivation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
-				 cvlFactory.eINSTANCE.createCVSpecDerivation()));
+				(CvlPackage.Literals.CV_SPEC_DERIVATION__MEMBER_DERIVATION,
+				 CvlFactory.eINSTANCE.createCVSpecDerivation()));
 	}
 
 }

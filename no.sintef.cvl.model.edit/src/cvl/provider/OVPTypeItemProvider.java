@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.OVPType;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class OVPTypeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.OVP_TYPE__SPEC);
+			childrenFeatures.add(CvlPackage.Literals.OVP_TYPE__SPEC);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class OVPTypeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OVPType.class)) {
-			case cvlPackage.OVP_TYPE__SPEC:
+			case CvlPackage.OVP_TYPE__SPEC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +149,8 @@ public class OVPTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OVP_TYPE__SPEC,
-				 cvlFactory.eINSTANCE.createOVPSemanticSpec()));
+				(CvlPackage.Literals.OVP_TYPE__SPEC,
+				 CvlFactory.eINSTANCE.createOVPSemanticSpec()));
 	}
 
 }

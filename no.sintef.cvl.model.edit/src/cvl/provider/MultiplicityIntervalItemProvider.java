@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.MultiplicityInterval;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -79,7 +79,7 @@ public class MultiplicityIntervalItemProvider
 				 getResourceLocator(),
 				 getString("_UI_MultiplicityInterval_upper_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MultiplicityInterval_upper_feature", "_UI_MultiplicityInterval_type"),
-				 cvlPackage.Literals.MULTIPLICITY_INTERVAL__UPPER,
+				 CvlPackage.Literals.MULTIPLICITY_INTERVAL__UPPER,
 				 true,
 				 false,
 				 false,
@@ -101,7 +101,7 @@ public class MultiplicityIntervalItemProvider
 				 getResourceLocator(),
 				 getString("_UI_MultiplicityInterval_lower_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MultiplicityInterval_lower_feature", "_UI_MultiplicityInterval_type"),
-				 cvlPackage.Literals.MULTIPLICITY_INTERVAL__LOWER,
+				 CvlPackage.Literals.MULTIPLICITY_INTERVAL__LOWER,
 				 true,
 				 false,
 				 false,
@@ -145,8 +145,8 @@ public class MultiplicityIntervalItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultiplicityInterval.class)) {
-			case cvlPackage.MULTIPLICITY_INTERVAL__UPPER:
-			case cvlPackage.MULTIPLICITY_INTERVAL__LOWER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__UPPER:
+			case CvlPackage.MULTIPLICITY_INTERVAL__LOWER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
