@@ -8,7 +8,7 @@ import cvl.RealLiteralExp;
 import cvl.StringLiteralExp;
 import cvl.VSpecRef;
 
-class BCLPrettyPrinter{
+public class BCLPrettyPrinter{
 	public String prettyPrint(BCLExpression e, ConfigurableUnit cu) {
 		return prettyPrint(e, cu, 0);
 	}
@@ -42,10 +42,23 @@ class BCLPrettyPrinter{
 			if(o.getOperation() == cvl.Operation.getByName("arithPlus")) opSym = "+";
 			if(o.getOperation() == cvl.Operation.getByName("arithMinus")) opSym = "-";
 			
-			String a1 = prettyPrint(o.getArgument().get(0), cu, depth+1);
-			String a2 = prettyPrint(o.getArgument().get(1), cu, depth+1);
+			if(o.getOperation() == cvl.Operation.getByName("logNot")) opSym = "not";
+			if(o.getOperation() == cvl.Operation.getByName("isDefined")) opSym = "isDefined";
+			if(o.getOperation() == cvl.Operation.getByName("isUndefined")) opSym = "isUndefined";
 			
-			String in = a1 + " " + opSym + " " + a2;
+			String in = "";
+			if(o.getArgument().size() == 1){
+				String a1 = prettyPrint(o.getArgument().get(0), cu, depth+1);
+				in = opSym + " " + a1;
+			}else if(o.getArgument().size() == 2){
+				String a1 = prettyPrint(o.getArgument().get(0), cu, depth+1);
+				String a2 = prettyPrint(o.getArgument().get(1), cu, depth+1);
+				in = a1 + " " + opSym + " " + a2;
+			}else{
+				throw new UnsupportedOperationException();
+			}
+			
+
 			if(depth != 0)
 				return "(" + in + ")";
 			else return in;

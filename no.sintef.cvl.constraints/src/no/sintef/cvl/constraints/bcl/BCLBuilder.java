@@ -1,5 +1,6 @@
 package no.sintef.cvl.constraints.bcl;
 
+import java.nio.channels.UnsupportedAddressTypeException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,24 +22,26 @@ import cvl.VSpec;
 import cvl.VSpecRef;
 import cvl.CvlFactory;
 
-class BCLBuilder{
+public class BCLBuilder{
 	
 	public BCLExpression recurse(RuleNode root, int depth, ConfigurableUnit cu, boolean verbose) {
 		String name;
 		
 		// Collapse place holder nodes
 		while(true){
-			while(root.getChildCount() == 1 &&  root.getChild(0) instanceof RuleNode)
+			while(root.getChildCount() == 1 && (root.getChild(0) instanceof RuleNode))
 				root = (RuleNode) root.getChild(0);
 			
 			// Get name
 			name = root.getClass().getSimpleName();
 			name = name.substring(0, name.length()-7);
 			
-			if(name.equals("Expterm") || name.equals("ExpLog")){
+			if(name.equals("Expterm") || name.equals("ExpLogPart")){
 				if(root.getChildCount() == 3 && root.getChild(0).toString().equals("(") && root.getChild(2).toString().equals(")"))
 					root = (RuleNode) root.getChild(1);
-				else
+				else if(root.getChildCount() == 4 && root.getChild(1).toString().equals("(") && root.getChild(3).toString().equals(")")){
+					break;
+				}else
 					break;
 			}else{
 				break;
@@ -106,29 +109,63 @@ class BCLBuilder{
 			if(verbose)
 				System.out.println();
 			
-			// Find operation
-			String opStr = root.getChild(1).getChild(0).toString();
-			// Map
-			if(opStr.equals("implies")) o.setOperation(cvl.Operation.getByName("logImplies"));
-			if(opStr.equals("and")) o.setOperation(cvl.Operation.getByName("logAnd"));
-			if(opStr.equals("or")) o.setOperation(cvl.Operation.getByName("logOr"));
-			if(opStr.equals("xor")) o.setOperation(cvl.Operation.getByName("logXor"));
-			if(opStr.equals("=")) o.setOperation(cvl.Operation.getByName("eq"));
-			if(opStr.equals("<=")) o.setOperation(cvl.Operation.getByName("lte"));
-			if(opStr.equals(">=")) o.setOperation(cvl.Operation.getByName("gte"));
-			if(opStr.equals("<")) o.setOperation(cvl.Operation.getByName("lt"));
-			if(opStr.equals(">")) o.setOperation(cvl.Operation.getByName("gt"));
-			if(opStr.equals("*")) o.setOperation(cvl.Operation.getByName("arithMult"));
-			if(opStr.equals("/")) o.setOperation(cvl.Operation.getByName("arithDev"));
-			if(opStr.equals("+")) o.setOperation(cvl.Operation.getByName("arithPlus"));
-			if(opStr.equals("-")) o.setOperation(cvl.Operation.getByName("arithMinus"));
-			
-			// Recurse
-			//System.out.println("\"" + root.getChild(0).toString()+"\"");
-			BCLExpression a1 = recurse((RuleNode) root.getChild(0), depth+1, cu, verbose);
-			o.getArgument().add(a1);
-			BCLExpression a2 = recurse((RuleNode) root.getChild(2), depth+1, cu, verbose);
-			o.getArgument().add(a2);
+			if(root.getChildCount() == 3){
+				// Find operation
+				String opStr = root.getChild(1).getChild(0).toString();
+				// Map
+				if(opStr.equals("implies")) o.setOperation(cvl.Operation.getByName("logImplies"));
+				else if(opStr.equals("iff")) o.setOperation(cvl.Operation.getByName("logIff"));
+				else if(opStr.equals("and")) o.setOperation(cvl.Operation.getByName("logAnd"));
+				else if(opStr.equals("or")) o.setOperation(cvl.Operation.getByName("logOr"));
+				else if(opStr.equals("xor")) o.setOperation(cvl.Operation.getByName("logXor"));
+				else if(opStr.equals("=")) o.setOperation(cvl.Operation.getByName("eq"));
+				else if(opStr.equals("<=")) o.setOperation(cvl.Operation.getByName("lte"));
+				else if(opStr.equals(">=")) o.setOperation(cvl.Operation.getByName("gte"));
+				else if(opStr.equals("<")) o.setOperation(cvl.Operation.getByName("lt"));
+				else if(opStr.equals(">")) o.setOperation(cvl.Operation.getByName("gt"));
+				else if(opStr.equals("*")) o.setOperation(cvl.Operation.getByName("arithMult"));
+				else if(opStr.equals("/")) o.setOperation(cvl.Operation.getByName("arithDev"));
+				else if(opStr.equals("+")) o.setOperation(cvl.Operation.getByName("arithPlus"));
+				else if(opStr.equals("-")) o.setOperation(cvl.Operation.getByName("arithMinus"));
+				else throw new UnsupportedOperationException();
+				
+				// Recurse
+				//System.out.println("\"" + root.getChild(0).toString()+"\"");
+				BCLExpression a1 = recurse((RuleNode) root.getChild(0), depth+1, cu, verbose);
+				o.getArgument().add(a1);
+				BCLExpression a2 = recurse((RuleNode) root.getChild(2), depth+1, cu, verbose);
+				o.getArgument().add(a2);
+			}else if(root.getChildCount() == 2){
+				// Find operation
+				String opStr = root.getChild(0).getChild(0).toString();
+				// Map
+				if(opStr.equals("not")) o.setOperation(cvl.Operation.getByName("logNot"));
+				else if(opStr.equals("isDefined")) o.setOperation(cvl.Operation.getByName("isDefined"));
+				else if(opStr.equals("isUndefined")) o.setOperation(cvl.Operation.getByName("isUndefined"));
+				else throw new UnsupportedOperationException();
+				
+				// Recurse
+				//System.out.println("\"" + root.getChild(0).toString()+"\"");
+				BCLExpression a1 = recurse((RuleNode) root.getChild(1), depth+1, cu, verbose);
+				o.getArgument().add(a1);
+			}else if(root.getChildCount() == 4){
+				// Find operation
+				String opStr = root.getChild(0).getChild(0).toString();
+				// Map
+				if(opStr.equals("not")) o.setOperation(cvl.Operation.getByName("logNot"));
+				else if(opStr.equals("isDefined")) o.setOperation(cvl.Operation.getByName("isDefined"));
+				else if(opStr.equals("isUndefined")) o.setOperation(cvl.Operation.getByName("isUndefined"));
+				else throw new UnsupportedOperationException();
+				
+				// Recurse
+				//System.out.println("\"" + root.getChild(0).toString()+"\"");
+				BCLExpression a1 = recurse((RuleNode) root.getChild(2), depth+1, cu, verbose);
+				o.getArgument().add(a1);
+			}else{
+				for(int i = 0; i < root.getChildCount(); i++)
+					System.out.println(root.getChild(i));
+				throw new UnsupportedOperationException();
+			}
 			
 			e = o;
 		}

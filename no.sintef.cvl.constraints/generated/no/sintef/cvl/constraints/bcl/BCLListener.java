@@ -13,6 +13,9 @@ public interface BCLListener extends ParseTreeListener {
 	void enterLiteralexp(BCLParser.LiteralexpContext ctx);
 	void exitLiteralexp(BCLParser.LiteralexpContext ctx);
 
+	void enterExpLogPart(BCLParser.ExpLogPartContext ctx);
+	void exitExpLogPart(BCLParser.ExpLogPartContext ctx);
+
 	void enterConstraint(BCLParser.ConstraintContext ctx);
 	void exitConstraint(BCLParser.ConstraintContext ctx);
 

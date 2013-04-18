@@ -6,9 +6,11 @@ constraint : ('context' vspec 'inv' ':')? expLog;
 
 // exps
 expLog : expLog opLog expRel
-	| expLog opLog expLog
+	| expLog opLog expLogPart
 	| expRel (opLog expRel)?
-	| opUnLog? '(' (expLog | expRel) ')'
+	| expLogPart;
+
+expLogPart : opUnLog? '(' (expLog | expRel) ')'
 	| (opUnLog | opDef)? vspec;
 	
 expRel : expMulDiv opRel expMulDiv;
@@ -27,7 +29,7 @@ expterm : vspec | literalexp | '(' expMulDiv ')';
 opUnLog : 'not';
 opDef : 'isDefined' | 'isUndefined';
 opUnAri : '-';
-opLog : 'and' | 'or' | 'implies' | 'xor';
+opLog : 'and' | 'or' | 'implies' | 'xor' | 'iff';
 opRel : '=' | '<=' | '>=' | '<' | '>';
 opAriMulDiv : '*' | '/';
 opAriPlusMinus : '+' | '-';

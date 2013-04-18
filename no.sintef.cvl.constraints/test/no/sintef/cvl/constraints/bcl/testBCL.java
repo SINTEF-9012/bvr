@@ -262,4 +262,100 @@ public class testBCL {
 		
 		assertEquals("printer = \"Konika Minolta\"", s);
 	}
+	
+	@Test
+	public void test10() throws FileNotFoundException, IOException{
+		CharStream input = new ANTLRInputStream(new FileInputStream("TestData/test10.bcl"));
+		BCLLexer lexer = new BCLLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		BCLParser parser = new BCLParser(tokens);
+		
+		// Build CVL
+		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		ConfigurableUnit cu = cm.getCU();
+		
+		// Build model
+		RuleNode root = parser.constraint().getRuleContext();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
+		
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		c.getExpression().add(e);
+		
+		// Pretty Print
+		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		
+		assertEquals("A or (not A)", s);
+	}
+	
+	@Test
+	public void test11() throws FileNotFoundException, IOException{
+		CharStream input = new ANTLRInputStream(new FileInputStream("TestData/test11.bcl"));
+		BCLLexer lexer = new BCLLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		BCLParser parser = new BCLParser(tokens);
+		
+		// Build CVL
+		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		ConfigurableUnit cu = cm.getCU();
+		
+		// Build model
+		RuleNode root = parser.constraint().getRuleContext();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
+		
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		c.getExpression().add(e);
+		
+		// Pretty Print
+		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		
+		assertEquals("not ((not A) or (not A))", s);
+	}
+	
+	@Test
+	public void test12() throws FileNotFoundException, IOException{
+		CharStream input = new ANTLRInputStream(new FileInputStream("TestData/test12.bcl"));
+		BCLLexer lexer = new BCLLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		BCLParser parser = new BCLParser(tokens);
+		
+		// Build CVL
+		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		ConfigurableUnit cu = cm.getCU();
+		
+		// Build model
+		RuleNode root = parser.constraint().getRuleContext();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
+		
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		c.getExpression().add(e);
+		
+		// Pretty Print
+		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		
+		assertEquals("(not A) or (isUndefined A)", s);
+	}
+	
+	@Test
+	public void test13() throws FileNotFoundException, IOException{
+		CharStream input = new ANTLRInputStream(new FileInputStream("TestData/test13.bcl"));
+		BCLLexer lexer = new BCLLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		BCLParser parser = new BCLParser(tokens);
+		
+		// Build CVL
+		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		ConfigurableUnit cu = cm.getCU();
+		
+		// Build model
+		RuleNode root = parser.constraint().getRuleContext();
+		BCLConstraint c = CvlFactory.eINSTANCE.createBCLConstraint();
+		
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		c.getExpression().add(e);
+		
+		// Pretty Print
+		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		
+		assertEquals("(A implies B) or C", s);
+	}
 }
