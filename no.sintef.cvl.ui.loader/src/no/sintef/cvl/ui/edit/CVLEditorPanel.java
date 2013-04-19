@@ -27,6 +27,7 @@ import javax.swing.JSplitPane;
 
 import no.sintef.cvl.ui.commands.SelectInstanceCommand;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
@@ -39,13 +40,15 @@ import org.jdesktop.swingx.painter.MattePainter;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
+import cvl.BCLConstraint;
 import cvl.Choice;
+import cvl.NamedElement;
 import cvl.VClassifier;
 import cvl.VSpec;
 
 public class CVLEditorPanel extends JPanel {
 
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 	
     private CVLUIKernel kernel/* = new CVLUIKernel()*/;
@@ -62,7 +65,7 @@ public class CVLEditorPanel extends JPanel {
     
     private SelectElement current;
 
-    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, VSpec> vmMap, CVLView view) {
+    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, CVLView view) {
     	this.vmMap = vmMap;
     	this.kernel = _kernel;
     	this.view = view;
@@ -116,6 +119,11 @@ public class CVLEditorPanel extends JPanel {
         	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, (Choice) vmMap.get(elem), view);
             editableModelPanel.displayProperties(prop);
         	//System.out.println("Here!");
+        }else if (p instanceof ParallelogramTitledPanel) {
+        	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
+        	BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, (BCLConstraint) vmMap.get(elem), view);
+            editableModelPanel.displayProperties(prop);
+            System.out.println("Here!");
         }
         
         this.invalidate();

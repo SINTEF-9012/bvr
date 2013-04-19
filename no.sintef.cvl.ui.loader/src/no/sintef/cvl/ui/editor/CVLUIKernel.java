@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import cvl.NamedElement;
 import cvl.VSpec;
 import no.sintef.cvl.ui.edit.CVLEditorPanel;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
@@ -15,7 +16,7 @@ public class CVLUIKernel {
 	private ConfigurableUnitPanel modelPanel;
 	private CVLView view;
 	
-	public CVLUIKernel(Map<JComponent, VSpec> vmMap, CVLView view) {
+	public CVLUIKernel(Map<JComponent, NamedElement> vmMap, CVLView view) {
 		this.view = view;
 		modelPanel = new ConfigurableUnitPanel();
 		editorPanel = new CVLEditorPanel(this, vmMap, view);

@@ -40,7 +40,7 @@ import org.jdesktop.swingx.JXTitledSeparator;
  *
  * @author ffouquet
  */
-public class ParallelogramTitledPanel extends ParallelogramPanel implements TitledElement {
+public class ParallelogramTitledPanel extends ParallelogramPanel implements TitledElement, SelectElement {
 
     private JPanel contentPanel = new JPanel();
     private JPanel layoutPanel = new JPanel();
@@ -75,5 +75,16 @@ public class ParallelogramTitledPanel extends ParallelogramPanel implements Titl
 
     public String getTitle(){
         return title.getTitle();
+    }
+    
+    private Boolean selected = false;
+
+    public void setSelected(Boolean _selected) {
+        selected = _selected;
+        active = _selected;
+    }
+
+    public Boolean isSelected() {
+        return selected;
     }
 }

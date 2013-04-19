@@ -15,6 +15,9 @@ public class BCLBaseListener implements BCLListener {
 	@Override public void enterLiteralexp(BCLParser.LiteralexpContext ctx) { }
 	@Override public void exitLiteralexp(BCLParser.LiteralexpContext ctx) { }
 
+	@Override public void enterExpLogPart(BCLParser.ExpLogPartContext ctx) { }
+	@Override public void exitExpLogPart(BCLParser.ExpLogPartContext ctx) { }
+
 	@Override public void enterConstraint(BCLParser.ConstraintContext ctx) { }
 	@Override public void exitConstraint(BCLParser.ConstraintContext ctx) { }
 

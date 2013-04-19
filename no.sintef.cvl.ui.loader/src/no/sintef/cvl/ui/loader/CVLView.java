@@ -18,6 +18,7 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
+import no.sintef.cvl.ui.commands.AddBCLConstraint;
 import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddChoiceResolutuion;
 import no.sintef.cvl.ui.commands.AddConfigurableUnit;
@@ -33,10 +34,12 @@ import no.sintef.cvl.ui.framework.elements.GroupPanel;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
+import cvl.BCLConstraint;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
 import cvl.Constraint;
+import cvl.NamedElement;
 import cvl.OpaqueConstraint;
 import cvl.VClassifier;
 import cvl.VInstance;
@@ -51,7 +54,7 @@ public class CVLView {
 	// VSpec
 	private JScrollPane vspecScrollPane;
 	private EditableModelPanel vspecEpanel;
-	private Map<JComponent, VSpec> vspecvmMap;
+	private Map<JComponent, NamedElement> vspecvmMap;
 	private List<JComponent> vspecNodes;
 	private List<Pair<JComponent, JComponent>> vspecBindings;
 	private CVLUIKernel vSpeccvluikernel;
@@ -61,7 +64,7 @@ public class CVLView {
 	private List<JScrollPane> resolutionPanes;
 	private List<EditableModelPanel> resolutionEpanels;
 	private List<CVLUIKernel> resolutionkernels;
-	private List<Map<JComponent, VSpec>> resolutionvmMaps;
+	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 
@@ -70,7 +73,7 @@ public class CVLView {
 	}
 	
 	public CVLView(CVLModel m, JTabbedPane tp) {
-		vspecvmMap = new HashMap<JComponent, VSpec>();
+		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
 		
@@ -103,7 +106,7 @@ public class CVLView {
         resolutionPanes = new ArrayList<JScrollPane>();
         resolutionEpanels = new ArrayList<EditableModelPanel>();
         resolutionkernels = new ArrayList<CVLUIKernel>();
-    	resolutionvmMaps = new ArrayList<Map<JComponent,VSpec>>();
+    	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
     	resolutionNodes = new ArrayList<List<JComponent>>();
     	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
         
@@ -172,7 +175,7 @@ public class CVLView {
 	        
 	        resolutionPanes.add(scrollPane);
 	        resolutionEpanels.add(epanel);
-	        Map<JComponent, VSpec> vmMap = new HashMap<JComponent, VSpec>();
+	        Map<JComponent, NamedElement> vmMap = new HashMap<JComponent, NamedElement>();
 	    	resolutionvmMaps.add(vmMap);
 	        List<JComponent> nodes = new ArrayList<JComponent>();
 	    	resolutionNodes.add(nodes);
@@ -198,7 +201,7 @@ public class CVLView {
 		}
 	}
 
-	private void loadCVLResolutionView(VSpecResolution v, CVLUIKernel cvluikernel, JComponent parent, ConfigurableUnit cu, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws CVLModelException {
+	private void loadCVLResolutionView(VSpecResolution v, CVLUIKernel cvluikernel, JComponent parent, ConfigurableUnit cu, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws CVLModelException {
 		JComponent nextParent = null;
 		
 		// Add view
@@ -237,6 +240,13 @@ public class CVLView {
 					new AddOpaqueConstraint().init(model, oc, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 				}
 			}
+			if(cs instanceof BCLConstraint){
+				BCLConstraint bcl = (BCLConstraint) cs;
+				if(bcl.getContext() == null){
+					JComponent comp = new AddBCLConstraint().init(model, bcl, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+					vspecvmMap.put(comp, bcl);
+				}
+			}
 		}
 	}
 
@@ -261,7 +271,15 @@ public class CVLView {
 			if(c instanceof OpaqueConstraint){
 				OpaqueConstraint oc = (OpaqueConstraint) c;
 				if(c.getContext() == v){
-					new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+					JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+					vspecvmMap.put(comp, c);
+				}
+			}
+			if(c instanceof BCLConstraint){
+				BCLConstraint bcl = (BCLConstraint) c;
+				if(bcl.getContext() == v){
+					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+					vspecvmMap.put(comp, c);
 				}
 			}
 		}
@@ -282,7 +300,7 @@ public class CVLView {
 		
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
-		vspecvmMap = new HashMap<JComponent, VSpec>();
+		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		
         // Add stuff
 		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
@@ -329,7 +347,7 @@ public class CVLView {
 	    resolutionPanes = new ArrayList<JScrollPane>();
 	    resolutionEpanels = new ArrayList<EditableModelPanel>();
 	    resolutionkernels = new ArrayList<CVLUIKernel>();
-		resolutionvmMaps = new ArrayList<Map<JComponent,VSpec>>();
+		resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
 		resolutionNodes = new ArrayList<List<JComponent>>();
 		resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
 		

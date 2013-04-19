@@ -14,11 +14,11 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
-import cvl.VSpec;
+import cvl.NamedElement;
 
 public class Main {
 	private JFrame jframe;
-	public static VSpec vSpecCut;
+	public static NamedElement vSpecCut;
 	private List<CVLView> views;
 	private List<CVLModel> models;
 

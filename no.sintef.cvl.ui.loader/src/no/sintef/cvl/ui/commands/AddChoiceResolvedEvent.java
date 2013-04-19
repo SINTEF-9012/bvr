@@ -8,11 +8,11 @@ import no.sintef.cvl.ui.loader.CVLView;
 
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
+import cvl.CvlFactory;
 import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
 import cvl.VSpecResolution;
-import cvl.cvlFactory;
 
 public class AddChoiceResolvedEvent implements ActionListener {
 	private ChoiceResolutuion cr;
@@ -29,14 +29,14 @@ public class AddChoiceResolvedEvent implements ActionListener {
 		if(target instanceof Choice){
 			Choice c = (Choice) target;
 			
-			ChoiceResolutuion ncr = cvlFactory.eINSTANCE.createChoiceResolutuion();
+			ChoiceResolutuion ncr = CvlFactory.eINSTANCE.createChoiceResolutuion();
 			ncr.setResolvedChoice(c);
 			ncr.setResolvedVSpec(c);
 			cr.getChild().add(ncr);
 		}else if(target instanceof VClassifier){
 			VClassifier v = (VClassifier) target;
 			
-			VInstance vi = cvlFactory.eINSTANCE.createVInstance();
+			VInstance vi = CvlFactory.eINSTANCE.createVInstance();
 			vi.setResolvedVSpec(v);
 			vi.setName("NewVClassifier");
 			vi.getChild().add(vi);

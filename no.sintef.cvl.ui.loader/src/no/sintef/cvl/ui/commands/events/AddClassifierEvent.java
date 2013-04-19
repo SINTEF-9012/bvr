@@ -12,17 +12,18 @@ import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.ConfigurableUnit;
 import cvl.MultiplicityInterval;
+import cvl.NamedElement;
 import cvl.VClassifier;
 import cvl.VSpec;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 
 public class AddClassifierEvent implements ActionListener {
 	private JComponent p;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 
-	public AddClassifierEvent(JComponent p, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public AddClassifierEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -31,13 +32,13 @@ public class AddClassifierEvent implements ActionListener {
 	static int x = 1;
 
 	public void actionPerformed(ActionEvent arg0) {
-		VSpec v = vmMap.get(p);
+		VSpec v = (VSpec)vmMap.get(p);
 		//System.out.println("we are here " + p.getTitle() + ", " + v);
 		
 		// Modify model
-		VClassifier c = cvlFactory.eINSTANCE.createVClassifier();
+		VClassifier c = CvlFactory.eINSTANCE.createVClassifier();
 		c.setName("Classifier"+x);
-		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
 		c.setInstanceMultiplicity(mi);

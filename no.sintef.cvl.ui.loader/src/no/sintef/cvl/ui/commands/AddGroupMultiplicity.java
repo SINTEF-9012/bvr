@@ -12,6 +12,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.MultiplicityInterval;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class AddGroupMultiplicity implements Command {
@@ -22,7 +23,7 @@ public class AddGroupMultiplicity implements Command {
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof VSpec){
 			this.rootPanel = rootPanel;
 			this.v = (VSpec) p;

@@ -11,10 +11,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
+import cvl.NamedElement;
 import cvl.VSpec;
 
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
+import no.sintef.cvl.ui.commands.events.AddConstraintEvent;
 import no.sintef.cvl.ui.commands.events.CutEvent;
 import no.sintef.cvl.ui.commands.events.PasteChildEvent;
 import no.sintef.cvl.ui.commands.events.PasteSiblingEvent;
@@ -30,12 +32,12 @@ import no.sintef.cvl.ui.loader.Pair;
 
 class ChoiceDropDownListener extends MouseAdapter {
 	private ChoicePanel cp;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -60,7 +62,7 @@ class ChoiceDropDownListener extends MouseAdapter {
 class ChoiceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
@@ -69,7 +71,9 @@ class ChoiceDropdown extends JPopupMenu {
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
     	add.add(addclassifier);
-    	add.add(new JMenuItem("constraint"));
+    	JMenuItem addConstraint = new JMenuItem("constraint");
+    	addConstraint.addActionListener(new AddConstraintEvent(cp, vmMap, nodes, bindings, view));
+    	add.add(addConstraint);
 		add(add);
 		
 		// Remove
@@ -110,8 +114,8 @@ class ChoiceDropdown extends JPopupMenu {
 		add(group);
 		
 		// Change to
-    	JMenu change = new JMenu("change to");
-    	change.add(new JMenuItem("classifier"));
+		JMenu change = new JMenu("change to");
+		change.add(new JMenuItem("classifier"));
 		add(change);
     }
 }

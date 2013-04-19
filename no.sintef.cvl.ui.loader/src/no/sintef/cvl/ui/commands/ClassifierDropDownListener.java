@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import cvl.NamedElement;
 import cvl.VSpec;
 
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
@@ -27,12 +28,12 @@ import no.sintef.cvl.ui.loader.Pair;
 
 class ClassifierDropDownListener extends MouseAdapter {
 	private VClassifierPanel cp;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	ClassifierDropDownListener(VClassifierPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	ClassifierDropDownListener(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -59,7 +60,7 @@ class ClassifierDropDownListener extends MouseAdapter {
 class ClassifierDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+    public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
@@ -91,8 +92,8 @@ class ClassifierDropdown extends JPopupMenu {
 		add(group);
 		
 		// Change to
-    	JMenu change = new JMenu("change to");
-    	change.add(new JMenuItem("classifier"));
+		JMenu change = new JMenu("change to");
+		change.add(new JMenuItem("classifier"));
 		add(change);
     }
 }

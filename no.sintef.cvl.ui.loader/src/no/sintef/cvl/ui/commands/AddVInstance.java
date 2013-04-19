@@ -11,6 +11,7 @@ import no.sintef.cvl.ui.framework.elements.GroupPanel;
 import no.sintef.cvl.ui.framework.elements.VInstancePanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
+import cvl.NamedElement;
 import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
@@ -20,12 +21,12 @@ public class AddVInstance implements Command{
 	private CVLUIKernel rootPanel;
 	private JComponent parent;
 	private VInstance vc;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof VInstance){
 			this.rootPanel = rootPanel;
 			this.vc = (VInstance) p;

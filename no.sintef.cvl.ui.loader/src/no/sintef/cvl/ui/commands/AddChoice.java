@@ -15,6 +15,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class AddChoice implements Command {
@@ -24,12 +25,12 @@ public class AddChoice implements Command {
 	JComponent parent;
 	
 	CommandMouseListener listener;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 	
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof Choice){
 			this.rootPanel = rootPanel;
 			this.c = (Choice) p;

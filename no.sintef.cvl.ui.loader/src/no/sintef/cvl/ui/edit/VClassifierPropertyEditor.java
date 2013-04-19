@@ -32,11 +32,11 @@ import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 import cvl.VClassifier;
 import cvl.VSpec;
 
-public class VClassifierPropertyEditor extends VSpecPropertyEditor {
+public class VClassifierPropertyEditor extends ElementPropertyEditor {
 	
     protected void init() {
     	command = new UpdateVClassifier();
-    	command.init(null, vSpec, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, view);
     }
 
 	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, CVLView view) {
@@ -56,7 +56,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
         l2.setLabelFor(textField2);
         p2.add(textField2);
-        textField2.setText(String.valueOf(((VClassifier)vSpec).getInstanceMultiplicity().getLower()));
+        textField2.setText(String.valueOf(((VClassifier)obj).getInstanceMultiplicity().getLower()));
         
         top.add(p2);
         SpringUtilities.makeCompactGrid(p2,
@@ -79,7 +79,7 @@ public class VClassifierPropertyEditor extends VSpecPropertyEditor {
 
         l3.setLabelFor(textField3);
         p3.add(textField3);
-        textField3.setText(String.valueOf(((VClassifier)vSpec).getInstanceMultiplicity().getUpper()));
+        textField3.setText(String.valueOf(((VClassifier)obj).getInstanceMultiplicity().getUpper()));
         
         top.add(p3);
         SpringUtilities.makeCompactGrid(p3,

@@ -15,6 +15,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ConfigurableUnit;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class AddConfigurableUnit {
@@ -22,12 +23,12 @@ public class AddConfigurableUnit {
 	private CVLUIKernel rootPanel;
 	private ConfigurableUnit cu;
 	private CommandMouseListener listener;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	public AddConfigurableUnit init(ConfigurableUnit cu, CVLUIKernel rootPanel, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public AddConfigurableUnit init(ConfigurableUnit cu, CVLUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.rootPanel = rootPanel;
 		this.cu = cu;
 		this.vmMap = vmMap;

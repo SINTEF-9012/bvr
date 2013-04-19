@@ -13,6 +13,7 @@ import javax.swing.JSeparator;
 
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
+import no.sintef.cvl.ui.commands.events.AddConstraintEvent;
 import no.sintef.cvl.ui.commands.events.CutEvent;
 import no.sintef.cvl.ui.commands.events.PasteChildEvent;
 import no.sintef.cvl.ui.commands.events.RemoveChoiceEvent;
@@ -22,17 +23,18 @@ import no.sintef.cvl.ui.commands.events.SetGroupToOrEvent;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class ConfigurableUnitDropDownListener extends MouseAdapter {
 
 	private ConfigurableUnitSymbolPanel cp;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -59,7 +61,7 @@ public class ConfigurableUnitDropDownListener extends MouseAdapter {
 class ConfigurableUnitDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ConfigurableUnitDropdown(ConfigurableUnitSymbolPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+    public ConfigurableUnitDropdown(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
@@ -68,7 +70,10 @@ class ConfigurableUnitDropdown extends JPopupMenu {
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
     	add.add(addclassifier);
-    	add.add(new JMenuItem("constraint"));
+    	JMenuItem addConstraint = new JMenuItem("constraint");
+    	addConstraint.addActionListener(new AddConstraintEvent(cp, vmMap, nodes, bindings, view));
+    	add.add(addConstraint);
+    	
 		add(add);
 		
 		// Remove

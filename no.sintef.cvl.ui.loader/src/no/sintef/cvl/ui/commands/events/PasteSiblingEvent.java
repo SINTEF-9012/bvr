@@ -14,27 +14,29 @@ import no.sintef.cvl.ui.loader.Pair;
 
 import org.eclipse.emf.common.util.EList;
 
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class PasteSiblingEvent implements ActionListener {
 
 	private ChoicePanel p;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 
-	public PasteSiblingEvent(ChoicePanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public PasteSiblingEvent(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		VSpec v = vmMap.get(p);
+		VSpec v = (VSpec)vmMap.get(p);
 		//System.out.println("we are here " + p.getTitle() + ", " + v);
 		
 		// Find parent
 		VSpec parent = null;
-		for(VSpec c : vmMap.values()){
+		for(NamedElement _c : vmMap.values()){
+			VSpec c = (VSpec)_c;
 			if(c.getChild().contains(v))
 				parent = c;
 		}
@@ -43,7 +45,8 @@ public class PasteSiblingEvent implements ActionListener {
 		if(Main.vSpecCut != null){
 			EList<VSpec> x = parent.getChild();
 			int i = x.indexOf(v);
-			x.add(i+1, Main.vSpecCut);
+			if(Main.vSpecCut instanceof VSpec)
+				x.add(i+1, (VSpec)Main.vSpecCut);
 			//parent.getChild().add(Main.vSpecCut);
 			Main.vSpecCut = null;
 		}
