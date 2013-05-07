@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Point;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -30,8 +31,11 @@ import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
+import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.cvl.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
+import no.sintef.cvl.ui.framework.elements.VInstancePanel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import org.jdesktop.swingx.JXPanel;
@@ -44,6 +48,7 @@ import cvl.BCLConstraint;
 import cvl.Choice;
 import cvl.NamedElement;
 import cvl.VClassifier;
+import cvl.VInstance;
 import cvl.VSpec;
 
 public class CVLEditorPanel extends JPanel {
@@ -64,9 +69,11 @@ public class CVLEditorPanel extends JPanel {
     private JSplitPane splitPane = null;
     
     private SelectElement current;
+	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 
-    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, CVLView view) {
+    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, CVLView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;
+    	this.resolutionvmMaps = resolutionvmMaps;
     	this.kernel = _kernel;
     	this.view = view;
     	this.setBackground(Color.WHITE);
@@ -110,6 +117,8 @@ public class CVLEditorPanel extends JPanel {
     		current = (SelectElement) p;
     	}
     	
+    	//System.out.println("Here!" + p);
+    	
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel)p;
         	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) vmMap.get(elem), view);
@@ -123,7 +132,24 @@ public class CVLEditorPanel extends JPanel {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
         	BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, (BCLConstraint) vmMap.get(elem), view);
             editableModelPanel.displayProperties(prop);
-            System.out.println("Here!");
+           // System.out.println("Here!");
+        }else if (p instanceof ConfigurableUnitSymbolPanel) {
+        	ConfigurableUnitSymbolPanel elem = (ConfigurableUnitSymbolPanel)p;
+        	ConfigurableUnitPropertyEditor prop = new ConfigurableUnitPropertyEditor(kernel, view.getCU(), view);
+            editableModelPanel.displayProperties(prop);
+            //System.out.println("Here!");
+        }else if (p instanceof VInstancePanel) {
+        	VInstancePanel elem = (VInstancePanel)p;
+        	VInstance x = null;
+        	for(Map<JComponent, NamedElement> z : resolutionvmMaps){
+        		if(z.get(elem) != null)
+        			x = (VInstance) z.get(elem);
+        	}
+        	VInstancePropertyEditor prop = new VInstancePropertyEditor(kernel, x, view);
+            editableModelPanel.displayProperties(prop);
+        	//System.out.println("Here!");
+        }else{
+        	throw new UnsupportedOperationException("Unsupported: " + p.getClass().getName());
         }
         
         this.invalidate();

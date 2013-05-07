@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.commands;
+package no.sintef.cvl.ui.dropdowns;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,7 +34,7 @@ public class ConfigurableUnitDropDownListener extends MouseAdapter {
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	public ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;

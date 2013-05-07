@@ -24,6 +24,8 @@ public class GroupPanel extends IconPanel {
     
     public void setCardinality(int lower, int upper) {
     	 setTitle(lower + ".." + upper);
+    	 if(upper == -1)
+    		 setTitle(lower + "..*");
     }
 
 }

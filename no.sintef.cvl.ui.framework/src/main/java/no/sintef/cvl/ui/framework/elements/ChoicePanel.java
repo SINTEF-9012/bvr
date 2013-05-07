@@ -15,57 +15,74 @@
 package no.sintef.cvl.ui.framework.elements;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.SwingConstants;
 
-import no.sintef.cvl.ui.framework.ErrorHighlightableElement;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.ThreePartRoundedPanel;
 import no.sintef.cvl.ui.framework.TitledElement;
 
+import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
 
-public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement, TitledElement, ErrorHighlightableElement {
-
-    JXTitledSeparator titlebar = new JXTitledSeparator();
-    JXTitledSeparator separatorbar = new JXTitledSeparator();
-    JXTitledSeparator typebar = new JXTitledSeparator();
+public class ChoicePanel extends ThreePartRoundedPanel implements VSpecPanel, SelectElement, TitledElement {
+	private static final long serialVersionUID = 1L;
+	
+	JXLabel titlebar = null;
+    JXTitledSeparator separatorbar = null;
+    
+    Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
 
     public ChoicePanel() {
+    	titlebar = new JXLabel();
         titlebar.setForeground(Color.BLACK);
         titlebar.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setForeground(Color.BLACK);
-        separatorbar.setTitle("");
-        separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
-        separatorbar.setVisible(false);
-        typebar.setForeground(Color.BLACK);
-        typebar.setTitle("");
-        typebar.setHorizontalAlignment(SwingConstants.CENTER);
-        typebar.setVisible(false);
-
         addCenter(titlebar);
-        addCenter(separatorbar);
-        addCenter(typebar);
-
-        setState(STATE.NO_ERROR);
         
         setBackground(Color.WHITE);
+    }
+    
+	private void addSepBar() {
+		separatorbar = new JXTitledSeparator();
+		separatorbar.setForeground(Color.BLACK);
+	    separatorbar.setTitle("");
+	    separatorbar.setHorizontalAlignment(SwingConstants.LEFT);
+	    separatorbar.setVisible(true);
+	    addCenter(separatorbar);
+	}
+    
+    public void addAttribute(String name, String type) {
+    	if(separatorbar == null)
+    		addSepBar();
+    	
+    	JXLabel att = new JXLabel();
+    	
+    	att.setForeground(Color.BLACK);
+        att.setText(name + " : " + type);
+        att.setHorizontalAlignment(SwingConstants.LEFT);
+        att.setVisible(true);
+        att.setFont(new Font(null, Font.PLAIN, 11));
+
+        attributesbar.put(name, att);
+        addCenter(att);
+    }
+    
+    public void removeAttribute(String name) {
+    	
     }
 
     @Override
     public void setTitle(String title) {
-        titlebar.setTitle(title);
+        titlebar.setText(title);
         this.setToolTipText("Component "+title);
     }
     
     @Override
     public String getTitle(){
-    	return titlebar.getTitle();
-    }
-
-    public void setTypeName(String title) {
-        typebar.setTitle(title);
-        separatorbar.setVisible(true);
-        typebar.setVisible(true);
+    	return titlebar.getText();
     }
 
     private Boolean selected = false;
@@ -79,20 +96,19 @@ public class ChoicePanel extends ThreePartRoundedPanel implements SelectElement,
         return selected;
     }
 
-    private STATE _state = STATE.NO_ERROR;
-
-    public void setState(STATE state) {
-/*        _state = state;
-        if (_state.equals(STATE.IN_ERROR)) {
-            this.setBackground(new Color(239, 50, 50, 150));
+    private OPTION_STATE optionalState = OPTION_STATE.MANDATORY;
+    
+	public void setOptionalState(OPTION_STATE state) {
+		this.optionalState = state;
+		
+        if (optionalState.equals(OPTION_STATE.MANDATORY)) {
+            this.setBackground(new Color(0, 0, 0, 25));
         } else {
-            this.setBackground(new Color(0, 0, 0, 5));
+        	this.setBackground(new Color(0, 0, 0, 5));
         }
-        */
-    }
+	}
 
-    public STATE getCurrentState() {
-        return _state;
-    }
-
+	public OPTION_STATE getOptionalState() {
+		return optionalState;
+	}
 }

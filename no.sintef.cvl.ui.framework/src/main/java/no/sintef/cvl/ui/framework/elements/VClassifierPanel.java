@@ -36,8 +36,6 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
 	JXLabel display_name = new JXLabel();
     JXTitledSeparator separatorbar = null;
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
-    
-    ConfigurableUnitPanel model;
 
 	public String getName() {
 		return display_name.getName();
@@ -48,9 +46,7 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
 		setTitle(name);
 	}
     
-    public VClassifierPanel(ConfigurableUnitPanel model) {
-    	this.model = model;
-    	
+    public VClassifierPanel() {
         display_name.setForeground(Color.BLACK);
         display_name.setHorizontalAlignment(SwingConstants.CENTER);
         addCenter(display_name);

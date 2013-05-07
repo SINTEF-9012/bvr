@@ -13,6 +13,10 @@
  */
 package no.sintef.cvl.ui.edit;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -21,6 +25,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.cvl.ui.commands.UpdateChoice;
 import no.sintef.cvl.ui.commands.UpdateVClassifier;
 import no.sintef.cvl.ui.commands.UpdateVSpec;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
@@ -29,8 +34,12 @@ import no.sintef.cvl.ui.loader.CVLView;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
+import cvl.Choice;
+import cvl.PrimitiveTypeEnum;
+import cvl.PrimitveType;
 import cvl.VClassifier;
 import cvl.VSpec;
+import cvl.Variable;
 
 public class VClassifierPropertyEditor extends ElementPropertyEditor {
 	
@@ -51,7 +60,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         l2.setUI(new HudLabelUI());
 
         p2.add(l2);
-        JTextField textField2 = new JTextField(15);
+        final JTextField textField2 = new JTextField(15);
         textField2.setUI(new HudTextFieldUI());
 
         l2.setLabelFor(textField2);
@@ -74,12 +83,16 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         l3.setUI(new HudLabelUI());
 
         p3.add(l3);
-        JTextField textField3 = new JTextField(15);
+        final JTextField textField3 = new JTextField(15);
         textField3.setUI(new HudTextFieldUI());
 
         l3.setLabelFor(textField3);
         p3.add(textField3);
-        textField3.setText(String.valueOf(((VClassifier)obj).getInstanceMultiplicity().getUpper()));
+        Integer up = ((VClassifier)obj).getInstanceMultiplicity().getUpper();
+        if(up == -1)
+        	textField3.setText("*");
+        else
+        	textField3.setText(String.valueOf(up));
         
         top.add(p3);
         SpringUtilities.makeCompactGrid(p3,
@@ -87,76 +100,126 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
         
+        // Add Variable edits
+		int count = 0;
+		for(VSpec x : elem.getChild()){
+			if(x instanceof Variable){
+				Variable v = (Variable)x;
+				addEdit(elem, v);
+				count++;
+			}
+		}
+		
+        pack(3+count, 1);
         
-        pack(3,1);
+        ((UpdateVClassifier)command).setLower(elem.getInstanceMultiplicity().getLower());
+    	((UpdateVClassifier)command).setUpper(elem.getInstanceMultiplicity().getUpper());
+    	
+    	textField2.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
+    	textField3.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
         
         textField2.getDocument().addDocumentListener(new DocumentListener() {
-
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    ((UpdateVClassifier) command).setLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                	String text = textField2.getText().trim();
+                	Integer i = Integer.parseInt(text);
+                	if(i < 0) return;
+                    ((UpdateVClassifier) command).setLower(i);
                 } catch (java.lang.NumberFormatException nfe) {
-                	//Do not update the value cannot be parsed
                 }
             }
-
             public void removeUpdate(DocumentEvent e) {
-                try {
-                	((UpdateVClassifier) command).setLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (java.lang.NumberFormatException nfe) {
-                	//Do not update the value cannot be parsed
-                }
+            	insertUpdate(e);
             }
-
             public void changedUpdate(DocumentEvent e) {
-                try {
-                	((UpdateVClassifier) command).setLower(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (java.lang.NumberFormatException nfe) {
-                	//Do not update the value cannot be parsed
-                }
+            	insertUpdate(e);
             }
         });
-        
-        
         
         textField3.getDocument().addDocumentListener(new DocumentListener() {
-
             public void insertUpdate(DocumentEvent e) {
                 try {
-                	((UpdateVClassifier) command).setUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                	String text = textField3.getText().trim();
+                	Integer i;
+                	if(text.equals("*")) i = -1;
+                	else i = Integer.parseInt(text);
+                	((UpdateVClassifier) command).setUpper(i);
                 } catch (java.lang.NumberFormatException nfe) {
-                 	//Do not update the value cannot be parsed
                 }
             }
-
             public void removeUpdate(DocumentEvent e) {
-                try {
-                	((UpdateVClassifier) command).setUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (java.lang.NumberFormatException nfe) {
-                	//Do not update the value cannot be parsed
-                }
+            	insertUpdate(e);
             }
-
             public void changedUpdate(DocumentEvent e) {
-                try {
-                	((UpdateVClassifier) command).setUpper(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (java.lang.NumberFormatException nfe) {
-                	//Do not update the value cannot be parsed
-                }
+            	insertUpdate(e);
             }
         });
         
+	}
+	
+	private void addEdit(VSpec elem, final Variable v) {
+	    // Part 1
+        JPanel panel = new JPanel(new SpringLayout());
+        panel.setBorder(null);
+        panel.setOpaque(false);
+        
+        // Name
+        final JTextField name = new JTextField(10);
+        name.setUI(new HudTextFieldUI());
+        name.setText(v.getName());
+        
+        // Type
+        JLabel l = new JLabel(((PrimitveType)v.getType()).getType().getName(), JLabel.TRAILING);
+        l.setUI(new HudLabelUI());
+        
+        final JComboBox types = new JComboBox();
+        int index = 0;
+        for(PrimitiveTypeEnum x : PrimitiveTypeEnum.VALUES){
+        	types.addItem(x.getName());
+        	if(x.getName().equals(((PrimitveType)v.getType()).getType().getName())){
+        		types.setSelectedIndex(index);
+        	}
+        	index++;
+        }
+        
+        // Add
+        panel.add(name);
+        panel.add(types);
+        
+        
+        
+        // Done
+        top.add(panel);
+        SpringUtilities.makeCompactGrid(panel,
+                1, 2, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
+        
+        //Part 2
+        ((UpdateVClassifier)command).setVar(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        
+        name.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
+        types.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
+        
+    	// Part 3:
+        DocumentListener dl = new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) {
+            	((UpdateVClassifier)command).setVar(v, name.getText(), types.getSelectedItem().toString());
+            	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
+            }
+            public void removeUpdate(DocumentEvent e) {
+            	insertUpdate(e);
+            }
+            public void changedUpdate(DocumentEvent e) {
+            	insertUpdate(e);
+            }
+        };
+        name.getDocument().addDocumentListener(dl);
+        types.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+            	((UpdateVClassifier)command).setVar(v, name.getText(), types.getSelectedItem().toString());
+            	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
+            }
+        });
 	}
 }

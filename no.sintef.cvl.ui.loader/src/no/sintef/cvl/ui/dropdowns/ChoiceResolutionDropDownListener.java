@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.commands;
+package no.sintef.cvl.ui.dropdowns;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,8 +13,13 @@ import javax.swing.JPopupMenu;
 
 import org.eclipse.emf.common.util.EList;
 
+import no.sintef.cvl.ui.commands.ChangeChoiceResolvedEvent;
+import no.sintef.cvl.ui.commands.SetDecisionEvent;
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
+import no.sintef.cvl.ui.commands.events.AddChoiceResolvedEvent;
 import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
+import no.sintef.cvl.ui.commands.events.AddVInstanceEvent;
+import no.sintef.cvl.ui.commands.events.AddVariableValueAssignmentEvent;
 import no.sintef.cvl.ui.commands.events.RemoveChoiceEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToAltEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToNoneEvent;
@@ -26,8 +31,11 @@ import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
+import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VSpecResolution;
+import cvl.Variable;
+import cvl.VariableValueAssignment;
 
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 	private ChoiceResolutionPanel cp;
@@ -76,7 +84,15 @@ class ChoiceResolutionDropdown extends JPopupMenu {
     		JMenu add = new JMenu("add");
 	    	for(VSpec x : c.getResolvedVSpec().getChild()){
 	    		JMenuItem addchild = new JMenuItem(x.getName());
-	    		addchild.addActionListener(new AddChoiceResolvedEvent(c, x, view));
+	    		if(x instanceof Choice){
+	    			addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
+	    		}else if(x instanceof VClassifier){
+	    			addchild.addActionListener(new AddVInstanceEvent(c, (VClassifier) x, view));
+	    		}else if(x instanceof Variable){
+	    			addchild.addActionListener(new AddVariableValueAssignmentEvent(c, (Variable) x, view));
+	    		}else{
+	    			throw new UnsupportedOperationException("Unsupported: " + x.getClass().getName());
+	    		}
 	    		add.add(addchild);    		
 	    	}
 	    	if(c.getResolvedVSpec().getChild().size() == 0){
@@ -115,9 +131,13 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		// -Add menus
     	JMenu change = new JMenu("Resolve");
     	for(VSpec x : vspecs){
-    		JMenuItem i = new JMenuItem(x.getName());
-    		i.addActionListener(new ChangeChoiceResolvedEvent(c, (Choice)x, view));
-    		change.add(i);
+    		if(x instanceof Choice){
+	    		JMenuItem i = new JMenuItem(x.getName());
+	    		i.addActionListener(new ChangeChoiceResolvedEvent(c, (Choice)x, view));
+	    		change.add(i);
+    		}else{
+    			// Can only change to another of the same type
+    		}
     	}
 		add(change);
     }

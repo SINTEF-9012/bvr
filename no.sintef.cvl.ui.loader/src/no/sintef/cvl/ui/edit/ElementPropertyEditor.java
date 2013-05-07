@@ -13,6 +13,9 @@
  */
 package no.sintef.cvl.ui.edit;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,9 +33,10 @@ import no.sintef.cvl.ui.loader.CVLView;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
+import cvl.NamedElement;
 import cvl.VSpec;
 
-public class VSpecPropertyEditor  extends JPanel {
+public class ElementPropertyEditor extends JPanel {
 	
 	protected CVLView view;
 	
@@ -40,7 +44,7 @@ public class VSpecPropertyEditor  extends JPanel {
 	protected JPanel bottom;
 	
 	protected CVLUIKernel kernel;
-	protected VSpec vSpec;
+	protected NamedElement obj;
 	
     public void addCenter(JComponent p) {
         this.add(p);
@@ -58,17 +62,17 @@ public class VSpecPropertyEditor  extends JPanel {
     
     protected void init() {
     	command = new UpdateVSpec();
-    	command.init(null, vSpec, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, view);
     }
     
-    public VSpecPropertyEditor(CVLUIKernel _kernel, VSpec _vspec, CVLView _view) {
+    public ElementPropertyEditor(CVLUIKernel _kernel, NamedElement _obj, CVLView _view) {
 
         this.setOpaque(false);
         this.setBorder(null);
 
         view = _view;
         kernel = _kernel;
-        vSpec = _vspec;
+        obj = _obj;
         
     	init();
         
@@ -83,7 +87,7 @@ public class VSpecPropertyEditor  extends JPanel {
         this.addCenter(top);
         this.addCenter(bottom);
         
-        JCommandButton okButton = new JCommandButton("OK", command);
+        final JCommandButton okButton = new JCommandButton("OK", command);
         bottom.add(okButton);
         
         //Name
@@ -100,7 +104,7 @@ public class VSpecPropertyEditor  extends JPanel {
 
         l.setLabelFor(textField);
         p.add(textField);
-        textField.setText(vSpec.getName());
+        textField.setText(obj.getName());
 
         top.add(p);
         SpringUtilities.makeCompactGrid(p,
@@ -109,9 +113,10 @@ public class VSpecPropertyEditor  extends JPanel {
                 6, 6);       //xPad, yPad
 
         pack(1,1);
+        
+        textField.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
 
         textField.getDocument().addDocumentListener(new DocumentListener() {
-
             public void insertUpdate(DocumentEvent e) {
                 try {
                     ((UpdateVSpec) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
@@ -121,22 +126,38 @@ public class VSpecPropertyEditor  extends JPanel {
             }
 
             public void removeUpdate(DocumentEvent e) {
-                try {
-                	((UpdateVSpec) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            	insertUpdate(e);
             }
 
             public void changedUpdate(DocumentEvent e) {
-                try {
-                	((UpdateVSpec) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
-                } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            	insertUpdate(e);
             }
-        });
-        
-    }	
-   
+        });   
+    }
+}
+
+class EnterAccepter implements KeyListener {
+	private Command command;
+	private CVLEditorPanel ep;
+
+	public EnterAccepter(Command command, CVLEditorPanel ep) {
+		this.command = command;
+		this.ep = ep;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			command.execute();
+			ep.unshowPropertyEditor();
+		}
+	}
 }

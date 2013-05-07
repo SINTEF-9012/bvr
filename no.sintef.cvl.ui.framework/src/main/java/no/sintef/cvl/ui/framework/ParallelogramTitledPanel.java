@@ -32,8 +32,13 @@ package no.sintef.cvl.ui.framework;
 
 import java.awt.*;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.text.JTextComponent;
+
 import org.jdesktop.swingx.JXTitledSeparator;
 
 /**
@@ -44,7 +49,7 @@ public class ParallelogramTitledPanel extends ParallelogramPanel implements Titl
 
     private JPanel contentPanel = new JPanel();
     private JPanel layoutPanel = new JPanel();
-    private JXTitledSeparator title = new JXTitledSeparator();
+    public JTextArea title = new JTextArea();
 
     public ParallelogramTitledPanel() {
         contentPanel.setOpaque(false);
@@ -53,7 +58,8 @@ public class ParallelogramTitledPanel extends ParallelogramPanel implements Titl
         super.add(layoutPanel);
         layoutPanel.add(title, BorderLayout.NORTH);
         layoutPanel.add(contentPanel, BorderLayout.CENTER);
-        title.setHorizontalAlignment(SwingConstants.CENTER);
+        //title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setEditable(false);
         title.setForeground(Color.BLACK);
 
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.PAGE_AXIS));
@@ -70,11 +76,11 @@ public class ParallelogramTitledPanel extends ParallelogramPanel implements Titl
     }
 
     public void setTitle(String _title) {
-        title.setTitle(_title);
+        title.setText(_title);
     }
 
     public String getTitle(){
-        return title.getTitle();
+        return title.getText();
     }
     
     private Boolean selected = false;

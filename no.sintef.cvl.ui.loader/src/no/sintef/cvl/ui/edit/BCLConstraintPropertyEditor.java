@@ -57,6 +57,10 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
         
         pack(2,1);
         
+        ((UpdateBCLConstraint) command).setConstraint(s);
+        
+        textField2.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
+        
         textField2.getDocument().addDocumentListener(new DocumentListener() {
 
             public void insertUpdate(DocumentEvent e) {

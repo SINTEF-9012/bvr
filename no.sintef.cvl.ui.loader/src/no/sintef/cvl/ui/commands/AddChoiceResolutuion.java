@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.cvl.ui.dropdowns.ChoiceResolutionDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.ChoiceResolutionPanel;
@@ -42,6 +43,8 @@ public class AddChoiceResolutuion implements Command {
 	}
 
 	public JComponent execute() {
+		System.out.println("adding choice");
+		
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		

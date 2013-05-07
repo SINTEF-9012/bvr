@@ -36,7 +36,7 @@ public class BCLBuilder{
 			name = root.getClass().getSimpleName();
 			name = name.substring(0, name.length()-7);
 			
-			if(name.equals("Expterm") || name.equals("ExpLogPart")){
+			if(name.equals("Expterm") || name.equals("ExpLogUn")){
 				if(root.getChildCount() == 3 && root.getChild(0).toString().equals("(") && root.getChild(2).toString().equals(")"))
 					root = (RuleNode) root.getChild(1);
 				else if(root.getChildCount() == 4 && root.getChild(1).toString().equals("(") && root.getChild(3).toString().equals(")")){
@@ -111,7 +111,7 @@ public class BCLBuilder{
 			
 			if(root.getChildCount() == 3){
 				// Find operation
-				String opStr = root.getChild(1).getChild(0).toString();
+				String opStr = root.getChild(1).toString();
 				// Map
 				if(opStr.equals("implies")) o.setOperation(cvl.Operation.getByName("logImplies"));
 				else if(opStr.equals("iff")) o.setOperation(cvl.Operation.getByName("logIff"));
@@ -127,7 +127,11 @@ public class BCLBuilder{
 				else if(opStr.equals("/")) o.setOperation(cvl.Operation.getByName("arithDev"));
 				else if(opStr.equals("+")) o.setOperation(cvl.Operation.getByName("arithPlus"));
 				else if(opStr.equals("-")) o.setOperation(cvl.Operation.getByName("arithMinus"));
-				else throw new UnsupportedOperationException();
+				else{
+					for(int i = 0; i < root.getChildCount(); i++)
+						System.out.println(root.getChild(i));
+					throw new UnsupportedOperationException();	
+				}
 				
 				// Recurse
 				//System.out.println("\"" + root.getChild(0).toString()+"\"");
@@ -137,11 +141,12 @@ public class BCLBuilder{
 				o.getArgument().add(a2);
 			}else if(root.getChildCount() == 2){
 				// Find operation
-				String opStr = root.getChild(0).getChild(0).toString();
+				String opStr = root.getChild(0).toString();
 				// Map
 				if(opStr.equals("not")) o.setOperation(cvl.Operation.getByName("logNot"));
 				else if(opStr.equals("isDefined")) o.setOperation(cvl.Operation.getByName("isDefined"));
 				else if(opStr.equals("isUndefined")) o.setOperation(cvl.Operation.getByName("isUndefined"));
+				else if(opStr.equals("-")) o.setOperation(cvl.Operation.getByName("arithNeg"));
 				else throw new UnsupportedOperationException();
 				
 				// Recurse
@@ -150,7 +155,7 @@ public class BCLBuilder{
 				o.getArgument().add(a1);
 			}else if(root.getChildCount() == 4){
 				// Find operation
-				String opStr = root.getChild(0).getChild(0).toString();
+				String opStr = root.getChild(0).toString();
 				// Map
 				if(opStr.equals("not")) o.setOperation(cvl.Operation.getByName("logNot"));
 				else if(opStr.equals("isDefined")) o.setOperation(cvl.Operation.getByName("isDefined"));

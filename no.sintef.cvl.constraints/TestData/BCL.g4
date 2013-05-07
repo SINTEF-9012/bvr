@@ -2,37 +2,36 @@
 // This grammar might be possible to evaluate using a SAT solver.
 grammar BCL;
 
-constraint : ('context' vspec 'inv' ':')? expLog;
+constraint : ('context' vspec 'inv' ':')? expLogIff;
 
 // exps
-expLog : expLog opLog expRel
-	| expLog opLog expLogPart
-	| expRel (opLog expRel)?
-	| expLogPart;
+expLogIff : expLogIff 'iff' expLogImplies
+	| expLogImplies;
 
-expLogPart : opUnLog? '(' (expLog | expRel) ')'
-	| (opUnLog | opDef)? vspec;
+expLogImplies : expLogImplies 'implies' expLogOr
+	| expLogOr;
+
+expLogOr : expLogOr ('or' | 'xor') expLogAnd
+	| expLogAnd;
+
+expLogAnd : expLogAnd 'and' expLogUn
+	| expLogUn;
+
+expLogUn : 'not'? '(' (expLogIff | expRel) ')'
+	| ('not' | 'isDefined' | 'isUndefined')? vspec
+	| expRel;
 	
-expRel : expMulDiv opRel expMulDiv;
+expRel : expPlusMin ('=' | '<=' | '>=' | '<' | '>') expPlusMin;
 
-expMulDiv : expMulDiv opAriMulDiv expPlusMin
-	| expPlusMin;
-
-expPlusMin : expPlusMin opAriPlusMinus expAriUnary
+expPlusMin : expPlusMin ('+' | '-') expMulDiv
 	| expAriUnary;
 
-expAriUnary : opUnAri? expterm;
+expMulDiv : expMulDiv ('*' | '/') expAriUnary
+	| expAriUnary;
+
+expAriUnary : '-'? expterm;
 
 expterm : vspec | literalexp | '(' expMulDiv ')';
-
-// Operators
-opUnLog : 'not';
-opDef : 'isDefined' | 'isUndefined';
-opUnAri : '-';
-opLog : 'and' | 'or' | 'implies' | 'xor' | 'iff';
-opRel : '=' | '<=' | '>=' | '<' | '>';
-opAriMulDiv : '*' | '/';
-opAriPlusMinus : '+' | '-';
 
 // Terminals
 vspec : ID

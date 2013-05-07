@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.editor;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -16,10 +17,10 @@ public class CVLUIKernel {
 	private ConfigurableUnitPanel modelPanel;
 	private CVLView view;
 	
-	public CVLUIKernel(Map<JComponent, NamedElement> vmMap, CVLView view) {
+	public CVLUIKernel(Map<JComponent, NamedElement> vmMap, CVLView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
 		this.view = view;
 		modelPanel = new ConfigurableUnitPanel();
-		editorPanel = new CVLEditorPanel(this, vmMap, view);
+		editorPanel = new CVLEditorPanel(this, vmMap, view, resolutionvmMaps);
 	}
 	
 	public CVLEditorPanel getEditorPanel() {

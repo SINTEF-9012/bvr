@@ -42,6 +42,7 @@ public class BCLPrettyPrinter{
 			if(o.getOperation() == cvl.Operation.getByName("arithPlus")) opSym = "+";
 			if(o.getOperation() == cvl.Operation.getByName("arithMinus")) opSym = "-";
 			
+			if(o.getOperation() == cvl.Operation.getByName("arithNeg")) opSym = "-";
 			if(o.getOperation() == cvl.Operation.getByName("logNot")) opSym = "not";
 			if(o.getOperation() == cvl.Operation.getByName("isDefined")) opSym = "isDefined";
 			if(o.getOperation() == cvl.Operation.getByName("isUndefined")) opSym = "isUndefined";

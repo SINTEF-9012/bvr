@@ -7,51 +7,39 @@ public interface BCLListener extends ParseTreeListener {
 	void enterExpPlusMin(BCLParser.ExpPlusMinContext ctx);
 	void exitExpPlusMin(BCLParser.ExpPlusMinContext ctx);
 
-	void enterOpUnLog(BCLParser.OpUnLogContext ctx);
-	void exitOpUnLog(BCLParser.OpUnLogContext ctx);
-
 	void enterLiteralexp(BCLParser.LiteralexpContext ctx);
 	void exitLiteralexp(BCLParser.LiteralexpContext ctx);
-
-	void enterExpLogPart(BCLParser.ExpLogPartContext ctx);
-	void exitExpLogPart(BCLParser.ExpLogPartContext ctx);
 
 	void enterConstraint(BCLParser.ConstraintContext ctx);
 	void exitConstraint(BCLParser.ConstraintContext ctx);
 
-	void enterOpUnAri(BCLParser.OpUnAriContext ctx);
-	void exitOpUnAri(BCLParser.OpUnAriContext ctx);
-
 	void enterExpMulDiv(BCLParser.ExpMulDivContext ctx);
 	void exitExpMulDiv(BCLParser.ExpMulDivContext ctx);
 
-	void enterOpAriPlusMinus(BCLParser.OpAriPlusMinusContext ctx);
-	void exitOpAriPlusMinus(BCLParser.OpAriPlusMinusContext ctx);
+	void enterExpLogImplies(BCLParser.ExpLogImpliesContext ctx);
+	void exitExpLogImplies(BCLParser.ExpLogImpliesContext ctx);
 
-	void enterOpLog(BCLParser.OpLogContext ctx);
-	void exitOpLog(BCLParser.OpLogContext ctx);
+	void enterExpLogOr(BCLParser.ExpLogOrContext ctx);
+	void exitExpLogOr(BCLParser.ExpLogOrContext ctx);
 
 	void enterExpterm(BCLParser.ExptermContext ctx);
 	void exitExpterm(BCLParser.ExptermContext ctx);
 
-	void enterExpLog(BCLParser.ExpLogContext ctx);
-	void exitExpLog(BCLParser.ExpLogContext ctx);
+	void enterExpLogIff(BCLParser.ExpLogIffContext ctx);
+	void exitExpLogIff(BCLParser.ExpLogIffContext ctx);
 
 	void enterExpRel(BCLParser.ExpRelContext ctx);
 	void exitExpRel(BCLParser.ExpRelContext ctx);
 
-	void enterOpDef(BCLParser.OpDefContext ctx);
-	void exitOpDef(BCLParser.OpDefContext ctx);
+	void enterExpLogUn(BCLParser.ExpLogUnContext ctx);
+	void exitExpLogUn(BCLParser.ExpLogUnContext ctx);
+
+	void enterExpLogAnd(BCLParser.ExpLogAndContext ctx);
+	void exitExpLogAnd(BCLParser.ExpLogAndContext ctx);
 
 	void enterVspec(BCLParser.VspecContext ctx);
 	void exitVspec(BCLParser.VspecContext ctx);
 
 	void enterExpAriUnary(BCLParser.ExpAriUnaryContext ctx);
 	void exitExpAriUnary(BCLParser.ExpAriUnaryContext ctx);
-
-	void enterOpRel(BCLParser.OpRelContext ctx);
-	void exitOpRel(BCLParser.OpRelContext ctx);
-
-	void enterOpAriMulDiv(BCLParser.OpAriMulDivContext ctx);
-	void exitOpAriMulDiv(BCLParser.OpAriMulDivContext ctx);
 }

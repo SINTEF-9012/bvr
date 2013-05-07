@@ -34,7 +34,7 @@ import org.jdesktop.swingx.JXTitledSeparator;
 public class VInstancePanel extends ThreePartRectanglePanel implements VSpecPanel, SelectElement, TitledElement, ErrorHighlightableElement {
 	
 	JXLabel display_name = new JXLabel();
-    JXTitledSeparator separatorbar = new JXTitledSeparator();
+	JXLabel separatorbar = new JXLabel();
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
     ConfigurableUnitPanel model;
@@ -54,7 +54,7 @@ public class VInstancePanel extends ThreePartRectanglePanel implements VSpecPane
         display_name.setForeground(Color.BLACK);
         display_name.setHorizontalAlignment(SwingConstants.CENTER);
         separatorbar.setForeground(Color.BLACK);
-        separatorbar.setTitle("");
+        separatorbar.setText("");
         separatorbar.setHorizontalAlignment(SwingConstants.CENTER);
         separatorbar.setVisible(true);
         

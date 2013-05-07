@@ -39,7 +39,7 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 
 	@Override
 	public JComponent execute() {
-		System.out.println("Update BCL Constraint!! to " + text);
+		//System.out.println("Update BCL Constraint!! to " + text);
 		
 		RuleNode root = parseBCL(text);
 		BCLExpression e = new BCLBuilder().recurse(root, 0, view.getCU(), false);

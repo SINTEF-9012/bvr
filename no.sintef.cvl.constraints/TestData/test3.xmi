@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="test3">
+  <ownedVSpec xsi:type="cvl:Choice" name="R" isImpliedByParent="true">
+    <child xsi:type="cvl:VClassifier" name="A">
+      <child xsi:type="cvl:Variable" name="x" type="//@ownedVariabletype.0"/>
+      <instanceMultiplicity upper="-1" lower="1"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="B">
+      <child xsi:type="cvl:Variable" name="y" type="//@ownedVariabletype.14"/>
+      <child xsi:type="cvl:Variable" name="z" type="//@ownedVariabletype.15"/>
+      <child xsi:type="cvl:Variable" name="a" type="//@ownedVariabletype.16"/>
+      <child xsi:type="cvl:Variable" name="b" type="//@ownedVariabletype.17"/>
+      <child xsi:type="cvl:Variable" name="c" type="//@ownedVariabletype.18"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="C"/>
+  </ownedVSpec>
+  <ownedVSpec xsi:type="cvl:Choice" name="S"/>
+  <ownedConstraint xsi:type="cvl:BCLConstraint" name="Constraint1">
+    <expression xsi:type="cvl:OperationCallExp" operation="lt">
+      <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0"/>
+      <argument xsi:type="cvl:OperationCallExp" operation="arithPlus">
+        <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.1/@child.0"/>
+        <argument xsi:type="cvl:IntegerLiteralExp" integer="5"/>
+      </argument>
+    </expression>
+  </ownedConstraint>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" resolvedChoice="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:VInstance" name="a1" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="cvl:VariableValueAssignment" name="variable1" resolvedVariable="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.0">
+          <expression xsi:type="cvl:IntegerLiteralExp"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.1" resolvedChoice="//@ownedVSpec.0/@child.1" decision="true">
+      <child xsi:type="cvl:VariableValueAssignment" name="NewVClassifier" resolvedVariable="//@ownedVSpec.0/@child.1/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
+          <expression xsi:type="cvl:IntegerLiteralExp" integer="7"/>
+        </value>
+      </child>
+      <child xsi:type="cvl:VariableValueAssignment" name="variable1" resolvedVariable="//@ownedVSpec.0/@child.1/@child.1">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.3">
+          <expression xsi:type="cvl:RealLiteralExp" real="3.14159265358979323846264"/>
+        </value>
+      </child>
+      <child xsi:type="cvl:VariableValueAssignment" name="variable1" resolvedVariable="//@ownedVSpec.0/@child.1/@child.3">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.17">
+          <expression xsi:type="cvl:BooleanLiteralExp" bool="true"/>
+        </value>
+      </child>
+      <child xsi:type="cvl:VariableValueAssignment" name="variable1" resolvedVariable="//@ownedVSpec.0/@child.1/@child.2">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.16">
+          <expression xsi:type="cvl:StringLiteralExp" string="hello"/>
+        </value>
+      </child>
+      <child xsi:type="cvl:VariableValueAssignment" name="variable1" resolvedVariable="//@ownedVSpec.0/@child.1/@child.4">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.18">
+          <expression xsi:type="cvl:UnlimitedLiteralExp" unlimited="5"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="cvl:VInstance" name="a2" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="cvl:VariableValueAssignment" name="variable1" resolvedVariable="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.14">
+          <expression xsi:type="cvl:IntegerLiteralExp"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="cvl:VInstance" name="a3" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="cvl:VariableValueAssignment" name="variable2" resolvedVariable="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.14">
+          <expression xsi:type="cvl:IntegerLiteralExp"/>
+        </value>
+      </child>
+    </child>
+  </ownedVSpecResolution>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Boolean"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Boolean"/>
+  <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="UnlimitedNatural"/>
+</cvl:ConfigurableUnit>

@@ -16,7 +16,7 @@ package no.sintef.cvl.ui.framework;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Panel;
+
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;

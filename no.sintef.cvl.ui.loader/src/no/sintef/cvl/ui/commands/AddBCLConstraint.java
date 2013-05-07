@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.cvl.constraints.bcl.BCLPrettyPrinter;
+import no.sintef.cvl.ui.dropdowns.BCLConstraintDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
@@ -46,6 +47,8 @@ public class AddBCLConstraint implements Command {
 		ParallelogramTitledPanel constraint1 = new ParallelogramTitledPanel();
 		nodes.add(constraint1);
 		String s = new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getCU());
+		// Add newlines
+		s = wrap(s, 15);
 		constraint1.setTitle(s);
 		//constraint1.setConstraint(oc.getConstraint());
 		rootPanel.getModelPanel().addNode(constraint1);
@@ -53,6 +56,11 @@ public class AddBCLConstraint implements Command {
 		// Editor
 		CommandMouseListener listener = new CommandMouseListener();
 		constraint1.addMouseListener(listener);
+		constraint1.title.addMouseListener(listener);
+		
+		constraint1.title.addMouseListener(new BCLConstraintDropDownListener(constraint1, vmMap, nodes, bindings, view));
+		constraint1.addMouseListener(new BCLConstraintDropDownListener(constraint1, vmMap, nodes, bindings, view));
+		
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, constraint1, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
@@ -60,6 +68,30 @@ public class AddBCLConstraint implements Command {
 		Helper.bind(parent, constraint1, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 		
 		return constraint1;
+	}
+
+	private String wrap(String s, int i) {
+		String n = "";
+		
+		for(;;){
+			//System.out.println("s \"" + s + "\"");
+			if(s.length() < i){
+				n += s;
+				break;
+			}
+			int ws = s.substring(i).indexOf(" ");
+			if(ws == -1){
+				n += s;
+				break;
+			}else{
+				ws += i;
+				n += s.substring(0, ws).trim() + "\n";
+				s = s.substring(ws).trim();
+				//System.out.println("s \"" + s + "\"" + ws);
+			}
+		}
+		
+		return n;
 	}
 
 }

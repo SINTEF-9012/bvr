@@ -39,10 +39,10 @@ public class SaveModelAsEvent implements ActionListener {
 				return;
 			}
 		}
-		
+		System.out.println("ss");
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new CVLFilter());
-		fc.showOpenDialog(filePane);
+		fc.showSaveDialog(filePane);
 		
 		File sf = fc.getSelectedFile();
 		if(sf == null) return;

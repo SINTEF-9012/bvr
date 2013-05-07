@@ -7,6 +7,7 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.RemoveChoiceEvent;
+import no.sintef.cvl.ui.dropdowns.ChoiceDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -16,7 +17,9 @@ import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.NamedElement;
+import cvl.PrimitveType;
 import cvl.VSpec;
+import cvl.Variable;
 
 public class AddChoice implements Command {
 
@@ -24,7 +27,6 @@ public class AddChoice implements Command {
 	Choice c;
 	JComponent parent;
 	
-	CommandMouseListener listener;
 	private Map<JComponent, NamedElement> vmMap;
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
@@ -49,20 +51,31 @@ public class AddChoice implements Command {
 		ChoicePanel cp = new ChoicePanel();
 		nodes.add(cp);
 		
-        listener = new CommandMouseListener();
+		CommandMouseListener listener = new CommandMouseListener();
         cp.addMouseListener(new ChoiceDropDownListener(cp, vmMap, nodes, bindings, view));
         cp.addMouseListener(listener);
-        
-		/**/
-		//CommandMouseListener listener = new CommandMouseListener();
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
-        //c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
-        //c.addMouseListener(listener);
-        /**/
-		
+        
+
+        
+        
         cp.setTitle(c.getName());
+        
+        for(VSpec vs : c.getChild()){
+        	if(vs instanceof Variable){
+        		Variable v = (Variable) vs;
+        		if(v.getType() instanceof PrimitveType)
+        			cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        		else
+        			cp.addAttribute(v.getName(), v.getType().getName());
+        		/*String name = v.getName().split(":")[0];
+        		String type = v.getName().split(":")[1];
+        		c.addAttribute(name, type);*/
+        	}
+        }
+
         rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), (!c.isIsImpliedByParent() || parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;

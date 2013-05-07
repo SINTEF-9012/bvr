@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="test1">
+  <ownedVSpec xsi:type="cvl:Choice" name="X" isImpliedByParent="true">
+    <child xsi:type="cvl:Choice" name="A"/>
+    <child xsi:type="cvl:Choice" name="B"/>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:BCLConstraint" name="Constraint1">
+    <expression xsi:type="cvl:OperationCallExp" operation="logImplies">
+      <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0"/>
+      <argument xsi:type="cvl:OperationCallExp">
+        <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.1"/>
+      </argument>
+    </expression>
+  </ownedConstraint>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" resolvedChoice="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0" resolvedChoice="//@ownedVSpec.0/@child.0" decision="true"/>
+  </ownedVSpecResolution>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" resolvedChoice="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.1" resolvedChoice="//@ownedVSpec.0/@child.1" decision="true"/>
+  </ownedVSpecResolution>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" resolvedChoice="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0" resolvedChoice="//@ownedVSpec.0/@child.0" decision="true"/>
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.1" resolvedChoice="//@ownedVSpec.0/@child.1" decision="true"/>
+  </ownedVSpecResolution>
+</cvl:ConfigurableUnit>

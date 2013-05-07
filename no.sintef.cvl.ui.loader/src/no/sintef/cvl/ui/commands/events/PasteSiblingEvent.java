@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -19,11 +20,11 @@ import cvl.VSpec;
 
 public class PasteSiblingEvent implements ActionListener {
 
-	private ChoicePanel p;
+	private JPanel p;
 	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 
-	public PasteSiblingEvent(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public PasteSiblingEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -36,9 +37,11 @@ public class PasteSiblingEvent implements ActionListener {
 		// Find parent
 		VSpec parent = null;
 		for(NamedElement _c : vmMap.values()){
-			VSpec c = (VSpec)_c;
-			if(c.getChild().contains(v))
-				parent = c;
+			if(_c instanceof VSpec){
+				VSpec c = (VSpec)_c;
+				if(c.getChild().contains(v))
+					parent = c;
+			}
 		}
 		
 		// Modify model

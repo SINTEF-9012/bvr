@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cvl="http:///cvl.ecore"
+    xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore">
+  <ownedVSpec
+      xsi:type="cvl:Choice"
+      name="R">
+    <child xsi:type="cvl:Variable"
+        name="X"/>
+  </ownedVSpec>
+  <ownedConstraint
+      xsi:type="cvl:BCLConstraint">
+    <expression
+        xsi:type="cvl:OperationCallExp"
+        operation="lte">
+      <argument
+          xsi:type="cvl:VSpecRef"
+          vSpec="//@ownedVSpec.0/@child.0"/>
+      <argument
+          xsi:type="cvl:IntegerLiteralExp"
+          integer="5"/>
+    </expression>
+  </ownedConstraint>
+</cvl:ConfigurableUnit>

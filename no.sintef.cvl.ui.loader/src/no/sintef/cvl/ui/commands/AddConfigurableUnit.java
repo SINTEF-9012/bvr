@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.cvl.ui.dropdowns.ConfigurableUnitDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -46,6 +47,10 @@ public class AddConfigurableUnit {
         listener = new CommandMouseListener();
         cp.addMouseListener(new ConfigurableUnitDropDownListener(cp, vmMap, nodes, bindings, view));
         cp.addMouseListener(listener);
+        
+        SelectInstanceCommand command = new SelectInstanceCommand();
+        command.init(rootPanel, cp, null, vmMap, nodes, bindings, view);
+        listener.setLeftClickCommand(command);
 		
         String name = cu.getName();
         if(name == null) name = "(unnamed)";

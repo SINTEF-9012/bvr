@@ -29,8 +29,8 @@ import cvl.OpaqueConstraint;
 import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VSpecResolution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
@@ -40,14 +40,14 @@ public class CVLModel {
 	private ConfigurableUnit cu;
 
 	public CVLModel(){
-		cvlPackage.eINSTANCE.eClass();
-		cvlFactory factory = cvlFactory.eINSTANCE;
+		CvlPackage.eINSTANCE.eClass();
+		CvlFactory factory = CvlFactory.eINSTANCE;
 		cu = factory.createConfigurableUnit();
 		cu.setName("Configurable Unit 1");
 	}
 
 	public CVLModel(File f) {
-		cvlPackage.eINSTANCE.eClass();
+		CvlPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createURI("file:///" + f.getAbsolutePath()), true);
@@ -168,7 +168,7 @@ public class CVLModel {
 	
 	private ChoiceResolutuion recursivelyResolve(Map<String, Boolean> conf, Choice choice) {
 		// Add node
-		ChoiceResolutuion cr = cvlFactory.eINSTANCE.createChoiceResolutuion();
+		ChoiceResolutuion cr = CvlFactory.eINSTANCE.createChoiceResolutuion();
 		cr.setResolvedChoice(choice);
 		cr.setResolvedVSpec(choice);
 		cr.setDecision(conf.get(choice.getName()));

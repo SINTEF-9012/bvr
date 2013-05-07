@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.commands;
+package no.sintef.cvl.ui.dropdowns;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +12,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.commands.DelAllResEvent;
+import no.sintef.cvl.ui.commands.DelResEvent;
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
 import no.sintef.cvl.ui.commands.events.RemoveChoiceEvent;

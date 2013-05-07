@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.commands;
+package no.sintef.cvl.ui.dropdowns;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,7 +9,6 @@ import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JSeparator;
 
 import cvl.NamedElement;
 import cvl.VSpec;
@@ -17,29 +16,30 @@ import cvl.VSpec;
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
 import no.sintef.cvl.ui.commands.events.AddConstraintEvent;
-import no.sintef.cvl.ui.commands.events.CutEvent;
-import no.sintef.cvl.ui.commands.events.PasteChildEvent;
-import no.sintef.cvl.ui.commands.events.PasteSiblingEvent;
+import no.sintef.cvl.ui.commands.events.AddVariableEvent;
 import no.sintef.cvl.ui.commands.events.RemoveChoiceEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToAltEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToNoneEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToOrEvent;
 import no.sintef.cvl.ui.commands.events.ToggleOptionalEvent;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
+import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 
-class ChoiceDropDownListener extends MouseAdapter {
-	private ChoicePanel cp;
+public class ClassifierDropDownListener extends MouseAdapter {
+	private VClassifierPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 
-	ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	public ClassifierDropDownListener(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
+		this.nodes = nodes;
+		this.bindings = bindings;
 		this.view = view;
 	}
 	
@@ -54,15 +54,15 @@ class ChoiceDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-        ChoiceDropdown menu = new ChoiceDropdown(cp, vmMap, nodes, bindings, view);
+    	ClassifierDropdown menu = new ClassifierDropdown(cp, vmMap, nodes, bindings, view);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
 
-class ChoiceDropdown extends JPopupMenu {
+class ClassifierDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+    public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
@@ -74,30 +74,17 @@ class ChoiceDropdown extends JPopupMenu {
     	JMenuItem addConstraint = new JMenuItem("constraint");
     	addConstraint.addActionListener(new AddConstraintEvent(cp, vmMap, nodes, bindings, view));
     	add.add(addConstraint);
+    	
+    	JMenuItem addVariable = new JMenuItem("variable");
+    	addVariable.addActionListener(new AddVariableEvent(cp, vmMap, nodes, bindings, view));
+    	add.add(addVariable);
+    	
 		add(add);
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
 		removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
 		add(removechoice);
-		
-		// Cut Paste
-		add(new JSeparator());
-		JMenuItem cut = new JMenuItem("cut");
-		cut.addActionListener(new CutEvent(cp, vmMap, nodes, bindings, view));
-		add(cut);
-		JMenuItem pastechild = new JMenuItem("paste as child");
-		pastechild.addActionListener(new PasteChildEvent(cp, vmMap, nodes, bindings, view));
-		add(pastechild);
-		JMenuItem pastesibling = new JMenuItem("paste as sibling");
-		pastesibling.addActionListener(new PasteSiblingEvent(cp, vmMap, nodes, bindings, view));
-		add(pastesibling);
-		add(new JSeparator());
-		
-		// Toggle optional
-		JMenuItem toggleOptional = new JMenuItem("toggle optional");
-		toggleOptional.addActionListener(new ToggleOptionalEvent(cp, vmMap, nodes, bindings, view));
-		add(toggleOptional);
 		
 		// Set group
 		JMenu group = new JMenu("set group");

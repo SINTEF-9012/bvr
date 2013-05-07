@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
 import cvl.NamedElement;
 
@@ -59,7 +60,9 @@ public class Main {
 		JMenuItem saveas = new JMenuItem("Save as ...");
 		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false));
 		filemenu.add(saveas);
-		//TODO: filemenu.add(new JMenuItem("Close"));
+		JMenuItem close = new JMenuItem("Close");
+		close.addActionListener(new CloseModelEvent(filePane, models, views));
+		filemenu.add(close);
 		
 		filemenu.add(new JSeparator());
 		

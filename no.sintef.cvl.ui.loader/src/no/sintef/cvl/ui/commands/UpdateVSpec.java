@@ -31,8 +31,8 @@ public class UpdateVSpec implements Command {
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		
-		System.out.println("p: " + p);
-		System.out.println("p instanceof VSpec: " + (p instanceof VSpec));
+		//System.out.println("p: " + p);
+		//System.out.println("p instanceof VSpec: " + (p instanceof VSpec));
 		
 		if(p instanceof NamedElement){
 			this.rootPanel = rootPanel;
@@ -52,7 +52,7 @@ public class UpdateVSpec implements Command {
 	}
 
 	public JComponent execute() {
-		System.out.println("vc: " + vc);
+		//System.out.println("vc: " + vc);
 		vc.setName(name);
 		view.notifyVspecViewUpdate();
 		

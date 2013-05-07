@@ -26,7 +26,8 @@ import no.sintef.cvl.ui.commands.AddGroupMultiplicity;
 import no.sintef.cvl.ui.commands.AddOpaqueConstraint;
 import no.sintef.cvl.ui.commands.AddVClassifier;
 import no.sintef.cvl.ui.commands.AddVInstance;
-import no.sintef.cvl.ui.commands.VSpecResDropDownListener;
+import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
+import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
@@ -45,6 +46,7 @@ import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
 import cvl.VSpecResolution;
+import cvl.VariableValueAssignment;
 
 public class CVLView {
 	private CVLModel m;
@@ -73,9 +75,17 @@ public class CVLView {
 	}
 	
 	public CVLView(CVLModel m, JTabbedPane tp) {
+		// Alloc
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
+		
+        resolutionPanes = new ArrayList<JScrollPane>();
+        resolutionEpanels = new ArrayList<EditableModelPanel>();
+        resolutionkernels = new ArrayList<CVLUIKernel>();
+    	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
+    	resolutionNodes = new ArrayList<List<JComponent>>();
+    	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
 		
 		this.m = m;
 		
@@ -83,7 +93,7 @@ public class CVLView {
 		modelPane = new JTabbedPane();
 		
 		// VSpec pane
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
+		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
         try {
 			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
@@ -103,12 +113,7 @@ public class CVLView {
         resPane = new JTabbedPane();
         modelPane.addTab("Resolution", null, resPane, "");
         
-        resolutionPanes = new ArrayList<JScrollPane>();
-        resolutionEpanels = new ArrayList<EditableModelPanel>();
-        resolutionkernels = new ArrayList<CVLUIKernel>();
-    	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
-    	resolutionNodes = new ArrayList<List<JComponent>>();
-    	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
+
         
         try {
 			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
@@ -167,7 +172,7 @@ public class CVLView {
 		if(cu.getOwnedVSpecResolution().size() == 0) return;
 		
 		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
-			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap, this);
+			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	        IAppWidgetFactory.makeIAppScrollPane(scrollPane);
@@ -205,22 +210,32 @@ public class CVLView {
 		JComponent nextParent = null;
 		
 		// Add view
+		System.out.println(v.getClass().getSimpleName());
 		if(v instanceof VInstance){
 			//System.out.println(v + ", " + cvluikernel);
 			
 			nextParent = new AddVInstance().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			
+			vmMap.put(nextParent, v);
 			
 		}else if(v instanceof ChoiceResolutuion){
 			//System.out.println(v);
 			
 			nextParent = new AddChoiceResolutuion().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
+		}else if(v instanceof VariableValueAssignment){
+			//System.out.println(v);
+			
+			nextParent = new AddVariableValueAssignment().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			
 		}else{
 			throw new CVLModelException("Unknown element: " + v.getClass());
 		}
 		
 		// Recursive step
+		System.out.println();
 		for(VSpecResolution vs : v.getChild()){
+			//System.out.println("Treating " + vs.getResolvedVSpec().getName());
 			loadCVLResolutionView(vs, cvluikernel, nextParent, cu, vmMap, nodes, bindings);
 		}
 	}
@@ -303,7 +318,7 @@ public class CVLView {
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		
         // Add stuff
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this);
+		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
         try {
 			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
