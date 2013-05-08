@@ -1,16 +1,23 @@
 package no.sintef.cvl.ui.loader;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 import org.abego.treelayout.TreeLayout;
 import org.abego.treelayout.demo.TextInBox;
@@ -69,6 +76,9 @@ public class CVLView {
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
+	
+	// Realization
+	private JTabbedPane realizationPanel;
 
 	public CVLUIKernel getKernel() {
 		return vSpeccvluikernel;
@@ -113,8 +123,6 @@ public class CVLView {
         resPane = new JTabbedPane();
         modelPane.addTab("Resolution", null, resPane, "");
         
-
-        
         try {
 			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
 		} catch (CVLModelException e) {
@@ -122,8 +130,91 @@ public class CVLView {
 		}
         
         autoLayoutResolutions();
+        
+        
+        // Realization panel
+        realizationPanel = new JTabbedPane();
+        modelPane.addTab("Realization", null, realizationPanel, "");
+        
+        try{
+        	loadCVLRelalizationView(m.getCVLM().getCU(), realizationPanel);
+        } catch (CVLModelException e){
+        	e.printStackTrace();
+        }
 	}
 
+	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
+		String[] columnNamesFragmSubstTable = {"Name", "VSpec"};
+		String[] coulmnNamesSubstFragmTable = {"Name"};
+		
+		Object[][] dataFragmSubstTable = {
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"},
+				{"fragmSubst1", "VSpec"}
+				};
+		Object[][] dataSubstFragmTable = {
+				{"placement"}, {"replacement"},
+				{"placement"}, {"replacement"},
+				{"placement"}, {"replacement"},
+				{"placement"}, {"replacement"},
+				{"placement"}, {"replacement"}
+				};
+		
+		JTable tableFragmSubst = new JTable(dataFragmSubstTable, columnNamesFragmSubstTable);
+		JTable tableSubstFragm = new JTable(dataSubstFragmTable, coulmnNamesSubstFragmTable);
+		
+		tableFragmSubst.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				if(e.getClickCount() == 2){
+					JTable target = (JTable) e.getSource();
+					loadBindings(target);
+				}
+			}
+		});
+		
+		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
+		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
+		
+		JPanel panel = new JPanel(new GridLayout(1, 2));
+		panel.setName("Variotion points");
+		panel.add(scrollPanelFragmSubst);
+		panel.add(scrollPanelSubstFragm);
+		
+		realizationPanel.add(panel);
+
+	}
+
+	private void loadBindings(JTable sourceTable){
+		String[] columnNames = {"Type","[Object].property", "Values"};
+		
+		Object[][] data = {
+				{"toBoundary", "[Node1].links", "Node 7"},
+				{"toBoundary", "[Node1].links", "Node 7"},
+				{"fromBoundary", "[Node1].links", "Node 7"},
+				{"fromBoundary", "[Node1].links", "Node 7"}
+				};
+		
+		JTable table = new JTable(data, columnNames);
+		int row = sourceTable.getSelectedRow();
+		String name = (String) sourceTable.getValueAt(row, 0);
+		
+		JScrollPane scrollPanel = new JScrollPane(table);
+		scrollPanel.setName("Binding - " + name);		
+		
+		realizationPanel.add(scrollPanel);
+	}
+	
 	private void autoLayoutResolutions() {
 		for(int i = 0; i < resolutionPanes.size(); i++){
 			Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
