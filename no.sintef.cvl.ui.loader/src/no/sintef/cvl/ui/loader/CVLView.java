@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,6 +26,8 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
+import no.sintef.cvl.ui.adapters.FragmentSubstitutionTableModel;
+import no.sintef.cvl.ui.adapters.FragmentSubstitutionVSpecCellEditor;
 import no.sintef.cvl.ui.commands.AddBCLConstraint;
 import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddChoiceResolutuion;
@@ -36,6 +39,7 @@ import no.sintef.cvl.ui.commands.AddVInstance;
 import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
 import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
@@ -144,25 +148,8 @@ public class CVLView {
 	}
 
 	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
-		String[] columnNamesFragmSubstTable = {"Name", "VSpec"};
 		String[] coulmnNamesSubstFragmTable = {"Name"};
 		
-		Object[][] dataFragmSubstTable = {
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"},
-				{"fragmSubst1", "VSpec"}
-				};
 		Object[][] dataSubstFragmTable = {
 				{"placement"}, {"replacement"},
 				{"placement"}, {"replacement"},
@@ -171,7 +158,10 @@ public class CVLView {
 				{"placement"}, {"replacement"}
 				};
 		
-		JTable tableFragmSubst = new JTable(dataFragmSubstTable, columnNamesFragmSubstTable);
+		
+		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu);
+		
+		
 		JTable tableSubstFragm = new JTable(dataSubstFragmTable, coulmnNamesSubstFragmTable);
 		
 		tableFragmSubst.addMouseListener(new MouseAdapter() {
