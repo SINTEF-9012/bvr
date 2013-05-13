@@ -1,36 +1,40 @@
 package no.sintef.cvl.ui.adapters;
 
 import java.awt.Component;
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.AbstractCellEditor;
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
 import org.eclipse.emf.common.util.EList;
 
-import cvl.ConfigurableUnit;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class FragmentSubstitutionVSpecCellEditor extends AbstractCellEditor
 		implements TableCellEditor {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2993488539123070478L;
 	private JComboBox editor;
 	
 	public FragmentSubstitutionVSpecCellEditor(EList<VSpec> vSpecs){
-		HashMap<String, VSpec> vspecsMap = new HashMap<String, VSpec>();
-		ArrayList<String> values = new ArrayList<String>();
+		ArrayList<HashMap<JComponent, NamedElement>> values = new ArrayList<HashMap<JComponent, NamedElement>>();
 		for(VSpec vspec : vSpecs){
-			String value = vspec.getName();
-			vspecsMap.put(value, vspec);
-			values.add(value);
+			JLabel label = new JLabel(vspec.getName());
+			HashMap<JComponent, NamedElement> item = new HashMap<JComponent, NamedElement>();
+			item.put(label, vspec);
+			values.add(item);
 		}
 		editor = new JComboBox(values.toArray());
-		
+		editor.setRenderer(new FragmentSubstitutionComboxRenderer());
 	}
 	
 	@Override

@@ -159,19 +159,12 @@ public class CVLView {
 				};
 		
 		
-		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu);
+		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);
 		
 		
 		JTable tableSubstFragm = new JTable(dataSubstFragmTable, coulmnNamesSubstFragmTable);
 		
-		/*tableFragmSubst.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				if(e.getClickCount() == 2){
-					JTable target = (JTable) e.getSource();
-					loadBindings(target);
-				}
-			}
-		});*/
+
 		
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
@@ -187,7 +180,7 @@ public class CVLView {
 		loadBindings(tableFragmSubst);
 
 	}
-
+	
 	private void loadBindings(JTable sourceTable){
 		String[] columnNames = {"Type","[Object].property", "Values"};
 		
@@ -386,6 +379,16 @@ public class CVLView {
 		for(VSpec vs : v.getChild()){
 			loadCVLVSpecView(vs, model, nextParent, cu);
 		}
+	}
+	
+	public void notifyCVLRelalizationView(){
+		realizationPanel.removeAll();
+		
+        try{
+        	loadCVLRelalizationView(m.getCVLM().getCU(), realizationPanel);
+        } catch (CVLModelException e){
+        	e.printStackTrace();
+        }
 	}
 	
 	public void notifyVspecViewUpdate() {

@@ -2,8 +2,6 @@ package no.sintef.cvl.ui.editor;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -12,6 +10,7 @@ import cvl.VSpec;
 
 import no.sintef.cvl.ui.adapters.FragmentSubstitutionTableModel;
 import no.sintef.cvl.ui.adapters.FragmentSubstitutionVSpecCellEditor;
+import no.sintef.cvl.ui.loader.CVLView;
 
 public class FragmentSubstitutionJTable extends JTable {
 
@@ -24,8 +23,8 @@ public class FragmentSubstitutionJTable extends JTable {
 	private ConfigurableUnit cu;
 	private EList<VSpec> vSpecs;  
 	
-	public FragmentSubstitutionJTable(ConfigurableUnit cu) {
-		super(new FragmentSubstitutionTableModel(cu));
+	public FragmentSubstitutionJTable(ConfigurableUnit cu, CVLView view) {
+		super(new FragmentSubstitutionTableModel(cu, view));
 		this.cu = cu;
 		tableModel = (FragmentSubstitutionTableModel) this.getModel();
 		init();
