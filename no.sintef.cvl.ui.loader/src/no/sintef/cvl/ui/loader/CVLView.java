@@ -164,14 +164,14 @@ public class CVLView {
 		
 		JTable tableSubstFragm = new JTable(dataSubstFragmTable, coulmnNamesSubstFragmTable);
 		
-		tableFragmSubst.addMouseListener(new MouseAdapter() {
+		/*tableFragmSubst.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(e.getClickCount() == 2){
 					JTable target = (JTable) e.getSource();
 					loadBindings(target);
 				}
 			}
-		});
+		});*/
 		
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
@@ -182,6 +182,9 @@ public class CVLView {
 		panel.add(scrollPanelSubstFragm);
 		
 		realizationPanel.add(panel);
+		
+		
+		loadBindings(tableFragmSubst);
 
 	}
 
@@ -197,12 +200,12 @@ public class CVLView {
 		
 		JTable table = new JTable(data, columnNames);
 		int row = sourceTable.getSelectedRow();
-		String name = (String) sourceTable.getValueAt(row, 0);
+		//String name = (String) sourceTable.getValueAt(0, 0);
 		
 		JScrollPane scrollPanel = new JScrollPane(table);
-		scrollPanel.setName("Binding - " + name);		
+		scrollPanel.setName("Binding - <Name>");		
 		
-		realizationPanel.add(scrollPanel);
+		realizationPanel.add(scrollPanel, realizationPanel.getComponentCount());
 	}
 	
 	private void autoLayoutResolutions() {
