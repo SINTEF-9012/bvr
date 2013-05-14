@@ -17,6 +17,7 @@ Problemer:
  * PrimitiveValueSpecification contains a value as an expression.
  * UnlimitedLiteralExp's setUnlimited() takes int parameter
  * UnlimitedLiteralExp's getUnlimited() returns int
+ * RealLiteralExp stores reals as strings.
  
  Løst:
   * Meta-modellen tillater ikke noe funksjonskall, det er vel en mangel antar jeg. (Nei, BCL støtter ikke dette.)

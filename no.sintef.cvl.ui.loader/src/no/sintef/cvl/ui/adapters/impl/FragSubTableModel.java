@@ -1,7 +1,8 @@
-package no.sintef.cvl.ui.adapters;
+package no.sintef.cvl.ui.adapters.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.JComboBox;
@@ -10,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
+import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.commands.events.FragmentSubstitutionTableEvent;
+import no.sintef.cvl.ui.exceptions.UnexpectedUIError;
 import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -24,7 +27,7 @@ import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionTableModel extends AbstractTableModel
+public class FragSubTableModel extends AbstractTableModel
 		implements TableModel {
 
 	/**
@@ -33,9 +36,9 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 	private static final long serialVersionUID = 6757147907729864204L;
 	private ConfigurableUnit cu;
 	private String[] columnNames = {"Fragment Substitution Name", "VSpec Name"};
-	private ArrayList<ArrayList<HashMap<JComponent, NamedElement>>> data = new ArrayList<ArrayList<HashMap<JComponent, NamedElement>>>();
+	private ArrayList<ArrayList<DataItem>> data = new ArrayList<ArrayList<DataItem>>();
 
-	public FragmentSubstitutionTableModel(ConfigurableUnit cu, CVLView view){
+	public FragSubTableModel(ConfigurableUnit cu, ArrayList<DataItem> vSpecMap){
 		this.cu = cu;
 		EList<VariationPoint> varPoints = cu.getOwnedVariationPoint();
 		for(VariationPoint varPoint : varPoints){
@@ -43,20 +46,34 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) varPoint;
 				ArrayList<VSpec> referencedVSpecs = this.getReferencedVSpecs(fragmentSubstitution);
 				for(VSpec vSpec : referencedVSpecs){
-					HashMap<JComponent, NamedElement> cellFSN = new HashMap<JComponent, NamedElement>();
-					HashMap<JComponent, NamedElement> cellVSN = new HashMap<JComponent, NamedElement>();
-					
-					cellFSN.put(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
-					cellVSN.put(new JLabel(vSpec.getName()), varPoint);
-					
-					ArrayList<HashMap<JComponent, NamedElement>> row = new ArrayList<HashMap<JComponent, NamedElement>>(Arrays.asList(cellFSN, cellVSN));
+					DataFragSubItem cellFSN = new DataFragSubItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
+					DataVSpecItem cellVSN = this.getVSpecItem(vSpec, vSpecMap);
+
+					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
 					data.add(row);
 				}
 			}
 		}
-		addTableModelListener(new FragmentSubstitutionTableEvent(cu, data, view));
 	}
 	
+	private DataVSpecItem getVSpecItem(VSpec vSpec, ArrayList<DataItem> vSpecMap){
+		for(DataItem item : vSpecMap){
+			if(item.getNamedElement().equals(vSpec)){
+				return (DataVSpecItem) item;
+			}
+		}
+		return null;
+	}
+	
+	private HashMap<JComponent, NamedElement> findMap(VSpec vSpec, ArrayList<HashMap<JComponent, NamedElement>> vSpecMap){
+		for(HashMap<JComponent, NamedElement> map : vSpecMap){
+			if(map.values().iterator().next().equals(vSpec)){
+				return map;
+			}
+		}
+		return null;
+	}
+
 	private ArrayList<VSpec> getReferencedVSpecs(FragmentSubstitution fragSubs){
 		ArrayList<VSpec> vSpecs = new ArrayList<VSpec>();
 		VSpec vSpec = fragSubs.getBindingVSpec();
@@ -86,11 +103,30 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		HashMap<JComponent, NamedElement> cell = data.get(rowIndex).get(columnIndex);
-		JLabel label = (JLabel) cell.keySet().iterator().next();
-		return label.getText();
+		DataItem item = data.get(rowIndex).get(columnIndex);
+		return item;
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		//data.get(rowIndex).set(columnIndex, (DataItem) aValue);
+		switch(columnIndex){
+			case 0:{
+				DataItem cell = data.get(rowIndex).get(columnIndex);
+				JLabel label = cell.getLabel();
+				label.setText((String) aValue);
+			};break;
+			case 1:{
+				//data.get(rowIndex).set(columnIndex, (HashMap<JComponent, NamedElement>) aValue);
+				data.get(rowIndex).set(columnIndex, (DataItem) aValue);
+			}; break;
+			default : {
+				new UnimplementedUIError("table setter is not implemented for this column " + columnIndex);
+			};break;
+		}
+		fireTableCellUpdated(rowIndex, columnIndex);
+	}
 	@Override
 	public String getColumnName(int columnIndex) {
 		return columnNames[columnIndex];
@@ -113,23 +149,9 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 		return cl;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		switch(columnIndex){
-			case 0:{
-				HashMap<JComponent, NamedElement> cell = data.get(rowIndex).get(columnIndex);
-				JLabel label = (JLabel) cell.keySet().iterator().next();
-				label.setText((String) aValue);
-			};break;
-			case 1:{
-				data.get(rowIndex).set(columnIndex, (HashMap<JComponent, NamedElement>) aValue);
-			}; break;
-			default : {
-				new UnimplementedUIError("table setter is not implemented for this column " + columnIndex);
-			};break;
-		}
-		fireTableCellUpdated(rowIndex, columnIndex);
+
+	public ArrayList<ArrayList<DataItem>> getData() {
+		return data;
 	}
 	
 
