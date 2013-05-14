@@ -14,6 +14,9 @@ import cvl.ConfigurableUnit;
 import cvl.NamedElement;
 import cvl.VSpec;
 
+import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
+import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
 import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
 import no.sintef.cvl.ui.commands.events.FragmentSubstitutionTableEvent;
@@ -29,24 +32,24 @@ public class FragmentSubstitutionJTable extends JTable {
 	private FragSubVSpecTableCellEditor editorVSpec;
 	private ConfigurableUnit cu;
 	private EList<VSpec> vSpecs;
-	private ArrayList<HashMap<JComponent, NamedElement>> vSpecMap;
+	private ArrayList<DataItem> vSpecMap;
 	
 	public FragmentSubstitutionJTable(ConfigurableUnit cu, CVLView view) {
 		this.cu = cu;
 		vSpecs = new BasicEList<VSpec>();
 		this.getAllVSpec(cu.getOwnedVSpec());
-		vSpecMap = new ArrayList<HashMap<JComponent, NamedElement>>();
+		vSpecMap = new ArrayList<DataItem>();
 		for(VSpec spec : vSpecs){
-			HashMap<JComponent, NamedElement> map = new HashMap<JComponent, NamedElement>();
-			JLabel label = new JLabel(spec.getName());
-			map.put(label, spec);
+			DataVSpecItem map = new DataVSpecItem(new JLabel(spec.getName()), spec);
 			vSpecMap.add(map);
 		}
 		tableModel = new FragSubTableModel(cu, vSpecMap);
 		setModel(tableModel);
 		editorVSpec = new FragSubVSpecTableCellEditor(vSpecMap);
 		this.setDefaultEditor(JComboBox.class, editorVSpec);
-		tableModel.addTableModelListener(new FragmentSubstitutionTableEvent(cu, tableModel.getData(), view));
+		this.setDefaultRenderer(JComboBox.class, new FragSubTableCellRenderer());
+		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
+		//tableModel.addTableModelListener(new FragmentSubstitutionTableEvent(cu, tableModel.getData(), view));
 	}
 	
 	private void getAllVSpec(EList<VSpec> vSpecList){

@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
+import no.sintef.cvl.ui.adapters.DataItem;
+
 import org.eclipse.emf.common.util.EList;
 
 import cvl.NamedElement;
@@ -25,8 +27,7 @@ public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 	private static final long serialVersionUID = 2993488539123070478L;
 	private JComboBox editor;
 		
-	public FragSubVSpecTableCellEditor(
-			ArrayList<HashMap<JComponent, NamedElement>> vSpecMap) {
+	public FragSubVSpecTableCellEditor(ArrayList<DataItem> vSpecMap) {
 		editor = new JComboBox(vSpecMap.toArray());
 		editor.setRenderer(new FragSubComboxRenderer());
 	}
