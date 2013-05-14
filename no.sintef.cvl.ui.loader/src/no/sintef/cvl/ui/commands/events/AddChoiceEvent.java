@@ -13,6 +13,9 @@ import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;
+import cvl.ObjectHandle;
+import cvl.PlacementFragment;
+import cvl.ReplacementFragment;
 import cvl.VSpec;
 import cvl.CvlFactory;
 
@@ -49,5 +52,4 @@ public class AddChoiceEvent implements ActionListener {
 		// Regenerate view
 		view.notifyVspecViewUpdate();
 	}
-
 }

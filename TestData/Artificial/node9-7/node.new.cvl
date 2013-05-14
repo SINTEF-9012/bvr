@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore" name="exp">
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" xsi:schemaLocation="http:///cvl.ecore CVLMetamodel_old.ecore" name="exp">
   <ownedVSpec xsi:type="cvl:Choice" name="varModel">
     <child xsi:type="cvl:Choice" name="exp"/>
   </ownedVSpec>
