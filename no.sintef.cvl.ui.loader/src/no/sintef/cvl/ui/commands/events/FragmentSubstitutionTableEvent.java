@@ -39,10 +39,14 @@ public class FragmentSubstitutionTableEvent implements TableModelListener {
 				int columnIndex = e.getColumn();
 				DataItem modifiedCell = data.get(rowIndex).get(0);
 				if(columnIndex == 0){
-					FragmentSubstitution fs = (FragmentSubstitution) modifiedCell.getNamedElement();
+					VariationPoint vp = (VariationPoint) modifiedCell.getNamedElement();
 					JLabel label = (JLabel) modifiedCell.getLabel();
-					fs.setName(label.getText());
-					view.notifyCVLRelalizationView();
+					String newName = label.getText();
+					String currentName = vp.getName();
+					if(!newName.equals(currentName)){
+						vp.setName(label.getText());
+						view.notifyCVLRelalizationView();
+					}
 				}
 			}else{
 				new UnimplementedUIError("Few rows were updated - not implemented");
