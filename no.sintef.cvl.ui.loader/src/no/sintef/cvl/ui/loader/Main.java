@@ -13,6 +13,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
+import org.eclipse.ui.IWorkbenchWindow;
+
+import no.sintef.cvl.ui.commands.events.CheckEclipseEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
 import cvl.NamedElement;
@@ -23,11 +26,18 @@ public class Main {
 	private List<CVLView> views;
 	private List<CVLModel> models;
 
-	public static void main(String[] args) throws CVLModelException {
+	public static void main(String[] args){
 		new Main().main();
 	}
+	
+	// Eclipse connection
+	private IWorkbenchWindow w;
+	public void setEclipseWindow(IWorkbenchWindow w){
+		this.w = w;
+	}
+	// --
 
-	private void main(){
+	public void main(){
 		views = new ArrayList<CVLView>();
 		models = new ArrayList<CVLModel>();
 
@@ -127,6 +137,13 @@ public class Main {
 		genca.add(genca3);
 		camenu.add(genca);
 		menuBar.add(camenu);
+		
+		// Eclipse
+		JMenu eclipsemenu = new JMenu("Realization");
+		JMenuItem check = new JMenuItem("Create Placement");
+		check.addActionListener(new CheckEclipseEvent(filePane, models, views, w));
+		eclipsemenu.add(check);
+		menuBar.add(eclipsemenu);
 
 		// Done
 		jframe.add(filePane, BorderLayout.CENTER);

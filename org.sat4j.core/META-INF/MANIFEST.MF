@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %bundleName
 Bundle-SymbolicName: org.sat4j.core
-Bundle-Version: 9.9.9.token
+Bundle-Version: 2.3.0.token
 Export-Package: org.sat4j;version="9.9.9.token",
  org.sat4j.core;version="9.9.9.token",
  org.sat4j.minisat;version="9.9.9.token",

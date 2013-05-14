@@ -6,8 +6,10 @@ import java.io.PrintStream;
 
 import no.sintef.cvl.ui.loader.Main;
 
+import org.eclipse.emf.ecore.presentation.EcoreEditor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
@@ -34,26 +36,10 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action) {
-		//MessageDialog.openInformation(window.getShell(), "Test", "Hello, Eclipse world");
-		
-		// Redirect stdout
-		
-		
 		// Run
-		(new Thread(new HelloRunnable(window))).start();
-		
-	/*	
-		MessageConsole console = new MessageConsole(”System Output”, null);
-		ConsolePlugin.getDefault().getConsoleManager().addConsoles(new IConsole[] { console });
-		ConsolePlugin.getDefault().getConsoleManager().showConsoleView(console);
-		MessageConsoleStream stream = console.newMessageStream();
-
-		System.setOut(new PrintStream(stream));
-		System.setErr(new PrintStream(stream));
-
-		logger = LoggerFactory.getLogger(Application.class);
-		*/
-		
+		Runnable r = new CVLEditorThread(window);
+		Thread t = new Thread(r);
+		t.start();
 	}
 
 
@@ -85,11 +71,11 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	}
 }
 
-class HelloRunnable implements Runnable {
+class CVLEditorThread implements Runnable {
 
     private IWorkbenchWindow window;
 
-	public HelloRunnable(IWorkbenchWindow window) {
+	public CVLEditorThread(IWorkbenchWindow window) {
 		this.window = window;
 	}
 
@@ -109,13 +95,13 @@ class HelloRunnable implements Runnable {
 		System.setOut(po);
 		System.setErr(pe);
 		
-		System.out.println("test");
-		System.err.println("test");
+		Main m = new Main();
 		
-		new Main().main();
+		m.setEclipseWindow(window);
+		
+		m.main();
 		
 		po.close();
 		pe.close();
     }
-
 }
