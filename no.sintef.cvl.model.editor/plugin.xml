@@ -23,11 +23,11 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="cvl.presentation.cvlEditorID"
-            name="%_UI_cvlEditor_label"
+            id="cvl.presentation.CvlEditorID"
+            name="%_UI_CvlEditor_label"
             icon="icons/full/obj16/cvlModelFile.gif"
             extensions="cvl"
-            class="cvl.presentation.cvlEditor"
+            class="cvl.presentation.CvlEditor"
             contributorClass="cvl.presentation.cvlActionBarContributor">
       </editor>
    </extension>

@@ -4,9 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.ui.loader"/>
-	<classpathentry kind="lib" path="SINTEF-CVLTool2-v0.2a1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model.edit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model.editor"/>
+	<classpathentry kind="lib" path="SINTEF-CVLTool2-v0.2a1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -20,5 +20,8 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.constraints"/>
 	<classpathentry kind="lib" path="/no.sintef.cvl.constraints/lib/antlr-4.0-complete.jar" sourcepath="C:/Users/mjoha/.m2/repository/org/antlr/antlr4/4.0/antlr4-4.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.ui.workbench_3.103.1.v20120906-120042.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.8.1.v20120911-0500.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.8.101.v20120817-083647.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
