@@ -1,21 +1,20 @@
 package no.sintef.cvl.ui.adapters.impl;
 
 import java.awt.Component;
-import java.util.HashMap;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
-import cvl.NamedElement;
+import no.sintef.cvl.ui.adapters.DataItem;
 
-public class FragSubComboxRenderer extends BasicComboBoxRenderer {
-	
+
+public class FragSubVSpecComboboxRenderer extends BasicComboBoxRenderer {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7004215123288387411L;
+	private static final long serialVersionUID = 8204787709091431635L;
 
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
         if (isSelected) {
@@ -25,11 +24,10 @@ public class FragSubComboxRenderer extends BasicComboBoxRenderer {
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
-		@SuppressWarnings("unchecked")
-		HashMap<JComponent, NamedElement> item = (HashMap<JComponent, NamedElement>) value;
-		JLabel label = (JLabel) item.keySet().iterator().next();
+	
+		DataItem item = (DataItem) value;
+		JLabel label = (JLabel) item.getLabel();
 		setText(label.getText());
 		return this;
 	}
-
 }

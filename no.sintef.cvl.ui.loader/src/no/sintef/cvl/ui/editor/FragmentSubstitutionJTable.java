@@ -16,6 +16,7 @@ import cvl.VSpec;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
+import no.sintef.cvl.ui.adapters.impl.FragSubLableTabelCellEditor;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
 import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
@@ -47,6 +48,8 @@ public class FragmentSubstitutionJTable extends JTable {
 		setModel(tableModel);
 		editorVSpec = new FragSubVSpecTableCellEditor(vSpecMap);
 		this.setDefaultEditor(JComboBox.class, editorVSpec);
+		this.setDefaultEditor(String.class, new FragSubLableTabelCellEditor());
+		
 		this.setDefaultRenderer(JComboBox.class, new FragSubTableCellRenderer());
 		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
 		//tableModel.addTableModelListener(new FragmentSubstitutionTableEvent(cu, tableModel.getData(), view));
