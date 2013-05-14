@@ -6,15 +6,16 @@ import no.sintef.cvl.ui.adapters.DataItem;
 
 import cvl.FragmentSubstitution;
 import cvl.NamedElement;
+import cvl.VariationPoint;
 
 public class DataFragSubItem implements DataItem{
 
-	private FragmentSubstitution fragSub;
+	private VariationPoint varPoint;
 	private JLabel label;
 
-	public DataFragSubItem(JLabel label, FragmentSubstitution fragSub){
+	public DataFragSubItem(JLabel label, VariationPoint varPoint){
 		this.label = label;
-		this.fragSub = fragSub;
+		this.varPoint = varPoint;
 	}
 	
 	@Override
@@ -24,7 +25,7 @@ public class DataFragSubItem implements DataItem{
 	
 	@Override
 	public NamedElement getNamedElement() {
-		return this.fragSub;
+		return this.varPoint;
 	}
 	
 	public boolean equals(Object object){

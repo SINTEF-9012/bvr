@@ -52,7 +52,7 @@ public class FragmentSubstitutionJTable extends JTable {
 		
 		this.setDefaultRenderer(JComboBox.class, new FragSubTableCellRenderer());
 		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
-		//tableModel.addTableModelListener(new FragmentSubstitutionTableEvent(cu, tableModel.getData(), view));
+		tableModel.addTableModelListener(new FragmentSubstitutionTableEvent(cu, tableModel.getData(), view));
 	}
 	
 	private void getAllVSpec(EList<VSpec> vSpecList){
