@@ -7,8 +7,8 @@ import javax.swing.ComboBoxModel;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> implements
-		ComboBoxModel<DataItem> {
+public class FragSubVSpecComboboxModel extends AbstractListModel implements
+		ComboBoxModel {
 
 	private static final long serialVersionUID = -4928670717941556052L;
 	
