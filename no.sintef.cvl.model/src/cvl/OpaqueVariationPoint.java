@@ -17,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link cvl.OpaqueVariationPoint#getPlaceHolder <em>Place Holder</em>}</li>
- *   <li>{@link cvl.OpaqueVariationPoint#getSourceObject <em>Source Object</em>}</li>
  *   <li>{@link cvl.OpaqueVariationPoint#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -51,21 +50,6 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * @generated
 	 */
 	void setPlaceHolder(BaseModelHandle value);
-
-	/**
-	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
-	 * The list contents are of type {@link cvl.ObjectHandle}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The source objects of the OpaqueVariationPoint.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Source Object</em>' containment reference list.
-	 * @see cvl.CvlPackage#getOpaqueVariationPoint_SourceObject()
-	 * @model containment="true" required="true" ordered="false"
-	 * @generated
-	 */
-	EList<ObjectHandle> getSourceObject();
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

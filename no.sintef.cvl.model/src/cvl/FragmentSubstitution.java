@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link cvl.FragmentSubstitution#getPlacement <em>Placement</em>}</li>
  *   <li>{@link cvl.FragmentSubstitution#isMulti <em>Multi</em>}</li>
  *   <li>{@link cvl.FragmentSubstitution#getReplacement <em>Replacement</em>}</li>
- *   <li>{@link cvl.FragmentSubstitution#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,12 +105,12 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <p>Specifies the replacement to be utilized.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement</em>' reference.
-	 * @see #setReplacement(ReplacementFragmentType)
+	 * @see #setReplacement(ReplacementFragment)
 	 * @see cvl.CvlPackage#getFragmentSubstitution_Replacement()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	ReplacementFragmentType getReplacement();
+	ReplacementFragment getReplacement();
 
 	/**
 	 * Sets the value of the '{@link cvl.FragmentSubstitution#getReplacement <em>Replacement</em>}' reference.
@@ -121,22 +120,6 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * @see #getReplacement()
 	 * @generated
 	 */
-	void setReplacement(ReplacementFragmentType value);
-
-	/**
-	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
-	 * The list contents are of type {@link cvl.ObjectHandle}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source Object</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Object</em>' containment reference list.
-	 * @see cvl.CvlPackage#getFragmentSubstitution_SourceObject()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ObjectHandle> getSourceObject();
+	void setReplacement(ReplacementFragment value);
 
 } // FragmentSubstitution

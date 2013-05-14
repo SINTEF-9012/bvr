@@ -169,7 +169,6 @@ public class FragmentSubstitutionItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING);
-			childrenFeatures.add(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -228,7 +227,6 @@ public class FragmentSubstitutionItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
-			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -255,11 +253,6 @@ public class FragmentSubstitutionItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING,
 				 CvlFactory.eINSTANCE.createFromBinding()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT,
-				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 }

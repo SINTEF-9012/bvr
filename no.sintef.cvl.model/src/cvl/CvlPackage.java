@@ -600,13 +600,22 @@ public interface CvlPackage extends EPackage {
 	int VARIATION_POINT__BINDING_VSPEC = VPACKAGEABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT__SOURCE_OBJECT = VPACKAGEABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Variation Point</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
+	int VARIATION_POINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ChoiceVariationPointImpl <em>Choice Variation Point</em>}' class.
@@ -635,6 +644,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHOICE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -681,6 +699,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int FRAGMENT_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -737,22 +764,13 @@ public interface CvlPackage extends EPackage {
 	int FRAGMENT_SUBSTITUTION__REPLACEMENT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Fragment Substitution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 6;
+	int FRAGMENT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.RepeatableVariationPointImpl <em>Repeatable Variation Point</em>}' class.
@@ -781,6 +799,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPEATABLE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATABLE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Classifier</b></em>' reference.
@@ -848,6 +875,15 @@ public interface CvlPackage extends EPackage {
 	int PLACEMENT_FRAGMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_FRAGMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Placement Boundary Element</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -885,6 +921,70 @@ public interface CvlPackage extends EPackage {
 	int PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentImpl <em>Replacement Fragment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see cvl.impl.ReplacementFragmentImpl
+	 * @see cvl.impl.CvlPackageImpl#getReplacementFragment()
+	 * @generated
+	 */
+	int REPLACEMENT_FRAGMENT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT__NAME = VARIATION_POINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
+	 * The feature id for the '<em><b>Replacement Boundary Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT = VARIATION_POINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Placement Fragment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Replacement Fragment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VariabletypeImpl <em>Variabletype</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -911,52 +1011,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLETYPE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see cvl.impl.ReplacementFragmentTypeImpl
-	 * @see cvl.impl.CvlPackageImpl#getReplacementFragmentType()
-	 * @generated
-	 */
-	int REPLACEMENT_FRAGMENT_TYPE = 17;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT_TYPE__NAME = VARIABLETYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Replacement Boundary Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT = VARIABLETYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Placement Fragment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT = VARIABLETYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Replacement Fragment Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT_TYPE_FEATURE_COUNT = VARIABLETYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ReplacementBoundaryElementImpl <em>Replacement Boundary Element</em>}' class.
@@ -1004,6 +1058,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -1457,6 +1520,15 @@ public interface CvlPackage extends EPackage {
 	int SLOT_ASSIGNMENT__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_ASSIGNMENT__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1530,6 +1602,15 @@ public interface CvlPackage extends EPackage {
 	int OBJECT_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_EXISTENCE__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1583,6 +1664,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK_END_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_END_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -1686,6 +1776,15 @@ public interface CvlPackage extends EPackage {
 	int COMPOSITE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1730,6 +1829,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURABLE_UNIT__BINDING_VSPEC = COMPOSITE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURABLE_UNIT__SOURCE_OBJECT = COMPOSITE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
@@ -1996,6 +2104,15 @@ public interface CvlPackage extends EPackage {
 	int LINK_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_EXISTENCE__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2051,6 +2168,15 @@ public interface CvlPackage extends EPackage {
 	int OPAQUE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Place Holder</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2060,22 +2186,13 @@ public interface CvlPackage extends EPackage {
 	int OPAQUE_VARIATION_POINT__PLACE_HOLDER = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_VARIATION_POINT__TYPE = VARIATION_POINT_FEATURE_COUNT + 2;
+	int OPAQUE_VARIATION_POINT__TYPE = VARIATION_POINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Opaque Variation Point</em>' class.
@@ -2084,7 +2201,7 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 3;
+	int OPAQUE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.OVPTypeImpl <em>OVP Type</em>}' class.
@@ -2669,6 +2786,15 @@ public interface CvlPackage extends EPackage {
 	int PARAMETRIC_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2713,6 +2839,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int SLOT_VALUE_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_VALUE_EXISTENCE__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -2779,6 +2914,15 @@ public interface CvlPackage extends EPackage {
 	int PARAMETRIC_LINK_END_SUBSTITUTION__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_LINK_END_SUBSTITUTION__SOURCE_OBJECT = PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2843,6 +2987,15 @@ public interface CvlPackage extends EPackage {
 	int PARAMETRIC_OBJECT_SUBSTITUTION__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_OBJECT_SUBSTITUTION__SOURCE_OBJECT = PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2896,6 +3049,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_SLOT_ASSIGNMET__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_SLOT_ASSIGNMET__SOURCE_OBJECT = PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
@@ -3134,6 +3296,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURABLE_UNIT_USAGE__BINDING_VSPEC = COMPOSITE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURABLE_UNIT_USAGE__SOURCE_OBJECT = COMPOSITE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
@@ -3787,6 +3958,17 @@ public interface CvlPackage extends EPackage {
 	EReference getVariationPoint_BindingVSpec();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link cvl.VariationPoint#getSourceObject <em>Source Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Object</em>'.
+	 * @see cvl.VariationPoint#getSourceObject()
+	 * @see #getVariationPoint()
+	 * @generated
+	 */
+	EReference getVariationPoint_SourceObject();
+
+	/**
 	 * Returns the meta object for class '{@link cvl.FragmentSubstitution <em>Fragment Substitution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3839,17 +4021,6 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFragmentSubstitution_Replacement();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.FragmentSubstitution#getSourceObject <em>Source Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Object</em>'.
-	 * @see cvl.FragmentSubstitution#getSourceObject()
-	 * @see #getFragmentSubstitution()
-	 * @generated
-	 */
-	EReference getFragmentSubstitution_SourceObject();
 
 	/**
 	 * Returns the meta object for class '{@link cvl.ChoiceVariationPoint <em>Choice Variation Point</em>}'.
@@ -3935,36 +4106,36 @@ public interface CvlPackage extends EPackage {
 	EClass getPlacementBoundaryElement();
 
 	/**
-	 * Returns the meta object for class '{@link cvl.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
+	 * Returns the meta object for class '{@link cvl.ReplacementFragment <em>Replacement Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Replacement Fragment Type</em>'.
-	 * @see cvl.ReplacementFragmentType
+	 * @return the meta object for class '<em>Replacement Fragment</em>'.
+	 * @see cvl.ReplacementFragment
 	 * @generated
 	 */
-	EClass getReplacementFragmentType();
+	EClass getReplacementFragment();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragmentType#getReplacementBoundaryElement <em>Replacement Boundary Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragment#getReplacementBoundaryElement <em>Replacement Boundary Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Replacement Boundary Element</em>'.
-	 * @see cvl.ReplacementFragmentType#getReplacementBoundaryElement()
-	 * @see #getReplacementFragmentType()
+	 * @see cvl.ReplacementFragment#getReplacementBoundaryElement()
+	 * @see #getReplacementFragment()
 	 * @generated
 	 */
-	EReference getReplacementFragmentType_ReplacementBoundaryElement();
+	EReference getReplacementFragment_ReplacementBoundaryElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragmentType#getPlacementFragment <em>Placement Fragment</em>}'.
+	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragment#getPlacementFragment <em>Placement Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Placement Fragment</em>'.
-	 * @see cvl.ReplacementFragmentType#getPlacementFragment()
-	 * @see #getReplacementFragmentType()
+	 * @see cvl.ReplacementFragment#getPlacementFragment()
+	 * @see #getReplacementFragment()
 	 * @generated
 	 */
-	EReference getReplacementFragmentType_PlacementFragment();
+	EReference getReplacementFragment_PlacementFragment();
 
 	/**
 	 * Returns the meta object for class '{@link cvl.Variabletype <em>Variabletype</em>}'.
@@ -4592,17 +4763,6 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOpaqueVariationPoint_PlaceHolder();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.OpaqueVariationPoint#getSourceObject <em>Source Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Object</em>'.
-	 * @see cvl.OpaqueVariationPoint#getSourceObject()
-	 * @see #getOpaqueVariationPoint()
-	 * @generated
-	 */
-	EReference getOpaqueVariationPoint_SourceObject();
 
 	/**
 	 * Returns the meta object for the reference '{@link cvl.OpaqueVariationPoint#getType <em>Type</em>}'.
@@ -5818,6 +5978,14 @@ public interface CvlPackage extends EPackage {
 		EReference VARIATION_POINT__BINDING_VSPEC = eINSTANCE.getVariationPoint_BindingVSpec();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Object</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIATION_POINT__SOURCE_OBJECT = eINSTANCE.getVariationPoint_SourceObject();
+
+		/**
 		 * The meta object literal for the '{@link cvl.impl.FragmentSubstitutionImpl <em>Fragment Substitution</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5858,14 +6026,6 @@ public interface CvlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT_SUBSTITUTION__REPLACEMENT = eINSTANCE.getFragmentSubstitution_Replacement();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Object</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FRAGMENT_SUBSTITUTION__SOURCE_OBJECT = eINSTANCE.getFragmentSubstitution_SourceObject();
 
 		/**
 		 * The meta object literal for the '{@link cvl.impl.ChoiceVariationPointImpl <em>Choice Variation Point</em>}' class.
@@ -5942,14 +6102,14 @@ public interface CvlPackage extends EPackage {
 		EClass PLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getPlacementBoundaryElement();
 
 		/**
-		 * The meta object literal for the '{@link cvl.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
+		 * The meta object literal for the '{@link cvl.impl.ReplacementFragmentImpl <em>Replacement Fragment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see cvl.impl.ReplacementFragmentTypeImpl
-		 * @see cvl.impl.CvlPackageImpl#getReplacementFragmentType()
+		 * @see cvl.impl.ReplacementFragmentImpl
+		 * @see cvl.impl.CvlPackageImpl#getReplacementFragment()
 		 * @generated
 		 */
-		EClass REPLACEMENT_FRAGMENT_TYPE = eINSTANCE.getReplacementFragmentType();
+		EClass REPLACEMENT_FRAGMENT = eINSTANCE.getReplacementFragment();
 
 		/**
 		 * The meta object literal for the '<em><b>Replacement Boundary Element</b></em>' containment reference list feature.
@@ -5957,7 +6117,7 @@ public interface CvlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getReplacementFragmentType_ReplacementBoundaryElement();
+		EReference REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getReplacementFragment_ReplacementBoundaryElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Placement Fragment</b></em>' containment reference list feature.
@@ -5965,7 +6125,7 @@ public interface CvlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT = eINSTANCE.getReplacementFragmentType_PlacementFragment();
+		EReference REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT = eINSTANCE.getReplacementFragment_PlacementFragment();
 
 		/**
 		 * The meta object literal for the '{@link cvl.impl.VariabletypeImpl <em>Variabletype</em>}' class.
@@ -6482,14 +6642,6 @@ public interface CvlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPAQUE_VARIATION_POINT__PLACE_HOLDER = eINSTANCE.getOpaqueVariationPoint_PlaceHolder();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Object</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPAQUE_VARIATION_POINT__SOURCE_OBJECT = eINSTANCE.getOpaqueVariationPoint_SourceObject();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.

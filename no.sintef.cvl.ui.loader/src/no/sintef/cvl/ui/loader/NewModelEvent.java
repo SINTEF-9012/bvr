@@ -18,7 +18,6 @@ public class NewModelEvent implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("hey there");
 		CVLModel m = new CVLModel();
 		models.add(m);
 		views.add(new CVLView(m, c));

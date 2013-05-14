@@ -70,13 +70,13 @@
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//VariationPoint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VariationPoint/bindingVSpec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VariationPoint/sourceObject"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//FragmentSubstitution">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//FragmentSubstitution/boundaryElementBinding"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//FragmentSubstitution/placement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//FragmentSubstitution/multi"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//FragmentSubstitution/replacement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//FragmentSubstitution/sourceObject"/>
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//ChoiceVariationPoint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ChoiceVariationPoint/bindingChoice"/>
@@ -170,7 +170,6 @@
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//OpaqueVariationPoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//OpaqueVariationPoint/placeHolder"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//OpaqueVariationPoint/sourceObject"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//OpaqueVariationPoint/type"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//OVPType">

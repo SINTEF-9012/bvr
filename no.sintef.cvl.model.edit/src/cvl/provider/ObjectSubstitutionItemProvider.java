@@ -172,6 +172,7 @@ public class ObjectSubstitutionItemProvider
 		Object childObject = child;
 
 		boolean qualify =
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
 			childFeature == CvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT ||
 			childFeature == CvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT;
 

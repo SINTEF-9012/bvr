@@ -60,7 +60,10 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	 * @generated
 	 */
 	public Variabletype basicGetType() {
-		return type;
+		// TODO: implement this method to return the 'Type' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 	
 	Variabletype type;
@@ -71,7 +74,9 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	 * @generated
 	 */
 	public void setType(Variabletype newType) {
-		type = newType;
+		// TODO: implement this method to set the 'Type' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

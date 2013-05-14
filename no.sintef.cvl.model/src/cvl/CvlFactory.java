@@ -94,13 +94,13 @@ public interface CvlFactory extends EFactory {
 	PlacementFragment createPlacementFragment();
 
 	/**
-	 * Returns a new object of class '<em>Replacement Fragment Type</em>'.
+	 * Returns a new object of class '<em>Replacement Fragment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Replacement Fragment Type</em>'.
+	 * @return a new object of class '<em>Replacement Fragment</em>'.
 	 * @generated
 	 */
-	ReplacementFragmentType createReplacementFragmentType();
+	ReplacementFragment createReplacementFragment();
 
 	/**
 	 * Returns a new object of class '<em>Variabletype</em>'.

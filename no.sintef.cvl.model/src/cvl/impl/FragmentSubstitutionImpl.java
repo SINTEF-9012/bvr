@@ -8,6 +8,7 @@ import cvl.FragmentSubstitution;
 import cvl.ObjectHandle;
 import cvl.PlacementFragment;
 import cvl.RepeatableVariationPoint;
+import cvl.ReplacementFragment;
 import cvl.ReplacementFragmentType;
 import cvl.VClassifier;
 
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link cvl.impl.FragmentSubstitutionImpl#getPlacement <em>Placement</em>}</li>
  *   <li>{@link cvl.impl.FragmentSubstitutionImpl#isMulti <em>Multi</em>}</li>
  *   <li>{@link cvl.impl.FragmentSubstitutionImpl#getReplacement <em>Replacement</em>}</li>
- *   <li>{@link cvl.impl.FragmentSubstitutionImpl#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,17 +103,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected ReplacementFragmentType replacement;
-
-	/**
-	 * The cached value of the '{@link #getSourceObject() <em>Source Object</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceObject()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ObjectHandle> sourceObject;
+	protected ReplacementFragment replacement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -248,10 +238,10 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragmentType getReplacement() {
+	public ReplacementFragment getReplacement() {
 		if (replacement != null && replacement.eIsProxy()) {
 			InternalEObject oldReplacement = (InternalEObject)replacement;
-			replacement = (ReplacementFragmentType)eResolveProxy(oldReplacement);
+			replacement = (ReplacementFragment)eResolveProxy(oldReplacement);
 			if (replacement != oldReplacement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
@@ -265,7 +255,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragmentType basicGetReplacement() {
+	public ReplacementFragment basicGetReplacement() {
 		return replacement;
 	}
 
@@ -274,23 +264,11 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacement(ReplacementFragmentType newReplacement) {
-		ReplacementFragmentType oldReplacement = replacement;
+	public void setReplacement(ReplacementFragment newReplacement) {
+		ReplacementFragment oldReplacement = replacement;
 		replacement = newReplacement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ObjectHandle> getSourceObject() {
-		if (sourceObject == null) {
-			sourceObject = new EObjectContainmentEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT);
-		}
-		return sourceObject;
 	}
 
 	/**
@@ -303,8 +281,6 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		switch (featureID) {
 			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				return ((InternalEList<?>)getBoundaryElementBinding()).basicRemove(otherEnd, msgs);
-			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
-				return ((InternalEList<?>)getSourceObject()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -330,8 +306,6 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
 				if (resolve) return getReplacement();
 				return basicGetReplacement();
-			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
-				return getSourceObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -359,11 +333,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 				setMulti((Boolean)newValue);
 				return;
 			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
-				setReplacement((ReplacementFragmentType)newValue);
-				return;
-			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
-				getSourceObject().clear();
-				getSourceObject().addAll((Collection<? extends ObjectHandle>)newValue);
+				setReplacement((ReplacementFragment)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -390,10 +360,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 				setMulti(MULTI_EDEFAULT);
 				return;
 			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
-				setReplacement((ReplacementFragmentType)null);
-				return;
-			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
-				getSourceObject().clear();
+				setReplacement((ReplacementFragment)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -417,8 +384,6 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 				return multi != MULTI_EDEFAULT;
 			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
 				return replacement != null;
-			case CvlPackage.FRAGMENT_SUBSTITUTION__SOURCE_OBJECT:
-				return sourceObject != null && !sourceObject.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

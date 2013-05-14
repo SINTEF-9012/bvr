@@ -53,11 +53,15 @@ import cvl.ConfigurableUnit;
 import cvl.Constraint;
 import cvl.NamedElement;
 import cvl.OpaqueConstraint;
+import cvl.PlacementFragment;
+import cvl.ReplacementFragmentType;
 import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.VariableValueAssignment;
+import cvl.Variabletype;
+import cvl.VariationPoint;
 
 public class CVLView {
 	private CVLModel m;
@@ -150,13 +154,23 @@ public class CVLView {
 	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
 		String[] coulmnNamesSubstFragmTable = {"Name"};
 		
-		Object[][] dataSubstFragmTable = {
-				{"placement"}, {"replacement"},
-				{"placement"}, {"replacement"},
-				{"placement"}, {"replacement"},
-				{"placement"}, {"replacement"},
-				{"placement"}, {"replacement"}
-				};
+		List<String> pr = new ArrayList<String>();
+		for(VariationPoint x : cu.getOwnedVariationPoint()){
+			if(x instanceof PlacementFragment){
+				pr.add(x.getName() + " - Placement Fragment");
+			}
+			if(x instanceof ReplacementFragmentType){
+				pr.add(x.getName() + " - Replacement Fragment");
+			}
+		}
+		
+		Object[][] dataSubstFragmTable = new Object[pr.size()][1];
+		
+		int i = 0;
+		for(String s : pr){
+			dataSubstFragmTable[i] = new Object[] {s};
+			i++;
+		}
 		
 		
 		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);

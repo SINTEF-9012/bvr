@@ -256,26 +256,26 @@ public class CvlItemProviderAdapterFactory extends CvlAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link cvl.ReplacementFragmentType} instances.
+	 * This keeps track of the one adapter used for all {@link cvl.ReplacementFragment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReplacementFragmentTypeItemProvider replacementFragmentTypeItemProvider;
+	protected ReplacementFragmentItemProvider replacementFragmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link cvl.ReplacementFragmentType}.
+	 * This creates an adapter for a {@link cvl.ReplacementFragment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createReplacementFragmentTypeAdapter() {
-		if (replacementFragmentTypeItemProvider == null) {
-			replacementFragmentTypeItemProvider = new ReplacementFragmentTypeItemProvider(this);
+	public Adapter createReplacementFragmentAdapter() {
+		if (replacementFragmentItemProvider == null) {
+			replacementFragmentItemProvider = new ReplacementFragmentItemProvider(this);
 		}
 
-		return replacementFragmentTypeItemProvider;
+		return replacementFragmentItemProvider;
 	}
 
 	/**
@@ -1535,7 +1535,7 @@ public class CvlItemProviderAdapterFactory extends CvlAdapterFactory implements 
 		if (vInstanceItemProvider != null) vInstanceItemProvider.dispose();
 		if (fragmentSubstitutionItemProvider != null) fragmentSubstitutionItemProvider.dispose();
 		if (placementFragmentItemProvider != null) placementFragmentItemProvider.dispose();
-		if (replacementFragmentTypeItemProvider != null) replacementFragmentTypeItemProvider.dispose();
+		if (replacementFragmentItemProvider != null) replacementFragmentItemProvider.dispose();
 		if (variabletypeItemProvider != null) variabletypeItemProvider.dispose();
 		if (objectSubstitutionItemProvider != null) objectSubstitutionItemProvider.dispose();
 		if (objectHandleItemProvider != null) objectHandleItemProvider.dispose();

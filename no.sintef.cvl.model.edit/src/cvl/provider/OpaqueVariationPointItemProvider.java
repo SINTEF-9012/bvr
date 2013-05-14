@@ -99,7 +99,6 @@ public class OpaqueVariationPointItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER);
-			childrenFeatures.add(CvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -155,7 +154,6 @@ public class OpaqueVariationPointItemProvider
 
 		switch (notification.getFeatureID(OpaqueVariationPoint.class)) {
 			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
-			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -187,11 +185,6 @@ public class OpaqueVariationPointItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
 				 CvlFactory.eINSTANCE.createLinkHandle()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT,
-				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 	/**
@@ -206,8 +199,8 @@ public class OpaqueVariationPointItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER ||
-			childFeature == CvlPackage.Literals.OPAQUE_VARIATION_POINT__SOURCE_OBJECT;
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
+			childFeature == CvlPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER;
 
 		if (qualify) {
 			return getString

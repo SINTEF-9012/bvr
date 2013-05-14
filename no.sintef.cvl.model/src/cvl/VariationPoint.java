@@ -2,6 +2,8 @@
  */
 package cvl;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +18,7 @@ package cvl;
  * The following features are supported:
  * <ul>
  *   <li>{@link cvl.VariationPoint#getBindingVSpec <em>Binding VSpec</em>}</li>
+ *   <li>{@link cvl.VariationPoint#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,5 +51,21 @@ public interface VariationPoint extends VPackageable {
 	 * @generated
 	 */
 	void setBindingVSpec(VSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
+	 * The list contents are of type {@link cvl.ObjectHandle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Object</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Object</em>' containment reference list.
+	 * @see cvl.CvlPackage#getVariationPoint_SourceObject()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ObjectHandle> getSourceObject();
 
 } // VariationPoint

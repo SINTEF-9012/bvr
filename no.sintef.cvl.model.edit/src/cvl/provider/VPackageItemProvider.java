@@ -185,12 +185,12 @@ public class VPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createVariabletype()));
+				 CvlFactory.eINSTANCE.createReplacementFragment()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createReplacementFragmentType()));
+				 CvlFactory.eINSTANCE.createVariabletype()));
 
 		newChildDescriptors.add
 			(createChildParameter

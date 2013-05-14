@@ -203,12 +203,12 @@ public class CvlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE: {
-				ReplacementFragmentType replacementFragmentType = (ReplacementFragmentType)theEObject;
-				T result = caseReplacementFragmentType(replacementFragmentType);
-				if (result == null) result = caseVariabletype(replacementFragmentType);
-				if (result == null) result = caseVPackageable(replacementFragmentType);
-				if (result == null) result = caseNamedElement(replacementFragmentType);
+			case CvlPackage.REPLACEMENT_FRAGMENT: {
+				ReplacementFragment replacementFragment = (ReplacementFragment)theEObject;
+				T result = caseReplacementFragment(replacementFragment);
+				if (result == null) result = caseVariationPoint(replacementFragment);
+				if (result == null) result = caseVPackageable(replacementFragment);
+				if (result == null) result = caseNamedElement(replacementFragment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -914,17 +914,17 @@ public class CvlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Replacement Fragment Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Replacement Fragment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Replacement Fragment Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Replacement Fragment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseReplacementFragmentType(ReplacementFragmentType object) {
+	public T caseReplacementFragment(ReplacementFragment object) {
 		return null;
 	}
 

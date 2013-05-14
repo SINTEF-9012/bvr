@@ -17,16 +17,44 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 
-public class CheckEclipseEvent implements ActionListener {
+import cvl.ConfigurableUnit;
+import cvl.CvlFactory;
+import cvl.PlacementFragment;
+import cvl.ReplacementFragment;
+import cvl.ReplacementFragmentType;
+
+public class CreateReplacementFragmentEvent implements ActionListener {
 
 	private IWorkbenchWindow w;
+	private JTabbedPane filePane;
+	private List<CVLModel> models;
+	private List<CVLView> views;
 
-	public CheckEclipseEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, IWorkbenchWindow w) {
+	public CreateReplacementFragmentEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, IWorkbenchWindow w) {
+		this.filePane = filePane;
+		this.models = models;
+		this.views = views;
 		this.w = w;
 	}
+	
+	static int count = 0;
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent ev) {
+		int tab = filePane.getSelectedIndex();
+		CVLModel m = models.get(tab);
+		
+		ConfigurableUnit cu = m.getCU();
+		
+		ReplacementFragment rf = CvlFactory.eINSTANCE.createReplacementFragment();
+		count++;
+		rf.setName("ReplacementFragment" + count);
+		
+		cu.getOwnedVariationPoint().add(rf);
+		
+		views.get(tab).notifyCVLRelalizationView();
+		
+		/*
 		System.out.println(w);
 		if(w == null){
 			JOptionPane.showMessageDialog(null, "No Eclipse Connection Available");
@@ -63,6 +91,8 @@ public class CheckEclipseEvent implements ActionListener {
 			
 			JOptionPane.showMessageDialog(null, "Selection : " + selstring);
 		}
+		
+		*/
 	}
 
 }

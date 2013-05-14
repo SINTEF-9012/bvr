@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link cvl.impl.OpaqueVariationPointImpl#getPlaceHolder <em>Place Holder</em>}</li>
- *   <li>{@link cvl.impl.OpaqueVariationPointImpl#getSourceObject <em>Source Object</em>}</li>
  *   <li>{@link cvl.impl.OpaqueVariationPointImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -48,16 +47,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 * @ordered
 	 */
 	protected BaseModelHandle placeHolder;
-
-	/**
-	 * The cached value of the '{@link #getSourceObject() <em>Source Object</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceObject()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ObjectHandle> sourceObject;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -136,18 +125,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ObjectHandle> getSourceObject() {
-		if (sourceObject == null) {
-			sourceObject = new EObjectContainmentEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT);
-		}
-		return sourceObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OVPType getType() {
 		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
@@ -191,8 +168,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 		switch (featureID) {
 			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				return basicSetPlaceHolder(null, msgs);
-			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
-				return ((InternalEList<?>)getSourceObject()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -207,8 +182,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 		switch (featureID) {
 			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				return getPlaceHolder();
-			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
-				return getSourceObject();
 			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -228,10 +201,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				setPlaceHolder((BaseModelHandle)newValue);
 				return;
-			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
-				getSourceObject().clear();
-				getSourceObject().addAll((Collection<? extends ObjectHandle>)newValue);
-				return;
 			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				setType((OVPType)newValue);
 				return;
@@ -250,9 +219,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				setPlaceHolder((BaseModelHandle)null);
 				return;
-			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
-				getSourceObject().clear();
-				return;
 			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				setType((OVPType)null);
 				return;
@@ -270,8 +236,6 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 		switch (featureID) {
 			case CvlPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
 				return placeHolder != null;
-			case CvlPackage.OPAQUE_VARIATION_POINT__SOURCE_OBJECT:
-				return sourceObject != null && !sourceObject.isEmpty();
 			case CvlPackage.OPAQUE_VARIATION_POINT__TYPE:
 				return type != null;
 		}

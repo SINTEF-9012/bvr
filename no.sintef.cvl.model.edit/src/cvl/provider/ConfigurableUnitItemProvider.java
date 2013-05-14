@@ -216,6 +216,11 @@ public class ConfigurableUnitItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createReplacementFragment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
 				 CvlFactory.eINSTANCE.createObjectSubstitution()));
 
 		newChildDescriptors.add
@@ -341,17 +346,35 @@ public class ConfigurableUnitItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
-				 CvlFactory.eINSTANCE.createReplacementFragmentType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
 				 CvlFactory.eINSTANCE.createPrimitveType()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
 				 CvlFactory.eINSTANCE.createObjectType()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
+			childFeature == CvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

@@ -226,6 +226,8 @@
         <details key="documentation" value="&lt;p>The VSpecs to which the variation point is bound.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" upperBound="-1"
+        eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FragmentSubstitution" eSuperTypes="#//ChoiceVariationPoint #//RepeatableVariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -250,13 +252,11 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="replacement" ordered="false"
-        eType="#//ReplacementFragmentType">
+        eType="#//ReplacementFragment">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Specifies the replacement to be utilized.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" upperBound="-1"
-        eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChoiceVariationPoint" abstract="true"
       eSuperTypes="#//VariationPoint">
@@ -303,7 +303,7 @@
       <details key="documentation" value="Represents the boundary between a placement fragment and the rest of the base model."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReplacementFragmentType" eSuperTypes="#//Variabletype">
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementFragment" eSuperTypes="#//VariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>Replacement Fragment Type defines a fragment of the base model that will be used as replacement for some placement fragment&lt;br>of the base model.&lt;/p>&lt;p>Constraints:&lt;/p>&lt;p>The placements contained in a replacement fragments should only involve model elements which are inside the replacement fragment. These placements can be used in all instances of a replacement fragment.&lt;/p>&lt;p>Semantics:&lt;/p>&lt;p>The semantics of Replacement Fragment Type can be found under Fragment Substitution.&lt;/p>&lt;p>####CVLSemanticStart####&lt;/p>&lt;p>Invariant :&lt;/p>&lt;p>OCL :&lt;/p>&lt;p>&lt;/p>&lt;p>####CVLSemanticEnd####&lt;/p>&lt;p>&lt;/p>"/>
     </eAnnotations>
@@ -364,7 +364,7 @@
       <details key="documentation" value="&lt;p class=&quot;MsoNormal&quot;>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>A variable is a VSpec whose resolution requires providing a value of its specified type. When a parametric variation point is bound to a variable, the value provided for the variable as resolution will be used as the actual parameter when applying the variation point during materialization.&lt;/span>&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="replacementFragmentTypesubsetstype"
-        ordered="false" eType="#//ReplacementFragmentType">
+        ordered="false" eType="#//ReplacementFragment">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The optional ReplacementFragmentType.&lt;/p>"/>
       </eAnnotations>
@@ -642,12 +642,6 @@
         lowerBound="1" eType="#//BaseModelHandle" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The place holder of the OpaqueVariationPoint.&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ObjectHandle" containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The source objects of the OpaqueVariationPoint.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"

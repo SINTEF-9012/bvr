@@ -15,8 +15,9 @@ import javax.swing.JTabbedPane;
 
 import org.eclipse.ui.IWorkbenchWindow;
 
-import no.sintef.cvl.ui.commands.events.CheckEclipseEvent;
+import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
+import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
 import cvl.NamedElement;
 
@@ -140,9 +141,15 @@ public class Main {
 		
 		// Eclipse
 		JMenu eclipsemenu = new JMenu("Realization");
-		JMenuItem check = new JMenuItem("Create Placement");
-		check.addActionListener(new CheckEclipseEvent(filePane, models, views, w));
-		eclipsemenu.add(check);
+		
+		JMenuItem createPlacement = new JMenuItem("Create Placement");
+		createPlacement.addActionListener(new CreatePlacementFragmentEvent(filePane, models, views, w));
+		eclipsemenu.add(createPlacement);
+		
+		JMenuItem createReplacement = new JMenuItem("Create Replacement");
+		createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane, models, views, w));
+		eclipsemenu.add(createReplacement);
+		
 		menuBar.add(eclipsemenu);
 
 		// Done
