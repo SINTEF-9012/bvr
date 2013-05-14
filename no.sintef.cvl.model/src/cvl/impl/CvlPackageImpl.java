@@ -55,7 +55,6 @@ import cvl.RepeatableVariationPoint;
 import cvl.ReplacementBoundaryElement;
 import cvl.ReplacementFragment;
 import cvl.ReplacementFragmentSpecification;
-import cvl.ReplacementFragmentType;
 import cvl.SlotAssignment;
 import cvl.SlotValueExistence;
 import cvl.StringLiteralExp;
@@ -2749,8 +2748,10 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 		choiceVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
 		repeatableVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
 		placementFragmentEClass.getESuperTypes().add(this.getVariationPoint());
+		placementBoundaryElementEClass.getESuperTypes().add(this.getVariationPoint());
 		replacementFragmentEClass.getESuperTypes().add(this.getVariationPoint());
 		variabletypeEClass.getESuperTypes().add(this.getVPackageable());
+		replacementBoundaryElementEClass.getESuperTypes().add(this.getVariationPoint());
 		objectSubstitutionEClass.getESuperTypes().add(this.getChoiceVariationPoint());
 		objectHandleEClass.getESuperTypes().add(this.getBaseModelHandle());
 		variableEClass.getESuperTypes().add(this.getVSpec());

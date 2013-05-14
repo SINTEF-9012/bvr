@@ -298,7 +298,8 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true"
+      eSuperTypes="#//VariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents the boundary between a placement fragment and the rest of the base model."/>
     </eAnnotations>
@@ -325,7 +326,8 @@
       <details key="documentation" value="&lt;p>The type of a variable or a value specification.&lt;/p>"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true"
+      eSuperTypes="#//VariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents the boundary between a replacement fragment and the rest of the base model."/>
     </eAnnotations>

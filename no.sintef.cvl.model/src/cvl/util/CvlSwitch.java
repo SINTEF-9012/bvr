@@ -200,6 +200,9 @@ public class CvlSwitch<T> extends Switch<T> {
 			case CvlPackage.PLACEMENT_BOUNDARY_ELEMENT: {
 				PlacementBoundaryElement placementBoundaryElement = (PlacementBoundaryElement)theEObject;
 				T result = casePlacementBoundaryElement(placementBoundaryElement);
+				if (result == null) result = caseVariationPoint(placementBoundaryElement);
+				if (result == null) result = caseVPackageable(placementBoundaryElement);
+				if (result == null) result = caseNamedElement(placementBoundaryElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -223,6 +226,9 @@ public class CvlSwitch<T> extends Switch<T> {
 			case CvlPackage.REPLACEMENT_BOUNDARY_ELEMENT: {
 				ReplacementBoundaryElement replacementBoundaryElement = (ReplacementBoundaryElement)theEObject;
 				T result = caseReplacementBoundaryElement(replacementBoundaryElement);
+				if (result == null) result = caseVariationPoint(replacementBoundaryElement);
+				if (result == null) result = caseVPackageable(replacementBoundaryElement);
+				if (result == null) result = caseNamedElement(replacementBoundaryElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -447,6 +453,9 @@ public class CvlSwitch<T> extends Switch<T> {
 				ToPlacement toPlacement = (ToPlacement)theEObject;
 				T result = caseToPlacement(toPlacement);
 				if (result == null) result = casePlacementBoundaryElement(toPlacement);
+				if (result == null) result = caseVariationPoint(toPlacement);
+				if (result == null) result = caseVPackageable(toPlacement);
+				if (result == null) result = caseNamedElement(toPlacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -454,6 +463,9 @@ public class CvlSwitch<T> extends Switch<T> {
 				ToReplacement toReplacement = (ToReplacement)theEObject;
 				T result = caseToReplacement(toReplacement);
 				if (result == null) result = caseReplacementBoundaryElement(toReplacement);
+				if (result == null) result = caseVariationPoint(toReplacement);
+				if (result == null) result = caseVPackageable(toReplacement);
+				if (result == null) result = caseNamedElement(toReplacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -468,6 +480,9 @@ public class CvlSwitch<T> extends Switch<T> {
 				FromPlacement fromPlacement = (FromPlacement)theEObject;
 				T result = caseFromPlacement(fromPlacement);
 				if (result == null) result = casePlacementBoundaryElement(fromPlacement);
+				if (result == null) result = caseVariationPoint(fromPlacement);
+				if (result == null) result = caseVPackageable(fromPlacement);
+				if (result == null) result = caseNamedElement(fromPlacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -475,6 +490,9 @@ public class CvlSwitch<T> extends Switch<T> {
 				FromReplacement fromReplacement = (FromReplacement)theEObject;
 				T result = caseFromReplacement(fromReplacement);
 				if (result == null) result = caseReplacementBoundaryElement(fromReplacement);
+				if (result == null) result = caseVariationPoint(fromReplacement);
+				if (result == null) result = caseVPackageable(fromReplacement);
+				if (result == null) result = caseNamedElement(fromReplacement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

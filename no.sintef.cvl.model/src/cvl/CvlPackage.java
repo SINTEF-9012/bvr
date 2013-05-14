@@ -912,13 +912,40 @@ public interface CvlPackage extends EPackage {
 	int PLACEMENT_BOUNDARY_ELEMENT = 16;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_BOUNDARY_ELEMENT__NAME = VARIATION_POINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The number of structural features of the '<em>Placement Boundary Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = 0;
+	int PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentImpl <em>Replacement Fragment</em>}' class.
@@ -1023,13 +1050,40 @@ public interface CvlPackage extends EPackage {
 	int REPLACEMENT_BOUNDARY_ELEMENT = 19;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_BOUNDARY_ELEMENT__NAME = VARIATION_POINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+
+	/**
 	 * The number of structural features of the '<em>Replacement Boundary Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = 0;
+	int REPLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ObjectSubstitutionImpl <em>Object Substitution</em>}' class.
@@ -2427,6 +2481,33 @@ public interface CvlPackage extends EPackage {
 	int TO_PLACEMENT = 46;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_PLACEMENT__NAME = PLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_PLACEMENT__BINDING_VSPEC = PLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_PLACEMENT__SOURCE_OBJECT = PLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>To Replacement</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2480,6 +2561,33 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	int TO_REPLACEMENT = 47;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_REPLACEMENT__NAME = REPLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_REPLACEMENT__BINDING_VSPEC = REPLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_REPLACEMENT__SOURCE_OBJECT = REPLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Inside Boundary Element</b></em>' reference list.
@@ -2565,6 +2673,33 @@ public interface CvlPackage extends EPackage {
 	int FROM_PLACEMENT = 49;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_PLACEMENT__NAME = PLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_PLACEMENT__BINDING_VSPEC = PLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_PLACEMENT__SOURCE_OBJECT = PLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
+
+	/**
 	 * The feature id for the '<em><b>From Replacement</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2609,6 +2744,33 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	int FROM_REPLACEMENT = 50;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_REPLACEMENT__NAME = REPLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_REPLACEMENT__BINDING_VSPEC = REPLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_REPLACEMENT__SOURCE_OBJECT = REPLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.

@@ -89,9 +89,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//PlacementFragment/placementBoundaryElement"/>
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//PlacementBoundaryElement"/>
-    <genClasses ecoreClass="CVLMetamodel.ecore#//ReplacementFragmentType">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ReplacementFragmentType/replacementBoundaryElement"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ReplacementFragmentType/placementFragment"/>
+    <genClasses ecoreClass="CVLMetamodel.ecore#//ReplacementFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ReplacementFragment/replacementBoundaryElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ReplacementFragment/placementFragment"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//Variabletype"/>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//ReplacementBoundaryElement"/>

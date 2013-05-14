@@ -4,7 +4,6 @@ package cvl;
 
 import org.eclipse.emf.ecore.EObject;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Object Handle</b></em>'.
@@ -32,6 +31,10 @@ public interface ObjectHandle extends BaseModelHandle {
 	/**
 	 * Returns the value of the '<em><b>MOF Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>MOF Ref</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>MOF Ref</em>' reference.
 	 * @see #setMOFRef(EObject)

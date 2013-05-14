@@ -245,6 +245,10 @@ public class ConfigurableUnitImpl extends CompositeVariationPointImpl implements
 	 * @generated
 	 */
 	public VInterface basicGetUnitInterface() {
+		// TODO: implement this method to return the 'Unit Interface' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		//throw new UnsupportedOperationException();
 		return null;
 	}
 

@@ -7,8 +7,6 @@ import cvl.ReplacementBoundaryElement;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Replacement Boundary Element</b></em>'.
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class ReplacementBoundaryElementImpl extends EObjectImpl implements ReplacementBoundaryElement {
+public abstract class ReplacementBoundaryElementImpl extends VariationPointImpl implements ReplacementBoundaryElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

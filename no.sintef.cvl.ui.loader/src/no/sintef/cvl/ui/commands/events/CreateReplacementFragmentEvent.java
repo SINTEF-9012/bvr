@@ -21,7 +21,6 @@ import cvl.ConfigurableUnit;
 import cvl.CvlFactory;
 import cvl.PlacementFragment;
 import cvl.ReplacementFragment;
-import cvl.ReplacementFragmentType;
 
 public class CreateReplacementFragmentEvent implements ActionListener {
 

@@ -5,11 +5,9 @@ package cvl.impl;
 import cvl.BoundaryElementBinding;
 import cvl.CvlPackage;
 import cvl.FragmentSubstitution;
-import cvl.ObjectHandle;
 import cvl.PlacementFragment;
 import cvl.RepeatableVariationPoint;
 import cvl.ReplacementFragment;
-import cvl.ReplacementFragmentType;
 import cvl.VClassifier;
 
 import java.util.Collection;

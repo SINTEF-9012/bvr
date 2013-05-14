@@ -65,8 +65,6 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
-	
-	Variabletype type;
 
 	/**
 	 * <!-- begin-user-doc -->
