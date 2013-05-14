@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters;
+package no.sintef.cvl.ui.adapters.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionTableModel extends AbstractTableModel
+public class FragSubTableModel extends AbstractTableModel
 		implements TableModel {
 
 	/**
@@ -35,7 +35,7 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 	private String[] columnNames = {"Fragment Substitution Name", "VSpec Name"};
 	private ArrayList<ArrayList<HashMap<JComponent, NamedElement>>> data = new ArrayList<ArrayList<HashMap<JComponent, NamedElement>>>();
 
-	public FragmentSubstitutionTableModel(ConfigurableUnit cu, CVLView view){
+	public FragSubTableModel(ConfigurableUnit cu, ArrayList<HashMap<JComponent, NamedElement>> vSpecMap){
 		this.cu = cu;
 		EList<VariationPoint> varPoints = cu.getOwnedVariationPoint();
 		for(VariationPoint varPoint : varPoints){
@@ -44,19 +44,26 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 				ArrayList<VSpec> referencedVSpecs = this.getReferencedVSpecs(fragmentSubstitution);
 				for(VSpec vSpec : referencedVSpecs){
 					HashMap<JComponent, NamedElement> cellFSN = new HashMap<JComponent, NamedElement>();
-					HashMap<JComponent, NamedElement> cellVSN = new HashMap<JComponent, NamedElement>();
 					
 					cellFSN.put(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
-					cellVSN.put(new JLabel(vSpec.getName()), varPoint);
-					
+					HashMap<JComponent, NamedElement> cellVSN = this.findMap(vSpec, vSpecMap);
+
 					ArrayList<HashMap<JComponent, NamedElement>> row = new ArrayList<HashMap<JComponent, NamedElement>>(Arrays.asList(cellFSN, cellVSN));
 					data.add(row);
 				}
 			}
 		}
-		addTableModelListener(new FragmentSubstitutionTableEvent(cu, data, view));
 	}
 	
+	private HashMap<JComponent, NamedElement> findMap(VSpec vSpec, ArrayList<HashMap<JComponent, NamedElement>> vSpecMap){
+		for(HashMap<JComponent, NamedElement> map : vSpecMap){
+			if(map.values().iterator().next().equals(vSpec)){
+				return map;
+			}
+		}
+		return null;
+	}
+
 	private ArrayList<VSpec> getReferencedVSpecs(FragmentSubstitution fragSubs){
 		ArrayList<VSpec> vSpecs = new ArrayList<VSpec>();
 		VSpec vSpec = fragSubs.getBindingVSpec();
@@ -130,6 +137,10 @@ public class FragmentSubstitutionTableModel extends AbstractTableModel
 			};break;
 		}
 		fireTableCellUpdated(rowIndex, columnIndex);
+	}
+
+	public ArrayList<ArrayList<HashMap<JComponent, NamedElement>>> getData() {
+		return data;
 	}
 	
 

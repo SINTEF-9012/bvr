@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters;
+package no.sintef.cvl.ui.adapters.impl;
 
 import java.awt.Component;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import cvl.NamedElement;
 
-public class FragmentSubstitutionComboxRenderer extends BasicComboBoxRenderer {
+public class FragSubComboxRenderer extends BasicComboBoxRenderer {
 	
 	/**
 	 * 

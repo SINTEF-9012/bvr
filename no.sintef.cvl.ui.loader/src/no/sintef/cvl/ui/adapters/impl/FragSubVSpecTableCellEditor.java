@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters;
+package no.sintef.cvl.ui.adapters.impl;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import cvl.NamedElement;
 import cvl.VSpec;
 
-public class FragmentSubstitutionVSpecCellEditor extends AbstractCellEditor
+public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 		implements TableCellEditor {
 
 	/**
@@ -24,19 +24,13 @@ public class FragmentSubstitutionVSpecCellEditor extends AbstractCellEditor
 	 */
 	private static final long serialVersionUID = 2993488539123070478L;
 	private JComboBox editor;
-	
-	public FragmentSubstitutionVSpecCellEditor(EList<VSpec> vSpecs){
-		ArrayList<HashMap<JComponent, NamedElement>> values = new ArrayList<HashMap<JComponent, NamedElement>>();
-		for(VSpec vspec : vSpecs){
-			JLabel label = new JLabel(vspec.getName());
-			HashMap<JComponent, NamedElement> item = new HashMap<JComponent, NamedElement>();
-			item.put(label, vspec);
-			values.add(item);
-		}
-		editor = new JComboBox(values.toArray());
-		editor.setRenderer(new FragmentSubstitutionComboxRenderer());
+		
+	public FragSubVSpecTableCellEditor(
+			ArrayList<HashMap<JComponent, NamedElement>> vSpecMap) {
+		editor = new JComboBox(vSpecMap.toArray());
+		editor.setRenderer(new FragSubComboxRenderer());
 	}
-	
+
 	@Override
 	public Object getCellEditorValue() {
 		return editor.getSelectedItem();

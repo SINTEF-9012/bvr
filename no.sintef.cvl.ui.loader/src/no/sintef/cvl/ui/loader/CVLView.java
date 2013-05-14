@@ -26,8 +26,8 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
-import no.sintef.cvl.ui.adapters.FragmentSubstitutionTableModel;
-import no.sintef.cvl.ui.adapters.FragmentSubstitutionVSpecCellEditor;
+import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
+import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
 import no.sintef.cvl.ui.commands.AddBCLConstraint;
 import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddChoiceResolutuion;
