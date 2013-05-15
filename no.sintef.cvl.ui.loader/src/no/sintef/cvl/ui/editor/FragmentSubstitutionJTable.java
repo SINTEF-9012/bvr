@@ -21,6 +21,7 @@ import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
 import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
+import no.sintef.cvl.ui.commands.events.FragSubTableRowSelectionEvent;
 import no.sintef.cvl.ui.loader.CVLView;
 
 public class FragmentSubstitutionJTable extends JTable {
@@ -53,6 +54,7 @@ public class FragmentSubstitutionJTable extends JTable {
 		this.setDefaultRenderer(JComboBox.class, new FragSubTableCellRenderer());
 		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
 		tableModel.addTableModelListener(new FragSubTableEvent(cu, tableModel.getData(), view));
+		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent());
 	}
 	
 	private void getAllVSpec(EList<VSpec> vSpecList){
