@@ -40,6 +40,7 @@ import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
 import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.editor.SubtitutionFragmentJTable;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
@@ -152,36 +153,9 @@ public class CVLView {
 	}
 
 	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
-		String[] coulmnNamesSubstFragmTable = {"Name"};
-		
-		List<String> pr = new ArrayList<String>();
-		for(VariationPoint x : cu.getOwnedVariationPoint()){
-			if(x instanceof PlacementFragment){
-				pr.add(x.getName() + " - Placement Fragment");
-			}
-		}
-		for(Variabletype x : cu.getOwnedVariabletype()){
-			if(x instanceof ReplacementFragmentType){
-				pr.add(x.getName() + " - Replacement Fragment");
-			}
-		}
-		
-		Object[][] dataSubstFragmTable = new Object[pr.size()][1];
-		
-		int i = 0;
-		for(String s : pr){
-			dataSubstFragmTable[i] = new Object[] {s};
-			i++;
-		}
-		
-		
 		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);
-		
-		
-		JTable tableSubstFragm = new JTable(dataSubstFragmTable, coulmnNamesSubstFragmTable);
-		
-
-		
+		SubtitutionFragmentJTable tableSubstFragm = new SubtitutionFragmentJTable(cu, this);
+			
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
 		
@@ -194,7 +168,6 @@ public class CVLView {
 		
 		
 		loadBindings(tableFragmSubst);
-
 	}
 	
 	private void loadBindings(JTable sourceTable){
