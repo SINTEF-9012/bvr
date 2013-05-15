@@ -37,7 +37,6 @@ public class CalculateCoverage implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
 		CVLModel m = models.get(i);
-		CVLView v = views.get(i);
 		
 		Integer cov = null;
 		

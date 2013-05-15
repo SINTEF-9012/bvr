@@ -45,7 +45,7 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 		
 		// Name
 		count++;
-		vi.setName("variable"+count);
+		vi.setName("variableAssignment"+count);
 		
 		// Value
 		PrimitiveValueSpecification value = CvlFactory.eINSTANCE.createPrimitiveValueSpecification();

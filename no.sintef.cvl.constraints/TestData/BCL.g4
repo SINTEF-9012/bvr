@@ -31,7 +31,7 @@ expMulDiv : expMulDiv ('*' | '/') expAriUnary
 
 expAriUnary : '-'? expterm;
 
-expterm : vspec | literalexp | '(' expMulDiv ')';
+expterm : vspec | literalexp | '(' expPlusMin ')';
 
 // Terminals
 vspec : ID

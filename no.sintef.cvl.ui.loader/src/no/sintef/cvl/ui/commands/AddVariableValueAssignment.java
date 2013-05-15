@@ -57,6 +57,12 @@ public class AddVariableValueAssignment implements Command {
 /*      cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, view));
         cp.addMouseListener(listener);
 */		
+        
+        SelectInstanceCommand command = new SelectInstanceCommand();
+        command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
+        listener.setLeftClickCommand(command);
+        cp.addMouseListener(listener);
+        
 		String name = "null";
 		if(c.getResolvedVariable() != null){
 			name = c.getResolvedVariable().getName();

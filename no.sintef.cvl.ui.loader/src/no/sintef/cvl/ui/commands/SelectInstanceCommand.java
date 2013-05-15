@@ -49,8 +49,7 @@ public class SelectInstanceCommand implements Command {
         if (p instanceof SelectElement) {
         	selectableElement = (SelectElement) p;
         }else{
-        	System.err.println(p + " not instance of SelectElement");
-        	System.exit(-1);
+        	throw new UnsupportedOperationException(p + " not instance of SelectElement");
         }
         return this;
 	}
