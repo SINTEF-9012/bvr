@@ -160,7 +160,7 @@ public class CVLView {
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
-		panel.setName("Variotion points");
+		panel.setName("Variation points");
 		panel.add(scrollPanelFragmSubst);
 		panel.add(scrollPanelSubstFragm);
 		

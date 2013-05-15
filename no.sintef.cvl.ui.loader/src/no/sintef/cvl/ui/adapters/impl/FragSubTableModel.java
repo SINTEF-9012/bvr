@@ -45,6 +45,16 @@ public class FragSubTableModel extends AbstractTableModel
 			if(varPoint instanceof FragmentSubstitution){
 				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) varPoint;
 				ArrayList<VSpec> referencedVSpecs = this.getReferencedVSpecs(fragmentSubstitution);
+				
+				//if fragmentSubstitution is not bound to any VSpec, show NULL
+				if(referencedVSpecs.isEmpty()){
+					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
+					DataVSpecItem cellVSN = (DataVSpecItem) vSpecMap.get(0);
+
+					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
+					data.add(row);
+				}
+				
 				for(VSpec vSpec : referencedVSpecs){
 					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
 					DataVSpecItem cellVSN = this.getVSpecItem(vSpec, vSpecMap);

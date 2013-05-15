@@ -15,6 +15,7 @@ import javax.swing.JTabbedPane;
 
 import org.eclipse.ui.IWorkbenchWindow;
 
+import no.sintef.cvl.ui.commands.events.CreateFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
@@ -149,6 +150,10 @@ public class Main {
 		JMenuItem createReplacement = new JMenuItem("Create Replacement");
 		createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane, models, views, w));
 		eclipsemenu.add(createReplacement);
+		
+		JMenuItem createFragmentSubstitution = new JMenuItem("Create FragmentSubstitution");
+		createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(filePane, models, views));
+		eclipsemenu.add(createFragmentSubstitution);
 		
 		menuBar.add(eclipsemenu);
 

@@ -11,6 +11,8 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import cvl.ConfigurableUnit;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.NamedElement;
 import cvl.VSpec;
 
@@ -20,6 +22,7 @@ import no.sintef.cvl.ui.adapters.impl.FragSubTextTabelCellEditor;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
 import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
+import no.sintef.cvl.ui.adapters.impl.NullVSpec;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.commands.events.FragSubTableRowSelectionEvent;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -41,6 +44,11 @@ public class FragmentSubstitutionJTable extends JTable {
 		vSpecs = new BasicEList<VSpec>();
 		this.getAllVSpec(cu.getOwnedVSpec());
 		vSpecMap = new ArrayList<DataItem>();
+		
+		NullVSpec nullVSpec = new NullVSpec();
+		DataVSpecItem nullDataVSpecItem = new DataVSpecItem(new JLabel(nullVSpec.getName()), nullVSpec);
+		vSpecMap.add(nullDataVSpecItem);
+		
 		for(VSpec spec : vSpecs){
 			DataVSpecItem map = new DataVSpecItem(new JLabel(spec.getName()), spec);
 			vSpecMap.add(map);
