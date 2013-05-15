@@ -5,6 +5,7 @@ package cvl.provider;
 
 import cvl.CvlPackage;
 
+import cvl.ToReplacement;
 import java.util.Collection;
 import java.util.List;
 
@@ -146,7 +147,10 @@ public class ToReplacementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ToReplacement_type");
+		String label = ((ToReplacement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ToReplacement_type") :
+			getString("_UI_ToReplacement_type") + " " + label;
 	}
 
 	/**

@@ -948,70 +948,6 @@ public interface CvlPackage extends EPackage {
 	int PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentImpl <em>Replacement Fragment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see cvl.impl.ReplacementFragmentImpl
-	 * @see cvl.impl.CvlPackageImpl#getReplacementFragment()
-	 * @generated
-	 */
-	int REPLACEMENT_FRAGMENT = 17;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT__NAME = VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
-	 * The feature id for the '<em><b>Replacement Boundary Element</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT = VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Placement Fragment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT = VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Replacement Fragment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_FRAGMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link cvl.impl.VariabletypeImpl <em>Variabletype</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1038,6 +974,61 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLETYPE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see cvl.impl.ReplacementFragmentTypeImpl
+	 * @see cvl.impl.CvlPackageImpl#getReplacementFragmentType()
+	 * @generated
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE__NAME = VARIABLETYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Replacement Boundary Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT = VARIABLETYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Placement Fragment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT = VARIABLETYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT = VARIABLETYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Replacement Fragment Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE_FEATURE_COUNT = VARIABLETYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ReplacementBoundaryElementImpl <em>Replacement Boundary Element</em>}' class.
@@ -4268,36 +4259,47 @@ public interface CvlPackage extends EPackage {
 	EClass getPlacementBoundaryElement();
 
 	/**
-	 * Returns the meta object for class '{@link cvl.ReplacementFragment <em>Replacement Fragment</em>}'.
+	 * Returns the meta object for class '{@link cvl.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Replacement Fragment</em>'.
-	 * @see cvl.ReplacementFragment
+	 * @return the meta object for class '<em>Replacement Fragment Type</em>'.
+	 * @see cvl.ReplacementFragmentType
 	 * @generated
 	 */
-	EClass getReplacementFragment();
+	EClass getReplacementFragmentType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragment#getReplacementBoundaryElement <em>Replacement Boundary Element</em>}'.
+	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragmentType#getReplacementBoundaryElement <em>Replacement Boundary Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Replacement Boundary Element</em>'.
-	 * @see cvl.ReplacementFragment#getReplacementBoundaryElement()
-	 * @see #getReplacementFragment()
+	 * @see cvl.ReplacementFragmentType#getReplacementBoundaryElement()
+	 * @see #getReplacementFragmentType()
 	 * @generated
 	 */
-	EReference getReplacementFragment_ReplacementBoundaryElement();
+	EReference getReplacementFragmentType_ReplacementBoundaryElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragment#getPlacementFragment <em>Placement Fragment</em>}'.
+	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragmentType#getPlacementFragment <em>Placement Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Placement Fragment</em>'.
-	 * @see cvl.ReplacementFragment#getPlacementFragment()
-	 * @see #getReplacementFragment()
+	 * @see cvl.ReplacementFragmentType#getPlacementFragment()
+	 * @see #getReplacementFragmentType()
 	 * @generated
 	 */
-	EReference getReplacementFragment_PlacementFragment();
+	EReference getReplacementFragmentType_PlacementFragment();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link cvl.ReplacementFragmentType#getSourceObject <em>Source Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Object</em>'.
+	 * @see cvl.ReplacementFragmentType#getSourceObject()
+	 * @see #getReplacementFragmentType()
+	 * @generated
+	 */
+	EReference getReplacementFragmentType_SourceObject();
 
 	/**
 	 * Returns the meta object for class '{@link cvl.Variabletype <em>Variabletype</em>}'.
@@ -6264,14 +6266,14 @@ public interface CvlPackage extends EPackage {
 		EClass PLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getPlacementBoundaryElement();
 
 		/**
-		 * The meta object literal for the '{@link cvl.impl.ReplacementFragmentImpl <em>Replacement Fragment</em>}' class.
+		 * The meta object literal for the '{@link cvl.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see cvl.impl.ReplacementFragmentImpl
-		 * @see cvl.impl.CvlPackageImpl#getReplacementFragment()
+		 * @see cvl.impl.ReplacementFragmentTypeImpl
+		 * @see cvl.impl.CvlPackageImpl#getReplacementFragmentType()
 		 * @generated
 		 */
-		EClass REPLACEMENT_FRAGMENT = eINSTANCE.getReplacementFragment();
+		EClass REPLACEMENT_FRAGMENT_TYPE = eINSTANCE.getReplacementFragmentType();
 
 		/**
 		 * The meta object literal for the '<em><b>Replacement Boundary Element</b></em>' containment reference list feature.
@@ -6279,7 +6281,7 @@ public interface CvlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getReplacementFragment_ReplacementBoundaryElement();
+		EReference REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getReplacementFragmentType_ReplacementBoundaryElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Placement Fragment</b></em>' containment reference list feature.
@@ -6287,7 +6289,15 @@ public interface CvlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT = eINSTANCE.getReplacementFragment_PlacementFragment();
+		EReference REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT = eINSTANCE.getReplacementFragmentType_PlacementFragment();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Object</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT = eINSTANCE.getReplacementFragmentType_SourceObject();
 
 		/**
 		 * The meta object literal for the '{@link cvl.impl.VariabletypeImpl <em>Variabletype</em>}' class.

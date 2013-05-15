@@ -105,12 +105,12 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <p>Specifies the replacement to be utilized.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement</em>' reference.
-	 * @see #setReplacement(ReplacementFragment)
+	 * @see #setReplacement(ReplacementFragmentType)
 	 * @see cvl.CvlPackage#getFragmentSubstitution_Replacement()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	ReplacementFragment getReplacement();
+	ReplacementFragmentType getReplacement();
 
 	/**
 	 * Sets the value of the '{@link cvl.FragmentSubstitution#getReplacement <em>Replacement</em>}' reference.
@@ -120,6 +120,6 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * @see #getReplacement()
 	 * @generated
 	 */
-	void setReplacement(ReplacementFragment value);
+	void setReplacement(ReplacementFragmentType value);
 
 } // FragmentSubstitution

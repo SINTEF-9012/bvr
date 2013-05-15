@@ -136,8 +136,8 @@ public class CvlAdapterFactory extends AdapterFactoryImpl {
 				return createPlacementBoundaryElementAdapter();
 			}
 			@Override
-			public Adapter caseReplacementFragment(ReplacementFragment object) {
-				return createReplacementFragmentAdapter();
+			public Adapter caseReplacementFragmentType(ReplacementFragmentType object) {
+				return createReplacementFragmentTypeAdapter();
 			}
 			@Override
 			public Adapter caseVariabletype(Variabletype object) {
@@ -614,16 +614,16 @@ public class CvlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link cvl.ReplacementFragment <em>Replacement Fragment</em>}'.
+	 * Creates a new adapter for an object of class '{@link cvl.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see cvl.ReplacementFragment
+	 * @see cvl.ReplacementFragmentType
 	 * @generated
 	 */
-	public Adapter createReplacementFragmentAdapter() {
+	public Adapter createReplacementFragmentTypeAdapter() {
 		return null;
 	}
 

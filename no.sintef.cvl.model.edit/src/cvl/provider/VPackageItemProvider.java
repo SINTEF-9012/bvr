@@ -185,12 +185,12 @@ public class VPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createReplacementFragment()));
+				 CvlFactory.eINSTANCE.createVariabletype()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createVariabletype()));
+				 CvlFactory.eINSTANCE.createReplacementFragmentType()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -276,6 +276,26 @@ public class VPackageItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
 				 CvlFactory.eINSTANCE.createVPackage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
+				 CvlFactory.eINSTANCE.createToPlacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
+				 CvlFactory.eINSTANCE.createToReplacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
+				 CvlFactory.eINSTANCE.createFromPlacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
+				 CvlFactory.eINSTANCE.createFromReplacement()));
 
 		newChildDescriptors.add
 			(createChildParameter

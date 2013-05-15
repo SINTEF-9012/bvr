@@ -55,6 +55,7 @@ import cvl.RepeatableVariationPoint;
 import cvl.ReplacementBoundaryElement;
 import cvl.ReplacementFragment;
 import cvl.ReplacementFragmentSpecification;
+import cvl.ReplacementFragmentType;
 import cvl.SlotAssignment;
 import cvl.SlotValueExistence;
 import cvl.StringLiteralExp;
@@ -218,7 +219,7 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass replacementFragmentEClass = null;
+	private EClass replacementFragmentTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1056,8 +1057,8 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReplacementFragment() {
-		return replacementFragmentEClass;
+	public EClass getReplacementFragmentType() {
+		return replacementFragmentTypeEClass;
 	}
 
 	/**
@@ -1065,8 +1066,8 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReplacementFragment_ReplacementBoundaryElement() {
-		return (EReference)replacementFragmentEClass.getEStructuralFeatures().get(0);
+	public EReference getReplacementFragmentType_ReplacementBoundaryElement() {
+		return (EReference)replacementFragmentTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1074,8 +1075,17 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReplacementFragment_PlacementFragment() {
-		return (EReference)replacementFragmentEClass.getEStructuralFeatures().get(1);
+	public EReference getReplacementFragmentType_PlacementFragment() {
+		return (EReference)replacementFragmentTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReplacementFragmentType_SourceObject() {
+		return (EReference)replacementFragmentTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -2497,9 +2507,10 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 
 		placementBoundaryElementEClass = createEClass(PLACEMENT_BOUNDARY_ELEMENT);
 
-		replacementFragmentEClass = createEClass(REPLACEMENT_FRAGMENT);
-		createEReference(replacementFragmentEClass, REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT);
-		createEReference(replacementFragmentEClass, REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT);
+		replacementFragmentTypeEClass = createEClass(REPLACEMENT_FRAGMENT_TYPE);
+		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT);
+		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT);
+		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT);
 
 		variabletypeEClass = createEClass(VARIABLETYPE);
 
@@ -2749,7 +2760,7 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 		repeatableVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
 		placementFragmentEClass.getESuperTypes().add(this.getVariationPoint());
 		placementBoundaryElementEClass.getESuperTypes().add(this.getVariationPoint());
-		replacementFragmentEClass.getESuperTypes().add(this.getVariationPoint());
+		replacementFragmentTypeEClass.getESuperTypes().add(this.getVariabletype());
 		variabletypeEClass.getESuperTypes().add(this.getVPackageable());
 		replacementBoundaryElementEClass.getESuperTypes().add(this.getVariationPoint());
 		objectSubstitutionEClass.getESuperTypes().add(this.getChoiceVariationPoint());
@@ -2847,7 +2858,7 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 		initEReference(getFragmentSubstitution_BoundaryElementBinding(), this.getBoundaryElementBinding(), null, "boundaryElementBinding", null, 0, -1, FragmentSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFragmentSubstitution_Placement(), this.getPlacementFragment(), null, "placement", null, 1, 1, FragmentSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFragmentSubstitution_Multi(), ecorePackage.getEBoolean(), "multi", null, 1, 1, FragmentSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getFragmentSubstitution_Replacement(), this.getReplacementFragment(), null, "replacement", null, 0, 1, FragmentSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFragmentSubstitution_Replacement(), this.getReplacementFragmentType(), null, "replacement", null, 0, 1, FragmentSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(choiceVariationPointEClass, ChoiceVariationPoint.class, "ChoiceVariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChoiceVariationPoint_BindingChoice(), this.getChoice(), null, "bindingChoice", null, 0, 1, ChoiceVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2862,9 +2873,10 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 
 		initEClass(placementBoundaryElementEClass, PlacementBoundaryElement.class, "PlacementBoundaryElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(replacementFragmentEClass, ReplacementFragment.class, "ReplacementFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReplacementFragment_ReplacementBoundaryElement(), this.getReplacementBoundaryElement(), null, "replacementBoundaryElement", null, 0, -1, ReplacementFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getReplacementFragment_PlacementFragment(), this.getPlacementFragment(), null, "placementFragment", null, 0, -1, ReplacementFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(replacementFragmentTypeEClass, ReplacementFragmentType.class, "ReplacementFragmentType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReplacementFragmentType_ReplacementBoundaryElement(), this.getReplacementBoundaryElement(), null, "replacementBoundaryElement", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getReplacementFragmentType_PlacementFragment(), this.getPlacementFragment(), null, "placementFragment", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getReplacementFragmentType_SourceObject(), this.getObjectHandle(), null, "sourceObject", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(variabletypeEClass, Variabletype.class, "Variabletype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2880,7 +2892,7 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 		initEClass(baseModelHandleEClass, BaseModelHandle.class, "BaseModelHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariable_ReplacementFragmentTypesubsetstype(), this.getReplacementFragment(), null, "replacementFragmentTypesubsetstype", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVariable_ReplacementFragmentTypesubsetstype(), this.getReplacementFragmentType(), null, "replacementFragmentTypesubsetstype", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVariable_DefaulValue(), this.getValueSpecification(), null, "defaulValue", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVariable_Type(), this.getVariabletype(), null, "type", null, 1, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 

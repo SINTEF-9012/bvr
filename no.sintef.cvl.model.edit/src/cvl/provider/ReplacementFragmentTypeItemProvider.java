@@ -5,7 +5,7 @@ package cvl.provider;
 
 import cvl.CvlFactory;
 import cvl.CvlPackage;
-import cvl.ReplacementFragment;
+import cvl.ReplacementFragmentType;
 
 import java.util.Collection;
 import java.util.List;
@@ -24,13 +24,13 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link cvl.ReplacementFragment} object.
+ * This is the item provider adapter for a {@link cvl.ReplacementFragmentType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReplacementFragmentItemProvider
-	extends VariationPointItemProvider
+public class ReplacementFragmentTypeItemProvider
+	extends VariabletypeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -43,7 +43,7 @@ public class ReplacementFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragmentItemProvider(AdapterFactory adapterFactory) {
+	public ReplacementFragmentTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,8 +74,9 @@ public class ReplacementFragmentItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(CvlPackage.Literals.REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT);
-			childrenFeatures.add(CvlPackage.Literals.REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT);
+			childrenFeatures.add(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT);
+			childrenFeatures.add(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT);
+			childrenFeatures.add(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +95,14 @@ public class ReplacementFragmentItemProvider
 	}
 
 	/**
-	 * This returns ReplacementFragment.gif.
+	 * This returns ReplacementFragmentType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReplacementFragment"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReplacementFragmentType"));
 	}
 
 	/**
@@ -112,10 +113,10 @@ public class ReplacementFragmentItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ReplacementFragment)object).getName();
+		String label = ((ReplacementFragmentType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ReplacementFragment_type") :
-			getString("_UI_ReplacementFragment_type") + " " + label;
+			getString("_UI_ReplacementFragmentType_type") :
+			getString("_UI_ReplacementFragmentType_type") + " " + label;
 	}
 
 	/**
@@ -129,9 +130,10 @@ public class ReplacementFragmentItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReplacementFragment.class)) {
-			case CvlPackage.REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT:
-			case CvlPackage.REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT:
+		switch (notification.getFeatureID(ReplacementFragmentType.class)) {
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT:
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,18 +153,23 @@ public class ReplacementFragmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(CvlPackage.Literals.REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT,
+				(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT,
 				 CvlFactory.eINSTANCE.createToReplacement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(CvlPackage.Literals.REPLACEMENT_FRAGMENT__REPLACEMENT_BOUNDARY_ELEMENT,
+				(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT,
 				 CvlFactory.eINSTANCE.createFromReplacement()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(CvlPackage.Literals.REPLACEMENT_FRAGMENT__PLACEMENT_FRAGMENT,
+				(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT,
 				 CvlFactory.eINSTANCE.createPlacementFragment()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 }

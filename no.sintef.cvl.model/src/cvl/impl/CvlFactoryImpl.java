@@ -65,7 +65,7 @@ public class CvlFactoryImpl extends EFactoryImpl implements CvlFactory {
 			case CvlPackage.VINSTANCE: return createVInstance();
 			case CvlPackage.FRAGMENT_SUBSTITUTION: return createFragmentSubstitution();
 			case CvlPackage.PLACEMENT_FRAGMENT: return createPlacementFragment();
-			case CvlPackage.REPLACEMENT_FRAGMENT: return createReplacementFragment();
+			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE: return createReplacementFragmentType();
 			case CvlPackage.VARIABLETYPE: return createVariabletype();
 			case CvlPackage.OBJECT_SUBSTITUTION: return createObjectSubstitution();
 			case CvlPackage.OBJECT_HANDLE: return createObjectHandle();
@@ -240,9 +240,9 @@ public class CvlFactoryImpl extends EFactoryImpl implements CvlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragment createReplacementFragment() {
-		ReplacementFragmentImpl replacementFragment = new ReplacementFragmentImpl();
-		return replacementFragment;
+	public ReplacementFragmentType createReplacementFragmentType() {
+		ReplacementFragmentTypeImpl replacementFragmentType = new ReplacementFragmentTypeImpl();
+		return replacementFragmentType;
 	}
 
 	/**

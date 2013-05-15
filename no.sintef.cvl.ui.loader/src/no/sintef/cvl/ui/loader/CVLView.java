@@ -54,7 +54,7 @@ import cvl.Constraint;
 import cvl.NamedElement;
 import cvl.OpaqueConstraint;
 import cvl.PlacementFragment;
-import cvl.ReplacementFragment;
+import cvl.ReplacementFragmentType;
 import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
@@ -159,7 +159,9 @@ public class CVLView {
 			if(x instanceof PlacementFragment){
 				pr.add(x.getName() + " - Placement Fragment");
 			}
-			if(x instanceof ReplacementFragment){
+		}
+		for(Variabletype x : cu.getOwnedVariabletype()){
+			if(x instanceof ReplacementFragmentType){
 				pr.add(x.getName() + " - Replacement Fragment");
 			}
 		}
