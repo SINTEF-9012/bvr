@@ -4,4 +4,4 @@ bin/**
 target/
 test_out/
 /.project
-./no.sintef.cvl.ui.loader/cvl.properties
+cvl.properties

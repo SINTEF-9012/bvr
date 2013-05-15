@@ -7,6 +7,8 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
@@ -63,6 +65,7 @@ public class FragmentSubstitutionJTable extends JTable {
 		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
 		tableModel.addTableModelListener(new FragSubTableEvent(cu, tableModel.getData(), view));
 		this.getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent());
+		this.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 	
 	private void getAllVSpec(EList<VSpec> vSpecList){
