@@ -36,6 +36,7 @@ import no.sintef.cvl.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 import no.sintef.cvl.ui.framework.elements.VInstancePanel;
+import no.sintef.cvl.ui.framework.elements.VariableAssignmentPanel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import org.jdesktop.swingx.JXPanel;
@@ -50,6 +51,7 @@ import cvl.NamedElement;
 import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
+import cvl.VariableValueAssignment;
 
 public class CVLEditorPanel extends JPanel {
 
@@ -146,6 +148,16 @@ public class CVLEditorPanel extends JPanel {
         			x = (VInstance) z.get(elem);
         	}
         	VInstancePropertyEditor prop = new VInstancePropertyEditor(kernel, x, view);
+            editableModelPanel.displayProperties(prop);
+        	//System.out.println("Here!");
+        }else if (p instanceof VariableAssignmentPanel) {
+        	VariableAssignmentPanel elem = (VariableAssignmentPanel)p;
+        	VariableValueAssignment x = null;
+        	for(Map<JComponent, NamedElement> z : resolutionvmMaps){
+        		if(z.get(elem) != null)
+        			x = (VariableValueAssignment) z.get(elem);
+        	}
+        	VariableValueAssignmentPropertyEditor prop = new VariableValueAssignmentPropertyEditor(kernel, x, view);
             editableModelPanel.displayProperties(prop);
         	//System.out.println("Here!");
         }else{

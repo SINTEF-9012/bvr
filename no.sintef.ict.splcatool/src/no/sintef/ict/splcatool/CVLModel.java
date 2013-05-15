@@ -238,6 +238,7 @@ public class CVLModel {
 		//System.out.println(fs);
 		
 		// Convert
+		//System.out.println(prods);
 		//System.out.println("Size: " + (prods.size()+1) + ", " + (prods.get(0).size() + 1));
 		String csv[][] = new String[prods.size()+1][prods.get(0).size() + 1];
 		csv[0][0] = "Feature\\Product";

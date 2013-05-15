@@ -767,14 +767,14 @@ public class BCLParser extends Parser {
 	}
 
 	public static class ExptermContext extends ParserRuleContext {
+		public ExpPlusMinContext expPlusMin() {
+			return getRuleContext(ExpPlusMinContext.class,0);
+		}
 		public LiteralexpContext literalexp() {
 			return getRuleContext(LiteralexpContext.class,0);
 		}
 		public VspecContext vspec() {
 			return getRuleContext(VspecContext.class,0);
-		}
-		public ExpMulDivContext expMulDiv() {
-			return getRuleContext(ExpMulDivContext.class,0);
 		}
 		public ExptermContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -815,7 +815,7 @@ public class BCLParser extends Parser {
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(129); match(7);
-				setState(130); expMulDiv(0);
+				setState(130); expPlusMin(0);
 				setState(131); match(18);
 				}
 				break;
@@ -1016,7 +1016,7 @@ public class BCLParser extends Parser {
 		"y\3\2\2\2tu\6\n\7\3uv\t\6\2\2vx\5\24\13\2wt\3\2\2\2x{\3\2\2\2yw\3\2\2"+
 		"\2yz\3\2\2\2z\23\3\2\2\2{y\3\2\2\2|~\7\5\2\2}|\3\2\2\2}~\3\2\2\2~\177"+
 		"\3\2\2\2\177\u0080\5\26\f\2\u0080\25\3\2\2\2\u0081\u0088\5\30\r\2\u0082"+
-		"\u0088\5\32\16\2\u0083\u0084\7\t\2\2\u0084\u0085\5\22\n\2\u0085\u0086"+
+		"\u0088\5\32\16\2\u0083\u0084\7\t\2\2\u0084\u0085\5\20\t\2\u0085\u0086"+
 		"\7\24\2\2\u0086\u0088\3\2\2\2\u0087\u0081\3\2\2\2\u0087\u0082\3\2\2\2"+
 		"\u0087\u0083\3\2\2\2\u0088\27\3\2\2\2\u0089\u008e\7\34\2\2\u008a\u008b"+
 		"\7\34\2\2\u008b\u008c\7\23\2\2\u008c\u008e\5\30\r\2\u008d\u0089\3\2\2"+
