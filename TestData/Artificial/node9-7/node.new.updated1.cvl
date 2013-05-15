@@ -76,6 +76,10 @@
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="PlacementFragme"/>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-p1-r111-1" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0"/>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-PlacementFragme-Replacem-1" placement="//@ownedVariationPoint.3" replacement="//@ownedVariabletype.1"/>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="ppp"/>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-ppp-rrr-2" placement="//@ownedVariationPoint.6" replacement="//@ownedVariabletype.2"/>
   <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="r111">
     <replacementBoundaryElement xsi:type="cvl:ToReplacement" name=":Node[3]" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9 //@ownedVariabletype.0/@sourceObject.10" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.11" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0"/>
     <replacementBoundaryElement xsi:type="cvl:ToReplacement" name=":Node[1]" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.12" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.13" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1"/>
@@ -130,4 +134,5 @@
     </sourceObject>
   </ownedVariabletype>
   <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="Replacem"/>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="rrr"/>
 </cvl:ConfigurableUnit>
