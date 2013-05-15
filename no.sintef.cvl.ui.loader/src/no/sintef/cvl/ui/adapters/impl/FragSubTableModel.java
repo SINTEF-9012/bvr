@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 import no.sintef.cvl.ui.adapters.DataItem;
-import no.sintef.cvl.ui.commands.events.FragmentSubstitutionTableEvent;
+import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.exceptions.UnexpectedUIError;
 import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 import no.sintef.cvl.ui.loader.CVLView;

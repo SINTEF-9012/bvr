@@ -19,13 +19,13 @@ import cvl.FragmentSubstitution;
 import cvl.NamedElement;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionTableEvent implements TableModelListener {
+public class FragSubTableEvent implements TableModelListener {
 
 	private ConfigurableUnit cu;
 	private ArrayList<ArrayList<DataItem>> data;
 	private CVLView view;
 
-	public FragmentSubstitutionTableEvent(ConfigurableUnit cu, ArrayList<ArrayList<DataItem>> data, CVLView view) {
+	public FragSubTableEvent(ConfigurableUnit cu, ArrayList<ArrayList<DataItem>> data, CVLView view) {
 		this.cu = cu;
 		this.data = data;
 		this.view = view;
