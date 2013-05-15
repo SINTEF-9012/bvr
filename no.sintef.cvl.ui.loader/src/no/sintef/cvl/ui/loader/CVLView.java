@@ -289,10 +289,14 @@ public class CVLView {
 			
 			nextParent = new AddChoiceResolutuion().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
+			vmMap.put(nextParent, v);
+			
 		}else if(v instanceof VariableValueAssignment){
 			//System.out.println(v);
 			
 			nextParent = new AddVariableValueAssignment().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			
+			vmMap.put(nextParent, v);
 			
 		}else{
 			throw new CVLModelException("Unknown element: " + v.getClass());
