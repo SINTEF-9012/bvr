@@ -46,7 +46,7 @@ public class FragSubTableModel extends AbstractTableModel
 				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) varPoint;
 				ArrayList<VSpec> referencedVSpecs = this.getReferencedVSpecs(fragmentSubstitution);
 				for(VSpec vSpec : referencedVSpecs){
-					DataFragSubItem cellFSN = new DataFragSubItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
+					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
 					DataVSpecItem cellVSN = this.getVSpecItem(vSpec, vSpecMap);
 
 					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
@@ -60,15 +60,6 @@ public class FragSubTableModel extends AbstractTableModel
 		for(DataItem item : vSpecMap){
 			if(item.getNamedElement().equals(vSpec)){
 				return (DataVSpecItem) item;
-			}
-		}
-		return null;
-	}
-	
-	private HashMap<JComponent, NamedElement> findMap(VSpec vSpec, ArrayList<HashMap<JComponent, NamedElement>> vSpecMap){
-		for(HashMap<JComponent, NamedElement> map : vSpecMap){
-			if(map.values().iterator().next().equals(vSpec)){
-				return map;
 			}
 		}
 		return null;
@@ -127,6 +118,7 @@ public class FragSubTableModel extends AbstractTableModel
 		}
 		fireTableCellUpdated(rowIndex, columnIndex);
 	}
+	
 	@Override
 	public String getColumnName(int columnIndex) {
 		return columnNames[columnIndex];

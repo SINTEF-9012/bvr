@@ -9,12 +9,12 @@ import javax.swing.AbstractCellEditor;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-public class FragSubLableTabelCellEditor extends AbstractCellEditor implements
+public class FragSubTextTabelCellEditor extends AbstractCellEditor implements
 		TableCellEditor {
 
 	private JTextField  editor;
 	
-	public FragSubLableTabelCellEditor(){
+	public FragSubTextTabelCellEditor(){
 		editor = new JTextField();
 	}
 

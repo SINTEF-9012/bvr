@@ -4,16 +4,15 @@ import javax.swing.JLabel;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-import cvl.FragmentSubstitution;
 import cvl.NamedElement;
 import cvl.VariationPoint;
 
-public class DataFragSubItem implements DataItem{
+public class DataNamedElementItem implements DataItem{
 
-	private VariationPoint varPoint;
+	private NamedElement varPoint;
 	private JLabel label;
 
-	public DataFragSubItem(JLabel label, VariationPoint varPoint){
+	public DataNamedElementItem(JLabel label, NamedElement varPoint){
 		this.label = label;
 		this.varPoint = varPoint;
 	}
@@ -29,8 +28,8 @@ public class DataFragSubItem implements DataItem{
 	}
 	
 	public boolean equals(Object object){
-		if(object instanceof DataFragSubItem){
-			DataFragSubItem item = (DataFragSubItem) object;
+		if(object instanceof DataNamedElementItem){
+			DataNamedElementItem item = (DataNamedElementItem) object;
 			if(getNamedElement().equals(item.getNamedElement())){
 				return true;
 			}
