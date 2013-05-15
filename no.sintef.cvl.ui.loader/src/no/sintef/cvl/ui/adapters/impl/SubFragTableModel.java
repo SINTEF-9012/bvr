@@ -2,18 +2,19 @@ package no.sintef.cvl.ui.adapters.impl;
 
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
-
-import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 
 import cvl.NamedElement;
 import cvl.ReplacementFragmentType;
 
 public class SubFragTableModel extends AbstractTableModel implements TableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6105594044790311712L;
 	private ArrayList<ArrayList<Object>> data;
 	private String[] columnNames = {"Type", "Name"};
 
@@ -71,5 +72,10 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		data.get(rowIndex).set(columnIndex, aValue);
+		fireTableCellUpdated(rowIndex, columnIndex);
+	}
+	
+	public ArrayList<ArrayList<Object>> getData(){
+		return this.data;
 	}
 }

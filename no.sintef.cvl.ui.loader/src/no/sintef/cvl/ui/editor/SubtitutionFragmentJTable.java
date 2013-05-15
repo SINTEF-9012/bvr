@@ -10,6 +10,8 @@ import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.SubFragTableCellRenderer;
 import no.sintef.cvl.ui.adapters.impl.SubFragTableModel;
 import no.sintef.cvl.ui.adapters.impl.SubFragTextTabelCellEditor;
+import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
+import no.sintef.cvl.ui.commands.events.SubFragTableEvent;
 import no.sintef.cvl.ui.loader.CVLView;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;
@@ -22,7 +24,7 @@ public class SubtitutionFragmentJTable extends JTable {
 
 	private ConfigurableUnit cu;
 	private CVLView view;
-	private SubFragTableModel tabelModel;
+	private SubFragTableModel tableModel;
 
 	public SubtitutionFragmentJTable(ConfigurableUnit cu, CVLView view){
 		this.cu = cu;
@@ -42,12 +44,11 @@ public class SubtitutionFragmentJTable extends JTable {
 			}
 		}
 		
-		tabelModel = new SubFragTableModel(placReplList);
-		setModel(tabelModel);
+		tableModel = new SubFragTableModel(placReplList);
+		setModel(tableModel);
 		
 		this.setDefaultEditor(DataNamedElementItem.class, new SubFragTextTabelCellEditor());
 		this.setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
-		//this.setDefaultEditor(String.class, new SubFragTextTabelCellEditor());
-		//this.setDefaultRenderer(String.class, new SubFragTableCellRenderer());
+		tableModel.addTableModelListener(new SubFragTableEvent(cu, tableModel.getData(), view));
 	}
 }
