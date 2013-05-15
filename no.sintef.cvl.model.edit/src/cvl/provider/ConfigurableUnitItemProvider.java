@@ -216,11 +216,6 @@ public class ConfigurableUnitItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 CvlFactory.eINSTANCE.createReplacementFragment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
 				 CvlFactory.eINSTANCE.createObjectSubstitution()));
 
 		newChildDescriptors.add
@@ -252,6 +247,26 @@ public class ConfigurableUnitItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
 				 CvlFactory.eINSTANCE.createOpaqueVariationPoint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createToPlacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createToReplacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createFromPlacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
+				 CvlFactory.eINSTANCE.createFromReplacement()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -342,6 +357,11 @@ public class ConfigurableUnitItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
 				 CvlFactory.eINSTANCE.createVariabletype()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
+				 CvlFactory.eINSTANCE.createReplacementFragmentType()));
 
 		newChildDescriptors.add
 			(createChildParameter

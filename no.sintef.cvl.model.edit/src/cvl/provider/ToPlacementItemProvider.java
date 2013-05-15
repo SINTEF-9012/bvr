@@ -172,7 +172,7 @@ public class ToPlacementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ToPlacement)object).getPropertyName();
+		String label = ((ToPlacement)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ToPlacement_type") :
 			getString("_UI_ToPlacement_type") + " " + label;

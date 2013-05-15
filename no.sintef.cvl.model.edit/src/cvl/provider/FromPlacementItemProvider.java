@@ -5,6 +5,7 @@ package cvl.provider;
 
 import cvl.CvlPackage;
 
+import cvl.FromPlacement;
 import java.util.Collection;
 import java.util.List;
 
@@ -146,7 +147,10 @@ public class FromPlacementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_FromPlacement_type");
+		String label = ((FromPlacement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FromPlacement_type") :
+			getString("_UI_FromPlacement_type") + " " + label;
 	}
 
 	/**

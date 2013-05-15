@@ -3,6 +3,7 @@
 package cvl.impl;
 
 import cvl.CvlPackage;
+import cvl.ReplacementFragmentType;
 import cvl.ReplacementFragment;
 import cvl.ValueSpecification;
 import cvl.Variable;
@@ -40,7 +41,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	 * @generated
 	 * @ordered
 	 */
-	protected ReplacementFragment replacementFragmentTypesubsetstype;
+	protected ReplacementFragmentType replacementFragmentTypesubsetstype;
 
 	/**
 	 * The cached value of the '{@link #getDefaulValue() <em>Defaul Value</em>}' containment reference.
@@ -86,10 +87,10 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragment getReplacementFragmentTypesubsetstype() {
+	public ReplacementFragmentType getReplacementFragmentTypesubsetstype() {
 		if (replacementFragmentTypesubsetstype != null && replacementFragmentTypesubsetstype.eIsProxy()) {
 			InternalEObject oldReplacementFragmentTypesubsetstype = (InternalEObject)replacementFragmentTypesubsetstype;
-			replacementFragmentTypesubsetstype = (ReplacementFragment)eResolveProxy(oldReplacementFragmentTypesubsetstype);
+			replacementFragmentTypesubsetstype = (ReplacementFragmentType)eResolveProxy(oldReplacementFragmentTypesubsetstype);
 			if (replacementFragmentTypesubsetstype != oldReplacementFragmentTypesubsetstype) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE, oldReplacementFragmentTypesubsetstype, replacementFragmentTypesubsetstype));
@@ -103,7 +104,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragment basicGetReplacementFragmentTypesubsetstype() {
+	public ReplacementFragmentType basicGetReplacementFragmentTypesubsetstype() {
 		return replacementFragmentTypesubsetstype;
 	}
 
@@ -112,8 +113,8 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacementFragmentTypesubsetstype(ReplacementFragment newReplacementFragmentTypesubsetstype) {
-		ReplacementFragment oldReplacementFragmentTypesubsetstype = replacementFragmentTypesubsetstype;
+	public void setReplacementFragmentTypesubsetstype(ReplacementFragmentType newReplacementFragmentTypesubsetstype) {
+		ReplacementFragmentType oldReplacementFragmentTypesubsetstype = replacementFragmentTypesubsetstype;
 		replacementFragmentTypesubsetstype = newReplacementFragmentTypesubsetstype;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE, oldReplacementFragmentTypesubsetstype, replacementFragmentTypesubsetstype));
@@ -243,7 +244,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
-				setReplacementFragmentTypesubsetstype((ReplacementFragment)newValue);
+				setReplacementFragmentTypesubsetstype((ReplacementFragmentType)newValue);
 				return;
 			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				setDefaulValue((ValueSpecification)newValue);
@@ -264,7 +265,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
-				setReplacementFragmentTypesubsetstype((ReplacementFragment)null);
+				setReplacementFragmentTypesubsetstype((ReplacementFragmentType)null);
 				return;
 			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				setDefaulValue((ValueSpecification)null);

@@ -172,7 +172,7 @@ public class FromReplacementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FromReplacement)object).getPropertyName();
+		String label = ((FromReplacement)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_FromReplacement_type") :
 			getString("_UI_FromReplacement_type") + " " + label;

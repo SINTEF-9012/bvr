@@ -21,6 +21,7 @@ import cvl.ConfigurableUnit;
 import cvl.CvlFactory;
 import cvl.PlacementFragment;
 import cvl.ReplacementFragment;
+import cvl.ReplacementFragmentType;
 
 public class CreateReplacementFragmentEvent implements ActionListener {
 
@@ -45,11 +46,11 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 		
 		ConfigurableUnit cu = m.getCU();
 		
-		ReplacementFragment rf = CvlFactory.eINSTANCE.createReplacementFragment();
+		ReplacementFragmentType rf = CvlFactory.eINSTANCE.createReplacementFragmentType();
 		count++;
 		rf.setName("ReplacementFragment" + count);
 		
-		cu.getOwnedVariationPoint().add(rf);
+		cu.getOwnedVariabletype().add(rf);
 		
 		views.get(tab).notifyCVLRelalizationView();
 		

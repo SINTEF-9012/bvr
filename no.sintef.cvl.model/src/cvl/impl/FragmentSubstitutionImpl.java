@@ -7,6 +7,7 @@ import cvl.CvlPackage;
 import cvl.FragmentSubstitution;
 import cvl.PlacementFragment;
 import cvl.RepeatableVariationPoint;
+import cvl.ReplacementFragmentType;
 import cvl.ReplacementFragment;
 import cvl.VClassifier;
 
@@ -101,7 +102,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected ReplacementFragment replacement;
+	protected ReplacementFragmentType replacement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,10 +237,10 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragment getReplacement() {
+	public ReplacementFragmentType getReplacement() {
 		if (replacement != null && replacement.eIsProxy()) {
 			InternalEObject oldReplacement = (InternalEObject)replacement;
-			replacement = (ReplacementFragment)eResolveProxy(oldReplacement);
+			replacement = (ReplacementFragmentType)eResolveProxy(oldReplacement);
 			if (replacement != oldReplacement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
@@ -253,7 +254,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReplacementFragment basicGetReplacement() {
+	public ReplacementFragmentType basicGetReplacement() {
 		return replacement;
 	}
 
@@ -262,8 +263,8 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReplacement(ReplacementFragment newReplacement) {
-		ReplacementFragment oldReplacement = replacement;
+	public void setReplacement(ReplacementFragmentType newReplacement) {
+		ReplacementFragmentType oldReplacement = replacement;
 		replacement = newReplacement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
@@ -331,7 +332,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 				setMulti((Boolean)newValue);
 				return;
 			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
-				setReplacement((ReplacementFragment)newValue);
+				setReplacement((ReplacementFragmentType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -358,7 +359,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 				setMulti(MULTI_EDEFAULT);
 				return;
 			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
-				setReplacement((ReplacementFragment)null);
+				setReplacement((ReplacementFragmentType)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -34,12 +34,12 @@ public interface Variable extends VSpec {
 	 * <p>The optional ReplacementFragmentType.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement Fragment Typesubsetstype</em>' reference.
-	 * @see #setReplacementFragmentTypesubsetstype(ReplacementFragment)
+	 * @see #setReplacementFragmentTypesubsetstype(ReplacementFragmentType)
 	 * @see cvl.CvlPackage#getVariable_ReplacementFragmentTypesubsetstype()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	ReplacementFragment getReplacementFragmentTypesubsetstype();
+	ReplacementFragmentType getReplacementFragmentTypesubsetstype();
 
 	/**
 	 * Sets the value of the '{@link cvl.Variable#getReplacementFragmentTypesubsetstype <em>Replacement Fragment Typesubsetstype</em>}' reference.
@@ -49,7 +49,7 @@ public interface Variable extends VSpec {
 	 * @see #getReplacementFragmentTypesubsetstype()
 	 * @generated
 	 */
-	void setReplacementFragmentTypesubsetstype(ReplacementFragment value);
+	void setReplacementFragmentTypesubsetstype(ReplacementFragmentType value);
 
 	/**
 	 * Returns the value of the '<em><b>Defaul Value</b></em>' containment reference.
