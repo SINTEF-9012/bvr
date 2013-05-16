@@ -87,6 +87,9 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 		}
 		
 		// Try searching for a type
+		
+		//This is wrong, ReplacementGragmentType is a Variabletype, but not a  PrimitveType, thus we throw an exeption
+		//COMMENTED OUT for now!!!
 		PrimitveType vt = null;
 		for(Variabletype x : view.getCU().getOwnedVariabletype()){
 			if(x instanceof PrimitveType){
