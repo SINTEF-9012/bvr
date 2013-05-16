@@ -62,7 +62,7 @@
       <MOFRef href="lib.node#//@contains.4"/>
     </sourceObject>
   </ownedVariationPoint>
-  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1" bindingChoice="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1" bindingVSpec="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
@@ -120,7 +120,7 @@
       <MOFRef href="lib.node#//@contains.4"/>
     </sourceObject>
   </ownedVariabletype>
-  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1111" bindingChoice="//@ownedVSpec.1/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="p1->r1111" bindingVSpec="//@ownedVSpec.1/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
     <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
     <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>

@@ -14,6 +14,7 @@ import javax.swing.table.TableModel;
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.NullVSpec;
 import no.sintef.cvl.ui.exceptions.UnexpectedUIError;
 import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -45,20 +46,17 @@ public class FragSubTableModel extends AbstractTableModel
 		for(VariationPoint varPoint : varPoints){
 			if(varPoint instanceof FragmentSubstitution){
 				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) varPoint;
-				ArrayList<VSpec> referencedVSpecs = this.getReferencedVSpecs(fragmentSubstitution);
-				
-				//if fragmentSubstitution is not bound to any VSpec, show NULL
-				if(referencedVSpecs.isEmpty()){
+				VSpec referenceVSpec = fragmentSubstitution.getBindingVSpec();
+				if(referenceVSpec == null){
 					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
+					//data item with null vspec is the first in the list
 					DataVSpecItem cellVSN = (DataVSpecItem) vSpecMap.get(0);
 
 					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
 					data.add(row);
-				}
-				
-				for(VSpec vSpec : referencedVSpecs){
+				}else{
 					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
-					DataVSpecItem cellVSN = this.getVSpecItem(vSpec, vSpecMap);
+					DataVSpecItem cellVSN = this.getVSpecItem(referenceVSpec, vSpecMap);
 
 					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
 					data.add(row);
@@ -76,22 +74,6 @@ public class FragSubTableModel extends AbstractTableModel
 		return null;
 	}
 
-	private ArrayList<VSpec> getReferencedVSpecs(FragmentSubstitution fragSubs){
-		ArrayList<VSpec> vSpecs = new ArrayList<VSpec>();
-		VSpec vSpec = fragSubs.getBindingVSpec();
-		Choice choice = fragSubs.getBindingChoice();
-		VClassifier classifier = fragSubs.getBindingClassifier();
-		if(vSpec != null){
-			vSpecs.add(vSpec);
-		}
-		if(choice != null){
-			vSpecs.add(choice);
-		}
-		if(classifier != null){
-			vSpecs.add(classifier);
-		}
-		return vSpecs;
-	}
 
 	@Override
 	public int getColumnCount() {
@@ -112,20 +94,18 @@ public class FragSubTableModel extends AbstractTableModel
 	@SuppressWarnings("unchecked")
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		//data.get(rowIndex).set(columnIndex, (DataItem) aValue);
 		switch(columnIndex){
-			case 0:{
+			case Constants.FRAG_SUBS_VARIATION_POINT_CLMN :{
 				DataItem cell = data.get(rowIndex).get(columnIndex);
 				JLabel label = cell.getLabel();
 				label.setText((String) aValue);
 			};break;
-			case 1:{
-				//data.get(rowIndex).set(columnIndex, (HashMap<JComponent, NamedElement>) aValue);
+			case Constants.FRAG_SUBS_VSPEC_CLMN:{
 				data.get(rowIndex).set(columnIndex, (DataItem) aValue);
 			}; break;
 			default : {
-				new UnimplementedUIError("table setter is not implemented for this column " + columnIndex);
-			};break;
+				throw new UnsupportedOperationException("table setter is not implemented for this column " + columnIndex);
+			}
 		}
 		fireTableCellUpdated(rowIndex, columnIndex);
 	}
