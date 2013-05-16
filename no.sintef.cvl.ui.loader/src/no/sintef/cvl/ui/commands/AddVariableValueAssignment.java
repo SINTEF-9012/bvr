@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.cvl.ui.dropdowns.VariableValueAssignmentDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.VariableAssignmentPanel;
@@ -48,15 +49,13 @@ public class AddVariableValueAssignment implements Command {
 	}
 
 	public JComponent execute() {
-		System.out.println("adding variable assignment");
+		//System.out.println("adding variable assignment");
 		
 		VariableAssignmentPanel cp = new VariableAssignmentPanel();
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
-/*      cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, view));
-        cp.addMouseListener(listener);
-*/		
+        cp.addMouseListener(new VariableValueAssignmentDropDownListener(cp, c, view, vmMap));
         
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
@@ -64,8 +63,8 @@ public class AddVariableValueAssignment implements Command {
         cp.addMouseListener(listener);
         
 		String name = "null";
-		if(c.getResolvedVariable() != null){
-			name = c.getResolvedVariable().getName();
+		if(c.getResolvedVSpec() != null){
+			name = c.getResolvedVSpec().getName();
 		}
 		
 		String value = "null";

@@ -561,9 +561,6 @@ public class BCLParser extends Parser {
 		public ExpPlusMinContext expPlusMin() {
 			return getRuleContext(ExpPlusMinContext.class,0);
 		}
-		public ExpAriUnaryContext expAriUnary() {
-			return getRuleContext(ExpAriUnaryContext.class,0);
-		}
 		public ExpMulDivContext expMulDiv() {
 			return getRuleContext(ExpMulDivContext.class,0);
 		}
@@ -596,7 +593,7 @@ public class BCLParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(101); expAriUnary();
+			setState(101); expMulDiv(0);
 			}
 			_ctx.stop = _input.LT(-1);
 			setState(108);
@@ -1011,17 +1008,17 @@ public class BCLParser extends Parser {
 		"\3\2\2\2WV\3\2\2\2XY\3\2\2\2YZ\7\24\2\2Za\3\2\2\2[]\t\3\2\2\\[\3\2\2\2"+
 		"\\]\3\2\2\2]^\3\2\2\2^a\5\30\r\2_a\5\16\b\2`R\3\2\2\2`\\\3\2\2\2`_\3\2"+
 		"\2\2a\r\3\2\2\2bc\5\20\t\2cd\t\4\2\2de\5\20\t\2e\17\3\2\2\2fg\b\t\1\2"+
-		"gh\5\24\13\2hn\3\2\2\2ij\6\t\6\3jk\t\5\2\2km\5\22\n\2li\3\2\2\2mp\3\2"+
-		"\2\2nl\3\2\2\2no\3\2\2\2o\21\3\2\2\2pn\3\2\2\2qr\b\n\1\2rs\5\24\13\2s"+
-		"y\3\2\2\2tu\6\n\7\3uv\t\6\2\2vx\5\24\13\2wt\3\2\2\2x{\3\2\2\2yw\3\2\2"+
-		"\2yz\3\2\2\2z\23\3\2\2\2{y\3\2\2\2|~\7\5\2\2}|\3\2\2\2}~\3\2\2\2~\177"+
-		"\3\2\2\2\177\u0080\5\26\f\2\u0080\25\3\2\2\2\u0081\u0088\5\30\r\2\u0082"+
-		"\u0088\5\32\16\2\u0083\u0084\7\t\2\2\u0084\u0085\5\20\t\2\u0085\u0086"+
-		"\7\24\2\2\u0086\u0088\3\2\2\2\u0087\u0081\3\2\2\2\u0087\u0082\3\2\2\2"+
-		"\u0087\u0083\3\2\2\2\u0088\27\3\2\2\2\u0089\u008e\7\34\2\2\u008a\u008b"+
-		"\7\34\2\2\u008b\u008c\7\23\2\2\u008c\u008e\5\30\r\2\u008d\u0089\3\2\2"+
-		"\2\u008d\u008a\3\2\2\2\u008e\31\3\2\2\2\u008f\u0090\t\7\2\2\u0090\33\3"+
-		"\2\2\2\20!-8CNRW\\`ny}\u0087\u008d";
+		"gh\5\22\n\2hn\3\2\2\2ij\6\t\6\3jk\t\5\2\2km\5\22\n\2li\3\2\2\2mp\3\2\2"+
+		"\2nl\3\2\2\2no\3\2\2\2o\21\3\2\2\2pn\3\2\2\2qr\b\n\1\2rs\5\24\13\2sy\3"+
+		"\2\2\2tu\6\n\7\3uv\t\6\2\2vx\5\24\13\2wt\3\2\2\2x{\3\2\2\2yw\3\2\2\2y"+
+		"z\3\2\2\2z\23\3\2\2\2{y\3\2\2\2|~\7\5\2\2}|\3\2\2\2}~\3\2\2\2~\177\3\2"+
+		"\2\2\177\u0080\5\26\f\2\u0080\25\3\2\2\2\u0081\u0088\5\30\r\2\u0082\u0088"+
+		"\5\32\16\2\u0083\u0084\7\t\2\2\u0084\u0085\5\20\t\2\u0085\u0086\7\24\2"+
+		"\2\u0086\u0088\3\2\2\2\u0087\u0081\3\2\2\2\u0087\u0082\3\2\2\2\u0087\u0083"+
+		"\3\2\2\2\u0088\27\3\2\2\2\u0089\u008e\7\34\2\2\u008a\u008b\7\34\2\2\u008b"+
+		"\u008c\7\23\2\2\u008c\u008e\5\30\r\2\u008d\u0089\3\2\2\2\u008d\u008a\3"+
+		"\2\2\2\u008e\31\3\2\2\2\u008f\u0090\t\7\2\2\u0090\33\3\2\2\2\20!-8CNR"+
+		"W\\`ny}\u0087\u008d";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

@@ -19,6 +19,9 @@ Problemer:
  * UnlimitedLiteralExp's getUnlimited() returns int
  * RealLiteralExp stores reals as strings.
   * create stubs ValueSpecificationImpl.basicGetType, ValueSpecificationImpl.setType. ConfigurableUnitImpl.basicGetUnitInterface and setUnitInterface
+ * ChoiceResolutuion should be ChoiceResolution
+ * e.g. VariableValueAssignment has resolvedVariable and resolvedVSpec. These must be synchronized. I have decided just to use resolvedVSpec.
+ * Multiplicity interval is not required, it should be
  
  Løst:
   * Meta-modellen tillater ikke noe funksjonskall, det er vel en mangel antar jeg. (Nei, BCL støtter ikke dette.)

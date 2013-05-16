@@ -12,11 +12,12 @@ import javax.swing.JPopupMenu;
 
 import org.eclipse.emf.common.util.EList;
 
-import no.sintef.cvl.ui.commands.ChangeChoiceResolvedEvent;
+import no.sintef.cvl.ui.commands.ChangeVSpecResolvedEvent;
 import no.sintef.cvl.ui.commands.SetDecisionEvent;
 import no.sintef.cvl.ui.commands.events.AddChoiceResolvedEvent;
 import no.sintef.cvl.ui.commands.events.AddVInstanceEvent;
 import no.sintef.cvl.ui.commands.events.AddVariableValueAssignmentEvent;
+import no.sintef.cvl.ui.commands.events.RemoveVSpecResolutionEvent;
 import no.sintef.cvl.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.cvl.ui.framework.elements.VInstancePanel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -33,23 +34,14 @@ import cvl.Variable;
 public class VInstanceDropDownListener  extends MouseAdapter {
 	private VInstancePanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 	private VInstance c;
-
-	/*public VInstanceDropDownListener(VInstancePanel c, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
-		this.cp = c;
-		this.vmMap = vmMap;
-		this.nodes = nodes;
-		this.bindings = bindings;
-		this.view = view;
-	}*/
 	
-    public VInstanceDropDownListener(VInstancePanel cp, VInstance c, CVLView view) {
+    public VInstanceDropDownListener(VInstancePanel cp, VInstance c, CVLView view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
 		this.c = c;
 		this.view = view;
+		this.vmMap = vmMap;
 	}
 
 	public void mousePressed(MouseEvent e){
@@ -63,7 +55,7 @@ public class VInstanceDropDownListener  extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	VInstanceDropdown menu = new VInstanceDropdown(cp, c, view);
+    	VInstanceDropdown menu = new VInstanceDropdown(cp, c, view, vmMap);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
@@ -71,7 +63,7 @@ public class VInstanceDropDownListener  extends MouseAdapter {
 class VInstanceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VInstanceDropdown(VInstancePanel cp, VInstance c, CVLView view){
+    public VInstanceDropdown(VInstancePanel cp, VInstance c, CVLView view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");
@@ -112,6 +104,11 @@ class VInstanceDropdown extends JPopupMenu {
 			else
 				vspecs = getParent(view.getCU(), c.getResolvedVSpec()).getChild();
 		}
+		
+		// -delete menus
+		JMenuItem remove = new JMenuItem("Remove");
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
+		add(remove);
     }
     
     private VSpec getParent(ConfigurableUnit cu, VSpec child){

@@ -43,18 +43,18 @@ public class AddChoiceResolutuion implements Command {
 	}
 
 	public JComponent execute() {
-		System.out.println("adding choice");
+		//System.out.println("adding choice");
 		
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
-        cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, view));
+        cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, vmMap, view));
         cp.addMouseListener(listener);
 		
 		String choicename = "null";
-		if(c.getResolvedChoice() != null){
-			choicename = c.getResolvedChoice().getName();
+		if(c.getResolvedVSpec() != null){
+			choicename = c.getResolvedVSpec().getName();
 		}
 		
         cp.setTitle(choicename + " = " + c.isDecision());

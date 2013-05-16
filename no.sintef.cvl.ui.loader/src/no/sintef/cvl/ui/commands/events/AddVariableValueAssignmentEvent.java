@@ -41,7 +41,7 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 		VariableValueAssignment vi = CvlFactory.eINSTANCE.createVariableValueAssignment();
 		
 		// Variable
-		vi.setResolvedVariable(v);
+		vi.setResolvedVSpec(v);
 		
 		// Name
 		count++;

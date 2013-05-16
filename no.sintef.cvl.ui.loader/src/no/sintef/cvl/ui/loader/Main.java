@@ -101,45 +101,55 @@ public class Main {
 		menuBar.add(vsmenu);
 
 		// Resolutions
-		JMenu camenu = new JMenu("Resolutions");
+		JMenu resmenu = new JMenu("Resolution");
 		JMenuItem newres = new JMenuItem("New");
 		newres.addActionListener(new NewResolutionEvent(filePane, models, views));
-		camenu.add(newres);
-		camenu.add(new JSeparator());
+		resmenu.add(newres);
+		resmenu.add(new JSeparator());
 		JMenuItem importres = new JMenuItem("Import ...");
 		importres.addActionListener(new ImportResolutions(filePane, models, views));
-		camenu.add(importres);
+		resmenu.add(importres);
 		//TODO: camenu.add(new JMenuItem("Export ..."));
+		resmenu.add(new JSeparator());
+		JMenuItem valres = new JMenuItem("Validate Resolution");
+		valres.addActionListener(new ValidateResolution(filePane, models, views));
+		resmenu.add(valres);
 		
-		camenu.add(new JSeparator());
-		JMenuItem valres = new JMenuItem("Validate Resolutions");
-		valres.addActionListener(new ValidateResolutions(filePane, models, views));
-		camenu.add(valres);
-		JMenu cc1 = new JMenu("Calculate Coverage");
-		JMenuItem calccov1 = new JMenuItem("1-wise");
-		calccov1.addActionListener(new CalculateCoverage(filePane, models, views, 1));
-		cc1.add(calccov1);
-		JMenuItem calccov2 = new JMenuItem("2-wise");
-		calccov2.addActionListener(new CalculateCoverage(filePane, models, views, 2));
-		cc1.add(calccov2);
-		JMenuItem calccov3 = new JMenuItem("3-wise");
-		calccov3.addActionListener(new CalculateCoverage(filePane, models, views, 3));
-		cc1.add(calccov3);
-		camenu.add(cc1);
-		camenu.add(new JSeparator());
+		/* Choice-only options */{
+			JMenu camenu = new JMenu("Models with Choices Only");
+			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
+			satvalres.addActionListener(new SATValidateResolutions(filePane, models, views));
+			camenu.add(satvalres);
+			JMenu cc1 = new JMenu("Calculate Coverage");
+			JMenuItem calccov1 = new JMenuItem("1-wise");
+			calccov1.addActionListener(new CalculateCoverage(filePane, models, views, 1));
+			cc1.add(calccov1);
+			JMenuItem calccov2 = new JMenuItem("2-wise");
+			calccov2.addActionListener(new CalculateCoverage(filePane, models, views, 2));
+			cc1.add(calccov2);
+			JMenuItem calccov3 = new JMenuItem("3-wise");
+			calccov3.addActionListener(new CalculateCoverage(filePane, models, views, 3));
+			cc1.add(calccov3);
+			camenu.add(cc1);
+			camenu.add(new JSeparator());
+			
+			JMenu genca = new JMenu("Generate Covering Array");
+			JMenuItem genca1 = new JMenuItem("1-wise");
+			genca1.addActionListener(new GenerateCoveringArray(filePane, models, views, 1));
+			genca.add(genca1);
+			JMenuItem genca2 = new JMenuItem("2-wise");
+			genca2.addActionListener(new GenerateCoveringArray(filePane, models, views, 2));
+			genca.add(genca2);
+			JMenuItem genca3 = new JMenuItem("3-wise");
+			genca3.addActionListener(new GenerateCoveringArray(filePane, models, views, 3));
+			genca.add(genca3);
+			camenu.add(genca);
+			
+			resmenu.add(new JSeparator());
+			resmenu.add(camenu);
+		}
 		
-		JMenu genca = new JMenu("Generate Covering Array");
-		JMenuItem genca1 = new JMenuItem("1-wise");
-		genca1.addActionListener(new GenerateCoveringArray(filePane, models, views, 1));
-		genca.add(genca1);
-		JMenuItem genca2 = new JMenuItem("2-wise");
-		genca2.addActionListener(new GenerateCoveringArray(filePane, models, views, 2));
-		genca.add(genca2);
-		JMenuItem genca3 = new JMenuItem("3-wise");
-		genca3.addActionListener(new GenerateCoveringArray(filePane, models, views, 3));
-		genca.add(genca3);
-		camenu.add(genca);
-		menuBar.add(camenu);
+		menuBar.add(resmenu);
 		
 		// Eclipse
 		JMenu eclipsemenu = new JMenu("Realization");

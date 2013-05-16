@@ -21,12 +21,12 @@ import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CVLException;
 import no.sintef.ict.splcatool.CoveringArray;
 
-public class ValidateResolutions implements ActionListener {
+public class SATValidateResolutions implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
 	private List<CVLView> views;
 	
-	public ValidateResolutions(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public SATValidateResolutions(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

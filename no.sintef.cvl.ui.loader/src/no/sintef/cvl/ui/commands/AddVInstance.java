@@ -42,9 +42,9 @@ public class AddVInstance implements Command{
 	}
 
 	public JComponent execute() {
-		System.out.println("adding vinstance");
+		//System.out.println("adding vinstance");
 		
-		System.out.println("rootPanel is " + rootPanel);
+		//System.out.println("rootPanel is " + rootPanel);
 		VInstancePanel c = new VInstancePanel(rootPanel.getModelPanel());
 		nodes.add(c);
 		
@@ -52,11 +52,9 @@ public class AddVInstance implements Command{
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
-        c.addMouseListener(new VInstanceDropDownListener(c, vc, view));
+        c.addMouseListener(new VInstanceDropDownListener(c, vc, view, vmMap));
         c.addMouseListener(listener);
         
-
-		
         //MultiplicityInterval m = vc.getInstanceMultiplicity();
 
         //I would prefer not to mix concerns (here validation. We should assume a valid CVL model as input).

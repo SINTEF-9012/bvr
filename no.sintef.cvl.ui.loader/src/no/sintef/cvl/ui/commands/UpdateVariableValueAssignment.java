@@ -34,7 +34,7 @@ public class UpdateVariableValueAssignment extends UpdateVSpec  {
 	}
 
 	public void setValue(String value) {
-		System.out.println("whey!");
+		//System.out.println("whey!");
 		
 		setValueAsString((VariableValueAssignment)vc, value);
 	}
