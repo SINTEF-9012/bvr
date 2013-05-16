@@ -169,7 +169,6 @@ public class CVLModel {
 	private ChoiceResolutuion recursivelyResolve(Map<String, Boolean> conf, Choice choice) {
 		// Add node
 		ChoiceResolutuion cr = CvlFactory.eINSTANCE.createChoiceResolutuion();
-		cr.setResolvedChoice(choice);
 		cr.setResolvedVSpec(choice);
 		cr.setDecision(conf.get(choice.getName()));
 		
@@ -277,7 +276,7 @@ public class CVLModel {
 	private Map<String, Boolean> recurse(ChoiceResolutuion x) throws CVLException {
 		Map<String, Boolean> as = new HashMap<String, Boolean>();
 		
-		as.put(x.getResolvedChoice().getName(), x.isDecision());
+		as.put(x.getResolvedVSpec().getName(), x.isDecision());
 		
 		for(VSpecResolution c : x.getChild()){
 			if(!(c instanceof ChoiceResolutuion)){

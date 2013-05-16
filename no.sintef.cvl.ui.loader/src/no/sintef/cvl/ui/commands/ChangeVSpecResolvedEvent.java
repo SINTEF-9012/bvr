@@ -11,19 +11,18 @@ import cvl.ChoiceResolutuion;
 import cvl.VSpec;
 import cvl.VSpecResolution;
 
-public class ChangeChoiceResolvedEvent implements ActionListener {
+public class ChangeVSpecResolvedEvent implements ActionListener {
 	private ChoiceResolutuion cr;
 	private Choice target;
 	private CVLView view;
 	
-	public ChangeChoiceResolvedEvent(ChoiceResolutuion a, Choice b, CVLView view) {
+	public ChangeVSpecResolvedEvent(ChoiceResolutuion a, Choice b, CVLView view) {
 		cr = a;
 		target = b;
 		this.view = view;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		cr.setResolvedChoice(target);
 		cr.setResolvedVSpec(target);
 		
 		view.notifyResolutionViewUpdate();

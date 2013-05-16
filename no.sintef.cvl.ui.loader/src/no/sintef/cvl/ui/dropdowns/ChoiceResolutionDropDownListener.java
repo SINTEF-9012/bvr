@@ -13,7 +13,7 @@ import javax.swing.JPopupMenu;
 
 import org.eclipse.emf.common.util.EList;
 
-import no.sintef.cvl.ui.commands.ChangeChoiceResolvedEvent;
+import no.sintef.cvl.ui.commands.ChangeVSpecResolvedEvent;
 import no.sintef.cvl.ui.commands.SetDecisionEvent;
 import no.sintef.cvl.ui.commands.events.AddChoiceEvent;
 import no.sintef.cvl.ui.commands.events.AddChoiceResolvedEvent;
@@ -21,6 +21,7 @@ import no.sintef.cvl.ui.commands.events.AddClassifierEvent;
 import no.sintef.cvl.ui.commands.events.AddVInstanceEvent;
 import no.sintef.cvl.ui.commands.events.AddVariableValueAssignmentEvent;
 import no.sintef.cvl.ui.commands.events.RemoveChoiceEvent;
+import no.sintef.cvl.ui.commands.events.RemoveVSpecResolutionEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToAltEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToNoneEvent;
 import no.sintef.cvl.ui.commands.events.SetGroupToOrEvent;
@@ -31,6 +32,7 @@ import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
+import cvl.NamedElement;
 import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VSpecResolution;
@@ -39,24 +41,15 @@ import cvl.VariableValueAssignment;
 
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 	private ChoiceResolutionPanel cp;
-	private Map<JComponent, VSpec> vmMap;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
+	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 	private ChoiceResolutuion c;
 
-	ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
-		this.nodes = nodes;
-		this.bindings = bindings;
 		this.view = view;
-	}
-	
-    public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolutuion c, CVLView view) {
-		this.cp = cp;
 		this.c = c;
-		this.view = view;
 	}
 
 	public void mousePressed(MouseEvent e){
@@ -70,7 +63,7 @@ public class ChoiceResolutionDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	ChoiceResolutionDropdown menu = new ChoiceResolutionDropdown(cp, c, view);
+    	ChoiceResolutionDropdown menu = new ChoiceResolutionDropdown(cp, c, view, vmMap);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
@@ -78,7 +71,7 @@ public class ChoiceResolutionDropDownListener extends MouseAdapter {
 class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, CVLView view){
+    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, CVLView view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");
@@ -133,13 +126,17 @@ class ChoiceResolutionDropdown extends JPopupMenu {
     	for(VSpec x : vspecs){
     		if(x instanceof Choice){
 	    		JMenuItem i = new JMenuItem(x.getName());
-	    		i.addActionListener(new ChangeChoiceResolvedEvent(c, (Choice)x, view));
+	    		i.addActionListener(new ChangeVSpecResolvedEvent(c, (Choice)x, view));
 	    		change.add(i);
     		}else{
     			// Can only change to another of the same type
     		}
     	}
 		add(change);
+		// -delete menus
+		JMenuItem remove = new JMenuItem("Remove");
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
+		add(remove);
     }
     
     private VSpec getParent(ConfigurableUnit cu, VSpec child){

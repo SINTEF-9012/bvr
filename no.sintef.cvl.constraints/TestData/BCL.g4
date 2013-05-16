@@ -24,7 +24,7 @@ expLogUn : 'not'? '(' (expLogIff | expRel) ')'
 expRel : expPlusMin ('=' | '<=' | '>=' | '<' | '>') expPlusMin;
 
 expPlusMin : expPlusMin ('+' | '-') expMulDiv
-	| expAriUnary;
+	| expMulDiv;
 
 expMulDiv : expMulDiv ('*' | '/') expAriUnary
 	| expAriUnary;

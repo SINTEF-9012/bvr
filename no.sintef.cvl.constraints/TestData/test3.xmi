@@ -24,55 +24,56 @@
       </argument>
     </expression>
   </ownedConstraint>
-  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" resolvedChoice="//@ownedVSpec.0" decision="true">
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
     <child xsi:type="cvl:VInstance" name="a1" resolvedVSpec="//@ownedVSpec.0/@child.0">
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment1" resolvedVariable="//@ownedVSpec.0/@child.0/@child.0">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.0">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment1" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:IntegerLiteralExp"/>
         </value>
       </child>
     </child>
-    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.1" resolvedChoice="//@ownedVSpec.0/@child.1" decision="true">
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment2" resolvedVariable="//@ownedVSpec.0/@child.1/@child.0">
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.1" decision="true">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment2" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.0">
         <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:IntegerLiteralExp" integer="7"/>
         </value>
       </child>
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment3" resolvedVariable="//@ownedVSpec.0/@child.1/@child.1">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.3">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment3" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.1">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:RealLiteralExp" real="3.14159265358979323846264"/>
         </value>
       </child>
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment4" resolvedVariable="//@ownedVSpec.0/@child.1/@child.3">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.17">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment4" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.3">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:BooleanLiteralExp" bool="true"/>
         </value>
       </child>
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment5" resolvedVariable="//@ownedVSpec.0/@child.1/@child.2">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.16">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment5" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.2">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:StringLiteralExp" string="hello"/>
         </value>
       </child>
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment6" resolvedVariable="//@ownedVSpec.0/@child.1/@child.4">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.18">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment6" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.4">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:UnlimitedLiteralExp" unlimited="5"/>
         </value>
       </child>
     </child>
     <child xsi:type="cvl:VInstance" name="a2" resolvedVSpec="//@ownedVSpec.0/@child.0">
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment7" resolvedVariable="//@ownedVSpec.0/@child.0/@child.0">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.14">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment7" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:IntegerLiteralExp"/>
         </value>
       </child>
     </child>
     <child xsi:type="cvl:VInstance" name="a3" resolvedVSpec="//@ownedVSpec.0/@child.0">
-      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment7" resolvedVariable="//@ownedVSpec.0/@child.0/@child.0">
-        <value xsi:type="cvl:PrimitiveValueSpecification" type="//@ownedVariabletype.14">
+      <child xsi:type="cvl:VariableValueAssignment" name="variableAssignment7" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="cvl:PrimitiveValueSpecification">
           <expression xsi:type="cvl:IntegerLiteralExp"/>
         </value>
       </child>
     </child>
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.2"/>
   </ownedVSpecResolution>
   <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>
   <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>

@@ -258,8 +258,8 @@ public class CVLView {
 			if(v instanceof ChoiceResolutuion){
 				ChoiceResolutuion cr = (ChoiceResolutuion) v;
 				String choicename = "null";
-				if(cr.getResolvedChoice() != null){
-					choicename = cr.getResolvedChoice().getName();
+				if(cr.getResolvedVSpec() != null){
+					choicename = cr.getResolvedVSpec().getName();
 				}
 				tabtitle = choicename + " " + choiceCount;
 				choiceCount++;
@@ -276,7 +276,7 @@ public class CVLView {
 		JComponent nextParent = null;
 		
 		// Add view
-		System.out.println(v.getClass().getSimpleName());
+		//System.out.println(v.getClass().getSimpleName());
 		if(v instanceof VInstance){
 			//System.out.println(v + ", " + cvluikernel);
 			
@@ -303,7 +303,7 @@ public class CVLView {
 		}
 		
 		// Recursive step
-		System.out.println();
+		//System.out.println();
 		for(VSpecResolution vs : v.getChild()){
 			//System.out.println("Treating " + vs.getResolvedVSpec().getName());
 			loadCVLResolutionView(vs, cvluikernel, nextParent, cu, vmMap, nodes, bindings);

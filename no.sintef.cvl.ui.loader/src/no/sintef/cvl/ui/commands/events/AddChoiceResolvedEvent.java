@@ -29,7 +29,6 @@ public class AddChoiceResolvedEvent implements ActionListener {
 		Choice c = target;
 		
 		ChoiceResolutuion ncr = CvlFactory.eINSTANCE.createChoiceResolutuion();
-		ncr.setResolvedChoice(c);
 		ncr.setResolvedVSpec(c);
 		cr.getChild().add(ncr);
 		

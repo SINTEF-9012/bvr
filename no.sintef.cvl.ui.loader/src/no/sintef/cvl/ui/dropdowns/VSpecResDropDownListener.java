@@ -58,10 +58,11 @@ class VSpecResDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
     public VSpecResDropdown(ConfigurableUnit cu, VSpecResolution v, CVLView cvlView){
-    	JMenuItem del = new JMenuItem("delete");
+    	/*JMenuItem del = new JMenuItem("delete");
     	del.addActionListener(new DelResEvent(cu, v, cvlView));
 		add(del);
-		JMenuItem delall = new JMenuItem("delete all");
+		*/
+		JMenuItem delall = new JMenuItem("remove all");
 		delall.addActionListener(new DelAllResEvent(cu, cvlView));
 		add(delall);
     }
