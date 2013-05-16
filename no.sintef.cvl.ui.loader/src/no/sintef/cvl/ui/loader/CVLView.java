@@ -40,7 +40,7 @@ import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
 import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
-import no.sintef.cvl.ui.editor.SubtitutionFragmentJTable;
+import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
@@ -154,7 +154,7 @@ public class CVLView {
 
 	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
 		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);
-		SubtitutionFragmentJTable tableSubstFragm = new SubtitutionFragmentJTable(cu, this);
+		SubstitutionFragmentJTable tableSubstFragm = new SubstitutionFragmentJTable(cu, this);
 			
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
@@ -165,7 +165,6 @@ public class CVLView {
 		panel.add(scrollPanelSubstFragm);
 		
 		realizationPanel.add(panel);
-		
 		
 		loadBindings(tableFragmSubst);
 	}

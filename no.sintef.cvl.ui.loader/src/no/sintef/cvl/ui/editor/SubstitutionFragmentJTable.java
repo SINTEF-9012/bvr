@@ -20,13 +20,13 @@ import cvl.ReplacementFragmentType;
 import cvl.Variabletype;
 import cvl.VariationPoint;
 
-public class SubtitutionFragmentJTable extends JTable {
+public class SubstitutionFragmentJTable extends JTable {
 
 	private ConfigurableUnit cu;
 	private CVLView view;
 	private SubFragTableModel tableModel;
 
-	public SubtitutionFragmentJTable(ConfigurableUnit cu, CVLView view){
+	public SubstitutionFragmentJTable(ConfigurableUnit cu, CVLView view){
 		this.cu = cu;
 		this.view = view;
 		
