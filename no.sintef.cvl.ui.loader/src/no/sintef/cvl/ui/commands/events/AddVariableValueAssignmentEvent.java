@@ -94,7 +94,8 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 				if(pt.getType() == type)
 					vt = pt;
 			}else{
-				throw new UnsupportedOperationException();
+				System.out.println("we shoould throw here exception COMMENTED OUT");
+				//throw new UnsupportedOperationException();
 			}
 		}
 		
