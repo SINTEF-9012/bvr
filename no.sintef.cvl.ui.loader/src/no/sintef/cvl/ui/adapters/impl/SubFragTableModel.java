@@ -16,12 +16,12 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	 */
 	private static final long serialVersionUID = 6105594044790311712L;
 	private ArrayList<ArrayList<Object>> data;
-	private String[] columnNames = {"Type", "Name"};
+	private String[] columnNames = {"Kind", "Fragment"};
 
 	public SubFragTableModel(ArrayList<NamedElement> subFragList){
 		data = new ArrayList<ArrayList<Object>>();
 		for(NamedElement subFrag : subFragList){
-			String typeName = (subFrag instanceof ReplacementFragmentType) ? "ToReplacement" : "ToPlacement";
+			String typeName = (subFrag instanceof ReplacementFragmentType) ? "Replacement" : "Placement";
 			DataNamedElementItem item = new DataNamedElementItem(new JLabel(subFrag.getName()), subFrag);
 			ArrayList<Object> row = new ArrayList<Object>();
 			row.add(typeName);

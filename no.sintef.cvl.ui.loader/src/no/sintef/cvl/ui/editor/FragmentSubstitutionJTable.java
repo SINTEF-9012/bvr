@@ -24,9 +24,9 @@ import no.sintef.cvl.ui.adapters.impl.FragSubTextTabelCellEditor;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
 import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
-import no.sintef.cvl.ui.adapters.impl.NullVSpec;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.commands.events.FragSubTableRowSelectionEvent;
+import no.sintef.cvl.ui.common.NullVSpec;
 import no.sintef.cvl.ui.loader.CVLView;
 
 public class FragmentSubstitutionJTable extends JTable {
@@ -40,6 +40,7 @@ public class FragmentSubstitutionJTable extends JTable {
 	private ConfigurableUnit cu;
 	private EList<VSpec> vSpecs;
 	private ArrayList<DataItem> vSpecMap;
+	private SubstitutionFragmentJTable subFragJTable = null;
 	
 	public FragmentSubstitutionJTable(ConfigurableUnit cu, CVLView view) {
 		this.cu = cu;
@@ -66,6 +67,15 @@ public class FragmentSubstitutionJTable extends JTable {
 		tableModel.addTableModelListener(new FragSubTableEvent(cu, tableModel.getData(), view));
 		this.getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent());
 		this.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.getTableHeader().setReorderingAllowed(false);
+	}
+	
+	public void setSubstitutionFragmentJTable(SubstitutionFragmentJTable table){
+		this.subFragJTable = table;
+	}
+	
+	public SubstitutionFragmentJTable getSubstitutionFragmentJTable(){
+		return this.subFragJTable;
 	}
 	
 	private void getAllVSpec(EList<VSpec> vSpecList){

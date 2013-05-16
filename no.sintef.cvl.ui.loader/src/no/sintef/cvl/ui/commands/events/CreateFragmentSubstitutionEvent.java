@@ -21,7 +21,7 @@ import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.SubFragTableModel;
-import no.sintef.cvl.ui.editor.SubtitutionFragmentJTable;
+import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -108,8 +108,8 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		for(Component comp : components){
 			if(comp instanceof JScrollPane){
 				Component table = ((JScrollPane) comp).getViewport().getView();
-				if(table instanceof SubtitutionFragmentJTable){
-					return (SubtitutionFragmentJTable) table;
+				if(table instanceof SubstitutionFragmentJTable){
+					return (SubstitutionFragmentJTable) table;
 				}
 			}
 		}

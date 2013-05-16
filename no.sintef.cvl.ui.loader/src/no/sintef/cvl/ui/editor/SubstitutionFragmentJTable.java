@@ -20,13 +20,14 @@ import cvl.ReplacementFragmentType;
 import cvl.Variabletype;
 import cvl.VariationPoint;
 
-public class SubtitutionFragmentJTable extends JTable {
+public class SubstitutionFragmentJTable extends JTable {
 
 	private ConfigurableUnit cu;
 	private CVLView view;
 	private SubFragTableModel tableModel;
+	private FragmentSubstitutionJTable fragSubJTable = null;
 
-	public SubtitutionFragmentJTable(ConfigurableUnit cu, CVLView view){
+	public SubstitutionFragmentJTable(ConfigurableUnit cu, CVLView view){
 		this.cu = cu;
 		this.view = view;
 		
@@ -50,5 +51,14 @@ public class SubtitutionFragmentJTable extends JTable {
 		this.setDefaultEditor(DataNamedElementItem.class, new SubFragTextTabelCellEditor());
 		this.setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
 		tableModel.addTableModelListener(new SubFragTableEvent(cu, tableModel.getData(), view));
+		this.getTableHeader().setReorderingAllowed(false);
+	}
+	
+	public void setFragmentSubstitutionJTable(FragmentSubstitutionJTable table){
+		this.fragSubJTable = table;
+	}
+	
+	public FragmentSubstitutionJTable getFragmentSubstitutionJTable(){
+		return this.fragSubJTable;
 	}
 }
