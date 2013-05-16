@@ -155,6 +155,8 @@ public class CVLView {
 	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
 		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);
 		SubstitutionFragmentJTable tableSubstFragm = new SubstitutionFragmentJTable(cu, this);
+		tableFragmSubst.setSubstitutionFragmentJTable(tableSubstFragm);
+		tableSubstFragm.setFragmentSubstitutionJTable(tableFragmSubst);
 			
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
