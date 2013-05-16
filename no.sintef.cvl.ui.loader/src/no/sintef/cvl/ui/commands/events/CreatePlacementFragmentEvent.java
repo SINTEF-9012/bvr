@@ -85,7 +85,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 				selstring += " * " + e + "\n";
 			}
 			
-			JOptionPane.showMessageDialog(null, "Selection : " + selstring);
+			//JOptionPane.showMessageDialog(null, "Selection : " + selstring);
 			
 			fillPlacement(pf, selected);
 		}

@@ -50,8 +50,8 @@ public class ValidateResolution implements ActionListener {
 		ConfigurableUnit cu = models.get(mi).getCVLM().getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
 		
-		System.out.println("validating: " + cu.getName());
-		System.out.println("validating: " + vsr);
+		//System.out.println("validating: " + cu.getName());
+		//System.out.println("validating: " + vsr);
 		
 		boolean res = check(cu, vsr);
 		
@@ -381,7 +381,7 @@ public class ValidateResolution implements ActionListener {
 		// Check
 		vss.removeAll(vssr);
 		if(vss.size() > 0){
-			JOptionPane.showMessageDialog(null, vss.toString());
+			//JOptionPane.showMessageDialog(null, vss.toString());
 			return false;
 		}
 		

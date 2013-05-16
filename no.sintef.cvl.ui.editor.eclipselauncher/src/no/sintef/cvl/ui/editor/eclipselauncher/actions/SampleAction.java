@@ -78,6 +78,7 @@ class CVLEditorThread implements Runnable {
 	}
 
 	public void run() {
+		/*
 		File logo = new File("C:/Users/mjoha/workspace-CVLTool2/cvl/no.sintef.cvl.ui.loader/log/logo.txt");
 		File loge = new File("C:/Users/mjoha/workspace-CVLTool2/cvl/no.sintef.cvl.ui.loader/log/loge.txt");
 		PrintStream po = null;
@@ -92,14 +93,15 @@ class CVLEditorThread implements Runnable {
 		
 		System.setOut(po);
 		System.setErr(pe);
-		
+		*/
 		Main m = new Main();
 		
 		m.setEclipseWindow(window);
 		
 		m.main();
-		
+		/*
 		po.close();
 		pe.close();
+		*/
     }
 }
