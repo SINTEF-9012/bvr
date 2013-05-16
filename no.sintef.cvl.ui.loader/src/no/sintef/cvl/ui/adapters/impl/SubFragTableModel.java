@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
+import no.sintef.cvl.ui.common.Constants;
+
 import cvl.NamedElement;
 import cvl.ReplacementFragmentType;
 
@@ -15,11 +17,13 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	 * 
 	 */
 	private static final long serialVersionUID = 6105594044790311712L;
+	private ArrayList<ArrayList<Object>> originalData;
 	private ArrayList<ArrayList<Object>> data;
 	private String[] columnNames = {"Kind", "Fragment"};
 
 	public SubFragTableModel(ArrayList<NamedElement> subFragList){
 		data = new ArrayList<ArrayList<Object>>();
+		originalData = new ArrayList<ArrayList<Object>>();
 		for(NamedElement subFrag : subFragList){
 			String typeName = (subFrag instanceof ReplacementFragmentType) ? "Replacement" : "Placement";
 			DataNamedElementItem item = new DataNamedElementItem(new JLabel(subFrag.getName()), subFrag);
@@ -27,6 +31,7 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 			row.add(typeName);
 			row.add(item);
 			data.add(row);
+			originalData.add(row);
 		}
 	}
 	
@@ -42,14 +47,14 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		return (columnIndex == 0) ? false : true;
+		return (columnIndex == Constants.SUB_FRAG_KIND_CLMN) ? false : true;
 	}
 	
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		Class cl;
 		switch(columnIndex){
-			case 1 : {
+			case Constants.SUB_FRAG_FRAG_CLMN : {
 				cl = DataNamedElementItem.class;
 			}; break;
 			default : {
@@ -77,5 +82,14 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	
 	public ArrayList<ArrayList<Object>> getData(){
 		return this.data;
+	}
+	
+	public ArrayList<ArrayList<Object>> getOriginalData(){
+		return this.originalData;
+	}
+	
+	public void setDisplayData(ArrayList<ArrayList<Object>> displayData){
+		this.data = displayData;
+		this.fireTableDataChanged();
 	}
 }

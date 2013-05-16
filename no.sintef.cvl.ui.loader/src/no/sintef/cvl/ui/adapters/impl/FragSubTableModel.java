@@ -13,6 +13,7 @@ import javax.swing.table.TableModel;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
+import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.exceptions.UnexpectedUIError;
 import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -143,7 +144,7 @@ public class FragSubTableModel extends AbstractTableModel
 	public Class<?> getColumnClass(int columnIndex) {
 		Class cl;
 		switch(columnIndex) {
-			case 1 : cl = JComboBox.class;
+			case Constants.FRAG_SUBS_VSPEC_CLMN : cl = JComboBox.class;
 				break;
 			default : cl = String.class;
 				break;

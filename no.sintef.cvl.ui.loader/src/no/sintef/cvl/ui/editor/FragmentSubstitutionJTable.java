@@ -65,7 +65,7 @@ public class FragmentSubstitutionJTable extends JTable {
 		this.setDefaultRenderer(JComboBox.class, new FragSubTableCellRenderer());
 		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
 		tableModel.addTableModelListener(new FragSubTableEvent(cu, tableModel.getData(), view));
-		this.getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent());
+		this.getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(this));
 		this.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTableHeader().setReorderingAllowed(false);
 	}

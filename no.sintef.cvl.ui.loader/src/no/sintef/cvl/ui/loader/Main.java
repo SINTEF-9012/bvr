@@ -15,6 +15,7 @@ import javax.swing.JTabbedPane;
 
 import org.eclipse.ui.IWorkbenchWindow;
 
+import no.sintef.cvl.ui.commands.events.ClearSelectionRelalizationEvent;
 import no.sintef.cvl.ui.commands.events.CreateFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
@@ -154,6 +155,10 @@ public class Main {
 		JMenuItem createFragmentSubstitution = new JMenuItem("Create FragmentSubstitution");
 		createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(filePane, models, views));
 		eclipsemenu.add(createFragmentSubstitution);
+		
+		JMenuItem clearSelection = new JMenuItem("Clear selection");
+		clearSelection.addActionListener(new ClearSelectionRelalizationEvent(filePane, models, views));
+		eclipsemenu.add(clearSelection);
 		
 		menuBar.add(eclipsemenu);
 

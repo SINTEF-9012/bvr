@@ -21,6 +21,7 @@ import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.SubFragTableModel;
+import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -66,8 +67,8 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		SubFragTableModel model = (SubFragTableModel) subFragTable.getModel();
 		ArrayList<ArrayList<Object>> data = model.getData();
 		
-		DataNamedElementItem firstRowDataElement = (DataNamedElementItem) data.get(rowIndexes[0]).get(1);
-		DataNamedElementItem secondRowDataElement = (DataNamedElementItem) data.get(rowIndexes[1]).get(1);
+		DataNamedElementItem firstRowDataElement = (DataNamedElementItem) data.get(rowIndexes[0]).get(Constants.SUB_FRAG_FRAG_CLMN);
+		DataNamedElementItem secondRowDataElement = (DataNamedElementItem) data.get(rowIndexes[1]).get(Constants.SUB_FRAG_FRAG_CLMN);
 		
 		HashMap<PlacementFragment, ReplacementFragmentType> tuple = this.isSelectionValid(firstRowDataElement, secondRowDataElement);
 		if(tuple == null){
