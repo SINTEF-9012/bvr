@@ -37,7 +37,7 @@ public class FragSubTableModel extends AbstractTableModel
 	 */
 	private static final long serialVersionUID = 6757147907729864204L;
 	private ConfigurableUnit cu;
-	private String[] columnNames = {"Variation points", "VSpec"};
+	private String[] columnNames = {Constants.FRAG_SUB_VP_CLMN_NAME, Constants.FRAG_SUB_VSPEC_CLMN_NAME};
 	private ArrayList<ArrayList<DataItem>> data = new ArrayList<ArrayList<DataItem>>();
 
 	public FragSubTableModel(ConfigurableUnit cu, ArrayList<DataItem> vSpecMap){

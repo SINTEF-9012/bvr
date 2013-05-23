@@ -37,6 +37,7 @@ import no.sintef.cvl.ui.commands.AddOpaqueConstraint;
 import no.sintef.cvl.ui.commands.AddVClassifier;
 import no.sintef.cvl.ui.commands.AddVInstance;
 import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
+import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
@@ -143,7 +144,7 @@ public class CVLView {
         
         // Realization panel
         realizationPanel = new JTabbedPane();
-        modelPane.addTab("Realization", null, realizationPanel, "");
+        modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
         
         try{
         	loadCVLRelalizationView(m.getCVLM().getCU(), realizationPanel);
@@ -162,7 +163,7 @@ public class CVLView {
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
-		panel.setName("Variation points");
+		panel.setName(Constants.REALIZATION_VP_SUBTAB_NAME);
 		panel.add(scrollPanelFragmSubst);
 		panel.add(scrollPanelSubstFragm);
 		
