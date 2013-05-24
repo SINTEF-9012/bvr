@@ -41,6 +41,7 @@ public class FragmentSubstitutionJTable extends JTable {
 	private EList<VSpec> vSpecs;
 	private ArrayList<DataItem> vSpecMap;
 	private SubstitutionFragmentJTable subFragJTable = null;
+	private BindingJTable bindingJTable;
 	
 	public FragmentSubstitutionJTable(ConfigurableUnit cu, CVLView view) {
 		this.cu = cu;
@@ -83,5 +84,13 @@ public class FragmentSubstitutionJTable extends JTable {
 			vSpecs.add(vSpec);
 			this.getAllVSpec(vSpec.getChild());
 		}
+	}
+
+	public void setBindingJTable(BindingJTable bindingEditor) {
+		this.bindingJTable = bindingEditor;
+	}
+	
+	public BindingJTable getBindingJTable(){
+		return this.bindingJTable;
 	}
 }

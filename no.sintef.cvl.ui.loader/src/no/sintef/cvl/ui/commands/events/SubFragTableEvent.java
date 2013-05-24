@@ -27,22 +27,25 @@ public class SubFragTableEvent implements TableModelListener {
 	@Override
 	public void tableChanged(TableModelEvent e) {
 		if(TableModelEvent.UPDATE == e.getType()){
-			if(e.getLastRow() == e.getFirstRow()){
-				int rowIndex = e.getLastRow();
-				int columnIndex = e.getColumn();
-				if(columnIndex == 1){
-					DataItem modifiedCell = (DataItem) data.get(rowIndex).get(columnIndex);
-					NamedElement vp = (NamedElement) modifiedCell.getNamedElement();
-					JLabel label = (JLabel) modifiedCell.getLabel();
-					String newName = label.getText();
-					String currentName = vp.getName();
-					if(!newName.equals(currentName)){
-						vp.setName(label.getText());
-						view.notifyCVLRelalizationView();
+			//when column is less than zero then the update event in a model was triggered by for example filtering not users selection 
+			if(e.getColumn() >= 0){
+				if(e.getLastRow() == e.getFirstRow()){
+					int rowIndex = e.getLastRow();
+					int columnIndex = e.getColumn();
+					if(columnIndex == 1){
+						DataItem modifiedCell = (DataItem) data.get(rowIndex).get(columnIndex);
+						NamedElement vp = (NamedElement) modifiedCell.getNamedElement();
+						JLabel label = (JLabel) modifiedCell.getLabel();
+						String newName = label.getText();
+						String currentName = vp.getName();
+						if(!newName.equals(currentName)){
+							vp.setName(label.getText());
+							view.notifyCVLRelalizationView();
+						}
 					}
+				}else{
+					throw new UnsupportedOperationException("Few rows were updated - not implemented");
 				}
-			}else{
-				throw new UnsupportedOperationException("Few rows were updated - not implemented");
 			}
 		}
 

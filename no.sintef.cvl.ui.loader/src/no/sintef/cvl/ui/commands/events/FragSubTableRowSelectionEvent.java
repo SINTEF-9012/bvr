@@ -2,6 +2,8 @@ package no.sintef.cvl.ui.commands.events;
 
 import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -12,11 +14,13 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.adapters.impl.BindingTableModel;
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
 import no.sintef.cvl.ui.adapters.impl.SubFragTableModel;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.exceptions.CVLModelException;
 
 public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 	
@@ -53,6 +57,13 @@ public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 				}
 			}
 			subsFragModel.setDisplayData(newDisplayData);
+			
+			BindingTableModel bindingTableModel = (BindingTableModel) jtable.getBindingJTable().getModel();
+			try {
+				bindingTableModel.updateBindingEditor(fragmentSubstitution);
+			} catch (CVLModelException e) {
+				e.printStackTrace();
+			}
 		}else{
 			throw new UnsupportedOperationException();
 		}

@@ -40,7 +40,63 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 	public BindingTableModel(FragmentSubstitution fragSub) throws AbstractError{
 		fs = fragSub;
 		data = new ArrayList<ArrayList<Object>>();
-		
+		loadBindings(fragSub);
+	}
+	
+	@Override
+	public int getColumnCount() {
+		return columnNames.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		return data.size();
+	}
+
+	@Override
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		return data.get(rowIndex).get(columnIndex);
+	}
+	
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		Class cl;
+		switch(columnIndex){
+			case Constants.BINDING_PROP_CLMN : {
+				cl = DataNamedElementItem.class;
+			}; break;
+			case Constants.BINDING_VALUE_CLMN : {
+				cl = DataNamedElementItem.class;
+			}; break;
+			case Constants.BINDING_TYPE_CLMN : {
+				cl = String.class;
+			}; break;
+			default : {
+				cl = String.class;
+			}
+		}
+		return cl;
+	}
+	
+	@Override
+	public String getColumnName(int column) {
+		return columnNames[column];
+	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		boolean isEditable = (columnIndex == Constants.BINDING_TYPE_CLMN) ? false : true;
+		return isEditable;
+	}
+	
+	public void updateBindingEditor(FragmentSubstitution fragSub) throws CVLModelException{
+		loadBindings(fragSub);
+		fireTableDataChanged();
+	}
+
+	private void loadBindings(FragmentSubstitution fragSub) throws CVLModelException{
+		fs = fragSub;
+		data.clear();
 		if(fragSub != null){
 			PlacementFragment placement = fs.getPlacement();
 			ReplacementFragmentType replacement = fs.getReplacement();
@@ -94,53 +150,6 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 				data.addAll(dataToBindings);
 				data.addAll(dataFromBindings);
 			}
-		}
+		}		
 	}
-
-	@Override
-	public int getColumnCount() {
-		return columnNames.length;
-	}
-
-	@Override
-	public int getRowCount() {
-		return data.size();
-	}
-
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		return data.get(rowIndex).get(columnIndex);
-	}
-	
-	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		Class cl;
-		switch(columnIndex){
-			case Constants.BINDING_PROP_CLMN : {
-				cl = DataNamedElementItem.class;
-			}; break;
-			case Constants.BINDING_VALUE_CLMN : {
-				cl = DataNamedElementItem.class;
-			}
-			case Constants.BINDING_TYPE_CLMN : {
-				cl = String.class;
-			}
-			default : {
-				cl = String.class;
-			}
-		}
-		return cl;
-	}
-	
-	@Override
-	public String getColumnName(int column) {
-		return columnNames[column];
-	}
-	
-	@Override
-	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		boolean isEditable = (columnIndex == Constants.BINDING_TYPE_CLMN) ? false : true;
-		return isEditable;
-	}
-
 }

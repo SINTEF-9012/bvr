@@ -173,31 +173,10 @@ public class CVLView {
 		realizationPanel.add(panel);
 		
 		BindingJTable bindingEditor = new BindingJTable(cu, this);
+		tableFragmSubst.setBindingJTable(bindingEditor);
 		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
-		
-		//loadBindings(tableFragmSubst);
-	}
-	
-	private void loadBindings(JTable sourceTable){
-		String[] columnNames = {"Type","[Object].property", "Values"};
-		
-		Object[][] data = {
-				{"toBoundary", "[Node1].links", "Node 7"},
-				{"toBoundary", "[Node1].links", "Node 7"},
-				{"fromBoundary", "[Node1].links", "Node 7"},
-				{"fromBoundary", "[Node1].links", "Node 7"}
-				};
-		
-		JTable table = new JTable(data, columnNames);
-		int row = sourceTable.getSelectedRow();
-		//String name = (String) sourceTable.getValueAt(0, 0);
-		
-		JScrollPane scrollPanel = new JScrollPane(table);
-		scrollPanel.setName("Binding - <Name>");		
-		
-		realizationPanel.add(scrollPanel, realizationPanel.getComponentCount());
 	}
 	
 	private void autoLayoutResolutions() {
