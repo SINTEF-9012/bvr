@@ -1,7 +1,9 @@
 package no.sintef.cvl.ui.adapters.impl;
 
 import java.awt.Component;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.HashMap;
 
 import javax.swing.AbstractCellEditor;
@@ -12,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
 import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.common.Constants;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -43,5 +46,12 @@ public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 		editor.getModel().setSelectedItem(table.getModel().getValueAt(row, column));
 		return editor;
 	}
-
+	
+	@Override
+	public boolean isCellEditable(EventObject e) {
+		if (e instanceof MouseEvent) {
+			return ((MouseEvent) e).getClickCount() >= Constants.FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
+		}
+		return true;
+	}
 }

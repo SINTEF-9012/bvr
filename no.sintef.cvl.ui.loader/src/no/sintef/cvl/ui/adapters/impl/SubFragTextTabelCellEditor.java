@@ -1,6 +1,8 @@
 package no.sintef.cvl.ui.adapters.impl;
 
 import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.util.EventObject;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JTable;
@@ -8,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.table.TableCellEditor;
 
 import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.common.Constants;
 
 public class SubFragTextTabelCellEditor extends AbstractCellEditor implements
 		TableCellEditor {
@@ -33,4 +36,12 @@ public class SubFragTextTabelCellEditor extends AbstractCellEditor implements
 		return editor;
 	}
 
+	
+	@Override
+	public boolean isCellEditable(EventObject e) {
+		if (e instanceof MouseEvent) {
+			return ((MouseEvent) e).getClickCount() >= Constants.SUB_FRAG_FS_CLICK_COUNT_TO_EDIT;
+		}
+		return true;
+	}
 }
