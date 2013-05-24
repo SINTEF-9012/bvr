@@ -17,6 +17,7 @@ public class FragSubTextTabelCellEditor extends AbstractCellEditor implements
 		TableCellEditor {
 
 	private JTextField  editor;
+	private DataItem editedValue = null;
 	
 	public FragSubTextTabelCellEditor(){
 		editor = new JTextField();
@@ -24,14 +25,15 @@ public class FragSubTextTabelCellEditor extends AbstractCellEditor implements
 
 	@Override
 	public Object getCellEditorValue() {
-		return editor.getText();
+		editedValue.getLabel().setText(editor.getText());
+		return editedValue;
 	}
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
-		DataItem item = (DataItem) table.getModel().getValueAt(row, column);
-		editor.setText(item.getLabel().getText());
+		editedValue = (DataItem) table.getModel().getValueAt(row, column);
+		editor.setText(editedValue.getLabel().getText());
 		return editor;
 	}
 	

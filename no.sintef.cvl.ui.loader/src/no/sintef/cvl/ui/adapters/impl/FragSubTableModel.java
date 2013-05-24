@@ -95,12 +95,10 @@ public class FragSubTableModel extends AbstractTableModel
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		switch(columnIndex){
 			case Constants.FRAG_SUBS_VARIATION_POINT_CLMN :{
-				DataItem cell = data.get(rowIndex).get(columnIndex);
-				JLabel label = cell.getLabel();
-				label.setText((String) aValue);
+				data.get(rowIndex).set(columnIndex, (DataNamedElementItem) aValue);
 			};break;
 			case Constants.FRAG_SUBS_VSPEC_CLMN:{
-				data.get(rowIndex).set(columnIndex, (DataItem) aValue);
+				data.get(rowIndex).set(columnIndex, (DataVSpecItem) aValue);
 			}; break;
 			default : {
 				throw new UnsupportedOperationException("table setter is not implemented for this column " + columnIndex);
@@ -123,7 +121,9 @@ public class FragSubTableModel extends AbstractTableModel
 	public Class<?> getColumnClass(int columnIndex) {
 		Class cl;
 		switch(columnIndex) {
-			case Constants.FRAG_SUBS_VSPEC_CLMN : cl = JComboBox.class;
+			case Constants.FRAG_SUBS_VSPEC_CLMN : cl = DataVSpecItem.class;
+				break;
+			case Constants.FRAG_SUBS_VARIATION_POINT_CLMN : cl = DataNamedElementItem.class;
 				break;
 			default : cl = String.class;
 				break;

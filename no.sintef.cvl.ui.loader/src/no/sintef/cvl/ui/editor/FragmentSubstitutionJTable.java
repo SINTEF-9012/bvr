@@ -19,6 +19,7 @@ import cvl.NamedElement;
 import cvl.VSpec;
 
 import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
 import no.sintef.cvl.ui.adapters.impl.FragSubTextTabelCellEditor;
 import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
@@ -36,7 +37,6 @@ public class FragmentSubstitutionJTable extends JTable {
 	 */
 	private static final long serialVersionUID = 6490422017472288712L;
 	private FragSubTableModel tableModel;
-	private FragSubVSpecTableCellEditor editorVSpec;
 	private ConfigurableUnit cu;
 	private EList<VSpec> vSpecs;
 	private ArrayList<DataItem> vSpecMap;
@@ -59,12 +59,13 @@ public class FragmentSubstitutionJTable extends JTable {
 		}
 		tableModel = new FragSubTableModel(cu, vSpecMap);
 		this.setModel(tableModel);
-		editorVSpec = new FragSubVSpecTableCellEditor(vSpecMap);
-		this.setDefaultEditor(JComboBox.class, editorVSpec);
-		this.setDefaultEditor(String.class, new FragSubTextTabelCellEditor());
 		
-		this.setDefaultRenderer(JComboBox.class, new FragSubTableCellRenderer());
-		this.setDefaultRenderer(String.class, new FragSubTableCellRenderer());
+		this.setDefaultEditor(DataVSpecItem.class, new FragSubVSpecTableCellEditor(vSpecMap));
+		this.setDefaultEditor(DataNamedElementItem.class, new FragSubTextTabelCellEditor());
+		
+		this.setDefaultRenderer(DataVSpecItem.class, new FragSubTableCellRenderer());
+		this.setDefaultRenderer(DataNamedElementItem.class, new FragSubTableCellRenderer());
+		
 		tableModel.addTableModelListener(new FragSubTableEvent(cu, tableModel.getData(), view));
 		this.getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(this));
 		this.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
