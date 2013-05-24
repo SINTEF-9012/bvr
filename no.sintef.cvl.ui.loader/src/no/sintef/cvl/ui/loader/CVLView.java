@@ -39,9 +39,12 @@ import no.sintef.cvl.ui.commands.AddVInstance;
 import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
+import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
+import no.sintef.cvl.ui.exceptions.AbstractError;
+import no.sintef.cvl.ui.exceptions.CVLModelException;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
@@ -147,18 +150,18 @@ public class CVLView {
         modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
         
         try{
-        	loadCVLRelalizationView(m.getCVLM().getCU(), realizationPanel);
-        } catch (CVLModelException e){
+        	loadCVLRelalizationView(m.getCVLM().getCU());
+        } catch (Exception e){
         	e.printStackTrace();
         }
 	}
 
-	private void loadCVLRelalizationView(ConfigurableUnit cu, JTabbedPane realizationPanel) throws CVLModelException {
+	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
 		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);
 		SubstitutionFragmentJTable tableSubstFragm = new SubstitutionFragmentJTable(cu, this);
 		tableFragmSubst.setSubstitutionFragmentJTable(tableSubstFragm);
 		tableSubstFragm.setFragmentSubstitutionJTable(tableFragmSubst);
-			
+		
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
 		
@@ -169,7 +172,12 @@ public class CVLView {
 		
 		realizationPanel.add(panel);
 		
-		loadBindings(tableFragmSubst);
+		BindingJTable bindingEditor = new BindingJTable(cu, this);
+		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
+		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
+		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
+		
+		//loadBindings(tableFragmSubst);
 	}
 	
 	private void loadBindings(JTable sourceTable){
@@ -380,8 +388,8 @@ public class CVLView {
 		realizationPanel.removeAll();
 		
         try{
-        	loadCVLRelalizationView(m.getCVLM().getCU(), realizationPanel);
-        } catch (CVLModelException e){
+        	loadCVLRelalizationView(m.getCVLM().getCU());
+        } catch (Exception e){
         	e.printStackTrace();
         }
 	}

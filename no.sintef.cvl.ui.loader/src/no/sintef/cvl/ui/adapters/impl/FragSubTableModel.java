@@ -15,8 +15,7 @@ import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.NullVSpec;
-import no.sintef.cvl.ui.exceptions.UnexpectedUIError;
-import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
+import no.sintef.cvl.ui.exceptions.UnexpectedException;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import org.eclipse.emf.common.util.EList;

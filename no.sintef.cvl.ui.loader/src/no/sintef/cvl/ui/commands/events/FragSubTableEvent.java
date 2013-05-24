@@ -1,24 +1,16 @@
 package no.sintef.cvl.ui.commands.events;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-import org.eclipse.emf.common.util.EList;
-
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.NullVSpec;
-import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import cvl.ConfigurableUnit;
-import cvl.FragmentSubstitution;
-import cvl.NamedElement;
 import cvl.VSpec;
 import cvl.VariationPoint;
 
@@ -62,7 +54,7 @@ public class FragSubTableEvent implements TableModelListener {
 					//view.notifyCVLRelalizationView();
 				}
 			}else{
-				new UnimplementedUIError("Few rows were updated - not implemented");
+				throw new UnsupportedOperationException("Few rows were updated - not implemented");
 			}
 		}
 	}

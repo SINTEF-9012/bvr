@@ -7,7 +7,6 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import no.sintef.cvl.ui.adapters.DataItem;
-import no.sintef.cvl.ui.exceptions.UnimplementedUIError;
 import no.sintef.cvl.ui.loader.CVLView;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;
@@ -43,7 +42,7 @@ public class SubFragTableEvent implements TableModelListener {
 					}
 				}
 			}else{
-				new UnimplementedUIError("Few rows were updated - not implemented");
+				throw new UnsupportedOperationException("Few rows were updated - not implemented");
 			}
 		}
 

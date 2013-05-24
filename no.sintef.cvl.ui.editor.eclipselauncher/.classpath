@@ -8,5 +8,14 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model.edit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model.editor"/>
 	<classpathentry kind="lib" path="SINTEF-CVLTool2-v0.2a1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/de.ovgu.featureide.fm.core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.constraints"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.converters"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.ui.editor.eclipse"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.ui.framework"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.ict.splcatool"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.json"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.sat4j.core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SPLAR"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
