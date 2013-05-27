@@ -66,7 +66,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 				cl = DataNamedElementItem.class;
 			}; break;
 			case Constants.BINDING_VALUE_CLMN : {
-				cl = DataNamedElementItem.class;
+				cl = DataBoundaryItem.class;
 			}; break;
 			case Constants.BINDING_TYPE_CLMN : {
 				cl = String.class;
@@ -85,7 +85,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 	
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		boolean isEditable = (columnIndex == Constants.BINDING_TYPE_CLMN) ? false : true;
+		boolean isEditable = (columnIndex == Constants.BINDING_VALUE_CLMN || columnIndex == Constants.BINDING_PROP_CLMN) ? true : false;
 		return isEditable;
 	}
 	

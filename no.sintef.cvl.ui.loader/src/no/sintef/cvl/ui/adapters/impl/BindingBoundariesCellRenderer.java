@@ -8,7 +8,7 @@ import javax.swing.table.TableCellRenderer;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-public class BindingCellRendere extends DefaultTableCellRenderer implements
+public class BindingBoundariesCellRenderer extends DefaultTableCellRenderer implements
 		TableCellRenderer {
 
 	@Override

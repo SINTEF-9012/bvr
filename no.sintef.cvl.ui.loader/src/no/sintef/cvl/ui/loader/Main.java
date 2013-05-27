@@ -3,6 +3,7 @@ package no.sintef.cvl.ui.loader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Main {
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setPreferredSize(new Dimension(1000, 800));
 		jframe.setBackground(Color.WHITE);
-
+		
 		// Tabbed pane
 		JTabbedPane filePane = new JTabbedPane();
 
@@ -176,6 +177,11 @@ public class Main {
 		jframe.add(filePane, BorderLayout.CENTER);
 		jframe.pack();
 		jframe.repaint();
+		
+		//position jframe in the center of the screen
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		jframe.setLocation((int) (dim.getWidth()/2 - jframe.getWidth()/2), (int) (dim.getHeight()/2 - jframe.getHeight()/2));
+		
 		jframe.setVisible(true);
 	}
 }

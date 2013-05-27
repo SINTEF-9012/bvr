@@ -9,7 +9,7 @@ public class Constants {
 	public static final int FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT = 2;
 	public static final int FRAG_SUB_FS_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
 	public static final int SUB_FRAG_FS_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
-	public static final int BINDING_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
+	public static final int BINDING_BOUNDARIES_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
 	
 	public static final int SUB_FRAG_KIND_CLMN = 0;
 	public static final int SUB_FRAG_FRAG_CLMN = 1;

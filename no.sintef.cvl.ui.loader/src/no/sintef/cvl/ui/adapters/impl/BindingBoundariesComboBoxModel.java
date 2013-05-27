@@ -7,18 +7,18 @@ import javax.swing.ComboBoxModel;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> implements
-		ComboBoxModel<DataItem> {
+public class BindingBoundariesComboBoxModel extends AbstractListModel<DataItem>
+		implements ComboBoxModel<DataItem> {
 
-	private static final long serialVersionUID = -4928670717941556052L;
+	private static final long serialVersionUID = 5126299116838742212L;
 	
-	ArrayList<DataItem> data;
-	DataItem selectedItem = null;
-	
-	public FragSubVSpecComboboxModel(ArrayList<DataItem> list){
-		data = list;
+	private ArrayList<DataItem> data;
+	private DataItem seletedItem = null;
+
+	public BindingBoundariesComboBoxModel(ArrayList<DataItem> boundariesList){
+		data = boundariesList;
 	}
-
+	
 	@Override
 	public DataItem getElementAt(int index) {
 		return data.get(index);
@@ -31,12 +31,12 @@ public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> imple
 
 	@Override
 	public Object getSelectedItem() {
-		return this.selectedItem;
+		return seletedItem;
 	}
 
 	@Override
 	public void setSelectedItem(Object value) {
-		this.selectedItem = (DataItem) value;
+		seletedItem = (DataItem) value;
 	}
 
 }
