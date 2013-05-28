@@ -26,9 +26,6 @@ import cvl.VSpec;
 public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 		implements TableCellEditor {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2993488539123070478L;
 	private JComboBox<DataItem> editor;
 		

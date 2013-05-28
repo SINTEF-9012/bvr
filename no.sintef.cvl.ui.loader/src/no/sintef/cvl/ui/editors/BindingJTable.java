@@ -13,6 +13,7 @@ import cvl.ConfigurableUnit;
 
 public class BindingJTable extends JTable {
 
+	private static final long serialVersionUID = 8644097588893969285L;
 	private CVLView view;
 	private ConfigurableUnit cu;
 
@@ -26,7 +27,7 @@ public class BindingJTable extends JTable {
 		setDefaultRenderer(DataBoundaryItem.class, new BindingBoundariesCellRenderer());
 		
 		setDefaultEditor(DataNamedElementItem.class, new BindingBoundariesTextTableCellEditor());
-		//setDefaultEditor(DataBoundaryItem.class, new BindingBoundariesTableCellEditor());
+		setDefaultEditor(DataBoundaryItem.class, new BindingBoundariesComboBoxTableCellEditor(null));
 		
 		getTableHeader().setReorderingAllowed(false);
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

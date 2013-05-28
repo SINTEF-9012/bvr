@@ -11,4 +11,14 @@ public class DataVSpecItem extends AbstractDataItem{
 		this.label = label;
 		this.data = vspec;
 	}
+	
+	public boolean equals(Object object){
+		if(object instanceof DataVSpecItem){
+			DataVSpecItem item = (DataVSpecItem) object;
+			if(getNamedElement().equals(item.getNamedElement())){
+				return true;
+			}
+		}
+		return false;
+	}
 }

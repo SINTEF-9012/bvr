@@ -7,8 +7,8 @@ import cvl.NamedElement;
 
 public class DataNamedElementItem extends AbstractDataItem{
 
-	public DataNamedElementItem(JLabel label, NamedElement varPoint){
+	public DataNamedElementItem(JLabel label, NamedElement namedElement){
 		this.label = label;
-		this.data = varPoint;
+		this.data = namedElement;
 	}
 }

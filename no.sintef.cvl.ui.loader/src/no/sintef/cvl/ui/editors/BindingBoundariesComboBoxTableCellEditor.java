@@ -47,14 +47,17 @@ public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int rawIndex, int columnIndex) {
-		editedBoundaryProperty = (DataItem) table.getModel().getValueAt(rawIndex, Constants.BINDING_PROP_CLMN);
-		JComboBox<DataItem> editor = editedBoundaryPropertyComboBoxMap.get(editedBoundaryProperty);
-		if(editor == null){
-			ArrayList<DataItem> comboxData = data.get(editedBoundaryProperty);
-			editor = new JComboBox<DataItem>(new BindingBoundariesComboBoxModel(comboxData));
-			editedBoundaryPropertyComboBoxMap.put(editedBoundaryProperty, editor);
+		JComboBox<DataItem> editor = null;
+		if(data != null){
+			editedBoundaryProperty = (DataItem) table.getModel().getValueAt(rawIndex, Constants.BINDING_PROP_CLMN);
+			editor = editedBoundaryPropertyComboBoxMap.get(editedBoundaryProperty);
+			if(editor == null){
+				ArrayList<DataItem> comboxData = data.get(editedBoundaryProperty);
+				editor = new JComboBox<DataItem>(new BindingBoundariesComboBoxModel(comboxData));
+				editedBoundaryPropertyComboBoxMap.put(editedBoundaryProperty, editor);
+			}
+			editor.getModel().setSelectedItem(table.getModel().getValueAt(rawIndex, columnIndex));
 		}
-		editor.getModel().setSelectedItem(table.getModel().getValueAt(rawIndex, columnIndex));
 		return editor;
 	}
 
