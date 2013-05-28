@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.renderes;
 
 import java.awt.Component;
 
@@ -8,12 +8,15 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-public class BindingBoundariesComboBoxRenderer extends BasicComboBoxRenderer {
 
-	private static final long serialVersionUID = -2228851404680860195L;
-	
-	@Override
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+public class FragSubVSpecComboboxRenderer extends BasicComboBoxRenderer {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8204787709091431635L;
+
+	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus){
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
@@ -27,5 +30,4 @@ public class BindingBoundariesComboBoxRenderer extends BasicComboBoxRenderer {
 		setText(label.getText());
 		return this;
 	}
-
 }

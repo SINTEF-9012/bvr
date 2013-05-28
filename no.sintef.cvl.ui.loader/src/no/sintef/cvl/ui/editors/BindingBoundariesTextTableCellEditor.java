@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.editors;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -12,13 +12,16 @@ import javax.swing.table.TableCellEditor;
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
 
-public class SubFragTextTabelCellEditor extends AbstractCellEditor implements
-		TableCellEditor {
+public class BindingBoundariesTextTableCellEditor extends AbstractCellEditor
+		implements TableCellEditor {
 
-	private JTextField  editor;
+
+	private static final long serialVersionUID = 8224223343848439557L;
+	
+	private JTextField editor;
 	private DataItem editedValue = null;
 	
-	public SubFragTextTabelCellEditor(){
+	public BindingBoundariesTextTableCellEditor(){
 		editor = new JTextField();
 	}
 
@@ -29,19 +32,18 @@ public class SubFragTextTabelCellEditor extends AbstractCellEditor implements
 	}
 
 	@Override
-	public Component getTableCellEditorComponent(JTable table, Object value,
-			boolean isSelected, int row, int column) {
-		editedValue = (DataItem) table.getModel().getValueAt(row, column);
-		editor.setText(editedValue.getLabel().getText());
-		return editor;
-	}
-
-	
-	@Override
 	public boolean isCellEditable(EventObject e) {
-		if (e instanceof MouseEvent) {
-			return ((MouseEvent) e).getClickCount() >= Constants.SUB_FRAG_FS_CLICK_COUNT_TO_EDIT;
+		if(e instanceof MouseEvent){
+			return ((MouseEvent) e).getClickCount() >= Constants.BINDING_BOUNDARIES_CLICK_COUNT_TO_EDIT;
 		}
 		return true;
+	}
+	
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value,
+			boolean isSelected, int row, int column) {
+		editedValue = ((DataItem) table.getModel().getValueAt(row, column));
+		editor.setText(editedValue.getLabel().getText());
+		return editor;
 	}
 }

@@ -13,7 +13,7 @@ import javax.swing.event.DocumentListener;
 
 import no.sintef.cvl.ui.commands.UpdateChoice;
 import no.sintef.cvl.ui.commands.UpdateVInstance;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;

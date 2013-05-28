@@ -16,7 +16,7 @@ import org.antlr.v4.runtime.tree.RuleNode;
 import no.sintef.cvl.constraints.bcl.BCLBuilder;
 import no.sintef.cvl.constraints.bcl.BCLLexer;
 import no.sintef.cvl.constraints.bcl.BCLParser;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.BCLConstraint;

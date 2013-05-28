@@ -14,13 +14,13 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.adapters.DataItem;
-import no.sintef.cvl.ui.adapters.impl.BindingTableModel;
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
-import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
-import no.sintef.cvl.ui.adapters.impl.SubFragTableModel;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.editors.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
+import no.sintef.cvl.ui.models.BindingTableModel;
+import no.sintef.cvl.ui.models.FragSubTableModel;
+import no.sintef.cvl.ui.models.SubFragTableModel;
 
 public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 	

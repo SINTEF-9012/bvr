@@ -20,11 +20,11 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
-import no.sintef.cvl.ui.adapters.impl.SubFragTableModel;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
+import no.sintef.cvl.ui.editors.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.models.SubFragTableModel;
 
 public class CreateFragmentSubstitutionEvent implements ActionListener {
 

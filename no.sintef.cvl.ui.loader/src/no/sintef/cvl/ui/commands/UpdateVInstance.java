@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.NamedElement;

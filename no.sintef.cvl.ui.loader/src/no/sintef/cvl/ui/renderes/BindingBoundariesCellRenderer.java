@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.renderes;
 
 import java.awt.Component;
 

@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 import cvl.NamedElement;
 import cvl.VSpec;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;

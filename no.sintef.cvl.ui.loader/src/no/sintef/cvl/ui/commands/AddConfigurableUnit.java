@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.dropdowns.ConfigurableUnitDropDownListener;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;

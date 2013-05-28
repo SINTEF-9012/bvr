@@ -26,8 +26,6 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
-import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
-import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
 import no.sintef.cvl.ui.commands.AddBCLConstraint;
 import no.sintef.cvl.ui.commands.AddChoice;
 import no.sintef.cvl.ui.commands.AddChoiceResolutuion;
@@ -39,15 +37,17 @@ import no.sintef.cvl.ui.commands.AddVInstance;
 import no.sintef.cvl.ui.commands.AddVariableValueAssignment;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.dropdowns.VSpecResDropDownListener;
-import no.sintef.cvl.ui.editor.BindingJTable;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
-import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
-import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
+import no.sintef.cvl.ui.editors.BindingJTable;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
+import no.sintef.cvl.ui.editors.FragSubVSpecTableCellEditor;
+import no.sintef.cvl.ui.editors.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.editors.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
+import no.sintef.cvl.ui.models.FragSubTableModel;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 

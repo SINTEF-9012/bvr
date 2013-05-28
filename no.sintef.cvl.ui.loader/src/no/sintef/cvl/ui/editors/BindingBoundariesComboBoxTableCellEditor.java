@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.editors;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -13,6 +13,7 @@ import javax.swing.table.TableCellEditor;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.models.BindingBoundariesComboBoxModel;
 
 public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 		implements TableCellEditor {

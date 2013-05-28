@@ -15,7 +15,7 @@ import no.sintef.cvl.constraints.bcl.BCLPrettyPrinter;
 import no.sintef.cvl.ui.commands.UpdateBCLConstraint;
 import no.sintef.cvl.ui.commands.UpdateChoice;
 import no.sintef.cvl.ui.commands.UpdateVClassifier;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 import cvl.BCLConstraint;
 import cvl.VSpec;

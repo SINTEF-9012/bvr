@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.NullVSpec;

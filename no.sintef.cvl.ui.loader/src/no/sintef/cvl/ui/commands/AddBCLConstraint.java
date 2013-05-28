@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.constraints.bcl.BCLPrettyPrinter;
 import no.sintef.cvl.ui.dropdowns.BCLConstraintDropDownListener;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.elements.ConstraintPanel;

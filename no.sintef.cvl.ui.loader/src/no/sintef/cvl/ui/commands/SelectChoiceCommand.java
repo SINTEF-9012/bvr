@@ -10,7 +10,7 @@ import cvl.NamedElement;
 import cvl.VSpec;
 import cvl.CvlFactory;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;

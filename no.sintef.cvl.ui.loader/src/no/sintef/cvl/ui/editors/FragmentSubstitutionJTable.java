@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.editor;
+package no.sintef.cvl.ui.editors;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,14 +21,12 @@ import cvl.VSpec;
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
-import no.sintef.cvl.ui.adapters.impl.FragSubTextTabelCellEditor;
-import no.sintef.cvl.ui.adapters.impl.FragSubTableCellRenderer;
-import no.sintef.cvl.ui.adapters.impl.FragSubTableModel;
-import no.sintef.cvl.ui.adapters.impl.FragSubVSpecTableCellEditor;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.commands.events.FragSubTableRowSelectionEvent;
 import no.sintef.cvl.ui.common.NullVSpec;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.models.FragSubTableModel;
+import no.sintef.cvl.ui.renderes.FragSubTableCellRenderer;
 
 public class FragmentSubstitutionJTable extends JTable {
 

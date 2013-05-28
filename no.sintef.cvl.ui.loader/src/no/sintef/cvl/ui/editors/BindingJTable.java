@@ -1,16 +1,14 @@
-package no.sintef.cvl.ui.editor;
+package no.sintef.cvl.ui.editors;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-import no.sintef.cvl.ui.adapters.impl.BindingBoundariesCellRenderer;
-import no.sintef.cvl.ui.adapters.impl.BindingBoundariesComboBoxTableCellEditor;
-import no.sintef.cvl.ui.adapters.impl.BindingBoundariesTextTableCellEditor;
-import no.sintef.cvl.ui.adapters.impl.BindingTableModel;
 import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.models.BindingTableModel;
+import no.sintef.cvl.ui.renderes.BindingBoundariesCellRenderer;
 import cvl.ConfigurableUnit;
 
 public class BindingJTable extends JTable {

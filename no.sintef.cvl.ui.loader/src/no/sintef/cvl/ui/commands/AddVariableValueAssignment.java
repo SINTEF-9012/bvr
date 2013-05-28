@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.cvl.ui.dropdowns.VariableValueAssignmentDropDownListener;
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.VariableAssignmentPanel;
 import no.sintef.cvl.ui.loader.CVLView;

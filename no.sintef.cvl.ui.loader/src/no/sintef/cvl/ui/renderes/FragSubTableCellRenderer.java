@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.renderes;
 
 import java.awt.Component;
 
@@ -8,8 +8,7 @@ import javax.swing.table.TableCellRenderer;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 
-public class SubFragTableCellRenderer extends DefaultTableCellRenderer
-		implements TableCellRenderer {
+public class FragSubTableCellRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
@@ -18,4 +17,5 @@ public class SubFragTableCellRenderer extends DefaultTableCellRenderer
 		setText(((DataItem) value).getLabel().getText());
 		return renderer;
 	}
+
 }

@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.models;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,8 @@ import javax.swing.table.TableModel;
 
 import org.eclipse.emf.common.util.EList;
 
+import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
+import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
