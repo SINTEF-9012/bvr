@@ -30,4 +30,9 @@ public abstract class AbstractDataItem implements DataItem {
 		}
 		return false;
 	}
+	
+	@Override
+	public int hashCode() {
+		return getNamedElement().hashCode();
+	}
 }

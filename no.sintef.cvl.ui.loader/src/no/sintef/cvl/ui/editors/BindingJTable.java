@@ -27,7 +27,6 @@ public class BindingJTable extends JTable {
 		setDefaultRenderer(DataBoundaryItem.class, new BindingBoundariesCellRenderer());
 		
 		setDefaultEditor(DataNamedElementItem.class, new BindingBoundariesTextTableCellEditor());
-		setDefaultEditor(DataBoundaryItem.class, new BindingBoundariesComboBoxTableCellEditor(null));
 		
 		getTableHeader().setReorderingAllowed(false);
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
