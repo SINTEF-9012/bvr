@@ -35,5 +35,6 @@ public class Constants {
 	public static final String BINDING_TYPE_TO_BINDING_NAME = "ToBinding";
 	public static final String BINDING_TYPE_FROM_BINDING_NAME = "FromBinding";
 	public static final String BINDING_EDITOR_NAME = "Bindings";
+	public static final String NULL_NAME = "NULL";
 	
 }

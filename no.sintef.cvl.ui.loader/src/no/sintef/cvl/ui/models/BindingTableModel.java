@@ -152,10 +152,10 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						
 						String typeName = Constants.BINDING_TYPE_FROM_BINDING_NAME;
 						JLabel labelFromP = new JLabel(fromPlacement.getName());
-						DataNamedElementItem propFromP = new DataNamedElementItem(labelFromP, fromPlacement);
+						DataBoundaryItem propFromP = new DataBoundaryItem(labelFromP, fromPlacement);
 						
 						JLabel labelFromR = new JLabel(fromReplacement.getName());
-						DataBoundaryItem propFromR = new DataBoundaryItem(labelFromR, fromReplacement);
+						DataNamedElementItem propFromR = new DataNamedElementItem(labelFromR, fromReplacement);
 						
 						ArrayList<Object> row = new ArrayList<Object>();
 						row.add(typeName);

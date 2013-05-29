@@ -11,7 +11,11 @@ import org.eclipse.emf.common.util.EList;
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.exceptions.AbstractError;
+import no.sintef.cvl.ui.exceptions.CVLModelException;
 import no.sintef.cvl.ui.exceptions.PlacementReplacementNullException;
+import no.sintef.ict.splcatool.CVLException;
 import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
@@ -31,7 +35,7 @@ public class BoundariesDropDownCalculator {
 	private static String TOREPLCMNT = "toReplacement";
 	private static String FROMREPLCMNT = "fromReplacement";
 
-	public static HashMap<DataItem, ArrayList<DataItem>> calulateAllowedBoundaries(FragmentSubstitution fs) throws PlacementReplacementNullException{
+	public static HashMap<DataItem, ArrayList<DataItem>> calulateAllowedBoundaries(FragmentSubstitution fs) throws AbstractError{
 		HashMap<DataItem, ArrayList<DataItem>> map = new HashMap<DataItem, ArrayList<DataItem>>();
 		PlacementFragment placement = fs.getPlacement();
 		ReplacementFragmentType replacement = fs.getReplacement();
@@ -41,9 +45,16 @@ public class BoundariesDropDownCalculator {
 		
 		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = filterOutBoundariesByType(placement, replacement);
 		ArrayList<VariationPoint> toPlacements = fileterdBoundaries.get(TOPLCMNT);
-		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(TOREPLCMNT); 
+		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(TOREPLCMNT);
+		/*System.out.println(toReplacements);
+		VariationPoint nullToReplacement = getNullBoundary(toReplacements);
+		if(nullToReplacement == null){
+			throw new CVLModelException("can not find NULL boundary of the type ToReplacement");
+		}
+		toReplacements.remove(nullToReplacement);*/
 		for(VariationPoint toPlacement : toPlacements){
 			ArrayList<VariationPoint> toReplcmnts = getCompliedToReplacements((ToPlacement) toPlacement, toReplacements);
+			//toReplcmnts.add(0, nullToReplacement);
 			
 			DataNamedElementItem toPlacementDataItem = new DataNamedElementItem(new JLabel(toPlacement.getName()), toPlacement);
 			ArrayList<DataItem> toReplcmntsDataItem = wrapBoundaries(toReplcmnts);
@@ -53,8 +64,14 @@ public class BoundariesDropDownCalculator {
 		
 		ArrayList<VariationPoint> fromReplacements = fileterdBoundaries.get(FROMREPLCMNT);
 		ArrayList<VariationPoint> fromPlacements = fileterdBoundaries.get(FROMPLCMNT);
+		/*VariationPoint nullFromPlacement = getNullBoundary(fromPlacements);
+		if(nullFromPlacement == null){
+			throw new CVLModelException("can not find NULL boundary of the type FromPlacement");
+		}
+		fromPlacements.remove(nullFromPlacement);*/
 		for(VariationPoint fromReplacement : fromReplacements){
 			ArrayList<VariationPoint> fromPlcmnts = getCompliedFromPlacements((FromReplacement) fromReplacement, fromPlacements);
+			//fromPlcmnts.add(0, nullFromPlacement);
 			
 			DataNamedElementItem fromReplacementDataItem = new DataNamedElementItem(new JLabel(fromReplacement.getName()), fromReplacement);
 			ArrayList<DataItem> fromPlcmntsDataItem = wrapBoundaries(fromPlcmnts);
@@ -65,9 +82,31 @@ public class BoundariesDropDownCalculator {
 		return map;
 	}
 	
+	private static VariationPoint getNullBoundary(ArrayList<VariationPoint> boundaries){
+		for(VariationPoint boundary : boundaries){
+			if(boundary instanceof ToReplacement){
+				ToReplacement toReplacement = (ToReplacement) boundary;
+				System.out.println(toReplacement.getName());
+				System.out.println(toReplacement.getInsideBoundaryElement());
+				System.out.println(toReplacement.getOutsideBoundaryElement());
+				if(toReplacement.getName().equals(Constants.NULL_NAME) && toReplacement.getInsideBoundaryElement() == null && toReplacement.getOutsideBoundaryElement() == null){
+					return boundary;
+				}
+			}else if(boundary instanceof FromPlacement){
+				FromPlacement fromPlacement = (FromPlacement) boundary;
+				if(fromPlacement.getName().equals(Constants.NULL_NAME) && fromPlacement.getInsideBoundaryElement() == null && fromPlacement.getOutsideBoundaryElement() == null){
+					return boundary;
+				}
+			}
+		}
+		return null;
+	}
+	
 	private static ArrayList<VariationPoint> getCompliedToReplacements(ToPlacement toPlacement, ArrayList<VariationPoint> toReplacements) {
 		ArrayList<VariationPoint> toRplcmnts = new ArrayList<VariationPoint>();
-		
+		for(VariationPoint tr : toReplacements){
+			System.out.println(((ToReplacement) tr).getOutsideBoundaryElement());
+		}
 		//we should have here smart algorithm!!!:) Let us have a stub for now
 		toRplcmnts.addAll(toReplacements);
 		return toRplcmnts;

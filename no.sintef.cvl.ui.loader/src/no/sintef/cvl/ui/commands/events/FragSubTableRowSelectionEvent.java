@@ -22,6 +22,7 @@ import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.dropdowns.BoundariesDropDownCalculator;
 import no.sintef.cvl.ui.editors.BindingBoundariesComboBoxTableCellEditor;
 import no.sintef.cvl.ui.editors.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
 import no.sintef.cvl.ui.exceptions.PlacementReplacementNullException;
 import no.sintef.cvl.ui.models.BindingTableModel;
@@ -75,7 +76,7 @@ public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 				HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
 				try {
 					boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(fragmentSubstitution);
-				} catch (PlacementReplacementNullException e) {
+				} catch (AbstractError e) {
 					e.printStackTrace();
 				}
 				jtable.getBindingJTable().setDefaultEditor(DataBoundaryItem.class, new BindingBoundariesComboBoxTableCellEditor(boundariesMap));

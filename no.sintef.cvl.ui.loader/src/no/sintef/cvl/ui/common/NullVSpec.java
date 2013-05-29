@@ -5,6 +5,6 @@ import cvl.impl.VSpecImpl;
 public class NullVSpec extends VSpecImpl {
 
 	public NullVSpec(){
-		setName("NULL");
+		setName(Constants.NULL_NAME);
 	}
 }
