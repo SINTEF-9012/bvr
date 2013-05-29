@@ -38,5 +38,4 @@ public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> imple
 	public void setSelectedItem(Object value) {
 		this.selectedItem = (DataItem) value;
 	}
-
 }

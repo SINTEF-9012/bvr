@@ -2,11 +2,6 @@ package no.sintef.cvl.ui.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
@@ -14,19 +9,11 @@ import javax.swing.table.TableModel;
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
-import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.NullVSpec;
-import no.sintef.cvl.ui.exceptions.UnexpectedException;
-import no.sintef.cvl.ui.loader.CVLView;
-
 import org.eclipse.emf.common.util.EList;
 
-import cvl.Choice;
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
-import cvl.NamedElement;
-import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VariationPoint;
 
@@ -92,7 +79,6 @@ public class FragSubTableModel extends AbstractTableModel
 		return item;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		switch(columnIndex){

@@ -38,5 +38,4 @@ public class BindingBoundariesComboBoxModel extends AbstractListModel<DataItem>
 	public void setSelectedItem(Object value) {
 		seletedItem = (DataItem) value;
 	}
-
 }

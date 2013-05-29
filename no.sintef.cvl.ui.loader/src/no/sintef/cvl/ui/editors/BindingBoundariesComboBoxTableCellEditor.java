@@ -44,15 +44,14 @@ public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 				e.printStackTrace();
 			}
 		}
-		System.out.println(editor.getSelectedItem());
 		return editor.getSelectedItem();
 	}
 		
 	@Override
-	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int rawIndex, int columnIndex) {
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int rowIndex, int columnIndex) {
 		JComboBox<DataItem> editor = null;
 		if(data != null){
-			editedBoundaryProperty = (DataItem) table.getModel().getValueAt(rawIndex, Constants.BINDING_PROP_CLMN);
+			editedBoundaryProperty = (DataItem) table.getModel().getValueAt(rowIndex, Constants.BINDING_PROP_CLMN);
 			editor = editedBoundaryPropertyComboBoxMap.get(editedBoundaryProperty);
 			if(editor == null){
 				ArrayList<DataItem> comboxData = data.get(editedBoundaryProperty);
@@ -60,8 +59,7 @@ public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 				editor.setRenderer(new BindingBoundariesComboBoxRenderer());
 				editedBoundaryPropertyComboBoxMap.put(editedBoundaryProperty, editor);
 			}
-			System.out.println(table.getModel().getValueAt(rawIndex, columnIndex));
-			editor.getModel().setSelectedItem(table.getModel().getValueAt(rawIndex, columnIndex));
+			editor.getModel().setSelectedItem(table.getModel().getValueAt(rowIndex, columnIndex));
 		}
 		return editor;
 	}
@@ -73,5 +71,4 @@ public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 		}
 		return true;
 	}
-
 }

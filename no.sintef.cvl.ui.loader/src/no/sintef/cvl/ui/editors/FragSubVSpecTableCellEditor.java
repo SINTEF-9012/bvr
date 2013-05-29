@@ -4,12 +4,8 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
-import java.util.HashMap;
-
 import javax.swing.AbstractCellEditor;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
@@ -17,11 +13,6 @@ import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.models.FragSubVSpecComboboxModel;
 import no.sintef.cvl.ui.renderes.FragSubVSpecComboboxRenderer;
-
-import org.eclipse.emf.common.util.EList;
-
-import cvl.NamedElement;
-import cvl.VSpec;
 
 public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 		implements TableCellEditor {

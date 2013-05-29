@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
-
 import org.eclipse.emf.common.util.EList;
 
 import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
@@ -58,6 +57,22 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return data.get(rowIndex).get(columnIndex);
+	}
+	
+	@Override
+	public void setValueAt(Object value, int rowIndex, int columnIndex) {
+		switch(columnIndex){
+			case Constants.BINDING_PROP_CLMN : {
+				data.get(rowIndex).set(columnIndex, (DataNamedElementItem) value);
+			}; break;
+			case Constants.BINDING_VALUE_CLMN : {
+				data.get(rowIndex).set(columnIndex, (DataBoundaryItem) value);
+			}; break;
+			default : {
+				throw new UnsupportedOperationException("setter is not implemented for this column");
+			}
+		}
+		fireTableCellUpdated(rowIndex, columnIndex);
 	}
 	
 	@Override
@@ -120,7 +135,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						DataNamedElementItem propToP = new DataNamedElementItem(labelToP, toPlacement);
 						
 						JLabel labelToR = new JLabel(toReplacement.getName());
-						DataNamedElementItem propToR = new DataNamedElementItem(labelToR, toReplacement);
+						DataBoundaryItem propToR = new DataBoundaryItem(labelToR, toReplacement);
 						
 						ArrayList<Object> row = new ArrayList<Object>();
 						row.add(typeName);
@@ -140,7 +155,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						DataNamedElementItem propFromP = new DataNamedElementItem(labelFromP, fromPlacement);
 						
 						JLabel labelFromR = new JLabel(fromReplacement.getName());
-						DataNamedElementItem propFromR = new DataNamedElementItem(labelFromR, fromReplacement);
+						DataBoundaryItem propFromR = new DataBoundaryItem(labelFromR, fromReplacement);
 						
 						ArrayList<Object> row = new ArrayList<Object>();
 						row.add(typeName);
