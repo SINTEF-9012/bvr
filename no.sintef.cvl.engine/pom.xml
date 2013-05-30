@@ -186,7 +186,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<!-- <scope>test</scope>-->
 	</dependency>
-	<dependency>
+    <!--<dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>10.0.1</version>
+      <scope>test</scope>
+    </dependency>-->
+    
+    <!-- this dependencies were installed locally on my machine, need to find out a way to put them somewhere locally available for all sintef
+    <dependency>
       <groupId>no.sintef</groupId>
       <artifactId>no.sintef.cvl.engine-org.eclipse.emf.compare_3.0.0.201211131624.jar</artifactId>
       <version>2.0.0</version>
@@ -197,12 +205,6 @@
       <artifactId>no.sintef.cvl.engine-com.google.guava_10.0.1.v201203051515.jar</artifactId>
       <version>2.0.0</version>
     </dependency>
-    <!--<dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <version>10.0.1</version>
-      <scope>test</scope>
-    </dependency>-->
     <dependency>
       <groupId>no.sintef</groupId>
       <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml_4.0.1.v20120913-1441.jar</artifactId>
@@ -238,6 +240,6 @@
       <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml.profile.l3_1.0.1.v20120913-1441.jar</artifactId>
       <version>2.0.0</version>
       <scope>test</scope>
-    </dependency>
+    </dependency> -->
   </dependencies>
 </project>
