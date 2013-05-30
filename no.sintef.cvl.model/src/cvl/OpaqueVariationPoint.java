@@ -2,7 +2,6 @@
  */
 package cvl;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,12 +16,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link cvl.OpaqueVariationPoint#getPlaceHolder <em>Place Holder</em>}</li>
- *   <li>{@link cvl.OpaqueVariationPoint#getSourceObject <em>Source Object</em>}</li>
  *   <li>{@link cvl.OpaqueVariationPoint#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getOpaqueVariationPoint()
+ * @see cvl.CvlPackage#getOpaqueVariationPoint()
  * @model
  * @generated
  */
@@ -36,7 +34,7 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Place Holder</em>' containment reference.
 	 * @see #setPlaceHolder(BaseModelHandle)
-	 * @see cvl.cvlPackage#getOpaqueVariationPoint_PlaceHolder()
+	 * @see cvl.CvlPackage#getOpaqueVariationPoint_PlaceHolder()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -53,21 +51,6 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	void setPlaceHolder(BaseModelHandle value);
 
 	/**
-	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
-	 * The list contents are of type {@link cvl.ObjectHandle}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The source objects of the OpaqueVariationPoint.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Source Object</em>' containment reference list.
-	 * @see cvl.cvlPackage#getOpaqueVariationPoint_SourceObject()
-	 * @model containment="true" required="true" ordered="false"
-	 * @generated
-	 */
-	EList<ObjectHandle> getSourceObject();
-
-	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +59,7 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(OVPType)
-	 * @see cvl.cvlPackage#getOpaqueVariationPoint_Type()
+	 * @see cvl.CvlPackage#getOpaqueVariationPoint_Type()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

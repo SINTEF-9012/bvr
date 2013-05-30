@@ -97,7 +97,7 @@ public class ImproveW3Thread implements Runnable, ProgressReporter {
 					else if(z == 0) z = 1;
 					caf.rows.get(i).set(m, z);
 					
-					boolean isValid = CALib.verifyCA(cnf, ca, false);
+					boolean isValid = CALib.verifyCA(cnf, ca, false, new ArrayList<String>());
 					
 					if(isValid){
 						//System.out.println(caf.rows);

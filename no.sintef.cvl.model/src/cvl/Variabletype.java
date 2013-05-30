@@ -2,7 +2,6 @@
  */
 package cvl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,9 +13,9 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getVariabletype()
+ * @see cvl.CvlPackage#getVariabletype()
  * @model
  * @generated
  */
-public interface Variabletype extends EObject {
+public interface Variabletype extends VPackageable {
 } // Variabletype

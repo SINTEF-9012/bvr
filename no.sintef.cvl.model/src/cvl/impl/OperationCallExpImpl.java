@@ -3,9 +3,9 @@
 package cvl.impl;
 
 import cvl.BCLExpression;
+import cvl.CvlPackage;
 import cvl.Operation;
 import cvl.OperationCallExp;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -83,7 +83,7 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OPERATION_CALL_EXP;
+		return CvlPackage.Literals.OPERATION_CALL_EXP;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	 */
 	public EList<BCLExpression> getArgument() {
 		if (argument == null) {
-			argument = new EObjectContainmentEList<BCLExpression>(BCLExpression.class, this, cvlPackage.OPERATION_CALL_EXP__ARGUMENT);
+			argument = new EObjectContainmentEList<BCLExpression>(BCLExpression.class, this, CvlPackage.OPERATION_CALL_EXP__ARGUMENT);
 		}
 		return argument;
 	}
@@ -116,7 +116,7 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 		Operation oldOperation = operation;
 		operation = newOperation == null ? OPERATION_EDEFAULT : newOperation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OPERATION_CALL_EXP__OPERATION, oldOperation, operation));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OPERATION_CALL_EXP__OPERATION, oldOperation, operation));
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case CvlPackage.OPERATION_CALL_EXP__ARGUMENT:
 				return ((InternalEList<?>)getArgument()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -141,9 +141,9 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case CvlPackage.OPERATION_CALL_EXP__ARGUMENT:
 				return getArgument();
-			case cvlPackage.OPERATION_CALL_EXP__OPERATION:
+			case CvlPackage.OPERATION_CALL_EXP__OPERATION:
 				return getOperation();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -158,11 +158,11 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case CvlPackage.OPERATION_CALL_EXP__ARGUMENT:
 				getArgument().clear();
 				getArgument().addAll((Collection<? extends BCLExpression>)newValue);
 				return;
-			case cvlPackage.OPERATION_CALL_EXP__OPERATION:
+			case CvlPackage.OPERATION_CALL_EXP__OPERATION:
 				setOperation((Operation)newValue);
 				return;
 		}
@@ -177,10 +177,10 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case CvlPackage.OPERATION_CALL_EXP__ARGUMENT:
 				getArgument().clear();
 				return;
-			case cvlPackage.OPERATION_CALL_EXP__OPERATION:
+			case CvlPackage.OPERATION_CALL_EXP__OPERATION:
 				setOperation(OPERATION_EDEFAULT);
 				return;
 		}
@@ -195,9 +195,9 @@ public class OperationCallExpImpl extends BCLExpressionImpl implements Operation
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case CvlPackage.OPERATION_CALL_EXP__ARGUMENT:
 				return argument != null && !argument.isEmpty();
-			case cvlPackage.OPERATION_CALL_EXP__OPERATION:
+			case CvlPackage.OPERATION_CALL_EXP__OPERATION:
 				return operation != OPERATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

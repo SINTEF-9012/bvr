@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.Choice;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -76,7 +76,7 @@ public class ChoiceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Choice_defaultResolution_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_defaultResolution_feature", "_UI_Choice_type"),
-				 cvlPackage.Literals.CHOICE__DEFAULT_RESOLUTION,
+				 CvlPackage.Literals.CHOICE__DEFAULT_RESOLUTION,
 				 true,
 				 false,
 				 false,
@@ -98,7 +98,7 @@ public class ChoiceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Choice_isImpliedByParent_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_isImpliedByParent_feature", "_UI_Choice_type"),
-				 cvlPackage.Literals.CHOICE__IS_IMPLIED_BY_PARENT,
+				 CvlPackage.Literals.CHOICE__IS_IMPLIED_BY_PARENT,
 				 true,
 				 false,
 				 false,
@@ -144,8 +144,8 @@ public class ChoiceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Choice.class)) {
-			case cvlPackage.CHOICE__DEFAULT_RESOLUTION:
-			case cvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
+			case CvlPackage.CHOICE__DEFAULT_RESOLUTION:
+			case CvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

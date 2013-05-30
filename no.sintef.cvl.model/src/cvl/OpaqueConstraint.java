@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getOpaqueConstraint()
+ * @see cvl.CvlPackage#getOpaqueConstraint()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface OpaqueConstraint extends Constraint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint</em>' attribute.
 	 * @see #setConstraint(String)
-	 * @see cvl.cvlPackage#getOpaqueConstraint_Constraint()
+	 * @see cvl.CvlPackage#getOpaqueConstraint_Constraint()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface OpaqueConstraint extends Constraint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint Language</em>' attribute.
 	 * @see #setConstraintLanguage(String)
-	 * @see cvl.cvlPackage#getOpaqueConstraint_ConstraintLanguage()
+	 * @see cvl.CvlPackage#getOpaqueConstraint_ConstraintLanguage()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

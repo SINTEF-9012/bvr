@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.ParametricSlotAssignmet;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class ParametricSlotAssignmetItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ParametricSlotAssignmet_slotIdentifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ParametricSlotAssignmet_slotIdentifier_feature", "_UI_ParametricSlotAssignmet_type"),
-				 cvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER,
+				 CvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -99,7 +99,7 @@ public class ParametricSlotAssignmetItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER);
+			childrenFeatures.add(CvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER);
 		}
 		return childrenFeatures;
 	}
@@ -154,10 +154,10 @@ public class ParametricSlotAssignmetItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ParametricSlotAssignmet.class)) {
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -177,8 +177,31 @@ public class ParametricSlotAssignmetItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
+			childFeature == CvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

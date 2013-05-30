@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.RepeatableVariationPoint;
 import cvl.VClassifier;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.REPEATABLE_VARIATION_POINT;
+		return CvlPackage.Literals.REPEATABLE_VARIATION_POINT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 			bindingClassifier = (VClassifier)eResolveProxy(oldBindingClassifier);
 			if (bindingClassifier != oldBindingClassifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
 			}
 		}
 		return bindingClassifier;
@@ -91,7 +91,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 		VClassifier oldBindingClassifier = bindingClassifier;
 		bindingClassifier = newBindingClassifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
+			case CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
 				if (resolve) return getBindingClassifier();
 				return basicGetBindingClassifier();
 		}
@@ -117,7 +117,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
+			case CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
 				setBindingClassifier((VClassifier)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
+			case CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
 				setBindingClassifier((VClassifier)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public abstract class RepeatableVariationPointImpl extends VariationPointImpl im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
+			case CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER:
 				return bindingClassifier != null;
 		}
 		return super.eIsSet(featureID);

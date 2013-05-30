@@ -13,7 +13,7 @@ package cvl;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getReplacementFragmentSpecification()
+ * @see cvl.CvlPackage#getReplacementFragmentSpecification()
  * @model
  * @generated
  */

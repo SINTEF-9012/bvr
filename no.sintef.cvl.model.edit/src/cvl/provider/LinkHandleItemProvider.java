@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.LinkHandle;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public class LinkHandleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LinkHandle_MOFRef_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LinkHandle_MOFRef_feature", "_UI_LinkHandle_type"),
-				 cvlPackage.Literals.LINK_HANDLE__MOF_REF,
+				 CvlPackage.Literals.LINK_HANDLE__MOF_REF,
 				 true,
 				 false,
 				 false,
@@ -121,7 +121,7 @@ public class LinkHandleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LinkHandle.class)) {
-			case cvlPackage.LINK_HANDLE__MOF_REF:
+			case CvlPackage.LINK_HANDLE__MOF_REF:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

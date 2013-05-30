@@ -226,6 +226,8 @@
         <details key="documentation" value="&lt;p>The VSpecs to which the variation point is bound.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" upperBound="-1"
+        eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FragmentSubstitution" eSuperTypes="#//ChoiceVariationPoint #//RepeatableVariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -296,7 +298,8 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true"
+      eSuperTypes="#//VariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents the boundary between a placement fragment and the rest of the base model."/>
     </eAnnotations>
@@ -317,13 +320,16 @@
         <details key="documentation" value="Set of placements contained by the replacement fragment."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" upperBound="-1"
+        eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variabletype">
+  <eClassifiers xsi:type="ecore:EClass" name="Variabletype" eSuperTypes="#//VPackageable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>The type of a variable or a value specification.&lt;/p>"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true"
+      eSuperTypes="#//VariationPoint">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents the boundary between a replacement fragment and the rest of the base model."/>
     </eAnnotations>
@@ -349,12 +355,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>&#xD;&#xA;    An object handle identifies an object of the base model. This Class abstracts over the cross-domain referencing&#xD;&#xA;    mechanism needed to refer from CVL elements to base model objects.&#xD;&#xA;&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MOFRef" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>Representing a MOF Reference.&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MOFRef" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BaseModelHandle">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -576,6 +578,8 @@
         <details key="documentation" value="&lt;p>The owned VSpec derivations.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVariabletype" ordered="false"
+        upperBound="-1" eType="#//Variabletype" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeVariationPoint" abstract="true"
       eSuperTypes="#//VariationPoint">
@@ -642,12 +646,6 @@
         lowerBound="1" eType="#//BaseModelHandle" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The place holder of the OpaqueVariationPoint.&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ObjectHandle" containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The source objects of the OpaqueVariationPoint.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
@@ -768,6 +766,8 @@
         <details key="documentation" value="Model elements that are referred to by outside model elements."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outsideBoundaryElement"
+        ordered="false" eType="#//ObjectHandle"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="toPlacement" ordered="false"
         eType="#//ToPlacement" eOpposite="#//ToPlacement/toReplacement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -808,6 +808,8 @@
         <details key="documentation" value="Outside Model Element that are referred by the model elements inside the placement fragment."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insideBoundaryElement"
+        ordered="false" eType="#//ObjectHandle"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FromReplacement" eSuperTypes="#//ReplacementBoundaryElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1224,7 +1226,7 @@
       <details key="documentation" value="&lt;p>A literal expression that represents floating-point numbers.&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="real" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The real value of this RealLiteralExpression.&lt;/p>"/>
       </eAnnotations>

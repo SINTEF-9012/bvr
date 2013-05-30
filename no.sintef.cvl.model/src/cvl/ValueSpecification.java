@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getValueSpecification()
+ * @see cvl.CvlPackage#getValueSpecification()
  * @model abstract="true"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface ValueSpecification extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Variabletype)
-	 * @see cvl.cvlPackage#getValueSpecification_Type()
+	 * @see cvl.CvlPackage#getValueSpecification_Type()
 	 * @model required="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */

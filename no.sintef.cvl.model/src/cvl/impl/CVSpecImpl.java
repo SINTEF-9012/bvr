@@ -3,8 +3,8 @@
 package cvl.impl;
 
 import cvl.CVSpec;
+import cvl.CvlPackage;
 import cvl.VInterface;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CV_SPEC;
+		return CvlPackage.Literals.CV_SPEC;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 			type = (VInterface)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CV_SPEC__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CV_SPEC__TYPE, oldType, type));
 			}
 		}
 		return type;
@@ -91,7 +91,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 		VInterface oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CV_SPEC__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CV_SPEC__TYPE, oldType, type));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC__TYPE:
+			case CvlPackage.CV_SPEC__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
@@ -117,7 +117,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC__TYPE:
+			case CvlPackage.CV_SPEC__TYPE:
 				setType((VInterface)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC__TYPE:
+			case CvlPackage.CV_SPEC__TYPE:
 				setType((VInterface)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class CVSpecImpl extends VSpecImpl implements CVSpec {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CV_SPEC__TYPE:
+			case CvlPackage.CV_SPEC__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);

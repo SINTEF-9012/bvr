@@ -13,13 +13,18 @@
 	<classpathentry exported="true" kind="lib" path="lib/org.kevoree.extra.emf.library-2.7.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/de.ovgu.featureide.fm.core_2.5.0.201212031646.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/INWCA_0.1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/no.sintef.cvl.ui.framework-1.0.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/no.sintef.cvl.ui.loader-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/no.sintef.cvl.ui.loader.jar"/>
+	<classpathentry kind="lib" path="lib/no.sintef.cvl.ui.framework.jar"/>
+	<classpathentry kind="lib" path="lib/no.sintef.cvl.model_1.0.0.201305081642.jar"/>
+	<classpathentry kind="lib" path="lib/no.sintef.cvl.model.edit_1.0.0.201305081642.jar"/>
+	<classpathentry kind="lib" path="lib/no.sintef.cvl.model.editor_1.0.0.201305081642.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/no.sintef.cvl.ui.framework"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/no.sintef.cvl.ui.loader"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

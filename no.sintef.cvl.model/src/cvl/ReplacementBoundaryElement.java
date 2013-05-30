@@ -2,7 +2,6 @@
  */
 package cvl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,9 +13,9 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getReplacementBoundaryElement()
+ * @see cvl.CvlPackage#getReplacementBoundaryElement()
  * @model abstract="true"
  * @generated
  */
-public interface ReplacementBoundaryElement extends EObject {
+public interface ReplacementBoundaryElement extends VariationPoint {
 } // ReplacementBoundaryElement

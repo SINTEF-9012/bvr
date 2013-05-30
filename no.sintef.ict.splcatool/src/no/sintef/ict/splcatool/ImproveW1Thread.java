@@ -83,7 +83,7 @@ public class ImproveW1Thread implements Runnable, ProgressReporter {
 				else if(x == 0) x = 1;
 				caf.rows.get(i).set(j, x);
 				
-				boolean isValid = CALib.verifyCA(cnf, ca, false);
+				boolean isValid = CALib.verifyCA(cnf, ca, false, new ArrayList<String>());
 				
 				if(isValid){
 					//System.out.println(caf.rows);

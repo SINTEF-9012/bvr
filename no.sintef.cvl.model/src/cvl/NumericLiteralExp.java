@@ -13,7 +13,7 @@ package cvl;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getNumericLiteralExp()
+ * @see cvl.CvlPackage#getNumericLiteralExp()
  * @model
  * @generated
  */

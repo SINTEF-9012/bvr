@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.LinkExistence;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class LinkExistenceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.LINK_EXISTENCE__OPTIONAL_LINK);
+			childrenFeatures.add(CvlPackage.Literals.LINK_EXISTENCE__OPTIONAL_LINK);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class LinkExistenceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LinkExistence.class)) {
-			case cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
+			case CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +149,8 @@ public class LinkExistenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.LINK_EXISTENCE__OPTIONAL_LINK,
-				 cvlFactory.eINSTANCE.createLinkHandle()));
+				(CvlPackage.Literals.LINK_EXISTENCE__OPTIONAL_LINK,
+				 CvlFactory.eINSTANCE.createLinkHandle()));
 	}
 
 }

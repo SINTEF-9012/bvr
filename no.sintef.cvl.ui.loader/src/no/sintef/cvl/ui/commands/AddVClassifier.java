@@ -5,7 +5,8 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.dropdowns.ClassifierDropDownListener;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
@@ -13,6 +14,8 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.MultiplicityInterval;
+import cvl.NamedElement;
+import cvl.PrimitveType;
 import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.Variable;
@@ -22,12 +25,13 @@ public class AddVClassifier implements Command {
 	CVLUIKernel rootPanel;
 	VClassifier vc;
 	JComponent parent;
-	private Map<JComponent, VSpec> vmMap;
+	
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
 	
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
 			this.vc = (VClassifier) p;
@@ -43,15 +47,15 @@ public class AddVClassifier implements Command {
 	}
 	
 	public JComponent execute() {
-		VClassifierPanel c = new VClassifierPanel(rootPanel.getModelPanel());
+		VClassifierPanel c = new VClassifierPanel();
 		nodes.add(c);
 		
 		CommandMouseListener listener = new CommandMouseListener();
+        c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
+        c.addMouseListener(listener);
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
-        c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
-        c.addMouseListener(listener);
 		
         MultiplicityInterval m = vc.getInstanceMultiplicity();
         int l = m.getLower();
@@ -61,17 +65,18 @@ public class AddVClassifier implements Command {
         for(VSpec vs : vc.getChild()){
         	if(vs instanceof Variable){
         		Variable v = (Variable) vs;
-        		//c.addAttribute(v.getName(), v.getType()??);
-        		String name = v.getName().split(":")[0];
+        		if(v.getType() instanceof PrimitveType)
+        			c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        		else
+        			c.addAttribute(v.getName(), v.getType().getName());
+        		/*String name = v.getName().split(":")[0];
         		String type = v.getName().split(":")[1];
-        		c.addAttribute(name, type);
+        		c.addAttribute(name, type);*/
         	}
         }
         
         rootPanel.getModelPanel().addNode(c);
-        
         Helper.bind(parent, c, rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
-        
         return c;
 	}
 

@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ObjectType;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -61,7 +61,7 @@ public class ObjectTypeImpl extends VariabletypeImpl implements ObjectType {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OBJECT_TYPE;
+		return CvlPackage.Literals.OBJECT_TYPE;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ObjectTypeImpl extends VariabletypeImpl implements ObjectType {
 		String oldMetaClass = metaClass;
 		metaClass = newMetaClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OBJECT_TYPE__META_CLASS, oldMetaClass, metaClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OBJECT_TYPE__META_CLASS, oldMetaClass, metaClass));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class ObjectTypeImpl extends VariabletypeImpl implements ObjectType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_TYPE__META_CLASS:
+			case CvlPackage.OBJECT_TYPE__META_CLASS:
 				return getMetaClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class ObjectTypeImpl extends VariabletypeImpl implements ObjectType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_TYPE__META_CLASS:
+			case CvlPackage.OBJECT_TYPE__META_CLASS:
 				setMetaClass((String)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class ObjectTypeImpl extends VariabletypeImpl implements ObjectType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_TYPE__META_CLASS:
+			case CvlPackage.OBJECT_TYPE__META_CLASS:
 				setMetaClass(META_CLASS_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class ObjectTypeImpl extends VariabletypeImpl implements ObjectType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_TYPE__META_CLASS:
+			case CvlPackage.OBJECT_TYPE__META_CLASS:
 				return META_CLASS_EDEFAULT == null ? metaClass != null : !META_CLASS_EDEFAULT.equals(metaClass);
 		}
 		return super.eIsSet(featureID);

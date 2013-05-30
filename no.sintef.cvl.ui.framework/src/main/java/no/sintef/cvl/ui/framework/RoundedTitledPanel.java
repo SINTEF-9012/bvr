@@ -34,6 +34,8 @@ import java.awt.*;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
 
 /**
@@ -44,7 +46,7 @@ public class RoundedTitledPanel extends RoundPanel implements TitledElement {
 
     private JPanel contentPanel = new JPanel();
     private JPanel layoutPanel = new JPanel();
-    private JXTitledSeparator title = new JXTitledSeparator();
+    private JXLabel title = new JXLabel();
 
     public RoundedTitledPanel() {
         contentPanel.setOpaque(false);
@@ -70,10 +72,10 @@ public class RoundedTitledPanel extends RoundPanel implements TitledElement {
     }
 
     public void setTitle(String _title) {
-        title.setTitle(_title);
+        title.setText(_title);
     }
 
     public String getTitle(){
-        return title.getTitle();
+        return title.getText();
     }
 }

@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.Constraint;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class ConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Constraint_context_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_context_feature", "_UI_Constraint_type"),
-				 cvlPackage.Literals.CONSTRAINT__CONTEXT,
+				 CvlPackage.Literals.CONSTRAINT__CONTEXT,
 				 true,
 				 false,
 				 true,

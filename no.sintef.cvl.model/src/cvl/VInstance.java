@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVInstance()
+ * @see cvl.CvlPackage#getVInstance()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface VInstance extends VSpecResolution {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(VClassifier)
-	 * @see cvl.cvlPackage#getVInstance_Type()
+	 * @see cvl.CvlPackage#getVInstance_Type()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

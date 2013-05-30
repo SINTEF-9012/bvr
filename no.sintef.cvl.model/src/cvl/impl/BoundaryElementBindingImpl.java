@@ -3,7 +3,7 @@
 package cvl.impl;
 
 import cvl.BoundaryElementBinding;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -35,7 +35,7 @@ public abstract class BoundaryElementBindingImpl extends EObjectImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.BOUNDARY_ELEMENT_BINDING;
+		return CvlPackage.Literals.BOUNDARY_ELEMENT_BINDING;
 	}
 
 } //BoundaryElementBindingImpl

@@ -18,10 +18,11 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link cvl.ReplacementFragmentType#getReplacementBoundaryElement <em>Replacement Boundary Element</em>}</li>
  *   <li>{@link cvl.ReplacementFragmentType#getPlacementFragment <em>Placement Fragment</em>}</li>
+ *   <li>{@link cvl.ReplacementFragmentType#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getReplacementFragmentType()
+ * @see cvl.CvlPackage#getReplacementFragmentType()
  * @model
  * @generated
  */
@@ -35,7 +36,7 @@ public interface ReplacementFragmentType extends Variabletype {
 	 * The boundary elements captures all the relations from and to the fragment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement Boundary Element</em>' containment reference list.
-	 * @see cvl.cvlPackage#getReplacementFragmentType_ReplacementBoundaryElement()
+	 * @see cvl.CvlPackage#getReplacementFragmentType_ReplacementBoundaryElement()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -50,10 +51,26 @@ public interface ReplacementFragmentType extends Variabletype {
 	 * Set of placements contained by the replacement fragment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement Fragment</em>' containment reference list.
-	 * @see cvl.cvlPackage#getReplacementFragmentType_PlacementFragment()
+	 * @see cvl.CvlPackage#getReplacementFragmentType_PlacementFragment()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<PlacementFragment> getPlacementFragment();
+
+	/**
+	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
+	 * The list contents are of type {@link cvl.ObjectHandle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Object</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Object</em>' containment reference list.
+	 * @see cvl.CvlPackage#getReplacementFragmentType_SourceObject()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ObjectHandle> getSourceObject();
 
 } // ReplacementFragmentType

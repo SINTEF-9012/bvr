@@ -4,9 +4,9 @@ package cvl.impl;
 
 import cvl.ConfigurableUnit;
 import cvl.ConfigurableUnitUsage;
+import cvl.CvlPackage;
 import cvl.LinkHandle;
 import cvl.VInterface;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -89,7 +89,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CONFIGURABLE_UNIT_USAGE;
+		return CvlPackage.Literals.CONFIGURABLE_UNIT_USAGE;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 			usedUnit = (ConfigurableUnit)eResolveProxy(oldUsedUnit);
 			if (usedUnit != oldUsedUnit) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT, oldUsedUnit, usedUnit));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT, oldUsedUnit, usedUnit));
 			}
 		}
 		return usedUnit;
@@ -127,7 +127,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 		ConfigurableUnit oldUsedUnit = usedUnit;
 		usedUnit = newUsedUnit;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT, oldUsedUnit, usedUnit));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT, oldUsedUnit, usedUnit));
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 		LinkHandle oldUsageReference = usageReference;
 		usageReference = newUsageReference;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, oldUsageReference, newUsageReference);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, oldUsageReference, newUsageReference);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -163,14 +163,14 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 		if (newUsageReference != usageReference) {
 			NotificationChain msgs = null;
 			if (usageReference != null)
-				msgs = ((InternalEObject)usageReference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, null, msgs);
+				msgs = ((InternalEObject)usageReference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, null, msgs);
 			if (newUsageReference != null)
-				msgs = ((InternalEObject)newUsageReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, null, msgs);
+				msgs = ((InternalEObject)newUsageReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, null, msgs);
 			msgs = basicSetUsageReference(newUsageReference, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, newUsageReference, newUsageReference));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE, newUsageReference, newUsageReference));
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 		String oldLinkEndIdentifier = linkEndIdentifier;
 		linkEndIdentifier = newLinkEndIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER, oldLinkEndIdentifier, linkEndIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER, oldLinkEndIdentifier, linkEndIdentifier));
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
 				return basicSetUsageReference(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -249,14 +249,14 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
 				if (resolve) return getUsedUnit();
 				return basicGetUsedUnit();
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
 				return getUsageReference();
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
 				return getLinkEndIdentifier();
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
 				if (resolve) return getUnitUsageInterface();
 				return basicGetUnitUsageInterface();
 		}
@@ -271,16 +271,16 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
 				setUsedUnit((ConfigurableUnit)newValue);
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
 				setUsageReference((LinkHandle)newValue);
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
 				setLinkEndIdentifier((String)newValue);
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
 				setUnitUsageInterface((VInterface)newValue);
 				return;
 		}
@@ -295,16 +295,16 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
 				setUsedUnit((ConfigurableUnit)null);
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
 				setUsageReference((LinkHandle)null);
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
 				setLinkEndIdentifier(LINK_END_IDENTIFIER_EDEFAULT);
 				return;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
 				setUnitUsageInterface((VInterface)null);
 				return;
 		}
@@ -319,13 +319,13 @@ public class ConfigurableUnitUsageImpl extends CompositeVariationPointImpl imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USED_UNIT:
 				return usedUnit != null;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE:
 				return usageReference != null;
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER:
 				return LINK_END_IDENTIFIER_EDEFAULT == null ? linkEndIdentifier != null : !LINK_END_IDENTIFIER_EDEFAULT.equals(linkEndIdentifier);
-			case cvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
+			case CvlPackage.CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE:
 				return basicGetUnitUsageInterface() != null;
 		}
 		return super.eIsSet(featureID);

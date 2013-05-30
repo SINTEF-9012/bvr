@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VSpec;
 import cvl.VSpecRef;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VSPEC_REF;
+		return CvlPackage.Literals.VSPEC_REF;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 			vSpec = (VSpec)eResolveProxy(oldVSpec);
 			if (vSpec != oldVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VSPEC_REF__VSPEC, oldVSpec, vSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VSPEC_REF__VSPEC, oldVSpec, vSpec));
 			}
 		}
 		return vSpec;
@@ -91,7 +91,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 		VSpec oldVSpec = vSpec;
 		vSpec = newVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VSPEC_REF__VSPEC, oldVSpec, vSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VSPEC_REF__VSPEC, oldVSpec, vSpec));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_REF__VSPEC:
+			case CvlPackage.VSPEC_REF__VSPEC:
 				if (resolve) return getVSpec();
 				return basicGetVSpec();
 		}
@@ -117,7 +117,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_REF__VSPEC:
+			case CvlPackage.VSPEC_REF__VSPEC:
 				setVSpec((VSpec)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_REF__VSPEC:
+			case CvlPackage.VSPEC_REF__VSPEC:
 				setVSpec((VSpec)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class VSpecRefImpl extends BCLExpressionImpl implements VSpecRef {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_REF__VSPEC:
+			case CvlPackage.VSPEC_REF__VSPEC:
 				return vSpec != null;
 		}
 		return super.eIsSet(featureID);

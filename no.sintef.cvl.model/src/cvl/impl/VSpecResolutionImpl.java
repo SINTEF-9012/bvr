@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VSpec;
 import cvl.VSpecResolution;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -72,7 +72,7 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VSPEC_RESOLUTION;
+		return CvlPackage.Literals.VSPEC_RESOLUTION;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 			resolvedVSpec = (VSpec)eResolveProxy(oldResolvedVSpec);
 			if (resolvedVSpec != oldResolvedVSpec) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC, oldResolvedVSpec, resolvedVSpec));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC, oldResolvedVSpec, resolvedVSpec));
 			}
 		}
 		return resolvedVSpec;
@@ -110,7 +110,7 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 		VSpec oldResolvedVSpec = resolvedVSpec;
 		resolvedVSpec = newResolvedVSpec;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC, oldResolvedVSpec, resolvedVSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC, oldResolvedVSpec, resolvedVSpec));
 	}
 
 	/**
@@ -120,7 +120,7 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	 */
 	public EList<VSpecResolution> getChild() {
 		if (child == null) {
-			child = new EObjectContainmentEList<VSpecResolution>(VSpecResolution.class, this, cvlPackage.VSPEC_RESOLUTION__CHILD);
+			child = new EObjectContainmentEList<VSpecResolution>(VSpecResolution.class, this, CvlPackage.VSPEC_RESOLUTION__CHILD);
 		}
 		return child;
 	}
@@ -133,7 +133,7 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_RESOLUTION__CHILD:
+			case CvlPackage.VSPEC_RESOLUTION__CHILD:
 				return ((InternalEList<?>)getChild()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -147,10 +147,10 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
+			case CvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				if (resolve) return getResolvedVSpec();
 				return basicGetResolvedVSpec();
-			case cvlPackage.VSPEC_RESOLUTION__CHILD:
+			case CvlPackage.VSPEC_RESOLUTION__CHILD:
 				return getChild();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -165,10 +165,10 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
+			case CvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				setResolvedVSpec((VSpec)newValue);
 				return;
-			case cvlPackage.VSPEC_RESOLUTION__CHILD:
+			case CvlPackage.VSPEC_RESOLUTION__CHILD:
 				getChild().clear();
 				getChild().addAll((Collection<? extends VSpecResolution>)newValue);
 				return;
@@ -184,10 +184,10 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
+			case CvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				setResolvedVSpec((VSpec)null);
 				return;
-			case cvlPackage.VSPEC_RESOLUTION__CHILD:
+			case CvlPackage.VSPEC_RESOLUTION__CHILD:
 				getChild().clear();
 				return;
 		}
@@ -202,9 +202,9 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
+			case CvlPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				return resolvedVSpec != null;
-			case cvlPackage.VSPEC_RESOLUTION__CHILD:
+			case CvlPackage.VSPEC_RESOLUTION__CHILD:
 				return child != null && !child.isEmpty();
 		}
 		return super.eIsSet(featureID);

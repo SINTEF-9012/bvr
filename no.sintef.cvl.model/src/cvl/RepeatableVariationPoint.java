@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getRepeatableVariationPoint()
+ * @see cvl.CvlPackage#getRepeatableVariationPoint()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface RepeatableVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Binding Classifier</em>' reference.
 	 * @see #setBindingClassifier(VClassifier)
-	 * @see cvl.cvlPackage#getRepeatableVariationPoint_BindingClassifier()
+	 * @see cvl.CvlPackage#getRepeatableVariationPoint_BindingClassifier()
 	 * @model ordered="false"
 	 * @generated
 	 */

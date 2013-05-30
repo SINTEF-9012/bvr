@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ObjectHandle;
 import cvl.ObjectSpecification;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -53,7 +53,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OBJECT_SPECIFICATION;
+		return CvlPackage.Literals.OBJECT_SPECIFICATION;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 			object = (ObjectHandle)eResolveProxy(oldObject);
 			if (object != oldObject) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.OBJECT_SPECIFICATION__OBJECT, oldObject, object));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.OBJECT_SPECIFICATION__OBJECT, oldObject, object));
 			}
 		}
 		return object;
@@ -91,7 +91,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 		ObjectHandle oldObject = object;
 		object = newObject;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OBJECT_SPECIFICATION__OBJECT, oldObject, object));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OBJECT_SPECIFICATION__OBJECT, oldObject, object));
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_SPECIFICATION__OBJECT:
+			case CvlPackage.OBJECT_SPECIFICATION__OBJECT:
 				if (resolve) return getObject();
 				return basicGetObject();
 		}
@@ -117,7 +117,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_SPECIFICATION__OBJECT:
+			case CvlPackage.OBJECT_SPECIFICATION__OBJECT:
 				setObject((ObjectHandle)newValue);
 				return;
 		}
@@ -132,7 +132,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_SPECIFICATION__OBJECT:
+			case CvlPackage.OBJECT_SPECIFICATION__OBJECT:
 				setObject((ObjectHandle)null);
 				return;
 		}
@@ -147,7 +147,7 @@ public class ObjectSpecificationImpl extends ValueSpecificationImpl implements O
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OBJECT_SPECIFICATION__OBJECT:
+			case CvlPackage.OBJECT_SPECIFICATION__OBJECT:
 				return object != null;
 		}
 		return super.eIsSet(featureID);

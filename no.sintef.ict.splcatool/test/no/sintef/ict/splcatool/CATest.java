@@ -24,7 +24,7 @@ import org.junit.Test;
 public class CATest {
 	@Test
 	public void testLoadEmptyCA() throws IOException, CSVException{
-		CoveringArrayFile caf = new CoveringArrayFile("TestData/Artificial/TestCSVs/car_fm.xml.empty.fp.csv");
+		CoveringArrayFile caf = new CoveringArrayFile(new File("TestData/Artificial/TestCSVs/car_fm.xml.empty.fp.csv"));
 		caf.writeToFile("test.dat");
 		
 		String a = new FileUtility().readFileAsString("TestData/Artificial/TestCSVs/car_fm.xml.empty.fp.csv");
@@ -35,7 +35,7 @@ public class CATest {
 	
 	@Test
 	public void testLoadFPCA() throws IOException, CSVException{
-		CoveringArrayFile caf = new CoveringArrayFile("TestData/Artificial/TestCSVs/car_fm.xml.ca2.fp.csv");
+		CoveringArrayFile caf = new CoveringArrayFile(new File("TestData/Artificial/TestCSVs/car_fm.xml.ca2.fp.csv"));
 		
 		caf.writeToFile("test.dat", CoveringArrayFile.Type.horizontal);
 		

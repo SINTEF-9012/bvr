@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VSpecResolution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,7 +77,7 @@ public class VSpecResolutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VSpecResolution_resolvedVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpecResolution_resolvedVSpec_feature", "_UI_VSpecResolution_type"),
-				 cvlPackage.Literals.VSPEC_RESOLUTION__RESOLVED_VSPEC,
+				 CvlPackage.Literals.VSPEC_RESOLUTION__RESOLVED_VSPEC,
 				 true,
 				 false,
 				 true,
@@ -98,7 +98,7 @@ public class VSpecResolutionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VSPEC_RESOLUTION__CHILD);
+			childrenFeatures.add(CvlPackage.Literals.VSPEC_RESOLUTION__CHILD);
 		}
 		return childrenFeatures;
 	}
@@ -142,7 +142,7 @@ public class VSpecResolutionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VSpecResolution.class)) {
-			case cvlPackage.VSPEC_RESOLUTION__CHILD:
+			case CvlPackage.VSPEC_RESOLUTION__CHILD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -162,23 +162,23 @@ public class VSpecResolutionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
-				 cvlFactory.eINSTANCE.createChoiceResolutuion()));
+				(CvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
+				 CvlFactory.eINSTANCE.createChoiceResolutuion()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
-				 cvlFactory.eINSTANCE.createVInstance()));
+				(CvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
+				 CvlFactory.eINSTANCE.createVInstance()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
-				 cvlFactory.eINSTANCE.createVariableValueAssignment()));
+				(CvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
+				 CvlFactory.eINSTANCE.createVariableValueAssignment()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
-				 cvlFactory.eINSTANCE.createVConfiguration()));
+				(CvlPackage.Literals.VSPEC_RESOLUTION__CHILD,
+				 CvlFactory.eINSTANCE.createVConfiguration()));
 	}
 
 }

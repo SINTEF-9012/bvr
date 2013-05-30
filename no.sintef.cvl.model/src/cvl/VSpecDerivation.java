@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVSpecDerivation()
+ * @see cvl.CvlPackage#getVSpecDerivation()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface VSpecDerivation extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derived VSpec</em>' reference.
 	 * @see #setDerivedVSpec(VSpec)
-	 * @see cvl.cvlPackage#getVSpecDerivation_DerivedVSpec()
+	 * @see cvl.CvlPackage#getVSpecDerivation_DerivedVSpec()
 	 * @model ordered="false"
 	 * @generated
 	 */

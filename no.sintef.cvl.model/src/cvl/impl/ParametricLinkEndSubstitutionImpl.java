@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.LinkHandle;
 import cvl.ParametricLinkEndSubstitution;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -75,7 +75,7 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION;
+		return CvlPackage.Literals.PARAMETRIC_LINK_END_SUBSTITUTION;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 		String oldLinkEndIdentifier = linkEndIdentifier;
 		linkEndIdentifier = newLinkEndIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER, oldLinkEndIdentifier, linkEndIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER, oldLinkEndIdentifier, linkEndIdentifier));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 		LinkHandle oldLink = link;
 		link = newLink;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, oldLink, newLink);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, oldLink, newLink);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -132,14 +132,14 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 		if (newLink != link) {
 			NotificationChain msgs = null;
 			if (link != null)
-				msgs = ((InternalEObject)link).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, null, msgs);
+				msgs = ((InternalEObject)link).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, null, msgs);
 			if (newLink != null)
-				msgs = ((InternalEObject)newLink).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, null, msgs);
+				msgs = ((InternalEObject)newLink).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, null, msgs);
 			msgs = basicSetLink(newLink, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, newLink, newLink));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK, newLink, newLink));
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
 				return basicSetLink(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -164,9 +164,9 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				return getLinkEndIdentifier();
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
 				return getLink();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -180,10 +180,10 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				setLinkEndIdentifier((String)newValue);
 				return;
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
 				setLink((LinkHandle)newValue);
 				return;
 		}
@@ -198,10 +198,10 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				setLinkEndIdentifier(LINK_END_IDENTIFIER_EDEFAULT);
 				return;
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
 				setLink((LinkHandle)null);
 				return;
 		}
@@ -216,9 +216,9 @@ public class ParametricLinkEndSubstitutionImpl extends ParametricVariationPointI
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				return LINK_END_IDENTIFIER_EDEFAULT == null ? linkEndIdentifier != null : !LINK_END_IDENTIFIER_EDEFAULT.equals(linkEndIdentifier);
-			case cvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.PARAMETRIC_LINK_END_SUBSTITUTION__LINK:
 				return link != null;
 		}
 		return super.eIsSet(featureID);

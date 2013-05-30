@@ -3,7 +3,7 @@
 package cvl.provider;
 
 
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -72,7 +72,7 @@ public class ObjectSpecificationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ObjectSpecification_object_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectSpecification_object_feature", "_UI_ObjectSpecification_type"),
-				 cvlPackage.Literals.OBJECT_SPECIFICATION__OBJECT,
+				 CvlPackage.Literals.OBJECT_SPECIFICATION__OBJECT,
 				 true,
 				 false,
 				 true,

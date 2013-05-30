@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getCVSpecDerivation()
+ * @see cvl.CvlPackage#getCVSpecDerivation()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface CVSpecDerivation extends VSpecDerivation {
 	 * <p>The member derivations.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Derivation</em>' containment reference list.
-	 * @see cvl.cvlPackage#getCVSpecDerivation_MemberDerivation()
+	 * @see cvl.CvlPackage#getCVSpecDerivation_MemberDerivation()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -51,7 +51,7 @@ public interface CVSpecDerivation extends VSpecDerivation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Deriving CVspec</em>' reference.
 	 * @see #setDerivingCVspec(CVSpec)
-	 * @see cvl.cvlPackage#getCVSpecDerivation_DerivingCVspec()
+	 * @see cvl.CvlPackage#getCVSpecDerivation_DerivingCVspec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -76,7 +76,7 @@ public interface CVSpecDerivation extends VSpecDerivation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derived CV Spec</em>' reference.
 	 * @see #setDerivedCVSpec(CVSpec)
-	 * @see cvl.cvlPackage#getCVSpecDerivation_DerivedCVSpec()
+	 * @see cvl.CvlPackage#getCVSpecDerivation_DerivedCVSpec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

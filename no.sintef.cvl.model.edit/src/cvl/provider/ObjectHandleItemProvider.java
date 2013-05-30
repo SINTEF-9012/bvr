@@ -3,8 +3,7 @@
 package cvl.provider;
 
 
-import cvl.ObjectHandle;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,8 +18,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link cvl.ObjectHandle} object.
@@ -75,11 +72,11 @@ public class ObjectHandleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ObjectHandle_MOFRef_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectHandle_MOFRef_feature", "_UI_ObjectHandle_type"),
-				 cvlPackage.Literals.OBJECT_HANDLE__MOF_REF,
+				 CvlPackage.Literals.OBJECT_HANDLE__MOF_REF,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -103,10 +100,7 @@ public class ObjectHandleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ObjectHandle)object).getMOFRef();
-		return label == null || label.length() == 0 ?
-			getString("_UI_ObjectHandle_type") :
-			getString("_UI_ObjectHandle_type") + " " + label;
+		return getString("_UI_ObjectHandle_type");
 	}
 
 	/**
@@ -119,12 +113,6 @@ public class ObjectHandleItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ObjectHandle.class)) {
-			case cvlPackage.OBJECT_HANDLE__MOF_REF:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

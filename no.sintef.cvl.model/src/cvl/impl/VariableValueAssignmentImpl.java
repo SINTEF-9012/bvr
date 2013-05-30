@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ValueSpecification;
 import cvl.Variable;
 import cvl.VariableValueAssignment;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -66,7 +66,7 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT;
+		return CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 			resolvedVariable = (Variable)eResolveProxy(oldResolvedVariable);
 			if (resolvedVariable != oldResolvedVariable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE, oldResolvedVariable, resolvedVariable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE, oldResolvedVariable, resolvedVariable));
 			}
 		}
 		return resolvedVariable;
@@ -104,7 +104,7 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 		Variable oldResolvedVariable = resolvedVariable;
 		resolvedVariable = newResolvedVariable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE, oldResolvedVariable, resolvedVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE, oldResolvedVariable, resolvedVariable));
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 		ValueSpecification oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, oldValue, newValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -140,14 +140,14 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, null, msgs);
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, null, msgs);
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, null, msgs);
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, newValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
 				return basicSetValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -172,10 +172,10 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
 				if (resolve) return getResolvedVariable();
 				return basicGetResolvedVariable();
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -189,10 +189,10 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
 				setResolvedVariable((Variable)newValue);
 				return;
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
 				setValue((ValueSpecification)newValue);
 				return;
 		}
@@ -207,10 +207,10 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
 				setResolvedVariable((Variable)null);
 				return;
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
 				setValue((ValueSpecification)null);
 				return;
 		}
@@ -225,9 +225,9 @@ public class VariableValueAssignmentImpl extends VSpecResolutionImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE:
 				return resolvedVariable != null;
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);

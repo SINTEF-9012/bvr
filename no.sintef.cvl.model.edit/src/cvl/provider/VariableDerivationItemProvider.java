@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VariableDerivation;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,7 +77,7 @@ public class VariableDerivationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VariableDerivation_derivedVariable_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VariableDerivation_derivedVariable_feature", "_UI_VariableDerivation_type"),
-				 cvlPackage.Literals.VARIABLE_DERIVATION__DERIVED_VARIABLE,
+				 CvlPackage.Literals.VARIABLE_DERIVATION__DERIVED_VARIABLE,
 				 true,
 				 false,
 				 true,
@@ -98,7 +98,7 @@ public class VariableDerivationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION);
+			childrenFeatures.add(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -153,7 +153,7 @@ public class VariableDerivationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VariableDerivation.class)) {
-			case cvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
+			case CvlPackage.VARIABLE_DERIVATION__DERIVING_EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -173,48 +173,48 @@ public class VariableDerivationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createBCLExpression()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createBCLExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createVSpecRef()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createVSpecRef()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createOperationCallExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createBooleanLiteralExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createStringLiteralExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createNumericLiteralExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createNumericLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createIntegerLiteralExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
-				 cvlFactory.eINSTANCE.createRealLiteralExp()));
+				(CvlPackage.Literals.VARIABLE_DERIVATION__DERIVING_EXPRESSION,
+				 CvlFactory.eINSTANCE.createRealLiteralExp()));
 	}
 
 }

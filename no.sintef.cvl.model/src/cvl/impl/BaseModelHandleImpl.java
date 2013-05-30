@@ -3,7 +3,7 @@
 package cvl.impl;
 
 import cvl.BaseModelHandle;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -35,7 +35,7 @@ public class BaseModelHandleImpl extends EObjectImpl implements BaseModelHandle 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.BASE_MODEL_HANDLE;
+		return CvlPackage.Literals.BASE_MODEL_HANDLE;
 	}
 
 } //BaseModelHandleImpl

@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.CVSpec;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class CVSpecItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CVSpec_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CVSpec_type_feature", "_UI_CVSpec_type"),
-				 cvlPackage.Literals.CV_SPEC__TYPE,
+				 CvlPackage.Literals.CV_SPEC__TYPE,
 				 true,
 				 false,
 				 true,

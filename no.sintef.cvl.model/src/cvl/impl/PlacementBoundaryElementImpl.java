@@ -2,12 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.PlacementBoundaryElement;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class PlacementBoundaryElementImpl extends EObjectImpl implements PlacementBoundaryElement {
+public abstract class PlacementBoundaryElementImpl extends VariationPointImpl implements PlacementBoundaryElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,7 +33,7 @@ public abstract class PlacementBoundaryElementImpl extends EObjectImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PLACEMENT_BOUNDARY_ELEMENT;
+		return CvlPackage.Literals.PLACEMENT_BOUNDARY_ELEMENT;
 	}
 
 } //PlacementBoundaryElementImpl

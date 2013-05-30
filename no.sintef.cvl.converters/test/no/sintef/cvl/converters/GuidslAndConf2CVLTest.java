@@ -43,7 +43,7 @@ public class GuidslAndConf2CVLTest {
 				m = sxfm.getGUIDSL();
 			}
 			
-			CoveringArray ca = new CoveringArrayFile(file + ".csv");
+			CoveringArray ca = new CoveringArrayFile(new File(file + ".csv"));
 			GraphMLFM gmfm = m.getGraphMLFMConf(ca);
 			
 			gmfm.writeToFile(file + ".conf.GraphML");

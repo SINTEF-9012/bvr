@@ -2,6 +2,7 @@ package no.sintef.cvl.ui.loader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,11 +21,13 @@ public class GenerateCoveringArray implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
 	private List<CVLView> views;
+	private int t;
 
-	public GenerateCoveringArray(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public GenerateCoveringArray(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, int t) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
+		this.t = t;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -35,9 +38,14 @@ public class GenerateCoveringArray implements ActionListener {
 		try {
 			GUIDSL gdsl = m.getCVLM().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
-			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", 2, 1);
+			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", t, 1);
+			if(m.getCVLM().getCU().getOwnedVSpecResolution().size() > 0){
+				CoveringArray startFrom = m.getCVLM().getCoveringArray();
+				ca.startFrom(startFrom);
+			}
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			m.getCVLM().getCU().getOwnedVSpecResolution().clear();
 			m.getCVLM().injectConfigurations(gfm);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Generating covering array failed: " + e.getMessage());

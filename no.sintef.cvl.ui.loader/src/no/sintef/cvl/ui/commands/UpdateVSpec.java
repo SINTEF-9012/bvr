@@ -5,17 +5,18 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class UpdateVSpec implements Command {
 
 	protected CVLUIKernel rootPanel;
 	protected JComponent parent;
-	protected VSpec vc;
-	protected Map<JComponent, VSpec> vmMap;
+	protected NamedElement vc;
+	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
 	protected CVLView view;
@@ -27,15 +28,15 @@ public class UpdateVSpec implements Command {
 	}
 	
 	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent,
-			Map<JComponent, VSpec> vmMap, List<JComponent> nodes,
+			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		
-		System.out.println("p: " + p);
-		System.out.println("p instanceof VSpec: " + (p instanceof VSpec));
+		//System.out.println("p: " + p);
+		//System.out.println("p instanceof VSpec: " + (p instanceof VSpec));
 		
-		if(p instanceof VSpec){
+		if(p instanceof NamedElement){
 			this.rootPanel = rootPanel;
-			this.vc = (VSpec) p;
+			this.vc = (NamedElement) p;
 			this.parent = parent;
 			
 			this.name = vc.getName();
@@ -51,7 +52,7 @@ public class UpdateVSpec implements Command {
 	}
 
 	public JComponent execute() {
-		System.out.println("vc: " + vc);
+		//System.out.println("vc: " + vc);
 		vc.setName(name);
 		view.notifyVspecViewUpdate();
 		

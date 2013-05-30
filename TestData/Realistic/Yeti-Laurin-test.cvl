@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="Configurable Unit 1">
+  <ownedVSpec xsi:type="cvl:Choice" name="Yeti" isImpliedByParent="true">
+    <child xsi:type="cvl:Choice" name="LaurinKlement" isImpliedByParent="true">
+      <child xsi:type="cvl:Choice" name="Diesel" isImpliedByParent="true">
+        <child xsi:type="cvl:Choice" name="Extras">
+          <groupMultiplicity upper="-1" lower="1"/>
+          <child xsi:type="cvl:Choice" name="Parkingassistant"/>
+          <child xsi:type="cvl:Choice" name="Backingsensor"/>
+          <child xsi:type="cvl:Choice" name="DoubleTrunkFloor"/>
+          <child xsi:type="cvl:Choice" name="ExtraWheel"/>
+        </child>
+        <child xsi:type="cvl:Choice" name="Gear" isImpliedByParent="true">
+          <groupMultiplicity upper="1" lower="1"/>
+          <child xsi:type="cvl:Choice" name="Manual">
+            <groupMultiplicity upper="1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="4x4">
+              <groupMultiplicity upper="1" lower="1"/>
+              <child xsi:type="cvl:Choice" name="hp140"/>
+              <child xsi:type="cvl:Choice" name="hp110"/>
+            </child>
+            <child xsi:type="cvl:Choice" name="Two-wheel-drive">
+              <child xsi:type="cvl:Choice" name="hp110" isImpliedByParent="true"/>
+            </child>
+          </child>
+          <child xsi:type="cvl:Choice" name="Automatic">
+            <child xsi:type="cvl:Choice" name="4x4" isImpliedByParent="true">
+              <child xsi:type="cvl:Choice" name="hp140" isImpliedByParent="true"/>
+            </child>
+          </child>
+        </child>
+      </child>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:BCLConstraint" name="Parking" context="//@ownedVSpec.0/@child.0/@child.0/@child.0">
+    <expression xsi:type="cvl:OperationCallExp">
+      <argument xsi:type="cvl:OperationCallExp" operation="logAnd">
+        <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0/@child.0"/>
+        <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0/@child.1"/>
+      </argument>
+    </expression>
+  </ownedConstraint>
+  <ownedConstraint xsi:type="cvl:BCLConstraint" name="Trunk" context="//@ownedVSpec.0/@child.0/@child.0/@child.0">
+    <expression xsi:type="cvl:OperationCallExp">
+      <argument xsi:type="cvl:OperationCallExp" operation="logAnd">
+        <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0/@child.2"/>
+        <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0/@child.3"/>
+      </argument>
+    </expression>
+  </ownedConstraint>
+  <ownedConstraint xsi:type="cvl:BCLConstraint" name="Big Engine needed" context="//@ownedVSpec.0/@child.0/@child.0">
+    <expression xsi:type="cvl:OperationCallExp" operation="logImplies">
+      <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0/@child.0"/>
+      <argument xsi:type="cvl:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1/@child.0/@child.0/@child.0"/>
+    </expression>
+  </ownedConstraint>
+</cvl:ConfigurableUnit>

@@ -1,0 +1,29 @@
+Problemer:
+ * I "8.3.1.3 VSpecCS" går rekursjonen feil vei, den skal være høyre-rekursiv.
+ * BclExpressionCS og OperationCallExpCS er tvetydig venstre-rekursiv.
+ * Parenteser støttes ikke i den konkrete syntaksen.
+ * Jeg skulle minne deg på behovet for en "Product" klasse som er Named.
+ * I 8.3.1.10 står det simpleName. Jeg antar det skal være FunName og ikke simpleName?
+ * Er det bare de tre kallene som skal være mulig? 'conc' | 'isDefined' | 'isUndefined'. ?
+ * Metamodellen støtter mange expressions per constraint, men den konkrete syntaxes gjør ikke det.
+ * "arithDev" skal være "arithDiv"
+ * logIff ikke i den konkrete syntaksen
+ * strConc ikke i den konkrete syntaksen
+ * Figure 3 and 4 says "HighSpeed & threshold>100 -> EmergencyPower" should have been "HighSpeed and threshold>100 implies EmergencyPower"
+ * xor kan ikke nestes meningsfullt
+ * presedens: not > and > xor > or > implies > iff
+ * Variabletype has a name, but that name is not the name of the type when Variabletype is Primitive type, then it has a type again which has a name
+ * "PrimitveType", should be PrimitiveType
+ * PrimitiveValueSpecification contains a value as an expression.
+ * UnlimitedLiteralExp's setUnlimited() takes int parameter
+ * UnlimitedLiteralExp's getUnlimited() returns int
+ * RealLiteralExp stores reals as strings.
+  * create stubs ValueSpecificationImpl.basicGetType, ValueSpecificationImpl.setType. ConfigurableUnitImpl.basicGetUnitInterface and setUnitInterface
+ * ChoiceResolutuion should be ChoiceResolution
+ * e.g. VariableValueAssignment has resolvedVariable and resolvedVSpec. These must be synchronized. I have decided just to use resolvedVSpec.
+ * Multiplicity interval is not required, it should be
+ 
+ Løst:
+  * Meta-modellen tillater ikke noe funksjonskall, det er vel en mangel antar jeg. (Nei, BCL støtter ikke dette.)
+  * navn i tekst-syntaksen kan ikke entydig utledes fordi det ikke er navnunikhet i XMI. (The spec says: "We assume that all names within the VSpec tree are unique.")
+  

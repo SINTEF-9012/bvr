@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ObjectHandle;
 import cvl.ParametricSlotAssignmet;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -75,7 +75,7 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET;
+		return CvlPackage.Literals.PARAMETRIC_SLOT_ASSIGNMET;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 		String oldSlotIdentifier = slotIdentifier;
 		slotIdentifier = newSlotIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER, oldSlotIdentifier, slotIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER, oldSlotIdentifier, slotIdentifier));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 		ObjectHandle oldSlotOwner = slotOwner;
 		slotOwner = newSlotOwner;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, oldSlotOwner, newSlotOwner);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, oldSlotOwner, newSlotOwner);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -132,14 +132,14 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 		if (newSlotOwner != slotOwner) {
 			NotificationChain msgs = null;
 			if (slotOwner != null)
-				msgs = ((InternalEObject)slotOwner).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, null, msgs);
+				msgs = ((InternalEObject)slotOwner).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, null, msgs);
 			if (newSlotOwner != null)
-				msgs = ((InternalEObject)newSlotOwner).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, null, msgs);
+				msgs = ((InternalEObject)newSlotOwner).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, null, msgs);
 			msgs = basicSetSlotOwner(newSlotOwner, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, newSlotOwner, newSlotOwner));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER, newSlotOwner, newSlotOwner));
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
 				return basicSetSlotOwner(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -164,9 +164,9 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
 				return getSlotIdentifier();
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
 				return getSlotOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -180,10 +180,10 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
 				setSlotIdentifier((String)newValue);
 				return;
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
 				setSlotOwner((ObjectHandle)newValue);
 				return;
 		}
@@ -198,10 +198,10 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
 				setSlotIdentifier(SLOT_IDENTIFIER_EDEFAULT);
 				return;
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
 				setSlotOwner((ObjectHandle)null);
 				return;
 		}
@@ -216,9 +216,9 @@ public class ParametricSlotAssignmetImpl extends ParametricVariationPointImpl im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER:
 				return SLOT_IDENTIFIER_EDEFAULT == null ? slotIdentifier != null : !SLOT_IDENTIFIER_EDEFAULT.equals(slotIdentifier);
-			case cvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
+			case CvlPackage.PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER:
 				return slotOwner != null;
 		}
 		return super.eIsSet(featureID);

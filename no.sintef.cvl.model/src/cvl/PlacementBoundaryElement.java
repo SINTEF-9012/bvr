@@ -2,7 +2,6 @@
  */
 package cvl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,9 +13,9 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getPlacementBoundaryElement()
+ * @see cvl.CvlPackage#getPlacementBoundaryElement()
  * @model abstract="true"
  * @generated
  */
-public interface PlacementBoundaryElement extends EObject {
+public interface PlacementBoundaryElement extends VariationPoint {
 } // PlacementBoundaryElement

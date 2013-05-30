@@ -86,7 +86,7 @@ public class GenerateCoveringArraysTest {
 			assertTrue(ca.getRowCount()>0);
 			
 			ca.writeToFile("test.csv", CoveringArrayFile.Type.horizontal);
-			CoveringArray cab = new CoveringArrayFile("test.csv");
+			CoveringArray cab = new CoveringArrayFile(new File("test.csv"));
 			
 			assertTrue(ca.equals(cab));
 		}

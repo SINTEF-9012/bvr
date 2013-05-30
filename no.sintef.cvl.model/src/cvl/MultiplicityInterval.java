@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getMultiplicityInterval()
+ * @see cvl.CvlPackage#getMultiplicityInterval()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface MultiplicityInterval extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Upper</em>' attribute.
 	 * @see #setUpper(int)
-	 * @see cvl.cvlPackage#getMultiplicityInterval_Upper()
+	 * @see cvl.CvlPackage#getMultiplicityInterval_Upper()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -64,7 +64,7 @@ public interface MultiplicityInterval extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower</em>' attribute.
 	 * @see #setLower(int)
-	 * @see cvl.cvlPackage#getMultiplicityInterval_Lower()
+	 * @see cvl.CvlPackage#getMultiplicityInterval_Lower()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

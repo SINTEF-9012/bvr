@@ -3,7 +3,7 @@
 package cvl.provider;
 
 
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -72,7 +72,7 @@ public class VSpecRefItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VSpecRef_vSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpecRef_vSpec_feature", "_UI_VSpecRef_type"),
-				 cvlPackage.Literals.VSPEC_REF__VSPEC,
+				 CvlPackage.Literals.VSPEC_REF__VSPEC,
 				 true,
 				 false,
 				 true,

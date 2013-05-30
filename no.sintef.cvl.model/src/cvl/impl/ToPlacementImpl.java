@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ObjectHandle;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -104,7 +104,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.TO_PLACEMENT;
+		return CvlPackage.Literals.TO_PLACEMENT;
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 			toReplacement = (ToReplacement)eResolveProxy(oldToReplacement);
 			if (toReplacement != oldToReplacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.TO_PLACEMENT__TO_REPLACEMENT, oldToReplacement, toReplacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.TO_PLACEMENT__TO_REPLACEMENT, oldToReplacement, toReplacement));
 			}
 		}
 		return toReplacement;
@@ -142,7 +142,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 		ToReplacement oldToReplacement = toReplacement;
 		toReplacement = newToReplacement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.TO_PLACEMENT__TO_REPLACEMENT, oldToReplacement, newToReplacement);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.TO_PLACEMENT__TO_REPLACEMENT, oldToReplacement, newToReplacement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -157,14 +157,14 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 		if (newToReplacement != toReplacement) {
 			NotificationChain msgs = null;
 			if (toReplacement != null)
-				msgs = ((InternalEObject)toReplacement).eInverseRemove(this, cvlPackage.TO_REPLACEMENT__TO_PLACEMENT, ToReplacement.class, msgs);
+				msgs = ((InternalEObject)toReplacement).eInverseRemove(this, CvlPackage.TO_REPLACEMENT__TO_PLACEMENT, ToReplacement.class, msgs);
 			if (newToReplacement != null)
-				msgs = ((InternalEObject)newToReplacement).eInverseAdd(this, cvlPackage.TO_REPLACEMENT__TO_PLACEMENT, ToReplacement.class, msgs);
+				msgs = ((InternalEObject)newToReplacement).eInverseAdd(this, CvlPackage.TO_REPLACEMENT__TO_PLACEMENT, ToReplacement.class, msgs);
 			msgs = basicSetToReplacement(newToReplacement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.TO_PLACEMENT__TO_REPLACEMENT, newToReplacement, newToReplacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.TO_PLACEMENT__TO_REPLACEMENT, newToReplacement, newToReplacement));
 	}
 
 	/**
@@ -185,7 +185,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 		String oldPropertyName = propertyName;
 		propertyName = newPropertyName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.TO_PLACEMENT__PROPERTY_NAME, oldPropertyName, propertyName));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.TO_PLACEMENT__PROPERTY_NAME, oldPropertyName, propertyName));
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	 */
 	public EList<ObjectHandle> getInsideBoundaryElement() {
 		if (insideBoundaryElement == null) {
-			insideBoundaryElement = new EObjectResolvingEList<ObjectHandle>(ObjectHandle.class, this, cvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT);
+			insideBoundaryElement = new EObjectResolvingEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT);
 		}
 		return insideBoundaryElement;
 	}
@@ -211,7 +211,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 			outsideBoundaryElement = (ObjectHandle)eResolveProxy(oldOutsideBoundaryElement);
 			if (outsideBoundaryElement != oldOutsideBoundaryElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT, oldOutsideBoundaryElement, outsideBoundaryElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT, oldOutsideBoundaryElement, outsideBoundaryElement));
 			}
 		}
 		return outsideBoundaryElement;
@@ -235,7 +235,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 		ObjectHandle oldOutsideBoundaryElement = outsideBoundaryElement;
 		outsideBoundaryElement = newOutsideBoundaryElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT, oldOutsideBoundaryElement, outsideBoundaryElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT, oldOutsideBoundaryElement, outsideBoundaryElement));
 	}
 
 	/**
@@ -246,9 +246,9 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
+			case CvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
 				if (toReplacement != null)
-					msgs = ((InternalEObject)toReplacement).eInverseRemove(this, cvlPackage.TO_REPLACEMENT__TO_PLACEMENT, ToReplacement.class, msgs);
+					msgs = ((InternalEObject)toReplacement).eInverseRemove(this, CvlPackage.TO_REPLACEMENT__TO_PLACEMENT, ToReplacement.class, msgs);
 				return basicSetToReplacement((ToReplacement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -262,7 +262,7 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
+			case CvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
 				return basicSetToReplacement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -276,14 +276,14 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
+			case CvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
 				if (resolve) return getToReplacement();
 				return basicGetToReplacement();
-			case cvlPackage.TO_PLACEMENT__PROPERTY_NAME:
+			case CvlPackage.TO_PLACEMENT__PROPERTY_NAME:
 				return getPropertyName();
-			case cvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				return getInsideBoundaryElement();
-			case cvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				if (resolve) return getOutsideBoundaryElement();
 				return basicGetOutsideBoundaryElement();
 		}
@@ -299,17 +299,17 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
+			case CvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
 				setToReplacement((ToReplacement)newValue);
 				return;
-			case cvlPackage.TO_PLACEMENT__PROPERTY_NAME:
+			case CvlPackage.TO_PLACEMENT__PROPERTY_NAME:
 				setPropertyName((String)newValue);
 				return;
-			case cvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				getInsideBoundaryElement().clear();
 				getInsideBoundaryElement().addAll((Collection<? extends ObjectHandle>)newValue);
 				return;
-			case cvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				setOutsideBoundaryElement((ObjectHandle)newValue);
 				return;
 		}
@@ -324,16 +324,16 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
+			case CvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
 				setToReplacement((ToReplacement)null);
 				return;
-			case cvlPackage.TO_PLACEMENT__PROPERTY_NAME:
+			case CvlPackage.TO_PLACEMENT__PROPERTY_NAME:
 				setPropertyName(PROPERTY_NAME_EDEFAULT);
 				return;
-			case cvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				getInsideBoundaryElement().clear();
 				return;
-			case cvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				setOutsideBoundaryElement((ObjectHandle)null);
 				return;
 		}
@@ -348,13 +348,13 @@ public class ToPlacementImpl extends PlacementBoundaryElementImpl implements ToP
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
+			case CvlPackage.TO_PLACEMENT__TO_REPLACEMENT:
 				return toReplacement != null;
-			case cvlPackage.TO_PLACEMENT__PROPERTY_NAME:
+			case CvlPackage.TO_PLACEMENT__PROPERTY_NAME:
 				return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
-			case cvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				return insideBoundaryElement != null && !insideBoundaryElement.isEmpty();
-			case cvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.TO_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				return outsideBoundaryElement != null;
 		}
 		return super.eIsSet(featureID);

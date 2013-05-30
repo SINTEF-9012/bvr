@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getParametricLinkEndSubstitution()
+ * @see cvl.CvlPackage#getParametricLinkEndSubstitution()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface ParametricLinkEndSubstitution extends ParametricVariationPoint 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Link End Identifier</em>' attribute.
 	 * @see #setLinkEndIdentifier(String)
-	 * @see cvl.cvlPackage#getParametricLinkEndSubstitution_LinkEndIdentifier()
+	 * @see cvl.CvlPackage#getParametricLinkEndSubstitution_LinkEndIdentifier()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface ParametricLinkEndSubstitution extends ParametricVariationPoint 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Link</em>' containment reference.
 	 * @see #setLink(LinkHandle)
-	 * @see cvl.cvlPackage#getParametricLinkEndSubstitution_Link()
+	 * @see cvl.CvlPackage#getParametricLinkEndSubstitution_Link()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

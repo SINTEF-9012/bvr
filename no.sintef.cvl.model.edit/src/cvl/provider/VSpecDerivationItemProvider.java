@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.VSpecDerivation;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class VSpecDerivationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VSpecDerivation_derivedVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpecDerivation_derivedVSpec_feature", "_UI_VSpecDerivation_type"),
-				 cvlPackage.Literals.VSPEC_DERIVATION__DERIVED_VSPEC,
+				 CvlPackage.Literals.VSPEC_DERIVATION__DERIVED_VSPEC,
 				 true,
 				 false,
 				 true,

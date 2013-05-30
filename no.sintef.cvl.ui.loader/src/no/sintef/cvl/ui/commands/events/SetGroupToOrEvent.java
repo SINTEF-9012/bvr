@@ -11,25 +11,26 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.MultiplicityInterval;
+import cvl.NamedElement;
 import cvl.VSpec;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 public class SetGroupToOrEvent implements ActionListener {
 	private JComponent p;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 
-	public SetGroupToOrEvent(JComponent p, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public SetGroupToOrEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		VSpec v = vmMap.get(p);
+		VSpec v = (VSpec)vmMap.get(p);
 		
 		// Modify model
-		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(-1);
 		v.setGroupMultiplicity(mi);

@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.ChoiceVariationPoint;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class ChoiceVariationPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ChoiceVariationPoint_bindingChoice_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceVariationPoint_bindingChoice_feature", "_UI_ChoiceVariationPoint_type"),
-				 cvlPackage.Literals.CHOICE_VARIATION_POINT__BINDING_CHOICE,
+				 CvlPackage.Literals.CHOICE_VARIATION_POINT__BINDING_CHOICE,
 				 true,
 				 false,
 				 true,

@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.PrimitiveValueSpecification;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class PrimitiveValueSpecificationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION);
+			childrenFeatures.add(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -126,7 +126,7 @@ public class PrimitiveValueSpecificationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PrimitiveValueSpecification.class)) {
-			case cvlPackage.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION:
+			case CvlPackage.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -146,48 +146,48 @@ public class PrimitiveValueSpecificationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createBCLExpression()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createBCLExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createVSpecRef()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createVSpecRef()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createOperationCallExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createBooleanLiteralExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createStringLiteralExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createNumericLiteralExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createNumericLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createIntegerLiteralExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 cvlFactory.eINSTANCE.createRealLiteralExp()));
+				(CvlPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
+				 CvlFactory.eINSTANCE.createRealLiteralExp()));
 	}
 
 }

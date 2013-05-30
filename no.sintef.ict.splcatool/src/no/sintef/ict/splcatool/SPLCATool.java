@@ -42,8 +42,8 @@ public class SPLCATool {
 	}
 	
 	public void mainObj(String[] args){
-		System.out.println("SPL Covering Array Tool v0.4 (MODELS 2012)");
-		System.out.println("http://heim.ifi.uio.no/martifag/models2012/");
+		System.out.println("SPL Covering Array Tool v0.41 (CVL 2 Version)");
+		System.out.println("http://www.variabilitymodeling.org/");
 		
 		// Defaults
 		Map<String, String> argsMap = new HashMap<String, String>();
@@ -149,7 +149,7 @@ public class SPLCATool {
 		File dir = new File(argsMap.get("ca")+".fidefiles");
 		dir.mkdir();
 		
-		CoveringArray ca = new CoveringArrayFile(argsMap.get("ca"));
+		CoveringArray ca = new CoveringArrayFile(new File(argsMap.get("ca")));
 		
 		for(int i = 0; i < ca.getRowCount(); i++){
 			StringBuffer output = new StringBuffer();
@@ -175,7 +175,7 @@ public class SPLCATool {
 		int t = new Integer(argsMap.get("s"));
 		String caFileName = argsMap.get("ca");
 		Integer search = new Integer(argsMap.get("search"));
-		CoveringArray ca = new CoveringArrayFile(caFileName);
+		CoveringArray ca = new CoveringArrayFile(new File(caFileName));
 		String fmFileName = argsMap.get("fm");
 		int threads = Runtime.getRuntime().availableProcessors();
 		String weightFileName = argsMap.get("weights");
@@ -197,7 +197,7 @@ public class SPLCATool {
 			for(int i = 0; i < threads; i++){
 				int begin = i*size/threads;
 				int end = (i+1)*size/threads;
-				CoveringArray ca_own = new CoveringArrayFile(caFileName);
+				CoveringArray ca_own = new CoveringArrayFile(new File(caFileName));
 				ImproveW1Thread iw1 = new ImproveW1Thread(cnf, t, ca_own, fmFileName, threads, weightFileName, orgCov, begin, end);
 				ts.add(new Thread(iw1));
 				iw1s.add(iw1);
@@ -244,7 +244,7 @@ public class SPLCATool {
 			for(int i = 0; i < threads; i++){
 				int begin = i*size/threads;
 				int end = (i+1)*size/threads;
-				CoveringArray ca_own = new CoveringArrayFile(caFileName);
+				CoveringArray ca_own = new CoveringArrayFile(new File(caFileName));
 				ImproveW2Thread iw2 = new ImproveW2Thread(cnf, t, ca_own, fmFileName, threads, weightFileName, orgCov, begin, end);
 				ts.add(new Thread(iw2));
 				iw2s.add(iw2);
@@ -290,7 +290,7 @@ public class SPLCATool {
 			for(int i = 0; i < threads; i++){
 				int begin = i*size/threads;
 				int end = (i+1)*size/threads;
-				CoveringArray ca_own = new CoveringArrayFile(caFileName);
+				CoveringArray ca_own = new CoveringArrayFile(new File(caFileName));
 				ImproveW3Thread iw3 = new ImproveW3Thread(cnf, t, ca_own, fmFileName, threads, weightFileName, orgCov, begin, end);
 				ts.add(new Thread(iw3));
 				iw3s.add(iw3);
@@ -349,8 +349,8 @@ public class SPLCATool {
 			throws UnsupportedModelException, IOException,
 			FeatureModelException, ContradictionException, TimeoutException, CSVException {
 		loadFM(argsMap.get("fm"));
-		CoveringArray ca = new CoveringArrayFile(argsMap.get("check"));
-		boolean isValid = CALib.verifyCA(cnf, ca, true);
+		CoveringArray ca = new CoveringArrayFile(new File(argsMap.get("check")));
+		boolean isValid = CALib.verifyCA(cnf, ca, true, new ArrayList<String>());
 		System.out.println("Verification done");
 		
 		return isValid;
@@ -361,7 +361,7 @@ public class SPLCATool {
 			FeatureModelException, CSVException {
 		int t = new Integer(argsMap.get("s"));
 		String caFileName = argsMap.get("ca");
-		CoveringArray ca = new CoveringArrayFile(caFileName);
+		CoveringArray ca = new CoveringArrayFile(new File(caFileName));
 		String fmFileName = argsMap.get("fm");
 		int threads = new Integer(argsMap.get("threads"));
 		String weightFileName = argsMap.get("weights");
@@ -374,7 +374,7 @@ public class SPLCATool {
 	float calc_cov(Map<String, String> argsMap) throws UnsupportedModelException, IOException, FeatureModelException, CSVException {
 		int t = new Integer(argsMap.get("s"));
 		loadFM(argsMap.get("fm"));
-		CoveringArray ca = new CoveringArrayFile(argsMap.get("ca"));
+		CoveringArray ca = new CoveringArrayFile(new File(argsMap.get("ca")));
 		System.out.println("Rows: " + ca.getRowCount());
 		
 		if(t==1){
@@ -495,7 +495,7 @@ public class SPLCATool {
 		
 		// Start from partial covering array
 		if(argsMap.containsKey("startFrom")){
-			CoveringArray startFrom = new CoveringArrayFile(argsMap.get("startFrom"));
+			CoveringArray startFrom = new CoveringArrayFile(new File(argsMap.get("startFrom")));
 			ca.startFrom(startFrom);
 			System.out.println("Starting from " + argsMap.get("startFrom"));
 		}
@@ -619,7 +619,7 @@ public class SPLCATool {
 		
 		// Start from partial covering array
 		if(argsMap.containsKey("startFrom")){
-			CoveringArray startFrom = new CoveringArrayFile(argsMap.get("startFrom"));
+			CoveringArray startFrom = new CoveringArrayFile(new File(argsMap.get("startFrom")));
 			ca.startFrom(startFrom);
 			System.out.println("Starting from " + argsMap.get("startFrom"));
 		}

@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVSpecRef()
+ * @see cvl.CvlPackage#getVSpecRef()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface VSpecRef extends BCLExpression {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>VSpec</em>' reference.
 	 * @see #setVSpec(VSpec)
-	 * @see cvl.cvlPackage#getVSpecRef_VSpec()
+	 * @see cvl.CvlPackage#getVSpecRef_VSpec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

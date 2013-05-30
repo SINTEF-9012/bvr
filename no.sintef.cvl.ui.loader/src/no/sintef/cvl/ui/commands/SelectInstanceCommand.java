@@ -19,9 +19,10 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import cvl.NamedElement;
 import cvl.VSpec;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
@@ -39,7 +40,7 @@ public class SelectInstanceCommand implements Command {
 			currentlySelected.setSelected(false);
 	}
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		
 		kernel = rootPanel;
 		
@@ -47,6 +48,8 @@ public class SelectInstanceCommand implements Command {
 		
         if (p instanceof SelectElement) {
         	selectableElement = (SelectElement) p;
+        }else{
+        	throw new UnsupportedOperationException(p + " not instance of SelectElement");
         }
         return this;
 	}
@@ -59,8 +62,8 @@ public class SelectInstanceCommand implements Command {
 		
 		currentlySelected.setSelected(!currentlySelected.isSelected());
         if (currentlySelected.isSelected()) {
-        	System.out.println("kernel = " + kernel);
-        	System.out.println("kernel.getEditorPanel() = " + kernel.getEditorPanel());
+        	//System.out.println("kernel = " + kernel);
+        	//System.out.println("kernel.getEditorPanel() = " + kernel.getEditorPanel());
             kernel.getEditorPanel().showPropertyFor((JPanel) currentlySelected);
         } else {
             kernel.getEditorPanel().unshowPropertyEditor();

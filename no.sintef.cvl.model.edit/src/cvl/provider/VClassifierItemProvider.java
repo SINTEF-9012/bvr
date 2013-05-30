@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VClassifier;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class VClassifierItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY);
+			childrenFeatures.add(CvlPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class VClassifierItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VClassifier.class)) {
-			case cvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
+			case CvlPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +149,8 @@ public class VClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY,
-				 cvlFactory.eINSTANCE.createMultiplicityInterval()));
+				(CvlPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY,
+				 CvlFactory.eINSTANCE.createMultiplicityInterval()));
 	}
 
 	/**
@@ -165,8 +165,8 @@ public class VClassifierItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == cvlPackage.Literals.VSPEC__GROUP_MULTIPLICITY ||
-			childFeature == cvlPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY;
+			childFeature == CvlPackage.Literals.VSPEC__GROUP_MULTIPLICITY ||
+			childFeature == CvlPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY;
 
 		if (qualify) {
 			return getString

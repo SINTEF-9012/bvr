@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.OpaqueConstraint;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -76,7 +76,7 @@ public class OpaqueConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_OpaqueConstraint_constraint_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OpaqueConstraint_constraint_feature", "_UI_OpaqueConstraint_type"),
-				 cvlPackage.Literals.OPAQUE_CONSTRAINT__CONSTRAINT,
+				 CvlPackage.Literals.OPAQUE_CONSTRAINT__CONSTRAINT,
 				 true,
 				 false,
 				 false,
@@ -98,7 +98,7 @@ public class OpaqueConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_OpaqueConstraint_constraintLanguage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OpaqueConstraint_constraintLanguage_feature", "_UI_OpaqueConstraint_type"),
-				 cvlPackage.Literals.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE,
+				 CvlPackage.Literals.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE,
 				 true,
 				 false,
 				 false,
@@ -144,8 +144,8 @@ public class OpaqueConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OpaqueConstraint.class)) {
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
-			case cvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT:
+			case CvlPackage.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

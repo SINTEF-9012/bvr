@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVSpec()
+ * @see cvl.CvlPackage#getVSpec()
  * @model abstract="true"
  * @generated
  */
@@ -41,7 +41,7 @@ public interface VSpec extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Group Multiplicity</em>' containment reference.
 	 * @see #setGroupMultiplicity(MultiplicityInterval)
-	 * @see cvl.cvlPackage#getVSpec_GroupMultiplicity()
+	 * @see cvl.CvlPackage#getVSpec_GroupMultiplicity()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface VSpec extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resolution Time</em>' attribute.
 	 * @see #setResolutionTime(String)
-	 * @see cvl.cvlPackage#getVSpec_ResolutionTime()
+	 * @see cvl.CvlPackage#getVSpec_ResolutionTime()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -91,7 +91,7 @@ public interface VSpec extends VPackageable {
 	 * <p>The owned VSpecDerivations.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned VSpec Derivation</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVSpec_OwnedVSpecDerivation()
+	 * @see cvl.CvlPackage#getVSpec_OwnedVSpecDerivation()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -106,7 +106,7 @@ public interface VSpec extends VPackageable {
 	 * <p>Child VSpecs of this VSpec.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Child</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVSpec_Child()
+	 * @see cvl.CvlPackage#getVSpec_Child()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

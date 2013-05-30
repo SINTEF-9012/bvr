@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getChoiceVariationPoint()
+ * @see cvl.CvlPackage#getChoiceVariationPoint()
  * @model abstract="true"
  * @generated
  */
@@ -33,7 +33,7 @@ public interface ChoiceVariationPoint extends VariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Binding Choice</em>' reference.
 	 * @see #setBindingChoice(Choice)
-	 * @see cvl.cvlPackage#getChoiceVariationPoint_BindingChoice()
+	 * @see cvl.CvlPackage#getChoiceVariationPoint_BindingChoice()
 	 * @model ordered="false"
 	 * @generated
 	 */

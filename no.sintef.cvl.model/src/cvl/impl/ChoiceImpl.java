@@ -3,7 +3,7 @@
 package cvl.impl;
 
 import cvl.Choice;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -82,7 +82,7 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.CHOICE;
+		return CvlPackage.Literals.CHOICE;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 		boolean oldDefaultResolution = defaultResolution;
 		defaultResolution = newDefaultResolution;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE__DEFAULT_RESOLUTION, oldDefaultResolution, defaultResolution));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE__DEFAULT_RESOLUTION, oldDefaultResolution, defaultResolution));
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 		boolean oldIsImpliedByParent = isImpliedByParent;
 		isImpliedByParent = newIsImpliedByParent;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.CHOICE__IS_IMPLIED_BY_PARENT, oldIsImpliedByParent, isImpliedByParent));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.CHOICE__IS_IMPLIED_BY_PARENT, oldIsImpliedByParent, isImpliedByParent));
 	}
 
 	/**
@@ -135,9 +135,9 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.CHOICE__DEFAULT_RESOLUTION:
+			case CvlPackage.CHOICE__DEFAULT_RESOLUTION:
 				return isDefaultResolution();
-			case cvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
+			case CvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				return isIsImpliedByParent();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,10 +151,10 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.CHOICE__DEFAULT_RESOLUTION:
+			case CvlPackage.CHOICE__DEFAULT_RESOLUTION:
 				setDefaultResolution((Boolean)newValue);
 				return;
-			case cvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
+			case CvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				setIsImpliedByParent((Boolean)newValue);
 				return;
 		}
@@ -169,10 +169,10 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE__DEFAULT_RESOLUTION:
+			case CvlPackage.CHOICE__DEFAULT_RESOLUTION:
 				setDefaultResolution(DEFAULT_RESOLUTION_EDEFAULT);
 				return;
-			case cvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
+			case CvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				setIsImpliedByParent(IS_IMPLIED_BY_PARENT_EDEFAULT);
 				return;
 		}
@@ -187,9 +187,9 @@ public class ChoiceImpl extends VSpecImpl implements Choice {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.CHOICE__DEFAULT_RESOLUTION:
+			case CvlPackage.CHOICE__DEFAULT_RESOLUTION:
 				return defaultResolution != DEFAULT_RESOLUTION_EDEFAULT;
-			case cvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
+			case CvlPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				return isImpliedByParent != IS_IMPLIED_BY_PARENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

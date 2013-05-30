@@ -12,6 +12,8 @@
 package no.sintef.ict.splcatool;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
@@ -29,7 +31,7 @@ public class TestWriteCA {
 		CoveringArray ca = cnf.getCoveringArrayGenerator("J11", 2, 1);
 		ca.generate();
 		ca.writeToFile("test.csv");
-		CoveringArray dupe = new CoveringArrayFile("test.csv");
+		CoveringArray dupe = new CoveringArrayFile(new File("test.csv"));
 		dupe.writeToFile("test2.csv");
 		String f1 = new FileUtility().readFileAsString("test.csv");
 		String f2 = new FileUtility().readFileAsString("test2.csv");

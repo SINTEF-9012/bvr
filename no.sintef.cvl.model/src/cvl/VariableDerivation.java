@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVariableDerivation()
+ * @see cvl.CvlPackage#getVariableDerivation()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface VariableDerivation extends VSpecDerivation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Deriving Expression</em>' containment reference.
 	 * @see #setDerivingExpression(BCLExpression)
-	 * @see cvl.cvlPackage#getVariableDerivation_DerivingExpression()
+	 * @see cvl.CvlPackage#getVariableDerivation_DerivingExpression()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface VariableDerivation extends VSpecDerivation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derived Variable</em>' reference.
 	 * @see #setDerivedVariable(Variable)
-	 * @see cvl.cvlPackage#getVariableDerivation_DerivedVariable()
+	 * @see cvl.CvlPackage#getVariableDerivation_DerivedVariable()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

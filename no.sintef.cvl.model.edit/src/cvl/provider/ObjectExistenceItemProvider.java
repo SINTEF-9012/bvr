@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.ObjectExistence;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class ObjectExistenceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.OBJECT_EXISTENCE__OPTIONAL_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.OBJECT_EXISTENCE__OPTIONAL_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class ObjectExistenceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ObjectExistence.class)) {
-			case cvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
+			case CvlPackage.OBJECT_EXISTENCE__OPTIONAL_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,8 +149,31 @@ public class ObjectExistenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OBJECT_EXISTENCE__OPTIONAL_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.OBJECT_EXISTENCE__OPTIONAL_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
+			childFeature == CvlPackage.Literals.OBJECT_EXISTENCE__OPTIONAL_OBJECT;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

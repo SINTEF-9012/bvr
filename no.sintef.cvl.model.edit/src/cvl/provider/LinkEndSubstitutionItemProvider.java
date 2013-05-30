@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.LinkEndSubstitution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class LinkEndSubstitutionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LinkEndSubstitution_linkEndIdentifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LinkEndSubstitution_linkEndIdentifier_feature", "_UI_LinkEndSubstitution_type"),
-				 cvlPackage.Literals.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER,
+				 CvlPackage.Literals.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER,
 				 true,
 				 false,
 				 false,
@@ -99,8 +99,8 @@ public class LinkEndSubstitutionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.LINK_END_SUBSTITUTION__LINK);
-			childrenFeatures.add(cvlPackage.Literals.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.LINK_END_SUBSTITUTION__LINK);
+			childrenFeatures.add(CvlPackage.Literals.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -155,11 +155,11 @@ public class LinkEndSubstitutionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LinkEndSubstitution.class)) {
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK:
-			case cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,13 +179,36 @@ public class LinkEndSubstitutionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.LINK_END_SUBSTITUTION__LINK,
-				 cvlFactory.eINSTANCE.createLinkHandle()));
+				(CvlPackage.Literals.LINK_END_SUBSTITUTION__LINK,
+				 CvlFactory.eINSTANCE.createLinkHandle()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
+			childFeature == CvlPackage.Literals.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getOperationCallExp()
+ * @see cvl.CvlPackage#getOperationCallExp()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface OperationCallExp extends BCLExpression {
 	 * <p>Expressions for the arguments of the operation to be called.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Argument</em>' containment reference list.
-	 * @see cvl.cvlPackage#getOperationCallExp_Argument()
+	 * @see cvl.CvlPackage#getOperationCallExp_Argument()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -52,7 +52,7 @@ public interface OperationCallExp extends BCLExpression {
 	 * @return the value of the '<em>Operation</em>' attribute.
 	 * @see cvl.Operation
 	 * @see #setOperation(Operation)
-	 * @see cvl.cvlPackage#getOperationCallExp_Operation()
+	 * @see cvl.CvlPackage#getOperationCallExp_Operation()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

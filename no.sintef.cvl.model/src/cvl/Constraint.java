@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getConstraint()
+ * @see cvl.CvlPackage#getConstraint()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface Constraint extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Context</em>' reference.
 	 * @see #setContext(VSpec)
-	 * @see cvl.cvlPackage#getConstraint_Context()
+	 * @see cvl.CvlPackage#getConstraint_Context()
 	 * @model ordered="false"
 	 * @generated
 	 */

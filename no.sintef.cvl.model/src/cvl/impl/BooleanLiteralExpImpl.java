@@ -3,7 +3,7 @@
 package cvl.impl;
 
 import cvl.BooleanLiteralExp;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -61,7 +61,7 @@ public class BooleanLiteralExpImpl extends BCLExpressionImpl implements BooleanL
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.BOOLEAN_LITERAL_EXP;
+		return CvlPackage.Literals.BOOLEAN_LITERAL_EXP;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class BooleanLiteralExpImpl extends BCLExpressionImpl implements BooleanL
 		boolean oldBool = bool;
 		bool = newBool;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.BOOLEAN_LITERAL_EXP__BOOL, oldBool, bool));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.BOOLEAN_LITERAL_EXP__BOOL, oldBool, bool));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class BooleanLiteralExpImpl extends BCLExpressionImpl implements BooleanL
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
+			case CvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
 				return isBool();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class BooleanLiteralExpImpl extends BCLExpressionImpl implements BooleanL
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
+			case CvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
 				setBool((Boolean)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class BooleanLiteralExpImpl extends BCLExpressionImpl implements BooleanL
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
+			case CvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
 				setBool(BOOL_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class BooleanLiteralExpImpl extends BCLExpressionImpl implements BooleanL
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
+			case CvlPackage.BOOLEAN_LITERAL_EXP__BOOL:
 				return bool != BOOL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

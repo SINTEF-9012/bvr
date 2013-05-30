@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.VPackage;
 import cvl.VPackageable;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -58,7 +58,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VPACKAGE;
+		return CvlPackage.Literals.VPACKAGE;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	 */
 	public EList<VPackageable> getPackageElement() {
 		if (packageElement == null) {
-			packageElement = new EObjectContainmentEList<VPackageable>(VPackageable.class, this, cvlPackage.VPACKAGE__PACKAGE_ELEMENT);
+			packageElement = new EObjectContainmentEList<VPackageable>(VPackageable.class, this, CvlPackage.VPACKAGE__PACKAGE_ELEMENT);
 		}
 		return packageElement;
 	}
@@ -81,7 +81,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VPACKAGE__PACKAGE_ELEMENT:
+			case CvlPackage.VPACKAGE__PACKAGE_ELEMENT:
 				return ((InternalEList<?>)getPackageElement()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +95,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VPACKAGE__PACKAGE_ELEMENT:
+			case CvlPackage.VPACKAGE__PACKAGE_ELEMENT:
 				return getPackageElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +110,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VPACKAGE__PACKAGE_ELEMENT:
+			case CvlPackage.VPACKAGE__PACKAGE_ELEMENT:
 				getPackageElement().clear();
 				getPackageElement().addAll((Collection<? extends VPackageable>)newValue);
 				return;
@@ -126,7 +126,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VPACKAGE__PACKAGE_ELEMENT:
+			case CvlPackage.VPACKAGE__PACKAGE_ELEMENT:
 				getPackageElement().clear();
 				return;
 		}
@@ -141,7 +141,7 @@ public class VPackageImpl extends VPackageableImpl implements VPackage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VPACKAGE__PACKAGE_ELEMENT:
+			case CvlPackage.VPACKAGE__PACKAGE_ELEMENT:
 				return packageElement != null && !packageElement.isEmpty();
 		}
 		return super.eIsSet(featureID);

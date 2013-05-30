@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getCVSpec()
+ * @see cvl.CvlPackage#getCVSpec()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface CVSpec extends VSpec {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(VInterface)
-	 * @see cvl.cvlPackage#getCVSpec_Type()
+	 * @see cvl.CvlPackage#getCVSpec_Type()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

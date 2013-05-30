@@ -3,8 +3,9 @@
 package cvl.provider;
 
 
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
+import cvl.FromPlacement;
 import java.util.Collection;
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class FromPlacementItemProvider
 
 			addFromReplacementPropertyDescriptor(object);
 			addOutsideBoundaryElementPropertyDescriptor(object);
+			addInsideBoundaryElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -73,7 +75,7 @@ public class FromPlacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FromPlacement_fromReplacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FromPlacement_fromReplacement_feature", "_UI_FromPlacement_type"),
-				 cvlPackage.Literals.FROM_PLACEMENT__FROM_REPLACEMENT,
+				 CvlPackage.Literals.FROM_PLACEMENT__FROM_REPLACEMENT,
 				 true,
 				 false,
 				 true,
@@ -95,7 +97,29 @@ public class FromPlacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FromPlacement_outsideBoundaryElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FromPlacement_outsideBoundaryElement_feature", "_UI_FromPlacement_type"),
-				 cvlPackage.Literals.FROM_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
+				 CvlPackage.Literals.FROM_PLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Inside Boundary Element feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInsideBoundaryElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FromPlacement_insideBoundaryElement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FromPlacement_insideBoundaryElement_feature", "_UI_FromPlacement_type"),
+				 CvlPackage.Literals.FROM_PLACEMENT__INSIDE_BOUNDARY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -123,7 +147,10 @@ public class FromPlacementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_FromPlacement_type");
+		String label = ((FromPlacement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_FromPlacement_type") :
+			getString("_UI_FromPlacement_type") + " " + label;
 	}
 
 	/**

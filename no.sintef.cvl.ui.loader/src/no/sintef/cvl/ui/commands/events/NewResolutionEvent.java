@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JTabbedPane;
 
 import cvl.ChoiceResolutuion;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -29,7 +29,7 @@ public class NewResolutionEvent implements ActionListener {
 		CVLModel m = models.get(i);
 		CVLView v = views.get(i);
 		
-		ChoiceResolutuion cr = cvlFactory.eINSTANCE.createChoiceResolutuion();
+		ChoiceResolutuion cr = CvlFactory.eINSTANCE.createChoiceResolutuion();
 		m.getCU().getOwnedVSpecResolution().add(cr);
 		
 		v.notifyResolutionViewUpdate();

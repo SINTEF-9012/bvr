@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.RealLiteralExp;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,11 +75,11 @@ public class RealLiteralExpItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RealLiteralExp_real_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RealLiteralExp_real_feature", "_UI_RealLiteralExp_type"),
-				 cvlPackage.Literals.REAL_LITERAL_EXP__REAL,
+				 CvlPackage.Literals.REAL_LITERAL_EXP__REAL,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -103,8 +103,10 @@ public class RealLiteralExpItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		RealLiteralExp realLiteralExp = (RealLiteralExp)object;
-		return getString("_UI_RealLiteralExp_type") + " " + realLiteralExp.getReal();
+		String label = ((RealLiteralExp)object).getReal();
+		return label == null || label.length() == 0 ?
+			getString("_UI_RealLiteralExp_type") :
+			getString("_UI_RealLiteralExp_type") + " " + label;
 	}
 
 	/**
@@ -119,7 +121,7 @@ public class RealLiteralExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RealLiteralExp.class)) {
-			case cvlPackage.REAL_LITERAL_EXP__REAL:
+			case CvlPackage.REAL_LITERAL_EXP__REAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

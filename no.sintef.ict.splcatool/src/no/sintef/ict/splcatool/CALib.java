@@ -11,6 +11,7 @@
 
 package no.sintef.ict.splcatool;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -207,6 +208,41 @@ public class CALib {
 		collection.removeAll(zeros);
 	}
 	
+	public static double calc_coverage(CNF cnf, int t, CoveringArray ca){
+		if(t==1){
+			return calc_coverage_1(cnf, ca);
+		}else if(t==2){
+			return calc_coverage_2(cnf, ca);
+		}else if(t==3){
+			return calc_coverage_3(cnf, ca);
+		}else{
+			System.out.println("Unsupported value of t: " + t);
+			
+			return 0;
+		}
+	}
+	
+	private static double calc_coverage_1(CNF cnf, CoveringArray ca) {
+		List<Pair> uncovered = cnf.getU1();
+		List<List<Integer>> sols = ca.getSolutionsAsList();
+		Set<Pair> coveredPairs = ca.getCovInv1(sols, uncovered);
+		return (double)coveredPairs.size()*100/uncovered.size();
+	}
+	
+	private static double calc_coverage_2(CNF cnf, CoveringArray ca) {
+		List<Pair2> uncovered = cnf.getU2();
+		List<List<Integer>> sols = ca.getSolutionsAsList();
+		Set<Pair2> coveredPairs = ca.getCovInv(sols, uncovered);
+		return (double)coveredPairs.size()*100/uncovered.size();
+	}
+
+	private static double calc_coverage_3(CNF cnf, CoveringArray ca) {
+		List<Pair3> uncovered = cnf.getU3();
+		List<List<Integer>> sols = ca.getSolutionsAsList();
+		Set<Pair3> coveredPairs = ca.getCovInv3(sols, uncovered);
+		return (double)coveredPairs.size()*100/uncovered.size();
+	}
+
 	public static double calc_coverage_weighted(CNF cnf, int t, CoveringArray ca,
 			String fmFileName, int threads, String weightFileName, boolean silent)
 			throws UnsupportedModelException, IOException,
@@ -373,7 +409,7 @@ public class CALib {
 		Set<WPair> q = new HashSet<WPair>();
 		Map<Integer, Integer> mw = new HashMap<Integer, Integer>();
 		
-		CoveringArrayFile caw = new CoveringArrayFile(weightsFile);
+		CoveringArrayFile caw = new CoveringArrayFile(new File(weightsFile));
 		for(int n = 0; n < caw.getRowCount(); n++){
 			// Convert
 			Integer[] solinteger = caw.getRow(n);
@@ -433,7 +469,7 @@ public class CALib {
 		if(weightCache2.get(weightFileName) != null) return weightCache2.get(weightFileName);
 		
 		Set<WPair2> q2 = new HashSet<WPair2>();
-		CoveringArrayFile caw = new CoveringArrayFile(weightFileName);
+		CoveringArrayFile caw = new CoveringArrayFile(new File(weightFileName));
 		
 		for(int n = 0; n < caw.getRowCount(); n++){
 			Integer[] solinteger = caw.getRow(n);
@@ -510,7 +546,7 @@ public class CALib {
 		if(weightCache3.get(weightFileName) != null) return weightCache3.get(weightFileName);
 		
 		//Map<String, WPair3> hq = new HashMap<String, WPair3>();
-		CoveringArrayFile caw = new CoveringArrayFile(weightFileName);
+		CoveringArrayFile caw = new CoveringArrayFile(new File(weightFileName));
 		
 		// Map ID to Variable Object
 		Map<String, BooleanVariableInterface> idb = new HashMap<String, BooleanVariableInterface>();
@@ -596,12 +632,12 @@ public class CALib {
 		return q;
 	}
 	
-	public static boolean verifyCA(CNF cnf, CoveringArray ca, boolean verbose) throws ContradictionException, TimeoutException {
+	public static boolean verifyCA(CNF cnf, CoveringArray ca, boolean verbose, List<String> output) throws ContradictionException, TimeoutException {
 		boolean allvalid = true;
 		
 		SAT4JSolver solver = cnf.getSAT4JSolver();
 		if(!solver.solver.isSatisfiable()){
-			System.out.println("Feature model not satisfiable");
+			output.add("Feature model not satisfiable");
 			System.exit(0);
 		}
 		for(int n = 0; n < ca.getRowCount(); n++){
@@ -610,7 +646,7 @@ public class CALib {
 			int[] sol = new int[solinteger.length];
 			for(int i = 0; i < sol.length; i++){
 				if(cnf.getNr(ca.getId(i+1)) == null){
-					System.out.println("Cannot find \""+ca.nrid.get(i+1)+"\" in feature model, it is in the covering array");
+					output.add("Cannot find \""+ca.nrid.get(i+1)+"\" in feature model, it is in the covering array");
 					return false;
 				}
 				sol[i] = cnf.getNr(ca.getId(i+1));
@@ -623,12 +659,13 @@ public class CALib {
 			// Test
 			if(!solver.solver.isSatisfiable(assumps)){
 				if(verbose){
-					System.out.println("Solution invalid: " + n);
-					System.out.print("Reason: (");
+					output.add("Solution invalid: " + n);
+					String str = "Reason: (";
 					for(int x :solver.solver.unsatExplanation().toArray()){
-						System.out.print(((x<0)?"-":"") + cnf.getID(Math.abs(x)) + ", ");
+						str += ((x<0)?"-":"") + cnf.getID(Math.abs(x)) + ", ";
 					}
-					System.out.println(")");
+					str += ")";
+					output.add(str);
 				}
 				
 				//allvalid = false;
@@ -653,7 +690,7 @@ public class CALib {
 			System.exit(0);
 		}
 
-		CoveringArray ca = new CoveringArrayFile(caf);
+		CoveringArray ca = new CoveringArrayFile(new File(caf));
 		for(int n = 0; n < ca.getRowCount(); n++){
 			// Convert
 			Integer[] solinteger = ca.getRow(n);

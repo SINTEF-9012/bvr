@@ -114,7 +114,8 @@ public class CNF {
 	}
 
 	public CNF(CNFFormula cnf, String fmfile) {
-		//this(fmfile);
+		if(fmfile != null)
+			this.fmdir = new File(new File(fmfile).getParent());
 		this.cnf = cnf;
 		
 		// Init id-number mappings
@@ -572,58 +573,16 @@ public class CNF {
 	
 	public Set<Pair> generateInvalid1(){
 		if(invalid1w != null) return invalid1w;
-	
-		String filename = fmdir.getAbsoluteFile() + "/I1.csv";
-		File result = new File(filename);
-		List<BooleanVariableInterface> vars = new ArrayList<BooleanVariableInterface>(cnf.getVariables());
 		
-		// Generate if it does not exist
-		if(!result.exists()){
-			// Generate
-			CoveringArrayAlgJ11Utils ca = (CoveringArrayAlgJ11Utils)getCoveringArrayGenerator("J11Utils", 1, Runtime.getRuntime().availableProcessors());
-			ca.fmdir = fmdir;
-			try{
-				ca.generate();
-			}catch(TimeoutException e){}
-			Set<Pair> invalid1w = new HashSet<Pair>(ca.invalid1w);
-			
-			// Write I_1 to disk
-			StringBuffer i1 = new StringBuffer();
-			for(Pair m : invalid1w){
-				i1.append(m.v.getID() + "," + (m.b?1:0) + "\n");
-			}
-			
-			try {
-				new FileUtility().writeStringToFile(filename, i1.toString());
-			} catch (FileNotFoundException e2) {
-			} catch (IOException e2) {
-			}
-		}
-		
-		// Load intro structure
-		invalid1w = new HashSet<Pair>();
-		String i1str = "";
-		try {
-			i1str = new FileUtility().readFileAsString(result.getAbsoluteFile().toString());
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
-		for(String line : i1str.split("\n")){
-			String id = line.split(",")[0];
-			String val = line.split(",")[1]; 
-			for(BooleanVariableInterface v : vars){
-				if(v.getID().equals(id)){
-					Pair p = new Pair();
-					p.v = v;
-					p.b = (val.equals("1")?true:false);
-					invalid1w.add(p);
-					break;
-				}
-			}
-		}
+		// Generate
+		CoveringArrayAlgJ11Utils ca = (CoveringArrayAlgJ11Utils)getCoveringArrayGenerator("J11Utils", 1, Runtime.getRuntime().availableProcessors());
+		try{
+			ca.generate();
+		}catch(TimeoutException e){}
+		Set<Pair> invalid1w = new HashSet<Pair>(ca.invalid1w);
 		
 		// Make unmodifiable
-		invalid1w = Collections.unmodifiableSet(invalid1w);
+		this.invalid1w = Collections.unmodifiableSet(invalid1w);
 		return invalid1w;
 	}
 
@@ -632,70 +591,18 @@ public class CNF {
 		
 		generateInvalid1();
 		
-		String filename = fmdir.getAbsoluteFile() + "/I2.csv";
-		File result = new File(filename);
-		List<BooleanVariableInterface> vars = new ArrayList<BooleanVariableInterface>(cnf.getVariables());
-		
-		// Generate if it does not exist
-		if(!result.exists()){
-			// Generate
-			CoveringArrayAlgJ11Utils ca = (CoveringArrayAlgJ11Utils)getCoveringArrayGenerator("J11Utils", 2, Runtime.getRuntime().availableProcessors());
-			ca.invalid1w = invalid1w;
-			ca.fmdir = fmdir;
-			try {
-				ca.generate();
-			} catch (TimeoutException e) {
-				e.printStackTrace();
-			}
-			Set<Pair2> invalid2w = new HashSet<Pair2>(ca.invalid2w);
-			
-			// Write I_2 to disk
-			StringBuffer i2 = new StringBuffer();
-			for(Pair2 i : invalid2w){
-				i2.append(i.v1.getID() + "," + (i.b1==true?1:0) + "," + i.v2.getID() + "," + (i.b2==true?1:0) + "\n");
-			}
-			
-			try {
-				new FileUtility().writeStringToFile(filename, i2.toString());
-			} catch (FileNotFoundException e2) {
-			} catch (IOException e2) {
-			}
-		}
-		
-		// Load intro structure
-		invalid2w = new HashSet<Pair2>();
-		String i2str = "";
+		// Generate
+		CoveringArrayAlgJ11Utils ca = (CoveringArrayAlgJ11Utils)getCoveringArrayGenerator("J11Utils", 2, Runtime.getRuntime().availableProcessors());
+		ca.invalid1w = invalid1w;
 		try {
-			i2str = new FileUtility().readFileAsString(result.getAbsoluteFile().toString());
-		} catch (IOException e2) {
-			e2.printStackTrace();
+			ca.generate();
+		} catch (TimeoutException e) {
+			e.printStackTrace();
 		}
-		for(String line : i2str.split("\n")){
-			String id1 = line.split(",")[0];
-			String val1 = line.split(",")[1]; 
-			String id2 = line.split(",")[2];
-			String val2 = line.split(",")[3]; 
-			for(BooleanVariableInterface v1 : vars){
-				if(v1.getID().equals(id1)){
-					for(BooleanVariableInterface v2 : vars){
-						if(v2.getID().equals(id2)){
-							Pair2 p = new Pair2(idnr);
-							p.v1 = v1;
-							p.b1 = val1.equals("1")?true:false;
-							p.v2 = v2;
-							p.b2 = val2.equals("1")?true:false;
-							invalid2w.add(p);
-							break;
-						}
-					}
-					break;
-				}
-			}
-	
-		}
+		Set<Pair2> invalid2w = new HashSet<Pair2>(ca.invalid2w);
 		
 		// Make unmodifiable
-		invalid2w = Collections.unmodifiableSet(invalid2w);
+		this.invalid2w = Collections.unmodifiableSet(invalid2w);
 		return invalid2w;
 	}
 
@@ -704,79 +611,19 @@ public class CNF {
 		
 		generateInvalid2();
 		
-		String filename = fmdir.getAbsoluteFile() + "/I3.csv";
-		File result = new File(filename);
-		List<BooleanVariableInterface> vars = new ArrayList<BooleanVariableInterface>(cnf.getVariables());
-		
-		// Generate if it does not exist
-		if(!result.exists()){
-			// Generate
-			CoveringArrayAlgJ11Utils ca = (CoveringArrayAlgJ11Utils)getCoveringArrayGenerator("J11Utils", 3, Runtime.getRuntime().availableProcessors());
-			ca.invalid1w = invalid1w;
-			ca.invalid2w = invalid2w;
-			ca.fmdir = fmdir;
-			try {
-				ca.generate();
-			} catch (TimeoutException e) {
-			}
-			HashSet<Pair3> invalid3w = new HashSet<Pair3>(ca.invalid3w);
-			
-			// Write I_2 to disk
-			StringBuffer i3 = new StringBuffer();
-			for(Pair3 i : invalid3w){
-				i3.append(i.v1.getID() + "," + (i.b1==true?1:0) + "," + i.v2.getID() + "," + (i.b2==true?1:0) + "," + i.v3.getID() + "," + (i.b3==true?1:0) + "\n");
-			}
-			
-			try {
-				new FileUtility().writeStringToFile(filename, i3.toString());
-			} catch (FileNotFoundException e2) {
-			} catch (IOException e2) {
-			}
-		}
-		
-		// Load intro structure
-		invalid3w = new HashSet<Pair3>();
-		String i3str = "";
+		// Generate
+		CoveringArrayAlgJ11Utils ca = (CoveringArrayAlgJ11Utils)getCoveringArrayGenerator("J11Utils", 3, Runtime.getRuntime().availableProcessors());
+		ca.invalid1w = invalid1w;
+		ca.invalid2w = invalid2w;
+		ca.fmdir = fmdir;
 		try {
-			i3str = new FileUtility().readFileAsString(result.getAbsoluteFile().toString());
-		} catch (IOException e2) {
-			e2.printStackTrace();
+			ca.generate();
+		} catch (TimeoutException e) {
 		}
-		for(String line : i3str.split("\n")){
-			String id1 = line.split(",")[0];
-			String val1 = line.split(",")[1]; 
-			String id2 = line.split(",")[2];
-			String val2 = line.split(",")[3]; 
-			String id3 = line.split(",")[4];
-			String val3 = line.split(",")[5]; 
-			for(BooleanVariableInterface v1 : vars){
-				if(v1.getID().equals(id1)){
-					for(BooleanVariableInterface v2 : vars){
-						if(v2.getID().equals(id2)){
-							for(BooleanVariableInterface v3 : vars){
-								if(v3.getID().equals(id3)){
-									Pair3 p = new Pair3(idnr);
-									p.v1 = v1;
-									p.b1 = val1.equals("1")?true:false;
-									p.v2 = v2;
-									p.b2 = val2.equals("1")?true:false;
-									p.v3 = v3;
-									p.b3 = val3.equals("1")?true:false;
-									invalid3w.add(p);
-									break;
-								}
-							}
-							break;
-						}
-					}
-					break;
-				}
-			}
-	
-		}
+		Set<Pair3> invalid3w = new HashSet<Pair3>(ca.invalid3w);
 		
 		// Make unmodifiable
-		invalid3w = Collections.unmodifiableSet(invalid3w);
+		this.invalid3w = Collections.unmodifiableSet(invalid3w);
 		return invalid3w;
 	}
 	

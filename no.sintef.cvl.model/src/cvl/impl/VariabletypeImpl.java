@@ -2,12 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.Variabletype;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class VariabletypeImpl extends EObjectImpl implements Variabletype {
+public class VariabletypeImpl extends VPackageableImpl implements Variabletype {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,7 +33,7 @@ public class VariabletypeImpl extends EObjectImpl implements Variabletype {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VARIABLETYPE;
+		return CvlPackage.Literals.VARIABLETYPE;
 	}
 
 } //VariabletypeImpl

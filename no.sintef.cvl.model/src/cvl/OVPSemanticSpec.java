@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getOVPSemanticSpec()
+ * @see cvl.CvlPackage#getOVPSemanticSpec()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface OVPSemanticSpec extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Model Transformation</em>' attribute.
 	 * @see #setModelTransformation(String)
-	 * @see cvl.cvlPackage#getOVPSemanticSpec_ModelTransformation()
+	 * @see cvl.CvlPackage#getOVPSemanticSpec_ModelTransformation()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -60,7 +60,7 @@ public interface OVPSemanticSpec extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transfromation Language</em>' attribute.
 	 * @see #setTransfromationLanguage(String)
-	 * @see cvl.cvlPackage#getOVPSemanticSpec_TransfromationLanguage()
+	 * @see cvl.CvlPackage#getOVPSemanticSpec_TransfromationLanguage()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

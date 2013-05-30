@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.LinkEndSubstitution;
 import cvl.LinkHandle;
 import cvl.ObjectHandle;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -87,7 +87,7 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.LINK_END_SUBSTITUTION;
+		return CvlPackage.Literals.LINK_END_SUBSTITUTION;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 		LinkHandle oldLink = link;
 		link = newLink;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_END_SUBSTITUTION__LINK, oldLink, newLink);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_END_SUBSTITUTION__LINK, oldLink, newLink);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -123,14 +123,14 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 		if (newLink != link) {
 			NotificationChain msgs = null;
 			if (link != null)
-				msgs = ((InternalEObject)link).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.LINK_END_SUBSTITUTION__LINK, null, msgs);
+				msgs = ((InternalEObject)link).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.LINK_END_SUBSTITUTION__LINK, null, msgs);
 			if (newLink != null)
-				msgs = ((InternalEObject)newLink).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.LINK_END_SUBSTITUTION__LINK, null, msgs);
+				msgs = ((InternalEObject)newLink).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.LINK_END_SUBSTITUTION__LINK, null, msgs);
 			msgs = basicSetLink(newLink, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_END_SUBSTITUTION__LINK, newLink, newLink));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_END_SUBSTITUTION__LINK, newLink, newLink));
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 		String oldLinkEndIdentifier = linkEndIdentifier;
 		linkEndIdentifier = newLinkEndIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER, oldLinkEndIdentifier, linkEndIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER, oldLinkEndIdentifier, linkEndIdentifier));
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 		ObjectHandle oldReplacementObject = replacementObject;
 		replacementObject = newReplacementObject;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, oldReplacementObject, newReplacementObject);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, oldReplacementObject, newReplacementObject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -187,14 +187,14 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 		if (newReplacementObject != replacementObject) {
 			NotificationChain msgs = null;
 			if (replacementObject != null)
-				msgs = ((InternalEObject)replacementObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, null, msgs);
+				msgs = ((InternalEObject)replacementObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, null, msgs);
 			if (newReplacementObject != null)
-				msgs = ((InternalEObject)newReplacementObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, null, msgs);
+				msgs = ((InternalEObject)newReplacementObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, null, msgs);
 			msgs = basicSetReplacementObject(newReplacementObject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, newReplacementObject, newReplacementObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT, newReplacementObject, newReplacementObject));
 	}
 
 	/**
@@ -205,9 +205,9 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK:
 				return basicSetLink(null, msgs);
-			case cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
 				return basicSetReplacementObject(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -221,11 +221,11 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK:
 				return getLink();
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				return getLinkEndIdentifier();
-			case cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
 				return getReplacementObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -239,13 +239,13 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK:
 				setLink((LinkHandle)newValue);
 				return;
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				setLinkEndIdentifier((String)newValue);
 				return;
-			case cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
 				setReplacementObject((ObjectHandle)newValue);
 				return;
 		}
@@ -260,13 +260,13 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK:
 				setLink((LinkHandle)null);
 				return;
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				setLinkEndIdentifier(LINK_END_IDENTIFIER_EDEFAULT);
 				return;
-			case cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
 				setReplacementObject((ObjectHandle)null);
 				return;
 		}
@@ -281,11 +281,11 @@ public class LinkEndSubstitutionImpl extends ChoiceVariationPointImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK:
 				return link != null;
-			case cvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
+			case CvlPackage.LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER:
 				return LINK_END_IDENTIFIER_EDEFAULT == null ? linkEndIdentifier != null : !LINK_END_IDENTIFIER_EDEFAULT.equals(linkEndIdentifier);
-			case cvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT:
 				return replacementObject != null;
 		}
 		return super.eIsSet(featureID);

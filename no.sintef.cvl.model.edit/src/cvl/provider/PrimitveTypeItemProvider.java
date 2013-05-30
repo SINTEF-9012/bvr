@@ -3,9 +3,8 @@
 package cvl.provider;
 
 
-import cvl.PrimitiveTypeEnum;
+import cvl.CvlPackage;
 import cvl.PrimitveType;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -76,7 +75,7 @@ public class PrimitveTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_PrimitveType_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_PrimitveType_type_feature", "_UI_PrimitveType_type"),
-				 cvlPackage.Literals.PRIMITVE_TYPE__TYPE,
+				 CvlPackage.Literals.PRIMITVE_TYPE__TYPE,
 				 true,
 				 false,
 				 false,
@@ -104,8 +103,7 @@ public class PrimitveTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		PrimitiveTypeEnum labelValue = ((PrimitveType)object).getType();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((PrimitveType)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PrimitveType_type") :
 			getString("_UI_PrimitveType_type") + " " + label;
@@ -123,7 +121,7 @@ public class PrimitveTypeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PrimitveType.class)) {
-			case cvlPackage.PRIMITVE_TYPE__TYPE:
+			case CvlPackage.PRIMITVE_TYPE__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

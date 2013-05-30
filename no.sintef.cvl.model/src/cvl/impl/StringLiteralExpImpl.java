@@ -2,8 +2,8 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.StringLiteralExp;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -61,7 +61,7 @@ public class StringLiteralExpImpl extends BCLExpressionImpl implements StringLit
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.STRING_LITERAL_EXP;
+		return CvlPackage.Literals.STRING_LITERAL_EXP;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class StringLiteralExpImpl extends BCLExpressionImpl implements StringLit
 		String oldString = string;
 		string = newString;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.STRING_LITERAL_EXP__STRING, oldString, string));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.STRING_LITERAL_EXP__STRING, oldString, string));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class StringLiteralExpImpl extends BCLExpressionImpl implements StringLit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.STRING_LITERAL_EXP__STRING:
+			case CvlPackage.STRING_LITERAL_EXP__STRING:
 				return getString();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class StringLiteralExpImpl extends BCLExpressionImpl implements StringLit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.STRING_LITERAL_EXP__STRING:
+			case CvlPackage.STRING_LITERAL_EXP__STRING:
 				setString((String)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class StringLiteralExpImpl extends BCLExpressionImpl implements StringLit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.STRING_LITERAL_EXP__STRING:
+			case CvlPackage.STRING_LITERAL_EXP__STRING:
 				setString(STRING_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class StringLiteralExpImpl extends BCLExpressionImpl implements StringLit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.STRING_LITERAL_EXP__STRING:
+			case CvlPackage.STRING_LITERAL_EXP__STRING:
 				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
 		}
 		return super.eIsSet(featureID);

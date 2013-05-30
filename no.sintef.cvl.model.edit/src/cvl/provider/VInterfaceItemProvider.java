@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VInterface;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,8 +74,8 @@ public class VInterfaceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VINTERFACE__MEMBER);
-			childrenFeatures.add(cvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT);
+			childrenFeatures.add(CvlPackage.Literals.VINTERFACE__MEMBER);
+			childrenFeatures.add(CvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -130,8 +130,8 @@ public class VInterfaceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VInterface.class)) {
-			case cvlPackage.VINTERFACE__MEMBER:
-			case cvlPackage.VINTERFACE__OWNED_CONSTRAINT:
+			case CvlPackage.VINTERFACE__MEMBER:
+			case CvlPackage.VINTERFACE__OWNED_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,38 +151,38 @@ public class VInterfaceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__MEMBER,
-				 cvlFactory.eINSTANCE.createChoice()));
+				(CvlPackage.Literals.VINTERFACE__MEMBER,
+				 CvlFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__MEMBER,
-				 cvlFactory.eINSTANCE.createVClassifier()));
+				(CvlPackage.Literals.VINTERFACE__MEMBER,
+				 CvlFactory.eINSTANCE.createVClassifier()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__MEMBER,
-				 cvlFactory.eINSTANCE.createVariable()));
+				(CvlPackage.Literals.VINTERFACE__MEMBER,
+				 CvlFactory.eINSTANCE.createVariable()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__MEMBER,
-				 cvlFactory.eINSTANCE.createCVSpec()));
+				(CvlPackage.Literals.VINTERFACE__MEMBER,
+				 CvlFactory.eINSTANCE.createCVSpec()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createConstraint()));
+				(CvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createOpaqueConstraint()));
+				(CvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createOpaqueConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createBCLConstraint()));
+				(CvlPackage.Literals.VINTERFACE__OWNED_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createBCLConstraint()));
 	}
 
 }

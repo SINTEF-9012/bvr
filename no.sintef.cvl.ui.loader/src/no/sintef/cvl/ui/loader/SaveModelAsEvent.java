@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -39,10 +41,10 @@ public class SaveModelAsEvent implements ActionListener {
 				return;
 			}
 		}
-		
+		System.out.println("ss");
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new CVLFilter());
-		fc.showOpenDialog(filePane);
+		fc.showSaveDialog(filePane);
 		
 		File sf = fc.getSelectedFile();
 		if(sf == null) return;
@@ -54,8 +56,12 @@ public class SaveModelAsEvent implements ActionListener {
 		
 		try {
 			m.getCVLM().writeToFile(sf.getAbsolutePath());
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(filePane, "Error writing file: " + e.getMessage());
+		} catch (Exception e) {
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			String msg = sw.toString();
+			JOptionPane.showMessageDialog(filePane, "Error saving file: " + msg);
 			return;
 		}
 		

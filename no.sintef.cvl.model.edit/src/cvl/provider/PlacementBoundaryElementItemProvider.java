@@ -3,6 +3,7 @@
 package cvl.provider;
 
 
+import cvl.PlacementBoundaryElement;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * @generated
  */
 public class PlacementBoundaryElementItemProvider
-	extends ItemProviderAdapter
+	extends VariationPointItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -66,7 +67,10 @@ public class PlacementBoundaryElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_PlacementBoundaryElement_type");
+		String label = ((PlacementBoundaryElement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_PlacementBoundaryElement_type") :
+			getString("_UI_PlacementBoundaryElement_type") + " " + label;
 	}
 
 	/**
@@ -92,17 +96,6 @@ public class PlacementBoundaryElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return CVLMetamodelEditPlugin.INSTANCE;
 	}
 
 }

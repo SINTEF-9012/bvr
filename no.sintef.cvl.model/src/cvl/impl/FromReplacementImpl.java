@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
 import cvl.ObjectHandle;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -104,7 +104,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.FROM_REPLACEMENT;
+		return CvlPackage.Literals.FROM_REPLACEMENT;
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 		String oldPropertyName = propertyName;
 		propertyName = newPropertyName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FROM_REPLACEMENT__PROPERTY_NAME, oldPropertyName, propertyName));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FROM_REPLACEMENT__PROPERTY_NAME, oldPropertyName, propertyName));
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 			insideBoundaryElement = (ObjectHandle)eResolveProxy(oldInsideBoundaryElement);
 			if (insideBoundaryElement != oldInsideBoundaryElement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT, oldInsideBoundaryElement, insideBoundaryElement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT, oldInsideBoundaryElement, insideBoundaryElement));
 			}
 		}
 		return insideBoundaryElement;
@@ -163,7 +163,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 		ObjectHandle oldInsideBoundaryElement = insideBoundaryElement;
 		insideBoundaryElement = newInsideBoundaryElement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT, oldInsideBoundaryElement, insideBoundaryElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT, oldInsideBoundaryElement, insideBoundaryElement));
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	 */
 	public EList<ObjectHandle> getOutsideBoundaryElement() {
 		if (outsideBoundaryElement == null) {
-			outsideBoundaryElement = new EObjectResolvingEList<ObjectHandle>(ObjectHandle.class, this, cvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT);
+			outsideBoundaryElement = new EObjectResolvingEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT);
 		}
 		return outsideBoundaryElement;
 	}
@@ -189,7 +189,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 			fromPlacement = (FromPlacement)eResolveProxy(oldFromPlacement);
 			if (fromPlacement != oldFromPlacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT, oldFromPlacement, fromPlacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT, oldFromPlacement, fromPlacement));
 			}
 		}
 		return fromPlacement;
@@ -213,7 +213,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 		FromPlacement oldFromPlacement = fromPlacement;
 		fromPlacement = newFromPlacement;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT, oldFromPlacement, newFromPlacement);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT, oldFromPlacement, newFromPlacement);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -228,14 +228,14 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 		if (newFromPlacement != fromPlacement) {
 			NotificationChain msgs = null;
 			if (fromPlacement != null)
-				msgs = ((InternalEObject)fromPlacement).eInverseRemove(this, cvlPackage.FROM_PLACEMENT__FROM_REPLACEMENT, FromPlacement.class, msgs);
+				msgs = ((InternalEObject)fromPlacement).eInverseRemove(this, CvlPackage.FROM_PLACEMENT__FROM_REPLACEMENT, FromPlacement.class, msgs);
 			if (newFromPlacement != null)
-				msgs = ((InternalEObject)newFromPlacement).eInverseAdd(this, cvlPackage.FROM_PLACEMENT__FROM_REPLACEMENT, FromPlacement.class, msgs);
+				msgs = ((InternalEObject)newFromPlacement).eInverseAdd(this, CvlPackage.FROM_PLACEMENT__FROM_REPLACEMENT, FromPlacement.class, msgs);
 			msgs = basicSetFromPlacement(newFromPlacement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT, newFromPlacement, newFromPlacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT, newFromPlacement, newFromPlacement));
 	}
 
 	/**
@@ -246,9 +246,9 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
+			case CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
 				if (fromPlacement != null)
-					msgs = ((InternalEObject)fromPlacement).eInverseRemove(this, cvlPackage.FROM_PLACEMENT__FROM_REPLACEMENT, FromPlacement.class, msgs);
+					msgs = ((InternalEObject)fromPlacement).eInverseRemove(this, CvlPackage.FROM_PLACEMENT__FROM_REPLACEMENT, FromPlacement.class, msgs);
 				return basicSetFromPlacement((FromPlacement)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -262,7 +262,7 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
+			case CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
 				return basicSetFromPlacement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -276,14 +276,14 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
+			case CvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
 				return getPropertyName();
-			case cvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				if (resolve) return getInsideBoundaryElement();
 				return basicGetInsideBoundaryElement();
-			case cvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				return getOutsideBoundaryElement();
-			case cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
+			case CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
 				if (resolve) return getFromPlacement();
 				return basicGetFromPlacement();
 		}
@@ -299,17 +299,17 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
+			case CvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
 				setPropertyName((String)newValue);
 				return;
-			case cvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				setInsideBoundaryElement((ObjectHandle)newValue);
 				return;
-			case cvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				getOutsideBoundaryElement().clear();
 				getOutsideBoundaryElement().addAll((Collection<? extends ObjectHandle>)newValue);
 				return;
-			case cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
+			case CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
 				setFromPlacement((FromPlacement)newValue);
 				return;
 		}
@@ -324,16 +324,16 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
+			case CvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
 				setPropertyName(PROPERTY_NAME_EDEFAULT);
 				return;
-			case cvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				setInsideBoundaryElement((ObjectHandle)null);
 				return;
-			case cvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				getOutsideBoundaryElement().clear();
 				return;
-			case cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
+			case CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
 				setFromPlacement((FromPlacement)null);
 				return;
 		}
@@ -348,13 +348,13 @@ public class FromReplacementImpl extends ReplacementBoundaryElementImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
+			case CvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
 				return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
-			case cvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT:
 				return insideBoundaryElement != null;
-			case cvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
+			case CvlPackage.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT:
 				return outsideBoundaryElement != null && !outsideBoundaryElement.isEmpty();
-			case cvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
+			case CvlPackage.FROM_REPLACEMENT__FROM_PLACEMENT:
 				return fromPlacement != null;
 		}
 		return super.eIsSet(featureID);

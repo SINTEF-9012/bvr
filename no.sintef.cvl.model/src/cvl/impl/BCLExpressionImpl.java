@@ -3,7 +3,7 @@
 package cvl.impl;
 
 import cvl.BCLExpression;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -35,7 +35,7 @@ public class BCLExpressionImpl extends EObjectImpl implements BCLExpression {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.BCL_EXPRESSION;
+		return CvlPackage.Literals.BCL_EXPRESSION;
 	}
 
 } //BCLExpressionImpl

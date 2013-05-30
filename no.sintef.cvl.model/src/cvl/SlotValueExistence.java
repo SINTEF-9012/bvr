@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getSlotValueExistence()
+ * @see cvl.CvlPackage#getSlotValueExistence()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface SlotValueExistence extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Slot Identifier</em>' attribute.
 	 * @see #setSlotIdentifier(String)
-	 * @see cvl.cvlPackage#getSlotValueExistence_SlotIdentifier()
+	 * @see cvl.CvlPackage#getSlotValueExistence_SlotIdentifier()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface SlotValueExistence extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Slot Owner</em>' containment reference.
 	 * @see #setSlotOwner(ObjectHandle)
-	 * @see cvl.cvlPackage#getSlotValueExistence_SlotOwner()
+	 * @see cvl.CvlPackage#getSlotValueExistence_SlotOwner()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

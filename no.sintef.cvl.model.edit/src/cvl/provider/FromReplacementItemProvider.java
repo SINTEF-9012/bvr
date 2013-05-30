@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.FromReplacement;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -78,7 +78,7 @@ public class FromReplacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FromReplacement_propertyName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FromReplacement_propertyName_feature", "_UI_FromReplacement_type"),
-				 cvlPackage.Literals.FROM_REPLACEMENT__PROPERTY_NAME,
+				 CvlPackage.Literals.FROM_REPLACEMENT__PROPERTY_NAME,
 				 true,
 				 false,
 				 false,
@@ -100,7 +100,7 @@ public class FromReplacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FromReplacement_insideBoundaryElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FromReplacement_insideBoundaryElement_feature", "_UI_FromReplacement_type"),
-				 cvlPackage.Literals.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT,
+				 CvlPackage.Literals.FROM_REPLACEMENT__INSIDE_BOUNDARY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -122,7 +122,7 @@ public class FromReplacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FromReplacement_outsideBoundaryElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FromReplacement_outsideBoundaryElement_feature", "_UI_FromReplacement_type"),
-				 cvlPackage.Literals.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
+				 CvlPackage.Literals.FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT,
 				 true,
 				 false,
 				 true,
@@ -144,7 +144,7 @@ public class FromReplacementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_FromReplacement_fromPlacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FromReplacement_fromPlacement_feature", "_UI_FromReplacement_type"),
-				 cvlPackage.Literals.FROM_REPLACEMENT__FROM_PLACEMENT,
+				 CvlPackage.Literals.FROM_REPLACEMENT__FROM_PLACEMENT,
 				 true,
 				 false,
 				 true,
@@ -172,7 +172,7 @@ public class FromReplacementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FromReplacement)object).getPropertyName();
+		String label = ((FromReplacement)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_FromReplacement_type") :
 			getString("_UI_FromReplacement_type") + " " + label;
@@ -190,7 +190,7 @@ public class FromReplacementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FromReplacement.class)) {
-			case cvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
+			case CvlPackage.FROM_REPLACEMENT__PROPERTY_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

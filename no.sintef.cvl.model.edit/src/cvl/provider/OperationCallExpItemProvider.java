@@ -3,10 +3,10 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.Operation;
 import cvl.OperationCallExp;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -79,7 +79,7 @@ public class OperationCallExpItemProvider
 				 getResourceLocator(),
 				 getString("_UI_OperationCallExp_operation_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OperationCallExp_operation_feature", "_UI_OperationCallExp_type"),
-				 cvlPackage.Literals.OPERATION_CALL_EXP__OPERATION,
+				 CvlPackage.Literals.OPERATION_CALL_EXP__OPERATION,
 				 true,
 				 false,
 				 false,
@@ -100,7 +100,7 @@ public class OperationCallExpItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT);
+			childrenFeatures.add(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT);
 		}
 		return childrenFeatures;
 	}
@@ -156,10 +156,10 @@ public class OperationCallExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OperationCallExp.class)) {
-			case cvlPackage.OPERATION_CALL_EXP__OPERATION:
+			case CvlPackage.OPERATION_CALL_EXP__OPERATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case cvlPackage.OPERATION_CALL_EXP__ARGUMENT:
+			case CvlPackage.OPERATION_CALL_EXP__ARGUMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,48 +179,48 @@ public class OperationCallExpItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createBCLExpression()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createBCLExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createVSpecRef()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createVSpecRef()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createOperationCallExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createBooleanLiteralExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createStringLiteralExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createNumericLiteralExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createNumericLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createIntegerLiteralExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 cvlFactory.eINSTANCE.createRealLiteralExp()));
+				(CvlPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
+				 CvlFactory.eINSTANCE.createRealLiteralExp()));
 	}
 
 }

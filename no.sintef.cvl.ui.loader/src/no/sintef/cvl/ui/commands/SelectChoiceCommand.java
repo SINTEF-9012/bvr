@@ -6,10 +6,11 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import cvl.Choice;
+import cvl.NamedElement;
 import cvl.VSpec;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Main;
@@ -21,10 +22,10 @@ public class SelectChoiceCommand implements Command {
 	private CVLUIKernel rootPanel;
 	private ChoicePanel p;
 	private JComponent parent;
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private CVLView view;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.rootPanel = rootPanel;
 		this.p = (ChoicePanel)p;
 		this.parent = parent;
@@ -38,11 +39,11 @@ public class SelectChoiceCommand implements Command {
 	static int x = 1;
 
 	public JComponent execute() {
-		VSpec v = vmMap.get(p);
+		VSpec v = (VSpec)vmMap.get(p);
 		//System.out.println("we are here " + p.getTitle() + ", " + v);
 		
 		// Modify model
-		Choice c = cvlFactory.eINSTANCE.createChoice();
+		Choice c = CvlFactory.eINSTANCE.createChoice();
 		c.setName("Choice"+x);
 		x++;
 		v.getChild().add(c);

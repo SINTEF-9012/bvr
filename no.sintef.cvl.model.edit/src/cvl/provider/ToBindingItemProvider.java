@@ -3,7 +3,7 @@
 package cvl.provider;
 
 
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class ToBindingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToBinding_toPlacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToBinding_toPlacement_feature", "_UI_ToBinding_type"),
-				 cvlPackage.Literals.TO_BINDING__TO_PLACEMENT,
+				 CvlPackage.Literals.TO_BINDING__TO_PLACEMENT,
 				 true,
 				 false,
 				 true,
@@ -95,7 +95,7 @@ public class ToBindingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ToBinding_toReplacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ToBinding_toReplacement_feature", "_UI_ToBinding_type"),
-				 cvlPackage.Literals.TO_BINDING__TO_REPLACEMENT,
+				 CvlPackage.Literals.TO_BINDING__TO_REPLACEMENT,
 				 true,
 				 false,
 				 true,

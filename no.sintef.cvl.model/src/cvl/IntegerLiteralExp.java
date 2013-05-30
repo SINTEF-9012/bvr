@@ -19,7 +19,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getIntegerLiteralExp()
+ * @see cvl.CvlPackage#getIntegerLiteralExp()
  * @model
  * @generated
  */
@@ -33,7 +33,7 @@ public interface IntegerLiteralExp extends NumericLiteralExp {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Integer</em>' attribute.
 	 * @see #setInteger(int)
-	 * @see cvl.cvlPackage#getIntegerLiteralExp_Integer()
+	 * @see cvl.CvlPackage#getIntegerLiteralExp_Integer()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

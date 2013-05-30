@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.VariableValueAssignment;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,7 +77,7 @@ public class VariableValueAssignmentItemProvider
 				 getResourceLocator(),
 				 getString("_UI_VariableValueAssignment_resolvedVariable_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VariableValueAssignment_resolvedVariable_feature", "_UI_VariableValueAssignment_type"),
-				 cvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE,
+				 CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE,
 				 true,
 				 false,
 				 true,
@@ -98,7 +98,7 @@ public class VariableValueAssignmentItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE);
+			childrenFeatures.add(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -153,7 +153,7 @@ public class VariableValueAssignmentItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VariableValueAssignment.class)) {
-			case cvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
+			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -173,18 +173,18 @@ public class VariableValueAssignmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE,
-				 cvlFactory.eINSTANCE.createObjectSpecification()));
+				(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE,
+				 CvlFactory.eINSTANCE.createObjectSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE,
-				 cvlFactory.eINSTANCE.createReplacementFragmentSpecification()));
+				(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE,
+				 CvlFactory.eINSTANCE.createReplacementFragmentSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE,
-				 cvlFactory.eINSTANCE.createPrimitiveValueSpecification()));
+				(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE,
+				 CvlFactory.eINSTANCE.createPrimitiveValueSpecification()));
 	}
 
 }

@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVSpecResolution()
+ * @see cvl.CvlPackage#getVSpecResolution()
  * @model abstract="true"
  * @generated
  */
@@ -36,7 +36,7 @@ public interface VSpecResolution extends VPackageable {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resolved VSpec</em>' reference.
 	 * @see #setResolvedVSpec(VSpec)
-	 * @see cvl.cvlPackage#getVSpecResolution_ResolvedVSpec()
+	 * @see cvl.CvlPackage#getVSpecResolution_ResolvedVSpec()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface VSpecResolution extends VPackageable {
 	 * The child resolutions of this VSpecResolution. A given VSpecResolution is interpreted in the context of its parent.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Child</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVSpecResolution_Child()
+	 * @see cvl.CvlPackage#getVSpecResolution_Child()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

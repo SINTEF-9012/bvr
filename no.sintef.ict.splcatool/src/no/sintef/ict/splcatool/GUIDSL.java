@@ -143,6 +143,7 @@ public class GUIDSL {
 			}
 			
 			File temp = File.createTempFile("tempfile", "data");
+			System.out.println(temp);
 			FileOutputStream fos = new FileOutputStream(temp);
 			OutputStreamWriter out = new OutputStreamWriter(fos);
 			out.write(sxfm_str);

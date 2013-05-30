@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.ObjectType;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public class ObjectTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ObjectType_metaClass_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ObjectType_metaClass_feature", "_UI_ObjectType_type"),
-				 cvlPackage.Literals.OBJECT_TYPE__META_CLASS,
+				 CvlPackage.Literals.OBJECT_TYPE__META_CLASS,
 				 true,
 				 false,
 				 false,
@@ -103,7 +103,7 @@ public class ObjectTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ObjectType)object).getMetaClass();
+		String label = ((ObjectType)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ObjectType_type") :
 			getString("_UI_ObjectType_type") + " " + label;
@@ -121,7 +121,7 @@ public class ObjectTypeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ObjectType.class)) {
-			case cvlPackage.OBJECT_TYPE__META_CLASS:
+			case CvlPackage.OBJECT_TYPE__META_CLASS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

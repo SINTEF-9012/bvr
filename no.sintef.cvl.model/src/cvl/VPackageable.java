@@ -13,7 +13,7 @@ package cvl;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getVPackageable()
+ * @see cvl.CvlPackage#getVPackageable()
  * @model abstract="true"
  * @generated
  */

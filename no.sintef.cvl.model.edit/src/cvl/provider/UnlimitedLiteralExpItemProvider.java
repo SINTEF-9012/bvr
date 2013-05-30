@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.UnlimitedLiteralExp;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public class UnlimitedLiteralExpItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UnlimitedLiteralExp_unlimited_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_UnlimitedLiteralExp_unlimited_feature", "_UI_UnlimitedLiteralExp_type"),
-				 cvlPackage.Literals.UNLIMITED_LITERAL_EXP__UNLIMITED,
+				 CvlPackage.Literals.UNLIMITED_LITERAL_EXP__UNLIMITED,
 				 true,
 				 false,
 				 false,
@@ -119,7 +119,7 @@ public class UnlimitedLiteralExpItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(UnlimitedLiteralExp.class)) {
-			case cvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
+			case CvlPackage.UNLIMITED_LITERAL_EXP__UNLIMITED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

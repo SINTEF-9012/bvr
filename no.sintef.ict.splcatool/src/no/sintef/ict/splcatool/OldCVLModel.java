@@ -16,7 +16,7 @@ import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.PlacementFragment;
 import cvl.ReplacementFragmentSpecification;
-import cvl.cvlFactory;
+import cvl.CvlFactory;
 
 
 public class OldCVLModel {

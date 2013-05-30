@@ -21,7 +21,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getLinkEndSubstitution()
+ * @see cvl.CvlPackage#getLinkEndSubstitution()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface LinkEndSubstitution extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Link</em>' containment reference.
 	 * @see #setLink(LinkHandle)
-	 * @see cvl.cvlPackage#getLinkEndSubstitution_Link()
+	 * @see cvl.CvlPackage#getLinkEndSubstitution_Link()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -60,7 +60,7 @@ public interface LinkEndSubstitution extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Link End Identifier</em>' attribute.
 	 * @see #setLinkEndIdentifier(String)
-	 * @see cvl.cvlPackage#getLinkEndSubstitution_LinkEndIdentifier()
+	 * @see cvl.CvlPackage#getLinkEndSubstitution_LinkEndIdentifier()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -87,7 +87,7 @@ public interface LinkEndSubstitution extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement Object</em>' containment reference.
 	 * @see #setReplacementObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getLinkEndSubstitution_ReplacementObject()
+	 * @see cvl.CvlPackage#getLinkEndSubstitution_ReplacementObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

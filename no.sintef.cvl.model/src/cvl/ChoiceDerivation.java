@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getChoiceDerivation()
+ * @see cvl.CvlPackage#getChoiceDerivation()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface ChoiceDerivation extends VSpecDerivation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Deriving Constraint</em>' containment reference.
 	 * @see #setDerivingConstraint(Constraint)
-	 * @see cvl.cvlPackage#getChoiceDerivation_DerivingConstraint()
+	 * @see cvl.CvlPackage#getChoiceDerivation_DerivingConstraint()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface ChoiceDerivation extends VSpecDerivation {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derived Choice</em>' reference.
 	 * @see #setDerivedChoice(Choice)
-	 * @see cvl.cvlPackage#getChoiceDerivation_DerivedChoice()
+	 * @see cvl.CvlPackage#getChoiceDerivation_DerivedChoice()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */

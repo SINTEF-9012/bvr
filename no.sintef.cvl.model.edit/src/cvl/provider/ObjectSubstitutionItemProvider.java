@@ -3,9 +3,9 @@
 package cvl.provider;
 
 
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.ObjectSubstitution;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,8 +74,8 @@ public class ObjectSubstitutionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT);
-			childrenFeatures.add(cvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT);
+			childrenFeatures.add(CvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -130,8 +130,8 @@ public class ObjectSubstitutionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ObjectSubstitution.class)) {
-			case cvlPackage.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
-			case cvlPackage.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT:
+			case CvlPackage.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -151,13 +151,13 @@ public class ObjectSubstitutionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT,
-				 cvlFactory.eINSTANCE.createObjectHandle()));
+				(CvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 	/**
@@ -172,8 +172,9 @@ public class ObjectSubstitutionItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == cvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT ||
-			childFeature == cvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT;
+			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
+			childFeature == CvlPackage.Literals.OBJECT_SUBSTITUTION__PLACEMENT_OBJECT ||
+			childFeature == CvlPackage.Literals.OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT;
 
 		if (qualify) {
 			return getString

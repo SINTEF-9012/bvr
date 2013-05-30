@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-model-doc -->
  *
  *
- * @see cvl.cvlPackage#getBaseModelHandle()
+ * @see cvl.CvlPackage#getBaseModelHandle()
  * @model
  * @generated
  */

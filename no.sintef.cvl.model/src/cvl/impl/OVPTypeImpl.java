@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.OVPSemanticSpec;
 import cvl.OVPType;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -54,7 +54,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.OVP_TYPE;
+		return CvlPackage.Literals.OVP_TYPE;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 		OVPSemanticSpec oldSpec = spec;
 		spec = newSpec;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.OVP_TYPE__SPEC, oldSpec, newSpec);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.OVP_TYPE__SPEC, oldSpec, newSpec);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -90,14 +90,14 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 		if (newSpec != spec) {
 			NotificationChain msgs = null;
 			if (spec != null)
-				msgs = ((InternalEObject)spec).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.OVP_TYPE__SPEC, null, msgs);
+				msgs = ((InternalEObject)spec).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.OVP_TYPE__SPEC, null, msgs);
 			if (newSpec != null)
-				msgs = ((InternalEObject)newSpec).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.OVP_TYPE__SPEC, null, msgs);
+				msgs = ((InternalEObject)newSpec).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.OVP_TYPE__SPEC, null, msgs);
 			msgs = basicSetSpec(newSpec, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.OVP_TYPE__SPEC, newSpec, newSpec));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.OVP_TYPE__SPEC, newSpec, newSpec));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.OVP_TYPE__SPEC:
+			case CvlPackage.OVP_TYPE__SPEC:
 				return basicSetSpec(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -122,7 +122,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.OVP_TYPE__SPEC:
+			case CvlPackage.OVP_TYPE__SPEC:
 				return getSpec();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -136,7 +136,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.OVP_TYPE__SPEC:
+			case CvlPackage.OVP_TYPE__SPEC:
 				setSpec((OVPSemanticSpec)newValue);
 				return;
 		}
@@ -151,7 +151,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OVP_TYPE__SPEC:
+			case CvlPackage.OVP_TYPE__SPEC:
 				setSpec((OVPSemanticSpec)null);
 				return;
 		}
@@ -166,7 +166,7 @@ public class OVPTypeImpl extends VPackageableImpl implements OVPType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.OVP_TYPE__SPEC:
+			case CvlPackage.OVP_TYPE__SPEC:
 				return spec != null;
 		}
 		return super.eIsSet(featureID);

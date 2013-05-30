@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.LinkExistence;
 import cvl.LinkHandle;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -54,7 +54,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.LINK_EXISTENCE;
+		return CvlPackage.Literals.LINK_EXISTENCE;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 		LinkHandle oldOptionalLink = optionalLink;
 		optionalLink = newOptionalLink;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, oldOptionalLink, newOptionalLink);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, oldOptionalLink, newOptionalLink);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -90,14 +90,14 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 		if (newOptionalLink != optionalLink) {
 			NotificationChain msgs = null;
 			if (optionalLink != null)
-				msgs = ((InternalEObject)optionalLink).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, null, msgs);
+				msgs = ((InternalEObject)optionalLink).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, null, msgs);
 			if (newOptionalLink != null)
-				msgs = ((InternalEObject)newOptionalLink).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, null, msgs);
+				msgs = ((InternalEObject)newOptionalLink).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, null, msgs);
 			msgs = basicSetOptionalLink(newOptionalLink, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, newOptionalLink, newOptionalLink));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK, newOptionalLink, newOptionalLink));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
+			case CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
 				return basicSetOptionalLink(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -122,7 +122,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
+			case CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
 				return getOptionalLink();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -136,7 +136,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
+			case CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
 				setOptionalLink((LinkHandle)newValue);
 				return;
 		}
@@ -151,7 +151,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
+			case CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
 				setOptionalLink((LinkHandle)null);
 				return;
 		}
@@ -166,7 +166,7 @@ public class LinkExistenceImpl extends ChoiceVariationPointImpl implements LinkE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
+			case CvlPackage.LINK_EXISTENCE__OPTIONAL_LINK:
 				return optionalLink != null;
 		}
 		return super.eIsSet(featureID);

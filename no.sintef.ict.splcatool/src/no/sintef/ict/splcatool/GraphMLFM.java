@@ -34,8 +34,8 @@ import cvl.MultiplicityInterval;
 import cvl.OpaqueConstraint;
 import cvl.VClassifier;
 import cvl.VSpec;
-import cvl.cvlFactory;
-import cvl.impl.cvlPackageImpl;
+import cvl.CvlFactory;
+import cvl.impl.CvlPackageImpl;
 
 import de.ovgu.featureide.fm.core.Feature;
 
@@ -436,8 +436,8 @@ public class GraphMLFM {
 
 	public CVLModel getCVLModel() {
 		// Make empty CVL model
-		cvlPackageImpl.init();
-		ConfigurableUnit cu = cvlFactory.eINSTANCE.createConfigurableUnit();
+		CvlPackageImpl.init();
+		ConfigurableUnit cu = CvlFactory.eINSTANCE.createConfigurableUnit();
 		cvl = new CVLModel(cu);
 		
 		// Make graph
@@ -516,7 +516,7 @@ public class GraphMLFM {
 				if(x.getNodeName().equals("edge")) continue;
 				//System.out.println(id);
 				
-				OpaqueConstraint e = cvlFactory.eINSTANCE.createOpaqueConstraint();
+				OpaqueConstraint e = CvlFactory.eINSTANCE.createOpaqueConstraint();
 				e.setConstraint(getLabel(id));
 				cu.getOwnedConstraint().add(e);
 			}
@@ -544,19 +544,19 @@ public class GraphMLFM {
 		VSpec v = null;
 		//System.out.println(tag);
 		if(tag.equals("roundrectangle")){
-			Choice c = cvlFactory.eINSTANCE.createChoice();
+			Choice c = CvlFactory.eINSTANCE.createChoice();
 			idmap.put(root, c);
 			c.setName(getLabel(root));
 			c.setIsImpliedByParent(mandatories.get(root));
 			v = c;
 		}else if(tag.equals("rectangle")){
-			VClassifier c = cvlFactory.eINSTANCE.createVClassifier();
+			VClassifier c = CvlFactory.eINSTANCE.createVClassifier();
 			idmap.put(root, c);
 			String mstr = getMultiplicity(root);
 			c.setName(getLabel(root).replace("[" + mstr + "]", ""));
 			v = c;
 		}else if(tag.equals("parallelogram")){
-			OpaqueConstraint c =  cvlFactory.eINSTANCE.createOpaqueConstraint();
+			OpaqueConstraint c =  CvlFactory.eINSTANCE.createOpaqueConstraint();
 			String l = getLabel(root);
 			c.setConstraint(l);
 			for(DefaultEdge e : g.edgesOf(root)){
@@ -567,7 +567,7 @@ public class GraphMLFM {
 
 			cvl.getCU().getOwnedConstraint().add(c);
 		}else if(tag.equals("UMLClassNode")){
-			v = (VSpec) cvlFactory.eINSTANCE.createVClassifier();
+			v = (VSpec) CvlFactory.eINSTANCE.createVClassifier();
 			idmap.put(root, v);
 			String mstr = getMultiplicity(root);
 			v.setName(getLabel(root).replace("[" + mstr + "]", ""));
@@ -663,7 +663,7 @@ public class GraphMLFM {
 		if(!lstr.equals("*")) li = Integer.parseInt(lstr);
 		int ui = -1;
 		if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(li);
 		mi.setUpper(ui);
 		c.setInstanceMultiplicity(mi);
@@ -676,7 +676,7 @@ public class GraphMLFM {
 		if(!lstr.equals("*")) li = Integer.parseInt(lstr);
 		int ui = -1;
 		if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-		MultiplicityInterval mi = cvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(li);
 		mi.setUpper(ui);
 		c.setGroupMultiplicity(mi);

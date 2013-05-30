@@ -4,7 +4,7 @@ package cvl.provider;
 
 
 import cvl.ChoiceResolutuion;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -76,7 +76,7 @@ public class ChoiceResolutuionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ChoiceResolutuion_resolvedChoice_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceResolutuion_resolvedChoice_feature", "_UI_ChoiceResolutuion_type"),
-				 cvlPackage.Literals.CHOICE_RESOLUTUION__RESOLVED_CHOICE,
+				 CvlPackage.Literals.CHOICE_RESOLUTUION__RESOLVED_CHOICE,
 				 true,
 				 false,
 				 true,
@@ -98,7 +98,7 @@ public class ChoiceResolutuionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ChoiceResolutuion_decision_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceResolutuion_decision_feature", "_UI_ChoiceResolutuion_type"),
-				 cvlPackage.Literals.CHOICE_RESOLUTUION__DECISION,
+				 CvlPackage.Literals.CHOICE_RESOLUTUION__DECISION,
 				 true,
 				 false,
 				 false,
@@ -144,7 +144,7 @@ public class ChoiceResolutuionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ChoiceResolutuion.class)) {
-			case cvlPackage.CHOICE_RESOLUTUION__DECISION:
+			case CvlPackage.CHOICE_RESOLUTUION__DECISION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

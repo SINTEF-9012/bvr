@@ -2,10 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.FromBinding;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -65,7 +65,7 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.FROM_BINDING;
+		return CvlPackage.Literals.FROM_BINDING;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 			fromPlacement = (FromPlacement)eResolveProxy(oldFromPlacement);
 			if (fromPlacement != oldFromPlacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FROM_BINDING__FROM_PLACEMENT, oldFromPlacement, fromPlacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FROM_BINDING__FROM_PLACEMENT, oldFromPlacement, fromPlacement));
 			}
 		}
 		return fromPlacement;
@@ -103,7 +103,7 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 		FromPlacement oldFromPlacement = fromPlacement;
 		fromPlacement = newFromPlacement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FROM_BINDING__FROM_PLACEMENT, oldFromPlacement, fromPlacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FROM_BINDING__FROM_PLACEMENT, oldFromPlacement, fromPlacement));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 			fromReplacement = (FromReplacement)eResolveProxy(oldFromReplacement);
 			if (fromReplacement != oldFromReplacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FROM_BINDING__FROM_REPLACEMENT, oldFromReplacement, fromReplacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FROM_BINDING__FROM_REPLACEMENT, oldFromReplacement, fromReplacement));
 			}
 		}
 		return fromReplacement;
@@ -141,7 +141,7 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 		FromReplacement oldFromReplacement = fromReplacement;
 		fromReplacement = newFromReplacement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FROM_BINDING__FROM_REPLACEMENT, oldFromReplacement, fromReplacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FROM_BINDING__FROM_REPLACEMENT, oldFromReplacement, fromReplacement));
 	}
 
 	/**
@@ -152,10 +152,10 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.FROM_BINDING__FROM_PLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_PLACEMENT:
 				if (resolve) return getFromPlacement();
 				return basicGetFromPlacement();
-			case cvlPackage.FROM_BINDING__FROM_REPLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_REPLACEMENT:
 				if (resolve) return getFromReplacement();
 				return basicGetFromReplacement();
 		}
@@ -170,10 +170,10 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.FROM_BINDING__FROM_PLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_PLACEMENT:
 				setFromPlacement((FromPlacement)newValue);
 				return;
-			case cvlPackage.FROM_BINDING__FROM_REPLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_REPLACEMENT:
 				setFromReplacement((FromReplacement)newValue);
 				return;
 		}
@@ -188,10 +188,10 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.FROM_BINDING__FROM_PLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_PLACEMENT:
 				setFromPlacement((FromPlacement)null);
 				return;
-			case cvlPackage.FROM_BINDING__FROM_REPLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_REPLACEMENT:
 				setFromReplacement((FromReplacement)null);
 				return;
 		}
@@ -206,9 +206,9 @@ public class FromBindingImpl extends BoundaryElementBindingImpl implements FromB
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.FROM_BINDING__FROM_PLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_PLACEMENT:
 				return fromPlacement != null;
-			case cvlPackage.FROM_BINDING__FROM_REPLACEMENT:
+			case CvlPackage.FROM_BINDING__FROM_REPLACEMENT:
 				return fromReplacement != null;
 		}
 		return super.eIsSet(featureID);

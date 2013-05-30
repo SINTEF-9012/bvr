@@ -3,12 +3,13 @@
 package cvl.impl;
 
 import cvl.BoundaryElementBinding;
+import cvl.CvlPackage;
 import cvl.FragmentSubstitution;
 import cvl.PlacementFragment;
 import cvl.RepeatableVariationPoint;
 import cvl.ReplacementFragmentType;
+import cvl.ReplacementFragment;
 import cvl.VClassifier;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 
@@ -119,7 +120,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.FRAGMENT_SUBSTITUTION;
+		return CvlPackage.Literals.FRAGMENT_SUBSTITUTION;
 	}
 
 	/**
@@ -133,7 +134,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 			bindingClassifier = (VClassifier)eResolveProxy(oldBindingClassifier);
 			if (bindingClassifier != oldBindingClassifier) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
 			}
 		}
 		return bindingClassifier;
@@ -157,7 +158,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		VClassifier oldBindingClassifier = bindingClassifier;
 		bindingClassifier = newBindingClassifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
 	}
 
 	/**
@@ -167,7 +168,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 */
 	public EList<BoundaryElementBinding> getBoundaryElementBinding() {
 		if (boundaryElementBinding == null) {
-			boundaryElementBinding = new EObjectContainmentEList<BoundaryElementBinding>(BoundaryElementBinding.class, this, cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING);
+			boundaryElementBinding = new EObjectContainmentEList<BoundaryElementBinding>(BoundaryElementBinding.class, this, CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING);
 		}
 		return boundaryElementBinding;
 	}
@@ -183,7 +184,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 			placement = (PlacementFragment)eResolveProxy(oldPlacement);
 			if (placement != oldPlacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT, oldPlacement, placement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT, oldPlacement, placement));
 			}
 		}
 		return placement;
@@ -207,7 +208,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		PlacementFragment oldPlacement = placement;
 		placement = newPlacement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT, oldPlacement, placement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT, oldPlacement, placement));
 	}
 
 	/**
@@ -228,7 +229,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		boolean oldMulti = multi;
 		multi = newMulti;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FRAGMENT_SUBSTITUTION__MULTI, oldMulti, multi));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FRAGMENT_SUBSTITUTION__MULTI, oldMulti, multi));
 	}
 
 	/**
@@ -242,7 +243,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 			replacement = (ReplacementFragmentType)eResolveProxy(oldReplacement);
 			if (replacement != oldReplacement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
 			}
 		}
 		return replacement;
@@ -266,7 +267,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		ReplacementFragmentType oldReplacement = replacement;
 		replacement = newReplacement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT, oldReplacement, replacement));
 	}
 
 	/**
@@ -277,7 +278,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				return ((InternalEList<?>)getBoundaryElementBinding()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -291,17 +292,17 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				if (resolve) return getBindingClassifier();
 				return basicGetBindingClassifier();
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				return getBoundaryElementBinding();
-			case cvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
 				if (resolve) return getPlacement();
 				return basicGetPlacement();
-			case cvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
 				return isMulti();
-			case cvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
 				if (resolve) return getReplacement();
 				return basicGetReplacement();
 		}
@@ -317,20 +318,20 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				setBindingClassifier((VClassifier)newValue);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				getBoundaryElementBinding().clear();
 				getBoundaryElementBinding().addAll((Collection<? extends BoundaryElementBinding>)newValue);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
 				setPlacement((PlacementFragment)newValue);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
 				setMulti((Boolean)newValue);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
 				setReplacement((ReplacementFragmentType)newValue);
 				return;
 		}
@@ -345,19 +346,19 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				setBindingClassifier((VClassifier)null);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				getBoundaryElementBinding().clear();
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
 				setPlacement((PlacementFragment)null);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
 				setMulti(MULTI_EDEFAULT);
 				return;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
 				setReplacement((ReplacementFragmentType)null);
 				return;
 		}
@@ -372,15 +373,15 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				return bindingClassifier != null;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				return boundaryElementBinding != null && !boundaryElementBinding.isEmpty();
-			case cvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
 				return placement != null;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__MULTI:
 				return multi != MULTI_EDEFAULT;
-			case cvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
+			case CvlPackage.FRAGMENT_SUBSTITUTION__REPLACEMENT:
 				return replacement != null;
 		}
 		return super.eIsSet(featureID);
@@ -395,7 +396,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == RepeatableVariationPoint.class) {
 			switch (derivedFeatureID) {
-				case cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER: return cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER;
+				case CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER: return CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER;
 				default: return -1;
 			}
 		}
@@ -411,7 +412,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == RepeatableVariationPoint.class) {
 			switch (baseFeatureID) {
-				case cvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER: return cvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER;
+				case CvlPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER: return CvlPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER;
 				default: return -1;
 			}
 		}

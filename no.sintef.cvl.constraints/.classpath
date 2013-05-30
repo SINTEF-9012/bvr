@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="generated"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="lib/antlr-4.0-complete.jar" sourcepath="C:/Users/mjoha/.m2/repository/org/antlr/antlr4/4.0/antlr4-4.0-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.ict.splcatool"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.8.1.v20120911-0500.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

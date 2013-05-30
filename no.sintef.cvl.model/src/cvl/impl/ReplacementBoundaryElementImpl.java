@@ -2,12 +2,10 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ReplacementBoundaryElement;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class ReplacementBoundaryElementImpl extends EObjectImpl implements ReplacementBoundaryElement {
+public abstract class ReplacementBoundaryElementImpl extends VariationPointImpl implements ReplacementBoundaryElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35,7 +33,7 @@ public abstract class ReplacementBoundaryElementImpl extends EObjectImpl impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.REPLACEMENT_BOUNDARY_ELEMENT;
+		return CvlPackage.Literals.REPLACEMENT_BOUNDARY_ELEMENT;
 	}
 
 } //ReplacementBoundaryElementImpl

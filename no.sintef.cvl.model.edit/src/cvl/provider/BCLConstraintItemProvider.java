@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.BCLConstraint;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -74,7 +74,7 @@ public class BCLConstraintItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION);
+			childrenFeatures.add(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +129,7 @@ public class BCLConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BCLConstraint.class)) {
-			case cvlPackage.BCL_CONSTRAINT__EXPRESSION:
+			case CvlPackage.BCL_CONSTRAINT__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -149,48 +149,48 @@ public class BCLConstraintItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createBCLExpression()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createBCLExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createVSpecRef()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createVSpecRef()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createOperationCallExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createOperationCallExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createBooleanLiteralExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createBooleanLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createStringLiteralExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createStringLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createNumericLiteralExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createNumericLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createIntegerLiteralExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createIntegerLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createUnlimitedLiteralExp()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 cvlFactory.eINSTANCE.createRealLiteralExp()));
+				(CvlPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
+				 CvlFactory.eINSTANCE.createRealLiteralExp()));
 	}
 
 }

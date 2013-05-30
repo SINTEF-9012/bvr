@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getFragmentSubstitution()
+ * @see cvl.CvlPackage#getFragmentSubstitution()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * </p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Boundary Element Binding</em>' containment reference list.
-	 * @see cvl.cvlPackage#getFragmentSubstitution_BoundaryElementBinding()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_BoundaryElementBinding()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -56,7 +56,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement</em>' reference.
 	 * @see #setPlacement(PlacementFragment)
-	 * @see cvl.cvlPackage#getFragmentSubstitution_Placement()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_Placement()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -81,7 +81,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Multi</em>' attribute.
 	 * @see #setMulti(boolean)
-	 * @see cvl.cvlPackage#getFragmentSubstitution_Multi()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_Multi()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -106,7 +106,7 @@ public interface FragmentSubstitution extends ChoiceVariationPoint, RepeatableVa
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement</em>' reference.
 	 * @see #setReplacement(ReplacementFragmentType)
-	 * @see cvl.cvlPackage#getFragmentSubstitution_Replacement()
+	 * @see cvl.CvlPackage#getFragmentSubstitution_Replacement()
 	 * @model ordered="false"
 	 * @generated
 	 */

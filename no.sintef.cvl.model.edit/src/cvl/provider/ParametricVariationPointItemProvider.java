@@ -3,8 +3,8 @@
 package cvl.provider;
 
 
+import cvl.CvlPackage;
 import cvl.ParametricVariationPoint;
-import cvl.cvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -73,7 +73,7 @@ public class ParametricVariationPointItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ParametricVariationPoint_bindingVariable_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ParametricVariationPoint_bindingVariable_feature", "_UI_ParametricVariationPoint_type"),
-				 cvlPackage.Literals.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE,
+				 CvlPackage.Literals.PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE,
 				 true,
 				 false,
 				 true,

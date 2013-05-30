@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getObjectSubstitution()
+ * @see cvl.CvlPackage#getObjectSubstitution()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ObjectSubstitution extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Placement Object</em>' containment reference.
 	 * @see #setPlacementObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getObjectSubstitution_PlacementObject()
+	 * @see cvl.CvlPackage#getObjectSubstitution_PlacementObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
@@ -62,7 +62,7 @@ public interface ObjectSubstitution extends ChoiceVariationPoint {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Replacement Object</em>' containment reference.
 	 * @see #setReplacementObject(ObjectHandle)
-	 * @see cvl.cvlPackage#getObjectSubstitution_ReplacementObject()
+	 * @see cvl.CvlPackage#getObjectSubstitution_ReplacementObject()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

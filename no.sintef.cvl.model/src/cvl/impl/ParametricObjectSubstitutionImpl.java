@@ -2,9 +2,9 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ObjectHandle;
 import cvl.ParametricObjectSubstitution;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -54,7 +54,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.PARAMETRIC_OBJECT_SUBSTITUTION;
+		return CvlPackage.Literals.PARAMETRIC_OBJECT_SUBSTITUTION;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 		ObjectHandle oldPlacementObject = placementObject;
 		placementObject = newPlacementObject;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, oldPlacementObject, newPlacementObject);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, oldPlacementObject, newPlacementObject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -90,14 +90,14 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 		if (newPlacementObject != placementObject) {
 			NotificationChain msgs = null;
 			if (placementObject != null)
-				msgs = ((InternalEObject)placementObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, null, msgs);
+				msgs = ((InternalEObject)placementObject).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, null, msgs);
 			if (newPlacementObject != null)
-				msgs = ((InternalEObject)newPlacementObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, null, msgs);
+				msgs = ((InternalEObject)newPlacementObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, null, msgs);
 			msgs = basicSetPlacementObject(newPlacementObject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, newPlacementObject, newPlacementObject));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT, newPlacementObject, newPlacementObject));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
 				return basicSetPlacementObject(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -122,7 +122,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
 				return getPlacementObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -136,7 +136,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
 				setPlacementObject((ObjectHandle)newValue);
 				return;
 		}
@@ -151,7 +151,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
 				setPlacementObject((ObjectHandle)null);
 				return;
 		}
@@ -166,7 +166,7 @@ public class ParametricObjectSubstitutionImpl extends ParametricVariationPointIm
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
+			case CvlPackage.PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT:
 				return placementObject != null;
 		}
 		return super.eIsSet(featureID);

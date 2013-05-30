@@ -20,10 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link cvl.FromPlacement#getFromReplacement <em>From Replacement</em>}</li>
  *   <li>{@link cvl.FromPlacement#getOutsideBoundaryElement <em>Outside Boundary Element</em>}</li>
+ *   <li>{@link cvl.FromPlacement#getInsideBoundaryElement <em>Inside Boundary Element</em>}</li>
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getFromPlacement()
+ * @see cvl.CvlPackage#getFromPlacement()
  * @model
  * @generated
  */
@@ -38,7 +39,7 @@ public interface FromPlacement extends PlacementBoundaryElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>From Replacement</em>' reference.
 	 * @see #setFromReplacement(FromReplacement)
-	 * @see cvl.cvlPackage#getFromPlacement_FromReplacement()
+	 * @see cvl.CvlPackage#getFromPlacement_FromReplacement()
 	 * @see cvl.FromReplacement#getFromPlacement
 	 * @model opposite="fromPlacement" ordered="false"
 	 * @generated
@@ -64,10 +65,36 @@ public interface FromPlacement extends PlacementBoundaryElement {
 	 * Outside Model Element that are referred by the model elements inside the placement fragment.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Outside Boundary Element</em>' reference list.
-	 * @see cvl.cvlPackage#getFromPlacement_OutsideBoundaryElement()
+	 * @see cvl.CvlPackage#getFromPlacement_OutsideBoundaryElement()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<ObjectHandle> getOutsideBoundaryElement();
+
+	/**
+	 * Returns the value of the '<em><b>Inside Boundary Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inside Boundary Element</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inside Boundary Element</em>' reference.
+	 * @see #setInsideBoundaryElement(ObjectHandle)
+	 * @see cvl.CvlPackage#getFromPlacement_InsideBoundaryElement()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	ObjectHandle getInsideBoundaryElement();
+
+	/**
+	 * Sets the value of the '{@link cvl.FromPlacement#getInsideBoundaryElement <em>Inside Boundary Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inside Boundary Element</em>' reference.
+	 * @see #getInsideBoundaryElement()
+	 * @generated
+	 */
+	void setInsideBoundaryElement(ObjectHandle value);
 
 } // FromPlacement

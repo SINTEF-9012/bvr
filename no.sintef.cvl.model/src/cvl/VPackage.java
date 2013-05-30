@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVPackage()
+ * @see cvl.CvlPackage#getVPackage()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface VPackage extends VPackageable {
 	 * <p>Elements contained in this VPackage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Package Element</em>' containment reference list.
-	 * @see cvl.cvlPackage#getVPackage_PackageElement()
+	 * @see cvl.CvlPackage#getVPackage_PackageElement()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

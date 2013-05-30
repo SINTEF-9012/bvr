@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.ChoiceDerivation;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 import java.util.List;
@@ -77,7 +77,7 @@ public class ChoiceDerivationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ChoiceDerivation_derivedChoice_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceDerivation_derivedChoice_feature", "_UI_ChoiceDerivation_type"),
-				 cvlPackage.Literals.CHOICE_DERIVATION__DERIVED_CHOICE,
+				 CvlPackage.Literals.CHOICE_DERIVATION__DERIVED_CHOICE,
 				 true,
 				 false,
 				 true,
@@ -98,7 +98,7 @@ public class ChoiceDerivationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(cvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT);
+			childrenFeatures.add(CvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -153,7 +153,7 @@ public class ChoiceDerivationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ChoiceDerivation.class)) {
-			case cvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
+			case CvlPackage.CHOICE_DERIVATION__DERIVING_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -173,18 +173,18 @@ public class ChoiceDerivationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createConstraint()));
+				(CvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createOpaqueConstraint()));
+				(CvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createOpaqueConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(cvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT,
-				 cvlFactory.eINSTANCE.createBCLConstraint()));
+				(CvlPackage.Literals.CHOICE_DERIVATION__DERIVING_CONSTRAINT,
+				 CvlFactory.eINSTANCE.createBCLConstraint()));
 	}
 
 }

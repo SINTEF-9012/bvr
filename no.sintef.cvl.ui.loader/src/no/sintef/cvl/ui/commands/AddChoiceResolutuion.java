@@ -5,17 +5,19 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.ui.editor.CVLUIKernel;
+import no.sintef.cvl.ui.dropdowns.ChoiceResolutionDropDownListener;
+import no.sintef.cvl.ui.editors.CVLUIKernel;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
+import cvl.NamedElement;
 import cvl.VSpec;
 
 public class AddChoiceResolutuion implements Command {
-	private Map<JComponent, VSpec> vmMap;
+	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
@@ -24,7 +26,7 @@ public class AddChoiceResolutuion implements Command {
 	private ChoiceResolutuion c;
 	private CommandMouseListener listener;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, VSpec> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof ChoiceResolutuion){
 			this.rootPanel = rootPanel;
 			this.c = (ChoiceResolutuion) p;
@@ -41,16 +43,18 @@ public class AddChoiceResolutuion implements Command {
 	}
 
 	public JComponent execute() {
+		//System.out.println("adding choice");
+		
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
-        cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, view));
+        cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, vmMap, view));
         cp.addMouseListener(listener);
 		
 		String choicename = "null";
-		if(c.getResolvedChoice() != null){
-			choicename = c.getResolvedChoice().getName();
+		if(c.getResolvedVSpec() != null){
+			choicename = c.getResolvedVSpec().getName();
 		}
 		
         cp.setTitle(choicename + " = " + c.isDecision());

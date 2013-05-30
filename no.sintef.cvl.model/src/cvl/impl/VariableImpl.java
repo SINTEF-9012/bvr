@@ -2,11 +2,12 @@
  */
 package cvl.impl;
 
+import cvl.CvlPackage;
 import cvl.ReplacementFragmentType;
+import cvl.ReplacementFragment;
 import cvl.ValueSpecification;
 import cvl.Variable;
 import cvl.Variabletype;
-import cvl.cvlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -78,7 +79,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.VARIABLE;
+		return CvlPackage.Literals.VARIABLE;
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 			replacementFragmentTypesubsetstype = (ReplacementFragmentType)eResolveProxy(oldReplacementFragmentTypesubsetstype);
 			if (replacementFragmentTypesubsetstype != oldReplacementFragmentTypesubsetstype) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE, oldReplacementFragmentTypesubsetstype, replacementFragmentTypesubsetstype));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE, oldReplacementFragmentTypesubsetstype, replacementFragmentTypesubsetstype));
 			}
 		}
 		return replacementFragmentTypesubsetstype;
@@ -116,7 +117,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 		ReplacementFragmentType oldReplacementFragmentTypesubsetstype = replacementFragmentTypesubsetstype;
 		replacementFragmentTypesubsetstype = newReplacementFragmentTypesubsetstype;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE, oldReplacementFragmentTypesubsetstype, replacementFragmentTypesubsetstype));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE, oldReplacementFragmentTypesubsetstype, replacementFragmentTypesubsetstype));
 	}
 
 	/**
@@ -137,7 +138,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 		ValueSpecification oldDefaulValue = defaulValue;
 		defaulValue = newDefaulValue;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE__DEFAUL_VALUE, oldDefaulValue, newDefaulValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE__DEFAUL_VALUE, oldDefaulValue, newDefaulValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -152,14 +153,14 @@ public class VariableImpl extends VSpecImpl implements Variable {
 		if (newDefaulValue != defaulValue) {
 			NotificationChain msgs = null;
 			if (defaulValue != null)
-				msgs = ((InternalEObject)defaulValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VARIABLE__DEFAUL_VALUE, null, msgs);
+				msgs = ((InternalEObject)defaulValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VARIABLE__DEFAUL_VALUE, null, msgs);
 			if (newDefaulValue != null)
-				msgs = ((InternalEObject)newDefaulValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - cvlPackage.VARIABLE__DEFAUL_VALUE, null, msgs);
+				msgs = ((InternalEObject)newDefaulValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CvlPackage.VARIABLE__DEFAUL_VALUE, null, msgs);
 			msgs = basicSetDefaulValue(newDefaulValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE__DEFAUL_VALUE, newDefaulValue, newDefaulValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE__DEFAUL_VALUE, newDefaulValue, newDefaulValue));
 	}
 
 	/**
@@ -173,7 +174,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 			type = (Variabletype)eResolveProxy(oldType);
 			if (type != oldType) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, cvlPackage.VARIABLE__TYPE, oldType, type));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CvlPackage.VARIABLE__TYPE, oldType, type));
 			}
 		}
 		return type;
@@ -197,7 +198,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 		Variabletype oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, cvlPackage.VARIABLE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, CvlPackage.VARIABLE__TYPE, oldType, type));
 	}
 
 	/**
@@ -208,7 +209,7 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE__DEFAUL_VALUE:
+			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				return basicSetDefaulValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -222,12 +223,12 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
+			case CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
 				if (resolve) return getReplacementFragmentTypesubsetstype();
 				return basicGetReplacementFragmentTypesubsetstype();
-			case cvlPackage.VARIABLE__DEFAUL_VALUE:
+			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				return getDefaulValue();
-			case cvlPackage.VARIABLE__TYPE:
+			case CvlPackage.VARIABLE__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
 		}
@@ -242,13 +243,13 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
+			case CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
 				setReplacementFragmentTypesubsetstype((ReplacementFragmentType)newValue);
 				return;
-			case cvlPackage.VARIABLE__DEFAUL_VALUE:
+			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				setDefaulValue((ValueSpecification)newValue);
 				return;
-			case cvlPackage.VARIABLE__TYPE:
+			case CvlPackage.VARIABLE__TYPE:
 				setType((Variabletype)newValue);
 				return;
 		}
@@ -263,13 +264,13 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
+			case CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
 				setReplacementFragmentTypesubsetstype((ReplacementFragmentType)null);
 				return;
-			case cvlPackage.VARIABLE__DEFAUL_VALUE:
+			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				setDefaulValue((ValueSpecification)null);
 				return;
-			case cvlPackage.VARIABLE__TYPE:
+			case CvlPackage.VARIABLE__TYPE:
 				setType((Variabletype)null);
 				return;
 		}
@@ -284,11 +285,11 @@ public class VariableImpl extends VSpecImpl implements Variable {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
+			case CvlPackage.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE:
 				return replacementFragmentTypesubsetstype != null;
-			case cvlPackage.VARIABLE__DEFAUL_VALUE:
+			case CvlPackage.VARIABLE__DEFAUL_VALUE:
 				return defaulValue != null;
-			case cvlPackage.VARIABLE__TYPE:
+			case CvlPackage.VARIABLE__TYPE:
 				return type != null;
 		}
 		return super.eIsSet(featureID);

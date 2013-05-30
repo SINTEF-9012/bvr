@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -26,8 +28,9 @@ import cvl.MultiplicityInterval;
 import cvl.OpaqueConstraint;
 import cvl.VClassifier;
 import cvl.VSpec;
-import cvl.cvlFactory;
-import cvl.cvlPackage;
+import cvl.VSpecResolution;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
 import cvl.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
@@ -37,14 +40,14 @@ public class CVLModel {
 	private ConfigurableUnit cu;
 
 	public CVLModel(){
-		cvlPackage.eINSTANCE.eClass();
-		cvlFactory factory = cvlFactory.eINSTANCE;
+		CvlPackage.eINSTANCE.eClass();
+		CvlFactory factory = CvlFactory.eINSTANCE;
 		cu = factory.createConfigurableUnit();
 		cu.setName("Configurable Unit 1");
 	}
 
 	public CVLModel(File f) {
-		cvlPackage.eINSTANCE.eClass();
+		CvlPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createURI("file:///" + f.getAbsolutePath()), true);
@@ -157,9 +160,7 @@ public class CVLModel {
 			confs.get(nr).put(fname, fa);
 		}
 		
-		int i = 0;
 		for(Map<String, Boolean> conf : confs){
-			//System.out.println(i++ + ": " + x);
 			ChoiceResolutuion cr = recursivelyResolve(conf, (Choice)cu.getOwnedVSpec().get(0));
 			cu.getOwnedVSpecResolution().add(cr);
 		}
@@ -167,8 +168,7 @@ public class CVLModel {
 	
 	private ChoiceResolutuion recursivelyResolve(Map<String, Boolean> conf, Choice choice) {
 		// Add node
-		ChoiceResolutuion cr = cvlFactory.eINSTANCE.createChoiceResolutuion();
-		cr.setResolvedChoice(choice);
+		ChoiceResolutuion cr = CvlFactory.eINSTANCE.createChoiceResolutuion();
 		cr.setResolvedVSpec(choice);
 		cr.setDecision(conf.get(choice.getName()));
 		
@@ -210,5 +210,81 @@ public class CVLModel {
 		}
 		
 		return name;
+	}
+
+	public CoveringArray getCoveringArray() throws CVLException, CSVException {
+		//System.out.println("--------------------------------");
+		
+		//System.out.println(cu.getOwnedVSpecResolution().size());
+		
+		// Read in
+		List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
+		for(VSpecResolution c : cu.getOwnedVSpecResolution()){
+			Map<String, Boolean> as = new HashMap<String, Boolean>();
+			if(!(c instanceof ChoiceResolutuion)){
+				throw new CVLException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+			}
+			as.putAll(recurse((ChoiceResolutuion)c));
+			//System.out.println(as);
+			prods.add(as);
+		}
+		
+		// Get features
+		Set<String> fs = new HashSet<String>();
+		for(Map<String, Boolean> p : prods){
+			fs.addAll(p.keySet());		
+		}
+		//System.out.println(fs);
+		
+		// Convert
+		//System.out.println(prods);
+		//System.out.println("Size: " + (prods.size()+1) + ", " + (prods.get(0).size() + 1));
+		String csv[][] = new String[prods.size()+1][prods.get(0).size() + 1];
+		csv[0][0] = "Feature\\Product";
+		for(int i = 0; i < prods.size(); i++){
+			csv[i+1][0] = "" + (i+1);
+		}
+		
+		{
+		int i = 0;
+		for(String f : fs){
+			csv[0][i+1] = f;
+			int j = 0;
+			for(Map<String, Boolean> p : prods){
+				csv[j+1][i+1] = p.get(f)?"X":"-"; 
+				j++;
+			}
+			i++;
+		}
+		}
+		
+		// Print
+		String csvString = "";
+		for(int i = 0; i < csv[0].length; i++){
+			for(int j = 0; j < csv.length; j++){
+				csvString += csv[j][i] + ";";
+			}
+			csvString += "\n";
+		}
+		
+		//System.out.println(csvString);
+		
+		CoveringArray ca = new CoveringArrayFile(csvString);
+		return ca;
+	}
+
+	private Map<String, Boolean> recurse(ChoiceResolutuion x) throws CVLException {
+		Map<String, Boolean> as = new HashMap<String, Boolean>();
+		
+		as.put(x.getResolvedVSpec().getName(), x.isDecision());
+		
+		for(VSpecResolution c : x.getChild()){
+			if(!(c instanceof ChoiceResolutuion)){
+				throw new CVLException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+			}
+			as.putAll(recurse((ChoiceResolutuion)c));
+		}
+		
+		return as;
 	}
 }

@@ -20,7 +20,7 @@ package cvl;
  * </ul>
  * </p>
  *
- * @see cvl.cvlPackage#getVariableValueAssignment()
+ * @see cvl.CvlPackage#getVariableValueAssignment()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface VariableValueAssignment extends VSpecResolution {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resolved Variable</em>' reference.
 	 * @see #setResolvedVariable(Variable)
-	 * @see cvl.cvlPackage#getVariableValueAssignment_ResolvedVariable()
+	 * @see cvl.CvlPackage#getVariableValueAssignment_ResolvedVariable()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public interface VariableValueAssignment extends VSpecResolution {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
 	 * @see #setValue(ValueSpecification)
-	 * @see cvl.cvlPackage#getVariableValueAssignment_Value()
+	 * @see cvl.CvlPackage#getVariableValueAssignment_Value()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */

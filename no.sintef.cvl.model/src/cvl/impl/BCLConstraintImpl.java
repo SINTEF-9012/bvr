@@ -4,7 +4,7 @@ package cvl.impl;
 
 import cvl.BCLConstraint;
 import cvl.BCLExpression;
-import cvl.cvlPackage;
+import cvl.CvlPackage;
 
 import java.util.Collection;
 
@@ -58,7 +58,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return cvlPackage.Literals.BCL_CONSTRAINT;
+		return CvlPackage.Literals.BCL_CONSTRAINT;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	 */
 	public EList<BCLExpression> getExpression() {
 		if (expression == null) {
-			expression = new EObjectContainmentEList<BCLExpression>(BCLExpression.class, this, cvlPackage.BCL_CONSTRAINT__EXPRESSION);
+			expression = new EObjectContainmentEList<BCLExpression>(BCLExpression.class, this, CvlPackage.BCL_CONSTRAINT__EXPRESSION);
 		}
 		return expression;
 	}
@@ -81,7 +81,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case cvlPackage.BCL_CONSTRAINT__EXPRESSION:
+			case CvlPackage.BCL_CONSTRAINT__EXPRESSION:
 				return ((InternalEList<?>)getExpression()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +95,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case cvlPackage.BCL_CONSTRAINT__EXPRESSION:
+			case CvlPackage.BCL_CONSTRAINT__EXPRESSION:
 				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +110,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case cvlPackage.BCL_CONSTRAINT__EXPRESSION:
+			case CvlPackage.BCL_CONSTRAINT__EXPRESSION:
 				getExpression().clear();
 				getExpression().addAll((Collection<? extends BCLExpression>)newValue);
 				return;
@@ -126,7 +126,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case cvlPackage.BCL_CONSTRAINT__EXPRESSION:
+			case CvlPackage.BCL_CONSTRAINT__EXPRESSION:
 				getExpression().clear();
 				return;
 		}
@@ -141,7 +141,7 @@ public class BCLConstraintImpl extends ConstraintImpl implements BCLConstraint {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case cvlPackage.BCL_CONSTRAINT__EXPRESSION:
+			case CvlPackage.BCL_CONSTRAINT__EXPRESSION:
 				return expression != null && !expression.isEmpty();
 		}
 		return super.eIsSet(featureID);
