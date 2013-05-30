@@ -46,15 +46,14 @@ public class BoundariesDropDownCalculator {
 		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = filterOutBoundariesByType(placement, replacement);
 		ArrayList<VariationPoint> toPlacements = fileterdBoundaries.get(TOPLCMNT);
 		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(TOREPLCMNT);
-		/*System.out.println(toReplacements);
 		VariationPoint nullToReplacement = getNullBoundary(toReplacements);
 		if(nullToReplacement == null){
 			throw new CVLModelException("can not find NULL boundary of the type ToReplacement");
 		}
-		toReplacements.remove(nullToReplacement);*/
+		toReplacements.remove(nullToReplacement);
 		for(VariationPoint toPlacement : toPlacements){
 			ArrayList<VariationPoint> toReplcmnts = getCompliedToReplacements((ToPlacement) toPlacement, toReplacements);
-			//toReplcmnts.add(0, nullToReplacement);
+			toReplcmnts.add(0, nullToReplacement);
 			
 			DataNamedElementItem toPlacementDataItem = new DataNamedElementItem(new JLabel(toPlacement.getName()), toPlacement);
 			ArrayList<DataItem> toReplcmntsDataItem = wrapBoundaries(toReplcmnts);
@@ -64,14 +63,14 @@ public class BoundariesDropDownCalculator {
 		
 		ArrayList<VariationPoint> fromReplacements = fileterdBoundaries.get(FROMREPLCMNT);
 		ArrayList<VariationPoint> fromPlacements = fileterdBoundaries.get(FROMPLCMNT);
-		/*VariationPoint nullFromPlacement = getNullBoundary(fromPlacements);
+		VariationPoint nullFromPlacement = getNullBoundary(fromPlacements);
 		if(nullFromPlacement == null){
 			throw new CVLModelException("can not find NULL boundary of the type FromPlacement");
 		}
-		fromPlacements.remove(nullFromPlacement);*/
+		fromPlacements.remove(nullFromPlacement);
 		for(VariationPoint fromReplacement : fromReplacements){
 			ArrayList<VariationPoint> fromPlcmnts = getCompliedFromPlacements((FromReplacement) fromReplacement, fromPlacements);
-			//fromPlcmnts.add(0, nullFromPlacement);
+			fromPlcmnts.add(0, nullFromPlacement);
 			
 			DataNamedElementItem fromReplacementDataItem = new DataNamedElementItem(new JLabel(fromReplacement.getName()), fromReplacement);
 			ArrayList<DataItem> fromPlcmntsDataItem = wrapBoundaries(fromPlcmnts);
@@ -86,15 +85,12 @@ public class BoundariesDropDownCalculator {
 		for(VariationPoint boundary : boundaries){
 			if(boundary instanceof ToReplacement){
 				ToReplacement toReplacement = (ToReplacement) boundary;
-				System.out.println(toReplacement.getName());
-				System.out.println(toReplacement.getInsideBoundaryElement());
-				System.out.println(toReplacement.getOutsideBoundaryElement());
-				if(toReplacement.getName().equals(Constants.NULL_NAME) && toReplacement.getInsideBoundaryElement() == null && toReplacement.getOutsideBoundaryElement() == null){
+				if(toReplacement.getName().equals(Constants.NULL_NAME) && toReplacement.getInsideBoundaryElement().isEmpty() && toReplacement.getOutsideBoundaryElement() == null){
 					return boundary;
 				}
 			}else if(boundary instanceof FromPlacement){
 				FromPlacement fromPlacement = (FromPlacement) boundary;
-				if(fromPlacement.getName().equals(Constants.NULL_NAME) && fromPlacement.getInsideBoundaryElement() == null && fromPlacement.getOutsideBoundaryElement() == null){
+				if(fromPlacement.getName().equals(Constants.NULL_NAME) && fromPlacement.getInsideBoundaryElement() == null && fromPlacement.getOutsideBoundaryElement().isEmpty()){
 					return boundary;
 				}
 			}
@@ -104,9 +100,7 @@ public class BoundariesDropDownCalculator {
 	
 	private static ArrayList<VariationPoint> getCompliedToReplacements(ToPlacement toPlacement, ArrayList<VariationPoint> toReplacements) {
 		ArrayList<VariationPoint> toRplcmnts = new ArrayList<VariationPoint>();
-		for(VariationPoint tr : toReplacements){
-			System.out.println(((ToReplacement) tr).getOutsideBoundaryElement());
-		}
+		
 		//we should have here smart algorithm!!!:) Let us have a stub for now
 		toRplcmnts.addAll(toReplacements);
 		return toRplcmnts;
