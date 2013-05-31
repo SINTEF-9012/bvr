@@ -14,8 +14,7 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
-import no.sintef.dsl.node.nodePackage;
-
+import node.NodePackage;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -36,7 +35,7 @@ public class RunExp {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws BasicCVLEngineException, IOException {
-		nodePackage.eINSTANCE.eClass();
+		NodePackage.eINSTANCE.eClass();
 		int maxExp = 1;
 		EList<Long> finderTime = new BasicEList<Long>();
 		EList<Long> pureSubTime = new BasicEList<Long>();

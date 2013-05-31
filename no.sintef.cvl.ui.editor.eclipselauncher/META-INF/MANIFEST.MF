@@ -11,14 +11,13 @@ Require-Bundle: org.eclipse.ui,
  no.sintef.cvl.model.editor;bundle-version="1.0.0",
  no.sintef.cvl.ui.editor.eclipse;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.ui.adapters,
  no.sintef.cvl.ui.commands,
  no.sintef.cvl.ui.commands.events,
  no.sintef.cvl.ui.dropdowns,
  no.sintef.cvl.ui.edit,
- no.sintef.cvl.ui.editor,
  no.sintef.cvl.ui.exceptions,
  no.sintef.cvl.ui.framework,
  no.sintef.cvl.ui.framework.data,
@@ -32,7 +31,6 @@ Import-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.ui.commands.events,
  no.sintef.cvl.ui.dropdowns,
  no.sintef.cvl.ui.edit,
- no.sintef.cvl.ui.editor,
  no.sintef.cvl.ui.editor.eclipse,
  no.sintef.cvl.ui.editor.eclipse.editors,
  no.sintef.cvl.ui.exceptions,

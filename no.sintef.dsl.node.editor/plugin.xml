@@ -11,24 +11,24 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="no.sintef.dsl.node.presentation.nodeModelWizardID"
-            name="%_UI_nodeModelWizard_label"
-            class="no.sintef.dsl.node.presentation.nodeModelWizard"
+            id="node.presentation.NodeModelWizardID"
+            name="%_UI_NodeModelWizard_label"
+            class="node.presentation.NodeModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/nodeModelFile.gif">
-         <description>%_UI_nodeModelWizard_description</description>
+            icon="icons/full/obj16/NodeModelFile.gif">
+         <description>%_UI_NodeModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="no.sintef.dsl.node.presentation.nodeEditorID"
-            name="%_UI_nodeEditor_label"
-            icon="icons/full/obj16/nodeModelFile.gif"
+            id="node.presentation.NodeEditorID"
+            name="%_UI_NodeEditor_label"
+            icon="icons/full/obj16/NodeModelFile.gif"
             extensions="node"
-            class="no.sintef.dsl.node.presentation.nodeEditor"
-            contributorClass="no.sintef.dsl.node.presentation.nodeActionBarContributor">
+            class="node.presentation.NodeEditor"
+            contributorClass="node.presentation.NodeActionBarContributor">
       </editor>
    </extension>
 

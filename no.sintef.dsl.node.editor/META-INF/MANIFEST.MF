@@ -4,11 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: no.sintef.dsl.node.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: no.sintef.dsl.node.presentation.NodeEditorPlugin$Implementation
+Bundle-Activator: node.presentation.NodeEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: no.sintef.dsl.node.presentation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: node.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  no.sintef.dsl.node.edit;visibility:=reexport,

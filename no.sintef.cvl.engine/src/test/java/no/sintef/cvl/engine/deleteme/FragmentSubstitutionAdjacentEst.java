@@ -15,7 +15,7 @@ import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
-import no.sintef.dsl.node.nodePackage;
+import node.NodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -44,7 +44,7 @@ import cvl.VariationPoint;
 public class FragmentSubstitutionAdjacentEst {
 	@Before
 	public void setUp() throws Exception {
-		nodePackage.eINSTANCE.eClass();
+		NodePackage.eINSTANCE.eClass();
 	}
 
 	@After

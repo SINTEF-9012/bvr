@@ -186,12 +186,12 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<!-- <scope>test</scope>-->
 	</dependency>
-    <!--<dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>10.0.1</version>
       <scope>test</scope>
-    </dependency>-->
+    </dependency>
     
     <!-- this dependencies were installed locally on my machine, need to find out a way to put them somewhere locally available for all sintef
     <dependency>

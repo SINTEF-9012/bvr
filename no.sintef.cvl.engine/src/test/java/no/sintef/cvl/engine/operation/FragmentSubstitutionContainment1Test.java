@@ -8,7 +8,7 @@ import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
-import no.sintef.dsl.node.nodePackage;
+import node.NodePackage;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;

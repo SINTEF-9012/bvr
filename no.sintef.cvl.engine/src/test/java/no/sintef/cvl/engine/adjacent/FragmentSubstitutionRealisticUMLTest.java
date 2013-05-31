@@ -18,7 +18,7 @@ import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
-import no.sintef.dsl.node.nodePackage;
+import node.NodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;

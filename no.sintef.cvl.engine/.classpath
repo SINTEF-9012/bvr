@@ -32,7 +32,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="jars/com.google.guava_10.0.1.v201203051515.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.emf.compare_3.0.0.201211131624.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2_4.0.1.v20120913-1441.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2.codegen.ecore_1.8.1.v20120913-1441.jar"/>

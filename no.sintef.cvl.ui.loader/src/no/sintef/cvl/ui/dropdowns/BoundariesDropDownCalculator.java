@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.swing.JLabel;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
@@ -20,6 +21,7 @@ import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
+import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
 import cvl.ReplacementBoundaryElement;
