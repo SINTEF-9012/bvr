@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="jars/com.google.guava_10.0.1.v201203051515.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.emf.compare_3.0.0.201211131624.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.codegen.ecore_1.8.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.codegen.ecore.source_1.8.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.codegen.ecore.ui_1.7.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.codegen.ecore.ui.source_1.7.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.common_1.7.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.common.edit_1.6.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.common.edit.source_1.6.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.common.source_1.7.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.doc_4.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.examples_4.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.examples.source_4.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.examples.uml.ui_4.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.examples.uml.ui.source_4.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.source_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.types_1.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.types.source_1.0.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.ecore.exporter_2.6.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.ecore.exporter.source_2.6.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.ecore.importer_2.6.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.ecore.importer.source_2.6.0.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.edit_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.edit.source_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.editor_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.editor.source_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.profile.l2_1.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.profile.l2.source_1.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.profile.l3_1.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.profile.l3.source_1.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.resources_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.resources.source_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.source_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

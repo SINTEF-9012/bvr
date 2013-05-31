@@ -1,8 +1,5 @@
 /bin
 *.class
-/.project
-/.classpath
 /target
-/.settings
 base_new.node
 model_new.uml
