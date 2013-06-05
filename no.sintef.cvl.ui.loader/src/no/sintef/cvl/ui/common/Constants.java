@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.common;
 
+import javax.swing.Icon;
+
 public class Constants {
 	
 	//relaization
@@ -43,5 +45,9 @@ public class Constants {
 	public static final String BINDING_TYPE_FROM_BINDING_NAME = "FromBinding";
 	public static final String BINDING_EDITOR_NAME = "Bindings";
 	public static final String NULL_NAME = "NULL";
+	
+	
+	public static final String RESOLUTION_EXECUTE_NAME = "Execute";
+	public static final String RESOLUTION_EXECUTE_ALL_NAME = "Execute All";
 	
 }

@@ -23,6 +23,7 @@ import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.DeleteFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.DeletePlacementReplacementFragmentEvent;
+import no.sintef.cvl.ui.commands.events.ExecuteResolutionEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
 import no.sintef.cvl.ui.common.Constants;
 import cvl.NamedElement;
@@ -152,6 +153,15 @@ public class Main {
 			resmenu.add(new JSeparator());
 			resmenu.add(camenu);
 		}
+		
+		resmenu.add(new JSeparator());
+		
+		JMenuItem execute = new JMenuItem(Constants.RESOLUTION_EXECUTE_NAME);
+		execute.addActionListener(new ExecuteResolutionEvent(filePane, models, views));
+		resmenu.add(execute);
+		
+		JMenuItem executeAll = new JMenuItem(Constants.RESOLUTION_EXECUTE_ALL_NAME);
+		resmenu.add(executeAll);
 		
 		menuBar.add(resmenu);
 		
