@@ -21,6 +21,7 @@ import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.editors.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -46,13 +47,13 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		
 		ConfigurableUnit cu = m.getCU();
 		
-		if(!this.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
-			JOptionPane.showMessageDialog(null, "'Variation points' tab is not in focus");
+		if(!Utility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
+			JOptionPane.showMessageDialog(null, "Tab with variation points is not in focus");
 			return;
 		}
 
 		JPanel variationPanel = (JPanel) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
-		JTable subFragTable = this.getSibstitutionFragmentTable(variationPanel);
+		JTable subFragTable = Utility.getSibstitutionFragmentTable(variationPanel);
 		if(subFragTable == null){
 			JOptionPane.showMessageDialog(null, "can not find a table with listed placement/replacement fragments");
 			return;
@@ -103,29 +104,4 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		}
 		return null;
 	}
-	
-	private JTable getSibstitutionFragmentTable(JPanel variationPanel){
-		Component[] components = variationPanel.getComponents();
-		for(Component comp : components){
-			if(comp instanceof JScrollPane){
-				Component table = ((JScrollPane) comp).getViewport().getView();
-				if(table instanceof SubstitutionFragmentJTable){
-					return (SubstitutionFragmentJTable) table;
-				}
-			}
-		}
-		return null;
-	}
-	
-	private boolean isVariationPointsPanelInFocus(JTabbedPane modelPanel){
-		if(modelPanel != null && modelPanel.getSelectedComponent() != null){
-			if(modelPanel.getSelectedComponent() instanceof JTabbedPane && ((JTabbedPane) modelPanel.getSelectedComponent()).getSelectedComponent() != null){
-				if(((JTabbedPane) modelPanel.getSelectedComponent()).getSelectedComponent().getName().equals("Variation points")){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
 }

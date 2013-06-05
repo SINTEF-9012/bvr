@@ -20,6 +20,13 @@ public class Constants {
 	
 	public static final String REALIZATION_TAB_NAME = "Realization";
 	public static final String REALIZATION_VP_SUBTAB_NAME = "Variation points";
+	public static final String REALIZATION_MAIN_MENU_NAME = "Realization";
+	public static final String REALIZATION_CR_PLCMT_NAME = "Create Placement";
+	public static final String REALIZATION_CR_RPLCMT_NAME = "Create Replacement";
+	public static final String REALIZATION_CR_FS_NAME = "Create FragmentSubstitution";
+	public static final String REALIZATION_CLEAR_SELECTION_NAME = "Clear Selection";
+	public static final String REALIZATION_DL_PLCMT_RPLCMT_NAME = "Delete Placement/Replacement";
+	public static final String REALIZATION_DL_FS_NAME = "Delete FragmentSubstitution";
 	
 	public static final String FRAG_SUB_VP_CLMN_NAME = "Variation points";
 	public static final String FRAG_SUB_VSPEC_CLMN_NAME = "VSpec";

@@ -21,7 +21,10 @@ import no.sintef.cvl.ui.commands.events.CreateFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
+import no.sintef.cvl.ui.commands.events.DeleteFragmentSubstitutionEvent;
+import no.sintef.cvl.ui.commands.events.DeletePlacementReplacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
+import no.sintef.cvl.ui.common.Constants;
 import cvl.NamedElement;
 
 public class Main {
@@ -152,26 +155,36 @@ public class Main {
 		
 		menuBar.add(resmenu);
 		
-		// Eclipse
-		JMenu eclipsemenu = new JMenu("Realization");
+		// realization menu
+		JMenu realizationMenu = new JMenu(Constants.REALIZATION_MAIN_MENU_NAME);
 		
-		JMenuItem createPlacement = new JMenuItem("Create Placement");
+		JMenuItem createPlacement = new JMenuItem(Constants.REALIZATION_CR_PLCMT_NAME);
 		createPlacement.addActionListener(new CreatePlacementFragmentEvent(filePane, models, views, w));
-		eclipsemenu.add(createPlacement);
+		realizationMenu.add(createPlacement);
 		
-		JMenuItem createReplacement = new JMenuItem("Create Replacement");
+		JMenuItem createReplacement = new JMenuItem(Constants.REALIZATION_CR_RPLCMT_NAME);
 		createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane, models, views, w));
-		eclipsemenu.add(createReplacement);
+		realizationMenu.add(createReplacement);
 		
-		JMenuItem createFragmentSubstitution = new JMenuItem("Create FragmentSubstitution");
+		JMenuItem createFragmentSubstitution = new JMenuItem(Constants.REALIZATION_CR_FS_NAME);
 		createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(filePane, models, views));
-		eclipsemenu.add(createFragmentSubstitution);
+		realizationMenu.add(createFragmentSubstitution);
+		realizationMenu.add(new JSeparator());
 		
-		JMenuItem clearSelection = new JMenuItem("Clear selection");
+		JMenuItem deletePlacementReplacement = new JMenuItem(Constants.REALIZATION_DL_PLCMT_RPLCMT_NAME);
+		deletePlacementReplacement.addActionListener(new DeletePlacementReplacementFragmentEvent(filePane, models, views));
+		realizationMenu.add(deletePlacementReplacement);
+		
+		JMenuItem deleteFragmentSubstitution = new JMenuItem(Constants.REALIZATION_DL_FS_NAME);
+		deleteFragmentSubstitution.addActionListener(new DeleteFragmentSubstitutionEvent(filePane, models, views));
+		realizationMenu.add(deleteFragmentSubstitution);
+		
+		realizationMenu.add(new JSeparator());
+		JMenuItem clearSelection = new JMenuItem(Constants.REALIZATION_CLEAR_SELECTION_NAME);
 		clearSelection.addActionListener(new ClearSelectionRelalizationEvent(filePane, models, views));
-		eclipsemenu.add(clearSelection);
+		realizationMenu.add(clearSelection);
 		
-		menuBar.add(eclipsemenu);
+		menuBar.add(realizationMenu);
 
 		// Done
 		jframe.add(filePane, BorderLayout.CENTER);

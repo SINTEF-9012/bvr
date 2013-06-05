@@ -1,7 +1,16 @@
 package no.sintef.cvl.ui.common;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+
+import no.sintef.cvl.ui.editors.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.editors.SubstitutionFragmentJTable;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -89,5 +98,42 @@ public class Utility {
 		boundariesMap.put(TOREPLCMNT, toReplacements);
 		boundariesMap.put(FROMREPLCMNT, fromReplacements);
 		return boundariesMap;
+	}
+	
+	public static boolean isVariationPointsPanelInFocus(JTabbedPane modelPanel){
+		if(modelPanel != null && modelPanel.getSelectedComponent() != null){
+			if(modelPanel.getSelectedComponent() instanceof JTabbedPane && ((JTabbedPane) modelPanel.getSelectedComponent()).getSelectedComponent() != null){
+				if(((JTabbedPane) modelPanel.getSelectedComponent()).getSelectedComponent().getName().equals(Constants.REALIZATION_VP_SUBTAB_NAME)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static JTable getSibstitutionFragmentTable(JPanel variationPanel){
+		Component[] components = variationPanel.getComponents();
+		for(Component comp : components){
+			if(comp instanceof JScrollPane){
+				Component table = ((JScrollPane) comp).getViewport().getView();
+				if(table instanceof SubstitutionFragmentJTable){
+					return (SubstitutionFragmentJTable) table;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static JTable getFragmentSibstitutionTable(JPanel variationPanel){
+		Component[] components = variationPanel.getComponents();
+		for(Component comp : components){
+			if(comp instanceof JScrollPane){
+				Component table = ((JScrollPane) comp).getViewport().getView();
+				if(table instanceof FragmentSubstitutionJTable){
+					return (FragmentSubstitutionJTable) table;
+				}
+			}
+		}
+		return null;
 	}
 }
