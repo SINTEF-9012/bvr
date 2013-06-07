@@ -81,9 +81,7 @@ public class FragmentSubstitutionAdjacentBasicTest {
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);
 		fragmentSubHolderList.add(fragmentSubHolder3);
-		System.out.println(cu.eResource().getResourceSet());
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
-		System.out.println(cu.eResource().getResourceSet());
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}
 

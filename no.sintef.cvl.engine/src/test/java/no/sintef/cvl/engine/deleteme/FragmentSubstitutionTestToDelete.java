@@ -101,8 +101,6 @@ public class FragmentSubstitutionTestToDelete {
 		
 	@Test
 	public void testSingleSubstitution() throws Exception {
-		Logger logger = SubstitutionContext.ME.getLogger();
-		logger.info("adasd");
 		BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);
