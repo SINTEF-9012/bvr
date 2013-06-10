@@ -11,6 +11,8 @@ import cvl.VSpecResolution;
 
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.parsers.impl.ResolutionRealizationComposer;
+import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbolTable;
 
 public class ExecuteResolutionEvent implements ActionListener {
 
@@ -32,6 +34,12 @@ public class ExecuteResolutionEvent implements ActionListener {
 		CVLModel m = models.get(tab);
 		ConfigurableUnit cu = m.getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
+		
+		ResolutionRealizationComposer composer = new ResolutionRealizationComposer(cu);
+		VSpecResolutionSymbolTable composedResolution = (VSpecResolutionSymbolTable) composer.buildSymbolTable(vsr);
+		System.out.println(composedResolution);
+		System.out.println(composedResolution.getSymbols());
+		System.out.println(composedResolution.getChildren());
+		System.out.println(composedResolution.getParent());
 	}
-
 }

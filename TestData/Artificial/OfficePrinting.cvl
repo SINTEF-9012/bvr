@@ -20,6 +20,7 @@
       <instanceMultiplicity upper="-1" lower="1"/>
     </child>
   </ownedVSpec>
+  <ownedVSpec xsi:type="cvl:Choice" name="SomeFacility"/>
   <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
     <child xsi:type="cvl:VInstance" name="room1" resolvedVSpec="//@ownedVSpec.0/@child.0">
       <child xsi:type="cvl:VInstance" name="pool" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
@@ -53,5 +54,8 @@
         <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1"/>
       </child>
     </child>
+  </ownedVSpecResolution>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:VInstance" name="vInstance1" resolvedVSpec="//@ownedVSpec.0/@child.0"/>
   </ownedVSpecResolution>
 </cvl:ConfigurableUnit>
