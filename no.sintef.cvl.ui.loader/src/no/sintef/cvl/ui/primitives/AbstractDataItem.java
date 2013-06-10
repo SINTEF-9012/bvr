@@ -1,8 +1,8 @@
-package no.sintef.cvl.ui.adapters;
+package no.sintef.cvl.ui.primitives;
 
 import javax.swing.JLabel;
 
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 
 import cvl.NamedElement;
 

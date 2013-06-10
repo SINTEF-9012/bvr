@@ -7,11 +7,11 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import org.eclipse.emf.common.util.EList;
 
-import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
+import no.sintef.cvl.ui.primitives.impl.DataBoundaryItem;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 
 import cvl.BoundaryElementBinding;
 import cvl.FragmentSubstitution;

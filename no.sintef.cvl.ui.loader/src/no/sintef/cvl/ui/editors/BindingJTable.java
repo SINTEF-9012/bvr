@@ -3,11 +3,11 @@ package no.sintef.cvl.ui.editors;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.BindingTableModel;
+import no.sintef.cvl.ui.primitives.impl.DataBoundaryItem;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.renderes.BindingBoundariesCellRenderer;
 import cvl.ConfigurableUnit;
 

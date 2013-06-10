@@ -6,8 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.primitives.DataItem;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;
 import cvl.VariationPoint;

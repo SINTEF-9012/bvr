@@ -13,13 +13,13 @@ import javax.swing.JTable;
 import cvl.ConfigurableUnit;
 import cvl.VariationPoint;
 
-import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.FragSubTableModel;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class DeleteFragmentSubstitutionEvent implements ActionListener {
 

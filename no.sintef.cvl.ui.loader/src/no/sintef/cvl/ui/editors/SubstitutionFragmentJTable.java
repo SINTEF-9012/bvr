@@ -6,11 +6,11 @@ import javax.swing.JTable;
 
 import org.eclipse.emf.common.util.EList;
 
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.commands.events.SubFragTableEvent;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.SubFragTableModel;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.renderes.SubFragTableCellRenderer;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;

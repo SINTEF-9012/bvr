@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.adapters;
+package no.sintef.cvl.ui.primitives;
 
 import javax.swing.JLabel;
 import cvl.NamedElement;

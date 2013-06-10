@@ -9,9 +9,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
-import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.models.FragSubVSpecComboboxModel;
+import no.sintef.cvl.ui.primitives.DataItem;
 import no.sintef.cvl.ui.renderes.FragSubVSpecComboboxRenderer;
 
 public class FragSubVSpecTableCellEditor extends AbstractCellEditor

@@ -10,8 +10,8 @@ import javax.swing.table.TableCellEditor;
 
 import javax.swing.AbstractCellEditor;
 
-import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class FragSubTextTabelCellEditor extends AbstractCellEditor implements
 		TableCellEditor {

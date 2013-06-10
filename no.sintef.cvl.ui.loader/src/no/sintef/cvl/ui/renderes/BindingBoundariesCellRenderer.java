@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 
-import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class BindingBoundariesCellRenderer extends DefaultTableCellRenderer implements
 		TableCellRenderer {

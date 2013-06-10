@@ -1,10 +1,10 @@
-package no.sintef.cvl.ui.adapters.impl;
+package no.sintef.cvl.ui.primitives.impl;
 
 import javax.swing.JLabel;
 
 import cvl.NamedElement;
 import cvl.VariationPoint;
-import no.sintef.cvl.ui.adapters.AbstractDataItem;
+import no.sintef.cvl.ui.primitives.AbstractDataItem;
 
 public class DataBoundaryItem extends AbstractDataItem {
 	

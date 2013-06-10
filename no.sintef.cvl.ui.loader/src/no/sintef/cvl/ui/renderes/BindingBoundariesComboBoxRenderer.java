@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
-import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class BindingBoundariesComboBoxRenderer extends BasicComboBoxRenderer {
 

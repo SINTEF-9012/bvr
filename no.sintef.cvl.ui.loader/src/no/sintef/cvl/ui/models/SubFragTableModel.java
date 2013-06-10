@@ -6,8 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 
 import cvl.NamedElement;
 import cvl.ReplacementFragmentType;

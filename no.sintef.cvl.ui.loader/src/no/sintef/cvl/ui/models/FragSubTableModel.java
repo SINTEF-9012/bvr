@@ -6,10 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import no.sintef.cvl.ui.adapters.DataItem;
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
-import no.sintef.cvl.ui.adapters.impl.DataVSpecItem;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.primitives.DataItem;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.primitives.impl.DataVSpecItem;
+
 import org.eclipse.emf.common.util.EList;
 
 import cvl.ConfigurableUnit;

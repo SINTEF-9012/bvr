@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
-import no.sintef.cvl.ui.adapters.DataItem;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class BindingBoundariesComboBoxModel extends AbstractListModel<DataItem>
 		implements ComboBoxModel<DataItem> {

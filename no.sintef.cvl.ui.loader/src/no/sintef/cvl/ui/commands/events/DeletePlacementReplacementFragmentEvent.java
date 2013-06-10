@@ -19,13 +19,13 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 import cvl.VariationPoint;
 
-import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.SubFragTableModel;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 

@@ -9,8 +9,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableCellEditor;
 
-import no.sintef.cvl.ui.adapters.DataItem;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.primitives.DataItem;
 
 public class BindingBoundariesTextTableCellEditor extends AbstractCellEditor
 		implements TableCellEditor {

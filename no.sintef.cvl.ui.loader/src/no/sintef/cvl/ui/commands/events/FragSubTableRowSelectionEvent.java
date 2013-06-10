@@ -15,9 +15,6 @@ import cvl.NamedElement;
 import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
-import no.sintef.cvl.ui.adapters.DataItem;
-import no.sintef.cvl.ui.adapters.impl.DataBoundaryItem;
-import no.sintef.cvl.ui.adapters.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.dropdowns.BoundariesDropDownCalculator;
 import no.sintef.cvl.ui.editors.BindingBoundariesComboBoxTableCellEditor;
@@ -28,6 +25,9 @@ import no.sintef.cvl.ui.exceptions.PlacementReplacementNullException;
 import no.sintef.cvl.ui.models.BindingTableModel;
 import no.sintef.cvl.ui.models.FragSubTableModel;
 import no.sintef.cvl.ui.models.SubFragTableModel;
+import no.sintef.cvl.ui.primitives.DataItem;
+import no.sintef.cvl.ui.primitives.impl.DataBoundaryItem;
+import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 
 public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 	
