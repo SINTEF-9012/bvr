@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import cvl.ConfigurableUnit;
+import cvl.CvlPackage;
 import cvl.FragmentSubstitution;
 import cvl.VariationPoint;
-import cvl.cvlPackage;
 
 public class RunExp {
 
@@ -138,7 +138,7 @@ public class RunExp {
 	}
 	
 	private static HashMap<String, Object> loadSimple(File file){
-		cvlPackage.eINSTANCE.eClass();
+		CvlPackage.eINSTANCE.eClass();
 		ResourceSetImpl resSet = new ResourceSetImpl();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		Resource resource = resSet.getResource(URI.createFileURI(file.getName()), true);

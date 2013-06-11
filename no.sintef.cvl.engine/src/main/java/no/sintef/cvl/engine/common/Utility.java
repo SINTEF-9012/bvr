@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import cvl.CvlFactory;
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.ToReplacement;
-import cvl.cvlFactory;
 
 public class Utility {
-	private static cvlFactory factory = cvlFactory.eINSTANCE;
+	private static CvlFactory factory = CvlFactory.eINSTANCE;
 
 	public static EList<EObject> resolveProxies(EList<? extends EObject> proxyList){
 		EList<EObject> resolvedList = new BasicEList<EObject>();

@@ -22,16 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="jars/org.eclipse.emf.compare_3.0.0.201211131624.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2_4.0.1.v20120913-1441.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2.codegen.ecore_1.8.1.v20120913-1441.jar"/>
@@ -66,5 +56,15 @@
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.resources_4.0.1.v20120913-1441.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.resources.source_4.0.1.v20120913-1441.jar"/>
 	<classpathentry kind="lib" path="jars/org.eclipse.uml2.uml.source_4.0.1.v20120913-1441.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

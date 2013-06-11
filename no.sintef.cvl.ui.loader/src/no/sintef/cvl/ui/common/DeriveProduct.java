@@ -22,8 +22,7 @@ public class DeriveProduct {
 		
 		ExecutionRealizationHandler realization = new ExecutionRealizationHandler(null);
 		ScopeResolverExecutionHandler scopeResolving = new ScopeResolverExecutionHandler(realization);
-		parsing = new ParserExecutionHandler(scopeResolving);
-		
+		parsing = new ParserExecutionHandler(scopeResolving);	
 	}
 	
 	public void run() throws AbstractError{

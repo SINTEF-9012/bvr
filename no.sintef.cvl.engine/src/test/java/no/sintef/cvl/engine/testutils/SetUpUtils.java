@@ -24,14 +24,14 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import com.google.common.collect.Sets;
 
+import cvl.CvlPackage;
 import cvl.ObjectHandle;
-import cvl.cvlPackage;
 
 
 public class SetUpUtils {
 
 	public static HashMap<String, Object> loadSimple(File file){
-		cvlPackage.eINSTANCE.eClass();
+		CvlPackage.eINSTANCE.eClass();
 		ResourceSetImpl resSet = new ResourceSetImpl();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		Resource resource = resSet.getResource(URI.createFileURI(file.getName()), true);
@@ -47,7 +47,7 @@ public class SetUpUtils {
 		path = path.replaceAll(file.getName(), "");
 		String wsdir = System.getProperty("user.dir");
 		System.setProperty( "user.dir", path);
-		cvlPackage.eINSTANCE.eClass();
+		CvlPackage.eINSTANCE.eClass();
 		ResourceSetImpl resSet = new ResourceSetImpl();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		Resource resource = resSet.getResource(URI.createFileURI(file.getName()), true);

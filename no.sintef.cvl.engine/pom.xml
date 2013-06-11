@@ -106,7 +106,7 @@
   <dependencies>
   	<dependency>
 		<groupId>no.sintef</groupId>
-		<artifactId>no.sintef.cvl.modelv3</artifactId>
+		<artifactId>no.sintef.cvl.model</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
 	<dependency>
