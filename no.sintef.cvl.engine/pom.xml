@@ -21,6 +21,11 @@
     	<name>SpringSource Repository</name>
     	<url>http://repo.springsource.org/release</url>
 	</repository>
+	<repository>
+    	<id>thirdparty</id>
+    	<name>ThingML Repository</name>
+    	<url>http://maven.thingml.org/archiva/repository/thirdparty/</url>
+	</repository>
   </repositories>
 <!-- Comment if we do not use maven-jar-plugin and  onejar-maven-plugin-->
   <pluginRepositories>
@@ -184,7 +189,7 @@
 		<groupId>no.sintef.dsl</groupId>
 		<artifactId>no.sintef.dsl.node</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<!-- <scope>test</scope>-->
+		<scope>test</scope>
 	</dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -192,54 +197,47 @@
       <version>10.0.1</version>
       <scope>test</scope>
     </dependency>
-    
-    <!-- this dependencies were installed locally on my machine, need to find out a way to put them somewhere locally available for all sintef
     <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.emf.compare_3.0.0.201211131624.jar</artifactId>
-      <version>2.0.0</version>
-      <scope>test</scope>
-    </dependency>
-   <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-com.google.guava_10.0.1.v201203051515.jar</artifactId>
-      <version>2.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml_4.0.1.v20120913-1441.jar</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.emf.compare</artifactId>
+      <version>3.0.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2_4.0.1.v20120913-1441.jar</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.uml2.uml</artifactId>
+      <version>4.0.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.types_1.0.0.v20120913-1441.jar</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.uml2</artifactId>
+      <version>4.0.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.common_1.7.0.v20120913-1441.jar</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.uml2.types</artifactId>
+      <version>1.0.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml.profile.l2_1.0.1.v20120913-1441.jar</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.uml2.common</artifactId>
+      <version>1.7.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>no.sintef</groupId>
-      <artifactId>no.sintef.cvl.engine-org.eclipse.uml2.uml.profile.l3_1.0.1.v20120913-1441.jar</artifactId>
-      <version>2.0.0</version>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.uml2.uml.profile.l2</artifactId>
+      <version>1.0.1</version>
       <scope>test</scope>
-    </dependency> -->
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.maven</groupId>
+      <artifactId>org.eclipse.uml2.uml.profile.l3</artifactId>
+      <version>1.0.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
