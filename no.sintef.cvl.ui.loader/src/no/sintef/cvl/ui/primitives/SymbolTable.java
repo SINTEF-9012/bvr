@@ -1,8 +1,6 @@
 package no.sintef.cvl.ui.primitives;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import cvl.VSpecResolution;
 
 public interface SymbolTable {

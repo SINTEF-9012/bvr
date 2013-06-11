@@ -9,10 +9,12 @@ import javax.swing.JTabbedPane;
 import cvl.ConfigurableUnit;
 import cvl.VSpecResolution;
 
+import no.sintef.cvl.ui.common.DeriveProduct;
+import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
-import no.sintef.cvl.ui.parsers.impl.ResolutionRealizationComposer;
 import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbolTable;
+import no.sintef.cvl.ui.strategies.impl.ResRealizationComposerStrategy;
 
 public class ExecuteResolutionEvent implements ActionListener {
 
@@ -35,11 +37,11 @@ public class ExecuteResolutionEvent implements ActionListener {
 		ConfigurableUnit cu = m.getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
 		
-		ResolutionRealizationComposer composer = new ResolutionRealizationComposer(cu);
-		VSpecResolutionSymbolTable composedResolution = (VSpecResolutionSymbolTable) composer.buildSymbolTable(vsr);
-		System.out.println(composedResolution);
-		System.out.println(composedResolution.getSymbols());
-		System.out.println(composedResolution.getChildren());
-		System.out.println(composedResolution.getParent());
+		try {
+			DeriveProduct deriviator = new DeriveProduct(cu, vsr);
+			deriviator.run();
+		} catch (AbstractError error) {
+			error.printStackTrace();
+		}
 	}
 }

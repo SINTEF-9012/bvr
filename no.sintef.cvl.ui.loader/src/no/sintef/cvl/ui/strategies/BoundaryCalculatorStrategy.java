@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.algorithms;
+package no.sintef.cvl.ui.strategies;
 
 import java.util.ArrayList;
 

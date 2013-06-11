@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.parsers.impl;
+package no.sintef.cvl.ui.strategies.impl;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -9,18 +9,18 @@ import cvl.FragmentSubstitution;
 import cvl.VInstance;
 import cvl.VSpecResolution;
 import cvl.VariationPoint;
-import no.sintef.cvl.ui.parsers.Parser;
 import no.sintef.cvl.ui.primitives.Symbol;
 import no.sintef.cvl.ui.primitives.SymbolTable;
 import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbol;
 import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbolTable;
+import no.sintef.cvl.ui.strategies.TableBuilderStrategy;
 
-public class ResolutionRealizationComposer implements Parser {
+public class ResRealizationComposerStrategy implements TableBuilderStrategy {
 
 	private EList<VariationPoint> vps;
 	private BasicEList<FragmentSubstitution> fss;
 
-	public ResolutionRealizationComposer(ConfigurableUnit cu) {
+	public SymbolTable buildSymbolTable(ConfigurableUnit cu, VSpecResolution vSpecResolution) {
 		vps = cu.getOwnedVariationPoint();
 		fss = new BasicEList<FragmentSubstitution>();
 		for(VariationPoint vp : vps){
@@ -28,9 +28,7 @@ public class ResolutionRealizationComposer implements Parser {
 				fss.add((FragmentSubstitution) vp);
 			}
 		}
-	}
-
-	public SymbolTable buildSymbolTable(VSpecResolution vSpecResolution) {
+		
 		VSpecResolutionSymbolTable table = new VSpecResolutionSymbolTable(vSpecResolution);
 		VSpecResolutionSymbol symbol = new VSpecResolutionSymbol(vSpecResolution);
 		this.parse(symbol, table);

@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.algorithms;
+package no.sintef.cvl.ui.strategies.impl;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
+import no.sintef.cvl.ui.strategies.BoundaryCalculatorStrategy;
 
 import cvl.ObjectHandle;
 import cvl.ToPlacement;

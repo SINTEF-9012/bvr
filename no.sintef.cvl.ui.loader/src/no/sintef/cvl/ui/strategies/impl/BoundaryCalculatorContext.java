@@ -1,8 +1,9 @@
-package no.sintef.cvl.ui.algorithms;
+package no.sintef.cvl.ui.strategies.impl;
 
 import java.util.ArrayList;
 
 import no.sintef.cvl.ui.exceptions.AbstractError;
+import no.sintef.cvl.ui.strategies.BoundaryCalculatorStrategy;
 
 import cvl.FromReplacement;
 import cvl.ToPlacement;
@@ -30,7 +31,7 @@ public class BoundaryCalculatorContext {
 		} else if(forBoundary instanceof FromReplacement){
 			compliedVP = defaultFromReplacementStrategy.getCompliedBoundaries(forBoundary, options);
 		}else{
-			throw new UnsupportedOperationException("stategy is not defined for this type of bouyndary" + forBoundary.eClass());
+			throw new UnsupportedOperationException("stategy is not defined for this type of boundary" + forBoundary.eClass());
 		}
 		return compliedVP;
 	}

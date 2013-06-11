@@ -5,13 +5,13 @@ import java.util.HashMap;
 
 import javax.swing.JLabel;
 
-import no.sintef.cvl.ui.algorithms.BoundaryCalculatorContext;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.PlacementReplacementNullException;
 import no.sintef.cvl.ui.primitives.DataItem;
 import no.sintef.cvl.ui.primitives.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.strategies.impl.BoundaryCalculatorContext;
 import cvl.FragmentSubstitution;
 import cvl.FromReplacement;
 import cvl.PlacementFragment;
