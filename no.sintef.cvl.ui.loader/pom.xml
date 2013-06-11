@@ -25,7 +25,11 @@
             <artifactId>no.sintef.cvl.ui.framework</artifactId>
             <version>1.0.0</version>
         </dependency>
-        
+        <dependency>
+            <groupId>no.sintef</groupId>
+            <artifactId>no.sintef.cvl.engine</artifactId>
+            <version>2.0.0</version>
+        </dependency>        
         <dependency>
             <groupId>org.abego.treelayout</groupId>
             <artifactId>org.abego.treelayout.core</artifactId>
@@ -42,13 +46,11 @@
             <artifactId>swingx-core</artifactId>
             <version>1.6.2-2</version>
         </dependency>
-    <dependency>
+    	<dependency>
             <groupId>org.kevoree.extra</groupId>
             <artifactId>org.kevoree.extra.macwidgets</artifactId>
             <version>0.9.6</version>
         </dependency>
-      
-       
         <dependency>
             <groupId>batik</groupId>
             <artifactId>batik-svggen</artifactId>
@@ -60,11 +62,16 @@
             	</exclusion>
             </exclusions>
         </dependency>
-		
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.common</artifactId>
 			<version>2.6.0.v20100614-1136</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.google.guava</groupId>
+    		<artifactId>guava</artifactId>
+    		<version>13.0.1</version>
 		</dependency>
             
             
@@ -94,6 +101,11 @@
             <id>oss</id>
             <url>https://oss.sonatype.org/content/groups/public</url>
         </repository>
+        <repository>
+    		<id>thirdparty</id>
+    		<name>ThingML Repository</name>
+    		<url>http://maven.thingml.org/archiva/repository/thirdparty/</url>
+		</repository>
     </repositories>
 
   <build>
@@ -104,8 +116,8 @@
            <artifactId>maven-compiler-plugin</artifactId>
            <version>2.3.1</version>
            <configuration>
-               <source>1.6</source>
-               <target>1.6</target>
+               <source>1.7</source>
+               <target>1.7</target>
            </configuration>
        </plugin>    
     </plugins>

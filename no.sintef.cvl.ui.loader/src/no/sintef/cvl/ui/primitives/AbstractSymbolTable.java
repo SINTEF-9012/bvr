@@ -3,6 +3,7 @@ package no.sintef.cvl.ui.primitives;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cvl.ConfigurableUnit;
 import cvl.VSpecResolution;
 
 public abstract class AbstractSymbolTable implements SymbolTable {
@@ -11,6 +12,7 @@ public abstract class AbstractSymbolTable implements SymbolTable {
 	protected HashMap<VSpecResolution, Symbol> table;
 	protected SymbolTable parent;
 	protected HashMap<VSpecResolution, SymbolTable> children;
+	protected ConfigurableUnit cu;
 
 	@Override
 	public Symbol lookup(VSpecResolution vSpecResolution) {
@@ -60,5 +62,15 @@ public abstract class AbstractSymbolTable implements SymbolTable {
 	@Override
 	public ArrayList<Symbol> getSymbols() {
 		return new ArrayList<Symbol>(table.values());
+	}
+	
+	@Override
+	public void setConfigurableUnit(ConfigurableUnit cu) {
+		this.cu = cu;
+	}
+	
+	@Override
+	public ConfigurableUnit getConfigurableUnit() {
+		return this.cu;
 	}
 }

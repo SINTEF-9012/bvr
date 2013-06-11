@@ -1,6 +1,8 @@
 package no.sintef.cvl.ui.primitives;
 
 import java.util.ArrayList;
+
+import cvl.ConfigurableUnit;
 import cvl.VSpecResolution;
 
 public interface SymbolTable {
@@ -24,4 +26,8 @@ public interface SymbolTable {
 	public VSpecResolution getTableId();
 	
 	public ArrayList<Symbol> getSymbols();
+	
+	public void setConfigurableUnit(ConfigurableUnit cu);
+	
+	public ConfigurableUnit getConfigurableUnit();
 }

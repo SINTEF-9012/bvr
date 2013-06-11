@@ -2,9 +2,14 @@ package no.sintef.cvl.ui.commands.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JTabbedPane;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import cvl.ConfigurableUnit;
 import cvl.VSpecResolution;
@@ -14,7 +19,7 @@ import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbolTable;
-import no.sintef.cvl.ui.strategies.impl.ResRealizationComposerStrategy;
+import no.sintef.cvl.ui.strategies.impl.RRComposerStrategy;
 
 public class ExecuteResolutionEvent implements ActionListener {
 
@@ -43,5 +48,14 @@ public class ExecuteResolutionEvent implements ActionListener {
 		} catch (AbstractError error) {
 			error.printStackTrace();
 		}
+		
+		Resource baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("E:/GitHub/cvl/TestData/Artificial/node9-7/base.node"), false);
+		baseModel.setURI(URI.createFileURI("E:/GitHub/cvl/TestData/Artificial/node9-7/base_new.node"));
+		try {
+			baseModel.save(Collections.EMPTY_MAP);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("Executed");
 	}
 }

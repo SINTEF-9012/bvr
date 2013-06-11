@@ -15,7 +15,7 @@ import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbol;
 import no.sintef.cvl.ui.primitives.impl.VSpecResolutionSymbolTable;
 import no.sintef.cvl.ui.strategies.TableBuilderStrategy;
 
-public class ResRealizationComposerStrategy implements TableBuilderStrategy {
+public class RRComposerStrategy implements TableBuilderStrategy {
 
 	private EList<VariationPoint> vps;
 	private BasicEList<FragmentSubstitution> fss;
@@ -30,6 +30,7 @@ public class ResRealizationComposerStrategy implements TableBuilderStrategy {
 		}
 		
 		VSpecResolutionSymbolTable table = new VSpecResolutionSymbolTable(vSpecResolution);
+		table.setConfigurableUnit(cu);
 		VSpecResolutionSymbol symbol = new VSpecResolutionSymbol(vSpecResolution);
 		this.parse(symbol, table);
 		return table;
@@ -37,14 +38,14 @@ public class ResRealizationComposerStrategy implements TableBuilderStrategy {
 
 	private boolean parse(Symbol symbol, SymbolTable table) {
 		VSpecResolution vSpecResolution = symbol.getVSpecResolution();
-		VSpecResolutionSymbolTable subTable;
 		if(vSpecResolution instanceof ChoiceResolutuion){
 			if(!((ChoiceResolutuion) vSpecResolution).isDecision()){
 				return false;
 			}
 		}else if(vSpecResolution instanceof VInstance){
-			subTable = new VSpecResolutionSymbolTable(vSpecResolution);
+			VSpecResolutionSymbolTable subTable = new VSpecResolutionSymbolTable(vSpecResolution);
 			subTable.setParent(table);
+			subTable.setConfigurableUnit(table.getConfigurableUnit());
 			table.setChild(subTable);
 			table = subTable;
 		}else{
@@ -52,7 +53,7 @@ public class ResRealizationComposerStrategy implements TableBuilderStrategy {
 		}
 		
 		for(FragmentSubstitution fs : fss){
-			if(fs.getBindingVSpec() != null && fs.getBindingVSpec().equals(symbol)){
+			if(fs.getBindingVSpec() != null && fs.getBindingVSpec().equals(symbol.getVSpec())){
 				symbol.addFragmentSubstitution(fs);
 			}
 		}

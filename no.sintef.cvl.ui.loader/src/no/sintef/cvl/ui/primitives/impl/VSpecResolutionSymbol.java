@@ -16,5 +16,6 @@ public class VSpecResolutionSymbol extends AbstractSymbol {
 		children = new BasicEList<Symbol>();
 		this.vSpecResolution = vSpecResolution;
 		this.vSpec = vSpecResolution.getResolvedVSpec();
+		this.multi = false;
 	}
 }

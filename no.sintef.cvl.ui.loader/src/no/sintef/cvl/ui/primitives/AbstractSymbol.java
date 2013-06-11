@@ -14,6 +14,7 @@ public abstract class AbstractSymbol implements Symbol {
 	protected Symbol parent;
 	protected EList<Symbol> children;
 	protected SymbolTable scope;
+	protected boolean multi;
 
 	@Override
 	public void setVSpec(VSpec vSpec) {
@@ -74,5 +75,14 @@ public abstract class AbstractSymbol implements Symbol {
 	public SymbolTable getScope() {
 		return this.scope;
 	}
+	
+	@Override
+	public void setMulti(boolean multi) {
+		this.multi = multi;
+	}
 
+	@Override
+	public boolean getMulti() {
+		return this.multi;
+	}
 }

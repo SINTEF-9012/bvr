@@ -8,7 +8,7 @@ import no.sintef.cvl.ui.exceptions.UnexpectedException;
 import no.sintef.cvl.ui.primitives.ExecutionRequest;
 import no.sintef.cvl.ui.primitives.SymbolTable;
 import no.sintef.cvl.ui.strategies.TableBuilderStrategy;
-import no.sintef.cvl.ui.strategies.impl.ResRealizationComposerStrategy;
+import no.sintef.cvl.ui.strategies.impl.RRComposerStrategy;
 
 public class ParserExecutionHandler implements ExecutionHandler {
 
@@ -17,7 +17,7 @@ public class ParserExecutionHandler implements ExecutionHandler {
 
 	public ParserExecutionHandler(ExecutionHandler successor){
 		this.successor = successor;
-		this.defaultTableBuilder = new ResRealizationComposerStrategy();
+		this.defaultTableBuilder = new RRComposerStrategy();
 	}
 	
 	public ParserExecutionHandler(ExecutionHandler successor, TableBuilderStrategy tableBuilder){

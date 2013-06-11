@@ -31,4 +31,8 @@ public interface Symbol {
 	public void setScope(SymbolTable table);
 	
 	public SymbolTable getScope();
+	
+	public void setMulti(boolean multi);
+	
+	public boolean getMulti();
 }
