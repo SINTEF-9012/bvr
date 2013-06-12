@@ -77,5 +77,6 @@ public class SaveModelAsEvent implements ActionListener {
 		m.setFile(sf);
 		filePane.setTitleAt(i, sf.getName());
 		filePane.setToolTipTextAt(i, sf.getAbsolutePath());
+		FileHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
 	}
 }

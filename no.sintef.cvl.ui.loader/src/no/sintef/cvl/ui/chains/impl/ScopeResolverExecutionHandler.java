@@ -20,7 +20,7 @@ public class ScopeResolverExecutionHandler implements ExecutionHandler {
 
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
-		SymbolTable table = request.getProductTable();
+		SymbolTable table = (SymbolTable) request.getDataField("productSymbolTable");
 		if(table == null){
 			throw new UnexpectedException("symbol table is not set");
 		}

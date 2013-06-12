@@ -1,7 +1,12 @@
 package no.sintef.cvl.ui.common;
 
+import java.util.HashMap;
+
+import javax.swing.JComponent;
+
 import no.sintef.cvl.ui.chains.impl.ExecutionRealizationHandler;
 import no.sintef.cvl.ui.chains.impl.ParserExecutionHandler;
+import no.sintef.cvl.ui.chains.impl.SaveProductExecutionHandler;
 import no.sintef.cvl.ui.chains.impl.ScopeResolverExecutionHandler;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.primitives.impl.SingleExecutionRequest;
@@ -15,12 +20,11 @@ public class DeriveProduct {
 	private SingleExecutionRequest request;
 	private ParserExecutionHandler parsing;
 
-	public DeriveProduct(ConfigurableUnit cu, VSpecResolution vSpecResolution) throws AbstractError{
-		this.cu = cu;
-		this.vSpecResolution = vSpecResolution;
-		this.request = new SingleExecutionRequest(this.cu, this.vSpecResolution);
+	public DeriveProduct(HashMap<String, Object> keywords) throws AbstractError{
+		request = new SingleExecutionRequest(keywords);
 		
-		ExecutionRealizationHandler realization = new ExecutionRealizationHandler(null);
+		SaveProductExecutionHandler saveProduct = new SaveProductExecutionHandler(null);
+		ExecutionRealizationHandler realization = new ExecutionRealizationHandler(saveProduct);
 		ScopeResolverExecutionHandler scopeResolving = new ScopeResolverExecutionHandler(realization);
 		parsing = new ParserExecutionHandler(scopeResolving);	
 	}

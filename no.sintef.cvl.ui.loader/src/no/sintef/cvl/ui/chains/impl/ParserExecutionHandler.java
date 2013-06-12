@@ -28,15 +28,15 @@ public class ParserExecutionHandler implements ExecutionHandler {
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
 		
-		ConfigurableUnit cu = request.getConfigurableUnit();
-		VSpecResolution vSpecResoulution = request.getProductRoot();
+		ConfigurableUnit cu = (ConfigurableUnit) request.getDataField("cu");
+		VSpecResolution vSpecResoulution = (VSpecResolution) request.getDataField("vSpecResolution");
 		
 		if(cu == null || vSpecResoulution == null){
 			throw new UnexpectedException("configuration unit or root  vspec rezolution is not set");
 		}
 		
 		SymbolTable table = this.defaultTableBuilder.buildSymbolTable(cu, vSpecResoulution);
-		request.setProductTable(table);
+		request.setDataField("productSymbolTable", table);
 		
 		if(this.successor != null)
 			this.successor.handleRequest(request);

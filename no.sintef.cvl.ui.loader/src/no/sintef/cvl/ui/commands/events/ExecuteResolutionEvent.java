@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JTabbedPane;
@@ -43,19 +44,15 @@ public class ExecuteResolutionEvent implements ActionListener {
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
 		
 		try {
-			DeriveProduct deriviator = new DeriveProduct(cu, vsr);
+			HashMap<String, Object> keywords = new HashMap<String, Object>();
+			keywords.put("cu", cu);
+			keywords.put("vSpecResolution", vsr);
+			keywords.put("parentComponent", x);
+			keywords.put("cvlModel", m);
+			DeriveProduct deriviator = new DeriveProduct(keywords);
 			deriviator.run();
 		} catch (AbstractError error) {
 			error.printStackTrace();
 		}
-		
-		Resource baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("E:/GitHub/cvl/TestData/Artificial/node9-7/base.node"), false);
-		baseModel.setURI(URI.createFileURI("E:/GitHub/cvl/TestData/Artificial/node9-7/base_new.node"));
-		try {
-			baseModel.save(Collections.EMPTY_MAP);
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		System.out.println("Executed");
 	}
 }
