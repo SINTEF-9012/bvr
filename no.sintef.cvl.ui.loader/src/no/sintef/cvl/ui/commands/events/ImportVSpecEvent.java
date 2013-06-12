@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.loader;
+package no.sintef.cvl.ui.commands.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +14,10 @@ import org.xml.sax.SAXException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
+import no.sintef.cvl.ui.filters.CVLFilter;
+import no.sintef.cvl.ui.filters.FMFilter;
+import no.sintef.cvl.ui.loader.CVLModel;
+import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.SXFM;
 

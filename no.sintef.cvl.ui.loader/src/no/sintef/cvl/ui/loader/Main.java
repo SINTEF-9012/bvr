@@ -24,7 +24,12 @@ import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.DeleteFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.DeletePlacementReplacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.ExecuteResolutionEvent;
+import no.sintef.cvl.ui.commands.events.ExportModelImage;
+import no.sintef.cvl.ui.commands.events.ExportModelSVG;
+import no.sintef.cvl.ui.commands.events.ImportVSpecEvent;
+import no.sintef.cvl.ui.commands.events.NewModelEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
+import no.sintef.cvl.ui.commands.events.OpenModelEvent;
 import no.sintef.cvl.ui.common.Constants;
 import cvl.NamedElement;
 

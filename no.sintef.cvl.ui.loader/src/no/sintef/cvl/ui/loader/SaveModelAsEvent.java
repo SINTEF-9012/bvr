@@ -13,6 +13,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.filters.CVLFilter;
+
+
+
 public class SaveModelAsEvent implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
@@ -41,7 +45,6 @@ public class SaveModelAsEvent implements ActionListener {
 				return;
 			}
 		}
-		System.out.println("ss");
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new CVLFilter());
 		fc.showSaveDialog(filePane);

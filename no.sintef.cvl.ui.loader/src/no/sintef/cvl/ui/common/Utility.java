@@ -1,6 +1,7 @@
 package no.sintef.cvl.ui.common;
 
 import java.awt.Component;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -135,5 +136,10 @@ public class Utility {
 			}
 		}
 		return null;
+	}
+	
+	public static String getExtension(File f){
+	    String p = f.getAbsolutePath();
+	    return p.substring(p.lastIndexOf(".")+1, p.length());
 	}
 }

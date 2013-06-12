@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.loader;
+package no.sintef.cvl.ui.commands.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +8,12 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-import javax.swing.filechooser.FileFilter;
-
+import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.filters.CVLFilter;
+import no.sintef.cvl.ui.filters.FMFilter;
+import no.sintef.cvl.ui.loader.CVLModel;
+import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.loader.FileHelper;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SXFM;
@@ -21,7 +25,7 @@ public class OpenModelEvent implements ActionListener {
 	private List<CVLView> views;
 	//private static File lastDir = new File("C:\\Users\\mjoha\\workspace-CVLTool2\\cvl\\TestData");
 
-	OpenModelEvent(JTabbedPane c, List<CVLModel> models, List<CVLView> views){
+	public OpenModelEvent(JTabbedPane c, List<CVLModel> models, List<CVLView> views){
 		this.c = c;
 		this.models = models;
 		this.views = views;
@@ -40,7 +44,7 @@ public class OpenModelEvent implements ActionListener {
 		if(sf == null) return;
 		FileHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
 		
-		String ext = Utils.getExtension(sf);
+		String ext = Utility.getExtension(sf);
 		
 		CVLModel m = null;
 		if(ext.equals("cvl") || ext.equals("xmi")){
@@ -71,52 +75,4 @@ public class OpenModelEvent implements ActionListener {
 		}
 	}
 
-}
-
-class Utils{
-	static String getExtension(File f){
-	    String p = f.getAbsolutePath();
-	    return p.substring(p.lastIndexOf(".")+1, p.length());
-	}
-}
-
-
-class CVLFilter extends FileFilter{
-	@Override
-	public boolean accept(File f) {
-	    if (f.isDirectory()) {
-	        return true;
-	    }
-	    
-	    String extension = Utils.getExtension(f);
-	    if (extension != null) {
-	    	if(extension.equals("cvl")) return true;
-	    	if(extension.equals("xmi")) return true;
-	    }
-	    return false;
-	}
-	@Override
-	public String getDescription() {
-		return "CVL Model (*.cvl, *.xmi)";
-	}
-}
-
-class FMFilter extends FileFilter{
-	@Override
-	public boolean accept(File f) {
-	    if (f.isDirectory()) {
-	        return true;
-	    }
-
-	    String extension = Utils.getExtension(f);
-	    if (extension != null) {
-	    	if(extension.equals("m")) return true;
-	    	if(extension.equals("xml")) return true;
-	    }
-	    return false;
-	}
-	@Override
-	public String getDescription() {
-		return "Other Feature Diagram (*.m, *.xml)";
-	}
 }

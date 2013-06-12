@@ -1,10 +1,13 @@
-package no.sintef.cvl.ui.loader;
+package no.sintef.cvl.ui.commands.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JTabbedPane;
+
+import no.sintef.cvl.ui.loader.CVLModel;
+import no.sintef.cvl.ui.loader.CVLView;
 
 public class NewModelEvent implements ActionListener {
 	private List<CVLModel> models;

@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
+import no.sintef.cvl.ui.filters.CVLFilter;
+import no.sintef.cvl.ui.filters.SHFilter;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayFile;
@@ -53,26 +55,4 @@ public class ImportResolutions implements ActionListener {
 		
 		v.notifyResolutionViewUpdate();
 	}
-}
-
-class SHFilter extends FileFilter{
-	@Override
-	public boolean accept(File f) {
-	    if (f.isDirectory()) {
-	        return true;
-	    }
-	    
-	    String extension = Utils.getExtension(f);
-	    if (extension != null) {
-	    	if(extension.equals("xlsx")) return true;
-	    	if(extension.equals("csv")) return true;
-	    }
-		return false;
-	}
-
-	@Override
-	public String getDescription() {
-		return "Spread Sheet Files (*.xlsx, *.csv)";
-	}
-	
 }
