@@ -33,7 +33,7 @@ public class CVLModel {
 		return f.getAbsolutePath();
 	}
 	
-	no.sintef.ict.splcatool.CVLModel getCVLM(){
+	public no.sintef.ict.splcatool.CVLModel getCVLM(){
 		return cvlm;
 	}
 

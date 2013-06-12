@@ -23,7 +23,6 @@ public class OpenModelEvent implements ActionListener {
 	private JTabbedPane c;
 	private List<CVLModel> models;
 	private List<CVLView> views;
-	//private static File lastDir = new File("C:\\Users\\mjoha\\workspace-CVLTool2\\cvl\\TestData");
 
 	public OpenModelEvent(JTabbedPane c, List<CVLModel> models, List<CVLView> views){
 		this.c = c;

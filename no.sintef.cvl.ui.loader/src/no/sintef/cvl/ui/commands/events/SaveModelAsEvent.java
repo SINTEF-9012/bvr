@@ -1,6 +1,5 @@
-package no.sintef.cvl.ui.loader;
+package no.sintef.cvl.ui.commands.events;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -14,6 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.filters.CVLFilter;
+import no.sintef.cvl.ui.loader.CVLModel;
+import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.loader.FileHelper;
 
 
 
@@ -45,7 +47,11 @@ public class SaveModelAsEvent implements ActionListener {
 				return;
 			}
 		}
+		
 		final JFileChooser fc = new JFileChooser();
+		if(FileHelper.lastLocation() != null)
+			fc.setCurrentDirectory(new File(FileHelper.lastLocation()));
+		
 		fc.addChoosableFileFilter(new CVLFilter());
 		fc.showSaveDialog(filePane);
 		

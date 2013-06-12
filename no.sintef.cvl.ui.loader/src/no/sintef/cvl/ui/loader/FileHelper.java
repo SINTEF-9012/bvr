@@ -2,7 +2,6 @@ package no.sintef.cvl.ui.loader;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -27,7 +26,7 @@ public class FileHelper {
 			if (fis != null)
 				try {
 					fis.close();
-				} catch (IOException e) {}
+				} catch (final IOException e) {}
 			return loc;
 		}
 	}

@@ -30,6 +30,7 @@ import no.sintef.cvl.ui.commands.events.ImportVSpecEvent;
 import no.sintef.cvl.ui.commands.events.NewModelEvent;
 import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
 import no.sintef.cvl.ui.commands.events.OpenModelEvent;
+import no.sintef.cvl.ui.commands.events.SaveModelAsEvent;
 import no.sintef.cvl.ui.common.Constants;
 import cvl.NamedElement;
 
