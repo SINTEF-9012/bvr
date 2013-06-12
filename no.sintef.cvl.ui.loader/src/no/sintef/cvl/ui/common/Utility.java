@@ -37,22 +37,22 @@ public class Utility {
 	public static boolean isNullBoundary(VariationPoint boundary){
 		if(boundary instanceof ToReplacement){
 			ToReplacement toReplacement = (ToReplacement) boundary;
-			if(toReplacement.getName().equals(Constants.NULL_NAME) && toReplacement.getInsideBoundaryElement().isEmpty() && toReplacement.getOutsideBoundaryElement() == null){
+			if(toReplacement.getInsideBoundaryElement().size() == 1 && toReplacement.getInsideBoundaryElement().get(0).equals(toReplacement.getOutsideBoundaryElement()) && toReplacement.getOutsideBoundaryElement().getMOFRef() == null){
 				return true;
 			}
 		}else if(boundary instanceof FromPlacement){
 			FromPlacement fromPlacement = (FromPlacement) boundary;
-			if(fromPlacement.getName().equals(Constants.NULL_NAME) && fromPlacement.getInsideBoundaryElement() == null && fromPlacement.getOutsideBoundaryElement().isEmpty()){
+			if(fromPlacement.getOutsideBoundaryElement().size() == 1 && fromPlacement.getOutsideBoundaryElement().get(0).equals(fromPlacement.getInsideBoundaryElement()) && fromPlacement.getInsideBoundaryElement().getMOFRef() == null){
 				return true;
 			}
 		}else if(boundary instanceof FromReplacement){
 			FromReplacement fromReplacement = (FromReplacement) boundary;
-			if(fromReplacement.getName().equals(Constants.NULL_NAME) && fromReplacement.getInsideBoundaryElement() == null && fromReplacement.getOutsideBoundaryElement().isEmpty()){
+			if(fromReplacement.getOutsideBoundaryElement().size() == 1 && fromReplacement.getOutsideBoundaryElement().get(0).equals(fromReplacement.getInsideBoundaryElement()) && fromReplacement.getInsideBoundaryElement().getMOFRef() == null){
 				return true;
 			}			
 		} else if(boundary instanceof ToPlacement){
 			ToPlacement toPlacement = (ToPlacement) boundary;
-			if(toPlacement.getName().equals(Constants.NULL_NAME) && toPlacement.getInsideBoundaryElement().isEmpty() && toPlacement.getOutsideBoundaryElement() == null){
+			if(toPlacement.getInsideBoundaryElement().size() == 1 && toPlacement.getInsideBoundaryElement().get(0).equals(toPlacement.getOutsideBoundaryElement()) && toPlacement.getOutsideBoundaryElement().getMOFRef() == null){
 				return true;
 			}
 		}
