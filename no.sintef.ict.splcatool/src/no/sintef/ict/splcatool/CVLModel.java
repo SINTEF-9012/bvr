@@ -67,7 +67,7 @@ public class CVLModel {
 	public void writeToFile(String filename) throws IOException {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 	    ResourceSet resSet = new ResourceSetImpl();
-	    Resource resource = resSet.createResource(URI.createURI("file:///" + filename));
+	    Resource resource = resSet.createResource(URI.createFileURI(filename));
 	    resource.getContents().add(cu);
 	    resource.save(Collections.EMPTY_MAP);
 	}
