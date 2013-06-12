@@ -22,7 +22,7 @@ public class ClearSelectionRelalizationEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int tab = filePane.getSelectedIndex();
-		views.get(tab).notifyCVLRelalizationView();
+		views.get(tab).notifyRelalizationViewUpdate();
 	}
 
 }

@@ -52,7 +52,7 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 		
 		cu.getOwnedVariabletype().add(rf);
 		
-		views.get(tab).notifyCVLRelalizationView();
+		views.get(tab).notifyRelalizationViewUpdate();
 		
 		/*
 		System.out.println(w);

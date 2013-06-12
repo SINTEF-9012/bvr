@@ -61,9 +61,10 @@ public class SimpleSaveProductStrategy implements SaveProductStrategy {
 			}
 			
 			//do not save variability model itself
-			if(model.getFile().getName().equals(lastSegmant)){
+			if(model.getCU().eResource().equals(resource)){
 				continue;
 			}
+			
 			resource.setURI(URI.createFileURI(newFileName));
 			try {
 				resource.save(Collections.EMPTY_MAP);

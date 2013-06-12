@@ -63,7 +63,7 @@ public class DeleteFragmentSubstitutionEvent implements ActionListener {
 			cu.getOwnedVariationPoint().remove(vp);
 		}
 		
-		views.get(tab).notifyCVLRelalizationView();
+		views.get(tab).notifyRelalizationViewUpdate();
 	}
 
 }

@@ -90,7 +90,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 			fillPlacement(pf, selected);
 		}
 		
-		views.get(tab).notifyCVLRelalizationView();
+		views.get(tab).notifyRelalizationViewUpdate();
 	}
 
 	private void fillPlacement(PlacementFragment pf, List<EObject> selected) {

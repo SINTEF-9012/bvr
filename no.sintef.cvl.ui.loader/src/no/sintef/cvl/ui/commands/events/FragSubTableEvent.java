@@ -40,7 +40,7 @@ public class FragSubTableEvent implements TableModelListener {
 					String currentName = vp.getName();
 					if(!newName.equals(currentName)){
 						vp.setName(label.getText());
-						view.notifyCVLRelalizationView();
+						view.notifyRelalizationViewUpdate();
 					}
 				}
 				if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){
@@ -51,7 +51,7 @@ public class FragSubTableEvent implements TableModelListener {
 					}else{
 						vp.setBindingVSpec(vSpec);
 					}
-					//view.notifyCVLRelalizationView();
+					view.notifyRelalizationViewUpdate();
 				}
 			}else{
 				throw new UnsupportedOperationException("Few rows were updated - not implemented");

@@ -40,7 +40,7 @@ public class SubFragTableEvent implements TableModelListener {
 						String currentName = vp.getName();
 						if(!newName.equals(currentName)){
 							vp.setName(label.getText());
-							view.notifyCVLRelalizationView();
+							view.notifyRelalizationViewUpdate();
 						}
 					}
 				}else{

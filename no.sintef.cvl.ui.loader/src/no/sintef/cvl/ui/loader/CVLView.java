@@ -363,7 +363,7 @@ public class CVLView {
 		}
 	}
 	
-	public void notifyCVLRelalizationView(){
+	public void notifyRelalizationViewUpdate(){
 		realizationPanel.removeAll();
 		
         try{
@@ -450,6 +450,12 @@ public class CVLView {
 		    resPane.setSelectedIndex(selected);
 		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 	    }
+	}
+	
+	public void notifyAllViews(){
+		this.notifyVspecViewUpdate();
+		this.notifyResolutionViewUpdate();
+		this.notifyRelalizationViewUpdate();
 	}
 
 	private void autoLayoutVSpec() {

@@ -95,7 +95,7 @@ public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 			JOptionPane.showMessageDialog(null, name);
 		}
 		
-		views.get(tab).notifyCVLRelalizationView();
+		views.get(tab).notifyRelalizationViewUpdate();
 	}
 
 }

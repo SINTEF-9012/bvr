@@ -22,6 +22,10 @@ public class CVLModel {
 	public CVLModel() {
 		cvlm = new no.sintef.ict.splcatool.CVLModel();
 	}
+	
+	public void reload(){
+		cvlm = new no.sintef.ict.splcatool.CVLModel(f);
+	}
 
 	String getShortFileName(){
 		if(f == null) return "unnamed model";
