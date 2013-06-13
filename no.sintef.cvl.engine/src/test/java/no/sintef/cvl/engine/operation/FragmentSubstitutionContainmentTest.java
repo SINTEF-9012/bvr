@@ -4,11 +4,8 @@ import java.io.File;
 import java.util.HashMap;
 
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
-import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
-import node.NodePackage;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;

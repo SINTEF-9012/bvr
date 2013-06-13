@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="/no.sintef.cvl.ui.framework"/>
 	<classpathentry kind="src" path="/no.sintef.ict.splcatool"/>
@@ -8,16 +13,20 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/de.ovgu.featureide.fm.core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SPLAR"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.constraints"/>
 	<classpathentry kind="lib" path="/no.sintef.cvl.constraints/lib/antlr-4.0-complete.jar" sourcepath="C:/Users/mjoha/.m2/repository/org/antlr/antlr4/4.0/antlr4-4.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.workbench_3.103.1.v20120906-120042.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore_2.8.1.v20120911-0500.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.8.101.v20120817-083647.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
