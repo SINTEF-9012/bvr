@@ -51,7 +51,7 @@
     <sourceObject>
       <MOFRef href="lib.node#//@contains.4"/>
     </sourceObject>
-	<sourceObject />
+    <sourceObject/>
     <placementBoundaryElement xsi:type="cvl:ToPlacement" name="[:Node].contains" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0" propertyName="contains" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0 //@ownedVariationPoint.0/@sourceObject.1 //@ownedVariationPoint.0/@sourceObject.2" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.3"/>
     <placementBoundaryElement xsi:type="cvl:ToPlacement" name="[:Node].links" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1" propertyName="links" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.4" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.5"/>
     <placementBoundaryElement xsi:type="cvl:FromPlacement" name=":Node[1]" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.7" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.6"/>
@@ -64,7 +64,6 @@
   </ownedVariationPoint>
   <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="PlacementFragmeqw"/>
   <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-p1-r111-1" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0"/>
-  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-PlacementFragme-Replacem-1" placement="//@ownedVariationPoint.2" replacement="//@ownedVariabletype.1"/>
   <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.1" decision="true"/>
   <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true"/>
   <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="r111">
@@ -120,7 +119,7 @@
     <sourceObject>
       <MOFRef href="lib.node#//@contains.4"/>
     </sourceObject>
-	<sourceObject />
+    <sourceObject/>
   </ownedVariabletype>
   <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="Replacem"/>
   <ownedVariabletype xsi:type="cvl:PrimitveType" name="xx" type="Integer"/>

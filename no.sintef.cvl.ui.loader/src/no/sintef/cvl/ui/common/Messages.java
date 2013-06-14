@@ -10,4 +10,5 @@ public class Messages {
 	public static final String DIALOG_MSG_CAN_NOT_LOCATE_FRAG_SUB_TABLE = "can not locate a table with listed fragment substitutions";
 	public static final String DIALOG_MSG_FILE_EXISTS = "File already exist, overwrite?";
 	public static final String DIALOG_TITLE_ALERT = "Alert";
+	public static final String DIALOG_MSG_NON_ECLIPSE_DETECTED = "No Eclipse Connection Available";
 }

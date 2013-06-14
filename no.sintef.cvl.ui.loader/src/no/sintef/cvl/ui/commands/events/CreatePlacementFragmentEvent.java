@@ -9,9 +9,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.strategies.impl.GetSelectionContext;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -52,42 +56,11 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 		
 		cu.getOwnedVariationPoint().add(pf);
 		
-		
-		if(w == null){
-			JOptionPane.showMessageDialog(null, "No Eclipse Connection Available");
-		}else{
-			ISelection s = w.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
-			
-			StructuredSelection ss = (StructuredSelection) s;
-			
-			List<EObject> selected = new ArrayList<EObject>();
-			for(Object o: ss.toList()){
-				EObject e = null;
-				try {
-					Method method = o.getClass().getMethod("resolveSemanticElement");
-					e = (EObject) method.invoke(o, new Object[0]);
-				} catch (Exception ex) {
-				}
-				
-				if(e == null){
-					try{
-						e = (EObject)o;
-					}catch(ClassCastException ex){
-						
-					}
-				}
-				selected.add(e);
-			}
-			
-			String selstring = "Selected: \n";
-			
-			for(EObject e : selected){
-				selstring += " * " + e + "\n";
-			}
-			
-			//JOptionPane.showMessageDialog(null, "Selection : " + selstring);
-			
-			fillPlacement(pf, selected);
+		GetSelectionContext selectionContext = new GetSelectionContext(w);
+		try {
+			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
+		} catch (AbstractError e) {
+			e.printStackTrace();
 		}
 		
 		views.get(tab).notifyRelalizationViewUpdate();
