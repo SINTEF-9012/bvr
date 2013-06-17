@@ -1,11 +1,11 @@
-package no.sintef.cvl.engine.logging.impl;
+package no.sintef.cvl.ui.logging.impl;
 
 import java.util.Calendar;
 
-import no.sintef.cvl.engine.logging.Logger;
+import no.sintef.cvl.ui.logging.Logger;
 
-public class ConsoleLogger implements Logger {
-	
+public class DefaultLogger implements Logger {
+
 	private static Calendar calendar = Calendar.getInstance();
 
 	@Override
@@ -25,7 +25,6 @@ public class ConsoleLogger implements Logger {
 
 	@Override
 	public void debug(String message) {
-		System.out.println("[DEBUG ENGINE] " + calendar.getTime().toString() + ": " + message);
+		System.out.println("[DEBUG] " + calendar.getTime().toString() + ": " + message);
 	}
-
 }

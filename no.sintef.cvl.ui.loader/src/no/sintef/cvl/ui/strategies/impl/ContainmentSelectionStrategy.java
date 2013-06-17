@@ -1,35 +1,27 @@
 package no.sintef.cvl.ui.strategies.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.UnexpectedException;
-import no.sintef.cvl.ui.common.UnifiedModelSelector;
+import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.strategies.SelectionStrategy;
 
 public class ContainmentSelectionStrategy implements SelectionStrategy {
 
 	@Override
 	public EList<EObject> getSelectedObjects(IWorkbenchWindow workbenchWindow) throws AbstractError {
-		UnifiedModelSelector unifiedSelector = new UnifiedModelSelector(workbenchWindow); 
-		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
+		ThirdpartyEditorSelector unifiedSelector = ThirdpartyEditorSelector.getEditorSelector(workbenchWindow);
 		
-		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		EList<EObject> selected = new BasicEList<EObject>();
-		for(Object object: structuredSelection.toList()){
+		List<Object> selections = unifiedSelector.getSelections();
+		for(Object object: selections){
 			EObject eObject = unifiedSelector.getEObject(object);
 			if(eObject == null){
 				throw new UnexpectedException("no model element is found from a given selection");

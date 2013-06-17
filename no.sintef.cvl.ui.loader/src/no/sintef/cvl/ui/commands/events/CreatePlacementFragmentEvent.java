@@ -12,6 +12,7 @@ import javax.swing.JTabbedPane;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.strategies.impl.CreateBoundaryContext;
 import no.sintef.cvl.ui.strategies.impl.GetSelectionContext;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -50,35 +51,23 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 		
 		ConfigurableUnit cu = m.getCU();
 		
-		PlacementFragment pf = CvlFactory.eINSTANCE.createPlacementFragment();
+		PlacementFragment placement = CvlFactory.eINSTANCE.createPlacementFragment();
 		count++;
-		pf.setName("PlacementFragment" + count);
+		placement.setName("PlacementFragment" + count);
 		
-		cu.getOwnedVariationPoint().add(pf);
+		cu.getOwnedVariationPoint().add(placement);
 		
 		GetSelectionContext selectionContext = new GetSelectionContext(w);
 		try {
 			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
+			CreateBoundaryContext createBoundaryContext = new CreateBoundaryContext();
+			createBoundaryContext.creatBoundaries(placement, selectedObjects);
 		} catch (AbstractError e) {
 			e.printStackTrace();
 		}
 		
 		views.get(tab).notifyRelalizationViewUpdate();
 	}
-
-	private void fillPlacement(PlacementFragment pf, List<EObject> selected) {
-		for(EObject e : selected){
-			ToPlacement tp = CvlFactory.eINSTANCE.createToPlacement();
-			ObjectHandle oh = CvlFactory.eINSTANCE.createObjectHandle();
-			
-			pf.getPlacementBoundaryElement().add(tp);
-			tp.setOutsideBoundaryElement(oh);
-			oh.setMOFRef(e);
-			
-			pf.getSourceObject().add(oh);
-		}
-	}
-
 }
 
 
