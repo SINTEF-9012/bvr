@@ -30,7 +30,7 @@ public class BoundariesDropDownCalculator {
 			throw new PlacementReplacementNullException("placement or replacement is null however it should not be here this way, or we should handle it somehow"); 
 		}
 		
-		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = Utility.filterOutBoundariesByType(placement, replacement);
+		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = Utility.sortBoundariesByType(placement, replacement);
 		ArrayList<VariationPoint> toPlacements = fileterdBoundaries.get(Utility.TOPLCMNT);
 		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(Utility.TOREPLCMNT);
 		for(VariationPoint toPlacement : toPlacements){

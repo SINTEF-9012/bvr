@@ -8,12 +8,13 @@ import javax.swing.table.TableCellRenderer;
 
 import no.sintef.cvl.ui.primitives.DataItem;
 
-public class FragSubTableCellRenderer extends DefaultTableCellRenderer implements TableCellRenderer {
+public class BindingBindingCellRenderer extends DefaultTableCellRenderer implements
+		TableCellRenderer {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1538635828964825222L;
+	private static final long serialVersionUID = 5699053973848281547L;
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
@@ -22,5 +23,4 @@ public class FragSubTableCellRenderer extends DefaultTableCellRenderer implement
 		setText(((DataItem) value).getLabel().getText());
 		return renderer;
 	}
-
 }

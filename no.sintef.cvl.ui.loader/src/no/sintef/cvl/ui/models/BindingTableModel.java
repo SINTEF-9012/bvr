@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.exceptions.CVLModelException;
+import no.sintef.cvl.ui.primitives.impl.DataBindingItem;
 import no.sintef.cvl.ui.primitives.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
 
@@ -42,6 +43,14 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 		fs = fragSub;
 		data = new ArrayList<ArrayList<Object>>();
 		loadBindings(fragSub);
+	}
+	
+	public ArrayList<ArrayList<Object>> getData(){
+		return data;
+	}
+	
+	public FragmentSubstitution getFragmentSubstitution(){
+		return fs;
 	}
 	
 	@Override
@@ -79,14 +88,14 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 	public Class<?> getColumnClass(int columnIndex) {
 		Class cl;
 		switch(columnIndex){
+			case Constants.BINDING_TYPE_CLMN : {
+				cl = DataBindingItem.class;
+			}; break;
 			case Constants.BINDING_PROP_CLMN : {
 				cl = DataNamedElementItem.class;
 			}; break;
 			case Constants.BINDING_VALUE_CLMN : {
 				cl = DataBoundaryItem.class;
-			}; break;
-			case Constants.BINDING_TYPE_CLMN : {
-				cl = String.class;
 			}; break;
 			default : {
 				cl = String.class;
@@ -130,7 +139,9 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 							throw new CVLModelException("binding should reference toPlacement and toReplacement");
 						}
 						
-						String typeName = Constants.BINDING_TYPE_TO_BINDING_NAME;
+						JLabel lableToB = new JLabel(Constants.BINDING_TYPE_TO_BINDING_NAME);
+						DataBindingItem propToB = new DataBindingItem(lableToB, toBinding);
+						
 						JLabel labelToP = new JLabel(toPlacement.getName());
 						DataNamedElementItem propToP = new DataNamedElementItem(labelToP, toPlacement);
 						
@@ -138,7 +149,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						DataBoundaryItem propToR = new DataBoundaryItem(labelToR, toReplacement);
 						
 						ArrayList<Object> row = new ArrayList<Object>();
-						row.add(typeName);
+						row.add(propToB);
 						row.add(propToP);
 						row.add(propToR);
 						dataToBindings.add(row);
@@ -150,7 +161,9 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 							throw new CVLModelException("binding should reference fromPlacement and fromReplacement");
 						}
 						
-						String typeName = Constants.BINDING_TYPE_FROM_BINDING_NAME;
+						JLabel lableFromB = new JLabel(Constants.BINDING_TYPE_FROM_BINDING_NAME);
+						DataBindingItem propFromB = new DataBindingItem(lableFromB, fromBinding);
+						
 						JLabel labelFromP = new JLabel(fromPlacement.getName());
 						DataBoundaryItem propFromP = new DataBoundaryItem(labelFromP, fromPlacement);
 						
@@ -158,7 +171,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						DataNamedElementItem propFromR = new DataNamedElementItem(labelFromR, fromReplacement);
 						
 						ArrayList<Object> row = new ArrayList<Object>();
-						row.add(typeName);
+						row.add(propFromB);
 						row.add(propFromR);
 						row.add(propFromP);
 						dataFromBindings.add(row);

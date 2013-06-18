@@ -17,6 +17,7 @@ import javax.swing.JTabbedPane;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.commands.events.ClearSelectionRelalizationEvent;
+import no.sintef.cvl.ui.commands.events.CreateBindingsEvent;
 import no.sintef.cvl.ui.commands.events.CreateFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
@@ -185,6 +186,11 @@ public class Main {
 		JMenuItem createFragmentSubstitution = new JMenuItem(Constants.REALIZATION_CR_FS_NAME);
 		createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(filePane, models, views));
 		realizationMenu.add(createFragmentSubstitution);
+		realizationMenu.add(new JSeparator());
+		
+		JMenuItem generateBindings = new JMenuItem(Constants.REALIZATION_GENERATE_BINDINGS);
+		generateBindings.addActionListener(new CreateBindingsEvent(filePane, models, views));
+		realizationMenu.add(generateBindings);
 		realizationMenu.add(new JSeparator());
 		
 		JMenuItem deletePlacementReplacement = new JMenuItem(Constants.REALIZATION_DL_PLCMT_RPLCMT_NAME);

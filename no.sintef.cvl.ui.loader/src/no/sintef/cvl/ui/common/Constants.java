@@ -29,6 +29,7 @@ public class Constants {
 	public static final String REALIZATION_CLEAR_SELECTION_NAME = "Clear Selection";
 	public static final String REALIZATION_DL_PLCMT_RPLCMT_NAME = "Delete Placement/Replacement";
 	public static final String REALIZATION_DL_FS_NAME = "Delete FragmentSubstitution";
+	public static final String REALIZATION_GENERATE_BINDINGS = "Generate Bindings";
 	
 	public static final String FRAG_SUB_VP_CLMN_NAME = "Variation points";
 	public static final String FRAG_SUB_VSPEC_CLMN_NAME = "VSpec";
@@ -51,5 +52,4 @@ public class Constants {
 	public static final String RESOLUTION_EXECUTE_ALL_NAME = "Execute All";
 	public static final String PLACEMENT_DEFAULT_NAME = "PlacementFragment";
 	public static final String REPLACEMENT_DEFAULT_NAME = "ReplacementFragment";
-	
 }

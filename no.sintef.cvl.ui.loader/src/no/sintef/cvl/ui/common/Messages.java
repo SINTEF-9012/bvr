@@ -11,4 +11,6 @@ public class Messages {
 	public static final String DIALOG_MSG_FILE_EXISTS = "File already exist, overwrite?";
 	public static final String DIALOG_TITLE_ALERT = "Alert";
 	public static final String DIALOG_MSG_NON_ECLIPSE_DETECTED = "No Eclipse Connection Available";
+	public static final String DIALOG_MSG_MORE_THEN_ONE_SELECTION = "Several rows are selected, only one should be selected";
+	public static final String DIALOG_MSG_NOT_FRAG_SUB_SELECTION = "FragmentSubstitution should be selected in order to generate bindings";
 }

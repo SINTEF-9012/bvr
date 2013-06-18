@@ -11,6 +11,11 @@ import no.sintef.cvl.ui.primitives.DataItem;
 public class SubFragTableCellRenderer extends DefaultTableCellRenderer
 		implements TableCellRenderer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4850896689083076999L;
+
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {

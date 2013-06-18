@@ -11,6 +11,11 @@ import no.sintef.cvl.ui.primitives.DataItem;
 public class BindingBoundariesCellRenderer extends DefaultTableCellRenderer implements
 		TableCellRenderer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8395173336391220674L;
+
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {

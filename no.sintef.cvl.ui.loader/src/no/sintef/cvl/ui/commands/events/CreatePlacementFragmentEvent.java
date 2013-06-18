@@ -2,11 +2,8 @@ package no.sintef.cvl.ui.commands.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.common.Constants;
@@ -16,18 +13,13 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.strategies.impl.CreateBoundaryContext;
 import no.sintef.cvl.ui.strategies.impl.GetSelectionContext;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import cvl.ConfigurableUnit;
 import cvl.CvlFactory;
-import cvl.ObjectHandle;
 import cvl.PlacementFragment;
-import cvl.ToPlacement;
 
 public class CreatePlacementFragmentEvent implements ActionListener {
 

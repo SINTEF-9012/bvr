@@ -60,6 +60,22 @@ public class Utility {
 		return false;
 	}
 	
+	public static ToReplacement getNullToReplacement(EList<VariationPoint> boundaries){
+		for(VariationPoint boundary : boundaries){
+			if(isNullBoundary(boundary))
+				return (ToReplacement) boundary;
+		}
+		return null;
+	}
+	
+	public static FromPlacement getNullFromPlacement(EList<VariationPoint> boundaries){
+		for(VariationPoint boundary : boundaries){
+			if(isNullBoundary(boundary))
+				return (FromPlacement) boundary;
+		}
+		return null;
+	}
+	
 	public static EList<EObject> resolveProxies(EList<ObjectHandle> proxyList){
 		EList<EObject> resolvedList = new BasicEList<EObject>();
 		for(ObjectHandle proxy : proxyList){
@@ -69,7 +85,7 @@ public class Utility {
 		return resolvedList;
 	}
 	
-	public static HashMap<String, ArrayList<VariationPoint>> filterOutBoundariesByType(PlacementFragment placement, ReplacementFragmentType replacement){
+	public static HashMap<String, ArrayList<VariationPoint>> sortBoundariesByType(PlacementFragment placement, ReplacementFragmentType replacement){
 		HashMap<String, ArrayList<VariationPoint>> boundariesMap = new HashMap<String, ArrayList<VariationPoint>>();
 		ArrayList<VariationPoint> toPlacements = new ArrayList<VariationPoint>();
 		ArrayList<VariationPoint> fromPlacements = new ArrayList<VariationPoint>();
