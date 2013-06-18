@@ -9,9 +9,14 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.strategies.impl.CreateBoundaryContext;
+import no.sintef.cvl.ui.strategies.impl.GetSelectionContext;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -46,57 +51,64 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 		
 		ConfigurableUnit cu = m.getCU();
 		
-		ReplacementFragmentType rf = CvlFactory.eINSTANCE.createReplacementFragmentType();
-		count++;
-		rf.setName("ReplacementFragment" + count);
+		ReplacementFragmentType replacement = CvlFactory.eINSTANCE.createReplacementFragmentType();
 		
-		cu.getOwnedVariabletype().add(rf);
+		GetSelectionContext selectionContext = new GetSelectionContext(w);
 		
-		views.get(tab).notifyRelalizationViewUpdate();
-		
-		/*
-		System.out.println(w);
-		if(w == null){
-			JOptionPane.showMessageDialog(null, "No Eclipse Connection Available");
-		}else{
+		try {
+			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
+			CreateBoundaryContext createBoundaryContext = new CreateBoundaryContext();
+			createBoundaryContext.creatBoundaries(replacement, selectedObjects);
 			
-			ISelection s = w.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
-			
-			StructuredSelection ss = (StructuredSelection) s;
-			
-			List<EObject> selected = new ArrayList<EObject>();
-			for(Object o: ss.toList()){
-				EObject e = null;
-				try {
-					Method method = o.getClass().getMethod("resolveSemanticElement");
-					e = (EObject) method.invoke(o, new Object[0]);
-				} catch (Exception ex) {
-				}
-				
-				if(e == null){
-					try{
-						e = (EObject)o;
-					}catch(ClassCastException ex){
-						
-					}
-				}
-				selected.add(e);
-			}
-			
-			String selstring = "Selected: \n";
-			
-			for(EObject e : selected){
-				selstring += " * " + e + "\n";
-			}
-			
-			JOptionPane.showMessageDialog(null, "Selection : " + selstring);
+			replacement.setName(Constants.REPLACEMENT_DEFAULT_NAME + count++);
+			cu.getOwnedVariabletype().add(replacement);
+		} catch (AbstractError e) {
+			e.printStackTrace();
 		}
 		
-		*/
+		views.get(tab).notifyRelalizationViewUpdate();
 	}
-
 }
 
+/*
+System.out.println(w);
+if(w == null){
+	JOptionPane.showMessageDialog(null, "No Eclipse Connection Available");
+}else{
+	
+	ISelection s = w.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
+	
+	StructuredSelection ss = (StructuredSelection) s;
+	
+	List<EObject> selected = new ArrayList<EObject>();
+	for(Object o: ss.toList()){
+		EObject e = null;
+		try {
+			Method method = o.getClass().getMethod("resolveSemanticElement");
+			e = (EObject) method.invoke(o, new Object[0]);
+		} catch (Exception ex) {
+		}
+		
+		if(e == null){
+			try{
+				e = (EObject)o;
+			}catch(ClassCastException ex){
+				
+			}
+		}
+		selected.add(e);
+	}
+	
+	String selstring = "Selected: \n";
+	
+	for(EObject e : selected){
+		selstring += " * " + e + "\n";
+	}
+	
+	JOptionPane.showMessageDialog(null, "Selection : " + selstring);
+}
+
+*/
 
 //int x = w.getWorkbench().getWorkbenchWindowCount();
 /*

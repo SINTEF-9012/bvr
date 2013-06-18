@@ -49,5 +49,7 @@ public class Constants {
 	
 	public static final String RESOLUTION_EXECUTE_NAME = "Execute";
 	public static final String RESOLUTION_EXECUTE_ALL_NAME = "Execute All";
+	public static final String PLACEMENT_DEFAULT_NAME = "PlacementFragment";
+	public static final String REPLACEMENT_DEFAULT_NAME = "ReplacementFragment";
 	
 }

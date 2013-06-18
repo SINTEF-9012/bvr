@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -52,16 +53,15 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 		ConfigurableUnit cu = m.getCU();
 		
 		PlacementFragment placement = CvlFactory.eINSTANCE.createPlacementFragment();
-		count++;
-		placement.setName("PlacementFragment" + count);
-		
-		cu.getOwnedVariationPoint().add(placement);
 		
 		GetSelectionContext selectionContext = new GetSelectionContext(w);
 		try {
 			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
 			CreateBoundaryContext createBoundaryContext = new CreateBoundaryContext();
 			createBoundaryContext.creatBoundaries(placement, selectedObjects);
+			
+			placement.setName(Constants.PLACEMENT_DEFAULT_NAME + count++);
+			cu.getOwnedVariationPoint().add(placement);
 		} catch (AbstractError e) {
 			e.printStackTrace();
 		}

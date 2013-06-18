@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.exceptions.AbstractError;
+import no.sintef.cvl.ui.exceptions.IllegalOperationException;
 import no.sintef.cvl.ui.exceptions.UnexpectedException;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.strategies.SelectionStrategy;
@@ -23,9 +24,10 @@ public class ContainmentSelectionStrategy implements SelectionStrategy {
 		List<Object> selections = unifiedSelector.getSelections();
 		for(Object object: selections){
 			EObject eObject = unifiedSelector.getEObject(object);
-			if(eObject == null){
+			if(eObject == null)
 				throw new UnexpectedException("no model element is found from a given selection");
-			}
+			if(eObject.eContainer() == null)
+				throw new IllegalOperationException("selected object is not contained anywhere or simply a top most element, not allowed yet " + eObject);
 			selected.add(eObject);
 		}
 		

@@ -56,6 +56,8 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	public List<Object> getSelections() throws IllegalOperationException {
 		if(workbenchWindow == null)
 			throw new IllegalOperationException("can not get selection, because workbench is not initialized");
+		if(workbenchWindow.getActivePage().getActiveEditor() == null)
+			throw new IllegalOperationException("editor is not opened");
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();

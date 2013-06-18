@@ -14,6 +14,7 @@ import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
 import cvl.ToPlacement;
+import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.logging.Logger;
 import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.strategies.PlacementBoundaryCalcStrategy;
@@ -86,6 +87,7 @@ public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCa
 				}
 			}
 		}
+		this.createNullFromPlacement(placement);
 	}
 	
 	private void testFromPlacementBoundary(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
@@ -166,6 +168,8 @@ public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCa
 		for(ObjectHandle oh : objectHandles){
 			if(eObject != null && eObject.equals(oh.getMOFRef())){
 				return oh;
+			}else if(oh.getMOFRef() == null && eObject == null){
+				return oh;
 			}
 		}
 		ObjectHandle objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
@@ -182,5 +186,14 @@ public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCa
 		}
 		name+= "}";
 		return name;
+	}
+	
+	private void createNullFromPlacement(PlacementFragment placement){
+		FromPlacement nullFromPlacement = CvlFactory.eINSTANCE.createFromPlacement();
+		ObjectHandle nullObjectHandle = this.testObjectHandle(placement, null);
+		nullFromPlacement.setInsideBoundaryElement(nullObjectHandle);
+		nullFromPlacement.getOutsideBoundaryElement().add(nullObjectHandle);
+		nullFromPlacement.setName(Constants.NULL_NAME);
+		placement.getPlacementBoundaryElement().add(nullFromPlacement);
 	}
 }
