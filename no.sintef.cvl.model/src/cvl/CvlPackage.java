@@ -838,13 +838,22 @@ public interface CvlPackage extends EPackage {
 	int BOUNDARY_ELEMENT_BINDING = 14;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDARY_ELEMENT_BINDING__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Boundary Element Binding</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOUNDARY_ELEMENT_BINDING_FEATURE_COUNT = 0;
+	int BOUNDARY_ELEMENT_BINDING_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.PlacementFragmentImpl <em>Placement Fragment</em>}' class.
@@ -2435,6 +2444,15 @@ public interface CvlPackage extends EPackage {
 	int TO_BINDING = 45;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_BINDING__NAME = BOUNDARY_ELEMENT_BINDING__NAME;
+
+	/**
 	 * The feature id for the '<em><b>To Placement</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2625,6 +2643,15 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	int FROM_BINDING = 48;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_BINDING__NAME = BOUNDARY_ELEMENT_BINDING__NAME;
 
 	/**
 	 * The feature id for the '<em><b>From Placement</b></em>' reference.

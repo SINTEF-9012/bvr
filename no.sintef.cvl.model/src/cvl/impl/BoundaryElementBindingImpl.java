@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public abstract class BoundaryElementBindingImpl extends EObjectImpl implements BoundaryElementBinding {
+public abstract class BoundaryElementBindingImpl extends NamedElementImpl implements BoundaryElementBinding {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

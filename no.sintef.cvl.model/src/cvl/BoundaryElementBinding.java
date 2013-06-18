@@ -18,5 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface BoundaryElementBinding extends EObject {
+public interface BoundaryElementBinding extends NamedElement {
 } // BoundaryElementBinding

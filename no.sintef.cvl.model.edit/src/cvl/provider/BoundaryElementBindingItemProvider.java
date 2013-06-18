@@ -3,6 +3,7 @@
 package cvl.provider;
 
 
+import cvl.BoundaryElementBinding;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * @generated
  */
 public class BoundaryElementBindingItemProvider
-	extends ItemProviderAdapter
+	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -66,7 +67,10 @@ public class BoundaryElementBindingItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_BoundaryElementBinding_type");
+		String label = ((BoundaryElementBinding)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_BoundaryElementBinding_type") :
+			getString("_UI_BoundaryElementBinding_type") + " " + label;
 	}
 
 	/**
@@ -92,17 +96,6 @@ public class BoundaryElementBindingItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return CVLMetamodelEditPlugin.INSTANCE;
 	}
 
 }

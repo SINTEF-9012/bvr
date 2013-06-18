@@ -2758,6 +2758,7 @@ public class CvlPackageImpl extends EPackageImpl implements CvlPackage {
 		fragmentSubstitutionEClass.getESuperTypes().add(this.getRepeatableVariationPoint());
 		choiceVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
 		repeatableVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
+		boundaryElementBindingEClass.getESuperTypes().add(this.getNamedElement());
 		placementFragmentEClass.getESuperTypes().add(this.getVariationPoint());
 		placementBoundaryElementEClass.getESuperTypes().add(this.getVariationPoint());
 		replacementFragmentTypeEClass.getESuperTypes().add(this.getVariabletype());

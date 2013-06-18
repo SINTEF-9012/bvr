@@ -185,6 +185,7 @@ public class CvlSwitch<T> extends Switch<T> {
 			case CvlPackage.BOUNDARY_ELEMENT_BINDING: {
 				BoundaryElementBinding boundaryElementBinding = (BoundaryElementBinding)theEObject;
 				T result = caseBoundaryElementBinding(boundaryElementBinding);
+				if (result == null) result = caseNamedElement(boundaryElementBinding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -446,6 +447,7 @@ public class CvlSwitch<T> extends Switch<T> {
 				ToBinding toBinding = (ToBinding)theEObject;
 				T result = caseToBinding(toBinding);
 				if (result == null) result = caseBoundaryElementBinding(toBinding);
+				if (result == null) result = caseNamedElement(toBinding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -473,6 +475,7 @@ public class CvlSwitch<T> extends Switch<T> {
 				FromBinding fromBinding = (FromBinding)theEObject;
 				T result = caseFromBinding(fromBinding);
 				if (result == null) result = caseBoundaryElementBinding(fromBinding);
+				if (result == null) result = caseNamedElement(fromBinding);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

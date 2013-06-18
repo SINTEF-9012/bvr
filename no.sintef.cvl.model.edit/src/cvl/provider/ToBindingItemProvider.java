@@ -5,6 +5,7 @@ package cvl.provider;
 
 import cvl.CvlPackage;
 
+import cvl.ToBinding;
 import java.util.Collection;
 import java.util.List;
 
@@ -123,7 +124,10 @@ public class ToBindingItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ToBinding_type");
+		String label = ((ToBinding)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ToBinding_type") :
+			getString("_UI_ToBinding_type") + " " + label;
 	}
 
 	/**
