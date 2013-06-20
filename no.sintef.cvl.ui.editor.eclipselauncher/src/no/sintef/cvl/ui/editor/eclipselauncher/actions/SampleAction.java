@@ -1,8 +1,5 @@
 package no.sintef.cvl.ui.editor.eclipselauncher.actions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 
 import no.sintef.cvl.ui.loader.Main;
 
@@ -24,8 +21,6 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	/**
 	 * The constructor.
 	 */
-	public SampleAction() {
-	}
 
 	/**
 	 * The action has been activated. The argument of the
@@ -34,7 +29,7 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action) {
-		// Run
+		// Run		
 		Runnable r = new CVLEditorThread(window);
 		Thread t = new Thread(r);
 		t.start();

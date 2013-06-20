@@ -8,5 +8,5 @@ import org.eclipse.ui.IWorkbenchWindow;
 
 public interface SelectionStrategy {
 
-	EList<EObject> getSelectedObjects(IWorkbenchWindow workbenchWindow) throws AbstractError;
+	EList<EObject> getSelectedObjects() throws AbstractError;
 }

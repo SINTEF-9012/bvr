@@ -46,7 +46,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 		
 		PlacementFragment placement = CvlFactory.eINSTANCE.createPlacementFragment();
 		
-		GetSelectionContext selectionContext = new GetSelectionContext(w);
+		GetSelectionContext selectionContext = new GetSelectionContext();
 		try {
 			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
 			CreateBoundaryContext createBoundaryContext = new CreateBoundaryContext();

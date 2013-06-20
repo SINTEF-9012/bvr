@@ -4,6 +4,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import no.sintef.cvl.ui.commands.events.BindingModelTableEvent;
+import no.sintef.cvl.ui.commands.events.BindingRowSelectionEvent;
 import no.sintef.cvl.ui.exceptions.AbstractError;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.BindingTableModel;
@@ -35,6 +36,8 @@ public class BindingJTable extends JTable {
 		
 		getTableHeader().setReorderingAllowed(false);
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		getSelectionModel().addListSelectionListener(new BindingRowSelectionEvent(this));
+		
 		
 		tableModel.addTableModelListener(new BindingModelTableEvent(cu, view));
 	}

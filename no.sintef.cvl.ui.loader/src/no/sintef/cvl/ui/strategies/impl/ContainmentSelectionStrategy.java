@@ -17,8 +17,8 @@ import no.sintef.cvl.ui.strategies.SelectionStrategy;
 public class ContainmentSelectionStrategy implements SelectionStrategy {
 
 	@Override
-	public EList<EObject> getSelectedObjects(IWorkbenchWindow workbenchWindow) throws AbstractError {
-		ThirdpartyEditorSelector unifiedSelector = ThirdpartyEditorSelector.getEditorSelector(workbenchWindow);
+	public EList<EObject> getSelectedObjects() throws AbstractError {
+		ThirdpartyEditorSelector unifiedSelector = ThirdpartyEditorSelector.getEditorSelector();
 		
 		EList<EObject> selected = new BasicEList<EObject>();
 		List<Object> selections = unifiedSelector.getSelections();

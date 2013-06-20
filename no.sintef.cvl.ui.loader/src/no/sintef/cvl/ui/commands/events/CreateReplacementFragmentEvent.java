@@ -53,7 +53,7 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 		
 		ReplacementFragmentType replacement = CvlFactory.eINSTANCE.createReplacementFragmentType();
 		
-		GetSelectionContext selectionContext = new GetSelectionContext(w);
+		GetSelectionContext selectionContext = new GetSelectionContext();
 		
 		try {
 			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();

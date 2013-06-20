@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.commands.events.ClearSelectionRelalizationEvent;
@@ -33,6 +34,8 @@ import no.sintef.cvl.ui.commands.events.NewResolutionEvent;
 import no.sintef.cvl.ui.commands.events.OpenModelEvent;
 import no.sintef.cvl.ui.commands.events.SaveModelAsEvent;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
+import no.sintef.cvl.ui.exceptions.IllegalOperationException;
 import cvl.NamedElement;
 
 public class Main {
@@ -49,6 +52,15 @@ public class Main {
 	private IWorkbenchWindow w;
 	public void setEclipseWindow(IWorkbenchWindow w){
 		this.w = w;
+		ThirdpartyEditorSelector.setWorkbeach(w);
+		
+		//crap remove this
+		try {
+			ThirdpartyEditorSelector.removethis = ThirdpartyEditorSelector.getEditorSelector().getSelections();
+		} catch (IllegalOperationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	// --
 
