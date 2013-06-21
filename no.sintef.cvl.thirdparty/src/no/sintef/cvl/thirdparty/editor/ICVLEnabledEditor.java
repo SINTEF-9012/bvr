@@ -37,7 +37,7 @@ public interface ICVLEnabledEditor {
 	 * The ID of object is provided by the static operation
 	 * ICVLEnabledEditor.IDProvider.getObjectId(EObject obj). Only this operation
 	 * should be used to compute the ID of EObjects.
-	 * @param xmi_id The ID of the object
+	 * @param object The object to highlight
 	 * @param type The type of highlighting to use
 	 */
 	public void highlightObject(Object object, int type);
