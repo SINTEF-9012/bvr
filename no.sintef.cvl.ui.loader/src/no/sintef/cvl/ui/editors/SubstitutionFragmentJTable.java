@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.EList;
 
 import no.sintef.cvl.ui.commands.events.FragSubTableEvent;
 import no.sintef.cvl.ui.commands.events.SubFragTableEvent;
+import no.sintef.cvl.ui.commands.events.SubFragTableRowSelectionEvent;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.SubFragTableModel;
 import no.sintef.cvl.ui.primitives.impl.DataNamedElementItem;
@@ -47,10 +48,13 @@ public class SubstitutionFragmentJTable extends JTable {
 		tableModel = new SubFragTableModel(placReplList);
 		setModel(tableModel);
 		
-		this.setDefaultEditor(DataNamedElementItem.class, new SubFragTextTabelCellEditor());
-		this.setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
+		setDefaultEditor(DataNamedElementItem.class, new SubFragTextTabelCellEditor());
+		setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
+		
 		tableModel.addTableModelListener(new SubFragTableEvent(cu, tableModel.getData(), view));
-		this.getTableHeader().setReorderingAllowed(false);
+		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(this));
+		
+		getTableHeader().setReorderingAllowed(false);
 	}
 	
 	public void setFragmentSubstitutionJTable(FragmentSubstitutionJTable table){

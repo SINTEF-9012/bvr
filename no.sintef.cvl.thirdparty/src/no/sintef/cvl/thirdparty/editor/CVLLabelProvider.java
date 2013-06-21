@@ -81,7 +81,7 @@ public class CVLLabelProvider implements ILabelProvider, ITableLabelProvider, IN
 		case ICVLEnabledEditor.HL_REPLACEMENT_OUT : 
 			return ICVLEnabledEditor.REPLACEMENT_OUT;
 		case ICVLEnabledEditor.HL_REPLACEMENT_IN : 
-			return ICVLEnabledEditor.REPLACEMENT_OUT;
+			return ICVLEnabledEditor.REPLACEMENT_IN;
 		default : 
 			return null;
 		}

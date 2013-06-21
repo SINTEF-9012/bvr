@@ -28,19 +28,17 @@ public class BindingJTable extends JTable {
 		BindingTableModel tableModel = new BindingTableModel(null);
 		setModel(tableModel);
 		
-		setColumnSelectionAllowed(false);
-		
 		setDefaultRenderer(DataBindingItem.class, new BindingBindingCellRenderer());
 		setDefaultRenderer(DataNamedElementItem.class, new BindingBoundariesCellRenderer());
 		setDefaultRenderer(DataBoundaryItem.class, new BindingBoundariesCellRenderer());
 		
 		//setDefaultEditor(DataNamedElementItem.class, new BindingBoundariesTextTableCellEditor());
 		
+		setColumnSelectionAllowed(false);
 		getTableHeader().setReorderingAllowed(false);
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		getSelectionModel().addListSelectionListener(new BindingRowSelectionEvent(this));
-		
-		
 		tableModel.addTableModelListener(new BindingModelTableEvent(cu, view));
 	}
 }
