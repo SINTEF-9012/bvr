@@ -2,9 +2,6 @@ package no.sintef.cvl.ui.common;
 
 import javax.swing.Icon;
 
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Display;
-
 public class Constants {
 	
 	//relaization
@@ -56,7 +53,7 @@ public class Constants {
 	public static final String PLACEMENT_DEFAULT_NAME = "PlacementFragment";
 	public static final String REPLACEMENT_DEFAULT_NAME = "ReplacementFragment";
 	
-	//placement colors
+	/*//placement colors
 	public static final Color RED = new Color(Display.getDefault(), 240, 70, 0); // placement elements
 	public static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element
 	public static final Color VIOLET = new Color(Display.getDefault(), 126, 0, 123); //toPlacement outside element
@@ -65,4 +62,5 @@ public class Constants {
 	public static final Color BLUE = new Color(Display.getDefault(), 50, 80, 250); //replacement elements
 	public static final Color GREEN = new Color(Display.getDefault(), 80, 210, 70); //fromReplacement outside element
 	public static final Color PINK = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element
+	*/
 }

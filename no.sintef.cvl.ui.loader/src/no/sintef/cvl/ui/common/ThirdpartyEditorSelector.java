@@ -2,31 +2,33 @@ package no.sintef.cvl.ui.common;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 
+import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
+import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
+import no.sintef.cvl.thirdparty.exception.NotSupportedThirdPartyEditor;
 import no.sintef.cvl.ui.exceptions.IllegalOperationException;
+import no.sintef.cvl.ui.logging.impl.Logging;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.ui.ISelectionListener;
-import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.swt.widgets.Display;
 
 public final class ThirdpartyEditorSelector implements ModelSelector {
 
-	private IWorkbenchWindow workbenchWindow;
+	private IWorkbenchWindow workbenchWindow = null;
 	 
 	private static final ThirdpartyEditorSelector singletone = new ThirdpartyEditorSelector();
 	
-	public static List<Object> removethis = null;
-	
 	public static ThirdpartyEditorSelector getEditorSelector(){
+		if(singletone.workbenchWindow == null)
+			Logging.getLogger().warn("workbenchWindow is not set you may run into some problems when it involves some external operations");
 		return singletone;
 	}
 	
@@ -34,54 +36,6 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		singletone.workbenchWindow = workbenchWindow;
 	}
 	
-	@Override
-	public void highlightObject(EObject eObject, int type) {
-    	/*Random rn = new Random();
-    	System.out.println("--------------------------------");
-    	EObject object = (EObject) removethis.get(removethis.size() - 1);
-    	System.out.println(object);
-    	System.out.println(object.eResource().getURIFragment(object));
-		final StructuredSelection selection = new StructuredSelection(object);
-		Display.getDefault().asyncExec(new Runnable() {
-		    public void run() {
-		    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		    	System.out.println((StructuredSelection) workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection());
-		    	
-		    	ISelectionChangedListener listener = new ISelectionChangedListener() {
-
-					@Override
-					public void selectionChanged(SelectionChangedEvent arg0) {
-						System.out.println("selectionChanged");
-						System.out.println(arg0.getSelection());
-					}
-		    		
-				};
-				
-				ISelectionListener listener1 = new ISelectionListener() {
-					
-					@Override
-					public void selectionChanged(IWorkbenchPart arg0, ISelection arg1) {
-						//arg0.
-						
-					}
-				};
-				
-		    	System.out.println(workbenchWindow.getActivePage().getActiveEditor());
-				
-		    	workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().addSelectionChangedListener(listener);
-				workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().setSelection(selection);
-				workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().removeSelectionChangedListener(listener);
-				System.out.println("^^^^^^^^^^^^^^^^");
-				System.out.println(workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection());
-		    }
-		});*/
-	}
-
-	@Override
-	public void clearHighlighting(EObject eObject) {
-		// TODO Auto-generated method stub
-	}
-
 	@Override
 	public EObject getEObject(Object object) {
 		EObject eObject = null;
@@ -107,5 +61,66 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();
+	}
+
+	@Override
+	public void highlightObjects(final HashMap<EObject, Integer> objects) throws IllegalOperationException {
+		if(workbenchWindow == null)
+			throw new IllegalOperationException("can not highlight object, because no eclipse detected and workbench is not initialized");
+		final IEditorReference[] editorReferences = workbenchWindow.getActivePage().getEditorReferences();
+		if(editorReferences.length == 0)
+			return;
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+		    public void run() {
+		    	for(IEditorReference ref : editorReferences){
+		    		IEditorPart editorPart = ref.getEditor(false);
+		    		if(editorPart != null){
+		    			ICVLEnabledEditor editor = null;
+		    			try {
+		    				editor = new ProxyThirdPartyTreeEditor(editorPart);
+						} catch (NotSupportedThirdPartyEditor e) {
+							Logging.getLogger().warn("unsupported editor, can not highlight anything: " + e.getMessage());
+						}
+		    			if(editor != null){
+		    				editor.clearHighlighting();
+		    				for(Map.Entry<EObject, Integer> entry : objects.entrySet()){
+		    					editor.highlightObject(entry.getKey(), entry.getValue());
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
+		});
+	}
+
+	@Override
+	public void clearHighlights() throws IllegalOperationException {
+		if(workbenchWindow == null)
+			throw new IllegalOperationException("can not clear selection, because no eclipse detected and workbench is not initialized");
+		final IEditorReference[] editorReferences = workbenchWindow.getActivePage().getEditorReferences();
+		if(editorReferences.length == 0)
+			return;
+		
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+		    	for(IEditorReference ref : editorReferences){
+		    		IEditorPart editorPart = ref.getEditor(false);
+		    		if(editorPart != null){
+		    			ICVLEnabledEditor editor = null;
+		    			try {
+		    				editor = new ProxyThirdPartyTreeEditor(editorPart);
+						} catch (NotSupportedThirdPartyEditor e) {
+							Logging.getLogger().warn("unsupported editor, can not highlight anything: " + e.getMessage());
+						}
+		    			if(editor != null)
+		    				editor.clearHighlighting();
+		    		}
+		    	}				
+			}
+		});
 	}
 }

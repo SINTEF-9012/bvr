@@ -53,14 +53,6 @@ public class Main {
 	public void setEclipseWindow(IWorkbenchWindow w){
 		this.w = w;
 		ThirdpartyEditorSelector.setWorkbeach(w);
-		
-		//crap remove this
-		try {
-			ThirdpartyEditorSelector.removethis = ThirdpartyEditorSelector.getEditorSelector().getSelections();
-		} catch (IllegalOperationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	// --
 

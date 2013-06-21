@@ -28,6 +28,8 @@ public class BindingJTable extends JTable {
 		BindingTableModel tableModel = new BindingTableModel(null);
 		setModel(tableModel);
 		
+		setColumnSelectionAllowed(false);
+		
 		setDefaultRenderer(DataBindingItem.class, new BindingBindingCellRenderer());
 		setDefaultRenderer(DataNamedElementItem.class, new BindingBoundariesCellRenderer());
 		setDefaultRenderer(DataBoundaryItem.class, new BindingBoundariesCellRenderer());

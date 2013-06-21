@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.common;
 
+import java.util.HashMap;
 import java.util.List;
 
 import no.sintef.cvl.ui.exceptions.IllegalOperationException;
@@ -8,9 +9,9 @@ import org.eclipse.emf.ecore.EObject;
 
 public interface ModelSelector {
 
-	public void highlightObject(EObject eObject, int type);
+	public void highlightObjects(final HashMap<EObject, Integer> objects) throws IllegalOperationException;
 	
-	public void clearHighlighting(EObject eObject);
+	public void clearHighlights() throws IllegalOperationException;
 	
 	public EObject getEObject(Object object);
 	
