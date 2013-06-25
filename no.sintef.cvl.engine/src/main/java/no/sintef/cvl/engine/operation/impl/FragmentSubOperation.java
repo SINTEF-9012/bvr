@@ -65,11 +65,13 @@ public class FragmentSubOperation implements Substitution {
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));				
-				if(!isDerived){
+				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
+				Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
+				if(!isDerived && !isTransient){
 					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
 					if(!isChangeable){
-						property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						this.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						//property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 					}
 					isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
 					if(!isChangeable){
@@ -87,7 +89,8 @@ public class FragmentSubOperation implements Substitution {
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
-						outsideBEPlac.eSet(property, propertyValueNew);
+						//outsideBEPlac.eSet(property, propertyValueNew);
+						this.setProperty(outsideBEPlac, property, propertyValueNew);
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(outsideBEPlac, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -113,7 +116,8 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
-						outsideBEPlac.eSet(property, propertyValueNew);
+						this.setProperty(outsideBEPlac, property, propertyValueNew);
+						//outsideBEPlac.eSet(property, propertyValueNew);
 						Object propertyValueSet = outsideBEPlac.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -123,7 +127,7 @@ public class FragmentSubOperation implements Substitution {
 						this.updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
 					}
 				}else{
-					logger.warn("derived properties should not been used for toBinding, skip it " + property);
+					logger.warn("derived and transient properties should not been used for toBinding, skip it " + property);
 				}
 			}else {
 				throw new IncorrectCVLModel("toPlacement and toReplacement are null or toPlacement is null! It seems to be incorrect!");
@@ -143,10 +147,12 @@ public class FragmentSubOperation implements Substitution {
 				}
 				
 				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				if(!isDerived){
+				Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
+				if(!isDerived && !isTransient){
 					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
 					if(!isChangeable){
-						property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						this.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						//property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 					}
 					isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
 					if(!isChangeable){
@@ -162,7 +168,8 @@ public class FragmentSubOperation implements Substitution {
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
-						insideBERepl.eSet(property, propertyValueNew);
+						this.setProperty(insideBERepl, property, propertyValueNew);
+						//insideBERepl.eSet(property, propertyValueNew);
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -184,7 +191,8 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
-						insideBERepl.eSet(property, propertyValueNew);
+						this.setProperty(insideBERepl, property, propertyValueNew);
+						//insideBERepl.eSet(property, propertyValueNew);
 						Object propertyValueSet = insideBERepl.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -196,7 +204,7 @@ public class FragmentSubOperation implements Substitution {
 					ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
 					this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 				}else{
-					logger.warn("derived properties should not been used for fromBinding, skip it " + property);
+					logger.warn("derived or transient properties should not been used for fromBinding, skip it " + property);
 				}
 			}else{
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
@@ -204,6 +212,14 @@ public class FragmentSubOperation implements Substitution {
 		}
 		this.checkOutsideBoundaryElementsContainment();
 		fragSubHolder.update(replace);
+	}
+	
+	private void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
+		targetEObject.eSet(feature, values);
+	}
+	
+	private void setProperty(EObject targetEObject, EStructuralFeature feature, Object value){
+		targetEObject.eSet(feature, value);
 	}
 	
 	private void checkOutsideBoundaryElementsContainment() throws BasicCVLEngineException{
@@ -226,7 +242,8 @@ public class FragmentSubOperation implements Substitution {
 						}
 						propertyValue.add(outsideBoundaryElement);
 						propertyValue = new BasicEList<EObject>(propertyValue);
-						referencerContainer.eSet(feature, propertyValue);
+						this.setProperty(referencerContainer, feature, propertyValue);
+						//referencerContainer.eSet(feature, propertyValue);
 						
 						EList<EObject> propertySet = Utility.getListPropertyValue(referencerContainer, feature);
 						if(!propertySet.equals(propertyValue)){
@@ -241,7 +258,8 @@ public class FragmentSubOperation implements Substitution {
 						if(propertyValue != null){
 							throw new IncorrectCVLModel("cardinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
 						}
-						referencerContainer.eSet(feature, outsideBoundaryElement);
+						this.setProperty(referencerContainer, feature, outsideBoundaryElement);
+						//referencerContainer.eSet(feature, outsideBoundaryElement);
 						
 						Object propertySet = referencerContainer.eGet(feature);
 						if(propertySet.equals(outsideBoundaryElement)){

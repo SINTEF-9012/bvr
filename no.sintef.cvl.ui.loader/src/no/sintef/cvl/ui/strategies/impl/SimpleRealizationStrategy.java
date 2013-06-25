@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
@@ -61,17 +61,32 @@ public class SimpleRealizationStrategy implements RealizationStrategy {
 		}
 	}
 	
-	private void resolveSymbol(Symbol symbol){
+	private void resolveSymbol(final Symbol symbol){
+		ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet());
 		EList<FragmentSubstitution> symbolsFragSubs = symbol.getFragmentSubstitutions();
 		for(FragmentSubstitution fs : symbolsFragSubs){
-			FragmentSubstitutionHolder fsH = fsHMap.get(fs);
-			FragmentSubOperation fso = new FragmentSubOperation(fsH);
-			try {
+			final FragmentSubstitutionHolder fsH = fsHMap.get(fs);
+			final FragmentSubOperation fso = new FragmentSubOperation(fsH);
+			
+			/*try {
 				fso.execute(!symbol.getMulti());
 				adjacentResolver.resolve(fsH);
 			} catch (BasicCVLEngineException e) {
 				e.printStackTrace();
-			}
+			}*/
+			
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+				
+				protected void doExecute() {
+					try {
+						fso.execute(!symbol.getMulti());
+						adjacentResolver.resolve(fsH);
+					} catch (BasicCVLEngineException e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		}
 	}
 

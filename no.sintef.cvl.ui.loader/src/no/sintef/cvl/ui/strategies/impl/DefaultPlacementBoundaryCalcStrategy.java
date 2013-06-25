@@ -15,14 +15,11 @@ import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
 import cvl.ToPlacement;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.logging.Logger;
-import no.sintef.cvl.ui.logging.impl.Logging;
+import no.sintef.cvl.ui.strategies.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategies.PlacementBoundaryCalcStrategy;
 
-public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCalcStrategy {
+public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalculator implements PlacementBoundaryCalcStrategy {
 	
-	Logger LOGGER = Logging.getLogger();
-
 	@Override
 	public void calculateBoundaries(PlacementFragment placement, EList<EObject> selection) {
 		for(EObject eObject : selection){
@@ -34,22 +31,16 @@ public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCa
 				if(selection.indexOf(sourceEObject) >= 0)
 					continue;
 				EStructuralFeature property = setting.getEStructuralFeature();
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				if(isDerived){
-					LOGGER.warn("property is derived, skip it: " + property);
+				if(!isReferenceToCut(property))
 					continue;
-				}
 				this.testToPlacementBoundary(placement, sourceEObject, eObject, property);
 			}
 			//containment
 			EObject sourceEObject = eObject.eContainer();
 			if(selection.indexOf(sourceEObject) < 0){
 				EStructuralFeature property = eObject.eContainingFeature();
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				if(isDerived){
-					LOGGER.warn("property is derived, skip it: " + property);
+				if(!isReferenceToCut(property))
 					continue;
-				}
 				this.testToPlacementBoundary(placement, sourceEObject, eObject, property);
 			}
 			
@@ -63,11 +54,8 @@ public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCa
 					EObject targetEObject = (EObject) targetObject;
 					if(selection.indexOf(targetEObject) >= 0)
 						continue;
-					Boolean isDerived = (Boolean) reference.eGet(reference.eClass().getEStructuralFeature("derived"));
-					if(isDerived){
-						LOGGER.warn("property is derived, skip it: " + reference);
+					if(!isReferenceToCut(reference))
 						continue;
-					}
 					this.testFromPlacementBoundary(placement, eObject, targetEObject, reference);
 				}else{
 					EList<?> targetListObjects = (EList<?>) targetObject;
@@ -77,11 +65,8 @@ public class DefaultPlacementBoundaryCalcStrategy implements PlacementBoundaryCa
 						EObject trgEObject = (EObject) object;
 						if(selection.indexOf(trgEObject) >= 0)
 							continue;
-						Boolean isDerived = (Boolean) reference.eGet(reference.eClass().getEStructuralFeature("derived"));
-						if(isDerived){
-							LOGGER.warn("property is derived, skip it: " + reference);
+						if(!isReferenceToCut(reference))
 							continue;
-						}
 						this.testFromPlacementBoundary(placement, eObject, trgEObject, reference);
 					}
 				}

@@ -10,23 +10,16 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import cvl.CvlFactory;
-import cvl.FromPlacement;
 import cvl.FromReplacement;
 import cvl.ObjectHandle;
-import cvl.PlacementBoundaryElement;
-import cvl.PlacementFragment;
 import cvl.ReplacementBoundaryElement;
 import cvl.ReplacementFragmentType;
-import cvl.ToPlacement;
 import cvl.ToReplacement;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.logging.Logger;
-import no.sintef.cvl.ui.logging.impl.Logging;
+import no.sintef.cvl.ui.strategies.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategies.ReplacementBoundaryCalcStrategy;
 
-public class DefaultReplacementBoundaryCalcStrategy implements ReplacementBoundaryCalcStrategy {
-
-	Logger LOGGER = Logging.getLogger();
+public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalculator implements ReplacementBoundaryCalcStrategy {
 	
 	@Override
 	public void calculateBoundaries(ReplacementFragmentType replacement, EList<EObject> selection) {
@@ -39,22 +32,16 @@ public class DefaultReplacementBoundaryCalcStrategy implements ReplacementBounda
 				if(selection.indexOf(sourceEObject) >= 0)
 					continue;
 				EStructuralFeature property = setting.getEStructuralFeature();
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				if(isDerived){
-					LOGGER.warn("property is derived, skip it: " + property);
+				if(!isReferenceToCut(property))
 					continue;
-				}
 				this.testToReplacementBoundary(replacement, sourceEObject, eObject, property);
 			}
 			//containment
 			EObject sourceEObject = eObject.eContainer();
 			if(selection.indexOf(sourceEObject) < 0){
 				EStructuralFeature property = eObject.eContainingFeature();
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				if(isDerived){
-					LOGGER.warn("property is derived, skip it: " + property);
+				if(!isReferenceToCut(property))
 					continue;
-				}
 				this.testToReplacementBoundary(replacement, sourceEObject, eObject, property);
 			}
 			
@@ -68,11 +55,8 @@ public class DefaultReplacementBoundaryCalcStrategy implements ReplacementBounda
 					EObject targetEObject = (EObject) targetObject;
 					if(selection.indexOf(targetEObject) >= 0)
 						continue;
-					Boolean isDerived = (Boolean) reference.eGet(reference.eClass().getEStructuralFeature("derived"));
-					if(isDerived){
-						LOGGER.warn("property is derived, skip it: " + reference);
+					if(!isReferenceToCut(reference))
 						continue;
-					}
 					this.testFromReplacementBoundary(replacement, eObject, targetEObject, reference);
 				}else{
 					EList<?> targetListObjects = (EList<?>) targetObject;
@@ -82,11 +66,8 @@ public class DefaultReplacementBoundaryCalcStrategy implements ReplacementBounda
 						EObject trgEObject = (EObject) object;
 						if(selection.indexOf(trgEObject) >= 0)
 							continue;
-						Boolean isDerived = (Boolean) reference.eGet(reference.eClass().getEStructuralFeature("derived"));
-						if(isDerived){
-							LOGGER.warn("property is derived, skip it: " + reference);
+						if(!isReferenceToCut(reference))
 							continue;
-						}
 						this.testFromReplacementBoundary(replacement, eObject, trgEObject, reference);
 					}
 				}

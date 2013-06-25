@@ -8,7 +8,6 @@ import java.util.Map;
 
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
-import no.sintef.cvl.thirdparty.exception.NotSupportedThirdPartyEditor;
 import no.sintef.cvl.ui.exceptions.IllegalOperationException;
 import no.sintef.cvl.ui.logging.impl.Logging;
 
@@ -80,8 +79,8 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    			ICVLEnabledEditor editor = null;
 		    			try {
 		    				editor = new ProxyThirdPartyTreeEditor(editorPart);
-						} catch (NotSupportedThirdPartyEditor e) {
-							Logging.getLogger().warn("unsupported editor, can not highlight anything: " + e.getMessage());
+						} catch (Exception e) {
+							Logging.getLogger().warn("unsupported editor: "+ editorPart.getTitle() + ", can not highlight anything: " + e.getMessage());
 						}
 		    			if(editor != null){
 		    				editor.clearHighlighting();
@@ -113,8 +112,8 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    			ICVLEnabledEditor editor = null;
 		    			try {
 		    				editor = new ProxyThirdPartyTreeEditor(editorPart);
-						} catch (NotSupportedThirdPartyEditor e) {
-							Logging.getLogger().warn("unsupported editor, can not highlight anything: " + e.getMessage());
+						} catch (Exception e) {
+							Logging.getLogger().warn("unsupported editor: "+ editorPart.getTitle() + ", can not highlight anything: " + e.getMessage());
 						}
 		    			if(editor != null)
 		    				editor.clearHighlighting();

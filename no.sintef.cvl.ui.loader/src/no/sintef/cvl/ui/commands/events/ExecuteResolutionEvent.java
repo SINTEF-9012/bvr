@@ -51,6 +51,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 		
 		HashMap<String, Object> keywords = new HashMap<String, Object>();
 		keywords.put("cu", cu);
+		//keywords.put("editingDomain", TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet()));
 		keywords.put("vSpecResolution", vsr);
 		keywords.put("parentComponent", x);
 		keywords.put("cvlModel", m);

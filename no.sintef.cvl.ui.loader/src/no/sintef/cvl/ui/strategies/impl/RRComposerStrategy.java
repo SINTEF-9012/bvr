@@ -2,10 +2,18 @@ package no.sintef.cvl.ui.strategies.impl;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import cvl.BoundaryElementBinding;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
+import cvl.FromBinding;
+import cvl.FromReplacement;
+import cvl.ToBinding;
+import cvl.ToPlacement;
+import cvl.ToReplacement;
 import cvl.VInstance;
 import cvl.VSpecResolution;
 import cvl.VariationPoint;

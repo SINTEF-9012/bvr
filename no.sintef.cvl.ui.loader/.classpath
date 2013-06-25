@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.ide-3.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.common.ui-3.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.edit-3.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.transaction-3.8.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
