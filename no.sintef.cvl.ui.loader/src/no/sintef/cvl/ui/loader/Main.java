@@ -20,9 +20,13 @@ import org.eclipse.ui.IWorkbenchWindow;
 import no.sintef.cvl.ui.commands.events.ClearSelectionRelalizationEvent;
 import no.sintef.cvl.ui.commands.events.CreateBindingsEvent;
 import no.sintef.cvl.ui.commands.events.CreateFragmentSubstitutionEvent;
+import no.sintef.cvl.ui.commands.events.CreateFromBindingEvent;
 import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
+import no.sintef.cvl.ui.commands.events.CreateToBindingEvent;
+import no.sintef.cvl.ui.commands.events.DeleteBindingAllEvent;
+import no.sintef.cvl.ui.commands.events.DeleteBindingEvent;
 import no.sintef.cvl.ui.commands.events.DeleteFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.commands.events.DeletePlacementReplacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.ExecuteResolutionEvent;
@@ -195,7 +199,25 @@ public class Main {
 		JMenuItem generateBindings = new JMenuItem(Constants.REALIZATION_GENERATE_BINDINGS);
 		generateBindings.addActionListener(new CreateBindingsEvent(filePane, models, views));
 		realizationMenu.add(generateBindings);
+		
+		JMenuItem createToBinding = new JMenuItem(Constants.REALIZATION_GENERATE_TO_BINDING);
+		createToBinding.addActionListener(new CreateToBindingEvent(filePane, models, views));
+		realizationMenu.add(createToBinding);
+		
+		JMenuItem createFromBinding = new JMenuItem(Constants.REALIZATION_GENERATE_FROM_BINDING);
+		createFromBinding.addActionListener(new CreateFromBindingEvent(filePane, models, views));
+		realizationMenu.add(createFromBinding);
+		
+		JMenuItem deleteBinding = new JMenuItem(Constants.REALIZATION_DELETE_BINDING);
+		deleteBinding.addActionListener(new DeleteBindingEvent(filePane, models, views));
+		realizationMenu.add(deleteBinding);
+		
+		JMenuItem deleteAllBinding = new JMenuItem(Constants.REALIZATION_DELETE_ALL_BINDING);
+		deleteAllBinding.addActionListener(new DeleteBindingAllEvent(filePane, models, views));
+		realizationMenu.add(deleteAllBinding);
+		
 		realizationMenu.add(new JSeparator());
+		
 		
 		JMenuItem deletePlacementReplacement = new JMenuItem(Constants.REALIZATION_DL_PLCMT_RPLCMT_NAME);
 		deletePlacementReplacement.addActionListener(new DeletePlacementReplacementFragmentEvent(filePane, models, views));

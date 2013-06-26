@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
+import no.sintef.cvl.ui.exceptions.IllegalOperationException;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -23,6 +25,11 @@ public class ClearSelectionRelalizationEvent implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		int tab = filePane.getSelectedIndex();
 		views.get(tab).notifyRelalizationViewUpdate();
+		try {
+			ThirdpartyEditorSelector.getEditorSelector().clearHighlights();
+		} catch (IllegalOperationException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }

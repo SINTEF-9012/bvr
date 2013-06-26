@@ -30,6 +30,10 @@ public class Constants {
 	public static final String REALIZATION_DL_PLCMT_RPLCMT_NAME = "Delete Placement/Replacement";
 	public static final String REALIZATION_DL_FS_NAME = "Delete FragmentSubstitution";
 	public static final String REALIZATION_GENERATE_BINDINGS = "Generate Bindings";
+	public static final String REALIZATION_GENERATE_TO_BINDING = "Generate ToBinding (Dummy)";
+	public static final String REALIZATION_GENERATE_FROM_BINDING = "Generate FromBinding (Dummy)";
+	public static final String REALIZATION_DELETE_BINDING = "Delete Binding";
+	public static final String REALIZATION_DELETE_ALL_BINDING = "Delete All Binding-s";
 	
 	public static final String FRAG_SUB_VP_CLMN_NAME = "Variation points";
 	public static final String FRAG_SUB_VSPEC_CLMN_NAME = "VSpec";

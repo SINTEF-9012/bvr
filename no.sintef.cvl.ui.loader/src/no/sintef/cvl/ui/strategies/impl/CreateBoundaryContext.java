@@ -16,21 +16,26 @@ public class CreateBoundaryContext {
 	private ReplacementBoundaryCalcStrategy defaultReplacementCalc;
 
 	public CreateBoundaryContext(){
-		this.defaultPlacementCalc = new DefaultPlacementBoundaryCalcStrategy();
-		this.defaultReplacementCalc = new DefaultReplacementBoundaryCalcStrategy();
+		defaultPlacementCalc = new DefaultPlacementBoundaryCalcStrategy();
+		defaultReplacementCalc = new DefaultReplacementBoundaryCalcStrategy();
+	}
+	
+	public CreateBoundaryContext(PlacementBoundaryCalcStrategy placementCalcStrategy, ReplacementBoundaryCalcStrategy replacementCalcStrategy){
+		defaultPlacementCalc = placementCalcStrategy;
+		defaultReplacementCalc = replacementCalcStrategy;
 	}
 	
 	public void creatBoundaries(NamedElement fragment, EList<EObject> selectedElements){
 		PlacementFragment placement = null;
 		ReplacementFragmentType replacement = null;
-		if(fragment instanceof PlacementFragment){
+		if(fragment instanceof PlacementFragment && defaultPlacementCalc != null){
 			placement = (PlacementFragment) fragment;
-			this.defaultPlacementCalc.calculateBoundaries(placement, selectedElements);
-		}else if (fragment instanceof ReplacementFragmentType){
+			defaultPlacementCalc.calculateBoundaries(placement, selectedElements);
+		}else if (fragment instanceof ReplacementFragmentType && defaultReplacementCalc != null){
 			replacement = (ReplacementFragmentType) fragment;
-			this.defaultReplacementCalc.calculateBoundaries(replacement, selectedElements);
+			defaultReplacementCalc.calculateBoundaries(replacement, selectedElements);
 		}else{
-			throw new UnsupportedOperationException("fragment should be either PlacementFragment or ReplacementFragmentType");
+			throw new UnsupportedOperationException("fragment should be either PlacementFragment or ReplacementFragmentType; is corresponding strategy set?");
 		}
 	}
 }

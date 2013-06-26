@@ -2,10 +2,15 @@ package no.sintef.cvl.ui.strategies.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
+import com.google.common.collect.Sets;
+import com.google.common.collect.Sets.SetView;
+
+import cvl.BoundaryElementBinding;
 import cvl.CvlFactory;
 import cvl.FragmentSubstitution;
 import cvl.FromBinding;
@@ -27,9 +32,7 @@ import no.sintef.cvl.ui.strategies.BindingCalculatorStrategy;
 public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrategy {
 
 	@Override
-	public void generateBindings(FragmentSubstitution fragmentSubstitution) throws AbstractError {
-		fragmentSubstitution.getBoundaryElementBinding().clear();
-		
+	public void generateBindings(FragmentSubstitution fragmentSubstitution) throws AbstractError {		
 		PlacementFragment placement = fragmentSubstitution.getPlacement();
 		ReplacementFragmentType replacement = fragmentSubstitution.getReplacement();
 		
@@ -43,7 +46,7 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 			throw new UnexpectedException("boundaries for placement or replacement are not generated" + placement + " " + replacement);
 		
 		HashMap<String, ArrayList<VariationPoint>> sortedBoundaries = Utility.sortBoundariesByType(placement, replacement);
-		ArrayList<VariationPoint> toPlacemenets = sortedBoundaries.get(Utility.TOPLCMNT);
+		ArrayList<VariationPoint> toPlacements = sortedBoundaries.get(Utility.TOPLCMNT);
 		ArrayList<VariationPoint> fromReplacements = sortedBoundaries.get(Utility.FROMREPLCMNT);
 		
 		ToReplacement nullToReplacement = Utility.getNullToReplacement(new BasicEList<VariationPoint>(sortedBoundaries.get(Utility.TOREPLCMNT)));
@@ -54,17 +57,44 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		if(nullFromPlacement == null)
 			throw new UnexpectedException("can not find NULL FromPlacement boundary");
 		
-		for(VariationPoint toPlacemenet : toPlacemenets){
-			ToBinding toBinding = CvlFactory.eINSTANCE.createToBinding();
-			toBinding.setToPlacement((ToPlacement) toPlacemenet);
-			toBinding.setToReplacement(nullToReplacement);
-			fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
-		}
-		for(VariationPoint fromReplacement : fromReplacements){
-			FromBinding fromBinding = CvlFactory.eINSTANCE.createFromBinding();
-			fromBinding.setFromReplacement((FromReplacement) fromReplacement);
-			fromBinding.setFromPlacement(nullFromPlacement);
-			fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
+		if(fragmentSubstitution.getBoundaryElementBinding().size() == 0){
+			for(VariationPoint toPlacemenet : toPlacements){
+				ToBinding toBinding = CvlFactory.eINSTANCE.createToBinding();
+				toBinding.setToPlacement((ToPlacement) toPlacemenet);
+				toBinding.setToReplacement(nullToReplacement);
+				fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
+			}
+			for(VariationPoint fromReplacement : fromReplacements){
+				FromBinding fromBinding = CvlFactory.eINSTANCE.createFromBinding();
+				fromBinding.setFromReplacement((FromReplacement) fromReplacement);
+				fromBinding.setFromPlacement(nullFromPlacement);
+				fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
+			}	
+		}else{
+			EList<BoundaryElementBinding> bindings = fragmentSubstitution.getBoundaryElementBinding();
+			EList<ToPlacement> boundedToPlacements = new BasicEList<ToPlacement>();
+			EList<FromReplacement> boundedFromReplacements = new BasicEList<FromReplacement>();
+			for(BoundaryElementBinding binding : bindings){
+				if(binding instanceof ToBinding)
+					boundedToPlacements.add(((ToBinding) binding).getToPlacement());
+				if(binding instanceof FromBinding)
+					boundedFromReplacements.add(((FromBinding) binding).getFromReplacement());
+			}
+			SetView<VariationPoint> toPlacementsToProcess = Sets.symmetricDifference(new HashSet<VariationPoint>(toPlacements), new HashSet<VariationPoint>(boundedToPlacements));
+			for(VariationPoint toPlacemenet : toPlacementsToProcess){
+				ToBinding toBinding = CvlFactory.eINSTANCE.createToBinding();
+				toBinding.setToPlacement((ToPlacement) toPlacemenet);
+				toBinding.setToReplacement(nullToReplacement);
+				fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
+			}
+			
+			SetView<VariationPoint> fromReplacementsToProcess = Sets.symmetricDifference(new HashSet<VariationPoint>(fromReplacements), new HashSet<VariationPoint>(boundedFromReplacements));
+			for(VariationPoint fromReplacement : fromReplacementsToProcess){
+				FromBinding fromBinding = CvlFactory.eINSTANCE.createFromBinding();
+				fromBinding.setFromReplacement((FromReplacement) fromReplacement);
+				fromBinding.setFromPlacement(nullFromPlacement);
+				fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
+			}
 		}
 	}
 

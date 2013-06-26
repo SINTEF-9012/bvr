@@ -1,0 +1,48 @@
+package no.sintef.cvl.ui.commands.events;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+
+import cvl.ConfigurableUnit;
+
+import no.sintef.cvl.ui.common.Messages;
+import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.loader.CVLModel;
+import no.sintef.cvl.ui.loader.CVLView;
+
+public class CreateFromBindingEvent implements ActionListener {
+
+	private JTabbedPane filePane;
+	private List<CVLModel> models;
+	private List<CVLView> views;
+
+	public CreateFromBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
+		this.filePane = filePane;
+		this.models = models;
+		this.views = views;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		int tab = filePane.getSelectedIndex();
+		CVLModel m = models.get(tab);
+		ConfigurableUnit cu = m.getCU();
+		
+		if(!Utility.isBindingPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
+			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_BINDING_TAB_NO_FOCUS);
+			return;
+		}
+		JScrollPane bindingPanel = (JScrollPane) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
+		JTable bindingTable = Utility.getBindingTable(bindingPanel);
+		if(bindingTable == null){
+			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_CAN_NOT_LOCATE_BINDING_TABLE);
+			return;
+		}
+	}
+}

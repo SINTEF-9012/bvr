@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import no.sintef.cvl.ui.editors.BindingJTable;
 import no.sintef.cvl.ui.editors.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.editors.SubstitutionFragmentJTable;
 
@@ -128,6 +129,17 @@ public class Utility {
 		return false;
 	}
 	
+	public static boolean isBindingPanelInFocus(JTabbedPane modelPanel){
+		if(modelPanel != null && modelPanel.getSelectedComponent() != null){
+			if(modelPanel.getSelectedComponent() instanceof JTabbedPane && ((JTabbedPane) modelPanel.getSelectedComponent()).getSelectedComponent() != null){
+				if(((JTabbedPane) modelPanel.getSelectedComponent()).getSelectedComponent().getName().equals(Constants.BINDING_EDITOR_NAME)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	public static JTable getSibstitutionFragmentTable(JPanel variationPanel){
 		Component[] components = variationPanel.getComponents();
 		for(Component comp : components){
@@ -150,6 +162,14 @@ public class Utility {
 					return (FragmentSubstitutionJTable) table;
 				}
 			}
+		}
+		return null;
+	}
+	
+	public static JTable getBindingTable(JScrollPane bindingPanel){
+		Component table = ((JScrollPane) bindingPanel).getViewport().getView();
+		if(table instanceof BindingJTable){
+			return (BindingJTable) table;
 		}
 		return null;
 	}
