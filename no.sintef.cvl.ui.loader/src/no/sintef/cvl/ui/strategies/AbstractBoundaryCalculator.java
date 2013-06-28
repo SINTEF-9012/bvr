@@ -1,6 +1,6 @@
 package no.sintef.cvl.ui.strategies;
 
-import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.logging.Logger;
 import no.sintef.cvl.ui.logging.impl.Logging;
 
@@ -66,7 +66,7 @@ public class AbstractBoundaryCalculator {
 		if(fromPlacement == null){
 			fromPlacement = createFromPlacement(placement, sourceEObject, targetEObject, reference);
 		}else{
-			ObjectHandle targetObjectHandle = this.testObjectHandle(placement, targetEObject);
+			ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
 			fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
 			String className = reference.getEType().getName();
 			String propertyName = reference.getName();
@@ -91,7 +91,7 @@ public class AbstractBoundaryCalculator {
 		if(toPlacement == null){
 			toPlacement = createToPlacement(placement, sourceEObject, targetEObject, property);
 		}else{
-			ObjectHandle targetObjectHandle = this.testObjectHandle(placement, targetEObject);
+			ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
 			toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
 		}
 		return toPlacement;
@@ -99,8 +99,8 @@ public class AbstractBoundaryCalculator {
 	
 	protected ToPlacement createToPlacement(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
 		ToPlacement toPlacement = CvlFactory.eINSTANCE.createToPlacement();
-		ObjectHandle targetObjectHandle = this.testObjectHandle(placement, targetEObject);
-		ObjectHandle sourceObjectHandle = this.testObjectHandle(placement, sourceEObject);
+		ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
+		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
 		toPlacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
 		
@@ -115,8 +115,8 @@ public class AbstractBoundaryCalculator {
 	
 	protected FromPlacement createFromPlacement(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
 		FromPlacement fromPlacement = CvlFactory.eINSTANCE.createFromPlacement();
-		ObjectHandle targetObjectHandle = this.testObjectHandle(placement, targetEObject);
-		ObjectHandle sourceObjectHandle = this.testObjectHandle(placement, sourceEObject);
+		ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
+		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
 		fromPlacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
 		
@@ -128,21 +128,6 @@ public class AbstractBoundaryCalculator {
 		return fromPlacement;
 	}
 	
-	protected ObjectHandle testObjectHandle(PlacementFragment placement, EObject eObject){
-		EList<ObjectHandle> objectHandles = placement.getSourceObject();
-		for(ObjectHandle oh : objectHandles){
-			if(eObject != null && eObject.equals(oh.getMOFRef())){
-				return oh;
-			}else if(oh.getMOFRef() == null && eObject == null){
-				return oh;
-			}
-		}
-		ObjectHandle objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-		objectHandle.setMOFRef(eObject);
-		placement.getSourceObject().add(objectHandle);
-		return objectHandle;
-	}
-	
 	protected String getObjectHandlesEObjectName(EList<ObjectHandle> objectHandles){
 		String name = "{";
 		for(ObjectHandle objectHandle : objectHandles){
@@ -151,15 +136,6 @@ public class AbstractBoundaryCalculator {
 		}
 		name+= "}";
 		return name;
-	}
-	
-	protected void createNullFromPlacement(PlacementFragment placement){
-		FromPlacement nullFromPlacement = CvlFactory.eINSTANCE.createFromPlacement();
-		ObjectHandle nullObjectHandle = this.testObjectHandle(placement, null);
-		nullFromPlacement.setInsideBoundaryElement(nullObjectHandle);
-		nullFromPlacement.getOutsideBoundaryElement().add(nullObjectHandle);
-		nullFromPlacement.setName(Constants.NULL_NAME);
-		placement.getPlacementBoundaryElement().add(nullFromPlacement);
 	}
 	
 	protected FromReplacement testFromReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
@@ -178,7 +154,7 @@ public class AbstractBoundaryCalculator {
 		if(fromReplacement == null){
 			fromReplacement = createFromReplacement(replacement, sourceEObject, targetEObject, reference);
 		}else{
-			ObjectHandle targetObjectHandle = this.testObjectHandle(replacement, targetEObject);
+			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
 			fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
 		}
 		return fromReplacement;
@@ -199,7 +175,7 @@ public class AbstractBoundaryCalculator {
 		if(toReplacement == null){
 			toReplacement = createToReplacement(replacement, sourceEObject, targetEObject, property);
 		}else{
-			ObjectHandle targetObjectHandle = this.testObjectHandle(replacement, targetEObject);
+			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
 			toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
 			String className = property.getEType().getName();
 			String propertyName = property.getName();
@@ -210,8 +186,8 @@ public class AbstractBoundaryCalculator {
 	
 	protected ToReplacement createToReplacement(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
 		ToReplacement toReplacement = CvlFactory.eINSTANCE.createToReplacement();
-		ObjectHandle targetObjectHandle = this.testObjectHandle(replacement, targetEObject);
-		ObjectHandle sourceObjectHandle = this.testObjectHandle(replacement, sourceEObject);
+		ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
+		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
 		toReplacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
 		
@@ -225,8 +201,8 @@ public class AbstractBoundaryCalculator {
 	
 	protected FromReplacement createFromReplacement(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
 		FromReplacement fromReplacement = CvlFactory.eINSTANCE.createFromReplacement();
-		ObjectHandle targetObjectHandle = this.testObjectHandle(replacement, targetEObject);
-		ObjectHandle sourceObjectHandle = this.testObjectHandle(replacement, sourceEObject);
+		ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
+		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
 		fromReplacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
 		
@@ -237,29 +213,5 @@ public class AbstractBoundaryCalculator {
 		
 		replacement.getReplacementBoundaryElement().add(fromReplacement);
 		return fromReplacement;
-	}
-	
-	protected ObjectHandle testObjectHandle(ReplacementFragmentType replacement, EObject eObject){
-		EList<ObjectHandle> objectHandles = replacement.getSourceObject();
-		for(ObjectHandle oh : objectHandles){
-			if(eObject != null && eObject.equals(oh.getMOFRef())){
-				return oh;
-			}else if(oh.getMOFRef() == null && eObject == null){
-				return oh;
-			}
-		}
-		ObjectHandle objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-		objectHandle.setMOFRef(eObject);
-		replacement.getSourceObject().add(objectHandle);
-		return objectHandle;
-	}
-	
-	protected void createNullToReplacement(ReplacementFragmentType replacement){
-		ToReplacement nullToReplacement = CvlFactory.eINSTANCE.createToReplacement();
-		ObjectHandle nullObjectHandle = this.testObjectHandle(replacement, null);
-		nullToReplacement.setName(Constants.NULL_NAME);
-		nullToReplacement.setOutsideBoundaryElement(nullObjectHandle);
-		nullToReplacement.getInsideBoundaryElement().add(nullObjectHandle);
-		replacement.getReplacementBoundaryElement().add(nullToReplacement);
 	}
 }

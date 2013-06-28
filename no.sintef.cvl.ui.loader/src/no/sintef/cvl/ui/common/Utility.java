@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import cvl.CvlFactory;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
 import cvl.ObjectHandle;
@@ -61,7 +62,7 @@ public class Utility {
 		return false;
 	}
 	
-	public static ToReplacement getNullToReplacement(EList<VariationPoint> boundaries){
+	public static ToReplacement getNullToReplacement(EList<? extends VariationPoint> boundaries){
 		for(VariationPoint boundary : boundaries){
 			if(isNullBoundary(boundary))
 				return (ToReplacement) boundary;
@@ -69,7 +70,7 @@ public class Utility {
 		return null;
 	}
 	
-	public static FromPlacement getNullFromPlacement(EList<VariationPoint> boundaries){
+	public static FromPlacement getNullFromPlacement(EList<? extends VariationPoint> boundaries){
 		for(VariationPoint boundary : boundaries){
 			if(isNullBoundary(boundary))
 				return (FromPlacement) boundary;
@@ -177,5 +178,62 @@ public class Utility {
 	public static String getExtension(File f){
 	    String p = f.getAbsolutePath();
 	    return p.substring(p.lastIndexOf(".")+1, p.length());
+	}
+	
+	public static ToReplacement testNullToReplacement(ReplacementFragmentType replacement){
+		ToReplacement nullToReplacement = getNullToReplacement(replacement.getReplacementBoundaryElement());
+		if(nullToReplacement == null){
+			nullToReplacement = CvlFactory.eINSTANCE.createToReplacement();
+			ObjectHandle nullObjectHandle = testObjectHandle(replacement, null);
+			nullToReplacement.setName(Constants.NULL_NAME);
+			nullToReplacement.setOutsideBoundaryElement(nullObjectHandle);
+			nullToReplacement.getInsideBoundaryElement().add(nullObjectHandle);
+			replacement.getReplacementBoundaryElement().add(nullToReplacement);
+		}
+		return nullToReplacement;
+	}
+	
+	public static FromPlacement testNullFromPlacement(PlacementFragment placement){
+		FromPlacement nullFromPlacement;
+		nullFromPlacement = Utility.getNullFromPlacement(placement.getPlacementBoundaryElement());
+		if(nullFromPlacement == null){
+			nullFromPlacement = CvlFactory.eINSTANCE.createFromPlacement();
+			ObjectHandle nullObjectHandle = testObjectHandle(placement, null);
+			nullFromPlacement.setInsideBoundaryElement(nullObjectHandle);
+			nullFromPlacement.getOutsideBoundaryElement().add(nullObjectHandle);
+			nullFromPlacement.setName(Constants.NULL_NAME);
+			placement.getPlacementBoundaryElement().add(nullFromPlacement);
+		}
+		return nullFromPlacement;
+	}
+	
+	public static ObjectHandle testObjectHandle(PlacementFragment placement, EObject eObject){
+		EList<ObjectHandle> objectHandles = placement.getSourceObject();
+		for(ObjectHandle oh : objectHandles){
+			if(eObject != null && eObject.equals(oh.getMOFRef())){
+				return oh;
+			}else if(oh.getMOFRef() == null && eObject == null){
+				return oh;
+			}
+		}
+		ObjectHandle objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
+		objectHandle.setMOFRef(eObject);
+		placement.getSourceObject().add(objectHandle);
+		return objectHandle;
+	}
+	
+	public static ObjectHandle testObjectHandle(ReplacementFragmentType replacement, EObject eObject){
+		EList<ObjectHandle> objectHandles = replacement.getSourceObject();
+		for(ObjectHandle oh : objectHandles){
+			if(eObject != null && eObject.equals(oh.getMOFRef())){
+				return oh;
+			}else if(oh.getMOFRef() == null && eObject == null){
+				return oh;
+			}
+		}
+		ObjectHandle objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
+		objectHandle.setMOFRef(eObject);
+		replacement.getSourceObject().add(objectHandle);
+		return objectHandle;
 	}
 }

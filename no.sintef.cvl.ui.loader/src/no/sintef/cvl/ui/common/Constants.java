@@ -1,7 +1,5 @@
 package no.sintef.cvl.ui.common;
 
-import javax.swing.Icon;
-
 public class Constants {
 	
 	//relaization
@@ -30,8 +28,8 @@ public class Constants {
 	public static final String REALIZATION_DL_PLCMT_RPLCMT_NAME = "Delete Placement/Replacement";
 	public static final String REALIZATION_DL_FS_NAME = "Delete FragmentSubstitution";
 	public static final String REALIZATION_GENERATE_BINDINGS = "Generate Bindings";
-	public static final String REALIZATION_GENERATE_TO_BINDING = "Generate ToBinding (Dummy)";
-	public static final String REALIZATION_GENERATE_FROM_BINDING = "Generate FromBinding (Dummy)";
+	public static final String REALIZATION_GENERATE_TO_BINDING = "Generate ToBinding (from selection)";
+	public static final String REALIZATION_GENERATE_FROM_BINDING = "Generate FromBinding (from selection)";
 	public static final String REALIZATION_DELETE_BINDING = "Delete Binding";
 	public static final String REALIZATION_DELETE_ALL_BINDING = "Delete All Binding-s";
 	

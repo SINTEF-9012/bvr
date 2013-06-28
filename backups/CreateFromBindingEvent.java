@@ -23,16 +23,17 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.BindingTableModel;
 import no.sintef.cvl.ui.strategies.impl.BindingCalculatorContext;
 import no.sintef.cvl.ui.strategies.impl.CreateBoundaryContext;
-import no.sintef.cvl.ui.strategies.impl.SingleDummyToPlacementBoundaryCalcStrategy;
 import no.sintef.cvl.ui.strategies.impl.GetSelectionContext;
+import no.sintef.cvl.ui.strategies.impl.SingleDummyFromReplacementBoundaryCalcStrategy;
+import no.sintef.cvl.ui.strategies.impl.SingleDummyToPlacementBoundaryCalcStrategy;
 
-public class CreateToBindingEvent implements ActionListener {
+public class CreateFromBindingEvent implements ActionListener {
 
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
 	private List<CVLView> views;
 
-	public CreateToBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
+	public CreateFromBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -65,8 +66,8 @@ public class CreateToBindingEvent implements ActionListener {
 		GetSelectionContext selectionContext = new GetSelectionContext();
 		try {
 			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
-			CreateBoundaryContext singleToPlacementCrBoundryContext = new CreateBoundaryContext(new SingleDummyToPlacementBoundaryCalcStrategy(), null);
-			singleToPlacementCrBoundryContext.creatBoundaries(fragmentSubstitution.getPlacement(), selectedObjects);
+			CreateBoundaryContext singleToPlacementCrBoundryContext = new CreateBoundaryContext(null, new SingleDummyFromReplacementBoundaryCalcStrategy());
+			singleToPlacementCrBoundryContext.creatBoundaries(fragmentSubstitution.getReplacement(), selectedObjects);
 			
 			BindingCalculatorContext bindingCalcContext = new BindingCalculatorContext();
 			bindingCalcContext.generateBindings(fragmentSubstitution);

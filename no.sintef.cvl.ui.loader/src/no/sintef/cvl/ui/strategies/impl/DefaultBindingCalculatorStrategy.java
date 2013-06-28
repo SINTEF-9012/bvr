@@ -39,6 +39,9 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		if(placement == null || replacement == null)
 			throw new UnexpectedException("fragment substitution does not rererence placement or replacement" + fragmentSubstitution);
 		
+		ToReplacement nullToReplacement = Utility.testNullToReplacement(replacement);
+		FromPlacement nullFromPlacement = Utility.testNullFromPlacement(placement);
+		
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementBoundaryElement();
 		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
 		
@@ -48,15 +51,7 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		HashMap<String, ArrayList<VariationPoint>> sortedBoundaries = Utility.sortBoundariesByType(placement, replacement);
 		ArrayList<VariationPoint> toPlacements = sortedBoundaries.get(Utility.TOPLCMNT);
 		ArrayList<VariationPoint> fromReplacements = sortedBoundaries.get(Utility.FROMREPLCMNT);
-		
-		ToReplacement nullToReplacement = Utility.getNullToReplacement(new BasicEList<VariationPoint>(sortedBoundaries.get(Utility.TOREPLCMNT)));
-		if(nullToReplacement == null)
-			throw new UnexpectedException("can not find NULL ToReplacement boundary");
-		
-		FromPlacement nullFromPlacement = Utility.getNullFromPlacement(new BasicEList<VariationPoint>(sortedBoundaries.get(Utility.FROMPLCMNT)));
-		if(nullFromPlacement == null)
-			throw new UnexpectedException("can not find NULL FromPlacement boundary");
-		
+
 		if(fragmentSubstitution.getBoundaryElementBinding().size() == 0){
 			for(VariationPoint toPlacemenet : toPlacements){
 				ToBinding toBinding = CvlFactory.eINSTANCE.createToBinding();

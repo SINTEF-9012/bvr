@@ -20,7 +20,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import no.sintef.cvl.ui.commands.events.ClearSelectionRelalizationEvent;
 import no.sintef.cvl.ui.commands.events.CreateBindingsEvent;
 import no.sintef.cvl.ui.commands.events.CreateFragmentSubstitutionEvent;
-import no.sintef.cvl.ui.commands.events.CreateFromBindingEvent;
 import no.sintef.cvl.ui.commands.events.CreatePlacementFragmentEvent;
 import no.sintef.cvl.ui.commands.events.CloseModelEvent;
 import no.sintef.cvl.ui.commands.events.CreateReplacementFragmentEvent;
@@ -39,7 +38,6 @@ import no.sintef.cvl.ui.commands.events.OpenModelEvent;
 import no.sintef.cvl.ui.commands.events.SaveModelAsEvent;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
-import no.sintef.cvl.ui.exceptions.IllegalOperationException;
 import cvl.NamedElement;
 
 public class Main {
@@ -203,10 +201,6 @@ public class Main {
 		JMenuItem createToBinding = new JMenuItem(Constants.REALIZATION_GENERATE_TO_BINDING);
 		createToBinding.addActionListener(new CreateToBindingEvent(filePane, models, views));
 		realizationMenu.add(createToBinding);
-		
-		JMenuItem createFromBinding = new JMenuItem(Constants.REALIZATION_GENERATE_FROM_BINDING);
-		createFromBinding.addActionListener(new CreateFromBindingEvent(filePane, models, views));
-		realizationMenu.add(createFromBinding);
 		
 		JMenuItem deleteBinding = new JMenuItem(Constants.REALIZATION_DELETE_BINDING);
 		deleteBinding.addActionListener(new DeleteBindingEvent(filePane, models, views));

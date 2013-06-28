@@ -2,31 +2,22 @@ package no.sintef.cvl.ui.commands.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
-import cvl.NamedElement;
-import cvl.ToBinding;
-import cvl.ToPlacement;
-import cvl.VariationPoint;
 
-import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.models.BindingTableModel;
-import no.sintef.cvl.ui.models.FragSubTableModel;
-import no.sintef.cvl.ui.primitives.DataItem;
-import no.sintef.cvl.ui.primitives.impl.DataBindingItem;
+
 
 public class DeleteBindingAllEvent implements ActionListener {
 

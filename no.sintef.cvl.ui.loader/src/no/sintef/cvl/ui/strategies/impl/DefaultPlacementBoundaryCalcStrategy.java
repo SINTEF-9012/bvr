@@ -8,13 +8,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import cvl.CvlFactory;
-import cvl.FromPlacement;
-import cvl.ObjectHandle;
-import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
-import cvl.ToPlacement;
-import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.strategies.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategies.PlacementBoundaryCalcStrategy;
 
@@ -72,6 +67,6 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 				}
 			}
 		}
-		this.createNullFromPlacement(placement);
+		Utility.testNullFromPlacement(placement);
 	}
 }
