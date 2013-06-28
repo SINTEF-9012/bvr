@@ -25,9 +25,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-import no.sintef.cvl.ui.commands.Command;
-import no.sintef.cvl.ui.commands.UpdateVSpec;
-import no.sintef.cvl.ui.editors.CVLUIKernel;
+import no.sintef.cvl.ui.command.Command;
+import no.sintef.cvl.ui.command.UpdateVSpec;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;

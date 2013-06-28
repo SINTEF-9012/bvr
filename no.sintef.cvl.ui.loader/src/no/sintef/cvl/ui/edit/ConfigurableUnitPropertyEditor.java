@@ -16,10 +16,10 @@ import javax.swing.text.JTextComponent;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
-import no.sintef.cvl.ui.commands.UpdateChoice;
-import no.sintef.cvl.ui.commands.UpdateVClassifier;
-import no.sintef.cvl.ui.commands.UpdateVSpec;
-import no.sintef.cvl.ui.editors.CVLUIKernel;
+import no.sintef.cvl.ui.command.UpdateChoice;
+import no.sintef.cvl.ui.command.UpdateVClassifier;
+import no.sintef.cvl.ui.command.UpdateVSpec;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 import cvl.Choice;
 import cvl.ConfigurableUnit;

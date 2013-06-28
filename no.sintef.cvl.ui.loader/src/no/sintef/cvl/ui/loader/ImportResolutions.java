@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
-import no.sintef.cvl.ui.filters.CVLFilter;
-import no.sintef.cvl.ui.filters.SHFilter;
+import no.sintef.cvl.ui.filter.CVLFilter;
+import no.sintef.cvl.ui.filter.SHFilter;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayFile;

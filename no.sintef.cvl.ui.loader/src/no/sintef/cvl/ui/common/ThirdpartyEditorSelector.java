@@ -8,7 +8,7 @@ import java.util.Map;
 
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
-import no.sintef.cvl.ui.exceptions.IllegalOperationException;
+import no.sintef.cvl.ui.exception.IllegalOperationException;
 import no.sintef.cvl.ui.logging.impl.Logging;
 
 import org.eclipse.emf.ecore.EObject;

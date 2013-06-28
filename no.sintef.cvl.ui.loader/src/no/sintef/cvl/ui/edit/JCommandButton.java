@@ -7,7 +7,7 @@ import javax.swing.JButton;
 
 import com.explodingpixels.macwidgets.plaf.HudButtonUI;
 
-import no.sintef.cvl.ui.commands.Command;
+import no.sintef.cvl.ui.command.Command;
 import no.sintef.cvl.ui.loader.CVLView;
 
 public class JCommandButton extends JButton {

@@ -3,7 +3,7 @@ package no.sintef.cvl.ui.common;
 import java.util.HashMap;
 import java.util.List;
 
-import no.sintef.cvl.ui.exceptions.IllegalOperationException;
+import no.sintef.cvl.ui.exception.IllegalOperationException;
 
 import org.eclipse.emf.ecore.EObject;
 

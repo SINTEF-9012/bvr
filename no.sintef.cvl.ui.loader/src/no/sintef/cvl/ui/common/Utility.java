@@ -10,9 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
-import no.sintef.cvl.ui.editors.BindingJTable;
-import no.sintef.cvl.ui.editors.FragmentSubstitutionJTable;
-import no.sintef.cvl.ui.editors.SubstitutionFragmentJTable;
+import no.sintef.cvl.ui.editor.BindingJTable;
+import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
+import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;

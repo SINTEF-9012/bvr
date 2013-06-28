@@ -11,11 +11,11 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import no.sintef.cvl.ui.commands.UpdateChoice;
-import no.sintef.cvl.ui.commands.UpdateVClassifier;
-import no.sintef.cvl.ui.commands.UpdateVInstance;
-import no.sintef.cvl.ui.commands.UpdateVariableValueAssignment;
-import no.sintef.cvl.ui.editors.CVLUIKernel;
+import no.sintef.cvl.ui.command.UpdateChoice;
+import no.sintef.cvl.ui.command.UpdateVClassifier;
+import no.sintef.cvl.ui.command.UpdateVInstance;
+import no.sintef.cvl.ui.command.UpdateVariableValueAssignment;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;

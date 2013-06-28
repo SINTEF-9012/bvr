@@ -26,8 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
-import no.sintef.cvl.ui.commands.SelectInstanceCommand;
-import no.sintef.cvl.ui.editors.CVLUIKernel;
+import no.sintef.cvl.ui.command.SelectInstanceCommand;
+import no.sintef.cvl.ui.editor.CVLUIKernel;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;

@@ -2,14 +2,14 @@ package no.sintef.cvl.ui.common;
 
 import java.util.HashMap;
 
-import no.sintef.cvl.ui.chains.ExecutionHandler;
-import no.sintef.cvl.ui.chains.impl.ExecutionRealizationHandler;
-import no.sintef.cvl.ui.chains.impl.ParserExecutionHandler;
-import no.sintef.cvl.ui.chains.impl.ResetExecutionHandler;
-import no.sintef.cvl.ui.chains.impl.SaveProductExecutionHandler;
-import no.sintef.cvl.ui.chains.impl.ScopeResolverExecutionHandler;
-import no.sintef.cvl.ui.exceptions.AbstractError;
-import no.sintef.cvl.ui.primitives.impl.SingleExecutionRequest;
+import no.sintef.cvl.ui.chain.ExecutionHandler;
+import no.sintef.cvl.ui.chain.impl.ExecutionRealizationHandler;
+import no.sintef.cvl.ui.chain.impl.ParserExecutionHandler;
+import no.sintef.cvl.ui.chain.impl.ResetExecutionHandler;
+import no.sintef.cvl.ui.chain.impl.SaveProductExecutionHandler;
+import no.sintef.cvl.ui.chain.impl.ScopeResolverExecutionHandler;
+import no.sintef.cvl.ui.exception.AbstractError;
+import no.sintef.cvl.ui.primitive.impl.SingleExecutionRequest;
 
 
 public class DeriveProduct {
