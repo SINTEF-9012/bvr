@@ -19,9 +19,17 @@ public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 
 	private static final long serialVersionUID = 2993488539123070478L;
 	private JComboBox<DataItem> editor;
+	private FragSubVSpecComboboxModel model;
 		
 	public FragSubVSpecTableCellEditor(ArrayList<DataItem> vSpecMap) {
-		editor = new JComboBox<DataItem>(new FragSubVSpecComboboxModel(vSpecMap));
+		model = new FragSubVSpecComboboxModel(vSpecMap);
+		editor = new JComboBox<DataItem>(model);
+		editor.setRenderer(new FragSubVSpecComboboxRenderer());
+	}
+	
+	public FragSubVSpecTableCellEditor(){
+		model = new FragSubVSpecComboboxModel();
+		editor = new JComboBox<DataItem>(model);
 		editor.setRenderer(new FragSubVSpecComboboxRenderer());
 	}
 
@@ -43,5 +51,9 @@ public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 			return ((MouseEvent) e).getClickCount() >= Constants.FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
 		}
 		return true;
+	}
+	
+	public FragSubVSpecComboboxModel getModel(){
+		return model;
 	}
 }

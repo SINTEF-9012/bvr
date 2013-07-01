@@ -25,9 +25,11 @@ import no.sintef.cvl.ui.exception.PlacementReplacementNullException;
 import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.model.SubFragTableModel;
+import no.sintef.cvl.ui.observer.impl.ViewChanageManager;
 import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 
 public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 	
@@ -47,39 +49,10 @@ public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 			DataNamedElementItem selectedFragSubData = (DataNamedElementItem) selectedRow.get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
 			NamedElement variationPoint = selectedFragSubData.getNamedElement();
 			if(variationPoint instanceof FragmentSubstitution){
+				ObserverDataBulk data = new ObserverDataBulk();
 				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) variationPoint;
-				PlacementFragment placement = fragmentSubstitution.getPlacement();
-				ReplacementFragmentType replacement = fragmentSubstitution.getReplacement();
-				
-				SubFragTableModel subsFragModel = (SubFragTableModel) jtable.getSubstitutionFragmentJTable().getModel();
-				ArrayList<ArrayList<Object>> subsFragData = subsFragModel.getOriginalData();
-				ArrayList<ArrayList<Object>> newDisplayData = new ArrayList<ArrayList<Object>>();
-				for(ArrayList<Object> row : subsFragData){
-					DataNamedElementItem cellItem = (DataNamedElementItem) row.get(Constants.SUB_FRAG_FRAG_CLMN);
-					NamedElement fragment = cellItem.getNamedElement();
-					if(fragment instanceof PlacementFragment && ((PlacementFragment) fragment).equals(placement)){
-						newDisplayData.add(row);
-					}
-					if(fragment instanceof ReplacementFragmentType && ((ReplacementFragmentType) fragment).equals(replacement)){
-						newDisplayData.add(row);
-					}
-				}
-				subsFragModel.setDisplayData(newDisplayData);
-				
-				//populate binding editor here
-				BindingTableModel bindingTableModel = (BindingTableModel) jtable.getBindingJTable().getModel();
-				try {
-					bindingTableModel.updateBindingEditor(fragmentSubstitution);
-				} catch (CVLModelException e) {
-					e.printStackTrace();
-				}
-				HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
-				try {
-					boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(fragmentSubstitution);
-				} catch (AbstractError e) {
-					e.printStackTrace();
-				}
-				jtable.getBindingJTable().setDefaultEditor(DataBoundaryItem.class, new BindingBoundariesComboBoxTableCellEditor(boundariesMap));
+				data.setDataField("selectedFragmentSubstitution", fragmentSubstitution);
+				ViewChanageManager.getChangeManager().updateSubjects(data, jtable);
 			}else{
 				throw new UnsupportedOperationException();
 			}

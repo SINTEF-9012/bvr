@@ -23,17 +23,7 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	private String[] columnNames = {Constants.SUB_FRAG_KIND_CLMN_NAME, Constants.SUB_FRAG_FRAG_CLMN_NAME};
 
 	public SubFragTableModel(ArrayList<NamedElement> subFragList){
-		data = new ArrayList<ArrayList<Object>>();
-		originalData = new ArrayList<ArrayList<Object>>();
-		for(NamedElement subFrag : subFragList){
-			String typeName = (subFrag instanceof ReplacementFragmentType) ? Constants.SUB_FRAG_TYPE_RPLC_NAME : Constants.SUB_FRAG_TYPE_PLC_NAME;
-			DataNamedElementItem item = new DataNamedElementItem(new JLabel(subFrag.getName()), subFrag);
-			ArrayList<Object> row = new ArrayList<Object>();
-			row.add(typeName);
-			row.add(item);
-			data.add(row);
-			originalData.add(row);
-		}
+		this.setData(subFragList);
 	}
 	
 	@Override
@@ -89,8 +79,22 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 		return this.originalData;
 	}
 	
-	public void setDisplayData(ArrayList<ArrayList<Object>> displayData){
+	public void updateDisplayData(ArrayList<ArrayList<Object>> displayData){
 		this.data = displayData;
 		this.fireTableDataChanged();
+	}
+	
+	public void setData(ArrayList<NamedElement> subFragList){
+		data = new ArrayList<ArrayList<Object>>();
+		originalData = new ArrayList<ArrayList<Object>>();
+		for(NamedElement subFrag : subFragList){
+			String typeName = (subFrag instanceof ReplacementFragmentType) ? Constants.SUB_FRAG_TYPE_RPLC_NAME : Constants.SUB_FRAG_TYPE_PLC_NAME;
+			DataNamedElementItem item = new DataNamedElementItem(new JLabel(subFrag.getName()), subFrag);
+			ArrayList<Object> row = new ArrayList<Object>();
+			row.add(typeName);
+			row.add(item);
+			data.add(row);
+			originalData.add(row);
+		}		
 	}
 }

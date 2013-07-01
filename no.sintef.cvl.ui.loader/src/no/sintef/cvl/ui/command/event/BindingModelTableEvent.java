@@ -8,6 +8,7 @@ import javax.swing.event.TableModelListener;
 
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.NullVSpec;
+import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.exception.UnexpectedException;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.BindingTableModel;
@@ -26,12 +27,11 @@ import cvl.VariationPoint;
 
 public class BindingModelTableEvent implements TableModelListener {
 
-	private ConfigurableUnit cu;
-	private CVLView view;
 
-	public BindingModelTableEvent(ConfigurableUnit cu, CVLView view) {
-		this.cu = cu;
-		this.view = view;
+	private BindingJTable jtable;
+
+	public BindingModelTableEvent(BindingJTable table) {
+		jtable = table;
 	}
 
 	@Override

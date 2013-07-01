@@ -18,6 +18,10 @@ public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> imple
 	public FragSubVSpecComboboxModel(ArrayList<DataItem> list){
 		data = list;
 	}
+	
+	public FragSubVSpecComboboxModel(){
+		data = new ArrayList<DataItem>();
+	}
 
 	@Override
 	public DataItem getElementAt(int index) {
@@ -37,5 +41,9 @@ public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> imple
 	@Override
 	public void setSelectedItem(Object value) {
 		this.selectedItem = (DataItem) value;
+	}
+	
+	public void setData(ArrayList<DataItem> items){
+		data = items;
 	}
 }

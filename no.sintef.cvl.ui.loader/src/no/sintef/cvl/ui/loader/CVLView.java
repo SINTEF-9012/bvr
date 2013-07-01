@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,12 @@ import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
 import no.sintef.cvl.ui.model.FragSubTableModel;
+import no.sintef.cvl.ui.observer.Observer;
+import no.sintef.cvl.ui.observer.Subject;
+import no.sintef.cvl.ui.observer.impl.CVLViewSubject;
+import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
+import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
+import no.sintef.cvl.ui.observer.impl.ViewChanageManager;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
@@ -68,7 +75,7 @@ import cvl.VariableValueAssignment;
 import cvl.Variabletype;
 import cvl.VariationPoint;
 
-public class CVLView {
+public class CVLView implements Observer {
 	private CVLModel m;
 	
 	private JTabbedPane modelPane;
@@ -93,6 +100,10 @@ public class CVLView {
 	// Realization
 	private JTabbedPane realizationPanel;
 
+	//private CVLViewSubject cvlViewSubject;
+
+	private ConfigurableUnitSubject configurableUnitSubject;
+
 	public CVLUIKernel getKernel() {
 		return vSpeccvluikernel;
 	}
@@ -109,8 +120,13 @@ public class CVLView {
     	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
     	resolutionNodes = new ArrayList<List<JComponent>>();
     	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
+    	
+    	//cvlViewSubject = new CVLViewSubject(this);
 		
 		this.m = m;
+		
+    	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
+    	configurableUnitSubject.attach(this);
 		
 		// Make model pane
 		modelPane = new JTabbedPane();
@@ -157,10 +173,10 @@ public class CVLView {
 	}
 
 	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
-		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(cu, this);
-		SubstitutionFragmentJTable tableSubstFragm = new SubstitutionFragmentJTable(cu, this);
-		tableFragmSubst.setSubstitutionFragmentJTable(tableSubstFragm);
-		tableSubstFragm.setFragmentSubstitutionJTable(tableFragmSubst);
+		SelectedFragmentSubstitutionSubject selectedFS = new SelectedFragmentSubstitutionSubject(null);
+		
+		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
+		SubstitutionFragmentJTable tableSubstFragm = new SubstitutionFragmentJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
 		
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
@@ -171,9 +187,10 @@ public class CVLView {
 		panel.add(scrollPanelSubstFragm);
 		
 		realizationPanel.add(panel);
+		 
+		BindingJTable bindingEditor = new BindingJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
 		
-		BindingJTable bindingEditor = new BindingJTable(cu, this);
-		tableFragmSubst.setBindingJTable(bindingEditor);
+		
 		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
@@ -522,5 +539,16 @@ public class CVLView {
 			}
 		}
 		
+	}
+
+	@Override
+	public void update(Subject subject) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public ArrayList<Subject> getSubjects() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

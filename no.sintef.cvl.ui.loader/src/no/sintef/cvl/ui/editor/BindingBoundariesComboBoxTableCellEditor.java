@@ -29,7 +29,16 @@ public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 	private HashMap<DataItem, JComboBox<DataItem>> editedBoundaryPropertyComboBoxMap;
 	
 	public BindingBoundariesComboBoxTableCellEditor(HashMap<DataItem, ArrayList<DataItem>> boundariesListMap){
-		editedBoundaryProperty = null;
+		data = boundariesListMap;
+		editedBoundaryPropertyComboBoxMap = new HashMap<DataItem, JComboBox<DataItem>>();
+	}
+	
+	public BindingBoundariesComboBoxTableCellEditor(){
+		data = null;
+		editedBoundaryPropertyComboBoxMap = new HashMap<DataItem, JComboBox<DataItem>>();
+	}
+	
+	public void setData(HashMap<DataItem, ArrayList<DataItem>> boundariesListMap){
 		data = boundariesListMap;
 		editedBoundaryPropertyComboBoxMap = new HashMap<DataItem, JComboBox<DataItem>>();
 	}

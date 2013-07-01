@@ -1,46 +1,48 @@
 package no.sintef.cvl.ui.editor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import no.sintef.cvl.ui.command.event.BindingModelTableEvent;
 import no.sintef.cvl.ui.command.event.BindingRowSelectionEvent;
+import no.sintef.cvl.ui.dropdown.BoundariesDropDownCalculator;
 import no.sintef.cvl.ui.exception.AbstractError;
+import no.sintef.cvl.ui.exception.CVLModelException;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.BindingTableModel;
+import no.sintef.cvl.ui.observer.Observer;
+import no.sintef.cvl.ui.observer.Subject;
+import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
+import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataBindingItem;
 import no.sintef.cvl.ui.primitive.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
+import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 import no.sintef.cvl.ui.renderer.BindingBindingCellRenderer;
 import no.sintef.cvl.ui.renderer.BindingBoundariesCellRenderer;
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 
-public class BindingJTable extends JTable {
+public class BindingJTable extends JTable implements Observer {
 
 	private static final long serialVersionUID = 8644097588893969285L;
-	private CVLView view;
-	private ConfigurableUnit cu;
-	private FragmentSubstitution fs;
+	private FragmentSubstitution selectedFragmentSubstitution;
+	private ArrayList<Subject> subjects;
+	private BindingTableModel tableModel;
 
-	public BindingJTable(ConfigurableUnit cu, CVLView view) throws AbstractError{
-		this.cu = cu;
-		this.view = view;
-		init();
-	}
-	
-	public BindingJTable(ConfigurableUnit cu, CVLView view, FragmentSubstitution fs) throws AbstractError{
-		this.fs = fs;
-		init();
-	}
-	
-	private void init() throws AbstractError{
-		BindingTableModel tableModel = new BindingTableModel(fs);
+	public BindingJTable(ArrayList<Subject> arrayList) throws AbstractError{
+		for(Subject subject : arrayList)
+			subject.attach(this);
+		tableModel = new BindingTableModel(selectedFragmentSubstitution);
 		setModel(tableModel);
 		
 		setDefaultRenderer(DataBindingItem.class, new BindingBindingCellRenderer());
 		setDefaultRenderer(DataNamedElementItem.class, new BindingBoundariesCellRenderer());
 		setDefaultRenderer(DataBoundaryItem.class, new BindingBoundariesCellRenderer());
+		setDefaultEditor(DataBoundaryItem.class, new BindingBoundariesComboBoxTableCellEditor());
 		
 		//setDefaultEditor(DataNamedElementItem.class, new BindingBoundariesTextTableCellEditor());
 		
@@ -49,6 +51,30 @@ public class BindingJTable extends JTable {
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		getSelectionModel().addListSelectionListener(new BindingRowSelectionEvent(this));
-		tableModel.addTableModelListener(new BindingModelTableEvent(cu, view));		
+		tableModel.addTableModelListener(new BindingModelTableEvent(this));	
+	}
+	
+	@Override
+	public void update(Subject subject) {
+		if(subject instanceof SelectedFragmentSubstitutionSubject){
+			selectedFragmentSubstitution = ((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution();
+			try {
+				((BindingTableModel) this.getModel()).updateBindingEditor(selectedFragmentSubstitution);
+				
+				HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
+				boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(selectedFragmentSubstitution);
+				
+				BindingBoundariesComboBoxTableCellEditor editor = (BindingBoundariesComboBoxTableCellEditor) getDefaultEditor(DataBoundaryItem.class);
+				editor.setData(boundariesMap);
+			} catch (AbstractError e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	@Override
+	public ArrayList<Subject> getSubjects() {
+		return subjects;
 	}
 }

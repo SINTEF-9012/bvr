@@ -25,35 +25,18 @@ public class FragSubTableModel extends AbstractTableModel
 	 * 
 	 */
 	private static final long serialVersionUID = 6757147907729864204L;
-	private ConfigurableUnit cu;
 	private String[] columnNames = {Constants.FRAG_SUB_VP_CLMN_NAME, Constants.FRAG_SUB_VSPEC_CLMN_NAME};
-	private ArrayList<ArrayList<DataItem>> data = new ArrayList<ArrayList<DataItem>>();
-
-	public FragSubTableModel(ConfigurableUnit cu, ArrayList<DataItem> vSpecMap){
-		this.cu = cu;
-		EList<VariationPoint> varPoints = cu.getOwnedVariationPoint();
-		for(VariationPoint varPoint : varPoints){
-			if(varPoint instanceof FragmentSubstitution){
-				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) varPoint;
-				VSpec referenceVSpec = fragmentSubstitution.getBindingVSpec();
-				if(referenceVSpec == null){
-					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
-					//data item with null vspec is the first in the list
-					DataVSpecItem cellVSN = (DataVSpecItem) vSpecMap.get(0);
-
-					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
-					data.add(row);
-				}else{
-					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
-					DataVSpecItem cellVSN = this.getVSpecItem(referenceVSpec, vSpecMap);
-
-					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
-					data.add(row);
-				}
-			}
-		}
+	private ArrayList<ArrayList<DataItem>> data;
+	
+	public FragSubTableModel(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
+		data = new ArrayList<ArrayList<DataItem>>();
+		setData(varPoints, vSpecMap);
 	}
 	
+	public FragSubTableModel() {
+		data = new ArrayList<ArrayList<DataItem>>();
+	}
+
 	private DataVSpecItem getVSpecItem(VSpec vSpec, ArrayList<DataItem> vSpecMap){
 		for(DataItem item : vSpecMap){
 			if(item.getNamedElement().equals(vSpec)){
@@ -125,5 +108,27 @@ public class FragSubTableModel extends AbstractTableModel
 		return data;
 	}
 	
+	public void setData(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
+		data = new ArrayList<ArrayList<DataItem>>();
+		for(VariationPoint varPoint : varPoints){
+			if(varPoint instanceof FragmentSubstitution){
+				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) varPoint;
+				VSpec referenceVSpec = fragmentSubstitution.getBindingVSpec();
+				if(referenceVSpec == null){
+					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
+					//data item with null vspec is the first in the list
+					DataVSpecItem cellVSN = (DataVSpecItem) vSpecMap.get(0);
 
+					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
+					data.add(row);
+				}else{
+					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
+					DataVSpecItem cellVSN = this.getVSpecItem(referenceVSpec, vSpecMap);
+
+					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
+					data.add(row);
+				}
+			}
+		}
+	}
 }
