@@ -74,6 +74,7 @@ public class CreateToBindingEvent implements ActionListener {
 			e1.printStackTrace();
 		}
 		
-		views.get(tab).notifyRelalizationViewUpdate();
+		views.get(tab).getConfigurableUnitSubject().notifyObserver();
+		//views.get(tab).notifyRelalizationViewUpdate();
 	}
 }

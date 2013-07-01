@@ -92,7 +92,8 @@ public class DeleteBindingEvent implements ActionListener {
 			}
 		}
 		
-		views.get(tab).notifyRelalizationViewUpdate();
+		//views.get(tab).notifyRelalizationViewUpdate();
+		views.get(tab).getConfigurableUnitSubject().notifyObserver();
 	}
 
 }

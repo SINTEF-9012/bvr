@@ -21,5 +21,18 @@ public class SelectedFragmentSubstitutionSubject extends AbstractViewSubject {
 	public FragmentSubstitution getSelectedFragmentSubstitution(){
 		return selectedFragmentSubstitution;
 	}
+	
+	public void resetSelectedFragmentSubstitution(){
+		selectedFragmentSubstitution = null;
+	}
+
+	@Override
+	public boolean isApplicable(ObserverDataBulk data) {
+		Object object = data.getDataField("selectedFragmentSubstitution");
+		if(object instanceof FragmentSubstitution){
+			return true;
+		}
+		return false;
+	}
 
 }

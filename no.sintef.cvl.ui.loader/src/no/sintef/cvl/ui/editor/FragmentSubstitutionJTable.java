@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import cvl.ConfigurableUnit;
+import cvl.FragmentSubstitution;
 import cvl.VSpec;
 
 import no.sintef.cvl.ui.command.event.FragSubTableEvent;
@@ -24,6 +25,7 @@ import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
 import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
+import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
 import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.primitive.impl.DataVSpecItem;
@@ -82,7 +84,12 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 			tableModel.setData(cu.getOwnedVariationPoint(), vSpecMap);
 			FragSubVSpecTableCellEditor editor = (FragSubVSpecTableCellEditor) getDefaultEditor(DataVSpecItem.class);
 			editor.getModel().setData(vSpecMap);
-		}		
+		}
+		if(subject instanceof SelectedFragmentSubstitutionSubject){
+			if(((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution() == null){
+				tableModel.fireTableDataChanged();
+			}
+		}
 	}
 
 	@Override

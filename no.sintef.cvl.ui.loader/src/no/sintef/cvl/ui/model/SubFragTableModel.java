@@ -23,7 +23,7 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	private String[] columnNames = {Constants.SUB_FRAG_KIND_CLMN_NAME, Constants.SUB_FRAG_FRAG_CLMN_NAME};
 
 	public SubFragTableModel(ArrayList<NamedElement> subFragList){
-		this.setData(subFragList);
+		loadData(subFragList);
 	}
 	
 	@Override
@@ -72,19 +72,24 @@ public class SubFragTableModel extends AbstractTableModel implements TableModel 
 	}
 	
 	public ArrayList<ArrayList<Object>> getData(){
-		return this.data;
+		return data;
 	}
 	
 	public ArrayList<ArrayList<Object>> getOriginalData(){
-		return this.originalData;
+		return originalData;
 	}
 	
 	public void updateDisplayData(ArrayList<ArrayList<Object>> displayData){
-		this.data = displayData;
+		data = displayData;
 		this.fireTableDataChanged();
 	}
 	
 	public void setData(ArrayList<NamedElement> subFragList){
+		loadData(subFragList);
+		this.fireTableDataChanged();
+	}
+	
+	private void loadData(ArrayList<NamedElement> subFragList){
 		data = new ArrayList<ArrayList<Object>>();
 		originalData = new ArrayList<ArrayList<Object>>();
 		for(NamedElement subFrag : subFragList){

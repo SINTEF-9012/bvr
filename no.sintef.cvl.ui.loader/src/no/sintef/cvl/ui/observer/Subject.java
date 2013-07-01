@@ -11,4 +11,6 @@ public interface Subject {
 	public void notifyObserver();
 
 	public void setState(ObserverDataBulk data);
+	
+	public boolean isApplicable(ObserverDataBulk data);
 }

@@ -30,7 +30,7 @@ public class FragSubTableModel extends AbstractTableModel
 	
 	public FragSubTableModel(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
 		data = new ArrayList<ArrayList<DataItem>>();
-		setData(varPoints, vSpecMap);
+		loadData(varPoints, vSpecMap);
 	}
 	
 	public FragSubTableModel() {
@@ -45,7 +45,6 @@ public class FragSubTableModel extends AbstractTableModel
 		}
 		return null;
 	}
-
 
 	@Override
 	public int getColumnCount() {
@@ -109,6 +108,11 @@ public class FragSubTableModel extends AbstractTableModel
 	}
 	
 	public void setData(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
+		loadData(varPoints, vSpecMap);
+		this.fireTableDataChanged();
+	}
+	
+	private void loadData(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
 		data = new ArrayList<ArrayList<DataItem>>();
 		for(VariationPoint varPoint : varPoints){
 			if(varPoint instanceof FragmentSubstitution){

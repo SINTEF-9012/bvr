@@ -40,8 +40,8 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 	
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
-		if(!event.getValueIsAdjusting()){
-			int selectedIndex = ((ListSelectionModel) event.getSource()).getLeadSelectionIndex();
+		int selectedIndex = ((ListSelectionModel) event.getSource()).getLeadSelectionIndex();
+		if(!event.getValueIsAdjusting() && selectedIndex >= 0){
 			BindingTableModel model = (BindingTableModel) table.getModel();
 			ArrayList<ArrayList<Object>> data = model.getData();
 			DataBindingItem bindingCell = (DataBindingItem) data.get(selectedIndex).get(Constants.BINDING_TYPE_CLMN);

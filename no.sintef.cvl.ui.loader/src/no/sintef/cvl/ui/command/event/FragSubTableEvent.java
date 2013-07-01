@@ -28,38 +28,40 @@ public class FragSubTableEvent implements TableModelListener {
 	@Override
 	public void tableChanged(TableModelEvent e) {
 		if(TableModelEvent.UPDATE == e.getType()){
-			if(e.getLastRow() == e.getFirstRow()){
-				ArrayList<Subject> subjects = jtable.getSubjects();
-				FragSubTableModel model = (FragSubTableModel) jtable.getModel();
-				int rowIndex = e.getLastRow();
-				int columnIndex = e.getColumn();
-				DataItem fragSubCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
-				VariationPoint vp = (VariationPoint) fragSubCell.getNamedElement();
-				if(columnIndex == Constants.FRAG_SUBS_VARIATION_POINT_CLMN){
-					JLabel label = (JLabel) fragSubCell.getLabel();
-					String newName = label.getText();
-					String currentName = vp.getName();
-					if(!newName.equals(currentName)){
-						vp.setName(label.getText());
+			if(e.getColumn() >= 0){
+				if(e.getLastRow() == e.getFirstRow()){
+					ArrayList<Subject> subjects = jtable.getSubjects();
+					FragSubTableModel model = (FragSubTableModel) jtable.getModel();
+					int rowIndex = e.getLastRow();
+					int columnIndex = e.getColumn();
+					DataItem fragSubCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
+					VariationPoint vp = (VariationPoint) fragSubCell.getNamedElement();
+					if(columnIndex == Constants.FRAG_SUBS_VARIATION_POINT_CLMN){
+						JLabel label = (JLabel) fragSubCell.getLabel();
+						String newName = label.getText();
+						String currentName = vp.getName();
+						if(!newName.equals(currentName)){
+							vp.setName(label.getText());
+							for(Subject subject : subjects)
+								if(subject instanceof ConfigurableUnitSubject)
+									ViewChanageManager.getChangeManager().refreshSubject(subject);
+						}
+					}
+					if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){
+						DataItem vspeCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VSPEC_CLMN);
+						VSpec vSpec = (VSpec) vspeCell.getNamedElement();
+						if(vSpec instanceof NullVSpec){
+							vp.setBindingVSpec(null);
+						}else{
+							vp.setBindingVSpec(vSpec);
+						}
 						for(Subject subject : subjects)
 							if(subject instanceof ConfigurableUnitSubject)
 								ViewChanageManager.getChangeManager().refreshSubject(subject);
 					}
+				}else{
+					throw new UnsupportedOperationException("Few rows were updated - not implemented");
 				}
-				if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){
-					DataItem vspeCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VSPEC_CLMN);
-					VSpec vSpec = (VSpec) vspeCell.getNamedElement();
-					if(vSpec instanceof NullVSpec){
-						vp.setBindingVSpec(null);
-					}else{
-						vp.setBindingVSpec(vSpec);
-					}
-					for(Subject subject : subjects)
-						if(subject instanceof ConfigurableUnitSubject)
-							ViewChanageManager.getChangeManager().refreshSubject(subject);
-				}
-			}else{
-				throw new UnsupportedOperationException("Few rows were updated - not implemented");
 			}
 		}
 	}

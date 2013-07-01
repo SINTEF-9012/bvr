@@ -55,7 +55,8 @@ public class DeleteBindingAllEvent implements ActionListener {
 		
 		fragmentSubstitution.getBoundaryElementBinding().clear();
 		
-		views.get(tab).notifyRelalizationViewUpdate();
+		//views.get(tab).notifyRelalizationViewUpdate();
+		views.get(tab).getConfigurableUnitSubject().notifyObserver();
 	}
 
 }

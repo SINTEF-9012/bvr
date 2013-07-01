@@ -1,11 +1,7 @@
 package no.sintef.cvl.ui.loader;
 
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,14 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-
 import org.abego.treelayout.TreeLayout;
 import org.abego.treelayout.demo.TextInBox;
 import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
@@ -40,21 +32,15 @@ import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
-import no.sintef.cvl.ui.editor.FragSubVSpecTableCellEditor;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
-import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.CVLModelException;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
-import no.sintef.cvl.ui.model.FragSubTableModel;
-import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
-import no.sintef.cvl.ui.observer.impl.CVLViewSubject;
 import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
 import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
-import no.sintef.cvl.ui.observer.impl.ViewChanageManager;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
@@ -65,17 +51,13 @@ import cvl.ConfigurableUnit;
 import cvl.Constraint;
 import cvl.NamedElement;
 import cvl.OpaqueConstraint;
-import cvl.PlacementFragment;
-import cvl.ReplacementFragmentType;
 import cvl.VClassifier;
 import cvl.VInstance;
 import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.VariableValueAssignment;
-import cvl.Variabletype;
-import cvl.VariationPoint;
 
-public class CVLView implements Observer {
+public class CVLView {
 	private CVLModel m;
 	
 	private JTabbedPane modelPane;
@@ -99,9 +81,11 @@ public class CVLView implements Observer {
 	
 	// Realization
 	private JTabbedPane realizationPanel;
-
-	//private CVLViewSubject cvlViewSubject;
-
+	private FragmentSubstitutionJTable tableFragmSubst;
+	private SubstitutionFragmentJTable tableSubstFragm;
+	private BindingJTable bindingEditor;
+	
+	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
 	public CVLUIKernel getKernel() {
@@ -126,7 +110,6 @@ public class CVLView implements Observer {
 		this.m = m;
 		
     	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
-    	configurableUnitSubject.attach(this);
 		
 		// Make model pane
 		modelPane = new JTabbedPane();
@@ -171,29 +154,36 @@ public class CVLView implements Observer {
         	e.printStackTrace();
         }
 	}
+	
+	public ConfigurableUnitSubject getConfigurableUnitSubject(){
+		return configurableUnitSubject;
+	}
 
 	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
-		SelectedFragmentSubstitutionSubject selectedFS = new SelectedFragmentSubstitutionSubject(null);
+		selectedFS = new SelectedFragmentSubstitutionSubject(null);
 		
-		FragmentSubstitutionJTable tableFragmSubst = new FragmentSubstitutionJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
-		SubstitutionFragmentJTable tableSubstFragm = new SubstitutionFragmentJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
-		
+		tableFragmSubst = new FragmentSubstitutionJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
+		
+		tableSubstFragm = new SubstitutionFragmentJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
 		panel.setName(Constants.REALIZATION_VP_SUBTAB_NAME);
 		panel.add(scrollPanelFragmSubst);
 		panel.add(scrollPanelSubstFragm);
-		
 		realizationPanel.add(panel);
 		 
-		BindingJTable bindingEditor = new BindingJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
-		
-		
+		bindingEditor = new BindingJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
 		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
+	}
+	
+	public void notifyRelalizationViewReset(){
+		selectedFS.resetSelectedFragmentSubstitution();
+		selectedFS.notifyObserver();
+		configurableUnitSubject.notifyObserver();
 	}
 	
 	private void autoLayoutResolutions() {
@@ -380,16 +370,6 @@ public class CVLView implements Observer {
 		}
 	}
 	
-	public void notifyRelalizationViewUpdate(){
-		realizationPanel.removeAll();
-		
-        try{
-        	loadCVLRelalizationView(m.getCVLM().getCU());
-        } catch (Exception e){
-        	e.printStackTrace();
-        }
-	}
-	
 	public void notifyVspecViewUpdate() {
 		// Save scroll coordinates
 		Point vpos = vspecScrollPane.getViewport().getViewPosition();
@@ -472,7 +452,7 @@ public class CVLView implements Observer {
 	public void notifyAllViews(){
 		this.notifyVspecViewUpdate();
 		this.notifyResolutionViewUpdate();
-		this.notifyRelalizationViewUpdate();
+		this.notifyRelalizationViewReset();
 	}
 
 	private void autoLayoutVSpec() {
@@ -539,16 +519,5 @@ public class CVLView implements Observer {
 			}
 		}
 		
-	}
-
-	@Override
-	public void update(Subject subject) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public ArrayList<Subject> getSubjects() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

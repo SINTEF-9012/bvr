@@ -15,6 +15,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
+import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
 import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
 import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataBindingItem;
@@ -34,7 +35,8 @@ public class BindingJTable extends JTable implements Observer {
 	private BindingTableModel tableModel;
 
 	public BindingJTable(ArrayList<Subject> arrayList) throws AbstractError{
-		for(Subject subject : arrayList)
+		subjects = arrayList;
+		for(Subject subject : subjects)
 			subject.attach(this);
 		tableModel = new BindingTableModel(selectedFragmentSubstitution);
 		setModel(tableModel);
@@ -58,21 +60,28 @@ public class BindingJTable extends JTable implements Observer {
 	public void update(Subject subject) {
 		if(subject instanceof SelectedFragmentSubstitutionSubject){
 			selectedFragmentSubstitution = ((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution();
-			try {
-				((BindingTableModel) this.getModel()).updateBindingEditor(selectedFragmentSubstitution);
-				
-				HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
-				boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(selectedFragmentSubstitution);
-				
-				BindingBoundariesComboBoxTableCellEditor editor = (BindingBoundariesComboBoxTableCellEditor) getDefaultEditor(DataBoundaryItem.class);
-				editor.setData(boundariesMap);
-			} catch (AbstractError e) {
-				e.printStackTrace();
-			}
+			updateBindingEditor();
+
+		}
+		if(subject instanceof ConfigurableUnitSubject){
+			updateBindingEditor();
 		}
 		
 	}
 
+	private void updateBindingEditor(){
+		try {
+			((BindingTableModel) this.getModel()).updateBindingEditor(selectedFragmentSubstitution);
+			BindingBoundariesComboBoxTableCellEditor editor = (BindingBoundariesComboBoxTableCellEditor) getDefaultEditor(DataBoundaryItem.class);
+			HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
+			if(selectedFragmentSubstitution != null)
+				boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(selectedFragmentSubstitution);
+			editor.setData(boundariesMap);
+		} catch (AbstractError e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public ArrayList<Subject> getSubjects() {
 		return subjects;

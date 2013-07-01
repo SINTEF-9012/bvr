@@ -23,4 +23,13 @@ public class ConfigurableUnitSubject extends AbstractViewSubject {
 		return configurableUnit;
 	}
 
+	@Override
+	public boolean isApplicable(ObserverDataBulk data) {
+		Object field = data.getDataField("configurableUnit");
+		if(field instanceof ConfigurableUnit){
+			return true;
+		}
+		return false;
+	}
+
 }

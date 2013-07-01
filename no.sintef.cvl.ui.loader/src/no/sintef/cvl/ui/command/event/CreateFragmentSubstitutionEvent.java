@@ -87,7 +87,8 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		fs.setReplacement(replacement);
 		cu.getOwnedVariationPoint().add(fs);
 		
-		views.get(tab).notifyRelalizationViewUpdate();
+		//views.get(tab).notifyRelalizationViewUpdate();
+		views.get(tab).getConfigurableUnitSubject().notifyObserver();
 	}
 	
 	private HashMap<PlacementFragment, ReplacementFragmentType> isSelectionValid(DataNamedElementItem d, DataNamedElementItem d1){

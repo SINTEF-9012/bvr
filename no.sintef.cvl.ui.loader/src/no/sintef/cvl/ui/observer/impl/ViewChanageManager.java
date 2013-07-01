@@ -57,8 +57,10 @@ public class ViewChanageManager implements ChangeManager {
 	public void updateSubjects(ObserverDataBulk data, Observer observer) {
 		ArrayList<Subject> subsjects = objectSubjectMap.get(observer);
 		for(Subject subject : subsjects){
-			subject.setState(data);
-			modifiedSubjects.add(subject);
+			if(subject.isApplicable(data)){
+				subject.setState(data);
+				modifiedSubjects.add(subject);
+			}
 		}
 		notifyObserver();
 	}

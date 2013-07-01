@@ -41,8 +41,8 @@ public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
-		if(!event.getValueIsAdjusting()){
-			int selectedIndex = ((ListSelectionModel) event.getSource()).getLeadSelectionIndex();
+		int selectedIndex = ((ListSelectionModel) event.getSource()).getLeadSelectionIndex();
+		if(!event.getValueIsAdjusting() && selectedIndex >= 0){
 			FragSubTableModel sourceModel = (FragSubTableModel) jtable.getModel();
 			ArrayList<ArrayList<DataItem>> sourceData = sourceModel.getData();
 			ArrayList<DataItem> selectedRow = sourceData.get(selectedIndex);

@@ -14,17 +14,15 @@ import no.sintef.cvl.ui.loader.CVLView;
 public class ClearSelectionRelalizationEvent implements ActionListener {
 
 	private JTabbedPane filePane;
-	private List<CVLModel> models;
 	private List<CVLView> views;
 	public ClearSelectionRelalizationEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
 		this.filePane = filePane;
-		this.models = models;
 		this.views = views;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int tab = filePane.getSelectedIndex();
-		views.get(tab).notifyRelalizationViewUpdate();
+		views.get(tab).notifyRelalizationViewReset();
 		try {
 			ThirdpartyEditorSelector.getEditorSelector().clearHighlights();
 		} catch (IllegalOperationException e1) {

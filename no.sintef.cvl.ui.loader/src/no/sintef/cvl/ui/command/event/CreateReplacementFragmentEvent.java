@@ -66,7 +66,8 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		views.get(tab).notifyRelalizationViewUpdate();
+		//views.get(tab).notifyRelalizationViewUpdate();
+		views.get(tab).getConfigurableUnitSubject().notifyObserver();
 	}
 }
 

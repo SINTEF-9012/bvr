@@ -83,8 +83,11 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 		}
 		if(subject instanceof SelectedFragmentSubstitutionSubject){
 			selectedFragmentSubstitution = ((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution();
-			if(selectedFragmentSubstitution != null)
+			if(selectedFragmentSubstitution != null){
 				tableModel.updateDisplayData(filterOutFragments(selectedFragmentSubstitution));
+			}else{
+				tableModel.updateDisplayData(tableModel.getOriginalData());
+			}
 		}
 	}
 
