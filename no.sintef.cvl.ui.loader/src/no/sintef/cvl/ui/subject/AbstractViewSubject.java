@@ -1,7 +1,10 @@
-package no.sintef.cvl.ui.observer.impl;
+package no.sintef.cvl.ui.subject;
 
 import java.util.ArrayList;
 
+import cvl.ConfigurableUnit;
+
+import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
 import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
@@ -9,6 +12,7 @@ import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 public abstract class AbstractViewSubject implements Subject {
  
 	protected ViewChanageManager changeManager = ViewChanageManager.getChangeManager();
+	private String[] fields = {};
 	
 	@Override
 	public void attach(Observer observer) {
@@ -28,5 +32,18 @@ public abstract class AbstractViewSubject implements Subject {
 				observer.update(this);
 			}
 		}
+	}
+	
+	@Override
+	public boolean isApplicable(ObserverDataBulk data) {
+		for(String field : getFileds()){
+			if(data.isFieldSet(field))
+				return true;
+		}
+		return false;
+	}
+	
+	protected String[] getFileds(){
+		return fields;
 	}
 }

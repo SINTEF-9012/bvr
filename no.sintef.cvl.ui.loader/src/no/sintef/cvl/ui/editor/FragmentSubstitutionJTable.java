@@ -24,12 +24,12 @@ import no.sintef.cvl.ui.common.NullVSpec;
 import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
-import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
-import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
 import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.primitive.impl.DataVSpecItem;
 import no.sintef.cvl.ui.renderer.FragSubTableCellRenderer;
+import no.sintef.cvl.ui.subject.ConfigurableUnitSubject;
+import no.sintef.cvl.ui.subject.SelectedFragmentSubstitutionSubject;
 
 public class FragmentSubstitutionJTable extends JTable implements Observer {
 
@@ -39,13 +39,7 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 	private static final long serialVersionUID = 6490422017472288712L;
 	private FragSubTableModel tableModel;
 	
-	private ArrayList<Subject> subjects;
-	
-	public FragmentSubstitutionJTable(ArrayList<Subject> sbjcts) {
-		subjects = sbjcts;
-		for(Subject subject : subjects)
-			subject.attach(this);
-			
+	public FragmentSubstitutionJTable() {
 		tableModel = new FragSubTableModel();
 		setModel(tableModel);
 		
@@ -59,9 +53,6 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(this));
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getTableHeader().setReorderingAllowed(false);
-		
-		for(Subject subject : subjects)
-			update(subject);
 	}
 
 	@Override
@@ -90,11 +81,6 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 				tableModel.fireTableDataChanged();
 			}
 		}
-	}
-
-	@Override
-	public ArrayList<Subject> getSubjects() {
-		return subjects;
 	}
 	
 	private EList<VSpec> getAllVSpec(EList<VSpec> vSpecList, EList<VSpec> result){

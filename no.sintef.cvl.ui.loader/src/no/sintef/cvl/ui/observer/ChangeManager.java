@@ -17,4 +17,6 @@ public interface ChangeManager {
 	public ArrayList<Observer> registeredObservers(Subject subject);
 	
 	public void refreshSubject(Subject subject);
+
+	public ArrayList<Subject> registeredSubjects(Observer observer);
 }

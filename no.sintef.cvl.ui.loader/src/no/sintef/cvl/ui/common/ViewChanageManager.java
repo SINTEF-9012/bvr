@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.observer.impl;
+package no.sintef.cvl.ui.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 public class ViewChanageManager implements ChangeManager {
 
 	private HashMap<Subject, ArrayList<Observer>> subjectObserverMap = new HashMap<Subject, ArrayList<Observer>>();
-	private HashMap<Observer, ArrayList<Subject>> objectSubjectMap = new HashMap<Observer, ArrayList<Subject>>();
+	public HashMap<Observer, ArrayList<Subject>> objectSubjectMap = new HashMap<Observer, ArrayList<Subject>>();
 	private ArrayList<Subject> modifiedSubjects = new ArrayList<Subject>();
 	
 	private static final ViewChanageManager singeltone = new ViewChanageManager();
@@ -68,6 +68,11 @@ public class ViewChanageManager implements ChangeManager {
 	@Override
 	public ArrayList<Observer> registeredObservers(Subject subject){
 		return subjectObserverMap.get(subject);
+	}
+	
+	@Override
+	public ArrayList<Subject> registeredSubjects(Observer observer){
+		return objectSubjectMap.get(observer);
 	}
 
 	@Override

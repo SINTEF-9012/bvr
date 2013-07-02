@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +28,7 @@ import no.sintef.cvl.ui.command.AddVClassifier;
 import no.sintef.cvl.ui.command.AddVInstance;
 import no.sintef.cvl.ui.command.AddVariableValueAssignment;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
@@ -38,9 +38,8 @@ import no.sintef.cvl.ui.exception.CVLModelException;
 import no.sintef.cvl.ui.framework.TitledElement;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
-import no.sintef.cvl.ui.observer.Subject;
-import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
-import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
+import no.sintef.cvl.ui.subject.ConfigurableUnitSubject;
+import no.sintef.cvl.ui.subject.SelectedFragmentSubstitutionSubject;
 
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
@@ -162,10 +161,10 @@ public class CVLView {
 	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
 		selectedFS = new SelectedFragmentSubstitutionSubject(null);
 		
-		tableFragmSubst = new FragmentSubstitutionJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
+		tableFragmSubst = new FragmentSubstitutionJTable();
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		
-		tableSubstFragm = new SubstitutionFragmentJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
+		tableSubstFragm = new SubstitutionFragmentJTable();
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
@@ -174,10 +173,21 @@ public class CVLView {
 		panel.add(scrollPanelSubstFragm);
 		realizationPanel.add(panel);
 		 
-		bindingEditor = new BindingJTable(new ArrayList<Subject>(Arrays.asList(configurableUnitSubject, selectedFS)));
+		bindingEditor = new BindingJTable();
 		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
+		
+		
+		ViewChanageManager.getChangeManager().register(configurableUnitSubject, tableFragmSubst);
+		ViewChanageManager.getChangeManager().register(selectedFS, tableFragmSubst);
+		ViewChanageManager.getChangeManager().register(configurableUnitSubject, tableSubstFragm);
+		ViewChanageManager.getChangeManager().register(selectedFS, tableSubstFragm);
+		ViewChanageManager.getChangeManager().register(configurableUnitSubject, bindingEditor);
+		ViewChanageManager.getChangeManager().register(selectedFS, bindingEditor);
+		
+		configurableUnitSubject.notifyObserver();
+		selectedFS.notifyObserver();
 	}
 	
 	public void notifyRelalizationViewReset(){

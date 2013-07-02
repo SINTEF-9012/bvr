@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.observer.impl;
+package no.sintef.cvl.ui.subject;
 
 import cvl.FragmentSubstitution;
 import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
@@ -6,6 +6,7 @@ import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 public class SelectedFragmentSubstitutionSubject extends AbstractViewSubject {
 
 	private FragmentSubstitution selectedFragmentSubstitution;
+	private String[] fields = {"selectedFragmentSubstitution"};
 	
 	public SelectedFragmentSubstitutionSubject(FragmentSubstitution fs){
 		this.selectedFragmentSubstitution = fs;
@@ -13,26 +14,20 @@ public class SelectedFragmentSubstitutionSubject extends AbstractViewSubject {
 	
 	@Override
 	public void setState(ObserverDataBulk data) {
-		Object object = data.getDataField("selectedFragmentSubstitution");
-		if(object instanceof FragmentSubstitution)
-			selectedFragmentSubstitution = (FragmentSubstitution) object;
+		Object value = data.getDataField("selectedFragmentSubstitution");
+		selectedFragmentSubstitution = (value != null) ? (FragmentSubstitution) value : null;
 	}
 	
 	public FragmentSubstitution getSelectedFragmentSubstitution(){
 		return selectedFragmentSubstitution;
 	}
-	
-	public void resetSelectedFragmentSubstitution(){
+
+	public void resetSelectedFragmentSubstitution() {
 		selectedFragmentSubstitution = null;
 	}
-
+	
 	@Override
-	public boolean isApplicable(ObserverDataBulk data) {
-		Object object = data.getDataField("selectedFragmentSubstitution");
-		if(object instanceof FragmentSubstitution){
-			return true;
-		}
-		return false;
+	protected String[] getFileds(){
+		return fields;
 	}
-
 }

@@ -17,5 +17,11 @@ public class ObserverDataBulk implements Keywords {
 	public void setDataField(String name, Object object) {
 		data.put(name, object);
 	}
+	
+	public boolean isFieldSet(String name){
+		if(data.keySet().contains(name))
+			return true;
+		return false;
+	}
 
 }

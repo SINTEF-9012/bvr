@@ -12,10 +12,10 @@ import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.model.SubFragTableModel;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
-import no.sintef.cvl.ui.observer.impl.ConfigurableUnitSubject;
-import no.sintef.cvl.ui.observer.impl.SelectedFragmentSubstitutionSubject;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.renderer.SubFragTableCellRenderer;
+import no.sintef.cvl.ui.subject.ConfigurableUnitSubject;
+import no.sintef.cvl.ui.subject.SelectedFragmentSubstitutionSubject;
 
 import cvl.FragmentSubstitution;
 import cvl.NamedElement;
@@ -30,14 +30,9 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 	
 	private SubFragTableModel tableModel;
 	private FragmentSubstitutionJTable fragSubJTable;
-	private ArrayList<Subject> subjects;
 	private FragmentSubstitution selectedFragmentSubstitution;
 
-	public SubstitutionFragmentJTable(ArrayList<Subject> sbjcts){
-		subjects = sbjcts;
-		for(Subject subject : subjects)
-			subject.attach(this);
-		
+	public SubstitutionFragmentJTable(){
 		tableModel = new SubFragTableModel(new ArrayList<NamedElement>());
 		setModel(tableModel);
 		
@@ -48,9 +43,6 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(this));
 		
 		getTableHeader().setReorderingAllowed(false);
-		
-		for(Subject subject : subjects)
-			update(subject);
 	}
 	
 	public void setFragmentSubstitutionJTable(FragmentSubstitutionJTable table){
@@ -91,11 +83,6 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 		}
 	}
 
-	@Override
-	public ArrayList<Subject> getSubjects() {
-		return subjects;
-	}
-	
 	private ArrayList<ArrayList<Object>> filterOutFragments(FragmentSubstitution fragmentSubstitution){
 		PlacementFragment placement = fragmentSubstitution.getPlacement();
 		ReplacementFragmentType replacement = fragmentSubstitution.getReplacement();

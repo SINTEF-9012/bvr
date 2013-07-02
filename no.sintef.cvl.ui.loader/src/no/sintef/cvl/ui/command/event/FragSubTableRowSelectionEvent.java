@@ -16,6 +16,7 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.dropdown.BoundariesDropDownCalculator;
 import no.sintef.cvl.ui.editor.BindingBoundariesComboBoxTableCellEditor;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
@@ -25,7 +26,6 @@ import no.sintef.cvl.ui.exception.PlacementReplacementNullException;
 import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.model.SubFragTableModel;
-import no.sintef.cvl.ui.observer.impl.ViewChanageManager;
 import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
