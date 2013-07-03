@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
+import no.sintef.cvl.thirdparty.editor.ProxyPapyrusDiagramEditor;
 import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
+import no.sintef.cvl.thirdparty.exception.NotSupportedThirdPartyEditor;
 import no.sintef.cvl.ui.exception.IllegalOperationException;
 import no.sintef.cvl.ui.logging.impl.Logging;
 
@@ -75,6 +77,9 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    public void run() {
 		    	for(IEditorReference ref : editorReferences){
 		    		IEditorPart editorPart = ref.getEditor(false);
+		    		System.out.println(editorPart.getTitle());
+		    		System.out.println(editorPart.getClass());
+		    		System.out.println(editorPart);
 		    		if(editorPart != null && !(editorPart instanceof ICVLEnabledEditor)){
 		    			try {
 		    				ProxyThirdPartyTreeEditor cvlEnabledEditor = new ProxyThirdPartyTreeEditor(editorPart);
@@ -82,9 +87,16 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				highlightObjects(cvlEnabledEditor, objects);
 		    				cvlEnabledEditor.expandHiglightedObjects();
 						} catch (Exception e) {
-							Logging.getLogger().warn("unsupported editor: "+ editorPart.getClass() + ", can not highlight due to : " + e.getMessage());
+							try {
+								ProxyPapyrusDiagramEditor cvlEnabledEditor = new ProxyPapyrusDiagramEditor(editorPart);
+				    			cvlEnabledEditor.clearHighlighting();
+				    			highlightObjects(cvlEnabledEditor, objects);
+							} catch (NotSupportedThirdPartyEditor e1) {
+								Logging.getLogger().warn("unsupported editor: "+ editorPart.getClass() + ", can not highlight anything: " + e1.getMessage() + " " + e.getMessage());
+							}
 						}
 		    		}else if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
+		    			System.out.println("+++++++++++++++++++++++++++++++++++++++++");
 		    			ICVLEnabledEditor cvlEnabledEditor = (ICVLEnabledEditor) editorPart;
 		    			cvlEnabledEditor.clearHighlighting();
 		    			highlightObjects(cvlEnabledEditor, objects);
@@ -121,7 +133,12 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				ICVLEnabledEditor editor = new ProxyThirdPartyTreeEditor(editorPart);
 		    				editor.clearHighlighting();
 						} catch (Exception e) {
-							Logging.getLogger().warn("unsupported editor: "+ editorPart.getClass() + ", can not highlight anything: " + e.getMessage());
+							try {
+								ProxyPapyrusDiagramEditor cvlEnabledEditor = new ProxyPapyrusDiagramEditor(editorPart);
+				    			cvlEnabledEditor.clearHighlighting();
+							} catch (NotSupportedThirdPartyEditor e1) {
+								Logging.getLogger().warn("unsupported editor: "+ editorPart.getClass() + ", can not highlight anything: " + e1.getMessage() + " " + e.getMessage());
+							}
 						}
 		    		}if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
 		    			ICVLEnabledEditor cvlEnabledEditor = (ICVLEnabledEditor) editorPart;
