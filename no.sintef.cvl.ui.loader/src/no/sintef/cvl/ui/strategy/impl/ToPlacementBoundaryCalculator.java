@@ -52,6 +52,7 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 				}
 			}
 		}
+		
 		if(lowerBound == 0){
 			if(nullToReplacement == null){
 				throw new CVLModelException("can not find NULL boundary of the type ToReplacement");

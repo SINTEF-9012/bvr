@@ -67,7 +67,7 @@ public class BindingJTable extends JTable implements Observer {
 
 	private void updateBindingEditor(){
 		try {
-			((BindingTableModel) this.getModel()).updateBindingEditor(selectedFragmentSubstitution);
+			((BindingTableModel) getModel()).updateBindingEditor(selectedFragmentSubstitution);
 			BindingBoundariesComboBoxTableCellEditor editor = (BindingBoundariesComboBoxTableCellEditor) getDefaultEditor(DataBoundaryItem.class);
 			HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
 			if(selectedFragmentSubstitution != null)
