@@ -55,10 +55,8 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				ToPlacement toPlacement = toBinding.getToPlacement();
 				ToReplacement toReplacement = toBinding.getToReplacement();
 				try {
-					HashMap<EObject, Integer> toHighlight = this.getObjectsToHighlight(toPlacement);
-					objectsToHighlightList.add(toHighlight);
-					toHighlight = this.getObjectsToHighlight(toReplacement);
-					objectsToHighlightList.add(toHighlight);
+					objectsToHighlightList.addAll(getObjectsToHighlight(toPlacement));
+					objectsToHighlightList.addAll(getObjectsToHighlight(toReplacement));
 				} catch (IllegalOperationException e1) {
 					e1.printStackTrace();
 				}
@@ -67,10 +65,8 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				FromPlacement fromPlacement = fromBinding.getFromPlacement();
 				FromReplacement fromReplacement = fromBinding.getFromReplacement();
 				try {
-					HashMap<EObject, Integer> toHighlight = this.getObjectsToHighlight(fromPlacement);
-					objectsToHighlightList.add(toHighlight);
-					toHighlight = this.getObjectsToHighlight(fromReplacement);
-					objectsToHighlightList.add(toHighlight);
+					objectsToHighlightList.addAll(getObjectsToHighlight(fromPlacement));
+					objectsToHighlightList.addAll(getObjectsToHighlight(fromReplacement));
 				} catch (IllegalOperationException e1) {
 					e1.printStackTrace();
 				}
@@ -84,16 +80,18 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 		}
 	}
 	
-	private HashMap<EObject, Integer> getObjectsToHighlight(VariationPoint boundary) throws IllegalOperationException{
-		HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+	private EList<HashMap<EObject, Integer>> getObjectsToHighlight(VariationPoint boundary) throws IllegalOperationException{
+		EList<HashMap<EObject, Integer>> list = new BasicEList<HashMap<EObject, Integer>>();
 		if(boundary instanceof ToPlacement || boundary instanceof ToReplacement){
 			boolean isToPlacement = (boundary instanceof ToPlacement) ? true : false;
 			if(!isToPlacement && Utility.isNullBoundary(boundary))
-				return map;
+				return list;
 			
 			EObject eObject = (isToPlacement) ? ((ToPlacement) boundary).getOutsideBoundaryElement().getMOFRef() : ((ToReplacement) boundary).getOutsideBoundaryElement().getMOFRef();
 			if(eObject != null){
+				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
 				map.put(eObject, (isToPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_IN : ICVLEnabledEditor.HL_REPLACEMENT_IN);
+				list.add(map);
 			}else{
 				Logging.getLogger().error("outside boundary element reference is null for toBoundary" + boundary);
 			}
@@ -102,7 +100,9 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			for(ObjectHandle oh : objectHandles){
 				eObject = oh.getMOFRef();
 				if(eObject != null){
+					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
 					map.put(eObject, (isToPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT);
+					list.add(map);
 				}else{
 					Logging.getLogger().error("inside boundary element reference is null for toBoundary" + boundary);
 				}
@@ -110,11 +110,13 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 		}else if(boundary instanceof FromPlacement || boundary instanceof FromReplacement){
 			boolean isFromPlacement = (boundary instanceof FromPlacement) ? true : false;
 			if(isFromPlacement && Utility.isNullBoundary(boundary))
-				return map;
+				return list;
 			
 			EObject eObject = (isFromPlacement) ? ((FromPlacement) boundary).getInsideBoundaryElement().getMOFRef() : ((FromReplacement) boundary).getInsideBoundaryElement().getMOFRef();
 			if(eObject != null){
+				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
 				map.put(eObject, (isFromPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT);
+				list.add(map);
 			}else{
 				Logging.getLogger().error("inside boundary element reference is null for fromBoundary" + boundary);
 			}
@@ -123,7 +125,9 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			for(ObjectHandle oh : objectHandles){
 				eObject = oh.getMOFRef();
 				if(eObject != null){
+					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
 					map.put(eObject, (isFromPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_OUT : ICVLEnabledEditor.HL_REPLACEMENT_OUT);
+					list.add(map);
 				}else{
 					Logging.getLogger().error("outside boundary element reference is null for fromBoundary" + boundary);
 				}
@@ -131,6 +135,6 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 		}else{
 			throw new IllegalOperationException("WTF!");
 		}
-		return map;
+		return list;
 	}
 }

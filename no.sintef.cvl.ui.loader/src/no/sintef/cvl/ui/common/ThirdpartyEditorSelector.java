@@ -67,6 +67,10 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	public void highlightObjects(EList<HashMap<EObject, Integer>> objectsToHighlightList) throws NoEclipseDetectedException {
 		final HashMap<EObject, Integer> objectsToHiglight = new HashMap<EObject, Integer>();
 		for(HashMap<EObject, Integer> pair : objectsToHighlightList){
+			if(pair.size() != 1){
+				Logging.getLogger().warn("a hash map has more than one object to highlight or is empty, that is weird, skip it" + pair);
+				continue;
+			}
 			EObject key = pair.keySet().iterator().next();
 			if(objectsToHiglight.containsKey(key)){
 				if(pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_IN || pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_OUT)
