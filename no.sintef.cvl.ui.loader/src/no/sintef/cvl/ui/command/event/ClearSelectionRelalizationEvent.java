@@ -7,9 +7,10 @@ import java.util.List;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
-import no.sintef.cvl.ui.exception.IllegalOperationException;
+import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.logging.impl.Logging;
 
 public class ClearSelectionRelalizationEvent implements ActionListener {
 
@@ -25,8 +26,8 @@ public class ClearSelectionRelalizationEvent implements ActionListener {
 		views.get(tab).notifyRelalizationViewReset();
 		try {
 			ThirdpartyEditorSelector.getEditorSelector().clearHighlights();
-		} catch (IllegalOperationException e1) {
-			e1.printStackTrace();
+		} catch (NoEclipseDetectedException e1) {
+			Logging.getLogger().warn("can not clear highlighting due to : '" + e1.getMessage() + "'");
 		}
 	}
 

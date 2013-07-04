@@ -27,7 +27,7 @@ import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
-import no.sintef.cvl.ui.exception.IllegalOperationException;
+import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.model.SubFragTableModel;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
@@ -165,8 +165,8 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             }
             try {
 				ThirdpartyEditorSelector.getEditorSelector().highlightObjects(objectsToHighlight);
-			} catch (IllegalOperationException e) {
-				e.printStackTrace();
+			} catch (NoEclipseDetectedException e) {
+				Logging.getLogger().warn("can not highlight anything due to : '" + e.getMessage() + "'");
 			}
 		}
 	}

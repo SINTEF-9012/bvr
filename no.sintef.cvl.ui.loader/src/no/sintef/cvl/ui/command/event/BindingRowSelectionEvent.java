@@ -26,6 +26,7 @@ import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.exception.IllegalOperationException;
+import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.primitive.impl.DataBindingItem;
@@ -76,8 +77,8 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			
 			try {
 				ThirdpartyEditorSelector.getEditorSelector().highlightObjects(objectsToHighlight);
-			} catch (IllegalOperationException e1) {
-				e1.printStackTrace();
+			} catch (NoEclipseDetectedException e1) {
+				Logging.getLogger().warn("can not highlight anything due to : '" + e1.getMessage() + "'");
 			}
 		}
 	}

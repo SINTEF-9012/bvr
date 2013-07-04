@@ -8,7 +8,7 @@ import java.util.Map;
 
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
-import no.sintef.cvl.ui.exception.IllegalOperationException;
+import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 import no.sintef.cvl.ui.logging.impl.Logging;
 
 import org.eclipse.emf.ecore.EObject;
@@ -52,20 +52,20 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	}
 
 	@Override
-	public List<Object> getSelections() throws IllegalOperationException {
+	public List<Object> getSelections() throws NoEclipseDetectedException {
 		if(workbenchWindow == null)
-			throw new IllegalOperationException("can not get selection, because no eclipse detected and workbench is not initialized");
+			throw new NoEclipseDetectedException("can not get selection, because no eclipse detected and workbench is not initialized");
 		if(workbenchWindow.getActivePage().getActiveEditor() == null)
-			throw new IllegalOperationException("editor is not opened");
+			throw new NoEclipseDetectedException("editor is not opened");
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();
 	}
 
 	@Override
-	public void highlightObjects(final HashMap<EObject, Integer> objects) throws IllegalOperationException {
+	public void highlightObjects(final HashMap<EObject, Integer> objects) throws NoEclipseDetectedException {
 		if(workbenchWindow == null)
-			throw new IllegalOperationException("can not highlight object, because no eclipse detected and workbench is not initialized");
+			throw new NoEclipseDetectedException("can not highlight object, because no eclipse detected and workbench is not initialized");
 		final IEditorReference[] editorReferences = workbenchWindow.getActivePage().getEditorReferences();
 		if(editorReferences.length == 0)
 			return;
@@ -104,9 +104,9 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	}
 
 	@Override
-	public void clearHighlights() throws IllegalOperationException {
+	public void clearHighlights() throws NoEclipseDetectedException {
 		if(workbenchWindow == null)
-			throw new IllegalOperationException("can not clear selection, because no eclipse detected and workbench is not initialized");
+			throw new NoEclipseDetectedException("can not clear selection, because no eclipse detected and workbench is not initialized");
 		final IEditorReference[] editorReferences = workbenchWindow.getActivePage().getEditorReferences();
 		if(editorReferences.length == 0)
 			return;

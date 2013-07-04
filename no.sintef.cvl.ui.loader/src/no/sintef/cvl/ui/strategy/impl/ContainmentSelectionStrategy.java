@@ -1,16 +1,18 @@
 package no.sintef.cvl.ui.strategy.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.IllegalOperationException;
+import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 import no.sintef.cvl.ui.exception.UnexpectedException;
+import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.strategy.SelectionStrategy;
 
@@ -21,7 +23,13 @@ public class ContainmentSelectionStrategy implements SelectionStrategy {
 		ThirdpartyEditorSelector unifiedSelector = ThirdpartyEditorSelector.getEditorSelector();
 		
 		EList<EObject> selected = new BasicEList<EObject>();
-		List<Object> selections = unifiedSelector.getSelections();
+		List<Object> selections;
+		try{
+			selections = unifiedSelector.getSelections();
+		}catch(NoEclipseDetectedException e){
+			selections = new ArrayList<Object>();
+			Logging.getLogger().warn("can not make a selection due to : '" + e.getMessage() + "', empty list is returned");
+		}
 		for(Object object: selections){
 			EObject eObject = unifiedSelector.getEObject(object);
 			if(eObject == null)
