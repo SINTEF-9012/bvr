@@ -82,19 +82,20 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				highlightObjects(cvlEnabledEditor, objects);
 		    				cvlEnabledEditor.expandHiglightedObjects();
 						} catch (Exception e) {
-							Logging.getLogger().warn("unsupported editor: "+ editorPart.getClass() + ", can not highlight due to : " + e.getMessage());
+							Logging.getLogger().warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not highlight due to : " + e.getMessage());
 						}
 		    		}else if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
 		    			ICVLEnabledEditor cvlEnabledEditor = (ICVLEnabledEditor) editorPart;
 		    			cvlEnabledEditor.clearHighlighting();
 		    			highlightObjects(cvlEnabledEditor, objects);
 		    		}else{
-		    			Logging.getLogger().warn("unsupported editor: " + editorPart.getClass() + ", can not highlight anything");
+		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass() : "null");
+		    			Logging.getLogger().warn("unsupported editor: -->" + editorName + "<--, can not highlight anything");
 		    		}
 		    	}
 		    }
 		
-			private void highlightObjects(ICVLEnabledEditor editor, final HashMap<EObject, Integer> objects){
+			private void highlightObjects(final ICVLEnabledEditor editor, final HashMap<EObject, Integer> objects){
 				for(Map.Entry<EObject, Integer> entry : objects.entrySet()){
 					editor.highlightObject(entry.getKey(), entry.getValue());
 				}
@@ -121,13 +122,14 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				ICVLEnabledEditor editor = new ProxyThirdPartyTreeEditor(editorPart);
 		    				editor.clearHighlighting();
 						} catch (Exception e) {
-							Logging.getLogger().warn("unsupported editor: "+ editorPart.getClass() + ", can not highlight anything: " + e.getMessage());
+							Logging.getLogger().warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());
 						}
 		    		}if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
 		    			ICVLEnabledEditor cvlEnabledEditor = (ICVLEnabledEditor) editorPart;
 		    			cvlEnabledEditor.clearHighlighting();
 		    		}else{
-		    			Logging.getLogger().warn("unsupported editor: " + editorPart.getClass() + ", can not highlight anything");
+		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass() : "null");
+		    			Logging.getLogger().warn("unsupported editor: -->" + editorName + "<--, can not clear highlighting (if any)");
 		    		}
 		    	}				
 			}

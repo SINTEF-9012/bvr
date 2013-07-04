@@ -28,10 +28,14 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 
+
+/*in fact not really a full proxy since we do not redirect all calls to the proxied object (editor), i think we should use something described here
+ * http://docs.oracle.com/javase/6/docs/technotes/guides/reflection/proxy.html */
+
 public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, ICVLEnabledEditor {
 	
-	private Object editor;
+	private MultiPageEditorPart editor;
 	private TreeViewer treeViewer;
 	private CVLLabelProvider labelProvider = null;
 
@@ -51,7 +55,7 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 		if(!(multiPageEditor instanceof IViewerProvider))
 			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart editor does not implement IViewerProvider interface, can not highlight anything");
 		
-		editor = multiPageEditor;
+		editor = (MultiPageEditorPart) multiPageEditor;
 		Viewer viewer = getViewer();
 		if(!(viewer instanceof TreeViewer))
 			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart should represent tree view editor, can not highlight anything");
