@@ -5,11 +5,12 @@ import java.util.List;
 
 import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 public interface ModelSelector {
-
-	public void highlightObjects(final HashMap<EObject, Integer> objects) throws NoEclipseDetectedException;
+	
+	public void highlightObjects(EList<HashMap<EObject, Integer>> objectsToHighlightList) throws NoEclipseDetectedException;
 	
 	public void clearHighlights() throws NoEclipseDetectedException;
 	

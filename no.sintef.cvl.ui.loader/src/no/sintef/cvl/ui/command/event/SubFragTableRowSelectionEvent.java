@@ -43,7 +43,8 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
 		if(!event.getValueIsAdjusting()){
-			HashMap<EObject, Integer> objectsToHighlight = new HashMap<EObject, Integer>();
+			EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+			//HashMap<EObject, Integer> objectsToHighlight = new HashMap<EObject, Integer>();
 			SubFragTableModel model =  (SubFragTableModel) jtable.getModel();
 			ArrayList<ArrayList<Object>> data = model.getData();
             ArrayList<Integer> selectedIndexes = new ArrayList<Integer>();
@@ -107,7 +108,8 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             			}
             		}
             		insideElements = this.calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
-            		objectsToHighlight.putAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
+            		objectsToHighlightList.addAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
+            		//objectsToHighlight.putAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
             	}
             	if(fragment instanceof ReplacementFragmentType){
             		ReplacementFragmentType replacement = (ReplacementFragmentType) fragment;
@@ -160,11 +162,12 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             			}
             		}
             		insideElements = this.calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
-            		objectsToHighlight.putAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
+            		objectsToHighlightList.addAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
+            		//objectsToHighlight.putAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
             	}
             }
             try {
-				ThirdpartyEditorSelector.getEditorSelector().highlightObjects(objectsToHighlight);
+				ThirdpartyEditorSelector.getEditorSelector().highlightObjects(objectsToHighlightList);
 			} catch (NoEclipseDetectedException e) {
 				Logging.getLogger().warn("can not highlight anything due to : '" + e.getMessage() + "'");
 			}
@@ -183,21 +186,27 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 		return visited;
 	}
 	
-	private HashMap<EObject, Integer> markObjects(EList<EObject> outsideInsideElements, EList<EObject> outsideOutsideElements, EList<EObject> insideElements, boolean isPlacement){
-		HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
+	private EList<HashMap<EObject, Integer>> markObjects(EList<EObject> outsideInsideElements, EList<EObject> outsideOutsideElements, EList<EObject> insideElements, boolean isPlacement){
+		EList<HashMap<EObject, Integer>> objectsToHL = new BasicEList<HashMap<EObject,Integer>>();
 		int fragment = (isPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT;
 		int fragment_in = (isPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_IN : ICVLEnabledEditor.HL_REPLACEMENT_IN;
 		int fragment_out = (isPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_OUT : ICVLEnabledEditor.HL_REPLACEMENT_OUT;
 		for(EObject eObject : outsideInsideElements){
+			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
 			objectsToH.put(eObject, fragment_in);
+			objectsToHL.add(objectsToH);
 		}
 		for(EObject eObject : insideElements){
+			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
 			objectsToH.put(eObject, fragment);
+			objectsToHL.add(objectsToH);
 		}
 		for(EObject eObject : outsideOutsideElements){
+			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
 			objectsToH.put(eObject, fragment_out);
+			objectsToHL.add(objectsToH);
 		}
-		return objectsToH;
+		return objectsToHL;
 	}
 
 }

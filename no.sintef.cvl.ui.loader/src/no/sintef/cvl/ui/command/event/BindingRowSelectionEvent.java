@@ -7,6 +7,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -48,16 +49,16 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			DataBindingItem bindingCell = (DataBindingItem) data.get(selectedIndex).get(Constants.BINDING_TYPE_CLMN);
 			NamedElement binding = bindingCell.getNamedElement();
 			
-			HashMap<EObject, Integer> objectsToHighlight = new HashMap<EObject, Integer>();
+			EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject,Integer>>();
 			if(binding instanceof ToBinding){
 				ToBinding toBinding = (ToBinding) binding;
 				ToPlacement toPlacement = toBinding.getToPlacement();
 				ToReplacement toReplacement = toBinding.getToReplacement();
 				try {
 					HashMap<EObject, Integer> toHighlight = this.getObjectsToHighlight(toPlacement);
-					objectsToHighlight.putAll(toHighlight);
+					objectsToHighlightList.add(toHighlight);
 					toHighlight = this.getObjectsToHighlight(toReplacement);
-					objectsToHighlight.putAll(toHighlight);
+					objectsToHighlightList.add(toHighlight);
 				} catch (IllegalOperationException e1) {
 					e1.printStackTrace();
 				}
@@ -67,16 +68,16 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				FromReplacement fromReplacement = fromBinding.getFromReplacement();
 				try {
 					HashMap<EObject, Integer> toHighlight = this.getObjectsToHighlight(fromPlacement);
-					objectsToHighlight.putAll(toHighlight);
+					objectsToHighlightList.add(toHighlight);
 					toHighlight = this.getObjectsToHighlight(fromReplacement);
-					objectsToHighlight.putAll(toHighlight);
+					objectsToHighlightList.add(toHighlight);
 				} catch (IllegalOperationException e1) {
 					e1.printStackTrace();
 				}
 			}
 			
 			try {
-				ThirdpartyEditorSelector.getEditorSelector().highlightObjects(objectsToHighlight);
+				ThirdpartyEditorSelector.getEditorSelector().highlightObjects(objectsToHighlightList);
 			} catch (NoEclipseDetectedException e1) {
 				Logging.getLogger().warn("can not highlight anything due to : '" + e1.getMessage() + "'");
 			}

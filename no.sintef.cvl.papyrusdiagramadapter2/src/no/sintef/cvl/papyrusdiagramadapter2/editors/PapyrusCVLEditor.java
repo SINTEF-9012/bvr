@@ -67,12 +67,16 @@ public class PapyrusCVLEditor extends PapyrusMultiDiagramEditor implements ICVLE
 				c = ICVLEnabledEditor.PLACEMENT_OUT; break;
 			case ICVLEnabledEditor.HL_PLACEMENT_IN : 
 				c = ICVLEnabledEditor.PLACEMENT_IN; break;
+			case ICVLEnabledEditor.HL_PLACEMENT_IN_OUT : 
+				c = ICVLEnabledEditor.PLACEMENT_IN_OUT; break;
 			case ICVLEnabledEditor.HL_REPLACEMENT : 
 				c = ICVLEnabledEditor.REPLACEMENT; break;
 			case ICVLEnabledEditor.HL_REPLACEMENT_OUT : 
 				c = ICVLEnabledEditor.REPLACEMENT_OUT; break;
 			case ICVLEnabledEditor.HL_REPLACEMENT_IN : 
 				c = ICVLEnabledEditor.REPLACEMENT_IN; break;
+			case ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT : 
+				c = ICVLEnabledEditor.REPLACEMENT_IN_OUT; break;
 			default : 
 				throw new UnsupportedOperationException("coloring of this type is not supported " + type);
 		}

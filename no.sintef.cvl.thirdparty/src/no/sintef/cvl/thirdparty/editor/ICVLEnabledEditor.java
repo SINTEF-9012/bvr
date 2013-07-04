@@ -14,22 +14,30 @@ import org.eclipse.swt.widgets.Display;
 public interface ICVLEnabledEditor {
 	
 	public static final int HL_NONE = 0; // no highlighting
-	public static final int HL_PLACEMENT = 1; // placement, usually red
-	public static final int HL_REPLACEMENT = 2; // replacement, usually blue
-	public static final int HL_PLACEMENT_OUT = 3; // placement_out, usually orange
-	public static final int HL_REPLACEMENT_OUT = 4; // replacement, usually green
-	public static final int HL_PLACEMENT_IN = 5; // placement_out, usually violet
-	public static final int HL_REPLACEMENT_IN = 6; // replacement_in, usually pink
+	public static final int HL_PLACEMENT = 1; // placement,  red
+	public static final int HL_REPLACEMENT = 2; // replacement,  blue
+	public static final int HL_PLACEMENT_OUT = 3; // placement_out,  orange
+	public static final int HL_REPLACEMENT_OUT = 4; // replacement,  green
+	public static final int HL_PLACEMENT_IN = 5; // placement_out,  violet
+	public static final int HL_REPLACEMENT_IN = 6; // replacement_in,  pink
+	public static final int HL_PLACEMENT_IN_OUT = 7; // placement_in_out,  yellow
+	public static final int HL_REPLACEMENT_IN_OUT = 8; // replacement_in_out,  
 	
 	public static final Color PLACEMENT = new Color(Display.getDefault(), 240, 70, 0); // placement elements = red
 	public static final Color PLACEMENT_OUT = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element = orange
 	public static final Color PLACEMENT_IN = new Color(Display.getDefault(), 126, 0, 123); //toPlacement outside element = violet
+	public static final Color PLACEMENT_IN_OUT = new Color(Display.getDefault(), 0, 238, 250); // frotoPlacement outside element = light blue
 	//public static final Color PLACEMENT_IN = PLACEMENT;
 	
 	public static final Color REPLACEMENT = new Color(Display.getDefault(), 50, 80, 250); //replacement elements = blue
-	public static final Color REPLACEMENT_OUT = new Color(Display.getDefault(), 80, 210, 70); //fromReplacement outside element = green
-	public static final Color REPLACEMENT_IN = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element = pink
+	//public static final Color REPLACEMENT_OUT = new Color(Display.getDefault(), 80, 210, 70); //fromReplacement outside element = green
+	//public static final Color REPLACEMENT_IN = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element = pink
+	//public static final Color REPLACEMENT_IN_OUT = new Color(Display.getDefault(), 253, 247, 2); //fromtoReplacement outside element = yellow
 	//public static final Color REPLACEMENT_IN = REPLACEMENT;
+	
+	public static final Color REPLACEMENT_OUT = PLACEMENT_OUT;
+	public static final Color REPLACEMENT_IN = PLACEMENT_IN;
+	public static final Color REPLACEMENT_IN_OUT = PLACEMENT_IN_OUT;
 	
 	/**
 	 * Highlight in the editor the object identified by xmi_id with the color 
