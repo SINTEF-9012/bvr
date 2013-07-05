@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.CVLModelException;
+import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.strategy.BoundaryCalculatorStrategy;
 
 import cvl.ObjectHandle;
@@ -37,18 +38,30 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 		int lowerBound = propertySrcObject.getLowerBound();
 		EClassifier srcObjectType = propertySrcObject.getEType();
 		
+		Logging.getLogger().debug("--------------------------------------------------------------");
+		Logging.getLogger().debug("processing toPlacement " + toPlacement);
+		Logging.getLogger().debug("calculating applicable boundaries for the element '" + srcObject + "' with the property '" + propertyNameSrcObject + "' of the type '" + srcObjectType + "' with the following cardinality lowerBound=" + lowerBound + " upperBound=" + upperBound);
+		
 		ArrayList<VariationPoint> toReplacements = new ArrayList<VariationPoint>();
 		for(VariationPoint boundary : options){
 			if(Utility.isNullBoundary(boundary)){
 				nullToReplacement = (ToReplacement) boundary;
 			}else{
 				ToReplacement toReplacement = (ToReplacement) boundary;
+				
+				Logging.getLogger().debug("processing boundary toReplacement " + toReplacement);
+				
 				EList<ObjectHandle> insideBoundaryElementsOH = toReplacement.getInsideBoundaryElement();
 				if(insideBoundaryElementsOH.size() <= upperBound || upperBound == -1){
 					EList<EObject> insideBoundaryElements = Utility.resolveProxies(insideBoundaryElementsOH);
 					if(isInstance(srcObjectType, insideBoundaryElements)){
 						toReplacements.add(boundary);
+						Logging.getLogger().debug("the boundary is compatible");
+					}else{
+						Logging.getLogger().debug("skip boundary, some elements are not type compatible " + insideBoundaryElements);
 					}
+				}else{
+					Logging.getLogger().debug("skip boundary, too many elements which do not match the cardinality of the source object, size=" + insideBoundaryElementsOH.size());
 				}
 			}
 		}
@@ -58,7 +71,10 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 				throw new CVLModelException("can not find NULL boundary of the type ToReplacement");
 			}
 			toReplacements.add(0, nullToReplacement);
+		}else{
+			Logging.getLogger().debug("null boundary is skipped");
 		}
+		Logging.getLogger().debug("--------------------------------------------------------------");
 		return toReplacements;
 	}
 }

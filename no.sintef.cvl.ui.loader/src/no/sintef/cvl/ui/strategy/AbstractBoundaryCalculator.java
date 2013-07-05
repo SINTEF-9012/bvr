@@ -1,10 +1,15 @@
 package no.sintef.cvl.ui.strategy;
 
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.logging.Logger;
 import no.sintef.cvl.ui.logging.impl.Logging;
 
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -68,9 +73,7 @@ public class AbstractBoundaryCalculator {
 		}else{
 			ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
 			fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
-			String className = reference.getEType().getName();
-			String propertyName = reference.getName();
-			fromPlacement.setName("[" + className + "]." + propertyName + "=" + this.getObjectHandlesEObjectName(fromPlacement.getOutsideBoundaryElement()));
+			fromPlacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
 		}
 		return fromPlacement;
 	}
@@ -103,12 +106,9 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
 		toPlacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
-		
-		String className = property.getEType().getName();
+		toPlacement.setName(createBoundaryName(sourceEObject, null, property, false));
 		String propertyName = (String) property.eGet(property.eClass().getEStructuralFeature("name"));
-		toPlacement.setName("[" + className + "]." + propertyName);
 		toPlacement.setPropertyName(propertyName);
-		
 		placement.getPlacementBoundaryElement().add(toPlacement);
 		return toPlacement;
 	}
@@ -119,25 +119,13 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
 		fromPlacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
-		
-		String className = reference.getEType().getName();
-		String propertyName = reference.getName();
-		fromPlacement.setName("[" + className + "]." + propertyName + "={" + targetEObject.getClass().getName() + "}");
-		
+		BasicEList<EObject> list = new BasicEList<EObject>();
+		list.add(targetEObject);
+		fromPlacement.setName(createBoundaryName(sourceEObject, list, reference, true));
 		placement.getPlacementBoundaryElement().add(fromPlacement);
 		return fromPlacement;
 	}
-	
-	protected String getObjectHandlesEObjectName(EList<ObjectHandle> objectHandles){
-		String name = "{";
-		for(ObjectHandle objectHandle : objectHandles){
-			String klass = objectHandle.getMOFRef().getClass().getName();
-			name+=klass + ",";
-		}
-		name+= "}";
-		return name;
-	}
-	
+		
 	protected FromReplacement testFromReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
 		FromReplacement fromReplacement = null;
 		String propertyName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
@@ -177,9 +165,9 @@ public class AbstractBoundaryCalculator {
 		}else{
 			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
 			toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-			String className = property.getEType().getName();
-			String propertyName = property.getName();
-			toReplacement.setName("[" + className + "]." + propertyName + "=" + this.getObjectHandlesEObjectName(toReplacement.getInsideBoundaryElement()));
+			BasicEList<EObject> list = new BasicEList<EObject>();
+			list.add(targetEObject);
+			toReplacement.setName(createBoundaryName(sourceEObject, list, property, true));
 		}
 		return toReplacement;
 	}
@@ -190,11 +178,9 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
 		toReplacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-		
-		String className = property.getEType().getName();
-		String propertyName = (String) property.eGet(property.eClass().getEStructuralFeature("name"));
-		toReplacement.setName("[" + className + "]." + propertyName + "=" + this.getObjectHandlesEObjectName(toReplacement.getInsideBoundaryElement()));
-		
+		BasicEList<EObject> list = new BasicEList<EObject>();
+		list.add(targetEObject);
+		toReplacement.setName(createBoundaryName(sourceEObject, list, property, true));
 		replacement.getReplacementBoundaryElement().add(toReplacement);
 		return toReplacement;
 	}
@@ -205,13 +191,54 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
 		fromReplacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
-		
-		String className = reference.getEType().getName();
 		String propertyName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
-		fromReplacement.setName("[" + className + "]." + propertyName);
+		fromReplacement.setName(createBoundaryName(sourceEObject, null, reference, false));
 		fromReplacement.setPropertyName(propertyName);
-		
 		replacement.getReplacementBoundaryElement().add(fromReplacement);
 		return fromReplacement;
+	}
+	
+	protected String createBoundaryName(EObject sourceEObject, EList<EObject> targetEObjects, EStructuralFeature reference, boolean showTargets){
+		Pattern classPattern = Pattern.compile("(\\w*)$");
+		String sourceObjectClass = sourceEObject.eClass().getName();
+		Matcher matcher = classPattern.matcher(sourceObjectClass); matcher.find();
+		sourceObjectClass = matcher.group(matcher.groupCount() - 1);
+		String sourceObjectName = getEObjectName(sourceEObject);
+		
+		String referenceType = reference.getEType().getName();
+		String referenceName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
+		
+		String boundaryName = "((" + sourceObjectClass + ") " + sourceObjectName + ").<" + referenceType + ">" + referenceName;
+		
+		if(showTargets){
+			boundaryName = boundaryName + "[" + targetEObjects.size() + "]=" + getReferencedNameSet(targetEObjects);
+		}
+		
+		return boundaryName;
+	}
+	
+	private String getEObjectName(EObject eObject){
+		Pattern pattern = Pattern.compile("(\\w*)$");
+		String eObjectName = eObject.eClass().getClass().getCanonicalName();
+		Matcher matcher = pattern.matcher(eObjectName); matcher.find();
+		eObjectName = matcher.group(matcher.groupCount() - 1);
+		eObjectName = "'" + eObjectName +"'";
+		EStructuralFeature nameProperty = eObject.eClass().getEStructuralFeature("name");
+		if(nameProperty == null)
+			nameProperty = eObject.eClass().getEStructuralFeature("id");
+		if(nameProperty != null)
+			eObjectName = (String) eObject.eGet(nameProperty);
+		return eObjectName;
+	}
+	
+	private String getReferencedNameSet(EList<EObject> eObjects){
+		String name = "{";
+		for(Iterator<EObject> iterator = eObjects.iterator(); iterator.hasNext();){
+			EObject eObject = iterator.next();
+			String nameEObject = getEObjectName(eObject);
+			name+= (iterator.hasNext()) ? nameEObject + "," : nameEObject;
+		}
+		name+= "}";
+		return name;		
 	}
 }

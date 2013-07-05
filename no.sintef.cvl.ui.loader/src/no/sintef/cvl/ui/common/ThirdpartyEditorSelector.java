@@ -73,10 +73,24 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 			}
 			EObject key = pair.keySet().iterator().next();
 			if(objectsToHiglight.containsKey(key)){
-				if(pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_IN || pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_OUT)
+				Integer type = objectsToHiglight.get(key);
+				/*
+				 * if an object is referenced by outsideBoundaryElement references of the both boundaries kinds (toPlacement, fromPlacement)
+				 * then we should color it differently. Or if we already processed this element and colored it differently, but stumble upon the same element
+				 * which is referenced by outsideBoundaryElement of either toPlacement or fromPlacement, then still color it differently. Otherwise we give a warning.
+				 * The same logic for replacements
+				 */
+				if(type == ICVLEnabledEditor.HL_PLACEMENT_IN && pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_OUT
+						|| type == ICVLEnabledEditor.HL_PLACEMENT_OUT && pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_IN
+						|| (type == ICVLEnabledEditor.HL_PLACEMENT_IN_OUT && (pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_OUT || pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_IN))){
 					pair.put(key, ICVLEnabledEditor.HL_PLACEMENT_IN_OUT);
-				if(pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_IN || pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_OUT)
+				}else if(type == ICVLEnabledEditor.HL_REPLACEMENT_IN && pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_OUT
+						|| type == ICVLEnabledEditor.HL_REPLACEMENT_OUT && pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_IN
+						|| (type == ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT && (pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_OUT || pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_IN))){
 					pair.put(key, ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT);
+				}else if(type != pair.get(key)){
+					Logging.getLogger().warn("have no idea how to highlight element (highlighting will be partially correct): " + key);
+				}
 			}
 			objectsToHiglight.put(key, pair.get(key));
 		}
