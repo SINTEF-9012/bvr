@@ -1,6 +1,7 @@
 package no.sintef.cvl.ui.strategy.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,6 +31,7 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 	@Override
 	public void calculateBoundaries(PlacementFragment placement, EList<EObject> selection) {
 		HashSet<FromPlacement> fromPlacements = new HashSet<FromPlacement>();
+		refFromPlacMap = new HashMap<EStructuralFeature, FromPlacement>();
 		for(EObject eObject : selection){
 			//calculate toPlacement-s
 			Collection<Setting> refSittings = EcoreUtil.UsageCrossReferencer.find(eObject, eObject.eResource());
@@ -64,7 +66,9 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 						continue;
 					if(!isReferenceToCut(reference))
 						continue;
-					fromPlacements.add(testFromPlacementBoundary(placement, eObject, targetEObject, reference));
+					FromPlacement fromPlacement = testFromPlacementBoundary(placement, eObject, targetEObject, reference);
+					refFromPlacMap.put(reference, fromPlacement);
+					fromPlacements.add(fromPlacement);
 				}else{
 					EList<?> targetListObjects = (EList<?>) targetObject;
 					for(Object object : targetListObjects){
@@ -75,7 +79,9 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 							continue;
 						if(!isReferenceToCut(reference))
 							continue;
-						fromPlacements.add(testFromPlacementBoundary(placement, eObject, trgEObject, reference));
+						FromPlacement fromPlacement = testFromPlacementBoundary(placement, eObject, trgEObject, reference);
+						refFromPlacMap.put(reference, fromPlacement);
+						fromPlacements.add(fromPlacement);
 					}
 				}
 			}

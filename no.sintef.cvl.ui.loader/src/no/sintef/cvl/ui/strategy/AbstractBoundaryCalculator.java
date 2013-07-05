@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.strategy;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +28,9 @@ import cvl.ToReplacement;
 
 public class AbstractBoundaryCalculator {
 	
-	protected Logger LOGGER = Logging.getLogger(); 
+	protected Logger LOGGER = Logging.getLogger();
+	protected HashMap<EStructuralFeature, FromPlacement> refFromPlacMap;
+	protected HashMap<EStructuralFeature, ToReplacement> refToReplacMap;
 
 	protected boolean isReferenceToCut(EStructuralFeature property){
 		boolean yes = true;
@@ -62,7 +65,8 @@ public class AbstractBoundaryCalculator {
 		for(PlacementBoundaryElement boundary : placementBoundaries){
 			if(boundary instanceof FromPlacement){
 				FromPlacement fromP = (FromPlacement) boundary;
-				if(sourceEObject.equals(fromP.getInsideBoundaryElement().getMOFRef())){
+				FromPlacement fromPRef = refFromPlacMap.get(reference);
+				if(fromP.equals(fromPRef) && sourceEObject.equals(fromP.getInsideBoundaryElement().getMOFRef())){
 					fromPlacement = fromP;
 					break;
 				}
@@ -76,6 +80,28 @@ public class AbstractBoundaryCalculator {
 			fromPlacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
 		}
 		return fromPlacement;
+	}
+	
+	protected FromReplacement testFromReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
+		FromReplacement fromReplacement = null;
+		String propertyName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
+		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
+		for(ReplacementBoundaryElement boundary : replacementBoundaries){
+			if(boundary instanceof FromReplacement){
+				FromReplacement fromR = (FromReplacement) boundary;
+				if(fromR.getPropertyName().equals(propertyName) && sourceEObject.equals(fromR.getInsideBoundaryElement().getMOFRef())){
+					fromReplacement = fromR;
+					break;
+				}
+			}
+		}
+		if(fromReplacement == null){
+			fromReplacement = createFromReplacement(replacement, sourceEObject, targetEObject, reference);
+		}else{
+			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
+			fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
+		}
+		return fromReplacement;
 	}
 
 	protected ToPlacement testToPlacementBoundary(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
@@ -99,6 +125,31 @@ public class AbstractBoundaryCalculator {
 		}
 		return toPlacement;
 	}
+	
+	protected ToReplacement testToReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
+		ToReplacement toReplacement = null;
+		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
+		for(ReplacementBoundaryElement boundary : replacementBoundaries){
+			if(boundary instanceof ToReplacement){
+				ToReplacement toR = (ToReplacement) boundary;
+				ToReplacement toRRef = refToReplacMap.get(property);
+				if(toR.equals(toRRef) && sourceEObject.equals(toR.getOutsideBoundaryElement().getMOFRef())){
+					toReplacement = toR;
+					break;
+				}
+			}
+		}
+		if(toReplacement == null){
+			toReplacement = createToReplacement(replacement, sourceEObject, targetEObject, property);
+		}else{
+			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
+			toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
+			BasicEList<EObject> list = new BasicEList<EObject>();
+			list.add(targetEObject);
+			toReplacement.setName(createBoundaryName(sourceEObject, list, property, true));
+		}
+		return toReplacement;
+	}	
 	
 	protected ToPlacement createToPlacement(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
 		ToPlacement toPlacement = CvlFactory.eINSTANCE.createToPlacement();
@@ -124,52 +175,6 @@ public class AbstractBoundaryCalculator {
 		fromPlacement.setName(createBoundaryName(sourceEObject, list, reference, true));
 		placement.getPlacementBoundaryElement().add(fromPlacement);
 		return fromPlacement;
-	}
-		
-	protected FromReplacement testFromReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
-		FromReplacement fromReplacement = null;
-		String propertyName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
-		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
-		for(ReplacementBoundaryElement boundary : replacementBoundaries){
-			if(boundary instanceof FromReplacement){
-				FromReplacement fromR = (FromReplacement) boundary;
-				if(fromR.getPropertyName().equals(propertyName) && sourceEObject.equals(fromR.getInsideBoundaryElement().getMOFRef())){
-					fromReplacement = fromR;
-					break;
-				}
-			}
-		}
-		if(fromReplacement == null){
-			fromReplacement = createFromReplacement(replacement, sourceEObject, targetEObject, reference);
-		}else{
-			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
-			fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
-		}
-		return fromReplacement;
-	}
-
-	protected ToReplacement testToReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
-		ToReplacement toReplacement = null;
-		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
-		for(ReplacementBoundaryElement boundary : replacementBoundaries){
-			if(boundary instanceof ToReplacement){
-				ToReplacement toR = (ToReplacement) boundary;
-				if(sourceEObject.equals(toR.getOutsideBoundaryElement().getMOFRef())){
-					toReplacement = toR;
-					break;
-				}
-			}
-		}
-		if(toReplacement == null){
-			toReplacement = createToReplacement(replacement, sourceEObject, targetEObject, property);
-		}else{
-			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
-			toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-			BasicEList<EObject> list = new BasicEList<EObject>();
-			list.add(targetEObject);
-			toReplacement.setName(createBoundaryName(sourceEObject, list, property, true));
-		}
-		return toReplacement;
 	}
 	
 	protected ToReplacement createToReplacement(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {

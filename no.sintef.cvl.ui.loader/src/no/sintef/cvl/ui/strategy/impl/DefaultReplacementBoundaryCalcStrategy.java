@@ -1,6 +1,7 @@
 package no.sintef.cvl.ui.strategy.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,6 +31,7 @@ public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalc
 	@Override
 	public void calculateBoundaries(ReplacementFragmentType replacement, EList<EObject> selection) {
 		HashSet<ToReplacement> toReplacements = new HashSet<ToReplacement>();
+		refToReplacMap = new HashMap<EStructuralFeature, ToReplacement>();
 		for(EObject eObject : selection){
 			//calculate toReplacement-s
 			Collection<Setting> refSittings = EcoreUtil.UsageCrossReferencer.find(eObject, eObject.eResource());
@@ -41,7 +43,9 @@ public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalc
 				EStructuralFeature property = setting.getEStructuralFeature();
 				if(!isReferenceToCut(property))
 					continue;
-				toReplacements.add(testToReplacementBoundary(replacement, sourceEObject, eObject, property));
+				ToReplacement toReplacement = testToReplacementBoundary(replacement, sourceEObject, eObject, property);
+				toReplacements.add(toReplacement);
+				refToReplacMap.put(property, toReplacement);
 			}
 			//containment
 			EObject sourceEObject = eObject.eContainer();
@@ -49,7 +53,9 @@ public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalc
 				EStructuralFeature property = eObject.eContainingFeature();
 				if(!isReferenceToCut(property))
 					continue;
-				toReplacements.add(testToReplacementBoundary(replacement, sourceEObject, eObject, property));
+				ToReplacement toReplacement = testToReplacementBoundary(replacement, sourceEObject, eObject, property);
+				toReplacements.add(toReplacement);
+				refToReplacMap.put(property, toReplacement);
 			}
 			
 			//calculate fromReplacement-s
