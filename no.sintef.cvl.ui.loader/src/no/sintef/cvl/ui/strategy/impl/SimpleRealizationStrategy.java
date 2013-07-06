@@ -69,19 +69,12 @@ public class SimpleRealizationStrategy implements RealizationStrategy {
 			final FragmentSubstitutionHolder fsH = fsHMap.get(fs);
 			final FragmentSubOperation fso = new FragmentSubOperation(fsH);
 			
-			/*try {
-				fso.execute(!symbol.getMulti());
-				adjacentResolver.resolve(fsH);
-			} catch (BasicCVLEngineException e) {
-				e.printStackTrace();
-			}*/
-			
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
-				
 				protected void doExecute() {
 					try {
 						fso.execute(!symbol.getMulti());
 						adjacentResolver.resolve(fsH);
+						fso.checkConsistence();
 					} catch (BasicCVLEngineException e) {
 						e.printStackTrace();
 					}
