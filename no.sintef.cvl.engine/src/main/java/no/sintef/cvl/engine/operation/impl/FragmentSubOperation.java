@@ -6,6 +6,8 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+
 import cvl.FromBinding;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
@@ -19,6 +21,7 @@ import no.sintef.cvl.engine.common.CVLFragmentCopier;
 import no.sintef.cvl.engine.common.SubstitutionContext;
 import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
+import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.error.IllegalCVLOperation;
 import no.sintef.cvl.engine.error.IncorrectCVLModel;
@@ -37,7 +40,6 @@ public class FragmentSubOperation implements Substitution {
 	private FragmentSubstitutionHolder fragSubHolder;
 	private Logger logger = SubstitutionContext.ME.getLogger();
 
-
 	public FragmentSubOperation(FragmentSubstitutionHolder fsh){
 		fragSubHolder = fsh;
 		this.placement = fsh.getPlacement();
@@ -48,6 +50,11 @@ public class FragmentSubOperation implements Substitution {
 	public void execute(boolean replace) throws BasicCVLEngineException {
 		this.copyReplacementElements();
 		this.bindBounderies(replace);
+	}
+	
+	public void checkConsistence() throws ContainmentCVLModelException{
+		checkPlacementElementsContainment();
+		checkContainmentOutsideBoundaryElement();
 	}
 
 	private void bindBounderies(boolean replace) throws BasicCVLEngineException{
@@ -210,10 +217,10 @@ public class FragmentSubOperation implements Substitution {
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
 			}	
 		}
-		this.checkOutsideBoundaryElementsContainment();
+		//testOutsideBoundaryElementsContainment();
 		fragSubHolder.update(replace);
 	}
-	
+
 	private void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
 		targetEObject.eSet(feature, values);
 	}
@@ -222,7 +229,48 @@ public class FragmentSubOperation implements Substitution {
 		targetEObject.eSet(feature, value);
 	}
 	
-	private void checkOutsideBoundaryElementsContainment() throws BasicCVLEngineException{
+	private void checkPlacementElementsContainment() throws ContainmentCVLModelException {
+		HashSet<EObject> placementElements = placement.getElements();
+		for(EObject eObject : placementElements){
+			Resource resource = eObject.eResource();
+			if(resource == null)
+				throw new ContainmentCVLModelException("placement element:" + eObject + " is not contained by any element, check your VM");
+		}
+		
+	}
+	
+	private void checkContainmentOutsideBoundaryElement() throws ContainmentCVLModelException {
+		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
+		for(FromBinding fromBinding : fromBindings){
+			FromPlacement fromPlacement = fromBinding.getFromPlacement();
+			EList<EObject> outsideBoundaryElements = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
+			for(EObject outsideBoundaryElement : outsideBoundaryElements){
+				Resource resource = outsideBoundaryElement.eResource();
+				if(resource == null)
+					throw new ContainmentCVLModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
+			}
+		}
+		EList<ToBinding> toBindings = fragSubHolder.getToBindings();
+		HashMap<ToPlacement, HashSet<ObjectHandle>> outsideToBoundaryMap = fragSubHolder.getToPlacementOutsideBoundaryElementMap();
+		for(ToBinding toBinding : toBindings){
+			ToPlacement toPlacement = toBinding.getToPlacement();
+			EObject outsideBoundaryElement = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());
+			Resource resource = outsideBoundaryElement.eResource();
+			if(resource == null)
+				throw new ContainmentCVLModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
+			HashSet<ObjectHandle> objectHandles = outsideToBoundaryMap.get(toPlacement);
+			if(objectHandles != null){
+				EList<EObject> outsideBoundaryElements = Utility.resolveProxies(new BasicEList<ObjectHandle>(objectHandles));
+				for(EObject eObject : outsideBoundaryElements){
+					resource = eObject.eResource();
+					if(resource == null)
+						throw new ContainmentCVLModelException("outsideBoundaryElement element:" + eObject + " is not contained by any element, check your VM");
+				}
+			}
+		}
+	}
+	
+	private void testOutsideBoundaryElementsContainment() throws BasicCVLEngineException{
 		HashSet<EObject> placementElements = placement.getElements();
 		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
@@ -334,7 +382,7 @@ public class FragmentSubOperation implements Substitution {
 				FromPlacement fromPlacement = (FromPlacement) boundary;
 				if(fromPlacement.getInsideBoundaryElement().equals(objectHandle)){
 					fromPlacement.setInsideBoundaryElement(replacementObjectHandle);
-					//we should keep all insideBoundary references if we do not replace a placement fragment 
+					//we should store all insideBoundary references if we do not replace a placement fragment 
 					HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementMap = fragSubHolder.getFromPlacementInsideBoundaryElementMap();
 					HashSet<ObjectHandle> insideBoundaryElementsSet = (replace) ? new HashSet<ObjectHandle>() : fromPlacementMap.get(fromPlacement);
 					if(insideBoundaryElementsSet == null){
