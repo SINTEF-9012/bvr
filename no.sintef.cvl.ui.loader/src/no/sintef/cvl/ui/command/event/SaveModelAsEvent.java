@@ -47,7 +47,7 @@ public class SaveModelAsEvent implements ActionListener {
 		if(trydirectsave){
 			if(m.getFile() != null){
 				try{
-					m.getCVLM().writeToFile(m.getFile().getAbsolutePath());
+					safeModelToFile(m, m.getFile().getAbsolutePath());
 				}catch (IOException e) {
 					JOptionPane.showMessageDialog(filePane, "Error writing file: " + e.getMessage());
 				}
@@ -55,7 +55,7 @@ public class SaveModelAsEvent implements ActionListener {
 			}
 		}
 		
-		JFileChooser fc;
+		final JFileChooser fc;
 		if(w == null){
 			fc = new JFileChooser();
 			if(FileHelper.lastLocation() != null)
@@ -81,17 +81,7 @@ public class SaveModelAsEvent implements ActionListener {
 		}
 		
 		try {
-			if(w == null){
-				m.getCVLM().writeToFile(sf.getAbsolutePath());
-			}else{
-				String filepath = sf.getAbsolutePath().replaceAll("\\\\", "/");
-				if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
-					JOptionPane.showMessageDialog(filePane, Messages.DIALOG_WRONG_LOCATION);
-					return;
-				}
-				filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
-				m.getCVLM().writeToPlatformFile(filepath);
-			}
+			safeModelToFile(m, sf.getAbsolutePath());
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
@@ -105,5 +95,19 @@ public class SaveModelAsEvent implements ActionListener {
 		filePane.setTitleAt(i, sf.getName());
 		filePane.setToolTipTextAt(i, sf.getAbsolutePath());
 		FileHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
+	}
+	
+	private void safeModelToFile(CVLModel m, String absolutePath) throws IOException{
+		if(w == null){
+			m.getCVLM().writeToFile(absolutePath);
+		}else{
+			String filepath = absolutePath.replaceAll("\\\\", "/");
+			if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
+				JOptionPane.showMessageDialog(filePane, Messages.DIALOG_WRONG_LOCATION);
+				return;
+			}
+			filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
+			m.getCVLM().writeToPlatformFile(filepath);
+		}		
 	}
 }
