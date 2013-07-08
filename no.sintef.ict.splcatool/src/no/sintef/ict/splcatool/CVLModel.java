@@ -63,6 +63,15 @@ public class CVLModel {
 	public CVLModel(String cvlfile) {
 		this(new File(cvlfile));
 	}
+	
+	public void writeToPlatformFile(String filename) throws IOException {
+		//filenname should be of in the form /<project>/<folders0..N>/filename
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+	    ResourceSet resSet = new ResourceSetImpl();
+	    Resource resource = resSet.createResource(URI.createPlatformResourceURI(filename, true));
+	    resource.getContents().add(cu);
+	    resource.save(Collections.EMPTY_MAP);
+	}
 
 	public void writeToFile(String filename) throws IOException {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());

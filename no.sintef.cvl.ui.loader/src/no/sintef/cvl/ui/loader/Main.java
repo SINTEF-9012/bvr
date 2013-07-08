@@ -86,10 +86,10 @@ public class Main {
 		filemenu.add(new JSeparator());
 		JMenuItem save = new JMenuItem("Save");
 		filemenu.add(save);
-		save.addActionListener(new SaveModelAsEvent(filePane, models, views, true));
+		save.addActionListener(new SaveModelAsEvent(filePane, models, views, true, w));
 		//TODO: filemenu.add(new JMenuItem("Save all"));
 		JMenuItem saveas = new JMenuItem("Save as ...");
-		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false));
+		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false, w));
 		filemenu.add(saveas);
 		JMenuItem close = new JMenuItem("Close");
 		close.addActionListener(new CloseModelEvent(filePane, models, views));

@@ -19,4 +19,5 @@ public class Messages {
 	public static final String DIALOG_MSG_NO_FRAG_SUB_DETECTED = "no fragment substitution is detected to generate a binding";
 	public static final String DIALOG_MSG_BINDING_REMOVE_TITLE = "Binding Deletion";
 	public static final String DIALOG_MSG_BINDING_NOT_DUMMY = "Boundary is not a dummy one, corresponding boundary refrences sonething inside the placement fragment. Remove?";
+	public static final String DIALOG_WRONG_LOCATION = "Can not save a model to the specified location, save somewhere in the workspace location";
 }

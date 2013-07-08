@@ -12,6 +12,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import org.eclipse.ui.IWorkbenchWindow;
+
+import no.sintef.cvl.thirdparty.common.Utility;
+import no.sintef.cvl.ui.common.Messages;
+import no.sintef.cvl.ui.editor.RestrictedJFileChooser;
 import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -24,12 +29,14 @@ public class SaveModelAsEvent implements ActionListener {
 	private List<CVLModel> models;
 	private List<CVLView> views;
 	private boolean trydirectsave;
+	private IWorkbenchWindow w;
 
-	public SaveModelAsEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, boolean b) {
+	public SaveModelAsEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, boolean b, IWorkbenchWindow w) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
 		this.trydirectsave = b;
+		this.w = w;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -48,15 +55,25 @@ public class SaveModelAsEvent implements ActionListener {
 			}
 		}
 		
-		final JFileChooser fc = new JFileChooser();
-		if(FileHelper.lastLocation() != null)
-			fc.setCurrentDirectory(new File(FileHelper.lastLocation()));
+		JFileChooser fc;
+		if(w == null){
+			fc = new JFileChooser();
+			if(FileHelper.lastLocation() != null)
+				fc.setCurrentDirectory(new File(FileHelper.lastLocation()));
+		}else{
+			String path = Utility.getWorkspaceRowLocation();
+			fc = new RestrictedJFileChooser(path);
+			String lastLocation = FileHelper.lastLocation().replaceAll("\\\\", "/");
+			if(lastLocation.startsWith(path))
+				fc.setCurrentDirectory(new File(lastLocation));
+			
+		}
 		
 		fc.addChoosableFileFilter(new CVLFilter());
 		fc.showSaveDialog(filePane);
 		
 		File sf = fc.getSelectedFile();
-		if(sf == null) return;
+		if(sf == null) return;	
 		if(sf.exists()){
 			int result = JOptionPane.showConfirmDialog(filePane, "File already exist, overwrite?", "alert", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.NO_OPTION)
@@ -64,7 +81,17 @@ public class SaveModelAsEvent implements ActionListener {
 		}
 		
 		try {
-			m.getCVLM().writeToFile(sf.getAbsolutePath());
+			if(w == null){
+				m.getCVLM().writeToFile(sf.getAbsolutePath());
+			}else{
+				String filepath = sf.getAbsolutePath().replaceAll("\\\\", "/");
+				if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
+					JOptionPane.showMessageDialog(filePane, Messages.DIALOG_WRONG_LOCATION);
+					return;
+				}
+				filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
+				m.getCVLM().writeToPlatformFile(filepath);
+			}
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
