@@ -1,6 +1,7 @@
 package no.sintef.cvl.ui.command.event;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.ListSelectionModel;
@@ -10,6 +11,8 @@ import javax.swing.event.ListSelectionListener;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EObjectEList;
 
 import cvl.FromPlacement;
 import cvl.FromReplacement;
@@ -44,7 +47,6 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 	public void valueChanged(ListSelectionEvent event) {
 		if(!event.getValueIsAdjusting()){
 			EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
-			//HashMap<EObject, Integer> objectsToHighlight = new HashMap<EObject, Integer>();
 			SubFragTableModel model =  (SubFragTableModel) jtable.getModel();
 			ArrayList<ArrayList<Object>> data = model.getData();
             ArrayList<Integer> selectedIndexes = new ArrayList<Integer>();
@@ -107,9 +109,9 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				}
             			}
             		}
-            		insideElements = this.calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
-            		objectsToHighlightList.addAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
-            		//objectsToHighlight.putAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
+            		insideElements = calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
+            		EList<HashMap<EObject, Integer>> elements = markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true);
+            		objectsToHighlightList.addAll(markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
             	}
             	if(fragment instanceof ReplacementFragmentType){
             		ReplacementFragmentType replacement = (ReplacementFragmentType) fragment;
@@ -161,9 +163,8 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				}
             			}
             		}
-            		insideElements = this.calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
+            		insideElements = calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
             		objectsToHighlightList.addAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
-            		//objectsToHighlight.putAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
             	}
             }
             try {
@@ -173,17 +174,35 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 			}
 		}
 	}
-	
+
 	private EList<EObject> calculateInnerPlacementElements(EList<EObject> outsideInside, EList<EObject> outsideOutside, EList<EObject> inside, EList<EObject> visited){
 		for(EObject eObject : inside){
-			EList<EObject> refobjects = new BasicEList<EObject>(eObject.eCrossReferences());
+			EList<EReference> links = new BasicEList<EReference>(eObject.eClass().getEAllReferences());
+			EList<EObject> refobjects = getReferencedEObjects(eObject, links);
 			refobjects.addAll(eObject.eContents());
 			if(!outsideInside.contains(eObject) && !outsideOutside.contains(eObject) && !visited.contains(eObject)){
 				visited.add(eObject);
-				visited = this.calculateInnerPlacementElements(outsideInside, outsideOutside, refobjects, visited);
+				visited = calculateInnerPlacementElements(outsideInside, outsideOutside, refobjects, visited);
 			}
 		}
 		return visited;
+	}
+	
+	private EList<EObject> getReferencedEObjects(EObject source, EList<EReference> links){
+		EList<EObject> eObjects = new BasicEList<EObject>();
+		for(EReference link : links){
+			if(Utility.isDerived(link) == 0){
+				Object value = source.eGet(link);
+				if(value instanceof EObject){
+					eObjects.add((EObject) value);
+				}else if (value instanceof EObjectEList){
+					eObjects.addAll((EList<? extends EObject>) value);
+				}else if(value != null){
+					Logging.getLogger().warn("reference " + link + " does not point to EObject nor EObjectList :" + value);
+				}
+			}
+		}
+		return eObjects;
 	}
 	
 	private EList<HashMap<EObject, Integer>> markObjects(EList<EObject> outsideInsideElements, EList<EObject> outsideOutsideElements, EList<EObject> insideElements, boolean isPlacement){

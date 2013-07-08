@@ -197,6 +197,6 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 	}
 	
 	public void expandHiglightedObjects(){
-		treeViewer.expandAll();
+		//treeViewer.expandAll();
 	}
 }

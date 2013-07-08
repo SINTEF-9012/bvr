@@ -17,6 +17,7 @@ import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import cvl.CvlFactory;
 import cvl.FromPlacement;
@@ -235,5 +236,41 @@ public class Utility {
 		objectHandle.setMOFRef(eObject);
 		replacement.getSourceObject().add(objectHandle);
 		return objectHandle;
+	}
+	
+	
+	public static final int DERIVED = 1;
+	public static final int TRANSIENT = 2;
+	public static final int MASK = 1000; //some mask should be implemented later;
+	/*not the best implementation, we can be both transient and derived, should implemented through a mask, we 0 is not derived
+	 * 000000000 - ok, 000000001-derived, 000000011 -derived and transient*/
+	public static int isDerived(EStructuralFeature property){
+		int yes = 0;
+		/*The value of a derived feature is computed from other
+		features, so it doesn't represent any additional object
+		state. Framework classes, such as EcoreUtil.Copier,
+		that copy model objects will not attempt to copy such
+		features. The generated code is unaffected by the value
+		of the derived flag. Derived features are typically also
+		marked volatile and transient.*/
+		Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
+		if(isDerived){
+			yes = DERIVED;
+		}
+		/*Transient features are used to declare (modeled) data
+		whose lifetime never spans application invocations and
+		therefore doesn't need to be persisted. The (default XMI)
+		serializer will not save features that are declared to be
+		transient.*/
+		Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
+		if(isTransient){
+			yes = TRANSIENT;
+		}
+		return yes;
+	}
+	
+	//implement me
+	public static int unMask(int value, int umaskValue){
+		return value;
 	}
 }

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
@@ -58,31 +59,26 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 			EList<EReference> references = eObject.eClass().getEAllReferences();
 			for(EStructuralFeature reference : references){
 				Object targetObject = eObject.eGet(reference);
-				if(reference.getUpperBound() == 1){
-					if(!(targetObject instanceof EObject))
-						continue;
+				if(!isReferenceToCut(reference))
+					continue;
+				if(targetObject instanceof EObject){
 					EObject targetEObject = (EObject) targetObject;
 					if(selection.indexOf(targetEObject) >= 0)
-						continue;
-					if(!isReferenceToCut(reference))
 						continue;
 					FromPlacement fromPlacement = testFromPlacementBoundary(placement, eObject, targetEObject, reference);
 					refFromPlacMap.put(reference, fromPlacement);
 					fromPlacements.add(fromPlacement);
-				}else{
-					EList<?> targetListObjects = (EList<?>) targetObject;
-					for(Object object : targetListObjects){
-						if(!(object instanceof EObject))
-							continue;
-						EObject trgEObject = (EObject) object;
+				}else if(targetObject instanceof EObjectEList){
+					EList<EObject> eObjects =  (EList<EObject>) targetObject;
+					for(EObject trgEObject : eObjects){
 						if(selection.indexOf(trgEObject) >= 0)
-							continue;
-						if(!isReferenceToCut(reference))
 							continue;
 						FromPlacement fromPlacement = testFromPlacementBoundary(placement, eObject, trgEObject, reference);
 						refFromPlacMap.put(reference, fromPlacement);
 						fromPlacements.add(fromPlacement);
 					}
+				}else if(targetObject != null){
+					LOGGER.warn("an element referenced by " + reference + " is neither EObject nor EObjectList: " + targetObject);
 				}
 			}
 		}
