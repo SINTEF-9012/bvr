@@ -252,16 +252,14 @@ public class Utility {
 		features. The generated code is unaffected by the value
 		of the derived flag. Derived features are typically also
 		marked volatile and transient.*/
-		Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-		int drvd = (isDerived) ? MASK & DERIVED : value;
+		int drvd = (property.isDerived()) ? MASK & DERIVED : value;
 	
 		/*Transient features are used to declare (modeled) data
 		whose lifetime never spans application invocations and
 		therefore doesn't need to be persisted. The (default XMI)
 		serializer will not save features that are declared to be
 		transient.*/
-		Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
-		int trnsnt = (isTransient) ? MASK & TRANSIENT : value;
+		int trnsnt = (property.isTransient()) ? MASK & TRANSIENT : value;
 		
 		value = drvd | trnsnt;
 		return value;
