@@ -71,7 +71,7 @@ public class AbstractBoundaryCalculator {
 	
 	protected FromReplacement testFromReplacementBoundary(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
 		FromReplacement fromReplacement = null;
-		String propertyName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
+		String propertyName = reference.getName();
 		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
 		for(ReplacementBoundaryElement boundary : replacementBoundaries){
 			if(boundary instanceof FromReplacement){
@@ -93,7 +93,7 @@ public class AbstractBoundaryCalculator {
 
 	protected ToPlacement testToPlacementBoundary(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
 		ToPlacement toPlacement = null;
-		String propertyName = (String) property.eGet(property.eClass().getEStructuralFeature("name"));
+		String propertyName = property.getName();
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementBoundaryElement();
 		for(PlacementBoundaryElement boundary : placementBoundaries){
 			if(boundary instanceof ToPlacement){
@@ -145,7 +145,7 @@ public class AbstractBoundaryCalculator {
 		toPlacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
 		toPlacement.setName(createBoundaryName(sourceEObject, null, property, false));
-		String propertyName = (String) property.eGet(property.eClass().getEStructuralFeature("name"));
+		String propertyName = property.getName();
 		toPlacement.setPropertyName(propertyName);
 		placement.getPlacementBoundaryElement().add(toPlacement);
 		return toPlacement;
@@ -183,7 +183,7 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
 		fromReplacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
-		String propertyName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
+		String propertyName = reference.getName();
 		fromReplacement.setName(createBoundaryName(sourceEObject, null, reference, false));
 		fromReplacement.setPropertyName(propertyName);
 		replacement.getReplacementBoundaryElement().add(fromReplacement);
@@ -198,7 +198,7 @@ public class AbstractBoundaryCalculator {
 		String sourceObjectName = getEObjectName(sourceEObject);
 		
 		String referenceType = reference.getEType().getName();
-		String referenceName = (String) reference.eGet(reference.eClass().getEStructuralFeature("name"));
+		String referenceName = reference.getName();
 		
 		String boundaryName = "((" + sourceObjectClass + ") " + sourceObjectName + ").<" + referenceType + ">" + referenceName;
 		
