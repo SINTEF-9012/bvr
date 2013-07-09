@@ -239,13 +239,12 @@ public class Utility {
 	}
 	
 	
-	public static final int DERIVED = 1;
-	public static final int TRANSIENT = 2;
-	public static final int MASK = 1000; //some mask should be implemented later;
-	/*not the best implementation, we can be both transient and derived, should implemented through a mask, we 0 is not derived
-	 * 000000000 - ok, 000000001-derived, 000000011 -derived and transient*/
+	public static final int DERIVED = 0x1;
+	public static final int TRANSIENT = 0x2;
+	public static final int MASK = 0x1FF; //9 bits are required to encode all properties
+	/* 000000000 - ok, 000000001-derived, 000000010 - transient, 000000011 -derived and transient etc*/
 	public static int isDerived(EStructuralFeature property){
-		int yes = 0;
+		int value = 0x0 & MASK;
 		/*The value of a derived feature is computed from other
 		features, so it doesn't represent any additional object
 		state. Framework classes, such as EcoreUtil.Copier,
@@ -254,23 +253,22 @@ public class Utility {
 		of the derived flag. Derived features are typically also
 		marked volatile and transient.*/
 		Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-		if(isDerived){
-			yes = DERIVED;
-		}
+		int drvd = (isDerived) ? MASK & DERIVED : value;
+	
 		/*Transient features are used to declare (modeled) data
 		whose lifetime never spans application invocations and
 		therefore doesn't need to be persisted. The (default XMI)
 		serializer will not save features that are declared to be
 		transient.*/
 		Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
-		if(isTransient){
-			yes = TRANSIENT;
-		}
-		return yes;
+		int trnsnt = (isTransient) ? MASK & TRANSIENT : value;
+		
+		value = drvd | trnsnt;
+		return value;
 	}
 	
 	//implement me
 	public static int unMask(int value, int umaskValue){
-		return value;
+		return value & umaskValue;
 	}
 }
