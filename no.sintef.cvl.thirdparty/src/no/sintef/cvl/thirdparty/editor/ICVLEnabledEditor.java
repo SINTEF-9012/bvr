@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
@@ -75,10 +76,13 @@ public interface ICVLEnabledEditor {
 		 * @return String the XMI ID
 		 */
 		public static String getObjectId(EObject obj) {
-			String id = EcoreUtil.getIdentification(obj);
+			String id = EMFCoreUtil.getProxyID(obj);
+			/*
+			 * String id = EcoreUtil.getIdentification(obj);
 			int index = id.indexOf('{');
 			if (index > -1)
-				id = id.substring(index + 1, id.length() - 1);
+			id = id.substring(index + 1, id.length() - 1);
+			*/
 			return id;
 		}
 	}

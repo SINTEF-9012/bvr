@@ -92,7 +92,7 @@ public class PapyrusCVLEditor extends PapyrusMultiDiagramEditor implements ICVLE
 	public void setColor(EObject obj, Color fg, IEditorPart editor) {
 		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart)editor).getDiagramGraphicalViewer();
 		
-		List<?> editParts = gv.findEditPartsForElement(EMFCoreUtil.getProxyID(obj), EditPart.class);
+		List<?> editParts = gv.findEditPartsForElement(IDProvider.getObjectId(obj), EditPart.class);
 		
 		for (Object object : editParts) {
 			if(object instanceof IPapyrusEditPart){
