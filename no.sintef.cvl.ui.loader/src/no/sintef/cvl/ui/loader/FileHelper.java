@@ -23,10 +23,25 @@ public class FileHelper {
 		} 
 		catch (IOException e) {} 
 		finally {
-			if (fis != null)
+			if (fis != null){
 				try {
 					fis.close();
 				} catch (final IOException e) {}
+			}else{
+				File f = new File("cvl.properties");
+				try {
+					f.createNewFile();
+					saveLastLocation("");
+					
+					fis = new FileInputStream("cvl.properties"); 
+					properties.load(fis);
+					last = new File(properties.getProperty("lastLocation"));
+					loc = last.getAbsolutePath();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			return loc;
 		}
 	}
