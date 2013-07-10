@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.prop4j.Node;
 import org.prop4j.NodeReader;
@@ -39,6 +40,8 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 public class CVLModel {
 	private ConfigurableUnit cu;
+	
+	private final static String utf8Encoding = "UTF-8"; 
 
 	public CVLModel(){
 		CvlPackage.eINSTANCE.eClass();
@@ -65,20 +68,28 @@ public class CVLModel {
 	}
 	
 	public void writeToPlatformFile(String filename) throws IOException {
-		//filenname should be of in the form /<project>/<folders0..N>/filename
+		//filename should be of in the form /<project>/<folders0..N>/filename
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 	    ResourceSet resSet = new ResourceSetImpl();
-	    Resource resource = resSet.createResource(URI.createPlatformResourceURI(filename, true));
+	    URI uri = URI.createPlatformResourceURI(filename, true);
+	    Resource resource = resSet.createResource(uri);
 	    resource.getContents().add(cu);
-	    resource.save(Collections.EMPTY_MAP);
+	    
+	    Map<Object, Object> options = new HashMap<Object, Object>();
+		options.put(XMLResource.OPTION_ENCODING, utf8Encoding);
+	    resource.save(options);
 	}
 
 	public void writeToFile(String filename) throws IOException {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 	    ResourceSet resSet = new ResourceSetImpl();
-	    Resource resource = resSet.createResource(URI.createFileURI(filename));
+	    URI uri = URI.createFileURI(filename);
+	    Resource resource = resSet.createResource(uri);
 	    resource.getContents().add(cu);
-	    resource.save(Collections.EMPTY_MAP);
+	    
+	    Map<Object, Object> options = new HashMap<Object, Object>();
+		options.put(XMLResource.OPTION_ENCODING, utf8Encoding);
+	    resource.save(options);
 	}
 
 	public ConfigurableUnit getCU() {
