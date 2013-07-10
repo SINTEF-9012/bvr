@@ -55,6 +55,11 @@ public class Constants {
 	public static final String PLACEMENT_DEFAULT_NAME = "PlacementFragment";
 	public static final String REPLACEMENT_DEFAULT_NAME = "ReplacementFragment";
 	
+	
+	public static final int CODE_MODEL_SAVE_OK = 0;
+	public static final int CODE_MODEL_SAVE_INCORRECT_LOCATION = 1;
+	public static final int CODE_MODEL_SAVE_IOEXCEPTION = 2;
+	
 	/*//placement colors
 	public static final Color RED = new Color(Display.getDefault(), 240, 70, 0); // placement elements
 	public static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element

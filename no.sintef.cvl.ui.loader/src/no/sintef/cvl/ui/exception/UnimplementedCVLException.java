@@ -1,6 +1,6 @@
 package no.sintef.cvl.ui.exception;
 
-public class UnimplementedCVLException extends AbstractError {
+public class UnimplementedCVLException extends UnsupportedOperationException {
 
 	private static final long serialVersionUID = 9101862928265725868L;
 	

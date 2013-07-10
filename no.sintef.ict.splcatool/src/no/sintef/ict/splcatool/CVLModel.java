@@ -67,6 +67,8 @@ public class CVLModel {
 		this(new File(cvlfile));
 	}
 	
+	//public ConfigurableUnit loadFromFile(String filename)
+	
 	public void writeToPlatformFile(String filename) throws IOException {
 		//filename should be of in the form /<project>/<folders0..N>/filename
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());

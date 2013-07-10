@@ -19,6 +19,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.google.common.base.Throwables;
+
 import cvl.CvlFactory;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
@@ -267,5 +269,9 @@ public class Utility {
 	
 	public static int unMask(int value, int umaskValue){
 		return value & umaskValue;
+	}
+	
+	public static String getStackTraceAsString(Throwable throwable){
+		return Throwables.getStackTraceAsString(throwable);
 	}
 }

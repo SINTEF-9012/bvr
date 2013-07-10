@@ -9,51 +9,57 @@ import java.util.Properties;
 
 public class FileHelper {
 
+	private static final String propertyFileName = "cvl.properties";
 	private static Properties properties = new Properties();
+	
+	private static final String propertyLastLocation = "lastLocation";
 
 	public static String lastLocation() {
-		File last = null;
+		File last;
 		FileInputStream fis = null;
-		String loc = null;
+		String loc = new String();
 		try {
-			fis = new FileInputStream("cvl.properties"); 
+			fis = new FileInputStream(propertyFileName); 
 			properties.load(fis);
-			last = new File(properties.getProperty("lastLocation"));
+			last = new File(properties.getProperty(propertyLastLocation));
 			loc = last.getAbsolutePath();
 		} 
-		catch (IOException e) {} 
+		catch (IOException e) {
+			File f = new File(propertyFileName);
+			try {
+				f.createNewFile();
+				saveLastLocation("");
+				
+				fis = new FileInputStream(propertyFileName); 
+				properties.load(fis);
+				last = new File(properties.getProperty(propertyLastLocation));
+				loc = last.getAbsolutePath();
+			} catch (final IOException e1) {
+				e1.printStackTrace();
+			}
+		} 
 		finally {
 			if (fis != null){
 				try {
 					fis.close();
-				} catch (final IOException e) {}
-			}else{
-				File f = new File("cvl.properties");
-				try {
-					f.createNewFile();
-					saveLastLocation("");
-					
-					fis = new FileInputStream("cvl.properties"); 
-					properties.load(fis);
-					last = new File(properties.getProperty("lastLocation"));
-					loc = last.getAbsolutePath();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+				} catch (final IOException e) {
 					e.printStackTrace();
 				}
 			}
-			return loc;
 		}
+		return loc;
 	}
 
 	public static void saveLastLocation(String loc) {
-		properties.setProperty("lastLocation", loc);
+		properties.setProperty(propertyLastLocation, loc);
 		FileOutputStream fos = null;
 		try {
-			fos = new FileOutputStream("cvl.properties");
+			fos = new FileOutputStream(propertyFileName);
 			properties.store(fos, new Date().toString());
 			fos.close();
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
