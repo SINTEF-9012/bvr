@@ -56,7 +56,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		} catch (IOException e) {
 			String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
 			LOG.error(stackTrace);
-			throw new UnsupportedOperationException("can not save file, IOException");
+			throw new UnsupportedOperationException("can not save file, IOException " + e.getMessage());
 		}
 	}
 
