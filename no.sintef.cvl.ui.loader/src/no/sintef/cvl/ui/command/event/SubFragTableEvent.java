@@ -7,16 +7,14 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
-import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.SubFragTableModel;
 import no.sintef.cvl.ui.observer.Subject;
 import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.subject.ConfigurableUnitSubject;
-import cvl.ConfigurableUnit;
+
 import cvl.NamedElement;
-import cvl.VariationPoint;
 
 public class SubFragTableEvent implements TableModelListener {
 
@@ -43,10 +41,10 @@ public class SubFragTableEvent implements TableModelListener {
 						String currentName = vp.getName();
 						if(!newName.equals(currentName)){
 							vp.setName(label.getText());
-							ArrayList<Subject> subjects = ViewChanageManager.getChangeManager().registeredSubjects(jtable);
+							ArrayList<Subject> subjects = Context.eINSTANCE.getViewChnageManager().registeredSubjects(jtable);
 							for(Subject subject : subjects)
 								if(subject instanceof ConfigurableUnitSubject)
-									ViewChanageManager.getChangeManager().refreshSubject(subject);
+									Context.eINSTANCE.getViewChnageManager().refreshSubject(subject);
 						}
 					}
 				}else{

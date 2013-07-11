@@ -8,15 +8,26 @@ import cvl.VSpec;
 public class CVLModel {
 	private no.sintef.ict.splcatool.CVLModel cvlm;
 	private File f;
+	private boolean platform = false;
+	private String loadFilename;
 
-	public CVLModel(File f) {
-		this.f = f;
+	public CVLModel(File sf) {
+		f = sf;
 		cvlm = new no.sintef.ict.splcatool.CVLModel(f);
+		loadFilename = sf.getAbsolutePath(); 
 	}
 	
 	public CVLModel(File sf, no.sintef.ict.splcatool.CVLModel x) {
 		cvlm = x;
 		f = sf;
+		loadFilename = sf.getAbsolutePath(); 
+	}
+	
+	public CVLModel(File sf, String loadLocation, boolean isPlatform){
+		f = sf;
+		platform = isPlatform;
+		loadFilename = loadLocation;
+		cvlm = new no.sintef.ict.splcatool.CVLModel(loadFilename, platform);
 	}
 
 	public CVLModel() {
@@ -24,7 +35,7 @@ public class CVLModel {
 	}
 	
 	public void reload(){
-		cvlm = new no.sintef.ict.splcatool.CVLModel(f);
+		cvlm = (!platform) ? new no.sintef.ict.splcatool.CVLModel(f) : new no.sintef.ict.splcatool.CVLModel(loadFilename, platform);
 	}
 
 	String getShortFileName(){
@@ -39,6 +50,10 @@ public class CVLModel {
 	
 	public no.sintef.ict.splcatool.CVLModel getCVLM(){
 		return cvlm;
+	}
+	
+	public void setCVLM(no.sintef.ict.splcatool.CVLModel cvlm){
+		this.cvlm = cvlm;
 	}
 
 	public void addVSpec(VSpec vSpec) {
@@ -55,5 +70,13 @@ public class CVLModel {
 
 	public File getFile() {
 		return f;
+	}
+	
+	public void setPlatform(boolean isPlatform){
+		platform = isPlatform;
+	}
+	
+	public void setLoadFilename(String loadName){		
+		loadFilename = loadName;
 	}
 }

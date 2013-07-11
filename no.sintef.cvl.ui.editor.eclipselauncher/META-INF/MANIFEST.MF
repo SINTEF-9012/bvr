@@ -49,7 +49,8 @@ Export-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.ui.renderer,
  no.sintef.cvl.ui.strategy,
  no.sintef.cvl.ui.strategy.impl,
- no.sintef.ict.splcatool
+ no.sintef.ict.splcatool,
+ no.sintef.cvl.ui.context
 Import-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.engine.adjacent,
  no.sintef.cvl.engine.adjacent.impl,
@@ -87,6 +88,7 @@ Import-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.ui.renderer,
  no.sintef.cvl.ui.strategy,
  no.sintef.cvl.ui.strategy.impl,
- no.sintef.ict.splcatool
+ no.sintef.ict.splcatool,
+ no.sintef.cvl.ui.context
 Bundle-ClassPath: SINTEF-CVLTool2-v0.2a1.jar,
  .

@@ -10,14 +10,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.cvl.ui.loader.CVLModel;
-import no.sintef.cvl.ui.logging.Logger;
-import no.sintef.cvl.ui.logging.impl.Logging;
 
 public interface Environment {
 	
 	public CVLModel loadModelFromFile(File file);
 	
-	public int writeModelToFile(CVLModel model, String filename);
+	public void writeModelToFile(CVLModel model, File file);
 	
 	public void reloadModel(CVLModel model);
 	

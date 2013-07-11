@@ -8,6 +8,9 @@ import no.sintef.cvl.ui.common.Utility;
 
 public class SHFilter extends FileFilter {
 
+	public static final String XLSX_EXT = "xlsx";
+	public static final String CSV_EXT = "csv";
+	
 	@Override
 	public boolean accept(File f) {
 	    if (f.isDirectory()) {
@@ -16,8 +19,8 @@ public class SHFilter extends FileFilter {
 	    
 	    String extension = Utility.getExtension(f);
 	    if (extension != null) {
-	    	if(extension.equals("xlsx")) return true;
-	    	if(extension.equals("csv")) return true;
+	    	if(extension.equals(XLSX_EXT)) return true;
+	    	if(extension.equals(CSV_EXT)) return true;
 	    }
 		return false;
 	}

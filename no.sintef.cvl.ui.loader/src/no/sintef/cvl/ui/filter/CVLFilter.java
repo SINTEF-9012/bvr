@@ -7,6 +7,9 @@ import javax.swing.filechooser.FileFilter;
 import no.sintef.cvl.ui.common.Utility;
 
 public class CVLFilter extends FileFilter {
+	
+	public static final String CVL_EXT = "cvl";
+	public static final String XMI_EXT = "xmi";
 
 	@Override
 	public boolean accept(File f) {
@@ -16,8 +19,8 @@ public class CVLFilter extends FileFilter {
 	    
 	    String extension = Utility.getExtension(f);
 	    if (extension != null) {
-	    	if(extension.equals("cvl")) return true;
-	    	if(extension.equals("xmi")) return true;
+	    	if(extension.equals(CVL_EXT)) return true;
+	    	if(extension.equals(XMI_EXT)) return true;
 	    }
 	    return false;
 	}

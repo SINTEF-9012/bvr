@@ -8,6 +8,9 @@ import no.sintef.cvl.ui.common.Utility;
 
 public class FMFilter extends FileFilter {
 
+	public static final String M_EXT = "m";
+	public static final String XML_EXT = "xml";
+	
 	@Override
 	public boolean accept(File f) {
 	    if (f.isDirectory()) {
@@ -16,8 +19,8 @@ public class FMFilter extends FileFilter {
 
 	    String extension = Utility.getExtension(f);
 	    if (extension != null) {
-	    	if(extension.equals("m")) return true;
-	    	if(extension.equals("xml")) return true;
+	    	if(extension.equals(M_EXT)) return true;
+	    	if(extension.equals(XML_EXT)) return true;
 	    }
 	    return false;
 	}

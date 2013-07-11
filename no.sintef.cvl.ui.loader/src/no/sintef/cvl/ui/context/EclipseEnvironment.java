@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+
 import no.sintef.cvl.thirdparty.common.Utility;
 import no.sintef.cvl.ui.common.Constants;
+import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.editor.RestrictedJFileChooser;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.FileHelper;
@@ -18,65 +20,70 @@ import org.eclipse.ui.IWorkbenchWindow;
 
 public class EclipseEnvironment extends AbstractEnvironment {
 	
-	private IWorkbenchWindow workbench;
+	private IWorkbenchWindow iworkbench;
+	private ThirdpartyEditorSelector editorselector;
+	
 
 	public EclipseEnvironment(IWorkbenchWindow workbench) {
-		this.workbench = workbench;
+		iworkbench = workbench;
+		ThirdpartyEditorSelector.setWorkbeach(iworkbench);
+		editorselector = ThirdpartyEditorSelector.getEditorSelector();
 	}
 
 	@Override
 	public CVLModel loadModelFromFile(File file) {
-		String fileName = file.getAbsolutePath();
-		
-		return null;
+		String platformPath = Utility.findFileInWorkspace(file);
+		if(platformPath == null){
+			throw new UnsupportedOperationException("can not locate a selected file in the workspace: " + file.getAbsolutePath());
+		}
+		return new CVLModel(file, platformPath, true);
 	}
 
 	@Override
-	public int writeModelToFile(CVLModel model, String filename) {
-		String filepath = filename.replaceAll("\\\\", "/");
+	public void writeModelToFile(CVLModel model, File file) {
+		String filepath = file.getAbsolutePath().replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
-			return Constants.CODE_MODEL_SAVE_INCORRECT_LOCATION;
+			throw new UnsupportedOperationException("can not save file, incorrect loacation");
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		try {
 			model.getCVLM().writeToPlatformFile(filepath);
+			model.setFile(file);
+			model.setPlatform(true);
+			model.setLoadFilename(filepath);
+			String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
+			FileHelper.saveLastLocation(filePath);
 		} catch (IOException e) {
 			String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
 			LOG.error(stackTrace);
-			return Constants.CODE_MODEL_SAVE_IOEXCEPTION;
+			throw new UnsupportedOperationException("can not save file, IOException");
 		}
-		return Constants.CODE_MODEL_SAVE_OK;
 	}
 
 	@Override
 	public void reloadModel(CVLModel model) {
-		// TODO Auto-generated method stub
-
+		model.reload();
 	}
 
 	@Override
 	public EObject getEObject(Object object) {
-		// TODO Auto-generated method stub
-		return null;
+		return editorselector.getEObject(object);
 	}
 
 	@Override
 	public List<Object> getSelections() {
-		// TODO Auto-generated method stub
-		return null;
+		return editorselector.getSelections();
 	}
 
 	@Override
 	public void highlightObjects(
 			EList<HashMap<EObject, Integer>> objectsToHighlightList) {
-		// TODO Auto-generated method stub
-
+		editorselector.highlightObjects(objectsToHighlightList);
 	}
 
 	@Override
 	public void clearHighlights() {
-		// TODO Auto-generated method stub
-
+		editorselector.clearHighlights();
 	}
 
 	@Override

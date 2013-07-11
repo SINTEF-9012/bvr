@@ -8,6 +8,7 @@ import javax.swing.event.TableModelListener;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.NullVSpec;
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.observer.Subject;
@@ -30,7 +31,7 @@ public class FragSubTableEvent implements TableModelListener {
 		if(TableModelEvent.UPDATE == e.getType()){
 			if(e.getColumn() >= 0){
 				if(e.getLastRow() == e.getFirstRow()){
-					ArrayList<Subject> subjects = ViewChanageManager.getChangeManager().registeredSubjects(jtable);
+					ArrayList<Subject> subjects = Context.eINSTANCE.getViewChnageManager().registeredSubjects(jtable);
 					FragSubTableModel model = (FragSubTableModel) jtable.getModel();
 					int rowIndex = e.getLastRow();
 					int columnIndex = e.getColumn();
@@ -44,7 +45,7 @@ public class FragSubTableEvent implements TableModelListener {
 							vp.setName(label.getText());
 							for(Subject subject : subjects)
 								if(subject instanceof ConfigurableUnitSubject)
-									ViewChanageManager.getChangeManager().refreshSubject(subject);
+									Context.eINSTANCE.getViewChnageManager().refreshSubject(subject);
 						}
 					}
 					if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){

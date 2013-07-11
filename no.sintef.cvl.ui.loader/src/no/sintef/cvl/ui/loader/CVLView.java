@@ -29,6 +29,7 @@ import no.sintef.cvl.ui.command.AddVInstance;
 import no.sintef.cvl.ui.command.AddVariableValueAssignment;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.editor.CVLUIKernel;
@@ -178,13 +179,12 @@ public class CVLView {
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
 		
-		
-		ViewChanageManager.getChangeManager().register(configurableUnitSubject, tableFragmSubst);
-		ViewChanageManager.getChangeManager().register(selectedFS, tableFragmSubst);
-		ViewChanageManager.getChangeManager().register(configurableUnitSubject, tableSubstFragm);
-		ViewChanageManager.getChangeManager().register(selectedFS, tableSubstFragm);
-		ViewChanageManager.getChangeManager().register(configurableUnitSubject, bindingEditor);
-		ViewChanageManager.getChangeManager().register(selectedFS, bindingEditor);
+		Context.eINSTANCE.getViewChnageManager().register(configurableUnitSubject, tableFragmSubst);
+		Context.eINSTANCE.getViewChnageManager().register(selectedFS, tableFragmSubst);
+		Context.eINSTANCE.getViewChnageManager().register(configurableUnitSubject, tableSubstFragm);
+		Context.eINSTANCE.getViewChnageManager().register(selectedFS, tableSubstFragm);
+		Context.eINSTANCE.getViewChnageManager().register(configurableUnitSubject, bindingEditor);
+		Context.eINSTANCE.getViewChnageManager().register(selectedFS, bindingEditor);
 		
 		configurableUnitSubject.notifyObserver();
 		selectedFS.notifyObserver();

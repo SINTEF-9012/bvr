@@ -38,13 +38,14 @@ import no.sintef.cvl.ui.command.event.OpenModelEvent;
 import no.sintef.cvl.ui.command.event.SaveModelAsEvent;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
+import no.sintef.cvl.ui.context.Context;
 import cvl.NamedElement;
 
 public class Main {
 	private JFrame jframe;
 	public static NamedElement vSpecCut;
-	private List<CVLView> views;
-	private List<CVLModel> models;
+	private List<CVLView> views = Context.eINSTANCE.getCvlViews();
+	private List<CVLModel> models = Context.eINSTANCE.getCvlModels();
 
 	public static void main(String[] args){
 		new Main().main();
@@ -54,13 +55,13 @@ public class Main {
 	private IWorkbenchWindow w;
 	public void setEclipseWindow(IWorkbenchWindow w){
 		this.w = w;
-		ThirdpartyEditorSelector.setWorkbeach(w);
+		Context.eINSTANCE.setIWorkbenchWindow(w);
 	}
 	// --
 
 	public void main(){
-		views = new ArrayList<CVLView>();
-		models = new ArrayList<CVLModel>();
+		views = Context.eINSTANCE.getCvlViews();
+		models = Context.eINSTANCE.getCvlModels();
 
 		// Create window
 		jframe = new JFrame("CVL 2 Editor by SINTEF");
@@ -78,18 +79,18 @@ public class Main {
 		// File
 		JMenu filemenu = new JMenu("File");
 		JMenuItem x = new JMenuItem("New");
-		x.addActionListener(new NewModelEvent(models, views, filePane));
+		x.addActionListener(new NewModelEvent(filePane));
 		filemenu.add(x);
 		JMenuItem openfile = new JMenuItem("Open ...");
-		openfile.addActionListener(new OpenModelEvent(filePane, models, views));
+		openfile.addActionListener(new OpenModelEvent(filePane));
 		filemenu.add(openfile);
 		filemenu.add(new JSeparator());
 		JMenuItem save = new JMenuItem("Save");
 		filemenu.add(save);
-		save.addActionListener(new SaveModelAsEvent(filePane, models, views, true, w));
+		save.addActionListener(new SaveModelAsEvent(filePane, true));
 		//TODO: filemenu.add(new JMenuItem("Save all"));
 		JMenuItem saveas = new JMenuItem("Save as ...");
-		saveas.addActionListener(new SaveModelAsEvent(filePane, models, views, false, w));
+		saveas.addActionListener(new SaveModelAsEvent(filePane, false));
 		filemenu.add(saveas);
 		JMenuItem close = new JMenuItem("Close");
 		close.addActionListener(new CloseModelEvent(filePane, models, views));

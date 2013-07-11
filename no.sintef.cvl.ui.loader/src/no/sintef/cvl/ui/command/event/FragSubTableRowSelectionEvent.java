@@ -17,6 +17,7 @@ import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.dropdown.BoundariesDropDownCalculator;
 import no.sintef.cvl.ui.editor.BindingBoundariesComboBoxTableCellEditor;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
@@ -52,7 +53,7 @@ public class FragSubTableRowSelectionEvent implements ListSelectionListener {
 				ObserverDataBulk data = new ObserverDataBulk();
 				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) variationPoint;
 				data.setDataField("selectedFragmentSubstitution", fragmentSubstitution);
-				ViewChanageManager.getChangeManager().updateSubjects(data, jtable);
+				Context.eINSTANCE.getViewChnageManager().updateSubjects(data, jtable);
 			}else{
 				throw new UnsupportedOperationException();
 			}

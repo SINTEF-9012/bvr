@@ -3,7 +3,6 @@ package no.sintef.ict.splcatool;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +13,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.prop4j.Node;
@@ -22,13 +20,11 @@ import org.prop4j.NodeReader;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import cvl.CVSpec;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
 import cvl.MultiplicityInterval;
 import cvl.OpaqueConstraint;
-import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.CvlFactory;
@@ -51,12 +47,11 @@ public class CVLModel {
 	}
 
 	public CVLModel(File f) {
-		CvlPackage.eINSTANCE.eClass();
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
-		ResourceSet resSet = new ResourceSetImpl();
-		Resource resource = resSet.getResource(URI.createFileURI(f.getAbsolutePath()), true);
-		cu = (ConfigurableUnit)resource.getContents().get(0);
-		
+		cu = loadFromFile(f);
+	}
+	
+	public CVLModel(String cvlFileName, boolean isPlatform) {
+		cu = (!isPlatform) ?  loadFromFile(new File(cvlFileName)) : loadFromPlatformFile(cvlFileName);
 	}
 
 	public CVLModel(ConfigurableUnit cu) {
@@ -67,7 +62,22 @@ public class CVLModel {
 		this(new File(cvlfile));
 	}
 	
-	//public ConfigurableUnit loadFromFile(String filename)
+	private ConfigurableUnit loadFromFile(File file){
+		CvlPackage.eINSTANCE.eClass();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource resource = resSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
+		return (ConfigurableUnit)resource.getContents().get(0);
+	}
+	
+	private ConfigurableUnit loadFromPlatformFile(String cvlFileName){
+		CvlPackage.eINSTANCE.eClass();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+		URI uri = URI.createPlatformResourceURI(cvlFileName, true);
+		Resource resource = resSet.getResource(uri, true);
+		return (ConfigurableUnit)resource.getContents().get(0);
+	}
 	
 	public void writeToPlatformFile(String filename) throws IOException {
 		//filename should be of in the form /<project>/<folders0..N>/filename

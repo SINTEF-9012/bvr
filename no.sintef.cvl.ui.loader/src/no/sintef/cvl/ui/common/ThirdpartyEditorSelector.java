@@ -53,18 +53,14 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	}
 
 	@Override
-	public List<Object> getSelections() throws NoEclipseDetectedException {
-		if(workbenchWindow == null)
-			throw new NoEclipseDetectedException("can not get selection, because no eclipse detected and workbench is not initialized");
-		if(workbenchWindow.getActivePage().getActiveEditor() == null)
-			throw new NoEclipseDetectedException("editor is not opened");
+	public List<Object> getSelections() {
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();
 	}
 
 	@Override
-	public void highlightObjects(EList<HashMap<EObject, Integer>> objectsToHighlightList) throws NoEclipseDetectedException {
+	public void highlightObjects(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
 		final HashMap<EObject, Integer> objectsToHiglight = new HashMap<EObject, Integer>();
 		for(HashMap<EObject, Integer> pair : objectsToHighlightList){
 			if(pair.size() != 1){
@@ -97,9 +93,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		highlightObjects(objectsToHiglight);
 	}
 	
-	private void highlightObjects(final HashMap<EObject, Integer> objects) throws NoEclipseDetectedException {
-		if(workbenchWindow == null)
-			throw new NoEclipseDetectedException("can not highlight object, because no eclipse detected and workbench is not initialized");
+	private void highlightObjects(final HashMap<EObject, Integer> objects) {
 		final IEditorReference[] editorReferences = workbenchWindow.getActivePage().getEditorReferences();
 		if(editorReferences.length == 0)
 			return;
@@ -138,9 +132,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	}
 
 	@Override
-	public void clearHighlights() throws NoEclipseDetectedException {
-		if(workbenchWindow == null)
-			throw new NoEclipseDetectedException("can not clear selection, because no eclipse detected and workbench is not initialized");
+	public void clearHighlights() {
 		final IEditorReference[] editorReferences = workbenchWindow.getActivePage().getEditorReferences();
 		if(editorReferences.length == 0)
 			return;

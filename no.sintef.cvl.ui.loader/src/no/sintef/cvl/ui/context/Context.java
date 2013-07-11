@@ -5,9 +5,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JFileChooser;
+
+import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.filter.CVLFilter;
+import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.ui.loader.FileHelper;
+import no.sintef.ict.splcatool.GUIDSL;
+import no.sintef.ict.splcatool.GraphMLFM;
+import no.sintef.ict.splcatool.SXFM;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -23,7 +32,7 @@ public final class Context {
 	
 	public static final Context eINSTANCE = getContext();
 	
-	public static Context getContext(){
+	private static Context getContext(){
 		return new Context();
 	}
 	
@@ -32,11 +41,34 @@ public final class Context {
 	}
 	
 	public CVLModel loadModelFromFile(File file){
-		return environment.loadModelFromFile(file);
+		String extension = Utility.getExtension(file);
+		CVLModel model = null;
+		if(extension.equals(CVLFilter.CVL_EXT) || extension.equals(CVLFilter.XMI_EXT)){
+			model = environment.loadModelFromFile(file);
+		}else if(extension.equals(FMFilter.M_EXT)){
+			try{
+				no.sintef.ict.splcatool.CVLModel cvlm = new GUIDSL(file).getGraphMLFM().getCVLModel();
+				model = new CVLModel(file, cvlm);
+			}catch(Exception e){
+				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
+			}
+		}else if(extension.equals(FMFilter.XML_EXT)){
+			try {
+				SXFM sxfm = new SXFM(file.getAbsolutePath());
+				GraphMLFM gml = sxfm.getGUIDSL().getGraphMLFM();
+				no.sintef.ict.splcatool.CVLModel cvlm = gml.getCVLModel();
+				model = new CVLModel(file, cvlm);
+			} catch (Exception e) {
+				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
+			}
+		}else{
+			throw new UnsupportedOperationException("unsupported extension " + extension);
+		}
+		return model;
 	}
 	
-	public void writeModelToFile(CVLModel model, String filename){
-		environment.writeModelToFile(model, filename);
+	public void writeModelToFile(CVLModel model, File file){
+		environment.writeModelToFile(model, file);
 	}
 	
 	public void reloadModel(CVLModel model){
@@ -59,11 +91,19 @@ public final class Context {
 		environment.clearHighlights();
 	}
 	
-	public List<CVLModel> getCvlModels(){
+	public JFileChooser getFileChooser(){
+		JFileChooser fc = environment.getFileChooser();
+		fc.addChoosableFileFilter(new FMFilter());
+		fc.addChoosableFileFilter(new CVLFilter());
+		FileHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
+		return fc;
+	}
+	
+	public final List<CVLModel> getCvlModels(){
 		return cvlModels;
 	}
 	
-	public List<CVLView> getCvlViews(){
+	public final List<CVLView> getCvlViews(){
 		return cvlViews;
 	}
 	

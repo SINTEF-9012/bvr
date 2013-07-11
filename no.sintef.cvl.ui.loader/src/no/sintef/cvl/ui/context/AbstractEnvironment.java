@@ -24,7 +24,7 @@ public class AbstractEnvironment implements Environment {
 	}
 
 	@Override
-	public int writeModelToFile(CVLModel model, String filename) {
+	public void writeModelToFile(CVLModel model, File file) {
 		throw new UnimplementedCVLException("writeModelToFile is not implemented");
 	}
 
