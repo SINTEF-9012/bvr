@@ -11,9 +11,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="cvl.presentation.cvlModelWizardID"
+            id="cvl.presentation.CvlModelWizardID"
             name="%_UI_cvlModelWizard_label"
-            class="cvl.presentation.cvlModelWizard"
+            class="cvl.presentation.CvlModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/cvlModelFile.gif">
          <description>%_UI_cvlModelWizard_description</description>
@@ -28,7 +28,7 @@
             icon="icons/full/obj16/cvlModelFile.gif"
             extensions="cvl"
             class="cvl.presentation.CvlEditor"
-            contributorClass="cvl.presentation.cvlActionBarContributor">
+            contributorClass="cvl.presentation.CvlActionBarContributor">
       </editor>
    </extension>
 

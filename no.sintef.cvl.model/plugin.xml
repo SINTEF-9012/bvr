@@ -8,8 +8,8 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///CVLMetamodelMaster/Main.ecore"
-            class="CVLMetamodelMaster.Main.MainPackage"
+            uri="http:///cvl.ecore"
+            class="cvl.CvlPackage"
             genModel="model/CVLMetamodel.genmodel"/>
    </extension>
 
