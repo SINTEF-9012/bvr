@@ -231,8 +231,8 @@ public class FragmentSubOperation implements Substitution {
 		original.addAll(toAdd);
 	}
 	
+	//DEPRICATED
 	private void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
-		Object v = targetEObject.eGet(feature);
 		targetEObject.eSet(feature, values);
 	}
 	
