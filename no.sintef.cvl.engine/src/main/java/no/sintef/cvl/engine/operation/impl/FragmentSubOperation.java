@@ -65,24 +65,20 @@ public class FragmentSubOperation implements Substitution {
 			ToReplacement toReplacement = toBinding.getToReplacement();
 			if(toPlacement != null && toReplacement != null){
 				String propertyName = toPlacement.getPropertyName();
-				EObject outsideBEPlac = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());
+				EObject outsideBEPlac = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());	
 				EList<EObject> insideBERepl = this.getInsideBEToReplacement(toReplacement);
 				EStructuralFeature property = outsideBEPlac.eClass().getEStructuralFeature(propertyName);
 				if(property == null){
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
-				if(!isDerived && !isTransient){
-					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+				if(!property.isDerived() && !property.isTransient()){
+					Boolean isChangeable = property.isChangeable();
 					if(!isChangeable){
-						this.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
-						//property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
-					}
-					isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
-					if(!isChangeable){
-						throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						if(!property.isChangeable()){
+							throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+						}
 					}
 					
 					EList<ObjectHandle> insideBoundaryObjectHandlesCurrentPlc = toPlacement.getInsideBoundaryElement();
@@ -96,8 +92,9 @@ public class FragmentSubOperation implements Substitution {
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
-						//outsideBEPlac.eSet(property, propertyValueNew);
-						this.setProperty(outsideBEPlac, property, propertyValueNew);
+						setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
+						//this.setProperty(outsideBEPlac, property, propertyValueNew);
+						
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(outsideBEPlac, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -105,7 +102,7 @@ public class FragmentSubOperation implements Substitution {
 						
 						//update insideBoundaryElements of the reference 
 						EList<EObject> insideBEPlacNew = Utility.subtractAugmentList(insideBEPlacCurrent, elemenetsToRemove, insideBERepl);
-						this.updateToPlacementInsideBoundaryElements(toPlacement, insideBEPlacNew);
+						updateToPlacementInsideBoundaryElements(toPlacement, insideBEPlacNew);
 					}else{
 						//property.getUpperBound() == 0 || == 1
 						if(upperBound == 0){
@@ -123,8 +120,7 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
-						this.setProperty(outsideBEPlac, property, propertyValueNew);
-						//outsideBEPlac.eSet(property, propertyValueNew);
+						setProperty(outsideBEPlac, property, propertyValueNew);
 						Object propertyValueSet = outsideBEPlac.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -133,9 +129,16 @@ public class FragmentSubOperation implements Substitution {
 						//update insideBoundaryElements of the reference
 						this.updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
 					}
+					
+					if(!isChangeable){
+						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
+						if(property.isChangeable())
+							throw new UnexpectedOperationFailure("EPIC FAIL: failed to restore changeble property:" + propertyName);
+					}
 				}else{
 					logger.warn("derived and transient properties should not been used for toBinding, skip it " + property);
 				}
+				
 			}else {
 				throw new IncorrectCVLModel("toPlacement and toReplacement are null or toPlacement is null! It seems to be incorrect!");
 			}
@@ -153,17 +156,13 @@ public class FragmentSubOperation implements Substitution {
 					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
-				Boolean isDerived = (Boolean) property.eGet(property.eClass().getEStructuralFeature("derived"));
-				Boolean isTransient = (Boolean) property.eGet(property.eClass().getEStructuralFeature("transient"));
-				if(!isDerived && !isTransient){
-					Boolean isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
+				if(!property.isDerived() && !property.isTransient()){
+					Boolean isChangeable = property.isChangeable();
 					if(!isChangeable){
-						this.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
-						//property.eSet(property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
-					}
-					isChangeable = (Boolean) property.eGet(property.eClass().getEStructuralFeature("changeable"));
-					if(!isChangeable){
-						throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						if(!property.isChangeable()){
+							throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
+						}
 					}
 					
 					ObjectHandle insideBoundaryObjectHandleCurrentPlc = fromPlacement.getInsideBoundaryElement();
@@ -175,8 +174,8 @@ public class FragmentSubOperation implements Substitution {
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
-						this.setProperty(insideBERepl, property, propertyValueNew);
-						//insideBERepl.eSet(property, propertyValueNew);
+						
+						setProperty(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -196,20 +195,24 @@ public class FragmentSubOperation implements Substitution {
 						if(outsideBEReplCurrent.size() > 1){
 							throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
 						}
-						
 						EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
-						this.setProperty(insideBERepl, property, propertyValueNew);
-						//insideBERepl.eSet(property, propertyValueNew);
+						
+						setProperty(insideBERepl, property, propertyValueNew);
 						Object propertyValueSet = insideBERepl.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 						}				
 					}
-					
 					//update insideBoundaryElementReference for fromPlacement;
 					EObject insideBoundaryElement = this.getReplCopyElementFromOriginal(Utility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
 					ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
-					this.updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
+					updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
+					
+					if(!isChangeable){
+						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
+						if(property.isChangeable())
+							throw new UnexpectedOperationFailure("EPIC FAIL: failed to restore changeble property:" + propertyName);
+					}
 				}else{
 					logger.warn("derived or transient properties should not been used for fromBinding, skip it " + property);
 				}
@@ -221,7 +224,15 @@ public class FragmentSubOperation implements Substitution {
 		fragSubHolder.update(replace);
 	}
 
+	private void setProperty(EList<EObject> original, EList<EObject> toRemove, EList<EObject> toAdd){
+		for(EObject eObject : toRemove){
+			original.remove(eObject);
+		}
+		original.addAll(toAdd);
+	}
+	
 	private void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
+		Object v = targetEObject.eGet(feature);
 		targetEObject.eSet(feature, values);
 	}
 	
