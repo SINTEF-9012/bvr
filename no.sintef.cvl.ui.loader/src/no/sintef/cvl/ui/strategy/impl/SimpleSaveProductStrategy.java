@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import cvl.ConfigurableUnit;
 
 import no.sintef.cvl.ui.common.Messages;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.FileHelper;
 import no.sintef.cvl.ui.strategy.SaveProductStrategy;
@@ -38,11 +39,12 @@ public class SimpleSaveProductStrategy implements SaveProductStrategy {
 				resourcesModified.add(resource);
 		}
 		
-		final JFileChooser fc = new JFileChooser();
-		if(FileHelper.lastLocation() != null)
-			fc.setCurrentDirectory(new File(FileHelper.lastLocation()));
+		final JFileChooser fc = Context.eINSTANCE.getFileChooser();
 		
-		fc.showSaveDialog(parent);
+		int status = fc.showSaveDialog(parent);
+		if(status == JFileChooser.CANCEL_OPTION)
+			return;
+		
 		File sf = fc.getSelectedFile();
 		if(sf == null) return;
 		

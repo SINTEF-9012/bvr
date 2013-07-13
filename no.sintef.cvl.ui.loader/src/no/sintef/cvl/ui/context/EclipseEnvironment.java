@@ -8,7 +8,6 @@ import java.util.List;
 import javax.swing.JFileChooser;
 
 import no.sintef.cvl.thirdparty.common.Utility;
-import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.editor.RestrictedJFileChooser;
 import no.sintef.cvl.ui.loader.CVLModel;
@@ -36,6 +35,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		if(platformPath == null){
 			throw new UnsupportedOperationException("can not locate a selected file in the workspace: " + file.getAbsolutePath());
 		}
+		String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
+		FileHelper.saveLastLocation(filePath);
 		return new CVLModel(file, platformPath, true);
 	}
 
