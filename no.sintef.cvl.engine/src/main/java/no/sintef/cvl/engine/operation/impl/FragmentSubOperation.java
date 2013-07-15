@@ -75,7 +75,7 @@ public class FragmentSubOperation implements Substitution {
 				if(!property.isDerived() && !property.isTransient()){
 					Boolean isChangeable = property.isChangeable();
 					if(!isChangeable){
-						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 						if(!property.isChangeable()){
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
 						}
@@ -92,7 +92,7 @@ public class FragmentSubOperation implements Substitution {
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
-						setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
+						Utility.setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
 						//this.setProperty(outsideBEPlac, property, propertyValueNew);
 						
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(outsideBEPlac, property);
@@ -120,7 +120,7 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
-						setProperty(outsideBEPlac, property, propertyValueNew);
+						Utility.setProperty(outsideBEPlac, property, propertyValueNew);
 						Object propertyValueSet = outsideBEPlac.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -131,7 +131,7 @@ public class FragmentSubOperation implements Substitution {
 					}
 					
 					if(!isChangeable){
-						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
+						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
 						if(property.isChangeable())
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to restore changeble property:" + propertyName);
 					}
@@ -159,7 +159,7 @@ public class FragmentSubOperation implements Substitution {
 				if(!property.isDerived() && !property.isTransient()){
 					Boolean isChangeable = property.isChangeable();
 					if(!isChangeable){
-						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 						if(!property.isChangeable()){
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
 						}
@@ -175,7 +175,7 @@ public class FragmentSubOperation implements Substitution {
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
-						setProperty(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
+						Utility.setProperty(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -197,7 +197,7 @@ public class FragmentSubOperation implements Substitution {
 						}
 						EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
 						
-						setProperty(insideBERepl, property, propertyValueNew);
+						Utility.setProperty(insideBERepl, property, propertyValueNew);
 						Object propertyValueSet = insideBERepl.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -209,7 +209,7 @@ public class FragmentSubOperation implements Substitution {
 					updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 					
 					if(!isChangeable){
-						setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
+						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
 						if(property.isChangeable())
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to restore changeble property:" + propertyName);
 					}
@@ -222,22 +222,6 @@ public class FragmentSubOperation implements Substitution {
 		}
 		//testOutsideBoundaryElementsContainment();
 		fragSubHolder.update(replace);
-	}
-
-	private void setProperty(EList<EObject> original, EList<EObject> toRemove, EList<EObject> toAdd){
-		for(EObject eObject : toRemove){
-			original.remove(eObject);
-		}
-		original.addAll(toAdd);
-	}
-	
-	//DEPRICATED
-	private void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
-		targetEObject.eSet(feature, values);
-	}
-	
-	private void setProperty(EObject targetEObject, EStructuralFeature feature, Object value){
-		targetEObject.eSet(feature, value);
 	}
 	
 	private void checkPlacementElementsContainment() throws ContainmentCVLModelException {
@@ -301,7 +285,7 @@ public class FragmentSubOperation implements Substitution {
 						}
 						propertyValue.add(outsideBoundaryElement);
 						propertyValue = new BasicEList<EObject>(propertyValue);
-						this.setProperty(referencerContainer, feature, propertyValue);
+						Utility.setProperty(referencerContainer, feature, propertyValue);
 						//referencerContainer.eSet(feature, propertyValue);
 						
 						EList<EObject> propertySet = Utility.getListPropertyValue(referencerContainer, feature);
@@ -317,7 +301,7 @@ public class FragmentSubOperation implements Substitution {
 						if(propertyValue != null){
 							throw new IncorrectCVLModel("cardinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
 						}
-						this.setProperty(referencerContainer, feature, outsideBoundaryElement);
+						Utility.setProperty(referencerContainer, feature, outsideBoundaryElement);
 						//referencerContainer.eSet(feature, outsideBoundaryElement);
 						
 						Object propertySet = referencerContainer.eGet(feature);

@@ -69,11 +69,13 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 					int upperBound = property.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
 						EList<EObject> values = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
-						EList<EObject> propertyValueNew = Utility.subtractAugmentList(values, Utility.resolveProxies(outsideBOHElmtsPlc), Utility.resolveProxies(insideBOHElmtsPlcReplaced));
+						EList<EObject> elementsToRemove = Utility.resolveProxies(outsideBOHElmtsPlc);
+						EList<EObject> elementsToAdd = Utility.resolveProxies(insideBOHElmtsPlcReplaced);
+						EList<EObject> propertyValueNew = Utility.subtractAugmentList(values, elementsToRemove, elementsToAdd);
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolderAdjacent.getFragment());
 						}
-						insideBoundaryElementPlc.eSet(property, propertyValueNew);
+						Utility.setProperty(values, elementsToRemove, elementsToAdd);
 						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());
@@ -88,7 +90,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 						}
 
 						EObject propertyValueNew = Utility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
-						insideBoundaryElementPlc.eSet(property, propertyValueNew);
+						Utility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);
 						Object propertyValueSet = insideBoundaryElementPlc.eGet(property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());

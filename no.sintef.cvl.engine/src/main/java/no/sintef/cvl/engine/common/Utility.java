@@ -134,4 +134,20 @@ public class Utility {
 		resource.setURI(URI.createFileURI(name));
 		resource.save(Collections.EMPTY_MAP);
 	}
+	
+	public static void setProperty(EList<EObject> original, EList<EObject> toRemove, EList<EObject> toAdd){
+		for(EObject eObject : toRemove){
+			original.remove(eObject);
+		}
+		original.addAll(toAdd);
+	}
+	
+	//DEPRICATED
+	public static void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
+		targetEObject.eSet(feature, values);
+	}
+	
+	public static void setProperty(EObject targetEObject, EStructuralFeature feature, Object value){
+		targetEObject.eSet(feature, value);
+	}
 }
