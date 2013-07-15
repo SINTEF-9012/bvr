@@ -7,6 +7,7 @@ import no.sintef.cvl.engine.adjacent.AdjacentResolver;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
+import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 
@@ -47,7 +48,7 @@ public final class SubstitutionEngine {
 		}
 	}
 	
-	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace){
+	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentCVLModelException{
 		FragmentSubstitutionHolder frgamentHolder = fsMap.get(fragmentSubstitution);
 		if(frgamentHolder == null){
 			context.getLogger().warn("engine is not initialized with this fragment substitution " + fragmentSubstitution);
@@ -60,6 +61,7 @@ public final class SubstitutionEngine {
 		} catch (BasicCVLEngineException e) {
 			e.printStackTrace();
 		}
+		subsOperation.checkConsistence();
 	}
 	
 	public HashMap<Resource, ResourceContentCopier> getCopiedBaseModels(){

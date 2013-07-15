@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.ui.exception.UnimplementedCVLException;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.logging.Logger;
@@ -13,6 +14,7 @@ import no.sintef.cvl.ui.logging.impl.Logging;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class AbstractEnvironment implements Environment {
 	
@@ -58,6 +60,12 @@ public class AbstractEnvironment implements Environment {
 	@Override
 	public JFileChooser getFileChooser() {
 		throw new UnimplementedCVLException("getFileChooser is not implemented");
+	}
+
+	@Override
+	public void writeProductsToFiles(
+			HashMap<Resource, ResourceContentCopier> baseProductMap, File file) {
+		throw new UnimplementedCVLException("writeProductsToFiles is not implemented");
 	}
 
 }

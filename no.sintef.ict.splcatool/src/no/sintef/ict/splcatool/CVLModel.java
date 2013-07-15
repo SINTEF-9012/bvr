@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.prop4j.Node;
 import org.prop4j.NodeReader;
@@ -88,7 +88,7 @@ public class CVLModel {
 	    resource.getContents().add(cu);
 	    
 	    Map<Object, Object> options = new HashMap<Object, Object>();
-		options.put(XMLResource.OPTION_ENCODING, utf8Encoding);
+		options.put(XMIResource.OPTION_ENCODING, utf8Encoding);
 	    resource.save(options);
 	}
 
@@ -100,7 +100,7 @@ public class CVLModel {
 	    resource.getContents().add(cu);
 	    
 	    Map<Object, Object> options = new HashMap<Object, Object>();
-		options.put(XMLResource.OPTION_ENCODING, utf8Encoding);
+		options.put(XMIResource.OPTION_ENCODING, utf8Encoding);
 	    resource.save(options);
 	}
 
