@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.cvl.engine.common.SubstitutionEngine;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.filter.CVLFilter;
@@ -24,13 +25,15 @@ import org.eclipse.ui.IWorkbenchWindow;
 
 public final class Context {
 
+	public static final Context eINSTANCE = getContext();
+	
 	private Environment environment = FactoryCreator.eINSTANCE.createEnvironment(null);
-	private ViewChanageManager viewChnageManager = FactoryCreator.eINSTANCE.createViewChanageManager();
+	private ViewChanageManager viewChnageManager = FactoryCreator.eINSTANCE.createViewChanageManager(); 
 	
 	private final List<CVLModel> cvlModels = new ArrayList<CVLModel>();
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
-	public static final Context eINSTANCE = getContext();
+	public static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
 	private static Context getContext(){
 		return new Context();

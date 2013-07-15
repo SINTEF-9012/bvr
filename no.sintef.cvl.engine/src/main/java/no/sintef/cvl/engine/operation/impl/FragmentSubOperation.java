@@ -42,14 +42,14 @@ public class FragmentSubOperation implements Substitution {
 
 	public FragmentSubOperation(FragmentSubstitutionHolder fsh){
 		fragSubHolder = fsh;
-		this.placement = fsh.getPlacement();
-		this.replacement = fsh.getReplacement();
+		placement = fsh.getPlacement();
+		replacement = fsh.getReplacement();
 	}
 	
 	@Override
 	public void execute(boolean replace) throws BasicCVLEngineException {
-		this.copyReplacementElements();
-		this.bindBounderies(replace);
+		copyReplacementElements();
+		bindBounderies(replace);
 	}
 	
 	public void checkConsistence() throws ContainmentCVLModelException{
