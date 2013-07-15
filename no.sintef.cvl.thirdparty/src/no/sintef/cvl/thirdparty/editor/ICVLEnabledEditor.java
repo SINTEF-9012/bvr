@@ -70,19 +70,27 @@ public interface ICVLEnabledEditor {
 	public void selectObjects(ArrayList<Object> objects);
 	
 	public static class IDProvider {
+		
+		/**
+		 * Returns the identification which is a fully resolved URI to  an EObject
+		 * @param obj the object
+		 * @return String the id
+		 */
+		public static String getObjectId(EObject obj){
+			String id = EcoreUtil.getIdentification(obj);
+			int index = id.indexOf('{');
+			if (index > -1)
+			id = id.substring(index + 1, id.length() - 1);
+			return id;
+		}
+		
 		/**
 		 * Returns the XMI ID of an EObject
 		 * @param obj the object
 		 * @return String the XMI ID
 		 */
-		public static String getObjectId(EObject obj) {
+		public static String getXMIId(EObject obj) {
 			String id = EMFCoreUtil.getProxyID(obj);
-			/*
-			 * String id = EcoreUtil.getIdentification(obj);
-			int index = id.indexOf('{');
-			if (index > -1)
-			id = id.substring(index + 1, id.length() - 1);
-			*/
 			return id;
 		}
 	}

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.ui.IEditorPart;
@@ -92,7 +91,7 @@ public class PapyrusCVLEditor extends PapyrusMultiDiagramEditor implements ICVLE
 	public void setColor(EObject obj, Color fg, IEditorPart editor) {
 		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart)editor).getDiagramGraphicalViewer();
 		
-		List<?> editParts = gv.findEditPartsForElement(IDProvider.getObjectId(obj), EditPart.class);
+		List<?> editParts = gv.findEditPartsForElement(IDProvider.getXMIId(obj), EditPart.class);
 		
 		for (Object object : editParts) {
 			if(object instanceof IPapyrusEditPart){
