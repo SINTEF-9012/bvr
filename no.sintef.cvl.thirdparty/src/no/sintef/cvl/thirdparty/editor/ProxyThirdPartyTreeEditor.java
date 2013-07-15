@@ -9,13 +9,21 @@ import java.util.Iterator;
 import no.sintef.cvl.thirdparty.exception.NotSupportedThirdPartyEditor;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -85,7 +93,7 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 	public void clearHighlighting() {
 		if (labelProvider == null) return;
 		labelProvider.clearHighlighting();
-		getViewer().refresh();	
+		getViewer().refresh();
 	}
 
 	@Override
@@ -197,6 +205,18 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 	}
 	
 	public void expandHiglightedObjects(){
-		//treeViewer.expandAll();
+		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(treeViewer.getInput());
+		ResourceSet resourceSet = domain.getResourceSet();
+		IPath ipath = ((IFileEditorInput) editor.getEditorInput()).getFile().getFullPath();
+		URI uri = URI.createPlatformResourceURI(ipath.toOSString(), true);
+		Resource resource = resourceSet.getResource(uri, true);
+		for(TreeIterator<EObject> contents = resource.getAllContents(); contents.hasNext();){
+			EObject eObject = contents.next();
+			String eObjectId = IDProvider.getObjectId(eObject);
+			if(labelProvider.highlight.containsKey(eObjectId)){
+				Integer type = labelProvider.highlight.get(eObjectId);
+				treeViewer.expandToLevel(eObject, ((type == ICVLEnabledEditor.HL_PLACEMENT) || (type == ICVLEnabledEditor.HL_REPLACEMENT)) ? treeViewer.ALL_LEVELS : 0);
+			}
+		}
 	}
 }

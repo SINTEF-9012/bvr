@@ -53,7 +53,7 @@ public class CVLLabelProvider implements ILabelProvider, ITableLabelProvider, IN
 
 	@Override
 	public Font getFont(Object element, int columnIndex) {
-		if (highlight.containsKey(element)) {
+		if ((element instanceof EObject) && highlight.containsKey(IDProvider.getObjectId((EObject) element))) {
 			return registry.getBold(Display.getCurrent().getSystemFont().getFontData()[0].getName());
 		}
 		return null;
