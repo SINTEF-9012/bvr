@@ -22,6 +22,10 @@ public class ConfigurableUnitSubject extends AbstractViewSubject {
 		return configurableUnit;
 	}
 	
+	public void setConfigurableUnit(ConfigurableUnit cu){
+		configurableUnit = cu;
+	}
+	
 	@Override
 	protected String[] getFileds(){
 		return fields;

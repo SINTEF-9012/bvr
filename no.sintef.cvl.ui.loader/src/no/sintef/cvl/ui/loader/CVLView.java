@@ -193,6 +193,7 @@ public class CVLView {
 	public void notifyRelalizationViewReset(){
 		selectedFS.resetSelectedFragmentSubstitution();
 		selectedFS.notifyObserver();
+		configurableUnitSubject.setConfigurableUnit(getCU());
 		configurableUnitSubject.notifyObserver();
 	}
 	
