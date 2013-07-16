@@ -29,8 +29,8 @@ public class SimpleRealizationStrategy implements RealizationStrategy {
 	
 	private EList<FragmentSubstitution> frgamentSusbstitutions; 
 	private HashMap<FragmentSubstitution, FragmentSubstitutionHolder> fsHMap;
-	//private AdjacentFinder adjacentFinder;
-	//private AdjacentResolver adjacentResolver;
+	private AdjacentFinder adjacentFinder;
+	private AdjacentResolver adjacentResolver;
 
 	@Override
 	public void deriveProduct(SymbolTable table) {
@@ -80,13 +80,13 @@ public class SimpleRealizationStrategy implements RealizationStrategy {
 		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet());
 		EList<FragmentSubstitution> symbolsFragSubs = symbol.getFragmentSubstitutions();
 		for(final FragmentSubstitution fs : symbolsFragSubs){
-			//final FragmentSubstitutionHolder fsH = fsHMap.get(fs);
-			//final FragmentSubOperation fso = new FragmentSubOperation(fsH);
+			/*final FragmentSubstitutionHolder fsH = fsHMap.get(fs);
+			final FragmentSubOperation fso = new FragmentSubOperation(fsH);*/
 			
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 				protected void doExecute() {
 					try {
-						Context.subEngine.subsitute(fs, symbol.getMulti());
+						Context.subEngine.subsitute(fs, !symbol.getMulti());
 					} catch (ContainmentCVLModelException e) {
 						e.printStackTrace();
 					}

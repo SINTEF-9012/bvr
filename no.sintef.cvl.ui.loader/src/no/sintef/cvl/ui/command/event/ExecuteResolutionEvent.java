@@ -2,31 +2,22 @@ package no.sintef.cvl.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import cvl.ConfigurableUnit;
 import cvl.VSpecResolution;
 
 import no.sintef.cvl.ui.common.DeriveProduct;
-import no.sintef.cvl.ui.exception.AbstractError;
+import no.sintef.cvl.ui.common.Messages;
+import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
-import no.sintef.cvl.ui.primitive.impl.VSpecResolutionSymbolTable;
-import no.sintef.cvl.ui.strategy.impl.RRComposerStrategy;
+
 
 public class ExecuteResolutionEvent implements ActionListener {
 
@@ -59,8 +50,10 @@ public class ExecuteResolutionEvent implements ActionListener {
 		try {
 			DeriveProduct deriviator = new DeriveProduct(keywords);
 			deriviator.run();
-		} catch (AbstractError error) {
-			error.printStackTrace();
+		} catch (Exception error) {
+			JOptionPane.showMessageDialog(x, Messages.DIALOG_MSG_GENERAL_ERROR + error.getMessage());
+			String stackTrace = Utility.getStackTraceAsString(error);
+			Context.log.error(stackTrace);
 		}
 	}
 }

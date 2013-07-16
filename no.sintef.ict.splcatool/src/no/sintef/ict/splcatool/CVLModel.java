@@ -67,7 +67,7 @@ public class CVLModel {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
-		return (ConfigurableUnit)resource.getContents().get(0);
+		return (ConfigurableUnit) resource.getContents().get(0);
 	}
 	
 	private ConfigurableUnit loadFromPlatformFile(String cvlFileName){
@@ -76,7 +76,7 @@ public class CVLModel {
 		ResourceSet resSet = new ResourceSetImpl();
 		URI uri = URI.createPlatformResourceURI(cvlFileName, true);
 		Resource resource = resSet.getResource(uri, true);
-		return (ConfigurableUnit)resource.getContents().get(0);
+		return (ConfigurableUnit) resource.getContents().get(0);
 	}
 	
 	public void writeToPlatformFile(String filename) throws IOException {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
@@ -15,12 +16,15 @@ import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.FileHelper;
+import no.sintef.cvl.ui.logging.Logger;
+import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SXFM;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IWorkbenchWindow;
 
 public final class Context {
@@ -34,6 +38,7 @@ public final class Context {
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
 	public static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
+	public static final Logger log = Logging.getLogger();
 	
 	private static Context getContext(){
 		return new Context();
@@ -72,6 +77,10 @@ public final class Context {
 	
 	public void writeModelToFile(CVLModel model, File file){
 		environment.writeModelToFile(model, file);
+	}
+	
+	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file){
+		environment.writeProductsToFiles(baseProductMap, file);
 	}
 	
 	public void reloadModel(CVLModel model){

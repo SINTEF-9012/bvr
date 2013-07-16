@@ -7,7 +7,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model.edit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model.editor"/>
-	<classpathentry kind="lib" path="SINTEF-CVLTool2-v0.2a1.jar" sourcepath="C:/Users/anavas/.m2/repository/no/sintef/no.sintef.cvl.engine/2.0.0/no.sintef.cvl.engine-2.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="SINTEF-CVLTool2-v0.2a1.jar" sourcepath="/no.sintef.cvl.ui.loader"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/de.ovgu.featureide.fm.core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.constraints"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.converters"/>

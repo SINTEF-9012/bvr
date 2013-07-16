@@ -21,12 +21,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListenerImpl;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IWorkbenchWindow;
-
-import splar.plugins.configuration.bdd.javabdd.catalog.Product;
 
 public class EclipseEnvironment extends AbstractEnvironment {
 	
@@ -76,40 +79,76 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file) {
 		String prefix = file.getName();
 		String filepath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
+		filepath = (filepath.endsWith(File.separator)) ? filepath : filepath + File.separator;
 		filepath = filepath.replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
 			throw new UnsupportedOperationException("can not save file, incorrect loacation");
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
+		final HashMap<ResourceSet, String> messages = new HashMap<ResourceSet, String>();
 		
 		for(Map.Entry<Resource, ResourceContentCopier> entry : baseProductMap.entrySet()){
-			Resource resource = entry.getKey();
-			ResourceContentCopier product = entry.getValue();
+			final Resource resource = entry.getKey();
 			
 			URI resourceURI = resource.getURI();
 			String baseName = resourceURI.segment(resourceURI.segmentCount() - 1);
-			String productName = prefix + " " + baseName;
+			String productName = prefix + "_" + baseName;
 			String productFullName = filepath + productName;
 			
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
-		    ResourceSet resSet = new ResourceSetImpl();
+		    final ResourceSet resSet = new ResourceSetImpl();
 		    URI uri = URI.createPlatformResourceURI(productFullName, true);
-		    Resource productResource = resSet.createResource(uri);
+		    LOG.debug("saving a product to the file file " + uri);
+		    final Resource productResource = resSet.createResource(uri);
 		    
-		    //TO DO
-		    //we should actually copy here a copy of the base model, but the engine currently
-		    //performs substitutions on the base model
-		    //productResource.getContents().addAll(product.values());
-		    productResource.getContents().addAll(resource.getContents());
+		    TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
+		    editingDomain.addResourceSetListener(new ResourceSetListenerImpl(){
+
+				@Override
+				public void resourceSetChanged(ResourceSetChangeEvent event) {
+					Transaction transaction = event.getTransaction();
+					HashMap<String, Object> info = Utility.parseTransaction(transaction);
+					if((Boolean) info.get(Utility.isOk))
+						return;
+					event.getEditingDomain().getResourceSet();
+					messages.put(event.getEditingDomain().getResourceSet(), (String) info.get(Utility.message));
+				}
+		    	
+		    });
 		    
-		    Map<Object, Object> options = new HashMap<Object, Object>();
-			options.put(XMIResource.OPTION_ENCODING, ((XMIResource) resource).getEncoding());
-			try {
-				productResource.save(options);
-			} catch (IOException e) {
-				String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-				LOG.error(stackTrace);
+		    editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+				
+				@Override
+				protected void doExecute() {
+				    //TO DO:
+				    //we should actually save a copy of the base model which we copied in the first place before all transformations,
+					//but the engine currently performs substitutions on the base model;
+					//thus we simply copy the contents of the base model and save it
+				    //ResourceContentCopier product = entry.getValue();
+				    //productResource.getContents().addAll(product.values());
+					
+				    productResource.getContents().addAll(EcoreUtil.copyAll(resource.getContents()));
+				    Map<Object, Object> options = new HashMap<Object, Object>();
+					options.put(XMIResource.OPTION_ENCODING, ((XMIResource) resource).getEncoding());
+					try {
+						productResource.save(options);
+					} catch (Exception e) {
+						String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
+						LOG.error(stackTrace);
+						messages.put(resSet, e.getMessage());
+					}
+				}
+			});
+		}
+		
+		if(!messages.isEmpty()){
+			String throwMessage = new String();
+			for(Map.Entry<ResourceSet, String> message : messages.entrySet()){
+				ResourceSet resSet = message.getKey();
+				String msg = message.getValue();
+				throwMessage += resSet.getResources() + " : " + msg + "\n";
 			}
+			throw new UnsupportedOperationException(throwMessage);
 		}
 	}
 
