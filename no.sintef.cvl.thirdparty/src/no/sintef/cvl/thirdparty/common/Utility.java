@@ -13,10 +13,6 @@ import org.eclipse.emf.transaction.Transaction;
 
 public final class Utility {
 	
-	public final static String statusCode = "statusCode";
-	public final static String message = "message";
-	public final static String isOk = "isOk";
-
 	public static String getWorkspaceRowLocation(){
 		IPath path = ResourcesPlugin.getWorkspace().getRoot().getRawLocation();
 		return path.toString();
@@ -28,6 +24,11 @@ public final class Utility {
 		IFile[] files = myWorkspaceRoot.findFilesForLocationURI(uri);
 		return (files.length == 1) ? files[0].getFullPath().toString() : null;
 	}
+	
+	
+	public final static String statusCode = "statusCode";
+	public final static String message = "message";
+	public final static String isOk = "isOk";
 	
 	public static HashMap<String, Object> parseTransaction(Transaction transaction){
 		HashMap<String, Object> result = new HashMap<String, Object>();

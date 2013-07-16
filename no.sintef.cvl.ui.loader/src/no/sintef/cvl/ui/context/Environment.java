@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.ui.loader.CVLModel;
+import no.sintef.cvl.ui.primitive.Symbol;
 
 public interface Environment {
 	
@@ -20,6 +21,8 @@ public interface Environment {
 	public void writeModelToFile(CVLModel model, File file);
 	
 	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file);
+	
+	public void performSubstitutions(List<Symbol> symbols);
 	
 	public void reloadModel(CVLModel model);
 	

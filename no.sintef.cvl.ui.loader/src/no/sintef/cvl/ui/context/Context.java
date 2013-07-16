@@ -18,6 +18,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.FileHelper;
 import no.sintef.cvl.ui.logging.Logger;
 import no.sintef.cvl.ui.logging.impl.Logging;
+import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SXFM;
@@ -81,6 +82,10 @@ public final class Context {
 	
 	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file){
 		environment.writeProductsToFiles(baseProductMap, file);
+	}
+	
+	public void performSubstitutions(List<Symbol> symbols){
+		environment.performSubstitutions(symbols);
 	}
 	
 	public void reloadModel(CVLModel model){

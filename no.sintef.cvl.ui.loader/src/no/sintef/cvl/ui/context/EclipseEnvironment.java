@@ -9,12 +9,16 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 
 import no.sintef.cvl.engine.common.ResourceContentCopier;
+import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.thirdparty.common.Utility;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.editor.RestrictedJFileChooser;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.FileHelper;
+import no.sintef.cvl.ui.primitive.Symbol;
 
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -29,7 +33,11 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain.Factory;
 import org.eclipse.ui.IWorkbenchWindow;
+
+import cvl.ConfigurableUnit;
+import cvl.FragmentSubstitution;
 
 public class EclipseEnvironment extends AbstractEnvironment {
 	
@@ -147,6 +155,77 @@ public class EclipseEnvironment extends AbstractEnvironment {
 				ResourceSet resSet = message.getKey();
 				String msg = message.getValue();
 				throwMessage += resSet.getResources() + " : " + msg + "\n";
+			}
+			throw new UnsupportedOperationException(throwMessage);
+		}
+	}
+	
+	public TransactionalEditingDomain getEdititingDomain(EList<TransactionalEditingDomain> editingDomains, ResourceSet resSet){
+		for(TransactionalEditingDomain domain : editingDomains){
+			if(domain.getResourceSet().equals(resSet))
+				return domain;
+		}
+		return null;
+	}
+	
+	@Override
+	public void performSubstitutions(List<Symbol> symbols) {
+		EList<TransactionalEditingDomain> editingDomains = new BasicEList<TransactionalEditingDomain>();
+		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
+		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
+		for(final Symbol symbol : symbols){
+			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutions();
+			
+			ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
+			TransactionalEditingDomain editingDomain = getEdititingDomain(editingDomains, cu.eResource().getResourceSet());
+			if(editingDomain == null){
+				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet());
+				editingDomain.addResourceSetListener(new ResourceSetListenerImpl(){
+
+					@Override
+					public void resourceSetChanged(ResourceSetChangeEvent event) {
+						Transaction transaction = event.getTransaction();
+						HashMap<String, Object> info = Utility.parseTransaction(transaction);
+						if((Boolean) info.get(Utility.isOk))
+							return;
+						event.getEditingDomain().getResourceSet();
+						messagesRS.put(event.getEditingDomain().getResourceSet(), (String) info.get(Utility.message));
+					}
+			    	
+			    });
+				editingDomains.add(editingDomain);
+			}
+			
+			for(final FragmentSubstitution fragment : fragments){
+				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+					protected void doExecute() {
+						try {
+							Context.subEngine.subsitute(fragment, !symbol.getMulti());
+						} catch (ContainmentCVLModelException e) {
+							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
+							LOG.error(stackTrace);
+							messagesFS.put(fragment, e.getMessage());
+						} catch (UnsupportedOperationException e){
+							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
+							LOG.error(stackTrace);
+							messagesFS.put(fragment, e.getMessage());
+						}
+					}
+				});
+			}
+		}
+		
+		if(!messagesRS.isEmpty() || !messagesFS.isEmpty()){
+			String throwMessage = new String();
+			for(Map.Entry<ResourceSet, String> message : messagesRS.entrySet()){
+				ResourceSet resSet = message.getKey();
+				String msg = message.getValue();
+				throwMessage += "Resource problem " + resSet.getResources() + " : " + msg + "\n";
+			}
+			for(Map.Entry<FragmentSubstitution, String> message : messagesFS.entrySet()){
+				FragmentSubstitution fs = message.getKey();
+				String msg = message.getValue();
+				throwMessage += "VP problem " + fs + " : " + msg + "\n";
 			}
 			throw new UnsupportedOperationException(throwMessage);
 		}

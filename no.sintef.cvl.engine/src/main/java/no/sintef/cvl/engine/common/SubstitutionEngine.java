@@ -15,7 +15,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import cvl.FragmentSubstitution;
 import cvl.ObjectHandle;
@@ -45,6 +44,7 @@ public final class SubstitutionEngine {
 			adjResolver = new AdjacentResolverImpl(adjFinder);
 		} catch (BasicCVLEngineException e) {
 			e.printStackTrace();
+			throw new UnsupportedOperationException(e.getMessage());
 		}
 	}
 	
@@ -60,6 +60,7 @@ public final class SubstitutionEngine {
 			adjResolver.resolve(frgamentHolder);
 		} catch (BasicCVLEngineException e) {
 			e.printStackTrace();
+			throw new UnsupportedOperationException(e.getMessage());
 		}
 		subsOperation.checkConsistence();
 	}
