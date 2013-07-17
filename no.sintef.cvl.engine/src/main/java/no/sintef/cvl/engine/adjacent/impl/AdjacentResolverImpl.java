@@ -57,7 +57,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryElementsFromPlacementMap = ((FragmentSubstitutionHolder) fragHolderAdjacent).getFromPlacementInsideBoundaryElementMap();
 				HashSet<ObjectHandle> insideBoundaryElementsFromPlacement = insideBoundaryElementsFromPlacementMap.get(fromBinding.getFromPlacement());
 				if(insideBoundaryElementsFromPlacement == null){
-					throw new GeneralCVLEngineException("failed to find insideBoundaryElements in the map for a given fromPlacement");
+					throw new GeneralCVLEngineException("failed to find insideBoundaryElements in the map for a given fromPlacement " + fromBinding.getFromPlacement() + " of the fromBinding " + fromBinding);
 				}
 				for(ObjectHandle objectHandle : insideBoundaryElementsFromPlacement){
 					EObject insideBoundaryElementPlc = Utility.resolveProxies(objectHandle);

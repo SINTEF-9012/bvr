@@ -134,13 +134,16 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 	}
 	
 	private void removeNotBoundBoundaries() {
+		EList<FromPlacement> boundedFromPlacements = new BasicEList<FromPlacement>();
+		for(FromBinding fromBinding : fromBindings){
+			boundedFromPlacements.add(fromBinding.getFromPlacement());
+		}
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementFragment().getPlacementBoundaryElement();
 		for(Iterator<PlacementBoundaryElement> iter = placementBoundaries.iterator(); iter.hasNext();){
 			PlacementBoundaryElement placementBoundaryElement = iter.next();
 			if(placementBoundaryElement instanceof FromPlacement){
 				FromPlacement fromPlacement = (FromPlacement) placementBoundaryElement;
-				FromReplacement fromReplacement = fromPlacement.getFromReplacement();
-				if(fromReplacement == null){
+				if(boundedFromPlacements.indexOf(fromPlacement) < 0){
 					iter.remove();
 					fromPlacementOHInsideBoundaryMap.remove(fromPlacement);
 				}
