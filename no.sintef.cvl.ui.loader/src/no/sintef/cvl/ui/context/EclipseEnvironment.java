@@ -177,9 +177,10 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutions();
 			
 			ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
-			TransactionalEditingDomain editingDomain = getEdititingDomain(editingDomains, cu.eResource().getResourceSet());
+			ResourceSet resSet = cu.eResource().getResourceSet();
+			TransactionalEditingDomain editingDomain = getEdititingDomain(editingDomains, resSet);
 			if(editingDomain == null){
-				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet());
+				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
 				editingDomain.addResourceSetListener(new ResourceSetListenerImpl(){
 
 					@Override
@@ -198,6 +199,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			
 			for(final FragmentSubstitution fragment : fragments){
 				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+					
+					@Override
 					protected void doExecute() {
 						try {
 							Context.subEngine.subsitute(fragment, !symbol.getMulti());

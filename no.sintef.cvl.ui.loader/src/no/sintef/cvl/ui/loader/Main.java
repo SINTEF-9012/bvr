@@ -171,7 +171,7 @@ public class Main {
 		resmenu.add(new JSeparator());
 		
 		JMenuItem execute = new JMenuItem(Constants.RESOLUTION_EXECUTE_NAME);
-		execute.addActionListener(new ExecuteResolutionEvent(filePane, models, views));
+		execute.addActionListener(new ExecuteResolutionEvent(filePane));
 		resmenu.add(execute);
 		
 		JMenuItem executeAll = new JMenuItem(Constants.RESOLUTION_EXECUTE_ALL_NAME);
@@ -183,11 +183,11 @@ public class Main {
 		JMenu realizationMenu = new JMenu(Constants.REALIZATION_MAIN_MENU_NAME);
 		
 		JMenuItem createPlacement = new JMenuItem(Constants.REALIZATION_CR_PLCMT_NAME);
-		createPlacement.addActionListener(new CreatePlacementFragmentEvent(filePane, models, views, w));
+		createPlacement.addActionListener(new CreatePlacementFragmentEvent(filePane));
 		realizationMenu.add(createPlacement);
 		
 		JMenuItem createReplacement = new JMenuItem(Constants.REALIZATION_CR_RPLCMT_NAME);
-		createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane, models, views, w));
+		createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane));
 		realizationMenu.add(createReplacement);
 		
 		JMenuItem createFragmentSubstitution = new JMenuItem(Constants.REALIZATION_CR_FS_NAME);

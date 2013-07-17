@@ -22,21 +22,35 @@ import no.sintef.cvl.ui.loader.CVLView;
 public class ExecuteResolutionEvent implements ActionListener {
 
 	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
 
-	public ExecuteResolutionEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public ExecuteResolutionEvent(JTabbedPane filePane) {
 		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int tab = filePane.getSelectedIndex();
-		JTabbedPane x = (JTabbedPane) ((JTabbedPane)filePane.getSelectedComponent()).getSelectedComponent();
+		JTabbedPane x = (JTabbedPane) ((JTabbedPane) filePane.getSelectedComponent()).getSelectedComponent();
 		int i = x.getSelectedIndex();
+		
+		List<CVLModel> models = Context.eINSTANCE.getCvlModels();
+		List<CVLView> views = Context.eINSTANCE.getCvlViews();
+		
 		CVLModel m = models.get(tab);
+		
+		if(m.getFile() == null){
+			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_SAVE_MODEL);
+			return;
+		}
+		
+		//there is an issue,if we add some elements dynamically to a VM model which were not loaded recently
+		//then EMF does not add these resources to a ResourceSet of the model which uses them
+		//even though all proxies are resolved successfully. Seems like EMF issue.
+		//Thus we save model and reload it before an execution.
+		Context.eINSTANCE.writeModelToFile(m, m.getFile());
+		Context.eINSTANCE.reloadModel(m);
+		views.get(tab).notifyAllViews();
+		
 		ConfigurableUnit cu = m.getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
 		
