@@ -23,22 +23,22 @@ public class PluginLogger implements Logger {
 	
 	@Override
 	public void error(String message) {
-		logger.log(new Status(Status.ERROR, pluginId, "[ERROR] " + calendar.getTime().toString() + ": " + message));
+		logger.log(new Status(Status.ERROR, pluginId, "[PLUGIN ERROR] " + calendar.getTime().toString() + ": " + message));
 	}
 
 	@Override
 	public void warn(String message) {
-		logger.log(new Status(Status.WARNING, pluginId, "[WARNING] " + calendar.getTime().toString() + ": " + message));
+		logger.log(new Status(Status.WARNING, pluginId, "[PLUGIN WARNING] " + calendar.getTime().toString() + ": " + message));
 	}
 
 	@Override
 	public void info(String message) {
-		logger.log(new Status(Status.INFO, pluginId, "[INFO] " + calendar.getTime().toString() + ": " + message));
+		logger.log(new Status(Status.INFO, pluginId, "[PLUGIN INFO] " + calendar.getTime().toString() + ": " + message));
 	}
 
 	@Override
 	public void debug(String message) {
-		logger.log(new Status(Status.INFO, pluginId, "[DEBUG] " + calendar.getTime().toString() + ": " + message));
+		logger.log(new Status(Status.INFO, pluginId, "[PLUGIN DEBUG] " + calendar.getTime().toString() + ": " + message));
 	}
 
 }

@@ -8,13 +8,14 @@ import java.util.Map;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.error.ContainmentCVLModelException;
+import no.sintef.cvl.thirdparty.common.PluginLogger;
 import no.sintef.cvl.thirdparty.common.Utility;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.editor.RestrictedJFileChooser;
 import no.sintef.cvl.ui.loader.CVLModel;
-import no.sintef.cvl.ui.loader.FileHelper;
 import no.sintef.cvl.ui.primitive.Symbol;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -41,6 +42,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	
 	private IWorkbenchWindow iworkbench;
 	private ThirdpartyEditorSelector editorselector;
+	private Logger logger = PluginLogger.getLogger();
+	private ConfigHelper configHelper = EclipseConfigHelper.getConfig();
 	
 
 	public EclipseEnvironment(IWorkbenchWindow workbench) {
@@ -56,7 +59,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			throw new UnsupportedOperationException("can not locate a selected file in the workspace: " + file.getAbsolutePath());
 		}
 		String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
-		FileHelper.saveLastLocation(filePath);
+		configHelper.saveLastLocation(filePath);
 		return new CVLModel(file, platformPath, true);
 	}
 
@@ -73,10 +76,10 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			model.setPlatform(true);
 			model.setLoadFilename(filepath);
 			String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
-			FileHelper.saveLastLocation(filePath);
+			configHelper.saveLastLocation(filePath);
 		} catch (IOException e) {
 			String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-			LOG.error(stackTrace);
+			logger.error(stackTrace);
 			throw new UnsupportedOperationException("can not save file, IOException " + e.getMessage());
 		}
 	}
@@ -104,7 +107,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		    final ResourceSet resSet = new ResourceSetImpl();
 		    URI uri = URI.createPlatformResourceURI(productFullName, true);
-		    LOG.debug("saving a product to the file file " + uri);
+		    logger.debug("saving a product to the file file " + uri);
 		    final Resource productResource = resSet.createResource(uri);
 		    
 		    TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
@@ -140,7 +143,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 						productResource.save(options);
 					} catch (Exception e) {
 						String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-						LOG.error(stackTrace);
+						logger.error(stackTrace);
 						messages.put(resSet, e.getMessage());
 					}
 				}
@@ -204,11 +207,11 @@ public class EclipseEnvironment extends AbstractEnvironment {
 							Context.eINSTANCE.getSubEngine().subsitute(fragment, !symbol.getMulti());
 						} catch (ContainmentCVLModelException e) {
 							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-							LOG.error(stackTrace);
+							logger.error(stackTrace);
 							messagesFS.put(fragment, e.getMessage());
 						} catch (UnsupportedOperationException e){
 							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-							LOG.error(stackTrace);
+							logger.error(stackTrace);
 							messagesFS.put(fragment, e.getMessage());
 						}
 					}
@@ -262,9 +265,20 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	public JFileChooser getFileChooser() {
 		String path = Utility.getWorkspaceRowLocation();
 		RestrictedJFileChooser fc = new RestrictedJFileChooser(path);
-		String lastLocation = FileHelper.lastLocation().replaceAll("\\\\", "/");
+		String lastLocation = configHelper.lastLocation().replaceAll("\\\\", "/");
 		if(lastLocation.startsWith(path))
 			fc.setCurrentDirectory(new File(lastLocation));
+		configHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
 		return fc;
+	}
+	
+	@Override
+	public Logger getLogger() {
+		return logger;
+	}
+	
+	@Override
+	public ConfigHelper getConfig() {
+		return configHelper;
 	}
 }

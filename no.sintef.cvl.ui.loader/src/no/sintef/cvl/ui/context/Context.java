@@ -17,7 +17,6 @@ import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
-import no.sintef.cvl.ui.loader.FileHelper;
 import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -32,7 +31,6 @@ import cvl.FragmentSubstitution;
 
 public final class Context {
 
-	public static final Logger logger = PluginLogger.getLogger();
 	public static final Context eINSTANCE = getContext();
 	
 	private Environment environment = FactoryCreator.eINSTANCE.createEnvironment(null);
@@ -42,6 +40,7 @@ public final class Context {
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
 	private static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
+	public Logger logger = environment.getLogger();
 	
 	private static Context getContext(){
 		return new Context();
@@ -49,6 +48,7 @@ public final class Context {
 	
 	public void setIWorkbenchWindow(IWorkbenchWindow workbench){
 		environment = FactoryCreator.eINSTANCE.createEnvironment(workbench);
+		logger = environment.getLogger();
 	}
 	
 	public CVLModel loadModelFromFile(File file){
@@ -114,7 +114,6 @@ public final class Context {
 		JFileChooser fc = environment.getFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());
 		fc.addChoosableFileFilter(new CVLFilter());
-		FileHelper.saveLastLocation(fc.getCurrentDirectory().getAbsolutePath());
 		return fc;
 	}
 	

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.primitive.Symbol;
@@ -36,4 +37,7 @@ public interface Environment {
 	
 	public JFileChooser getFileChooser();
 	
+	public Logger getLogger();
+	
+	public ConfigHelper getConfig();
 }

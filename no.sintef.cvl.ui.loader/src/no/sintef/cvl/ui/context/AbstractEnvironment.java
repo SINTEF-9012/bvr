@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public class AbstractEnvironment implements Environment {
 	
-	protected Logger LOG = Context.eINSTANCE.logger;
-
 	@Override
 	public CVLModel loadModelFromFile(File file) {
 		throw new UnimplementedCVLException("loadModelFromFile is not implemented");
@@ -71,6 +69,16 @@ public class AbstractEnvironment implements Environment {
 	@Override
 	public void performSubstitutions(List<Symbol> symbols) {
 		throw new UnimplementedCVLException("performSubstitutions is not implemented");
+	}
+
+	@Override
+	public Logger getLogger() {
+		throw new UnimplementedCVLException("getLogger is not implemented");
+	}
+
+	@Override
+	public ConfigHelper getConfig() {
+		throw new UnimplementedCVLException("getConfig is not implemented");
 	}
 
 }

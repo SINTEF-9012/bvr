@@ -1,20 +1,23 @@
-package no.sintef.cvl.ui.loader;
+package no.sintef.cvl.ui.context;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Properties;
 
-public class FileHelper {
+public class EclipseLessConfigHelper extends AbstractConfigHelper{
 
 	private static final String propertyFileName = "cvl.properties";
 	private static Properties properties = new Properties();
 	
-	private static final String propertyLastLocation = "lastLocation";
+	private static final EclipseLessConfigHelper configHelper = new EclipseLessConfigHelper();
+	
+	public static ConfigHelper getConfig(){
+		return configHelper;
+	}
 
-	public static String lastLocation() {
+	@Override
+	public String lastLocation() {
 		File last;
 		FileInputStream fis = null;
 		String loc = new String();
@@ -50,18 +53,13 @@ public class FileHelper {
 		return loc;
 	}
 
-	public static void saveLastLocation(String loc) {
-		properties.setProperty(propertyLastLocation, loc);
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(propertyFileName);
-			properties.store(fos, new Date().toString());
-			fos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	@Override
+	public Properties getProperties() {
+		return properties;
 	}
-
-
-
+	
+	@Override
+	public String getPropertyFileName() {
+		return propertyFileName;
+	}
 }
