@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.common.Utility;
@@ -26,6 +27,7 @@ import cvl.PlacementFragment;
 public class CreatePlacementFragmentEvent implements ActionListener {
 
 	private JTabbedPane filePane;
+	private Logger logger = Context.eINSTANCE.logger;
 
 	public CreatePlacementFragmentEvent(JTabbedPane filePane) {
 		this.filePane = filePane;
@@ -55,7 +57,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 			cu.getOwnedVariationPoint().add(placement);
 		} catch (Exception e) {
 			String stackTrace = Utility.getStackTraceAsString(e);
-			Context.log.error(stackTrace);
+			logger.error(stackTrace);
 			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_GENERAL_ERROR + e.getMessage());
 		}
 		

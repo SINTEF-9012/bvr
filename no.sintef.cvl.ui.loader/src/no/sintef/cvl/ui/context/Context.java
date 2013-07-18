@@ -7,8 +7,10 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
+import no.sintef.cvl.thirdparty.common.PluginLogger;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.filter.CVLFilter;
@@ -16,8 +18,6 @@ import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.loader.FileHelper;
-import no.sintef.cvl.ui.logging.Logger;
-import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -28,8 +28,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IWorkbenchWindow;
 
+import cvl.FragmentSubstitution;
+
 public final class Context {
 
+	public static final Logger logger = PluginLogger.getLogger();
 	public static final Context eINSTANCE = getContext();
 	
 	private Environment environment = FactoryCreator.eINSTANCE.createEnvironment(null);
@@ -38,8 +41,7 @@ public final class Context {
 	private final List<CVLModel> cvlModels = new ArrayList<CVLModel>();
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
-	public static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
-	public static final Logger log = Logging.getLogger();
+	private static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
 	private static Context getContext(){
 		return new Context();
@@ -134,5 +136,14 @@ public final class Context {
 
 	public ViewChanageManager getViewChnageManager() {
 		return viewChnageManager;
+	}
+	
+	public void initSubEngine(EList<FragmentSubstitution> frgamentSusbstitutions){
+		subEngine.setLogger(logger);
+		subEngine.init(frgamentSusbstitutions);
+	}
+	
+	public SubstitutionEngine getSubEngine(){
+		return subEngine;
 	}
 }

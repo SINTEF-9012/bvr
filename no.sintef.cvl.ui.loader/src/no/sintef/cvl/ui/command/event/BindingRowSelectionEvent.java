@@ -21,21 +21,20 @@ import cvl.ToPlacement;
 import cvl.ToReplacement;
 import cvl.VariationPoint;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.exception.IllegalOperationException;
-import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
-import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.primitive.impl.DataBindingItem;
 
 public class BindingRowSelectionEvent implements ListSelectionListener {
 
 	private BindingJTable table;
+	private Logger logger = Context.eINSTANCE.logger;
 
 	public BindingRowSelectionEvent(BindingJTable jtable){
 		table = jtable;
@@ -90,7 +89,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				map.put(eObject, (isToPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_IN : ICVLEnabledEditor.HL_REPLACEMENT_IN);
 				list.add(map);
 			}else{
-				Logging.getLogger().error("outside boundary element reference is null for toBoundary" + boundary);
+				logger.error("outside boundary element reference is null for toBoundary" + boundary);
 			}
 			
 			EList<ObjectHandle> objectHandles = (isToPlacement) ? ((ToPlacement) boundary).getInsideBoundaryElement() : ((ToReplacement) boundary).getInsideBoundaryElement();
@@ -101,7 +100,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 					map.put(eObject, (isToPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT);
 					list.add(map);
 				}else{
-					Logging.getLogger().error("inside boundary element reference is null for toBoundary" + boundary);
+					logger.error("inside boundary element reference is null for toBoundary" + boundary);
 				}
 			}
 		}else if(boundary instanceof FromPlacement || boundary instanceof FromReplacement){
@@ -115,7 +114,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				map.put(eObject, (isFromPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT);
 				list.add(map);
 			}else{
-				Logging.getLogger().error("inside boundary element reference is null for fromBoundary" + boundary);
+				logger.error("inside boundary element reference is null for fromBoundary" + boundary);
 			}
 			
 			EList<ObjectHandle> objectHandles = (isFromPlacement) ? ((FromPlacement) boundary).getOutsideBoundaryElement() : ((FromReplacement) boundary).getOutsideBoundaryElement();
@@ -126,7 +125,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 					map.put(eObject, (isFromPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_OUT : ICVLEnabledEditor.HL_REPLACEMENT_OUT);
 					list.add(map);
 				}else{
-					Logging.getLogger().error("outside boundary element reference is null for fromBoundary" + boundary);
+					logger.error("outside boundary element reference is null for fromBoundary" + boundary);
 				}
 			}
 		}else{

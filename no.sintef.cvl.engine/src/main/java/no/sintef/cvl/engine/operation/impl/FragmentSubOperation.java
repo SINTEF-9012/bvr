@@ -17,6 +17,7 @@ import cvl.ToBinding;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.CVLFragmentCopier;
 import no.sintef.cvl.engine.common.SubstitutionContext;
 import no.sintef.cvl.engine.common.Utility;
@@ -29,7 +30,6 @@ import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
-import no.sintef.cvl.engine.logging.Logger;
 import no.sintef.cvl.engine.operation.Substitution;
 
 public class FragmentSubOperation implements Substitution {

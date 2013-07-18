@@ -43,7 +43,7 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 				frgamentSusbstitutions.add((FragmentSubstitution) vp);
 			}
 		}
-		Context.subEngine.init(frgamentSusbstitutions);
+		Context.eINSTANCE.initSubEngine(frgamentSusbstitutions);
 		
 		/*fsHMap = new HashMap<FragmentSubstitution, FragmentSubstitutionHolder>(); 
 		ConfigurableUnit cu = table.getConfigurableUnit();
@@ -87,7 +87,7 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 				protected void doExecute() {
 					try {
-						Context.subEngine.subsitute(fs, !symbol.getMulti());
+						Context.eINSTANCE.getSubEngine().subsitute(fs, !symbol.getMulti());
 					} catch (ContainmentCVLModelException e) {
 						e.printStackTrace();
 					}

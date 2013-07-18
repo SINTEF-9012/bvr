@@ -5,10 +5,9 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Utility;
-import no.sintef.cvl.ui.logging.Logger;
-import no.sintef.cvl.ui.logging.impl.Logging;
-
+import no.sintef.cvl.ui.context.Context;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -28,7 +27,7 @@ import cvl.ToReplacement;
 
 public class AbstractBoundaryCalculator {
 	
-	protected Logger LOGGER = Logging.getLogger();
+	protected Logger LOGGER = Context.eINSTANCE.logger;
 	protected HashMap<EStructuralFeature, FromPlacement> refFromPlacMap;
 	protected HashMap<EStructuralFeature, ToReplacement> refToReplacMap;
 

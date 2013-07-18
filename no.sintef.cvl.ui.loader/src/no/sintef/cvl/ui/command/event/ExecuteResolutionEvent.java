@@ -11,6 +11,7 @@ import javax.swing.JTabbedPane;
 import cvl.ConfigurableUnit;
 import cvl.VSpecResolution;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.DeriveProduct;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.common.Utility;
@@ -22,6 +23,7 @@ import no.sintef.cvl.ui.loader.CVLView;
 public class ExecuteResolutionEvent implements ActionListener {
 
 	private JTabbedPane filePane;
+	private Logger logger = Context.eINSTANCE.logger;
 
 	public ExecuteResolutionEvent(JTabbedPane filePane) {
 		this.filePane = filePane;
@@ -67,7 +69,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(x, Messages.DIALOG_MSG_GENERAL_ERROR + error.getMessage());
 			String stackTrace = Utility.getStackTraceAsString(error);
-			Context.log.error(stackTrace);
+			logger.error(stackTrace);
 		}
 	}
 }

@@ -1,15 +1,12 @@
 package no.sintef.cvl.ui.context;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.swing.JFileChooser;
 
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.FileHelper;
-import no.sintef.cvl.ui.logging.impl.Logging;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;

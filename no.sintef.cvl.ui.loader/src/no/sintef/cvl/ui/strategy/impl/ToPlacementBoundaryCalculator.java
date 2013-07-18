@@ -6,10 +6,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.CVLModelException;
-import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.strategy.BoundaryCalculatorStrategy;
 
 import cvl.ObjectHandle;
@@ -19,7 +21,8 @@ import cvl.VariationPoint;
 
 public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 	
-	ToReplacement nullToReplacement = null;
+	private ToReplacement nullToReplacement = null;
+	private Logger logger = Context.eINSTANCE.logger;
 
 	@Override
 	public ArrayList<VariationPoint> getCompliedBoundaries(
@@ -38,9 +41,9 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 		int lowerBound = propertySrcObject.getLowerBound();
 		EClassifier srcObjectType = propertySrcObject.getEType();
 		
-		Logging.getLogger().debug("--------------------------------------------------------------");
-		Logging.getLogger().debug("processing toPlacement " + toPlacement);
-		Logging.getLogger().debug("calculating applicable boundaries for the element '" + srcObject + "' with the property '" + propertyNameSrcObject + "' of the type '" + srcObjectType + "' with the following cardinality lowerBound=" + lowerBound + " upperBound=" + upperBound);
+		logger.debug("--------------------------------------------------------------");
+		logger.debug("processing toPlacement " + toPlacement);
+		logger.debug("calculating applicable boundaries for the element '" + srcObject + "' with the property '" + propertyNameSrcObject + "' of the type '" + srcObjectType + "' with the following cardinality lowerBound=" + lowerBound + " upperBound=" + upperBound);
 		
 		ArrayList<VariationPoint> toReplacements = new ArrayList<VariationPoint>();
 		for(VariationPoint boundary : options){
@@ -49,19 +52,19 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 			}else{
 				ToReplacement toReplacement = (ToReplacement) boundary;
 				
-				Logging.getLogger().debug("processing boundary toReplacement " + toReplacement);
+				logger.debug("processing boundary toReplacement " + toReplacement);
 				
 				EList<ObjectHandle> insideBoundaryElementsOH = toReplacement.getInsideBoundaryElement();
 				if(insideBoundaryElementsOH.size() <= upperBound || upperBound == -1){
 					EList<EObject> insideBoundaryElements = Utility.resolveProxies(insideBoundaryElementsOH);
 					if(isInstance(srcObjectType, insideBoundaryElements)){
 						toReplacements.add(boundary);
-						Logging.getLogger().debug("the boundary is compatible");
+						logger.debug("the boundary is compatible");
 					}else{
-						Logging.getLogger().debug("skip boundary, some elements are not type compatible " + insideBoundaryElements);
+						logger.debug("skip boundary, some elements are not type compatible " + insideBoundaryElements);
 					}
 				}else{
-					Logging.getLogger().debug("skip boundary, too many elements which do not match the cardinality of the source object, size=" + insideBoundaryElementsOH.size());
+					logger.debug("skip boundary, too many elements which do not match the cardinality of the source object, size=" + insideBoundaryElementsOH.size());
 				}
 			}
 		}
@@ -72,9 +75,9 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 			}
 			toReplacements.add(0, nullToReplacement);
 		}else{
-			Logging.getLogger().debug("null boundary is skipped");
+			logger.debug("null boundary is skipped");
 		}
-		Logging.getLogger().debug("--------------------------------------------------------------");
+		logger.debug("--------------------------------------------------------------");
 		return toReplacements;
 	}
 }

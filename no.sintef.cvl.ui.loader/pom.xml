@@ -29,7 +29,12 @@
             <groupId>no.sintef</groupId>
             <artifactId>no.sintef.cvl.engine</artifactId>
             <version>2.0.0</version>
-        </dependency>        
+        </dependency>
+        <dependency>
+            <groupId>no.sintef</groupId>
+            <artifactId>no.sintef.cvl.common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency> 
         <dependency>
             <groupId>org.abego.treelayout</groupId>
             <artifactId>org.abego.treelayout.core</artifactId>

@@ -2,7 +2,8 @@ package no.sintef.cvl.engine.common;
 
 import java.util.HashMap;
 
-import no.sintef.cvl.engine.logging.Logger;
+
+import no.sintef.cvl.common.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -15,15 +16,22 @@ public enum SubstitutionContext {
 	public ApplicationContext context;
 	private EList<Resource> baseModel;
 	private HashMap<Resource, ResourceContentCopier> copyBaseModelMap;
+	private Logger logger;
 	
 	SubstitutionContext () {
 		/*Spring initialization START*/
 		context = new ClassPathXmlApplicationContext(new String[] {configLocation});
 		/*Spring initialization END*/
+		
+		logger = (Logger) this.context.getBean("defaultLogger");
 	}
 	
 	public Logger getLogger(){
-		return (Logger) this.context.getBean("defaultLogger");
+		return logger;
+	}
+	
+	public void setLogger(Logger logger){
+		this.logger = logger;
 	}
 
 	public EList<Resource> getBaseModel() {

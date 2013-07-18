@@ -161,7 +161,12 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.5.8</version>
-    </dependency> 
+    </dependency>
+    <dependency>
+		<groupId>no.sintef</groupId>
+		<artifactId>no.sintef.cvl.common</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
     <!--<dependency>
     	<groupId>com.google.guava</groupId>
     	<artifactId>guava</artifactId>

@@ -2,6 +2,7 @@ package no.sintef.cvl.engine.common;
 
 import java.util.HashMap;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.adjacent.AdjacentFinder;
 import no.sintef.cvl.engine.adjacent.AdjacentResolver;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
@@ -31,6 +32,10 @@ public final class SubstitutionEngine {
 
 	private static SubstitutionEngine getEngine() {
 		return new SubstitutionEngine();
+	}
+	
+	public void setLogger(Logger logger){
+		context.setLogger(logger);
 	}
 	
 	public void init(EList<FragmentSubstitution> fragmentSubstitutions){

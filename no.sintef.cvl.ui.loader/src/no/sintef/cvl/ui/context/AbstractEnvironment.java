@@ -6,11 +6,10 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.ui.exception.UnimplementedCVLException;
 import no.sintef.cvl.ui.loader.CVLModel;
-import no.sintef.cvl.ui.logging.Logger;
-import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.primitive.Symbol;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public class AbstractEnvironment implements Environment {
 	
-	protected Logger LOG = Context.eINSTANCE.log;
+	protected Logger LOG = Context.eINSTANCE.logger;
 
 	@Override
 	public CVLModel loadModelFromFile(File file) {

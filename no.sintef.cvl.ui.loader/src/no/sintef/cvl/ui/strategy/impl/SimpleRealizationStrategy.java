@@ -27,7 +27,7 @@ public class SimpleRealizationStrategy implements RealizationStrategy {
 			frgamentSusbstitutions.addAll(symbol.getFragmentSubstitutions());
 		}
 		
-		Context.subEngine.init(frgamentSusbstitutions);
+		Context.eINSTANCE.initSubEngine(frgamentSusbstitutions);
 		Context.eINSTANCE.performSubstitutions(symbols);
 	}
 }

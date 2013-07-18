@@ -24,6 +24,6 @@ public class SimpleSaveProductStrategy implements SaveProductStrategy {
 		File sf = fc.getSelectedFile();
 		if(sf == null) return;
 		
-		Context.eINSTANCE.writeProductsToFiles(Context.subEngine.getCopiedBaseModels(), sf);
+		Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), sf);
 	}
 }

@@ -17,7 +17,6 @@ import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.FileHelper;
 import no.sintef.cvl.ui.primitive.Symbol;
 
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -33,7 +32,6 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain.Factory;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import cvl.ConfigurableUnit;
@@ -203,7 +201,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 					@Override
 					protected void doExecute() {
 						try {
-							Context.subEngine.subsitute(fragment, !symbol.getMulti());
+							Context.eINSTANCE.getSubEngine().subsitute(fragment, !symbol.getMulti());
 						} catch (ContainmentCVLModelException e) {
 							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
 							LOG.error(stackTrace);

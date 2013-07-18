@@ -6,10 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
-import no.sintef.cvl.ui.logging.impl.Logging;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -23,12 +24,13 @@ import org.eclipse.swt.widgets.Display;
 public final class ThirdpartyEditorSelector implements ModelSelector {
 
 	private IWorkbenchWindow workbenchWindow = null;
+	private static Logger logger = Context.eINSTANCE.logger;
 	 
 	private static final ThirdpartyEditorSelector singletone = new ThirdpartyEditorSelector();
 	
 	public static ThirdpartyEditorSelector getEditorSelector(){
 		if(singletone.workbenchWindow == null)
-			Logging.getLogger().warn("workbenchWindow is not set you may run into some problems when it involves some external operations");
+			logger.warn("workbenchWindow is not set you may run into some problems when it involves some external operations");
 		return singletone;
 	}
 	
@@ -64,7 +66,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		final HashMap<EObject, Integer> objectsToHiglight = new HashMap<EObject, Integer>();
 		for(HashMap<EObject, Integer> pair : objectsToHighlightList){
 			if(pair.size() != 1){
-				Logging.getLogger().warn("a hash map has more than one object to highlight or is empty, that is weird, skip it" + pair);
+				logger.warn("a hash map has more than one object to highlight or is empty, that is weird, skip it" + pair);
 				continue;
 			}
 			EObject key = pair.keySet().iterator().next();
@@ -85,7 +87,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 						|| (type == ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT && (pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_OUT || pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_IN))){
 					pair.put(key, ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT);
 				}else if(type != pair.get(key)){
-					Logging.getLogger().warn("have no idea how to highlight element (highlighting will be partially correct): " + key);
+					logger.warn("have no idea how to highlight element (highlighting will be partially correct): " + key);
 				}
 			}
 			objectsToHiglight.put(key, pair.get(key));
@@ -110,7 +112,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				highlightObjects(cvlEnabledEditor, objects);
 		    				cvlEnabledEditor.expandHiglightedObjects();
 						} catch (Exception e) {
-							Logging.getLogger().warn("unsupported editor: -->"+ editorPart.getClass().toString() + "<--, can not highlight due to : " + e.getMessage());
+							logger.warn("unsupported editor: -->"+ editorPart.getClass().toString() + "<--, can not highlight due to : " + e.getMessage());
 						}
 		    		}else if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
 		    			ICVLEnabledEditor cvlEnabledEditor = (ICVLEnabledEditor) editorPart;
@@ -118,7 +120,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    			highlightObjects(cvlEnabledEditor, objects);
 		    		}else{
 		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass().toString() : "null");
-		    			Logging.getLogger().warn("unsupported editor: -->" + editorName + "<--, can not highlight anything");
+		    			logger.warn("unsupported editor: -->" + editorName + "<--, can not highlight anything");
 		    		}
 		    	}
 		    }
@@ -148,14 +150,14 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				ICVLEnabledEditor editor = new ProxyThirdPartyTreeEditor(editorPart);
 		    				editor.clearHighlighting();
 						} catch (Exception e) {
-							Logging.getLogger().warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());
+							logger.warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());
 						}
 		    		}if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
 		    			ICVLEnabledEditor cvlEnabledEditor = (ICVLEnabledEditor) editorPart;
 		    			cvlEnabledEditor.clearHighlighting();
 		    		}else{
 		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass().toString() : "null");
-		    			Logging.getLogger().warn("unsupported editor: -->" + editorName + "<--, can not clear highlighting (if any)");
+		    			logger.warn("unsupported editor: -->" + editorName + "<--, can not clear highlighting (if any)");
 		    		}
 		    	}				
 			}

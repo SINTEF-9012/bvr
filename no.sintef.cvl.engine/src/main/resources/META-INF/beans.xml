@@ -5,5 +5,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
   
   <bean id="defaultLogger"
-    class="no.sintef.cvl.engine.logging.impl.ConsoleLogger"/> 
+    class="no.sintef.cvl.engine.logging.impl.ConsoleEngineLogger"/> 
 </beans>

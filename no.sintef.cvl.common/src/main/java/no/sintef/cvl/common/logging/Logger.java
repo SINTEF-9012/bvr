@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.logging;
+package no.sintef.cvl.common.logging;
 
 public interface Logger {
 

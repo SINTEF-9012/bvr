@@ -1,7 +1,6 @@
 package no.sintef.cvl.ui.command.event;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import javax.swing.ListSelectionModel;
@@ -25,20 +24,19 @@ import cvl.ReplacementFragmentType;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
 
+import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
-import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
-import no.sintef.cvl.ui.logging.impl.Logging;
 import no.sintef.cvl.ui.model.SubFragTableModel;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
 
 public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 
 	private SubstitutionFragmentJTable jtable;
+	private Logger logger = Context.eINSTANCE.logger;
 	
 	public SubFragTableRowSelectionEvent(SubstitutionFragmentJTable table){
 		jtable = table;
@@ -72,7 +70,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				if(!Utility.isNullBoundary(toPlacement)){
             					EObject eObject = toPlacement.getOutsideBoundaryElement().getMOFRef();
             					if(eObject == null){
-            						Logging.getLogger().error("outside boundary element refrence is null for toPlacement" + toPlacement);
+            						logger.error("outside boundary element refrence is null for toPlacement" + toPlacement);
             					}else{
             						outsideInsideElements.add(eObject);
             					}
@@ -80,13 +78,13 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             					for(ObjectHandle objectHandle : objectHandles){
             						eObject = objectHandle.getMOFRef();
             						if(eObject == null){
-            							Logging.getLogger().error("inside boundary element refrence is null for toPlacement" + toPlacement);
+            							logger.error("inside boundary element refrence is null for toPlacement" + toPlacement);
             						}else{
             							insideElements.add(eObject);
             						}
             					}
             				}else{
-            					Logging.getLogger().error("toPlacement can not be null boundary, placement " + placement);
+            					logger.error("toPlacement can not be null boundary, placement " + placement);
             				}
             			}
             			if(boundary instanceof FromPlacement){
@@ -94,7 +92,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				if(!Utility.isNullBoundary(fromPlacement)){
             					EObject eObject = fromPlacement.getInsideBoundaryElement().getMOFRef();
             					if(eObject == null){
-            						Logging.getLogger().error("inside boundary element refrence is null for fromPlacement" + fromPlacement);
+            						logger.error("inside boundary element refrence is null for fromPlacement" + fromPlacement);
             					}else{
             						insideElements.add(eObject);
             					}
@@ -102,7 +100,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             					for(ObjectHandle objectHandle : objectHandles){
             						eObject = objectHandle.getMOFRef();
             						if(eObject == null){
-            							Logging.getLogger().error("outside boundary element refrence is null for fromPlacement" + fromPlacement);
+            							logger.error("outside boundary element refrence is null for fromPlacement" + fromPlacement);
             						}else{
             							outsideOutsideElements.add(eObject);
             						}
@@ -126,7 +124,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				if(!Utility.isNullBoundary(toReplacement)){
             					EObject eObject = toReplacement.getOutsideBoundaryElement().getMOFRef();
             					if(eObject == null){
-            						Logging.getLogger().error("outside boundary element refrence is null for toReplacement" + toReplacement);
+            						logger.error("outside boundary element refrence is null for toReplacement" + toReplacement);
             					}else{
             						outsideInsideElements.add(eObject);
             					}
@@ -134,7 +132,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             					for(ObjectHandle objectHandle : objectHandles){
             						eObject = objectHandle.getMOFRef();
             						if(eObject == null){
-            							Logging.getLogger().error("inside boundary element refrence is null for toReplacement" + toReplacement);
+            							logger.error("inside boundary element refrence is null for toReplacement" + toReplacement);
             						}else{
             							insideElements.add(eObject);
             						}
@@ -146,7 +144,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				if(!Utility.isNullBoundary(fromReplacement)){
             					EObject eObject = fromReplacement.getInsideBoundaryElement().getMOFRef();
             					if(eObject == null){
-            						Logging.getLogger().error("inside boundary element refrence is null for fromReplacement" + fromReplacement);
+            						logger.error("inside boundary element refrence is null for fromReplacement" + fromReplacement);
             					}else{
             						insideElements.add(eObject);
             					}
@@ -154,13 +152,13 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             					for(ObjectHandle objectHandle : objectHandles){
             						eObject = objectHandle.getMOFRef();
             						if(eObject == null){
-            							Logging.getLogger().error("outside boundary element refrence is null for fromReplacement" + fromReplacement);
+            							logger.error("outside boundary element refrence is null for fromReplacement" + fromReplacement);
             						}else{
             							outsideOutsideElements.add(eObject);
             						}
             					}
             				}else{
-            					Logging.getLogger().error("fromPlacement can not be null boundary, replacement " + replacement);
+            					logger.error("fromPlacement can not be null boundary, replacement " + replacement);
             				}
             			}
             		}
@@ -196,7 +194,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 				}else if (value instanceof EObjectEList){
 					eObjects.addAll((EList<? extends EObject>) value);
 				}else if(value != null){
-					Logging.getLogger().warn("reference " + link + " does not point to EObject nor EObjectList :" + value);
+					logger.warn("reference " + link + " does not point to EObject nor EObjectList :" + value);
 				}
 			}
 		}
