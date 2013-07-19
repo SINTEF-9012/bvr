@@ -3,7 +3,7 @@
    <description name="VARIES CVL Tool" url="http://variabilitymodeling.org/">
       Update site for VARIES CVL Tool
    </description>
-   <feature url="features/no.sintef.variescvl_1.0.0.201307171809.jar" id="no.sintef.variescvl" version="1.0.0.201307171809">
+   <feature url="features/no.sintef.variescvl_1.0.0.201307191210.jar" id="no.sintef.variescvl" version="1.0.0.201307191210">
       <category name="VARIES CVL"/>
    </feature>
    <category-def name="VARIES CVL" label="VARIES CVL"/>
