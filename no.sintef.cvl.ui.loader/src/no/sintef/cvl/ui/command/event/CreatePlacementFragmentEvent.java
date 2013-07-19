@@ -10,7 +10,6 @@ import javax.swing.JTabbedPane;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
-import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -56,8 +55,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 			placement.setName(Constants.PLACEMENT_DEFAULT_NAME + count++);
 			cu.getOwnedVariationPoint().add(placement);
 		} catch (Exception e) {
-			String stackTrace = Utility.getStackTraceAsString(e);
-			logger.error(stackTrace);
+			logger.error("some failure during placement creation", e);
 			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_GENERAL_ERROR + e.getMessage());
 		}
 		

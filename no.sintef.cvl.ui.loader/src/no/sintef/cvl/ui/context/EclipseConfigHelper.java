@@ -1,17 +1,18 @@
 package no.sintef.cvl.ui.context;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.util.Date;
 import java.util.Properties;
 
+import no.sintef.cvl.thirdparty.common.Constants;
+import no.sintef.cvl.thirdparty.common.Utility;
+
 public class EclipseConfigHelper extends AbstractConfigHelper {
 
-	private static final String propertyFileName = "platform:/plugin/no.sintef.cvl.ui.editor.eclipselauncher/META-INF/data/configs/cvl.properties";
-	private static Properties properties = new Properties();
+	private final String propertyFileName = "META-INF/data/configs/cvl.properties";
 	
 	private static final EclipseConfigHelper configHelper = new EclipseConfigHelper();
 	
@@ -23,15 +24,17 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 	public String lastLocation() {
 		File last;
 		String loc = new String();
-		InputStream inputStream = null;
+		FileInputStream inputStream = null;
 		try {
-			URL url = new URL(propertyFileName);
-			inputStream = url.openConnection().getInputStream();
-			properties.load(inputStream);
-			last = new File(properties.getProperty(propertyLastLocation));
+			File file = Utility.findFileInPlugin(Constants.PLUGIN_ID_CVL_LAUNCHER, getPropertyFileName());
+			inputStream = new FileInputStream(file);
+			getProperties().load(inputStream);
+			last = new File(getProperties().getProperty(propertyLastLocation));
 			loc = last.getAbsolutePath();
 		} 
-		catch (IOException e) {} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
 		finally {
 			if (inputStream != null){
 				try {
@@ -47,13 +50,15 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 	@Override
 	public void saveLastLocation(String loc) {
 		getProperties().setProperty(propertyLastLocation, loc);
-		OutputStream outputStream = null;
+		FileOutputStream outputStream = null;
 		try {
-			URL url = new URL(propertyFileName);
-			outputStream = url.openConnection().getOutputStream();
+			File file = Utility.findFileInPlugin(Constants.PLUGIN_ID_CVL_LAUNCHER, getPropertyFileName());
+			outputStream = new FileOutputStream(file);
 			getProperties().store(outputStream, new Date().toString());
 			outputStream.close();
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		finally {
 			if (outputStream != null){
 				try {

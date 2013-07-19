@@ -70,6 +70,7 @@ Import-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.ui.command,
  no.sintef.cvl.ui.command.event,
  no.sintef.cvl.ui.common,
+ no.sintef.cvl.ui.context,
  no.sintef.cvl.ui.dropdown,
  no.sintef.cvl.ui.edit,
  no.sintef.cvl.ui.editor,
@@ -88,7 +89,6 @@ Import-Package: no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.ui.renderer,
  no.sintef.cvl.ui.strategy,
  no.sintef.cvl.ui.strategy.impl,
- no.sintef.ict.splcatool,
- no.sintef.cvl.ui.context
+ no.sintef.ict.splcatool
 Bundle-ClassPath: SINTEF-CVLTool2-v0.2a1.jar,
  .

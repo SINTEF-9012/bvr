@@ -4,5 +4,4 @@ bin/**
 target/
 test_out/
 /.project
-cvl.properties
 /bin

@@ -3,8 +3,8 @@
   <groupId>no.sintef</groupId>
   <artifactId>no.sintef.cvl.common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>common functionality shared accross the application and not platform dependent</name>
-  <description>common functionality shared accross the application and not platform dependent</description>
+  <name>common functionality shared across the application and not platform dependent</name>
+  <description>common functionality shared across the application and not platform dependent</description>
   
   <build>
   	<sourceDirectory>src/main/java</sourceDirectory>
@@ -19,4 +19,12 @@
       </plugin>
   	</plugins>
   </build>
+  
+  <dependencies>
+  	<dependency>
+    	<groupId>com.google.guava</groupId>
+    	<artifactId>guava</artifactId>
+    	<version>14.0.1</version>
+	</dependency>
+  </dependencies>
 </project>

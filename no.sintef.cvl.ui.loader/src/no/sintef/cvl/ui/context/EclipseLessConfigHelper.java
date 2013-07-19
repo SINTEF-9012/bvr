@@ -45,7 +45,7 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 			if (fis != null){
 				try {
 					fis.close();
-				} catch (final IOException e) {
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}

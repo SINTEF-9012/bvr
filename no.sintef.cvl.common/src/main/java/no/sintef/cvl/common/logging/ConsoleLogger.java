@@ -1,6 +1,8 @@
 package no.sintef.cvl.common.logging;
 
 import java.util.Calendar;
+
+import no.sintef.cvl.common.Utility;
 import no.sintef.cvl.common.logging.Logger;
 
 
@@ -26,6 +28,12 @@ public class ConsoleLogger implements Logger {
 	@Override
 	public void debug(String message) {
 		System.out.println("[CONSOLE LOGGER] " + calendar.getTime().toString() + ": " + message);
+	}
+
+	@Override
+	public void error(String message, Throwable e) {
+		String stackTrace = Utility.getStackTraceAsString(e);
+		error(message + " with the stack trace:\n" + stackTrace);
 	}
 	
 

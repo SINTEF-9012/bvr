@@ -14,7 +14,6 @@ import cvl.VSpecResolution;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.DeriveProduct;
 import no.sintef.cvl.ui.common.Messages;
-import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -67,9 +66,8 @@ public class ExecuteResolutionEvent implements ActionListener {
 			DeriveProduct deriviator = new DeriveProduct(keywords);
 			deriviator.run();
 		} catch (Exception error) {
+			logger.error("some failure during execution", error);
 			JOptionPane.showMessageDialog(x, Messages.DIALOG_MSG_GENERAL_ERROR + error.getMessage());
-			String stackTrace = Utility.getStackTraceAsString(error);
-			logger.error(stackTrace);
 		}
 	}
 }

@@ -10,7 +10,6 @@ import javax.swing.JFileChooser;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
-import no.sintef.cvl.thirdparty.common.PluginLogger;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.filter.CVLFilter;
@@ -40,6 +39,7 @@ public final class Context {
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
 	private static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
+	
 	public Logger logger = environment.getLogger();
 	
 	private static Context getContext(){

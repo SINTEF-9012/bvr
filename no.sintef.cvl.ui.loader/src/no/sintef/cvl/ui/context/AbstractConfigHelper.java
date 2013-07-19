@@ -7,7 +7,8 @@ import java.util.Properties;
 
 public abstract class AbstractConfigHelper implements ConfigHelper {
 	
-	protected static final String propertyLastLocation = "lastLocation";
+	protected final String propertyLastLocation = "lastLocation";
+	protected final Properties properties = new Properties();
 	
 	@Override
 	public void saveLastLocation(String loc) {

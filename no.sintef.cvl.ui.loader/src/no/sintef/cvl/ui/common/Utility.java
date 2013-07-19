@@ -270,8 +270,4 @@ public class Utility {
 	public static int unMask(int value, int umaskValue){
 		return value & umaskValue;
 	}
-	
-	public static String getStackTraceAsString(Throwable throwable){
-		return Throwables.getStackTraceAsString(throwable);
-	}
 }

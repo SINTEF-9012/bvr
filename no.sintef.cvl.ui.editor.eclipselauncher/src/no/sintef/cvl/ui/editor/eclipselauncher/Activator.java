@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.editor.eclipselauncher;
 
+import no.sintef.cvl.thirdparty.common.Constants;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -10,7 +12,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "Test"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = Constants.PLUGIN_ID_CVL_LAUNCHER; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

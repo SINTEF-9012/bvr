@@ -78,8 +78,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
 			configHelper.saveLastLocation(filePath);
 		} catch (IOException e) {
-			String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-			logger.error(stackTrace);
+			logger.error("can not save file, IOException", e);
 			throw new UnsupportedOperationException("can not save file, IOException " + e.getMessage());
 		}
 	}
@@ -142,8 +141,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 					try {
 						productResource.save(options);
 					} catch (Exception e) {
-						String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-						logger.error(stackTrace);
+						logger.error("some exception", e);
 						messages.put(resSet, e.getMessage());
 					}
 				}
@@ -206,12 +204,10 @@ public class EclipseEnvironment extends AbstractEnvironment {
 						try {
 							Context.eINSTANCE.getSubEngine().subsitute(fragment, !symbol.getMulti());
 						} catch (ContainmentCVLModelException e) {
-							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-							logger.error(stackTrace);
+							logger.error("cvl model failure", e);
 							messagesFS.put(fragment, e.getMessage());
 						} catch (UnsupportedOperationException e){
-							String stackTrace = no.sintef.cvl.ui.common.Utility.getStackTraceAsString(e);
-							logger.error(stackTrace);
+							logger.error("some exception", e);
 							messagesFS.put(fragment, e.getMessage());
 						}
 					}
