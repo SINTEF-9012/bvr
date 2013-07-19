@@ -1,21 +1,18 @@
 package no.sintef.cvl.thirdparty.common;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.HashMap;
 
 import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.transaction.Transaction;
-import org.osgi.framework.Bundle;
+import org.osgi.service.prefs.BackingStoreException;
 
 public final class Utility {
 	
@@ -44,16 +41,20 @@ public final class Utility {
 		return result;
 	}
 	
-	public static File findFileInPlugin(String pluginId, String filePath) throws IOException{
-		Bundle bundle = Platform.getBundle(pluginId);
-		URL fileURL = bundle.getEntry(filePath);
-		File file = null;
+	public static String getValueFromPropertyStore(String pluginId, String fieldName){
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(pluginId);
+		String value = prefs.get(fieldName, "");
+		return value;
+	}
+	
+	public static void setValueToPropertyStore(String pluginId, String fieldName, String value){
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(pluginId);
+		prefs.put(fieldName, value);
 		try {
-			file = new File(FileLocator.resolve(fileURL).toURI());
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
+			prefs.flush();
+		} catch (BackingStoreException e) {
+			new UnsupportedOperationException(e);
 		}
-		return file;
 	}
 
 }

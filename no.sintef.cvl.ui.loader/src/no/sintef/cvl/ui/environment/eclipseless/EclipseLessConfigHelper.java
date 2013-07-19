@@ -41,7 +41,7 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 				last = new File(properties.getProperty(propertyLastLocation));
 				loc = last.getAbsolutePath();
 			} catch (final IOException e1) {
-				e1.printStackTrace();
+				throw new UnsupportedOperationException(e1);
 			}
 		} 
 		finally {
@@ -49,7 +49,7 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 				try {
 					fis.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new UnsupportedOperationException(e);
 				}
 			}
 		}

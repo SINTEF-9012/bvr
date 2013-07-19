@@ -3,6 +3,7 @@ package no.sintef.cvl.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.context.Context;
@@ -18,8 +19,13 @@ public class NewModelEvent implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		CVLModel m = new CVLModel();
-		Context.eINSTANCE.addCvlModel(m);
-		Context.eINSTANCE.addCvlView(new CVLView(m, c));
+		try{
+			CVLModel m = new CVLModel();
+			Context.eINSTANCE.addCvlModel(m);
+			Context.eINSTANCE.addCvlView(new CVLView(m, c));
+		}catch(Exception e){
+			Context.eINSTANCE.logger.error("some error on New", e);
+			JOptionPane.showMessageDialog(null, "Failed to create model due to: " + e.getMessage());
+		}
 	}
 }

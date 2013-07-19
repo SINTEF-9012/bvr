@@ -21,25 +21,23 @@ public class OpenModelEvent implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		final JFileChooser fc = Context.eINSTANCE.getFileChooser();
-		
-		int isCanceled = fc.showOpenDialog(c);
-		if(isCanceled == JFileChooser.CANCEL_OPTION)
-			return;
-		
-		File sf = fc.getSelectedFile();
-		
-		if(sf == null) return;
-		
-		CVLModel m;
 		try{
-			m = Context.eINSTANCE.loadModelFromFile(sf);
-		}catch(UnsupportedOperationException e){
+			JFileChooser fc = Context.eINSTANCE.getFileChooser();
+			
+			int isCanceled = fc.showOpenDialog(c);
+			if(isCanceled == JFileChooser.CANCEL_OPTION)
+				return;
+			
+			File sf = fc.getSelectedFile();
+			if(sf == null) return;
+			
+			CVLModel m = Context.eINSTANCE.loadModelFromFile(sf);
+			Context.eINSTANCE.addCvlModel(m);
+			Context.eINSTANCE.addCvlView(new CVLView(m, c));
+		}catch(Exception e){
+			Context.eINSTANCE.logger.error("some error on Open", e);
 			JOptionPane.showMessageDialog(null, "Failed to load file due to: " + e.getMessage());
-			return;
 		}
-		Context.eINSTANCE.addCvlModel(m);
-		Context.eINSTANCE.addCvlView(new CVLView(m, c));
 	}
 
 }
