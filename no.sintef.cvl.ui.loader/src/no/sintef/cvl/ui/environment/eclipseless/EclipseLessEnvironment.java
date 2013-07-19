@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.context;
+package no.sintef.cvl.ui.environment.eclipseless;
 
 import java.io.File;
 import java.util.HashMap;
@@ -6,6 +6,8 @@ import java.util.HashMap;
 import javax.swing.JFileChooser;
 
 import no.sintef.cvl.common.logging.Logger;
+import no.sintef.cvl.ui.environment.AbstractEnvironment;
+import no.sintef.cvl.ui.environment.ConfigHelper;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.logging.impl.DefaultLogger;
 

@@ -1,9 +1,10 @@
-package no.sintef.cvl.ui.context;
+package no.sintef.cvl.ui.environment;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
+
 
 public abstract class AbstractConfigHelper implements ConfigHelper {
 	

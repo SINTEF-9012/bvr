@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.context;
+package no.sintef.cvl.ui.environment.eclipse;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,10 @@ import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.thirdparty.common.PluginLogger;
 import no.sintef.cvl.thirdparty.common.Utility;
 import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.RestrictedJFileChooser;
+import no.sintef.cvl.ui.environment.AbstractEnvironment;
+import no.sintef.cvl.ui.environment.ConfigHelper;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.primitive.Symbol;
 

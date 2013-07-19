@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.context;
+package no.sintef.cvl.ui.environment.eclipse;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +9,8 @@ import java.util.Properties;
 
 import no.sintef.cvl.thirdparty.common.Constants;
 import no.sintef.cvl.thirdparty.common.Utility;
+import no.sintef.cvl.ui.environment.AbstractConfigHelper;
+import no.sintef.cvl.ui.environment.ConfigHelper;
 
 public class EclipseConfigHelper extends AbstractConfigHelper {
 

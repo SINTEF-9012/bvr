@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.context;
+package no.sintef.cvl.ui.environment;
 
 import java.util.Properties;
 

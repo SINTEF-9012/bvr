@@ -1,6 +1,9 @@
 package no.sintef.cvl.ui.context;
 
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.environment.Environment;
+import no.sintef.cvl.ui.environment.eclipse.EclipseEnvironment;
+import no.sintef.cvl.ui.environment.eclipseless.EclipseLessEnvironment;
 
 import org.eclipse.ui.IWorkbenchWindow;
 

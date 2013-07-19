@@ -12,6 +12,7 @@ import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.environment.Environment;
 import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
