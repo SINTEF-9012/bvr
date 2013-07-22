@@ -19,6 +19,10 @@ public final class FactoryCreator {
 		return (workbanch == null) ? new EclipseLessEnvironment() : new EclipseEnvironment(workbanch);
 	}
 	
+	public Environment createEnvironment(){
+		return new EclipseLessEnvironment();
+	}
+	
 	public ViewChanageManager createViewChanageManager(){
 		return ViewChanageManager.getChangeManager();
 	}

@@ -33,7 +33,7 @@ public final class Context {
 
 	public static final Context eINSTANCE = getContext();
 	
-	private Environment environment = FactoryCreator.eINSTANCE.createEnvironment(null);
+	private Environment environment = FactoryCreator.eINSTANCE.createEnvironment();
 	private ViewChanageManager viewChnageManager = FactoryCreator.eINSTANCE.createViewChanageManager(); 
 	
 	private final List<CVLModel> cvlModels = new ArrayList<CVLModel>();
