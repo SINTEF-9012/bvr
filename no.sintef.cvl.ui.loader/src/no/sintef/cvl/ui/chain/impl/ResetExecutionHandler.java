@@ -24,7 +24,6 @@ public class ResetExecutionHandler implements ExecutionHandler {
 			throw new UnexpectedException("cvlView is required to reset model");
 		}
 		Context.eINSTANCE.reloadModel(cvlModel);
-		//cvlModel.reload();
 		cvlView.notifyAllViews();
 		
 		if(this.successor != null)

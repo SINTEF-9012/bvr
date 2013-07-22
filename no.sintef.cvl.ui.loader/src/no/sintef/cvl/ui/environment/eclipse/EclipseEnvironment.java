@@ -93,7 +93,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		filepath = (filepath.endsWith(File.separator)) ? filepath : filepath + File.separator;
 		filepath = filepath.replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
-			throw new UnsupportedOperationException("can not save file, incorrect loacation");
+			throw new UnsupportedOperationException("can not save product to a file, incorrect loacation");
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		final HashMap<ResourceSet, String> messages = new HashMap<ResourceSet, String>();

@@ -66,6 +66,8 @@ public class ExecuteResolutionEvent implements ActionListener {
 			DeriveProduct deriviator = new DeriveProduct(keywords);
 			deriviator.run();
 		} catch (Exception error) {
+			Context.eINSTANCE.reloadModel(m);
+			views.get(tab).notifyAllViews();
 			logger.error("some failure during execution", error);
 			JOptionPane.showMessageDialog(x, Messages.DIALOG_MSG_GENERAL_ERROR + error.getMessage());
 		}
