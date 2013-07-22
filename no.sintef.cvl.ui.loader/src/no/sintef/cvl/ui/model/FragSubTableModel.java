@@ -13,7 +13,6 @@ import no.sintef.cvl.ui.primitive.impl.DataVSpecItem;
 
 import org.eclipse.emf.common.util.EList;
 
-import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.VSpec;
 import cvl.VariationPoint;
@@ -28,7 +27,7 @@ public class FragSubTableModel extends AbstractTableModel
 	private String[] columnNames = {Constants.FRAG_SUB_VP_CLMN_NAME, Constants.FRAG_SUB_VSPEC_CLMN_NAME};
 	private ArrayList<ArrayList<DataItem>> data;
 	
-	public FragSubTableModel(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
+	public FragSubTableModel(EList<VariationPoint> varPoints, ArrayList<DataVSpecItem> vSpecMap){
 		data = new ArrayList<ArrayList<DataItem>>();
 		loadData(varPoints, vSpecMap);
 	}
@@ -37,7 +36,7 @@ public class FragSubTableModel extends AbstractTableModel
 		data = new ArrayList<ArrayList<DataItem>>();
 	}
 
-	private DataVSpecItem getVSpecItem(VSpec vSpec, ArrayList<DataItem> vSpecMap){
+	private DataVSpecItem getVSpecItem(VSpec vSpec, ArrayList<DataVSpecItem> vSpecMap){
 		for(DataItem item : vSpecMap){
 			if(item.getNamedElement().equals(vSpec)){
 				return (DataVSpecItem) item;
@@ -107,12 +106,12 @@ public class FragSubTableModel extends AbstractTableModel
 		return data;
 	}
 	
-	public void setData(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
+	public void setData(EList<VariationPoint> varPoints, ArrayList<DataVSpecItem> vSpecMap){
 		loadData(varPoints, vSpecMap);
 		this.fireTableDataChanged();
 	}
 	
-	private void loadData(EList<VariationPoint> varPoints, ArrayList<DataItem> vSpecMap){
+	private void loadData(EList<VariationPoint> varPoints, ArrayList<DataVSpecItem> vSpecMap){
 		data = new ArrayList<ArrayList<DataItem>>();
 		for(VariationPoint varPoint : varPoints){
 			if(varPoint instanceof FragmentSubstitution){

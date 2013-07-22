@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JComboBox;
@@ -16,7 +15,6 @@ import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.exception.UnexpectedException;
 import no.sintef.cvl.ui.model.BindingBoundariesComboBoxModel;
 import no.sintef.cvl.ui.primitive.DataItem;
-import no.sintef.cvl.ui.renderer.BindingBoundariesCellRenderer;
 import no.sintef.cvl.ui.renderer.BindingBoundariesComboBoxRenderer;
 
 public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor

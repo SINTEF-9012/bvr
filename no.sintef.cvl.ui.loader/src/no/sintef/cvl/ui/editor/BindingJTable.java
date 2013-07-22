@@ -10,8 +10,6 @@ import no.sintef.cvl.ui.command.event.BindingModelTableEvent;
 import no.sintef.cvl.ui.command.event.BindingRowSelectionEvent;
 import no.sintef.cvl.ui.dropdown.BoundariesDropDownCalculator;
 import no.sintef.cvl.ui.exception.AbstractError;
-import no.sintef.cvl.ui.exception.CVLModelException;
-import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
@@ -19,12 +17,10 @@ import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataBindingItem;
 import no.sintef.cvl.ui.primitive.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
-import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 import no.sintef.cvl.ui.renderer.BindingBindingCellRenderer;
 import no.sintef.cvl.ui.renderer.BindingBoundariesCellRenderer;
 import no.sintef.cvl.ui.subject.ConfigurableUnitSubject;
 import no.sintef.cvl.ui.subject.SelectedFragmentSubstitutionSubject;
-import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 
 public class BindingJTable extends JTable implements Observer {

@@ -11,25 +11,25 @@ import javax.swing.table.TableCellEditor;
 
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.model.FragSubVSpecComboboxModel;
-import no.sintef.cvl.ui.primitive.DataItem;
+import no.sintef.cvl.ui.primitive.impl.DataVSpecItem;
 import no.sintef.cvl.ui.renderer.FragSubVSpecComboboxRenderer;
 
 public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 		implements TableCellEditor {
 
 	private static final long serialVersionUID = 2993488539123070478L;
-	private JComboBox<DataItem> editor;
+	private JComboBox<DataVSpecItem> editor;
 	private FragSubVSpecComboboxModel model;
 		
-	public FragSubVSpecTableCellEditor(ArrayList<DataItem> vSpecMap) {
+	public FragSubVSpecTableCellEditor(ArrayList<DataVSpecItem> vSpecMap) {
 		model = new FragSubVSpecComboboxModel(vSpecMap);
-		editor = new JComboBox<DataItem>(model);
+		editor = new JComboBox<DataVSpecItem>(model);
 		editor.setRenderer(new FragSubVSpecComboboxRenderer());
 	}
 	
 	public FragSubVSpecTableCellEditor(){
 		model = new FragSubVSpecComboboxModel();
-		editor = new JComboBox<DataItem>(model);
+		editor = new JComboBox<DataVSpecItem>(model);
 		editor.setRenderer(new FragSubVSpecComboboxRenderer());
 	}
 
@@ -55,5 +55,10 @@ public class FragSubVSpecTableCellEditor extends AbstractCellEditor
 	
 	public FragSubVSpecComboboxModel getModel(){
 		return model;
+	}
+	
+	public void setData(ArrayList<DataVSpecItem> vSpecMap){
+		model = new FragSubVSpecComboboxModel(vSpecMap);
+		editor.setModel(model);
 	}
 }

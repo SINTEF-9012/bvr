@@ -6,25 +6,26 @@ import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 import no.sintef.cvl.ui.primitive.DataItem;
+import no.sintef.cvl.ui.primitive.impl.DataVSpecItem;
 
-public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> implements
-		ComboBoxModel<DataItem> {
+public class FragSubVSpecComboboxModel extends AbstractListModel<DataVSpecItem> implements
+		ComboBoxModel<DataVSpecItem> {
 
 	private static final long serialVersionUID = -4928670717941556052L;
 	
-	ArrayList<DataItem> data;
+	public ArrayList<DataVSpecItem> data;
 	DataItem selectedItem = null;
 	
-	public FragSubVSpecComboboxModel(ArrayList<DataItem> list){
+	public FragSubVSpecComboboxModel(ArrayList<DataVSpecItem> list){
 		data = list;
 	}
 	
 	public FragSubVSpecComboboxModel(){
-		data = new ArrayList<DataItem>();
+		data = new ArrayList<DataVSpecItem>();
 	}
 
 	@Override
-	public DataItem getElementAt(int index) {
+	public DataVSpecItem getElementAt(int index) {
 		return data.get(index);
 	}
 
@@ -35,15 +36,11 @@ public class FragSubVSpecComboboxModel extends AbstractListModel<DataItem> imple
 
 	@Override
 	public Object getSelectedItem() {
-		return this.selectedItem;
+		return selectedItem;
 	}
 
 	@Override
 	public void setSelectedItem(Object value) {
-		this.selectedItem = (DataItem) value;
-	}
-	
-	public void setData(ArrayList<DataItem> items){
-		data = items;
+		selectedItem = (DataItem) value;
 	}
 }

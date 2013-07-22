@@ -1,34 +1,19 @@
 package no.sintef.cvl.ui.command.event;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableCellEditor;
 
 import cvl.FragmentSubstitution;
 import cvl.NamedElement;
-import cvl.PlacementFragment;
-import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.context.Context;
-import no.sintef.cvl.ui.dropdown.BoundariesDropDownCalculator;
-import no.sintef.cvl.ui.editor.BindingBoundariesComboBoxTableCellEditor;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
-import no.sintef.cvl.ui.exception.AbstractError;
-import no.sintef.cvl.ui.exception.CVLModelException;
-import no.sintef.cvl.ui.exception.PlacementReplacementNullException;
-import no.sintef.cvl.ui.model.BindingTableModel;
 import no.sintef.cvl.ui.model.FragSubTableModel;
-import no.sintef.cvl.ui.model.SubFragTableModel;
 import no.sintef.cvl.ui.primitive.DataItem;
-import no.sintef.cvl.ui.primitive.impl.DataBoundaryItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
 

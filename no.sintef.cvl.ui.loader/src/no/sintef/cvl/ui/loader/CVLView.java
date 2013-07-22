@@ -415,6 +415,8 @@ public class CVLView {
         
         // Restore scroll coordinates
         vspecScrollPane.getViewport().setViewPosition(vpos);
+        
+        configurableUnitSubject.notifyObserver();
 	}
 
 	public ConfigurableUnit getCU() {

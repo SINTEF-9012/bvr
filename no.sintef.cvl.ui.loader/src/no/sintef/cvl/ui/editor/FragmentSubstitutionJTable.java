@@ -1,22 +1,17 @@
 package no.sintef.cvl.ui.editor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.TableCellEditor;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import cvl.ConfigurableUnit;
-import cvl.FragmentSubstitution;
 import cvl.VSpec;
+import cvl.Variable;
 
 import no.sintef.cvl.ui.command.event.FragSubTableEvent;
 import no.sintef.cvl.ui.command.event.FragSubTableRowSelectionEvent;
@@ -24,7 +19,6 @@ import no.sintef.cvl.ui.common.NullVSpec;
 import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
-import no.sintef.cvl.ui.primitive.DataItem;
 import no.sintef.cvl.ui.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.ui.primitive.impl.DataVSpecItem;
 import no.sintef.cvl.ui.renderer.FragSubTableCellRenderer;
@@ -61,20 +55,22 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 			ConfigurableUnit cu = ((ConfigurableUnitSubject) subject).getConfigurableUnit();
 			EList<VSpec> vSpecs = getAllVSpec(cu.getOwnedVSpec(), new BasicEList<VSpec>());
 			
-			ArrayList<DataItem> vSpecMap = new ArrayList<DataItem>();
+			ArrayList<DataVSpecItem> vSpecMap = new ArrayList<DataVSpecItem>();
 			
 			NullVSpec nullVSpec = new NullVSpec();
 			DataVSpecItem nullDataVSpecItem = new DataVSpecItem(new JLabel(nullVSpec.getName()), nullVSpec);
 			vSpecMap.add(nullDataVSpecItem);
 			
 			for(VSpec spec : vSpecs){
-				DataVSpecItem map = new DataVSpecItem(new JLabel(spec.getName()), spec);
-				vSpecMap.add(map);
+				if(!(spec instanceof Variable)){
+					DataVSpecItem map = new DataVSpecItem(new JLabel(spec.getName()), spec);
+					vSpecMap.add(map);
+				}
 			}
 			
 			tableModel.setData(cu.getOwnedVariationPoint(), vSpecMap);
 			FragSubVSpecTableCellEditor editor = (FragSubVSpecTableCellEditor) getDefaultEditor(DataVSpecItem.class);
-			editor.getModel().setData(vSpecMap);
+			editor.setData(vSpecMap);
 		}
 		if(subject instanceof SelectedFragmentSubstitutionSubject){
 			if(((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution() == null){

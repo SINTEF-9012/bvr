@@ -39,7 +39,7 @@ public final class Context {
 	private final List<CVLModel> cvlModels = new ArrayList<CVLModel>();
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
-	private static final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
+	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
 	public Logger logger = environment.getLogger();
 	
