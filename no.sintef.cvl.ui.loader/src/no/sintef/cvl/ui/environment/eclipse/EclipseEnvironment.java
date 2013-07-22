@@ -70,7 +70,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	public void writeModelToFile(CVLModel model, File file) {
 		String filepath = file.getAbsolutePath().replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
-			throw new UnsupportedOperationException("can not save file, incorrect loacation");
+			throw new UnsupportedOperationException("can not a VM model to the file, incorrect loacation: use workspace location");
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		try {
@@ -93,7 +93,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		filepath = (filepath.endsWith(File.separator)) ? filepath : filepath + File.separator;
 		filepath = filepath.replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
-			throw new UnsupportedOperationException("can not save product to a file, incorrect loacation");
+			throw new UnsupportedOperationException("can not save a product to the file, incorrect loacation: use workspace location");
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		final HashMap<ResourceSet, String> messages = new HashMap<ResourceSet, String>();
