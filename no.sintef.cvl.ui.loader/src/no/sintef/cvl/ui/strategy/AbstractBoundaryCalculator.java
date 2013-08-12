@@ -9,7 +9,6 @@ import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.context.Context;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -130,9 +129,7 @@ public class AbstractBoundaryCalculator {
 		}else{
 			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
 			toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-			BasicEList<EObject> list = new BasicEList<EObject>();
-			list.add(targetEObject);
-			toReplacement.setName(createBoundaryName(sourceEObject, list, property, true));
+			toReplacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
 		}
 		return toReplacement;
 	}	
@@ -156,9 +153,7 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
 		fromPlacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
-		BasicEList<EObject> list = new BasicEList<EObject>();
-		list.add(targetEObject);
-		fromPlacement.setName(createBoundaryName(sourceEObject, list, reference, true));
+		fromPlacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
 		placement.getPlacementBoundaryElement().add(fromPlacement);
 		return fromPlacement;
 	}
@@ -169,9 +164,7 @@ public class AbstractBoundaryCalculator {
 		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
 		toReplacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-		BasicEList<EObject> list = new BasicEList<EObject>();
-		list.add(targetEObject);
-		toReplacement.setName(createBoundaryName(sourceEObject, list, property, true));
+		toReplacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
 		replacement.getReplacementBoundaryElement().add(toReplacement);
 		return toReplacement;
 	}
@@ -204,7 +197,6 @@ public class AbstractBoundaryCalculator {
 		if(showTargets){
 			boundaryName = boundaryName + "[" + targetEObjects.size() + "]=" + getReferencedNameSet(targetEObjects);
 		}
-		
 		return boundaryName;
 	}
 	
