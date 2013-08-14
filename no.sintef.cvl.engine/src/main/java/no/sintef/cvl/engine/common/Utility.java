@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
+import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
+import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -16,10 +19,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.google.common.collect.Sets;
+import com.google.common.collect.Sets.SetView;
+
 import cvl.CvlFactory;
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
+import cvl.PlacementFragment;
+import cvl.ReplacementFragmentType;
 import cvl.ToReplacement;
 
 public class Utility {
@@ -66,7 +74,7 @@ public class Utility {
 		return objectHandles;
 	}
 	
-	private static ObjectHandle getObjectHandle(EObject eObject, EList<ObjectHandle> objectHandles){
+	public static ObjectHandle getObjectHandle(EObject eObject, EList<ObjectHandle> objectHandles){
 		for(ObjectHandle oh : objectHandles){
 			EObject eObjectBuf = oh.getMOFRef();
 			if((eObjectBuf == null && eObjectBuf == eObject) || (eObjectBuf !=null && eObjectBuf.equals(eObject))){
@@ -130,16 +138,73 @@ public class Utility {
 		return set;
 	}
 	
-	public static void writeToFile(Resource resource, String name) throws IOException{
-		resource.setURI(URI.createFileURI(name));
-		resource.save(Collections.EMPTY_MAP);
-	}
-	
 	public static void setProperty(EList<EObject> original, EList<EObject> toRemove, EList<EObject> toAdd){
 		for(EObject eObject : toRemove){
 			original.remove(eObject);
 		}
 		original.addAll(toAdd);
+	}
+	
+	public static EList<HashMap> caluclateReplacementPlacementIntersections(EList<FragmentSubstitution> fragSubs){
+		HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> mapReplcmPlacm = new HashMap<ReplacementFragmentType, HashSet<PlacementFragment>>();
+		HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> mapPlcmReplcm = new HashMap<PlacementFragment, HashSet<ReplacementFragmentType>>();
+		HashSet<ReplacementFragmentType> replacements = new HashSet<ReplacementFragmentType>();
+		HashSet<PlacementFragment> placements = new HashSet<PlacementFragment>();
+		for(FragmentSubstitution fs : fragSubs){
+			placements.add(fs.getPlacement());
+			replacements.add(fs.getReplacement());
+		}
+		for(ReplacementFragmentType replacement : replacements){
+			for(PlacementFragment placement : placements){
+				if(testPlacementIntersection(replacement, placement) == CNTND){
+					HashSet<PlacementFragment> plcmntList = mapReplcmPlacm.get(replacement);
+					if(plcmntList == null){
+						plcmntList = new HashSet<PlacementFragment>();
+						plcmntList.add(placement);
+						mapReplcmPlacm.put(replacement, plcmntList);
+					}else{
+						plcmntList.add(placement);
+					}
+					
+					HashSet<ReplacementFragmentType> replcmList = mapPlcmReplcm.get(placement);
+					if(replcmList == null){
+						replcmList = new HashSet<ReplacementFragmentType>();
+						replcmList.add(replacement);
+						mapPlcmReplcm.put(placement, replcmList);
+					}else{
+						replcmList.add(replacement);
+					}
+				}
+			}
+		}
+		EList<HashMap> maps = new BasicEList<HashMap>();
+		maps.add(mapReplcmPlacm);
+		maps.add(mapPlcmReplcm);
+		return maps;
+	}
+	
+	static final int NOT_CNTND = 0; //a placement is not contained in the replacement
+	static final int CNTND = 1; // a placement is contained in the replacement
+	static final int P_CNTND = 2; // a placement is not fully contained in the replacement
+	public static int testPlacementIntersection(ReplacementFragmentType replcnt, PlacementFragment plcnt){
+		ReplacementElementHolder replcntHolder;
+		PlacementElementHolder plcntHolder;
+		try {
+			replcntHolder = new ReplacementElementHolder(replcnt);
+			plcntHolder = new PlacementElementHolder(plcnt);
+		} catch (BasicCVLEngineException e) {
+			return NOT_CNTND;
+		}
+		HashSet<EObject> plcntElements = plcntHolder.getElements();
+		HashSet<EObject> replntElements = replcntHolder.getElements();
+		SetView<EObject> difference = Sets.difference(plcntElements, replntElements);
+		if(difference.isEmpty()){
+			return CNTND;
+		}
+		difference = Sets.difference(plcntElements, difference);
+		if(!difference.isEmpty())
+			return P_CNTND;
+		return NOT_CNTND;
 	}
 	
 	//DEPRICATED

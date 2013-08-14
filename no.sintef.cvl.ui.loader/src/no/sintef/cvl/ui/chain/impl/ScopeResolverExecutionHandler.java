@@ -6,6 +6,7 @@ import no.sintef.cvl.ui.exception.UnexpectedException;
 import no.sintef.cvl.ui.primitive.ExecutionRequest;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.ScopeResolverStrategy;
+import no.sintef.cvl.ui.strategy.impl.DefaultScopeResolverStrategy;
 import no.sintef.cvl.ui.strategy.impl.SimpleScopeResolverStrategy;
 
 public class ScopeResolverExecutionHandler implements ExecutionHandler {
@@ -15,7 +16,8 @@ public class ScopeResolverExecutionHandler implements ExecutionHandler {
 
 	public ScopeResolverExecutionHandler(ExecutionHandler successor){
 		this.successor = successor;
-		this.defaultStrategy = new SimpleScopeResolverStrategy();
+		//this.defaultStrategy = new SimpleScopeResolverStrategy();
+		this.defaultStrategy = new DefaultScopeResolverStrategy();
 	}
 
 	@Override

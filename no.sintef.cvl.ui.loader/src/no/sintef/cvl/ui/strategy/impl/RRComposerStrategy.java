@@ -2,18 +2,10 @@ package no.sintef.cvl.ui.strategy.impl;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
-import cvl.BoundaryElementBinding;
 import cvl.ChoiceResolutuion;
 import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
-import cvl.FromBinding;
-import cvl.FromReplacement;
-import cvl.ToBinding;
-import cvl.ToPlacement;
-import cvl.ToReplacement;
 import cvl.VInstance;
 import cvl.VSpecResolution;
 import cvl.VariationPoint;
@@ -40,7 +32,7 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 		VSpecResolutionSymbolTable table = new VSpecResolutionSymbolTable(vSpecResolution);
 		table.setConfigurableUnit(cu);
 		VSpecResolutionSymbol symbol = new VSpecResolutionSymbol(vSpecResolution);
-		this.parse(symbol, table);
+		parse(symbol, table);
 		return table;
 	}
 
@@ -73,7 +65,7 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 		for(VSpecResolution child : children){
 			VSpecResolutionSymbol childSymbol = new VSpecResolutionSymbol(child);
 			childSymbol.setParent(symbol);
-			boolean isDecision = this.parse(childSymbol, table);
+			boolean isDecision = parse(childSymbol, table);
 			if(isDecision)
 				symbol.addChild(childSymbol);
 		}
