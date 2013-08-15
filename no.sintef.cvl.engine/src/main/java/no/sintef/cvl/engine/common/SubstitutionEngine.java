@@ -1,7 +1,6 @@
 package no.sintef.cvl.engine.common;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.adjacent.AdjacentFinder;
@@ -11,21 +10,15 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
-import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import cvl.CvlFactory;
 import cvl.FragmentSubstitution;
 import cvl.ObjectHandle;
-import cvl.PlacementFragment;
-import cvl.ReplacementFragmentType;
 
 public final class SubstitutionEngine {
 
@@ -71,7 +64,7 @@ public final class SubstitutionEngine {
 			subsOperation.execute(replace);
 			adjResolver.resolve(frgamentHolder);
 		} catch (BasicCVLEngineException e) {
-			e.printStackTrace();
+			context.getLogger().error("", e);
 			throw new UnsupportedOperationException(e.getMessage());
 		}
 		subsOperation.checkConsistence();
@@ -102,28 +95,5 @@ public final class SubstitutionEngine {
 			copyMap.put(resource, copier);
 		}
 		context.setCopyBaseModelMap(copyMap);
-	}
-	
-	public FragmentSubstitution testFragmentSubstitution(FragmentSubstitution fragmentToCopy,  EList<FragmentSubstitution> testedFragments){
-		//fragment = CvlFactory.eINSTANCE.createFragmentSubstitution();
-		FragmentSubstitution fragment = EcoreUtil.copy(fragmentToCopy);
-		ReplacementElementHolder replacementHolder = null;
-		try {
-			replacementHolder = new ReplacementElementHolder(fragmentToCopy.getReplacement());
-		} catch (BasicCVLEngineException e) {
-			throw new UnsupportedOperationException(e);
-		}
-		HashSet<PlacementElementHolder> placementHolders = new HashSet<PlacementElementHolder>();
-		for(FragmentSubstitution fragSub : testedFragments){
-			try {
-				placementHolders.add(new PlacementElementHolder(fragSub.getPlacement()));
-			} catch (BasicCVLEngineException e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-		CVLFragmentCopier rplCopier = new CVLFragmentCopier();
-		HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
-		rplCopier.copyFragment(replacementInnerElements);
-		return fragment;
 	}
 }

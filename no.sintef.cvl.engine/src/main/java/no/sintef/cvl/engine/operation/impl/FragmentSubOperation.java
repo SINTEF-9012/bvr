@@ -188,10 +188,6 @@ public class FragmentSubOperation implements Substitution {
 						if(outsideBEPlac.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
 						}
-						Object propertyValueInsBERepl = insideBERepl.eGet(property);
-						if(propertyValueInsBERepl != null && !replace){
-							throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
-						}
 						if(outsideBEReplCurrent.size() > 1){
 							throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
 						}
