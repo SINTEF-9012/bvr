@@ -13,7 +13,7 @@ import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.RealizationStrategy;
 
-public class SimpleRealizationStrategy implements RealizationStrategy {
+public class RealizationStrategyScopeless implements RealizationStrategy {
 	
 
 	@Override

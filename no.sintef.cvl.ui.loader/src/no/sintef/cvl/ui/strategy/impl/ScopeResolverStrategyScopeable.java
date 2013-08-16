@@ -36,7 +36,7 @@ import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.ScopeResolverStrategy;
 
-public class DefaultScopeResolverStrategy implements ScopeResolverStrategy {
+public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	
 	private HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>> replcmntSymbolMap;
 	private HashMap<ReplacementFragmentType, CVLFragmentCopier> replacementCopyMap;

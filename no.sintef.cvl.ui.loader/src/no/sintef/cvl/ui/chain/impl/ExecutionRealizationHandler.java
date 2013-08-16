@@ -6,8 +6,8 @@ import no.sintef.cvl.ui.exception.UnexpectedException;
 import no.sintef.cvl.ui.primitive.ExecutionRequest;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.RealizationStrategy;
-import no.sintef.cvl.ui.strategy.impl.DefaultRealizationStrategy;
-import no.sintef.cvl.ui.strategy.impl.SimpleRealizationStrategy;
+import no.sintef.cvl.ui.strategy.impl.RealizationStrategyDefault;
+import no.sintef.cvl.ui.strategy.impl.RealizationStrategyScopeless;
 
 public class ExecutionRealizationHandler implements ExecutionHandler {
 	
@@ -16,8 +16,8 @@ public class ExecutionRealizationHandler implements ExecutionHandler {
 
 	public ExecutionRealizationHandler(ExecutionHandler successor){
 		this.successor = successor;
-		//this.defaultStrategy = new SimpleRealizationStrategy();
-		this.defaultStrategy = new DefaultRealizationStrategy();
+		//this.defaultStrategy = new RealizationStrategyScopeless();
+		this.defaultStrategy = new RealizationStrategyDefault();
 	}
 	
 	public ExecutionRealizationHandler(ExecutionHandler successor, RealizationStrategy strategy){

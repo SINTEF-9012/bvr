@@ -14,20 +14,16 @@ import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.RealizationStrategy;
 
-public class DefaultRealizationStrategy implements RealizationStrategy {
+public class RealizationStrategyBottomUp implements RealizationStrategy {
 	
 
 	@Override
 	public void deriveProduct(SymbolTable table) {
 		EList<FragmentSubstitution> frgamentSusbstitutions = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
-		System.out.println("DefaultRealizationStrategy");
-		System.out.println(frgamentSusbstitutions);
 		EList<Symbol> symbols = collectSymbols(table, new BasicEList<Symbol>());
-		System.out.println(symbols);
 		for(Symbol symbol : symbols){
 			frgamentSusbstitutions.addAll(symbol.getFragmentSubstitutions());
 		}
-		
 		Context.eINSTANCE.initSubEngine(frgamentSusbstitutions);
 		Context.eINSTANCE.performSubstitutions(symbols);
 	}
