@@ -116,7 +116,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		for(Map.Entry<FromPlacement, HashSet<EObject>> entry : fromPlacementInsBoundaryMap.entrySet()){
 			FromPlacement fromPlacement = entry.getKey();
 			HashSet<EObject> setEObjects = entry.getValue();
-			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getObjectHandlesByEObjects(fragment, new BasicEList<EObject>(setEObjects)));
+			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getPlacementObjectHandlesByEObjects(fragment.getPlacement(), new BasicEList<EObject>(setEObjects)));
 			fromPlacementOHInsideBoundaryMap.put(fromPlacement, setObjectHandles);
 		}
 		return fromPlacementOHInsideBoundaryMap;
@@ -127,7 +127,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		for(Map.Entry<ToPlacement, HashSet<EObject>> entry : toPlacementOutBoundaryMap.entrySet()){
 			ToPlacement toPlacement = entry.getKey();
 			HashSet<EObject> setEObjects = entry.getValue();
-			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getObjectHandlesByEObjects(fragment, new BasicEList<EObject>(setEObjects)));
+			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getPlacementObjectHandlesByEObjects(fragment.getPlacement(), new BasicEList<EObject>(setEObjects)));
 			toPlacementOHOutsideBoundaryMap.put(toPlacement, setObjectHandles);
 		}		
 		return toPlacementOHOutsideBoundaryMap;

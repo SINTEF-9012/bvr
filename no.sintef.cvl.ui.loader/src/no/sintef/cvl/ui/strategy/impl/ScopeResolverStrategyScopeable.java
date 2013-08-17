@@ -51,6 +51,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fssToResolve);
 		replcmntPlcmntMap = maps.get(0);
 		plcmntReplcmntMap = maps.get(1);
+		System.out.println(replcmntPlcmntMap);
+		System.out.println(plcmntReplcmntMap);
 		symbolTableResolver(table);
 	}
 	
@@ -298,7 +300,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						throw new UnsupportedOperationException("can not fined copied object handle");
 					newToPlacement.getInsideBoundaryElement().add(insideBoundaryNew);
 				}
-
+				newPlacement.getPlacementBoundaryElement().add(newToPlacement);
+				
 				boundaryMap.put(toPlacement, newToPlacement);
 			}
 			if(boundary instanceof FromPlacement){
@@ -318,6 +321,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						throw new UnsupportedOperationException("can not fined copied object handle");
 					newFromPlacement.getOutsideBoundaryElement().add(outsideBoundaryNew);
 				}
+				newPlacement.getPlacementBoundaryElement().add(newFromPlacement);
 				
 				boundaryMap.put(fromPlacement, newFromPlacement);
 			}

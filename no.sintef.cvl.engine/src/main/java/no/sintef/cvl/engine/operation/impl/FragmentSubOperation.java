@@ -48,6 +48,10 @@ public class FragmentSubOperation implements Substitution {
 	
 	@Override
 	public void execute(boolean replace) throws BasicCVLEngineException {
+		replacement.update();
+		System.out.println(fragSubHolder.getFragment());
+		System.out.println(replacement.getReplacementFragment());
+		System.out.println(replacement.getElements());
 		copyReplacementElements();
 		bindBounderies(replace);
 	}
@@ -127,7 +131,7 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						//update insideBoundaryElements of the reference
-						this.updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
+						updateToPlacementInsideBoundaryElement(toPlacement, propertyValueNew);
 					}
 					
 					if(!isChangeable){
@@ -348,21 +352,21 @@ public class FragmentSubOperation implements Substitution {
 		
 	private void updateToPlacementInsideBoundaryElements(ToPlacement toPlacement, EList<EObject> insideBoundaryElements) throws UnexpectedOperationFailure{
 		toPlacement.getInsideBoundaryElement().clear();
-		toPlacement.getInsideBoundaryElement().addAll(Utility.getObjectHandlesByEObjects(fragSubHolder.getFragment(), insideBoundaryElements));
+		toPlacement.getInsideBoundaryElement().addAll(Utility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements));
 	}
 	
 	private void updateToPlacementInsideBoundaryElement(ToPlacement toPlacement, EObject insideBoundaryElement) throws UnexpectedOperationFailure{
 		toPlacement.getInsideBoundaryElement().clear();
 		EList<EObject> insideBoundaryElements = new BasicEList<EObject>();
 		insideBoundaryElements.add(insideBoundaryElement);
-		EList<ObjectHandle> objectHandles = Utility.getObjectHandlesByEObjects(fragSubHolder.getFragment(), insideBoundaryElements);
+		EList<ObjectHandle> objectHandles = Utility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements);
 		toPlacement.getInsideBoundaryElement().add(objectHandles.get(0));
 	}
 		
 	private ObjectHandle getInsideBoundaryElementObjectHandleFromPlacement(FromPlacement fromPlacement, EObject insideBoundaryElement) throws UnexpectedOperationFailure{
 		EList<EObject> insideBoundaryElements = new BasicEList<EObject>();
 		insideBoundaryElements.add(insideBoundaryElement);
-		EList<ObjectHandle> objectHandles = Utility.getObjectHandlesByEObjects(fragSubHolder.getFragment(), insideBoundaryElements);
+		EList<ObjectHandle> objectHandles = Utility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements);
 		return objectHandles.get(0);
 	}
 	

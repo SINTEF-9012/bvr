@@ -59,21 +59,36 @@ public class Utility {
 		return resolvedProxy;
 	}
 	
-	public static EList<ObjectHandle> getObjectHandlesByEObjects(FragmentSubstitution fragSub, EList<EObject> eObjectList) {
+	public static EList<ObjectHandle> getPlacementObjectHandlesByEObjects(PlacementFragment placement, EList<EObject> eObjectList) {
 		EList<ObjectHandle> objectHandles = new BasicEList<ObjectHandle>();
-		EList<ObjectHandle> objectHandlesAll = fragSub.getSourceObject();
+		EList<ObjectHandle> objectHandlesAll = placement.getSourceObject();
 		for(EObject eObject : eObjectList){
 			ObjectHandle oh = getObjectHandle(eObject, objectHandlesAll);
 			if(oh == null){
 				oh = factory.createObjectHandle();
 				oh.setMOFRef(eObject);
-				fragSub.getSourceObject().add(oh);
+				placement.getSourceObject().add(oh);
 			}
 			objectHandles.add(oh);
 		}
 		return objectHandles;
 	}
 	
+	public static EList<ObjectHandle> getReplacementObjectHandlesByEObjects(ReplacementFragmentType replacement, EList<EObject> eObjectList) {
+		EList<ObjectHandle> objectHandles = new BasicEList<ObjectHandle>();
+		EList<ObjectHandle> objectHandlesAll = replacement.getSourceObject();
+		for(EObject eObject : eObjectList){
+			ObjectHandle oh = getObjectHandle(eObject, objectHandlesAll);
+			if(oh == null){
+				oh = factory.createObjectHandle();
+				oh.setMOFRef(eObject);
+				replacement.getSourceObject().add(oh);
+			}
+			objectHandles.add(oh);
+		}
+		return objectHandles;
+	}
+		
 	public static ObjectHandle getObjectHandle(EObject eObject, EList<ObjectHandle> objectHandles){
 		for(ObjectHandle oh : objectHandles){
 			EObject eObjectBuf = oh.getMOFRef();

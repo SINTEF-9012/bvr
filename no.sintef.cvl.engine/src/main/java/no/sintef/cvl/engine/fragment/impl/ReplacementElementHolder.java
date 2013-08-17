@@ -28,6 +28,10 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		replacement = rft;
 		this.locate();
 	}
+	
+	public void update() throws BasicCVLEngineException{
+		this.locate();
+	}
 
 	@Override
 	protected void locate() throws BasicCVLEngineException{

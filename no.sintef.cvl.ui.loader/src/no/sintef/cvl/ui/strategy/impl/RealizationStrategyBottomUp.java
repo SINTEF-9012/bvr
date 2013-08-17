@@ -20,12 +20,8 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 	@Override
 	public void deriveProduct(SymbolTable table) {
 		EList<FragmentSubstitution> frgamentSusbstitutions = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
-		EList<Symbol> symbols = collectSymbols(table, new BasicEList<Symbol>());
-		for(Symbol symbol : symbols){
-			frgamentSusbstitutions.addAll(symbol.getFragmentSubstitutions());
-		}
 		Context.eINSTANCE.initSubEngine(frgamentSusbstitutions);
-		Context.eINSTANCE.performSubstitutions(symbols);
+		resolve(table);
 	}
 	
 	private HashSet<FragmentSubstitution> getFragmentSubstitutionsToResolve(SymbolTable table){
@@ -41,11 +37,13 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 		return fss;
 	}
 	
-	private EList<Symbol> collectSymbols(SymbolTable table, EList<Symbol> result){
-		result.addAll(table.getSymbols());
-		for(SymbolTable sTable : table.getChildren()){
-			result = collectSymbols(sTable, result);
+	private void resolve(SymbolTable table){
+		ArrayList<SymbolTable> children = table.getChildren();
+		for(SymbolTable child : children){
+			resolve(child);
 		}
-		return result;
+		System.out.println("resolve before");
+		Context.eINSTANCE.performSubstitutions(table.getSymbols());
+		System.out.println("resolve after");
 	}
 }

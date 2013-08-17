@@ -47,12 +47,14 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	private ThirdpartyEditorSelector editorselector;
 	private Logger logger = PluginLogger.getLogger();
 	private ConfigHelper configHelper = EclipseConfigHelper.getConfig();
+	EList<TransactionalEditingDomain> editingDomains;
 	
 
 	public EclipseEnvironment(IWorkbenchWindow workbench) {
 		iworkbench = workbench;
 		ThirdpartyEditorSelector.setWorkbeach(iworkbench);
 		editorselector = ThirdpartyEditorSelector.getEditorSelector();
+		editingDomains = new BasicEList<TransactionalEditingDomain>();
 	}
 
 	@Override
@@ -172,7 +174,6 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	
 	@Override
 	public void performSubstitutions(List<Symbol> symbols) {
-		EList<TransactionalEditingDomain> editingDomains = new BasicEList<TransactionalEditingDomain>();
 		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
 		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
 		for(final Symbol symbol : symbols){
@@ -208,10 +209,10 @@ public class EclipseEnvironment extends AbstractEnvironment {
 							Context.eINSTANCE.getSubEngine().subsitute(fragment, !symbol.getMulti());
 						} catch (ContainmentCVLModelException e) {
 							logger.error("cvl model failure", e);
-							messagesFS.put(fragment, e.getMessage());
-						} catch (UnsupportedOperationException e){
+							messagesFS.put(fragment, "cvl model failure:" + e.getMessage());
+						} catch (Exception e){
 							logger.error("some exception", e);
-							messagesFS.put(fragment, e.getMessage());
+							messagesFS.put(fragment, "some exception: " + e.getMessage());
 						}
 					}
 				});
@@ -228,7 +229,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			for(Map.Entry<FragmentSubstitution, String> message : messagesFS.entrySet()){
 				FragmentSubstitution fs = message.getKey();
 				String msg = message.getValue();
-				throwMessage += "VP problem " + fs + " : " + msg + "\n";
+				throwMessage += "Execution exception for FS " + fs.getName() + " : " + msg + "\n";
 			}
 			throw new UnsupportedOperationException(throwMessage);
 		}
