@@ -49,9 +49,6 @@ public class FragmentSubOperation implements Substitution {
 	@Override
 	public void execute(boolean replace) throws BasicCVLEngineException {
 		replacement.update();
-		System.out.println(fragSubHolder.getFragment());
-		System.out.println(replacement.getReplacementFragment());
-		System.out.println(replacement.getElements());
 		copyReplacementElements();
 		bindBounderies(replace);
 	}

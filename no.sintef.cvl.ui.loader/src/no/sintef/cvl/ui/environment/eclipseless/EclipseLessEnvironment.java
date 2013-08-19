@@ -1,6 +1,7 @@
 package no.sintef.cvl.ui.environment.eclipseless;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JFileChooser;
@@ -23,6 +24,17 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	public CVLModel loadModelFromFile(File file) {
 		no.sintef.ict.splcatool.CVLModel cvlm = new no.sintef.ict.splcatool.CVLModel(file);
 		return new CVLModel(file, cvlm);
+	}
+	
+	@Override
+	public void writeModelToFile(CVLModel model, File file) {
+		try {
+			model.getCVLM().writeToFile(file.getAbsolutePath());
+			configHelper.saveLastLocation(file.getAbsolutePath());
+		} catch (IOException e) {
+			logger.error("can not save file, IOException", e);
+			throw new UnsupportedOperationException("can not save file, IOException " + e.getMessage());
+		}
 	}
 
 	@Override

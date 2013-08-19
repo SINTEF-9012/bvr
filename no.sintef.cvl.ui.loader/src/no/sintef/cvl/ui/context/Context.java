@@ -49,10 +49,6 @@ public final class Context {
 	public HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> replcmntPlcmntMap;
 	public HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
 	
-	//remove this shit
-	public CVLModel cvlmodel;
-	//end of the shit
-	
 	private static Context getContext(){
 		return new Context();
 	}

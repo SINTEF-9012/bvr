@@ -62,10 +62,6 @@ public class ExecuteResolutionEvent implements ActionListener {
 		keywords.put("cvlModel", m);
 		keywords.put("cvlView", views.get(tab));
 		
-		//this should be removed
-		Context.eINSTANCE.cvlmodel = m;
-		//end of the remove
-		
 		try {
 			DeriveProduct deriviator = new DeriveProduct(keywords);
 			deriviator.run();

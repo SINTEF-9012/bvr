@@ -59,13 +59,32 @@ public final class SubstitutionEngine {
 	}
 	
 	public void init(EList<FragmentSubstitution> fragmentSubstitutions){
+		System.out.println("initialazation !!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		adjacentToBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>>>();
 		adjacentFromBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>>();
 		fsMap = new HashMap<FragmentSubstitution, FragmentSubstitutionHolder>();
 		try{
+			
 			for(FragmentSubstitution fragment : fragmentSubstitutions){
 				fsMap.put(fragment, new FragmentSubstitutionHolder(fragment));
+				
+				System.out.println(fragment);
+				PlacementFragment placement = fragment.getPlacement();
+				for(PlacementBoundaryElement boundary : placement.getPlacementBoundaryElement()){
+					if(boundary instanceof ToPlacement){
+						System.out.println(boundary);
+						System.out.println(Utility.resolveProxies(((ToPlacement) boundary).getOutsideBoundaryElement()));
+						System.out.println(Utility.resolveProxies(((ToPlacement) boundary).getInsideBoundaryElement()));
+					}
+					if(boundary instanceof FromPlacement){
+						System.out.println(boundary);
+						System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getOutsideBoundaryElement()));
+						System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getInsideBoundaryElement()));
+					}
+				}
+				
 			}
+			
 			computeCopyBaseModel();
 			adjFinder = new AdjacentFinderImpl(new BasicEList<FragmentSubstitutionHolder>(fsMap.values()));
 			adjResolver = new AdjacentResolverImpl(adjFinder);
@@ -76,6 +95,7 @@ public final class SubstitutionEngine {
 		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fragmentSubstitutions);
 		replcmntPlcmntMap = maps.get(0);
 		plcmntReplcmntMap = maps.get(1);
+		System.out.println("===========================================================");
 		System.out.println(replcmntPlcmntMap);
 		System.out.println(plcmntReplcmntMap);
 		findAdjacentBoundaries();
@@ -89,9 +109,47 @@ public final class SubstitutionEngine {
 		}
 		FragmentSubOperation subsOperation = new FragmentSubOperation(fragmentHolder);
 		try {
+			System.out.println("Substitution " + fragmentHolder.getFragment());
+			
 			subsOperation.execute(replace);
 			adjResolver.resolve(fragmentHolder);
+			/*System.out.println("@@@@@@@@@@@@@@before adjustBoundaries");
+			PlacementFragment placement = fragmentHolder.getFragment().getPlacement();
+			for(PlacementBoundaryElement boundary : placement.getPlacementBoundaryElement()){
+				if(boundary instanceof ToPlacement){
+					System.out.println(boundary);
+					System.out.println(Utility.resolveProxies(((ToPlacement) boundary).getOutsideBoundaryElement()));
+					System.out.println(Utility.resolveProxies(((ToPlacement) boundary).getInsideBoundaryElement()));
+				}
+				if(boundary instanceof FromPlacement){
+					System.out.println(boundary);
+					System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getOutsideBoundaryElement()));
+					System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getInsideBoundaryElement()));
+				}
+			}*/
+			
 			adjustBoundaries(fragmentHolder);
+			
+			/*System.out.println("##############after adjustBoundaries");
+			placement = fragmentHolder.getFragment().getPlacement();
+			for(PlacementBoundaryElement boundary : placement.getPlacementBoundaryElement()){
+				if(boundary instanceof ToPlacement){
+					System.out.println(boundary);
+					System.out.println(Utility.resolveProxies(((ToPlacement) boundary).getOutsideBoundaryElement()));
+					System.out.println(Utility.resolveProxies(((ToPlacement) boundary).getInsideBoundaryElement()));
+				}
+				if(boundary instanceof FromPlacement){
+					System.out.println(boundary);
+					System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getOutsideBoundaryElement()));
+					System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getInsideBoundaryElement()));
+				}
+			}*/
+			
+			System.out.println("Elements ...");
+			System.out.println(fragmentHolder.getPlacement().getElements());
+			System.out.println(fragmentHolder.getPlacement().getElements().size());
+			System.out.println(fragmentHolder.getReplacement().getElements());
+			System.out.println(fragmentHolder.getReplacement().getElements().size());
 		} catch (BasicCVLEngineException e) {
 			context.getLogger().error("", e);
 			throw new UnsupportedOperationException(e.getMessage());
@@ -127,18 +185,23 @@ public final class SubstitutionEngine {
 	}
 	
 	private void adjustBoundaries(FragmentSubstitutionHolder fragmentHolder){
+		System.out.println("11111111111111111111111111111111 call of adjustBoundaries");
 		PlacementFragment placement = fragmentHolder.getPlacement().getPlacementFragment();
 		
 		HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> replacementToBoundary = adjacentToBoundaries.get(placement);
 		if(replacementToBoundary != null){
 			for(Map.Entry<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> entry : replacementToBoundary.entrySet()){
+				System.out.println(entry.getKey());
 				HashMap<ToPlacement, HashSet<ToReplacement>> boundarysMap = entry.getValue();
 				for(Map.Entry<ToPlacement, HashSet<ToReplacement>> boundaryMap : boundarysMap.entrySet()){
 					ToPlacement toPlacement = boundaryMap.getKey();
 					HashSet<ToReplacement> toReplacements = boundaryMap.getValue();
 					for(ToReplacement toReplacement : toReplacements){
 						EList<EObject> invalidEObjects = findInvalidObjects(toReplacement);
+						System.out.println("outsideBoundaryElement " + Utility.resolveProxies(toReplacement.getOutsideBoundaryElement()));
+						System.out.println("before removeInvalidReferences insideBoundary" + Utility.resolveProxies(toReplacement.getInsideBoundaryElement()));
 						removeInvalidReferences(toReplacement, invalidEObjects);
+						System.out.println("after removeInvalidReferences insideBoundary" + Utility.resolveProxies(toReplacement.getInsideBoundaryElement()));
 						adjustInsideBoundaryRefereneces(toReplacement, toPlacement, placement);
 					}
 				}
@@ -185,7 +248,6 @@ public final class SubstitutionEngine {
 			ObjectHandle objectHandle = iterator.next();
 			EObject eObject = objectHandle.getMOFRef();
 			if(invalidEObjects.indexOf(eObject) >= 0){
-				//objectHandles.remove(objectHandle);
 				iterator.remove();
 			}
 		}
@@ -197,6 +259,9 @@ public final class SubstitutionEngine {
 		EList<ObjectHandle> objectHandles = toReplacement.getInsideBoundaryElement();
 		EList<EObject> insideBoundaryElements = Utility.resolveProxies(objectHandles);
 		SetView<EObject> difference = Sets.difference(new HashSet<EObject>(insideBoundaryElements), new HashSet<EObject>(referencedEObjects));
+		System.out.println("findInvalidObjects " + toReplacement);
+		System.out.println("referenced object " + referencedEObjects);
+		System.out.println("difference " + new BasicEList<EObject>(difference));
 		return new BasicEList<EObject>(difference);
 	}
 	

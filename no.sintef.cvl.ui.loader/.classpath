@@ -34,5 +34,8 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.common.ui-3.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.edit-3.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.emf.transaction-3.8.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.change_2.8.0.v20130125-0546.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.8.1.v20130125-0546.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
