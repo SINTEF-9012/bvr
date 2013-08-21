@@ -6,11 +6,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import no.sintef.cvl.ui.common.Messages;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import org.apache.batik.dom.GenericDOMImplementation;
@@ -21,51 +23,52 @@ import org.w3c.dom.Document;
 
 public class ExportModelSVG implements ActionListener {
 
-	private List<CVLView> views;
 	JTabbedPane filePane;
-	private JFileChooser filechooser = new JFileChooser();
-	private static String defaultLocation = null;
+	private static final String SVG_EXT = ".svg";
 
-	public static String getDefaultLocation() {
-		return defaultLocation;
-	}
-
-	public static void setDefaultLocation(String uri) {
-		defaultLocation = uri;
-	}
-
-	public ExportModelSVG(List<CVLView> views, JTabbedPane filePane) {
+	public ExportModelSVG(JTabbedPane filePane) {
 		this.filePane = filePane;
-		this.views = views;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		filechooser.showOpenDialog(filePane);
-		if (filechooser.getSelectedFile() != null) {
-			try {
-				int i = 0;
-
-
-				for(CVLView view : views) {
-					view.getKernel().getModelPanel().clearBuffer();
-					DOMImplementation impl = GenericDOMImplementation.getDOMImplementation();
-					String svgNS = "http://www.w3.org/2000/svg";
-					Document myFactory = impl.createDocument(svgNS, "svg", null);
-					SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
-					ctx.setEmbeddedFontsOn(true);
-					SVGGraphics2D g2 = new SVGGraphics2D(ctx,true);
-					view.getKernel().getModelPanel().paintComponents(g2);
-					view.getKernel().getModelPanel().paint(g2);
-					FileOutputStream fout = new FileOutputStream(new File(filechooser.getSelectedFile(), "cvl_" + i + ".svg"));
-					Writer out = new OutputStreamWriter(fout, "UTF-8");
-					g2.stream(out, true);
-					fout.close();
-					i++;
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}	
-		}	
+		int i = filePane.getSelectedIndex();
+		CVLView view = Context.eINSTANCE.getCvlViews().get(i);
+		JFileChooser filechooser = Context.eINSTANCE.getFileChooser();
+		
+		int status = filechooser.showSaveDialog(filePane);
+		if(status == JFileChooser.CANCEL_OPTION)
+			return;
+		
+		File sf = filechooser.getSelectedFile();
+		if(sf == null) return;
+		
+		if(!sf.getAbsolutePath().endsWith(SVG_EXT))
+			sf = new File(sf.getAbsolutePath() + SVG_EXT);
+		
+		if(sf.exists()){
+			int result = JOptionPane.showConfirmDialog(filePane, "File already exist, overwrite?", "alert", JOptionPane.YES_NO_OPTION);
+			if(result == JOptionPane.NO_OPTION)
+				return;
+		}
+		
+		try {
+			view.getKernel().getModelPanel().clearBuffer();
+			DOMImplementation impl = GenericDOMImplementation.getDOMImplementation();
+			String svgNS = "http://www.w3.org/2000/svg";
+			Document myFactory = impl.createDocument(svgNS, "svg", null);
+			SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+			ctx.setEmbeddedFontsOn(true);
+			SVGGraphics2D g2 = new SVGGraphics2D(ctx,true);
+			view.getKernel().getModelPanel().paintComponents(g2);
+			view.getKernel().getModelPanel().paint(g2);
+			FileOutputStream fout = new FileOutputStream(sf);
+			Writer out = new OutputStreamWriter(fout, "UTF-8");
+			g2.stream(out, true);
+			fout.close();
+			Context.eINSTANCE.getConfig().saveLastLocation(sf.getAbsolutePath());
+		} catch (Exception ex) {
+			Context.eINSTANCE.logger.error("", ex);
+			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_GENERAL_ERROR + ex.getMessage());
+		}
 	}
 }

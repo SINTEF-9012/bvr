@@ -13,6 +13,7 @@ import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.environment.ConfigHelper;
 import no.sintef.cvl.ui.environment.Environment;
 import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.filter.FMFilter;
@@ -151,5 +152,9 @@ public final class Context {
 	
 	public SubstitutionEngine getSubEngine(){
 		return subEngine;
+	}
+	
+	public ConfigHelper getConfig() {
+		return environment.getConfig();
 	}
 }

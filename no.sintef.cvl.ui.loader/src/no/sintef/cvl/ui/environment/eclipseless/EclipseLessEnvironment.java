@@ -30,6 +30,7 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	public void writeModelToFile(CVLModel model, File file) {
 		try {
 			model.getCVLM().writeToFile(file.getAbsolutePath());
+			model.setFile(file);
 			configHelper.saveLastLocation(file.getAbsolutePath());
 		} catch (IOException e) {
 			logger.error("can not save file, IOException", e);

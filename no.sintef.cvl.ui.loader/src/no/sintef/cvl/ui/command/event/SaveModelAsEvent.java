@@ -9,12 +9,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 
 
 public class SaveModelAsEvent implements ActionListener {
 	private JTabbedPane filePane;
 	private boolean trydirectsave;
+	private static final String CVL_EXT = "." + CVLFilter.CVL_EXT;
 
 
 	public SaveModelAsEvent(JTabbedPane filePane,  boolean b) {
@@ -45,7 +47,11 @@ public class SaveModelAsEvent implements ActionListener {
 				return;
 			
 			File sf = fc.getSelectedFile();
-			if(sf == null) return;	
+			if(sf == null) return;
+			
+			if(!sf.getAbsolutePath().endsWith(CVL_EXT))
+				sf = new File(sf.getAbsolutePath() + CVL_EXT);
+			
 			if(sf.exists()){
 				int result = JOptionPane.showConfirmDialog(filePane, "File already exist, overwrite?", "alert", JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.NO_OPTION)

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -16,9 +15,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.command.event.ClearSelectionRelalizationEvent;
@@ -41,9 +37,7 @@ import no.sintef.cvl.ui.command.event.NewResolutionEvent;
 import no.sintef.cvl.ui.command.event.OpenModelEvent;
 import no.sintef.cvl.ui.command.event.SaveModelAsEvent;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.ThirdpartyEditorSelector;
 import no.sintef.cvl.ui.context.Context;
-import cvl.CvlPackage;
 import cvl.NamedElement;
 
 public class Main {
@@ -113,10 +107,10 @@ public class Main {
 		
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		filemenu.add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(views, filePane));
+		saveasImage.addActionListener(new ExportModelImage(filePane));
 		JMenuItem saveasSVG = new JMenuItem("Export Diagram as SVG ...");
 		filemenu.add(saveasSVG);
-		saveasSVG.addActionListener(new ExportModelSVG(views, filePane));
+		saveasSVG.addActionListener(new ExportModelSVG(filePane));
 		
 		//TODO: filemenu.add(new JSeparator());
 		
