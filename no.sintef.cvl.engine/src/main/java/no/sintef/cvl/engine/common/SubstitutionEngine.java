@@ -13,6 +13,7 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.cvl.engine.fragment.impl.PlacementOldNewHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -49,6 +50,7 @@ public final class SubstitutionEngine {
 	private HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
 	private HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>>> adjacentToBoundaries;
 	private HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>> adjacentFromBoundaries;
+	//private HashMap<PlacementFragment, PlacementOldNewHolder> plStaleCurrentElements;
 
 	private static SubstitutionEngine getEngine() {
 		return new SubstitutionEngine();
@@ -62,11 +64,14 @@ public final class SubstitutionEngine {
 		System.out.println("initialazation !!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		adjacentToBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>>>();
 		adjacentFromBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>>();
+		//plStaleCurrentElements = new HashMap<PlacementFragment, PlacementOldNewHolder>();
 		fsMap = new HashMap<FragmentSubstitution, FragmentSubstitutionHolder>();
 		try{
 			
 			for(FragmentSubstitution fragment : fragmentSubstitutions){
-				fsMap.put(fragment, new FragmentSubstitutionHolder(fragment));
+				FragmentSubstitutionHolder fsHolder = new FragmentSubstitutionHolder(fragment);
+				fsMap.put(fragment, fsHolder);
+				//plStaleCurrentElements.put(fsHolder.getPlacement().getPlacementFragment(), new PlacementOldNewHolder(fsHolder.getPlacement().getPlacementFragment(), fsHolder.getPlacement().getElements()));
 				
 				System.out.println(fragment);
 				PlacementFragment placement = fragment.getPlacement();
@@ -113,6 +118,10 @@ public final class SubstitutionEngine {
 			
 			subsOperation.execute(replace);
 			adjResolver.resolve(fragmentHolder);
+			
+			//PlacementOldNewHolder oldNewElements = plStaleCurrentElements.get(fragmentHolder.getPlacement().getPlacementFragment());
+			//oldNewElements.setCurrentElements(fragmentHolder.getPlacement().getElements());
+			
 			/*System.out.println("@@@@@@@@@@@@@@before adjustBoundaries");
 			PlacementFragment placement = fragmentHolder.getFragment().getPlacement();
 			for(PlacementBoundaryElement boundary : placement.getPlacementBoundaryElement()){
@@ -128,7 +137,7 @@ public final class SubstitutionEngine {
 				}
 			}*/
 			
-			adjustBoundaries(fragmentHolder);
+			//adjustBoundaries(fragmentHolder);
 			
 			/*System.out.println("##############after adjustBoundaries");
 			placement = fragmentHolder.getFragment().getPlacement();
@@ -188,6 +197,10 @@ public final class SubstitutionEngine {
 		System.out.println("11111111111111111111111111111111 call of adjustBoundaries");
 		PlacementFragment placement = fragmentHolder.getPlacement().getPlacementFragment();
 		
+		//PlacementOldNewHolder staleNewElements = plStaleCurrentElements.get(placement);
+		
+		//EList<EObject> invalidPlacementElements = new BasicEList<EObject>(Sets.difference(staleNewElements.getStaleElements(), staleNewElements.getCurrentElements()));
+		
 		HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> replacementToBoundary = adjacentToBoundaries.get(placement);
 		if(replacementToBoundary != null){
 			for(Map.Entry<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> entry : replacementToBoundary.entrySet()){
@@ -197,10 +210,10 @@ public final class SubstitutionEngine {
 					ToPlacement toPlacement = boundaryMap.getKey();
 					HashSet<ToReplacement> toReplacements = boundaryMap.getValue();
 					for(ToReplacement toReplacement : toReplacements){
-						EList<EObject> invalidEObjects = findInvalidObjects(toReplacement);
+						//EList<EObject> invalidEObjects = findInvalidObjects(toReplacement);
 						System.out.println("outsideBoundaryElement " + Utility.resolveProxies(toReplacement.getOutsideBoundaryElement()));
 						System.out.println("before removeInvalidReferences insideBoundary" + Utility.resolveProxies(toReplacement.getInsideBoundaryElement()));
-						removeInvalidReferences(toReplacement, invalidEObjects);
+						//removeInvalidReferences(toReplacement, invalidPlacementElements);
 						System.out.println("after removeInvalidReferences insideBoundary" + Utility.resolveProxies(toReplacement.getInsideBoundaryElement()));
 						adjustInsideBoundaryRefereneces(toReplacement, toPlacement, placement);
 					}

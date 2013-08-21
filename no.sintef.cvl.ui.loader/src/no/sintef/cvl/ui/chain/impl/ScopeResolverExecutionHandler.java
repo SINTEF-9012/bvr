@@ -16,8 +16,8 @@ public class ScopeResolverExecutionHandler implements ExecutionHandler {
 
 	public ScopeResolverExecutionHandler(ExecutionHandler successor){
 		this.successor = successor;
-		//this.defaultStrategy = new ScopeResolverStrategyScopeless();
-		this.defaultStrategy = new ScopeResolverStrategyScopeable();
+		this.defaultStrategy = new ScopeResolverStrategyScopeless();
+		//this.defaultStrategy = new ScopeResolverStrategyScopeable();
 	}
 
 	@Override
