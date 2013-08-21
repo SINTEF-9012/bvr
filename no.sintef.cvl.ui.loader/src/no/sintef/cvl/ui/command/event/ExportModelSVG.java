@@ -10,9 +10,14 @@ import java.io.Writer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.filechooser.FileFilter;
 
+import no.sintef.cvl.common.Utility;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.filter.PNGFilter;
+import no.sintef.cvl.ui.filter.SVGFilter;
+import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import org.apache.batik.dom.GenericDOMImplementation;
@@ -21,10 +26,12 @@ import org.apache.batik.svggen.SVGGraphics2D;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 
+import com.google.common.collect.Lists;
+
 public class ExportModelSVG implements ActionListener {
 
 	JTabbedPane filePane;
-	private static final String SVG_EXT = ".svg";
+	private static final String SVG_EXT = "." + SVGFilter.SVG_EXT;
 
 	public ExportModelSVG(JTabbedPane filePane) {
 		this.filePane = filePane;
@@ -33,9 +40,19 @@ public class ExportModelSVG implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		int i = filePane.getSelectedIndex();
 		CVLView view = Context.eINSTANCE.getCvlViews().get(i);
-		JFileChooser filechooser = Context.eINSTANCE.getFileChooser();
+		CVLModel model = Context.eINSTANCE.getCvlModels().get(i);
+		
+		FileFilter[] filters = {new SVGFilter()};
+		JFileChooser filechooser = Context.eINSTANCE.getFileChooser(Lists.newArrayList(filters));
+		filechooser.setFileFilter(filters[0]);
+		
+		if(model.getFile() != null){
+			String defualtName = Utility.removeExtension(model.getFile().getName());
+			filechooser.setSelectedFile(new File(defualtName));
+		}
 		
 		int status = filechooser.showSaveDialog(filePane);
+		
 		if(status == JFileChooser.CANCEL_OPTION)
 			return;
 		

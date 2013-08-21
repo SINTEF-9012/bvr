@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
@@ -121,7 +122,16 @@ public final class Context {
 	public JFileChooser getFileChooser(){
 		JFileChooser fc = environment.getFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());
-		fc.addChoosableFileFilter(new CVLFilter());
+		CVLFilter cvlFilter = new CVLFilter();
+		fc.addChoosableFileFilter(cvlFilter);
+		fc.setFileFilter(cvlFilter);
+		return fc;
+	}
+	
+	public JFileChooser getFileChooser(ArrayList<FileFilter> filters){
+		JFileChooser fc = environment.getFileChooser();
+		for(FileFilter filer : filters)
+			fc.addChoosableFileFilter(filer);
 		return fc;
 	}
 	

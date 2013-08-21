@@ -6,20 +6,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.filechooser.FileFilter;
 
+import org.eclipse.swt.internal.image.PNGFileFormat;
+
+import com.google.common.collect.Lists;
+
+import no.sintef.cvl.common.Utility;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.filter.PNGFilter;
+import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
 public class ExportModelImage implements ActionListener {
 
 	JTabbedPane filePane;
-	private static final String PNG_EXT = ".png";
+	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
 
 	public ExportModelImage(JTabbedPane filePane) {
 		this.filePane = filePane;
@@ -28,7 +37,16 @@ public class ExportModelImage implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		int i = filePane.getSelectedIndex();
 		CVLView view = Context.eINSTANCE.getCvlViews().get(i);
-		JFileChooser filechooser = Context.eINSTANCE.getFileChooser();
+		CVLModel model = Context.eINSTANCE.getCvlModels().get(i);
+		
+		FileFilter[] filters = {new PNGFilter()};
+		JFileChooser filechooser = Context.eINSTANCE.getFileChooser(Lists.newArrayList(filters));
+		filechooser.setFileFilter(filters[0]);
+		
+		if(model.getFile() != null){
+			String defualtName = Utility.removeExtension(model.getFile().getName());
+			filechooser.setSelectedFile(new File(defualtName));
+		}
 		
 		int status = filechooser.showSaveDialog(filePane);
 		if(status == JFileChooser.CANCEL_OPTION)
