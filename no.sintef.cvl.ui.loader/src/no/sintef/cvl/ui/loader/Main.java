@@ -38,10 +38,11 @@ import no.sintef.cvl.ui.command.event.OpenModelEvent;
 import no.sintef.cvl.ui.command.event.SaveModelAsEvent;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.editor.CVLJFrame;
 import cvl.NamedElement;
 
 public class Main {
-	private JFrame jframe;
+	private CVLJFrame jframe;
 	public static NamedElement vSpecCut;
 	private List<CVLView> views = Context.eINSTANCE.getCvlViews();
 	private List<CVLModel> models = Context.eINSTANCE.getCvlModels();
@@ -71,13 +72,10 @@ public class Main {
 		models = Context.eINSTANCE.getCvlModels();
 
 		// Create window
-		jframe = new JFrame("CVL 2 Editor by SINTEF");
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jframe.setPreferredSize(new Dimension(1000, 800));
-		jframe.setBackground(Color.WHITE);
+		jframe = new CVLJFrame();
 		
 		// Tabbed pane
-		JTabbedPane filePane = new JTabbedPane();
+		JTabbedPane filePane = jframe.getJTabbedPane();
 
 		// Add menu bar
 		JMenuBar menuBar = new JMenuBar();
@@ -100,7 +98,7 @@ public class Main {
 		saveas.addActionListener(new SaveModelAsEvent(filePane, false));
 		filemenu.add(saveas);
 		JMenuItem close = new JMenuItem("Close");
-		close.addActionListener(new CloseModelEvent(filePane, models, views));
+		close.addActionListener(new CloseModelEvent(filePane));
 		filemenu.add(close);
 		
 		filemenu.add(new JSeparator());
