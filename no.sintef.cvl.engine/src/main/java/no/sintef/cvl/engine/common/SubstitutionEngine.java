@@ -73,7 +73,7 @@ public final class SubstitutionEngine {
 				fsMap.put(fragment, fsHolder);
 				//plStaleCurrentElements.put(fsHolder.getPlacement().getPlacementFragment(), new PlacementOldNewHolder(fsHolder.getPlacement().getPlacementFragment(), fsHolder.getPlacement().getElements()));
 				
-				System.out.println(fragment);
+				/*System.out.println(fragment);
 				PlacementFragment placement = fragment.getPlacement();
 				for(PlacementBoundaryElement boundary : placement.getPlacementBoundaryElement()){
 					if(boundary instanceof ToPlacement){
@@ -86,7 +86,7 @@ public final class SubstitutionEngine {
 						System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getOutsideBoundaryElement()));
 						System.out.println(Utility.resolveProxies(((FromPlacement) boundary).getInsideBoundaryElement()));
 					}
-				}
+				}*/
 				
 			}
 			
@@ -97,13 +97,13 @@ public final class SubstitutionEngine {
 			e.printStackTrace();
 			throw new UnsupportedOperationException(e.getMessage());
 		}
-		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fragmentSubstitutions);
+		/*EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fragmentSubstitutions);
 		replcmntPlcmntMap = maps.get(0);
 		plcmntReplcmntMap = maps.get(1);
 		System.out.println("===========================================================");
 		System.out.println(replcmntPlcmntMap);
 		System.out.println(plcmntReplcmntMap);
-		findAdjacentBoundaries();
+		findAdjacentBoundaries();*/
 	}
 	
 	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentCVLModelException{
@@ -154,11 +154,11 @@ public final class SubstitutionEngine {
 				}
 			}*/
 			
-			System.out.println("Elements ...");
+			/*System.out.println("Elements ...");
 			System.out.println(fragmentHolder.getPlacement().getElements());
 			System.out.println(fragmentHolder.getPlacement().getElements().size());
 			System.out.println(fragmentHolder.getReplacement().getElements());
-			System.out.println(fragmentHolder.getReplacement().getElements().size());
+			System.out.println(fragmentHolder.getReplacement().getElements().size());*/
 		} catch (BasicCVLEngineException e) {
 			context.getLogger().error("", e);
 			throw new UnsupportedOperationException(e.getMessage());

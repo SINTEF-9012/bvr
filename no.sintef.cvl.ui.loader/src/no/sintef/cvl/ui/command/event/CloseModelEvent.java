@@ -25,11 +25,14 @@ public class CloseModelEvent implements ActionListener {
 		CVLModel model = Context.eINSTANCE.getCvlModels().get(selected);
 
 		try{
-			File file = StaticUICommands.saveModelToFile(filePane, model, true);
-			if(file == null){
-				int result = JOptionPane.showConfirmDialog(filePane, "Are you sure you want to close this model? Unsaved changes will be lost!", "alert", JOptionPane.YES_NO_OPTION);
-				if(result == JOptionPane.NO_OPTION)
-					return;
+			int result = JOptionPane.showConfirmDialog(filePane, "Save changes?", "alert", JOptionPane.YES_NO_OPTION);
+			if(result == JOptionPane.YES_OPTION){
+				File file = StaticUICommands.saveModelToFile(filePane, model, true);
+				if(file == null){
+					result = JOptionPane.showConfirmDialog(filePane, "Are you sure you want to close this model? Unsaved changes will be lost!", "alert", JOptionPane.YES_NO_OPTION);
+					if(result == JOptionPane.NO_OPTION)
+						return;
+				}
 			}
 			filePane.removeTabAt(selected);
 			Context.eINSTANCE.getCvlViews().remove(selected);
