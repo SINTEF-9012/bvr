@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
+import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.error.IncorrectCVLModel;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
@@ -195,9 +197,9 @@ public class Utility {
 		return maps;
 	}
 	
-	static final int NOT_CNTND = 0; //a placement is not contained in the replacement
-	static final int CNTND = 1; // a placement is contained in the replacement
-	static final int P_CNTND = 2; // a placement is not fully contained in the replacement
+	public static final int NOT_CNTND = 0; //a placement is not contained in the replacement
+	public static final int CNTND = 1; // a placement is contained in the replacement
+	public static final int P_CNTND = 2; // a placement is not fully contained in the replacement
 	public static int testPlacementIntersection(ReplacementFragmentType replcnt, PlacementFragment plcnt){
 		ReplacementElementHolder replcntHolder;
 		PlacementElementHolder plcntHolder;
@@ -205,7 +207,7 @@ public class Utility {
 			replcntHolder = new ReplacementElementHolder(replcnt);
 			plcntHolder = new PlacementElementHolder(plcnt);
 		} catch (BasicCVLEngineException e) {
-			return NOT_CNTND;
+			throw new UnsupportedOperationException(e);
 		}
 		HashSet<EObject> plcntElements = plcntHolder.getElements();
 		HashSet<EObject> replntElements = replcntHolder.getElements();

@@ -1,7 +1,9 @@
 package no.sintef.cvl.common;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.google.common.base.Throwables;
@@ -96,5 +98,25 @@ public final class Utility {
 	        return filename;
 
 	    return filename.substring(0, extensionIndex);
+	}
+	
+	private EList<EObject> getReferencedEObjects(EObject eObject){
+		EList<EObject> eObjects = new BasicEList<EObject>();
+		EList<EReference> references = eObject.eClass().getEAllReferences();
+		for(EReference reference : references){
+			if(no.sintef.cvl.common.Utility.isDerived(reference) != 0)
+				continue;
+			Object targetObject = eObject.eGet(reference);
+			if(targetObject instanceof EObject){
+				EObject targetEObject = (EObject) targetObject;
+				eObjects.add(targetEObject);
+			}else if(targetObject instanceof BasicEList){
+				EList<EObject> eEObjects =  (BasicEList<EObject>) targetObject;
+				eObjects.addAll(eEObjects);
+			}else if(targetObject != null){
+				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: " + targetObject);
+			}
+		}
+		return eObjects;
 	}
 }

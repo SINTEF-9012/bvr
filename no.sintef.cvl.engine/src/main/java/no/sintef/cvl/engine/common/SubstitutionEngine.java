@@ -1,45 +1,27 @@
 package no.sintef.cvl.engine.common;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
 
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.adjacent.AdjacentFinder;
 import no.sintef.cvl.engine.adjacent.AdjacentResolver;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
+import no.sintef.cvl.engine.containment.ReplacPlacCotainmentFinder;
+import no.sintef.cvl.engine.containment.ReplacPlacCotainmentResolver;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.cvl.engine.fragment.impl.PlacementOldNewHolder;
-import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import com.google.common.collect.Sets;
-import com.google.common.collect.Sets.SetView;
 
 import cvl.FragmentSubstitution;
-import cvl.FromPlacement;
-import cvl.FromReplacement;
 import cvl.ObjectHandle;
-import cvl.PlacementBoundaryElement;
-import cvl.PlacementFragment;
-import cvl.ReplacementBoundaryElement;
-import cvl.ReplacementFragmentType;
-import cvl.ToPlacement;
-import cvl.ToReplacement;
+
 
 public final class SubstitutionEngine {
 
@@ -48,13 +30,11 @@ public final class SubstitutionEngine {
 	private final SubstitutionContext context = SubstitutionContext.ME;
 	
 	private HashMap<FragmentSubstitution, FragmentSubstitutionHolder> fsMap;
-	private AdjacentFinder adjFinder;
-	private AdjacentResolver adjResolver;
-	private HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> replcmntPlcmntMap;
-	private HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
-	private HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>>> adjacentToBoundaries;
-	private HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>> adjacentFromBoundaries;
-	private HashMap<PlacementFragment, PlacementOldNewHolder> plStaleCurrentElements;
+	private AdjacentFinder adjacentFinder;
+	private AdjacentResolver adjacentResolver;
+	private ReplacPlacCotainmentFinder placementInReplacementFinder;
+	private ReplacPlacCotainmentResolver placementInReplacementResolver;
+	
 
 	private static SubstitutionEngine getEngine() {
 		return new SubstitutionEngine();
@@ -65,29 +45,24 @@ public final class SubstitutionEngine {
 	}
 	
 	public void init(EList<FragmentSubstitution> fragmentSubstitutions){
-		adjacentToBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>>>();
-		adjacentFromBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>>();
-		plStaleCurrentElements = new HashMap<PlacementFragment, PlacementOldNewHolder>();
 		fsMap = new HashMap<FragmentSubstitution, FragmentSubstitutionHolder>();
 		try{
+			for(FragmentSubstitution fragment : fragmentSubstitutions)
+				fsMap.put(fragment, new FragmentSubstitutionHolder(fragment));
 			
-			for(FragmentSubstitution fragment : fragmentSubstitutions){
-				FragmentSubstitutionHolder fsHolder = new FragmentSubstitutionHolder(fragment);
-				fsMap.put(fragment, fsHolder);
-				plStaleCurrentElements.put(fsHolder.getPlacement().getPlacementFragment(), new PlacementOldNewHolder(fsHolder.getPlacement().getPlacementFragment(), fsHolder.getPlacement().getElements()));	
-			}
-			
+			//NOTE: the call of computeCopyBaseModel should be exactly here,
+			//since FragmentSubstitutionHolder actually loads all resources as a side effect
+			//which we lately use to define 'base model'
 			computeCopyBaseModel();
-			adjFinder = new AdjacentFinderImpl(new BasicEList<FragmentSubstitutionHolder>(fsMap.values()));
-			adjResolver = new AdjacentResolverImpl(adjFinder);
+			
+			adjacentFinder = new AdjacentFinderImpl(new BasicEList<FragmentSubstitutionHolder>(fsMap.values()));
+			adjacentResolver = new AdjacentResolverImpl(adjacentFinder);
+			
+			placementInReplacementFinder = new ReplacPlacCotainmentFinder(fsMap.values());
+			placementInReplacementResolver = new ReplacPlacCotainmentResolver(placementInReplacementFinder);
 		} catch (BasicCVLEngineException e) {
-			e.printStackTrace();
-			throw new UnsupportedOperationException(e.getMessage());
+			throw new UnsupportedOperationException(e);
 		}
-		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fragmentSubstitutions);
-		replcmntPlcmntMap = maps.get(0);
-		plcmntReplcmntMap = maps.get(1);
-		findAdjacentBoundaries();
 	}
 	
 	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentCVLModelException{
@@ -99,17 +74,13 @@ public final class SubstitutionEngine {
 		FragmentSubOperation subsOperation = new FragmentSubOperation(fragmentHolder);
 		try {
 			subsOperation.execute(replace);
-			adjResolver.resolve(fragmentHolder);
-			
-			PlacementOldNewHolder oldNewElements = plStaleCurrentElements.get(fragmentHolder.getPlacement().getPlacementFragment());
-			oldNewElements.setCurrentElements(fragmentHolder.getPlacement().getElements());
-			
-			adjustBoundaries(fragmentHolder);
-			
+			adjacentResolver.resolve(fragmentHolder);
+			placementInReplacementResolver.resolve(fragmentHolder);
 		} catch (BasicCVLEngineException e) {
-			context.getLogger().error("", e);
-			throw new UnsupportedOperationException(e.getMessage());
+			throw new UnsupportedOperationException(e);
 		}
+		//this check seems to be invalid here since we may work with copies of the base model
+		//which are not contained by any resource in the first place
 		//subsOperation.checkConsistence();
 	}
 	
@@ -139,178 +110,5 @@ public final class SubstitutionEngine {
 			copyMap.put(resource, copier);
 		}
 		context.setCopyBaseModelMap(copyMap);
-	}
-	
-	private void adjustBoundaries(FragmentSubstitutionHolder fragmentHolder){
-		PlacementFragment placement = fragmentHolder.getPlacement().getPlacementFragment();
-		
-		PlacementOldNewHolder staleNewElements = plStaleCurrentElements.get(placement);
-		
-		EList<EObject> invalidPlacementElements = new BasicEList<EObject>(Sets.difference(staleNewElements.getStaleElements(), staleNewElements.getCurrentElements()));
-		
-		HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> replacementToBoundary = adjacentToBoundaries.get(placement);
-		if(replacementToBoundary != null){
-			for(Map.Entry<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> entry : replacementToBoundary.entrySet()){
-				HashMap<ToPlacement, HashSet<ToReplacement>> boundarysMap = entry.getValue();
-				for(Map.Entry<ToPlacement, HashSet<ToReplacement>> boundaryMap : boundarysMap.entrySet()){
-					ToPlacement toPlacement = boundaryMap.getKey();
-					HashSet<ToReplacement> toReplacements = boundaryMap.getValue();
-					for(ToReplacement toReplacement : toReplacements){
-						removeInvalidReferences(toReplacement, invalidPlacementElements);
-						adjustInsideBoundaryRefereneces(toReplacement, toPlacement, placement);
-					}
-				}
-			}
-		}
-		
-		HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>> replacementFromBoundary = adjacentFromBoundaries.get(placement);
-		if(replacementFromBoundary != null){
-			for(Map.Entry<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>> entry : replacementFromBoundary.entrySet()){
-				HashMap<FromPlacement, HashSet<FromReplacement>> boundarysMap = entry.getValue();
-				for(Map.Entry<FromPlacement, HashSet<FromReplacement>> boundaryMap : boundarysMap.entrySet()){
-					FromPlacement fromPlacement = boundaryMap.getKey();
-					HashSet<FromReplacement> fromReplacements = boundaryMap.getValue();
-					EObject insideElementPlac = fromPlacement.getInsideBoundaryElement().getMOFRef();
-					for(FromReplacement fromReplacement : fromReplacements){
-						EObject insideElementRepl = fromReplacement.getInsideBoundaryElement().getMOFRef();
-						if(!insideElementPlac.equals(insideElementRepl)){
-							ObjectHandle objectHandle = no.sintef.cvl.common.Utility.testObjectHandle(entry.getKey(), insideElementPlac);
-							fromReplacement.setInsideBoundaryElement(objectHandle);
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	
-	private void adjustInsideBoundaryRefereneces(ToReplacement toReplacement, ToPlacement toPlacement, PlacementFragment placement){
-		EList<EObject> insideEObjectsRepl = Utility.resolveProxies(toReplacement.getInsideBoundaryElement());
-		EList<EObject> insideEObjectsPlc = Utility.resolveProxies(toPlacement.getInsideBoundaryElement());
-		for(EObject eObject : insideEObjectsPlc){
-			if(insideEObjectsRepl.indexOf(eObject) < 0){
-				ObjectHandle objectHandle = no.sintef.cvl.common.Utility.testObjectHandle(placement, eObject);
-				toReplacement.getInsideBoundaryElement().add(objectHandle);
-			}
-		}
-	}
-	
-	private void removeInvalidReferences(ToReplacement toReplacement, EList<EObject> invalidEObjects){
-		if(invalidEObjects.isEmpty())
-			return;
-		EList<ObjectHandle> objectHandles = toReplacement.getInsideBoundaryElement();
-		Iterator<ObjectHandle> iterator = objectHandles.iterator();
-		while(iterator.hasNext()){
-			ObjectHandle objectHandle = iterator.next();
-			EObject eObject = objectHandle.getMOFRef();
-			if(invalidEObjects.indexOf(eObject) >= 0){
-				iterator.remove();
-			}
-		}
-	}
-	
-	private EList<EObject> getReferencedObjects(EObject eObject){
-		EList<EObject> eObjects = new BasicEList<EObject>();
-		EList<EReference> references = eObject.eClass().getEAllReferences();
-		for(EReference reference : references){
-			if(no.sintef.cvl.common.Utility.isDerived(reference) != 0)
-				continue;
-			Object targetObject = eObject.eGet(reference);
-			if(targetObject instanceof EObject){
-				EObject targetEObject = (EObject) targetObject;
-				eObjects.add(targetEObject);
-			}else if(targetObject instanceof BasicEList){
-				EList<EObject> eEObjects =  (BasicEList<EObject>) targetObject;
-				eObjects.addAll(eEObjects);
-			}else if(targetObject != null){
-				context.getLogger().warn("an element referenced by " + reference + " is neither EObject nor EObjectList: " + targetObject);
-			}
-		}
-		return eObjects;
-	}
-	
-	private void findAdjacentBoundaries(){
-		for(Map.Entry<PlacementFragment, HashSet<ReplacementFragmentType>> entry : plcmntReplcmntMap.entrySet()){
-			PlacementFragment placement = entry.getKey();
-			HashSet<ReplacementFragmentType> replacements = entry.getValue();
-			EList<PlacementBoundaryElement> pBoundaries = placement.getPlacementBoundaryElement();
-			for(ReplacementFragmentType replacement : replacements){
-				EList<ReplacementBoundaryElement> rBoundaries = replacement.getReplacementBoundaryElement();
-				for(PlacementBoundaryElement pBoundary : pBoundaries){
-					if(pBoundary instanceof ToPlacement){
-						ToPlacement toPlacement = (ToPlacement) pBoundary;
-						for(ReplacementBoundaryElement rBoundary : rBoundaries){
-							if(rBoundary instanceof ToReplacement){
-								ToReplacement toReplacement = (ToReplacement) rBoundary;
-								if(isToBoundaryAdjacent(toPlacement, toReplacement)){
-									HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>> replacementBoundaryMap = adjacentToBoundaries.get(placement);
-									if(replacementBoundaryMap == null){
-										replacementBoundaryMap = new HashMap<ReplacementFragmentType, HashMap<ToPlacement, HashSet<ToReplacement>>>();
-										HashMap<ToPlacement, HashSet<ToReplacement>> toBoundaryMap = new HashMap<ToPlacement, HashSet<ToReplacement>>();
-										replacementBoundaryMap.put(replacement, toBoundaryMap);
-										adjacentToBoundaries.put(placement, replacementBoundaryMap);
-									}
-									HashMap<ToPlacement, HashSet<ToReplacement>> toBoundaryMap = replacementBoundaryMap.get(replacement);
-									HashSet<ToReplacement> toReplacements = toBoundaryMap.get(toPlacement);
-									if(toReplacements == null){
-										toReplacements = new HashSet<ToReplacement>();
-										toBoundaryMap.put(toPlacement, toReplacements);
-									}
-									toReplacements.add(toReplacement);
-								}
-							}
-						}
-					}
-					if(pBoundary instanceof FromPlacement){
-						FromPlacement fromPlacement = (FromPlacement) pBoundary;
-						for(ReplacementBoundaryElement rBoundary : rBoundaries){
-							if(rBoundary instanceof FromReplacement){
-								FromReplacement fromReplacement = (FromReplacement) rBoundary;
-								if(isFromBoundaryAdjacent(fromPlacement, fromReplacement)){
-									HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>> replacementBoundaryMap = adjacentFromBoundaries.get(placement);
-									if(replacementBoundaryMap == null){
-										replacementBoundaryMap = new HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>();
-										HashMap<FromPlacement, HashSet<FromReplacement>> fromBoundaryMap = new HashMap<FromPlacement, HashSet<FromReplacement>>();
-										replacementBoundaryMap.put(replacement, fromBoundaryMap);
-										adjacentFromBoundaries.put(placement, replacementBoundaryMap);
-									}
-									HashMap<FromPlacement, HashSet<FromReplacement>> fromBoundaryMap = replacementBoundaryMap.get(replacement);
-									HashSet<FromReplacement> fromReplacements = fromBoundaryMap.get(fromPlacement);
-									if(fromReplacements == null){
-										fromReplacements = new HashSet<FromReplacement>();
-										fromBoundaryMap.put(fromPlacement, fromReplacements);
-									}
-									fromReplacements.add(fromReplacement);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	private boolean isToBoundaryAdjacent(ToPlacement toPlacement, ToReplacement toReplacement){
-		if(toPlacement.getOutsideBoundaryElement().getMOFRef().equals(toReplacement.getOutsideBoundaryElement().getMOFRef())){
-			EList<EObject> insideBoundaryPlacement = Utility.resolveProxies(toPlacement.getInsideBoundaryElement());
-			EList<EObject> insideBoundaryReplacement = Utility.resolveProxies(toReplacement.getInsideBoundaryElement());
-			SetView<EObject> intersection = Sets.intersection(new HashSet<EObject>(insideBoundaryPlacement), new HashSet<EObject>(insideBoundaryReplacement));
-			if(!intersection.isEmpty()){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private boolean isFromBoundaryAdjacent(FromPlacement fromPlacement, FromReplacement fromReplacement){
-		if(fromReplacement.getInsideBoundaryElement().getMOFRef().equals(fromPlacement.getInsideBoundaryElement().getMOFRef())){
-			EList<EObject> outsideBoundaryPlacement = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
-			EList<EObject> outsideBoundaryReplacement = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
-			SetView<EObject> intersection = Sets.intersection(new HashSet<EObject>(outsideBoundaryPlacement), new HashSet<EObject>(outsideBoundaryReplacement));
-			if(!intersection.isEmpty()){
-				return true;
-			}
-		}
-		return false;
 	}
 }
