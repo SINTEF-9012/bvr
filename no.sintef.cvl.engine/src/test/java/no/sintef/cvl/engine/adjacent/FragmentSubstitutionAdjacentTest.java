@@ -100,7 +100,7 @@ public class FragmentSubstitutionAdjacentTest {
 		EList<EObject> outsideBoundaryElementsNew1 = this.getOutsideBoundaryElementsFragment(fragmentSubHolder1);
 		Assert.assertTrue("Incorrect set of the outsideBoundary elements, expected -> " +outsideBoundaryElementsOld1 + " actual ->" + outsideBoundaryElementsNew1, SetUpUtils.compareLists(outsideBoundaryElementsOld1, outsideBoundaryElementsNew1));
 		
-		HashSet<EObject> innerElements = fragmentSubHolder1.getPlacement().getInnerFragmentElements();
+		HashSet<EObject> innerElements = fragmentSubHolder1.getPlacement().getInnerNeighboringElements();
 		EList<String> innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(p1) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(p1), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder1);
@@ -115,7 +115,7 @@ public class FragmentSubstitutionAdjacentTest {
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
 		
-		innerElements = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
+		innerElements = fragmentSubHolder2.getPlacement().getInnerNeighboringElements();
 		innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(p2) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(p2), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder2);
@@ -126,7 +126,7 @@ public class FragmentSubstitutionAdjacentTest {
 		outsideBoundaryElementToPlacement2 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder2);
 		EList<String> outsideBoundaryElementToPlacement2Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement2), "name");
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement2Names + " expected ->" + Arrays.asList(new String[]{"r4", "r5", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement2Names, Arrays.asList(new String[]{"r4", "r5", "null"})));
-		HashSet<EObject> innerElements1 = fragmentSubHolder1.getPlacement().getInnerFragmentElements();
+		HashSet<EObject> innerElements1 = fragmentSubHolder1.getPlacement().getInnerNeighboringElements();
 		diff = Sets.difference(new HashSet<EObject>(outsideBoundaryElementToPlacement2), innerElements1);
 		Assert.assertTrue("toPlacement has not been updated for adjacent fs", diff.size() == 1 && SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(diff), "name").get(0).equals("null"));
 		
@@ -143,7 +143,7 @@ public class FragmentSubstitutionAdjacentTest {
 		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
 		
-		innerElements = fragmentSubHolder3.getPlacement().getInnerFragmentElements();
+		innerElements = fragmentSubHolder3.getPlacement().getInnerNeighboringElements();
 		innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(p3) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(p3), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder3);
@@ -151,7 +151,7 @@ public class FragmentSubstitutionAdjacentTest {
 		EList<EObject> outsideBoundaryElementFromPlacement2 = this.getOutsideBoundaryElemenetsFromPlacements(fragmentSubHolder2);
 		Assert.assertTrue("fromPlacement has not been updated for adjacent fs", Sets.difference(new HashSet<EObject>(outsideBoundaryElementFromPlacement2), innerElements).isEmpty());
 		
-		HashSet<EObject> innerElements2 = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
+		HashSet<EObject> innerElements2 = fragmentSubHolder2.getPlacement().getInnerNeighboringElements();
 		outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
 		outsideBoundaryElementToPlacement3Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement3), "name");
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement3Names + " expected ->" + Arrays.asList(new String[]{"r7", "r9", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement3Names, Arrays.asList(new String[]{"r7", "r9", "null"})));
@@ -186,7 +186,7 @@ public class FragmentSubstitutionAdjacentTest {
 		EList<String> insideBoundaryElementsNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(insideBoundaryElements), "name");
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + insideBoundaryElementsNames + " expected ->" + Arrays.asList(new String[]{"1", "2", "3", "4", "5", "r1", "r2", "r3", "r4", "r5"}), SetUpUtils.compareStringLists(insideBoundaryElementsNames, Arrays.asList(new String[]{"1", "2", "3", "4", "5", "r1", "r2", "r3", "r4", "r5"})));
 		
-		HashSet<EObject> innerElements = fragmentSubHolder1.getPlacement().getInnerFragmentElements();
+		HashSet<EObject> innerElements = fragmentSubHolder1.getPlacement().getInnerNeighboringElements();
 		EList<String> innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(SetUpUtils.concatArrays(p1, p1orig)) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(SetUpUtils.concatArrays(p1, p1orig)), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder1);
@@ -205,7 +205,7 @@ public class FragmentSubstitutionAdjacentTest {
 		insideBoundaryElementsNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(insideBoundaryElements), "name");
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + insideBoundaryElementsNames + " expected ->" + Arrays.asList(new String[]{"6", "7", "8", "9", "10", "r6", "r7", "r8", "r9", "r10"}), SetUpUtils.compareStringLists(insideBoundaryElementsNames, Arrays.asList(new String[]{"6", "7", "8", "9", "10", "r6", "r7", "r8", "r9", "r10"})));
 		
-		innerElements = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
+		innerElements = fragmentSubHolder2.getPlacement().getInnerNeighboringElements();
 		innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(SetUpUtils.concatArrays(p2, p2orig)), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder2);
@@ -239,7 +239,7 @@ public class FragmentSubstitutionAdjacentTest {
 		insideBoundaryElementsNames = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(insideBoundaryElements), "name");
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + insideBoundaryElementsNames + " expected ->" + Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"}), SetUpUtils.compareStringLists(insideBoundaryElementsNames, Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"})));
 		
-		innerElements = fragmentSubHolder3.getPlacement().getInnerFragmentElements();
+		innerElements = fragmentSubHolder3.getPlacement().getInnerNeighboringElements();
 		innerElementNames = SetUpUtils.getPropertiesValuesList(innerElements, "name");
 		Assert.assertTrue("Incorrect substitution: expected ->" + Arrays.asList(SetUpUtils.concatArrays(p3, p3orig)) + " actual ->" + innerElementNames, SetUpUtils.compareStringLists(Arrays.asList(SetUpUtils.concatArrays(p3, p3orig)), innerElementNames));
 		this.checkInsideBoundaryElements(fragmentSubHolder3);
@@ -249,7 +249,7 @@ public class FragmentSubstitutionAdjacentTest {
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementFromPlacement2Names + " expected ->" + Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"}), SetUpUtils.compareStringLists(outsideBoundaryElementFromPlacement2Names, Arrays.asList(new String[]{"11", "12", "13", "r11", "r12", "r13"})));
 		Assert.assertTrue("fromPlacement has not been updated for adjacent fs", Sets.difference(new HashSet<EObject>(outsideBoundaryElementFromPlacement2), innerElements).isEmpty());
 		
-		HashSet<EObject> innerElements2 = fragmentSubHolder2.getPlacement().getInnerFragmentElements();
+		HashSet<EObject> innerElements2 = fragmentSubHolder2.getPlacement().getInnerNeighboringElements();
 		outsideBoundaryElementToPlacement3 = this.getOutsideBoundaryElemenetsToPlacements(fragmentSubHolder3);
 		outsideBoundaryElementToPlacement3Names = SetUpUtils.getPropertiesValuesList(new HashSet<EObject>(outsideBoundaryElementToPlacement3), "name");
 		Assert.assertTrue("Incorrect set of referenced elements actual -> " + outsideBoundaryElementToPlacement3Names + " expected ->" + Arrays.asList(new String[]{"7", "9", "r7", "r8", "null"}), SetUpUtils.compareStringLists(outsideBoundaryElementToPlacement3Names, Arrays.asList(new String[]{"7", "9", "r7", "r9", "null"})));
@@ -290,8 +290,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		HashSet<EObject> bElementsInternal = placement1.getBElementsInternal();
 		HashSet<EObject> bElementsExternal = placement1.getBElementsExternal();
-		HashSet<EObject> innerFragmentElements = placement1.getInnerFragmentElements();
-		HashSet<EObject> outerFragmentElements = placement1.getOuterFragmentElements();
+		HashSet<EObject> innerFragmentElements = placement1.getInnerNeighboringElements();
+		HashSet<EObject> outerFragmentElements = placement1.getOuterNeighboringElements();
 		HashSet<EObject> elementsInternal = placement1.getElementsInternal();
 		
 		EList<String> bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -314,8 +314,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement2.getBElementsInternal();
 		bElementsExternal = placement2.getBElementsExternal();
-		innerFragmentElements = placement2.getInnerFragmentElements();
-		outerFragmentElements = placement2.getOuterFragmentElements();
+		innerFragmentElements = placement2.getInnerNeighboringElements();
+		outerFragmentElements = placement2.getOuterNeighboringElements();
 		elementsInternal = placement2.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -343,8 +343,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement1.getBElementsInternal();
 		bElementsExternal = placement1.getBElementsExternal();
-		innerFragmentElements = placement1.getInnerFragmentElements();
-		outerFragmentElements = placement1.getOuterFragmentElements();
+		innerFragmentElements = placement1.getInnerNeighboringElements();
+		outerFragmentElements = placement1.getOuterNeighboringElements();
 		elementsInternal = placement1.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -367,8 +367,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement2.getBElementsInternal();
 		bElementsExternal = placement2.getBElementsExternal();
-		innerFragmentElements = placement2.getInnerFragmentElements();
-		outerFragmentElements = placement2.getOuterFragmentElements();
+		innerFragmentElements = placement2.getInnerNeighboringElements();
+		outerFragmentElements = placement2.getOuterNeighboringElements();
 		elementsInternal = placement2.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -391,8 +391,8 @@ public class FragmentSubstitutionAdjacentTest {
 
 		bElementsInternal = placement3.getBElementsInternal();
 		bElementsExternal = placement3.getBElementsExternal();
-		innerFragmentElements = placement3.getInnerFragmentElements();
-		outerFragmentElements = placement3.getOuterFragmentElements();
+		innerFragmentElements = placement3.getInnerNeighboringElements();
+		outerFragmentElements = placement3.getOuterNeighboringElements();
 		elementsInternal = placement3.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -420,8 +420,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement1.getBElementsInternal();
 		bElementsExternal = placement1.getBElementsExternal();
-		innerFragmentElements = placement1.getInnerFragmentElements();
-		outerFragmentElements = placement1.getOuterFragmentElements();
+		innerFragmentElements = placement1.getInnerNeighboringElements();
+		outerFragmentElements = placement1.getOuterNeighboringElements();
 		elementsInternal = placement1.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -445,8 +445,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement2.getBElementsInternal();
 		bElementsExternal = placement2.getBElementsExternal();
-		innerFragmentElements = placement2.getInnerFragmentElements();
-		outerFragmentElements = placement2.getOuterFragmentElements();
+		innerFragmentElements = placement2.getInnerNeighboringElements();
+		outerFragmentElements = placement2.getOuterNeighboringElements();
 		elementsInternal = placement2.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -470,8 +470,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement3.getBElementsInternal();
 		bElementsExternal = placement3.getBElementsExternal();
-		innerFragmentElements = placement3.getInnerFragmentElements();
-		outerFragmentElements = placement3.getOuterFragmentElements();
+		innerFragmentElements = placement3.getInnerNeighboringElements();
+		outerFragmentElements = placement3.getOuterNeighboringElements();
 		elementsInternal = placement3.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -538,8 +538,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		HashSet<EObject> bElementsInternal = placement1.getBElementsInternal();
 		HashSet<EObject> bElementsExternal = placement1.getBElementsExternal();
-		HashSet<EObject> innerFragmentElements = placement1.getInnerFragmentElements();
-		HashSet<EObject> outerFragmentElements = placement1.getOuterFragmentElements();
+		HashSet<EObject> innerFragmentElements = placement1.getInnerNeighboringElements();
+		HashSet<EObject> outerFragmentElements = placement1.getOuterNeighboringElements();
 		HashSet<EObject> elementsInternal = placement1.getElementsInternal();
 		
 		EList<String> bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -562,8 +562,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement2.getBElementsInternal();
 		bElementsExternal = placement2.getBElementsExternal();
-		innerFragmentElements = placement2.getInnerFragmentElements();
-		outerFragmentElements = placement2.getOuterFragmentElements();
+		innerFragmentElements = placement2.getInnerNeighboringElements();
+		outerFragmentElements = placement2.getOuterNeighboringElements();
 		elementsInternal = placement2.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -590,8 +590,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement1.getBElementsInternal();
 		bElementsExternal = placement1.getBElementsExternal();
-		innerFragmentElements = placement1.getInnerFragmentElements();
-		outerFragmentElements = placement1.getOuterFragmentElements();
+		innerFragmentElements = placement1.getInnerNeighboringElements();
+		outerFragmentElements = placement1.getOuterNeighboringElements();
 		elementsInternal = placement1.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -614,8 +614,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement2.getBElementsInternal();
 		bElementsExternal = placement2.getBElementsExternal();
-		innerFragmentElements = placement2.getInnerFragmentElements();
-		outerFragmentElements = placement2.getOuterFragmentElements();
+		innerFragmentElements = placement2.getInnerNeighboringElements();
+		outerFragmentElements = placement2.getOuterNeighboringElements();
 		elementsInternal = placement2.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -638,8 +638,8 @@ public class FragmentSubstitutionAdjacentTest {
 
 		bElementsInternal = placement3.getBElementsInternal();
 		bElementsExternal = placement3.getBElementsExternal();
-		innerFragmentElements = placement3.getInnerFragmentElements();
-		outerFragmentElements = placement3.getOuterFragmentElements();
+		innerFragmentElements = placement3.getInnerNeighboringElements();
+		outerFragmentElements = placement3.getOuterNeighboringElements();
 		elementsInternal = placement3.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -666,8 +666,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement1.getBElementsInternal();
 		bElementsExternal = placement1.getBElementsExternal();
-		innerFragmentElements = placement1.getInnerFragmentElements();
-		outerFragmentElements = placement1.getOuterFragmentElements();
+		innerFragmentElements = placement1.getInnerNeighboringElements();
+		outerFragmentElements = placement1.getOuterNeighboringElements();
 		elementsInternal = placement1.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -690,8 +690,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement2.getBElementsInternal();
 		bElementsExternal = placement2.getBElementsExternal();
-		innerFragmentElements = placement2.getInnerFragmentElements();
-		outerFragmentElements = placement2.getOuterFragmentElements();
+		innerFragmentElements = placement2.getInnerNeighboringElements();
+		outerFragmentElements = placement2.getOuterNeighboringElements();
 		elementsInternal = placement2.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -715,8 +715,8 @@ public class FragmentSubstitutionAdjacentTest {
 		
 		bElementsInternal = placement3.getBElementsInternal();
 		bElementsExternal = placement3.getBElementsExternal();
-		innerFragmentElements = placement3.getInnerFragmentElements();
-		outerFragmentElements = placement3.getOuterFragmentElements();
+		innerFragmentElements = placement3.getInnerNeighboringElements();
+		outerFragmentElements = placement3.getOuterNeighboringElements();
 		elementsInternal = placement3.getElementsInternal();
 		
 		bElementsInternalNames = SetUpUtils.getPropertiesValuesList(bElementsInternal, "name");
@@ -772,7 +772,7 @@ public class FragmentSubstitutionAdjacentTest {
 	private void checkInsideBoundaryElements(FragmentSubstitutionHolder fragmentSubHolder){
 		EList<ToBinding> toBindings = fragmentSubHolder.getToBindings();
 		EList<FromBinding> fromBindings = fragmentSubHolder.getFromBinding();
-		HashSet<EObject> innerElements = fragmentSubHolder.getPlacement().getInnerFragmentElements();
+		HashSet<EObject> innerElements = fragmentSubHolder.getPlacement().getInnerNeighboringElements();
 		for(ToBinding toBinding : toBindings){
 			ToPlacement toPlacement = toBinding.getToPlacement();
 			EList<EObject> insideBoundaryElements = SetUpUtils.resolveObjectHandles(new BasicEList<ObjectHandle>(this.getInsideBoundaryElements(toPlacement)));

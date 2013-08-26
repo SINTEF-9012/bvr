@@ -1,23 +1,20 @@
 package no.sintef.cvl.engine.common;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
-import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
+import no.sintef.cvl.engine.error.IncorrectCVLModel;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
@@ -220,11 +217,6 @@ public class Utility {
 		if(!difference.isEmpty())
 			return P_CNTND;
 		return NOT_CNTND;
-	}
-	
-	//DEPRICATED
-	public static void setProperty(EObject targetEObject, EStructuralFeature feature, EList<EObject> values){
-		targetEObject.eSet(feature, values);
 	}
 	
 	public static void setProperty(EObject targetEObject, EStructuralFeature feature, Object value){

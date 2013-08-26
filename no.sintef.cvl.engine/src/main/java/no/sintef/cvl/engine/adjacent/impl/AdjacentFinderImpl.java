@@ -63,11 +63,11 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 	}
 	
 	private boolean isAdjacent(PlacementElementHolder placement, PlacementElementHolder placement1){
-		HashSet<EObject> iP = placement.getInnerFragmentElements();
-		HashSet<EObject> iP1 = placement1.getInnerFragmentElements();
+		HashSet<EObject> iP = placement.getInnerNeighboringElements();
+		HashSet<EObject> iP1 = placement1.getInnerNeighboringElements();
 		if(Sets.intersection(iP, iP1).isEmpty()){
-			HashSet<EObject> oP = placement.getOuterFragmentElements();
-			HashSet<EObject> oP1 = placement1.getOuterFragmentElements();
+			HashSet<EObject> oP = placement.getOuterNeighboringElements();
+			HashSet<EObject> oP1 = placement1.getOuterNeighboringElements();
 			if(!Sets.intersection(iP, oP1).isEmpty() || !Sets.intersection(iP1, oP).isEmpty()){
 				return true;
 			}

@@ -158,7 +158,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	}
 	
 	@Override
-	public HashSet<EObject> getInnerFragmentElements() {
+	public HashSet<EObject> getInnerNeighboringElements() {
 		HashSet<EObject> innElements = new HashSet<EObject>();
 		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
 			innElements.addAll(Utility.clearSet(innerEl));
@@ -182,7 +182,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	}
 
 	@Override
-	public HashSet<EObject> getOuterFragmentElements() {
+	public HashSet<EObject> getOuterNeighboringElements() {
 		return outerElements;
 	}
 	
@@ -224,5 +224,18 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 			map.put(key, new HashSet<EObject>(Utility.resolveProxies(new BasicEList<ObjectHandle>(value))));
 		}
 		this.toPlacementOutBoundaryMap = map;
+	}
+	
+	@Override
+	public HashSet<EObject> getInnerFragmentElements() {
+		return frElementsOriginal;
+	}
+
+	@Override
+	public HashSet<EObject> getOuterFragmentElements() {
+		HashSet<EObject> elements = new HashSet<EObject>();
+		elements.addAll(outerElements);
+		elements.addAll(frElementsOriginal);
+		return elements;
 	}
 }

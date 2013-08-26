@@ -42,8 +42,6 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 		for(SymbolTable child : children){
 			resolve(child);
 		}
-		System.out.println("resolve before");
 		Context.eINSTANCE.performSubstitutions(table.getSymbols());
-		System.out.println("resolve after");
 	}
 }

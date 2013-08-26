@@ -105,8 +105,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
 		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerNeighboringElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -129,8 +129,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
 		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
 		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
-		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
-		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerNeighboringElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -157,8 +157,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
 		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerNeighboringElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -181,8 +181,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getElementsInternal(), "name");
 		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsInternal(), "name");
 		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getBElementsExternal(), "name");
-		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerFragmentElements(), "name");
-		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterFragmentElements(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getInnerNeighboringElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder1.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -209,8 +209,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
 		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerNeighboringElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -233,8 +233,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
 		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
 		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
-		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
-		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerNeighboringElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -261,8 +261,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
 		HashSet<String> BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
 		HashSet<String> BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerNeighboringElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());
@@ -285,8 +285,8 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		ElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getElementsInternal(), "name");
 		BElementsInternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsInternal(), "name");
 		BElementsExternalExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getBElementsExternal(), "name");
-		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerFragmentElements(), "name");
-		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterFragmentElements(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getInnerNeighboringElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(fragmentSubHolder2.getPlacement().getOuterNeighboringElements(), "name");
 		
 		Assert.assertTrue("Incorrect set of elements in the placement expected->" + Elements + " actual->" + ElementsExp, Sets.symmetricDifference(Elements, ElementsExp).isEmpty());
 		Assert.assertTrue("Incorrect set of external boundary elements expected->" + BElementsExternal + " actual->" + BElementsExternalExp, Sets.symmetricDifference(BElementsExternal, BElementsExternalExp).isEmpty());

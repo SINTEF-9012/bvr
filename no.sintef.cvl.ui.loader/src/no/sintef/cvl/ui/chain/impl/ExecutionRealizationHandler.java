@@ -17,9 +17,9 @@ public class ExecutionRealizationHandler implements ExecutionHandler {
 
 	public ExecutionRealizationHandler(ExecutionHandler successor){
 		this.successor = successor;
-		this.defaultStrategy = new RealizationStrategyScopeless();
+		//this.defaultStrategy = new RealizationStrategyScopeless();
 		//this.defaultStrategy = new RealizationStrategyDefault();
-		//this.defaultStrategy = new RealizationStrategyBottomUp();
+		this.defaultStrategy = new RealizationStrategyBottomUp();
 	}
 	
 	public ExecutionRealizationHandler(ExecutionHandler successor, RealizationStrategy strategy){

@@ -88,12 +88,12 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	}
 
 	@Override
-	public HashSet<EObject> getInnerFragmentElements() {
+	public HashSet<EObject> getInnerNeighboringElements() {
 		return innerElements;
 	}
 
 	@Override
-	public HashSet<EObject> getOuterFragmentElements() {
+	public HashSet<EObject> getOuterNeighboringElements() {
 		return outerElements;
 	}
 	
@@ -107,5 +107,18 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	
 	public ReplacementFragmentType getReplacementFragment(){
 		return replacement;
+	}
+
+	@Override
+	public HashSet<EObject> getInnerFragmentElements() {
+		return frElementsOriginal;
+	}
+
+	@Override
+	public HashSet<EObject> getOuterFragmentElements() {
+		HashSet<EObject> elements = new HashSet<EObject>();
+		elements.addAll(outerElements);
+		elements.addAll(frElementsOriginal);
+		return elements;
 	}
 }

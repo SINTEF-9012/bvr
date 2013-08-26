@@ -76,9 +76,9 @@ public class PlacementElementHolderTest {
 		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + BElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(BElementsInternal, BElementsInternalExp).isEmpty());
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(ElementsInternal, ElementsInternalExp).isEmpty());
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(InnerElements, InnerElementsExp).isEmpty());
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 	}
 

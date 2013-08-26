@@ -115,9 +115,9 @@ public class FragmentSubstitutionPElementHolderTest {
 		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -139,10 +139,10 @@ public class FragmentSubstitutionPElementHolderTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		RElementsInternal.addAll(ElementsInternal);
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		RInnerElements.addAll(InnerElements);
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
@@ -164,10 +164,10 @@ public class FragmentSubstitutionPElementHolderTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		RElementsInternal.addAll(ElementsInternal);
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		RInnerElements.addAll(InnerElements);
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
@@ -181,9 +181,9 @@ public class FragmentSubstitutionPElementHolderTest {
 		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternalBuf + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternalBuf, BElementsInternalExp).isEmpty());
 		ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternalBuf + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternalBuf, ElementsInternalExp).isEmpty());
-		InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElementsBuf + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElementsBuf, InnerElementsExp).isEmpty());
-		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -202,9 +202,9 @@ public class FragmentSubstitutionPElementHolderTest {
 		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -218,9 +218,9 @@ public class FragmentSubstitutionPElementHolderTest {
 		Assert.assertTrue("Incorrect set of interanal boundary elements expected->" + RBElementsInternal + " actual->" + BElementsInternalExp, Sets.symmetricDifference(RBElementsInternal, BElementsInternalExp).isEmpty());
 		ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
-		InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
-		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.node", "base_new.node"));
@@ -242,10 +242,10 @@ public class FragmentSubstitutionPElementHolderTest {
 		HashSet<String> ElementsInternalExp = SetUpUtils.getPropertiesValues(placement.getElementsInternal(), "name");
 		RElementsInternal.addAll(ElementsInternal);
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + RElementsInternal + " actual->" + ElementsInternalExp, Sets.symmetricDifference(RElementsInternal, ElementsInternalExp).isEmpty());
-		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerFragmentElements(), "name");
+		HashSet<String> InnerElementsExp = SetUpUtils.getPropertiesValues(placement.getInnerNeighboringElements(), "name");
 		RInnerElements.addAll(InnerElements);
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + RInnerElements + " actual->" + InnerElementsExp, Sets.symmetricDifference(RInnerElements, InnerElementsExp).isEmpty());
-		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		HashSet<String> OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
@@ -275,14 +275,14 @@ public class FragmentSubstitutionPElementHolderTest {
 		ElementsInternalE.addAll(RElementsInternalBuf);
 		Assert.assertTrue("Incorrect set of interanal elements expected->" + ElementsInternalE + " actual->" + ElementsInternalL, SetUpUtils.compareStringLists(ElementsInternalE, ElementsInternalL));
 		
-		EList<String> InnerElementsL = SetUpUtils.getPropertiesValuesList(placement.getInnerFragmentElements(), "name");
+		EList<String> InnerElementsL = SetUpUtils.getPropertiesValuesList(placement.getInnerNeighboringElements(), "name");
 		EList<String> InnerElementsE = new BasicEList<String>();
 		InnerElementsE.addAll(InnerElements);
 		InnerElementsE.addAll(RInnerElementsBuf);
 		InnerElementsE.addAll(RInnerElementsBuf);
 		Assert.assertTrue("Incorrect set of InnerElements expected->" + InnerElementsE + " actual->" + InnerElementsL, SetUpUtils.compareStringLists(InnerElementsE, InnerElementsL));
 		
-		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterFragmentElements(), "name");
+		OuterElementsExp = SetUpUtils.getPropertiesValues(placement.getOuterNeighboringElements(), "name");
 		Assert.assertTrue("Incorrect set of OuterElements expected->" + OuterElements + " actual->" + OuterElementsExp, Sets.symmetricDifference(OuterElements, OuterElementsExp).isEmpty());
 		
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod3.node", "base_new.node"));

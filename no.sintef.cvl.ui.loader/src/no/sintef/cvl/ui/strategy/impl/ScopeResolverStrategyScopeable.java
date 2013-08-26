@@ -53,33 +53,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fssToResolve);
 		replcmntPlcmntMap = maps.get(0);
 		plcmntReplcmntMap = maps.get(1);
-		System.out.println("resolveScopes START !!!!!!!!!!!!!!!!!!!!!!!!");
-		System.out.println(replcmntPlcmntMap);
-		System.out.println(plcmntReplcmntMap);
-		for(Map.Entry<ReplacementFragmentType, HashSet<PlacementFragment>> entry : replcmntPlcmntMap.entrySet()){
-			ReplacementFragmentType replacement = entry.getKey();
-			try {
-				ReplacementElementHolder holder = new ReplacementElementHolder(replacement);
-				System.out.println(replacement);
-				System.out.println(holder.getElements());
-				for(ReplacementBoundaryElement boundary : replacement.getReplacementBoundaryElement()){
-					if(boundary instanceof ToReplacement){
-						System.out.println(boundary);
-						System.out.println(Utility.resolveProxies(((ToReplacement) boundary).getOutsideBoundaryElement()));
-						System.out.println(Utility.resolveProxies(((ToReplacement) boundary).getInsideBoundaryElement()));
-					}
-					if(boundary instanceof FromReplacement){
-						System.out.println(boundary);
-						System.out.println(Utility.resolveProxies(((FromReplacement) boundary).getOutsideBoundaryElement()));
-						System.out.println(Utility.resolveProxies(((FromReplacement) boundary).getInsideBoundaryElement()));
-					}
-				}
-			} catch (BasicCVLEngineException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		System.out.println("resolveScopes END !!!!!!!!!!!!!!!!!!!!!!!!");
 		symbolTableResolver(table);
 	}
 	
@@ -151,7 +124,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 							throw new UnsupportedOperationException(e);
 						}
 						CVLFragmentCopier rplCopier = new CVLFragmentCopier();
-						HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+						//HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+						HashSet<EObject> replacementInnerElements = replacementHolder.getOuterFragmentElements();
 						rplCopier.copyFragment(replacementInnerElements);
 						
 						newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
@@ -169,7 +143,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 							throw new UnsupportedOperationException(e);
 						}
 						CVLFragmentCopier rplCopier = new CVLFragmentCopier();
-						HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+						//HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+						HashSet<EObject> replacementInnerElements = replacementHolder.getOuterFragmentElements();
 						rplCopier.copyFragment(replacementInnerElements);
 						
 						newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
@@ -242,7 +217,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						throw new UnsupportedOperationException(e);
 					}
 					CVLFragmentCopier rplCopier = new CVLFragmentCopier();
-					HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+					//HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+					HashSet<EObject> replacementInnerElements = replacementHolder.getOuterFragmentElements();
 					rplCopier.copyFragment(replacementInnerElements);
 					
 					newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
@@ -260,7 +236,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						throw new UnsupportedOperationException(e);
 					}
 					CVLFragmentCopier rplCopier = new CVLFragmentCopier();
-					HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+					//HashSet<EObject> replacementInnerElements = replacementHolder.getElements();
+					HashSet<EObject> replacementInnerElements = replacementHolder.getOuterFragmentElements();
 					rplCopier.copyFragment(replacementInnerElements);
 					
 					newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
@@ -328,20 +305,24 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					dublicateToReplacementAttr(newToReplacement, (ToReplacement) boundary);
 					
 					ObjectHandle objectHandleOutsideBElOrg = ((ToReplacement) boundary).getOutsideBoundaryElement();
-					ObjectHandle objectHandle = Utility.getObjectHandle(objectHandleOutsideBElOrg.getMOFRef(), newReplacement.getSourceObject());
+					EObject eObject = objectHandleOutsideBElOrg.getMOFRef();
+					EObject copyEObject = rplCopier.get(eObject);
+					if(copyEObject == null)
+						throw new UnsupportedOperationException("can not find an outside boundary element of the copied replacement in the map");
+					ObjectHandle objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 					if(objectHandle == null){
 						objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-						objectHandle.setMOFRef(objectHandleOutsideBElOrg.getMOFRef());
+						objectHandle.setMOFRef(copyEObject);
 						newReplacement.getSourceObject().add(objectHandle);
 					}
 					newToReplacement.setOutsideBoundaryElement(objectHandle);
 					
 					EList<ObjectHandle> objectHandleInsideBElOrg = ((ToReplacement) boundary).getInsideBoundaryElement();
 					for(ObjectHandle oHandle : objectHandleInsideBElOrg){
-						EObject eObject = oHandle.getMOFRef();
-						EObject copyEObject = rplCopier.get(eObject);
+						eObject = oHandle.getMOFRef();
+						copyEObject = rplCopier.get(eObject);
 						if(copyEObject == null)
-							throw new UnsupportedOperationException("can not fined element of the copied replacement in the map");
+							throw new UnsupportedOperationException("can not find an inside boundary element of the copied replacement in the map");
 						objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 						if(objectHandle == null){
 							objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
@@ -364,7 +345,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				ObjectHandle objectHandleInsideBElOrg = ((FromReplacement) boundary).getInsideBoundaryElement();
 				EObject copyEObject = rplCopier.get(objectHandleInsideBElOrg.getMOFRef());
 				if(copyEObject == null)
-					throw new UnsupportedOperationException("can not fined element of the copied replacement in the map");
+					throw new UnsupportedOperationException("can not find inside boundary element of the copied replacement in the map");
 				ObjectHandle objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 				if(objectHandle == null){
 					objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
@@ -372,17 +353,21 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					newReplacement.getSourceObject().add(objectHandle);
 				}
 				newFromReplacement.setInsideBoundaryElement(objectHandle);
-				
+						
 				EList<ObjectHandle> objectHandleOutsideBElOrg = ((FromReplacement) boundary).getOutsideBoundaryElement();
 				for(ObjectHandle oHandle : objectHandleOutsideBElOrg){
-					objectHandle = Utility.getObjectHandle(oHandle.getMOFRef(), newReplacement.getSourceObject());
+					copyEObject = rplCopier.get(oHandle.getMOFRef());
+					if(copyEObject == null)
+						throw new UnsupportedOperationException("can not find an outside boundary element of the copied replacement in the map");
+					objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 					if(objectHandle == null){
 						objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-						objectHandle.setMOFRef(oHandle.getMOFRef());
+						objectHandle.setMOFRef(copyEObject);
 						newReplacement.getSourceObject().add(objectHandle);
 					}
 					newFromReplacement.getOutsideBoundaryElement().add(objectHandle);
 				}
+				
 				newReplacement.getReplacementBoundaryElement().add(newFromReplacement);
 				boundaryMap.put(boundary, newFromReplacement);
 			}
@@ -446,18 +431,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		return newPlacement;
 	}
 	
-	private PlacementFragment createPlacementFragmentFromOriginal(ReplacementFragmentType replacementCopied, CVLFragmentCopier replacementCopyMap, PlacementFragment originalPlacement, HashMap<PlacementBoundaryElement, PlacementBoundaryElement> boundaryMap){
-		HashSet<EObject> outsideElements = new HashSet<EObject>();
-		EList<ReplacementBoundaryElement> replacementBoundaryElements = replacementCopied.getReplacementBoundaryElement();
-		for(ReplacementBoundaryElement boundary : replacementBoundaryElements){
-			if(boundary instanceof ToReplacement){
-				outsideElements.add(Utility.resolveProxies(((ToReplacement) boundary).getOutsideBoundaryElement()));
-			}
-			if(boundary instanceof FromReplacement){
-				outsideElements.addAll(Utility.resolveProxies(((FromReplacement) boundary).getOutsideBoundaryElement()));
-			}
-		}
-		
+	private PlacementFragment createPlacementFragmentFromOriginal(ReplacementFragmentType replacementCopied, CVLFragmentCopier replacementCopyMap, PlacementFragment originalPlacement, HashMap<PlacementBoundaryElement, PlacementBoundaryElement> boundaryMap){		
 		PlacementFragment newPlacement = CvlFactory.eINSTANCE.createPlacementFragment();
 		newPlacement.setName(originalPlacement.getName());
 		
@@ -478,12 +452,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
 						objectHandle.setMOFRef(copyEObject);
 					}
-				}else{
-					if(outsideElements.contains(outsideEObject)){
-						objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-						objectHandle.setMOFRef(outsideEObject);
-					}
 				}
+				
 				if(objectHandle == null)
 					throw new UnsupportedOperationException("can not find outdsideBoundaryElement to reference in the copied replacement for a new placement");
 				newPlacement.getSourceObject().add(objectHandle);
@@ -529,23 +499,16 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					EList<ObjectHandle> outsideBElsOhOrg = fromPlacementOriginal.getOutsideBoundaryElement();
 					for(ObjectHandle objectHandleOrg : outsideBElsOhOrg){
 						objectHandle = null;
-						if(outsideElements.contains(objectHandleOrg.getMOFRef())){		
-							objectHandle = Utility.getObjectHandle(objectHandleOrg.getMOFRef(), newPlacement.getSourceObject());
-							if(objectHandle == null){
-								objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-								objectHandle.setMOFRef(objectHandleOrg.getMOFRef());
-							}	
-						}else{
-							EObject eObjectOriginal = objectHandleOrg.getMOFRef();
-							copyEObject = replacementCopyMap.get(eObjectOriginal);
-							if(copyEObject == null)
-								throw new UnsupportedOperationException("can not find oiutsideBoundaryElement to reference in the copied replacement for a new placement");
-							objectHandle = Utility.getObjectHandle(copyEObject, newPlacement.getSourceObject());
-							if(objectHandle == null){
-								objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
-								objectHandle.setMOFRef(copyEObject);
-							}
+						EObject eObjectOriginal = objectHandleOrg.getMOFRef();
+						copyEObject = replacementCopyMap.get(eObjectOriginal);
+						if(copyEObject == null)
+							throw new UnsupportedOperationException("can not find oiutsideBoundaryElement to reference in the copied replacement for a new placement");
+						objectHandle = Utility.getObjectHandle(copyEObject, newPlacement.getSourceObject());
+						if(objectHandle == null){
+							objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
+							objectHandle.setMOFRef(copyEObject);
 						}
+						
 						newPlacement.getSourceObject().add(objectHandle);
 						fromPlacementNew.getOutsideBoundaryElement().add(objectHandle);
 					}

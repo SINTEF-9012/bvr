@@ -131,6 +131,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		    
 		    editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 				
+
+		    	
 				@Override
 				protected void doExecute() {
 				    //TO DO:
