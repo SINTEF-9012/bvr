@@ -153,50 +153,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						replacementCopyMap.put(newReplacement, rplCopier);
 					}
 					
-					FragmentSubstitution newFragmentSubstitution = CvlFactory.eINSTANCE.createFragmentSubstitution();
-					newFragmentSubstitution.setName(symbol.getVSpecResolution().getName() + ":" + fragSub.getName());
-					newFragmentSubstitution.setPlacement(newPlacement);
-					newFragmentSubstitution.setReplacement(newReplacement);
-					
-					for(BoundaryElementBinding binding : fragSub.getBoundaryElementBinding()){
-						if(binding instanceof ToBinding){
-							ToBinding toBinding = (ToBinding) binding;
-							ToBinding toBindingNew = CvlFactory.eINSTANCE.createToBinding();
-							
-							PlacementBoundaryElement toPlacementNew = placementBoundaryMap.get(toBinding.getToPlacement());
-							if(toPlacementNew == null)
-								throw new UnsupportedOperationException("can not fine copied toPlacement");
-							toBindingNew.setToPlacement((ToPlacement) toPlacementNew);
-							
-							ReplacementBoundaryElement toReplacementNew = replacementBoundaryMap.get(toBinding.getToReplacement());
-							if(toReplacementNew == null)
-								throw new UnsupportedOperationException("can not fine copied toReplacement");
-							toBindingNew.setToReplacement((ToReplacement) toReplacementNew);
-							
-							newFragmentSubstitution.getBoundaryElementBinding().add(toBindingNew);
-						}
-						if(binding instanceof FromBinding){
-							FromBinding fromBinding = (FromBinding) binding;
-							FromBinding fromBindingNew = CvlFactory.eINSTANCE.createFromBinding();
-							
-							PlacementBoundaryElement fromPlacementNew = placementBoundaryMap.get(fromBinding.getFromPlacement());
-							if(fromPlacementNew == null)
-								throw new UnsupportedOperationException("can not fine copied fromPlacement");
-							fromBindingNew.setFromPlacement((FromPlacement) fromPlacementNew);
-							
-							ReplacementBoundaryElement fromReplacementNew = replacementBoundaryMap.get(fromBinding.getFromReplacement());
-							if(fromReplacementNew == null)
-								throw new UnsupportedOperationException("can not fine copied fromReplacement");
-							fromBindingNew.setFromReplacement((FromReplacement) fromReplacementNew);
-							
-							newFragmentSubstitution.getBoundaryElementBinding().add(fromBindingNew);
-						}
-					}
-					
-					symbol.getScope().getConfigurableUnit().getOwnedVariabletype().add(newReplacement);
-					symbol.getScope().getConfigurableUnit().getOwnedVariationPoint().add(newPlacement);
-					symbol.getFragmentSubstitutions().add(newFragmentSubstitution);
-					symbol.getFragmentSubstitutions().remove(fragSub);
+					createNewFrgamentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
 				}
 			}else{
 				PlacementFragment newPlacement;
@@ -245,56 +202,73 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					
 					replacementCopyMap.put(newReplacement, rplCopier);
 				}
-				
-				FragmentSubstitution newFragmentSubstitution = CvlFactory.eINSTANCE.createFragmentSubstitution();
-				newFragmentSubstitution.setName(symbol.getVSpecResolution().getName() + ":" + fragSub.getName());
-				newFragmentSubstitution.setPlacement(newPlacement);
-				newFragmentSubstitution.setReplacement(newReplacement);
-				
-				for(BoundaryElementBinding binding : fragSub.getBoundaryElementBinding()){
-					if(binding instanceof ToBinding){
-						ToBinding toBinding = (ToBinding) binding;
-						ToBinding toBindingNew = CvlFactory.eINSTANCE.createToBinding();
-						
-						PlacementBoundaryElement toPlacementNew = placementBoundaryMap.get(toBinding.getToPlacement());
-						if(toPlacementNew == null)
-							throw new UnsupportedOperationException("can not fine copied toPlacement");
-						toBindingNew.setToPlacement((ToPlacement) toPlacementNew);
-						
-						ReplacementBoundaryElement toReplacementNew = replacementBoundaryMap.get(toBinding.getToReplacement());
-						if(toReplacementNew == null)
-							throw new UnsupportedOperationException("can not fine copied toReplacement");
-						toBindingNew.setToReplacement((ToReplacement) toReplacementNew);
-						
-						newFragmentSubstitution.getBoundaryElementBinding().add(toBindingNew);
-					}
-					if(binding instanceof FromBinding){
-						FromBinding fromBinding = (FromBinding) binding;
-						FromBinding fromBindingNew = CvlFactory.eINSTANCE.createFromBinding();
-						
-						PlacementBoundaryElement fromPlacementNew = placementBoundaryMap.get(fromBinding.getFromPlacement());
-						if(fromPlacementNew == null)
-							throw new UnsupportedOperationException("can not fine copied fromPlacement");
-						fromBindingNew.setFromPlacement((FromPlacement) fromPlacementNew);
-						
-						ReplacementBoundaryElement fromReplacementNew = replacementBoundaryMap.get(fromBinding.getFromReplacement());
-						if(fromReplacementNew == null)
-							throw new UnsupportedOperationException("can not fine copied fromReplacement");
-						fromBindingNew.setFromReplacement((FromReplacement) fromReplacementNew);
-						
-						newFragmentSubstitution.getBoundaryElementBinding().add(fromBindingNew);
-					}
-				}
-				
-				symbol.getScope().getConfigurableUnit().getOwnedVariabletype().add(newReplacement);
-				symbol.getScope().getConfigurableUnit().getOwnedVariationPoint().add(newPlacement);
-				symbol.getFragmentSubstitutions().add(newFragmentSubstitution);
-				symbol.getFragmentSubstitutions().remove(fragSub);
+				createNewFrgamentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
 			}
 		}
 	}
+	
+	private FragmentSubstitution createNewFrgamentSubstitution(
+			Symbol symbol,
+			HashMap<PlacementBoundaryElement, PlacementBoundaryElement> placementBoundaryMap,
+			HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap,
+			PlacementFragment newPlacement,
+			ReplacementFragmentType newReplacement,
+			FragmentSubstitution oldFrgament)
+	{
+		FragmentSubstitution newFragmentSubstitution = CvlFactory.eINSTANCE.createFragmentSubstitution();
+		newFragmentSubstitution.setName(symbol.getVSpecResolution().getName() + ":" + oldFrgament.getName());
+		newFragmentSubstitution.setBindingVSpec(oldFrgament.getBindingVSpec());
+		newFragmentSubstitution.setPlacement(newPlacement);
+		newFragmentSubstitution.setReplacement(newReplacement);
+		
+		for(BoundaryElementBinding binding : oldFrgament.getBoundaryElementBinding()){
+			if(binding instanceof ToBinding){
+				ToBinding toBinding = (ToBinding) binding;
+				ToBinding toBindingNew = CvlFactory.eINSTANCE.createToBinding();
+				
+				PlacementBoundaryElement toPlacementNew = placementBoundaryMap.get(toBinding.getToPlacement());
+				if(toPlacementNew == null)
+					throw new UnsupportedOperationException("can not find copied toPlacement");
+				toBindingNew.setToPlacement((ToPlacement) toPlacementNew);
+				
+				ReplacementBoundaryElement toReplacementNew = replacementBoundaryMap.get(toBinding.getToReplacement());
+				if(toReplacementNew == null)
+					throw new UnsupportedOperationException("can not find copied toReplacement");
+				toBindingNew.setToReplacement((ToReplacement) toReplacementNew);
+				
+				newFragmentSubstitution.getBoundaryElementBinding().add(toBindingNew);
+			}
+			if(binding instanceof FromBinding){
+				FromBinding fromBinding = (FromBinding) binding;
+				FromBinding fromBindingNew = CvlFactory.eINSTANCE.createFromBinding();
+				
+				PlacementBoundaryElement fromPlacementNew = placementBoundaryMap.get(fromBinding.getFromPlacement());
+				if(fromPlacementNew == null)
+					throw new UnsupportedOperationException("can not find copied fromPlacement");
+				fromBindingNew.setFromPlacement((FromPlacement) fromPlacementNew);
+				
+				ReplacementBoundaryElement fromReplacementNew = replacementBoundaryMap.get(fromBinding.getFromReplacement());
+				if(fromReplacementNew == null)
+					throw new UnsupportedOperationException("can not find copied fromReplacement");
+				fromBindingNew.setFromReplacement((FromReplacement) fromReplacementNew);
+				
+				newFragmentSubstitution.getBoundaryElementBinding().add(fromBindingNew);
+			}
+		}
+		
+		symbol.getScope().getConfigurableUnit().getOwnedVariabletype().add(newReplacement);
+		symbol.getScope().getConfigurableUnit().getOwnedVariationPoint().add(newPlacement);
+		symbol.getFragmentSubstitutions().add(newFragmentSubstitution);
+		symbol.getFragmentSubstitutions().remove(oldFrgament);
+		return newFragmentSubstitution;
+	}
 
-	private ReplacementFragmentType createReplacementFromOriginal(CVLFragmentCopier rplCopier, ReplacementFragmentType replacement, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> boundaryMap){
+	private ReplacementFragmentType createReplacementFromOriginal(
+			CVLFragmentCopier rplCopier,
+			ReplacementFragmentType replacement,
+			HashMap<ReplacementBoundaryElement,
+			ReplacementBoundaryElement> boundaryMap)
+	{
 		EList<ReplacementBoundaryElement> boundaryElements = replacement.getReplacementBoundaryElement();
 		ReplacementFragmentType newReplacement = CvlFactory.eINSTANCE.createReplacementFragmentType();
 		newReplacement.setName(replacement.getName());
@@ -431,7 +405,13 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		return newPlacement;
 	}
 	
-	private PlacementFragment createPlacementFragmentFromOriginal(ReplacementFragmentType replacementCopied, CVLFragmentCopier replacementCopyMap, PlacementFragment originalPlacement, HashMap<PlacementBoundaryElement, PlacementBoundaryElement> boundaryMap){		
+	private PlacementFragment createPlacementFragmentFromOriginal(
+			ReplacementFragmentType replacementCopied,
+			CVLFragmentCopier replacementCopyMap,
+			PlacementFragment originalPlacement,
+			HashMap<PlacementBoundaryElement,
+			PlacementBoundaryElement> boundaryMap)
+	{		
 		PlacementFragment newPlacement = CvlFactory.eINSTANCE.createPlacementFragment();
 		newPlacement.setName(originalPlacement.getName());
 		
@@ -560,7 +540,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		if(fromReplacement.getFromPlacement() != null)
 			newFromReplacement.setFromPlacement(fromReplacement.getFromPlacement());
 		if(fromReplacement.getPropertyName() != null)
-			newFromReplacement.setPropertyName(fromReplacement.getPropertyName());
-			
+			newFromReplacement.setPropertyName(fromReplacement.getPropertyName());		
 	}
 }
