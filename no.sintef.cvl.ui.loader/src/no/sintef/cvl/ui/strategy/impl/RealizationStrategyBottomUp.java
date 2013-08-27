@@ -2,12 +2,14 @@ package no.sintef.cvl.ui.strategy.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 
 import cvl.FragmentSubstitution;
+import cvl.VInstance;
 
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.primitive.Symbol;
@@ -48,6 +50,20 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 		for(SymbolTable child : children){
 			resolve(child);
 		}
-		Context.eINSTANCE.performSubstitutions(table.getSymbols());
+		Context.eINSTANCE.performSubstitutions(prioritizeSymbols(table.getSymbols()));
+	}
+	
+	private ArrayList<Symbol> prioritizeSymbols(ArrayList<Symbol> symbols){
+		ArrayList<Symbol> prioritizedSymbols = new ArrayList<Symbol>();
+		Iterator<Symbol> iterator = symbols.iterator();
+		while(iterator.hasNext()){
+			Symbol symbol = iterator.next();
+			if(symbol.getVSpecResolution() instanceof VInstance){
+				prioritizedSymbols.add(prioritizedSymbols.size(), symbol);
+			}else{
+				prioritizedSymbols.add(0, symbol);
+			}
+		}
+		return prioritizedSymbols;
 	}
 }

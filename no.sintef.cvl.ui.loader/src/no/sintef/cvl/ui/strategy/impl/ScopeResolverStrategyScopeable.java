@@ -3,6 +3,7 @@ package no.sintef.cvl.ui.strategy.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -49,7 +50,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fssToResolve);
 		replcmntPlcmntMap = maps.get(0);
 		plcmntReplcmntMap = maps.get(1);
-		System.out.println(plcmntReplcmntMap);
 		symbolTableResolver(table);
 	}
 	
@@ -69,13 +69,9 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private void symbolTableResolver(SymbolTable table){
 		SymbolTable parentScope = table.getParent();
 		if(parentScope != null){
-			ArrayList<Symbol> symbols = table.getSymbols();
-			for(Symbol symbol : symbols){
-				//VSpecResolution vSpecResolution = symbol.getVSpecResolution();
-				//if(vSpecResolution instanceof VInstance){
-					vInstanceResolver(symbol);
-				//}
-			}
+			ArrayList<Symbol> symbols = prioritizeSymbols(table.getSymbols());
+			for(Symbol symbol : symbols)
+				resolverSymbol(symbol);
 		}
 		ArrayList<SymbolTable> childScopes = table.getChildren();
 		for(SymbolTable scope : childScopes){
@@ -83,7 +79,21 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		}
 	}
 	
-	private void vInstanceResolver(Symbol symbol){
+	private ArrayList<Symbol> prioritizeSymbols(ArrayList<Symbol> symbols){
+		ArrayList<Symbol> prioritizedSymbols = new ArrayList<Symbol>();
+		Iterator<Symbol> iterator = symbols.iterator();
+		while(iterator.hasNext()){
+			Symbol symbol = iterator.next();
+			if(symbol.getVSpecResolution() instanceof VInstance){
+				prioritizedSymbols.add(0, symbol);
+			}else{
+				prioritizedSymbols.add(prioritizedSymbols.size(), symbol);
+			}
+		}
+		return prioritizedSymbols;
+	}
+	
+	private void resolverSymbol(Symbol symbol){
 		EList<FragmentSubstitution> fragSubs = symbol.getFragmentSubstitutions();
 		for(FragmentSubstitution fragSub : fragSubs){
 			PlacementFragment placement = fragSub.getPlacement();
