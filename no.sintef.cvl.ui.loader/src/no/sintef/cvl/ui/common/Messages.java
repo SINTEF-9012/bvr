@@ -2,6 +2,8 @@ package no.sintef.cvl.ui.common;
 
 public class Messages {
 	
+	public static final String EDITOR_TITLE = "CVL 2 Editor by SINTEF";
+	
 	public static final String DIALOG_MSG_FAIL_TOSAVE_RES = "can not save the following resource";
 	public static final String DIALOG_MSG_GENERAL_ERROR = "Error (consult error log):\n";
 	public static final String DIALOG_MSG_CAN_NOT_REMOVE_PLC_RPLC = "following fragments are used by other FragmentSubstitution-s, not legal to remove";
@@ -22,4 +24,10 @@ public class Messages {
 	public static final String DIALOG_MSG_BINDING_NOT_DUMMY = "Boundary is not a dummy one, corresponding boundary refrences sonething inside the placement fragment. Remove?";
 	public static final String DIALOG_WRONG_LOCATION = "Can not save a model to the specified location, save somewhere in the workspace location";
 	public static final String DIALOG_MSG_SAVE_MODEL = "Save model first!";
+	public static final String DIALOG_MSG_EXIT = "Do you really want to exit?";
+	public static final String DIALOG_TITLE_EXIT = "Exit?";
+	
+	public static final String BUTTONS_TITLE_SAVE_AND_EXIT = "Save and Exit";
+	public static final String BUTTONS_TITLE_EXIT = "Exit";
+	public static final String BUTTONS_TITLE_CANCEL = "Cancel";
 }

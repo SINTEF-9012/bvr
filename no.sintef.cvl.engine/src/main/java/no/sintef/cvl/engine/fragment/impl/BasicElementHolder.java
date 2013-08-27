@@ -14,6 +14,8 @@ public abstract class BasicElementHolder implements ElementHolder {
 	protected HashSet<EObject> frBElementsInternal; 
 	protected HashSet<EObject> frBElementsExternal;
 	protected HashSet<EObject> frElementsInternal;
+	protected HashSet<EObject> frNeighboringInsideElements;
+	protected HashSet<EObject> frNeighboringOutsideElements;
 	
 	@Override
 	public HashSet<EObject> getElements() {
@@ -34,12 +36,24 @@ public abstract class BasicElementHolder implements ElementHolder {
 	public HashSet<EObject> getElementsInternal() {
 		return frElementsInternal;
 	}
+	
+	@Override
+	public HashSet<EObject> getNeighboringInsideElements() {
+		return frNeighboringInsideElements;
+	}
+	
+	@Override
+	public HashSet<EObject> getNeighboringOutsideElements() {
+		return frNeighboringOutsideElements;
+	}
 		
 	protected void locate() throws BasicCVLEngineException {
 		frElementsOriginal = new HashSet<EObject>();
 		frBElementsInternal = new HashSet<EObject>();
 		frBElementsExternal = new HashSet<EObject>();
 		frElementsInternal = new HashSet<EObject>();
+		frNeighboringInsideElements = new HashSet<EObject>();
+		frNeighboringOutsideElements = new HashSet<EObject>();
 	}
 
 }

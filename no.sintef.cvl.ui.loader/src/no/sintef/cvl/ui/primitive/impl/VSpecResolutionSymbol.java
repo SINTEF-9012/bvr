@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.primitive.impl;
 
+import java.util.HashMap;
+
 import no.sintef.cvl.ui.primitive.AbstractSymbol;
 import no.sintef.cvl.ui.primitive.Symbol;
 
@@ -11,11 +13,13 @@ import cvl.VSpecResolution;
 
 public class VSpecResolutionSymbol extends AbstractSymbol {
 
-	public VSpecResolutionSymbol(VSpecResolution vSpecResolution){
-		fragSubs = new BasicEList<FragmentSubstitution>();
+	public VSpecResolutionSymbol(VSpecResolution vSpecRes){
+		multi = false;
+		vSpecResolution = vSpecRes;
 		children = new BasicEList<Symbol>();
-		this.vSpecResolution = vSpecResolution;
-		this.vSpec = vSpecResolution.getResolvedVSpec();
-		this.multi = false;
+		vSpec = vSpecRes.getResolvedVSpec();
+		fragSubs = new BasicEList<FragmentSubstitution>();
+		fragSubsToExecute = new BasicEList<FragmentSubstitution>();
+		fragmentSubCopyMap = new HashMap<FragmentSubstitution, FragmentSubstitution>();
 	}
 }

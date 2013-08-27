@@ -42,6 +42,17 @@ public class ReplacPlacCotainmentFinder {
 		adjacentFromBoundaries = new HashMap<PlacementFragment, HashMap<ReplacementFragmentType, HashMap<FromPlacement, HashSet<FromReplacement>>>>();
 		caluclateIntersections();
 		findAdjacentBoundaries();
+		System.out.println(replcmntPlcmntHolderMap);
+		System.out.println(adjacentToBoundaries);
+		System.out.println(adjacentFromBoundaries);
+		for(FragmentSubstitutionHolder holder : collection){
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println(holder.getFragment());
+			System.out.println(holder.getPlacement().getPlacementFragment());
+			System.out.println(holder.getPlacement().getElements());
+			System.out.println(holder.getReplacement().getReplacementFragment());
+			System.out.println(holder.getReplacement().getElements());
+		}
 	}
 	
 	

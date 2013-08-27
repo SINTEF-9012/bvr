@@ -28,7 +28,13 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 		HashSet<FragmentSubstitution> fss = new HashSet<FragmentSubstitution>();
 		ArrayList<Symbol> symbols = table.getSymbols();
 		for(Symbol symbol : symbols){
-			fss.addAll(symbol.getFragmentSubstitutions());
+			EList<FragmentSubstitution> fragmentSubstitutions = symbol.getFragmentSubstitutions();
+			for(FragmentSubstitution fragment : fragmentSubstitutions){
+				FragmentSubstitution frgamentCopy = symbol.getFragmentSubstitutionCopy(fragment);
+				FragmentSubstitution fragmentTpExecute = (frgamentCopy == null) ? fragment : frgamentCopy;
+				symbol.addFragmentSubstitutionsToExecute(fragmentTpExecute);
+				fss.add(fragmentTpExecute);
+			}
 		}
 		ArrayList<SymbolTable> tables = table.getChildren();
 		for(SymbolTable symbolTable : tables){

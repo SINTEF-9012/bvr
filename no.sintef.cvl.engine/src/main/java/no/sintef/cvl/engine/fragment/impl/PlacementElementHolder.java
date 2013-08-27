@@ -238,4 +238,14 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		elements.addAll(frElementsOriginal);
 		return elements;
 	}
+	
+	@Override
+	public HashSet<EObject> getNeighboringInsideElements() {
+		throw new UnsupportedOperationException("not implemented getNeighboringInsideElements");
+	}
+	
+	@Override
+	public HashSet<EObject> getNeighboringOutsideElements() {
+		throw new UnsupportedOperationException("not implemented getNeighboringOutsideElements");
+	}
 }

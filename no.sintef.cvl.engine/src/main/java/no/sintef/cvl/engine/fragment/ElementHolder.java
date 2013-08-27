@@ -16,4 +16,12 @@ public interface ElementHolder {
 	
 	public HashSet<EObject> getElementsInternal();
 	
+	//Elements referenced by outsideBoundaryElements and
+	//pointing to elements inside a placement
+	public HashSet<EObject> getNeighboringInsideElements();
+	
+	//Elements referenced by outsideBoundaryElements and
+	//pointed by elements from a placement
+	public HashSet<EObject> getNeighboringOutsideElements();
+	
 }

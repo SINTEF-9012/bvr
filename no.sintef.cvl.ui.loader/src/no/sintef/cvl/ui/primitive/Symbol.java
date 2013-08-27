@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.primitive;
 
+
 import org.eclipse.emf.common.util.EList;
 
 import cvl.FragmentSubstitution;
@@ -19,6 +20,14 @@ public interface Symbol {
 	public void addFragmentSubstitution(FragmentSubstitution fragmentSubstiotution);
 	
 	public EList<FragmentSubstitution> getFragmentSubstitutions();
+	
+	public FragmentSubstitution getFragmentSubstitutionCopy(FragmentSubstitution original);
+	
+	public void setFragmentSubstitutionCopy(FragmentSubstitution original, FragmentSubstitution copy);
+	
+	public EList<FragmentSubstitution> getFragmentSubstitutionsToExecute();
+	
+	public void addFragmentSubstitutionsToExecute(FragmentSubstitution fragment);
 	
 	public void setParent(Symbol parent);
 	

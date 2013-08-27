@@ -179,7 +179,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
 		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
 		for(final Symbol symbol : symbols){
-			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutions();
+			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
 			
 			ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
 			ResourceSet resSet = cu.eResource().getResourceSet();

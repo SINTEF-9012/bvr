@@ -1,5 +1,7 @@
 package no.sintef.cvl.ui.primitive;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.util.EList;
 
 import cvl.FragmentSubstitution;
@@ -11,10 +13,12 @@ public abstract class AbstractSymbol implements Symbol {
 	protected VSpec vSpec;
 	protected VSpecResolution vSpecResolution;
 	protected EList<FragmentSubstitution> fragSubs;
+	protected EList<FragmentSubstitution> fragSubsToExecute;
 	protected Symbol parent;
 	protected EList<Symbol> children;
 	protected SymbolTable scope;
 	protected boolean multi;
+	protected HashMap<FragmentSubstitution, FragmentSubstitution> fragmentSubCopyMap;
 
 	@Override
 	public void setVSpec(VSpec vSpec) {
@@ -84,5 +88,26 @@ public abstract class AbstractSymbol implements Symbol {
 	@Override
 	public boolean getMulti() {
 		return this.multi;
+	}
+	
+	@Override
+	public FragmentSubstitution getFragmentSubstitutionCopy(FragmentSubstitution orignal) {
+		return fragmentSubCopyMap.get(orignal);
+	}
+	
+	@Override
+	public void setFragmentSubstitutionCopy(FragmentSubstitution original,
+			FragmentSubstitution copy) {
+		fragmentSubCopyMap.put(original, copy);
+	}
+	
+	@Override
+	public EList<FragmentSubstitution> getFragmentSubstitutionsToExecute() {
+		return fragSubsToExecute;
+	}
+	
+	@Override
+	public void addFragmentSubstitutionsToExecute(FragmentSubstitution fragment) {
+		fragSubsToExecute.add(fragment);
 	}
 }

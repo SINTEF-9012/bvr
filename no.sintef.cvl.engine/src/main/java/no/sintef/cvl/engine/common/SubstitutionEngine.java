@@ -66,6 +66,7 @@ public final class SubstitutionEngine {
 	}
 	
 	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentCVLModelException{
+		System.out.println("************************************* " + fragmentSubstitution);
 		FragmentSubstitutionHolder fragmentHolder = fsMap.get(fragmentSubstitution);
 		if(fragmentHolder == null){
 			context.getLogger().warn("engine is not initialized with this fragment substitution " + fragmentSubstitution);
@@ -73,9 +74,16 @@ public final class SubstitutionEngine {
 		}
 		FragmentSubOperation subsOperation = new FragmentSubOperation(fragmentHolder);
 		try {
+			System.out.println(fragmentHolder.getReplacement().getReplacementFragment());
+			System.out.println(fragmentHolder.getReplacement().getElements());
+			
 			subsOperation.execute(replace);
 			adjacentResolver.resolve(fragmentHolder);
 			placementInReplacementResolver.resolve(fragmentHolder);
+			
+			System.out.println(">>>>>>>>>> after substitution");
+			System.out.println(fragmentHolder.getPlacement().getPlacementFragment());
+			System.out.println(fragmentHolder.getPlacement().getElements());
 		} catch (BasicCVLEngineException e) {
 			throw new UnsupportedOperationException(e);
 		}

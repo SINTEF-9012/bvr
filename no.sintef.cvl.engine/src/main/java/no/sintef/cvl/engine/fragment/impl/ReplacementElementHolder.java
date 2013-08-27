@@ -46,15 +46,21 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		for(ReplacementBoundaryElement rbe : rbes){
 			if(rbe instanceof ToReplacement){
 				tbe.add((ToReplacement)rbe);
-				frBElementsInternal.addAll(Utility.resolveProxies(((ToReplacement)rbe).getInsideBoundaryElement()));
-				outerElements.add(Utility.resolveProxies(((ToReplacement)rbe).getOutsideBoundaryElement()));
-				innerElements.addAll(Utility.resolveProxies(((ToReplacement)rbe).getInsideBoundaryElement()));
+				EList<EObject> insideBoundaryElements = Utility.resolveProxies(((ToReplacement)rbe).getInsideBoundaryElement());
+				EObject outsideBoundaryElement = Utility.resolveProxies(((ToReplacement)rbe).getOutsideBoundaryElement());
+				frBElementsInternal.addAll(insideBoundaryElements);
+				frNeighboringInsideElements.add(outsideBoundaryElement);
+				outerElements.add(outsideBoundaryElement);
+				innerElements.addAll(insideBoundaryElements);
 			}
 			if(rbe instanceof FromReplacement){
 				fbe.add((FromReplacement) rbe);
-				frBElementsExternal.add(Utility.resolveProxies(((FromReplacement)rbe).getInsideBoundaryElement()));
-				outerElements.addAll(Utility.resolveProxies(((FromReplacement)rbe).getOutsideBoundaryElement()));
-				innerElements.add(Utility.resolveProxies(((FromReplacement)rbe).getInsideBoundaryElement()));
+				EObject insideBoundaryElement = Utility.resolveProxies(((FromReplacement)rbe).getInsideBoundaryElement());
+				EList<EObject> outsideBoundaryElements = Utility.resolveProxies(((FromReplacement)rbe).getOutsideBoundaryElement());
+				frBElementsExternal.add(insideBoundaryElement);
+				frNeighboringOutsideElements.addAll(outsideBoundaryElements);
+				outerElements.addAll(outsideBoundaryElements);
+				innerElements.add(insideBoundaryElement);
 			}
 		}
 		this.calculatePlElementsInternal();
