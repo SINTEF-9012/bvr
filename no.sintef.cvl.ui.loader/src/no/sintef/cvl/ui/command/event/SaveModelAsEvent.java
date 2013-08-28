@@ -33,7 +33,7 @@ public class SaveModelAsEvent implements ActionListener {
 			}
 		}catch(Exception e){
 			Context.eINSTANCE.logger.error("some error on Save", e);
-			JOptionPane.showMessageDialog(filePane, "Error saving file: " + e.getMessage());
+			StaticUICommands.showMessageErrorDialog(filePane, e, "Error saving file:");
 		}
 	}
 }

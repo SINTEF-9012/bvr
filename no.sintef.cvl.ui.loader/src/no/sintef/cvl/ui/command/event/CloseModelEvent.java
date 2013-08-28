@@ -39,7 +39,7 @@ public class CloseModelEvent implements ActionListener {
 			Context.eINSTANCE.getCvlModels().remove(selected);
 		}catch(Exception e){
 			Context.eINSTANCE.logger.error("can not close the model", e);
-			JOptionPane.showMessageDialog(filePane, "Error (can not close the model): " + e.getMessage());
+			StaticUICommands.showMessageErrorDialog(filePane, e, "Error (can not close the model):");
 		}
 	}
 

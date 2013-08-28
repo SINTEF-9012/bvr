@@ -15,6 +15,8 @@ import org.sat4j.specs.TimeoutException;
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
+import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
@@ -44,10 +46,12 @@ public class SATValidateResolutions implements ActionListener {
 		try {
 			ca = x.getCoveringArray();
 		} catch (CSVException e) {
-			JOptionPane.showMessageDialog(null, "Getting CA failed: " + e.getMessage());
+			Context.eINSTANCE.logger.error("Getting CA failed: ", e);
+			StaticUICommands.showMessageErrorDialog(null, e, "Getting CA failed: ");
 			return;
 		} catch (CVLException e) {
-			JOptionPane.showMessageDialog(null, "Getting CA failed: " + e.getMessage());
+			Context.eINSTANCE.logger.error("Getting CA failed: ", e);
+			StaticUICommands.showMessageErrorDialog(null, e, "Getting CA failed: ");
 			return;
 		}
 		CNF cnf;

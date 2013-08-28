@@ -15,6 +15,7 @@ import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.DeriveProduct;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -69,7 +70,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 			Context.eINSTANCE.reloadModel(m);
 			views.get(tab).notifyAllViews();
 			logger.error("some failure during execution", error);
-			JOptionPane.showMessageDialog(x, Messages.DIALOG_MSG_GENERAL_ERROR + error.getMessage());
+			StaticUICommands.showMessageErrorDialog(x, error, "some failure during execution");
 		}
 	}
 }

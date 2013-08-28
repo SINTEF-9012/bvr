@@ -37,7 +37,7 @@ public class OpenModelEvent implements ActionListener {
 			Context.eINSTANCE.addCvlView(new CVLView(m, c));
 		}catch(Exception e){
 			Context.eINSTANCE.logger.error("some error on Open", e);
-			JOptionPane.showMessageDialog(null, "Failed to load file due to: " + e.getMessage());
+			StaticUICommands.showMessageErrorDialog(null, e, "Failed to load file due to:");
 		}
 	}
 

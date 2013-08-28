@@ -1,15 +1,21 @@
 package no.sintef.cvl.ui.context;
 
+import java.awt.Container;
+import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 
 import com.google.common.collect.Lists;
 
+import no.sintef.cvl.common.Utility;
+import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
@@ -24,7 +30,8 @@ public class StaticUICommands {
 					try{
 						Context.eINSTANCE.writeModelToFile(model, model.getFile());
 					} catch(UnsupportedOperationException e){
-						JOptionPane.showMessageDialog(parent, "Error writing file: " + e.getMessage());
+						StaticUICommands.showMessageErrorDialog(parent, e, "Error writing file: ");
+						return null;
 					}
 					return model.getFile();
 				}
@@ -72,5 +79,17 @@ public class StaticUICommands {
 		fc.addChoosableFileFilter(cvlFilter);
 		fc.setFileFilter(cvlFilter);
 		return fc;
+	}
+	
+	public static void showMessageErrorDialog(Container parent, Throwable e, String message){
+		message = (message != null && !message.isEmpty()) ? message + e.getMessage() + "\n" + Utility.getStackTraceAsString(e) : e.getMessage() + "\n" + Utility.getStackTraceAsString(e);
+		JTextArea textArea = new JTextArea(message);
+		JScrollPane scrollPane = new JScrollPane(textArea){
+			@Override
+			public Dimension getPreferredSize() {
+				return new Dimension(480, 320);
+			};
+		};
+		JOptionPane.showMessageDialog(parent, scrollPane, Messages.DIALOG_MSG_GENERAL_ERROR, JOptionPane.ERROR_MESSAGE);
 	}
 }

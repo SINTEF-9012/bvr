@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
+import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.filter.SHFilter;
 import no.sintef.ict.splcatool.CSVException;
@@ -47,7 +49,8 @@ public class ImportResolutions implements ActionListener {
 			GUIDSL gdsl = m.getCVLM().getGUIDSL();
 			gfm = gdsl.getGraphMLFMConf(ca);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Importing resolutions failed: " + e.getMessage());
+			Context.eINSTANCE.logger.error("Importing resolutions failed: ", e);
+			StaticUICommands.showMessageErrorDialog(null, e, "Importing resolutions failed: ");
 			return;
 		}
 		

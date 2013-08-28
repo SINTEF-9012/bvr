@@ -11,6 +11,8 @@ import javax.swing.JTabbedPane;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
+import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayFile;
@@ -48,8 +50,8 @@ public class GenerateCoveringArray implements ActionListener {
 			m.getCVLM().getCU().getOwnedVSpecResolution().clear();
 			m.getCVLM().injectConfigurations(gfm);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Generating covering array failed: " + e.getMessage());
-			e.printStackTrace();
+			Context.eINSTANCE.logger.error("Generating covering array failed:", e);
+			StaticUICommands.showMessageErrorDialog(null, e, "Generating covering array failed:");
 			return;
 		}
 		

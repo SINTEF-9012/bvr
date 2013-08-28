@@ -77,7 +77,7 @@ public class ExportModelImage implements ActionListener {
 			Context.eINSTANCE.getConfig().saveLastLocation(sf.getAbsolutePath());
 		} catch (Exception ex) {
 			Context.eINSTANCE.logger.error("", ex);
-			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_GENERAL_ERROR + ex.getMessage());
+			StaticUICommands.showMessageErrorDialog(filePane, ex, "can not export a model");
 		}
 	}
 }

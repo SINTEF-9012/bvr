@@ -48,7 +48,7 @@ public class CVLJFrame extends JFrame {
 						System.exit(0);
 					}catch (Exception error){
 						Context.eINSTANCE.logger.error("some error on Save", error);
-						JOptionPane.showMessageDialog(frame, "Error : " + error.getMessage());
+						StaticUICommands.showMessageErrorDialog(frame, error, "Error:");
 					}
 				}
 			}

@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -25,7 +26,7 @@ public class NewModelEvent implements ActionListener {
 			Context.eINSTANCE.addCvlView(new CVLView(m, c));
 		}catch(Exception e){
 			Context.eINSTANCE.logger.error("some error on New", e);
-			JOptionPane.showMessageDialog(null, "Failed to create model due to: " + e.getMessage());
+			StaticUICommands.showMessageErrorDialog(null, e, "some error on New");
 		}
 	}
 }

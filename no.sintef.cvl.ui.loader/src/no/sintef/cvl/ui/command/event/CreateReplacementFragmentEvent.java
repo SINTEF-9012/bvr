@@ -11,6 +11,7 @@ import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.strategy.impl.CreateBoundaryContext;
@@ -56,7 +57,7 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 			cu.getOwnedVariabletype().add(replacement);
 		} catch (Exception e) {
 			logger.error("some failure during replacement creation", e);
-			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_GENERAL_ERROR + e.getMessage());
+			StaticUICommands.showMessageErrorDialog(filePane, e, "some failure during replacement creation");
 		}
 		
 		//views.get(tab).notifyRelalizationViewUpdate();

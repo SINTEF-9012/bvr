@@ -12,6 +12,8 @@ import splar.core.fm.FeatureModelException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
+import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
@@ -51,8 +53,8 @@ public class CalculateCoverage implements ActionListener {
 			// Calculate
 			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Calculating coverage failed: " + e.getMessage());
-			e.printStackTrace();
+			Context.eINSTANCE.logger.error("Calculating coverage failed:", e);
+			StaticUICommands.showMessageErrorDialog(null, e, "Calculating coverage failed:");
 			return;
 		}
 		
