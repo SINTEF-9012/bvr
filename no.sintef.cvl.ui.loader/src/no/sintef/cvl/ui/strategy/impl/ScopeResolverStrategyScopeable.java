@@ -41,11 +41,13 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private HashMap<ReplacementFragmentType, CVLElementDeepCopier> replacementCopyMap;
 	private HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> replcmntPlcmntMap;
 	private HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
+	private HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>> replacementNewReplBoundaryMap;
 
 	@Override
 	public void resolveScopes(SymbolTable table) {
 		replacementCopyMap = new HashMap<ReplacementFragmentType, CVLElementDeepCopier>();
 		replcmntSymbolMap = new HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>>();
+		replacementNewReplBoundaryMap = new HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>>();
 		EList<FragmentSubstitution> fssToResolve = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
 		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fssToResolve);
 		replcmntPlcmntMap = maps.get(0);
@@ -105,13 +107,11 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					PlacementFragment newPlacement;
 					HashMap<PlacementBoundaryElement, PlacementBoundaryElement> placementBoundaryMap = new HashMap<PlacementBoundaryElement, PlacementBoundaryElement>();
 					HashMap<SymbolTable, ReplacementFragmentType> rSymbolMap = replcmntSymbolMap.get(containingReplacement);
-					if(rSymbolMap == null){
+					if(rSymbolMap == null || symbol.getVSpecResolution() instanceof VInstance){
 						newPlacement = copyPlacement(placement, placementBoundaryMap);
 					}else{
 						ReplacementFragmentType copiedReplacement;
-						if(symbol.getVSpecResolution() instanceof VInstance){
-							copiedReplacement = rSymbolMap.get(symbol.getScope().getParent());
-						}else if(symbol.getVSpecResolution() instanceof ChoiceResolutuion){
+						if(symbol.getVSpecResolution() instanceof ChoiceResolutuion){
 							copiedReplacement = rSymbolMap.get(symbol.getScope());
 						}else{
 							throw new UnsupportedOperationException("unsupported VSpecResolution, can not resolve a scope: " + symbol.getVSpecResolution());
@@ -148,21 +148,25 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						replacementCopyMap.put(newReplacement, rplCopier);
 					}else{
 						newReplacement = rSymbolTableReplcMap.get(symbol.getScope());
-						
-						ReplacementElementHolder replacementHolder;
-						try {
-							replacementHolder = new ReplacementElementHolder(replacement);
-						} catch (BasicCVLEngineException e) {
-							throw new UnsupportedOperationException(e);
+						if(newReplacement == null){
+							ReplacementElementHolder replacementHolder;
+							try {
+								replacementHolder = new ReplacementElementHolder(replacement);
+							} catch (BasicCVLEngineException e) {
+								throw new UnsupportedOperationException(e);
+							}
+							CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
+							HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
+							rplCopier.copyElements(replacementElements);
+							
+							newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
+							rSymbolTableReplcMap.put(symbol.getScope(), newReplacement);
+							replacementNewReplBoundaryMap.put(newReplacement, replacementBoundaryMap);
+							
+							replacementCopyMap.put(newReplacement, rplCopier);
+						}else{
+							replacementBoundaryMap = replacementNewReplBoundaryMap.get(newReplacement);
 						}
-						CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
-						HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
-						rplCopier.copyElements(replacementElements);
-						
-						newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
-						rSymbolTableReplcMap.put(symbol.getScope(), newReplacement);
-						
-						replacementCopyMap.put(newReplacement, rplCopier);
 					}
 					
 					createNewFrgamentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
@@ -196,21 +200,25 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					replacementCopyMap.put(newReplacement, rplCopier);
 				}else{
 					newReplacement = rSymbolTableReplcMap.get(symbol.getScope());
-					
-					ReplacementElementHolder replacementHolder;
-					try {
-						replacementHolder = new ReplacementElementHolder(replacement);
-					} catch (BasicCVLEngineException e) {
-						throw new UnsupportedOperationException(e);
+					if(newReplacement == null){
+						ReplacementElementHolder replacementHolder;
+						try {
+							replacementHolder = new ReplacementElementHolder(replacement);
+						} catch (BasicCVLEngineException e) {
+							throw new UnsupportedOperationException(e);
+						}
+						CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
+						HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
+						rplCopier.copyElements(replacementElements);
+						
+						newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
+						rSymbolTableReplcMap.put(symbol.getScope(), newReplacement);
+						replacementNewReplBoundaryMap.put(newReplacement, replacementBoundaryMap);
+						
+						replacementCopyMap.put(newReplacement, rplCopier);
+					}else{
+						replacementBoundaryMap = replacementNewReplBoundaryMap.get(newReplacement);
 					}
-					CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
-					HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
-					rplCopier.copyElements(replacementElements);
-					
-					newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
-					rSymbolTableReplcMap.put(symbol.getScope(), newReplacement);
-					
-					replacementCopyMap.put(newReplacement, rplCopier);
 				}
 				createNewFrgamentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
 			}
