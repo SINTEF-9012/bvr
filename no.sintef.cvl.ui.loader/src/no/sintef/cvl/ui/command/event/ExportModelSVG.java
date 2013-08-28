@@ -15,6 +15,7 @@ import javax.swing.filechooser.FileFilter;
 import no.sintef.cvl.common.Utility;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.filter.PNGFilter;
 import no.sintef.cvl.ui.filter.SVGFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
@@ -43,8 +44,7 @@ public class ExportModelSVG implements ActionListener {
 		CVLModel model = Context.eINSTANCE.getCvlModels().get(i);
 		
 		FileFilter[] filters = {new SVGFilter()};
-		JFileChooser filechooser = Context.eINSTANCE.getFileChooser(Lists.newArrayList(filters));
-		filechooser.setFileFilter(filters[0]);
+		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);
 		
 		if(model.getFile() != null){
 			String defualtName = Utility.removeExtension(model.getFile().getName());

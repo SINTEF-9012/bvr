@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.common;
+package no.sintef.cvl.ui.context;
 
 import java.util.ArrayList;
 import java.util.HashMap;

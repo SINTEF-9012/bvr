@@ -7,8 +7,8 @@ import javax.swing.event.TableModelListener;
 
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.NullVSpec;
-import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.ViewChanageManager;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.model.FragSubTableModel;
 import no.sintef.cvl.ui.observer.Subject;

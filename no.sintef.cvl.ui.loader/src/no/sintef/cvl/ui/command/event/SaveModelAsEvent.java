@@ -7,8 +7,8 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
-import no.sintef.cvl.ui.command.StaticUICommands;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.loader.CVLModel;
 
 

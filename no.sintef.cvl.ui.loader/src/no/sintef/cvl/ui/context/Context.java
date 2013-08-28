@@ -15,7 +15,6 @@ import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
 import no.sintef.cvl.ui.common.Utility;
-import no.sintef.cvl.ui.common.ViewChanageManager;
 import no.sintef.cvl.ui.environment.ConfigHelper;
 import no.sintef.cvl.ui.environment.Environment;
 import no.sintef.cvl.ui.filter.CVLFilter;
@@ -123,17 +122,6 @@ public final class Context {
 	
 	public JFileChooser getFileChooser(){
 		JFileChooser fc = environment.getFileChooser();
-		fc.addChoosableFileFilter(new FMFilter());
-		CVLFilter cvlFilter = new CVLFilter();
-		fc.addChoosableFileFilter(cvlFilter);
-		fc.setFileFilter(cvlFilter);
-		return fc;
-	}
-	
-	public JFileChooser getFileChooser(ArrayList<FileFilter> filters){
-		JFileChooser fc = environment.getFileChooser();
-		for(FileFilter filer : filters)
-			fc.addChoosableFileFilter(filer);
 		return fc;
 	}
 	

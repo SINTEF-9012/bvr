@@ -1,13 +1,17 @@
-package no.sintef.cvl.ui.command;
+package no.sintef.cvl.ui.context;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 
-import no.sintef.cvl.ui.context.Context;
+import com.google.common.collect.Lists;
+
 import no.sintef.cvl.ui.filter.CVLFilter;
+import no.sintef.cvl.ui.filter.FMFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 
 public class StaticUICommands {
@@ -48,5 +52,25 @@ public class StaticUICommands {
 		}catch(Exception e){
 			throw new UnsupportedOperationException(e);
 		}
+	}
+	
+	public static JFileChooser getFileChooser(FileFilter[] filters, FileFilter defaultFilter){
+		JFileChooser fc = Context.eINSTANCE.getFileChooser();
+		if(filters != null){
+			for(FileFilter filer : filters)
+				fc.addChoosableFileFilter(filer);
+			if(defaultFilter != null && Lists.newArrayList(filters).indexOf(defaultFilter) >= 0)
+				fc.setFileFilter(defaultFilter);
+		}
+		return fc;
+	}
+	
+	public static JFileChooser getCVLFileChooser(){
+		JFileChooser fc = Context.eINSTANCE.getFileChooser();
+		fc.addChoosableFileFilter(new FMFilter());
+		CVLFilter cvlFilter = new CVLFilter();
+		fc.addChoosableFileFilter(cvlFilter);
+		fc.setFileFilter(cvlFilter);
+		return fc;
 	}
 }

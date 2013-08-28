@@ -1,12 +1,15 @@
 package no.sintef.cvl.ui.strategy.impl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.strategy.SaveProductStrategy;
 
 public class SimpleSaveProductStrategy implements SaveProductStrategy {
@@ -15,7 +18,7 @@ public class SimpleSaveProductStrategy implements SaveProductStrategy {
 	public void saveProduct(HashMap<String, Object> keywords) {
 		JComponent parent = (JComponent) keywords.get("parentComponent");
 		
-		final JFileChooser fc = Context.eINSTANCE.getFileChooser();
+		final JFileChooser fc = StaticUICommands.getFileChooser(null, null);
 		
 		int status = fc.showSaveDialog(parent);
 		if(status == JFileChooser.CANCEL_OPTION)

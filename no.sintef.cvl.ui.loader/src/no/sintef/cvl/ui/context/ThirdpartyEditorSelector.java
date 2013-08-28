@@ -1,4 +1,4 @@
-package no.sintef.cvl.ui.common;
+package no.sintef.cvl.ui.context;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,7 +9,7 @@ import java.util.Map;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.thirdparty.editor.ProxyThirdPartyTreeEditor;
-import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.common.ModelSelector;
 import no.sintef.cvl.ui.exception.NoEclipseDetectedException;
 
 import org.eclipse.emf.common.util.EList;

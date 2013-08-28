@@ -21,6 +21,7 @@ import com.google.common.collect.Lists;
 import no.sintef.cvl.common.Utility;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.filter.PNGFilter;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -40,8 +41,7 @@ public class ExportModelImage implements ActionListener {
 		CVLModel model = Context.eINSTANCE.getCvlModels().get(i);
 		
 		FileFilter[] filters = {new PNGFilter()};
-		JFileChooser filechooser = Context.eINSTANCE.getFileChooser(Lists.newArrayList(filters));
-		filechooser.setFileFilter(filters[0]);
+		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);
 		
 		if(model.getFile() != null){
 			String defualtName = Utility.removeExtension(model.getFile().getName());

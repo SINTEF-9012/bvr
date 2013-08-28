@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.ui.context.Context;
+import no.sintef.cvl.ui.context.StaticUICommands;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 
@@ -22,7 +23,7 @@ public class OpenModelEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		try{
-			JFileChooser fc = Context.eINSTANCE.getFileChooser();
+			JFileChooser fc = StaticUICommands.getCVLFileChooser();
 			
 			int isCanceled = fc.showOpenDialog(c);
 			if(isCanceled == JFileChooser.CANCEL_OPTION)

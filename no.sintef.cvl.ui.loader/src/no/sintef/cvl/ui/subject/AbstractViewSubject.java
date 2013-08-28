@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import cvl.ConfigurableUnit;
 
-import no.sintef.cvl.ui.common.ViewChanageManager;
+import no.sintef.cvl.ui.context.ViewChanageManager;
 import no.sintef.cvl.ui.observer.Observer;
 import no.sintef.cvl.ui.observer.Subject;
 import no.sintef.cvl.ui.primitive.impl.ObserverDataBulk;
