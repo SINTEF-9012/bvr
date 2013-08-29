@@ -162,7 +162,12 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		}
 	}
 	
-	private ReplacementFragmentType testNewReplacementFragment(Symbol symbol, ReplacementFragmentType replacement, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap){
+	private ReplacementFragmentType testNewReplacementFragment(
+			Symbol symbol,
+			ReplacementFragmentType replacement,
+			HashMap<ReplacementBoundaryElement,
+			ReplacementBoundaryElement> replacementBoundaryMap)
+	{
 		//create a copy of a replacement fragment in any case for a given fragment substitution
 		ReplacementFragmentType newReplacement;
 		HashMap<SymbolTable, ReplacementFragmentType> rSymbolTableReplcMap = replcmntSymbolMap.get(replacement);
