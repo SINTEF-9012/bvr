@@ -82,7 +82,7 @@ public class StaticUICommands {
 	}
 	
 	public static void showMessageErrorDialog(Container parent, Throwable e, String message){
-		message = (message != null && !message.isEmpty()) ? message + e.getMessage() + "\n" + Utility.getStackTraceAsString(e) : e.getMessage() + "\n" + Utility.getStackTraceAsString(e);
+		message = (message != null && !message.isEmpty()) ? message + " '" +e.getMessage() + "'\n" + Utility.getStackTraceAsString(e) : e.getMessage() + "\n" + Utility.getStackTraceAsString(e);
 		JTextArea textArea = new JTextArea(message);
 		JScrollPane scrollPane = new JScrollPane(textArea){
 			@Override

@@ -48,10 +48,10 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		replacementCopyMap = new HashMap<ReplacementFragmentType, CVLElementDeepCopier>();
 		replcmntSymbolMap = new HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>>();
 		replacementNewReplBoundaryMap = new HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>>();
+		replcmntPlcmntMap = new HashMap<ReplacementFragmentType, HashSet<PlacementFragment>>();
+		plcmntReplcmntMap = new HashMap<PlacementFragment, HashSet<ReplacementFragmentType>>();
 		EList<FragmentSubstitution> fssToResolve = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
-		EList<HashMap> maps = Utility.caluclateReplacementPlacementIntersections(fssToResolve);
-		replcmntPlcmntMap = maps.get(0);
-		plcmntReplcmntMap = maps.get(1);
+		Utility.caluclateReplacementPlacementIntersections(fssToResolve, replcmntPlcmntMap, plcmntReplcmntMap);
 		symbolTableResolver(table);
 	}
 	

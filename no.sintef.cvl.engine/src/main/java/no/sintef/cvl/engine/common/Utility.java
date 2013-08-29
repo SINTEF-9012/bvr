@@ -5,18 +5,14 @@ import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
-import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
-import no.sintef.cvl.engine.error.IncorrectCVLModel;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
@@ -159,9 +155,11 @@ public class Utility {
 		original.addAll(toAdd);
 	}
 	
-	public static EList<HashMap> caluclateReplacementPlacementIntersections(EList<FragmentSubstitution> fragSubs){
-		HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> mapReplcmPlacm = new HashMap<ReplacementFragmentType, HashSet<PlacementFragment>>();
-		HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> mapPlcmReplcm = new HashMap<PlacementFragment, HashSet<ReplacementFragmentType>>();
+	public static void caluclateReplacementPlacementIntersections(
+			EList<FragmentSubstitution> fragSubs,
+			HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> mapReplcmPlacm,
+			HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> mapPlcmReplcm)
+	{
 		HashSet<ReplacementFragmentType> replacements = new HashSet<ReplacementFragmentType>();
 		HashSet<PlacementFragment> placements = new HashSet<PlacementFragment>();
 		for(FragmentSubstitution fs : fragSubs){
@@ -191,10 +189,6 @@ public class Utility {
 				}
 			}
 		}
-		EList<HashMap> maps = new BasicEList<HashMap>();
-		maps.add(mapReplcmPlacm);
-		maps.add(mapPlcmReplcm);
-		return maps;
 	}
 	
 	public static final int NOT_CNTND = 0; //a placement is not contained in the replacement
