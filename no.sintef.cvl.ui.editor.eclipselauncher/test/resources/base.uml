@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ytpVYAjGEeOPHL-QkSP-lw" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_0c9W4AjGEeOPHL-QkSP-lw" name="Office">
+    <ownedAttribute xmi:id="_6RFRoAjGEeOPHL-QkSP-lw" name="equipment" type="_2U0QYAjGEeOPHL-QkSP-lw" aggregation="composite" association="_6RFRowjGEeOPHL-QkSP-lw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6RFRoQjGEeOPHL-QkSP-lw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6RFRogjGEeOPHL-QkSP-lw" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_2U0QYAjGEeOPHL-QkSP-lw" name="Equipment"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_6RFRowjGEeOPHL-QkSP-lw" name="office_equipment_1" memberEnd="_6RFRpAjGEeOPHL-QkSP-lw _6RFRoAjGEeOPHL-QkSP-lw">
+    <ownedEnd xmi:id="_6RFRpAjGEeOPHL-QkSP-lw" name="office" type="_0c9W4AjGEeOPHL-QkSP-lw" association="_6RFRowjGEeOPHL-QkSP-lw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6RFRpQjGEeOPHL-QkSP-lw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6RFRpgjGEeOPHL-QkSP-lw" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

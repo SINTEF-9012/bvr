@@ -3,13 +3,9 @@ package no.sintef.cvl.ui.context;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
 
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
@@ -32,8 +28,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import cvl.FragmentSubstitution;
-import cvl.PlacementFragment;
-import cvl.ReplacementFragmentType;
 
 public final class Context {
 
@@ -48,9 +42,6 @@ public final class Context {
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
 	public Logger logger = environment.getLogger();
-	
-	public HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> replcmntPlcmntMap;
-	public HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
 	
 	private static Context getContext(){
 		return new Context();
