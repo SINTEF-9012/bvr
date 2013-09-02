@@ -69,12 +69,9 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	}
 	
 	private void symbolTableResolver(SymbolTable table){
-		SymbolTable parentScope = table.getParent();
-		if(parentScope != null){
-			ArrayList<Symbol> symbols = prioritizeSymbols(table.getSymbols());
-			for(Symbol symbol : symbols)
-				resolverSymbol(symbol);
-		}
+		ArrayList<Symbol> symbols = prioritizeSymbols(table.getSymbols());
+		for(Symbol symbol : symbols)
+			resolverSymbol(symbol);
 		ArrayList<SymbolTable> childScopes = table.getChildren();
 		for(SymbolTable scope : childScopes){
 			symbolTableResolver(scope);

@@ -9,6 +9,7 @@ import no.sintef.cvl.ui.chain.impl.ParserExecutionHandler;
 import no.sintef.cvl.ui.chain.impl.ScopeResolverExecutionHandler;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.exception.AbstractError;
+import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.primitive.impl.SingleExecutionRequest;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
@@ -62,6 +63,10 @@ public class DefaultProductResolverChainTest {
 		
 		new TestResourceHolder("/test/resources/vm/prinerpoolPrinterPoolPrinterCartridgeVClass.cvl", "/TestFolder/vm/prinerpoolPrinterPoolPrinterCartridgeVClass.cvl"),
 		new TestResourceHolder("/test/resources/expproducts/printerPoolprinterCarVClass_printerpool.uml", "/TestFolder/expproducts/printerPoolprinterCarVClass_printerpool.uml"),
+		
+		new TestResourceHolder("/test/resources/vm/repetitionsScopeless.cvl", "/TestFolder/vm/repetitionsScopeless.cvl"),
+		new TestResourceHolder("/test/resources/expproducts/repetitionsScopeless1_repetitions.uml", "/TestFolder/expproducts/repetitionsScopeless1_repetitions.uml"),
+		new TestResourceHolder("/test/resources/expproducts/repetitionsScopeless2_repetitions.uml", "/TestFolder/expproducts/repetitionsScopeless2_repetitions.uml"),
 	};
 
 	@BeforeClass
@@ -255,35 +260,7 @@ public class DefaultProductResolverChainTest {
 			boolean isIdentical = TestProject.isIdentical(testResources[13].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
 			Assert.assertTrue("derived and expected products are different", isIdentical);
 	}
-	
-	@Test
-	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException, AbstractError {	
-			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
-			
-			HashMap<String, Object> keywords = new HashMap<String, Object>();
-			keywords.put("cu", cu);
-			keywords.put("vSpecResolution", vSpecResolution);
-			keywords.put("parentComponent", null);
-			keywords.put("cvlModel", model);
-			
-			SingleExecutionRequest request = new SingleExecutionRequest(keywords);
-			parser.handleRequest(request);
-			
-			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass");
-			File fileProduct = iProduct.getLocation().toFile();
-			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
-			
-			iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass_printerpool.uml");
-			fileProduct = iProduct.getLocation().toFile();
-			
-			boolean isIdentical = TestProject.isIdentical(testResources[23].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
-			Assert.assertTrue("derived and expected products are different", isIdentical);
-	}
-	
-	
+		
 	@Test
 	public void office1() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
@@ -392,4 +369,84 @@ public class DefaultProductResolverChainTest {
 			Assert.assertTrue("derived and expected products are different", isIdentical);
 	}
 
+	@Test
+	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException, AbstractError {	
+			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			
+			HashMap<String, Object> keywords = new HashMap<String, Object>();
+			keywords.put("cu", cu);
+			keywords.put("vSpecResolution", vSpecResolution);
+			keywords.put("parentComponent", null);
+			keywords.put("cvlModel", model);
+			
+			SingleExecutionRequest request = new SingleExecutionRequest(keywords);
+			parser.handleRequest(request);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass_printerpool.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[23].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void repetitionsScopeless1() throws IOException, CoreException, AbstractError {	
+			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			
+			HashMap<String, Object> keywords = new HashMap<String, Object>();
+			keywords.put("cu", cu);
+			keywords.put("vSpecResolution", vSpecResolution);
+			keywords.put("parentComponent", null);
+			keywords.put("cvlModel", model);
+			
+			SingleExecutionRequest request = new SingleExecutionRequest(keywords);
+			parser.handleRequest(request);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless1");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless1_repetitions.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[25].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void repetitionsScopeless2() throws IOException, CoreException, AbstractError {	
+			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			
+			HashMap<String, Object> keywords = new HashMap<String, Object>();
+			keywords.put("cu", cu);
+			keywords.put("vSpecResolution", vSpecResolution);
+			keywords.put("parentComponent", null);
+			keywords.put("cvlModel", model);
+			
+			SingleExecutionRequest request = new SingleExecutionRequest(keywords);
+			parser.handleRequest(request);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless2");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless2_repetitions.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[26].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
 }

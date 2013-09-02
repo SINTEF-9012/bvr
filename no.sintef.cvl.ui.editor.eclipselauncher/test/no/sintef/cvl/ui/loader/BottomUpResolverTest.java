@@ -60,6 +60,10 @@ public class BottomUpResolverTest {
 		
 		new TestResourceHolder("/test/resources/vm/prinerpoolPrinterPoolPrinterCartridgeVClass.cvl", "/TestFolder/vm/prinerpoolPrinterPoolPrinterCartridgeVClass.cvl"),
 		new TestResourceHolder("/test/resources/expproducts/printerPoolprinterCarVClass_printerpool.uml", "/TestFolder/expproducts/printerPoolprinterCarVClass_printerpool.uml"),
+		
+		new TestResourceHolder("/test/resources/vm/repetitionsScopeless.cvl", "/TestFolder/vm/repetitionsScopeless.cvl"),
+		new TestResourceHolder("/test/resources/expproducts/repetitionsScopeless1_repetitions.uml", "/TestFolder/expproducts/repetitionsScopeless1_repetitions.uml"),
+		new TestResourceHolder("/test/resources/expproducts/repetitionsScopeless2_repetitions.uml", "/TestFolder/expproducts/repetitionsScopeless2_repetitions.uml"),
 	};
 
 	@BeforeClass
@@ -228,29 +232,6 @@ public class BottomUpResolverTest {
 	}
 	
 	@Test
-	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException {	
-			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
-			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
-			scopeResolver.resolveScopes(symbolTable);
-			productResolver.deriveProduct(symbolTable);
-			
-			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass");
-			File fileProduct = iProduct.getLocation().toFile();
-			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
-			
-			iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass_printerpool.uml");
-			fileProduct = iProduct.getLocation().toFile();
-			
-			boolean isIdentical = TestProject.isIdentical(testResources[23].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
-			Assert.assertTrue("derived and expected products are different", isIdentical);
-	}
-	
-	
-	@Test
 	public void office1() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
 			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
@@ -335,6 +316,72 @@ public class BottomUpResolverTest {
 			fileProduct = iProduct.getLocation().toFile();
 			
 			boolean isIdentical = TestProject.isIdentical(testResources[21].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException {	
+			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			
+			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			scopeResolver.resolveScopes(symbolTable);
+			productResolver.deriveProduct(symbolTable);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/printerPoolprinterCarVClass_printerpool.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[23].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void repetitionsScopeless1() throws IOException, CoreException {	
+			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			
+			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			scopeResolver.resolveScopes(symbolTable);
+			productResolver.deriveProduct(symbolTable);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless1");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless1_repetitions.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[25].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void repetitionsScopeless2() throws IOException, CoreException {	
+			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			
+			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			scopeResolver.resolveScopes(symbolTable);
+			productResolver.deriveProduct(symbolTable);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless2");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/repetitionsScopeless2_repetitions.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[26].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
 			Assert.assertTrue("derived and expected products are different", isIdentical);
 	}
 
