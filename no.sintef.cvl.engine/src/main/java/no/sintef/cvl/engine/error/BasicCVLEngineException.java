@@ -1,10 +1,10 @@
 package no.sintef.cvl.engine.error;
 
 /**
- * Basic CVL Enginge exception
+ * Basic CVL Engine exception
  *
  */
-public class BasicCVLEngineException extends UnsupportedOperationException
+public class BasicCVLEngineException extends RuntimeException
 {
 
 	/**

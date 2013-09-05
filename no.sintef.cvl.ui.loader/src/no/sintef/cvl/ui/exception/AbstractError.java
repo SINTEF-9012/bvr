@@ -1,6 +1,6 @@
 package no.sintef.cvl.ui.exception;
 
-public abstract class AbstractError extends Exception {
+public abstract class AbstractError extends RuntimeException {
 
 	private static final long serialVersionUID = -3557729112973873095L;
 

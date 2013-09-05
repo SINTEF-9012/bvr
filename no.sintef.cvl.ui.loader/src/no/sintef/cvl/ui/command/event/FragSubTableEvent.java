@@ -31,7 +31,7 @@ public class FragSubTableEvent implements TableModelListener {
 		if(TableModelEvent.UPDATE == e.getType()){
 			if(e.getColumn() >= 0){
 				if(e.getLastRow() == e.getFirstRow()){
-					ArrayList<Subject> subjects = Context.eINSTANCE.getViewChnageManager().registeredSubjects(jtable);
+					ArrayList<Subject> subjects = Context.eINSTANCE.getViewChangeManager().registeredSubjects(jtable);
 					FragSubTableModel model = (FragSubTableModel) jtable.getModel();
 					int rowIndex = e.getLastRow();
 					int columnIndex = e.getColumn();
@@ -45,7 +45,7 @@ public class FragSubTableEvent implements TableModelListener {
 							vp.setName(label.getText());
 							for(Subject subject : subjects)
 								if(subject instanceof ConfigurableUnitSubject)
-									Context.eINSTANCE.getViewChnageManager().refreshSubject(subject);
+									Context.eINSTANCE.getViewChangeManager().refreshSubject(subject);
 						}
 					}
 					if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){

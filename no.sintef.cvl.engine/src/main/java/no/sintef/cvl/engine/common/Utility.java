@@ -155,42 +155,6 @@ public class Utility {
 		original.addAll(toAdd);
 	}
 	
-	public static void caluclateReplacementPlacementIntersections(
-			EList<FragmentSubstitution> fragSubs,
-			HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> mapReplcmPlacm,
-			HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> mapPlcmReplcm)
-	{
-		HashSet<ReplacementFragmentType> replacements = new HashSet<ReplacementFragmentType>();
-		HashSet<PlacementFragment> placements = new HashSet<PlacementFragment>();
-		for(FragmentSubstitution fs : fragSubs){
-			placements.add(fs.getPlacement());
-			replacements.add(fs.getReplacement());
-		}
-		for(ReplacementFragmentType replacement : replacements){
-			for(PlacementFragment placement : placements){
-				if(testPlacementIntersection(replacement, placement) == CNTND){
-					HashSet<PlacementFragment> plcmntList = mapReplcmPlacm.get(replacement);
-					if(plcmntList == null){
-						plcmntList = new HashSet<PlacementFragment>();
-						plcmntList.add(placement);
-						mapReplcmPlacm.put(replacement, plcmntList);
-					}else{
-						plcmntList.add(placement);
-					}
-					
-					HashSet<ReplacementFragmentType> replcmList = mapPlcmReplcm.get(placement);
-					if(replcmList == null){
-						replcmList = new HashSet<ReplacementFragmentType>();
-						replcmList.add(replacement);
-						mapPlcmReplcm.put(placement, replcmList);
-					}else{
-						replcmList.add(replacement);
-					}
-				}
-			}
-		}
-	}
-	
 	public static final int NOT_CNTND = 0; //a placement is not contained in the replacement
 	public static final int CNTND = 1; // a placement is contained in the replacement
 	public static final int P_CNTND = 2; // a placement is not fully contained in the replacement

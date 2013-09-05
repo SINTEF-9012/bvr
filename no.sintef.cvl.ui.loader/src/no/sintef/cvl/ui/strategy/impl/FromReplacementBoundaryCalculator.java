@@ -31,13 +31,13 @@ public class FromReplacementBoundaryCalculator extends
 		FromReplacement fromReplacement = (FromReplacement) forBoundary;
 		String propertyNameSrcObject = fromReplacement.getPropertyName();
 		EObject srcObject = fromReplacement.getInsideBoundaryElement().getMOFRef();
-		if(srcObject.eIsProxy()){
-			throw new CVLModelException("can not resolve a proxy object, it must be a model error");
-		}
+		if(srcObject.eIsProxy())
+			throw new CVLModelException("can not resolve a proxy object, it must be a model error: " + srcObject);
+		
 		EStructuralFeature propertySrcObject = srcObject.eClass().getEStructuralFeature(propertyNameSrcObject);
-		if(propertySrcObject == null){
+		if(propertySrcObject == null)
 			throw new CVLModelException("can not find property : '" + propertyNameSrcObject + "'");
-		}
+		
 		int upperBound = propertySrcObject.getUpperBound();
 		int lowerBound = propertySrcObject.getLowerBound();
 		EClassifier srcObjectType = propertySrcObject.getEType();

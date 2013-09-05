@@ -22,6 +22,7 @@ import cvl.ToPlacement;
 import cvl.ToReplacement;
 
 import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.error.IncorrectCVLModel;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 
 public class ReplacPlacCotainmentFinder {
@@ -53,7 +54,8 @@ public class ReplacPlacCotainmentFinder {
 				PlacementFragment placement = pHolder.getPlacement().getPlacementFragment();
 				int result = Utility.testPlacementIntersection(replacement, placement);
 				if(result == Utility.P_CNTND)
-					throw new UnsupportedOperationException("placement is partially contained in replacement, can not handle");
+					throw new IncorrectCVLModel("placement is partially contained in replacement, can not handle");
+				
 				if(result == Utility.CNTND){
 					if(placementStaleElements.get(placement) == null)
 						placementStaleElements.put(placement, new HashSet<EObject>(pHolder.getPlacement().getElements()));

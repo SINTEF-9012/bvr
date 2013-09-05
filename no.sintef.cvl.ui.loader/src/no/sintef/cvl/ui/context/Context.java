@@ -132,7 +132,7 @@ public final class Context {
 		cvlViews.add(view);
 	}
 
-	public ViewChanageManager getViewChnageManager() {
+	public ViewChanageManager getViewChangeManager() {
 		return viewChnageManager;
 	}
 	

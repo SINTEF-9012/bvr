@@ -70,7 +70,7 @@ public class BindingJTable extends JTable implements Observer {
 				boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(selectedFragmentSubstitution);
 			editor.setData(boundariesMap);
 		} catch (AbstractError e) {
-			e.printStackTrace();
+			throw new UnsupportedOperationException(e);
 		}
 	}
 }

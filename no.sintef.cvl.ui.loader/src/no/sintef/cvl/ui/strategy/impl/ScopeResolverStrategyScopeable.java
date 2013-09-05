@@ -31,6 +31,7 @@ import no.sintef.cvl.engine.common.CVLElementDeepCopier;
 import no.sintef.cvl.engine.common.Utility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
+import no.sintef.cvl.ui.exception.CVLModelException;
 import no.sintef.cvl.ui.primitive.Symbol;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.ScopeResolverStrategy;
@@ -51,7 +52,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		replcmntPlcmntMap = new HashMap<ReplacementFragmentType, HashSet<PlacementFragment>>();
 		plcmntReplcmntMap = new HashMap<PlacementFragment, HashSet<ReplacementFragmentType>>();
 		EList<FragmentSubstitution> fssToResolve = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
-		Utility.caluclateReplacementPlacementIntersections(fssToResolve, replcmntPlcmntMap, plcmntReplcmntMap);
+		caluclateReplacementPlacementIntersections(fssToResolve, replcmntPlcmntMap, plcmntReplcmntMap);
 		symbolTableResolver(table);
 	}
 	
@@ -547,5 +548,44 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 			newFromReplacement.setFromPlacement(fromReplacement.getFromPlacement());
 		if(fromReplacement.getPropertyName() != null)
 			newFromReplacement.setPropertyName(fromReplacement.getPropertyName());		
+	}
+	
+	private void caluclateReplacementPlacementIntersections(
+			EList<FragmentSubstitution> fragSubs,
+			HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> mapReplcmPlacm,
+			HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> mapPlcmReplcm)
+	{
+		HashSet<ReplacementFragmentType> replacements = new HashSet<ReplacementFragmentType>();
+		HashSet<PlacementFragment> placements = new HashSet<PlacementFragment>();
+		for(FragmentSubstitution fs : fragSubs){
+			placements.add(fs.getPlacement());
+			replacements.add(fs.getReplacement());
+		}
+		for(ReplacementFragmentType replacement : replacements){
+			for(PlacementFragment placement : placements){
+				int result = Utility.testPlacementIntersection(replacement, placement);
+				if(result == Utility.CNTND){
+					HashSet<PlacementFragment> plcmntList = mapReplcmPlacm.get(replacement);
+					if(plcmntList == null){
+						plcmntList = new HashSet<PlacementFragment>();
+						plcmntList.add(placement);
+						mapReplcmPlacm.put(replacement, plcmntList);
+					}else{
+						plcmntList.add(placement);
+					}
+					
+					HashSet<ReplacementFragmentType> replcmList = mapPlcmReplcm.get(placement);
+					if(replcmList == null){
+						replcmList = new HashSet<ReplacementFragmentType>();
+						replcmList.add(replacement);
+						mapPlcmReplcm.put(placement, replcmList);
+					}else{
+						replcmList.add(replacement);
+					}
+				}else if(result == Utility.P_CNTND){
+					throw new CVLModelException("the placement: " + placement + " is partially contained in the replacement: " + replacement + ", can not handle");
+				}
+			}
+		}
 	}
 }

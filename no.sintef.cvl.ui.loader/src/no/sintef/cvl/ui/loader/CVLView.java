@@ -179,12 +179,12 @@ public class CVLView {
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
 		
-		Context.eINSTANCE.getViewChnageManager().register(configurableUnitSubject, tableFragmSubst);
-		Context.eINSTANCE.getViewChnageManager().register(selectedFS, tableFragmSubst);
-		Context.eINSTANCE.getViewChnageManager().register(configurableUnitSubject, tableSubstFragm);
-		Context.eINSTANCE.getViewChnageManager().register(selectedFS, tableSubstFragm);
-		Context.eINSTANCE.getViewChnageManager().register(configurableUnitSubject, bindingEditor);
-		Context.eINSTANCE.getViewChnageManager().register(selectedFS, bindingEditor);
+		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableFragmSubst);
+		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableFragmSubst);
+		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableSubstFragm);
+		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableSubstFragm);
+		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, bindingEditor);
+		Context.eINSTANCE.getViewChangeManager().register(selectedFS, bindingEditor);
 		
 		configurableUnitSubject.notifyObserver();
 		selectedFS.notifyObserver();
