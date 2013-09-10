@@ -19,6 +19,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.ui.command.event.ClearSelectionRelalizationEvent;
 import no.sintef.cvl.ui.command.event.CloseModelEvent;
+import no.sintef.cvl.ui.command.event.CopyModelEvent;
 import no.sintef.cvl.ui.command.event.CreateBindingsEvent;
 import no.sintef.cvl.ui.command.event.CreateFragmentSubstitutionEvent;
 import no.sintef.cvl.ui.command.event.CreatePlacementFragmentEvent;
@@ -233,6 +234,14 @@ public class Main {
 		realizationMenu.add(clearSelection);
 		
 		menuBar.add(realizationMenu);
+		
+		// tools menu
+		JMenu toolsMenu = new JMenu(Constants.TOOLS_MENU_NAME);
+		JMenuItem copyModel = new JMenuItem(Constants.TOOLS_COPY_MODEL);
+		copyModel.addActionListener(new CopyModelEvent());
+		toolsMenu.add(copyModel);
+		
+		menuBar.add(toolsMenu);
 
 		// Done
 		jframe.add(filePane, BorderLayout.CENTER);

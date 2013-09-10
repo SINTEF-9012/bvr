@@ -3,8 +3,6 @@ package no.sintef.cvl.ui.context;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.io.File;
-import java.util.ArrayList;
-
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
