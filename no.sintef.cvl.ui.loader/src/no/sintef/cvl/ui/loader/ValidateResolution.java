@@ -203,12 +203,19 @@ public class ValidateResolution implements ActionListener {
 		Set<VSpecResolution> vsrs = new HashSet<VSpecResolution>();
 		recAddvResChild(vsrs, vsr);
 		
-		for(VSpecResolution r : vsrs){ // parent
+		for(VSpecResolution r : vsrs){
 			if(r instanceof ChoiceResolutuion){
 				ChoiceResolutuion cr = (ChoiceResolutuion) r;
-				//System.out.println("Checking " + r.getResolvedVSpec().getName() + ", " + cr.isDecision());
-				if(cr.isDecision() == false && ((Choice)cr.getResolvedVSpec()).isIsImpliedByParent()){
-					return false;
+				for(VSpecResolution pr : vsrs){
+					if(pr instanceof ChoiceResolutuion){
+						ChoiceResolutuion pcr = (ChoiceResolutuion) pr;
+						if(pcr.getChild().contains(cr)){ // Parent-child
+							//System.out.println("Checking " + r.getResolvedVSpec().getName() + ", " + cr.isDecision());
+							if(pcr.isDecision() == true && cr.isDecision() == false && ((Choice)cr.getResolvedVSpec()).isIsImpliedByParent()){
+								return false;
+							}
+						}
+					}
 				}
 			}
 		}
