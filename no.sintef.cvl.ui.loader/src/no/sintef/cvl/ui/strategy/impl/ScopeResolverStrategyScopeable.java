@@ -182,6 +182,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 			}
 			CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
 			HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
+			replacementElements.addAll(replacementHolder.getNeighboringOutsideElements());
 			rplCopier.copyElements(replacementElements);
 			
 			newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
@@ -201,6 +202,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				}
 				CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
 				HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
+				replacementElements.addAll(replacementHolder.getNeighboringOutsideElements());
 				rplCopier.copyElements(replacementElements);
 				
 				newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
@@ -289,7 +291,10 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					EObject eObject = objectHandleOutsideBElOrg.getMOFRef();
 					EObject copyEObject = rplCopier.get(eObject);
 					if(copyEObject == null)
-						throw new UnsupportedOperationException("can not find an outside boundary element of the copied replacement in the map");
+						throw new UnsupportedOperationException(
+								"can not find an outside boundary element of the copied replacement '" +
+								replacement.getName() + "' in the map for the element '" +
+								eObject + "'");
 					ObjectHandle objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 					if(objectHandle == null){
 						objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
@@ -303,7 +308,10 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						eObject = oHandle.getMOFRef();
 						copyEObject = rplCopier.get(eObject);
 						if(copyEObject == null)
-							throw new UnsupportedOperationException("can not find an inside boundary element of the copied replacement in the map");
+							throw new UnsupportedOperationException(
+									"can not find an inside boundary element of the copied replacement '" +
+									replacement.getName() + "' in the map for the element '" +
+									eObject + "'");
 						objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 						if(objectHandle == null){
 							objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
@@ -326,7 +334,10 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				ObjectHandle objectHandleInsideBElOrg = ((FromReplacement) boundary).getInsideBoundaryElement();
 				EObject copyEObject = rplCopier.get(objectHandleInsideBElOrg.getMOFRef());
 				if(copyEObject == null)
-					throw new UnsupportedOperationException("can not find inside boundary element of the copied replacement in the map");
+					throw new UnsupportedOperationException(
+							"can not find inside boundary element of the copied replacement '" +
+							replacement.getName() + "' in the map for the element '" +
+							objectHandleInsideBElOrg.getMOFRef() + "'");
 				ObjectHandle objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 				if(objectHandle == null){
 					objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
@@ -339,7 +350,9 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				for(ObjectHandle oHandle : objectHandleOutsideBElOrg){
 					copyEObject = rplCopier.get(oHandle.getMOFRef());
 					if(copyEObject == null)
-						throw new UnsupportedOperationException("can not find an outside boundary element of the copied replacement in the map");
+						throw new UnsupportedOperationException("can not find an outside boundary element of the copied replacement '" +
+								replacement.getName() + "' in the map for the element '" +
+								oHandle.getMOFRef());
 					objectHandle = Utility.getObjectHandle(copyEObject, newReplacement.getSourceObject());
 					if(objectHandle == null){
 						objectHandle = CvlFactory.eINSTANCE.createObjectHandle();
