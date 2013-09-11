@@ -36,32 +36,28 @@ public class CopyModelEvent implements ActionListener {
 			File file = filechooser.getSelectedFile();
 			if(file == null) return;
 			
-			String filepath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
-			filepath = (filepath.endsWith(File.separator)) ? filepath : filepath + File.separator;
-			filepath = filepath.replaceAll("\\\\", "/");
-			if(!filepath.startsWith(Utility.getWorkspaceRowLocation()))
+			String pathOriginal = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
+			pathOriginal = (pathOriginal.endsWith(File.separator)) ? pathOriginal : pathOriginal + File.separator;
+			String path = pathOriginal.replaceAll("\\\\", "/");
+			if(!path.startsWith(Utility.getWorkspaceRowLocation()))
 				throw new UnsupportedOperationException("can not save a product to the file, incorrect loacation: use workspace location");
 			
-			filepath = file.getAbsolutePath().replaceAll("\\\\", "/");
-			filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
+			String platformFilepath = file.getAbsolutePath().replaceAll("\\\\", "/");
+			platformFilepath = platformFilepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 			
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 			ResourceSet resSet = new ResourceSetImpl();
-			URI uri = URI.createPlatformResourceURI(filepath, true);
+			URI uri = URI.createPlatformResourceURI(platformFilepath, true);
 			Resource resource = resSet.getResource(uri, true);
 			
 			URI resourceURI = resource.getURI();
 			String baseName = resourceURI.segment(resourceURI.segmentCount() - 1);
 			String productName = "copy_" + baseName;
 			
-			filepath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
-			filepath = (filepath.endsWith(File.separator)) ? filepath : filepath + File.separator;
-			filepath = filepath.replaceAll("\\\\", "/");
-			filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
-			String productFullName = filepath + productName;
+			String productPlatformFileName = path.replaceAll(Utility.getWorkspaceRowLocation(), "") + productName;
 			
 		    ResourceSet resSetCopy = new ResourceSetImpl();
-		    URI uriCopy = URI.createPlatformResourceURI(productFullName, true);
+		    URI uriCopy = URI.createPlatformResourceURI(productPlatformFileName, true);
 		    Context.eINSTANCE.logger.debug("saving a copy of the model to the file file " + uriCopy);
 		    Resource productResource = resSetCopy.createResource(uriCopy);
 		    
