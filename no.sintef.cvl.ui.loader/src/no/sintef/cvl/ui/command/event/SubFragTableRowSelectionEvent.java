@@ -60,11 +60,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             	DataNamedElementItem subFragDataElement = (DataNamedElementItem) data.get(index).get(Constants.SUB_FRAG_FRAG_CLMN);
             	NamedElement fragment = subFragDataElement.getNamedElement();
             	if(fragment instanceof PlacementFragment){
-            		PlacementFragment placement = (PlacementFragment) fragment;
-            		
-            		PlacementElementHolder holder = new PlacementElementHolder(placement);
-            		System.out.println(holder.getElements());
-            		
+            		PlacementFragment placement = (PlacementFragment) fragment;            		
             		EList<PlacementBoundaryElement> boundaries = placement.getPlacementBoundaryElement();
             		EList<EObject> outsideInsideElements = new BasicEList<EObject>();
             		EList<EObject> outsideOutsideElements = new BasicEList<EObject>();
@@ -113,9 +109,6 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				}
             			}
             		}
-            		
-            		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            		System.out.println(insideElements);
             		insideElements = calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
             		EList<HashMap<EObject, Integer>> elements = markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true);
             		objectsToHighlightList.addAll(markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
