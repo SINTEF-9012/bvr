@@ -28,6 +28,7 @@ public class StrategyReplacementElementFinder extends
 
 	@Override
 	public HolderDataElement locateReplacementElements(EList<ReplacementBoundaryElement> rbes) {
+		flush();
 		for(ReplacementBoundaryElement rbe : rbes){
 			if(rbe instanceof ToReplacement){
 				ToReplacement toReplacement = (ToReplacement) rbe;

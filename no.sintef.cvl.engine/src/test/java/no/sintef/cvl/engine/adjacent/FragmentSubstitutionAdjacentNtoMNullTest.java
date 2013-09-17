@@ -61,7 +61,7 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 
 	@Before
 	public void setUp() throws Exception {
-		//nodePackage.eINSTANCE.eClass();
+		//NodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
 		file = new File("src/test/resources/nodeAdjacent/exp2/node.new.cvl");
 		map = SetUpUtils.load(file);

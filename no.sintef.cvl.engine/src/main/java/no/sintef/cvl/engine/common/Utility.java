@@ -141,7 +141,7 @@ public class Utility {
 	}
 	
 	public static HashSet<EObject> clearSet(HashSet<EObject> set){
-		if(set.contains(null)){
+		if(set != null && set.contains(null)){
 			set.remove(null);
 		}
 		return set;

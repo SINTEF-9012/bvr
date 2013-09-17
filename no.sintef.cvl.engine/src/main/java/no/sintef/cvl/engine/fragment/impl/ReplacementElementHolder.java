@@ -43,7 +43,6 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		tbe = new BasicEList<ToReplacement>();
 		fbe = new BasicEList<FromReplacement>();
 		
-		elementFinder.flush();
 		HolderDataElement data = elementFinder.locateReplacementElements(replacement.getReplacementBoundaryElement());
 		frBElementsInternal.addAll(data.getBoundaryElementsInternal());
 		frBElementsExternal.addAll(data.getBoundaryElementsExternal());
@@ -52,7 +51,6 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		innerElements.addAll(data.getInnerNeighboringElements());
 		outerElements.addAll(data.getOuterNeighboringElements());
 		frElementsInternal.addAll(data.getInnerElements());
-		
 		
 		frElementsOriginal.addAll(frBElementsExternal);
 		frElementsOriginal.addAll(frBElementsInternal);
