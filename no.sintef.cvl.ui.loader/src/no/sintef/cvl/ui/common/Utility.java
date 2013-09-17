@@ -17,7 +17,9 @@ import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EObjectEList;
 
 import com.google.common.base.Throwables;
 

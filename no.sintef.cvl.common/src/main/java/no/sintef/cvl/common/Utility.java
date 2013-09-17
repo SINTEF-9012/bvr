@@ -5,6 +5,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EObjectEList;
 
 import com.google.common.base.Throwables;
 
@@ -100,11 +101,11 @@ public final class Utility {
 	    return filename.substring(0, extensionIndex);
 	}
 	
-	private EList<EObject> getReferencedEObjects(EObject eObject){
+	public static EList<EObject> getReferencedEObjects(EObject eObject){
 		EList<EObject> eObjects = new BasicEList<EObject>();
 		EList<EReference> references = eObject.eClass().getEAllReferences();
 		for(EReference reference : references){
-			if(no.sintef.cvl.common.Utility.isDerived(reference) != 0)
+			if(isDerived(reference) != 0)
 				continue;
 			Object targetObject = eObject.eGet(reference);
 			if(targetObject instanceof EObject){
@@ -115,6 +116,23 @@ public final class Utility {
 				eObjects.addAll(eEObjects);
 			}else if(targetObject != null){
 				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: " + targetObject);
+			}
+		}
+		return eObjects;
+	}
+	
+	public static EList<EObject> getReferencedEObjects(EObject source, EList<EReference> references){
+		EList<EObject> eObjects = new BasicEList<EObject>();
+		for(EReference reference : references){
+			if(isDerived(reference) == 0){
+				Object value = source.eGet(reference);
+				if(value instanceof EObject){
+					eObjects.add((EObject) value);
+				}else if (value instanceof EObjectEList){
+					eObjects.addAll((EList<? extends EObject>) value);
+				}else if(value != null){
+					throw new UnsupportedOperationException("reference " + reference + " does not point to EObject nor EObjectList :" + value);
+				}
 			}
 		}
 		return eObjects;

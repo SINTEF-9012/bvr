@@ -4,7 +4,6 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 
-import cvl.FragmentSubstitution;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.ElementHolder;
 

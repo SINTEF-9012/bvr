@@ -25,6 +25,7 @@ import cvl.ToPlacement;
 import cvl.ToReplacement;
 
 import no.sintef.cvl.common.logging.Logger;
+import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Utility;
@@ -60,6 +61,10 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             	NamedElement fragment = subFragDataElement.getNamedElement();
             	if(fragment instanceof PlacementFragment){
             		PlacementFragment placement = (PlacementFragment) fragment;
+            		
+            		PlacementElementHolder holder = new PlacementElementHolder(placement);
+            		System.out.println(holder.getElements());
+            		
             		EList<PlacementBoundaryElement> boundaries = placement.getPlacementBoundaryElement();
             		EList<EObject> outsideInsideElements = new BasicEList<EObject>();
             		EList<EObject> outsideOutsideElements = new BasicEList<EObject>();
@@ -108,6 +113,9 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				}
             			}
             		}
+            		
+            		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            		System.out.println(insideElements);
             		insideElements = calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
             		EList<HashMap<EObject, Integer>> elements = markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true);
             		objectsToHighlightList.addAll(markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));

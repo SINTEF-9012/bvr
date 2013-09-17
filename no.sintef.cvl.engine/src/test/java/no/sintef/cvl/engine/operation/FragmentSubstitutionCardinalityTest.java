@@ -7,6 +7,8 @@ import no.sintef.cvl.engine.error.IllegalCVLOperation;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
+import node.NodePackage;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;

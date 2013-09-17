@@ -18,7 +18,6 @@ import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
 import cvl.CvlFactory;
-import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.PlacementFragment;
@@ -170,10 +169,9 @@ public class Utility {
 		HashSet<EObject> plcntElements = plcntHolder.getElements();
 		HashSet<EObject> replntElements = replcntHolder.getElements();
 		SetView<EObject> difference = Sets.difference(plcntElements, replntElements);
-		if(difference.isEmpty()){
+		if(difference.isEmpty())
 			return CNTND;
-		}
-		difference = Sets.difference(plcntElements, difference);
+		difference = Sets.intersection(plcntElements, replntElements);
 		if(!difference.isEmpty())
 			return P_CNTND;
 		return NOT_CNTND;
