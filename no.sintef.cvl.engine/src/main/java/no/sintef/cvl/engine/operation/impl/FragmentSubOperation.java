@@ -20,7 +20,7 @@ import cvl.ToReplacement;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.CVLFragmentCopier;
 import no.sintef.cvl.engine.common.SubstitutionContext;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
@@ -66,7 +66,7 @@ public class FragmentSubOperation implements Substitution {
 			ToReplacement toReplacement = toBinding.getToReplacement();
 			if(toPlacement != null && toReplacement != null){
 				String propertyName = toPlacement.getPropertyName();
-				EObject outsideBEPlac = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());	
+				EObject outsideBEPlac = EngineUtility.resolveProxies(toPlacement.getOutsideBoundaryElement());	
 				EList<EObject> insideBERepl = this.getInsideBEToReplacement(toReplacement);
 				EStructuralFeature property = outsideBEPlac.eClass().getEStructuralFeature(propertyName);
 				if(property == null){
@@ -76,33 +76,33 @@ public class FragmentSubOperation implements Substitution {
 				if(!property.isDerived() && !property.isTransient()){
 					Boolean isChangeable = property.isChangeable();
 					if(!isChangeable){
-						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						EngineUtility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 						if(!property.isChangeable()){
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
 						}
 					}
 					
 					EList<ObjectHandle> insideBoundaryObjectHandlesCurrentPlc = toPlacement.getInsideBoundaryElement();
-					EList<EObject> insideBEPlacCurrent = Utility.resolveProxies(insideBoundaryObjectHandlesCurrentPlc);
+					EList<EObject> insideBEPlacCurrent = EngineUtility.resolveProxies(insideBoundaryObjectHandlesCurrentPlc);
 					int upperBound = property.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
-						EList<EObject> propertyValueOutBEPlac = Utility.getListPropertyValue(outsideBEPlac, property);
+						EList<EObject> propertyValueOutBEPlac = EngineUtility.getListPropertyValue(outsideBEPlac, property);
 						EList<EObject> elemenetsToRemove = (replace) ? insideBEPlacCurrent : new BasicEList<EObject>();
-						EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
+						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
-						Utility.setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
+						EngineUtility.setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
 						//this.setProperty(outsideBEPlac, property, propertyValueNew);
 						
-						EList<EObject> propertyValueSet = Utility.getListPropertyValue(outsideBEPlac, property);
+						EList<EObject> propertyValueSet = EngineUtility.getListPropertyValue(outsideBEPlac, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
 						//update insideBoundaryElements of the reference 
-						EList<EObject> insideBEPlacNew = Utility.subtractAugmentList(insideBEPlacCurrent, elemenetsToRemove, insideBERepl);
+						EList<EObject> insideBEPlacNew = EngineUtility.subtractAugmentList(insideBEPlacCurrent, elemenetsToRemove, insideBERepl);
 						updateToPlacementInsideBoundaryElements(toPlacement, insideBEPlacNew);
 					}else{
 						//property.getUpperBound() == 0 || == 1
@@ -121,7 +121,7 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
-						Utility.setProperty(outsideBEPlac, property, propertyValueNew);
+						EngineUtility.setProperty(outsideBEPlac, property, propertyValueNew);
 						Object propertyValueSet = outsideBEPlac.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
@@ -132,7 +132,7 @@ public class FragmentSubOperation implements Substitution {
 					}
 					
 					if(!isChangeable){
-						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
+						EngineUtility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
 						if(property.isChangeable())
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to restore changeble property:" + propertyName);
 					}
@@ -149,7 +149,7 @@ public class FragmentSubOperation implements Substitution {
 			FromReplacement fromReplacement = fromBinding.getFromReplacement();
 			if(fromPlacement != null && fromReplacement != null){
 				String propertyName = fromReplacement.getPropertyName();
-				EList<EObject> outsideBEPlac = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
+				EList<EObject> outsideBEPlac = EngineUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
 				outsideBEPlac = (outsideBEPlac.size() == 1 && outsideBEPlac.get(0) == null) ? new BasicEList<EObject>() : outsideBEPlac; 
 				EObject insideBERepl = this.getInsideBEFromReplacement(fromReplacement);
 				EStructuralFeature property = insideBERepl.eClass().getEStructuralFeature(propertyName);
@@ -160,24 +160,24 @@ public class FragmentSubOperation implements Substitution {
 				if(!property.isDerived() && !property.isTransient()){
 					Boolean isChangeable = property.isChangeable();
 					if(!isChangeable){
-						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
+						EngineUtility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(true));
 						if(!property.isChangeable()){
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to set changeable to true, howevere we have to adjust the property : " + propertyName);
 						}
 					}
 					
 					ObjectHandle insideBoundaryObjectHandleCurrentPlc = fromPlacement.getInsideBoundaryElement();
-					EList<EObject> outsideBEReplCurrent = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
+					EList<EObject> outsideBEReplCurrent = EngineUtility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
 					int upperBound = property.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
-						EList<EObject> propertyValueInsBERepl = Utility.getListPropertyValue(insideBERepl, property);
-						EList<EObject> propertyValueNew = Utility.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
+						EList<EObject> propertyValueInsBERepl = EngineUtility.getListPropertyValue(insideBERepl, property);
+						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
-						Utility.setProperty(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
-						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBERepl, property);
+						EngineUtility.setProperty(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
+						EList<EObject> propertyValueSet = EngineUtility.getListPropertyValue(insideBERepl, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
@@ -194,19 +194,19 @@ public class FragmentSubOperation implements Substitution {
 						}
 						EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
 						
-						Utility.setProperty(insideBERepl, property, propertyValueNew);
+						EngineUtility.setProperty(insideBERepl, property, propertyValueNew);
 						Object propertyValueSet = insideBERepl.eGet(property);
 						if((propertyValueNew != null && !propertyValueNew.equals(propertyValueSet)) || (propertyValueNew == null && propertyValueNew != propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragSubHolder.getFragment());
 						}				
 					}
 					//update insideBoundaryElementReference for fromPlacement;
-					EObject insideBoundaryElement = this.getReplCopyElementFromOriginal(Utility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
+					EObject insideBoundaryElement = this.getReplCopyElementFromOriginal(EngineUtility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
 					ObjectHandle rplObjectHandle = this.getInsideBoundaryElementObjectHandleFromPlacement(fromPlacement, insideBoundaryElement);
 					updateInsideBoundaryElementObjectHandleBoundaries(insideBoundaryObjectHandleCurrentPlc, rplObjectHandle, replace);
 					
 					if(!isChangeable){
-						Utility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
+						EngineUtility.setProperty(property, property.eClass().getEStructuralFeature("changeable"), new Boolean(false));
 						if(property.isChangeable())
 							throw new UnexpectedOperationFailure("EPIC FAIL: failed to restore changeble property:" + propertyName);
 					}
@@ -235,7 +235,7 @@ public class FragmentSubOperation implements Substitution {
 		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
 			FromPlacement fromPlacement = fromBinding.getFromPlacement();
-			EList<EObject> outsideBoundaryElements = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
+			EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
 			for(EObject outsideBoundaryElement : outsideBoundaryElements){
 				Resource resource = outsideBoundaryElement.eResource();
 				if(resource == null)
@@ -246,13 +246,13 @@ public class FragmentSubOperation implements Substitution {
 		HashMap<ToPlacement, HashSet<ObjectHandle>> outsideToBoundaryMap = fragSubHolder.getToPlacementOutsideBoundaryElementMap();
 		for(ToBinding toBinding : toBindings){
 			ToPlacement toPlacement = toBinding.getToPlacement();
-			EObject outsideBoundaryElement = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());
+			EObject outsideBoundaryElement = EngineUtility.resolveProxies(toPlacement.getOutsideBoundaryElement());
 			Resource resource = outsideBoundaryElement.eResource();
 			if(resource == null)
 				throw new ContainmentCVLModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
 			HashSet<ObjectHandle> objectHandles = outsideToBoundaryMap.get(toPlacement);
 			if(objectHandles != null){
-				EList<EObject> outsideBoundaryElements = Utility.resolveProxies(new BasicEList<ObjectHandle>(objectHandles));
+				EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(new BasicEList<ObjectHandle>(objectHandles));
 				for(EObject eObject : outsideBoundaryElements){
 					resource = eObject.eResource();
 					if(resource == null)
@@ -266,26 +266,26 @@ public class FragmentSubOperation implements Substitution {
 		HashSet<EObject> placementElements = placement.getElements();
 		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
-			EList<EObject> outsideBoundaryElements = Utility.resolveProxies(fromBinding.getFromPlacement().getOutsideBoundaryElement());
+			EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(fromBinding.getFromPlacement().getOutsideBoundaryElement());
 			outsideBoundaryElements = (outsideBoundaryElements.size() == 1 && outsideBoundaryElements.get(0) == null) ? new BasicEList<EObject>() : outsideBoundaryElements;
 			for(EObject outsideBoundaryElement : outsideBoundaryElements){
 				EObject container = outsideBoundaryElement.eContainer();
 				if(placementElements.contains(container)){
-					EObject referencer = Utility.resolveProxies(fromBinding.getFromPlacement().getInsideBoundaryElement());
+					EObject referencer = EngineUtility.resolveProxies(fromBinding.getFromPlacement().getInsideBoundaryElement());
 					EObject referencerContainer = referencer.eContainer();
 					EStructuralFeature feature = referencer.eContainingFeature();
 					int upperBound = feature.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
-						EList<EObject> propertyValue = Utility.getListPropertyValue(referencerContainer, feature);
+						EList<EObject> propertyValue = EngineUtility.getListPropertyValue(referencerContainer, feature);
 						if(upperBound != -1 && propertyValue.size() >= upperBound){
 							throw new IncorrectCVLModel("cardinality of the containment property is less than amount of the contined elements " + fragSubHolder.getFragment() + " property " + feature + "values " + propertyValue);
 						}
 						propertyValue.add(outsideBoundaryElement);
 						propertyValue = new BasicEList<EObject>(propertyValue);
-						Utility.setProperty(referencerContainer, feature, propertyValue);
+						EngineUtility.setProperty(referencerContainer, feature, propertyValue);
 						//referencerContainer.eSet(feature, propertyValue);
 						
-						EList<EObject> propertySet = Utility.getListPropertyValue(referencerContainer, feature);
+						EList<EObject> propertySet = EngineUtility.getListPropertyValue(referencerContainer, feature);
 						if(!propertySet.equals(propertyValue)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + feature + "of" + fragSubHolder.getFragment());
 						}
@@ -298,7 +298,7 @@ public class FragmentSubOperation implements Substitution {
 						if(propertyValue != null){
 							throw new IncorrectCVLModel("cardinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
 						}
-						Utility.setProperty(referencerContainer, feature, outsideBoundaryElement);
+						EngineUtility.setProperty(referencerContainer, feature, outsideBoundaryElement);
 						//referencerContainer.eSet(feature, outsideBoundaryElement);
 						
 						Object propertySet = referencerContainer.eGet(feature);
@@ -339,31 +339,31 @@ public class FragmentSubOperation implements Substitution {
 	
 	private EList<EObject> getInsideBEToReplacement(ToReplacement toReplacement) throws GeneralCVLEngineException{
 		EList<EObject> nullList = new BasicEList<EObject>();
-		EList<EObject> insideBERepl = (!Utility.isDummyToReplacement(toReplacement)) ? this.getReplCopyElementFromOriginal(Utility.resolveProxies(toReplacement.getInsideBoundaryElement())) : nullList;
+		EList<EObject> insideBERepl = (!EngineUtility.isDummyToReplacement(toReplacement)) ? this.getReplCopyElementFromOriginal(EngineUtility.resolveProxies(toReplacement.getInsideBoundaryElement())) : nullList;
 		return insideBERepl;
 	}
 	
 	private EObject getInsideBEFromReplacement(FromReplacement fromReplacement) throws GeneralCVLEngineException{
-		return this.getReplCopyElementFromOriginal(Utility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
+		return this.getReplCopyElementFromOriginal(EngineUtility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
 	}
 		
 	private void updateToPlacementInsideBoundaryElements(ToPlacement toPlacement, EList<EObject> insideBoundaryElements) throws UnexpectedOperationFailure{
 		toPlacement.getInsideBoundaryElement().clear();
-		toPlacement.getInsideBoundaryElement().addAll(Utility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements));
+		toPlacement.getInsideBoundaryElement().addAll(EngineUtility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements));
 	}
 	
 	private void updateToPlacementInsideBoundaryElement(ToPlacement toPlacement, EObject insideBoundaryElement) throws UnexpectedOperationFailure{
 		toPlacement.getInsideBoundaryElement().clear();
 		EList<EObject> insideBoundaryElements = new BasicEList<EObject>();
 		insideBoundaryElements.add(insideBoundaryElement);
-		EList<ObjectHandle> objectHandles = Utility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements);
+		EList<ObjectHandle> objectHandles = EngineUtility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements);
 		toPlacement.getInsideBoundaryElement().add(objectHandles.get(0));
 	}
 		
 	private ObjectHandle getInsideBoundaryElementObjectHandleFromPlacement(FromPlacement fromPlacement, EObject insideBoundaryElement) throws UnexpectedOperationFailure{
 		EList<EObject> insideBoundaryElements = new BasicEList<EObject>();
 		insideBoundaryElements.add(insideBoundaryElement);
-		EList<ObjectHandle> objectHandles = Utility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements);
+		EList<ObjectHandle> objectHandles = EngineUtility.getPlacementObjectHandlesByEObjects(fragSubHolder.getFragment().getPlacement(), insideBoundaryElements);
 		return objectHandles.get(0);
 	}
 	

@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import no.sintef.cvl.common.logging.Logger;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.CVLModelException;
@@ -48,7 +48,7 @@ public class FromReplacementBoundaryCalculator extends
 		
 		ArrayList<VariationPoint> fromPlacements = new ArrayList<VariationPoint>();
 		for(VariationPoint boundary : options){
-			if(Utility.isNullBoundary(boundary)){
+			if(LoaderUtility.isNullBoundary(boundary)){
 				nullFromPlacement = (FromPlacement) boundary;
 			}else{
 				FromPlacement fromPlacement = (FromPlacement) boundary;
@@ -57,7 +57,7 @@ public class FromReplacementBoundaryCalculator extends
 				
 				EList<ObjectHandle> outsideBoundaryElementsOH = fromPlacement.getOutsideBoundaryElement();
 				if(outsideBoundaryElementsOH.size() <= upperBound || upperBound == -1){
-					EList<EObject> outsideBoundaryElements = Utility.resolveProxies(outsideBoundaryElementsOH);
+					EList<EObject> outsideBoundaryElements = LoaderUtility.resolveProxies(outsideBoundaryElementsOH);
 					if(isInstance(srcObjectType, outsideBoundaryElements)){
 						fromPlacements.add(boundary);
 						logger.debug("the boundary is compatible");

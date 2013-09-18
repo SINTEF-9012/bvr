@@ -13,7 +13,7 @@ import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 
 import no.sintef.cvl.ui.common.Messages;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.BindingTableModel;
@@ -37,12 +37,12 @@ public class DeleteBindingAllEvent implements ActionListener {
 		CVLModel m = models.get(tab);
 		ConfigurableUnit cu = m.getCU();
 		
-		if(!Utility.isBindingPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
+		if(!LoaderUtility.isBindingPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
 			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_BINDING_TAB_NO_FOCUS);
 			return;
 		}
 		JScrollPane bindingPanel = (JScrollPane) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
-		JTable bindingTable = Utility.getBindingTable(bindingPanel);
+		JTable bindingTable = LoaderUtility.getBindingTable(bindingPanel);
 		if(bindingTable == null){
 			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_CAN_NOT_LOCATE_BINDING_TABLE);
 			return;

@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 
 public class CVLFilter extends FileFilter {
 	
@@ -17,7 +17,7 @@ public class CVLFilter extends FileFilter {
 	        return true;
 	    }
 	    
-	    String extension = Utility.getExtension(f);
+	    String extension = LoaderUtility.getExtension(f);
 	    if (extension != null) {
 	    	if(extension.equals(CVL_EXT)) return true;
 	    	if(extension.equals(XMI_EXT)) return true;

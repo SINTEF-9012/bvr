@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.cvl.engine.common.HolderDataElement;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.ElementHolderOIF;
 import no.sintef.cvl.engine.fragment.PlacementElementFinderStrategy;
@@ -38,13 +38,13 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 			if(pbe instanceof ToPlacement){
 				ToPlacement toPlacement = (ToPlacement) pbe;
 				HashSet<EObject> set = new HashSet<EObject>();
-				set.add(Utility.resolveProxies(toPlacement.getOutsideBoundaryElement()));
+				set.add(EngineUtility.resolveProxies(toPlacement.getOutsideBoundaryElement()));
 				toPlacementOutBoundaryMap.put(toPlacement, set);
 			}
 			if(pbe instanceof FromPlacement){
 				FromPlacement fromPlacement = (FromPlacement) pbe;
 				HashSet<EObject> set = new HashSet<EObject>();
-				set.add(Utility.resolveProxies(fromPlacement.getInsideBoundaryElement()));
+				set.add(EngineUtility.resolveProxies(fromPlacement.getInsideBoundaryElement()));
 				fromPlacementInsBoundaryMap.put(fromPlacement, set);
 			}
 		}
@@ -79,7 +79,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	public HashSet<EObject> getInnerNeighboringElements() {
 		HashSet<EObject> innElements = new HashSet<EObject>();
 		for(HashSet<EObject> innerEl : fromPlacementInsBoundaryMap.values()){
-			innElements.addAll(Utility.clearSet(innerEl));
+			innElements.addAll(EngineUtility.clearSet(innerEl));
 		}
 		innElements.addAll(innerElements);
 		return innElements;
@@ -91,7 +91,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		for(Map.Entry<FromPlacement, HashSet<EObject>> entry : fromPlacementInsBoundaryMap.entrySet()){
 			FromPlacement fromPlacement = entry.getKey();
 			HashSet<EObject> innerEl = entry.getValue();
-			if(Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()).size() != 0){
+			if(EngineUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement()).size() != 0){
 				innElements.addAll(innerEl);;
 			}
 		}
@@ -121,7 +121,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		for(Map.Entry<FromPlacement, HashSet<ObjectHandle>> entry : fromPlacementInsBoundaryMap.entrySet()){
 			FromPlacement key = entry.getKey();
 			HashSet<ObjectHandle> value = entry.getValue();
-			map.put(key, new HashSet<EObject>(Utility.resolveProxies(new BasicEList<ObjectHandle>(value))));
+			map.put(key, new HashSet<EObject>(EngineUtility.resolveProxies(new BasicEList<ObjectHandle>(value))));
 		}
 		this.fromPlacementInsBoundaryMap = map;
 	}
@@ -131,7 +131,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		for(Map.Entry<ToPlacement, HashSet<ObjectHandle>> entry : toPlacementOHOutsideBoundaryMap.entrySet()){
 			ToPlacement key = entry.getKey();
 			HashSet<ObjectHandle> value = entry.getValue();
-			map.put(key, new HashSet<EObject>(Utility.resolveProxies(new BasicEList<ObjectHandle>(value))));
+			map.put(key, new HashSet<EObject>(EngineUtility.resolveProxies(new BasicEList<ObjectHandle>(value))));
 		}
 		this.toPlacementOutBoundaryMap = map;
 	}

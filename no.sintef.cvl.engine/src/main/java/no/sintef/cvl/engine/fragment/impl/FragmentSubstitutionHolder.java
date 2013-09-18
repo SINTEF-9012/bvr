@@ -19,7 +19,7 @@ import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.ToBinding;
 import cvl.ToPlacement;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 
@@ -116,7 +116,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		for(Map.Entry<FromPlacement, HashSet<EObject>> entry : fromPlacementInsBoundaryMap.entrySet()){
 			FromPlacement fromPlacement = entry.getKey();
 			HashSet<EObject> setEObjects = entry.getValue();
-			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getPlacementObjectHandlesByEObjects(fragment.getPlacement(), new BasicEList<EObject>(setEObjects)));
+			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(EngineUtility.getPlacementObjectHandlesByEObjects(fragment.getPlacement(), new BasicEList<EObject>(setEObjects)));
 			fromPlacementOHInsideBoundaryMap.put(fromPlacement, setObjectHandles);
 		}
 		return fromPlacementOHInsideBoundaryMap;
@@ -127,7 +127,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		for(Map.Entry<ToPlacement, HashSet<EObject>> entry : toPlacementOutBoundaryMap.entrySet()){
 			ToPlacement toPlacement = entry.getKey();
 			HashSet<EObject> setEObjects = entry.getValue();
-			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(Utility.getPlacementObjectHandlesByEObjects(fragment.getPlacement(), new BasicEList<EObject>(setEObjects)));
+			HashSet<ObjectHandle> setObjectHandles = new HashSet<ObjectHandle>(EngineUtility.getPlacementObjectHandlesByEObjects(fragment.getPlacement(), new BasicEList<EObject>(setEObjects)));
 			toPlacementOHOutsideBoundaryMap.put(toPlacement, setObjectHandles);
 		}		
 		return toPlacementOHOutsideBoundaryMap;

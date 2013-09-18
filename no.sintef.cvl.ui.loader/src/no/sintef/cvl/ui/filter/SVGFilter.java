@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 
 public class SVGFilter extends FileFilter {
 	
@@ -16,7 +16,7 @@ public class SVGFilter extends FileFilter {
 	        return true;
 	    }
 	    
-	    String extension = Utility.getExtension(f);
+	    String extension = LoaderUtility.getExtension(f);
 	    if (extension != null) {
 	    	if(extension.equals(SVG_EXT)) return true;
 	    }

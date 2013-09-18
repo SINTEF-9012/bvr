@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import no.sintef.cvl.common.logging.Logger;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.CVLModelException;
@@ -47,7 +47,7 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 		
 		ArrayList<VariationPoint> toReplacements = new ArrayList<VariationPoint>();
 		for(VariationPoint boundary : options){
-			if(Utility.isNullBoundary(boundary)){
+			if(LoaderUtility.isNullBoundary(boundary)){
 				nullToReplacement = (ToReplacement) boundary;
 			}else{
 				ToReplacement toReplacement = (ToReplacement) boundary;
@@ -56,7 +56,7 @@ public class ToPlacementBoundaryCalculator extends BoundaryCalculatorStrategy {
 				
 				EList<ObjectHandle> insideBoundaryElementsOH = toReplacement.getInsideBoundaryElement();
 				if(insideBoundaryElementsOH.size() <= upperBound || upperBound == -1){
-					EList<EObject> insideBoundaryElements = Utility.resolveProxies(insideBoundaryElementsOH);
+					EList<EObject> insideBoundaryElements = LoaderUtility.resolveProxies(insideBoundaryElementsOH);
 					if(isInstance(srcObjectType, insideBoundaryElements)){
 						toReplacements.add(boundary);
 						logger.debug("the boundary is compatible");

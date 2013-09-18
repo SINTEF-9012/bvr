@@ -23,7 +23,7 @@ import cvl.CvlFactory;
 import cvl.ObjectHandle;
 import cvl.ReplacementFragmentType;
 import cvl.ToReplacement;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.strategy.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategy.ReplacementBoundaryCalcStrategy;
 
@@ -83,7 +83,7 @@ public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalc
 			}
 		}
 		permutateToReplacements(replacement, toReplacements);
-		Utility.testNullToReplacement(replacement);
+		LoaderUtility.testNullToReplacement(replacement);
 	}
 	
 	private void permutateToReplacements(ReplacementFragmentType replacement, HashSet<ToReplacement> toReplacements){
@@ -105,7 +105,7 @@ public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalc
 				String propertyName = matcher.group(matcher.groupCount() - 1);
 				EObject sourceEObject = toReplacement.getOutsideBoundaryElement().getMOFRef();
 				EStructuralFeature property = sourceEObject.eClass().getEStructuralFeature(propertyName);
-				mutatedToReplacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(new BasicEList<ObjectHandle>(combination)), property, true));
+				mutatedToReplacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(new BasicEList<ObjectHandle>(combination)), property, true));
 				replacement.getReplacementBoundaryElement().add(mutatedToReplacement);
 			}
 		}

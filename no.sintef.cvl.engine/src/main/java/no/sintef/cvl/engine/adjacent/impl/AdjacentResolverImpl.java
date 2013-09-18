@@ -17,7 +17,7 @@ import cvl.ToPlacement;
 import no.sintef.cvl.engine.adjacent.AdjacentFinder;
 import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.AdjacentResolver;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.error.IllegalCVLOperation;
@@ -46,7 +46,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 		}
 		for(AdjacentFragment adjacentFragment : adjacentFragments){
 			FragSubHolder fragHolderAdjacent = adjacentFragment.getFragmentHolder();
-			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = Utility.reverseMap(aFrag.getAdjacentToBindings(adjacentFragment));
+			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = EngineUtility.reverseMap(aFrag.getAdjacentToBindings(adjacentFragment));
 			adjacentBindingsToCurrent = (adjacentBindingsToCurrent != null) ? adjacentBindingsToCurrent : new HashMap<FromBinding, ToBinding>();
 			for(Map.Entry<FromBinding, ToBinding> entry : adjacentBindingsToCurrent.entrySet()){
 				FromBinding fromBinding = entry.getKey();
@@ -60,7 +60,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 					throw new GeneralCVLEngineException("failed to find insideBoundaryElements in the map for a given fromPlacement " + fromBinding.getFromPlacement() + " of the fromBinding " + fromBinding);
 				}
 				for(ObjectHandle objectHandle : insideBoundaryElementsFromPlacement){
-					EObject insideBoundaryElementPlc = Utility.resolveProxies(objectHandle);
+					EObject insideBoundaryElementPlc = EngineUtility.resolveProxies(objectHandle);
 					String propertyName = fromBinding.getFromReplacement().getPropertyName();
 					EStructuralFeature property = insideBoundaryElementPlc.eClass().getEStructuralFeature(propertyName);
 					if(property == null){
@@ -68,15 +68,15 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 					}
 					int upperBound = property.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
-						EList<EObject> values = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
-						EList<EObject> elementsToRemove = Utility.resolveProxies(outsideBOHElmtsPlc);
-						EList<EObject> elementsToAdd = Utility.resolveProxies(insideBOHElmtsPlcReplaced);
-						EList<EObject> propertyValueNew = Utility.subtractAugmentList(values, elementsToRemove, elementsToAdd);
+						EList<EObject> values = EngineUtility.getListPropertyValue(insideBoundaryElementPlc, property);
+						EList<EObject> elementsToRemove = EngineUtility.resolveProxies(outsideBOHElmtsPlc);
+						EList<EObject> elementsToAdd = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced);
+						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(values, elementsToRemove, elementsToAdd);
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolderAdjacent.getFragment());
 						}
-						Utility.setProperty(values, elementsToRemove, elementsToAdd);
-						EList<EObject> propertyValueSet = Utility.getListPropertyValue(insideBoundaryElementPlc, property);
+						EngineUtility.setProperty(values, elementsToRemove, elementsToAdd);
+						EList<EObject> propertyValueSet = EngineUtility.getListPropertyValue(insideBoundaryElementPlc, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());
 						}
@@ -89,8 +89,8 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolderAdjacent.getFragment());
 						}
 
-						EObject propertyValueNew = Utility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
-						Utility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);
+						EObject propertyValueNew = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
+						EngineUtility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);
 						Object propertyValueSet = insideBoundaryElementPlc.eGet(property);
 						if(!propertyValueNew.equals(propertyValueSet)){
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());

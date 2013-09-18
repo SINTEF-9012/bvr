@@ -14,7 +14,7 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentFragmentImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.common.SubstitutionContext;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.logging.Logger;

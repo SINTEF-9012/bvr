@@ -13,7 +13,7 @@ import cvl.FromReplacement;
 import cvl.ReplacementBoundaryElement;
 import cvl.ToReplacement;
 import no.sintef.cvl.engine.common.HolderDataElement;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.fragment.AbstractElementFinder;
 import no.sintef.cvl.engine.fragment.ReplacementElementFinderStrategy;
 
@@ -32,8 +32,8 @@ public class StrategyReplacementElementFinder extends
 		for(ReplacementBoundaryElement rbe : rbes){
 			if(rbe instanceof ToReplacement){
 				ToReplacement toReplacement = (ToReplacement) rbe;
-				EList<EObject> insideBoundaryElements = Utility.resolveProxies(toReplacement.getInsideBoundaryElement());
-				EObject outsideBoundaryElement = Utility.resolveProxies(toReplacement.getOutsideBoundaryElement());
+				EList<EObject> insideBoundaryElements = EngineUtility.resolveProxies(toReplacement.getInsideBoundaryElement());
+				EObject outsideBoundaryElement = EngineUtility.resolveProxies(toReplacement.getOutsideBoundaryElement());
 				elementsHolder.addBoundaryElementInternal(insideBoundaryElements);
 				elementsHolder.addInnerNeighboringElement(insideBoundaryElements);
 				elementsHolder.addOuterInsideReferenceElements(outsideBoundaryElement);
@@ -41,8 +41,8 @@ public class StrategyReplacementElementFinder extends
 			}
 			if(rbe instanceof FromReplacement){
 				FromReplacement fromReplacement = (FromReplacement) rbe;
-				EObject insideBoundaryElement = Utility.resolveProxies(fromReplacement.getInsideBoundaryElement());
-				EList<EObject> outsideBoundaryElements = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
+				EObject insideBoundaryElement = EngineUtility.resolveProxies(fromReplacement.getInsideBoundaryElement());
+				EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
 				elementsHolder.addBoundaryElementExternal(insideBoundaryElement);
 				elementsHolder.addInnerNeighboringElement(insideBoundaryElement);
 				elementsHolder.addOuterOutsideReferenceElement(outsideBoundaryElements);

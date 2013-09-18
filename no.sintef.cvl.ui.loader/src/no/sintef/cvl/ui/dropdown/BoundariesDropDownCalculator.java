@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import javax.swing.JLabel;
 
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.PlacementReplacementNullException;
 import no.sintef.cvl.ui.primitive.DataItem;
@@ -30,9 +30,9 @@ public class BoundariesDropDownCalculator {
 			throw new PlacementReplacementNullException("placement or replacement is null however it should not be here this way, or we should handle it somehow"); 
 		}
 		
-		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = Utility.sortBoundariesByType(placement, replacement);
-		ArrayList<VariationPoint> toPlacements = fileterdBoundaries.get(Utility.TOPLCMNT);
-		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(Utility.TOREPLCMNT);
+		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = LoaderUtility.sortBoundariesByType(placement, replacement);
+		ArrayList<VariationPoint> toPlacements = fileterdBoundaries.get(LoaderUtility.TOPLCMNT);
+		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(LoaderUtility.TOREPLCMNT);
 		for(VariationPoint toPlacement : toPlacements){
 			ArrayList<VariationPoint> toReplcmnts = boundaryCalculator.getCompliedBoundaries((ToPlacement) toPlacement, toReplacements);		
 			DataNamedElementItem toPlacementDataItem = new DataNamedElementItem(new JLabel(toPlacement.getName()), toPlacement);
@@ -40,8 +40,8 @@ public class BoundariesDropDownCalculator {
 			map.put(toPlacementDataItem, toReplcmntsDataItem);
 		}
 		
-		ArrayList<VariationPoint> fromReplacements = fileterdBoundaries.get(Utility.FROMREPLCMNT);
-		ArrayList<VariationPoint> fromPlacements = fileterdBoundaries.get(Utility.FROMPLCMNT);
+		ArrayList<VariationPoint> fromReplacements = fileterdBoundaries.get(LoaderUtility.FROMREPLCMNT);
+		ArrayList<VariationPoint> fromPlacements = fileterdBoundaries.get(LoaderUtility.FROMPLCMNT);
 		for(VariationPoint fromReplacement : fromReplacements){
 			ArrayList<VariationPoint> fromPlcmnts = boundaryCalculator.getCompliedBoundaries((FromReplacement) fromReplacement, fromPlacements);
 			DataNamedElementItem fromReplacementDataItem = new DataNamedElementItem(new JLabel(fromReplacement.getName()), fromReplacement);

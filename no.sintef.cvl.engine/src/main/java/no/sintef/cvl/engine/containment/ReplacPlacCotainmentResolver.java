@@ -19,7 +19,7 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 
 
@@ -76,8 +76,8 @@ public class ReplacPlacCotainmentResolver {
 	
 	
 	private void adjustInsideBoundaryRefereneces(ToReplacement toReplacement, ToPlacement toPlacement, PlacementFragment placement){
-		EList<EObject> insideEObjectsRepl = Utility.resolveProxies(toReplacement.getInsideBoundaryElement());
-		EList<EObject> insideEObjectsPlc = Utility.resolveProxies(toPlacement.getInsideBoundaryElement());
+		EList<EObject> insideEObjectsRepl = EngineUtility.resolveProxies(toReplacement.getInsideBoundaryElement());
+		EList<EObject> insideEObjectsPlc = EngineUtility.resolveProxies(toPlacement.getInsideBoundaryElement());
 		for(EObject eObject : insideEObjectsPlc){
 			if(insideEObjectsRepl.indexOf(eObject) < 0){
 				ObjectHandle objectHandle = no.sintef.cvl.common.CommonUtility.testObjectHandle(placement, eObject);

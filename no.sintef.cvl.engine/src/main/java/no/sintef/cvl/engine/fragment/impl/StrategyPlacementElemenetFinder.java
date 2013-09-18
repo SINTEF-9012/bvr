@@ -14,7 +14,7 @@ import cvl.FromPlacement;
 import cvl.PlacementBoundaryElement;
 import cvl.ToPlacement;
 import no.sintef.cvl.engine.common.HolderDataElement;
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.GeneralCVLEngineException;
 import no.sintef.cvl.engine.fragment.AbstractElementFinder;
 import no.sintef.cvl.engine.fragment.PlacementElementFinderStrategy;
@@ -37,17 +37,17 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 		for(PlacementBoundaryElement pbe : pbes){
 			if(pbe instanceof ToPlacement){
 				ToPlacement toPlacement = (ToPlacement)pbe;
-				HashSet<EObject> insideBoundaryElements = Utility.clearSet(new HashSet<EObject>(Utility.resolveProxies(toPlacement.getInsideBoundaryElement())));
+				HashSet<EObject> insideBoundaryElements = EngineUtility.clearSet(new HashSet<EObject>(EngineUtility.resolveProxies(toPlacement.getInsideBoundaryElement())));
 				elementsHolder.addBoundaryElementInternal(insideBoundaryElements);
-				EObject outsideBoundaryElement = Utility.resolveProxies(toPlacement.getOutsideBoundaryElement());
+				EObject outsideBoundaryElement = EngineUtility.resolveProxies(toPlacement.getOutsideBoundaryElement());
 				if(outsideBoundaryElement != null){
 					HashSet<EObject> outsideElements = testOutsideBoundaryElement(outsideBoundaryElement, insideBoundaryElements);
 					elementsHolder.addOuterInsideReferenceElements(outsideElements);
 					elementsHolder.addOuterNeighboringElement(outsideElements);
 				}
-				elementsHolder.addInnerNeighboringElement(Utility.resolveProxies(toPlacement.getInsideBoundaryElement()));
+				elementsHolder.addInnerNeighboringElement(EngineUtility.resolveProxies(toPlacement.getInsideBoundaryElement()));
 				
-				HashSet<EObject> outsideBoundaryElements = Utility.clearSet(toPlacementOutBoundaryMap.get(toPlacement));
+				HashSet<EObject> outsideBoundaryElements = EngineUtility.clearSet(toPlacementOutBoundaryMap.get(toPlacement));
 				if(outsideBoundaryElements == null)
 					throw new GeneralCVLEngineException("failed to locate given toPlacement in the map");
 				
@@ -57,8 +57,8 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 			}
 			if(pbe instanceof FromPlacement){
 				FromPlacement fromPlacement = (FromPlacement) pbe;
-				EList<EObject> outsideBoundaryElements = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
-				EObject insideBoundaryElement = Utility.resolveProxies(fromPlacement.getInsideBoundaryElement());
+				EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
+				EObject insideBoundaryElement = EngineUtility.resolveProxies(fromPlacement.getInsideBoundaryElement());
 				if(outsideBoundaryElements.size() != 0){
 					elementsHolder.addOuterNeighboringElement(outsideBoundaryElements);
 					elementsHolder.addOuterOutsideReferenceElement(outsideBoundaryElements);
@@ -68,7 +68,7 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 					elementsHolder.addInnerNeighboringElement(insideBoundaryElement);
 				
 				
-				HashSet<EObject> insideBoundaryElements = Utility.clearSet(fromPlacementInsBoundaryMap.get(fromPlacement));
+				HashSet<EObject> insideBoundaryElements = EngineUtility.clearSet(fromPlacementInsBoundaryMap.get(fromPlacement));
 				if(insideBoundaryElements == null)
 					throw new GeneralCVLEngineException("failed to locate given fromPlacement in the map");
 				

@@ -23,7 +23,7 @@ import cvl.CvlFactory;
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.PlacementFragment;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.strategy.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategy.PlacementBoundaryCalcStrategy;
 
@@ -83,7 +83,7 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 			}
 		}
 		permutateFromPlacements(placement, fromPlacements);
-		Utility.testNullFromPlacement(placement);
+		LoaderUtility.testNullFromPlacement(placement);
 	}
 	
 	private void permutateFromPlacements(PlacementFragment placement, HashSet<FromPlacement> fromPlacements){
@@ -105,7 +105,7 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 				String propertyName = matcher.group(matcher.groupCount() - 1);
 				EObject sourceEObject = fromPlacement.getInsideBoundaryElement().getMOFRef();
 				EStructuralFeature property = sourceEObject.eClass().getEStructuralFeature(propertyName);
-				mutatedFromPlacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(new BasicEList<ObjectHandle>(combination)), property, true));
+				mutatedFromPlacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(new BasicEList<ObjectHandle>(combination)), property, true));
 				placement.getPlacementBoundaryElement().add(mutatedFromPlacement);
 			}
 		}

@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import cvl.PlacementFragment;
 import cvl.ToPlacement;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.strategy.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategy.PlacementBoundaryCalcStrategy;
 
@@ -34,7 +34,7 @@ public class SingleDummyToPlacementBoundaryCalcStrategy extends AbstractBoundary
 				//since when we generate a a new toPlacement, the boundary does not really cut any reference going inside the placement fragment
 				//therefore insideBoundaryElement should not point to any specific element
 				toPlacement.getInsideBoundaryElement().clear();
-				toPlacement.getInsideBoundaryElement().add(Utility.testObjectHandle(placement, null));
+				toPlacement.getInsideBoundaryElement().add(LoaderUtility.testObjectHandle(placement, null));
 			}
 			//containment
 			EObject sourceEObject = eObject.eContainer();
@@ -46,7 +46,7 @@ public class SingleDummyToPlacementBoundaryCalcStrategy extends AbstractBoundary
 				//since when we generate a a new toPlacement, the boundary does not really cut any reference going inside the placement fragment
 				//therefore insideBoundaryElement should not point to any specific element
 				toPlacement.getInsideBoundaryElement().clear();
-				toPlacement.getInsideBoundaryElement().add(Utility.testObjectHandle(placement, null));
+				toPlacement.getInsideBoundaryElement().add(LoaderUtility.testObjectHandle(placement, null));
 			}
 		}
 	}

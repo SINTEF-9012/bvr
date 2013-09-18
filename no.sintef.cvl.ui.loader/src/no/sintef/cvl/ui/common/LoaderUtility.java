@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,17 +14,15 @@ import javax.swing.JTable;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
+import no.sintef.cvl.ui.primitive.Symbol;
+import no.sintef.cvl.ui.primitive.SymbolTable;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EObjectEList;
-
-import com.google.common.base.Throwables;
 
 import cvl.CvlFactory;
+import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
 import cvl.ObjectHandle;
@@ -35,7 +34,7 @@ import cvl.ToPlacement;
 import cvl.ToReplacement;
 import cvl.VariationPoint;
 
-public class Utility {
+public class LoaderUtility {
 
 	public static String TOPLCMNT = "toPlacement";
 	public static String FROMPLCMNT = "fromPlacement";
@@ -200,7 +199,7 @@ public class Utility {
 	
 	public static FromPlacement testNullFromPlacement(PlacementFragment placement){
 		FromPlacement nullFromPlacement;
-		nullFromPlacement = Utility.getNullFromPlacement(placement.getPlacementBoundaryElement());
+		nullFromPlacement = LoaderUtility.getNullFromPlacement(placement.getPlacementBoundaryElement());
 		if(nullFromPlacement == null){
 			nullFromPlacement = CvlFactory.eINSTANCE.createFromPlacement();
 			ObjectHandle nullObjectHandle = testObjectHandle(placement, null);
@@ -240,5 +239,18 @@ public class Utility {
 		objectHandle.setMOFRef(eObject);
 		replacement.getSourceObject().add(objectHandle);
 		return objectHandle;
+	}
+	
+	public static HashSet<FragmentSubstitution> collectFragmentSubstitutionsInTable(SymbolTable table){
+		HashSet<FragmentSubstitution> fss = new HashSet<FragmentSubstitution>();
+		ArrayList<Symbol> symbols = table.getSymbols();
+		for(Symbol symbol : symbols){
+			fss.addAll(symbol.getFragmentSubstitutions());
+		}
+		ArrayList<SymbolTable> tables = table.getChildren();
+		for(SymbolTable symbolTable : tables){
+			fss.addAll(collectFragmentSubstitutionsInTable(symbolTable));
+		}
+		return fss;
 	}
 }

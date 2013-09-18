@@ -21,7 +21,7 @@ import cvl.VariationPoint;
 
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.Messages;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
 import no.sintef.cvl.ui.model.SubFragTableModel;
@@ -46,12 +46,12 @@ public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 		CVLModel m = models.get(tab);
 		ConfigurableUnit cu = m.getCU();
 		
-		if(!Utility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
+		if(!LoaderUtility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
 			JOptionPane.showMessageDialog(null, Messages.VARIATION_TAB_NO_FOCUS);
 			return;
 		}
 		JPanel variationPanel = (JPanel) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
-		JTable subFragTable = Utility.getSibstitutionFragmentTable(variationPanel);
+		JTable subFragTable = LoaderUtility.getSibstitutionFragmentTable(variationPanel);
 		if(subFragTable == null){
 			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_CAN_NOT_LOCATE_SUB_FRAG_TABLE);
 			return;

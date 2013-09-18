@@ -94,7 +94,7 @@ public final class SubstitutionEngine {
 		EList<FragmentSubstitution> fragments = new BasicEList<FragmentSubstitution>(fsMap.keySet());
 		for(FragmentSubstitution fragment : fragments){
 			EList<ObjectHandle> objectHandles = fragment.getPlacement().getSourceObject();
-			EList<EObject> eObjects = Utility.resolveProxies(objectHandles);
+			EList<EObject> eObjects = EngineUtility.resolveProxies(objectHandles);
 			for(EObject eObject : eObjects){
 				if(eObject != null && eObject.eResource() != null && baseResources.indexOf(eObject.eResource()) < 0){
 					baseResources.add(eObject.eResource());

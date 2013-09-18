@@ -24,7 +24,7 @@ import cvl.ToBinding;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
 import cvl.VariationPoint;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.exception.UnexpectedException;
 import no.sintef.cvl.ui.strategy.BindingCalculatorStrategy;
@@ -39,8 +39,8 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		if(placement == null || replacement == null)
 			throw new UnexpectedException("fragment substitution does not rererence placement or replacement" + fragmentSubstitution);
 		
-		ToReplacement nullToReplacement = Utility.testNullToReplacement(replacement);
-		FromPlacement nullFromPlacement = Utility.testNullFromPlacement(placement);
+		ToReplacement nullToReplacement = LoaderUtility.testNullToReplacement(replacement);
+		FromPlacement nullFromPlacement = LoaderUtility.testNullFromPlacement(placement);
 		
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementBoundaryElement();
 		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();
@@ -48,9 +48,9 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		if(placementBoundaries.size() == 0 || replacementBoundaries.size() == 0)
 			throw new UnexpectedException("boundaries for placement or replacement are not generated" + placement + " " + replacement);
 		
-		HashMap<String, ArrayList<VariationPoint>> sortedBoundaries = Utility.sortBoundariesByType(placement, replacement);
-		ArrayList<VariationPoint> toPlacements = sortedBoundaries.get(Utility.TOPLCMNT);
-		ArrayList<VariationPoint> fromReplacements = sortedBoundaries.get(Utility.FROMREPLCMNT);
+		HashMap<String, ArrayList<VariationPoint>> sortedBoundaries = LoaderUtility.sortBoundariesByType(placement, replacement);
+		ArrayList<VariationPoint> toPlacements = sortedBoundaries.get(LoaderUtility.TOPLCMNT);
+		ArrayList<VariationPoint> fromReplacements = sortedBoundaries.get(LoaderUtility.FROMREPLCMNT);
 
 		if(fragmentSubstitution.getBoundaryElementBinding().size() == 0){
 			for(VariationPoint toPlacemenet : toPlacements){

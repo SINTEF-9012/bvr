@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.common.ResourceContentCopier;
 import no.sintef.cvl.engine.common.SubstitutionEngine;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.environment.ConfigHelper;
 import no.sintef.cvl.ui.environment.Environment;
 import no.sintef.cvl.ui.filter.CVLFilter;
@@ -53,7 +53,7 @@ public final class Context {
 	}
 	
 	public CVLModel loadModelFromFile(File file){
-		String extension = Utility.getExtension(file);
+		String extension = LoaderUtility.getExtension(file);
 		CVLModel model = null;
 		if(extension.equals(CVLFilter.CVL_EXT) || extension.equals(CVLFilter.XMI_EXT)){
 			model = environment.loadModelFromFile(file);

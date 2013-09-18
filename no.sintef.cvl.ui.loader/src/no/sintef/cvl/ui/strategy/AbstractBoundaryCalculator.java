@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.common.logging.Logger;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.context.Context;
 
 import org.eclipse.emf.common.util.EList;
@@ -61,9 +61,9 @@ public class AbstractBoundaryCalculator {
 		if(fromPlacement == null){
 			fromPlacement = createFromPlacement(placement, sourceEObject, targetEObject, reference);
 		}else{
-			ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
+			ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(placement, targetEObject);
 			fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
-			fromPlacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
+			fromPlacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
 		}
 		return fromPlacement;
 	}
@@ -84,7 +84,7 @@ public class AbstractBoundaryCalculator {
 		if(fromReplacement == null){
 			fromReplacement = createFromReplacement(replacement, sourceEObject, targetEObject, reference);
 		}else{
-			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
+			ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(replacement, targetEObject);
 			fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
 		}
 		return fromReplacement;
@@ -106,7 +106,7 @@ public class AbstractBoundaryCalculator {
 		if(toPlacement == null){
 			toPlacement = createToPlacement(placement, sourceEObject, targetEObject, property);
 		}else{
-			ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
+			ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(placement, targetEObject);
 			toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
 		}
 		return toPlacement;
@@ -128,17 +128,17 @@ public class AbstractBoundaryCalculator {
 		if(toReplacement == null){
 			toReplacement = createToReplacement(replacement, sourceEObject, targetEObject, property);
 		}else{
-			ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
+			ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(replacement, targetEObject);
 			toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-			toReplacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
+			toReplacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
 		}
 		return toReplacement;
 	}	
 	
 	protected ToPlacement createToPlacement(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
 		ToPlacement toPlacement = CvlFactory.eINSTANCE.createToPlacement();
-		ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
-		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
+		ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(placement, targetEObject);
+		ObjectHandle sourceObjectHandle = LoaderUtility.testObjectHandle(placement, sourceEObject);
 		toPlacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
 		toPlacement.setName(createBoundaryName(sourceEObject, null, property, false));
@@ -150,30 +150,30 @@ public class AbstractBoundaryCalculator {
 	
 	protected FromPlacement createFromPlacement(PlacementFragment placement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
 		FromPlacement fromPlacement = CvlFactory.eINSTANCE.createFromPlacement();
-		ObjectHandle targetObjectHandle = Utility.testObjectHandle(placement, targetEObject);
-		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(placement, sourceEObject);
+		ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(placement, targetEObject);
+		ObjectHandle sourceObjectHandle = LoaderUtility.testObjectHandle(placement, sourceEObject);
 		fromPlacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
-		fromPlacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
+		fromPlacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
 		placement.getPlacementBoundaryElement().add(fromPlacement);
 		return fromPlacement;
 	}
 	
 	protected ToReplacement createToReplacement(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature property) {
 		ToReplacement toReplacement = CvlFactory.eINSTANCE.createToReplacement();
-		ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
-		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
+		ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(replacement, targetEObject);
+		ObjectHandle sourceObjectHandle = LoaderUtility.testObjectHandle(replacement, sourceEObject);
 		toReplacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
-		toReplacement.setName(createBoundaryName(sourceEObject, Utility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
+		toReplacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
 		replacement.getReplacementBoundaryElement().add(toReplacement);
 		return toReplacement;
 	}
 	
 	protected FromReplacement createFromReplacement(ReplacementFragmentType replacement, EObject sourceEObject, EObject targetEObject, EStructuralFeature reference) {
 		FromReplacement fromReplacement = CvlFactory.eINSTANCE.createFromReplacement();
-		ObjectHandle targetObjectHandle = Utility.testObjectHandle(replacement, targetEObject);
-		ObjectHandle sourceObjectHandle = Utility.testObjectHandle(replacement, sourceEObject);
+		ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(replacement, targetEObject);
+		ObjectHandle sourceObjectHandle = LoaderUtility.testObjectHandle(replacement, sourceEObject);
 		fromReplacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromReplacement.getOutsideBoundaryElement().add(targetObjectHandle);
 		String propertyName = reference.getName();

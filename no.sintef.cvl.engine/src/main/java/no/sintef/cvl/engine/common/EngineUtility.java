@@ -24,7 +24,7 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 import cvl.ToReplacement;
 
-public class Utility {
+public class EngineUtility {
 	private static CvlFactory factory = CvlFactory.eINSTANCE;
 
 	public static EList<EObject> resolveProxies(EList<? extends EObject> proxyList){

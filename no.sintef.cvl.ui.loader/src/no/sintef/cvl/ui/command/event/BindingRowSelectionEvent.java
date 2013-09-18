@@ -24,7 +24,7 @@ import cvl.VariationPoint;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.BindingJTable;
 import no.sintef.cvl.ui.exception.IllegalOperationException;
@@ -80,7 +80,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 		EList<HashMap<EObject, Integer>> list = new BasicEList<HashMap<EObject, Integer>>();
 		if(boundary instanceof ToPlacement || boundary instanceof ToReplacement){
 			boolean isToPlacement = (boundary instanceof ToPlacement) ? true : false;
-			if(!isToPlacement && Utility.isNullBoundary(boundary))
+			if(!isToPlacement && LoaderUtility.isNullBoundary(boundary))
 				return list;
 			
 			EObject eObject = (isToPlacement) ? ((ToPlacement) boundary).getOutsideBoundaryElement().getMOFRef() : ((ToReplacement) boundary).getOutsideBoundaryElement().getMOFRef();
@@ -105,7 +105,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			}
 		}else if(boundary instanceof FromPlacement || boundary instanceof FromReplacement){
 			boolean isFromPlacement = (boundary instanceof FromPlacement) ? true : false;
-			if(isFromPlacement && Utility.isNullBoundary(boundary))
+			if(isFromPlacement && LoaderUtility.isNullBoundary(boundary))
 				return list;
 			
 			EObject eObject = (isFromPlacement) ? ((FromPlacement) boundary).getInsideBoundaryElement().getMOFRef() : ((FromReplacement) boundary).getInsideBoundaryElement().getMOFRef();

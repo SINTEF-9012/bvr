@@ -21,7 +21,7 @@ import cvl.ReplacementFragmentType;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
 
-import no.sintef.cvl.engine.common.Utility;
+import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.IncorrectCVLModel;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 
@@ -52,11 +52,11 @@ public class ReplacPlacCotainmentFinder {
 			ReplacementFragmentType replacement = rHolder.getReplacement().getReplacementFragment();
 			for(FragmentSubstitutionHolder pHolder : pFragments){
 				PlacementFragment placement = pHolder.getPlacement().getPlacementFragment();
-				int result = Utility.testPlacementIntersection(replacement, placement);
-				if(result == Utility.P_CNTND)
+				int result = EngineUtility.testPlacementIntersection(replacement, placement);
+				if(result == EngineUtility.P_CNTND)
 					throw new IncorrectCVLModel("placement is partially contained in replacement, can not handle");
 				
-				if(result == Utility.CNTND){
+				if(result == EngineUtility.CNTND){
 					if(placementStaleElements.get(placement) == null)
 						placementStaleElements.put(placement, new HashSet<EObject>(pHolder.getPlacement().getElements()));
 				
@@ -154,8 +154,8 @@ public class ReplacPlacCotainmentFinder {
 	
 	private boolean isToBoundaryAdjacent(ToPlacement toPlacement, ToReplacement toReplacement){
 		if(toPlacement.getOutsideBoundaryElement().getMOFRef().equals(toReplacement.getOutsideBoundaryElement().getMOFRef())){
-			EList<EObject> insideBoundaryPlacement = Utility.resolveProxies(toPlacement.getInsideBoundaryElement());
-			EList<EObject> insideBoundaryReplacement = Utility.resolveProxies(toReplacement.getInsideBoundaryElement());
+			EList<EObject> insideBoundaryPlacement = EngineUtility.resolveProxies(toPlacement.getInsideBoundaryElement());
+			EList<EObject> insideBoundaryReplacement = EngineUtility.resolveProxies(toReplacement.getInsideBoundaryElement());
 			SetView<EObject> intersection = Sets.intersection(new HashSet<EObject>(insideBoundaryPlacement), new HashSet<EObject>(insideBoundaryReplacement));
 			if(!intersection.isEmpty()){
 				return true;
@@ -166,8 +166,8 @@ public class ReplacPlacCotainmentFinder {
 	
 	private boolean isFromBoundaryAdjacent(FromPlacement fromPlacement, FromReplacement fromReplacement){
 		if(fromReplacement.getInsideBoundaryElement().getMOFRef().equals(fromPlacement.getInsideBoundaryElement().getMOFRef())){
-			EList<EObject> outsideBoundaryPlacement = Utility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
-			EList<EObject> outsideBoundaryReplacement = Utility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
+			EList<EObject> outsideBoundaryPlacement = EngineUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement());
+			EList<EObject> outsideBoundaryReplacement = EngineUtility.resolveProxies(fromReplacement.getOutsideBoundaryElement());
 			SetView<EObject> intersection = Sets.intersection(new HashSet<EObject>(outsideBoundaryPlacement), new HashSet<EObject>(outsideBoundaryReplacement));
 			if(!intersection.isEmpty()){
 				return true;

@@ -20,7 +20,7 @@ import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
 import no.sintef.cvl.ui.common.Constants;
-import no.sintef.cvl.ui.common.Utility;
+import no.sintef.cvl.ui.common.LoaderUtility;
 import no.sintef.cvl.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.loader.CVLModel;
 import no.sintef.cvl.ui.loader.CVLView;
@@ -47,13 +47,13 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		
 		ConfigurableUnit cu = m.getCU();
 		
-		if(!Utility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
+		if(!LoaderUtility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
 			JOptionPane.showMessageDialog(null, "Tab with variation points is not in focus");
 			return;
 		}
 
 		JPanel variationPanel = (JPanel) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
-		JTable subFragTable = Utility.getSibstitutionFragmentTable(variationPanel);
+		JTable subFragTable = LoaderUtility.getSibstitutionFragmentTable(variationPanel);
 		if(subFragTable == null){
 			JOptionPane.showMessageDialog(null, "can not find a table with listed placement/replacement fragments");
 			return;
