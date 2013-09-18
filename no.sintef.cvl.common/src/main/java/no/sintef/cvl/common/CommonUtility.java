@@ -14,7 +14,7 @@ import cvl.ObjectHandle;
 import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 
-public final class Utility {
+public final class CommonUtility {
 	
 	public static String getStackTraceAsString(Throwable throwable){
 		return Throwables.getStackTraceAsString(throwable);

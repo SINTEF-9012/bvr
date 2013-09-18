@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
-import no.sintef.cvl.common.Utility;
+import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.context.StaticUICommands;
@@ -47,7 +47,7 @@ public class ExportModelSVG implements ActionListener {
 		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);
 		
 		if(model.getFile() != null){
-			String defualtName = Utility.removeExtension(model.getFile().getName());
+			String defualtName = CommonUtility.removeExtension(model.getFile().getName());
 			filechooser.setSelectedFile(new File(defualtName));
 		}
 		

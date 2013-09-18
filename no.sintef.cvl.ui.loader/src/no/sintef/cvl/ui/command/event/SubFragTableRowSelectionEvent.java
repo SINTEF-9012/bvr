@@ -24,6 +24,7 @@ import cvl.ReplacementFragmentType;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
 
+import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
@@ -188,7 +189,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 	private EList<EObject> getReferencedEObjects(EObject source, EList<EReference> links){
 		EList<EObject> eObjects = new BasicEList<EObject>();
 		for(EReference link : links){
-			if(Utility.isDerived(link) == 0){
+			if(CommonUtility.isDerived(link) == 0){
 				Object value = source.eGet(link);
 				if(value instanceof EObject){
 					eObjects.add((EObject) value);

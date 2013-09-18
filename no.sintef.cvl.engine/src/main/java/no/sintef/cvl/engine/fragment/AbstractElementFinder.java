@@ -7,7 +7,7 @@ public abstract class AbstractElementFinder {
 
 	protected EList<EObject> calculateInnerElements(EList<EObject> outsideInside, EList<EObject> outsideOutside, EList<EObject> inside, EList<EObject> visited){
 		for(EObject eObject : inside){
-			EList<EObject> refobjects = no.sintef.cvl.common.Utility.getReferencedEObjects(eObject);
+			EList<EObject> refobjects = no.sintef.cvl.common.CommonUtility.getReferencedEObjects(eObject);
 			refobjects.addAll(eObject.eContents());
 			if(!outsideInside.contains(eObject) && !outsideOutside.contains(eObject) && !visited.contains(eObject)){
 				visited.add(eObject);

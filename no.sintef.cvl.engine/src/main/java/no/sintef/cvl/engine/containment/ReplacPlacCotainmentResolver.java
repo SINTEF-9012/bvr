@@ -65,7 +65,7 @@ public class ReplacPlacCotainmentResolver {
 					for(FromReplacement fromReplacement : fromReplacements){
 						EObject insideElementRepl = fromReplacement.getInsideBoundaryElement().getMOFRef();
 						if(!insideElementPlac.equals(insideElementRepl)){
-							ObjectHandle objectHandle = no.sintef.cvl.common.Utility.testObjectHandle(entry.getKey(), insideElementPlac);
+							ObjectHandle objectHandle = no.sintef.cvl.common.CommonUtility.testObjectHandle(entry.getKey(), insideElementPlac);
 							fromReplacement.setInsideBoundaryElement(objectHandle);
 						}
 					}
@@ -80,7 +80,7 @@ public class ReplacPlacCotainmentResolver {
 		EList<EObject> insideEObjectsPlc = Utility.resolveProxies(toPlacement.getInsideBoundaryElement());
 		for(EObject eObject : insideEObjectsPlc){
 			if(insideEObjectsRepl.indexOf(eObject) < 0){
-				ObjectHandle objectHandle = no.sintef.cvl.common.Utility.testObjectHandle(placement, eObject);
+				ObjectHandle objectHandle = no.sintef.cvl.common.CommonUtility.testObjectHandle(placement, eObject);
 				toReplacement.getInsideBoundaryElement().add(objectHandle);
 			}
 		}

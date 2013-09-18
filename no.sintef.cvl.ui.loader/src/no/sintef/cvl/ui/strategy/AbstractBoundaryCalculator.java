@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.common.logging.Logger;
 import no.sintef.cvl.ui.common.Utility;
 import no.sintef.cvl.ui.context.Context;
@@ -32,12 +33,12 @@ public class AbstractBoundaryCalculator {
 
 	protected boolean isReferenceToCut(EStructuralFeature property){
 		boolean yes = true;
-		int result = Utility.isDerived(property);
-		if(Utility.unMask(result, Utility.DERIVED)  == Utility.DERIVED){
+		int result = CommonUtility.isDerived(property);
+		if(CommonUtility.unMask(result, CommonUtility.DERIVED)  == CommonUtility.DERIVED){
 			yes = false;
 			LOGGER.warn("property is derived, skip it: " + property);
 		}
-		if(Utility.unMask(result, Utility.TRANSIENT)  == Utility.TRANSIENT){
+		if(CommonUtility.unMask(result, CommonUtility.TRANSIENT)  == CommonUtility.TRANSIENT){
 			yes = false;
 			LOGGER.warn("property is transient, skip it: " + property);
 		}

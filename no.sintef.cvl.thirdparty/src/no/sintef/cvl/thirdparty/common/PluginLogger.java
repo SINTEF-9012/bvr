@@ -2,7 +2,7 @@ package no.sintef.cvl.thirdparty.common;
 
 import java.util.Calendar;
 
-import no.sintef.cvl.common.Utility;
+import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.common.logging.Logger;
 
 import org.eclipse.core.runtime.ILog;
@@ -44,7 +44,7 @@ public class PluginLogger implements Logger {
 
 	@Override
 	public void error(String message, Throwable e) {
-		String stackTrace = Utility.getStackTraceAsString(e);
+		String stackTrace = CommonUtility.getStackTraceAsString(e);
 		error("Failed with the message: '" + message + "' and stack trace:\n" + stackTrace);
 	}
 

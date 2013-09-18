@@ -12,7 +12,7 @@ import javax.swing.filechooser.FileFilter;
 
 import com.google.common.collect.Lists;
 
-import no.sintef.cvl.common.Utility;
+import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.ui.common.Messages;
 import no.sintef.cvl.ui.filter.CVLFilter;
 import no.sintef.cvl.ui.filter.FMFilter;
@@ -80,7 +80,7 @@ public class StaticUICommands {
 	}
 	
 	public static void showMessageErrorDialog(Container parent, Throwable e, String message){
-		message = (message != null && !message.isEmpty()) ? message + " '" +e.getMessage() + "'\n" + Utility.getStackTraceAsString(e) : e.getMessage() + "\n" + Utility.getStackTraceAsString(e);
+		message = (message != null && !message.isEmpty()) ? message + " '" +e.getMessage() + "'\n" + CommonUtility.getStackTraceAsString(e) : e.getMessage() + "\n" + CommonUtility.getStackTraceAsString(e);
 		JTextArea textArea = new JTextArea(message);
 		JScrollPane scrollPane = new JScrollPane(textArea){
 			@Override

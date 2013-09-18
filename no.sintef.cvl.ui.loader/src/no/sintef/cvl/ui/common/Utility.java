@@ -241,35 +241,4 @@ public class Utility {
 		replacement.getSourceObject().add(objectHandle);
 		return objectHandle;
 	}
-	
-	
-	public static final int DERIVED = 0x1;
-	public static final int TRANSIENT = 0x2;
-	public static final int MASK = 0x1FF; //9 bits are required to encode all properties
-	/* 000000000 - ok, 000000001-derived, 000000010 - transient, 000000011 -derived and transient etc*/
-	public static int isDerived(EStructuralFeature property){
-		int value = 0x0 & MASK;
-		/*The value of a derived feature is computed from other
-		features, so it doesn't represent any additional object
-		state. Framework classes, such as EcoreUtil.Copier,
-		that copy model objects will not attempt to copy such
-		features. The generated code is unaffected by the value
-		of the derived flag. Derived features are typically also
-		marked volatile and transient.*/
-		int drvd = (property.isDerived()) ? MASK & DERIVED : value;
-	
-		/*Transient features are used to declare (modeled) data
-		whose lifetime never spans application invocations and
-		therefore doesn't need to be persisted. The (default XMI)
-		serializer will not save features that are declared to be
-		transient.*/
-		int trnsnt = (property.isTransient()) ? MASK & TRANSIENT : value;
-		
-		value = drvd | trnsnt;
-		return value;
-	}
-	
-	public static int unMask(int value, int umaskValue){
-		return value & umaskValue;
-	}
 }

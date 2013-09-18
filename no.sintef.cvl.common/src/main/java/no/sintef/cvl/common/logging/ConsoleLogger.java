@@ -2,7 +2,7 @@ package no.sintef.cvl.common.logging;
 
 import java.util.Calendar;
 
-import no.sintef.cvl.common.Utility;
+import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.common.logging.Logger;
 
 
@@ -32,7 +32,7 @@ public class ConsoleLogger implements Logger {
 
 	@Override
 	public void error(String message, Throwable e) {
-		String stackTrace = Utility.getStackTraceAsString(e);
+		String stackTrace = CommonUtility.getStackTraceAsString(e);
 		error(message + " with the stack trace:\n" + stackTrace);
 	}
 	

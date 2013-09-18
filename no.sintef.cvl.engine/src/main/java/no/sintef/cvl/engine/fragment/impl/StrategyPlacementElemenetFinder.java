@@ -95,7 +95,7 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 
 	private HashSet<EObject> testOutsideBoundaryElement(EObject outsideBoundaryElement, HashSet<EObject> insideBoundaryElements){
 		HashSet<EObject> elements = new HashSet<EObject>();
-		EList<EObject> allRefs = no.sintef.cvl.common.Utility.getReferencedEObjects(outsideBoundaryElement);		
+		EList<EObject> allRefs = no.sintef.cvl.common.CommonUtility.getReferencedEObjects(outsideBoundaryElement);		
 		if(!Sets.intersection(new HashSet<EObject>(allRefs), insideBoundaryElements).isEmpty()){
 			elements.add(outsideBoundaryElement);
 		}
@@ -105,7 +105,7 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 	private HashSet<EObject> testOutsideBoundaryElements(HashSet<EObject> outsideBoudaryElements, HashSet<EObject> insideBoundaryElements){
 		HashSet<EObject> elements = new HashSet<EObject>();
 		for(EObject outsideBoundaryElement : outsideBoudaryElements){
-			EList<EObject> allRefs = no.sintef.cvl.common.Utility.getReferencedEObjects(outsideBoundaryElement);
+			EList<EObject> allRefs = no.sintef.cvl.common.CommonUtility.getReferencedEObjects(outsideBoundaryElement);
 			if(!Sets.intersection(new HashSet<EObject>(allRefs), insideBoundaryElements).isEmpty()){
 				elements.add(outsideBoundaryElement);
 			}
