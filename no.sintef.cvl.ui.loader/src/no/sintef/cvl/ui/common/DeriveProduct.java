@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import no.sintef.cvl.ui.chain.ExecutionHandler;
 import no.sintef.cvl.ui.chain.impl.ExecutionRealizationHandler;
+import no.sintef.cvl.ui.chain.impl.IntersactionResolverExecutionHandler;
 import no.sintef.cvl.ui.chain.impl.ParserExecutionHandler;
 import no.sintef.cvl.ui.chain.impl.ResetExecutionHandler;
 import no.sintef.cvl.ui.chain.impl.SaveProductExecutionHandler;
@@ -24,7 +25,8 @@ public class DeriveProduct {
 		SaveProductExecutionHandler saveProduct = new SaveProductExecutionHandler(resetModel);
 		ExecutionRealizationHandler realization = new ExecutionRealizationHandler(saveProduct);
 		ScopeResolverExecutionHandler scopeResolving = new ScopeResolverExecutionHandler(realization);
-		starter = new ParserExecutionHandler(scopeResolving);
+		IntersactionResolverExecutionHandler intersectionResolver = new IntersactionResolverExecutionHandler(scopeResolving);
+		starter = new ParserExecutionHandler(intersectionResolver);
 	}
 	
 	public void run() throws AbstractError{
