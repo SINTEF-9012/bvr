@@ -37,6 +37,7 @@ import no.sintef.cvl.ui.command.event.NewModelEvent;
 import no.sintef.cvl.ui.command.event.NewResolutionEvent;
 import no.sintef.cvl.ui.command.event.OpenModelEvent;
 import no.sintef.cvl.ui.command.event.SaveModelAsEvent;
+import no.sintef.cvl.ui.command.event.SettingsToolEvent;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.editor.CVLJFrame;
@@ -240,6 +241,10 @@ public class Main {
 		JMenuItem copyModel = new JMenuItem(Constants.TOOLS_COPY_MODEL);
 		copyModel.addActionListener(new CopyModelEvent());
 		toolsMenu.add(copyModel);
+		
+		JMenuItem settings = new JMenuItem(Constants.TOOLS_OPTIONS);
+		settings.addActionListener(new SettingsToolEvent());
+		toolsMenu.add(settings);
 		
 		menuBar.add(toolsMenu);
 

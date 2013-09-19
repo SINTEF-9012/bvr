@@ -1,6 +1,5 @@
 package no.sintef.cvl.ui.environment.eclipse;
 
-import java.util.Properties;
 
 import no.sintef.cvl.thirdparty.common.Constants;
 import no.sintef.cvl.thirdparty.common.Utility;
@@ -17,23 +16,48 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 		return configHelper;
 	}
 	
+	private void setProperty(String name, String value){
+		Utility.setValueToPropertyStore(Constants.PLUGIN_ID_CVL_LAUNCHER, name, value);
+	}
+	
+	private String getProperty(String name){
+		return Utility.getValueFromPropertyStore(Constants.PLUGIN_ID_CVL_LAUNCHER, name);
+	}
+	
 	@Override
 	public String lastLocation() {
-		return Utility.getValueFromPropertyStore(Constants.PLUGIN_ID_CVL_LAUNCHER, propertyLastLocation);
+		return getProperty(propertyLastLocation);
 	}
 	
 	@Override
 	public void saveLastLocation(String loc) {
-		Utility.setValueToPropertyStore(Constants.PLUGIN_ID_CVL_LAUNCHER, propertyLastLocation, loc);
-	}
-
-	@Override
-	public Properties getProperties() {
-		return properties;
+		setProperty(propertyLastLocation, loc);
 	}
 	
 	@Override
 	public String getPropertyFileName() {
 		return propertyFileName;
+	}
+
+	@Override
+	public void setToReplacementPermutation(boolean isSet) {
+		setProperty(propertyPermutationToReplacement, (isSet) ? "true" : "false");
+	}
+
+	@Override
+	public boolean isToReplacementPermutation() {
+		String value = getProperty(propertyPermutationToReplacement);
+		return (value == null || defaultToReplacementPermuatation.equals(value)) ? false : true;
+	}
+
+	@Override
+	public void setFromPlacementPermutation(boolean isSet) {
+		setProperty(propertyPermutationFromPlacement, (isSet) ? "true" : "false");
+	}
+
+	@Override
+	public boolean isFromPlacementPermutation() {
+		String value = getProperty(propertyPermutationFromPlacement);
+		return (value == null || defaultFromPlacementPermuatation.equals(value)) ? false : true;
 	}
 }

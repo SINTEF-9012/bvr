@@ -24,6 +24,7 @@ import cvl.ObjectHandle;
 import cvl.ReplacementFragmentType;
 import cvl.ToReplacement;
 import no.sintef.cvl.ui.common.LoaderUtility;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.strategy.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategy.ReplacementBoundaryCalcStrategy;
 
@@ -82,7 +83,8 @@ public class DefaultReplacementBoundaryCalcStrategy extends AbstractBoundaryCalc
 				}
 			}
 		}
-		permutateToReplacements(replacement, toReplacements);
+		if(Context.eINSTANCE.getConfig().isToReplacementPermutation())
+			permutateToReplacements(replacement, toReplacements);
 		LoaderUtility.testNullToReplacement(replacement);
 	}
 	

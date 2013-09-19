@@ -33,8 +33,9 @@ public class Constants {
 	public static final String REALIZATION_DELETE_BINDING = "Delete Binding";
 	public static final String REALIZATION_DELETE_ALL_BINDING = "Delete All Binding-s";
 	
-	public static final String TOOLS_MENU_NAME = "Tools";
+	public static final String TOOLS_MENU_NAME = "Help";
 	public static final String TOOLS_COPY_MODEL = "Copy model";
+	public static final String TOOLS_OPTIONS = "Options";
 	
 	public static final String FRAG_SUB_VP_CLMN_NAME = "Variation points";
 	public static final String FRAG_SUB_VSPEC_CLMN_NAME = "VSpec";

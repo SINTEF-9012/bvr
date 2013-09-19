@@ -24,6 +24,7 @@ import cvl.FromPlacement;
 import cvl.ObjectHandle;
 import cvl.PlacementFragment;
 import no.sintef.cvl.ui.common.LoaderUtility;
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.strategy.AbstractBoundaryCalculator;
 import no.sintef.cvl.ui.strategy.PlacementBoundaryCalcStrategy;
 
@@ -82,7 +83,8 @@ public class DefaultPlacementBoundaryCalcStrategy extends AbstractBoundaryCalcul
 				}
 			}
 		}
-		permutateFromPlacements(placement, fromPlacements);
+		if(Context.eINSTANCE.getConfig().isFromPlacementPermutation())
+			permutateFromPlacements(placement, fromPlacements);
 		LoaderUtility.testNullFromPlacement(placement);
 	}
 	

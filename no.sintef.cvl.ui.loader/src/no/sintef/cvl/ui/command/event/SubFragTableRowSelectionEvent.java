@@ -110,7 +110,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				}
             			}
             		}
-            		insideElements = calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
+            		insideElements = calculateInnerFragmentElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
             		EList<HashMap<EObject, Integer>> elements = markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true);
             		objectsToHighlightList.addAll(markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
             	}
@@ -164,7 +164,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
             				}
             			}
             		}
-            		insideElements = calculateInnerPlacementElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
+            		insideElements = calculateInnerFragmentElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
             		objectsToHighlightList.addAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
             	}
             }
@@ -173,14 +173,14 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 		}
 	}
 
-	private EList<EObject> calculateInnerPlacementElements(EList<EObject> outsideInside, EList<EObject> outsideOutside, EList<EObject> inside, EList<EObject> visited){
+	private EList<EObject> calculateInnerFragmentElements(EList<EObject> outsideInside, EList<EObject> outsideOutside, EList<EObject> inside, EList<EObject> visited){
 		for(EObject eObject : inside){
 			EList<EReference> links = new BasicEList<EReference>(eObject.eClass().getEAllReferences());
 			EList<EObject> refobjects = getReferencedEObjects(eObject, links);
 			refobjects.addAll(eObject.eContents());
 			if(!outsideInside.contains(eObject) && !outsideOutside.contains(eObject) && !visited.contains(eObject)){
 				visited.add(eObject);
-				visited = calculateInnerPlacementElements(outsideInside, outsideOutside, refobjects, visited);
+				visited = calculateInnerFragmentElements(outsideInside, outsideOutside, refobjects, visited);
 			}
 		}
 		return visited;

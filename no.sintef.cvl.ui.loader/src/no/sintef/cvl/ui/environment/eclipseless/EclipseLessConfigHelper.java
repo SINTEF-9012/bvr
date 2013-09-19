@@ -2,7 +2,9 @@ package no.sintef.cvl.ui.environment.eclipseless;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 
 import no.sintef.cvl.ui.environment.AbstractConfigHelper;
@@ -18,28 +20,18 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 	public static ConfigHelper getConfig(){
 		return configHelper;
 	}
-
-	@Override
-	public String lastLocation() {
-		File last;
+	
+	public EclipseLessConfigHelper(){
 		FileInputStream fis = null;
-		String loc = new String();
 		try {
-			fis = new FileInputStream(propertyFileName); 
+			fis = new FileInputStream(getPropertyFileName()); 
 			properties.load(fis);
-			last = new File(properties.getProperty(propertyLastLocation));
-			loc = last.getAbsolutePath();
 		} 
 		catch (IOException e) {
-			File f = new File(propertyFileName);
+			File f = new File(getPropertyFileName());
 			try {
 				f.createNewFile();
-				saveLastLocation("");
-				
-				fis = new FileInputStream(propertyFileName); 
-				properties.load(fis);
-				last = new File(properties.getProperty(propertyLastLocation));
-				loc = last.getAbsolutePath();
+				setDefaultValues();
 			} catch (final IOException e1) {
 				throw new UnsupportedOperationException(e1);
 			}
@@ -53,14 +45,68 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 				}
 			}
 		}
-		return loc;
+	}
+	
+	@Override
+	public void saveLastLocation(String loc) {
+		properties.setProperty(propertyLastLocation, loc);
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(getPropertyFileName());
+			properties.store(fos, new Date().toString());
+			fos.close();
+		} catch (IOException e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+	
+	@Override
+	public void setFromPlacementPermutation(boolean isSet) {
+		properties.setProperty(propertyPermutationFromPlacement, (isSet) ? "true" : "false");
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(getPropertyFileName());
+			properties.store(fos, new Date().toString());
+			fos.close();
+		} catch (IOException e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+	
+	@Override
+	public void setToReplacementPermutation(boolean isSet) {
+		properties.setProperty(propertyPermutationToReplacement, (isSet) ? "true" : "false");
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(getPropertyFileName());
+			properties.store(fos, new Date().toString());
+			fos.close();
+		} catch (IOException e) {
+			throw new UnsupportedOperationException(e);
+		}
 	}
 
 	@Override
-	public Properties getProperties() {
-		return properties;
+	public String lastLocation() {
+		loadProperties();
+		File last = new File(properties.getProperty(propertyLastLocation));
+		return last.getAbsolutePath();
+	}
+
+	@Override
+	public boolean isFromPlacementPermutation() {
+		loadProperties();
+		String value = properties.getProperty(propertyPermutationFromPlacement);
+		return (value == null || value.equals(defaultFromPlacementPermuatation)) ? false : true;
 	}
 	
+	@Override
+	public boolean isToReplacementPermutation() {
+		loadProperties();
+		String value = properties.getProperty(propertyPermutationToReplacement);
+		return (value == null || value.equals(defaultToReplacementPermuatation)) ? false : true;
+	}
+		
 	@Override
 	public String getPropertyFileName() {
 		return propertyFileName;
