@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.strategy.impl;
 
+import no.sintef.cvl.ui.context.Context;
 import no.sintef.cvl.ui.exception.AbstractError;
 import no.sintef.cvl.ui.strategy.SelectionStrategy;
 
@@ -11,7 +12,8 @@ public class GetSelectionContext {
 	private SelectionStrategy defaultStrategy;
 
 	public GetSelectionContext(){
-		this.defaultStrategy = new ContainmentSelectionStrategy();
+		this.defaultStrategy = (Context.eINSTANCE.getConfig().isContainmentSelectionMode()) ?
+				new ContainmentSelectionStrategy() : new ContainmentLessSelectionStrategy();
 	}
 	
 	public GetSelectionContext(SelectionStrategy selectStrategy){

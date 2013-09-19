@@ -111,4 +111,14 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 	public String getPropertyFileName() {
 		return propertyFileName;
 	}
+
+	@Override
+	public void setContainmentSelectionMode(boolean isSet) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean isContainmentSelectionMode() {
+		return true;
+	}
 }

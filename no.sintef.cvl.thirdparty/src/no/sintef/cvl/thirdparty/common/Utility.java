@@ -53,7 +53,7 @@ public final class Utility {
 		try {
 			prefs.flush();
 		} catch (BackingStoreException e) {
-			new UnsupportedOperationException(e);
+			throw new UnsupportedOperationException(e);
 		}
 	}
 

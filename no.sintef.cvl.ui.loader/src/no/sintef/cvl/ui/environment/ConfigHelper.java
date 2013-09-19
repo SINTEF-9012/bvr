@@ -17,4 +17,8 @@ public interface ConfigHelper {
 	public boolean isFromPlacementPermutation();
 	
 	public void loadProperties();
+	
+	public void setContainmentSelectionMode(boolean isSet);
+	
+	public boolean isContainmentSelectionMode();
 }

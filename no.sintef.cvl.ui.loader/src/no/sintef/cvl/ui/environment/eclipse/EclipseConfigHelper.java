@@ -47,7 +47,7 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 	@Override
 	public boolean isToReplacementPermutation() {
 		String value = getProperty(propertyPermutationToReplacement);
-		return (value == null || defaultToReplacementPermuatation.equals(value)) ? false : true;
+		return (value.equals("") || defaultToReplacementPermuatation.equals(value)) ? false : true;
 	}
 
 	@Override
@@ -58,6 +58,17 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 	@Override
 	public boolean isFromPlacementPermutation() {
 		String value = getProperty(propertyPermutationFromPlacement);
-		return (value == null || defaultFromPlacementPermuatation.equals(value)) ? false : true;
+		return (value.equals("") || defaultFromPlacementPermuatation.equals(value)) ? false : true;
+	}
+
+	@Override
+	public void setContainmentSelectionMode(boolean isSet) {
+		setProperty(propertyContainmentSelection, (isSet) ? "true" : "false");
+	}
+
+	@Override
+	public boolean isContainmentSelectionMode() {
+		String value = getProperty(propertyContainmentSelection);
+		return (value.equals("") || defaultContainmentSelectionMode.equals(value)) ? true : false;
 	}
 }

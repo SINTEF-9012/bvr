@@ -36,6 +36,14 @@ public class SettingsToolEvent implements ActionListener {
 		public static boolean getToReplacementPermutation(){
 			return Context.eINSTANCE.getConfig().isToReplacementPermutation();
 		}
+		
+		public static void setContainmentSelectionMode(Boolean isSet){
+			Context.eINSTANCE.getConfig().setContainmentSelectionMode(isSet);
+		}
+		
+		public static boolean getContainmentSelectionMode(){
+			return Context.eINSTANCE.getConfig().isContainmentSelectionMode();
+		}
 	}
 
 }

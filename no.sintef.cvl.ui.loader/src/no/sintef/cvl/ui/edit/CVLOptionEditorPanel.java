@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 import no.sintef.cvl.ui.command.event.SettingsToolEvent;
+import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudCheckBoxUI;
@@ -67,7 +68,7 @@ public class CVLOptionEditorPanel extends JPanel {
         p.setBorder(null);
         p.setOpaque(false);
         
-        JLabel l = new JLabel("FromPlacement permutation", JLabel.TRAILING);
+        JLabel l = new JLabel(Constants.SETTINGS_FROMPLACEMENT_PERMUTATION, JLabel.TRAILING);
         l.setUI(new HudLabelUI());
 
         p.add(l);
@@ -91,7 +92,7 @@ public class CVLOptionEditorPanel extends JPanel {
         p1.setBorder(null);
         p1.setOpaque(false);
         
-        JLabel l1 = new JLabel("ToReplacement permutation", JLabel.TRAILING);
+        JLabel l1 = new JLabel(Constants.SETTINGS_TOREPLACEMENT_PERMUTATION, JLabel.TRAILING);
         l1.setUI(new HudLabelUI());
 
         p1.add(l1);
@@ -109,8 +110,31 @@ public class CVLOptionEditorPanel extends JPanel {
                 1, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
+        
+        JPanel p2 = new JPanel(new SpringLayout());
+        p2.setBorder(null);
+        p2.setOpaque(false);
+        
+        JLabel l2 = new JLabel(Constants.SETTINGS_CONTAINMENT_SELECTION_MODE, JLabel.TRAILING);
+        l2.setUI(new HudLabelUI());
 
-        pack(2,1);
+        p2.add(l2);
+        
+        JCheckBox checkBoxContainment = new JCheckBox();
+        checkBoxContainment.setUI(new HudCheckBoxUI());
+        
+        checkBoxContainment.setSelected(SettingsToolEvent.SettingsCommand.getContainmentSelectionMode());
+        
+        l2.setLabelFor(checkBoxContainment);
+        p2.add(checkBoxContainment);
+        
+        top.add(p2);
+        SpringUtilities.makeCompactGrid(p2,
+                1, 2, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
+
+        pack(3,1);
         
         checkBoxFromPlacement.addItemListener(new ItemListener() {
 			
@@ -134,6 +158,18 @@ public class CVLOptionEditorPanel extends JPanel {
 					SettingsToolEvent.SettingsCommand.setToReplacementPermutation(false);
 				}
 			}
-		});  
+		});
+        
+        checkBoxContainment.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent event) {
+				if(event.getStateChange() == ItemEvent.SELECTED){
+					SettingsToolEvent.SettingsCommand.setContainmentSelectionMode(true);
+				}else if(event.getStateChange() == ItemEvent.DESELECTED){
+					SettingsToolEvent.SettingsCommand.setContainmentSelectionMode(false);
+				}
+			}
+		});
     }
 }

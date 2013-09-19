@@ -64,6 +64,10 @@ public class Constants {
 	public static final int CODE_MODEL_SAVE_INCORRECT_LOCATION = 1;
 	public static final int CODE_MODEL_SAVE_IOEXCEPTION = 2;
 	
+	public static final String SETTINGS_FROMPLACEMENT_PERMUTATION = "FromPlacement permutation";
+	public static final String SETTINGS_TOREPLACEMENT_PERMUTATION = "ToReplacement permutation";
+	public static final String SETTINGS_CONTAINMENT_SELECTION_MODE = "Containment selection mode";
+	
 	/*//placement colors
 	public static final Color RED = new Color(Display.getDefault(), 240, 70, 0); // placement elements
 	public static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element
