@@ -14,11 +14,13 @@ public abstract class AbstractConfigHelper implements ConfigHelper {
 	protected final String propertyPermutationToReplacement = "permToReplacement";
 	protected final String propertyPermutationFromPlacement = "permFromPlacement";
 	protected final String propertyContainmentSelection = "containmentSelection";
+	protected final String propertyHighlightingMode = "highlightingMode";
 	
 	protected static final String defaultLastLocation = "";
 	protected static final String defaultFromPlacementPermuatation = "false";
 	protected static final String defaultToReplacementPermuatation = "false";
 	protected static final String defaultContainmentSelectionMode = "true";
+	protected static final String defaultHighlightingMode = "true";
 	
 	protected final Properties properties = new Properties();
 

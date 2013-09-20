@@ -133,8 +133,31 @@ public class CVLOptionEditorPanel extends JPanel {
                 1, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
+        
+        JPanel p3 = new JPanel(new SpringLayout());
+        p3.setBorder(null);
+        p3.setOpaque(false);
+        
+        JLabel l3 = new JLabel(Constants.SETTINGS_HIGHLIGHTING_MODE, JLabel.TRAILING);
+        l3.setUI(new HudLabelUI());
 
-        pack(3,1);
+        p3.add(l3);
+        
+        JCheckBox checkBoxHighlighting = new JCheckBox();
+        checkBoxHighlighting.setUI(new HudCheckBoxUI());
+        
+        checkBoxHighlighting.setSelected(SettingsToolEvent.SettingsCommand.getHighlightingMode());
+        
+        l3.setLabelFor(checkBoxHighlighting);
+        p3.add(checkBoxHighlighting);
+        
+        top.add(p3);
+        SpringUtilities.makeCompactGrid(p3,
+                1, 2, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
+
+        pack(4,1);
         
         checkBoxFromPlacement.addItemListener(new ItemListener() {
 			
@@ -168,6 +191,18 @@ public class CVLOptionEditorPanel extends JPanel {
 					SettingsToolEvent.SettingsCommand.setContainmentSelectionMode(true);
 				}else if(event.getStateChange() == ItemEvent.DESELECTED){
 					SettingsToolEvent.SettingsCommand.setContainmentSelectionMode(false);
+				}
+			}
+		});
+        
+        checkBoxHighlighting.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent event) {
+				if(event.getStateChange() == ItemEvent.SELECTED){
+					SettingsToolEvent.SettingsCommand.setHighlightingMode(true);
+				}else if(event.getStateChange() == ItemEvent.DESELECTED){
+					SettingsToolEvent.SettingsCommand.setHighlightingMode(false);
 				}
 			}
 		});

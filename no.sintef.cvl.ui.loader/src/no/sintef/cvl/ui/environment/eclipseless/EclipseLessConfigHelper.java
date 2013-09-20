@@ -121,4 +121,14 @@ public class EclipseLessConfigHelper extends AbstractConfigHelper{
 	public boolean isContainmentSelectionMode() {
 		return true;
 	}
+
+	@Override
+	public void setHighlightingMode(boolean isSet) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean isHighlightingMode() {
+		return true;
+	}
 }

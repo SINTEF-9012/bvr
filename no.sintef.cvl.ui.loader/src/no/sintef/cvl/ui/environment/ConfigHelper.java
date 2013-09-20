@@ -21,4 +21,8 @@ public interface ConfigHelper {
 	public void setContainmentSelectionMode(boolean isSet);
 	
 	public boolean isContainmentSelectionMode();
+	
+	public void setHighlightingMode(boolean isSet);
+	
+	public boolean isHighlightingMode();
 }

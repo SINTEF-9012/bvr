@@ -44,6 +44,14 @@ public class SettingsToolEvent implements ActionListener {
 		public static boolean getContainmentSelectionMode(){
 			return Context.eINSTANCE.getConfig().isContainmentSelectionMode();
 		}
+		
+		public static void setHighlightingMode(Boolean isSet){
+			Context.eINSTANCE.getConfig().setHighlightingMode(isSet);
+		}
+		
+		public static boolean getHighlightingMode(){
+			return Context.eINSTANCE.getConfig().isHighlightingMode();
+		}
 	}
 
 }

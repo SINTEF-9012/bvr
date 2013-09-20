@@ -26,7 +26,6 @@ import cvl.ToReplacement;
 
 import no.sintef.cvl.common.CommonUtility;
 import no.sintef.cvl.common.logging.Logger;
-import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.cvl.thirdparty.editor.ICVLEnabledEditor;
 import no.sintef.cvl.ui.common.Constants;
 import no.sintef.cvl.ui.common.LoaderUtility;
@@ -46,6 +45,9 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 	
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return;
+		
 		if(!event.getValueIsAdjusting()){
 			EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
 			SubFragTableModel model =  (SubFragTableModel) jtable.getModel();

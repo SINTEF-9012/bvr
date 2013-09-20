@@ -42,6 +42,9 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 	
 	@Override
 	public void valueChanged(ListSelectionEvent event) {
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return;
+		
 		int selectedIndex = ((ListSelectionModel) event.getSource()).getLeadSelectionIndex();
 		if(!event.getValueIsAdjusting() && selectedIndex >= 0){
 			BindingTableModel model = (BindingTableModel) table.getModel();

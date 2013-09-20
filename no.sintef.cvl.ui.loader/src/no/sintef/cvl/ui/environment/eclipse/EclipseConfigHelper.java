@@ -71,4 +71,15 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 		String value = getProperty(propertyContainmentSelection);
 		return (value.equals("") || defaultContainmentSelectionMode.equals(value)) ? true : false;
 	}
+
+	@Override
+	public void setHighlightingMode(boolean isSet) {
+		setProperty(propertyHighlightingMode, (isSet) ? "true" : "false");
+	}
+
+	@Override
+	public boolean isHighlightingMode() {
+		String value = getProperty(propertyHighlightingMode);
+		return (value.equals("") || defaultHighlightingMode.equals(value)) ? true : false;
+	}
 }

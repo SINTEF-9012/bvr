@@ -67,6 +67,7 @@ public class Constants {
 	public static final String SETTINGS_FROMPLACEMENT_PERMUTATION = "FromPlacement permutation";
 	public static final String SETTINGS_TOREPLACEMENT_PERMUTATION = "ToReplacement permutation";
 	public static final String SETTINGS_CONTAINMENT_SELECTION_MODE = "Containment selection mode";
+	public static final String SETTINGS_HIGHLIGHTING_MODE = "Highlightinh mode (on/off)";
 	
 	/*//placement colors
 	public static final Color RED = new Color(Display.getDefault(), 240, 70, 0); // placement elements
