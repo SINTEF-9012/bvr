@@ -143,9 +143,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 			}else{
 				//if placement is not contained anyway create a copy of placement which references original elements and create a copy of the replacement fragment
 				// it may be a case that the given replacement contains other placements
-				PlacementFragment newPlacement;
 				HashMap<PlacementBoundaryElement, PlacementBoundaryElement> placementBoundaryMap = new HashMap<PlacementBoundaryElement, PlacementBoundaryElement>();
-				newPlacement = copyPlacement(placement, placementBoundaryMap);
+				PlacementFragment newPlacement = copyPlacement(placement, placementBoundaryMap);
 				
 				HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap = new HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>();
 				ReplacementFragmentType newReplacement = testNewReplacementFragment(symbol, replacement, replacementBoundaryMap);
