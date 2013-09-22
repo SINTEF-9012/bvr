@@ -29,12 +29,17 @@ public class TrivialTest {
 	private static TestProject testProject;
 	private static String[] testFolders = {
 			"TestFolder", "TestFolder/vm",
-			"TestFolder/products", "TestFolder/expproducts"
+			"TestFolder/products", "TestFolder/expproducts",
+			"TestFolder/models20092013"
 		};
 	private static TestResourceHolder[] testResources = {
 		new TestResourceHolder("/test/resources/vm/differentPackages.cvl", "/TestFolder/vm/differentPackages.cvl"),
 		new TestResourceHolder("/test/resources/different_packages_model.uml", "/TestFolder/different_packages_model.uml"),
 		new TestResourceHolder("/test/resources/expproducts/product_different_packages_model.uml", "/TestFolder/expproducts/product_different_packages_model.uml"),
+		
+		new TestResourceHolder("/test/resources/vm/containmentLessPlacements.cvl", "/TestFolder/vm/containmentLessPlacements.cvl"),
+		new TestResourceHolder("/test/resources/models20092013/modeladjacenttest.uml", "/TestFolder/models20092013/modeladjacenttest.uml"),
+		new TestResourceHolder("/test/resources/expproducts/contLesExp_modeladjacenttest.uml", "/TestFolder/expproducts/contLesExp_modeladjacenttest.uml"),
 	};
 	
 	@BeforeClass
@@ -89,6 +94,28 @@ public class TrivialTest {
 			fileProduct = iProduct.getLocation().toFile();
 			
 			boolean isIdentical = TestProject.isIdentical(testResources[2].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void containmentLessPlacements() throws IOException, CoreException {	
+			File fileVarModel = testResources[3].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			
+			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			scopeResolver.resolveScopes(symbolTable);
+			productResolver.deriveProduct(symbolTable);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/product");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/product_modeladjacenttest.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[5].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
 			Assert.assertTrue("derived and expected products are different", isIdentical);
 	}
 
