@@ -75,7 +75,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 
 	@Override
 	public HashSet<EObject> getInnerFragmentElements() {
-		return frElementsOriginal;
+		return getElements();
 	}
 
 	@Override

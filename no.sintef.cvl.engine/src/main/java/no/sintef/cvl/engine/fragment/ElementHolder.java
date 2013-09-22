@@ -4,8 +4,6 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 
-import cvl.FragmentSubstitution;
-
 public interface ElementHolder {
 
 	public HashSet<EObject> getElements();
