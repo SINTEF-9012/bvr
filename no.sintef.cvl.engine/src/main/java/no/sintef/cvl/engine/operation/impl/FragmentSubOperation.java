@@ -187,7 +187,7 @@ public class FragmentSubOperation implements Substitution {
 							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
 						}
 						if(outsideBEPlac.size() > upperBound){
-							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
+							throw new IllegalCVLOperation("cardinality does not match for property :'" + propertyName + "'of " + fragSubHolder.getFragment());
 						}
 						if(outsideBEReplCurrent.size() > 1){
 							throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");

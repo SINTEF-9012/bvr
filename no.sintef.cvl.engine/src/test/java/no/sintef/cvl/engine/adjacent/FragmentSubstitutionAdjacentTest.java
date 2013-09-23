@@ -58,7 +58,7 @@ public class FragmentSubstitutionAdjacentTest {
 
 	@Before
 	public void setUp() throws Exception {
-		//nodePackage.eINSTANCE.eClass();
+		//NodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
 		file = new File("src/test/resources/nodeAdjacent/exp1/node.new.cvl");
 		map = SetUpUtils.load(file);
@@ -272,6 +272,7 @@ public class FragmentSubstitutionAdjacentTest {
 		}
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 	}
 	
@@ -499,6 +500,7 @@ public class FragmentSubstitutionAdjacentTest {
 		}
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		//Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 	}
 	

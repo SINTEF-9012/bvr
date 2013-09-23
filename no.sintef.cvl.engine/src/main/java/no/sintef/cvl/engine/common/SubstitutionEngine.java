@@ -72,7 +72,7 @@ public final class SubstitutionEngine {
 			return;
 		}
 		FragmentSubOperation subsOperation = new FragmentSubOperation(fragmentHolder);
-		try {			
+		try {
 			subsOperation.execute(replace);
 			adjacentResolver.resolve(fragmentHolder);
 			placementInReplacementResolver.resolve(fragmentHolder);

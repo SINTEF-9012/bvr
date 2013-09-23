@@ -2,11 +2,16 @@ package no.sintef.cvl.engine.adjacent.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import com.google.common.collect.Sets;
+import com.google.common.collect.Sets.SetView;
 
 import cvl.FromBinding;
 import cvl.FromPlacement;
@@ -37,13 +42,13 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 	@Override
 	public void resolve(FragSubHolder fragmentHolderCurrent) throws BasicCVLEngineException {
 		AdjacentFragment aFrag = this.adjacentFinder.getAdjacentMap().get(fragmentHolderCurrent);
-		if(aFrag == null){
+		if(aFrag == null)
 			return;
-		}
+		
 		HashSet<AdjacentFragment> adjacentFragments = aFrag.getAdjacentFragments();
-		if(adjacentFragments.isEmpty()){
+		if(adjacentFragments.isEmpty())
 			throw new GeneralCVLEngineException("can not find any adjacent fragments to the fragment that seems to be adjacent" + fragmentHolderCurrent);
-		}
+
 		for(AdjacentFragment adjacentFragment : adjacentFragments){
 			FragSubHolder fragHolderAdjacent = adjacentFragment.getFragmentHolder();
 			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = EngineUtility.reverseMap(aFrag.getAdjacentToBindings(adjacentFragment));
@@ -56,58 +61,71 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				
 				HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryElementsFromPlacementMap = ((FragmentSubstitutionHolder) fragHolderAdjacent).getFromPlacementInsideBoundaryElementMap();
 				HashSet<ObjectHandle> insideBoundaryElementsFromPlacement = insideBoundaryElementsFromPlacementMap.get(fromBinding.getFromPlacement());
-				if(insideBoundaryElementsFromPlacement == null){
+				if(insideBoundaryElementsFromPlacement == null)
 					throw new GeneralCVLEngineException("failed to find insideBoundaryElements in the map for a given fromPlacement " + fromBinding.getFromPlacement() + " of the fromBinding " + fromBinding);
-				}
+
+				HashSet<EObject> invalidOutBoundaryFromPlacementAdj = new HashSet<EObject>();
 				for(ObjectHandle objectHandle : insideBoundaryElementsFromPlacement){
 					EObject insideBoundaryElementPlc = EngineUtility.resolveProxies(objectHandle);
 					String propertyName = fromBinding.getFromReplacement().getPropertyName();
 					EStructuralFeature property = insideBoundaryElementPlc.eClass().getEStructuralFeature(propertyName);
-					if(property == null){
+					if(property == null)
 						throw new GeneralCVLEngineException("failed to find property to adjust, property name : " + propertyName);
-					}
+
 					int upperBound = property.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
 						EList<EObject> values = EngineUtility.getListPropertyValue(insideBoundaryElementPlc, property);
-						EList<EObject> elementsToRemove = EngineUtility.resolveProxies(outsideBOHElmtsPlc);
+						SetView<EObject> delOutBElementsFromP = Sets.difference(
+								new HashSet<EObject>(EngineUtility.resolveProxies(outsideBOHElmtsPlc)),
+								new HashSet<EObject>(values));
+						invalidOutBoundaryFromPlacementAdj.addAll(delOutBElementsFromP);
+						EList<EObject> elementsToRemove = new BasicEList<EObject>(delOutBElementsFromP);
 						EList<EObject> elementsToAdd = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced);
 						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(values, elementsToRemove, elementsToAdd);
-						if(upperBound != -1 && propertyValueNew.size() > upperBound){
+						if(upperBound != -1 && propertyValueNew.size() > upperBound)
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolderAdjacent.getFragment());
-						}
+
 						EngineUtility.setProperty(values, elementsToRemove, elementsToAdd);
 						EList<EObject> propertyValueSet = EngineUtility.getListPropertyValue(insideBoundaryElementPlc, property);
-						if(!propertyValueNew.equals(propertyValueSet)){
+						if(!propertyValueNew.equals(propertyValueSet))
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());
-						}
 					}else{
 						//property.getUpperBound() == 0 || == 1
-						if(upperBound == 0){
+						if(upperBound == 0)
 							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBoundaryElementPlc.eGet(property));
-						}
-						if(insideBOHElmtsPlcReplaced.size() != upperBound){
-							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolderAdjacent.getFragment());
-						}
 
+						if(insideBOHElmtsPlcReplaced.size() != upperBound)
+							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolderAdjacent.getFragment());
+
+						EList<EObject> values = new BasicEList<EObject>();
+						values.add((EObject) insideBoundaryElementPlc.eGet(property));
+						
+						SetView<EObject> delOutBElementsFromP = Sets.difference(
+								new HashSet<EObject>(EngineUtility.resolveProxies(outsideBOHElmtsPlc)),
+								new HashSet<EObject>(values));
+						invalidOutBoundaryFromPlacementAdj.addAll(delOutBElementsFromP);
+						
 						EObject propertyValueNew = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
 						EngineUtility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);
 						Object propertyValueSet = insideBoundaryElementPlc.eGet(property);
-						if(!propertyValueNew.equals(propertyValueSet)){
-							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());
-						}						
+						if(!propertyValueNew.equals(propertyValueSet))
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());					
 					}
 				}
 				
 				//update variability model : boundaries so the point to the correct elements
-				fromBinding.getFromPlacement().getOutsideBoundaryElement().clear();
+				Iterator<ObjectHandle> iterator = fromBinding.getFromPlacement().getOutsideBoundaryElement().iterator();
+				while(iterator.hasNext()){
+					ObjectHandle objectHandle = iterator.next();
+					if(invalidOutBoundaryFromPlacementAdj.contains(objectHandle.getMOFRef()))
+						iterator.remove();
+				}
 				fromBinding.getFromPlacement().getOutsideBoundaryElement().addAll(insideBOHElmtsPlcReplaced);
 				
 				HashMap<ToPlacement, HashSet<ObjectHandle>> outsideBoundaryElementsToPlacementMap = ((FragmentSubstitutionHolder) fragmentHolderCurrent).getToPlacementOutsideBoundaryElementMap();
 				HashSet<ObjectHandle> outsideBoundaryElementsToPlacement = outsideBoundaryElementsToPlacementMap.get(toBinding.getToPlacement());
 				outsideBoundaryElementsToPlacement.clear();
 				outsideBoundaryElementsToPlacement.addAll(insideBoundaryElementsFromPlacement);
-				outsideBoundaryElementsToPlacementMap.put(toBinding.getToPlacement(), outsideBoundaryElementsToPlacement);
-				((FragmentSubstitutionHolder) fragmentHolderCurrent).setToPlacementOutsideBoundaryElementMap(outsideBoundaryElementsToPlacementMap);
 			}
 			
 			HashMap<FromBinding, ToBinding> adjacentBindingsFromCurrent = aFrag.getAdjacentFromBindings(adjacentFragment);
@@ -126,8 +144,6 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				HashSet<ObjectHandle> outsideBoundaryElementsToPlacement = outsideBoundaryElementsToPlacementMap.get(toBinding.getToPlacement());
 				outsideBoundaryElementsToPlacement.clear();
 				outsideBoundaryElementsToPlacement.addAll(insideBoundaryElementsFromPlacement);
-				outsideBoundaryElementsToPlacementMap.put(toBinding.getToPlacement(), outsideBoundaryElementsToPlacement);
-				((FragmentSubstitutionHolder) fragHolderAdjacent).setToPlacementOutsideBoundaryElementMap(outsideBoundaryElementsToPlacementMap);
 			}
 			((FragmentSubstitutionHolder) fragHolderAdjacent).refresh();
 		}
