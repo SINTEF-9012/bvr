@@ -101,7 +101,9 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 					EObject outsideBoundaryElementEObject = EngineUtility.resolveProxies(outsideBoundaryElement);
 					EList<ObjectHandle> insideBoundaryElements = toPlacement.getInsideBoundaryElement();
 					EList<EObject> insideBoundaryElementsEObject = EngineUtility.resolveProxies(insideBoundaryElements);
-					if(insideBoundaryElementEObject.equals(outsideBoundaryElementEObject) && Sets.symmetricDifference(new HashSet<EObject>(outsideBoundatyElementsEObject), new HashSet<EObject>(insideBoundaryElementsEObject)).isEmpty()){
+					if(insideBoundaryElementEObject.equals(outsideBoundaryElementEObject) &&
+							!Sets.intersection(new HashSet<EObject>(outsideBoundatyElementsEObject),
+									new HashSet<EObject>(insideBoundaryElementsEObject)).isEmpty()){
 						boundariesMap.put(fromBinding, toBinding);
 					}
 				}
