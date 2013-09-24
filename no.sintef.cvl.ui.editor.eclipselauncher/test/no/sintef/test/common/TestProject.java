@@ -4,9 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 
+import javax.xml.stream.events.Namespace;
+
 import no.sintef.cvl.thirdparty.common.Constants;
+import no.sintef.cvl.ui.primitive.Symbol;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -26,6 +31,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.osgi.framework.Bundle;
+
+import cvl.FragmentSubstitution;
 
 public class TestProject {
 
@@ -127,5 +134,31 @@ public class TestProject {
 		}
 		
 		return true;
+	}
+	
+	public static EList<FragmentSubstitution> collectFragmentSuubstitutions(ArrayList<Symbol> symbols){
+		HashSet<FragmentSubstitution> fragments = new HashSet<FragmentSubstitution>();
+		for(Symbol symbol : symbols){
+			EList<FragmentSubstitution> fragmentSubstitutions = symbol.getFragmentSubstitutions();
+			for(FragmentSubstitution fragment : fragmentSubstitutions){
+				FragmentSubstitution frgamentCopy = symbol.getFragmentSubstitutionCopy(fragment);
+				FragmentSubstitution fragmentTpExecute = (frgamentCopy == null) ? fragment : frgamentCopy;
+				symbol.addFragmentSubstitutionsToExecute(fragmentTpExecute);
+				fragments.add(fragmentTpExecute);
+			}
+		}
+		return new BasicEList<FragmentSubstitution>(fragments);
+	}
+	
+	public static EList<Symbol> sortSymbolByNames(ArrayList<Symbol> symbols, String[] names){
+		ArrayList<Symbol> arrayList = new ArrayList<Symbol>();
+		for(int i=0; i<names.length; i++){
+			for(Symbol symbol : symbols){
+				if(symbol.getVSpec().getName().equals(names[i])){
+					arrayList.add(i, symbol);
+				}
+			}
+		}
+		return new BasicEList<Symbol>(arrayList);
 	}
 }
