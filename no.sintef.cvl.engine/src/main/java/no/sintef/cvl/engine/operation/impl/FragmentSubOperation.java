@@ -2,6 +2,8 @@ package no.sintef.cvl.engine.operation.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -94,7 +96,6 @@ public class FragmentSubOperation implements Substitution {
 						}
 						
 						EngineUtility.setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
-						//this.setProperty(outsideBEPlac, property, propertyValueNew);
 						
 						EList<EObject> propertyValueSet = EngineUtility.getListPropertyValue(outsideBEPlac, property);
 						if(!propertyValueNew.equals(propertyValueSet)){
@@ -217,10 +218,9 @@ public class FragmentSubOperation implements Substitution {
 				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
 			}	
 		}
-		//testOutsideBoundaryElementsContainment();
 		fragSubHolder.update(replace);
 	}
-	
+		
 	private void checkPlacementElementsContainment() throws ContainmentCVLModelException {
 		HashSet<EObject> placementElements = placement.getElements();
 		for(EObject eObject : placementElements){
@@ -261,56 +261,7 @@ public class FragmentSubOperation implements Substitution {
 			}
 		}
 	}
-	
-	private void testOutsideBoundaryElementsContainment() throws BasicCVLEngineException{
-		HashSet<EObject> placementElements = placement.getElements();
-		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
-		for(FromBinding fromBinding : fromBindings){
-			EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(fromBinding.getFromPlacement().getOutsideBoundaryElement());
-			outsideBoundaryElements = (outsideBoundaryElements.size() == 1 && outsideBoundaryElements.get(0) == null) ? new BasicEList<EObject>() : outsideBoundaryElements;
-			for(EObject outsideBoundaryElement : outsideBoundaryElements){
-				EObject container = outsideBoundaryElement.eContainer();
-				if(placementElements.contains(container)){
-					EObject referencer = EngineUtility.resolveProxies(fromBinding.getFromPlacement().getInsideBoundaryElement());
-					EObject referencerContainer = referencer.eContainer();
-					EStructuralFeature feature = referencer.eContainingFeature();
-					int upperBound = feature.getUpperBound();
-					if(upperBound == -1 || upperBound > 1){
-						EList<EObject> propertyValue = EngineUtility.getListPropertyValue(referencerContainer, feature);
-						if(upperBound != -1 && propertyValue.size() >= upperBound){
-							throw new IncorrectCVLModel("cardinality of the containment property is less than amount of the contined elements " + fragSubHolder.getFragment() + " property " + feature + "values " + propertyValue);
-						}
-						propertyValue.add(outsideBoundaryElement);
-						propertyValue = new BasicEList<EObject>(propertyValue);
-						EngineUtility.setProperty(referencerContainer, feature, propertyValue);
-						//referencerContainer.eSet(feature, propertyValue);
-						
-						EList<EObject> propertySet = EngineUtility.getListPropertyValue(referencerContainer, feature);
-						if(!propertySet.equals(propertyValue)){
-							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + feature + "of" + fragSubHolder.getFragment());
-						}
-					}else{
-						//upperBound == 0 || == 1
-						Object propertyValue = referencerContainer.eGet(feature);
-						if(upperBound == 0){
-							throw new IncorrectCVLModel("cardinality of the containment is 0, but we need to add an element " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
-						}
-						if(propertyValue != null){
-							throw new IncorrectCVLModel("cardinality of the containment is 1, there is one element " + propertyValue + " but we need to add one more: " + fragSubHolder.getFragment() + " property " + feature + " element to add " + outsideBoundaryElement);
-						}
-						EngineUtility.setProperty(referencerContainer, feature, outsideBoundaryElement);
-						//referencerContainer.eSet(feature, outsideBoundaryElement);
-						
-						Object propertySet = referencerContainer.eGet(feature);
-						if(propertySet.equals(outsideBoundaryElement)){
-							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + feature + "of" + fragSubHolder.getFragment());
-						}
-					}
-				}
-			}
-		}
-	}
-	
+		
 	private void copyReplacementElements() {
 		rplCopier = new CVLFragmentCopier();
 		HashSet<EObject> replacementInnerElements = replacement.getElements();

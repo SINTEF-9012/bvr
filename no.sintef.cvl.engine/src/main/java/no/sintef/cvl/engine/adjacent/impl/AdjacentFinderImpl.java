@@ -1,5 +1,7 @@
 package no.sintef.cvl.engine.adjacent.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.eclipse.emf.common.util.BasicEList;
@@ -17,6 +19,7 @@ import cvl.ToPlacement;
 import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.adjacent.AdjacentFinder;
 import no.sintef.cvl.engine.common.EngineUtility;
+import no.sintef.cvl.engine.error.UnexpectedOperationFailure;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.fragment.impl.PlacementElementHolder;
@@ -30,6 +33,7 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 		this.fragmentList = new BasicEList<FragmentSubstitutionHolder>(fragmentsList);
 		this.adjacentMap = new HashMap<FragSubHolder, AdjacentFragment>();
 		this.findAdjacentness();
+		this.findTwinAdjacentFragments();
 	}
 	
 	@Override
@@ -110,6 +114,29 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 			}
 		}
 		return boundariesMap;
+	}
+	
+	private void findTwinAdjacentFragments(){
+		ArrayList<AdjacentFragment> fragments = new ArrayList<AdjacentFragment>(adjacentMap.values());
+		if(fragments.size() == 0)
+			return;
+		if(fragments.size() < 2)
+			throw new UnexpectedOperationFailure("it is not possible that we just have one adjacent fragment " + fragments);
+		
+		for(int i=0; i<fragments.size()-1; i++){
+			AdjacentFragment fragment_i = fragments.get(i);
+			PlacementElementHolder pHolder_i = fragment_i.getFragmentHolder().getPlacement();
+			HashSet<EObject> placementElements_i = pHolder_i.getElements();
+			for(int j=i+1; j<fragments.size(); j++){
+				AdjacentFragment fragment_j = fragments.get(j);
+				PlacementElementHolder pHolder_j = fragment_j.getFragmentHolder().getPlacement();
+				HashSet<EObject> placementElements_j = pHolder_j.getElements();
+				if(Sets.symmetricDifference(placementElements_i, placementElements_j).isEmpty()){
+					fragment_i.addTwinAdjacentFragment(fragment_j);
+					fragment_j.addTwinAdjacentFragment(fragment_i);
+				}
+			}
+		}
 	}
 
 }

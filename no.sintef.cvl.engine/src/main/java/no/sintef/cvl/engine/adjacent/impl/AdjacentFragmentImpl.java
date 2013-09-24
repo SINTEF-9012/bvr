@@ -18,12 +18,14 @@ public class AdjacentFragmentImpl implements AdjacentFragment {
 	private HashSet<AdjacentFragment> adjacentFragments;
 	private HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>> adjacentFromBindings;
 	private HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>> adjacentToBindings;
+	private HashSet<AdjacentFragment> tweans;
 
 	public AdjacentFragmentImpl(FragSubHolder fragmentHolder){
 		this.fragmentHolder = fragmentHolder;
 		adjacentFragments = new HashSet<AdjacentFragment>();
 		adjacentFromBindings = new HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>>();
 		adjacentToBindings = new HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>>();
+		tweans = new HashSet<AdjacentFragment>();
 	}
 		
 	@Override
@@ -76,6 +78,16 @@ public class AdjacentFragmentImpl implements AdjacentFragment {
 	@Override
 	public HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>> getAllAdjacentToBindings() {
 		return this.adjacentToBindings;
+	}
+
+	@Override
+	public void addTwinAdjacentFragment(AdjacentFragment adjacentFragment) {
+		tweans.add(adjacentFragment);
+	}
+
+	@Override
+	public HashSet<AdjacentFragment> getTwinAdjacentFragments() {
+		return tweans;
 	}
 
 }

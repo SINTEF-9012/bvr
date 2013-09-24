@@ -43,6 +43,8 @@ public class TrivialTest {
 		
 		new TestResourceHolder("/test/resources/vm/additiveAdjacentContLessPlacements.cvl", "/TestFolder/vm/additiveAdjacentContLessPlacements.cvl"),
 		new TestResourceHolder("/test/resources/expproducts/additiveAdjacentContLessPlacements_modeladjacenttest.uml", "/TestFolder/expproducts/additiveAdjacentContLessPlacements_modeladjacenttest.uml"),
+		
+		new TestResourceHolder("/test/resources/vm/additiveAdjacentContLessPlacements1.cvl", "/TestFolder/vm/additiveAdjacentContLessPlacements1.cvl"),
 	};
 	
 	@BeforeClass
@@ -125,6 +127,28 @@ public class TrivialTest {
 	@Test
 	public void additiveAdjacentContLessPlacements() throws IOException, CoreException {	
 			File fileVarModel = testResources[6].getiFile().getLocation().toFile();
+			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			ConfigurableUnit cu = model.getCU();
+			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			
+			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			scopeResolver.resolveScopes(symbolTable);
+			productResolver.deriveProduct(symbolTable);
+			
+			IFile iProduct = testProject.iProject.getFile("/TestFolder/products/product");
+			File fileProduct = iProduct.getLocation().toFile();
+			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
+			
+			iProduct = testProject.iProject.getFile("/TestFolder/products/product_modeladjacenttest.uml");
+			fileProduct = iProduct.getLocation().toFile();
+			
+			boolean isIdentical = TestProject.isIdentical(testResources[7].getiFile().getLocation().toFile().getAbsolutePath(), fileProduct.getAbsolutePath());
+			Assert.assertTrue("derived and expected products are different", isIdentical);
+	}
+	
+	@Test
+	public void additiveAdjacentContLessPlacements1() throws IOException, CoreException {	
+			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
 			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);

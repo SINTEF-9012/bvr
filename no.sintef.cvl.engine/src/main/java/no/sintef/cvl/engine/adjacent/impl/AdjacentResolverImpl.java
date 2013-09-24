@@ -49,6 +49,8 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 		if(adjacentFragments.isEmpty())
 			throw new GeneralCVLEngineException("can not find any adjacent fragments to the fragment that seems to be adjacent" + fragmentHolderCurrent);
 
+		HashSet<AdjacentFragment> twinAFrag = aFrag.getTwinAdjacentFragments();
+		
 		for(AdjacentFragment adjacentFragment : adjacentFragments){
 			FragSubHolder fragHolderAdjacent = adjacentFragment.getFragmentHolder();
 			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = EngineUtility.reverseMap(aFrag.getAdjacentToBindings(adjacentFragment));
@@ -57,14 +59,13 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				FromBinding fromBinding = entry.getKey();
 				ToBinding toBinding = entry.getValue();
 				EList<ObjectHandle> outsideBOHElmtsPlc = fromBinding.getFromPlacement().getOutsideBoundaryElement();
-				EList<ObjectHandle> insideBOHElmtsPlcReplaced = toBinding.getToPlacement().getInsideBoundaryElement();
+				EList<ObjectHandle> insideBOHElmtsPlcReplaced = calculateInsideBoundaryElements(twinAFrag, adjacentFragment, fromBinding, toBinding);
 				
 				HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryElementsFromPlacementMap = ((FragmentSubstitutionHolder) fragHolderAdjacent).getFromPlacementInsideBoundaryElementMap();
 				HashSet<ObjectHandle> insideBoundaryElementsFromPlacement = insideBoundaryElementsFromPlacementMap.get(fromBinding.getFromPlacement());
 				if(insideBoundaryElementsFromPlacement == null)
 					throw new GeneralCVLEngineException("failed to find insideBoundaryElements in the map for a given fromPlacement " + fromBinding.getFromPlacement() + " of the fromBinding " + fromBinding);
 
-				HashSet<EObject> invalidOutBoundaryFromPlacementAdj = new HashSet<EObject>();
 				for(ObjectHandle objectHandle : insideBoundaryElementsFromPlacement){
 					EObject insideBoundaryElementPlc = EngineUtility.resolveProxies(objectHandle);
 					String propertyName = fromBinding.getFromReplacement().getPropertyName();
@@ -75,13 +76,11 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 					int upperBound = property.getUpperBound();
 					if(upperBound == -1 || upperBound > 1){
 						EList<EObject> values = EngineUtility.getListPropertyValue(insideBoundaryElementPlc, property);
-						SetView<EObject> delOutBElementsFromP = Sets.difference(
-								new HashSet<EObject>(EngineUtility.resolveProxies(outsideBOHElmtsPlc)),
-								new HashSet<EObject>(values));
-						invalidOutBoundaryFromPlacementAdj.addAll(delOutBElementsFromP);
-						EList<EObject> elementsToRemove = new BasicEList<EObject>(delOutBElementsFromP);
+						
+						EList<EObject> elementsToRemove = EngineUtility.resolveProxies(outsideBOHElmtsPlc);
 						EList<EObject> elementsToAdd = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced);
 						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(values, elementsToRemove, elementsToAdd);
+						
 						if(upperBound != -1 && propertyValueNew.size() > upperBound)
 							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolderAdjacent.getFragment());
 
@@ -97,16 +96,9 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 						if(insideBOHElmtsPlcReplaced.size() != upperBound)
 							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolderAdjacent.getFragment());
 
-						EList<EObject> values = new BasicEList<EObject>();
-						values.add((EObject) insideBoundaryElementPlc.eGet(property));
-						
-						SetView<EObject> delOutBElementsFromP = Sets.difference(
-								new HashSet<EObject>(EngineUtility.resolveProxies(outsideBOHElmtsPlc)),
-								new HashSet<EObject>(values));
-						invalidOutBoundaryFromPlacementAdj.addAll(delOutBElementsFromP);
-						
 						EObject propertyValueNew = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
 						EngineUtility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);
+						
 						Object propertyValueSet = insideBoundaryElementPlc.eGet(property);
 						if(!propertyValueNew.equals(propertyValueSet))
 							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());					
@@ -114,12 +106,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				}
 				
 				//update variability model : boundaries so the point to the correct elements
-				Iterator<ObjectHandle> iterator = fromBinding.getFromPlacement().getOutsideBoundaryElement().iterator();
-				while(iterator.hasNext()){
-					ObjectHandle objectHandle = iterator.next();
-					if(invalidOutBoundaryFromPlacementAdj.contains(objectHandle.getMOFRef()))
-						iterator.remove();
-				}
+				fromBinding.getFromPlacement().getOutsideBoundaryElement().clear();
 				fromBinding.getFromPlacement().getOutsideBoundaryElement().addAll(insideBOHElmtsPlcReplaced);
 				
 				HashMap<ToPlacement, HashSet<ObjectHandle>> outsideBoundaryElementsToPlacementMap = ((FragmentSubstitutionHolder) fragmentHolderCurrent).getToPlacementOutsideBoundaryElementMap();
@@ -148,5 +135,27 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 			((FragmentSubstitutionHolder) fragHolderAdjacent).refresh();
 		}
 		((FragmentSubstitutionHolder) fragmentHolderCurrent).refresh();
+	}
+	
+	private EList<ObjectHandle> calculateInsideBoundaryElements(
+			HashSet<AdjacentFragment> twins,
+			AdjacentFragment adjacentFragment,
+			FromBinding fromBindingAdjacent,
+			ToBinding toBindingCurrent)
+	{
+		HashSet<ObjectHandle> insideBEObjectHandles = new HashSet<ObjectHandle>();
+		insideBEObjectHandles.addAll(toBindingCurrent.getToPlacement().getInsideBoundaryElement());
+		for(AdjacentFragment twin : twins){
+			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent =
+					EngineUtility.reverseMap(twin.getAdjacentToBindings(adjacentFragment));
+			if(adjacentBindingsToCurrent == null)
+				throw new UnexpectedOperationFailure("a twin must have an adjacent bindings with the given adjacent fragment");
+			ToBinding toBindingTwin = adjacentBindingsToCurrent.get(fromBindingAdjacent);
+			if(toBindingTwin == null)
+				throw new UnexpectedOperationFailure("twin must have an adjacent binding of the same kind");
+			EList<ObjectHandle> insideBEObjectHandlesTwin = toBindingTwin.getToPlacement().getInsideBoundaryElement();
+			insideBEObjectHandles.addAll(insideBEObjectHandlesTwin);
+		}
+		return new BasicEList<ObjectHandle>(insideBEObjectHandles);
 	}
 }

@@ -56,9 +56,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 	}
 	
 	public void update(boolean replace) throws BasicCVLEngineException{
-		if(replace){
-			this.removeNotBoundBoundaries();
-		}
+		if(replace) removeNotBoundBoundaries();
 		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
 		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
 		placement.update();

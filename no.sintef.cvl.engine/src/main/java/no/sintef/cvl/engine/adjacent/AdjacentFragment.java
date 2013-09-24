@@ -32,4 +32,9 @@ public interface AdjacentFragment {
 	
 	public EList<AdjacentFragment> getAdjacentFragmentsList();
 	
+	public void addTwinAdjacentFragment(AdjacentFragment adjacentFragment);
+	
+	public HashSet<AdjacentFragment> getTwinAdjacentFragments();
+	
+	
 }
