@@ -7,6 +7,7 @@ import no.sintef.cvl.ui.primitive.ExecutionRequest;
 import no.sintef.cvl.ui.primitive.SymbolTable;
 import no.sintef.cvl.ui.strategy.PlacementIntersectionResolverStrategy;
 import no.sintef.cvl.ui.strategy.impl.PlacementIntersectionLessStrategy;
+import no.sintef.cvl.ui.strategy.impl.PlacementIntersectionLessTwinAbleStrategy;
 
 public class IntersactionResolverExecutionHandler implements ExecutionHandler {
 
@@ -15,7 +16,8 @@ public class IntersactionResolverExecutionHandler implements ExecutionHandler {
 
 	public IntersactionResolverExecutionHandler(ExecutionHandler successor){
 		this.successor = successor;
-		defaultStrategy = new PlacementIntersectionLessStrategy();
+		//defaultStrategy = new PlacementIntersectionLessStrategy();
+		defaultStrategy = new PlacementIntersectionLessTwinAbleStrategy();
 	}
 	
 	@Override
