@@ -22,7 +22,7 @@ import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionAdjacentTwins1Test {
+public class FragmentSubstitutionAdjacentTwins2Test {
 
 	private File file;
 	private HashMap<String, Object> map;
@@ -34,11 +34,12 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 	private FragmentSubstitutionHolder fragmentSubHolder3;
 	private FragmentSubstitutionHolder fragmentSubHolder4;
 	private BasicEList<FragmentSubstitutionHolder> fragmentSubHolderList;
+	private FragmentSubstitutionHolder fragmentSubHolder5;
 
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/adjacentTwins1/adjtwins.cvl");
+		file = new File("src/test/resources/adjacentTwins2/adjtwins.cvl");
 		map = SetUpUtils.load(file);
 		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
@@ -48,16 +49,18 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 			}
 		}
 		
-		Assert.assertTrue("can not locate a fragment substitution, the test can not be executed", fragSubs.size() == 4);
+		Assert.assertTrue("can not locate a fragment substitution, the test can not be executed", fragSubs.size() == 5);
 		fragmentSubHolder1 = new FragmentSubstitutionHolder(fragSubs.get(2));
 		fragmentSubHolder2 = new FragmentSubstitutionHolder(fragSubs.get(1));
 		fragmentSubHolder3 = new FragmentSubstitutionHolder(fragSubs.get(0));
 		fragmentSubHolder4 = new FragmentSubstitutionHolder(fragSubs.get(3));
+		fragmentSubHolder5 = new FragmentSubstitutionHolder(fragSubs.get(4));
 		fragmentSubHolderList = new BasicEList<FragmentSubstitutionHolder>();
 		fragmentSubHolderList.add(fragmentSubHolder1);
 		fragmentSubHolderList.add(fragmentSubHolder2);
 		fragmentSubHolderList.add(fragmentSubHolder3);
 		fragmentSubHolderList.add(fragmentSubHolder4);
+		fragmentSubHolderList.add(fragmentSubHolder5);
 		baseModel = cu.eResource().getResourceSet().getResource(URI.createFileURI("base.node"), false);
 		Assert.assertNotNull("base model is not found, the test cases can not be executed", baseModel);
 	}
@@ -87,6 +90,10 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso4 = new FragmentSubOperation(fragmentSubHolder4);
 		fso4.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder4);
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
@@ -113,6 +120,9 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
 		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
@@ -139,6 +149,9 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
 		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
@@ -165,6 +178,9 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
 		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
 						
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
@@ -190,7 +206,11 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
@@ -215,7 +235,11 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
@@ -240,7 +264,11 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
@@ -265,7 +293,11 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
@@ -290,7 +322,11 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
 		fso2.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder2);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
@@ -315,7 +351,11 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso4 = new FragmentSubOperation(fragmentSubHolder4);
 		fso4.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder4);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
@@ -340,7 +380,128 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
 		fso3.execute(true);
 		adjacentResolver.resolve(fragmentSubHolder3);
-			
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentDifferentOrder11() throws Exception {
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso4 = new FragmentSubOperation(fragmentSubHolder4);
+		fso4.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder4);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentDifferentOrder12() throws Exception {
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso4 = new FragmentSubOperation(fragmentSubHolder4);
+		fso4.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder4);
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentDifferentOrder13() throws Exception {
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
+		FragmentSubOperation fso4 = new FragmentSubOperation(fragmentSubHolder4);
+		fso4.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder4);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
+		SetUpUtils.writeToFile(baseModel, "base_new.node");
+		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
+	}
+	
+	@Test
+	public void testAdjacentDifferentOrder14() throws Exception {
+		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
+		AdjacentResolverImpl adjacentResolver = new AdjacentResolverImpl(adjacenFinder);
+		
+		FragmentSubOperation fso5 = new FragmentSubOperation(fragmentSubHolder5);
+		fso5.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder5);
+		
+		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
+		fso1.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder1);
+		
+		FragmentSubOperation fso4 = new FragmentSubOperation(fragmentSubHolder4);
+		fso4.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder4);
+		
+		FragmentSubOperation fso2 = new FragmentSubOperation(fragmentSubHolder2);
+		fso2.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder2);
+		
+		FragmentSubOperation fso3 = new FragmentSubOperation(fragmentSubHolder3);
+		fso3.execute(true);
+		adjacentResolver.resolve(fragmentSubHolder3);
+		
 		SetUpUtils.writeToFile(baseModel, "base_new.node");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("expected.node", "base_new.node"));
 	}
