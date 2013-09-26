@@ -9,6 +9,7 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.containment.ReplacPlacCotainmentFinder;
 import no.sintef.cvl.engine.containment.ReplacPlacCotainmentResolver;
+import no.sintef.cvl.engine.crossing.PlacementCrossingFinder;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.error.ContainmentCVLModelException;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
@@ -34,6 +35,7 @@ public final class SubstitutionEngine {
 	private AdjacentResolver adjacentResolver;
 	private ReplacPlacCotainmentFinder placementInReplacementFinder;
 	private ReplacPlacCotainmentResolver placementInReplacementResolver;
+	private PlacementCrossingFinder placementCrossingFinder;
 	
 
 	private static SubstitutionEngine getEngine() {
@@ -54,6 +56,8 @@ public final class SubstitutionEngine {
 			//since FragmentSubstitutionHolder actually loads all resources as a side effect
 			//which we lately use to define 'base model'
 			computeCopyBaseModel();
+			
+			placementCrossingFinder = new PlacementCrossingFinder(fsMap.values());
 			
 			adjacentFinder = new AdjacentFinderImpl(new BasicEList<FragmentSubstitutionHolder>(fsMap.values()));
 			adjacentResolver = new AdjacentResolverImpl(adjacentFinder);
@@ -79,7 +83,7 @@ public final class SubstitutionEngine {
 		} catch (BasicCVLEngineException e) {
 			throw new UnsupportedOperationException(e);
 		}
-		//this check seems to be invalid here since we may work with copies of the base model
+		//this check seems to be invalid here since we may work with copies of base and library models
 		//which are not contained by any resource in the first place
 		//subsOperation.checkConsistence();
 	}
