@@ -1,7 +1,7 @@
 package no.sintef.cvl.ui.editor.eclipselauncher.actions;
 
 
-import no.sintef.cvl.ui.loader.Main;
+import no.sintef.cvl.tool.ui.loader.Main;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;

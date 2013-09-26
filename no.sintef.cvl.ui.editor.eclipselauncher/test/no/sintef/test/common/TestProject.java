@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import javax.xml.stream.events.Namespace;
-
 import no.sintef.cvl.thirdparty.common.Constants;
-import no.sintef.cvl.ui.primitive.Symbol;
+import no.sintef.cvl.tool.primitive.Symbol;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
