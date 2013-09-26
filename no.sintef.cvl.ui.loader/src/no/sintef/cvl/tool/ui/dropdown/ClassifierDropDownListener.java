@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 
 import cvl.NamedElement;
 import cvl.VSpec;
@@ -17,6 +18,9 @@ import no.sintef.cvl.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.cvl.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.cvl.tool.ui.command.event.AddConstraintEvent;
 import no.sintef.cvl.tool.ui.command.event.AddVariableEvent;
+import no.sintef.cvl.tool.ui.command.event.CutEvent;
+import no.sintef.cvl.tool.ui.command.event.PasteChildEvent;
+import no.sintef.cvl.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.cvl.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToNoneEvent;
@@ -85,6 +89,19 @@ class ClassifierDropdown extends JPopupMenu {
 		JMenuItem removechoice = new JMenuItem("remove");
 		removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
 		add(removechoice);
+		
+		// Cut Paste
+		add(new JSeparator());
+		JMenuItem cut = new JMenuItem("cut");
+		cut.addActionListener(new CutEvent(cp, vmMap, nodes, bindings, view));
+		add(cut);
+		JMenuItem pastechild = new JMenuItem("paste as child");
+		pastechild.addActionListener(new PasteChildEvent(cp, vmMap, nodes, bindings, view));
+		add(pastechild);
+		JMenuItem pastesibling = new JMenuItem("paste as sibling");
+		pastesibling.addActionListener(new PasteSiblingEvent(cp, vmMap, nodes, bindings, view));
+		add(pastesibling);
+		add(new JSeparator());
 		
 		// Set group
 		JMenu group = new JMenu("set group");
