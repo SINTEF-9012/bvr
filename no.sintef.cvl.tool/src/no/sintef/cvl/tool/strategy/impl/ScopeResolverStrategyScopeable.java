@@ -138,7 +138,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 					HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap = new HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>();
 					ReplacementFragmentType newReplacement = testNewReplacementFragment(symbol, replacement, replacementBoundaryMap);
 					//create a new fragment substitution with just created placement and replacement. We will eventually execute this fragment substitution
-					createNewFrgamentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
+					createNewFragmentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
 				}
 			}else{
 				//if placement is not contained anyway create a copy of placement which references original elements and create a copy of the replacement fragment
@@ -148,7 +148,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				
 				HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap = new HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>();
 				ReplacementFragmentType newReplacement = testNewReplacementFragment(symbol, replacement, replacementBoundaryMap);
-				createNewFrgamentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
+				createNewFragmentSubstitution(symbol, placementBoundaryMap, replacementBoundaryMap, newPlacement, newReplacement, fragSub);
 			}
 		}
 	}
@@ -228,7 +228,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		return elementsToCopy;
 	}
 	
-	private FragmentSubstitution createNewFrgamentSubstitution(
+	private FragmentSubstitution createNewFragmentSubstitution(
 			Symbol symbol,
 			HashMap<PlacementBoundaryElement, PlacementBoundaryElement> placementBoundaryMap,
 			HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap,
