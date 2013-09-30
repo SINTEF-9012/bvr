@@ -32,8 +32,8 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 		for(Symbol symbol : symbols){
 			EList<FragmentSubstitution> fragmentSubstitutions = symbol.getFragmentSubstitutions();
 			for(FragmentSubstitution fragment : fragmentSubstitutions){
-				FragmentSubstitution frgamentCopy = symbol.getFragmentSubstitutionCopy(fragment);
-				FragmentSubstitution fragmentToExecute = (frgamentCopy == null) ? fragment : frgamentCopy;
+				FragmentSubstitution fragmentCopy = symbol.getFragmentSubstitutionCopy(fragment);
+				FragmentSubstitution fragmentToExecute = (fragmentCopy == null) ? fragment : fragmentCopy;
 				symbol.addFragmentSubstitutionsToExecute(fragmentToExecute);
 				fss.add(fragmentToExecute);
 			}
