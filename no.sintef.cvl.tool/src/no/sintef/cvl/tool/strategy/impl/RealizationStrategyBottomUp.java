@@ -21,8 +21,8 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 
 	@Override
 	public void deriveProduct(SymbolTable table) {
-		EList<FragmentSubstitution> frgamentSusbstitutions = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
-		Context.eINSTANCE.initSubEngine(frgamentSusbstitutions);
+		EList<FragmentSubstitution> fragmentSubstitutions = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
+		Context.eINSTANCE.initSubEngine(fragmentSubstitutions);
 		resolve(table);
 	}
 	
