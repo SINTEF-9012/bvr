@@ -33,8 +33,8 @@ public final class Context {
 
 	public static final Context eINSTANCE = getContext();
 	
-	private Environment environment = FactoryCreator.eINSTANCE.createEnvironment();
-	private ViewChanageManager viewChnageManager = FactoryCreator.eINSTANCE.createViewChanageManager(); 
+	private Environment environment = ContextFactory.eINSTANCE.createEnvironment();
+	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager(); 
 	
 	private final List<CVLModel> cvlModels = new ArrayList<CVLModel>();
 	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
@@ -48,7 +48,7 @@ public final class Context {
 	}
 	
 	public void setIWorkbenchWindow(IWorkbenchWindow workbench){
-		environment = FactoryCreator.eINSTANCE.createEnvironment(workbench);
+		environment = ContextFactory.eINSTANCE.createEnvironment(workbench);
 		logger = environment.getLogger();
 	}
 	

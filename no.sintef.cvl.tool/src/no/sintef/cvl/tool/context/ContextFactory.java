@@ -6,12 +6,12 @@ import no.sintef.cvl.tool.environment.eclipseless.EclipseLessEnvironment;
 
 import org.eclipse.ui.IWorkbenchWindow;
 
-public final class FactoryCreator {
+public final class ContextFactory {
 	
-	public final static FactoryCreator eINSTANCE = getFactoryCreator();
+	public final static ContextFactory eINSTANCE = getFactoryCreator();
 	
-	private static FactoryCreator getFactoryCreator(){
-		return new FactoryCreator();
+	private static ContextFactory getFactoryCreator(){
+		return new ContextFactory();
 	}
 	
 	public Environment createEnvironment(IWorkbenchWindow workbanch){
