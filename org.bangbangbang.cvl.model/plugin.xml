@@ -10,7 +10,7 @@
       <!-- @generated CVLMetamodel -->
       <package
             uri="http:///cvl.ecore"
-            class="cvl.CvlPackage"
+            class="org.bangbangbang.cvl.CvlPackage"
             genModel="model/CVLMetamodel.genmodel"/>
    </extension>
 
