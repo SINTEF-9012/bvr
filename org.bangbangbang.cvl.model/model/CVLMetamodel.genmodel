@@ -223,7 +223,8 @@
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//BCLExpression"/>
     <genClasses ecoreClass="CVLMetamodel.ecore#//OpaqueConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//OpaqueConstraint/constraint"/>
+      <genFeatures createChild="false" propertyCategory="" propertyMultiLine="true"
+          ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//OpaqueConstraint/constraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//OpaqueConstraint/constraintLanguage"/>
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//ParametricVariationPoint">
