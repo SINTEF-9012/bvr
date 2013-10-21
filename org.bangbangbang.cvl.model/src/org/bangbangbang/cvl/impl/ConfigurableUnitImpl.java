@@ -242,13 +242,16 @@ public class ConfigurableUnitImpl extends CompositeVariationPointImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
+	 * I don't know detail.
+	 * But change this method for GMF diagram editor
 	 */
 	public VInterface basicGetUnitInterface() {
+		return null;
 		// TODO: implement this method to return the 'Unit Interface' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
 	}
 
 	/**
