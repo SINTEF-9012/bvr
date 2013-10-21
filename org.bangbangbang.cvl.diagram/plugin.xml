@@ -18,14 +18,14 @@
    <extension point="org.eclipse.ui.editors" id="gmf-editor">
       <?gmfgen generated="true"?>
       <editor
-         id="cvl.diagram.part.CVLMetamodelDiagramEditorID"
+         id="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/CvlDiagramFile.gif"
          extensions="cvl_diagram"
          default="true"
-         class="cvl.diagram.part.CVLMetamodelDiagramEditor"
-         matchingStrategy="cvl.diagram.part.CVLMetamodelMatchingStrategy"
-         contributorClass="cvl.diagram.part.CVLMetamodelDiagramActionBarContributor">
+         class="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditor"
+         matchingStrategy="org.bangbangbang.cvl.diagram.part.CVLMetamodelMatchingStrategy"
+         contributorClass="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramActionBarContributor">
       </editor>
    </extension>
    
@@ -33,7 +33,7 @@
       <?gmfgen generated="true"?>
       <context
          description="%context.description"
-         id="cvl.diagram.ui.diagramContext"
+         id="org.bangbangbang.cvl.diagram.ui.diagramContext"
          name="%context.name"
          parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
       </context>
@@ -45,8 +45,8 @@
   	     name="%newWizardName"
   	     icon="icons/obj16/CvlDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
-  	     class="cvl.diagram.part.CVLMetamodelCreationWizard"
-  	     id="cvl.diagram.part.CVLMetamodelCreationWizardID">
+  	     class="org.bangbangbang.cvl.diagram.part.CVLMetamodelCreationWizard"
+  	     id="org.bangbangbang.cvl.diagram.part.CVLMetamodelCreationWizardID">
   	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
@@ -59,7 +59,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="%initDiagramActionLabel"
-               class="cvl.diagram.part.CVLMetamodelInitDiagramFileAction"
+               class="org.bangbangbang.cvl.diagram.part.CVLMetamodelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="org.bangbangbang.cvl.diagram.InitDiagramAction">
@@ -73,7 +73,7 @@
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
          id="CVLMetamodelPresentation">
          <Priority name="Lowest"/>
-         <ViewId id="cvl.diagram.part.CVLMetamodelDiagramEditorID">
+         <ViewId id="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -90,7 +90,7 @@
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
          id="CVLMetamodelPresentationIDE">
          <Priority name="Lowest"/>
-         <ViewId id="cvl.diagram.part.CVLMetamodelDiagramEditorID">
+         <ViewId id="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
@@ -100,7 +100,7 @@
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
             id="CVLMetamodelRender">
          <Priority name="Lowest"/>
-         <ViewId id="cvl.diagram.part.CVLMetamodelDiagramEditorID">
+         <ViewId id="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>
@@ -113,7 +113,7 @@
 
    <extension point="org.eclipse.core.runtime.preferences" id="prefs">
       <?gmfgen generated="true"?>
-      <initializer class="cvl.diagram.preferences.DiagramPreferenceInitializer"/>
+      <initializer class="org.bangbangbang.cvl.diagram.preferences.DiagramPreferenceInitializer"/>
    </extension>
 
    <extension point="org.eclipse.ui.preferencePages" id="prefpages">
@@ -121,31 +121,31 @@
       <page
             id="no.sintef.cvl.diagram.general"
             name="%prefpage.no.sintef.cvl.diagram.general"
-            class="cvl.diagram.preferences.DiagramGeneralPreferencePage">
+            class="org.bangbangbang.cvl.diagram.preferences.DiagramGeneralPreferencePage">
       </page>
       <page
             id="no.sintef.cvl.diagram.appearance"
             name="%prefpage.no.sintef.cvl.diagram.appearance"
             category="no.sintef.cvl.diagram.general"
-            class="cvl.diagram.preferences.DiagramAppearancePreferencePage">
+            class="org.bangbangbang.cvl.diagram.preferences.DiagramAppearancePreferencePage">
       </page>
       <page
             id="no.sintef.cvl.diagram.connections"
             name="%prefpage.no.sintef.cvl.diagram.connections"
             category="no.sintef.cvl.diagram.general"
-            class="cvl.diagram.preferences.DiagramConnectionsPreferencePage">
+            class="org.bangbangbang.cvl.diagram.preferences.DiagramConnectionsPreferencePage">
       </page>
       <page
             id="no.sintef.cvl.diagram.printing"
             name="%prefpage.no.sintef.cvl.diagram.printing"
             category="no.sintef.cvl.diagram.general"
-            class="cvl.diagram.preferences.DiagramPrintingPreferencePage">
+            class="org.bangbangbang.cvl.diagram.preferences.DiagramPrintingPreferencePage">
       </page>
       <page
             id="no.sintef.cvl.diagram.rulersAndGrid"
             name="%prefpage.no.sintef.cvl.diagram.rulersAndGrid"
             category="no.sintef.cvl.diagram.general"
-            class="cvl.diagram.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.bangbangbang.cvl.diagram.preferences.DiagramRulersAndGridPreferencePage">
       </page>
    </extension>
 
@@ -153,7 +153,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="org.bangbangbang.cvl.diagram"
-            labelProvider="cvl.diagram.sheet.CVLMetamodelSheetLabelProvider">
+            labelProvider="org.bangbangbang.cvl.diagram.sheet.CVLMetamodelSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -204,17 +204,17 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="cvl.diagram.sheet.CVLMetamodelPropertySection">
+            class="org.bangbangbang.cvl.diagram.sheet.CVLMetamodelPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
+            <input type="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
-      <viewProvider class="cvl.diagram.providers.CVLMetamodelViewProvider">
+      <viewProvider class="org.bangbangbang.cvl.diagram.providers.CVLMetamodelViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CVLMetamodel"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2015,2016,2017,2014,3002,3003,3001,3004"/>
@@ -224,7 +224,7 @@
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="cvl.diagram.providers.CVLMetamodelEditPartProvider">
+      <editpartProvider class="org.bangbangbang.cvl.diagram.providers.CVLMetamodelEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="CVLMetamodel"/>
@@ -247,32 +247,32 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="cvl.diagram.providers.CVLMetamodelModelingAssistantProvider">
+      <modelingAssistantProvider class="org.bangbangbang.cvl.diagram.providers.CVLMetamodelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="cvl.diagram.edit.parts.ConfigurableUnitEditPart" id="ConfigurableUnit_1000"/>
-         <object class="cvl.diagram.edit.parts.ChoiceEditPart" id="Choice_2005"/>
-         <object class="cvl.diagram.edit.parts.Choice2EditPart" id="Choice_2015"/>
-         <object class="cvl.diagram.edit.parts.VariableEditPart" id="Variable_2016"/>
-         <object class="cvl.diagram.edit.parts.VClassifierEditPart" id="VClassifier_2017"/>
-         <object class="cvl.diagram.edit.parts.OpaqueConstraintEditPart" id="OpaqueConstraint_2014"/>
-         <object class="cvl.diagram.edit.parts.MultiplicityIntervalEditPart" id="MultiplicityInterval_3002"/>
-         <object class="cvl.diagram.edit.parts.MultiplicityInterval3EditPart" id="MultiplicityInterval_3003"/>
-         <object class="cvl.diagram.edit.parts.MultiplicityInterval2EditPart" id="MultiplicityInterval_3001"/>
-         <object class="cvl.diagram.edit.parts.MultiplicityInterval4EditPart" id="MultiplicityInterval_3004"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.ConfigurableUnitEditPart" id="ConfigurableUnit_1000"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.ChoiceEditPart" id="Choice_2005"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.Choice2EditPart" id="Choice_2015"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.VariableEditPart" id="Variable_2016"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.VClassifierEditPart" id="VClassifier_2017"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.OpaqueConstraintEditPart" id="OpaqueConstraint_2014"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.MultiplicityIntervalEditPart" id="MultiplicityInterval_3002"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval3EditPart" id="MultiplicityInterval_3003"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval2EditPart" id="MultiplicityInterval_3001"/>
+         <object class="org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval4EditPart" id="MultiplicityInterval_3004"/>
          <context elements="ConfigurableUnit_1000,Choice_2005,Choice_2015,Variable_2016,VClassifier_2017,OpaqueConstraint_2014,MultiplicityInterval_3002,MultiplicityInterval_3003,MultiplicityInterval_3001,MultiplicityInterval_3004"/>
       </modelingAssistantProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="cvl.diagram.providers.CVLMetamodelIconProvider">
+      <IconProvider class="org.bangbangbang.cvl.diagram.providers.CVLMetamodelIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="cvl.diagram.providers.CVLMetamodelParserProvider">
+      <ParserProvider class="org.bangbangbang.cvl.diagram.providers.CVLMetamodelParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -285,7 +285,7 @@
                name="%metatype.name.ConfigurableUnit_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ConfigurableUnit"
-               edithelper="cvl.diagram.edit.helpers.ConfigurableUnitEditHelper">
+               edithelper="org.bangbangbang.cvl.diagram.edit.helpers.ConfigurableUnitEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -295,7 +295,7 @@
                name="%metatype.name.Choice_2005"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Choice"
-               edithelper="cvl.diagram.edit.helpers.ChoiceEditHelper">
+               edithelper="org.bangbangbang.cvl.diagram.edit.helpers.ChoiceEditHelper">
             <param name="semanticHint" value="2005"/>
          </metamodelType>
       </metamodel>
@@ -314,7 +314,7 @@
                name="%metatype.name.Variable_2016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Variable"
-               edithelper="cvl.diagram.edit.helpers.VariableEditHelper">
+               edithelper="org.bangbangbang.cvl.diagram.edit.helpers.VariableEditHelper">
             <param name="semanticHint" value="2016"/>
          </metamodelType>
       </metamodel>
@@ -324,7 +324,7 @@
                name="%metatype.name.VClassifier_2017"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="VClassifier"
-               edithelper="cvl.diagram.edit.helpers.VClassifierEditHelper">
+               edithelper="org.bangbangbang.cvl.diagram.edit.helpers.VClassifierEditHelper">
             <param name="semanticHint" value="2017"/>
          </metamodelType>
       </metamodel>
@@ -334,7 +334,7 @@
                name="%metatype.name.OpaqueConstraint_2014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="OpaqueConstraint"
-               edithelper="cvl.diagram.edit.helpers.OpaqueConstraintEditHelper">
+               edithelper="org.bangbangbang.cvl.diagram.edit.helpers.OpaqueConstraintEditHelper">
             <param name="semanticHint" value="2014"/>
          </metamodelType>
       </metamodel>
@@ -344,7 +344,7 @@
                name="%metatype.name.MultiplicityInterval_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MultiplicityInterval"
-               edithelper="cvl.diagram.edit.helpers.MultiplicityIntervalEditHelper">
+               edithelper="org.bangbangbang.cvl.diagram.edit.helpers.MultiplicityIntervalEditHelper">
             <param name="semanticHint" value="3002"/>
          </metamodelType>
       </metamodel>
@@ -427,7 +427,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.bangbangbang.cvl.diagram"
            properties="isURIEditorInput"
-           class="cvl.diagram.part.CVLMetamodelUriEditorInputTester">
+           class="org.bangbangbang.cvl.diagram.part.CVLMetamodelUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -453,8 +453,8 @@
             id="org.bangbangbang.cvl.diagram.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="cvl.diagram.navigator.CVLMetamodelNavigatorContentProvider" 
-            labelProvider="cvl.diagram.navigator.CVLMetamodelNavigatorLabelProvider"
+            contentProvider="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelNavigatorContentProvider" 
+            labelProvider="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelNavigatorLabelProvider"
             icon="icons/obj16/CvlDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -463,24 +463,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="cvl_diagram"/>
                </and>
-               <instanceof value="cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
+               <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
+         	   <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.bangbangbang.cvl.diagram.navigatorSorter" 
-               class="cvl.diagram.navigator.CVLMetamodelNavigatorSorter">
+               class="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="cvl_diagram"/>
                   </and>
-                  <instanceof value="cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
+                  <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -489,8 +489,8 @@
             id="org.bangbangbang.cvl.diagram.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="cvl.diagram.navigator.CVLMetamodelDomainNavigatorContentProvider" 
-            labelProvider="cvl.diagram.navigator.CVLMetamodelDomainNavigatorLabelProvider"
+            contentProvider="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelDomainNavigatorContentProvider" 
+            labelProvider="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelDomainNavigatorLabelProvider"
             icon="icons/obj16/CvlDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -499,19 +499,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="cvl"/>
                </and>
-               <instanceof value="cvl.diagram.navigator.CVLMetamodelDomainNavigatorItem"/>
+               <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="cvl.diagram.navigator.CVLMetamodelDomainNavigatorItem"/>
+            <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="org.bangbangbang.cvl.diagram.navigatorActionProvider"
-            class="cvl.diagram.navigator.CVLMetamodelNavigatorActionProvider">
+            class="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
+               <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -521,7 +521,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.bangbangbang.cvl.diagram.navigatorLinkHelper"
-            class="cvl.diagram.navigator.CVLMetamodelNavigatorLinkHelper">
+            class="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -529,7 +529,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
+            <instanceof value="org.bangbangbang.cvl.diagram.navigator.CVLMetamodelAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -537,17 +537,17 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="cvl.diagram.part.CVLMetamodelDiagramUpdateCommand"
+         defaultHandler="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramUpdateCommand"
          description="%update.diagram.description"
-         id="cvl.diagram.updateDiagram"
+         id="org.bangbangbang.cvl.diagram.updateDiagram"
          name="%update.diagram.name"/>
    </extension>
    
    <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
       <?gmfgen generated="true"?>
       <key 
-         commandId="cvl.diagram.updateDiagram"
-         contextId="cvl.diagram.ui.diagramContext"
+         commandId="org.bangbangbang.cvl.diagram.updateDiagram"
+         contextId="org.bangbangbang.cvl.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
@@ -562,9 +562,9 @@
          <command commandId="org.bangbangbang.cvl.diagram.LoadResourceAction">
             <visibleWhen>
                <and>
-                  <with variable="activePartId"><equals value="cvl.diagram.part.CVLMetamodelDiagramEditorID"/></with>
+                  <with variable="activePartId"><equals value="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="cvl.diagram.edit.parts.ConfigurableUnitEditPart"/>
+                     <instanceof value="org.bangbangbang.cvl.diagram.edit.parts.ConfigurableUnitEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -574,11 +574,11 @@
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
       <?gmfgen generated="true"?>
-      <category id="cvl.diagram.part.CVLMetamodelDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <category id="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
       <command id="org.bangbangbang.cvl.diagram.LoadResourceAction"
          name="Load Resource"
-         categoryId="cvl.diagram.part.CVLMetamodelDiagramEditorID"
-         defaultHandler="cvl.diagram.part.LoadResourceAction"/>
+         categoryId="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"
+         defaultHandler="org.bangbangbang.cvl.diagram.part.LoadResourceAction"/>
    </extension>
 
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
