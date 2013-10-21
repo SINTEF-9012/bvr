@@ -4,11 +4,11 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.bangbangbang.cvl.model.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: cvl.provider.CVLMetamodelEditPlugin$Implementation
+Bundle-Activator: org.bangbangbang.cvl.provider.CVLMetamodelEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: cvl.provider
+Export-Package: org.bangbangbang.cvl.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.bangbangbang.cvl.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport
