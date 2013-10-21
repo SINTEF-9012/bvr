@@ -534,13 +534,19 @@
       </linkHelper>
    </extension>
    <extension point="org.eclipse.ui.commands" id="update-cmd">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
          defaultHandler="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.bangbangbang.cvl.diagram.updateDiagram"
          name="%update.diagram.name"/>
+     <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.bangbangbang.cvl.diagram.custom.layout.TopDownWithouConstraintLayoutHandler"
+         description="CustomLayout"
+         id="org.bangbangbang.cvl.diagram.custom.layout.customLayout"
+         name="CustomLayout"/>
    </extension>
    
    <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
@@ -553,7 +559,7 @@
    </extension>
 
    <extension point="org.eclipse.ui.menus" id="context-menus">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
       </menuContribution>
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
@@ -570,6 +576,14 @@
             </visibleWhen>
          </command>
       </menuContribution>
+      <menuContribution locationURI="popup:org.eclipse.ui.popup.any?before=addGroup">
+         <command label="CustomLayout" 
+            commandId="org.bangbangbang.cvl.diagram.custom.layout.customLayout" style="push">
+             <visibleWhen>
+                  <with variable="activePartId"><equals value="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"/></with>
+            </visibleWhen>
+         </command>
+     </menuContribution>
    </extension>
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
@@ -584,6 +598,13 @@
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-
+   
+<extension point="org.eclipse.gmf.runtime.diagram.ui.layoutProviders">
+  <?gmfgen generated="false"?>
+  <layoutProvider class="org.bangbangbang.cvl.diagram.custom.layout.TopDownWithoutConstraintLayoutProvider">
+    <Priority name="Highest">
+    </Priority>
+  </layoutProvider>
+</extension>
    <!-- optionally, specify keybindings -->
 </plugin>
