@@ -36,8 +36,8 @@ import cvl.diagram.edit.parts.VariableNameEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */
@@ -332,13 +332,22 @@ public class CVLMetamodelVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private static boolean isChoice_2005(Choice domainElement) {
-		// FIXME: implement this method 
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException(
-				"No java implementation provided in 'isChoice_2005' operation"); //$NON-NLS-1$
+		/*
+		 * FIXED Choice have two uses: as Root choice and Child choice.
+		 * Choice_2005 means as Root choice. If ConfigurableUnit is container of
+		 * the choice, return true.
+		 */
+		if (domainElement.eContainer() != null
+				&& domainElement.eContainer().eClass().getName()
+						.indexOf("ConfigurableUnit") >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	/**
@@ -347,7 +356,7 @@ public class CVLMetamodelVisualIDRegistry {
 	public static boolean checkNodeVisualID(View containerView,
 			EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);
