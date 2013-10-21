@@ -5,7 +5,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>CVLMetamodel.ecore</foreignModel>
-  <genPackages prefix="Cvl" disposableProviderFactory="true" ecorePackage="CVLMetamodel.ecore#/">
+  <genPackages prefix="Cvl" basePackage="org.bangbangbang" disposableProviderFactory="true"
+      ecorePackage="CVLMetamodel.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="CVLMetamodel.ecore#//PrimitiveTypeEnum">
       <genEnumLiterals ecoreEnumLiteral="CVLMetamodel.ecore#//PrimitiveTypeEnum/String"/>
       <genEnumLiterals ecoreEnumLiteral="CVLMetamodel.ecore#//PrimitiveTypeEnum/Boolean"/>
