@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.VSpec;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -15,6 +18,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.helper.OCLHelper;
 
 public class OCLCustomUtil {
+	public static OCLCustomUtil instance;
 	public final static String[] LOGICAL_OPERATOR = { "and", "or", "xor",
 			"implies" };
 	public final static String[] OCL_TYPE = { "Integer", "Real", "String",
@@ -25,7 +29,21 @@ public class OCLCustomUtil {
 			"intersection", "including", "excluding", "oclIsKindOf",
 			"oclIsTypeOf", "oclAsType", "oclInState" };
 
+	public final static String[] CVL_TYPE = { "ChoiceResolutuion", "VInstance",
+			"type", "resolvedChoice", "decision", "resolvedVariable",
+			"VariableValueAssignment" };
+
+	private static List<String> keywordsInModel;
+
 	private OCLCustomUtil() {
+		keywordsInModel = new ArrayList<String>();
+	}
+
+	public static OCLCustomUtil getInstance() {
+		if (instance == null) {
+			instance = new OCLCustomUtil();
+		}
+		return instance;
 	}
 
 	public static List<String> getKeyword(String pref) {
@@ -39,7 +57,13 @@ public class OCLCustomUtil {
 		for (String s : COLLECTION_OPERATOR) {
 			keywords.add(s);
 		}
-		
+		for (String s : CVL_TYPE) {
+			keywords.add(s);
+		}
+		for (String s : keywordsInModel) {
+			keywords.add(s);
+		}
+
 		if (pref.equals("")) {
 			return keywords;
 		} else {
@@ -78,4 +102,19 @@ public class OCLCustomUtil {
 
 	}
 
+	public void setKeywordInModel(ConfigurableUnit root) {
+		EObject node;
+		keywordsInModel.clear();
+		for (TreeIterator<EObject> iterator = root.eAllContents(); iterator
+				.hasNext();) {
+			node = (EObject) iterator.next();
+			if (node instanceof VSpec && !((VSpec) node).getName().equals("")) {
+				keywordsInModel.add(((VSpec) node).getName());
+			}
+		}
+	}
+
+	public String[] getKeywordInModel() {
+		return keywordsInModel.toArray(new String[keywordsInModel.size()]);
+	}
 }

@@ -1,8 +1,5 @@
 package org.bangbangbang.cvl.diagram.custom.ocl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
@@ -10,17 +7,11 @@ import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
-import org.eclipse.jface.text.rules.IRule;
-import org.eclipse.jface.text.rules.IToken;
-import org.eclipse.jface.text.rules.IWordDetector;
-import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
-import org.eclipse.jface.text.rules.WordRule;
 import org.eclipse.jface.text.source.DefaultAnnotationHover;
 import org.eclipse.jface.text.source.IAnnotationHover;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
 
 public class OCLConfiguration extends SourceViewerConfiguration {
@@ -44,7 +35,7 @@ public class OCLConfiguration extends SourceViewerConfiguration {
 
 		{ // for default color and keyword highlight
 			RGB defaultColor = new RGB(0, 0, 0);
-			OclScanner scanner = new OclScanner();
+			OCLScanner scanner = new OCLScanner(colorManager);
 			scanner.setDefaultReturnToken(new Token(new TextAttribute(
 					colorManager.getColor(defaultColor))));
 
@@ -71,66 +62,10 @@ public class OCLConfiguration extends SourceViewerConfiguration {
 		assistant.setContentAssistProcessor(processor,
 				IDocument.DEFAULT_CONTENT_TYPE);
 		assistant.setShowEmptyList(true);
-		
+
 		assistant.install(sourceViewer);
 
 		return assistant;
 	}
 
-	private class OclScanner extends RuleBasedScanner {
-	
-		/**
-		 * @param colorManager
-		 */
-		public OclScanner() {
-			int style = 0;
-			RGB c = null;
-			IToken typeToken = null;
-			List<IRule> rules = new ArrayList<IRule>();
-
-			// LOGICAL_OPERATOR
-			c = new RGB(0, 0, 0);
-			style = SWT.BOLD;
-			typeToken = new Token(new TextAttribute(colorManager.getColor(c),
-					null, style));
-			rules.add(new OCLWordRule(OCLCustomUtil.LOGICAL_OPERATOR, typeToken));
-
-			// OCL_Type
-			c = new RGB(70, 70, 70);
-			style = SWT.BOLD;
-			typeToken = new Token(new TextAttribute(colorManager.getColor(c),
-					null, style));
-			rules.add(new OCLWordRule(OCLCustomUtil.OCL_TYPE, typeToken));
-
-			// COLLECTION_OPERATOR
-			c = new RGB(0, 0, 180);
-			style = SWT.BOLD;
-			typeToken = new Token(new TextAttribute(colorManager.getColor(c),
-					null, style));
-			rules.add(new OCLWordRule(OCLCustomUtil.COLLECTION_OPERATOR, typeToken));
-
-			setRules(rules.toArray(new IRule[rules.size()]));
-		}
-	}
-
-	private class OCLWordRule extends WordRule {
-		public OCLWordRule(String[] words, IToken token) {
-			super(new OCLWordDetector());
-			for (String word : words) {
-				addWord(word, token);
-			}
-		}
-	}
-
-	private class OCLWordDetector implements IWordDetector {
-		@Override
-		public boolean isWordStart(char c) {
-			return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z');
-		}
-
-		@Override
-		public boolean isWordPart(char c) {
-			return Character.isJavaIdentifierPart(c);
-		}
-	}
 }
