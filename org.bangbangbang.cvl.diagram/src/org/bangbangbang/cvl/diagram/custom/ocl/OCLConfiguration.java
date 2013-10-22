@@ -78,15 +78,7 @@ public class OCLConfiguration extends SourceViewerConfiguration {
 	}
 
 	private class OclScanner extends RuleBasedScanner {
-		final String[] LOGICAL_OPERATOR = { "and", "or", "xor", "implies" };
-		final String[] OCL_TYPE = { "Integer", "Real", "String", "Boolean",
-				"OclExpression", "OclType", "OclAny" };
-		final String[] COLLECTION_OPERATOR = { "asSequence", "sortBy", "size",
-				"isEmpty", "count", "sum", "select", "reject", "collect",
-				"forAll", "exists", "includes", "excludes", "union",
-				"intersection", "including", "excluding", "oclIsKindOf",
-				"oclIsTypeOf", "oclAsType", "oclInState" };
-
+	
 		/**
 		 * @param colorManager
 		 */
@@ -101,21 +93,21 @@ public class OCLConfiguration extends SourceViewerConfiguration {
 			style = SWT.BOLD;
 			typeToken = new Token(new TextAttribute(colorManager.getColor(c),
 					null, style));
-			rules.add(new OCLWordRule(LOGICAL_OPERATOR, typeToken));
+			rules.add(new OCLWordRule(OCLCustomUtil.LOGICAL_OPERATOR, typeToken));
 
 			// OCL_Type
 			c = new RGB(70, 70, 70);
 			style = SWT.BOLD;
 			typeToken = new Token(new TextAttribute(colorManager.getColor(c),
 					null, style));
-			rules.add(new OCLWordRule(OCL_TYPE, typeToken));
+			rules.add(new OCLWordRule(OCLCustomUtil.OCL_TYPE, typeToken));
 
 			// COLLECTION_OPERATOR
 			c = new RGB(0, 0, 180);
 			style = SWT.BOLD;
 			typeToken = new Token(new TextAttribute(colorManager.getColor(c),
 					null, style));
-			rules.add(new OCLWordRule(COLLECTION_OPERATOR, typeToken));
+			rules.add(new OCLWordRule(OCLCustomUtil.COLLECTION_OPERATOR, typeToken));
 
 			setRules(rules.toArray(new IRule[rules.size()]));
 		}

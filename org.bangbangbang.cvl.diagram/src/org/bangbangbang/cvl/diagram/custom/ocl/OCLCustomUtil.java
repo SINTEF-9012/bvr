@@ -1,5 +1,9 @@
 package org.bangbangbang.cvl.diagram.custom.ocl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.bangbangbang.cvl.CvlPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -11,7 +15,42 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.helper.OCLHelper;
 
 public class OCLCustomUtil {
+	public final static String[] LOGICAL_OPERATOR = { "and", "or", "xor",
+			"implies" };
+	public final static String[] OCL_TYPE = { "Integer", "Real", "String",
+			"Boolean", "OclExpression", "OclType", "OclAny" };
+	public final static String[] COLLECTION_OPERATOR = { "asSequence",
+			"sortBy", "size", "isEmpty", "count", "sum", "select", "reject",
+			"collect", "forAll", "exists", "includes", "excludes", "union",
+			"intersection", "including", "excluding", "oclIsKindOf",
+			"oclIsTypeOf", "oclAsType", "oclInState" };
+
 	private OCLCustomUtil() {
+	}
+
+	public static List<String> getKeyword(String pref) {
+		List<String> keywords = new ArrayList<String>();
+		for (String s : LOGICAL_OPERATOR) {
+			keywords.add(s);
+		}
+		for (String s : OCL_TYPE) {
+			keywords.add(s);
+		}
+		for (String s : COLLECTION_OPERATOR) {
+			keywords.add(s);
+		}
+		
+		if (pref.equals("")) {
+			return keywords;
+		} else {
+			for (Iterator<String> i = keywords.iterator(); i.hasNext();) {
+				if (!i.next().startsWith(pref)) {
+					i.remove();
+				}
+			}
+			return keywords;
+		}
+
 	}
 
 	public static boolean checkSyntax(String oclString) throws ParserException {

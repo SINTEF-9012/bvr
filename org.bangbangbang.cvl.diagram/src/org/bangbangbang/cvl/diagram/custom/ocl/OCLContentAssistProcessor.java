@@ -3,6 +3,8 @@ package org.bangbangbang.cvl.diagram.custom.ocl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
@@ -11,23 +13,44 @@ import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 public class OCLContentAssistProcessor implements IContentAssistProcessor {
-	final String[] LOGICAL_OPERATOR = { "and", "or", "xor", "implies" };
-	final String[] OCL_TYPE = { "Integer", "Real", "String", "Boolean",
-			"OclExpression", "OclType", "OclAny" };
-	final String[] COLLECTION_OPERATOR = { "asSequence", "sortBy", "size",
-			"isEmpty", "count", "sum", "select", "reject", "collect",
-			"forAll", "exists", "includes", "excludes", "union",
-			"intersection", "including", "excluding", "oclIsKindOf",
-			"oclIsTypeOf", "oclAsType", "oclInState" };
 
 	@Override
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
 			int offset) {
-		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>(COLLECTION_OPERATOR.length);
-		for (String s : COLLECTION_OPERATOR) {
-			list.add(new CompletionProposal(s, offset, 0, s.length()));
+
+		String prefix = getPrefix(viewer.getDocument(), offset);
+
+		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>(
+				OCLCustomUtil.getKeyword(prefix).size());
+		for (String s : OCLCustomUtil.getKeyword(prefix)) {
+			list.add(new CompletionProposal(s, offset - prefix.length(), prefix
+					.length() , s.length()));
 		}
 		return list.toArray(new ICompletionProposal[list.size()]);
+	}
+
+	private String getPrefix(IDocument doc, int offset) {
+		int n = offset - 1;
+		for (; n >= 0; n--) {
+			char c;
+			try {
+				c = doc.getChar(n);
+			} catch (org.eclipse.jface.text.BadLocationException e) {
+				break;
+			}
+			if (Character.isJavaIdentifierPart(c)) {
+				continue;
+			} else {
+				break;
+			}
+		}
+
+		n++;
+		try {
+			return doc.get(n, offset - n);
+		} catch (BadLocationException e) {
+			return "";
+		}
 	}
 
 	@Override
