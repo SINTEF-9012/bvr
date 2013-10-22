@@ -13,7 +13,6 @@ import org.eclipse.jface.text.ITextViewerExtension2;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.MatchingCharacterPainter;
-import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.source.VerticalRuler;
 import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.ocl.ParserException;
@@ -29,7 +28,7 @@ import org.eclipse.swt.widgets.MessageBox;
 
 public class ConstraintDialog extends Dialog {
 	public static final int VERIFY_ID = 10000;
-	private SourceViewer sourceViewer = null;
+	private OCLSourceViewer sourceViewer = null;
 	private Document document = null;
 
 	protected ConstraintDialog(IShellProvider parentShell) {
@@ -135,8 +134,8 @@ public class ConstraintDialog extends Dialog {
 			switch (e.keyCode) {
 			case ' ':
 				if ((e.stateMask & SWT.CTRL) == SWT.CTRL) {
-					sourceViewer.getQuickAssistAssistant()
-							.showPossibleQuickAssists();
+					sourceViewer.getContentAssistant()
+							.showPossibleCompletions();
 				}
 			}
 		}

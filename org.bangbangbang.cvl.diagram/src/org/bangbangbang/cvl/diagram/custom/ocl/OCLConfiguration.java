@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
@@ -59,6 +61,20 @@ public class OCLConfiguration extends SourceViewerConfiguration {
 		}
 
 		return reconciler;
+	}
+
+	@Override
+	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
+		ContentAssistant assistant = new ContentAssistant();
+
+		OCLContentAssistProcessor processor = new OCLContentAssistProcessor();
+		assistant.setContentAssistProcessor(processor,
+				IDocument.DEFAULT_CONTENT_TYPE);
+		assistant.setShowEmptyList(true);
+		
+		assistant.install(sourceViewer);
+
+		return assistant;
 	}
 
 	private class OclScanner extends RuleBasedScanner {
