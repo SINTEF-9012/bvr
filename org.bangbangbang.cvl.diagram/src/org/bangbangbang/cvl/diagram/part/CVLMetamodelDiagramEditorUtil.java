@@ -11,6 +11,9 @@ import java.util.Set;
 
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
+import org.bangbangbang.cvl.PrimitiveTypeEnum;
+import org.bangbangbang.cvl.PrimitveType;
+import org.bangbangbang.cvl.Variabletype;
 import org.bangbangbang.cvl.diagram.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -24,6 +27,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -134,7 +138,9 @@ public class CVLMetamodelDiagramEditorUtil {
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
+	 * This method should be called within a workspace modify operation since it
+	 * creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI,
@@ -199,19 +205,49 @@ public class CVLMetamodelDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Create a new instance of domain element associated with canvas. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	private static ConfigurableUnit createInitialModel() {
-		return CvlFactory.eINSTANCE.createConfigurableUnit();
+		ConfigurableUnit cu = CvlFactory.eINSTANCE.createConfigurableUnit();
+		EList<Variabletype> types = cu.getOwnedVariabletype();
+
+		PrimitveType type = null;
+
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("INTEGER");
+		type.setType(PrimitiveTypeEnum.INTEGER);
+		types.add(type);
+		
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("BOOLEAN");
+		type.setType(PrimitiveTypeEnum.BOOLEAN);
+		types.add(type);
+		
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("STRING");
+		type.setType(PrimitiveTypeEnum.STRING);
+		types.add(type);
+		
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("REAL");
+		type.setType(PrimitiveTypeEnum.REAL);
+		types.add(type);
+		
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("UNLIMITED_NATURAL");
+		type.setType(PrimitiveTypeEnum.UNLIMITED_NATURAL);
+		types.add(type);
+		
+		return cu;
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Store model element in the resource. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(ConfigurableUnit model,
@@ -263,7 +299,8 @@ public class CVLMetamodelDiagramEditorUtil {
 		@SuppressWarnings("unchecked")
 		List<EditPart> associatedParts = viewer.findEditPartsForElement(
 				elementID, IGraphicalEditPart.class);
-		// perform the possible hierarchy disjoint -> take the top-most parts only
+		// perform the possible hierarchy disjoint -> take the top-most parts
+		// only
 		for (EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
 			while (parentPart != null && !associatedParts.contains(parentPart)) {
@@ -314,7 +351,9 @@ public class CVLMetamodelDiagramEditorUtil {
 	}
 
 	/**
-	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 * XXX This is quite suspicious code (especially editPartTmpHolder) and
+	 * likely to be removed soon
+	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -347,12 +386,16 @@ public class CVLMetamodelDiagramEditorUtil {
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap<EObject, View>();
-				// map possible notation elements to itself as these can't be found by view.getElement()
+				// map possible notation elements to itself as these can't be
+				// found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, view); // take only those that part of our diagram
+							element2ViewMap.put(element, view); // take only
+																// those that
+																// part of our
+																// diagram
 						}
 					}
 				}
@@ -398,6 +441,6 @@ public class CVLMetamodelDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }
