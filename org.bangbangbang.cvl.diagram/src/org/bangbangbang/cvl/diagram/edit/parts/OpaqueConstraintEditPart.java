@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.diagram.edit.policies.OpaqueConstraintCanonicalEditPolicy;
 import org.bangbangbang.cvl.diagram.edit.policies.OpaqueConstraintItemSemanticEditPolicy;
 import org.bangbangbang.cvl.diagram.part.CVLMetamodelVisualIDRegistry;
@@ -35,6 +36,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 
@@ -75,7 +77,8 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new OpaqueConstraintCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -180,7 +183,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	 * Body of this method does not depend on settings in generation model so
 	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
@@ -188,6 +191,11 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		IFigure shape = createNodeShape();
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
+
+		// Set property of type to OCL
+		((OpaqueConstraint) ((Node) OpaqueConstraintEditPart.this.getModel())
+				.getElement()).setConstraintLanguage("OCL");
+
 		return figure;
 	}
 
