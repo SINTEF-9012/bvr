@@ -14,11 +14,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bangbangbang.cvl.BooleanLiteralExp;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.IntegerLiteralExp;
+import org.bangbangbang.cvl.PrimitiveTypeEnum;
+import org.bangbangbang.cvl.PrimitiveValueSpecification;
+import org.bangbangbang.cvl.PrimitveType;
+import org.bangbangbang.cvl.RealLiteralExp;
+import org.bangbangbang.cvl.StringLiteralExp;
+import org.bangbangbang.cvl.UnlimitedLiteralExp;
+import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
+import org.bangbangbang.cvl.Variable;
+import org.bangbangbang.cvl.VariableValueAssignment;
 import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -979,9 +990,9 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 *
 	 */
 	class ResolutionLabelProvider implements ITableLabelProvider {
-		List<Choice> headers;
+		List<VSpec> headers;
 
-		public void setHeaders(List<Choice> headers) {
+		public void setHeaders(List<VSpec> headers) {
 			this.headers = headers;
 		}
 
@@ -1014,7 +1025,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 			if (columnIndex == 0) {
 				return cr.getName();
 			} else if (columnIndex == 1) {
-				Choice target = headers.get(columnIndex - 1);
+				Choice target = (Choice) headers.get(columnIndex - 1);
 				if (cr.getResolvedChoice() == target) {
 					if (cr.isDecision()) {
 						return "X";
@@ -1023,10 +1034,14 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 					}
 				}
 			} else {
-				Choice target = headers.get(columnIndex - 1);
+				VSpec target = (VSpec) headers.get(columnIndex - 1);
 				for (TreeIterator<EObject> iterator = cr.eAllContents(); iterator
 						.hasNext();) {
-					VSpecResolution vr = (VSpecResolution) iterator.next();
+					EObject obj = (EObject) iterator.next();
+					if (!(obj instanceof VSpecResolution)) {
+						continue;
+					}
+					VSpecResolution vr = (VSpecResolution) obj;
 					if (vr instanceof ChoiceResolutuion
 							&& ((ChoiceResolutuion) vr).getResolvedChoice() == target) {
 						if (((ChoiceResolutuion) vr).isDecision()) {
@@ -1034,11 +1049,40 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 						} else {
 							return "";
 						}
+					} else if (vr instanceof VariableValueAssignment
+							&& ((VariableValueAssignment) vr)
+									.getResolvedVariable() == target) {
+						PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) vr)
+								.getResolvedVariable()).getType()).getType();
+
+						if (type == PrimitiveTypeEnum.INTEGER) {
+							return String
+									.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
+											.getValue()).getExpression())
+											.getInteger());
+						} else if (type == PrimitiveTypeEnum.REAL) {
+							return ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
+									.getValue()).getExpression()).getReal();
+						} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+							return String
+									.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
+											.getValue()).getExpression())
+											.getUnlimited());
+						} else if (type == PrimitiveTypeEnum.BOOLEAN) {
+							return String
+									.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
+											.getValue()).getExpression())
+											.isBool());
+						} else if (type == PrimitiveTypeEnum.STRING) {
+							return ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
+									.getValue()).getExpression()).getString();
+						}
 					}
 				}
 			}
 			return "n/a";
 		}
+
 	}
 
 	class ResolutionContentProvider implements IStructuredContentProvider {
@@ -1067,13 +1111,15 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 
 	}
 
-	private List<Choice> createTableColumns(ConfigurableUnit cu) {
-		List<Choice> headers = new ArrayList<Choice>();
+	private List<VSpec> createTableColumns(ConfigurableUnit cu) {
+		List<VSpec> headers = new ArrayList<VSpec>();
 		for (TreeIterator<EObject> iterator = cu.eAllContents(); iterator
 				.hasNext();) {
 			EObject element = iterator.next();
 			if (element instanceof Choice) {
 				headers.add((Choice) element);
+			} else if (element instanceof Variable) {
+				headers.add((Variable) element);
 			}
 		}
 		return headers;
@@ -1300,13 +1346,13 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				firstColumn.setText("Product");
 				firstColumn.setResizable(true);
 
-				List<Choice> headers = createTableColumns((ConfigurableUnit) editingDomain
+				List<VSpec> headers = createTableColumns((ConfigurableUnit) editingDomain
 						.getResourceSet().getResources().get(0).getContents()
 						.get(0));
-				for (Choice choice : headers) {
+				for (VSpec vs : headers) {
 					TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
 					layout.addColumnData(new ColumnWeightData(2, 10, true));
-					selfColumn.setText(choice.getName());
+					selfColumn.setText(vs.getName());
 					selfColumn.setResizable(true);
 				}
 
