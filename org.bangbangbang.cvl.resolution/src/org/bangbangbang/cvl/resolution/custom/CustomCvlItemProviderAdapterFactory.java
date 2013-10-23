@@ -48,7 +48,7 @@ public class CustomCvlItemProviderAdapterFactory extends
 	 * {@link cvl.ChoiceResolutuion} instances. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CustomChoiceResolutuionItemProvider choiceResolutuionItemProvider;
 
@@ -56,7 +56,7 @@ public class CustomCvlItemProviderAdapterFactory extends
 	 * This creates an adapter for a {@link cvl.ChoiceResolutuion}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Adapter createChoiceResolutuionAdapter() {
@@ -67,4 +67,31 @@ public class CustomCvlItemProviderAdapterFactory extends
 
 		return choiceResolutuionItemProvider;
 	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.bangbangbang.cvl.VariableValueAssignment} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	protected CustomVariableValueAssignmentItemProvider variableValueAssignmentItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link org.bangbangbang.cvl.VariableValueAssignment}. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public Adapter createVariableValueAssignmentAdapter() {
+		if (variableValueAssignmentItemProvider == null) {
+			variableValueAssignmentItemProvider = new CustomVariableValueAssignmentItemProvider(
+					this);
+		}
+
+		return variableValueAssignmentItemProvider;
+	}
+
 }

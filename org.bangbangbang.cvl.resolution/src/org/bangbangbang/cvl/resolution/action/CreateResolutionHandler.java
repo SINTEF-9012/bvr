@@ -1,12 +1,19 @@
 package org.bangbangbang.cvl.resolution.action;
 
+import org.bangbangbang.cvl.BCLExpression;
+import org.bangbangbang.cvl.BooleanLiteralExp;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.IntegerLiteralExp;
+import org.bangbangbang.cvl.PrimitiveTypeEnum;
 import org.bangbangbang.cvl.PrimitiveValueSpecification;
+import org.bangbangbang.cvl.PrimitveType;
+import org.bangbangbang.cvl.RealLiteralExp;
+import org.bangbangbang.cvl.StringLiteralExp;
+import org.bangbangbang.cvl.UnlimitedLiteralExp;
 import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VInstance;
 import org.bangbangbang.cvl.VSpec;
@@ -178,16 +185,42 @@ public class CreateResolutionHandler implements IHandler {
 			VariableValueAssignment vva = CvlFactory.eINSTANCE
 					.createVariableValueAssignment();
 
-			// TODO type variable
 			PrimitiveValueSpecification vs = CvlFactory.eINSTANCE
 					.createPrimitiveValueSpecification();
-			IntegerLiteralExp integer = CvlFactory.eINSTANCE
-					.createIntegerLiteralExp();
-			integer.setInteger(0);
-			vs.setExpression(integer);
+			BCLExpression exp = null;
+			if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.BOOLEAN){
+				exp = CvlFactory.eINSTANCE
+						.createBooleanLiteralExp();
+				//TODO default value
+				((BooleanLiteralExp)exp).setBool(false);
+			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.INTEGER){
+				exp = CvlFactory.eINSTANCE
+						.createIntegerLiteralExp();
+				//TODO default value
+				((IntegerLiteralExp)exp).setInteger(0);
+			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.REAL){
+				exp = CvlFactory.eINSTANCE
+						.createRealLiteralExp();
+				//TODO default value
+				((RealLiteralExp)exp).setReal("0.0");
+			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.UNLIMITED_NATURAL){
+				exp = CvlFactory.eINSTANCE
+						.createUnlimitedLiteralExp();
+				//TODO default value
+				((UnlimitedLiteralExp)exp).setUnlimited(0);
+			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.STRING){
+				exp = CvlFactory.eINSTANCE
+						.createStringLiteralExp();
+				//TODO default value
+				((StringLiteralExp)exp).setString("");
+			}
+			
+			vs.setExpression(exp);
 			vs.setType(object.getType());
 			vva.setValue(vs);
-
+			vva.setResolvedVariable(object);
+			vva.setResolvedVSpec(object);
+			
 			if (object.eContainer() instanceof ConfigurableUnit) {
 				root = (VSpecResolution) vva;
 				Command addCommand = AddCommand.create(editingDomain, cu,
@@ -212,7 +245,6 @@ public class CreateResolutionHandler implements IHandler {
 			}
 			return super.caseVariable(object);
 		}
-
 	}
 
 	@Override
