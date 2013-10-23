@@ -295,9 +295,9 @@ public class ConfigurableUnitImpl extends CompositeVariationPointImpl implements
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT 
-	 * Comment out in this method for GMF diagram editor
-	 * Because ConfigurableUnit needs VInterface reference in ecore model as definition.
+	 * @generated NOT Comment out in this method for GMF diagram editor Because
+	 *            ConfigurableUnit needs VInterface reference in ecore model as
+	 *            definition.
 	 */
 	public VInterface basicGetUnitInterface() {
 		return null;

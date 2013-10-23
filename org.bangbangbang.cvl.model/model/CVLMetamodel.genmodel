@@ -37,11 +37,11 @@
     </genEnums>
     <genClasses ecoreClass="CVLMetamodel.ecore#//Choice">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//Choice/isImpliedByParent"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//Choice/defaultResolution"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//Choice/defaultResolution"/>
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//VSpec">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VSpec/groupMultiplicity"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//VSpec/resolutionTime"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//VSpec/resolutionTime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VSpec/ownedVSpecDerivation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VSpec/child"/>
     </genClasses>
@@ -107,7 +107,8 @@
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//BaseModelHandle"/>
     <genClasses ecoreClass="CVLMetamodel.ecore#//Variable">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//Variable/replacementFragmentTypesubsetstype"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference CVLMetamodel.ecore#//Variable/replacementFragmentTypesubsetstype"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//Variable/defaulValue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//Variable/type"/>
     </genClasses>
