@@ -6,12 +6,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.bangbangbang.cvl.BooleanLiteralExp;
 import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.IntegerLiteralExp;
 import org.bangbangbang.cvl.PrimitiveTypeEnum;
 import org.bangbangbang.cvl.PrimitiveValueSpecification;
 import org.bangbangbang.cvl.PrimitveType;
+import org.bangbangbang.cvl.RealLiteralExp;
+import org.bangbangbang.cvl.StringLiteralExp;
+import org.bangbangbang.cvl.UnlimitedLiteralExp;
 import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.VariableValueAssignment;
 import org.bangbangbang.cvl.provider.VSpecResolutionItemProvider;
@@ -39,6 +43,9 @@ public class CustomVariableValueAssignmentItemProvider extends
 		VSpecResolutionItemProvider implements IEditingDomainItemProvider,
 		IStructuredItemContentProvider, ITreeItemContentProvider,
 		IItemLabelProvider, IItemPropertySource {
+
+	private ItemPropertyDescriptor valuePropertyDescriptor = null;
+
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -62,6 +69,9 @@ public class CustomVariableValueAssignmentItemProvider extends
 			super.getPropertyDescriptors(object);
 
 			addResolvedVariablePropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
+		}else {
+			itemPropertyDescriptors.remove(valuePropertyDescriptor);
 			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -96,14 +106,14 @@ public class CustomVariableValueAssignmentItemProvider extends
 	 * @generated NOT
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		// TODO other type
+		PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
+				.getResolvedVariable()).getType()).getType();
 
-		if (((PrimitveType) ((Variable) ((VariableValueAssignment) object)
-				.getResolvedVariable()).getType()).getType() == PrimitiveTypeEnum.INTEGER) {
-
-			itemPropertyDescriptors.add(new ItemPropertyDescriptor(
+		if (type == PrimitiveTypeEnum.INTEGER) {
+			valuePropertyDescriptor = new ItemPropertyDescriptor(
 					((ComposeableAdapterFactory) adapterFactory)
-							.getRootAdapterFactory(), getResourceLocator(),
+							.getRootAdapterFactory(),
+					getResourceLocator(),
 					getString("_UI_IntegerLiteralExp_integer_feature"),
 					getString("_UI_PropertyDescriptor_description",
 							"_UI_IntegerLiteralExp_integer_feature",
@@ -126,8 +136,126 @@ public class CustomVariableValueAssignmentItemProvider extends
 							.getValue()).getExpression())
 							.setInteger(((Integer) value).intValue());
 				}
+			};
+			itemPropertyDescriptors.add(valuePropertyDescriptor);
+		} else if (type == PrimitiveTypeEnum.REAL) {
+			valuePropertyDescriptor = new ItemPropertyDescriptor(
+					((ComposeableAdapterFactory) adapterFactory)
+							.getRootAdapterFactory(),
+					getResourceLocator(),
+					getString("_UI_RealLiteralExp_real_feature"), getString(
+							"_UI_PropertyDescriptor_description",
+							"_UI_RealLiteralExp_real_feature",
+							"_UI_RealLiteralExp_type"),
+					CvlPackage.Literals.REAL_LITERAL_EXP__REAL, true, false,
+					false, ItemPropertyDescriptor.TEXT_VALUE_IMAGE, null, null) {
 
-			});
+				@Override
+				public Object getPropertyValue(Object object) {
+					// TODO null pointer exception
+					return ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).getReal();
+				}
+
+				@Override
+				public void setPropertyValue(Object object, Object value) {
+					// TODO null pointer exception
+					((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression())
+							.setReal((String) value);
+				}
+			};
+			itemPropertyDescriptors.add(valuePropertyDescriptor);
+		} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+			valuePropertyDescriptor = new ItemPropertyDescriptor(
+					((ComposeableAdapterFactory) adapterFactory)
+							.getRootAdapterFactory(),
+					getResourceLocator(),
+					getString("_UI_UnlimitedLiteralExp_unlimited_feature"),
+					getString("_UI_PropertyDescriptor_description",
+							"_UI_UnlimitedLiteralExp_unlimited_feature",
+							"_UI_UnlimitedLiteralExp_type"),
+					CvlPackage.Literals.UNLIMITED_LITERAL_EXP__UNLIMITED, true,
+					false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+					null, null) {
+
+				@Override
+				public Object getPropertyValue(Object object) {
+					// TODO null pointer exception
+					return ((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).getUnlimited();
+				}
+
+				@Override
+				public void setPropertyValue(Object object, Object value) {
+					// TODO null pointer exception
+					((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression())
+							.setUnlimited(((Integer) value).intValue());
+				}
+
+			};
+			itemPropertyDescriptors.add(valuePropertyDescriptor);
+		} else if (type == PrimitiveTypeEnum.BOOLEAN) {
+			valuePropertyDescriptor = new ItemPropertyDescriptor(
+					((ComposeableAdapterFactory) adapterFactory)
+							.getRootAdapterFactory(),
+					getResourceLocator(),
+					getString("_UI_BooleanLiteralExp_bool_feature"), getString(
+							"_UI_PropertyDescriptor_description",
+							"_UI_BooleanLiteralExp_bool_feature",
+							"_UI_BooleanLiteralExp_type"),
+					CvlPackage.Literals.BOOLEAN_LITERAL_EXP__BOOL, true, false,
+					false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
+					null) {
+
+				@Override
+				public Object getPropertyValue(Object object) {
+					// TODO null pointer exception
+					return ((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).isBool();
+				}
+
+				@Override
+				public void setPropertyValue(Object object, Object value) {
+					// TODO null pointer exception
+					((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression())
+							.setBool(((Boolean) value).booleanValue());
+				}
+
+			};
+			itemPropertyDescriptors.add(valuePropertyDescriptor);
+		} else if (type == PrimitiveTypeEnum.STRING) {
+			valuePropertyDescriptor = new ItemPropertyDescriptor(
+					((ComposeableAdapterFactory) adapterFactory)
+							.getRootAdapterFactory(),
+					getResourceLocator(),
+					getString("_UI_StringLiteralExp_string_feature"),
+					getString("_UI_PropertyDescriptor_description",
+							"_UI_StringLiteralExp_string_feature",
+							"_UI_StringLiteralExp_type"),
+					CvlPackage.Literals.STRING_LITERAL_EXP__STRING, true,
+					false, false, ItemPropertyDescriptor.TEXT_VALUE_IMAGE,
+					null, null) {
+
+				@Override
+				public Object getPropertyValue(Object object) {
+					// TODO null pointer exception
+					return ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).getString();
+				}
+
+				@Override
+				public void setPropertyValue(Object object, Object value) {
+					// TODO null pointer exception
+					((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression())
+							.setString((String) value);
+				}
+
+			};
+			itemPropertyDescriptors.add(valuePropertyDescriptor);
 		}
 
 	}
@@ -189,9 +317,38 @@ public class CustomVariableValueAssignmentItemProvider extends
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((VariableValueAssignment) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_VariableValueAssignment_type")
-				: getString("_UI_VariableValueAssignment_type") + " " + label;
+		String label = getString("_UI_VariableValueAssignment_type");
+		label += " "
+				+ ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
+						.getResolvedVariable()).getType()).getName();
+		label += " "
+				+ ((Variable) ((VariableValueAssignment) object)
+						.getResolvedVariable()).getName();
+		label += ": ";
+
+		PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
+				.getResolvedVariable()).getType()).getType();
+
+		if (type == PrimitiveTypeEnum.INTEGER) {
+			label += String
+					.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).getInteger());
+		} else if (type == PrimitiveTypeEnum.REAL) {
+			label += ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+					.getValue()).getExpression()).getReal();
+		} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+			label += String
+					.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).getUnlimited());
+		} else if (type == PrimitiveTypeEnum.BOOLEAN) {
+			label += String
+					.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression()).isBool());
+		} else if (type == PrimitiveTypeEnum.STRING) {
+			label += ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+					.getValue()).getExpression()).getString();
+		}
+		return label;
 	}
 
 	/**
