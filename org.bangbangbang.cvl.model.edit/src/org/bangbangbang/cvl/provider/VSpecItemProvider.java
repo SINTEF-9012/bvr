@@ -79,7 +79,7 @@ public class VSpecItemProvider
 				 getString("_UI_VSpec_resolutionTime_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_resolutionTime_feature", "_UI_VSpec_type"),
 				 CvlPackage.Literals.VSPEC__RESOLUTION_TIME,
-				 true,
+				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,

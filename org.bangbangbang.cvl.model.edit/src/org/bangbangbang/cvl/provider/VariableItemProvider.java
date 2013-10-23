@@ -79,7 +79,7 @@ public class VariableItemProvider
 				 getString("_UI_Variable_replacementFragmentTypesubsetstype_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_replacementFragmentTypesubsetstype_feature", "_UI_Variable_type"),
 				 CvlPackage.Literals.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE,
-				 true,
+				 false,
 				 false,
 				 true,
 				 null,

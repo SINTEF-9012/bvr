@@ -99,7 +99,7 @@ public class ChoiceItemProvider
 				 getString("_UI_Choice_defaultResolution_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_defaultResolution_feature", "_UI_Choice_type"),
 				 CvlPackage.Literals.CHOICE__DEFAULT_RESOLUTION,
-				 true,
+				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
