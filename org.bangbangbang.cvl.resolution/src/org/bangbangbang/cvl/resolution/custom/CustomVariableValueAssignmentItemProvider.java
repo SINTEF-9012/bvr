@@ -2,6 +2,7 @@
  */
 package org.bangbangbang.cvl.resolution.custom;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -144,12 +145,12 @@ public class CustomVariableValueAssignmentItemProvider extends
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(
 			Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE);
-		}
-		return childrenFeatures;
+		// if (childrenFeatures == null) {
+		// super.getChildrenFeatures(object);
+		// childrenFeatures
+		// .add(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE);
+		// }
+		return new ArrayList<EStructuralFeature>();
 	}
 
 	/**
