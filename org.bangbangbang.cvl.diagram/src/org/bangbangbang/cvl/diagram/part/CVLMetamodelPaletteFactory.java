@@ -34,39 +34,23 @@ public class CVLMetamodelPaletteFactory {
 		PaletteGroup paletteContainer = new PaletteGroup(
 				Messages.Cvl1Group_title);
 		paletteContainer.setId("createCvl1Group"); //$NON-NLS-1$
-		paletteContainer.add(createRootChoice1CreationTool());
-		paletteContainer.add(createVSpecChild2CreationTool());
-		paletteContainer.add(createVSpecGroupMultiplicity3CreationTool());
-		paletteContainer.add(createOpaqueConstraint4CreationTool());
-		paletteContainer.add(createOpaqueConstraintLink5CreationTool());
+		paletteContainer.add(createVSpecChild1CreationTool());
+		paletteContainer.add(createVSpecGroupMultiplicity2CreationTool());
+		paletteContainer.add(createOpaqueConstraint3CreationTool());
+		paletteContainer.add(createOpaqueConstraintLink4CreationTool());
 		return paletteContainer;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ToolEntry createRootChoice1CreationTool() {
-		NodeToolEntry entry = new NodeToolEntry(
-				Messages.RootChoice1CreationTool_title,
-				Messages.RootChoice1CreationTool_desc,
-				Collections.singletonList(CVLMetamodelElementTypes.Choice_2005));
-		entry.setId("createRootChoice1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelElementTypes
-				.getImageDescriptor(CVLMetamodelElementTypes.Choice_2005));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createVSpecChild2CreationTool() {
+	private ToolEntry createVSpecChild1CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.VSpecChild2CreationTool_title,
-				Messages.VSpecChild2CreationTool_desc,
+				Messages.VSpecChild1CreationTool_title,
+				Messages.VSpecChild1CreationTool_desc,
 				Collections
 						.singletonList(CVLMetamodelElementTypes.VSpecChild_4001));
-		entry.setId("createVSpecChild2CreationTool"); //$NON-NLS-1$
+		entry.setId("createVSpecChild1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(CVLMetamodelElementTypes
 				.getImageDescriptor(CVLMetamodelElementTypes.VSpecChild_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -76,15 +60,15 @@ public class CVLMetamodelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createVSpecGroupMultiplicity3CreationTool() {
+	private ToolEntry createVSpecGroupMultiplicity2CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(CVLMetamodelElementTypes.MultiplicityInterval_3002);
 		types.add(CVLMetamodelElementTypes.MultiplicityInterval_3003);
 		types.add(CVLMetamodelElementTypes.MultiplicityInterval_3004);
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.VSpecGroupMultiplicity3CreationTool_title,
-				Messages.VSpecGroupMultiplicity3CreationTool_desc, types);
-		entry.setId("createVSpecGroupMultiplicity3CreationTool"); //$NON-NLS-1$
+				Messages.VSpecGroupMultiplicity2CreationTool_title,
+				Messages.VSpecGroupMultiplicity2CreationTool_desc, types);
+		entry.setId("createVSpecGroupMultiplicity2CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(CVLMetamodelElementTypes
 				.getImageDescriptor(CVLMetamodelElementTypes.MultiplicityInterval_3002));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -94,13 +78,13 @@ public class CVLMetamodelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createOpaqueConstraint4CreationTool() {
+	private ToolEntry createOpaqueConstraint3CreationTool() {
 		NodeToolEntry entry = new NodeToolEntry(
-				Messages.OpaqueConstraint4CreationTool_title,
-				Messages.OpaqueConstraint4CreationTool_desc,
+				Messages.OpaqueConstraint3CreationTool_title,
+				Messages.OpaqueConstraint3CreationTool_desc,
 				Collections
 						.singletonList(CVLMetamodelElementTypes.OpaqueConstraint_2014));
-		entry.setId("createOpaqueConstraint4CreationTool"); //$NON-NLS-1$
+		entry.setId("createOpaqueConstraint3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(CVLMetamodelElementTypes
 				.getImageDescriptor(CVLMetamodelElementTypes.OpaqueConstraint_2014));
 		entry.setLargeIcon(entry.getSmallIcon());
@@ -110,13 +94,13 @@ public class CVLMetamodelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createOpaqueConstraintLink5CreationTool() {
+	private ToolEntry createOpaqueConstraintLink4CreationTool() {
 		LinkToolEntry entry = new LinkToolEntry(
-				Messages.OpaqueConstraintLink5CreationTool_title,
-				Messages.OpaqueConstraintLink5CreationTool_desc,
+				Messages.OpaqueConstraintLink4CreationTool_title,
+				Messages.OpaqueConstraintLink4CreationTool_desc,
 				Collections
 						.singletonList(CVLMetamodelElementTypes.ConstraintContext_4003));
-		entry.setId("createOpaqueConstraintLink5CreationTool"); //$NON-NLS-1$
+		entry.setId("createOpaqueConstraintLink4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(CVLMetamodelElementTypes
 				.getImageDescriptor(CVLMetamodelElementTypes.ConstraintContext_4003));
 		entry.setLargeIcon(entry.getSmallIcon());

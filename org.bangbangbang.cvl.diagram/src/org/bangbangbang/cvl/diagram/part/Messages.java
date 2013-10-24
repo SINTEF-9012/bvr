@@ -248,52 +248,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String RootChoice1CreationTool_title;
+	public static String VSpecChild1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RootChoice1CreationTool_desc;
+	public static String VSpecChild1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String VSpecChild2CreationTool_title;
+	public static String VSpecGroupMultiplicity2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String VSpecChild2CreationTool_desc;
+	public static String VSpecGroupMultiplicity2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String VSpecGroupMultiplicity3CreationTool_title;
+	public static String OpaqueConstraint3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String VSpecGroupMultiplicity3CreationTool_desc;
+	public static String OpaqueConstraint3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String OpaqueConstraint4CreationTool_title;
+	public static String OpaqueConstraintLink4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String OpaqueConstraint4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String OpaqueConstraintLink5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String OpaqueConstraintLink5CreationTool_desc;
+	public static String OpaqueConstraintLink4CreationTool_desc;
 
 	/**
 	 * @generated

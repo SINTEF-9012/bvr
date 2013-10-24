@@ -157,8 +157,7 @@ public class ChoiceEditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof ChoiceChoiceGroupMultiplicityCompartment2EditPart) {
 			IFigure pane = getPrimaryShape()
 					.getFigureChoiceGroupMultiplicityCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ChoiceChoiceGroupMultiplicityCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
