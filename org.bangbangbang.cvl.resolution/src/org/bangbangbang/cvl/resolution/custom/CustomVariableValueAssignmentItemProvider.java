@@ -21,7 +21,10 @@ import org.bangbangbang.cvl.VariableValueAssignment;
 import org.bangbangbang.cvl.provider.VSpecResolutionItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -73,6 +76,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 		} else {
 			itemPropertyDescriptors.remove(valuePropertyDescriptor);
 			addValuePropertyDescriptor(object);
+
 		}
 		return itemPropertyDescriptors;
 	}
@@ -133,9 +137,17 @@ public class CustomVariableValueAssignmentItemProvider extends
 				@Override
 				public void setPropertyValue(Object object, Object value) {
 					// TODO null pointer exception
-					((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression())
-							.setInteger(((Integer) value).intValue());
+					EditingDomain editingDomain = getEditingDomain(object);
+					EObject eObject = (IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression();
+					if (editingDomain == null) {
+						eObject.eSet(feature, value);
+					} else {
+						editingDomain.getCommandStack().execute(
+								SetCommand.create(editingDomain,
+										getCommandOwner(eObject), feature,
+										value));
+					}
 				}
 			};
 			itemPropertyDescriptors.add(valuePropertyDescriptor);
@@ -161,9 +173,17 @@ public class CustomVariableValueAssignmentItemProvider extends
 				@Override
 				public void setPropertyValue(Object object, Object value) {
 					// TODO null pointer exception
-					((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression())
-							.setReal((String) value);
+					EditingDomain editingDomain = getEditingDomain(object);
+					EObject eObject = (RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression();
+					if (editingDomain == null) {
+						eObject.eSet(feature, value);
+					} else {
+						editingDomain.getCommandStack().execute(
+								SetCommand.create(editingDomain,
+										getCommandOwner(eObject), feature,
+										value));
+					}
 				}
 			};
 			itemPropertyDescriptors.add(valuePropertyDescriptor);
@@ -191,9 +211,17 @@ public class CustomVariableValueAssignmentItemProvider extends
 				@Override
 				public void setPropertyValue(Object object, Object value) {
 					// TODO null pointer exception
-					((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression())
-							.setUnlimited(((Integer) value).intValue());
+					EditingDomain editingDomain = getEditingDomain(object);
+					EObject eObject = (UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression();
+					if (editingDomain == null) {
+						eObject.eSet(feature, value);
+					} else {
+						editingDomain.getCommandStack().execute(
+								SetCommand.create(editingDomain,
+										getCommandOwner(eObject), feature,
+										value));
+					}
 				}
 
 			};
@@ -221,9 +249,17 @@ public class CustomVariableValueAssignmentItemProvider extends
 				@Override
 				public void setPropertyValue(Object object, Object value) {
 					// TODO null pointer exception
-					((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression())
-							.setBool(((Boolean) value).booleanValue());
+					EditingDomain editingDomain = getEditingDomain(object);
+					EObject eObject = (BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression();
+					if (editingDomain == null) {
+						eObject.eSet(feature, value);
+					} else {
+						editingDomain.getCommandStack().execute(
+								SetCommand.create(editingDomain,
+										getCommandOwner(eObject), feature,
+										value));
+					}
 				}
 
 			};
@@ -251,9 +287,17 @@ public class CustomVariableValueAssignmentItemProvider extends
 				@Override
 				public void setPropertyValue(Object object, Object value) {
 					// TODO null pointer exception
-					((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression())
-							.setString((String) value);
+					EditingDomain editingDomain = getEditingDomain(object);
+					EObject eObject = (StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+							.getValue()).getExpression();
+					if (editingDomain == null) {
+						eObject.eSet(feature, value);
+					} else {
+						editingDomain.getCommandStack().execute(
+								SetCommand.create(editingDomain,
+										getCommandOwner(eObject), feature,
+										value));
+					}
 				}
 
 			};
