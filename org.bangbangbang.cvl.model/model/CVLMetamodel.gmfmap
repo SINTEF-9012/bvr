@@ -25,9 +25,6 @@
         <features
             href="CVLMetamodel.ecore#//NamedElement/name"/>
       </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="CVLMetamodel.gmfgraph#Choice"/>
       <children
@@ -51,7 +48,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.2"/>
+              href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.1"/>
           <diagramNode
               href="CVLMetamodel.gmfgraph#GroupMultiplicity"/>
         </ownedChild>
@@ -102,7 +99,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.2"/>
+              href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.1"/>
           <diagramNode
               href="CVLMetamodel.gmfgraph#GroupMultiplicity"/>
         </ownedChild>
@@ -192,7 +189,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.2"/>
+              href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.1"/>
           <diagramNode
               href="CVLMetamodel.gmfgraph#GroupMultiplicity"/>
         </ownedChild>
@@ -224,7 +221,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.3"/>
+          href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="CVLMetamodel.gmfgraph#OpaqueConstraint"/>
     </ownedChild>
@@ -232,7 +229,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.1"/>
+        href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.0"/>
     <diagramLink
         href="CVLMetamodel.gmfgraph#VSpecChild"/>
     <linkMetaFeature
@@ -249,7 +246,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.4"/>
+        href="CVLMetamodel.gmftool#//@palette/@tools.0/@tools.3"/>
     <diagramLink
         href="CVLMetamodel.gmfgraph#OpaqueConstraintContext"/>
     <linkMetaFeature

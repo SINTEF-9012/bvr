@@ -600,11 +600,6 @@
           title="cvl">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="RootChoice"
-            description="Create new Choice"
-            genNodes="//@diagram/@topLevelNodes.0"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="VSpecChild"
             description="Create new VSpecChild"
             genLinks="//@diagram/@links.0"/>
