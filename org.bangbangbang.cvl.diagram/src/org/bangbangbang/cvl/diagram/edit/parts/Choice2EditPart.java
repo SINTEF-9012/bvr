@@ -406,12 +406,12 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2005);
+			//types.add(CVLMetamodelElementTypes.Choice_2005);
 			types.add(CVLMetamodelElementTypes.Choice_2015);
 			types.add(CVLMetamodelElementTypes.Variable_2016);
 			types.add(CVLMetamodelElementTypes.VClassifier_2017);
