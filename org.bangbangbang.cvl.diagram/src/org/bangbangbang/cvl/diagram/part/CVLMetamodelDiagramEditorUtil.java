@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
+import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.PrimitiveTypeEnum;
 import org.bangbangbang.cvl.PrimitveType;
 import org.bangbangbang.cvl.Variabletype;
@@ -27,11 +29,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditPart;
@@ -220,27 +224,31 @@ public class CVLMetamodelDiagramEditorUtil {
 		type.setName("INTEGER");
 		type.setType(PrimitiveTypeEnum.INTEGER);
 		types.add(type);
-		
+
 		type = CvlFactory.eINSTANCE.createPrimitveType();
 		type.setName("BOOLEAN");
 		type.setType(PrimitiveTypeEnum.BOOLEAN);
 		types.add(type);
-		
+
 		type = CvlFactory.eINSTANCE.createPrimitveType();
 		type.setName("STRING");
 		type.setType(PrimitiveTypeEnum.STRING);
 		types.add(type);
-		
+
 		type = CvlFactory.eINSTANCE.createPrimitveType();
 		type.setName("REAL");
 		type.setType(PrimitiveTypeEnum.REAL);
 		types.add(type);
-		
+
 		type = CvlFactory.eINSTANCE.createPrimitveType();
 		type.setName("UNLIMITED_NATURAL");
 		type.setType(PrimitiveTypeEnum.UNLIMITED_NATURAL);
 		types.add(type);
-		
+
+		Choice choice = CvlFactory.eINSTANCE.createChoice();
+		choice.setName("[Rename] Root Choice");
+		cu.getOwnedVSpec().add(choice);
+
 		return cu;
 	}
 
