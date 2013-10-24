@@ -70,7 +70,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 			addResolvedVariablePropertyDescriptor(object);
 			addValuePropertyDescriptor(object);
-		}else {
+		} else {
 			itemPropertyDescriptors.remove(valuePropertyDescriptor);
 			addValuePropertyDescriptor(object);
 		}
@@ -114,7 +114,8 @@ public class CustomVariableValueAssignmentItemProvider extends
 					((ComposeableAdapterFactory) adapterFactory)
 							.getRootAdapterFactory(),
 					getResourceLocator(),
-					getString("_UI_IntegerLiteralExp_integer_feature"),
+					"Value "
+							+ getString("_UI_IntegerLiteralExp_integer_feature"),
 					getString("_UI_PropertyDescriptor_description",
 							"_UI_IntegerLiteralExp_integer_feature",
 							"_UI_IntegerLiteralExp_type"),
@@ -142,9 +143,9 @@ public class CustomVariableValueAssignmentItemProvider extends
 			valuePropertyDescriptor = new ItemPropertyDescriptor(
 					((ComposeableAdapterFactory) adapterFactory)
 							.getRootAdapterFactory(),
-					getResourceLocator(),
-					getString("_UI_RealLiteralExp_real_feature"), getString(
-							"_UI_PropertyDescriptor_description",
+					getResourceLocator(), "Value "
+							+ getString("_UI_RealLiteralExp_real_feature"),
+					getString("_UI_PropertyDescriptor_description",
 							"_UI_RealLiteralExp_real_feature",
 							"_UI_RealLiteralExp_type"),
 					CvlPackage.Literals.REAL_LITERAL_EXP__REAL, true, false,
@@ -171,7 +172,8 @@ public class CustomVariableValueAssignmentItemProvider extends
 					((ComposeableAdapterFactory) adapterFactory)
 							.getRootAdapterFactory(),
 					getResourceLocator(),
-					getString("_UI_UnlimitedLiteralExp_unlimited_feature"),
+					"Value "
+							+ getString("_UI_UnlimitedLiteralExp_unlimited_feature"),
 					getString("_UI_PropertyDescriptor_description",
 							"_UI_UnlimitedLiteralExp_unlimited_feature",
 							"_UI_UnlimitedLiteralExp_type"),
@@ -200,9 +202,9 @@ public class CustomVariableValueAssignmentItemProvider extends
 			valuePropertyDescriptor = new ItemPropertyDescriptor(
 					((ComposeableAdapterFactory) adapterFactory)
 							.getRootAdapterFactory(),
-					getResourceLocator(),
-					getString("_UI_BooleanLiteralExp_bool_feature"), getString(
-							"_UI_PropertyDescriptor_description",
+					getResourceLocator(), "Value "
+							+ getString("_UI_BooleanLiteralExp_bool_feature"),
+					getString("_UI_PropertyDescriptor_description",
 							"_UI_BooleanLiteralExp_bool_feature",
 							"_UI_BooleanLiteralExp_type"),
 					CvlPackage.Literals.BOOLEAN_LITERAL_EXP__BOOL, true, false,
@@ -230,8 +232,8 @@ public class CustomVariableValueAssignmentItemProvider extends
 			valuePropertyDescriptor = new ItemPropertyDescriptor(
 					((ComposeableAdapterFactory) adapterFactory)
 							.getRootAdapterFactory(),
-					getResourceLocator(),
-					getString("_UI_StringLiteralExp_string_feature"),
+					getResourceLocator(), "Value "
+							+ getString("_UI_StringLiteralExp_string_feature"),
 					getString("_UI_PropertyDescriptor_description",
 							"_UI_StringLiteralExp_string_feature",
 							"_UI_StringLiteralExp_type"),
@@ -321,9 +323,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 		label += " "
 				+ ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
 						.getResolvedVariable()).getType()).getName();
-		label += " "
-				+ ((Variable) ((VariableValueAssignment) object)
-						.getResolvedVariable()).getName();
+
 		label += ": ";
 
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
