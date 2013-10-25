@@ -30,6 +30,8 @@ import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.VariableValueAssignment;
+import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryContentProvider;
+import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryLabelProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -1191,11 +1193,11 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 
 				selectionViewer = (CheckboxTreeViewer) viewerPane.getViewer();
 				selectionViewer
-						.setContentProvider(new AdapterFactoryContentProvider(
+						.setContentProvider(new CustomAdapterFactoryContentProvider(
 								adapterFactory));
 
 				selectionViewer
-						.setLabelProvider(new AdapterFactoryLabelProvider(
+						.setLabelProvider(new CustomAdapterFactoryLabelProvider(
 								adapterFactory));
 
 				// Add change listener
