@@ -24,8 +24,12 @@ public class CustomAdapterFactoryContentProvider extends
 	@Override
 	public Object[] getChildren(Object object) {
 		if (!(object instanceof VSpecResolution)) {
+			// This is not VSpecResolution case
 			return super.getChildren(object);
 		} else if (object instanceof VirtualVClassifier) {
+			// This object is Virtual.
+			// This children are VInstance(ResolvedVClassifier is matched) of
+			// child of parent of the object
 			List<VSpecResolution> resolutionList = new ArrayList<VSpecResolution>();
 			EList<VSpecResolution> childs = ((VirtualVClassifier) object)
 					.getParent().getChild();
@@ -41,6 +45,8 @@ public class CustomAdapterFactoryContentProvider extends
 			}
 			return resolutionList.toArray();
 		} else {
+			// For all VSpecResolution which may have VInstance,
+			// Add Virtual VClassisfer as child to the object.
 			List<VSpecResolution> resolutionList = new ArrayList<VSpecResolution>();
 			Object[] objList = super.getChildren(object);
 
