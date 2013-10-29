@@ -152,6 +152,7 @@ public class CreateResolutionHandler implements IHandler {
 
 		@Override
 		public Object caseVClassifier(VClassifier object) {
+			// TODO remove this creating VInstance
 			VInstance vi = CvlFactory.eINSTANCE.createVInstance();
 			vi.setResolvedVSpec(object);
 			vi.setType(object);

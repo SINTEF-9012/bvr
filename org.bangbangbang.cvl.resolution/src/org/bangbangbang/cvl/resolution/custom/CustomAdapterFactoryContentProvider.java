@@ -10,7 +10,6 @@ import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 
 public class CustomAdapterFactoryContentProvider extends
@@ -18,7 +17,6 @@ public class CustomAdapterFactoryContentProvider extends
 
 	public CustomAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-
 	}
 
 	@Override
@@ -30,6 +28,7 @@ public class CustomAdapterFactoryContentProvider extends
 			// This object is Virtual.
 			// This children are VInstance(ResolvedVClassifier is matched) of
 			// child of parent of the object
+
 			List<VSpecResolution> resolutionList = new ArrayList<VSpecResolution>();
 			EList<VSpecResolution> childs = ((VirtualVClassifier) object)
 					.getParent().getChild();
@@ -62,9 +61,17 @@ public class CustomAdapterFactoryContentProvider extends
 					.hasNext();) {
 				VSpec vs = iterator.next();
 				if (vs instanceof VClassifier) {
-					VirtualVClassifier virtual = (VirtualVClassifier) new VirtualVClassifierImpl();
-					virtual.setResolvedVSpec(vs);
-					virtual.setParent((VSpecResolution) object);
+					VirtualVClassifier virtual = VirtualVClassifierHolder
+							.getInstance().getVirtualInstance(
+									((VSpecResolution) object),
+									(VClassifier) vs);
+					if (virtual == null) {
+						virtual = (VirtualVClassifier) new VirtualVClassifierImpl();
+						virtual.setResolvedVSpec(vs);
+						virtual.setParent((VSpecResolution) object);
+						VirtualVClassifierHolder.getInstance()
+								.addVirtualClassifier(virtual);
+					}
 					resolutionList.add(virtual);
 				}
 			}
@@ -112,8 +119,26 @@ public class CustomAdapterFactoryContentProvider extends
 
 	@Override
 	public Object getParent(Object object) {
-		// TODO Auto-generated method stub
-		return super.getParent(object);
+		if (!(object instanceof VSpecResolution)) {
+			return super.getParent(object);
+		} else if (object instanceof VirtualVClassifier) {
+			return ((VirtualVClassifier) object).getParent();
+		} else if (object instanceof VInstance) {
+			VSpecResolution parent = (VSpecResolution) ((VInstance) object)
+					.eContainer();
+			for (int i = 0; i < this.getChildren(parent).length; i++) {
+				if (this.getChildren(parent)[i] instanceof VirtualVClassifier
+						&& ((VirtualVClassifier) this.getChildren(parent)[i])
+								.getResolvedVSpec() == ((VInstance) object)
+								.getResolvedVSpec()) {
+					return this.getChildren(parent)[i];
+				}
+			}
+			return null;
+		} else {
+			return super.getParent(object);
+		}
+
 	}
 
 }

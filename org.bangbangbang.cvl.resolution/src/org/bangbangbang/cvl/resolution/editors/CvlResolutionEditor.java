@@ -33,6 +33,7 @@ import org.bangbangbang.cvl.VariableValueAssignment;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryContentProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryLabelProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
+import org.bangbangbang.cvl.resolution.custom.VirtualVClassifier;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -106,11 +107,13 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
@@ -1178,8 +1181,91 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 								}
 							}
 						});
+
 						CheckboxTreeViewer newTreeViewer = new CheckboxTreeViewer(
 								tree);
+
+						newTreeViewer
+								.addTreeListener(new ITreeViewerListener() {
+
+									@Override
+									public void treeCollapsed(
+											TreeExpansionEvent event) {
+
+									}
+
+									@Override
+									public void treeExpanded(
+											TreeExpansionEvent event) {
+										if (event.getElement() instanceof VirtualVClassifier) {
+											// VirtualVClassifier is expanded
+											// Then children of the parent of
+											// the VirtualVClassifier is
+											// set Grayed.
+											for (Iterator<VSpecResolution> iterator = ((VirtualVClassifier) event
+													.getElement()).getParent()
+													.getChild().iterator(); iterator
+													.hasNext();) {
+												EObject element = iterator
+														.next();
+												if (element instanceof ChoiceResolutuion) {
+													selectionViewer
+															.setChecked(
+																	element,
+																	((ChoiceResolutuion) element)
+																			.isDecision());
+												} else if (element instanceof VSpecResolution
+														|| element instanceof ConfigurableUnit) {
+													selectionViewer
+															.setGrayChecked(
+																	element,
+																	true);
+												}
+											}
+										} else if (event.getElement() instanceof VSpecResolution) {
+											
+											
+											CustomAdapterFactoryContentProvider contentProvider = (CustomAdapterFactoryContentProvider) ((CheckboxTreeViewer) event
+													.getTreeViewer())
+													.getContentProvider();
+											Object[] targets = contentProvider
+													.getChildren(event
+															.getElement());
+
+											for (int i = 0; i < targets.length; i++) {
+												if (targets[i] instanceof VirtualVClassifier) {
+													((CheckboxTreeViewer) event
+															.getTreeViewer())
+															.setGrayChecked(
+																	targets[i],
+																	true);
+												}
+											}
+											for (Iterator<VSpecResolution> iterator = ((VSpecResolution) event
+													.getElement()).getChild()
+													.iterator(); iterator
+													.hasNext();) {
+												EObject element = iterator
+														.next();
+												if (element instanceof ChoiceResolutuion) {
+													selectionViewer
+															.setChecked(
+																	element,
+																	((ChoiceResolutuion) element)
+																			.isDecision());
+												} else if (element instanceof VSpecResolution
+														|| element instanceof ConfigurableUnit) {
+													selectionViewer
+															.setGrayChecked(
+																	element,
+																	true);
+												}
+											}
+										}
+
+									}
+
+								});
 						return newTreeViewer;
 					}
 
@@ -1297,7 +1383,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 
 				createContextMenuFor(selectionViewer);
 
-				// selectionViewer Init
+				// selectionViewer Init.
 				selectionViewer.setGrayChecked(selectionViewer.getTree()
 						.getTopItem().getData(), true);
 				for (TreeIterator<EObject> iterator = getEditingDomain()
