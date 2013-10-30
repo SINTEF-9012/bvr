@@ -14,22 +14,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bangbangbang.cvl.BooleanLiteralExp;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
-import org.bangbangbang.cvl.IntegerLiteralExp;
-import org.bangbangbang.cvl.PrimitiveTypeEnum;
-import org.bangbangbang.cvl.PrimitiveValueSpecification;
-import org.bangbangbang.cvl.PrimitveType;
-import org.bangbangbang.cvl.RealLiteralExp;
-import org.bangbangbang.cvl.StringLiteralExp;
-import org.bangbangbang.cvl.UnlimitedLiteralExp;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.bangbangbang.cvl.Variable;
-import org.bangbangbang.cvl.VariableValueAssignment;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryContentProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryLabelProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
@@ -64,9 +55,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -100,13 +89,10 @@ import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ICheckStateListener;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -123,7 +109,6 @@ import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -990,132 +975,6 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		}
 	}
 
-	/**
-	 * 
-	 *
-	 */
-	class ResolutionLabelProvider implements ITableLabelProvider {
-		List<VSpec> headers;
-
-		public void setHeaders(List<VSpec> headers) {
-			this.headers = headers;
-		}
-
-		@Override
-		public void addListener(ILabelProviderListener listener) {
-		}
-
-		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public boolean isLabelProperty(Object element, String property) {
-			return false;
-		}
-
-		@Override
-		public void removeListener(ILabelProviderListener listener) {
-
-		}
-
-		@Override
-		public Image getColumnImage(Object element, int columnIndex) {
-			return null;
-		}
-
-		@Override
-		public String getColumnText(Object element, int columnIndex) {
-			ChoiceResolutuion cr = (ChoiceResolutuion) element;
-			if (columnIndex == 0) {
-				return cr.getName();
-			} else if (columnIndex == 1) {
-				Choice target = (Choice) headers.get(columnIndex - 1);
-				if (cr.getResolvedChoice() == target) {
-					if (cr.isDecision()) {
-						return "X";
-					} else {
-						return "";
-					}
-				}
-			} else {
-				VSpec target = (VSpec) headers.get(columnIndex - 1);
-				for (TreeIterator<EObject> iterator = cr.eAllContents(); iterator
-						.hasNext();) {
-					EObject obj = (EObject) iterator.next();
-					if (!(obj instanceof VSpecResolution)) {
-						continue;
-					}
-					VSpecResolution vr = (VSpecResolution) obj;
-					if (vr instanceof ChoiceResolutuion
-							&& ((ChoiceResolutuion) vr).getResolvedChoice() == target) {
-						if (((ChoiceResolutuion) vr).isDecision()) {
-							return "X";
-						} else {
-							return "";
-						}
-					} else if (vr instanceof VariableValueAssignment
-							&& ((VariableValueAssignment) vr)
-									.getResolvedVariable() == target) {
-						PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) vr)
-								.getResolvedVariable()).getType()).getType();
-
-						if (type == PrimitiveTypeEnum.INTEGER) {
-							return String
-									.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
-											.getValue()).getExpression())
-											.getInteger());
-						} else if (type == PrimitiveTypeEnum.REAL) {
-							return ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
-									.getValue()).getExpression()).getReal();
-						} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
-							return String
-									.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
-											.getValue()).getExpression())
-											.getUnlimited());
-						} else if (type == PrimitiveTypeEnum.BOOLEAN) {
-							return String
-									.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
-											.getValue()).getExpression())
-											.isBool());
-						} else if (type == PrimitiveTypeEnum.STRING) {
-							return ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) vr)
-									.getValue()).getExpression()).getString();
-						}
-					}
-				}
-			}
-			return "n/a";
-		}
-
-	}
-
-	class ResolutionContentProvider implements IStructuredContentProvider {
-
-		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		}
-
-		@SuppressWarnings("unchecked")
-		@Override
-		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof List) {
-				return ((EObjectContainmentEList<EObject>) inputElement)
-						.toArray();
-			} else if (inputElement instanceof XMIResource) {
-				return ((ConfigurableUnit) ((XMIResource) inputElement)
-						.getContents().get(0)).getOwnedVSpecResolution()
-						.toArray();
-			}
-			return new Object[0];
-		}
-
-	}
-
 	private List<VSpec> createTableColumns(ConfigurableUnit cu) {
 		List<VSpec> headers = new ArrayList<VSpec>();
 		for (TreeIterator<EObject> iterator = cu.eAllContents(); iterator
@@ -1223,8 +1082,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 												}
 											}
 										} else if (event.getElement() instanceof VSpecResolution) {
-											
-											
+
 											CustomAdapterFactoryContentProvider contentProvider = (CustomAdapterFactoryContentProvider) ((CheckboxTreeViewer) event
 													.getTreeViewer())
 													.getContentProvider();
@@ -1434,9 +1292,10 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				firstColumn.setText("Product");
 				firstColumn.setResizable(true);
 
-				List<VSpec> headers = createTableColumns((ConfigurableUnit) editingDomain
+				ConfigurableUnit cu = (ConfigurableUnit) editingDomain
 						.getResourceSet().getResources().get(0).getContents()
-						.get(0));
+						.get(0);
+				List<VSpec> headers = createTableColumns(cu);
 				for (VSpec vs : headers) {
 					TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
 					layout.addColumnData(new ColumnWeightData(2, 10, true));
@@ -1444,21 +1303,19 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 					selfColumn.setResizable(true);
 				}
 
-				// tableViewer.setColumnProperties(new String[] { "a", "b" });
-				// tableViewer
-				// .setContentProvider(new AdapterFactoryContentProvider(
-				// adapterFactory));
-				// tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(
-				// adapterFactory));
+				ResolutionTableContentProvider provider = new ResolutionTableContentProvider();
+				provider.setHeaders(headers);
+				tableViewer.setContentProvider(provider);
+				tableViewer
+						.setLabelProvider(new ResolutionTableLabelProvider());
 
-				tableViewer.setContentProvider(new ResolutionContentProvider());
-				ResolutionLabelProvider rlp = new ResolutionLabelProvider();
-				rlp.setHeaders(headers);
-				tableViewer.setLabelProvider(rlp);
+				// tableViewer.setContentProvider(new
+				// ResolutionContentProvider());
+				// ResolutionLabelProvider rlp = new ResolutionLabelProvider();
+				// rlp.setHeaders(headers);
+				// tableViewer.setLabelProvider(rlp);
 
-				tableViewer.setInput(((ConfigurableUnit) editingDomain
-						.getResourceSet().getResources().get(0).getContents()
-						.get(0)).getOwnedVSpecResolution());
+				tableViewer.setInput(cu);
 
 				createContextMenuFor(tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
@@ -1537,9 +1394,10 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 */
 	@Override
 	protected void pageChange(int pageIndex) {
-		tableViewer.setInput(((ConfigurableUnit) editingDomain.getResourceSet()
-				.getResources().get(0).getContents().get(0))
-				.getOwnedVSpecResolution());
+		// TODO if n/a is shown in table view, ConfigurableUnit should use same
+		// instance.
+		tableViewer.setInput((ConfigurableUnit) editingDomain.getResourceSet()
+				.getResources().get(0).getContents().get(0));
 
 		super.pageChange(pageIndex);
 

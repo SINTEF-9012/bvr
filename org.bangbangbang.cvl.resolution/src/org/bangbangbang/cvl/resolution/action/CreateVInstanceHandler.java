@@ -82,7 +82,7 @@ public class CreateVInstanceHandler implements IHandler {
 		editingDomain.getCommandStack().execute(addCommand);
 
 		CreateVInstanceVisitor visitor = new CreateVInstanceVisitor();
-		visitor.setRoot(virtualVClassifier.getParent());
+		visitor.setRoot(vi);
 
 		for (TreeIterator<EObject> iterator = EcoreUtil.getAllContents(
 				virtualVClassifier.getResolvedVSpec(), true); iterator
@@ -110,6 +110,9 @@ public class CreateVInstanceHandler implements IHandler {
 		}
 
 		protected VSpecResolution searchParentResolution(VSpec parent) {
+			if(root.getResolvedVSpec() == parent){
+				return root;
+			}
 			for (TreeIterator<EObject> iterator = EcoreUtil.getAllContents(
 					root, true); iterator.hasNext();) {
 				EObject element = iterator.next();
