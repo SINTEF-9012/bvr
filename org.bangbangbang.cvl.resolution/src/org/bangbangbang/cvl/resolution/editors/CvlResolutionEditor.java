@@ -1090,11 +1090,6 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		tableViewer
 				.setLabelProvider(new ResolutionTableLabelProvider());
 
-		// tableViewer.setContentProvider(new
-		// ResolutionContentProvider());
-		// ResolutionLabelProvider rlp = new ResolutionLabelProvider();
-		// rlp.setHeaders(headers);
-		// tableViewer.setLabelProvider(rlp);
 
 		tableViewer.setInput(cu);
 
@@ -1360,7 +1355,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 * This deals with how we want selection in the outliner to affect the other
 	 * views. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
 		if (currentViewerPane != null && !selection.isEmpty()
@@ -1389,10 +1384,10 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				} else {
 					// Set the input to the widget.
 					//
-					if (currentViewerPane.getViewer().getInput() != selectedElement) {
-						currentViewerPane.getViewer().setInput(selectedElement);
-						currentViewerPane.setTitle(selectedElement);
-					}
+//					if (currentViewerPane.getViewer().getInput() != selectedElement) {
+//						currentViewerPane.getViewer().setInput(selectedElement);
+//						currentViewerPane.setTitle(selectedElement);
+//					}
 				}
 			}
 		}
