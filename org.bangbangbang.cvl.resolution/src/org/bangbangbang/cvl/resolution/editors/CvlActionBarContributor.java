@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
@@ -137,6 +138,7 @@ public class CvlActionBarContributor
 	 */
 	protected IMenuManager createSiblingMenuManager;
 
+
 	/**
 	 * This creates an instance of the contributor.
 	 * <!-- begin-user-doc -->
@@ -167,7 +169,7 @@ public class CvlActionBarContributor
 	 * as well as the sub-menus for object creation items.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void contributeToMenu(IMenuManager menuManager) {
@@ -182,13 +184,13 @@ public class CvlActionBarContributor
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		submenuManager.insertBefore("additions", createChildMenuManager);
+//		createChildMenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+//		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		submenuManager.insertBefore("additions", createSiblingMenuManager);
+//		createSiblingMenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+//		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
 		//
@@ -371,20 +373,20 @@ public class CvlActionBarContributor
 	 * This populates the pop-up menu before it appears.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
 		super.menuAboutToShow(menuManager);
-		MenuManager submenuManager = null;
+//		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
-		populateManager(submenuManager, createChildActions, null);
-		menuManager.insertBefore("edit", submenuManager);
-
-		submenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		populateManager(submenuManager, createSiblingActions, null);
-		menuManager.insertBefore("edit", submenuManager);
+//		submenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
+//		populateManager(submenuManager, createChildActions, null);
+//		menuManager.insertBefore("edit", submenuManager);
+//
+//		submenuManager = new MenuManager(CVLMetamodelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+//		populateManager(submenuManager, createSiblingActions, null);
+//		menuManager.insertBefore("edit", submenuManager);
 	}
 
 	/**

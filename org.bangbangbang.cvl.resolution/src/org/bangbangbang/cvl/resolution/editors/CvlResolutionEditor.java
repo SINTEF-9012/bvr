@@ -21,6 +21,7 @@ import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryContentProvider;
+import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryEditingDomain;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryLabelProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
 import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxControlTreeListner;
@@ -67,9 +68,6 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
@@ -84,7 +82,6 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
@@ -100,9 +97,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.dnd.FileTransfer;
-import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Point;
@@ -687,7 +681,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 
 		// Create the editing domain with a special command stack.
 		//
-		editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
+		editingDomain = new CustomAdapterFactoryEditingDomain(adapterFactory,
 				commandStack, new HashMap<Resource, Boolean>());
 	}
 
@@ -885,7 +879,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 * registering the menu for extension. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createContextMenuFor(StructuredViewer viewer) {
 		MenuManager contextMenu = new MenuManager("#PopUp");
@@ -894,17 +888,19 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		contextMenu.addMenuListener(this);
 		Menu menu = contextMenu.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
+
 		getSite().registerContextMenu(contextMenu,
 				new UnwrappingSelectionProvider(viewer));
 
-		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
-		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(),
-				LocalSelectionTransfer.getTransfer(),
-				FileTransfer.getInstance() };
-		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(
-				viewer));
-		viewer.addDropSupport(dndOperations, transfers,
-				new EditingDomainViewerDropAdapter(editingDomain, viewer));
+		// int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+		// Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(),
+		// LocalSelectionTransfer.getTransfer(),
+		// FileTransfer.getInstance() };
+		// viewer.addDragSupport(dndOperations, transfers, new
+		// ViewerDragAdapter(
+		// viewer));
+		// viewer.addDropSupport(dndOperations, transfers,
+		// new EditingDomainViewerDropAdapter(editingDomain, viewer));
 	}
 
 	/**
@@ -1009,7 +1005,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 			//
 			{
 				ViewerPane viewerPane = createTableViewerPage();
-				
+
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TablePage_label"));
 			}
@@ -1049,8 +1045,8 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				CvlResolutionEditor.this) {
 			@Override
 			public Viewer createViewer(Composite composite) {
-				return new TableViewer(composite, SWT.H_SCROLL
-						| SWT.V_SCROLL | SWT.BORDER);
+				return new TableViewer(composite, SWT.H_SCROLL | SWT.V_SCROLL
+						| SWT.BORDER);
 			}
 
 			@Override
@@ -1073,9 +1069,8 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		firstColumn.setText("Product");
 		firstColumn.setResizable(true);
 
-		ConfigurableUnit cu = (ConfigurableUnit) editingDomain
-				.getResourceSet().getResources().get(0).getContents()
-				.get(0);
+		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
+				.getResources().get(0).getContents().get(0);
 		List<VSpec> headers = createTableColumns(cu);
 		for (VSpec vs : headers) {
 			TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
@@ -1087,9 +1082,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		ResolutionTableContentProvider provider = new ResolutionTableContentProvider();
 		provider.setHeaders(headers);
 		tableViewer.setContentProvider(provider);
-		tableViewer
-				.setLabelProvider(new ResolutionTableLabelProvider());
-
+		tableViewer.setLabelProvider(new ResolutionTableLabelProvider());
 
 		tableViewer.setInput(cu);
 
@@ -1384,10 +1377,11 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				} else {
 					// Set the input to the widget.
 					//
-//					if (currentViewerPane.getViewer().getInput() != selectedElement) {
-//						currentViewerPane.getViewer().setInput(selectedElement);
-//						currentViewerPane.setTitle(selectedElement);
-//					}
+					// if (currentViewerPane.getViewer().getInput() !=
+					// selectedElement) {
+					// currentViewerPane.getViewer().setInput(selectedElement);
+					// currentViewerPane.setTitle(selectedElement);
+					// }
 				}
 			}
 		}
