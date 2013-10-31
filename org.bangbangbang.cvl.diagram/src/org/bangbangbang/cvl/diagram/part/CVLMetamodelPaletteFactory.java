@@ -51,8 +51,8 @@ public class CVLMetamodelPaletteFactory {
 				Collections
 						.singletonList(CVLMetamodelElementTypes.VSpecChild_4001));
 		entry.setId("createVSpecChild1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelElementTypes
-				.getImageDescriptor(CVLMetamodelElementTypes.VSpecChild_4001));
+		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+				.findImageDescriptor("/org.bangbangbang.cvl.model.edit/icons/full/obj16/ChildNode.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -69,8 +69,8 @@ public class CVLMetamodelPaletteFactory {
 				Messages.VSpecGroupMultiplicity2CreationTool_title,
 				Messages.VSpecGroupMultiplicity2CreationTool_desc, types);
 		entry.setId("createVSpecGroupMultiplicity2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelElementTypes
-				.getImageDescriptor(CVLMetamodelElementTypes.MultiplicityInterval_3002));
+		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+				.findImageDescriptor("/org.bangbangbang.cvl.model.edit/icons/full/obj16/MultiplicityInterval.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -85,8 +85,8 @@ public class CVLMetamodelPaletteFactory {
 				Collections
 						.singletonList(CVLMetamodelElementTypes.OpaqueConstraint_2014));
 		entry.setId("createOpaqueConstraint3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelElementTypes
-				.getImageDescriptor(CVLMetamodelElementTypes.OpaqueConstraint_2014));
+		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+				.findImageDescriptor("/org.bangbangbang.cvl.model.edit/icons/full/obj16/OpaqueConstraint.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -101,8 +101,8 @@ public class CVLMetamodelPaletteFactory {
 				Collections
 						.singletonList(CVLMetamodelElementTypes.ConstraintContext_4003));
 		entry.setId("createOpaqueConstraintLink4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelElementTypes
-				.getImageDescriptor(CVLMetamodelElementTypes.ConstraintContext_4003));
+		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+				.findImageDescriptor("/org.bangbangbang.cvl.model.edit/icons/full/obj16/ConstraintLine.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
