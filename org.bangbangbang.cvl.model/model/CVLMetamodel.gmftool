@@ -14,7 +14,9 @@
           title="VSpecChild"
           description="Create new VSpecChild">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ChildNode.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
         <largeIcon
             xsi:type="gmftool:DefaultImage"/>
       </tools>
@@ -23,7 +25,9 @@
           title="VSpecGroupMultiplicity"
           description="Create new VSpecGroupMultiplicity">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/MultiplicityInterval.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
         <largeIcon
             xsi:type="gmftool:DefaultImage"/>
       </tools>
@@ -32,7 +36,9 @@
           title="OpaqueConstraint"
           description="Create new OpaqueConstraint">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OpaqueConstraint.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
         <largeIcon
             xsi:type="gmftool:DefaultImage"/>
       </tools>
@@ -41,7 +47,9 @@
           title="OpaqueConstraintLink"
           description="Create new OpaqueConstraint">
         <smallIcon
-            xsi:type="gmftool:DefaultImage"/>
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ConstraintLine.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
         <largeIcon
             xsi:type="gmftool:DefaultImage"/>
       </tools>

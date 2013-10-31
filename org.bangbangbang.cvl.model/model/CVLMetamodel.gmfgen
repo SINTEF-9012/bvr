@@ -602,21 +602,25 @@
             xsi:type="gmfgen:ToolEntry"
             title="VSpecChild"
             description="Create new VSpecChild"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ChildNode.gif"
             genLinks="//@diagram/@links.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="VSpecGroupMultiplicity"
             description="Create new VSpecGroupMultiplicity"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/MultiplicityInterval.gif"
             genNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.1 //@diagram/@childNodes.3"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="OpaqueConstraint"
             description="Create new OpaqueConstraint"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/OpaqueConstraint.gif"
             genNodes="//@diagram/@topLevelNodes.4"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="OpaqueConstraintLink"
             description="Create new OpaqueConstraint"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ConstraintLine.gif"
             genLinks="//@diagram/@links.1"/>
       </groups>
     </palette>

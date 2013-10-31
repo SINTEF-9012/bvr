@@ -1,132 +1,323 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="cvl">
-  <figures name="Default">
-    <descriptors name="VSpecChildFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ChoiceChildFigure">
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
+<gmfgraph:Canvas
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition"
+    name="cvl">
+  <figures
+      name="Default">
+    <descriptors
+        name="VSpecChildFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ChoiceChildFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
       </actualFigure>
     </descriptors>
-    <descriptors name="ChoiceFigure">
-      <actualFigure xsi:type="gmfgraph:InvisibleRectangle" name="ChoiceFigure">
-        <layout xsi:type="gmfgraph:BorderLayout"/>
-        <minimumSize dx="100"/>
-        <children xsi:type="gmfgraph:RoundedRectangle" name="ChoiceFigure">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="FILL" vertical="true"/>
-          <layout xsi:type="gmfgraph:FlowLayout"/>
-          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-          <border xsi:type="gmfgraph:MarginBorder">
-            <insets left="9"/>
+    <descriptors
+        name="ChoiceFigure">
+      <actualFigure
+          xsi:type="gmfgraph:InvisibleRectangle"
+          name="ChoiceFigure">
+        <layout
+            xsi:type="gmfgraph:BorderLayout"/>
+        <minimumSize
+            dx="100"/>
+        <children
+            xsi:type="gmfgraph:RoundedRectangle"
+            name="ChoiceFigure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="FILL"
+              vertical="true"/>
+          <layout
+              xsi:type="gmfgraph:FlowLayout"/>
+          <foregroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <border
+              xsi:type="gmfgraph:MarginBorder">
+            <insets
+                left="9"/>
           </border>
-          <children xsi:type="gmfgraph:Label" name="ChoiceNameFigure" text="&lt;...>"/>
+          <children
+              xsi:type="gmfgraph:Label"
+              name="ChoiceNameFigure"
+              text="&lt;...>"/>
         </children>
-        <children xsi:type="gmfgraph:InvisibleRectangle" name="ChoiceGroupMultiplicityCompartmentFigure">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="END" vertical="true"/>
+        <children
+            xsi:type="gmfgraph:InvisibleRectangle"
+            name="ChoiceGroupMultiplicityCompartmentFigure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="END"
+              vertical="true"/>
         </children>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.0/@children.0"/>
-      <accessors figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.0/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
     </descriptors>
-    <descriptors name="VClassifierFigure">
-      <actualFigure xsi:type="gmfgraph:Rectangle" name="VClassifierFigure" outline="false">
-        <layout xsi:type="gmfgraph:BorderLayout"/>
-        <foregroundColor xsi:type="gmfgraph:ConstantColor"/>
-        <children xsi:type="gmfgraph:Rectangle" name="VClassifierFigureLabelContainerFigure">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING" vertical="true"/>
-          <layout xsi:type="gmfgraph:FlowLayout"/>
-          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-          <border xsi:type="gmfgraph:MarginBorder">
-            <insets left="9"/>
+    <descriptors
+        name="VClassifierFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="VClassifierFigure"
+          outline="false">
+        <layout
+            xsi:type="gmfgraph:BorderLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="VClassifierFigureLabelContainerFigure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="BEGINNING"
+              vertical="true"/>
+          <layout
+              xsi:type="gmfgraph:FlowLayout"/>
+          <foregroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <border
+              xsi:type="gmfgraph:MarginBorder">
+            <insets
+                left="9"/>
           </border>
-          <children xsi:type="gmfgraph:Label" name="VClassifierNameFigure" text="&lt;...>"/>
+          <children
+              xsi:type="gmfgraph:Label"
+              name="VClassifierNameFigure"
+              text="&lt;...>"/>
         </children>
-        <children xsi:type="gmfgraph:Rectangle" name="VClassifierInstanceMultiplicityCompartmentFigure">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="FILL" vertical="true"/>
-          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="VClassifierInstanceMultiplicityCompartmentFigure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="FILL"
+              vertical="true"/>
+          <foregroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
         </children>
-        <children xsi:type="gmfgraph:InvisibleRectangle" name="VClassifierGroupMultiplicityCompartmentFigure">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="END" vertical="true"/>
+        <children
+            xsi:type="gmfgraph:InvisibleRectangle"
+            name="VClassifierGroupMultiplicityCompartmentFigure">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="END"
+              vertical="true"/>
         </children>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.0/@children.0"/>
-      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
-      <accessors figure="//@figures.0/@descriptors.2/@actualFigure/@children.2"/>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.0/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
+      <accessors
+          figure="//@figures.0/@descriptors.2/@actualFigure/@children.2"/>
     </descriptors>
-    <descriptors name="VariableFigure">
-      <actualFigure xsi:type="gmfgraph:Ellipse" name="VariableFigure">
-        <layout xsi:type="gmfgraph:FlowLayout"/>
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <border xsi:type="gmfgraph:MarginBorder">
-          <insets left="9" bottom="9"/>
+    <descriptors
+        name="VariableFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="VariableFigure">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              left="9"
+              bottom="9"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="VariableNameFigure" text="&lt;...>"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="VariableNameFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="OpaqueConstraintFigure">
-      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="OpaqueConstraintFigure">
-        <layout xsi:type="gmfgraph:FlowLayout"/>
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <border xsi:type="gmfgraph:MarginBorder">
-          <insets left="9" bottom="3"/>
+    <descriptors
+        name="OpaqueConstraintFigure">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon"
+          name="OpaqueConstraintFigure">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              left="9"
+              bottom="3"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="OpaqueConstraintConstraintFigure" text="&lt;...>"/>
-        <template x="20"/>
-        <template x="120"/>
-        <template x="100" y="50"/>
-        <template y="50"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="OpaqueConstraintConstraintFigure"
+            text="&lt;...>"/>
+        <template
+            x="20"/>
+        <template
+            x="120"/>
+        <template
+            x="100"
+            y="50"/>
+        <template
+            y="50"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="OpaqueConstraintContextFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OpaqueConstraintContextFigure">
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
+    <descriptors
+        name="OpaqueConstraintContextFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="OpaqueConstraintContextFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
       </actualFigure>
     </descriptors>
-    <descriptors name="MultiplicityIntervalFigure">
-      <actualFigure xsi:type="gmfgraph:InvisibleRectangle" name="MultiplicityIntervalFigure">
-        <layout xsi:type="gmfgraph:FlowLayout"/>
-        <children xsi:type="gmfgraph:Label" name="MultiplicityIntervalIntervalFigure" text="&lt;...>"/>
+    <descriptors
+        name="MultiplicityIntervalFigure">
+      <actualFigure
+          xsi:type="gmfgraph:InvisibleRectangle"
+          name="MultiplicityIntervalFigure">
+        <layout
+            xsi:type="gmfgraph:FlowLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="MultiplicityIntervalIntervalFigure"
+            text="&lt;...>"/>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+      <accessors
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
-    <descriptors name="GroupMultiplicityFigure">
-      <actualFigure xsi:type="gmfgraph:InvisibleRectangle" name="GroupMultiplicityFigure">
-        <layout xsi:type="gmfgraph:BorderLayout"/>
-        <children xsi:type="gmfgraph:Rectangle" name="PaddingRectangleFigure" fill="false">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
-          <foregroundColor xsi:type="gmfgraph:ConstantColor"/>
-          <size x="10" y="1"/>
+    <descriptors
+        name="GroupMultiplicityFigure">
+      <actualFigure
+          xsi:type="gmfgraph:InvisibleRectangle"
+          name="GroupMultiplicityFigure">
+        <layout
+            xsi:type="gmfgraph:BorderLayout"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="PaddingRectangleFigure"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="BEGINNING"/>
+          <foregroundColor
+              xsi:type="gmfgraph:ConstantColor"/>
+          <size
+              x="10"
+              y="1"/>
         </children>
-        <children xsi:type="gmfgraph:Polygon" name="GroupMultiplicityFigurePolygon">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData"/>
-          <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-          <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
-          <template x="10"/>
-          <template x="20" y="20"/>
-          <template y="20"/>
+        <children
+            xsi:type="gmfgraph:Polygon"
+            name="GroupMultiplicityFigurePolygon">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"/>
+          <foregroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"/>
+          <template
+              x="10"/>
+          <template
+              x="20"
+              y="20"/>
+          <template
+              y="20"/>
         </children>
-        <children xsi:type="gmfgraph:Label" name="GroupMultiplicityIntervalFigure" text="&lt;...>">
-          <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="END"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="GroupMultiplicityIntervalFigure"
+            text="&lt;...>">
+          <layoutData
+              xsi:type="gmfgraph:BorderLayoutData"
+              alignment="END"/>
         </children>
       </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.2"/>
+      <accessors
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.2"/>
     </descriptors>
   </figures>
-  <nodes name="Choice" figure="ChoiceFigure"/>
-  <nodes name="MultiplicityInterval" figure="MultiplicityIntervalFigure"/>
-  <nodes name="VClassifier" figure="VClassifierFigure"/>
-  <nodes name="Variable" figure="VariableFigure"/>
-  <nodes name="OpaqueConstraint" figure="OpaqueConstraintFigure"/>
-  <nodes name="GroupMultiplicity" figure="GroupMultiplicityFigure"/>
-  <connections name="VSpecChild" figure="VSpecChildFigure"/>
-  <connections name="OpaqueConstraintContext" figure="OpaqueConstraintContextFigure"/>
-  <compartments name="VClassifierInstanceMultiplicityIntervalCompartment" figure="MultiplicityIntervalFigure" accessor="//@figures.0/@descriptors.2/@accessors.1"/>
-  <compartments name="ChoiceGroupMultiplicityCompartment" figure="GroupMultiplicityFigure" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
-  <compartments name="VClassifierGroupMultiplicityCompartment" figure="GroupMultiplicityFigure" accessor="//@figures.0/@descriptors.2/@accessors.2"/>
-  <labels name="ChoiceName" figure="ChoiceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels name="MultiplicityIntervalInterval" figure="MultiplicityIntervalFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
-  <labels name="VClassifierName" figure="VClassifierFigure" elementIcon="false" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
-  <labels name="VariableName" figure="VariableFigure" elementIcon="false" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
-  <labels name="OpaqueConstraintConstraint" figure="OpaqueConstraintFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
-  <labels name="GroupMultiplicityInterval" figure="GroupMultiplicityFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+  <nodes
+      name="Choice"
+      figure="ChoiceFigure"/>
+  <nodes
+      name="MultiplicityInterval"
+      figure="MultiplicityIntervalFigure"/>
+  <nodes
+      name="VClassifier"
+      figure="VClassifierFigure"/>
+  <nodes
+      name="Variable"
+      figure="VariableFigure"/>
+  <nodes
+      name="OpaqueConstraint"
+      figure="OpaqueConstraintFigure"/>
+  <nodes
+      name="GroupMultiplicity"
+      figure="GroupMultiplicityFigure"/>
+  <connections
+      name="VSpecChild"
+      figure="VSpecChildFigure"/>
+  <connections
+      name="OpaqueConstraintContext"
+      figure="OpaqueConstraintContextFigure"/>
+  <compartments
+      name="VClassifierInstanceMultiplicityIntervalCompartment"
+      figure="MultiplicityIntervalFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <compartments
+      name="ChoiceGroupMultiplicityCompartment"
+      figure="GroupMultiplicityFigure"
+      accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <compartments
+      name="VClassifierGroupMultiplicityCompartment"
+      figure="GroupMultiplicityFigure"
+      accessor="//@figures.0/@descriptors.2/@accessors.2"/>
+  <labels
+      name="ChoiceName"
+      figure="ChoiceFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels
+      name="MultiplicityIntervalInterval"
+      figure="MultiplicityIntervalFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels
+      name="VClassifierName"
+      figure="VClassifierFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels
+      name="VariableName"
+      figure="VariableFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels
+      name="OpaqueConstraintConstraint"
+      figure="OpaqueConstraintFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels
+      name="GroupMultiplicityInterval"
+      figure="GroupMultiplicityFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.7/@accessors.0"/>
 </gmfgraph:Canvas>
