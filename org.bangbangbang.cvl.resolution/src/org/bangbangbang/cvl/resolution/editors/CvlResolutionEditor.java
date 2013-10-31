@@ -17,14 +17,16 @@ import java.util.Map;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
-import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryContentProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryLabelProvider;
 import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
-import org.bangbangbang.cvl.resolution.custom.VirtualVClassifier;
+import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxControlTreeListner;
+import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxNotifyChangedListener;
+import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxStateListener;
+import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxUpdateTreeViewerListener;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -56,13 +58,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
@@ -85,21 +85,17 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.util.LocalSelectionTransfer;
-import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnWeightData;
-import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
@@ -111,13 +107,10 @@ import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -1007,317 +1000,16 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 			// Create a page for the selection tree view.
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(),
-						CvlResolutionEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						final Tree tree = new Tree(composite, SWT.MULTI
-								| SWT.CHECK);
-
-						// Remove checkbox
-						// org.bangbangbang.cvl.resolution.action without
-						// ChoiceResolution
-						tree.addListener(SWT.Selection, new Listener() {
-
-							public void handleEvent(Event event) {
-								if (event.detail == SWT.CHECK) {
-									if (!(event.item.getData() instanceof ChoiceResolutuion)
-											|| ((event.item.getData() instanceof ChoiceResolutuion) && ((ChoiceResolutuion) event.item
-													.getData())
-													.getResolvedChoice()
-													.isIsImpliedByParent())) {
-										event.detail = SWT.NONE;
-										event.type = SWT.None;
-										event.doit = false;
-										try {
-											tree.setRedraw(false);
-											TreeItem item = (TreeItem) event.item;
-											item.setChecked(!item.getChecked());
-										} finally {
-											tree.setRedraw(true);
-										}
-									}
-								}
-							}
-						});
-
-						CheckboxTreeViewer newTreeViewer = new CheckboxTreeViewer(
-								tree);
-
-						newTreeViewer
-								.addTreeListener(new ITreeViewerListener() {
-
-									@Override
-									public void treeCollapsed(
-											TreeExpansionEvent event) {
-
-									}
-
-									@Override
-									public void treeExpanded(
-											TreeExpansionEvent event) {
-										if (event.getElement() instanceof VirtualVClassifier) {
-											// VirtualVClassifier is expanded
-											// Then children of the parent of
-											// the VirtualVClassifier is
-											// set Grayed.
-											for (Iterator<VSpecResolution> iterator = ((VirtualVClassifier) event
-													.getElement()).getParent()
-													.getChild().iterator(); iterator
-													.hasNext();) {
-												EObject element = iterator
-														.next();
-												if (element instanceof ChoiceResolutuion) {
-													selectionViewer
-															.setChecked(
-																	element,
-																	((ChoiceResolutuion) element)
-																			.isDecision());
-												} else if (element instanceof VSpecResolution
-														|| element instanceof ConfigurableUnit) {
-													selectionViewer
-															.setGrayChecked(
-																	element,
-																	true);
-												}
-											}
-										} else if (event.getElement() instanceof VSpecResolution) {
-
-											CustomAdapterFactoryContentProvider contentProvider = (CustomAdapterFactoryContentProvider) ((CheckboxTreeViewer) event
-													.getTreeViewer())
-													.getContentProvider();
-											Object[] targets = contentProvider
-													.getChildren(event
-															.getElement());
-
-											for (int i = 0; i < targets.length; i++) {
-												if (targets[i] instanceof VirtualVClassifier) {
-													((CheckboxTreeViewer) event
-															.getTreeViewer())
-															.setGrayChecked(
-																	targets[i],
-																	true);
-												}
-											}
-											for (Iterator<VSpecResolution> iterator = ((VSpecResolution) event
-													.getElement()).getChild()
-													.iterator(); iterator
-													.hasNext();) {
-												EObject element = iterator
-														.next();
-												if (element instanceof ChoiceResolutuion) {
-													selectionViewer
-															.setChecked(
-																	element,
-																	((ChoiceResolutuion) element)
-																			.isDecision());
-												} else if (element instanceof VSpecResolution
-														|| element instanceof ConfigurableUnit) {
-													selectionViewer
-															.setGrayChecked(
-																	element,
-																	true);
-												}
-											}
-										}
-
-									}
-
-								});
-						return newTreeViewer;
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
-				viewerPane.createControl(getContainer());
-
-				selectionViewer = (CheckboxTreeViewer) viewerPane.getViewer();
-				selectionViewer
-						.setContentProvider(new CustomAdapterFactoryContentProvider(
-								adapterFactory));
-
-				selectionViewer
-						.setLabelProvider(new CustomAdapterFactoryLabelProvider(
-								adapterFactory));
-
-				// Add change listener
-				adapterFactory.addListener(new INotifyChangedListener() {
-
-					@Override
-					public void notifyChanged(Notification notification) {
-						selectionViewer.refresh();
-
-						// for Change ChoiceResolution.decision from property
-						// view or
-						// Ctrl+Z
-						if (notification.getNotifier() instanceof ChoiceResolutuion
-								&& (notification.getEventType() == Notification.SET || notification
-										.getEventType() == Notification.UNSET)) {
-							selectionViewer.setChecked(notification
-									.getNotifier(),
-									((ChoiceResolutuion) notification
-											.getNotifier()).isDecision());
-							// Spread to the child which is isImpliedParent
-							for (Iterator<VSpecResolution> iterator = ((ChoiceResolutuion) notification
-									.getNotifier()).getChild().iterator(); iterator
-									.hasNext();) {
-								VSpecResolution element = iterator.next();
-								if (element instanceof ChoiceResolutuion
-										&& ((ChoiceResolutuion) element)
-												.getResolvedChoice()
-												.isIsImpliedByParent()) {
-									if (((ChoiceResolutuion) notification
-											.getNotifier()).isDecision() != ((ChoiceResolutuion) element)
-											.isDecision()) {
-										Command setCommand = SetCommand
-												.create(getEditingDomain(),
-														(ChoiceResolutuion) element,
-														CvlPackage.eINSTANCE
-																.getChoiceResolutuion_Decision(),
-														((ChoiceResolutuion) notification
-																.getNotifier())
-																.isDecision());
-										getEditingDomain().getCommandStack()
-												.execute(setCommand);
-									}
-								}
-							}
-
-						}
-
-						// for Add VSpecResolution as template
-						else if (notification.getEventType() == Notification.ADD
-								&& notification.getNewValue() instanceof VSpecResolution) {
-							VSpecResolution element = (VSpecResolution) notification
-									.getNewValue();
-							if (element instanceof ChoiceResolutuion) {
-								selectionViewer.setChecked(element,
-										((ChoiceResolutuion) element)
-												.isDecision());
-							} else if (element instanceof VSpecResolution
-									|| element instanceof ConfigurableUnit) {
-								selectionViewer.setGrayChecked(element, true);
-							}
-						}
-
-					}
-				});
-				selectionViewer.setInput(editingDomain.getResourceSet());
-				selectionViewer.setSelection(new StructuredSelection(
-						editingDomain.getResourceSet().getResources().get(0)),
-						true);
-
-				// Action Listener for CheckBox
-				selectionViewer
-						.addCheckStateListener(new ICheckStateListener() {
-
-							public void checkStateChanged(
-									CheckStateChangedEvent event) {
-								if (event.getElement() instanceof ChoiceResolutuion) {
-									Command setCommand = SetCommand
-											.create(getEditingDomain(),
-													(ChoiceResolutuion) event
-															.getElement(),
-													CvlPackage.eINSTANCE
-															.getChoiceResolutuion_Decision(),
-													selectionViewer.getChecked(event
-															.getElement()));
-									getEditingDomain().getCommandStack()
-											.execute(setCommand);
-
-								}
-
-							}
-						});
-
-				viewerPane.setTitle(editingDomain.getResourceSet());
-
-				new AdapterFactoryTreeEditor(selectionViewer.getTree(),
-						adapterFactory);
-
-				createContextMenuFor(selectionViewer);
-
-				// selectionViewer Init.
-				selectionViewer.setGrayChecked(selectionViewer.getTree()
-						.getTopItem().getData(), true);
-				for (TreeIterator<EObject> iterator = getEditingDomain()
-						.getResourceSet().getResources().get(0)
-						.getAllContents(); iterator.hasNext();) {
-					EObject element = iterator.next();
-					if (element instanceof ChoiceResolutuion) {
-						selectionViewer.setChecked(element,
-								((ChoiceResolutuion) element).isDecision());
-					} else if (element instanceof VSpecResolution
-							|| element instanceof ConfigurableUnit) {
-						selectionViewer.setGrayChecked(element, true);
-					}
-				}
+				ViewerPane viewerPane = createTreeViewerPage();
 
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
 			}
-
 			// This is the page for the table viewer.
 			//
 			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(),
-						CvlResolutionEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new TableViewer(composite, SWT.H_SCROLL
-								| SWT.V_SCROLL | SWT.BORDER);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
-				viewerPane.createControl(getContainer());
-				tableViewer = (TableViewer) viewerPane.getViewer();
-
-				Table table = tableViewer.getTable();
-				TableLayout layout = new TableLayout();
-				table.setLayout(layout);
-				table.setHeaderVisible(true);
-				table.setLinesVisible(true);
-
-				TableColumn firstColumn = new TableColumn(table, SWT.LEFT);
-				layout.addColumnData(new ColumnWeightData(3, 100, true));
-				firstColumn.setText("Product");
-				firstColumn.setResizable(true);
-
-				ConfigurableUnit cu = (ConfigurableUnit) editingDomain
-						.getResourceSet().getResources().get(0).getContents()
-						.get(0);
-				List<VSpec> headers = createTableColumns(cu);
-				for (VSpec vs : headers) {
-					TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
-					layout.addColumnData(new ColumnWeightData(2, 10, true));
-					selfColumn.setText(vs.getName());
-					selfColumn.setResizable(true);
-				}
-
-				ResolutionTableContentProvider provider = new ResolutionTableContentProvider();
-				provider.setHeaders(headers);
-				tableViewer.setContentProvider(provider);
-				tableViewer
-						.setLabelProvider(new ResolutionTableLabelProvider());
-
-				// tableViewer.setContentProvider(new
-				// ResolutionContentProvider());
-				// ResolutionLabelProvider rlp = new ResolutionLabelProvider();
-				// rlp.setHeaders(headers);
-				// tableViewer.setLabelProvider(rlp);
-
-				tableViewer.setInput(cu);
-
-				createContextMenuFor(tableViewer);
+				ViewerPane viewerPane = createTableViewerPage();
+				
 				int pageIndex = addPage(viewerPane.getControl());
 				setPageText(pageIndex, getString("_UI_TablePage_label"));
 			}
@@ -1350,6 +1042,137 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				updateProblemIndication();
 			}
 		});
+	}
+
+	private ViewerPane createTableViewerPage() {
+		ViewerPane viewerPane = new ViewerPane(getSite().getPage(),
+				CvlResolutionEditor.this) {
+			@Override
+			public Viewer createViewer(Composite composite) {
+				return new TableViewer(composite, SWT.H_SCROLL
+						| SWT.V_SCROLL | SWT.BORDER);
+			}
+
+			@Override
+			public void requestActivation() {
+				super.requestActivation();
+				setCurrentViewerPane(this);
+			}
+		};
+		viewerPane.createControl(getContainer());
+		tableViewer = (TableViewer) viewerPane.getViewer();
+
+		Table table = tableViewer.getTable();
+		TableLayout layout = new TableLayout();
+		table.setLayout(layout);
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+
+		TableColumn firstColumn = new TableColumn(table, SWT.LEFT);
+		layout.addColumnData(new ColumnWeightData(3, 100, true));
+		firstColumn.setText("Product");
+		firstColumn.setResizable(true);
+
+		ConfigurableUnit cu = (ConfigurableUnit) editingDomain
+				.getResourceSet().getResources().get(0).getContents()
+				.get(0);
+		List<VSpec> headers = createTableColumns(cu);
+		for (VSpec vs : headers) {
+			TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
+			layout.addColumnData(new ColumnWeightData(2, 10, true));
+			selfColumn.setText(vs.getName());
+			selfColumn.setResizable(true);
+		}
+
+		ResolutionTableContentProvider provider = new ResolutionTableContentProvider();
+		provider.setHeaders(headers);
+		tableViewer.setContentProvider(provider);
+		tableViewer
+				.setLabelProvider(new ResolutionTableLabelProvider());
+
+		// tableViewer.setContentProvider(new
+		// ResolutionContentProvider());
+		// ResolutionLabelProvider rlp = new ResolutionLabelProvider();
+		// rlp.setHeaders(headers);
+		// tableViewer.setLabelProvider(rlp);
+
+		tableViewer.setInput(cu);
+
+		createContextMenuFor(tableViewer);
+		return viewerPane;
+	}
+
+	private ViewerPane createTreeViewerPage() {
+		ViewerPane viewerPane = new ViewerPane(getSite().getPage(),
+				CvlResolutionEditor.this) {
+			@Override
+			public Viewer createViewer(Composite composite) {
+				final Tree tree = new Tree(composite, SWT.MULTI | SWT.CHECK);
+
+				// Add listner for disable checkbox without
+				// ChoiceResolution
+				tree.addListener(SWT.Selection, new CheckBoxControlTreeListner(
+						tree));
+
+				CheckboxTreeViewer newTreeViewer = new CheckboxTreeViewer(tree);
+
+				// Add listner for update checkbox when tree is expanded
+				newTreeViewer
+						.addTreeListener(new CheckBoxUpdateTreeViewerListener(
+								selectionViewer));
+				return newTreeViewer;
+			}
+
+			@Override
+			public void requestActivation() {
+				super.requestActivation();
+				setCurrentViewerPane(this);
+			}
+		};
+		viewerPane.createControl(getContainer());
+
+		selectionViewer = (CheckboxTreeViewer) viewerPane.getViewer();
+		selectionViewer
+				.setContentProvider(new CustomAdapterFactoryContentProvider(
+						adapterFactory));
+
+		selectionViewer.setLabelProvider(new CustomAdapterFactoryLabelProvider(
+				adapterFactory));
+
+		// Add change listener
+		adapterFactory.addListener(new CheckBoxNotifyChangedListener(
+				selectionViewer, editingDomain));
+
+		selectionViewer.setInput(editingDomain.getResourceSet());
+		selectionViewer.setSelection(new StructuredSelection(editingDomain
+				.getResourceSet().getResources().get(0)), true);
+		// Action Listener for CheckBox
+		selectionViewer.addCheckStateListener(new CheckBoxStateListener(
+				selectionViewer, editingDomain));
+
+		viewerPane.setTitle(editingDomain.getResourceSet());
+
+		new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
+
+		// Context Menu
+		createContextMenuFor(selectionViewer);
+
+		// selectionViewer Init.
+		selectionViewer.setGrayChecked(selectionViewer.getTree().getTopItem()
+				.getData(), true);
+		for (TreeIterator<EObject> iterator = getEditingDomain()
+				.getResourceSet().getResources().get(0).getAllContents(); iterator
+				.hasNext();) {
+			EObject element = iterator.next();
+			if (element instanceof ChoiceResolutuion) {
+				selectionViewer.setChecked(element,
+						((ChoiceResolutuion) element).isDecision());
+			} else if (element instanceof VSpecResolution
+					|| element instanceof ConfigurableUnit) {
+				selectionViewer.setGrayChecked(element, true);
+			}
+		}
+		return viewerPane;
 	}
 
 	/**
