@@ -1119,7 +1119,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				// Add listner for update checkbox when tree is expanded
 				newTreeViewer
 						.addTreeListener(new CheckBoxUpdateTreeViewerListener(
-								selectionViewer));
+								newTreeViewer));
 				return newTreeViewer;
 			}
 
