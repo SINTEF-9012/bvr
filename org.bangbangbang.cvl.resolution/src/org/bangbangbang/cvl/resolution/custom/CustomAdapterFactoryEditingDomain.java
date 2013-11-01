@@ -12,8 +12,10 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.CopyToClipboardCommand;
 import org.eclipse.emf.edit.command.CutToClipboardCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
+import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 
 public class CustomAdapterFactoryEditingDomain extends
@@ -43,6 +45,52 @@ public class CustomAdapterFactoryEditingDomain extends
 			}
 			return UnexecutableCommand.INSTANCE;
 		} else if (command instanceof CutToClipboardCommand) {
+			if (commandParameter.getCollection() instanceof List
+					&& ((List<?>) commandParameter.getCollection()).size() == 1) {
+				Object target = ((List<?>) commandParameter.getCollection())
+						.get(0);
+				if (target instanceof VInstance) {
+					return command;
+				} else if (target instanceof ChoiceResolutuion
+						&& ((ChoiceResolutuion) target).eContainer() instanceof ConfigurableUnit) {
+					return command;
+				}
+			}
+			return UnexecutableCommand.INSTANCE;
+		} else if (command instanceof CopyToClipboardCommand) {
+			if (commandParameter.getCollection() instanceof List
+					&& ((List<?>) commandParameter.getCollection()).size() == 1) {
+				Object target = ((List<?>) commandParameter.getCollection())
+						.get(0);
+				if (target instanceof VInstance) {
+					return command;
+				} else if (target instanceof ChoiceResolutuion
+						&& ((ChoiceResolutuion) target).eContainer() instanceof ConfigurableUnit) {
+					return command;
+				}
+			}
+			return UnexecutableCommand.INSTANCE;
+		} else if (command instanceof PasteFromClipboardCommand) {
+			if (commandParameter.getOwner() instanceof ConfigurableUnit
+					&& clipboard.size() == 1) {
+				Object target = ((List<?>) clipboard).get(0);
+				if (target instanceof ChoiceResolutuion) {
+					return command;
+				}
+			} else if (commandParameter.getOwner() instanceof VirtualVClassifier
+					&& clipboard.size() == 1) {
+				Object target = ((List<?>) clipboard).get(0);
+				if (target instanceof VInstance
+						&& ((VInstance) target).getResolvedVSpec() == ((VirtualVClassifier) commandParameter
+								.getOwner()).getResolvedVSpec()) {
+					commandParameter
+							.setOwner(((VirtualVClassifier) commandParameter
+									.getOwner()).getParent());
+					command = super.createCommand(commandClass,
+							commandParameter);
+					return command;
+				}
+			}
 			return UnexecutableCommand.INSTANCE;
 		} else {
 			return command;
