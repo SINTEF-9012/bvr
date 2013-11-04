@@ -275,6 +275,7 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 				p.y = childFigure.getBounds().y;
 
 			}
+			getOwner().translateToAbsolute(p);
 			return p;
 		}
 	}

@@ -275,6 +275,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 				p.y = childFigure.getBounds().y;
 
 			}
+			getOwner().translateToAbsolute(p);
 			return p;
 		}
 	}
