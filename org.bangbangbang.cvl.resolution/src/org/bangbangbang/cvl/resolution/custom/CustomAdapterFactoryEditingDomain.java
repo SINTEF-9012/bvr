@@ -72,13 +72,13 @@ public class CustomAdapterFactoryEditingDomain extends
 			return UnexecutableCommand.INSTANCE;
 		} else if (command instanceof PasteFromClipboardCommand) {
 			if (commandParameter.getOwner() instanceof ConfigurableUnit
-					&& clipboard.size() == 1) {
+					&& clipboard != null && clipboard.size() == 1) {
 				Object target = ((List<?>) clipboard).get(0);
 				if (target instanceof ChoiceResolutuion) {
 					return command;
 				}
 			} else if (commandParameter.getOwner() instanceof VirtualVClassifier
-					&& clipboard.size() == 1) {
+					&& clipboard != null && clipboard.size() == 1) {
 				Object target = ((List<?>) clipboard).get(0);
 				if (target instanceof VInstance
 						&& ((VInstance) target).getResolvedVSpec() == ((VirtualVClassifier) commandParameter
