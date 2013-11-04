@@ -15,7 +15,6 @@ import org.bangbangbang.cvl.RealLiteralExp;
 import org.bangbangbang.cvl.StringLiteralExp;
 import org.bangbangbang.cvl.UnlimitedLiteralExp;
 import org.bangbangbang.cvl.VClassifier;
-import org.bangbangbang.cvl.VInstance;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.bangbangbang.cvl.Variable;
