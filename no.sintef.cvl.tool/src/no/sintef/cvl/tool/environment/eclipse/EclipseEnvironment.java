@@ -179,6 +179,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
 		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
 		for(final Symbol symbol : symbols){
+			logger.debug("processing Symbol " + symbol.getVSpec());
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
 			
 			ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
@@ -203,6 +204,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			}
 			
 			for(final FragmentSubstitution fragment : fragments){
+				logger.debug("processing FragmentSubstitution " + fragment);
 				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 					
 					@Override
