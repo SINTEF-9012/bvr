@@ -359,11 +359,16 @@ public class CustomVariableValueAssignmentItemProvider extends
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = getString("_UI_VariableValueAssignment_type");
+
+		if (((Variable) ((VariableValueAssignment) object)
+				.getResolvedVariable()).getType() == null) {
+			return label;
+		}
 		label += " "
 				+ ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
 						.getResolvedVariable()).getType()).getName();
