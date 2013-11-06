@@ -87,14 +87,14 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 						EngineUtility.setProperty(values, elementsToRemove, elementsToAdd);
 						EList<EObject> propertyValueSet = EngineUtility.getListPropertyValue(insideBoundaryElementPlc, property);
 						if(!propertyValueNew.equals(propertyValueSet))
-							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : " + propertyName + "of" + fragHolderAdjacent.getFragment());
+							throw new UnexpectedOperationFailure("EPIC FAIL: property has not been adjusted : '" + propertyName + "' of " + fragHolderAdjacent.getFragment());
 					}else{
 						//property.getUpperBound() == 0 || == 1
 						if(upperBound == 0)
-							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBoundaryElementPlc.eGet(property));
+							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there " + insideBoundaryElementPlc.eGet(property));
 
 						if(insideBOHElmtsPlcReplaced.size() != upperBound)
-							throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragHolderAdjacent.getFragment());
+							throw new IllegalCVLOperation("cardinality does not match for property : '" + propertyName + "' of " + fragHolderAdjacent.getFragment() + " objects: " + EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced));
 
 						EObject propertyValueNew = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
 						EngineUtility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);
