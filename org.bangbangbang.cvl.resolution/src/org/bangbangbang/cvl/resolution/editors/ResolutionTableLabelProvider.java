@@ -41,7 +41,11 @@ public class ResolutionTableLabelProvider implements ITableLabelProvider,
 	@SuppressWarnings("unchecked")
 	@Override
 	public String getColumnText(Object element, int columnIndex) {
-		if (element instanceof List<?>) {
+		if (element instanceof List<?>
+				&& ((List<String>) element).size() > columnIndex) {
+			if (((List<String>) element).get(columnIndex) == null) {
+				return "";
+			}
 			return ((List<String>) element).get(columnIndex);
 		}
 		return "n/a";
