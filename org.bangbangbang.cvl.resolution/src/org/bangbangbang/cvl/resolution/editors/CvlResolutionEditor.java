@@ -1207,8 +1207,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	protected void pageChange(int pageIndex) {
 		// TODO if n/a is shown in table view, ConfigurableUnit should use same
 		// instance.
-		selectionViewer.setInput((ConfigurableUnit) editingDomain
-				.getResourceSet().getResources().get(0).getContents().get(0));
+		selectionViewer.setInput(editingDomain.getResourceSet());
 		tableViewer.setInput((ConfigurableUnit) editingDomain.getResourceSet()
 				.getResources().get(0).getContents().get(0));
 
