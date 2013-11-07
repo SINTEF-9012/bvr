@@ -126,57 +126,60 @@ public class CheckValidationRootChoice implements IHandler {
 			}
 			VSpecResolution target = (VSpecResolution) obj;
 
-			// Check : Is target have VInstance child? for checking Instance
-			// multiplicity
-			Map<VClassifier, Integer> vclassifiers = new HashMap<VClassifier, Integer>();
-
-			EList<VSpecResolution> children = target.getChild();
-			for (Iterator<VSpecResolution> childrenIterator = children
-					.iterator(); childrenIterator.hasNext();) {
-				VSpecResolution res = childrenIterator.next();
-				if (res instanceof VInstance
-						&& !vclassifiers.containsKey(res.getResolvedVSpec())) {
-					vclassifiers.put((VClassifier) res.getResolvedVSpec(), 1);
-				} else if (res instanceof VInstance
-						&& vclassifiers.containsKey(res.getResolvedVSpec())) {
-					vclassifiers.put((VClassifier) res.getResolvedVSpec(),
-							vclassifiers.get(res.getResolvedVSpec()) + 1);
-				}
-			}
-
-			// For each VClassifier, check instance multiplicity
-			for (Iterator<Entry<VClassifier, Integer>> vclassifierIterator = vclassifiers
-					.entrySet().iterator(); vclassifierIterator.hasNext();) {
-				Entry<VClassifier, Integer> entry = vclassifierIterator.next();
-				if (entry.getKey().getInstanceMultiplicity() != null
-						&& entry.getKey().getInstanceMultiplicity() instanceof MultiplicityInterval) {
-					MultiplicityInterval interval = entry.getKey()
-							.getInstanceMultiplicity();
-					if (interval.getLower() > entry.getValue()
-							|| interval.getUpper() < entry.getValue()) {
-						// Violation of InstanceMultiplicity with target and
-						// entry.getKey()
-						result.put(
-								String.valueOf(result.size() + 1)
-										+ " InstanceMultiplicity Violation ["
-										+ String.valueOf(interval.getLower())
-										+ ".."
-										+ String.valueOf(interval.getUpper())
-										+ "] at Product:" + root.getName()
-										+ " VClassifier:"
-										+ entry.getKey().getName(), target);
-					}
-				}
-
-			}
-
-			// if target has group multiplicity, check choice decision count of
-			// target children
+			// check instance multiplicity
+			checkInstanceMultiplicity(root, result, target);
+			// check group multiplicity
 			checkGroupMultiplicity(root, result, target);
 
 		}
 
 		return result;
+	}
+
+	private static void checkInstanceMultiplicity(ChoiceResolutuion root,
+			Map<String, VSpecResolution> result, VSpecResolution target) {
+		// Check : Is target have VInstance child? for checking Instance
+		// multiplicity
+		Map<VClassifier, Integer> vclassifiers = new HashMap<VClassifier, Integer>();
+		EList<VSpecResolution> children = target.getChild();
+		for (Iterator<VSpecResolution> childrenIterator = children.iterator(); childrenIterator
+				.hasNext();) {
+			VSpecResolution res = childrenIterator.next();
+			if (res instanceof VInstance
+					&& !vclassifiers.containsKey(res.getResolvedVSpec())) {
+				vclassifiers.put((VClassifier) res.getResolvedVSpec(), 1);
+			} else if (res instanceof VInstance
+					&& vclassifiers.containsKey(res.getResolvedVSpec())) {
+				vclassifiers.put((VClassifier) res.getResolvedVSpec(),
+						vclassifiers.get(res.getResolvedVSpec()) + 1);
+			}
+		}
+
+		// For each VClassifier, check instance multiplicity
+		for (Iterator<Entry<VClassifier, Integer>> vclassifierIterator = vclassifiers
+				.entrySet().iterator(); vclassifierIterator.hasNext();) {
+			Entry<VClassifier, Integer> entry = vclassifierIterator.next();
+			if (entry.getKey().getInstanceMultiplicity() != null
+					&& entry.getKey().getInstanceMultiplicity() instanceof MultiplicityInterval) {
+				MultiplicityInterval interval = entry.getKey()
+						.getInstanceMultiplicity();
+				if (interval.getLower() > entry.getValue()
+						|| interval.getUpper() < entry.getValue()) {
+					// Violation of InstanceMultiplicity with target and
+					// entry.getKey()
+					result.put(
+							String.valueOf(result.size() + 1)
+									+ " InstanceMultiplicity Violation ["
+									+ String.valueOf(interval.getLower())
+									+ ".."
+									+ String.valueOf(interval.getUpper())
+									+ "] at Product:" + root.getName()
+									+ " VClassifier:"
+									+ entry.getKey().getName(), target);
+				}
+			}
+
+		}
 	}
 
 	private static void checkGroupMultiplicity(ChoiceResolutuion root,
