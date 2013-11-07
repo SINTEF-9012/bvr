@@ -54,6 +54,9 @@ public class ResolutionTableLabelProvider implements ITableLabelProvider,
 
 	@Override
 	public Color getBackground(Object element, int columnIndex) {
+		if (element == null) {
+			return null;
+		}
 		if (getColumnText(element, columnIndex).equals("-")
 				|| getColumnText(element, columnIndex).equals("n/a")) {
 			return Display.getCurrent().getSystemColor(SWT.COLOR_GRAY);
