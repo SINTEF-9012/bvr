@@ -50,7 +50,8 @@ public class CustomAdapterFactoryContentProvider extends
 			Object[] objList = super.getChildren(object);
 
 			for (int i = 0; i < objList.length; i++) {
-				if (!(objList[i] instanceof VInstance)) {
+				if (!(objList[i] instanceof VInstance)
+						&& objList[i] instanceof VSpecResolution) {
 					resolutionList.add((VSpecResolution) objList[i]);
 				}
 			}

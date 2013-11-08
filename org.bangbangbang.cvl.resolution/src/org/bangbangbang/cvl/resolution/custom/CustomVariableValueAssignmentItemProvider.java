@@ -314,17 +314,17 @@ public class CustomVariableValueAssignmentItemProvider extends
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT Stop Add child menu from UI
+	 * @generated NOT
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(
 			Object object) {
-		// if (childrenFeatures == null) {
-		// super.getChildrenFeatures(object);
-		// childrenFeatures
-		// .add(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE);
-		// }
-		return new ArrayList<EStructuralFeature>();
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			// childrenFeatures
+			// .add(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__VALUE);
+		}
+		return childrenFeatures;
 	}
 
 	/**
