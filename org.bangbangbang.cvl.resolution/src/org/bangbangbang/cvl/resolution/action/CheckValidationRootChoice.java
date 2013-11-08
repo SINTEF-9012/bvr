@@ -72,10 +72,10 @@ public class CheckValidationRootChoice implements IHandler {
 				targetRootChoice, result);
 
 		if (result.size() == 0) {
-			Dialog dialog = new MessageDialog(PlatformUI.getWorkbench()
-					.getModalDialogShellProvider().getShell(), "No Violation",
-					null, null, 0, null, 0);
-			dialog.open();
+			MessageDialog.openInformation(PlatformUI.getWorkbench()
+					.getModalDialogShellProvider().getShell(),
+					"Check Violation", "No Violation");
+
 			return null;
 		}
 
