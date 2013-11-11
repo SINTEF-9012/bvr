@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.Constraint;
@@ -16,6 +17,7 @@ import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VInstance;
 import org.bangbangbang.cvl.VSpecResolution;
+import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.resolution.editors.CvlResolutionEditor;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -272,8 +274,16 @@ public class CheckValidationRootChoice implements IHandler {
 						.createOCLHelper();
 
 				// set the OCL context classifier
-				helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
-
+				if (constraint.getContext() instanceof Choice) {
+					helper.setContext(CvlPackage.Literals.CHOICE_RESOLUTUION);
+				} else if (constraint.getContext() instanceof VClassifier) {
+					helper.setContext(CvlPackage.Literals.VINSTANCE);
+				} else if (constraint.getContext() instanceof Variable) {
+					helper.setContext(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT);
+				} else {
+					helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
+				}
+				
 				invariant = helper.createQuery(((OpaqueConstraint) constraint)
 						.getConstraint());
 				if (!ocl.check(target, invariant)) {
