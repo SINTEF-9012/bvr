@@ -99,7 +99,7 @@ public class OpaqueConstraintItemProvider
 				 getString("_UI_OpaqueConstraint_constraintLanguage_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_OpaqueConstraint_constraintLanguage_feature", "_UI_OpaqueConstraint_type"),
 				 CvlPackage.Literals.OPAQUE_CONSTRAINT__CONSTRAINT_LANGUAGE,
-				 true,
+				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
