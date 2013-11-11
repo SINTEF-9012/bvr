@@ -1,4 +1,5 @@
 package org.bangbangbang.cvl.resolution.editors.listeners;
+
 import java.util.Iterator;
 
 import org.bangbangbang.cvl.ChoiceResolutuion;
@@ -56,6 +57,30 @@ public class CheckBoxUpdateTreeViewerListener implements ITreeViewerListener {
 			}
 			for (Iterator<VSpecResolution> iterator = ((VSpecResolution) event
 					.getElement()).getChild().iterator(); iterator.hasNext();) {
+				EObject element = iterator.next();
+				if (element instanceof ChoiceResolutuion) {
+					selectionViewer.setChecked(element,
+							((ChoiceResolutuion) element).isDecision());
+				} else if (element instanceof VSpecResolution
+						|| element instanceof ConfigurableUnit) {
+					selectionViewer.setGrayChecked(element, true);
+				}
+			}
+		} else if (event.getElement() instanceof ConfigurableUnit) {
+
+			CustomAdapterFactoryContentProvider contentProvider = (CustomAdapterFactoryContentProvider) ((CheckboxTreeViewer) event
+					.getTreeViewer()).getContentProvider();
+			Object[] targets = contentProvider.getChildren(event.getElement());
+
+			for (int i = 0; i < targets.length; i++) {
+				if (targets[i] instanceof VirtualVClassifier) {
+					((CheckboxTreeViewer) event.getTreeViewer())
+							.setGrayChecked(targets[i], true);
+				}
+			}
+			for (Iterator<VSpecResolution> iterator = ((ConfigurableUnit) event
+					.getElement()).getOwnedVSpecResolution().iterator(); iterator
+					.hasNext();) {
 				EObject element = iterator.next();
 				if (element instanceof ChoiceResolutuion) {
 					selectionViewer.setChecked(element,
