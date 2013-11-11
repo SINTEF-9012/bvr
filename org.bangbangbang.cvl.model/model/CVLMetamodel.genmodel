@@ -60,15 +60,18 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VClassifier/instanceMultiplicity"/>
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//VSpecResolution">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VSpecResolution/resolvedVSpec"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VSpecResolution/resolvedVSpec"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VSpecResolution/child"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//ChoiceResolutuion">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ChoiceResolutuion/resolvedChoice"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ChoiceResolutuion/resolvedChoice"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CVLMetamodel.ecore#//ChoiceResolutuion/decision"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//VInstance">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VInstance/type"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VInstance/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="CVLMetamodel.ecore#//VariationPoint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VariationPoint/bindingVSpec"/>
@@ -116,7 +119,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//ValueSpecification/type"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//VariableValueAssignment">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VariableValueAssignment/resolvedVariable"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VariableValueAssignment/resolvedVariable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CVLMetamodel.ecore#//VariableValueAssignment/value"/>
     </genClasses>
     <genClasses ecoreClass="CVLMetamodel.ecore#//PrimitveType">
