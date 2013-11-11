@@ -99,7 +99,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 								"_UI_VariableValueAssignment_resolvedVariable_feature",
 								"_UI_VariableValueAssignment_type"),
 						CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE,
-						true, false, true, null, null, null));
+						false, false, true, null, null, null));
 	}
 
 	/**
