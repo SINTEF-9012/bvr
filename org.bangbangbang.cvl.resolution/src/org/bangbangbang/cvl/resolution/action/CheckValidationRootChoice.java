@@ -1,14 +1,18 @@
 package org.bangbangbang.cvl.resolution.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.Constraint;
+import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.MultiplicityInterval;
+import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VInstance;
 import org.bangbangbang.cvl.VSpecResolution;
@@ -18,11 +22,13 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -30,6 +36,11 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.ocl.OCL;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ListDialog;
@@ -40,11 +51,21 @@ public class CheckValidationRootChoice implements IHandler {
 	IEditorPart editorPart = null;
 	TreeViewer viewer = null;
 
+	public static class ViolationEntry {
+		public String message;
+		public VSpecResolution target;
+
+		public ViolationEntry(String message, VSpecResolution target) {
+			this.message = message;
+			this.target = target;
+		}
+	}
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		editorPart = HandlerUtil.getActiveEditorChecked(event);
 		viewer = (TreeViewer) ((IViewerProvider) editorPart).getViewer();
-		Map<String, VSpecResolution> result = new TreeMap<String, VSpecResolution>();
+		List<ViolationEntry> result = new ArrayList<ViolationEntry>();
 
 		if (!(editorPart instanceof CvlResolutionEditor)) {
 			return null;
@@ -82,16 +103,15 @@ public class CheckValidationRootChoice implements IHandler {
 		ListDialog dialog = new ListDialog(PlatformUI.getWorkbench()
 				.getModalDialogShellProvider().getShell());
 		dialog.setContentProvider(new ArrayContentProvider());
-		dialog.setInput(result.entrySet().toArray());
+		dialog.setInput(result.toArray());
 		dialog.setLabelProvider(new LabelProvider() {
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public String getText(Object element) {
-				Entry<String, VSpecResolution> entry;
-				if (element instanceof Entry<?, ?>) {
-					entry = (Entry<String, VSpecResolution>) element;
-					return entry.getKey();
+				ViolationEntry entry;
+				if (element instanceof ViolationEntry) {
+					entry = (ViolationEntry) element;
+					return entry.message;
 				}
 				return "";
 			}
@@ -102,20 +122,20 @@ public class CheckValidationRootChoice implements IHandler {
 			Object[] selection = dialog.getResult();
 			if (selection.length > 0) {
 				viewer.setSelection(new StructuredSelection(
-						((Entry<String, VSpecResolution>) selection[0])
-								.getValue()));
+						((ViolationEntry) selection[0]).target));
 			}
 		}
 
 		return null;
 	}
 
-	public static Map<String, VSpecResolution> traverseResolutionTree(
+	public static List<ViolationEntry> traverseResolutionTree(
 			EditingDomain editDomain, IEditorPart editPart, TreeViewer viewer,
-			ChoiceResolutuion root, Map<String, VSpecResolution> result) {
+			ChoiceResolutuion root, List<ViolationEntry> result) {
 		// for Root Choice resolution, check group multiplicity
 		// and check constraints
 		checkGroupMultiplicity(root, result, root);
+		checkOCLConstraint(root, result, root);
 
 		// traverse tree of resolution
 		for (TreeIterator<EObject> iterator = root.eAllContents(); iterator
@@ -131,13 +151,14 @@ public class CheckValidationRootChoice implements IHandler {
 			// check group multiplicity
 			checkGroupMultiplicity(root, result, target);
 
+			checkOCLConstraint(root, result, target);
 		}
 
 		return result;
 	}
 
 	private static void checkInstanceMultiplicity(ChoiceResolutuion root,
-			Map<String, VSpecResolution> result, VSpecResolution target) {
+			List<ViolationEntry> result, VSpecResolution target) {
 		// Check : Is target have VInstance child? for checking Instance
 		// multiplicity
 		Map<VClassifier, Integer> vclassifiers = new HashMap<VClassifier, Integer>();
@@ -167,15 +188,15 @@ public class CheckValidationRootChoice implements IHandler {
 						|| interval.getUpper() < entry.getValue()) {
 					// Violation of InstanceMultiplicity with target and
 					// entry.getKey()
-					result.put(
-							String.valueOf(result.size() + 1)
-									+ " InstanceMultiplicity Violation ["
+					result.add(new ViolationEntry(
+							" InstanceMultiplicity Violation ["
 									+ String.valueOf(interval.getLower())
 									+ ".."
 									+ String.valueOf(interval.getUpper())
 									+ "] at Product:" + root.getName()
 									+ " VClassifier:"
-									+ entry.getKey().getName(), target);
+									+ entry.getKey().getName(), target));
+
 				}
 			}
 
@@ -183,7 +204,7 @@ public class CheckValidationRootChoice implements IHandler {
 	}
 
 	private static void checkGroupMultiplicity(ChoiceResolutuion root,
-			Map<String, VSpecResolution> result, VSpecResolution target) {
+			List<ViolationEntry> result, VSpecResolution target) {
 		if ((target instanceof ChoiceResolutuion && ((ChoiceResolutuion) target)
 				.getResolvedChoice().getGroupMultiplicity() != null)
 				|| (target instanceof VInstance && ((VInstance) target)
@@ -209,16 +230,68 @@ public class CheckValidationRootChoice implements IHandler {
 			}
 			if (interval.getLower() > count || interval.getUpper() < count) {
 				// Violation
-				result.put(
-						String.valueOf(result.size() + 1)
-								+ " GroupMultiplicity Violation ["
-								+ String.valueOf(interval.getLower()) + ".."
-								+ String.valueOf(interval.getUpper())
-								+ "] at Product:" + root.getName()
-								+ " Element:"
-								+ target.getResolvedVSpec().getName(), target);
+				result.add(new ViolationEntry(" GroupMultiplicity Violation ["
+						+ String.valueOf(interval.getLower()) + ".."
+						+ String.valueOf(interval.getUpper()) + "] at Product:"
+						+ root.getName() + " Element:"
+						+ target.getResolvedVSpec().getName(), target));
 			}
 		}
+	}
+
+	private static void checkOCLConstraint(ChoiceResolutuion root,
+			List<ViolationEntry> result, VSpecResolution target) {
+		ConfigurableUnit cu = null;
+		if (root.eContainer() instanceof ConfigurableUnit) {
+			cu = (ConfigurableUnit) root.eContainer();
+		} else {
+			assert (false);
+		}
+
+		// get constraints that context is target's vspec
+		EList<Constraint> constraints = new BasicEList<Constraint>();
+		constraints.addAll(cu.getOwnedConstraint());
+		for (Iterator<Constraint> iterator = constraints.iterator(); iterator
+				.hasNext();) {
+			Constraint c = iterator.next();
+			if (c.getContext() != target.getResolvedVSpec()
+					|| !(c instanceof OpaqueConstraint)) {
+				iterator.remove();
+			}
+		}
+
+		for (Constraint constraint : constraints) {
+			OCLExpression<EClassifier> invariant = null;
+			try {
+				// create an OCL instance for Ecore
+				OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, org.eclipse.ocl.ecore.Constraint, EClass, EObject> ocl;
+				ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+
+				// create an OCL helper object
+				OCLHelper<EClassifier, ?, ?, org.eclipse.ocl.ecore.Constraint> helper = ocl
+						.createOCLHelper();
+
+				// set the OCL context classifier
+				helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
+
+				invariant = helper.createQuery(((OpaqueConstraint) constraint)
+						.getConstraint());
+				if (!ocl.check(target, invariant)) {
+					// Violation
+					result.add(new ViolationEntry(" OCL Violation ["
+							+ ((OpaqueConstraint) constraint).getConstraint()
+							+ "] at Product:" + root.getName() + " Element:"
+							+ target.getResolvedVSpec().getName(), target));
+				}
+
+			} catch (ParserException e) {
+				MessageDialog.openInformation(PlatformUI.getWorkbench()
+						.getModalDialogShellProvider().getShell(),
+						"Check Violation", "OCL Syntax error");
+				return;
+			}
+		}
+
 	}
 
 	@Override
