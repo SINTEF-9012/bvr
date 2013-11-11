@@ -45,10 +45,18 @@
       <command
          categoryId="org.eclipse.ui.category.edit"
          defaultHandler="org.bangbangbang.cvl.resolution.action.CheckValidationRootChoice"
-         description="Validate product"
+         description="Validate Product"
          id="org.bangbangbang.cvl.resolution.action.checkProduct"
          name="checkProduct">
       </command>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.bangbangbang.cvl.resolution.action.CheckValidationAllProduct"
+         description="Validate All Product"
+         id="org.bangbangbang.cvl.resolution.action.checkAllProduct"
+         name="checkAllProduct">
+      </command>
+ 
    </extension>
    
 <extension point="org.eclipse.ui.menus">
@@ -83,6 +91,18 @@
               checkEnabled="false">
           <iterate ifEmpty="false">
       		<adapt type="org.bangbangbang.cvl.VSpecResolution">
+      		</adapt>
+    	  </iterate>
+        </visibleWhen>
+      </command>
+  </menuContribution>
+ <menuContribution locationURI="popup:org.eclipse.ui.popup.any?before=edit">
+     <command label="Check all product" 
+        commandId="org.bangbangbang.cvl.resolution.action.checkAllProduct" style="push" >
+       <visibleWhen
+              checkEnabled="false">
+          <iterate ifEmpty="false">
+      		<adapt type="org.bangbangbang.cvl.ConfigurableUnit">
       		</adapt>
     	  </iterate>
         </visibleWhen>
