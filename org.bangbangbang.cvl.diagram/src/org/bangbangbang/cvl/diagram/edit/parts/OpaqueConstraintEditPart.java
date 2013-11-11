@@ -272,7 +272,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 				}
 
 			}
-
+			getOwner().translateToAbsolute(p);
 			return p;
 		}
 	}
