@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.OpaqueConstraint;
+import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VSpec;
+import org.bangbangbang.cvl.Variable;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -77,7 +81,8 @@ public class OCLCustomUtil {
 
 	}
 
-	public static boolean checkSyntax(String oclString) throws ParserException {
+	public static boolean checkSyntax(String oclString,
+			OpaqueConstraint constraint) throws ParserException {
 		Constraint invariant = null;
 
 		try {
@@ -90,7 +95,18 @@ public class OCLCustomUtil {
 					.createOCLHelper();
 
 			// set the OCL context classifier
-			helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
+			if (constraint.getContext() == null) {
+				return false;
+			}
+			if (constraint.getContext() instanceof Choice) {
+				helper.setContext(CvlPackage.Literals.CHOICE_RESOLUTUION);
+			} else if (constraint.getContext() instanceof VClassifier) {
+				helper.setContext(CvlPackage.Literals.VINSTANCE);
+			} else if (constraint.getContext() instanceof Variable) {
+				helper.setContext(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT);
+			} else {
+				helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
+			}
 
 			invariant = helper.createInvariant(oclString);
 			// record success

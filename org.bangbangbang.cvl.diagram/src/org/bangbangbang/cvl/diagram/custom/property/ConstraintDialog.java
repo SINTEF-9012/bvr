@@ -2,11 +2,13 @@ package org.bangbangbang.cvl.diagram.custom.property;
 
 import java.util.Iterator;
 
+import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.diagram.custom.ocl.OCLCustomUtil;
 import org.bangbangbang.cvl.diagram.custom.ocl.OCLPartitionScanner;
 import org.bangbangbang.cvl.diagram.custom.ocl.OCLSourceViewer;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.ITextViewerExtension2;
@@ -25,16 +27,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.ui.PlatformUI;
 
 public class ConstraintDialog extends Dialog {
 	public static final int VERIFY_ID = 10000;
 	private OCLSourceViewer sourceViewer = null;
 	private Document document = null;
+	private OpaqueConstraint constraint = null;
 
-	protected ConstraintDialog(IShellProvider parentShell) {
+	protected ConstraintDialog(IShellProvider parentShell,
+			OpaqueConstraint opaqueConstraint) {
 
 		super(parentShell);
-
+		constraint = opaqueConstraint;
 		document = new Document();
 
 	}
@@ -44,7 +49,17 @@ public class ConstraintDialog extends Dialog {
 		if (buttonId == VERIFY_ID) {
 			setReturnCode(VERIFY_ID);
 			try {
-				OCLCustomUtil.checkSyntax(document.get());
+				boolean result;
+				result = OCLCustomUtil.checkSyntax(document.get(), constraint);
+				if(result){
+					MessageDialog.openInformation(PlatformUI.getWorkbench()
+							.getModalDialogShellProvider().getShell(),
+							"Check Syntax", "OCL Syntax Valid");
+				}else{
+					MessageDialog.openInformation(PlatformUI.getWorkbench()
+							.getModalDialogShellProvider().getShell(),
+							"Check Syntax", "OCL Constraint don't have target");
+				}
 			} catch (ParserException e) {
 				MessageBox box = new MessageBox(getShell(), SWT.OK
 						| SWT.ICON_ERROR);

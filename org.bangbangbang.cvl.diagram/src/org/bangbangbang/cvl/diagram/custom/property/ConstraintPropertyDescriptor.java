@@ -1,5 +1,6 @@
 package org.bangbangbang.cvl.diagram.custom.property;
 
+import org.bangbangbang.cvl.OpaqueConstraint;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
@@ -28,7 +29,8 @@ public class ConstraintPropertyDescriptor extends PropertyDescriptor {
 
 				// Dialog creation
 				ConstraintDialog dialog = new ConstraintDialog(PlatformUI
-						.getWorkbench().getModalDialogShellProvider());
+						.getWorkbench().getModalDialogShellProvider(),
+						(OpaqueConstraint) object);
 
 				dialog.setText((String) this.getValue());
 
