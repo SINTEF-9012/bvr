@@ -57,7 +57,7 @@ public abstract class ValueSpecificationImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Variabletype basicGetType() {
 		// TODO: implement this method to return the 'Type' reference
