@@ -78,7 +78,7 @@ public class VariableValueAssignmentItemProvider
 				 getString("_UI_VariableValueAssignment_resolvedVariable_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VariableValueAssignment_resolvedVariable_feature", "_UI_VariableValueAssignment_type"),
 				 CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE,
-				 true,
+				 false,
 				 false,
 				 true,
 				 null,

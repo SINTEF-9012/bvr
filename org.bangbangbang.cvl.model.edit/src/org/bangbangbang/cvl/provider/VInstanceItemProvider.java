@@ -74,7 +74,7 @@ public class VInstanceItemProvider
 				 getString("_UI_VInstance_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VInstance_type_feature", "_UI_VInstance_type"),
 				 CvlPackage.Literals.VINSTANCE__TYPE,
-				 true,
+				 false,
 				 false,
 				 true,
 				 null,

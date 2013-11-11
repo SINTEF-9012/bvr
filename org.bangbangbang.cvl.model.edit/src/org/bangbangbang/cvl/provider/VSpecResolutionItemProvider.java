@@ -78,7 +78,7 @@ public class VSpecResolutionItemProvider
 				 getString("_UI_VSpecResolution_resolvedVSpec_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpecResolution_resolvedVSpec_feature", "_UI_VSpecResolution_type"),
 				 CvlPackage.Literals.VSPEC_RESOLUTION__RESOLVED_VSPEC,
-				 true,
+				 false,
 				 false,
 				 true,
 				 null,

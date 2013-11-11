@@ -77,7 +77,7 @@ public class ChoiceResolutuionItemProvider
 				 getString("_UI_ChoiceResolutuion_resolvedChoice_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceResolutuion_resolvedChoice_feature", "_UI_ChoiceResolutuion_type"),
 				 CvlPackage.Literals.CHOICE_RESOLUTUION__RESOLVED_CHOICE,
-				 true,
+				 false,
 				 false,
 				 true,
 				 null,
