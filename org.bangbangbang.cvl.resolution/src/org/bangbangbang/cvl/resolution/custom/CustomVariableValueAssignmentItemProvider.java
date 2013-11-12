@@ -2,7 +2,6 @@
  */
 package org.bangbangbang.cvl.resolution.custom;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
