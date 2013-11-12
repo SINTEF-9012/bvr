@@ -1,8 +1,10 @@
 package org.bangbangbang.cvl.diagram.custom.ocl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
@@ -19,6 +21,7 @@ import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
 
 public class OCLCustomUtil {
@@ -30,12 +33,15 @@ public class OCLCustomUtil {
 	public final static String[] COLLECTION_OPERATOR = { "asSequence",
 			"sortBy", "size", "isEmpty", "count", "sum", "select", "reject",
 			"collect", "forAll", "exists", "includes", "excludes", "union",
-			"intersection", "including", "excluding", "oclIsKindOf",
-			"oclIsTypeOf", "oclAsType", "oclInState" };
-
+			"intersection", "including", "excluding" };
+	public final static String[] OCL_OPERATOR = { "oclIsKindOf", "oclIsTypeOf",
+			"oclAsType", "oclInState" };
 	public final static String[] CVL_TYPE = { "ChoiceResolutuion", "VInstance",
 			"type", "resolvedChoice", "decision", "resolvedVariable",
-			"VariableValueAssignment" };
+			"VariableValueAssignment", "ValueSpecification", "value",
+			"expression", "StringLiteralExp", "string", "BooleanLiteralExp",
+			"bool", "RealLiteralExp", "real", "UnlimitedLiteralExp",
+			"unlimited", "IntegerLiteralExp", "integer" };
 
 	private static List<String> keywordsInModel;
 
@@ -69,7 +75,7 @@ public class OCLCustomUtil {
 		}
 
 		if (pref.equals("")) {
-			return keywords;
+			return new ArrayList<String>();
 		} else {
 			for (Iterator<String> i = keywords.iterator(); i.hasNext();) {
 				if (!i.next().startsWith(pref)) {
@@ -81,9 +87,65 @@ public class OCLCustomUtil {
 
 	}
 
+	public static List<String> getKeyword(String pref,
+			OpaqueConstraint constraint) {
+		Set<String> keywords = new HashSet<String>();
+		// create an OCL instance for Ecore
+		OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ocl;
+		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+
+		// create an OCL helper object
+		OCLHelper<EClassifier, ?, ?, Constraint> helper = ocl.createOCLHelper();
+
+		// set the OCL context classifier
+		if (constraint.getContext() == null) {
+			// return empty list
+			return new ArrayList<String>();
+		}
+		if (constraint.getContext() instanceof Choice) {
+			helper.setContext(CvlPackage.Literals.CHOICE_RESOLUTUION);
+		} else if (constraint.getContext() instanceof VClassifier) {
+			helper.setContext(CvlPackage.Literals.VINSTANCE);
+		} else if (constraint.getContext() instanceof Variable) {
+			helper.setContext(CvlPackage.Literals.VARIABLE_VALUE_ASSIGNMENT);
+		} else {
+			helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
+		}
+
+		List<org.eclipse.ocl.helper.Choice> choices = helper.getSyntaxHelp(
+				ConstraintKind.INVARIANT, pref);
+		for (org.eclipse.ocl.helper.Choice next : choices) {
+			switch (next.getKind()) {
+			case OPERATION:
+			case SIGNAL:
+				// the description is already complete
+				keywords.add(next.getDescription());
+				break;
+			case PROPERTY:
+			case ENUMERATION_LITERAL:
+			case VARIABLE:
+				keywords.add(next.getName());
+				break;
+			default:
+				keywords.add(next.getName());
+				break;
+			}
+		}
+		keywords.addAll(getKeyword(pref));
+		if (pref.equals("")) {
+			return new ArrayList<String>(keywords);
+		} else {
+			for (Iterator<String> i = keywords.iterator(); i.hasNext();) {
+				if (!i.next().startsWith(pref)) {
+					i.remove();
+				}
+			}
+			return new ArrayList<String>(keywords);
+		}
+	}
+
 	public static boolean checkSyntax(String oclString,
 			OpaqueConstraint constraint) throws ParserException {
-		Constraint invariant = null;
 
 		try {
 			// create an OCL instance for Ecore
@@ -108,7 +170,7 @@ public class OCLCustomUtil {
 				helper.setContext(CvlPackage.Literals.VSPEC_RESOLUTION);
 			}
 
-			invariant = helper.createInvariant(oclString);
+			helper.createInvariant(oclString);
 			// record success
 			return true;
 		} catch (ParserException e) {

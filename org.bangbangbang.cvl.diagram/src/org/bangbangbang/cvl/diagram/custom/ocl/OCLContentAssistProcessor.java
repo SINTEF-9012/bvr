@@ -3,6 +3,7 @@ package org.bangbangbang.cvl.diagram.custom.ocl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bangbangbang.cvl.OpaqueConstraint;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
@@ -13,6 +14,12 @@ import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 public class OCLContentAssistProcessor implements IContentAssistProcessor {
+	OpaqueConstraint constraint;
+
+	public OCLContentAssistProcessor(OpaqueConstraint constraint) {
+		super();
+		this.constraint = constraint;
+	}
 
 	@Override
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
@@ -21,10 +28,10 @@ public class OCLContentAssistProcessor implements IContentAssistProcessor {
 		String prefix = getPrefix(viewer.getDocument(), offset);
 
 		List<ICompletionProposal> list = new ArrayList<ICompletionProposal>(
-				OCLCustomUtil.getKeyword(prefix).size());
-		for (String s : OCLCustomUtil.getKeyword(prefix)) {
+				OCLCustomUtil.getKeyword(prefix, constraint).size());
+		for (String s : OCLCustomUtil.getKeyword(prefix, constraint)) {
 			list.add(new CompletionProposal(s, offset - prefix.length(), prefix
-					.length() , s.length()));
+					.length(), s.length()));
 		}
 		return list.toArray(new ICompletionProposal[list.size()]);
 	}

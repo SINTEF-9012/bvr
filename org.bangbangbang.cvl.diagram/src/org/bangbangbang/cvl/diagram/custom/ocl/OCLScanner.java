@@ -47,7 +47,9 @@ public class OCLScanner extends RuleBasedScanner {
 		typeToken = new Token(new TextAttribute(colorManager.getColor(c), null,
 				style));
 		rules.add(new OCLWordRule(OCLCustomUtil.COLLECTION_OPERATOR, typeToken));
-
+		rules.add(new OCLWordRule(OCLCustomUtil.OCL_OPERATOR, typeToken));
+		
+		
 		// CVL_TYPE : ORANGE
 		c = new RGB(180, 100, 0);
 		style = 0;

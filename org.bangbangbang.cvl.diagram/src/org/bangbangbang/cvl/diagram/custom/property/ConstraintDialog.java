@@ -51,11 +51,11 @@ public class ConstraintDialog extends Dialog {
 			try {
 				boolean result;
 				result = OCLCustomUtil.checkSyntax(document.get(), constraint);
-				if(result){
+				if (result) {
 					MessageDialog.openInformation(PlatformUI.getWorkbench()
 							.getModalDialogShellProvider().getShell(),
 							"Check Syntax", "OCL Syntax Valid");
-				}else{
+				} else {
 					MessageDialog.openInformation(PlatformUI.getWorkbench()
 							.getModalDialogShellProvider().getShell(),
 							"Check Syntax", "OCL Constraint don't have target");
@@ -114,8 +114,7 @@ public class ConstraintDialog extends Dialog {
 
 		// create sourceviewer
 		sourceViewer = new OCLSourceViewer(comp, new VerticalRuler(0),
-				SWT.V_SCROLL | SWT.H_SCROLL);
-
+				SWT.V_SCROLL | SWT.H_SCROLL, constraint);
 		sourceViewer.setDocument(document);
 		sourceViewer.getTextWidget().addKeyListener(new ShortcutKeyListener());
 

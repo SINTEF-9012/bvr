@@ -1,5 +1,6 @@
 package org.bangbangbang.cvl.diagram.custom.ocl;
 
+import org.bangbangbang.cvl.OpaqueConstraint;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
@@ -16,10 +17,11 @@ import org.eclipse.swt.graphics.RGB;
 
 public class OCLConfiguration extends SourceViewerConfiguration {
 	private ColorManager colorManager = null;
+	private OpaqueConstraint constraint;
 
-	public OCLConfiguration() {
+	public OCLConfiguration(OpaqueConstraint constraint) {
 		super();
-
+		this.constraint = constraint;
 		colorManager = new ColorManager();
 	}
 
@@ -58,7 +60,8 @@ public class OCLConfiguration extends SourceViewerConfiguration {
 	public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
 		ContentAssistant assistant = new ContentAssistant();
 
-		OCLContentAssistProcessor processor = new OCLContentAssistProcessor();
+		OCLContentAssistProcessor processor = new OCLContentAssistProcessor(
+				constraint);
 		assistant.setContentAssistProcessor(processor,
 				IDocument.DEFAULT_CONTENT_TYPE);
 		assistant.setShowEmptyList(true);
