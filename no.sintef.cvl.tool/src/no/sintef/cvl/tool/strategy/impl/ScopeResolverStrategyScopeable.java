@@ -36,6 +36,7 @@ import no.sintef.cvl.engine.common.EngineUtility;
 import no.sintef.cvl.engine.error.BasicCVLEngineException;
 import no.sintef.cvl.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.cvl.tool.common.LoaderUtility;
+import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.exception.CVLModelException;
 import no.sintef.cvl.tool.exception.UnexpectedException;
 import no.sintef.cvl.tool.primitive.Symbol;
@@ -90,6 +91,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private void resolverSymbol(Symbol symbol){
 		EList<FragmentSubstitution> fragSubs = symbol.getFragmentSubstitutions();
 		for(FragmentSubstitution fragSub : fragSubs){
+			Context.eINSTANCE.logger.debug("ScopeResolverStrategyScopeable::resolverSymbol: processing " + fragSub + " of " + symbol.getVSpec().getName());
+			
 			PlacementFragment placement = fragSub.getPlacement();
 			ReplacementFragmentType replacement = fragSub.getReplacement();
 			
@@ -183,6 +186,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 			checkReplacementConsistency(newReplacement);
 			rSymbolTableReplcMap.put(symbol.getScope(), newReplacement);
 			replcmntSymbolMap.put(replacement, rSymbolTableReplcMap);
+			replacementNewReplBoundaryMap.put(newReplacement, replacementBoundaryMap);
 			
 			replacementCopyMap.put(newReplacement, rplCopier);
 		}else{
@@ -202,12 +206,13 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				rplCopier.copyElements(replacementElements);
 				
 				newReplacement = createReplacementFromOriginal(rplCopier, replacement, replacementBoundaryMap);
+				checkReplacementConsistency(newReplacement);
 				rSymbolTableReplcMap.put(symbol.getScope(), newReplacement);
 				replacementNewReplBoundaryMap.put(newReplacement, replacementBoundaryMap);
 				
 				replacementCopyMap.put(newReplacement, rplCopier);
 			}else{
-				replacementBoundaryMap = replacementNewReplBoundaryMap.get(newReplacement);
+				replacementBoundaryMap.putAll(replacementNewReplBoundaryMap.get(newReplacement));
 			}
 		}
 		return newReplacement;
@@ -254,7 +259,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				
 				ReplacementBoundaryElement toReplacementNew = replacementBoundaryMap.get(toBinding.getToReplacement());
 				if(toReplacementNew == null)
-					throw new UnexpectedException("can not find copied toReplacement");
+					throw new UnexpectedException("can not find copied toReplacement: " + toBinding.getToReplacement() + " in "
+							+ replacementBoundaryMap + "("+ newPlacement +", "+ newReplacement +")");
 				toBindingNew.setToReplacement((ToReplacement) toReplacementNew);
 				
 				newFragmentSubstitution.getBoundaryElementBinding().add(toBindingNew);
@@ -265,12 +271,14 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				
 				PlacementBoundaryElement fromPlacementNew = placementBoundaryMap.get(fromBinding.getFromPlacement());
 				if(fromPlacementNew == null)
-					throw new UnexpectedException("can not find copied fromPlacement");
+					throw new UnexpectedException("can not find copied fromPlacement: " + fromBinding.getFromPlacement() + " in "
+							+ placementBoundaryMap + "("+ newPlacement +", "+ newReplacement +")");
 				fromBindingNew.setFromPlacement((FromPlacement) fromPlacementNew);
 				
 				ReplacementBoundaryElement fromReplacementNew = replacementBoundaryMap.get(fromBinding.getFromReplacement());
 				if(fromReplacementNew == null)
-					throw new UnexpectedException("can not find copied fromReplacement");
+					throw new UnexpectedException("can not find copied fromReplacement: " + fromBinding.getFromReplacement() + " in "
+							+ replacementBoundaryMap + "("+ newPlacement +", "+ newReplacement +")");
 				fromBindingNew.setFromReplacement((FromReplacement) fromReplacementNew);
 				
 				newFragmentSubstitution.getBoundaryElementBinding().add(fromBindingNew);
