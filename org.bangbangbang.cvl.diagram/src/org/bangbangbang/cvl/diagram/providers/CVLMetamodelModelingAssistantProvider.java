@@ -36,18 +36,18 @@ public class CVLMetamodelModelingAssistantProvider extends
 		ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT disable pop up creating menu
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof ConfigurableUnitEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-			types.add(CVLMetamodelElementTypes.Choice_2005);
-			types.add(CVLMetamodelElementTypes.Choice_2015);
-			types.add(CVLMetamodelElementTypes.Variable_2016);
-			types.add(CVLMetamodelElementTypes.VClassifier_2017);
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2014);
+//			types.add(CVLMetamodelElementTypes.Choice_2005);
+//			types.add(CVLMetamodelElementTypes.Choice_2015);
+//			types.add(CVLMetamodelElementTypes.Variable_2016);
+//			types.add(CVLMetamodelElementTypes.VClassifier_2017);
+//			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2014);
 			return types;
 		}
 		if (editPart instanceof ChoiceEditPart) {
@@ -63,7 +63,7 @@ public class CVLMetamodelModelingAssistantProvider extends
 		if (editPart instanceof VClassifierEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3004);
-			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3001);
+//			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3001);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
