@@ -1208,8 +1208,12 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		// TODO if n/a is shown in table view, ConfigurableUnit should use same
 		// instance.
 		selectionViewer.setInput(editingDomain.getResourceSet());
-		tableViewer.setInput((ConfigurableUnit) editingDomain.getResourceSet()
-				.getResources().get(0).getContents().get(0));
+		
+		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
+				.getResources().get(0).getContents().get(0);
+		List<VSpec> headers = createTableColumns(cu);
+		((ResolutionTableContentProvider)tableViewer.getContentProvider()).setHeaders(headers);
+		tableViewer.setInput(cu);
 
 		super.pageChange(pageIndex);
 
