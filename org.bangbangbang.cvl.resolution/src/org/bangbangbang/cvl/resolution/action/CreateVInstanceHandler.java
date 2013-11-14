@@ -27,6 +27,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -43,6 +44,8 @@ public class CreateVInstanceHandler implements IHandler {
 	IEditorPart editorPart = null;
 	Viewer viewer = null;
 
+	CompoundCommand command = null;
+
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
 
@@ -57,6 +60,8 @@ public class CreateVInstanceHandler implements IHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		editorPart = HandlerUtil.getActiveEditorChecked(event);
 		viewer = ((IViewerProvider) editorPart).getViewer();
+
+		command = new CompoundCommand();
 
 		if (!(editorPart instanceof CvlResolutionEditor)) {
 			return null;
@@ -79,7 +84,7 @@ public class CreateVInstanceHandler implements IHandler {
 		Command addCommand = AddCommand.create(editingDomain,
 				virtualVClassifier.getParent(),
 				CvlPackage.eINSTANCE.getVSpecResolution_Child(), vi);
-		editingDomain.getCommandStack().execute(addCommand);
+		command.append(addCommand);
 
 		CreateVInstanceVisitor visitor = new CreateVInstanceVisitor();
 		visitor.setRoot(vi);
@@ -94,6 +99,8 @@ public class CreateVInstanceHandler implements IHandler {
 				iterator.prune();
 			}
 		}
+
+		editingDomain.getCommandStack().execute(command);
 
 		// Refresh editor as edited
 		if (viewer != null) {
@@ -110,7 +117,7 @@ public class CreateVInstanceHandler implements IHandler {
 		}
 
 		protected VSpecResolution searchParentResolution(VSpec parent) {
-			if(root.getResolvedVSpec() == parent){
+			if (root.getResolvedVSpec() == parent) {
 				return root;
 			}
 			for (TreeIterator<EObject> iterator = EcoreUtil.getAllContents(
@@ -143,12 +150,7 @@ public class CreateVInstanceHandler implements IHandler {
 			}
 			Command addCommand = AddCommand.create(editingDomain, parent,
 					CvlPackage.eINSTANCE.getVSpecResolution_Child(), cr);
-			editingDomain.getCommandStack().execute(addCommand);
-
-			// Refresh editor as edited
-			if (viewer != null) {
-				viewer.refresh();
-			}
+			command.append(addCommand);
 			return true;
 		}
 
@@ -202,12 +204,8 @@ public class CreateVInstanceHandler implements IHandler {
 			}
 			Command addCommand = AddCommand.create(editingDomain, parent,
 					CvlPackage.eINSTANCE.getVSpecResolution_Child(), vva);
-			editingDomain.getCommandStack().execute(addCommand);
+			command.append(addCommand);
 
-			// Refresh editor as edited
-			if (viewer != null) {
-				viewer.refresh();
-			}
 			return true;
 		}
 	}

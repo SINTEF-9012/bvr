@@ -26,6 +26,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +41,8 @@ public class CreateResolutionHandler implements IHandler {
 	EditingDomain editingDomain = null;
 	IEditorPart editorPart = null;
 	Viewer viewer = null;
+
+	CompoundCommand command = null;
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
@@ -60,6 +63,7 @@ public class CreateResolutionHandler implements IHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		editorPart = HandlerUtil.getActiveEditorChecked(event);
 		viewer = ((IViewerProvider) editorPart).getViewer();
+		command = new CompoundCommand();
 
 		if (!(editorPart instanceof CvlResolutionEditor)) {
 			return null;
@@ -80,11 +84,13 @@ public class CreateResolutionHandler implements IHandler {
 			EObject modelElement = iterator.next();
 
 			Object isContinue = visitor.doSwitch(modelElement);
-			if(isContinue != null && !(boolean)isContinue ){
+			if (isContinue != null && !(boolean) isContinue) {
 				iterator.prune();
 			}
 		}
 
+		editingDomain.getCommandStack().execute(command);
+		
 		// Refresh editor as edited
 		if (viewer != null) {
 			viewer.refresh();
@@ -126,7 +132,7 @@ public class CreateResolutionHandler implements IHandler {
 				Command addCommand = AddCommand
 						.create(editingDomain, cu, CvlPackage.eINSTANCE
 								.getConfigurableUnit_OwnedVSpecResolution(), cr);
-				editingDomain.getCommandStack().execute(addCommand);
+				command.append(addCommand);
 				if (object.isIsImpliedByParent()) {
 					cr.setDecision(true);
 				}
@@ -142,19 +148,15 @@ public class CreateResolutionHandler implements IHandler {
 				}
 				Command addCommand = AddCommand.create(editingDomain, parent,
 						CvlPackage.eINSTANCE.getVSpecResolution_Child(), cr);
-				editingDomain.getCommandStack().execute(addCommand);
-
+				command.append(addCommand);
 			}
-			// Refresh editor as edited
-			if (viewer != null) {
-				viewer.refresh();
-			}
+			
 			return true;
 		}
 
 		@Override
 		public Object caseVClassifier(VClassifier object) {
-		
+
 			return false;
 		}
 
@@ -166,46 +168,41 @@ public class CreateResolutionHandler implements IHandler {
 			PrimitiveValueSpecification vs = CvlFactory.eINSTANCE
 					.createPrimitiveValueSpecification();
 			BCLExpression exp = null;
-			if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.BOOLEAN){
-				exp = CvlFactory.eINSTANCE
-						.createBooleanLiteralExp();
-				//TODO default value
-				((BooleanLiteralExp)exp).setBool(false);
-			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.INTEGER){
-				exp = CvlFactory.eINSTANCE
-						.createIntegerLiteralExp();
-				//TODO default value
-				((IntegerLiteralExp)exp).setInteger(0);
-			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.REAL){
-				exp = CvlFactory.eINSTANCE
-						.createRealLiteralExp();
-				//TODO default value
-				((RealLiteralExp)exp).setReal("0.0");
-			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.UNLIMITED_NATURAL){
-				exp = CvlFactory.eINSTANCE
-						.createUnlimitedLiteralExp();
-				//TODO default value
-				((UnlimitedLiteralExp)exp).setUnlimited(0);
-			}else if(((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.STRING){
-				exp = CvlFactory.eINSTANCE
-						.createStringLiteralExp();
-				//TODO default value
-				((StringLiteralExp)exp).setString("");
+			if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.BOOLEAN) {
+				exp = CvlFactory.eINSTANCE.createBooleanLiteralExp();
+				// TODO default value
+				((BooleanLiteralExp) exp).setBool(false);
+			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.INTEGER) {
+				exp = CvlFactory.eINSTANCE.createIntegerLiteralExp();
+				// TODO default value
+				((IntegerLiteralExp) exp).setInteger(0);
+			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.REAL) {
+				exp = CvlFactory.eINSTANCE.createRealLiteralExp();
+				// TODO default value
+				((RealLiteralExp) exp).setReal("0.0");
+			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+				exp = CvlFactory.eINSTANCE.createUnlimitedLiteralExp();
+				// TODO default value
+				((UnlimitedLiteralExp) exp).setUnlimited(0);
+			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.STRING) {
+				exp = CvlFactory.eINSTANCE.createStringLiteralExp();
+				// TODO default value
+				((StringLiteralExp) exp).setString("");
 			}
-			
+
 			vs.setExpression(exp);
 			vs.setType(object.getType());
 			vva.setValue(vs);
 			vva.setResolvedVariable(object);
 			vva.setResolvedVSpec(object);
-			
+
 			if (object.eContainer() instanceof ConfigurableUnit) {
 				root = (VSpecResolution) vva;
 				Command addCommand = AddCommand.create(editingDomain, cu,
 						CvlPackage.eINSTANCE
 								.getConfigurableUnit_OwnedVSpecResolution(),
 						vva);
-				editingDomain.getCommandStack().execute(addCommand);
+				command.append(addCommand);
 			} else {
 				VSpecResolution parent = searchParentResolution((VSpec) object
 						.eContainer());
@@ -214,13 +211,9 @@ public class CreateResolutionHandler implements IHandler {
 				}
 				Command addCommand = AddCommand.create(editingDomain, parent,
 						CvlPackage.eINSTANCE.getVSpecResolution_Child(), vva);
-				editingDomain.getCommandStack().execute(addCommand);
-
+				command.append(addCommand);
 			}
-			// Refresh editor as edited
-			if (viewer != null) {
-				viewer.refresh();
-			}
+			
 			return true;
 		}
 	}
