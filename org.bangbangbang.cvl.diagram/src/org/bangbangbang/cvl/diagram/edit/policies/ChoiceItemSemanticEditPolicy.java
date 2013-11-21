@@ -202,8 +202,6 @@ public class ChoiceItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case VSpecChildEditPart.VISUAL_ID:
-			return getGEFWrapper(new VSpecChildReorientCommand(req));
 		case ConstraintContextEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintContextReorientCommand(req));
 		}
