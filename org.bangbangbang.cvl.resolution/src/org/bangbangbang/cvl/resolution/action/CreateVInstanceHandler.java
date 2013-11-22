@@ -1,5 +1,7 @@
 package org.bangbangbang.cvl.resolution.action;
 
+import java.util.HashMap;
+
 import org.bangbangbang.cvl.BCLExpression;
 import org.bangbangbang.cvl.BooleanLiteralExp;
 import org.bangbangbang.cvl.Choice;
@@ -45,6 +47,7 @@ public class CreateVInstanceHandler implements IHandler {
 	Viewer viewer = null;
 
 	CompoundCommand command = null;
+	HashMap<VSpec, VSpecResolution> parentNodes = null;
 
 	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
@@ -62,6 +65,7 @@ public class CreateVInstanceHandler implements IHandler {
 		viewer = ((IViewerProvider) editorPart).getViewer();
 
 		command = new CompoundCommand();
+		parentNodes = new HashMap<VSpec, VSpecResolution>();
 
 		if (!(editorPart instanceof CvlResolutionEditor)) {
 			return null;
@@ -85,9 +89,9 @@ public class CreateVInstanceHandler implements IHandler {
 				virtualVClassifier.getParent(),
 				CvlPackage.eINSTANCE.getVSpecResolution_Child(), vi);
 		command.append(addCommand);
+		parentNodes.put(virtualVClassifier.getResolvedVSpec(), vi);
 
 		CreateVInstanceVisitor visitor = new CreateVInstanceVisitor();
-		visitor.setRoot(vi);
 
 		for (TreeIterator<EObject> iterator = EcoreUtil.getAllContents(
 				virtualVClassifier.getResolvedVSpec(), true); iterator
@@ -110,26 +114,10 @@ public class CreateVInstanceHandler implements IHandler {
 	}
 
 	protected class CreateVInstanceVisitor extends CvlSwitch<Object> {
-		private VSpecResolution root = null;
-
-		public void setRoot(VSpecResolution root) {
-			this.root = root;
-		}
 
 		protected VSpecResolution searchParentResolution(VSpec parent) {
-			if (root.getResolvedVSpec() == parent) {
-				return root;
-			}
-			for (TreeIterator<EObject> iterator = EcoreUtil.getAllContents(
-					root, true); iterator.hasNext();) {
-				EObject element = iterator.next();
-				if (element instanceof VSpecResolution
-						&& ((VSpecResolution) element).getResolvedVSpec() == parent) {
-					return ((VSpecResolution) element);
-				}
-			}
 
-			return null;
+			return parentNodes.get(parent);
 		}
 
 		@Override
@@ -151,6 +139,7 @@ public class CreateVInstanceHandler implements IHandler {
 			Command addCommand = AddCommand.create(editingDomain, parent,
 					CvlPackage.eINSTANCE.getVSpecResolution_Child(), cr);
 			command.append(addCommand);
+			parentNodes.put(object, cr);
 			return true;
 		}
 
@@ -205,7 +194,7 @@ public class CreateVInstanceHandler implements IHandler {
 			Command addCommand = AddCommand.create(editingDomain, parent,
 					CvlPackage.eINSTANCE.getVSpecResolution_Child(), vva);
 			command.append(addCommand);
-
+			parentNodes.put(object, vva);
 			return true;
 		}
 	}
