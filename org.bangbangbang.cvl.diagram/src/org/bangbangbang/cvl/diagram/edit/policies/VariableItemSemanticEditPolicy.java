@@ -1,13 +1,14 @@
 package org.bangbangbang.cvl.diagram.edit.policies;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.bangbangbang.cvl.diagram.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.diagram.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.diagram.edit.commands.VSpecChildCreateCommand;
-import org.bangbangbang.cvl.diagram.edit.commands.VSpecChildReorientCommand;
 import org.bangbangbang.cvl.diagram.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VSpecChildEditPart;
+import org.bangbangbang.cvl.diagram.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.diagram.part.CVLMetamodelVisualIDRegistry;
 import org.bangbangbang.cvl.diagram.providers.CVLMetamodelElementTypes;
 import org.eclipse.core.commands.ExecutionException;
@@ -16,9 +17,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -103,12 +107,28 @@ public class VariableItemSemanticEditPolicy extends
 					}
 				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+
+				// Remove target node
+				List<EditPart> vspecChilds = ((VariableEditPart) getHost())
+						.getSourceConnections();
+				for (EditPart ep : vspecChilds) {
+					if (ep instanceof VSpecChildEditPart) {
+						cmd.add(new CommandProxy(
+								((VSpecChildEditPart) ep)
+										.getTarget()
+										.getCommand(
+												new EditCommandRequestWrapper(
+														new DestroyElementRequest(
+																false)))));
+					}
+				}
 				continue;
 			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));

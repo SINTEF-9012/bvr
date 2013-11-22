@@ -1,14 +1,15 @@
 package org.bangbangbang.cvl.diagram.edit.policies;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.bangbangbang.cvl.diagram.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.diagram.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.diagram.edit.commands.VSpecChildCreateCommand;
-import org.bangbangbang.cvl.diagram.edit.commands.VSpecChildReorientCommand;
 import org.bangbangbang.cvl.diagram.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval4EditPart;
+import org.bangbangbang.cvl.diagram.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VClassifierMultiplicityIntervalCompartment2EditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VClassifierMultiplicityIntervalCompartmentEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VSpecChildEditPart;
@@ -20,10 +21,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -109,12 +113,28 @@ public class VClassifierItemSemanticEditPolicy extends
 					}
 				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+
+				// Remove target node
+				List<EditPart> vspecChilds = ((VClassifierEditPart) getHost())
+						.getSourceConnections();
+				for (EditPart ep : vspecChilds) {
+					if (ep instanceof VSpecChildEditPart) {
+						cmd.add(new CommandProxy(
+								((VSpecChildEditPart) ep)
+										.getTarget()
+										.getCommand(
+												new EditCommandRequestWrapper(
+														new DestroyElementRequest(
+																false)))));
+					}
+				}
 				continue;
 			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
@@ -141,9 +161,13 @@ public class VClassifierItemSemanticEditPolicy extends
 					case MultiplicityInterval4EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+										cnode.getElement(), false))); // directlyOwned:
+																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}
@@ -156,9 +180,13 @@ public class VClassifierItemSemanticEditPolicy extends
 					case MultiplicityInterval2EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+										cnode.getElement(), false))); // directlyOwned:
+																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}
