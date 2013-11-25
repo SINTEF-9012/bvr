@@ -134,8 +134,9 @@ public class CheckValidationRootChoice implements IHandler {
 	public static List<ViolationEntry> traverseResolutionTree(
 			EditingDomain editDomain, IEditorPart editPart, TreeViewer viewer,
 			ChoiceResolutuion root, List<ViolationEntry> result) {
-		// for Root Choice resolution, check group multiplicity
+		// for Root Choice resolution, check group and instance multiplicity
 		// and check constraints
+		checkInstanceMultiplicity(root, result, root);
 		checkGroupMultiplicity(root, result, root);
 		checkOCLConstraint(root, result, root);
 
