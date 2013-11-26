@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="cvlPalette">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="cvl">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="VSpecChild"
+          description="Create new VSpecChild">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ChildNode.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="VSpecGroupMultiplicity"
+          description="Create new VSpecGroupMultiplicity">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/MultiplicityInterval.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="OpaqueConstraint"
+          description="Create new OpaqueConstraint">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/OpaqueConstraint.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="OpaqueConstraintLink"
+          description="Create new OpaqueConstraint">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ConstraintLine.gif"
+            bundle="org.bangbangbang.cvl.model.edit"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>
