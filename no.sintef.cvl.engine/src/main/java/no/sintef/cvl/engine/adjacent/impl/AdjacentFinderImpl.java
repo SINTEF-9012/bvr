@@ -13,6 +13,7 @@ import com.google.common.collect.Sets.SetView;
 import cvl.FromBinding;
 import cvl.FromPlacement;
 import cvl.ObjectHandle;
+import cvl.PlacementBoundaryElement;
 import cvl.ToBinding;
 import cvl.ToPlacement;
 
@@ -132,8 +133,60 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 				PlacementElementHolder pHolder_j = fragment_j.getFragmentHolder().getPlacement();
 				HashSet<EObject> placementElements_j = pHolder_j.getElements();
 				if(Sets.symmetricDifference(placementElements_i, placementElements_j).isEmpty()){
-					fragment_i.addTwinAdjacentFragment(fragment_j);
-					fragment_j.addTwinAdjacentFragment(fragment_i);
+					fragment_i.addTwinFragment(fragment_j);
+					fragment_j.addTwinFragment(fragment_i);
+					
+					HashMap<ToPlacement, ToPlacement> toPlacements_i_j = new HashMap<ToPlacement, ToPlacement>();
+					HashMap<ToPlacement, ToPlacement> toPlacements_j_i = new HashMap<ToPlacement, ToPlacement>();
+					HashMap<FromPlacement, FromPlacement> fromPlacements_i_j = new HashMap<FromPlacement, FromPlacement>();
+					HashMap<FromPlacement, FromPlacement> fromPlacements_j_i = new HashMap<FromPlacement, FromPlacement>();
+					
+					EList<PlacementBoundaryElement> boundaryElements_i = fragment_i.getFragmentHolder().getPlacement().getPlacementFragment().getPlacementBoundaryElement();
+					EList<PlacementBoundaryElement> boundaryElements_j = fragment_j.getFragmentHolder().getPlacement().getPlacementFragment().getPlacementBoundaryElement();
+					for(PlacementBoundaryElement boundary_i : boundaryElements_i){
+						for(PlacementBoundaryElement boundary_j : boundaryElements_j){
+							if(boundary_i instanceof ToPlacement && boundary_j instanceof ToPlacement){
+								ToPlacement toPlacement_i = (ToPlacement) boundary_i;
+								ToPlacement toPlacement_j = (ToPlacement) boundary_j;
+								
+								EObject outside_i = EngineUtility.resolveProxies(toPlacement_i.getOutsideBoundaryElement());
+								EObject outside_j = EngineUtility.resolveProxies(toPlacement_j.getOutsideBoundaryElement());
+								EList<EObject> inside_i = EngineUtility.resolveProxies(toPlacement_i.getInsideBoundaryElement());
+								EList<EObject> inside_j = EngineUtility.resolveProxies(toPlacement_j .getInsideBoundaryElement());
+								if(outside_i.equals(outside_j) && inside_i.size() == inside_j.size() &&
+										Sets.symmetricDifference(new HashSet<EObject>(inside_i),
+												new HashSet<EObject>(inside_j)).isEmpty()){
+									toPlacements_i_j.put(toPlacement_i, toPlacement_j);
+									toPlacements_j_i.put(toPlacement_j, toPlacement_i);
+									break;
+								}
+								
+							}
+							if(boundary_i instanceof FromPlacement && boundary_j instanceof FromPlacement){
+								FromPlacement fromPlacement_i = (FromPlacement) boundary_i;
+								FromPlacement fromPlacement_j = (FromPlacement) boundary_j;
+								
+								if(EngineUtility.isDummyFromPlacement(fromPlacement_i) || EngineUtility.isDummyFromPlacement(fromPlacement_i))
+									break;
+								
+								EObject inside_i = EngineUtility.resolveProxies(fromPlacement_i.getInsideBoundaryElement());
+								EObject inside_j = EngineUtility.resolveProxies(fromPlacement_j.getInsideBoundaryElement());
+								EList<EObject> outside_i = EngineUtility.resolveProxies(fromPlacement_i.getOutsideBoundaryElement());
+								EList<EObject> outside_j = EngineUtility.resolveProxies(fromPlacement_j.getOutsideBoundaryElement());
+								if(inside_i.equals(inside_j) && outside_i.size() == outside_j.size() &&
+										Sets.symmetricDifference(new HashSet<EObject>(outside_i),
+												new HashSet<EObject>(outside_j)).isEmpty()){
+									fromPlacements_i_j.put(fromPlacement_i, fromPlacement_j);
+									fromPlacements_j_i.put(fromPlacement_j, fromPlacement_i);
+									break;
+								}
+								
+							}
+						}
+					}
+				
+					fragment_i.addTwinBoundariesForFragment(fragment_j, toPlacements_i_j, fromPlacements_i_j);
+					fragment_j.addTwinBoundariesForFragment(fragment_i, toPlacements_j_i, fromPlacements_j_i);
 				}
 			}
 		}

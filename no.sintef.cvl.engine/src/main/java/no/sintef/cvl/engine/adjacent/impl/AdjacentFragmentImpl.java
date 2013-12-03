@@ -7,7 +7,9 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import cvl.FromBinding;
+import cvl.FromPlacement;
 import cvl.ToBinding;
+import cvl.ToPlacement;
 
 import no.sintef.cvl.engine.adjacent.AdjacentFragment;
 import no.sintef.cvl.engine.fragment.FragSubHolder;
@@ -18,14 +20,18 @@ public class AdjacentFragmentImpl implements AdjacentFragment {
 	private HashSet<AdjacentFragment> adjacentFragments;
 	private HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>> adjacentFromBindings;
 	private HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>> adjacentToBindings;
-	private HashSet<AdjacentFragment> tweans;
+	private HashSet<AdjacentFragment> twins;
+	private HashMap<AdjacentFragment, HashMap<ToPlacement, ToPlacement>> twinsToPlacement;
+	private HashMap<AdjacentFragment, HashMap<FromPlacement, FromPlacement>> twinsFromPlacement;
 
 	public AdjacentFragmentImpl(FragSubHolder fragmentHolder){
 		this.fragmentHolder = fragmentHolder;
 		adjacentFragments = new HashSet<AdjacentFragment>();
 		adjacentFromBindings = new HashMap<AdjacentFragment, HashMap<FromBinding, ToBinding>>();
 		adjacentToBindings = new HashMap<AdjacentFragment, HashMap<ToBinding, FromBinding>>();
-		tweans = new HashSet<AdjacentFragment>();
+		twins = new HashSet<AdjacentFragment>();
+		twinsToPlacement = new HashMap<AdjacentFragment, HashMap<ToPlacement, ToPlacement>>();
+		twinsFromPlacement = new HashMap<AdjacentFragment, HashMap<FromPlacement, FromPlacement>>();
 	}
 		
 	@Override
@@ -81,13 +87,33 @@ public class AdjacentFragmentImpl implements AdjacentFragment {
 	}
 
 	@Override
-	public void addTwinAdjacentFragment(AdjacentFragment adjacentFragment) {
-		tweans.add(adjacentFragment);
+	public void addTwinFragment(AdjacentFragment adjacentFragment) {
+		twins.add(adjacentFragment);
 	}
 
 	@Override
-	public HashSet<AdjacentFragment> getTwinAdjacentFragments() {
-		return tweans;
+	public HashSet<AdjacentFragment> getTwinFragments() {
+		return twins;
+	}
+
+	@Override
+	public void addTwinBoundariesForFragment(AdjacentFragment adjacentFragment,
+			HashMap<ToPlacement, ToPlacement> toPlacementMap,
+			HashMap<FromPlacement, FromPlacement> fromPlacementMap) {
+		twinsToPlacement.put(adjacentFragment, toPlacementMap);
+		twinsFromPlacement.put(adjacentFragment, fromPlacementMap);
+	}
+
+	@Override
+	public HashMap<ToPlacement, ToPlacement> getTwinToPlacement(
+			AdjacentFragment adjacentFragment) {
+		return twinsToPlacement.get(adjacentFragment);
+	}
+
+	@Override
+	public HashMap<FromPlacement, FromPlacement> getTwinFromPlacement(
+			AdjacentFragment adjacentFragment) {
+		return twinsFromPlacement.get(adjacentFragment);
 	}
 
 }

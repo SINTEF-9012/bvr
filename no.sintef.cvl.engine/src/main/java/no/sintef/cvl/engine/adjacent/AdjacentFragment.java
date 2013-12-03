@@ -6,7 +6,9 @@ import java.util.HashSet;
 import org.eclipse.emf.common.util.EList;
 
 import cvl.FromBinding;
+import cvl.FromPlacement;
 import cvl.ToBinding;
+import cvl.ToPlacement;
 
 import no.sintef.cvl.engine.fragment.FragSubHolder;
 
@@ -32,9 +34,14 @@ public interface AdjacentFragment {
 	
 	public EList<AdjacentFragment> getAdjacentFragmentsList();
 	
-	public void addTwinAdjacentFragment(AdjacentFragment adjacentFragment);
+	public void addTwinFragment(AdjacentFragment adjacentFragment);
 	
-	public HashSet<AdjacentFragment> getTwinAdjacentFragments();
+	public HashSet<AdjacentFragment> getTwinFragments();
 	
+	public void addTwinBoundariesForFragment(AdjacentFragment adjacentFragment, HashMap<ToPlacement, ToPlacement> toPlacementMap, HashMap<FromPlacement, FromPlacement> fromPlacementMap);
+	
+	public HashMap<ToPlacement, ToPlacement> getTwinToPlacement(AdjacentFragment adjacentFragment);
+	
+	public HashMap<FromPlacement, FromPlacement> getTwinFromPlacement(AdjacentFragment adjacentFragment);
 	
 }

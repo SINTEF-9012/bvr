@@ -7,6 +7,7 @@ import no.sintef.cvl.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.cvl.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.cvl.engine.operation.impl.FragmentSubOperation;
 import no.sintef.cvl.engine.testutils.SetUpUtils;
+import node.NodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -37,6 +38,7 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 
 	@Before
 	public void setUp() throws Exception {
+		//NodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
 		file = new File("src/test/resources/adjacentTwins1/adjtwins.cvl");
 		map = SetUpUtils.load(file);
