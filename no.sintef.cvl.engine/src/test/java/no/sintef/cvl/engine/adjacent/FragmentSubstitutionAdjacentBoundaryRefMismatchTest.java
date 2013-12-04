@@ -23,7 +23,7 @@ import cvl.ConfigurableUnit;
 import cvl.FragmentSubstitution;
 import cvl.VariationPoint;
 
-public class FragmentSubstitutionAdjacentBoundaryRefMismatch {
+public class FragmentSubstitutionAdjacentBoundaryRefMismatchTest {
 
 	private File file;
 	private HashMap<String, Object> map;

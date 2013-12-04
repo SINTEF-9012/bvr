@@ -103,5 +103,4 @@ public class FragmentSubstitutionRealisticUMLTest {
 		SetUpUtils.writeToFile(baseModel, "model_new.uml");
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod0.uml", "model_new.uml"));
 	}
-	
 }
