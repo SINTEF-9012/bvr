@@ -91,7 +91,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new Choice2CanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -147,7 +148,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof ChoiceChoiceGroupMultiplicityCompartmentEditPart) {
 			IFigure pane = getPrimaryShape()
 					.getFigureChoiceGroupMultiplicityCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((ChoiceChoiceGroupMultiplicityCompartmentEditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -412,7 +414,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			//types.add(CVLMetamodelElementTypes.Choice_2005);
+			// types.add(CVLMetamodelElementTypes.Choice_2005);
 			types.add(CVLMetamodelElementTypes.Choice_2015);
 			types.add(CVLMetamodelElementTypes.Variable_2016);
 			types.add(CVLMetamodelElementTypes.VClassifier_2017);
@@ -499,9 +501,12 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 					.getElement();
 
 			VSpecChildEditPart connection = null;
-			if (Choice2EditPart.this.getTargetConnections().size() > 0) {
-				connection = (VSpecChildEditPart) Choice2EditPart.this
-						.getTargetConnections().get(0);
+			for (int i = 0; i < Choice2EditPart.this.getTargetConnections()
+					.size(); i++) {
+				if (Choice2EditPart.this.getTargetConnections().get(i) instanceof VSpecChildEditPart) {
+					connection = (VSpecChildEditPart) Choice2EditPart.this
+							.getTargetConnections().get(i);
+				}
 
 			}
 
