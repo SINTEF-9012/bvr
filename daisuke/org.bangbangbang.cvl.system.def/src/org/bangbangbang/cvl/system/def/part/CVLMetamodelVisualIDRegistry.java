@@ -331,13 +331,18 @@ public class CVLMetamodelVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * Check is parent ConfigurableUnit?
+	 * For Constraint(Java) at gmfmap.
+	 * @generated NOT
 	 */
 	private static boolean isChoice_2001(Choice domainElement) {
-		// FIXME: implement this method 
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException(
-				"No java implementation provided in 'isChoice_2001' operation"); //$NON-NLS-1$
+		if (domainElement.eContainer() != null
+				&& domainElement.eContainer().eClass().getName()
+						.indexOf("ConfigurableUnit") >= 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
