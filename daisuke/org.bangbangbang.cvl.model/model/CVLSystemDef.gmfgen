@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.bangbangbang.cvl.system.def" diagramFileExtension="cvl_system_def_diagram" pluginDirectory="/org.bangbangbang.cvl.system.def/src">
+<gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.bangbangbang.cvl.system.def" modelID="CVLSystemDef" diagramFileExtension="cvl_system_def_diagram" pluginDirectory="/org.bangbangbang.cvl.system.def/src">
   <diagram visualID="1000" editPartClassName="ConfigurableUnitEditPart" itemSemanticEditPolicyClassName="ConfigurableUnitItemSemanticEditPolicy" canonicalEditPolicyClassName="ConfigurableUnitCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low">
     <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ConfigurableUnitEditHelper"/>
@@ -212,14 +212,14 @@
         <entries xsi:type="gmfgen:ToolEntry" title="OpaqueConstraintLink" description="Create new OpaqueConstraint" smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ConstraintLine.gif" genLinks="//@diagram/@links.1"/>
       </groups>
     </palette>
-    <preferencePages xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.general" name="CVLMetamodel Diagram">
+    <preferencePages xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.general" name="CVLSystemDef Diagram">
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.appearance" name="Appearance" kind="Appearance"/>
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.connections" name="Connections" kind="Connections"/>
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.printing" name="Printing" kind="Printing"/>
       <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin iD="org.bangbangbang.cvl.system.def" activatorClassName="CVLSystemDefEditorPlugin">
+  <plugin iD="org.bangbangbang.cvl.system.def" name="CVLSystemDef Plugin" activatorClassName="CVLSystemDefEditorPlugin">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>

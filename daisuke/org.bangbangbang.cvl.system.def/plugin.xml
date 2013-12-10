@@ -71,7 +71,7 @@
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="CVLMetamodelPresentation">
+         id="CVLSystemDefPresentation">
          <Priority name="Lowest"/>
          <ViewId id="org.bangbangbang.cvl.system.def.part.CVLSystemDefEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -88,7 +88,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="CVLMetamodelPresentationIDE">
+         id="CVLSystemDefPresentationIDE">
          <Priority name="Lowest"/>
          <ViewId id="org.bangbangbang.cvl.system.def.part.CVLSystemDefEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -98,7 +98,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="CVLMetamodelRender">
+            id="CVLSystemDefRender">
          <Priority name="Lowest"/>
          <ViewId id="org.bangbangbang.cvl.system.def.part.CVLSystemDefEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -216,7 +216,7 @@
       <?gmfgen generated="true"?>
       <viewProvider class="org.bangbangbang.cvl.system.def.providers.CVLMetamodelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CVLMetamodel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CVLSystemDef"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
       </viewProvider>
@@ -227,7 +227,7 @@
       <editpartProvider class="org.bangbangbang.cvl.system.def.providers.CVLMetamodelEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
-            <method name="getType()" value="CVLMetamodel"/>
+            <method name="getType()" value="CVLSystemDef"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
             <method name="getType()" value="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>

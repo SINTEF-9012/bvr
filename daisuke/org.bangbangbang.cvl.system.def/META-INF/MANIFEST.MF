@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.bangbangbang.cvl.system.def.part.CVLSystemDefEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.bangbangbang.cvl.system.def.edit.parts, 
+Export-Package: org.bangbangbang.cvl.system.def.edit.parts,
  org.bangbangbang.cvl.system.def.part,
  org.bangbangbang.cvl.system.def.providers
 Require-Bundle: org.eclipse.core.runtime,
