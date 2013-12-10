@@ -1,5 +1,6 @@
 package org.bangbangbang.cvl.system.def.part;
 
+import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.system.def.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
@@ -66,7 +67,8 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 	}
 
 	/**
-	 * @generated
+	 * Change: diagramRoot is not root element of resource.
+	 * @generated NOT
 	 */
 	public void run(IAction action) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
@@ -75,7 +77,12 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
-			diagramRoot = (EObject) resource.getContents().get(0);
+			for (EObject o : resource.getContents()) {
+				if (o instanceof ConfigurableUnit) {
+					diagramRoot = o;
+				}
+			}
+
 		} catch (WrappedException ex) {
 			CVLSystemDefEditorPlugin.getInstance().logError(
 					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$

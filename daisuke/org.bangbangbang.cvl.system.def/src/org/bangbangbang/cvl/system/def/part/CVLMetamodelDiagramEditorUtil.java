@@ -9,8 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
+import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VPackage;
 import org.bangbangbang.cvl.system.def.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -134,7 +137,9 @@ public class CVLMetamodelDiagramEditorUtil {
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
+	 * This method should be called within a workspace modify operation since it
+	 * creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI,
@@ -197,24 +202,39 @@ public class CVLMetamodelDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Create a new instance of domain element associated with canvas. <!--
+	 * begin-user-doc --> Create root choice node for new ConfigurableUnit <!--
+	 * end-user-doc -->
+	 * 
+	 * @generatedÅ@NOT
 	 */
 	private static ConfigurableUnit createInitialModel() {
-		return CvlFactory.eINSTANCE.createConfigurableUnit();
+		ConfigurableUnit cu = CvlFactory.eINSTANCE.createConfigurableUnit();
+
+		Choice choice = CvlFactory.eINSTANCE.createChoice();
+		choice.setName("[Rename] Root Choice");
+		cu.getOwnedVSpec().add(choice);
+
+		return cu;
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * Store model element in the resource. <!-- begin-user-doc --> Create
+	 * Package as root element. Create VInterface as root for System feature
+	 * model. <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	private static void attachModelToResource(ConfigurableUnit model,
 			Resource resource) {
-		resource.getContents().add(model);
+
+		VPackage vp = CvlFactory.eINSTANCE.createVPackage();
+		vp.getPackageElement().add(model);
+
+		VInterface vi = CvlFactory.eINSTANCE.createVInterface();
+		vp.getPackageElement().add(vi);
+
+		resource.getContents().add(vp);
 	}
 
 	/**
@@ -312,7 +332,9 @@ public class CVLMetamodelDiagramEditorUtil {
 	}
 
 	/**
-	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 * XXX This is quite suspicious code (especially editPartTmpHolder) and
+	 * likely to be removed soon
+	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -396,6 +418,6 @@ public class CVLMetamodelDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }
