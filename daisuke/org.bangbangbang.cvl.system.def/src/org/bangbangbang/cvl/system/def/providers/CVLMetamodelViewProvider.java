@@ -2,6 +2,8 @@ package org.bangbangbang.cvl.system.def.providers;
 
 import java.util.ArrayList;
 
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecNameEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
@@ -164,6 +166,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				case VariableEditPart.VISUAL_ID:
 				case VClassifierEditPart.VISUAL_ID:
 				case OpaqueConstraintEditPart.VISUAL_ID:
+				case CVSpecEditPart.VISUAL_ID:
 				case MultiplicityIntervalEditPart.VISUAL_ID:
 				case Choice2EditPart.VISUAL_ID:
 				case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -186,6 +189,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				|| VariableEditPart.VISUAL_ID == visualID
 				|| VClassifierEditPart.VISUAL_ID == visualID
 				|| OpaqueConstraintEditPart.VISUAL_ID == visualID
+				|| CVSpecEditPart.VISUAL_ID == visualID
 				|| MultiplicityIntervalEditPart.VISUAL_ID == visualID
 				|| MultiplicityInterval2EditPart.VISUAL_ID == visualID
 				|| MultiplicityInterval3EditPart.VISUAL_ID == visualID
@@ -262,6 +266,9 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return createOpaqueConstraint_2005(domainElement, containerView,
 					index, persisted, preferencesHint);
+		case CVSpecEditPart.VISUAL_ID:
+			return createCVSpec_2006(domainElement, containerView, index,
+					persisted, preferencesHint);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return createMultiplicityInterval_3001(domainElement,
 					containerView, index, persisted, preferencesHint);
@@ -542,6 +549,44 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		Node label5009 = createLabel(node,
 				CVLMetamodelVisualIDRegistry
 						.getType(OpaqueConstraintNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createCVSpec_2006(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles()
+				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(CVLMetamodelVisualIDRegistry
+				.getType(CVSpecEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		Node label5010 = createLabel(node,
+				CVLMetamodelVisualIDRegistry
+						.getType(CVSpecNameEditPart.VISUAL_ID));
 		return node;
 	}
 

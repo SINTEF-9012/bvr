@@ -1,5 +1,6 @@
 package org.bangbangbang.cvl.system.def.edit.policies;
 
+import org.bangbangbang.cvl.system.def.edit.commands.CVSpecCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.Choice2CreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.ChoiceCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.OpaqueConstraintCreateCommand;
@@ -45,6 +46,9 @@ public class ConfigurableUnitItemSemanticEditPolicy extends
 		if (CVLMetamodelElementTypes.OpaqueConstraint_2005 == req
 				.getElementType()) {
 			return getGEFWrapper(new OpaqueConstraintCreateCommand(req));
+		}
+		if (CVLMetamodelElementTypes.CVSpec_2006 == req.getElementType()) {
+			return getGEFWrapper(new CVSpecCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

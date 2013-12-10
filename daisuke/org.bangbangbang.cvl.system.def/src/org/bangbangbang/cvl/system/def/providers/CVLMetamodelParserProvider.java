@@ -1,6 +1,7 @@
 package org.bangbangbang.cvl.system.def.providers;
 
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecNameEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceNameEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.MultiplicityIntervalLowerUpper2EditPart;
@@ -124,6 +125,24 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser cVSpecName_5010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCVSpecName_5010Parser() {
+		if (cVSpecName_5010Parser == null) {
+			EAttribute[] features = new EAttribute[] { CvlPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			cVSpecName_5010Parser = parser;
+		}
+		return cVSpecName_5010Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser multiplicityIntervalLowerUpper_5001Parser;
 
 	/**
@@ -224,6 +243,8 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 			return getVClassifierName_5008Parser();
 		case OpaqueConstraintNameEditPart.VISUAL_ID:
 			return getOpaqueConstraintName_5009Parser();
+		case CVSpecNameEditPart.VISUAL_ID:
+			return getCVSpecName_5010Parser();
 		case MultiplicityIntervalLowerUpperEditPart.VISUAL_ID:
 			return getMultiplicityIntervalLowerUpper_5001Parser();
 		case MultiplicityIntervalLowerUpper2EditPart.VISUAL_ID:

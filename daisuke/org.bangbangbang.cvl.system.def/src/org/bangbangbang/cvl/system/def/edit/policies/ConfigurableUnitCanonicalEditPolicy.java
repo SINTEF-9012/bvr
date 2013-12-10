@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ConfigurableUnitEditPart;
@@ -126,6 +127,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		case VariableEditPart.VISUAL_ID:
 		case VClassifierEditPart.VISUAL_ID:
 		case OpaqueConstraintEditPart.VISUAL_ID:
+		case CVSpecEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -369,6 +371,14 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(CVLMetamodelDiagramUpdater
 						.getOpaqueConstraint_2005ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case CVSpecEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(CVLMetamodelDiagramUpdater
+						.getCVSpec_2006ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

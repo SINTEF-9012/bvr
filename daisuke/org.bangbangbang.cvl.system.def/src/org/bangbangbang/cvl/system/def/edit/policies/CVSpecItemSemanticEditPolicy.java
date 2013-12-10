@@ -32,14 +32,14 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class VariableItemSemanticEditPolicy extends
+public class CVSpecItemSemanticEditPolicy extends
 		CVLMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public VariableItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.Variable_2003);
+	public CVSpecItemSemanticEditPolicy() {
+		super(CVLMetamodelElementTypes.CVSpec_2006);
 	}
 
 	/**

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ConfigurableUnitEditPart;
@@ -80,6 +81,11 @@ public class CVLMetamodelElementTypes {
 	 * @generated
 	 */
 	public static final IElementType OpaqueConstraint_2005 = getElementType("org.bangbangbang.cvl.system.def.OpaqueConstraint_2005"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType CVSpec_2006 = getElementType("org.bangbangbang.cvl.system.def.CVSpec_2006"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -158,6 +164,8 @@ public class CVLMetamodelElementTypes {
 			elements.put(OpaqueConstraint_2005,
 					CvlPackage.eINSTANCE.getOpaqueConstraint());
 
+			elements.put(CVSpec_2006, CvlPackage.eINSTANCE.getCVSpec());
+
 			elements.put(MultiplicityInterval_3001,
 					CvlPackage.eINSTANCE.getMultiplicityInterval());
 
@@ -197,6 +205,7 @@ public class CVLMetamodelElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Variable_2003);
 			KNOWN_ELEMENT_TYPES.add(VClassifier_2004);
 			KNOWN_ELEMENT_TYPES.add(OpaqueConstraint_2005);
+			KNOWN_ELEMENT_TYPES.add(CVSpec_2006);
 			KNOWN_ELEMENT_TYPES.add(MultiplicityInterval_3001);
 			KNOWN_ELEMENT_TYPES.add(MultiplicityInterval_3002);
 			KNOWN_ELEMENT_TYPES.add(MultiplicityInterval_3003);
@@ -224,6 +233,8 @@ public class CVLMetamodelElementTypes {
 			return VClassifier_2004;
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return OpaqueConstraint_2005;
+		case CVSpecEditPart.VISUAL_ID:
+			return CVSpec_2006;
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return MultiplicityInterval_3001;
 		case MultiplicityInterval2EditPart.VISUAL_ID:

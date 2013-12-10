@@ -54,6 +54,12 @@ public class CVLMetamodelEditPartFactory implements EditPartFactory {
 			case OpaqueConstraintNameEditPart.VISUAL_ID:
 				return new OpaqueConstraintNameEditPart(view);
 
+			case CVSpecEditPart.VISUAL_ID:
+				return new CVSpecEditPart(view);
+
+			case CVSpecNameEditPart.VISUAL_ID:
+				return new CVSpecNameEditPart(view);
+
 			case MultiplicityIntervalEditPart.VISUAL_ID:
 				return new MultiplicityIntervalEditPart(view);
 

@@ -282,6 +282,9 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof VClassifierEditPart) {
 			types.add(CVLMetamodelElementTypes.ConstraintContext_4002);
 		}
+		if (targetEditPart instanceof CVSpecEditPart) {
+			types.add(CVLMetamodelElementTypes.ConstraintContext_4002);
+		}
 		return types;
 	}
 
@@ -295,6 +298,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 			types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
+			types.add(CVLMetamodelElementTypes.CVSpec_2006);
 		}
 		return types;
 	}

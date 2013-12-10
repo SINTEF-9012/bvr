@@ -3,6 +3,8 @@ package org.bangbangbang.cvl.system.def.part;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecNameEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
@@ -162,6 +164,10 @@ public class CVLMetamodelVisualIDRegistry {
 					domainElement.eClass())) {
 				return OpaqueConstraintEditPart.VISUAL_ID;
 			}
+			if (CvlPackage.eINSTANCE.getCVSpec().isSuperTypeOf(
+					domainElement.eClass())) {
+				return CVSpecEditPart.VISUAL_ID;
+			}
 			break;
 		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 			if (CvlPackage.eINSTANCE.getMultiplicityInterval().isSuperTypeOf(
@@ -228,6 +234,9 @@ public class CVLMetamodelVisualIDRegistry {
 			if (OpaqueConstraintEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (CVSpecEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ChoiceEditPart.VISUAL_ID:
 			if (ChoiceNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -263,6 +272,11 @@ public class CVLMetamodelVisualIDRegistry {
 			break;
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			if (OpaqueConstraintNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case CVSpecEditPart.VISUAL_ID:
+			if (CVSpecNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -383,6 +397,7 @@ public class CVLMetamodelVisualIDRegistry {
 			return false;
 		case VariableEditPart.VISUAL_ID:
 		case OpaqueConstraintEditPart.VISUAL_ID:
+		case CVSpecEditPart.VISUAL_ID:
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 		case MultiplicityInterval2EditPart.VISUAL_ID:
 		case MultiplicityInterval3EditPart.VISUAL_ID:

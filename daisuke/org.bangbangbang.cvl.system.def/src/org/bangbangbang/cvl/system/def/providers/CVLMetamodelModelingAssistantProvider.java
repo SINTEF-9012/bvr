@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ConfigurableUnitEditPart;
@@ -42,12 +43,13 @@ public class CVLMetamodelModelingAssistantProvider extends
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof ConfigurableUnitEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2005);
+			types.add(CVLMetamodelElementTypes.CVSpec_2006);
 			return types;
 		}
 		if (editPart instanceof ChoiceEditPart) {
@@ -92,6 +94,9 @@ public class CVLMetamodelModelingAssistantProvider extends
 			return ((OpaqueConstraintEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof CVSpecEditPart) {
+			return ((CVSpecEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -113,6 +118,9 @@ public class CVLMetamodelModelingAssistantProvider extends
 		if (targetEditPart instanceof VClassifierEditPart) {
 			return ((VClassifierEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof CVSpecEditPart) {
+			return ((CVSpecEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -146,6 +154,10 @@ public class CVLMetamodelModelingAssistantProvider extends
 			return ((OpaqueConstraintEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof CVSpecEditPart) {
+			return ((CVSpecEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -170,6 +182,10 @@ public class CVLMetamodelModelingAssistantProvider extends
 		}
 		if (targetEditPart instanceof VClassifierEditPart) {
 			return ((VClassifierEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof CVSpecEditPart) {
+			return ((CVSpecEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
@@ -200,6 +216,10 @@ public class CVLMetamodelModelingAssistantProvider extends
 		}
 		if (sourceEditPart instanceof OpaqueConstraintEditPart) {
 			return ((OpaqueConstraintEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof CVSpecEditPart) {
+			return ((CVSpecEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;

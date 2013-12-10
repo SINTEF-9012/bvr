@@ -356,7 +356,8 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
+		 * Change: Remove throw exception
+		 * @generatedÅ@NOT
 		 */
 		public boolean canExistVSpecChild_4001(VSpec source, VSpec target) {
 			try {
@@ -375,13 +376,13 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					} // else fall-through
 				}
-				// TODO: implement this method, using target and source 
+				// DONE: implement this method, using target and source 
 				// to access link source and target, respectively
 				// Ensure that you remove @generated or mark it @generated NOT
-				if (Boolean.TRUE.booleanValue()) {
-					throw new UnsupportedOperationException(
-							"No java implementation provided"); //$NON-NLS-1$
-				}
+				// if (Boolean.TRUE.booleanValue()) {
+				// throw new UnsupportedOperationException(
+				//							"No java implementation provided"); //$NON-NLS-1$
+				// }
 				return true;
 			} catch (Exception e) {
 				CVLSystemDefEditorPlugin.getInstance().logError(

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.bangbangbang.cvl.CVSpec;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.Constraint;
@@ -16,6 +17,7 @@ import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.Variable;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
@@ -119,6 +121,12 @@ public class CVLMetamodelDiagramUpdater {
 					.getNodeVisualID(view, childElement) == VClassifierEditPart.VISUAL_ID) {
 				result.add(new CVLMetamodelNodeDescriptor(childElement,
 						VClassifierEditPart.VISUAL_ID));
+				continue;
+			}
+			if (CVLMetamodelVisualIDRegistry
+					.getNodeVisualID(view, childElement) == CVSpecEditPart.VISUAL_ID) {
+				result.add(new CVLMetamodelNodeDescriptor(childElement,
+						CVSpecEditPart.VISUAL_ID));
 				continue;
 			}
 		}
@@ -257,6 +265,8 @@ public class CVLMetamodelDiagramUpdater {
 			return getVClassifier_2004ContainedLinks(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getOpaqueConstraint_2005ContainedLinks(view);
+		case CVSpecEditPart.VISUAL_ID:
+			return getCVSpec_2006ContainedLinks(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001ContainedLinks(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -284,6 +294,8 @@ public class CVLMetamodelDiagramUpdater {
 			return getVClassifier_2004IncomingLinks(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getOpaqueConstraint_2005IncomingLinks(view);
+		case CVSpecEditPart.VISUAL_ID:
+			return getCVSpec_2006IncomingLinks(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001IncomingLinks(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -311,6 +323,8 @@ public class CVLMetamodelDiagramUpdater {
 			return getVClassifier_2004OutgoingLinks(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getOpaqueConstraint_2005OutgoingLinks(view);
+		case CVSpecEditPart.VISUAL_ID:
+			return getCVSpec_2006OutgoingLinks(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001OutgoingLinks(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -383,6 +397,17 @@ public class CVLMetamodelDiagramUpdater {
 		OpaqueConstraint modelElement = (OpaqueConstraint) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_4002(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<CVLMetamodelLinkDescriptor> getCVSpec_2006ContainedLinks(
+			View view) {
+		CVSpec modelElement = (CVSpec) view.getElement();
+		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
 
@@ -493,6 +518,22 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<CVLMetamodelLinkDescriptor> getCVSpec_2006IncomingLinks(
+			View view) {
+		CVSpec modelElement = (CVSpec) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
+				modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_4002(
+				modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3001IncomingLinks(
 			View view) {
 		return Collections.emptyList();
@@ -574,6 +615,17 @@ public class CVLMetamodelDiagramUpdater {
 		OpaqueConstraint modelElement = (OpaqueConstraint) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_4002(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<CVLMetamodelLinkDescriptor> getCVSpec_2006OutgoingLinks(
+			View view) {
+		CVSpec modelElement = (CVSpec) view.getElement();
+		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
 

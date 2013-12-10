@@ -280,6 +280,9 @@ public class VariableEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof VClassifierEditPart) {
 			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
 		}
+		if (targetEditPart instanceof CVSpecEditPart) {
+			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+		}
 		return types;
 	}
 
@@ -293,6 +296,7 @@ public class VariableEditPart extends ShapeNodeEditPart {
 			types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
+			types.add(CVLMetamodelElementTypes.CVSpec_2006);
 		}
 		return types;
 	}
@@ -317,6 +321,7 @@ public class VariableEditPart extends ShapeNodeEditPart {
 			types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
+			types.add(CVLMetamodelElementTypes.CVSpec_2006);
 		} else if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4002) {
 			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2005);
 		}

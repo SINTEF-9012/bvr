@@ -1,6 +1,8 @@
 package org.bangbangbang.cvl.system.def.navigator;
 
 import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
+import org.bangbangbang.cvl.system.def.edit.parts.CVSpecNameEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceName2EditPart;
@@ -119,6 +121,9 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///cvl.ecore?OpaqueConstraint", CVLMetamodelElementTypes.OpaqueConstraint_2005); //$NON-NLS-1$
+		case CVSpecEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///cvl.ecore?CVSpec", CVLMetamodelElementTypes.CVSpec_2006); //$NON-NLS-1$
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http:///cvl.ecore?MultiplicityInterval", CVLMetamodelElementTypes.MultiplicityInterval_3001); //$NON-NLS-1$
@@ -201,6 +206,8 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 			return getVClassifier_2004Text(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getOpaqueConstraint_2005Text(view);
+		case CVSpecEditPart.VISUAL_ID:
+			return getCVSpec_2006Text(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001Text(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -328,6 +335,26 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		} else {
 			CVLSystemDefEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5009); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getCVSpec_2006Text(View view) {
+		IParser parser = CVLMetamodelParserProvider.getParser(
+				CVLMetamodelElementTypes.CVSpec_2006,
+				view.getElement() != null ? view.getElement() : view,
+				CVLMetamodelVisualIDRegistry
+						.getType(CVSpecNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			CVLSystemDefEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5010); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

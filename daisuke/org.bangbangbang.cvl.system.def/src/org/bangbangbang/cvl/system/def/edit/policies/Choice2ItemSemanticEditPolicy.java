@@ -5,6 +5,7 @@ import java.util.Iterator;
 import org.bangbangbang.cvl.system.def.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.VSpecChildCreateCommand;
+import org.bangbangbang.cvl.system.def.edit.commands.VSpecChildReorientCommand;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.MultiplicityInterval2EditPart;
@@ -201,6 +202,8 @@ public class Choice2ItemSemanticEditPolicy extends
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
+		case VSpecChildEditPart.VISUAL_ID:
+			return getGEFWrapper(new VSpecChildReorientCommand(req));
 		case ConstraintContextEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintContextReorientCommand(req));
 		}

@@ -226,6 +226,26 @@
           href="CVLSystemDef.gmfgraph#OpaqueConstraint"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <childrenFeature
+        href="CVLMetamodel.ecore#//VSpec/child"/>
+    <ownedChild>
+      <domainMetaElement
+          href="CVLMetamodel.ecore#//CVSpec"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="CVLSystemDef.gmfgraph#CVSpecName"/>
+        <features
+            href="CVLMetamodel.ecore#//NamedElement/name"/>
+      </labelMappings>
+      <diagramNode
+          href="CVLSystemDef.gmfgraph#CVSpec"/>
+    </ownedChild>
+  </nodes>
   <links>
     <tool
         xsi:type="gmftool:CreationTool"

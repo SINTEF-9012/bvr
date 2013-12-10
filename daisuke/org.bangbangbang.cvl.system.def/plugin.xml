@@ -25,7 +25,7 @@
          default="true"
          class="org.bangbangbang.cvl.system.def.part.CVLSystemDefEditor"
          matchingStrategy="org.bangbangbang.cvl.system.def.part.CVLMetamodelMatchingStrategy"
-         contributorClass="org.bangbangbang.cvl.system.def.part.CVLSystemDefActionBarContributor">
+         contributorClass="org.bangbangbang.cvl.system.def.part.CVLMetamodelDiagramActionBarContributor">
       </editor>
    </extension>
    
@@ -217,7 +217,7 @@
       <viewProvider class="org.bangbangbang.cvl.system.def.providers.CVLMetamodelViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CVLSystemDef"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,2004,2005,2006,3001,3002,3003,3004"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002"/>
       </viewProvider>
    </extension>
@@ -230,13 +230,13 @@
             <method name="getType()" value="CVLSystemDef"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,2002,2003,2004,2005,3001,3002,3003,3004"/>
+            <method name="getType()" value="2001,2002,2003,2004,2005,2006,3001,3002,3003,3004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5002,5004,5005,5008,5009,5001,5003,5006,5007"/>
+            <method name="getType()" value="5002,5004,5005,5008,5009,5010,5001,5003,5006,5007"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004"/>
@@ -255,11 +255,12 @@
          <object class="org.bangbangbang.cvl.system.def.edit.parts.VariableEditPart" id="Variable_2003"/>
          <object class="org.bangbangbang.cvl.system.def.edit.parts.VClassifierEditPart" id="VClassifier_2004"/>
          <object class="org.bangbangbang.cvl.system.def.edit.parts.OpaqueConstraintEditPart" id="OpaqueConstraint_2005"/>
+         <object class="org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart" id="CVSpec_2006"/>
          <object class="org.bangbangbang.cvl.system.def.edit.parts.MultiplicityIntervalEditPart" id="MultiplicityInterval_3001"/>
          <object class="org.bangbangbang.cvl.system.def.edit.parts.MultiplicityInterval2EditPart" id="MultiplicityInterval_3002"/>
          <object class="org.bangbangbang.cvl.system.def.edit.parts.MultiplicityInterval3EditPart" id="MultiplicityInterval_3003"/>
          <object class="org.bangbangbang.cvl.system.def.edit.parts.MultiplicityInterval4EditPart" id="MultiplicityInterval_3004"/>
-         <context elements="ConfigurableUnit_1000,Choice_2001,Choice_2002,Variable_2003,VClassifier_2004,OpaqueConstraint_2005,MultiplicityInterval_3001,MultiplicityInterval_3002,MultiplicityInterval_3003,MultiplicityInterval_3004"/>
+         <context elements="ConfigurableUnit_1000,Choice_2001,Choice_2002,Variable_2003,VClassifier_2004,OpaqueConstraint_2005,CVSpec_2006,MultiplicityInterval_3001,MultiplicityInterval_3002,MultiplicityInterval_3003,MultiplicityInterval_3004"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -340,6 +341,16 @@
       </metamodel>
       <metamodel nsURI="http:///cvl.ecore">
          <metamodelType
+               id="org.bangbangbang.cvl.system.def.CVSpec_2006"
+               name="%metatype.name.CVSpec_2006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CVSpec"
+               edithelper="org.bangbangbang.cvl.system.def.edit.helpers.CVSpecEditHelper">
+            <param name="semanticHint" value="2006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http:///cvl.ecore">
+         <metamodelType
                id="org.bangbangbang.cvl.system.def.MultiplicityInterval_3001"
                name="%metatype.name.MultiplicityInterval_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -411,6 +422,7 @@
          <elementType ref="org.bangbangbang.cvl.system.def.Variable_2003"/>
          <elementType ref="org.bangbangbang.cvl.system.def.VClassifier_2004"/>
          <elementType ref="org.bangbangbang.cvl.system.def.OpaqueConstraint_2005"/>
+         <elementType ref="org.bangbangbang.cvl.system.def.CVSpec_2006"/>
          <elementType ref="org.bangbangbang.cvl.system.def.MultiplicityInterval_3001"/>
          <elementType ref="org.bangbangbang.cvl.system.def.MultiplicityInterval_3002"/>
          <elementType ref="org.bangbangbang.cvl.system.def.MultiplicityInterval_3003"/>
