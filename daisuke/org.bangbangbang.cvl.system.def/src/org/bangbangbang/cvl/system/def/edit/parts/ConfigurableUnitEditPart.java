@@ -16,7 +16,7 @@ public class ConfigurableUnitEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "CVLMetamodel"; //$NON-NLS-1$
+	public final static String MODEL_ID = "CVLSystemDef"; //$NON-NLS-1$
 
 	/**
 	 * @generated
