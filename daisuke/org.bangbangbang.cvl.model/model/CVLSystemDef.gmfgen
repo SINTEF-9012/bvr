@@ -165,7 +165,7 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <links visualID="4001" editPartClassName="VSpecChildEditPart" itemSemanticEditPolicyClassName="VSpecChildItemSemanticEditPolicy" createCommandClassName="VSpecChildCreateCommand" reorientCommandClassName="VSpecChildReorientCommand">
+    <links visualID="4001" editPartClassName="VSpecChildEditPart" itemSemanticEditPolicyClassName="VSpecChildItemSemanticEditPolicy" targetReorientingAllowed="false" sourceReorientingAllowed="false" createCommandClassName="VSpecChildCreateCommand" reorientCommandClassName="VSpecChildReorientCommand">
       <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType xsi:type="gmfgen:SpecializationType"/>
       <viewmap xsi:type="gmfgen:InnerClassViewmap" className="VSpecChildFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VSpecChildFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VSpecChildFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
