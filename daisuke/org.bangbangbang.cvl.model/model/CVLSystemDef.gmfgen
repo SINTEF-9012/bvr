@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.bangbangbang.cvl.system.def" pluginDirectory="/org.bangbangbang.cvl.system.def/src">
+<gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.bangbangbang.cvl.system.def" diagramFileExtension="cvl_system_def_diagram" pluginDirectory="/org.bangbangbang.cvl.system.def/src">
   <diagram visualID="1000" editPartClassName="ConfigurableUnitEditPart" itemSemanticEditPolicyClassName="ConfigurableUnitItemSemanticEditPolicy" canonicalEditPolicyClassName="ConfigurableUnitCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low">
     <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ConfigurableUnitEditHelper"/>
