@@ -62,7 +62,7 @@
   </nodes>
   <nodes>
     <childrenFeature
-        href="CVLMetamodel.ecore#//VSpecDerivation/derivedVSpec"/>
+        href="CVLMetamodel.ecore#//VSpec/child"/>
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//Choice"/>
