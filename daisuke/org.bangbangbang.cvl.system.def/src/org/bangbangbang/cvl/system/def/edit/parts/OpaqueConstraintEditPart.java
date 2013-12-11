@@ -8,7 +8,10 @@ import org.bangbangbang.cvl.system.def.edit.policies.OpaqueConstraintCanonicalEd
 import org.bangbangbang.cvl.system.def.edit.policies.OpaqueConstraintItemSemanticEditPolicy;
 import org.bangbangbang.cvl.system.def.part.CVLMetamodelVisualIDRegistry;
 import org.bangbangbang.cvl.system.def.providers.CVLMetamodelElementTypes;
+import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
@@ -16,8 +19,10 @@ import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
@@ -70,7 +75,8 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new OpaqueConstraintCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -172,8 +178,8 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -187,9 +193,11 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -199,6 +207,60 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 			nodeShape.setLayoutManager(layout);
 		}
 		return nodeShape; // use nodeShape itself as contentPane
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(
+			ConnectionEditPart connEditPart) {
+		return new ModChopboxAnchor(getFigure());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		return new ModChopboxAnchor(getFigure());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private class ModChopboxAnchor extends ChopboxAnchor {
+		/**
+		 * @generated NOT
+		 */
+		public ModChopboxAnchor(IFigure figure) {
+			super(figure);
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		@Override
+		public Point getLocation(Point reference) {
+			Figure thisFigure = null;
+			Point p = super.getLocation(reference);
+			if (this.getOwner().getChildren().size() > 0) {
+				thisFigure = (Figure) this.getOwner().getChildren().get(0);
+				if (reference.y > p.y) {
+					p.x = thisFigure.getBounds().x
+							+ thisFigure.getBounds().width / 2;
+					p.y = thisFigure.getBounds().y
+							+ thisFigure.getBounds().height;
+				} else {
+					p.x = thisFigure.getBounds().x
+							+ thisFigure.getBounds().width / 2;
+					p.y = thisFigure.getBounds().y;
+				}
+
+			}
+			getOwner().translateToAbsolute(p);
+			return p;
+		}
 	}
 
 	/**
