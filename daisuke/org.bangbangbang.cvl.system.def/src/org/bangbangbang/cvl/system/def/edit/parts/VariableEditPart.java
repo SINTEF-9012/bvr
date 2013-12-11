@@ -295,8 +295,8 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2001);
-			// types.add(CVLMetamodelElementTypes.Choice_2002);
+			// types.add(CVLMetamodelElementTypes.Choice_2001);
+			types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 			types.add(CVLMetamodelElementTypes.CVSpec_2006);
