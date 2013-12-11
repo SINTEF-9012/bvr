@@ -1,0 +1,17 @@
+modeltype CVL uses "http:///cvl.ecore";
+
+transformation CVLNative2CVLTyped(in inmodel : CVL , out outmodel: CVL);
+
+main() {
+	inmodel.rootObjects()![ConfigurableUnit] ->map ConfigurableUnit2VPackage();
+}
+
+mapping ConfigurableUnit :: ConfigurableUnit2VPackage() : VPackage {
+	var interface : VInterface = null;
+	object interface : VInterface{
+		member := self.ownedVSpec;
+		ownedConstraint := self.ownedConstraint;
+	};
+	result.packageElement += interface;
+	result.packageElement += self;
+}
