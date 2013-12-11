@@ -12,8 +12,11 @@ import java.util.Set;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
+import org.bangbangbang.cvl.PrimitiveTypeEnum;
+import org.bangbangbang.cvl.PrimitveType;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.VPackage;
+import org.bangbangbang.cvl.Variabletype;
 import org.bangbangbang.cvl.system.def.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -27,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -203,13 +207,42 @@ public class CVLMetamodelDiagramEditorUtil {
 
 	/**
 	 * Create a new instance of domain element associated with canvas. <!--
-	 * begin-user-doc --> Create root choice node for new ConfigurableUnit <!--
-	 * end-user-doc -->
+	 * begin-user-doc --> Create root choice node for new ConfigurableUnit. Add
+	 * primtiive types. <!-- end-user-doc -->
 	 * 
 	 * @generatedÅ@NOT
 	 */
 	private static ConfigurableUnit createInitialModel() {
 		ConfigurableUnit cu = CvlFactory.eINSTANCE.createConfigurableUnit();
+
+		EList<Variabletype> types = cu.getOwnedVariabletype();
+
+		PrimitveType type = null;
+
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("INTEGER");
+		type.setType(PrimitiveTypeEnum.INTEGER);
+		types.add(type);
+
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("BOOLEAN");
+		type.setType(PrimitiveTypeEnum.BOOLEAN);
+		types.add(type);
+
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("STRING");
+		type.setType(PrimitiveTypeEnum.STRING);
+		types.add(type);
+
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("REAL");
+		type.setType(PrimitiveTypeEnum.REAL);
+		types.add(type);
+
+		type = CvlFactory.eINSTANCE.createPrimitveType();
+		type.setName("UNLIMITED_NATURAL");
+		type.setType(PrimitiveTypeEnum.UNLIMITED_NATURAL);
+		types.add(type);
 
 		Choice choice = CvlFactory.eINSTANCE.createChoice();
 		choice.setName("[Rename] Root Choice");
@@ -281,7 +314,8 @@ public class CVLMetamodelDiagramEditorUtil {
 		@SuppressWarnings("unchecked")
 		List<EditPart> associatedParts = viewer.findEditPartsForElement(
 				elementID, IGraphicalEditPart.class);
-		// perform the possible hierarchy disjoint -> take the top-most parts only
+		// perform the possible hierarchy disjoint -> take the top-most parts
+		// only
 		for (EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
 			while (parentPart != null && !associatedParts.contains(parentPart)) {
@@ -367,12 +401,16 @@ public class CVLMetamodelDiagramEditorUtil {
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap<EObject, View>();
-				// map possible notation elements to itself as these can't be found by view.getElement()
+				// map possible notation elements to itself as these can't be
+				// found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, view); // take only those that part of our diagram
+							element2ViewMap.put(element, view); // take only
+																// those that
+																// part of our
+																// diagram
 						}
 					}
 				}
