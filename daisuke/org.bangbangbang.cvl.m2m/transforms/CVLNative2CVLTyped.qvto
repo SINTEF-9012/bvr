@@ -9,6 +9,7 @@ main() {
 mapping ConfigurableUnit :: ConfigurableUnit2VPackage() : VPackage {
 	var interface : VInterface = null;
 	object interface : VInterface{
+		name := self.ownedVSpec->asSequence()->first().name;
 		member := self.ownedVSpec;
 		ownedConstraint := self.ownedConstraint;
 	};
