@@ -1,11 +1,13 @@
 package org.bangbangbang.cvl.system.def.edit.policies;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.bangbangbang.cvl.system.def.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.VSpecChildCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.VSpecChildReorientCommand;
+import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.MultiplicityInterval2EditPart;
@@ -18,10 +20,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -47,7 +52,7 @@ public class Choice2ItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
@@ -107,6 +112,20 @@ public class Choice2ItemSemanticEditPolicy extends
 					}
 				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				// Remove target node
+				List<EditPart> vspecChilds = ((Choice2EditPart) getHost())
+						.getSourceConnections();
+				for (EditPart ep : vspecChilds) {
+					if (ep instanceof VSpecChildEditPart) {
+						cmd.add(new CommandProxy(
+								((VSpecChildEditPart) ep)
+										.getTarget()
+										.getCommand(
+												new EditCommandRequestWrapper(
+														new DestroyElementRequest(
+																false)))));
+					}
+				}
 				continue;
 			}
 		}
