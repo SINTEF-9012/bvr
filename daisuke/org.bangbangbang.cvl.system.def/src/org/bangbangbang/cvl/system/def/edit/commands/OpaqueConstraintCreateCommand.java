@@ -49,13 +49,15 @@ public class OpaqueConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Change: set ConstraintLanguage property as OCL
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
 		OpaqueConstraint newElement = CvlFactory.eINSTANCE
 				.createOpaqueConstraint();
-
+		newElement.setConstraintLanguage("OCL");
+		
 		ConfigurableUnit owner = (ConfigurableUnit) getElementToEdit();
 		owner.getOwnedConstraint().add(newElement);
 
