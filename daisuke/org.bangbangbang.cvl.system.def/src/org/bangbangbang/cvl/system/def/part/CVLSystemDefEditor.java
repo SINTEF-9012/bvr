@@ -1,5 +1,10 @@
 package org.bangbangbang.cvl.system.def.part;
 
+import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VPackage;
+import org.bangbangbang.cvl.VPackageable;
 import org.bangbangbang.cvl.system.def.navigator.CVLMetamodelNavigatorItem;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -11,12 +16,16 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -151,6 +160,54 @@ public class CVLSystemDefEditor extends DiagramDocumentEditor implements
 	 */
 	public void gotoMarker(IMarker marker) {
 		MarkerNavigationService.getInstance().gotoMarker(this, marker);
+	}
+
+	/**
+	 * Change: force setting to Interface name from root choice name
+	 * @generated NOT
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		setInterfaceName();
+		super.doSave(progressMonitor);
+	}
+
+	private void setInterfaceName() {
+
+		Resource diagramResource = this.getDiagram().eResource();
+		for (Resource nextResource : diagramResource.getResourceSet()
+				.getResources()) {
+
+			// Interface name setting
+			if (nextResource instanceof XMIResource
+					&& nextResource.getContents().size() > 0
+					&& nextResource.getContents().get(0) instanceof VPackage) {
+				VPackage vp = (VPackage) nextResource.getContents().get(0);
+				VInterface vi = null;
+				ConfigurableUnit cu = null;
+				for (VPackageable p : vp.getPackageElement()) {
+					if (p instanceof VInterface) {
+						vi = (VInterface) p;
+					} else if (p instanceof ConfigurableUnit) {
+						cu = (ConfigurableUnit) p;
+					}
+				}
+				if (cu != null && vi != null) {
+					if (cu.getOwnedVSpec().size() > 0) {
+						// vi.setName(cu.getOwnedVSpec().get(0).getName());
+						this.getEditingDomain()
+								.getCommandStack()
+								.execute(
+										SetCommand.create(
+												this.getEditingDomain(),
+												vi,
+												CvlPackage.Literals.NAMED_ELEMENT__NAME,
+												cu.getOwnedVSpec().get(0)
+														.getName()));
+					}
+				}
+			}
+		}
 	}
 
 	/**
