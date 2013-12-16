@@ -185,6 +185,12 @@ public class ResolutionTableContentProvider implements
 			return "n/a";
 		}
 
+		@Override
+		public Object caseVInstance(VInstance object) {
+			
+			return object.getName();
+		}
+
 	}
 
 }

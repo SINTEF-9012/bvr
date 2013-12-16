@@ -17,6 +17,7 @@ import java.util.Map;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ChoiceResolutuion;
 import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.VSpecResolution;
 import org.bangbangbang.cvl.Variable;
@@ -973,6 +974,8 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				headers.add((Choice) element);
 			} else if (element instanceof Variable) {
 				headers.add((Variable) element);
+			} else if (element instanceof VClassifier){
+				headers.add((VClassifier) element);
 			}
 		}
 		return headers;
