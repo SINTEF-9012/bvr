@@ -309,7 +309,7 @@ public class MultiplicityInterval4EditPart extends ShapeNodeEditPart {
 			paddingRectangleFigure0.setForegroundColor(ColorConstants.white);
 			paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10),
 					getMapMode().DPtoLP(1));
-
+			paddingRectangleFigure0.setOutline(false);
 			this.add(paddingRectangleFigure0, BorderLayout.LEFT);
 
 			PolygonShape groupMultiplicityFigurePolygon0 = new PolygonShape();
