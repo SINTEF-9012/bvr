@@ -547,6 +547,12 @@
          description="CustomLayout"
          id="org.bangbangbang.cvl.diagram.custom.layout.customLayout"
          name="CustomLayout"/>
+     <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.bangbangbang.cvl.diagram.custom.collapse.CollapseNodeHandler"
+         description="CollapseExpand"
+         id="org.bangbangbang.cvl.diagram.custom.collapse.collapsenode"
+         name="CollapseExpand"/>
    </extension>
    
    <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
@@ -581,6 +587,24 @@
             commandId="org.bangbangbang.cvl.diagram.custom.layout.customLayout" style="push">
              <visibleWhen>
                   <with variable="activePartId"><equals value="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"/></with>
+            </visibleWhen>
+         </command>
+     </menuContribution>
+     <menuContribution locationURI="popup:org.eclipse.ui.popup.any?before=addGroup">
+         <command label="Collapse/Expand" 
+            commandId="org.bangbangbang.cvl.diagram.custom.collapse.collapsenode" style="push">
+             <visibleWhen>
+             <and>
+                  <with variable="activePartId"><equals value="org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"/></with>
+                  <with variable="selection">
+                     <iterate ifEmpty="false"> <or>
+                     <instanceof value="org.bangbangbang.cvl.diagram.edit.parts.Choice2EditPart"/>
+                     <instanceof value="org.bangbangbang.cvl.diagram.edit.parts.ChoiceEditPart"/>
+                     <instanceof value="org.bangbangbang.cvl.diagram.edit.parts.VClassifierEditPart"/>
+                     <instanceof value="org.bangbangbang.cvl.diagram.edit.parts.VariableEditPart"/>
+                     </or> </iterate>
+                  </with>
+            </and>
             </visibleWhen>
          </command>
      </menuContribution>

@@ -3,6 +3,8 @@ package org.bangbangbang.cvl.diagram.edit.policies;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bangbangbang.cvl.VSpec;
+import org.bangbangbang.cvl.diagram.custom.collapse.EditPartViewElementUtil;
 import org.bangbangbang.cvl.diagram.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.diagram.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.diagram.edit.commands.VSpecChildCreateCommand;
@@ -27,6 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -57,8 +60,14 @@ public class VClassifierItemSemanticEditPolicy extends
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
+
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
+		
+//		CompoundCommand expandCommands = new CompoundCommand();
+//		CollapseNodeHandler.expandChildren(getEditingDomain(), expandCommands, getHost());
+//		cmd.add( (IUndoableOperation) getGEFWrapper((ICommand) expandCommands));
+		
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
@@ -115,10 +124,12 @@ public class VClassifierItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 
 				// Remove target node
+				@SuppressWarnings("unchecked")
 				List<EditPart> vspecChilds = ((VClassifierEditPart) getHost())
 						.getSourceConnections();
 				for (EditPart ep : vspecChilds) {
-					if (ep instanceof VSpecChildEditPart) {
+					if (ep instanceof VSpecChildEditPart
+							&& ((VSpecChildEditPart) ep).getTarget() != null) {
 						cmd.add(new CommandProxy(
 								((VSpecChildEditPart) ep)
 										.getTarget()
@@ -131,6 +142,42 @@ public class VClassifierItemSemanticEditPolicy extends
 				continue;
 			}
 		}
+
+		// Delete invisible(Collapsed) views
+		List<EObject> children = EditPartViewElementUtil
+				.getSemanticChildren((GraphicalEditPart) getHost());
+		for (View v : EditPartViewElementUtil
+				.getInvisibleViews((GraphicalEditPart) getHost())) {
+			if (children.contains(v.getElement())
+					&& v.getElement() instanceof VSpec) {
+				VSpec vs = (VSpec) v.getElement();
+				for (Iterator<VSpec> ite = vs.getChild().iterator(); ite
+						.hasNext();) {
+					VSpec vsTarget = ite.next();
+					DestroyReferenceRequest r = new DestroyReferenceRequest(vs,
+							null, vsTarget, false);
+					cmd.add(new DestroyReferenceCommand(r) {
+						protected CommandResult doExecuteWithResult(
+								IProgressMonitor progressMonitor,
+								IAdaptable info) throws ExecutionException {
+							EObject referencedObject = getReferencedObject();
+							Resource resource = referencedObject.eResource();
+							CommandResult result = super.doExecuteWithResult(
+									progressMonitor, info);
+							if (resource != null) {
+								resource.getContents().add(referencedObject);
+							}
+							return result;
+						}
+					});
+				}
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(
+						getEditingDomain(), v.getElement(), false)));
+				cmd.add(new DeleteCommand(getEditingDomain(), v));
+			}
+		}
+
+
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands:
