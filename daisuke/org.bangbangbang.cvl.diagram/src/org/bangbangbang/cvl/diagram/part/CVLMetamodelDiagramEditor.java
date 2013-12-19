@@ -1,5 +1,7 @@
 package org.bangbangbang.cvl.diagram.part;
 
+import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.diagram.custom.resolution.ResolutionConsistency;
 import org.bangbangbang.cvl.diagram.navigator.CVLMetamodelNavigatorItem;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -17,6 +19,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -52,6 +55,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	 * @generated
 	 */
 	public static final String ID = "org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorID"; //$NON-NLS-1$
+
 
 	/**
 	 * @generated
@@ -159,6 +163,27 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	public boolean isSaveAsAllowed() {
 		return true;
+	}
+	
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		// Confirm reforming for resolution model
+		if (MessageDialog.openQuestion(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(),
+				"Resolution Consistency",
+				"Reform resolution models for consistency?")) {
+			ResolutionConsistency rc = new ResolutionConsistency();
+			
+			rc.setEditingDomain(this.getDiagramDocument()
+					.getEditingDomain());
+			rc.setCu((ConfigurableUnit) this.getDiagram()
+					.getElement());
+			rc.reformResolutions();
+		}
+		super.doSave(progressMonitor);
 	}
 
 	/**
