@@ -210,7 +210,7 @@ public class CVLMetamodelDiagramEditorUtil {
 	 * begin-user-doc --> Create root choice node for new ConfigurableUnit. Add
 	 * primtiive types. <!-- end-user-doc -->
 	 * 
-	 * @generatedÅ@NOT
+	 * @generated NOT
 	 */
 	private static ConfigurableUnit createInitialModel() {
 		ConfigurableUnit cu = CvlFactory.eINSTANCE.createConfigurableUnit();
