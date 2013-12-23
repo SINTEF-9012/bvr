@@ -17,7 +17,7 @@ public class CVLMetamodelUriEditorInputTester extends PropertyTester {
 			return false;
 		}
 		URIEditorInput editorInput = (URIEditorInput) receiver;
-		return "cvl_system_def_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
+		return "cvl_system_vspec_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
 
 }

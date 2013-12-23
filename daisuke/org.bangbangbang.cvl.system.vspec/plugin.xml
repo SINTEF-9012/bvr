@@ -4,13 +4,13 @@
 
    <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="cvl_system_def_diagram"/>
+      <fileTypes type="text" extension="cvl_system_vspec_diagram"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
       <?gmfgen generated="true"?>
       <parser
-         type="cvl_system_def_diagram"
+         type="cvl_system_vspec_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -21,7 +21,7 @@
          id="org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditorID"
          name="%editorName"
          icon="icons/obj16/CvlDiagramFile.gif"
-         extensions="cvl_system_def_diagram"
+         extensions="cvl_system_vspec_diagram"
          default="true"
          class="org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditor"
          matchingStrategy="org.bangbangbang.cvl.system.vspec.part.CVLMetamodelMatchingStrategy"
@@ -58,7 +58,7 @@
             nameFilter="*.cvl"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               label="%initDiagramActionLabel"
+               label="Initialize cvl_system_vspec_diagram diagram file"
                class="org.bangbangbang.cvl.system.vspec.part.CVLMetamodelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
@@ -461,7 +461,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="cvl_system_def_diagram"/>
+        	      <test property="org.eclipse.core.resources.extension" value="cvl_system_vspec_diagram"/>
                </and>
                <instanceof value="org.bangbangbang.cvl.system.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
             </or>
@@ -478,7 +478,7 @@
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
-        	         <test property="org.eclipse.core.resources.extension" value="cvl_system_def_diagram"/>
+        	         <test property="org.eclipse.core.resources.extension" value="cvl_system_vspec_diagram"/>
                   </and>
                   <instanceof value="org.bangbangbang.cvl.system.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
                </or>

@@ -81,9 +81,9 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 					"Unsupported URI: " + domainModelURI); //$NON-NLS-1$
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
-		myFileCreationPage
-				.setFileName(CVLMetamodelDiagramEditorUtil.getUniqueFileName(
-						filePath, fileName, "cvl_system_def_diagram")); //$NON-NLS-1$
+		myFileCreationPage.setFileName(CVLMetamodelDiagramEditorUtil
+				.getUniqueFileName(filePath, fileName,
+						"cvl_system_vspec_diagram")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
 				Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageName);

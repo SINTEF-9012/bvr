@@ -1,5 +1,9 @@
 package org.bangbangbang.cvl.system.vspec.part;
 
+import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VPackage;
+import org.bangbangbang.cvl.VPackageable;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
@@ -66,7 +70,7 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void run(IAction action) {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
@@ -75,7 +79,18 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
-			diagramRoot = (EObject) resource.getContents().get(0);
+			for (EObject o : resource.getContents()) {
+				if (o instanceof VInterface) {
+					diagramRoot = o;
+				} else if (o instanceof VPackage) {
+					for (VPackageable child : ((VPackage) o)
+							.getPackageElement()) {
+						if (child instanceof VInterface) {
+							diagramRoot = child;
+						}
+					}
+				}
+			}
 		} catch (WrappedException ex) {
 			CVLSystemVSpecEditorPlugin.getInstance().logError(
 					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$

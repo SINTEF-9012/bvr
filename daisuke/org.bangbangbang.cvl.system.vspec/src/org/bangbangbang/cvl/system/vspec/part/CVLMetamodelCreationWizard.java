@@ -102,7 +102,7 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new CVLMetamodelCreationWizardPage(
-				"DiagramModelFile", getSelection(), "cvl_system_def_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+				"DiagramModelFile", getSelection(), "cvl_system_vspec_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
 				.setTitle(Messages.CVLMetamodelCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
@@ -116,7 +116,7 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length()
-							- ".cvl_system_def_diagram".length()); //$NON-NLS-1$
+							- ".cvl_system_vspec_diagram".length()); //$NON-NLS-1$
 					setFileName(CVLMetamodelDiagramEditorUtil
 							.getUniqueFileName(getContainerFullPath(),
 									fileName, "cvl")); //$NON-NLS-1$

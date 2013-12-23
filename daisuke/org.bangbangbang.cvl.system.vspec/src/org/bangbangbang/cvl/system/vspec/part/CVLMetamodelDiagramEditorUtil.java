@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VPackage;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -201,21 +202,33 @@ public class CVLMetamodelDiagramEditorUtil {
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	private static VInterface createInitialModel() {
-		return CvlFactory.eINSTANCE.createVInterface();
+		VInterface vi = CvlFactory.eINSTANCE.createVInterface();
+		Choice choice = CvlFactory.eINSTANCE.createChoice();
+		choice.setName("[Rename] Root Choice");
+		vi.getMember().add(choice);
+
+		return vi;
 	}
 
 	/**
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	private static void attachModelToResource(VInterface model,
 			Resource resource) {
-		resource.getContents().add(model);
+
+		VPackage vp = CvlFactory.eINSTANCE.createVPackage();
+		vp.getPackageElement().add(model);
+
+		VInterface vi = CvlFactory.eINSTANCE.createVInterface();
+		vp.getPackageElement().add(vi);
+
+		resource.getContents().add(vp);
 	}
 
 	/**
