@@ -1,6 +1,5 @@
 package org.bangbangbang.cvl.system.vspec.edit.commands;
 
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.VInterface;
@@ -57,7 +56,7 @@ public class OpaqueConstraintCreateCommand extends EditElementCommand {
 		OpaqueConstraint newElement = CvlFactory.eINSTANCE
 				.createOpaqueConstraint();
 		newElement.setConstraintLanguage("OCL");
-		
+
 		VInterface owner = (VInterface) getElementToEdit();
 		owner.getOwnedConstraint().add(newElement);
 

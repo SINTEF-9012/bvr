@@ -1,7 +1,6 @@
 package org.bangbangbang.cvl.system.vspec.edit.commands;
 
 import org.bangbangbang.cvl.Choice;
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;

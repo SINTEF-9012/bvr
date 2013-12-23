@@ -43,11 +43,11 @@ public class CVLMetamodelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof ConfigurableUnitEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-//			types.add(CVLMetamodelElementTypes.Choice_2002);
-//			types.add(CVLMetamodelElementTypes.Choice_2006);
-//			types.add(CVLMetamodelElementTypes.Variable_2003);
-//			types.add(CVLMetamodelElementTypes.VClassifier_2004);
-//			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
+			//			types.add(CVLMetamodelElementTypes.Choice_2002);
+			//			types.add(CVLMetamodelElementTypes.Choice_2006);
+			//			types.add(CVLMetamodelElementTypes.Variable_2003);
+			//			types.add(CVLMetamodelElementTypes.VClassifier_2004);
+			//			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
 			return types;
 		}
 		if (editPart instanceof Choice2EditPart) {

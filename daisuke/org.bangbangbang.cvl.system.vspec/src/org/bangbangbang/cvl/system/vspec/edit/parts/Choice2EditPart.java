@@ -91,8 +91,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new Choice2CanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -148,8 +147,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof ChoiceChoiceGroupMultiplicityCompartment2EditPart) {
 			IFigure pane = getPrimaryShape()
 					.getFigureChoiceGroupMultiplicityCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ChoiceChoiceGroupMultiplicityCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -466,7 +464,6 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		return super.getTargetEditPart(request);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -540,7 +537,6 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 					BorderLayout.BOTTOM);
 
 		}
-
 
 		/**
 		 * @generated

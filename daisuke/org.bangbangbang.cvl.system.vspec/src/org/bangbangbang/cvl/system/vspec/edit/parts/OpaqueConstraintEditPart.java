@@ -205,6 +205,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
+
 	/**
 	 * @generated NOT
 	 */
@@ -259,7 +260,6 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		}
 	}
 
-	
 	/**
 	 * @generated
 	 */

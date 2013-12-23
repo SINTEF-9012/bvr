@@ -58,7 +58,7 @@
             nameFilter="*.cvl"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               label="Initialize cvl_system_vspec_diagram diagram file"
+               label="%initDiagramActionLabel"
                class="org.bangbangbang.cvl.system.vspec.part.CVLMetamodelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"

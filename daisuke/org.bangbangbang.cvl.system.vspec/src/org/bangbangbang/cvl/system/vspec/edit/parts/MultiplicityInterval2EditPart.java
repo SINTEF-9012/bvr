@@ -262,12 +262,12 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureGroupMultiplicityIntervalFigure;
-		
+
 		/**
 		 * @generated NOT
 		 */
 		private RectangleFigure paddingRectangleFigure0;
-		
+
 		/**
 		 * @generated NOT
 		 */
@@ -296,9 +296,8 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 			createContents();
 		}
 
-		
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		private void createContents() {
 
