@@ -14,6 +14,7 @@ import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.MultiplicityInterval;
 import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.VClassifier;
+import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
@@ -51,11 +52,11 @@ public class CVLMetamodelDiagramUpdater {
 	public static List<CVLMetamodelNodeDescriptor> getSemanticChildren(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
-			return getConfigurableUnit_1000SemanticChildren(view);
-		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
-			return getChoiceChoiceGroupMultiplicityCompartment_7001SemanticChildren(view);
+			return getVInterface_1000SemanticChildren(view);
 		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
 			return getChoiceChoiceGroupMultiplicityCompartment_7002SemanticChildren(view);
+		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
+			return getChoiceChoiceGroupMultiplicityCompartment_7005SemanticChildren(view);
 		case VClassifierVClassifierGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 			return getVClassifierVClassifierGroupMultiplicityCompartment_7003SemanticChildren(view);
 		case VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart.VISUAL_ID:
@@ -67,19 +68,18 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getConfigurableUnit_1000SemanticChildren(
+	public static List<CVLMetamodelNodeDescriptor> getVInterface_1000SemanticChildren(
 			View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ConfigurableUnit modelElement = (ConfigurableUnit) view.getElement();
+		VInterface modelElement = (VInterface) view.getElement();
 		LinkedList<CVLMetamodelNodeDescriptor> result = new LinkedList<CVLMetamodelNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOwnedVSpec().iterator(); it
-				.hasNext();) {
+		for (Iterator<?> it = modelElement.getMember().iterator(); it.hasNext();) {
 			VSpec childElement = (VSpec) it.next();
 			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
-			if (visualID == ChoiceEditPart.VISUAL_ID) {
+			if (visualID == Choice2EditPart.VISUAL_ID) {
 				result.add(new CVLMetamodelNodeDescriptor(childElement,
 						visualID));
 				continue;
@@ -104,9 +104,9 @@ public class CVLMetamodelDiagramUpdater {
 				continue;
 			}
 			if (CVLMetamodelVisualIDRegistry
-					.getNodeVisualID(view, childElement) == Choice2EditPart.VISUAL_ID) {
+					.getNodeVisualID(view, childElement) == ChoiceEditPart.VISUAL_ID) {
 				result.add(new CVLMetamodelNodeDescriptor(childElement,
-						Choice2EditPart.VISUAL_ID));
+						ChoiceEditPart.VISUAL_ID));
 				continue;
 			}
 			if (CVLMetamodelVisualIDRegistry
@@ -128,7 +128,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7001SemanticChildren(
+	public static List<CVLMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7002SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -155,7 +155,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7002SemanticChildren(
+	public static List<CVLMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7005SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -246,17 +246,17 @@ public class CVLMetamodelDiagramUpdater {
 	public static List<CVLMetamodelLinkDescriptor> getContainedLinks(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
-			return getConfigurableUnit_1000ContainedLinks(view);
-		case ChoiceEditPart.VISUAL_ID:
-			return getChoice_2001ContainedLinks(view);
+			return getVInterface_1000ContainedLinks(view);
 		case Choice2EditPart.VISUAL_ID:
 			return getChoice_2002ContainedLinks(view);
+		case ChoiceEditPart.VISUAL_ID:
+			return getChoice_2006ContainedLinks(view);
 		case VariableEditPart.VISUAL_ID:
 			return getVariable_2003ContainedLinks(view);
 		case VClassifierEditPart.VISUAL_ID:
 			return getVClassifier_2004ContainedLinks(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
-			return getOpaqueConstraint_2005ContainedLinks(view);
+			return getOpaqueConstraint_2007ContainedLinks(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001ContainedLinks(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -274,16 +274,16 @@ public class CVLMetamodelDiagramUpdater {
 	 */
 	public static List<CVLMetamodelLinkDescriptor> getIncomingLinks(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ChoiceEditPart.VISUAL_ID:
-			return getChoice_2001IncomingLinks(view);
 		case Choice2EditPart.VISUAL_ID:
 			return getChoice_2002IncomingLinks(view);
+		case ChoiceEditPart.VISUAL_ID:
+			return getChoice_2006IncomingLinks(view);
 		case VariableEditPart.VISUAL_ID:
 			return getVariable_2003IncomingLinks(view);
 		case VClassifierEditPart.VISUAL_ID:
 			return getVClassifier_2004IncomingLinks(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
-			return getOpaqueConstraint_2005IncomingLinks(view);
+			return getOpaqueConstraint_2007IncomingLinks(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001IncomingLinks(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -301,16 +301,16 @@ public class CVLMetamodelDiagramUpdater {
 	 */
 	public static List<CVLMetamodelLinkDescriptor> getOutgoingLinks(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ChoiceEditPart.VISUAL_ID:
-			return getChoice_2001OutgoingLinks(view);
 		case Choice2EditPart.VISUAL_ID:
 			return getChoice_2002OutgoingLinks(view);
+		case ChoiceEditPart.VISUAL_ID:
+			return getChoice_2006OutgoingLinks(view);
 		case VariableEditPart.VISUAL_ID:
 			return getVariable_2003OutgoingLinks(view);
 		case VClassifierEditPart.VISUAL_ID:
 			return getVClassifier_2004OutgoingLinks(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
-			return getOpaqueConstraint_2005OutgoingLinks(view);
+			return getOpaqueConstraint_2007OutgoingLinks(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001OutgoingLinks(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -326,7 +326,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getConfigurableUnit_1000ContainedLinks(
+	public static List<CVLMetamodelLinkDescriptor> getVInterface_1000ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -334,7 +334,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2001ContainedLinks(
+	public static List<CVLMetamodelLinkDescriptor> getChoice_2002ContainedLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
@@ -345,7 +345,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2002ContainedLinks(
+	public static List<CVLMetamodelLinkDescriptor> getChoice_2006ContainedLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
@@ -378,7 +378,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2005ContainedLinks(
+	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2007ContainedLinks(
 			View view) {
 		OpaqueConstraint modelElement = (OpaqueConstraint) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
@@ -421,7 +421,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2001IncomingLinks(
+	public static List<CVLMetamodelLinkDescriptor> getChoice_2002IncomingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
@@ -437,7 +437,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2002IncomingLinks(
+	public static List<CVLMetamodelLinkDescriptor> getChoice_2006IncomingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
@@ -485,7 +485,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2005IncomingLinks(
+	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2007IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -525,7 +525,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2001OutgoingLinks(
+	public static List<CVLMetamodelLinkDescriptor> getChoice_2002OutgoingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
@@ -536,7 +536,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2002OutgoingLinks(
+	public static List<CVLMetamodelLinkDescriptor> getChoice_2006OutgoingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
@@ -569,7 +569,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2005OutgoingLinks(
+	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2007OutgoingLinks(
 			View view) {
 		OpaqueConstraint modelElement = (OpaqueConstraint) view.getElement();
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();

@@ -30,7 +30,7 @@ public class OpaqueConstraintItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public OpaqueConstraintItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.OpaqueConstraint_2005);
+		super(CVLMetamodelElementTypes.OpaqueConstraint_2007);
 	}
 
 	/**

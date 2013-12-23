@@ -43,19 +43,19 @@ public class CVLMetamodelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof ConfigurableUnitEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
+			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2005);
+			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
 			return types;
 		}
-		if (editPart instanceof ChoiceEditPart) {
+		if (editPart instanceof Choice2EditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3001);
 			return types;
 		}
-		if (editPart instanceof Choice2EditPart) {
+		if (editPart instanceof ChoiceEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3002);
 			return types;
@@ -75,11 +75,11 @@ public class CVLMetamodelModelingAssistantProvider extends
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof ChoiceEditPart) {
-			return ((ChoiceEditPart) sourceEditPart).getMARelTypesOnSource();
-		}
 		if (sourceEditPart instanceof Choice2EditPart) {
 			return ((Choice2EditPart) sourceEditPart).getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof ChoiceEditPart) {
+			return ((ChoiceEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		if (sourceEditPart instanceof VariableEditPart) {
 			return ((VariableEditPart) sourceEditPart).getMARelTypesOnSource();
@@ -101,11 +101,11 @@ public class CVLMetamodelModelingAssistantProvider extends
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof ChoiceEditPart) {
-			return ((ChoiceEditPart) targetEditPart).getMARelTypesOnTarget();
-		}
 		if (targetEditPart instanceof Choice2EditPart) {
 			return ((Choice2EditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof ChoiceEditPart) {
+			return ((ChoiceEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		if (targetEditPart instanceof VariableEditPart) {
 			return ((VariableEditPart) targetEditPart).getMARelTypesOnTarget();
@@ -126,12 +126,12 @@ public class CVLMetamodelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof ChoiceEditPart) {
-			return ((ChoiceEditPart) sourceEditPart)
-					.getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if (sourceEditPart instanceof Choice2EditPart) {
 			return ((Choice2EditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof ChoiceEditPart) {
+			return ((ChoiceEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if (sourceEditPart instanceof VariableEditPart) {
@@ -156,12 +156,12 @@ public class CVLMetamodelModelingAssistantProvider extends
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof ChoiceEditPart) {
-			return ((ChoiceEditPart) targetEditPart)
-					.getMATypesForSource(relationshipType);
-		}
 		if (targetEditPart instanceof Choice2EditPart) {
 			return ((Choice2EditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof ChoiceEditPart) {
+			return ((ChoiceEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
 		if (targetEditPart instanceof VariableEditPart) {
@@ -182,12 +182,12 @@ public class CVLMetamodelModelingAssistantProvider extends
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof ChoiceEditPart) {
-			return ((ChoiceEditPart) sourceEditPart)
-					.getMATypesForTarget(relationshipType);
-		}
 		if (sourceEditPart instanceof Choice2EditPart) {
 			return ((Choice2EditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ChoiceEditPart) {
+			return ((ChoiceEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		if (sourceEditPart instanceof VariableEditPart) {

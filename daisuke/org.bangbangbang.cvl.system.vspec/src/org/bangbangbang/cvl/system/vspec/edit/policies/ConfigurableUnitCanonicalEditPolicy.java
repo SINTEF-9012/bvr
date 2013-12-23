@@ -84,9 +84,9 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(CvlPackage.eINSTANCE
-					.getConfigurableUnit_OwnedVSpec());
+					.getVInterface_Member());
 			myFeaturesToSynchronize.add(CvlPackage.eINSTANCE
-					.getConfigurableUnit_OwnedConstraint());
+					.getVInterface_OwnedConstraint());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -99,7 +99,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<CVLMetamodelNodeDescriptor> childDescriptors = CVLMetamodelDiagramUpdater
-				.getConfigurableUnit_1000SemanticChildren(viewObject);
+				.getVInterface_1000SemanticChildren(viewObject);
 		for (CVLMetamodelNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -121,8 +121,8 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	private boolean isMyDiagramElement(View view) {
 		int visualID = CVLMetamodelVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
-		case ChoiceEditPart.VISUAL_ID:
 		case Choice2EditPart.VISUAL_ID:
+		case ChoiceEditPart.VISUAL_ID:
 		case VariableEditPart.VISUAL_ID:
 		case VClassifierEditPart.VISUAL_ID:
 		case OpaqueConstraintEditPart.VISUAL_ID:
@@ -140,8 +140,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<CVLMetamodelNodeDescriptor> childDescriptors = CVLMetamodelDiagramUpdater
-				.getConfigurableUnit_1000SemanticChildren((View) getHost()
-						.getModel());
+				.getVInterface_1000SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -328,15 +327,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ConfigurableUnitEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(CVLMetamodelDiagramUpdater
-						.getConfigurableUnit_1000ContainedLinks(view));
-			}
-			domain2NotationMap.putView(view.getElement(), view);
-			break;
-		}
-		case ChoiceEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
-						.getChoice_2001ContainedLinks(view));
+						.getVInterface_1000ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -345,6 +336,14 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(CVLMetamodelDiagramUpdater
 						.getChoice_2002ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ChoiceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(CVLMetamodelDiagramUpdater
+						.getChoice_2006ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -368,7 +367,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		case OpaqueConstraintEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(CVLMetamodelDiagramUpdater
-						.getOpaqueConstraint_2005ContainedLinks(view));
+						.getOpaqueConstraint_2007ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

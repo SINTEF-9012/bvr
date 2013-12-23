@@ -83,7 +83,7 @@ public class CVLMetamodelPaletteFactory {
 				Messages.OpaqueConstraint3CreationTool_title,
 				Messages.OpaqueConstraint3CreationTool_desc,
 				Collections
-						.singletonList(CVLMetamodelElementTypes.OpaqueConstraint_2005));
+						.singletonList(CVLMetamodelElementTypes.OpaqueConstraint_2007));
 		entry.setId("createOpaqueConstraint3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(CVLSystemVSpecEditorPlugin
 				.findImageDescriptor("/org.bangbangbang.cvl.model.edit/icons/full/obj16/OpaqueConstraint.gif")); //$NON-NLS-1$

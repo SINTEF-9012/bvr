@@ -7,6 +7,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -45,7 +46,6 @@ public class ChoiceCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 		return true;
-
 	}
 
 	/**
@@ -53,10 +53,16 @@ public class ChoiceCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
+		// Uncomment to put "phantom" objects into the diagram file.		
+		// org.eclipse.emf.ecore.resource.Resource resource = 
+		// 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer().eResource();
+		// if (resource == null) {
+		// 	return null;
+		// }
+		Resource resource = getElementToEdit().eResource();
 		Choice newElement = CvlFactory.eINSTANCE.createChoice();
 
-		ConfigurableUnit owner = (ConfigurableUnit) getElementToEdit();
-		owner.getOwnedVSpec().add(newElement);
+		resource.getContents().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

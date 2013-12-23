@@ -2,6 +2,7 @@ package org.bangbangbang.cvl.system.vspec.edit.commands;
 
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.CvlFactory;
+import org.bangbangbang.cvl.VInterface;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -45,6 +46,7 @@ public class Choice2CreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 		return true;
+
 	}
 
 	/**
@@ -52,16 +54,10 @@ public class Choice2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		// Uncomment to put "phantom" objects into the diagram file.		
-		// org.eclipse.emf.ecore.resource.Resource resource = 
-		// 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer().eResource();
-		// if (resource == null) {
-		// 	return null;
-		// }
-		Resource resource = getElementToEdit().eResource();
 		Choice newElement = CvlFactory.eINSTANCE.createChoice();
 
-		resource.getContents().add(newElement);
+		VInterface owner = (VInterface) getElementToEdit();
+		owner.getMember().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -41,7 +41,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2005;
+	public static final int VISUAL_ID = 2007;
 
 	/**
 	 * @generated
@@ -270,10 +270,10 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ChoiceEditPart) {
+		if (targetEditPart instanceof Choice2EditPart) {
 			types.add(CVLMetamodelElementTypes.ConstraintContext_4002);
 		}
-		if (targetEditPart instanceof Choice2EditPart) {
+		if (targetEditPart instanceof ChoiceEditPart) {
 			types.add(CVLMetamodelElementTypes.ConstraintContext_4002);
 		}
 		if (targetEditPart instanceof VariableEditPart) {
@@ -291,8 +291,8 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4002) {
-			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
+			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 		}

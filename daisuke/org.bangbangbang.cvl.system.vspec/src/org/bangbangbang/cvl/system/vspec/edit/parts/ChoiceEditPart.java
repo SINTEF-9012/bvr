@@ -47,7 +47,7 @@ public class ChoiceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2001;
+	public static final int VISUAL_ID = 2006;
 
 	/**
 	 * @generated
@@ -300,10 +300,10 @@ public class ChoiceEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart) {
+		if (targetEditPart instanceof Choice2EditPart) {
 			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
 		}
-		if (targetEditPart instanceof Choice2EditPart) {
+		if (targetEditPart instanceof org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart) {
 			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof VariableEditPart) {
@@ -321,8 +321,8 @@ public class ChoiceEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
+			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 		}
@@ -345,12 +345,12 @@ public class ChoiceEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
+			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 		} else if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4002) {
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2005);
+			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
 		}
 		return types;
 	}
@@ -365,7 +365,7 @@ public class ChoiceEditPart extends ShapeNodeEditPart {
 					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter
 					.getAdapter(IElementType.class);
-			if (type == CVLMetamodelElementTypes.MultiplicityInterval_3001) {
+			if (type == CVLMetamodelElementTypes.MultiplicityInterval_3002) {
 				return getChildBySemanticHint(CVLMetamodelVisualIDRegistry
 						.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID));
 			}

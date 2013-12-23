@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityIntervalEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelDiagramUpdater;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelNodeDescriptor;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
@@ -79,7 +80,7 @@ public class ChoiceChoiceGroupMultiplicityCompartment2CanonicalEditPolicy
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return MultiplicityInterval2EditPart.VISUAL_ID == CVLMetamodelVisualIDRegistry
+		return MultiplicityIntervalEditPart.VISUAL_ID == CVLMetamodelVisualIDRegistry
 				.getVisualID(view);
 	}
 

@@ -58,7 +58,7 @@ public class ChoiceNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5002;
+	public static final int VISUAL_ID = 5010;
 
 	/**
 	 * @generated
@@ -304,7 +304,7 @@ public class ChoiceNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = CVLMetamodelParserProvider
 					.getParser(
-							CVLMetamodelElementTypes.Choice_2001,
+							CVLMetamodelElementTypes.Choice_2006,
 							getParserElement(),
 							CVLMetamodelVisualIDRegistry
 									.getType(org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart.VISUAL_ID));

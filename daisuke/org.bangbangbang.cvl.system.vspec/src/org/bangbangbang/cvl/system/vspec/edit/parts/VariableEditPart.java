@@ -268,10 +268,10 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof ChoiceEditPart) {
+		if (targetEditPart instanceof Choice2EditPart) {
 			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
 		}
-		if (targetEditPart instanceof Choice2EditPart) {
+		if (targetEditPart instanceof ChoiceEditPart) {
 			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart) {
@@ -289,8 +289,8 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
+			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 		}
@@ -313,12 +313,12 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
+			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
 		} else if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4002) {
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2005);
+			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
 		}
 		return types;
 	}

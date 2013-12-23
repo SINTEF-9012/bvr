@@ -1,6 +1,7 @@
 package org.bangbangbang.cvl.system.vspec.navigator;
 
 import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
@@ -103,10 +104,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http:///cvl.ecore?ConfigurableUnit", CVLMetamodelElementTypes.ConfigurableUnit_1000); //$NON-NLS-1$
-		case ChoiceEditPart.VISUAL_ID:
-			return getImage(
-					"Navigator?TopLevelNode?http:///cvl.ecore?Choice", CVLMetamodelElementTypes.Choice_2001); //$NON-NLS-1$
+					"Navigator?Diagram?http:///cvl.ecore?VInterface", CVLMetamodelElementTypes.VInterface_1000); //$NON-NLS-1$
 		case Choice2EditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///cvl.ecore?Choice", CVLMetamodelElementTypes.Choice_2002); //$NON-NLS-1$
@@ -116,9 +114,12 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		case VClassifierEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http:///cvl.ecore?VClassifier", CVLMetamodelElementTypes.VClassifier_2004); //$NON-NLS-1$
+		case ChoiceEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?TopLevelNode?http:///cvl.ecore?Choice", CVLMetamodelElementTypes.Choice_2006); //$NON-NLS-1$
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///cvl.ecore?OpaqueConstraint", CVLMetamodelElementTypes.OpaqueConstraint_2005); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http:///cvl.ecore?OpaqueConstraint", CVLMetamodelElementTypes.OpaqueConstraint_2007); //$NON-NLS-1$
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Node?http:///cvl.ecore?MultiplicityInterval", CVLMetamodelElementTypes.MultiplicityInterval_3001); //$NON-NLS-1$
@@ -190,17 +191,17 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		}
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
-			return getConfigurableUnit_1000Text(view);
-		case ChoiceEditPart.VISUAL_ID:
-			return getChoice_2001Text(view);
+			return getVInterface_1000Text(view);
 		case Choice2EditPart.VISUAL_ID:
 			return getChoice_2002Text(view);
 		case VariableEditPart.VISUAL_ID:
 			return getVariable_2003Text(view);
 		case VClassifierEditPart.VISUAL_ID:
 			return getVClassifier_2004Text(view);
+		case ChoiceEditPart.VISUAL_ID:
+			return getChoice_2006Text(view);
 		case OpaqueConstraintEditPart.VISUAL_ID:
-			return getOpaqueConstraint_2005Text(view);
+			return getOpaqueConstraint_2007Text(view);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getMultiplicityInterval_3001Text(view);
 		case MultiplicityInterval2EditPart.VISUAL_ID:
@@ -220,34 +221,13 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getConfigurableUnit_1000Text(View view) {
-		ConfigurableUnit domainModelElement = (ConfigurableUnit) view
-				.getElement();
+	private String getVInterface_1000Text(View view) {
+		VInterface domainModelElement = (VInterface) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
 			CVLSystemVSpecEditorPlugin.getInstance().logError(
 					"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
-			return ""; //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getChoice_2001Text(View view) {
-		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.Choice_2001,
-				view.getElement() != null ? view.getElement() : view,
-				CVLMetamodelVisualIDRegistry
-						.getType(ChoiceNameEditPart.VISUAL_ID));
-		if (parser != null) {
-			return parser.getPrintString(new EObjectAdapter(
-					view.getElement() != null ? view.getElement() : view),
-					ParserOptions.NONE.intValue());
-		} else {
-			CVLSystemVSpecEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5002); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -315,9 +295,29 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getOpaqueConstraint_2005Text(View view) {
+	private String getChoice_2006Text(View view) {
 		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.OpaqueConstraint_2005, view
+				CVLMetamodelElementTypes.Choice_2006,
+				view.getElement() != null ? view.getElement() : view,
+				CVLMetamodelVisualIDRegistry
+						.getType(ChoiceNameEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(
+					view.getElement() != null ? view.getElement() : view),
+					ParserOptions.NONE.intValue());
+		} else {
+			CVLSystemVSpecEditorPlugin.getInstance().logError(
+					"Parser was not found for label " + 5010); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getOpaqueConstraint_2007Text(View view) {
+		IParser parser = CVLMetamodelParserProvider.getParser(
+				CVLMetamodelElementTypes.OpaqueConstraint_2007, view
 						.getElement() != null ? view.getElement() : view,
 				CVLMetamodelVisualIDRegistry
 						.getType(OpaqueConstraintNameEditPart.VISUAL_ID));
@@ -327,7 +327,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 					ParserOptions.NONE.intValue());
 		} else {
 			CVLSystemVSpecEditorPlugin.getInstance().logError(
-					"Parser was not found for label " + 5009); //$NON-NLS-1$
+					"Parser was not found for label " + 5011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

@@ -24,7 +24,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="CVLMetamodel.genmodel#//cvl/ConfigurableUnit"/>
+        href="CVLMetamodel.genmodel#//cvl/VInterface"/>
     <childNodes
         visualID="3001"
         editPartClassName="MultiplicityIntervalEditPart"
@@ -227,14 +227,14 @@
       </labels>
     </childNodes>
     <topLevelNodes
-        visualID="2001"
-        editPartClassName="ChoiceEditPart"
-        itemSemanticEditPolicyClassName="ChoiceItemSemanticEditPolicy"
+        visualID="2002"
+        editPartClassName="Choice2EditPart"
+        itemSemanticEditPolicyClassName="Choice2ItemSemanticEditPolicy"
         notationViewFactoryClassName="ChoiceViewFactory"
-        canonicalEditPolicyClassName="ChoiceCanonicalEditPolicy"
+        canonicalEditPolicyClassName="Choice2CanonicalEditPolicy"
         compartments="//@diagram/@compartments.0"
-        graphicalNodeEditPolicyClassName="ChoiceGraphicalNodeEditPolicy"
-        createCommandClassName="ChoiceCreateCommand">
+        graphicalNodeEditPolicyClassName="Choice2GraphicalNodeEditPolicy"
+        createCommandClassName="Choice2CreateCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
@@ -249,14 +249,14 @@
         <metaClass
             href="CVLMetamodel.genmodel#//cvl/Choice"/>
         <containmentMetaFeature
-            href="CVLMetamodel.genmodel#//cvl/ConfigurableUnit/ownedVSpec"/>
+            href="CVLMetamodel.genmodel#//cvl/VInterface/member"/>
         <childMetaFeature
-            href="CVLMetamodel.genmodel#//cvl/ConfigurableUnit/ownedVSpec"/>
+            href="CVLMetamodel.genmodel#//cvl/VInterface/member"/>
       </modelFacet>
       <labels
-          visualID="5002"
-          editPartClassName="ChoiceNameEditPart"
-          itemSemanticEditPolicyClassName="ChoiceNameItemSemanticEditPolicy"
+          visualID="5004"
+          editPartClassName="ChoiceName2EditPart"
+          itemSemanticEditPolicyClassName="ChoiceName2ItemSemanticEditPolicy"
           notationViewFactoryClassName="ChoiceNameViewFactory">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -276,14 +276,13 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2002"
-        editPartClassName="Choice2EditPart"
-        itemSemanticEditPolicyClassName="Choice2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="ChoiceViewFactory"
-        canonicalEditPolicyClassName="Choice2CanonicalEditPolicy"
+        visualID="2006"
+        editPartClassName="ChoiceEditPart"
+        itemSemanticEditPolicyClassName="ChoiceItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="ChoiceCanonicalEditPolicy"
         compartments="//@diagram/@compartments.1"
-        graphicalNodeEditPolicyClassName="Choice2GraphicalNodeEditPolicy"
-        createCommandClassName="Choice2CreateCommand">
+        graphicalNodeEditPolicyClassName="ChoiceGraphicalNodeEditPolicy"
+        createCommandClassName="ChoiceCreateCommand">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
@@ -300,10 +299,9 @@
             href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
       </modelFacet>
       <labels
-          visualID="5004"
-          editPartClassName="ChoiceName2EditPart"
-          itemSemanticEditPolicyClassName="ChoiceName2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="ChoiceNameViewFactory">
+          visualID="5010"
+          editPartClassName="ChoiceNameEditPart"
+          itemSemanticEditPolicyClassName="ChoiceNameItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -418,10 +416,9 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2005"
+        visualID="2007"
         editPartClassName="OpaqueConstraintEditPart"
         itemSemanticEditPolicyClassName="OpaqueConstraintItemSemanticEditPolicy"
-        notationViewFactoryClassName="OpaqueConstraintViewFactory"
         canonicalEditPolicyClassName="OpaqueConstraintCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="OpaqueConstraintGraphicalNodeEditPolicy"
         createCommandClassName="OpaqueConstraintCreateCommand">
@@ -443,15 +440,14 @@
         <metaClass
             href="CVLMetamodel.genmodel#//cvl/OpaqueConstraint"/>
         <containmentMetaFeature
-            href="CVLMetamodel.genmodel#//cvl/ConfigurableUnit/ownedConstraint"/>
+            href="CVLMetamodel.genmodel#//cvl/VInterface/ownedConstraint"/>
         <childMetaFeature
-            href="CVLMetamodel.genmodel#//cvl/ConfigurableUnit/ownedConstraint"/>
+            href="CVLMetamodel.genmodel#//cvl/VInterface/ownedConstraint"/>
       </modelFacet>
       <labels
-          visualID="5009"
+          visualID="5011"
           editPartClassName="OpaqueConstraintNameEditPart"
-          itemSemanticEditPolicyClassName="OpaqueConstraintNameItemSemanticEditPolicy"
-          notationViewFactoryClassName="OpaqueConstraintNameViewFactory">
+          itemSemanticEditPolicyClassName="OpaqueConstraintNameItemSemanticEditPolicy">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -520,11 +516,11 @@
       </modelFacet>
     </links>
     <compartments
-        visualID="7001"
-        editPartClassName="ChoiceChoiceGroupMultiplicityCompartmentEditPart"
-        itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentItemSemanticEditPolicy"
+        visualID="7002"
+        editPartClassName="ChoiceChoiceGroupMultiplicityCompartment2EditPart"
+        itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2ItemSemanticEditPolicy"
         notationViewFactoryClassName="ChoiceChoiceGroupMultiplicityCompartmentViewFactory"
-        canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy"
+        canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2CanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.0"
         title="ChoiceGroupMultiplicityCompartment"
         canCollapse="false"
@@ -538,11 +534,10 @@
           figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
     <compartments
-        visualID="7002"
-        editPartClassName="ChoiceChoiceGroupMultiplicityCompartment2EditPart"
-        itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2ItemSemanticEditPolicy"
-        notationViewFactoryClassName="ChoiceChoiceGroupMultiplicityCompartmentViewFactory"
-        canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2CanonicalEditPolicy"
+        visualID="7005"
+        editPartClassName="ChoiceChoiceGroupMultiplicityCompartmentEditPart"
+        itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy"
         childNodes="//@diagram/@childNodes.1"
         title="ChoiceGroupMultiplicityCompartment"
         canCollapse="false"

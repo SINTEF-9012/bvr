@@ -1,5 +1,6 @@
 package org.bangbangbang.cvl.system.vspec.edit.policies;
 
+import org.bangbangbang.cvl.system.vspec.edit.commands.MultiplicityInterval2CreateCommand;
 import org.bangbangbang.cvl.system.vspec.edit.commands.MultiplicityIntervalCreateCommand;
 import org.bangbangbang.cvl.system.vspec.providers.CVLMetamodelElementTypes;
 import org.eclipse.gef.commands.Command;
@@ -15,16 +16,16 @@ public class ChoiceChoiceGroupMultiplicityCompartmentItemSemanticEditPolicy
 	 * @generated
 	 */
 	public ChoiceChoiceGroupMultiplicityCompartmentItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.Choice_2001);
+		super(CVLMetamodelElementTypes.Choice_2006);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (CVLMetamodelElementTypes.MultiplicityInterval_3001 == req
+		if (CVLMetamodelElementTypes.MultiplicityInterval_3002 == req
 				.getElementType()) {
-			return getGEFWrapper(new MultiplicityIntervalCreateCommand(req));
+			return getGEFWrapper(new MultiplicityInterval2CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

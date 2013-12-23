@@ -8,6 +8,7 @@ import org.bangbangbang.cvl.system.vspec.edit.commands.VSpecChildCreateCommand;
 import org.bangbangbang.cvl.system.vspec.edit.commands.VSpecChildReorientCommand;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityIntervalEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VSpecChildEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
@@ -43,7 +44,7 @@ public class ChoiceItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ChoiceItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.Choice_2001);
+		super(CVLMetamodelElementTypes.Choice_2006);
 	}
 
 	/**
@@ -136,7 +137,7 @@ public class ChoiceItemSemanticEditPolicy extends
 						.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (CVLMetamodelVisualIDRegistry.getVisualID(cnode)) {
-					case MultiplicityIntervalEditPart.VISUAL_ID:
+					case MultiplicityInterval2EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
 										cnode.getElement(), false))); // directlyOwned: true

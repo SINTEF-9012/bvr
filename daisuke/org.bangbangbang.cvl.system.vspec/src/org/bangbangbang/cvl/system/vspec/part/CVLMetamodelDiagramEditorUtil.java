@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
+import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -157,7 +158,7 @@ public class CVLMetamodelDiagramEditorUtil {
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				ConfigurableUnit model = createInitialModel();
+				VInterface model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
 				Diagram diagram = ViewService.createDiagram(model,
@@ -202,8 +203,8 @@ public class CVLMetamodelDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static ConfigurableUnit createInitialModel() {
-		return CvlFactory.eINSTANCE.createConfigurableUnit();
+	private static VInterface createInitialModel() {
+		return CvlFactory.eINSTANCE.createVInterface();
 	}
 
 	/**
@@ -212,7 +213,7 @@ public class CVLMetamodelDiagramEditorUtil {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static void attachModelToResource(ConfigurableUnit model,
+	private static void attachModelToResource(VInterface model,
 			Resource resource) {
 		resource.getContents().add(model);
 	}

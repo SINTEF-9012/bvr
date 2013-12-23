@@ -8,7 +8,7 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="CVLMetamodel.ecore#//ConfigurableUnit/ownedVSpec"/>
+        href="CVLMetamodel.ecore#//VInterface/member"/>
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//Choice"/>
@@ -208,7 +208,7 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="CVLMetamodel.ecore#//ConfigurableUnit/ownedConstraint"/>
+        href="CVLMetamodel.ecore#//VInterface/ownedConstraint"/>
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//OpaqueConstraint"/>
@@ -259,7 +259,7 @@
     <domainModel
         href="CVLMetamodel.ecore#/"/>
     <domainMetaElement
-        href="CVLMetamodel.ecore#//ConfigurableUnit"/>
+        href="CVLMetamodel.ecore#//VInterface"/>
     <palette
         href="CVLSystemVSpec.gmftool#//@palette"/>
   </diagram>

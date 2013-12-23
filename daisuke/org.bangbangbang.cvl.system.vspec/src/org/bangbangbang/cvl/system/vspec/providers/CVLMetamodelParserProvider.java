@@ -34,24 +34,6 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser choiceName_5002Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getChoiceName_5002Parser() {
-		if (choiceName_5002Parser == null) {
-			EAttribute[] features = new EAttribute[] { CvlPackage.eINSTANCE
-					.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			choiceName_5002Parser = parser;
-		}
-		return choiceName_5002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser choiceName_5004Parser;
 
 	/**
@@ -65,6 +47,24 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 			choiceName_5004Parser = parser;
 		}
 		return choiceName_5004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser choiceName_5010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getChoiceName_5010Parser() {
+		if (choiceName_5010Parser == null) {
+			EAttribute[] features = new EAttribute[] { CvlPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			choiceName_5010Parser = parser;
+		}
+		return choiceName_5010Parser;
 	}
 
 	/**
@@ -106,19 +106,19 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser opaqueConstraintName_5009Parser;
+	private IParser opaqueConstraintName_5011Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getOpaqueConstraintName_5009Parser() {
-		if (opaqueConstraintName_5009Parser == null) {
+	private IParser getOpaqueConstraintName_5011Parser() {
+		if (opaqueConstraintName_5011Parser == null) {
 			EAttribute[] features = new EAttribute[] { CvlPackage.eINSTANCE
 					.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			opaqueConstraintName_5009Parser = parser;
+			opaqueConstraintName_5011Parser = parser;
 		}
-		return opaqueConstraintName_5009Parser;
+		return opaqueConstraintName_5011Parser;
 	}
 
 	/**
@@ -214,16 +214,16 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case ChoiceNameEditPart.VISUAL_ID:
-			return getChoiceName_5002Parser();
 		case ChoiceName2EditPart.VISUAL_ID:
 			return getChoiceName_5004Parser();
+		case ChoiceNameEditPart.VISUAL_ID:
+			return getChoiceName_5010Parser();
 		case VariableNameEditPart.VISUAL_ID:
 			return getVariableName_5005Parser();
 		case VClassifierNameEditPart.VISUAL_ID:
 			return getVClassifierName_5008Parser();
 		case OpaqueConstraintNameEditPart.VISUAL_ID:
-			return getOpaqueConstraintName_5009Parser();
+			return getOpaqueConstraintName_5011Parser();
 		case MultiplicityIntervalLowerUpperEditPart.VISUAL_ID:
 			return getMultiplicityIntervalLowerUpper_5001Parser();
 		case MultiplicityIntervalLowerUpper2EditPart.VISUAL_ID:

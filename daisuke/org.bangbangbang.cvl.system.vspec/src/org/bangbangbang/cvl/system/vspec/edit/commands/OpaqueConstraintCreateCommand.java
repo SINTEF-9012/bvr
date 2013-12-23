@@ -3,6 +3,7 @@ package org.bangbangbang.cvl.system.vspec.edit.commands;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.OpaqueConstraint;
+import org.bangbangbang.cvl.VInterface;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -56,7 +57,7 @@ public class OpaqueConstraintCreateCommand extends EditElementCommand {
 		OpaqueConstraint newElement = CvlFactory.eINSTANCE
 				.createOpaqueConstraint();
 
-		ConfigurableUnit owner = (ConfigurableUnit) getElementToEdit();
+		VInterface owner = (VInterface) getElementToEdit();
 		owner.getOwnedConstraint().add(newElement);
 
 		doConfigure(newElement, monitor, info);

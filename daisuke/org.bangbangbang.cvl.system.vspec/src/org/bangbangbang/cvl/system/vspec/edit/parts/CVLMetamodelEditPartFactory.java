@@ -24,17 +24,17 @@ public class CVLMetamodelEditPartFactory implements EditPartFactory {
 			case ConfigurableUnitEditPart.VISUAL_ID:
 				return new ConfigurableUnitEditPart(view);
 
-			case ChoiceEditPart.VISUAL_ID:
-				return new ChoiceEditPart(view);
-
-			case ChoiceNameEditPart.VISUAL_ID:
-				return new ChoiceNameEditPart(view);
-
 			case Choice2EditPart.VISUAL_ID:
 				return new Choice2EditPart(view);
 
 			case ChoiceName2EditPart.VISUAL_ID:
 				return new ChoiceName2EditPart(view);
+
+			case ChoiceEditPart.VISUAL_ID:
+				return new ChoiceEditPart(view);
+
+			case ChoiceNameEditPart.VISUAL_ID:
+				return new ChoiceNameEditPart(view);
 
 			case VariableEditPart.VISUAL_ID:
 				return new VariableEditPart(view);
@@ -78,12 +78,12 @@ public class CVLMetamodelEditPartFactory implements EditPartFactory {
 			case MultiplicityIntervalLowerUpper4EditPart.VISUAL_ID:
 				return new MultiplicityIntervalLowerUpper4EditPart(view);
 
-			case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
-				return new ChoiceChoiceGroupMultiplicityCompartmentEditPart(
-						view);
-
 			case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
 				return new ChoiceChoiceGroupMultiplicityCompartment2EditPart(
+						view);
+
+			case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
+				return new ChoiceChoiceGroupMultiplicityCompartmentEditPart(
 						view);
 
 			case VClassifierVClassifierGroupMultiplicityCompartmentEditPart.VISUAL_ID:

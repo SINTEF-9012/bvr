@@ -23,18 +23,18 @@ public class ConfigurableUnitItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	public ConfigurableUnitItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.ConfigurableUnit_1000);
+		super(CVLMetamodelElementTypes.VInterface_1000);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (CVLMetamodelElementTypes.Choice_2001 == req.getElementType()) {
-			return getGEFWrapper(new ChoiceCreateCommand(req));
-		}
 		if (CVLMetamodelElementTypes.Choice_2002 == req.getElementType()) {
 			return getGEFWrapper(new Choice2CreateCommand(req));
+		}
+		if (CVLMetamodelElementTypes.Choice_2006 == req.getElementType()) {
+			return getGEFWrapper(new ChoiceCreateCommand(req));
 		}
 		if (CVLMetamodelElementTypes.Variable_2003 == req.getElementType()) {
 			return getGEFWrapper(new VariableCreateCommand(req));
@@ -42,7 +42,7 @@ public class ConfigurableUnitItemSemanticEditPolicy extends
 		if (CVLMetamodelElementTypes.VClassifier_2004 == req.getElementType()) {
 			return getGEFWrapper(new VClassifierCreateCommand(req));
 		}
-		if (CVLMetamodelElementTypes.OpaqueConstraint_2005 == req
+		if (CVLMetamodelElementTypes.OpaqueConstraint_2007 == req
 				.getElementType()) {
 			return getGEFWrapper(new OpaqueConstraintCreateCommand(req));
 		}

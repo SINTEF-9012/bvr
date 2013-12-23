@@ -59,15 +59,17 @@ public class CVLMetamodelElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConfigurableUnit_1000 = getElementType("org.bangbangbang.cvl.system.vspec.ConfigurableUnit_1000"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType Choice_2001 = getElementType("org.bangbangbang.cvl.system.vspec.Choice_2001"); //$NON-NLS-1$
+	public static final IElementType VInterface_1000 = getElementType("org.bangbangbang.cvl.system.vspec.VInterface_1000"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	public static final IElementType Choice_2002 = getElementType("org.bangbangbang.cvl.system.vspec.Choice_2002"); //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final IElementType Choice_2006 = getElementType("org.bangbangbang.cvl.system.vspec.Choice_2006"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -79,7 +81,8 @@ public class CVLMetamodelElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType OpaqueConstraint_2005 = getElementType("org.bangbangbang.cvl.system.vspec.OpaqueConstraint_2005"); //$NON-NLS-1$
+	public static final IElementType OpaqueConstraint_2007 = getElementType("org.bangbangbang.cvl.system.vspec.OpaqueConstraint_2007"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -143,19 +146,18 @@ public class CVLMetamodelElementTypes {
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(ConfigurableUnit_1000,
-					CvlPackage.eINSTANCE.getConfigurableUnit());
-
-			elements.put(Choice_2001, CvlPackage.eINSTANCE.getChoice());
+			elements.put(VInterface_1000, CvlPackage.eINSTANCE.getVInterface());
 
 			elements.put(Choice_2002, CvlPackage.eINSTANCE.getChoice());
+
+			elements.put(Choice_2006, CvlPackage.eINSTANCE.getChoice());
 
 			elements.put(Variable_2003, CvlPackage.eINSTANCE.getVariable());
 
 			elements.put(VClassifier_2004,
 					CvlPackage.eINSTANCE.getVClassifier());
 
-			elements.put(OpaqueConstraint_2005,
+			elements.put(OpaqueConstraint_2007,
 					CvlPackage.eINSTANCE.getOpaqueConstraint());
 
 			elements.put(MultiplicityInterval_3001,
@@ -191,12 +193,12 @@ public class CVLMetamodelElementTypes {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(ConfigurableUnit_1000);
-			KNOWN_ELEMENT_TYPES.add(Choice_2001);
+			KNOWN_ELEMENT_TYPES.add(VInterface_1000);
 			KNOWN_ELEMENT_TYPES.add(Choice_2002);
+			KNOWN_ELEMENT_TYPES.add(Choice_2006);
 			KNOWN_ELEMENT_TYPES.add(Variable_2003);
 			KNOWN_ELEMENT_TYPES.add(VClassifier_2004);
-			KNOWN_ELEMENT_TYPES.add(OpaqueConstraint_2005);
+			KNOWN_ELEMENT_TYPES.add(OpaqueConstraint_2007);
 			KNOWN_ELEMENT_TYPES.add(MultiplicityInterval_3001);
 			KNOWN_ELEMENT_TYPES.add(MultiplicityInterval_3002);
 			KNOWN_ELEMENT_TYPES.add(MultiplicityInterval_3003);
@@ -213,17 +215,17 @@ public class CVLMetamodelElementTypes {
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
-			return ConfigurableUnit_1000;
-		case ChoiceEditPart.VISUAL_ID:
-			return Choice_2001;
+			return VInterface_1000;
 		case Choice2EditPart.VISUAL_ID:
 			return Choice_2002;
+		case ChoiceEditPart.VISUAL_ID:
+			return Choice_2006;
 		case VariableEditPart.VISUAL_ID:
 			return Variable_2003;
 		case VClassifierEditPart.VISUAL_ID:
 			return VClassifier_2004;
 		case OpaqueConstraintEditPart.VISUAL_ID:
-			return OpaqueConstraint_2005;
+			return OpaqueConstraint_2007;
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return MultiplicityInterval_3001;
 		case MultiplicityInterval2EditPart.VISUAL_ID:

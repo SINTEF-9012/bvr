@@ -313,17 +313,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConfigurableUnit_1000_links;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Choice_2001_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Choice_2001_outgoinglinks;
+	public static String NavigatorGroupName_VInterface_1000_links;
 
 	/**
 	 * @generated
@@ -358,7 +348,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_OpaqueConstraint_2005_outgoinglinks;
+	public static String NavigatorGroupName_Choice_2006_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Choice_2006_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OpaqueConstraint_2007_outgoinglinks;
 
 	/**
 	 * @generated

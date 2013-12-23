@@ -160,12 +160,12 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 					return false; // foreign diagram
 				}
 				switch (visualID) {
-				case ChoiceEditPart.VISUAL_ID:
+				case Choice2EditPart.VISUAL_ID:
 				case VariableEditPart.VISUAL_ID:
 				case VClassifierEditPart.VISUAL_ID:
 				case OpaqueConstraintEditPart.VISUAL_ID:
 				case MultiplicityIntervalEditPart.VISUAL_ID:
-				case Choice2EditPart.VISUAL_ID:
+				case ChoiceEditPart.VISUAL_ID:
 				case MultiplicityInterval2EditPart.VISUAL_ID:
 				case MultiplicityInterval3EditPart.VISUAL_ID:
 				case MultiplicityInterval4EditPart.VISUAL_ID:
@@ -181,8 +181,8 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				}
 			}
 		}
-		return ChoiceEditPart.VISUAL_ID == visualID
-				|| Choice2EditPart.VISUAL_ID == visualID
+		return Choice2EditPart.VISUAL_ID == visualID
+				|| ChoiceEditPart.VISUAL_ID == visualID
 				|| VariableEditPart.VISUAL_ID == visualID
 				|| VClassifierEditPart.VISUAL_ID == visualID
 				|| OpaqueConstraintEditPart.VISUAL_ID == visualID
@@ -247,11 +247,11 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			visualID = CVLMetamodelVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
-		case ChoiceEditPart.VISUAL_ID:
-			return createChoice_2001(domainElement, containerView, index,
-					persisted, preferencesHint);
 		case Choice2EditPart.VISUAL_ID:
 			return createChoice_2002(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case ChoiceEditPart.VISUAL_ID:
+			return createChoice_2006(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case VariableEditPart.VISUAL_ID:
 			return createVariable_2003(domainElement, containerView, index,
@@ -260,7 +260,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			return createVClassifier_2004(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case OpaqueConstraintEditPart.VISUAL_ID:
-			return createOpaqueConstraint_2005(domainElement, containerView,
+			return createOpaqueConstraint_2007(domainElement, containerView,
 					index, persisted, preferencesHint);
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return createMultiplicityInterval_3001(domainElement,
@@ -297,57 +297,6 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createChoice_2001(EObject domainElement, View containerView,
-			int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
-				.getType(ChoiceEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-				FigureUtilities.RGBToInteger(lineRGB));
-		FontStyle nodeFontStyle = (FontStyle) node
-				.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (nodeFontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore,
-					IPreferenceConstants.PREF_DEFAULT_FONT);
-			nodeFontStyle.setFontName(fontData.getName());
-			nodeFontStyle.setFontHeight(fontData.getHeight());
-			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
-					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
-			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
-					.intValue());
-		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
-				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node,
-				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5002 = createLabel(node,
-				CVLMetamodelVisualIDRegistry
-						.getType(ChoiceNameEditPart.VISUAL_ID));
-		createCompartment(
-				node,
-				CVLMetamodelVisualIDRegistry
-						.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID),
-				false, false, true, true);
-		return node;
 	}
 
 	/**
@@ -397,6 +346,57 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				node,
 				CVLMetamodelVisualIDRegistry
 						.getType(ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID),
+				false, false, true, true);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createChoice_2006(EObject domainElement, View containerView,
+			int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(CVLMetamodelVisualIDRegistry
+				.getType(ChoiceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
+		FontStyle nodeFontStyle = (FontStyle) node
+				.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if (nodeFontStyle != null) {
+			FontData fontData = PreferenceConverter.getFontData(prefStore,
+					IPreferenceConstants.PREF_DEFAULT_FONT);
+			nodeFontStyle.setFontName(fontData.getName());
+			nodeFontStyle.setFontHeight(fontData.getHeight());
+			nodeFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
+			nodeFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
+			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter
+					.getColor(prefStore, IPreferenceConstants.PREF_FONT_COLOR);
+			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB)
+					.intValue());
+		}
+		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
+				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5010 = createLabel(node,
+				CVLMetamodelVisualIDRegistry
+						.getType(ChoiceNameEditPart.VISUAL_ID));
+		createCompartment(
+				node,
+				CVLMetamodelVisualIDRegistry
+						.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		return node;
 	}
@@ -503,7 +503,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	public Node createOpaqueConstraint_2005(EObject domainElement,
+	public Node createOpaqueConstraint_2007(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createNode();
@@ -539,7 +539,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		ViewUtil.setStructuralFeatureValue(node,
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
-		Node label5009 = createLabel(node,
+		Node label5011 = createLabel(node,
 				CVLMetamodelVisualIDRegistry
 						.getType(OpaqueConstraintNameEditPart.VISUAL_ID));
 		return node;

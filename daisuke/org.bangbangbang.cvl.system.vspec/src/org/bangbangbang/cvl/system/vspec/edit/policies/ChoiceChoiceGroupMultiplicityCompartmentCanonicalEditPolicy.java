@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityIntervalEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelDiagramUpdater;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelNodeDescriptor;
@@ -59,7 +60,7 @@ public class ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy extends
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<CVLMetamodelNodeDescriptor> childDescriptors = CVLMetamodelDiagramUpdater
-				.getChoiceChoiceGroupMultiplicityCompartment_7001SemanticChildren(viewObject);
+				.getChoiceChoiceGroupMultiplicityCompartment_7005SemanticChildren(viewObject);
 		for (CVLMetamodelNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -79,7 +80,7 @@ public class ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy extends
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return MultiplicityIntervalEditPart.VISUAL_ID == CVLMetamodelVisualIDRegistry
+		return MultiplicityInterval2EditPart.VISUAL_ID == CVLMetamodelVisualIDRegistry
 				.getVisualID(view);
 	}
 
@@ -92,7 +93,7 @@ public class ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy extends
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<CVLMetamodelNodeDescriptor> childDescriptors = CVLMetamodelDiagramUpdater
-				.getChoiceChoiceGroupMultiplicityCompartment_7001SemanticChildren((View) getHost()
+				.getChoiceChoiceGroupMultiplicityCompartment_7005SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours

@@ -58,7 +58,7 @@ public class OpaqueConstraintNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5009;
+	public static final int VISUAL_ID = 5011;
 
 	/**
 	 * @generated
@@ -304,7 +304,7 @@ public class OpaqueConstraintNameEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = CVLMetamodelParserProvider
 					.getParser(
-							CVLMetamodelElementTypes.OpaqueConstraint_2005,
+							CVLMetamodelElementTypes.OpaqueConstraint_2007,
 							getParserElement(),
 							CVLMetamodelVisualIDRegistry
 									.getType(org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintNameEditPart.VISUAL_ID));

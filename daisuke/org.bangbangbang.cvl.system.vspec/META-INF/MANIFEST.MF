@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.bangbangbang.cvl.system.vspec.edit.parts, 
+Export-Package: org.bangbangbang.cvl.system.vspec.edit.parts,
  org.bangbangbang.cvl.system.vspec.part,
  org.bangbangbang.cvl.system.vspec.providers
 Require-Bundle: org.eclipse.core.runtime,

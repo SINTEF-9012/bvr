@@ -3,6 +3,7 @@ package org.bangbangbang.cvl.system.vspec.part;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
@@ -108,9 +109,9 @@ public class CVLMetamodelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (CvlPackage.eINSTANCE.getConfigurableUnit().isSuperTypeOf(
+		if (CvlPackage.eINSTANCE.getVInterface().isSuperTypeOf(
 				domainElement.eClass())
-				&& isDiagram((ConfigurableUnit) domainElement)) {
+				&& isDiagram((VInterface) domainElement)) {
 			return ConfigurableUnitEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -143,12 +144,12 @@ public class CVLMetamodelVisualIDRegistry {
 		case ConfigurableUnitEditPart.VISUAL_ID:
 			if (CvlPackage.eINSTANCE.getChoice().isSuperTypeOf(
 					domainElement.eClass())
-					&& isChoice_2001((Choice) domainElement)) {
-				return ChoiceEditPart.VISUAL_ID;
+					&& isChoice_2002((Choice) domainElement)) {
+				return Choice2EditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getChoice().isSuperTypeOf(
 					domainElement.eClass())) {
-				return Choice2EditPart.VISUAL_ID;
+				return ChoiceEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getVariable().isSuperTypeOf(
 					domainElement.eClass())) {
@@ -163,13 +164,13 @@ public class CVLMetamodelVisualIDRegistry {
 				return OpaqueConstraintEditPart.VISUAL_ID;
 			}
 			break;
-		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
+		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
 			if (CvlPackage.eINSTANCE.getMultiplicityInterval().isSuperTypeOf(
 					domainElement.eClass())) {
 				return MultiplicityIntervalEditPart.VISUAL_ID;
 			}
 			break;
-		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
+		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 			if (CvlPackage.eINSTANCE.getMultiplicityInterval().isSuperTypeOf(
 					domainElement.eClass())) {
 				return MultiplicityInterval2EditPart.VISUAL_ID;
@@ -213,10 +214,10 @@ public class CVLMetamodelVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
-			if (ChoiceEditPart.VISUAL_ID == nodeVisualID) {
+			if (Choice2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (Choice2EditPart.VISUAL_ID == nodeVisualID) {
+			if (ChoiceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (VariableEditPart.VISUAL_ID == nodeVisualID) {
@@ -229,19 +230,19 @@ public class CVLMetamodelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ChoiceEditPart.VISUAL_ID:
-			if (ChoiceNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case Choice2EditPart.VISUAL_ID:
 			if (ChoiceName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ChoiceEditPart.VISUAL_ID:
+			if (ChoiceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -286,12 +287,12 @@ public class CVLMetamodelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
+		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
 			if (MultiplicityIntervalEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
+		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 			if (MultiplicityInterval2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -326,18 +327,18 @@ public class CVLMetamodelVisualIDRegistry {
 	 * 
 	 * @generated
 	 */
-	private static boolean isDiagram(ConfigurableUnit element) {
+	private static boolean isDiagram(VInterface element) {
 		return true;
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isChoice_2001(Choice domainElement) {
+	private static boolean isChoice_2002(Choice domainElement) {
 		// FIXME: implement this method 
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException(
-				"No java implementation provided in 'isChoice_2001' operation"); //$NON-NLS-1$
+				"No java implementation provided in 'isChoice_2002' operation"); //$NON-NLS-1$
 	}
 
 	/**
@@ -358,8 +359,8 @@ public class CVLMetamodelVisualIDRegistry {
 	 */
 	public static boolean isCompartmentVisualID(int visualID) {
 		switch (visualID) {
-		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
+		case ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 		case VClassifierVClassifierGroupMultiplicityCompartmentEditPart.VISUAL_ID:
 		case VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart.VISUAL_ID:
 			return true;

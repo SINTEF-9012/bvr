@@ -236,17 +236,17 @@ public class CVLMetamodelNavigatorContentProvider implements
 			LinkedList<CVLMetamodelAbstractNavigatorItem> result = new LinkedList<CVLMetamodelAbstractNavigatorItem>();
 			Diagram sv = (Diagram) view;
 			CVLMetamodelNavigatorGroup links = new CVLMetamodelNavigatorGroup(
-					Messages.NavigatorGroupName_ConfigurableUnit_1000_links,
+					Messages.NavigatorGroupName_VInterface_1000_links,
 					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getChildrenByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(ChoiceEditPart.VISUAL_ID));
+							.getType(Choice2EditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			connectedViews = getChildrenByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(Choice2EditPart.VISUAL_ID));
+							.getType(ChoiceEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			connectedViews = getChildrenByType(Collections.singleton(sv),
@@ -278,49 +278,6 @@ public class CVLMetamodelNavigatorContentProvider implements
 			return result.toArray();
 		}
 
-		case ChoiceEditPart.VISUAL_ID: {
-			LinkedList<CVLMetamodelAbstractNavigatorItem> result = new LinkedList<CVLMetamodelAbstractNavigatorItem>();
-			Node sv = (Node) view;
-			CVLMetamodelNavigatorGroup incominglinks = new CVLMetamodelNavigatorGroup(
-					Messages.NavigatorGroupName_Choice_2001_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			CVLMetamodelNavigatorGroup outgoinglinks = new CVLMetamodelNavigatorGroup(
-					Messages.NavigatorGroupName_Choice_2001_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection<View> connectedViews;
-			connectedViews = getChildrenByType(
-					Collections.singleton(sv),
-					CVLMetamodelVisualIDRegistry
-							.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID));
-			connectedViews = getChildrenByType(connectedViews,
-					CVLMetamodelVisualIDRegistry
-							.getType(MultiplicityIntervalEditPart.VISUAL_ID));
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					CVLMetamodelVisualIDRegistry
-							.getType(VSpecChildEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
-					CVLMetamodelVisualIDRegistry
-							.getType(VSpecChildEditPart.VISUAL_ID));
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
-					CVLMetamodelVisualIDRegistry
-							.getType(ConstraintContextEditPart.VISUAL_ID));
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			if (!incominglinks.isEmpty()) {
-				result.add(incominglinks);
-			}
-			if (!outgoinglinks.isEmpty()) {
-				result.add(outgoinglinks);
-			}
-			return result.toArray();
-		}
-
 		case Choice2EditPart.VISUAL_ID: {
 			LinkedList<CVLMetamodelAbstractNavigatorItem> result = new LinkedList<CVLMetamodelAbstractNavigatorItem>();
 			Node sv = (Node) view;
@@ -337,7 +294,7 @@ public class CVLMetamodelNavigatorContentProvider implements
 							.getType(ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID));
 			connectedViews = getChildrenByType(connectedViews,
 					CVLMetamodelVisualIDRegistry
-							.getType(MultiplicityInterval2EditPart.VISUAL_ID));
+							.getType(MultiplicityIntervalEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement,
 					false));
 			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
@@ -450,11 +407,54 @@ public class CVLMetamodelNavigatorContentProvider implements
 			return result.toArray();
 		}
 
+		case ChoiceEditPart.VISUAL_ID: {
+			LinkedList<CVLMetamodelAbstractNavigatorItem> result = new LinkedList<CVLMetamodelAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			CVLMetamodelNavigatorGroup incominglinks = new CVLMetamodelNavigatorGroup(
+					Messages.NavigatorGroupName_Choice_2006_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			CVLMetamodelNavigatorGroup outgoinglinks = new CVLMetamodelNavigatorGroup(
+					Messages.NavigatorGroupName_Choice_2006_outgoinglinks,
+					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+					Collections.singleton(sv),
+					CVLMetamodelVisualIDRegistry
+							.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+					CVLMetamodelVisualIDRegistry
+							.getType(MultiplicityInterval2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement,
+					false));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					CVLMetamodelVisualIDRegistry
+							.getType(VSpecChildEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
+					CVLMetamodelVisualIDRegistry
+							.getType(VSpecChildEditPart.VISUAL_ID));
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(sv),
+					CVLMetamodelVisualIDRegistry
+							.getType(ConstraintContextEditPart.VISUAL_ID));
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
+			}
+			if (!outgoinglinks.isEmpty()) {
+				result.add(outgoinglinks);
+			}
+			return result.toArray();
+		}
+
 		case OpaqueConstraintEditPart.VISUAL_ID: {
 			LinkedList<CVLMetamodelAbstractNavigatorItem> result = new LinkedList<CVLMetamodelAbstractNavigatorItem>();
 			Node sv = (Node) view;
 			CVLMetamodelNavigatorGroup outgoinglinks = new CVLMetamodelNavigatorGroup(
-					Messages.NavigatorGroupName_OpaqueConstraint_2005_outgoinglinks,
+					Messages.NavigatorGroupName_OpaqueConstraint_2007_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection<View> connectedViews;
 			connectedViews = getOutgoingLinksByType(Collections.singleton(sv),
@@ -480,12 +480,12 @@ public class CVLMetamodelNavigatorContentProvider implements
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(ChoiceEditPart.VISUAL_ID));
+							.getType(Choice2EditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(Choice2EditPart.VISUAL_ID));
+							.getType(ChoiceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
@@ -500,12 +500,12 @@ public class CVLMetamodelNavigatorContentProvider implements
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(ChoiceEditPart.VISUAL_ID));
+							.getType(Choice2EditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(Choice2EditPart.VISUAL_ID));
+							.getType(ChoiceEditPart.VISUAL_ID));
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			connectedViews = getLinksSourceByType(Collections.singleton(sv),
@@ -539,12 +539,12 @@ public class CVLMetamodelNavigatorContentProvider implements
 			Collection<View> connectedViews;
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(ChoiceEditPart.VISUAL_ID));
+							.getType(Choice2EditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
 					CVLMetamodelVisualIDRegistry
-							.getType(Choice2EditPart.VISUAL_ID));
+							.getType(ChoiceEditPart.VISUAL_ID));
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
 			connectedViews = getLinksTargetByType(Collections.singleton(sv),
