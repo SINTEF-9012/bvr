@@ -262,6 +262,25 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureGroupMultiplicityIntervalFigure;
+		
+		/**
+		 * @generated NOT
+		 */
+		private RectangleFigure paddingRectangleFigure0;
+		
+		/**
+		 * @generated NOT
+		 */
+		@Override
+		public void repaint() {
+			if (paddingRectangleFigure0 != null) {
+				paddingRectangleFigure0.setSize(
+						getMapMode().DPtoLP(this.getSize().width() / 2 - 10),
+						getMapMode().DPtoLP(1));
+			}
+
+			super.repaint();
+		}
 
 		/**
 		 * @generated
@@ -277,12 +296,13 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 			createContents();
 		}
 
+		
 		/**
 		 * @generated
 		 */
 		private void createContents() {
 
-			RectangleFigure paddingRectangleFigure0 = new RectangleFigure();
+			paddingRectangleFigure0 = new RectangleFigure();
 
 			paddingRectangleFigure0.setFill(false);
 			paddingRectangleFigure0.setForegroundColor(ColorConstants.white);

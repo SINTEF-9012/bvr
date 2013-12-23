@@ -8,7 +8,10 @@ import org.bangbangbang.cvl.system.vspec.edit.policies.OpaqueConstraintCanonical
 import org.bangbangbang.cvl.system.vspec.edit.policies.OpaqueConstraintItemSemanticEditPolicy;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
 import org.bangbangbang.cvl.system.vspec.providers.CVLMetamodelElementTypes;
+import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
@@ -16,8 +19,10 @@ import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
@@ -200,7 +205,61 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(
+			ConnectionEditPart connEditPart) {
+		return new ModChopboxAnchor(getFigure());
+	}
 
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		return new ModChopboxAnchor(getFigure());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private class ModChopboxAnchor extends ChopboxAnchor {
+		/**
+		 * @generated NOT
+		 */
+		public ModChopboxAnchor(IFigure figure) {
+			super(figure);
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		@Override
+		public Point getLocation(Point reference) {
+			Figure thisFigure = null;
+			Point p = super.getLocation(reference);
+			if (this.getOwner().getChildren().size() > 0) {
+				thisFigure = (Figure) this.getOwner().getChildren().get(0);
+				if (reference.y > p.y) {
+					p.x = thisFigure.getBounds().x
+							+ thisFigure.getBounds().width / 2;
+					p.y = thisFigure.getBounds().y
+							+ thisFigure.getBounds().height;
+				} else {
+					p.x = thisFigure.getBounds().x
+							+ thisFigure.getBounds().width / 2;
+					p.y = thisFigure.getBounds().y;
+				}
+
+			}
+			getOwner().translateToAbsolute(p);
+			return p;
+		}
+	}
+
+	
 	/**
 	 * @generated
 	 */

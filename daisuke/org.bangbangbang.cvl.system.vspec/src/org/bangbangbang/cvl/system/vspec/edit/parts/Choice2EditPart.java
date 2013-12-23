@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.bangbangbang.cvl.Choice;
+import org.bangbangbang.cvl.impl.ChoiceImpl;
 import org.bangbangbang.cvl.system.vspec.edit.policies.Choice2CanonicalEditPolicy;
 import org.bangbangbang.cvl.system.vspec.edit.policies.Choice2ItemSemanticEditPolicy;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
 import org.bangbangbang.cvl.system.vspec.providers.CVLMetamodelElementTypes;
 import org.eclipse.draw2d.BorderLayout;
+import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FlowLayout;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
@@ -18,6 +24,9 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -31,11 +40,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 import org.eclipse.swt.graphics.Color;
 
@@ -79,7 +91,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new Choice2CanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -135,7 +148,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof ChoiceChoiceGroupMultiplicityCompartment2EditPart) {
 			IFigure pane = getPrimaryShape()
 					.getFigureChoiceGroupMultiplicityCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((ChoiceChoiceGroupMultiplicityCompartment2EditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -192,6 +206,83 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(
+			ConnectionEditPart connEditPart) {
+		return new ModChopboxAnchor(getFigure());
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+		return new ModChopboxAnchor(getFigure());
+	}
+
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public ConnectionAnchor getTargetConnectionAnchor(
+			ConnectionEditPart connEditPart) {
+
+		return super.getTargetConnectionAnchor(connEditPart);
+	}
+
+	@Override
+	/**
+	 * @generated NOT
+	 */
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+
+		return super.getTargetConnectionAnchor(request);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private class ModChopboxAnchor extends ChopboxAnchor {
+		/**
+		 * @generated NOT
+		 */
+		public ModChopboxAnchor(IFigure figure) {
+			super(figure);
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		@Override
+		public Point getLocation(Point reference) {
+			Figure thisFigure = null, childFigure = null;
+			Point p = super.getLocation(reference);
+			if (this.getOwner().getChildren().size() > 0) {
+				thisFigure = (Figure) this.getOwner().getChildren().get(0);
+				if (thisFigure.getChildren().size() > 1) {
+					childFigure = (RectangleFigure) thisFigure.getChildren()
+							.get(1);
+				}
+			}
+			if (((ChoiceImpl) ((ShapeImpl) Choice2EditPart.this.getModel())
+					.getElement()).getGroupMultiplicity() != null) {
+				p.x = thisFigure.getBounds().x + thisFigure.getBounds().width
+						/ 2;
+				p.y = childFigure.getBounds().y + 21;
+			} else {
+				p.x = thisFigure.getBounds().x + thisFigure.getBounds().width
+						/ 2;
+				p.y = childFigure.getBounds().y;
+
+			}
+			getOwner().translateToAbsolute(p);
+			return p;
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
@@ -202,8 +293,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -217,9 +308,11 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -316,12 +409,12 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2002);
+			// types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Choice_2006);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
@@ -372,6 +465,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
+
 
 	/**
 	 * @generated
@@ -446,6 +540,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 					BorderLayout.BOTTOM);
 
 		}
+
 
 		/**
 		 * @generated
