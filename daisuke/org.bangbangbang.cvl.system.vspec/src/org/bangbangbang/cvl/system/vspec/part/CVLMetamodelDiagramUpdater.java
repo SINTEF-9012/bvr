@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.bangbangbang.cvl.Choice;
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.Constraint;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.MultiplicityInterval;
@@ -21,7 +20,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -51,7 +50,7 @@ public class CVLMetamodelDiagramUpdater {
 	 */
 	public static List<CVLMetamodelNodeDescriptor> getSemanticChildren(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			return getVInterface_1000SemanticChildren(view);
 		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
 			return getChoiceChoiceGroupMultiplicityCompartment_7002SemanticChildren(view);
@@ -245,7 +244,7 @@ public class CVLMetamodelDiagramUpdater {
 	 */
 	public static List<CVLMetamodelLinkDescriptor> getContainedLinks(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			return getVInterface_1000ContainedLinks(view);
 		case Choice2EditPart.VISUAL_ID:
 			return getChoice_2002ContainedLinks(view);

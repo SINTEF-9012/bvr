@@ -1,10 +1,9 @@
 package org.bangbangbang.cvl.system.vspec.part;
 
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.VPackage;
 import org.bangbangbang.cvl.VPackageable;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
@@ -104,7 +103,7 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 		Wizard wizard = new CVLMetamodelNewDiagramFileWizard(domainModelURI,
 				diagramRoot, editingDomain);
 		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle,
-				ConfigurableUnitEditPart.MODEL_ID));
+				VInterfaceEditPart.MODEL_ID));
 		CVLMetamodelDiagramEditorUtil.runWizard(getShell(), wizard,
 				"InitDiagramFile"); //$NON-NLS-1$
 	}

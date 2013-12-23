@@ -13,7 +13,7 @@ import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.VPackage;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.resources.IFile;
@@ -163,7 +163,7 @@ public class CVLMetamodelDiagramEditorUtil {
 				attachModelToResource(model, modelResource);
 
 				Diagram diagram = ViewService.createDiagram(model,
-						ConfigurableUnitEditPart.MODEL_ID,
+						VInterfaceEditPart.MODEL_ID,
 						CVLSystemVSpecEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);

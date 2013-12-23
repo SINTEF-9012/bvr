@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
@@ -41,7 +41,7 @@ public class CVLMetamodelModelingAssistantProvider extends
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof ConfigurableUnitEditPart) {
+		if (editPart instanceof VInterfaceEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
 			//			types.add(CVLMetamodelElementTypes.Choice_2002);
 			//			types.add(CVLMetamodelElementTypes.Choice_2006);

@@ -21,8 +21,8 @@ public class CVLMetamodelEditPartFactory implements EditPartFactory {
 			View view = (View) model;
 			switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
 
-			case ConfigurableUnitEditPart.VISUAL_ID:
-				return new ConfigurableUnitEditPart(view);
+			case VInterfaceEditPart.VISUAL_ID:
+				return new VInterfaceEditPart(view);
 
 			case Choice2EditPart.VISUAL_ID:
 				return new Choice2EditPart(view);

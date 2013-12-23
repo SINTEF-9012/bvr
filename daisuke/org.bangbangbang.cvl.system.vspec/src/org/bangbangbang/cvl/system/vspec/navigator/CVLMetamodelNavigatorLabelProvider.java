@@ -1,12 +1,11 @@
 package org.bangbangbang.cvl.system.vspec.navigator;
 
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -102,7 +101,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public Image getImage(View view) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http:///cvl.ecore?VInterface", CVLMetamodelElementTypes.VInterface_1000); //$NON-NLS-1$
 		case Choice2EditPart.VISUAL_ID:
@@ -190,7 +189,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			return getVInterface_1000Text(view);
 		case Choice2EditPart.VISUAL_ID:
 			return getChoice_2002Text(view);
@@ -473,7 +472,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return ConfigurableUnitEditPart.MODEL_ID
+		return VInterfaceEditPart.MODEL_ID
 				.equals(CVLMetamodelVisualIDRegistry.getModelID(view));
 	}
 

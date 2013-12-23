@@ -8,7 +8,7 @@ import java.util.Set;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -214,7 +214,7 @@ public class CVLMetamodelElementTypes {
 	 */
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			return VInterface_1000;
 		case Choice2EditPart.VISUAL_ID:
 			return Choice_2002;

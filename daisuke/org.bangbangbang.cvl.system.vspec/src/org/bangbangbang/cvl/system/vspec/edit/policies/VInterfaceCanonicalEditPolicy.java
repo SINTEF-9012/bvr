@@ -13,7 +13,7 @@ import java.util.Set;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval4EditPart;
@@ -58,7 +58,7 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 /**
  * @generated
  */
-public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
+public class VInterfaceCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -318,13 +318,13 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<CVLMetamodelLinkDescriptor> collectAllLinks(View view,
 			Domain2Notation domain2NotationMap) {
-		if (!ConfigurableUnitEditPart.MODEL_ID
+		if (!VInterfaceEditPart.MODEL_ID
 				.equals(CVLMetamodelVisualIDRegistry.getModelID(view))) {
 			return Collections.emptyList();
 		}
 		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
-		case ConfigurableUnitEditPart.VISUAL_ID: {
+		case VInterfaceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(CVLMetamodelDiagramUpdater
 						.getVInterface_1000ContainedLinks(view));

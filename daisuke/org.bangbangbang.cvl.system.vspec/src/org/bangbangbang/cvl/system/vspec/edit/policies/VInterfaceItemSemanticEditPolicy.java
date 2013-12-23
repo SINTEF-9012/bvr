@@ -16,13 +16,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 /**
  * @generated
  */
-public class ConfigurableUnitItemSemanticEditPolicy extends
+public class VInterfaceItemSemanticEditPolicy extends
 		CVLMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ConfigurableUnitItemSemanticEditPolicy() {
+	public VInterfaceItemSemanticEditPolicy() {
 		super(CVLMetamodelElementTypes.VInterface_1000);
 	}
 

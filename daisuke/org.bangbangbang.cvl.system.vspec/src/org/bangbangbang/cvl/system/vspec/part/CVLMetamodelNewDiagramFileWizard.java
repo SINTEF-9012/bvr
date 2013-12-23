@@ -3,7 +3,7 @@ package org.bangbangbang.cvl.system.vspec.part;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.resources.IFile;
@@ -66,7 +66,7 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 		myFileCreationPage
 				.setDescription(NLS
 						.bind(Messages.CVLMetamodelNewDiagramFileWizard_CreationPageDescription,
-								ConfigurableUnitEditPart.MODEL_ID));
+								VInterfaceEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = URI.decode(domainModelURI.trimFileExtension()
 				.lastSegment());
@@ -128,13 +128,13 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 				int diagramVID = CVLMetamodelVisualIDRegistry
 						.getDiagramVisualID(diagramRootElementSelectionPage
 								.getModelElement());
-				if (diagramVID != ConfigurableUnitEditPart.VISUAL_ID) {
+				if (diagramVID != VInterfaceEditPart.VISUAL_ID) {
 					return CommandResult
 							.newErrorCommandResult(Messages.CVLMetamodelNewDiagramFileWizard_IncorrectRootError);
 				}
 				Diagram diagram = ViewService.createDiagram(
 						diagramRootElementSelectionPage.getModelElement(),
-						ConfigurableUnitEditPart.MODEL_ID,
+						VInterfaceEditPart.MODEL_ID,
 						CVLSystemVSpecEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
@@ -192,7 +192,7 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 					.provides(
 							new CreateDiagramViewOperation(
 									new EObjectAdapter(getModelElement()),
-									ConfigurableUnitEditPart.MODEL_ID,
+									VInterfaceEditPart.MODEL_ID,
 									CVLSystemVSpecEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null
 					: Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);

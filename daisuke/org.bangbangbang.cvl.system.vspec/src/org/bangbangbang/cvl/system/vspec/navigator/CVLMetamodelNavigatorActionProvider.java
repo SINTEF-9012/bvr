@@ -1,6 +1,6 @@
 package org.bangbangbang.cvl.system.vspec.navigator;
 
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
 import org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditor;
 import org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditorPlugin;
@@ -123,7 +123,7 @@ public class CVLMetamodelNavigatorActionProvider extends CommonActionProvider {
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
-					if (ConfigurableUnitEditPart.MODEL_ID
+					if (VInterfaceEditPart.MODEL_ID
 							.equals(CVLMetamodelVisualIDRegistry
 									.getModelID(diagram))) {
 						myDiagram = diagram;

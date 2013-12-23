@@ -8,7 +8,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicit
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -108,7 +108,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return ConfigurableUnitEditPart.MODEL_ID.equals(op.getSemanticHint())
+		return VInterfaceEditPart.MODEL_ID.equals(op.getSemanticHint())
 				&& CVLMetamodelVisualIDRegistry
 						.getDiagramVisualID(getSemanticElement(op
 								.getSemanticAdapter())) != -1;
@@ -154,7 +154,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 					return false; // visual id for node EClass should match visual id from element type
 				}
 			} else {
-				if (!ConfigurableUnitEditPart.MODEL_ID
+				if (!VInterfaceEditPart.MODEL_ID
 						.equals(CVLMetamodelVisualIDRegistry.getModelID(op
 								.getContainerView()))) {
 					return false; // foreign diagram
@@ -226,7 +226,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
-		diagram.setType(ConfigurableUnitEditPart.MODEL_ID);
+		diagram.setType(VInterfaceEditPart.MODEL_ID);
 		diagram.setElement(getSemanticElement(semanticAdapter));
 		diagram.setMeasurementUnit(MeasurementUnit.PIXEL_LITERAL);
 		return diagram;
@@ -831,13 +831,13 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private void stampShortcut(View containerView, Node target) {
-		if (!ConfigurableUnitEditPart.MODEL_ID
+		if (!VInterfaceEditPart.MODEL_ID
 				.equals(CVLMetamodelVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put(
-					"modelID", ConfigurableUnitEditPart.MODEL_ID); //$NON-NLS-1$
+					"modelID", VInterfaceEditPart.MODEL_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

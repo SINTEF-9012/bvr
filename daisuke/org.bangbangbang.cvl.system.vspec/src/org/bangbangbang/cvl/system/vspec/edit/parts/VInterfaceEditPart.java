@@ -1,7 +1,7 @@
 package org.bangbangbang.cvl.system.vspec.edit.parts;
 
-import org.bangbangbang.cvl.system.vspec.edit.policies.ConfigurableUnitCanonicalEditPolicy;
-import org.bangbangbang.cvl.system.vspec.edit.policies.ConfigurableUnitItemSemanticEditPolicy;
+import org.bangbangbang.cvl.system.vspec.edit.policies.VInterfaceCanonicalEditPolicy;
+import org.bangbangbang.cvl.system.vspec.edit.policies.VInterfaceItemSemanticEditPolicy;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -11,7 +11,7 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicy
 /**
  * @generated
  */
-public class ConfigurableUnitEditPart extends DiagramEditPart {
+public class VInterfaceEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
@@ -26,7 +26,7 @@ public class ConfigurableUnitEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public ConfigurableUnitEditPart(View view) {
+	public VInterfaceEditPart(View view) {
 		super(view);
 	}
 
@@ -36,9 +36,9 @@ public class ConfigurableUnitEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ConfigurableUnitItemSemanticEditPolicy());
+				new VInterfaceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-				new ConfigurableUnitCanonicalEditPolicy());
+				new VInterfaceCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicyWithCustomReparent(
 						CVLMetamodelVisualIDRegistry.TYPED_INSTANCE));

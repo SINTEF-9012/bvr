@@ -249,7 +249,7 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.bangbangbang.cvl.system.vspec.providers.CVLMetamodelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart" id="VInterface_1000"/>
+         <object class="org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart" id="VInterface_1000"/>
          <object class="org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart" id="Choice_2002"/>
          <object class="org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart" id="Choice_2006"/>
          <object class="org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart" id="Variable_2003"/>
@@ -285,7 +285,7 @@
                name="%metatype.name.VInterface_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="VInterface"
-               edithelper="org.bangbangbang.cvl.system.vspec.edit.helpers.ConfigurableUnitEditHelper">
+               edithelper="org.bangbangbang.cvl.system.vspec.edit.helpers.VInterfaceEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>
@@ -564,7 +564,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart"/>
+                     <instanceof value="org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>

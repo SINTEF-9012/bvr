@@ -1,7 +1,6 @@
 package org.bangbangbang.cvl.system.vspec.part;
 
 import org.bangbangbang.cvl.Choice;
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
@@ -10,7 +9,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicit
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval4EditPart;
@@ -53,8 +52,8 @@ public class CVLMetamodelVisualIDRegistry {
 	 */
 	public static int getVisualID(View view) {
 		if (view instanceof Diagram) {
-			if (ConfigurableUnitEditPart.MODEL_ID.equals(view.getType())) {
-				return ConfigurableUnitEditPart.VISUAL_ID;
+			if (VInterfaceEditPart.MODEL_ID.equals(view.getType())) {
+				return VInterfaceEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
@@ -112,7 +111,7 @@ public class CVLMetamodelVisualIDRegistry {
 		if (CvlPackage.eINSTANCE.getVInterface().isSuperTypeOf(
 				domainElement.eClass())
 				&& isDiagram((VInterface) domainElement)) {
-			return ConfigurableUnitEditPart.VISUAL_ID;
+			return VInterfaceEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -126,22 +125,22 @@ public class CVLMetamodelVisualIDRegistry {
 		}
 		String containerModelID = org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry
 				.getModelID(containerView);
-		if (!ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!VInterfaceEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if (ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
+		if (VInterfaceEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = ConfigurableUnitEditPart.VISUAL_ID;
+				containerVisualID = VInterfaceEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
 		switch (containerVisualID) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			if (CvlPackage.eINSTANCE.getChoice().isSuperTypeOf(
 					domainElement.eClass())
 					&& isChoice_2002((Choice) domainElement)) {
@@ -198,22 +197,22 @@ public class CVLMetamodelVisualIDRegistry {
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry
 				.getModelID(containerView);
-		if (!ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!VInterfaceEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if (ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
+		if (VInterfaceEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = ConfigurableUnitEditPart.VISUAL_ID;
+				containerVisualID = VInterfaceEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
 		switch (containerVisualID) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			if (Choice2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -382,7 +381,7 @@ public class CVLMetamodelVisualIDRegistry {
 	 */
 	public static boolean isSemanticLeafVisualID(int visualID) {
 		switch (visualID) {
-		case ConfigurableUnitEditPart.VISUAL_ID:
+		case VInterfaceEditPart.VISUAL_ID:
 			return false;
 		case VariableEditPart.VISUAL_ID:
 		case OpaqueConstraintEditPart.VISUAL_ID:

@@ -10,7 +10,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.ConfigurableUnitEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -206,7 +206,7 @@ public class CVLMetamodelNavigatorContentProvider implements
 			}
 			result.addAll(createNavigatorItems(
 					selectViewsByType(topViews,
-							ConfigurableUnitEditPart.MODEL_ID), file, false));
+							VInterfaceEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -232,7 +232,7 @@ public class CVLMetamodelNavigatorContentProvider implements
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
 
-		case ConfigurableUnitEditPart.VISUAL_ID: {
+		case VInterfaceEditPart.VISUAL_ID: {
 			LinkedList<CVLMetamodelAbstractNavigatorItem> result = new LinkedList<CVLMetamodelAbstractNavigatorItem>();
 			Diagram sv = (Diagram) view;
 			CVLMetamodelNavigatorGroup links = new CVLMetamodelNavigatorGroup(
@@ -673,7 +673,7 @@ public class CVLMetamodelNavigatorContentProvider implements
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return ConfigurableUnitEditPart.MODEL_ID
+		return VInterfaceEditPart.MODEL_ID
 				.equals(CVLMetamodelVisualIDRegistry.getModelID(view));
 	}
 
