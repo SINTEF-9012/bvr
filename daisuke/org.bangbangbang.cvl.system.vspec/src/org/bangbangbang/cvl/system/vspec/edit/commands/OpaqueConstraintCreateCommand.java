@@ -50,13 +50,14 @@ public class OpaqueConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init property of language
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
 		OpaqueConstraint newElement = CvlFactory.eINSTANCE
 				.createOpaqueConstraint();
-
+		newElement.setConstraintLanguage("OCL");
+		
 		VInterface owner = (VInterface) getElementToEdit();
 		owner.getOwnedConstraint().add(newElement);
 
