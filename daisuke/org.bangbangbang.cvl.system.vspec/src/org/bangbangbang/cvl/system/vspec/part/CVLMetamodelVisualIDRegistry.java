@@ -36,8 +36,8 @@ import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */
@@ -332,13 +332,20 @@ public class CVLMetamodelVisualIDRegistry {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private static boolean isChoice_2002(Choice domainElement) {
-		// FIXME: implement this method 
+		// FIXED: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException(
-				"No java implementation provided in 'isChoice_2002' operation"); //$NON-NLS-1$
+		if (domainElement.eContainer() != null
+				&& domainElement.eContainer().eClass().getName()
+						.indexOf("VInterface") >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+		// throw new UnsupportedOperationException(
+		//"No java implementation provided in 'isChoice_2002' operation"); //$NON-NLS-1$
 	}
 
 	/**
@@ -347,7 +354,7 @@ public class CVLMetamodelVisualIDRegistry {
 	public static boolean checkNodeVisualID(View containerView,
 			EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);
