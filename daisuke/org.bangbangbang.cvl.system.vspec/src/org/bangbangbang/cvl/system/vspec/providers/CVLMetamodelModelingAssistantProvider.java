@@ -36,18 +36,18 @@ public class CVLMetamodelModelingAssistantProvider extends
 		ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof ConfigurableUnitEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-			types.add(CVLMetamodelElementTypes.Choice_2002);
-			types.add(CVLMetamodelElementTypes.Choice_2006);
-			types.add(CVLMetamodelElementTypes.Variable_2003);
-			types.add(CVLMetamodelElementTypes.VClassifier_2004);
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
+//			types.add(CVLMetamodelElementTypes.Choice_2002);
+//			types.add(CVLMetamodelElementTypes.Choice_2006);
+//			types.add(CVLMetamodelElementTypes.Variable_2003);
+//			types.add(CVLMetamodelElementTypes.VClassifier_2004);
+//			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2007);
 			return types;
 		}
 		if (editPart instanceof Choice2EditPart) {
@@ -63,7 +63,7 @@ public class CVLMetamodelModelingAssistantProvider extends
 		if (editPart instanceof VClassifierEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3004);
-			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3003);
+			//types.add(CVLMetamodelElementTypes.MultiplicityInterval_3003);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
