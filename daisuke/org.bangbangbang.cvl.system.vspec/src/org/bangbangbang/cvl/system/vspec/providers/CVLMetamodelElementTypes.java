@@ -8,7 +8,6 @@ import java.util.Set;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -16,6 +15,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval4EditPar
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityIntervalEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VSpecChildEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditorPlugin;

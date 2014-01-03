@@ -285,7 +285,7 @@
                name="%metatype.name.VInterface_1000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="VInterface"
-               edithelper="org.bangbangbang.cvl.system.vspec.edit.helpers.VInterfaceEditHelper">
+               edithelper="org.bangbangbang.cvl.system.vspec.edit.helpers.ConfigurableUnitEditHelper">
             <param name="semanticHint" value="1000"/>
          </metamodelType>
       </metamodel>

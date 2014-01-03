@@ -5,7 +5,6 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -19,6 +18,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintNameEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierNameEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VSpecChildEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableNameEditPart;
@@ -472,8 +472,8 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return VInterfaceEditPart.MODEL_ID
-				.equals(CVLMetamodelVisualIDRegistry.getModelID(view));
+		return VInterfaceEditPart.MODEL_ID.equals(CVLMetamodelVisualIDRegistry
+				.getModelID(view));
 	}
 
 }

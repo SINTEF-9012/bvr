@@ -1,15 +1,19 @@
 package org.bangbangbang.cvl.system.vspec.part;
 
 import org.bangbangbang.cvl.Choice;
+import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.OpaqueConstraint;
+import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VSpec;
+import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval4EditPart;
@@ -24,6 +28,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierNameEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierVClassifierGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableNameEditPart;
 import org.eclipse.core.runtime.Platform;
@@ -147,19 +152,23 @@ public class CVLMetamodelVisualIDRegistry {
 				return Choice2EditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getChoice().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isChoice_2006((Choice) domainElement)) {
 				return ChoiceEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getVariable().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isVariable_2003((Variable) domainElement)) {
 				return VariableEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getVClassifier().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isVClassifier_2004((VClassifier) domainElement)) {
 				return VClassifierEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getOpaqueConstraint().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isOpaqueConstraint_2007((OpaqueConstraint) domainElement)) {
 				return OpaqueConstraintEditPart.VISUAL_ID;
 			}
 			break;
@@ -348,12 +357,68 @@ public class CVLMetamodelVisualIDRegistry {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	private static boolean isRootVInterface(VSpec vspec) {
+		if (vspec.eContainer() == null) {
+			return true;
+		}
+		if (vspec.eContainer() != null
+				&& vspec.eContainer() instanceof VInterface) {
+			return true;
+		} else if (vspec.eContainer() != null
+				&& vspec.eContainer() instanceof ConfigurableUnit) {
+			return false;
+		} else if (vspec.eContainer() != null
+				&& vspec.eContainer() instanceof VSpec) {
+			return isRootVInterface((VSpec) vspec.eContainer());
+		}
+		return false;
+
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isChoice_2006(Choice domainElement) {
+		return isRootVInterface(domainElement);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isVariable_2003(Variable domainElement) {
+		return isRootVInterface(domainElement);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isVClassifier_2004(VClassifier domainElement) {
+		return isRootVInterface(domainElement);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isOpaqueConstraint_2007(
+			OpaqueConstraint domainElement) {
+		if (domainElement.eContainer() != null
+				&& domainElement.eContainer().eClass().getName()
+						.indexOf("VInterface") >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	public static boolean checkNodeVisualID(View containerView,
 			EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);

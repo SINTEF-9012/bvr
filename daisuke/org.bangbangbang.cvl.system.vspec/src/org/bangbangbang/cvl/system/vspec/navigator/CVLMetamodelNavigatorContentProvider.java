@@ -10,7 +10,6 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartment2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -20,6 +19,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierVClassifierGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VSpecChildEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLMetamodelVisualIDRegistry;
@@ -205,8 +205,8 @@ public class CVLMetamodelNavigatorContentProvider implements
 				}
 			}
 			result.addAll(createNavigatorItems(
-					selectViewsByType(topViews,
-							VInterfaceEditPart.MODEL_ID), file, false));
+					selectViewsByType(topViews, VInterfaceEditPart.MODEL_ID),
+					file, false));
 			return result.toArray();
 		}
 
@@ -673,8 +673,8 @@ public class CVLMetamodelNavigatorContentProvider implements
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return VInterfaceEditPart.MODEL_ID
-				.equals(CVLMetamodelVisualIDRegistry.getModelID(view));
+		return VInterfaceEditPart.MODEL_ID.equals(CVLMetamodelVisualIDRegistry
+				.getModelID(view));
 	}
 
 	/**

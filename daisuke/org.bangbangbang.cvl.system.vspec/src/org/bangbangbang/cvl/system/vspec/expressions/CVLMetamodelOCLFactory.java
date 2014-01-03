@@ -37,7 +37,7 @@ public class CVLMetamodelOCLFactory {
 	 */
 	protected CVLMetamodelOCLFactory() {
 		this.expressions = new CVLMetamodelAbstractExpression[1];
-		this.expressionBodies = new String[] { "not self.oclIsTypeOf(ConfigurableUnit)", //$NON-NLS-1$
+		this.expressionBodies = new String[] { "not self.oclIsTypeOf(VInterface)", //$NON-NLS-1$
 		};
 	}
 

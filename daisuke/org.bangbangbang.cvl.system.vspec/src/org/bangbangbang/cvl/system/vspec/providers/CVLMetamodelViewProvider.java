@@ -8,7 +8,6 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceChoiceGroupMultiplicit
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceName2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceNameEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.MultiplicityInterval3EditPart;
@@ -24,6 +23,7 @@ import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierNameEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierVClassifierGroupMultiplicityCompartmentEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VSpecChildEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableNameEditPart;
@@ -831,8 +831,8 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private void stampShortcut(View containerView, Node target) {
-		if (!VInterfaceEditPart.MODEL_ID
-				.equals(CVLMetamodelVisualIDRegistry.getModelID(containerView))) {
+		if (!VInterfaceEditPart.MODEL_ID.equals(CVLMetamodelVisualIDRegistry
+				.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$

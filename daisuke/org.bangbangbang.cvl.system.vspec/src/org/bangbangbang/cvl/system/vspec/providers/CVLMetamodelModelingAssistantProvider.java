@@ -9,9 +9,9 @@ import java.util.List;
 
 import org.bangbangbang.cvl.system.vspec.edit.parts.Choice2EditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.ChoiceEditPart;
-import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.OpaqueConstraintEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VClassifierEditPart;
+import org.bangbangbang.cvl.system.vspec.edit.parts.VInterfaceEditPart;
 import org.bangbangbang.cvl.system.vspec.edit.parts.VariableEditPart;
 import org.bangbangbang.cvl.system.vspec.part.CVLSystemVSpecEditorPlugin;
 import org.bangbangbang.cvl.system.vspec.part.Messages;
