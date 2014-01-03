@@ -65,8 +65,7 @@ public class MultiplicityIntervalEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new MultiplicityIntervalCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -298,12 +297,11 @@ public class MultiplicityIntervalEditPart extends ShapeNodeEditPart {
 
 			super.repaint();
 		}
-		
+
 		/**
 		 * @generated NOT
 		 */
 		private void createContents() {
-
 
 			paddingRectangleFigure0 = new RectangleFigure();
 
@@ -313,7 +311,7 @@ public class MultiplicityIntervalEditPart extends ShapeNodeEditPart {
 					getMapMode().DPtoLP(1));
 
 			this.add(paddingRectangleFigure0, BorderLayout.LEFT);
-			
+
 			RectangleFigure paddingRectangleFigure0 = new RectangleFigure();
 
 			paddingRectangleFigure0.setFill(false);

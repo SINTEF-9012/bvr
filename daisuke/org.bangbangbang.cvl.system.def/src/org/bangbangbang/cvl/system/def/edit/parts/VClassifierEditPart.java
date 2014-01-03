@@ -90,8 +90,7 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new VClassifierCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -148,8 +147,7 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof VClassifierVClassifierGroupMultiplicityCompartmentEditPart) {
 			IFigure pane = getPrimaryShape()
 					.getFigureVClassifierGroupMultiplicityCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((VClassifierVClassifierGroupMultiplicityCompartmentEditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -157,8 +155,7 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 		if (childEditPart instanceof VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart) {
 			IFigure pane = getPrimaryShape()
 					.getFigureVClassifierInstanceMultiplicityCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart) childEditPart)
 					.getFigure());
 			return true;
@@ -413,7 +410,7 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();

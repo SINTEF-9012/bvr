@@ -267,7 +267,7 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 		 * @generated NOT
 		 */
 		private RectangleFigure paddingRectangleFigure0;
-		
+
 		/**
 		 * @generated
 		 */
@@ -281,7 +281,7 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 			this.setOpaque(false);
 			createContents();
 		}
-		
+
 		/**
 		 * @generated NOT
 		 */
@@ -295,7 +295,7 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 
 			super.repaint();
 		}
-		
+
 		/**
 		 * @generated NOT
 		 */
@@ -309,7 +309,7 @@ public class MultiplicityInterval2EditPart extends ShapeNodeEditPart {
 					getMapMode().DPtoLP(1));
 
 			this.add(paddingRectangleFigure0, BorderLayout.LEFT);
-			
+
 			RectangleFigure paddingRectangleFigure0 = new RectangleFigure();
 
 			paddingRectangleFigure0.setFill(false);

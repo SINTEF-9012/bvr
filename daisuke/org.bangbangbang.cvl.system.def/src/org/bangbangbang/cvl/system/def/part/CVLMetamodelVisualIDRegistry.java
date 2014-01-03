@@ -1,8 +1,14 @@
 package org.bangbangbang.cvl.system.def.part;
 
+import org.bangbangbang.cvl.CVSpec;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.OpaqueConstraint;
+import org.bangbangbang.cvl.VClassifier;
+import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VSpec;
+import org.bangbangbang.cvl.Variable;
 import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.CVSpecNameEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.Choice2EditPart;
@@ -37,8 +43,8 @@ import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */
@@ -149,23 +155,28 @@ public class CVLMetamodelVisualIDRegistry {
 				return ChoiceEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getChoice().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isChoice_2002((Choice) domainElement)) {
 				return Choice2EditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getVariable().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isVariable_2003((Variable) domainElement)) {
 				return VariableEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getVClassifier().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isVClassifier_2004((VClassifier) domainElement)) {
 				return VClassifierEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getOpaqueConstraint().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isOpaqueConstraint_2005((OpaqueConstraint) domainElement)) {
 				return OpaqueConstraintEditPart.VISUAL_ID;
 			}
 			if (CvlPackage.eINSTANCE.getCVSpec().isSuperTypeOf(
-					domainElement.eClass())) {
+					domainElement.eClass())
+					&& isCVSpec_2006((CVSpec) domainElement)) {
 				return CVSpecEditPart.VISUAL_ID;
 			}
 			break;
@@ -345,8 +356,8 @@ public class CVLMetamodelVisualIDRegistry {
 	}
 
 	/**
-	 * Check is parent ConfigurableUnit?
-	 * For Constraint(Java) at gmfmap.
+	 * Check is parent ConfigurableUnit? For Constraint(Java) at gmfmap.
+	 * 
 	 * @generated NOT
 	 */
 	private static boolean isChoice_2001(Choice domainElement) {
@@ -360,12 +371,75 @@ public class CVLMetamodelVisualIDRegistry {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	private static boolean isRootConfigurableUnit(VSpec vspec) {
+		if (vspec.eContainer() == null) {
+			return true;
+		}
+		if (vspec.eContainer() != null
+				&& vspec.eContainer() instanceof ConfigurableUnit) {
+			return true;
+		} else if (vspec.eContainer() != null
+				&& vspec.eContainer() instanceof VInterface) {
+			return false;
+		} else if (vspec.eContainer() != null
+				&& vspec.eContainer() instanceof VSpec) {
+			return isRootConfigurableUnit((VSpec) vspec.eContainer());
+		}
+		return false;
+
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isChoice_2002(Choice domainElement) {
+		return isRootConfigurableUnit(domainElement);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isVariable_2003(Variable domainElement) {
+		return isRootConfigurableUnit(domainElement);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isVClassifier_2004(VClassifier domainElement) {
+		return isRootConfigurableUnit(domainElement);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isOpaqueConstraint_2005(
+			OpaqueConstraint domainElement) {
+		if (domainElement.eContainer() != null
+				&& domainElement.eContainer().eClass().getName()
+						.indexOf("ConfigurableUnit") >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static boolean isCVSpec_2006(CVSpec domainElement) {
+		return isRootConfigurableUnit(domainElement);
+	}
+
+	/**
 	 * @generated
 	 */
 	public static boolean checkNodeVisualID(View containerView,
 			EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);

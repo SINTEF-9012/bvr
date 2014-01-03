@@ -57,7 +57,7 @@ public class OpaqueConstraintCreateCommand extends EditElementCommand {
 		OpaqueConstraint newElement = CvlFactory.eINSTANCE
 				.createOpaqueConstraint();
 		newElement.setConstraintLanguage("OCL");
-		
+
 		ConfigurableUnit owner = (ConfigurableUnit) getElementToEdit();
 		owner.getOwnedConstraint().add(newElement);
 

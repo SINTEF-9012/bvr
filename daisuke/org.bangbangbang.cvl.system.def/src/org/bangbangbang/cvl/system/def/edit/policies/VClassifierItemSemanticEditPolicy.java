@@ -161,13 +161,9 @@ public class VClassifierItemSemanticEditPolicy extends
 					case MultiplicityInterval4EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned:
-																		// true
-						// don't need explicit deletion of cnode as parent's
-						// view deletion would clean child views as well
-						// cmd.add(new
-						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-						// cnode));
+										cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					}
 				}
@@ -180,13 +176,9 @@ public class VClassifierItemSemanticEditPolicy extends
 					case MultiplicityInterval3EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned:
-																		// true
-						// don't need explicit deletion of cnode as parent's
-						// view deletion would clean child views as well
-						// cmd.add(new
-						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
-						// cnode));
+										cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					}
 				}

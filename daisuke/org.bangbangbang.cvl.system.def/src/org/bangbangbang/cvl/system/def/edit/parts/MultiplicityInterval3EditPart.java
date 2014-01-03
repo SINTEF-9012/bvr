@@ -67,18 +67,7 @@ public class MultiplicityInterval3EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new MultiplicityInterval3CanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentEditPolicy() {
-			public Command getCommand(Request request) {
-				// If the user presses the delete key, don't delete
-				if (request instanceof GroupRequestViaKeyboard
-						&& RequestConstants.REQ_DELETE.equals(request.getType())) {
-					return UnexecutableCommand.INSTANCE;
-				}
-				return super.getCommand(request);
-			}
-		});
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 

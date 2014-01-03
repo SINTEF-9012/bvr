@@ -270,7 +270,7 @@ public class CVLMetamodelDiagramEditorUtil {
 		Choice c = CvlFactory.eINSTANCE.createChoice();
 		c.setName("[Rename] Root Choice");
 		vi.getMember().add(c);
-		
+
 		resource.getContents().add(vp);
 	}
 
@@ -318,8 +318,7 @@ public class CVLMetamodelDiagramEditorUtil {
 		@SuppressWarnings("unchecked")
 		List<EditPart> associatedParts = viewer.findEditPartsForElement(
 				elementID, IGraphicalEditPart.class);
-		// perform the possible hierarchy disjoint -> take the top-most parts
-		// only
+		// perform the possible hierarchy disjoint -> take the top-most parts only
 		for (EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
 			while (parentPart != null && !associatedParts.contains(parentPart)) {
@@ -405,16 +404,12 @@ public class CVLMetamodelDiagramEditorUtil {
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap<EObject, View>();
-				// map possible notation elements to itself as these can't be
-				// found by view.getElement()
+				// map possible notation elements to itself as these can't be found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, view); // take only
-																// those that
-																// part of our
-																// diagram
+							element2ViewMap.put(element, view); // take only those that part of our diagram
 						}
 					}
 				}

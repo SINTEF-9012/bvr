@@ -69,8 +69,7 @@ public class VariableEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new VariableCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -295,7 +294,7 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			// types.add(CVLMetamodelElementTypes.Choice_2001);
+			types.add(CVLMetamodelElementTypes.Choice_2001);
 			types.add(CVLMetamodelElementTypes.Choice_2002);
 			types.add(CVLMetamodelElementTypes.Variable_2003);
 			types.add(CVLMetamodelElementTypes.VClassifier_2004);
