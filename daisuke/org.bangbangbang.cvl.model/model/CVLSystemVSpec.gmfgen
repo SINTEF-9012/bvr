@@ -1,296 +1,926 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.bangbangbang.cvl.system.vspec" modelID="CVLSystemVSpec" diagramFileExtension="cvl_system_vspec_diagram" pluginDirectory="/org.bangbangbang.cvl.system.vspec/src">
-  <diagram visualID="1000" editPartClassName="VInterfaceUnitEditPart" itemSemanticEditPolicyClassName="VInterfaceItemSemanticEditPolicy" canonicalEditPolicyClassName="VInterfaceCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low">
-    <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
-    <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ConfigurableUnitEditHelper"/>
-    <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
-    <domainDiagramElement href="CVLMetamodel.genmodel#//cvl/VInterface"/>
-    <childNodes visualID="3001" editPartClassName="MultiplicityIntervalEditPart" itemSemanticEditPolicyClassName="MultiplicityIntervalItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalViewFactory" canonicalEditPolicyClassName="MultiplicityIntervalCanonicalEditPolicy" graphicalNodeEditPolicyClassName="MultiplicityIntervalGraphicalNodeEditPolicy" createCommandClassName="MultiplicityIntervalCreateCommand" containers="//@diagram/@compartments.0">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="MultiplicityIntervalEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="GroupMultiplicityFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GroupMultiplicityFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGroupMultiplicityIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GroupMultiplicityFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure paddingRectangleFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;paddingRectangleFigure0.setFill(false);&#xA;&#x9;paddingRectangleFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(1)&#xA;);&#xA;&#xA;this.add(paddingRectangleFigure0, org.eclipse.draw2d.BorderLayout.LEFT);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.PolygonShape groupMultiplicityFigurePolygon0 = new org.eclipse.draw2d.PolygonShape();&#xA;&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.setFill(true);&#xA;&#x9;groupMultiplicityFigurePolygon0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;groupMultiplicityFigurePolygon0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(groupMultiplicityFigurePolygon0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureGroupMultiplicityIntervalFigure, org.eclipse.draw2d.BorderLayout.RIGHT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGroupMultiplicityIntervalFigure() {&#xA;&#x9;&#x9;return fFigureGroupMultiplicityIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+<gmfgen:GenEditorGenerator
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
+    packageNamePrefix="org.bangbangbang.cvl.system.vspec"
+    modelID="CVLSystemVSpec"
+    diagramFileExtension="cvl_system_vspec_diagram"
+    pluginDirectory="/org.bangbangbang.cvl.system.vspec/src">
+  <diagram
+      visualID="1000"
+      editPartClassName="VInterfaceEditPart"
+      itemSemanticEditPolicyClassName="VInterfaceItemSemanticEditPolicy"
+      canonicalEditPolicyClassName="VInterfaceCanonicalEditPolicy"
+      iconProviderPriority="Low"
+      validationProviderPriority="Low">
+    <diagramRunTimeClass
+        href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+    <elementType
+        xsi:type="gmfgen:MetamodelType"
+        editHelperClassName="ConfigurableUnitEditHelper"/>
+    <viewmap
+        xsi:type="gmfgen:FigureViewmap"
+        figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <domainDiagramElement
+        href="CVLMetamodel.genmodel#//cvl/VInterface"/>
+    <childNodes
+        visualID="3001"
+        editPartClassName="MultiplicityIntervalEditPart"
+        itemSemanticEditPolicyClassName="MultiplicityIntervalItemSemanticEditPolicy"
+        notationViewFactoryClassName="MultiplicityIntervalViewFactory"
+        canonicalEditPolicyClassName="MultiplicityIntervalCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MultiplicityIntervalGraphicalNodeEditPolicy"
+        createCommandClassName="MultiplicityIntervalCreateCommand"
+        containers="//@diagram/@compartments.0">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="MultiplicityIntervalEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GroupMultiplicityFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GroupMultiplicityFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGroupMultiplicityIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GroupMultiplicityFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure paddingRectangleFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;paddingRectangleFigure0.setFill(false);&#xA;&#x9;paddingRectangleFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(1)&#xA;);&#xA;&#xA;this.add(paddingRectangleFigure0, org.eclipse.draw2d.BorderLayout.LEFT);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.PolygonShape groupMultiplicityFigurePolygon0 = new org.eclipse.draw2d.PolygonShape();&#xA;&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.setFill(true);&#xA;&#x9;groupMultiplicityFigurePolygon0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;groupMultiplicityFigurePolygon0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(groupMultiplicityFigurePolygon0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureGroupMultiplicityIntervalFigure, org.eclipse.draw2d.BorderLayout.RIGHT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGroupMultiplicityIntervalFigure() {&#xA;&#x9;&#x9;return fFigureGroupMultiplicityIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
-        <containmentMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
+        <containmentMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
       </modelFacet>
-      <labels visualID="5001" editPartClassName="MultiplicityIntervalLowerUpperEditPart" itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpperItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureGroupMultiplicityIntervalFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="[{0}..{1}]" editorPattern="[{0}..{1}]" editPattern="[{0}..{1}]">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
+      <labels
+          visualID="5001"
+          editPartClassName="MultiplicityIntervalLowerUpperEditPart"
+          itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpperItemSemanticEditPolicy"
+          notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureGroupMultiplicityIntervalFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="[{0}..{1}]"
+            editorPattern="[{0}..{1}]"
+            editPattern="[{0}..{1}]">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
         </modelFacet>
       </labels>
     </childNodes>
-    <childNodes visualID="3002" editPartClassName="MultiplicityInterval2EditPart" itemSemanticEditPolicyClassName="MultiplicityInterval2ItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalViewFactory" canonicalEditPolicyClassName="MultiplicityInterval2CanonicalEditPolicy" graphicalNodeEditPolicyClassName="MultiplicityInterval2GraphicalNodeEditPolicy" createCommandClassName="MultiplicityInterval2CreateCommand" containers="//@diagram/@compartments.1">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.0/@elementType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="GroupMultiplicityFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GroupMultiplicityFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGroupMultiplicityIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GroupMultiplicityFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure paddingRectangleFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;paddingRectangleFigure0.setFill(false);&#xA;&#x9;paddingRectangleFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(1)&#xA;);&#xA;&#xA;this.add(paddingRectangleFigure0, org.eclipse.draw2d.BorderLayout.LEFT);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.PolygonShape groupMultiplicityFigurePolygon0 = new org.eclipse.draw2d.PolygonShape();&#xA;&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.setFill(true);&#xA;&#x9;groupMultiplicityFigurePolygon0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;groupMultiplicityFigurePolygon0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(groupMultiplicityFigurePolygon0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureGroupMultiplicityIntervalFigure, org.eclipse.draw2d.BorderLayout.RIGHT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGroupMultiplicityIntervalFigure() {&#xA;&#x9;&#x9;return fFigureGroupMultiplicityIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+    <childNodes
+        visualID="3002"
+        editPartClassName="MultiplicityInterval2EditPart"
+        itemSemanticEditPolicyClassName="MultiplicityInterval2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="MultiplicityIntervalViewFactory"
+        canonicalEditPolicyClassName="MultiplicityInterval2CanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MultiplicityInterval2GraphicalNodeEditPolicy"
+        createCommandClassName="MultiplicityInterval2CreateCommand"
+        containers="//@diagram/@compartments.1">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@childNodes.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GroupMultiplicityFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GroupMultiplicityFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGroupMultiplicityIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GroupMultiplicityFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure paddingRectangleFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;paddingRectangleFigure0.setFill(false);&#xA;&#x9;paddingRectangleFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(1)&#xA;);&#xA;&#xA;this.add(paddingRectangleFigure0, org.eclipse.draw2d.BorderLayout.LEFT);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.PolygonShape groupMultiplicityFigurePolygon0 = new org.eclipse.draw2d.PolygonShape();&#xA;&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.setFill(true);&#xA;&#x9;groupMultiplicityFigurePolygon0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;groupMultiplicityFigurePolygon0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(groupMultiplicityFigurePolygon0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureGroupMultiplicityIntervalFigure, org.eclipse.draw2d.BorderLayout.RIGHT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGroupMultiplicityIntervalFigure() {&#xA;&#x9;&#x9;return fFigureGroupMultiplicityIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
-        <containmentMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
+        <containmentMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
       </modelFacet>
-      <labels visualID="5003" editPartClassName="MultiplicityIntervalLowerUpper2EditPart" itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpper2ItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureGroupMultiplicityIntervalFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="[{0}..{1}]" editorPattern="[{0}..{1}]" editPattern="[{0}..{1}]">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
+      <labels
+          visualID="5003"
+          editPartClassName="MultiplicityIntervalLowerUpper2EditPart"
+          itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpper2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureGroupMultiplicityIntervalFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="[{0}..{1}]"
+            editorPattern="[{0}..{1}]"
+            editPattern="[{0}..{1}]">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
         </modelFacet>
       </labels>
     </childNodes>
-    <childNodes visualID="3003" editPartClassName="MultiplicityInterval3EditPart" itemSemanticEditPolicyClassName="MultiplicityInterval3ItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalViewFactory" canonicalEditPolicyClassName="MultiplicityInterval3CanonicalEditPolicy" graphicalNodeEditPolicyClassName="MultiplicityInterval3GraphicalNodeEditPolicy" createCommandClassName="MultiplicityInterval3CreateCommand" containers="//@diagram/@compartments.3">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.0/@elementType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" layoutType="FLOW_LAYOUT" className="MultiplicityIntervalFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MultiplicityIntervalFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMultiplicityIntervalIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MultiplicityIntervalFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMultiplicityIntervalIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureMultiplicityIntervalIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureMultiplicityIntervalIntervalFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMultiplicityIntervalIntervalFigure() {&#xA;&#x9;&#x9;return fFigureMultiplicityIntervalIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+    <childNodes
+        visualID="3003"
+        editPartClassName="MultiplicityInterval3EditPart"
+        itemSemanticEditPolicyClassName="MultiplicityInterval3ItemSemanticEditPolicy"
+        notationViewFactoryClassName="MultiplicityIntervalViewFactory"
+        canonicalEditPolicyClassName="MultiplicityInterval3CanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MultiplicityInterval3GraphicalNodeEditPolicy"
+        createCommandClassName="MultiplicityInterval3CreateCommand"
+        containers="//@diagram/@compartments.3">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@childNodes.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          layoutType="FLOW_LAYOUT"
+          className="MultiplicityIntervalFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MultiplicityIntervalFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureMultiplicityIntervalIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MultiplicityIntervalFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureMultiplicityIntervalIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureMultiplicityIntervalIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureMultiplicityIntervalIntervalFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureMultiplicityIntervalIntervalFigure() {&#xA;&#x9;&#x9;return fFigureMultiplicityIntervalIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
-        <containmentMetaFeature href="CVLMetamodel.genmodel#//cvl/VClassifier/instanceMultiplicity"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VClassifier/instanceMultiplicity"/>
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
+        <containmentMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VClassifier/instanceMultiplicity"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VClassifier/instanceMultiplicity"/>
       </modelFacet>
-      <labels visualID="5006" editPartClassName="MultiplicityIntervalLowerUpper3EditPart" itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpper3ItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureMultiplicityIntervalIntervalFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="{0}..{1}" editorPattern="{0}..{1}" editPattern="{0}..{1}">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
+      <labels
+          visualID="5006"
+          editPartClassName="MultiplicityIntervalLowerUpper3EditPart"
+          itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpper3ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureMultiplicityIntervalIntervalFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="{0}..{1}"
+            editorPattern="{0}..{1}"
+            editPattern="{0}..{1}">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
         </modelFacet>
       </labels>
     </childNodes>
-    <childNodes visualID="3004" editPartClassName="MultiplicityInterval4EditPart" itemSemanticEditPolicyClassName="MultiplicityInterval4ItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalViewFactory" canonicalEditPolicyClassName="MultiplicityInterval4CanonicalEditPolicy" graphicalNodeEditPolicyClassName="MultiplicityInterval4GraphicalNodeEditPolicy" createCommandClassName="MultiplicityInterval4CreateCommand" containers="//@diagram/@compartments.2">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.0/@elementType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="GroupMultiplicityFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GroupMultiplicityFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGroupMultiplicityIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GroupMultiplicityFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure paddingRectangleFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;paddingRectangleFigure0.setFill(false);&#xA;&#x9;paddingRectangleFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(1)&#xA;);&#xA;&#xA;this.add(paddingRectangleFigure0, org.eclipse.draw2d.BorderLayout.LEFT);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.PolygonShape groupMultiplicityFigurePolygon0 = new org.eclipse.draw2d.PolygonShape();&#xA;&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.setFill(true);&#xA;&#x9;groupMultiplicityFigurePolygon0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;groupMultiplicityFigurePolygon0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(groupMultiplicityFigurePolygon0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureGroupMultiplicityIntervalFigure, org.eclipse.draw2d.BorderLayout.RIGHT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGroupMultiplicityIntervalFigure() {&#xA;&#x9;&#x9;return fFigureGroupMultiplicityIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+    <childNodes
+        visualID="3004"
+        editPartClassName="MultiplicityInterval4EditPart"
+        itemSemanticEditPolicyClassName="MultiplicityInterval4ItemSemanticEditPolicy"
+        notationViewFactoryClassName="MultiplicityIntervalViewFactory"
+        canonicalEditPolicyClassName="MultiplicityInterval4CanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="MultiplicityInterval4GraphicalNodeEditPolicy"
+        createCommandClassName="MultiplicityInterval4CreateCommand"
+        containers="//@diagram/@compartments.2">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@childNodes.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="GroupMultiplicityFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class GroupMultiplicityFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureGroupMultiplicityIntervalFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public GroupMultiplicityFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure paddingRectangleFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;paddingRectangleFigure0.setFill(false);&#xA;&#x9;paddingRectangleFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;paddingRectangleFigure0.setSize(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(1)&#xA;);&#xA;&#xA;this.add(paddingRectangleFigure0, org.eclipse.draw2d.BorderLayout.LEFT);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.PolygonShape groupMultiplicityFigurePolygon0 = new org.eclipse.draw2d.PolygonShape();&#xA;&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;groupMultiplicityFigurePolygon0.setFill(true);&#xA;&#x9;groupMultiplicityFigurePolygon0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;groupMultiplicityFigurePolygon0.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(groupMultiplicityFigurePolygon0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureGroupMultiplicityIntervalFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureGroupMultiplicityIntervalFigure, org.eclipse.draw2d.BorderLayout.RIGHT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureGroupMultiplicityIntervalFigure() {&#xA;&#x9;&#x9;return fFigureGroupMultiplicityIntervalFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
-        <containmentMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval"/>
+        <containmentMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/groupMultiplicity"/>
       </modelFacet>
-      <labels visualID="5007" editPartClassName="MultiplicityIntervalLowerUpper4EditPart" itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpper4ItemSemanticEditPolicy" notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureGroupMultiplicityIntervalFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="[{0}..{1}]" editorPattern="[{0}..{1}]" editPattern="[{0}..{1}]">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
+      <labels
+          visualID="5007"
+          editPartClassName="MultiplicityIntervalLowerUpper4EditPart"
+          itemSemanticEditPolicyClassName="MultiplicityIntervalLowerUpper4ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MultiplicityIntervalLowerUpperViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureGroupMultiplicityIntervalFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="[{0}..{1}]"
+            editorPattern="[{0}..{1}]"
+            editPattern="[{0}..{1}]">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/lower"/>
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/MultiplicityInterval/upper"/>
         </modelFacet>
       </labels>
     </childNodes>
-    <topLevelNodes visualID="2002" editPartClassName="Choice2EditPart" itemSemanticEditPolicyClassName="Choice2ItemSemanticEditPolicy" notationViewFactoryClassName="ChoiceViewFactory" canonicalEditPolicyClassName="Choice2CanonicalEditPolicy" compartments="//@diagram/@compartments.0" graphicalNodeEditPolicyClassName="Choice2GraphicalNodeEditPolicy" createCommandClassName="Choice2CreateCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ChoiceEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="ChoiceFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ChoiceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureChoiceNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureChoiceGroupMultiplicityCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ChoiceFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RoundedRectangle choiceFigure0 = new org.eclipse.draw2d.RoundedRectangle();&#xA;&#xA;choiceFigure0.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;choiceFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;choiceFigure0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(choiceFigure0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutChoiceFigure0 = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutChoiceFigure0.setStretchMinorAxis(false);&#xA;&#x9;layoutChoiceFigure0.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutChoiceFigure0.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutChoiceFigure0.setMajorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setMinorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setHorizontal(true);&#xA;&#xA;&#x9;choiceFigure0.setLayoutManager(layoutChoiceFigure0);&#xA;&#xA;&#xA;&#xA;fFigureChoiceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureChoiceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;choiceFigure0.add(fFigureChoiceNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOutline(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setFill(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOpaque(false);&#xA;&#xA;this.add(fFigureChoiceGroupMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.BOTTOM);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureChoiceNameFigure() {&#xA;&#x9;&#x9;return fFigureChoiceNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureChoiceGroupMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureChoiceGroupMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
-        <metaClass href="CVLMetamodel.genmodel#//cvl/Choice"/>
-        <containmentMetaFeature href="CVLMetamodel.genmodel#//cvl/VInterface/member"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VInterface/member"/>
+    <topLevelNodes
+        visualID="2002"
+        editPartClassName="Choice2EditPart"
+        itemSemanticEditPolicyClassName="Choice2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="ChoiceViewFactory"
+        canonicalEditPolicyClassName="Choice2CanonicalEditPolicy"
+        compartments="//@diagram/@compartments.0"
+        graphicalNodeEditPolicyClassName="Choice2GraphicalNodeEditPolicy"
+        createCommandClassName="Choice2CreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="ChoiceEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ChoiceFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ChoiceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureChoiceNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureChoiceGroupMultiplicityCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ChoiceFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RoundedRectangle choiceFigure0 = new org.eclipse.draw2d.RoundedRectangle();&#xA;&#xA;choiceFigure0.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;choiceFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;choiceFigure0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(choiceFigure0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutChoiceFigure0 = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutChoiceFigure0.setStretchMinorAxis(false);&#xA;&#x9;layoutChoiceFigure0.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutChoiceFigure0.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutChoiceFigure0.setMajorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setMinorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setHorizontal(true);&#xA;&#xA;&#x9;choiceFigure0.setLayoutManager(layoutChoiceFigure0);&#xA;&#xA;&#xA;&#xA;fFigureChoiceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureChoiceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;choiceFigure0.add(fFigureChoiceNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOutline(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setFill(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOpaque(false);&#xA;&#xA;this.add(fFigureChoiceGroupMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.BOTTOM);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureChoiceNameFigure() {&#xA;&#x9;&#x9;return fFigureChoiceNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureChoiceGroupMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureChoiceGroupMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.0">
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/Choice"/>
+        <containmentMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VInterface/member"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VInterface/member"/>
       </modelFacet>
-      <labels visualID="5004" editPartClassName="ChoiceName2EditPart" itemSemanticEditPolicyClassName="ChoiceName2ItemSemanticEditPolicy" notationViewFactoryClassName="ChoiceNameViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureChoiceNameFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="" editorPattern="" editPattern="">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
+      <labels
+          visualID="5004"
+          editPartClassName="ChoiceName2EditPart"
+          itemSemanticEditPolicyClassName="ChoiceName2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="ChoiceNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureChoiceNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern=""
+            editorPattern=""
+            editPattern="">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <topLevelNodes visualID="2006" editPartClassName="ChoiceEditPart" itemSemanticEditPolicyClassName="ChoiceItemSemanticEditPolicy" canonicalEditPolicyClassName="ChoiceCanonicalEditPolicy" compartments="//@diagram/@compartments.1" graphicalNodeEditPolicyClassName="ChoiceGraphicalNodeEditPolicy" createCommandClassName="ChoiceCreateCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@topLevelNodes.0/@elementType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="ChoiceFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ChoiceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureChoiceNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureChoiceGroupMultiplicityCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ChoiceFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RoundedRectangle choiceFigure0 = new org.eclipse.draw2d.RoundedRectangle();&#xA;&#xA;choiceFigure0.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;choiceFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;choiceFigure0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(choiceFigure0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutChoiceFigure0 = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutChoiceFigure0.setStretchMinorAxis(false);&#xA;&#x9;layoutChoiceFigure0.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutChoiceFigure0.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutChoiceFigure0.setMajorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setMinorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setHorizontal(true);&#xA;&#xA;&#x9;choiceFigure0.setLayoutManager(layoutChoiceFigure0);&#xA;&#xA;&#xA;&#xA;fFigureChoiceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureChoiceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;choiceFigure0.add(fFigureChoiceNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOutline(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setFill(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOpaque(false);&#xA;&#xA;this.add(fFigureChoiceGroupMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.BOTTOM);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureChoiceNameFigure() {&#xA;&#x9;&#x9;return fFigureChoiceNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureChoiceGroupMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureChoiceGroupMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/Choice"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
+    <topLevelNodes
+        visualID="2006"
+        editPartClassName="ChoiceEditPart"
+        itemSemanticEditPolicyClassName="ChoiceItemSemanticEditPolicy"
+        notationViewFactoryClassName="ChoiceViewFactory"
+        canonicalEditPolicyClassName="ChoiceCanonicalEditPolicy"
+        compartments="//@diagram/@compartments.1"
+        graphicalNodeEditPolicyClassName="ChoiceGraphicalNodeEditPolicy"
+        createCommandClassName="ChoiceCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"
+          metamodelType="//@diagram/@topLevelNodes.0/@elementType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ChoiceFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ChoiceFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureChoiceNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureChoiceGroupMultiplicityCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ChoiceFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setFill(false);&#xA;this.setOpaque(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RoundedRectangle choiceFigure0 = new org.eclipse.draw2d.RoundedRectangle();&#xA;&#xA;choiceFigure0.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;choiceFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;choiceFigure0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(choiceFigure0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutChoiceFigure0 = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutChoiceFigure0.setStretchMinorAxis(false);&#xA;&#x9;layoutChoiceFigure0.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutChoiceFigure0.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutChoiceFigure0.setMajorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setMinorSpacing(5);&#xA;&#x9;layoutChoiceFigure0.setHorizontal(true);&#xA;&#xA;&#x9;choiceFigure0.setLayoutManager(layoutChoiceFigure0);&#xA;&#xA;&#xA;&#xA;fFigureChoiceNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureChoiceNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;choiceFigure0.add(fFigureChoiceNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOutline(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setFill(false);&#xA;fFigureChoiceGroupMultiplicityCompartmentFigure.setOpaque(false);&#xA;&#xA;this.add(fFigureChoiceGroupMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.BOTTOM);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureChoiceNameFigure() {&#xA;&#x9;&#x9;return fFigureChoiceNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureChoiceGroupMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureChoiceGroupMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.1">
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/Choice"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
       </modelFacet>
-      <labels visualID="5010" editPartClassName="ChoiceNameEditPart" itemSemanticEditPolicyClassName="ChoiceNameItemSemanticEditPolicy">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureChoiceNameFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="" editorPattern="" editPattern="">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
+      <labels
+          visualID="5010"
+          editPartClassName="ChoiceNameEditPart"
+          itemSemanticEditPolicyClassName="ChoiceNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="ChoiceNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureChoiceNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern=""
+            editorPattern=""
+            editPattern="">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <topLevelNodes visualID="2003" editPartClassName="VariableEditPart" itemSemanticEditPolicyClassName="VariableItemSemanticEditPolicy" notationViewFactoryClassName="VariableViewFactory" canonicalEditPolicyClassName="VariableCanonicalEditPolicy" graphicalNodeEditPolicyClassName="VariableGraphicalNodeEditPolicy" createCommandClassName="VariableCreateCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="VariableEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" layoutType="FLOW_LAYOUT" className="VariableFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VariableFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureVariableNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VariableFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureVariableNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureVariableNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureVariableNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureVariableNameFigure() {&#xA;&#x9;&#x9;return fFigureVariableNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
+    <topLevelNodes
+        visualID="2003"
+        editPartClassName="VariableEditPart"
+        itemSemanticEditPolicyClassName="VariableItemSemanticEditPolicy"
+        notationViewFactoryClassName="VariableViewFactory"
+        canonicalEditPolicyClassName="VariableCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="VariableGraphicalNodeEditPolicy"
+        createCommandClassName="VariableCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="VariableEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          layoutType="FLOW_LAYOUT"
+          className="VariableFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VariableFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureVariableNameFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VariableFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureVariableNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureVariableNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureVariableNameFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureVariableNameFigure() {&#xA;&#x9;&#x9;return fFigureVariableNameFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
       </viewmap>
-      <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/Variable"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.2">
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/Variable"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
       </modelFacet>
-      <labels visualID="5005" editPartClassName="VariableNameEditPart" itemSemanticEditPolicyClassName="VariableNameItemSemanticEditPolicy" notationViewFactoryClassName="VariableNameViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureVariableNameFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" editorPattern="" editPattern="">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
+      <labels
+          visualID="5005"
+          editPartClassName="VariableNameEditPart"
+          itemSemanticEditPolicyClassName="VariableNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="VariableNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureVariableNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            editorPattern=""
+            editPattern="">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <topLevelNodes visualID="2004" editPartClassName="VClassifierEditPart" itemSemanticEditPolicyClassName="VClassifierItemSemanticEditPolicy" notationViewFactoryClassName="VClassifierViewFactory" canonicalEditPolicyClassName="VClassifierCanonicalEditPolicy" compartments="//@diagram/@compartments.2 //@diagram/@compartments.3" graphicalNodeEditPolicyClassName="VClassifierGraphicalNodeEditPolicy" createCommandClassName="VClassifierCreateCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="VClassifierEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="VClassifierFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VClassifierFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureVClassifierNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureVClassifierInstanceMultiplicityCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureVClassifierGroupMultiplicityCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VClassifierFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure vClassifierFigureLabelContainerFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;&#x9;vClassifierFigureLabelContainerFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;vClassifierFigureLabelContainerFigure0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(vClassifierFigureLabelContainerFigure0, org.eclipse.draw2d.BorderLayout.TOP);&#xA;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutVClassifierFigureLabelContainerFigure0 = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setStretchMinorAxis(false);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMajorSpacing(5);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMinorSpacing(5);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setHorizontal(true);&#xA;&#xA;&#x9;vClassifierFigureLabelContainerFigure0.setLayoutManager(layoutVClassifierFigureLabelContainerFigure0);&#xA;&#xA;&#xA;&#xA;fFigureVClassifierNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureVClassifierNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;vClassifierFigureLabelContainerFigure0.add(fFigureVClassifierNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureVClassifierInstanceMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;&#x9;fFigureVClassifierInstanceMultiplicityCompartmentFigure.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.add(fFigureVClassifierInstanceMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure.setOutline(false);&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure.setFill(false);&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure.setOpaque(false);&#xA;&#xA;this.add(fFigureVClassifierGroupMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.BOTTOM);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureVClassifierNameFigure() {&#xA;&#x9;&#x9;return fFigureVClassifierNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureVClassifierInstanceMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureVClassifierInstanceMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureVClassifierGroupMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureVClassifierGroupMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
+    <topLevelNodes
+        visualID="2004"
+        editPartClassName="VClassifierEditPart"
+        itemSemanticEditPolicyClassName="VClassifierItemSemanticEditPolicy"
+        notationViewFactoryClassName="VClassifierViewFactory"
+        canonicalEditPolicyClassName="VClassifierCanonicalEditPolicy"
+        compartments="//@diagram/@compartments.2 //@diagram/@compartments.3"
+        graphicalNodeEditPolicyClassName="VClassifierGraphicalNodeEditPolicy"
+        createCommandClassName="VClassifierCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="VClassifierEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="VClassifierFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VClassifierFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureVClassifierNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureVClassifierInstanceMultiplicityCompartmentFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureVClassifierGroupMultiplicityCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VClassifierFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure vClassifierFigureLabelContainerFigure0 = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;&#x9;vClassifierFigureLabelContainerFigure0.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;vClassifierFigureLabelContainerFigure0.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#xA;this.add(vClassifierFigureLabelContainerFigure0, org.eclipse.draw2d.BorderLayout.TOP);&#xA;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutVClassifierFigureLabelContainerFigure0 = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setStretchMinorAxis(false);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMajorSpacing(5);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setMinorSpacing(5);&#xA;&#x9;layoutVClassifierFigureLabelContainerFigure0.setHorizontal(true);&#xA;&#xA;&#x9;vClassifierFigureLabelContainerFigure0.setLayoutManager(layoutVClassifierFigureLabelContainerFigure0);&#xA;&#xA;&#xA;&#xA;fFigureVClassifierNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureVClassifierNameFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;vClassifierFigureLabelContainerFigure0.add(fFigureVClassifierNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureVClassifierInstanceMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;&#x9;fFigureVClassifierInstanceMultiplicityCompartmentFigure.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.add(fFigureVClassifierInstanceMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#xA;&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure.setOutline(false);&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure.setFill(false);&#xA;fFigureVClassifierGroupMultiplicityCompartmentFigure.setOpaque(false);&#xA;&#xA;this.add(fFigureVClassifierGroupMultiplicityCompartmentFigure, org.eclipse.draw2d.BorderLayout.BOTTOM);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureVClassifierNameFigure() {&#xA;&#x9;&#x9;return fFigureVClassifierNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureVClassifierInstanceMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureVClassifierInstanceMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureVClassifierGroupMultiplicityCompartmentFigure() {&#xA;&#x9;&#x9;return fFigureVClassifierGroupMultiplicityCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
       </viewmap>
-      <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/VClassifier"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.3">
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/VClassifier"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
       </modelFacet>
-      <labels visualID="5008" editPartClassName="VClassifierNameEditPart" itemSemanticEditPolicyClassName="VClassifierNameItemSemanticEditPolicy" notationViewFactoryClassName="VClassifierNameViewFactory">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureVClassifierNameFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
+      <labels
+          visualID="5008"
+          editPartClassName="VClassifierNameEditPart"
+          itemSemanticEditPolicyClassName="VClassifierNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="VClassifierNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureVClassifierNameFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <topLevelNodes visualID="2007" editPartClassName="OpaqueConstraintEditPart" itemSemanticEditPolicyClassName="OpaqueConstraintItemSemanticEditPolicy" canonicalEditPolicyClassName="OpaqueConstraintCanonicalEditPolicy" graphicalNodeEditPolicyClassName="OpaqueConstraintGraphicalNodeEditPolicy" createCommandClassName="OpaqueConstraintCreateCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="OpaqueConstraintEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" layoutType="FLOW_LAYOUT" className="OpaqueConstraintFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OpaqueConstraintFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOpaqueConstraintConstraintFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OpaqueConstraintFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(120)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.setFill(true);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(3)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOpaqueConstraintConstraintFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureOpaqueConstraintConstraintFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureOpaqueConstraintConstraintFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOpaqueConstraintConstraintFigure() {&#xA;&#x9;&#x9;return fFigureOpaqueConstraintConstraintFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
+    <topLevelNodes
+        visualID="2007"
+        editPartClassName="OpaqueConstraintEditPart"
+        itemSemanticEditPolicyClassName="OpaqueConstraintItemSemanticEditPolicy"
+        notationViewFactoryClassName="OpaqueConstraintViewFactory"
+        canonicalEditPolicyClassName="OpaqueConstraintCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="OpaqueConstraintGraphicalNodeEditPolicy"
+        createCommandClassName="OpaqueConstraintCreateCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="OpaqueConstraintEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          layoutType="FLOW_LAYOUT"
+          className="OpaqueConstraintFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OpaqueConstraintFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureOpaqueConstraintConstraintFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OpaqueConstraintFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.FlowLayout layoutThis = new org.eclipse.draw2d.FlowLayout();&#xA;&#x9;layoutThis.setStretchMinorAxis(false);&#xA;&#x9;layoutThis.setMinorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#xA;&#x9;layoutThis.setMajorAlignment(org.eclipse.draw2d.FlowLayout.ALIGN_LEFTTOP&#xA;);&#xA;&#x9;layoutThis.setMajorSpacing(5);&#xA;&#x9;layoutThis.setMinorSpacing(5);&#xA;&#x9;layoutThis.setHorizontal(true);&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(120)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.setFill(true);&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(9)&#xA;, getMapMode().DPtoLP(3)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureOpaqueConstraintConstraintFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureOpaqueConstraintConstraintFigure.setText(&quot;&lt;...>&quot;);&#xA;&#xA;this.add(fFigureOpaqueConstraintConstraintFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureOpaqueConstraintConstraintFigure() {&#xA;&#x9;&#x9;return fFigureOpaqueConstraintConstraintFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
       </viewmap>
-      <modelFacet>
-        <metaClass href="CVLMetamodel.genmodel#//cvl/OpaqueConstraint"/>
-        <containmentMetaFeature href="CVLMetamodel.genmodel#//cvl/VInterface/ownedConstraint"/>
-        <childMetaFeature href="CVLMetamodel.genmodel#//cvl/VInterface/ownedConstraint"/>
+      <modelFacet
+          modelElementSelector="//@expressionProviders/@providers.0/@expressions.4">
+        <metaClass
+            href="CVLMetamodel.genmodel#//cvl/OpaqueConstraint"/>
+        <containmentMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VInterface/ownedConstraint"/>
+        <childMetaFeature
+            href="CVLMetamodel.genmodel#//cvl/VInterface/ownedConstraint"/>
       </modelFacet>
-      <labels visualID="5011" editPartClassName="OpaqueConstraintNameEditPart" itemSemanticEditPolicyClassName="OpaqueConstraintNameItemSemanticEditPolicy">
-        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureOpaqueConstraintConstraintFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
-          <metaFeatures href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
+      <labels
+          visualID="5011"
+          editPartClassName="OpaqueConstraintNameEditPart"
+          itemSemanticEditPolicyClassName="OpaqueConstraintNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="OpaqueConstraintNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getFigureOpaqueConstraintConstraintFigure"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0">
+          <metaFeatures
+              href="CVLMetamodel.genmodel#//cvl/NamedElement/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <links visualID="4001" editPartClassName="VSpecChildEditPart" itemSemanticEditPolicyClassName="VSpecChildItemSemanticEditPolicy" notationViewFactoryClassName="VSpecChildViewFactory" createCommandClassName="VSpecChildCreateCommand" reorientCommandClassName="VSpecChildReorientCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-      <elementType xsi:type="gmfgen:SpecializationType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="VSpecChildFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VSpecChildFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VSpecChildFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
+    <links
+        visualID="4001"
+        editPartClassName="VSpecChildEditPart"
+        itemSemanticEditPolicyClassName="VSpecChildItemSemanticEditPolicy"
+        notationViewFactoryClassName="VSpecChildViewFactory"
+        createCommandClassName="VSpecChildCreateCommand"
+        reorientCommandClassName="VSpecChildReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="VSpecChildFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class VSpecChildFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public VSpecChildFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
       </viewmap>
-      <modelFacet xsi:type="gmfgen:FeatureLinkModelFacet">
-        <metaFeature href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="CVLMetamodel.genmodel#//cvl/VSpec/child"/>
       </modelFacet>
-      <creationConstraints sourceEnd="//@expressionProviders/@providers.1/@expressions.0" targetEnd="//@expressionProviders/@providers.0/@expressions.1"/>
+      <creationConstraints
+          sourceEnd="//@expressionProviders/@providers.1/@expressions.0"
+          targetEnd="//@expressionProviders/@providers.0/@expressions.5"/>
     </links>
-    <links visualID="4002" editPartClassName="ConstraintContextEditPart" itemSemanticEditPolicyClassName="ConstraintContextItemSemanticEditPolicy" notationViewFactoryClassName="ConstraintContextViewFactory" createCommandClassName="ConstraintContextCreateCommand" reorientCommandClassName="ConstraintContextReorientCommand">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
-      <elementType xsi:type="gmfgen:SpecializationType"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="OpaqueConstraintContextFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OpaqueConstraintContextFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OpaqueConstraintContextFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-        <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
+    <links
+        visualID="4002"
+        editPartClassName="ConstraintContextEditPart"
+        itemSemanticEditPolicyClassName="ConstraintContextItemSemanticEditPolicy"
+        notationViewFactoryClassName="ConstraintContextViewFactory"
+        createCommandClassName="ConstraintContextCreateCommand"
+        reorientCommandClassName="ConstraintContextReorientCommand">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="OpaqueConstraintContextFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class OpaqueConstraintContextFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public OpaqueConstraintContextFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
       </viewmap>
-      <modelFacet xsi:type="gmfgen:FeatureLinkModelFacet">
-        <metaFeature href="CVLMetamodel.genmodel#//cvl/Constraint/context"/>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="CVLMetamodel.genmodel#//cvl/Constraint/context"/>
       </modelFacet>
     </links>
-    <compartments visualID="7002" editPartClassName="ChoiceChoiceGroupMultiplicityCompartment2EditPart" itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2ItemSemanticEditPolicy" notationViewFactoryClassName="ChoiceChoiceGroupMultiplicityCompartmentViewFactory" canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2CanonicalEditPolicy" childNodes="//@diagram/@childNodes.0" title="ChoiceGroupMultiplicityCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@topLevelNodes.0">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureChoiceGroupMultiplicityCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    <compartments
+        visualID="7002"
+        editPartClassName="ChoiceChoiceGroupMultiplicityCompartment2EditPart"
+        itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2ItemSemanticEditPolicy"
+        notationViewFactoryClassName="ChoiceChoiceGroupMultiplicityCompartmentViewFactory"
+        canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartment2CanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.0"
+        title="ChoiceGroupMultiplicityCompartment"
+        canCollapse="false"
+        needsTitle="false"
+        node="//@diagram/@topLevelNodes.0">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:ParentAssignedViewmap"
+          getterName="getFigureChoiceGroupMultiplicityCompartmentFigure"
+          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
-    <compartments visualID="7005" editPartClassName="ChoiceChoiceGroupMultiplicityCompartmentEditPart" itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy" childNodes="//@diagram/@childNodes.1" title="ChoiceGroupMultiplicityCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@topLevelNodes.1">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureChoiceGroupMultiplicityCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    <compartments
+        visualID="7005"
+        editPartClassName="ChoiceChoiceGroupMultiplicityCompartmentEditPart"
+        itemSemanticEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="ChoiceChoiceGroupMultiplicityCompartmentViewFactory"
+        canonicalEditPolicyClassName="ChoiceChoiceGroupMultiplicityCompartmentCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.1"
+        title="ChoiceGroupMultiplicityCompartment"
+        canCollapse="false"
+        needsTitle="false"
+        node="//@diagram/@topLevelNodes.1">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:ParentAssignedViewmap"
+          getterName="getFigureChoiceGroupMultiplicityCompartmentFigure"
+          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
-    <compartments visualID="7003" editPartClassName="VClassifierVClassifierGroupMultiplicityCompartmentEditPart" itemSemanticEditPolicyClassName="VClassifierVClassifierGroupMultiplicityCompartmentItemSemanticEditPolicy" notationViewFactoryClassName="VClassifierVClassifierGroupMultiplicityCompartmentViewFactory" canonicalEditPolicyClassName="VClassifierVClassifierGroupMultiplicityCompartmentCanonicalEditPolicy" childNodes="//@diagram/@childNodes.3" title="VClassifierGroupMultiplicityCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@topLevelNodes.3">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureVClassifierGroupMultiplicityCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    <compartments
+        visualID="7003"
+        editPartClassName="VClassifierVClassifierGroupMultiplicityCompartmentEditPart"
+        itemSemanticEditPolicyClassName="VClassifierVClassifierGroupMultiplicityCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="VClassifierVClassifierGroupMultiplicityCompartmentViewFactory"
+        canonicalEditPolicyClassName="VClassifierVClassifierGroupMultiplicityCompartmentCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.3"
+        title="VClassifierGroupMultiplicityCompartment"
+        canCollapse="false"
+        needsTitle="false"
+        node="//@diagram/@topLevelNodes.3">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:ParentAssignedViewmap"
+          getterName="getFigureVClassifierGroupMultiplicityCompartmentFigure"
+          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
-    <compartments visualID="7004" editPartClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart" itemSemanticEditPolicyClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentItemSemanticEditPolicy" notationViewFactoryClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentViewFactory" canonicalEditPolicyClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentCanonicalEditPolicy" childNodes="//@diagram/@childNodes.2" title="VClassifierInstanceMultiplicityIntervalCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@topLevelNodes.3">
-      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureVClassifierInstanceMultiplicityCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure">
-        <attributes xsi:type="gmfgen:StyleAttributes" fixedForeground="true"/>
+    <compartments
+        visualID="7004"
+        editPartClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart"
+        itemSemanticEditPolicyClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentViewFactory"
+        canonicalEditPolicyClassName="VClassifierVClassifierInstanceMultiplicityIntervalCompartmentCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.2"
+        title="VClassifierInstanceMultiplicityIntervalCompartment"
+        canCollapse="false"
+        needsTitle="false"
+        node="//@diagram/@topLevelNodes.3">
+      <diagramRunTimeClass
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:ParentAssignedViewmap"
+          getterName="getFigureVClassifierInstanceMultiplicityCompartmentFigure"
+          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
       </viewmap>
     </compartments>
     <palette>
-      <groups title="cvl">
-        <entries xsi:type="gmfgen:ToolEntry" title="VSpecChild" description="Create new VSpecChild" smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ChildNode.gif" genLinks="//@diagram/@links.0"/>
-        <entries xsi:type="gmfgen:ToolEntry" title="VSpecGroupMultiplicity" description="Create new VSpecGroupMultiplicity" smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/MultiplicityInterval.gif" genNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.1 //@diagram/@childNodes.3"/>
-        <entries xsi:type="gmfgen:ToolEntry" title="OpaqueConstraint" description="Create new OpaqueConstraint" smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/OpaqueConstraint.gif" genNodes="//@diagram/@topLevelNodes.4"/>
-        <entries xsi:type="gmfgen:ToolEntry" title="OpaqueConstraintLink" description="Create new OpaqueConstraint" smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ConstraintLine.gif" genLinks="//@diagram/@links.1"/>
+      <groups
+          title="cvl">
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="VSpecChild"
+            description="Create new VSpecChild"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ChildNode.gif"
+            genLinks="//@diagram/@links.0"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="VSpecGroupMultiplicity"
+            description="Create new VSpecGroupMultiplicity"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/MultiplicityInterval.gif"
+            genNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.1 //@diagram/@childNodes.3"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="OpaqueConstraint"
+            description="Create new OpaqueConstraint"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/OpaqueConstraint.gif"
+            genNodes="//@diagram/@topLevelNodes.4"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="OpaqueConstraintLink"
+            description="Create new OpaqueConstraint"
+            smallIconPath="/org.bangbangbang.cvl.model.edit/icons/full/obj16/ConstraintLine.gif"
+            genLinks="//@diagram/@links.1"/>
       </groups>
     </palette>
-    <preferencePages xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.general" name="CVLSystemVSpec Diagram">
-      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.appearance" name="Appearance" kind="Appearance"/>
-      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.connections" name="Connections" kind="Connections"/>
-      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.printing" name="Printing" kind="Printing"/>
-      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.bangbangbang.cvl.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
+    <preferencePages
+        xsi:type="gmfgen:GenStandardPreferencePage"
+        iD="org.bangbangbang.cvl.diagram.general"
+        name="CVLSystemVSpec Diagram">
+      <children
+          xsi:type="gmfgen:GenStandardPreferencePage"
+          iD="org.bangbangbang.cvl.diagram.appearance"
+          name="Appearance"
+          kind="Appearance"/>
+      <children
+          xsi:type="gmfgen:GenStandardPreferencePage"
+          iD="org.bangbangbang.cvl.diagram.connections"
+          name="Connections"
+          kind="Connections"/>
+      <children
+          xsi:type="gmfgen:GenStandardPreferencePage"
+          iD="org.bangbangbang.cvl.diagram.printing"
+          name="Printing"
+          kind="Printing"/>
+      <children
+          xsi:type="gmfgen:GenStandardPreferencePage"
+          iD="org.bangbangbang.cvl.diagram.rulersAndGrid"
+          name="Rulers And Grid"
+          kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
-  <plugin iD="org.bangbangbang.cvl.system.vspec" name="CVLSystemVSpec Plugin" activatorClassName="CVLSystemVSpecEditorPlugin">
+  <plugin
+      iD="org.bangbangbang.cvl.system.vspec"
+      name="CVLSystemVSpec Plugin"
+      activatorClassName="CVLSystemVSpecEditorPlugin">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
     <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
   </plugin>
-  <editor className="CVLSystemVSpecEditor"/>
+  <editor
+      className="CVLSystemVSpecEditor"/>
   <navigator>
-    <childReferences child="//@diagram"/>
-    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.0"/>
-    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.0"/>
-    <childReferences parent="//@diagram/@topLevelNodes.1" child="//@diagram/@childNodes.1"/>
-    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.1"/>
-    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.2"/>
-    <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@childNodes.2"/>
-    <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@childNodes.3"/>
-    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.3"/>
-    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.4"/>
-    <childReferences parent="//@diagram" child="//@diagram/@links.0" groupName="links" groupIcon="icons/linksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.0" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.1" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.1" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.2" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.2" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.3" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.0" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.1" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.1" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.2" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.2" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.0" child="//@diagram/@topLevelNodes.3" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram" child="//@diagram/@links.1" groupName="links" groupIcon="icons/linksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.1" child="//@diagram/@topLevelNodes.0" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@links.1" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.1" child="//@diagram/@topLevelNodes.1" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.1" child="//@diagram/@links.1" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.1" child="//@diagram/@topLevelNodes.2" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.2" child="//@diagram/@links.1" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.1" child="//@diagram/@topLevelNodes.3" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.3" child="//@diagram/@links.1" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@links.1" child="//@diagram/@topLevelNodes.4" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
-    <childReferences parent="//@diagram/@topLevelNodes.4" child="//@diagram/@links.1" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        child="//@diagram"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@childNodes.0"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.0"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@childNodes.1"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.1"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.2"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@childNodes.2"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@childNodes.3"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.3"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.4"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.0"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.0"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.0"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.0"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.0"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.0"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.0"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.1"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.1"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.1"
+        child="//@diagram/@topLevelNodes.4"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.4"
+        child="//@diagram/@links.1"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>
-    <tabs xsi:type="gmfgen:GenStandardPropertyTab" iD="appearance"/>
-    <tabs xsi:type="gmfgen:GenStandardPropertyTab" iD="diagram"/>
-    <tabs xsi:type="gmfgen:GenCustomPropertyTab" iD="domain" label="Core">
-      <filter xsi:type="gmfgen:TypeTabFilter">
+    <tabs
+        xsi:type="gmfgen:GenStandardPropertyTab"
+        iD="appearance"/>
+    <tabs
+        xsi:type="gmfgen:GenStandardPropertyTab"
+        iD="diagram"/>
+    <tabs
+        xsi:type="gmfgen:GenCustomPropertyTab"
+        iD="domain"
+        label="Core">
+      <filter
+          xsi:type="gmfgen:TypeTabFilter">
         <types>org.eclipse.gmf.runtime.notation.View</types>
         <types>org.eclipse.gef.EditPart</types>
         <generatedTypes>abstractNavigatorItem</generatedTypes>
       </filter>
     </tabs>
   </propertySheet>
-  <domainGenModel href="CVLMetamodel.genmodel#/"/>
+  <domainGenModel
+      href="CVLMetamodel.genmodel#/"/>
   <expressionProviders>
-    <providers xsi:type="gmfgen:GenJavaExpressionProvider">
-      <expressions xsi:type="gmfgen:GenConstraint" body="JAVA: Check parent is ConfigurableUnit&#xD;&#xA;"/>
-      <expressions xsi:type="gmfgen:GenConstraint" body="JAVA: source is not configurableUnit and target is choice"/>
+    <providers
+        xsi:type="gmfgen:GenJavaExpressionProvider">
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="JAVA: Check parent is VInterface"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="JAVA: Check Root object is VInterface"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="JAVA: Check Root object is VInterface"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="JAVA: Check Root object is VInterface"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="JAVA: Check parent is VInterface"/>
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="JAVA: source is not configurableUnit and target is choice"/>
     </providers>
-    <providers xsi:type="gmfgen:GenExpressionInterpreter">
-      <expressions xsi:type="gmfgen:GenConstraint" body="not self.oclIsTypeOf(ConfigurableUnit)"/>
+    <providers
+        xsi:type="gmfgen:GenExpressionInterpreter">
+      <expressions
+          xsi:type="gmfgen:GenConstraint"
+          body="not self.oclIsTypeOf(VInterface)"/>
     </providers>
   </expressionProviders>
-  <labelParsers extensibleViaService="true">
-    <implementations xsi:type="gmfgen:PredefinedParser" uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet"/>
+  <labelParsers
+      extensibleViaService="true">
+    <implementations
+        xsi:type="gmfgen:PredefinedParser"
+        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet"/>
   </labelParsers>
-  <contextMenus context="//@diagram">
-    <items xsi:type="gmfgen:LoadResourceAction"/>
+  <contextMenus
+      context="//@diagram">
+    <items
+        xsi:type="gmfgen:LoadResourceAction"/>
   </contextMenus>
 </gmfgen:GenEditorGenerator>

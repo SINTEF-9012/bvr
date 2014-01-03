@@ -66,6 +66,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//Choice"/>
+      <domainSpecialization
+          body="JAVA: Check Root is ConfigurableUnit&#xD;&#xA;"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -117,6 +120,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//Variable"/>
+      <domainSpecialization
+          body="JAVA: Check Root is ConfigurableUnit&#xD;&#xA;"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           editorPattern=""
@@ -136,6 +142,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//VClassifier"/>
+      <domainSpecialization
+          body="JAVA: Check Root is ConfigurableUnit&#xD;&#xA;"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -212,6 +221,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//OpaqueConstraint"/>
+      <domainSpecialization
+          body="JAVA: Check Root is ConfigurableUnit&#xD;&#xA;"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -232,6 +244,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//CVSpec"/>
+      <domainSpecialization
+          body="JAVA: Check Root is ConfigurableUnit&#xD;&#xA;"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""

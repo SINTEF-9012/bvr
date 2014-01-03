@@ -111,19 +111,6 @@
       </actualFigure>
       <accessors figure="//@figures.0/@descriptors.7/@actualFigure/@children.2"/>
     </descriptors>
-    <descriptors name="CVSpecFigure">
-      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="CVSpecFigureRectangle">
-        <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="FILL" vertical="true"/>
-        <layout xsi:type="gmfgraph:FlowLayout"/>
-        <foregroundColor xsi:type="gmfgraph:ConstantColor" value="black"/>
-        <backgroundColor xsi:type="gmfgraph:ConstantColor" value="lightGray"/>
-        <border xsi:type="gmfgraph:MarginBorder">
-          <insets left="9"/>
-        </border>
-        <children xsi:type="gmfgraph:Label" name="CVSpecNameFigure" text="&lt;...>"/>
-      </actualFigure>
-      <accessors figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
-    </descriptors>
   </figures>
   <nodes name="Choice" figure="ChoiceFigure"/>
   <nodes name="MultiplicityInterval" figure="MultiplicityIntervalFigure"/>

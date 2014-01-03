@@ -13,7 +13,7 @@
       <domainMetaElement
           href="CVLMetamodel.ecore#//Choice"/>
       <domainSpecialization
-          body="JAVA: Check parent is ConfigurableUnit&#xD;&#xA;"
+          body="JAVA: Check parent is VInterface"
           language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
@@ -66,6 +66,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//Choice"/>
+      <domainSpecialization
+          body="JAVA: Check Root object is VInterface"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
@@ -117,6 +120,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//Variable"/>
+      <domainSpecialization
+          body="JAVA: Check Root object is VInterface"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           editorPattern=""
@@ -136,6 +142,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//VClassifier"/>
+      <domainSpecialization
+          body="JAVA: Check Root object is VInterface"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -212,6 +221,9 @@
     <ownedChild>
       <domainMetaElement
           href="CVLMetamodel.ecore#//OpaqueConstraint"/>
+      <domainSpecialization
+          body="JAVA: Check parent is VInterface"
+          language="java"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
@@ -237,7 +249,7 @@
         href="CVLMetamodel.ecore#//VSpec/child"/>
     <creationConstraints>
       <sourceEnd
-          body="not self.oclIsTypeOf(ConfigurableUnit)"/>
+          body="not self.oclIsTypeOf(VInterface)"/>
       <targetEnd
           body="JAVA: source is not configurableUnit and target is choice"
           language="java"/>
