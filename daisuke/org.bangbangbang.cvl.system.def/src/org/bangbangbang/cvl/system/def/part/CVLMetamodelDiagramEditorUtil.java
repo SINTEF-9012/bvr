@@ -267,6 +267,10 @@ public class CVLMetamodelDiagramEditorUtil {
 		VInterface vi = CvlFactory.eINSTANCE.createVInterface();
 		vp.getPackageElement().add(vi);
 
+		Choice c = CvlFactory.eINSTANCE.createChoice();
+		c.setName("[Rename] Root Choice");
+		vi.getMember().add(c);
+		
 		resource.getContents().add(vp);
 	}
 

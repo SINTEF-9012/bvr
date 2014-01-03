@@ -1,6 +1,8 @@
 package org.bangbangbang.cvl.system.def.part;
 
+import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
+import org.bangbangbang.cvl.CvlFactory;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.VPackage;
@@ -18,6 +20,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -25,7 +28,6 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
-import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -164,6 +166,7 @@ public class CVLSystemDefEditor extends DiagramDocumentEditor implements
 
 	/**
 	 * Change: force setting to Interface name from root choice name
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -204,6 +207,18 @@ public class CVLSystemDefEditor extends DiagramDocumentEditor implements
 												CvlPackage.Literals.NAMED_ELEMENT__NAME,
 												cu.getOwnedVSpec().get(0)
 														.getName()));
+						if (vi.getMember().size() == 0) {
+							Choice choice = CvlFactory.eINSTANCE.createChoice();
+							choice.setName("[Rename] Root Choice");
+							this.getEditingDomain()
+									.getCommandStack()
+									.execute(
+											AddCommand.create(
+													this.getEditingDomain(),
+													vi,
+													CvlPackage.Literals.VINTERFACE__MEMBER,
+													choice));
+						}
 					}
 				}
 			}
