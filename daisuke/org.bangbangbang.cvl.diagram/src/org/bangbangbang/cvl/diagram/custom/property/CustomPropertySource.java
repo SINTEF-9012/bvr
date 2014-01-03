@@ -2,7 +2,8 @@ package org.bangbangbang.cvl.diagram.custom.property;
 
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
-import org.bangbangbang.cvl.OpaqueConstraint;
+import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.VPackageable;
 import org.bangbangbang.cvl.diagram.custom.ocl.OCLCustomUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -28,7 +29,8 @@ public class CustomPropertySource extends PropertySource {
 		if (pkg.getOpaqueConstraint_Constraint().equals(feature)) {
 			// Set Keywords from names in Model instance
 
-			OCLCustomUtil.getInstance().setKeywordInModel(getRoot((EObject) this.object));
+			OCLCustomUtil.getInstance().setKeywordInModel(
+					getRoot((EObject) this.object));
 
 			return new ConstraintPropertyDescriptor(object,
 					itemPropertyDescriptor);
@@ -37,11 +39,11 @@ public class CustomPropertySource extends PropertySource {
 		}
 	}
 
-	private ConfigurableUnit getRoot(EObject node) {
+	private VPackageable getRoot(EObject node) {
 		EObject root = node;
-		while (!(root instanceof ConfigurableUnit)) {
+		while (!(root instanceof ConfigurableUnit || root instanceof VInterface)) {
 			root = root.eContainer();
 		}
-		return (ConfigurableUnit) root;
+		return (VPackageable) root;
 	}
 }

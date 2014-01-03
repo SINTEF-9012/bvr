@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.bangbangbang.cvl.Choice;
-import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
 import org.bangbangbang.cvl.OpaqueConstraint;
 import org.bangbangbang.cvl.VClassifier;
+import org.bangbangbang.cvl.VPackageable;
 import org.bangbangbang.cvl.VSpec;
 import org.bangbangbang.cvl.Variable;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -180,7 +180,7 @@ public class OCLCustomUtil {
 
 	}
 
-	public void setKeywordInModel(ConfigurableUnit root) {
+	public void setKeywordInModel(VPackageable root) {
 		EObject node;
 		keywordsInModel.clear();
 		for (TreeIterator<EObject> iterator = root.eAllContents(); iterator
