@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.bangbangbang.cvl.system.vspec" modelID="CVLSystemVSpec" diagramFileExtension="cvl_system_vspec_diagram" pluginDirectory="/org.bangbangbang.cvl.system.vspec/src">
-  <diagram visualID="1000" editPartClassName="ConfigurableUnitEditPart" itemSemanticEditPolicyClassName="ConfigurableUnitItemSemanticEditPolicy" canonicalEditPolicyClassName="ConfigurableUnitCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low">
+  <diagram visualID="1000" editPartClassName="VInterfaceUnitEditPart" itemSemanticEditPolicyClassName="VInterfaceItemSemanticEditPolicy" canonicalEditPolicyClassName="VInterfaceCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low">
     <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="ConfigurableUnitEditHelper"/>
     <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
