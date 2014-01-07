@@ -1,13 +1,14 @@
 package org.bangbangbang.cvl.system.def.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bangbangbang.cvl.system.def.custom.collapse.EditPartViewElementUtil;
 import org.bangbangbang.cvl.system.def.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.VSpecChildCreateCommand;
 import org.bangbangbang.cvl.system.def.edit.commands.VSpecChildReorientCommand;
-import org.bangbangbang.cvl.system.def.edit.parts.CVSpecEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.system.def.edit.parts.VSpecChildEditPart;
 import org.bangbangbang.cvl.system.def.part.CVLMetamodelVisualIDRegistry;
@@ -23,7 +24,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -108,19 +109,14 @@ public class CVSpecItemSemanticEditPolicy extends
 					}
 				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				// Remove target node
-				List<EditPart> vspecChilds = ((CVSpecEditPart) getHost())
-						.getSourceConnections();
+				// Remove children node
+				List<EditPart> vspecChilds = new ArrayList<EditPart>();
+				EditPartViewElementUtil.getSemanticChildrenEditpart(
+						(GraphicalEditPart) getHost(), vspecChilds);
 				for (EditPart ep : vspecChilds) {
-					if (ep instanceof VSpecChildEditPart) {
-						cmd.add(new CommandProxy(
-								((VSpecChildEditPart) ep)
-										.getTarget()
-										.getCommand(
-												new EditCommandRequestWrapper(
-														new DestroyElementRequest(
-																false)))));
-					}
+					cmd.add(new CommandProxy(EditPartViewElementUtil
+							.getDeleteCommandAsChild(getEditingDomain(),
+									(View) (ep.getModel()))));
 				}
 				continue;
 			}
