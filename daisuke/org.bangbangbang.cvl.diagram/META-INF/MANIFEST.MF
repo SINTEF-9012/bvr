@@ -7,8 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.bangbangbang.cvl.diagram.part.CVLMetamodelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.bangbangbang.cvl.diagram.custom.collapse,
- org.bangbangbang.cvl.diagram.custom.property,
+Export-Package: org.bangbangbang.cvl.diagram.custom.property,
  org.bangbangbang.cvl.diagram.edit.parts,
  org.bangbangbang.cvl.diagram.part,
  org.bangbangbang.cvl.diagram.providers
