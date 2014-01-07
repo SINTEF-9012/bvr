@@ -1,5 +1,6 @@
 package org.bangbangbang.cvl.diagram.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import org.bangbangbang.cvl.diagram.edit.commands.VSpecChildCreateCommand;
 import org.bangbangbang.cvl.diagram.edit.parts.ConstraintContextEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval2EditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.MultiplicityInterval4EditPart;
-import org.bangbangbang.cvl.diagram.edit.parts.VClassifierEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VClassifierMultiplicityIntervalCompartment2EditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VClassifierMultiplicityIntervalCompartmentEditPart;
 import org.bangbangbang.cvl.diagram.edit.parts.VSpecChildEditPart;
@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -63,11 +62,8 @@ public class VClassifierItemSemanticEditPolicy extends
 
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
-		
-//		CompoundCommand expandCommands = new CompoundCommand();
-//		CollapseNodeHandler.expandChildren(getEditingDomain(), expandCommands, getHost());
-//		cmd.add( (IUndoableOperation) getGEFWrapper((ICommand) expandCommands));
-		
+
+
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
@@ -123,21 +119,14 @@ public class VClassifierItemSemanticEditPolicy extends
 				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 
-				// Remove target node
-				@SuppressWarnings("unchecked")
-				List<EditPart> vspecChilds = ((VClassifierEditPart) getHost())
-						.getSourceConnections();
+				// Remove children node
+				List<EditPart> vspecChilds = new ArrayList<EditPart>();
+				EditPartViewElementUtil.getSemanticChildrenEditpart(
+						(GraphicalEditPart) getHost(), vspecChilds);
 				for (EditPart ep : vspecChilds) {
-					if (ep instanceof VSpecChildEditPart
-							&& ((VSpecChildEditPart) ep).getTarget() != null) {
-						cmd.add(new CommandProxy(
-								((VSpecChildEditPart) ep)
-										.getTarget()
-										.getCommand(
-												new EditCommandRequestWrapper(
-														new DestroyElementRequest(
-																false)))));
-					}
+					cmd.add(new CommandProxy(EditPartViewElementUtil
+							.getDeleteCommandAsChild(getEditingDomain(),
+									(View) (ep.getModel()))));
 				}
 				continue;
 			}
@@ -176,7 +165,6 @@ public class VClassifierItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), v));
 			}
 		}
-
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
