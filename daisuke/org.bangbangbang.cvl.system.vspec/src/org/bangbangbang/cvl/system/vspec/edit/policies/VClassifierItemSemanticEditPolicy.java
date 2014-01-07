@@ -1,7 +1,10 @@
 package org.bangbangbang.cvl.system.vspec.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import org.bangbangbang.cvl.system.vspec.custom.collapse.EditPartViewElementUtil;
 import org.bangbangbang.cvl.system.vspec.edit.commands.ConstraintContextCreateCommand;
 import org.bangbangbang.cvl.system.vspec.edit.commands.ConstraintContextReorientCommand;
 import org.bangbangbang.cvl.system.vspec.edit.commands.VSpecChildCreateCommand;
@@ -20,10 +23,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -109,12 +115,22 @@ public class VClassifierItemSemanticEditPolicy extends
 					}
 				});
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				// Remove children node
+				List<EditPart> vspecChilds = new ArrayList<EditPart>();
+				EditPartViewElementUtil.getSemanticChildrenEditpart(
+						(GraphicalEditPart) getHost(), vspecChilds);
+				for (EditPart ep : vspecChilds) {
+					cmd.add(new CommandProxy(EditPartViewElementUtil
+							.getDeleteCommandAsChild(getEditingDomain(),
+									(View) (ep.getModel()))));
+				}
 				continue;
 			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
@@ -141,9 +157,13 @@ public class VClassifierItemSemanticEditPolicy extends
 					case MultiplicityInterval4EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+										cnode.getElement(), false))); // directlyOwned:
+																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}
@@ -156,9 +176,13 @@ public class VClassifierItemSemanticEditPolicy extends
 					case MultiplicityInterval3EditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+										cnode.getElement(), false))); // directlyOwned:
+																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}
@@ -211,8 +235,8 @@ public class VClassifierItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
