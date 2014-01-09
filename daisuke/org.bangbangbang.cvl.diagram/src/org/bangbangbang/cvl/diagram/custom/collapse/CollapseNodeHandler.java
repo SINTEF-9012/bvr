@@ -98,16 +98,20 @@ public class CollapseNodeHandler extends AbstractHandler {
 					0xffffff);
 			cmds.append(cmd);
 		} else {
-			// Collapse
-			collapseChildren(editingDomain, cmds,
-					((IStructuredSelection) selection).getFirstElement());
-			FillStyle style = (FillStyle) ((GraphicalEditPart) ((IStructuredSelection) selection)
-					.getFirstElement()).getNotationView().getStyle(
-					NotationPackageImpl.eINSTANCE.getFillStyle());
-			SetCommand cmd = new SetCommand(editingDomain, style,
-					NotationPackageImpl.eINSTANCE.getFillStyle_FillColor(),
-					0xdddddd);
-			cmds.append(cmd);
+			Object element = ((IStructuredSelection) selection)
+					.getFirstElement();
+			if (((GraphicalEditPart) element).getSourceConnections().size() != 0) {
+
+				// Collapse
+				collapseChildren(editingDomain, cmds, element);
+				FillStyle style = (FillStyle) ((GraphicalEditPart) element)
+						.getNotationView().getStyle(
+								NotationPackageImpl.eINSTANCE.getFillStyle());
+				SetCommand cmd = new SetCommand(editingDomain, style,
+						NotationPackageImpl.eINSTANCE.getFillStyle_FillColor(),
+						0xdddddd);
+				cmds.append(cmd);
+			}
 		}
 
 		editingDomain.getCommandStack().execute(cmds);
