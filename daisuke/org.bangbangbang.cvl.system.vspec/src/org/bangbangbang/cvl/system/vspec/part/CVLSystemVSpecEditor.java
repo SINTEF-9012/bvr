@@ -1,5 +1,7 @@
 package org.bangbangbang.cvl.system.vspec.part;
 
+import org.bangbangbang.cvl.VInterface;
+import org.bangbangbang.cvl.system.vspec.custom.relation.RelationHolder;
 import org.bangbangbang.cvl.system.vspec.navigator.CVLMetamodelNavigatorItem;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -11,6 +13,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -287,6 +292,66 @@ public class CVLSystemVSpecEditor extends DiagramDocumentEditor implements
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
+	}
+
+	/**
+	 * @generatedÅ@NOT
+	 */
+	@Override
+	public void doSetInput(IEditorInput input, boolean releaseEditorContents)
+			throws CoreException {
+
+		super.doSetInput(input, releaseEditorContents);
+
+		IFile relationFile = null;
+		// Check existence of cvlsystemrelation file
+		if (input instanceof FileEditorInput) {
+			FileEditorInput fei = (FileEditorInput) input;
+			IPath p = fei.getFile().getFullPath();
+			p = p.removeFileExtension();
+			p = p.addFileExtension("cvlsystemrelation");
+			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
+					.getRoot();
+			relationFile = workspaceRoot.getFile(p);
+			if (relationFile.exists()) {
+				RelationHolder.load(p);
+			} else {
+				RelationHolder.createEmpty(getVInterface());
+			}
+		}
+	}
+
+	private VInterface getVInterface() {
+		Resource diagramResource = this.getDiagram().eResource();
+
+		for (TreeIterator<EObject> ite = diagramResource.getAllContents(); ite
+				.hasNext();) {
+			EObject obj = ite.next();
+			if (obj instanceof Diagram
+					&& ((Diagram) obj).getElement() instanceof VInterface) {
+				return (VInterface) ((Diagram) obj).getElement();
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		super.doSave(progressMonitor);
+		IEditorInput input = this.getEditorInput();
+		// Check existence of cvlsystemrelation file
+		if (input instanceof FileEditorInput) {
+			FileEditorInput fei = (FileEditorInput) input;
+			IPath p = fei.getFile().getFullPath();
+			p = p.removeFileExtension();
+			p = p.addFileExtension("cvlsystemrelation");
+
+			RelationHolder.save(p);
+		}
 	}
 
 }
