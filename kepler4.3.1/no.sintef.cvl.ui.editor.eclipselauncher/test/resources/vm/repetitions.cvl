@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="Office">
+  <ownedVSpec xsi:type="cvl:Choice" name="Equipment">
+    <child xsi:type="cvl:VClassifier" name="PrinterPool">
+      <child xsi:type="cvl:Choice" name="Extras">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="ExtraItem0"/>
+        <child xsi:type="cvl:Choice" name="ExtraItem1"/>
+        <child xsi:type="cvl:Choice" name="ExtraItem2"/>
+      </child>
+      <instanceMultiplicity upper="-1" lower="1"/>
+    </child>
+  </ownedVSpec>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="ExtraItem">
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_sSbiIA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_lJOq0A8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_mBGG8A8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_RBncUA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_sScJMQ8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_sScJMA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" name="((Class) Extra).&lt;Property>ownedAttribute" propertyName="ownedAttribute" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" name="((Package) Base).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.2 //@ownedVariationPoint.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.3"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" name="((Property) extra).&lt;Type>type[1]={Extra}" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.1" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.4"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.6" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.6"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-ExtraItem-ExtraItem0-1" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-ExtraItem-ExtraItem1-2" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.1">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-ExtraItem-ExtraItem2-3" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.2" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.2">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.2"/>
+  </ownedVariationPoint>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:VInstance" name="pp1" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0" decision="true">
+        <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0" decision="true"/>
+        <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1" decision="true"/>
+        <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.2" decision="true"/>
+      </child>
+    </child>
+  </ownedVSpecResolution>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="ExtraItem0">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Class) ExtraLib).&lt;Property>ownedAttribute[1]={extraItem0}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[2]={extraLib_extraItem0_1,ExtraItem0}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" name="((Property) extraLib).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[1]={extraLib_extraItem0_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[1]={ExtraItem0}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_5pS1kA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_y9ivQA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_5pTcoA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_R8hlYA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_5pTcoQ8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_07Dk0A8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="ExtraItem1">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[2]={extraLib_extraItem1_1,ExtraItem1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0 //@ownedVariabletype.1/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" name="((Property) extraLib).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Class) ExtraLib).&lt;Property>ownedAttribute[1]={extraItem1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[1]={extraLib_extraItem1_1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[1]={ExtraItem1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_SH4EUA8tEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_R8hlYA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_y9ivQA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_SH4EUQ8tEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_SH3dQA8tEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_3aKrkA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="ExtraItem2">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Class) ExtraLib).&lt;Property>ownedAttribute[1]={extraItem2}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[2]={ExtraItem2,extraLib_extraItem2_1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.2 //@ownedVariabletype.2/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" name="((Property) extraLib).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[1]={ExtraItem2}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Library).&lt;PackageableElement>packagedElement[1]={extraLib_extraItem2_1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_T-2NAA8tEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_y9ivQA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_4J1N8A8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_R8hlYA8sEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_T-20EA8tEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitions.uml#_T-20EQ8tEeO2N_7lMpwG7g"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+</cvl:ConfigurableUnit>

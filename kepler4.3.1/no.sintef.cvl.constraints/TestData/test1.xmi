@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cvl="http:///cvl.ecore"
+    xsi:schemaLocation="http:///cvl.ecore CVLMetamodel.ecore">
+  <ownedVSpec
+      xsi:type="cvl:Choice"
+      name="copier"/>
+  <ownedVSpec
+      xsi:type="cvl:VClassifier"
+      name="PrinterPool">
+    <child xsi:type="cvl:Choice"
+        name="printer">
+      <child
+          xsi:type="cvl:Variable"
+          name="Speed"/>
+      <child
+          xsi:type="cvl:Variable"
+          name="minSpeed"/>
+      <child
+          xsi:type="cvl:Choice"
+          name="HighSpeed"/>
+      <child
+          xsi:type="cvl:Choice"
+          name="EmergencyPower">
+        <child
+            xsi:type="cvl:Variable"
+            name="threshold"
+            resolutionTime=""
+            type="//@ownedVariabletype.0"/>
+      </child>
+    </child>
+    <child xsi:type="cvl:Choice"
+        name="fax"/>
+    <child xsi:type="cvl:Choice"
+        name="scan"/>
+  </ownedVSpec>
+  <ownedVariabletype
+      name="Int"/>
+</cvl:ConfigurableUnit>

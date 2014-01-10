@@ -1,0 +1,10 @@
+Feature\Product;0;1;2;
+parallel_parking;-;X;-;
+Automated_Driving_Controller;-;X;X;
+Car;X;X;X;
+enhanced_avoidance;-;-;X;
+Sensors;X;X;X;
+Standard_Avoidance;-;X;-;
+Collision_Avoidance_Braking;-;X;X;
+lateral_range_finder;-;X;-;
+forward_range_finder;-;X;X;

@@ -1,0 +1,44 @@
+p cnf 21 22
+2 0
+-5 9 0
+-9 5 0
+-3 9 0
+-9 3 0
+4 0
+6 0
+5 0
+15 -7 0
+8 0
+10 0
+-17 5 0
+-5 17 0
+12 0
+13 0
+-1 9 0
+-9 1 0
+16 0
+20 -21 0
+19 0
+18 0
+-11 14 0
+c 2->BOpt
+c 1->VncViewer
+c 3->Base
+c 4->Opt
+c 6->Option
+c 5->Type
+c 7->OptionsButtonFeat
+c 8->TightVNC
+c 9->VncViewerMain
+c 10->Options
+c 11->RecordButtonFeat
+c 12->Menu
+c 13->Button
+c 14->RecordingFeat
+c 15->OptionsFeat
+c 16->OpSubFeat
+c 17->VncViewerType
+c 19->disp
+c 18->MOpt
+c 20->ClipboardFeat
+c 21->ClipboardButtonFeat

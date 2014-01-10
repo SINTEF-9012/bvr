@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http://org.variabilitymodeling.cvl" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_kiyrYGl0EeKcJOdUfTHW_g" type="Cvl_visitor" name="SafetyDrive.cvl_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_kuLcAGl0EeKcJOdUfTHW_g" type="2004">
+    <children xmi:type="notation:BasicCompartment" xmi:id="_kuMDEGl0EeKcJOdUfTHW_g" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_kuMDEWl0EeKcJOdUfTHW_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_kuMDEml0EeKcJOdUfTHW_g"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_kuLcAWl0EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_kuLcAml0EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xmi:type="cvl:CompositeVariability" href="SafetyDrive.cvl#//@variabilitySpecification"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kuLcA2l0EeKcJOdUfTHW_g"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_nRAlIGl0EeKcJOdUfTHW_g" type="2009">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRAlJGl0EeKcJOdUfTHW_g" type="5008"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRAlJWl0EeKcJOdUfTHW_g" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRAlJml0EeKcJOdUfTHW_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRAlJ2l0EeKcJOdUfTHW_g"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_nRAlIWl0EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_nRAlIml0EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xmi:type="cvl:CompositeVariability" href="SafetyDrive.cvl#//@variabilitySpecification/@variabilitySpecification.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRAlI2l0EeKcJOdUfTHW_g" x="288" y="12"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_pvA4oGl0EeKcJOdUfTHW_g" type="2009">
+    <children xmi:type="notation:DecorationNode" xmi:id="_pvA4pGl0EeKcJOdUfTHW_g" type="5008"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_pvA4pWl0EeKcJOdUfTHW_g" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_pvA4pml0EeKcJOdUfTHW_g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_pvA4p2l0EeKcJOdUfTHW_g"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_pvA4oWl0EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_pvA4oml0EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xmi:type="cvl:CompositeVariability" href="SafetyDrive.cvl#//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pvA4o2l0EeKcJOdUfTHW_g" x="288" y="144"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_84wpUGl3EeKcJOdUfTHW_g" type="2005">
+    <children xmi:type="notation:DecorationNode" xmi:id="_84wpVGl3EeKcJOdUfTHW_g" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_84wpUWl3EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_84wpUml3EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xmi:type="cvl:FragmentSubstitution" href="SafetyDrive.cvl#//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.4"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_84wpU2l3EeKcJOdUfTHW_g" x="432" y="264"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_L4h0QGl4EeKcJOdUfTHW_g" type="2005">
+    <children xmi:type="notation:DecorationNode" xmi:id="_L4h0RGl4EeKcJOdUfTHW_g" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_L4h0QWl4EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_L4h0Qml4EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xmi:type="cvl:FragmentSubstitution" href="SafetyDrive.cvl#//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.5"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L4h0Q2l4EeKcJOdUfTHW_g" x="180" y="264"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_kiyrYWl0EeKcJOdUfTHW_g"/>
+  <element xmi:type="cvl:CVLModel" href="SafetyDrive.cvl#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_sZXmEGl0EeKcJOdUfTHW_g" type="4002" source="_nRAlIGl0EeKcJOdUfTHW_g" target="_pvA4oGl0EeKcJOdUfTHW_g">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_sZXmEWl0EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_sZXmEml0EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sZXmE2l0EeKcJOdUfTHW_g" points="[-4, 14, 17, -82]$[-19, 81, 2, -15]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sZzD4Gl0EeKcJOdUfTHW_g" id="(0.35,0.8666666666666667)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sZzq8Gl0EeKcJOdUfTHW_g" id="(0.5583333333333333,0.14285714285714285)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_F9pKMGl4EeKcJOdUfTHW_g" type="4002" source="_pvA4oGl0EeKcJOdUfTHW_g" target="_84wpUGl3EeKcJOdUfTHW_g">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_F9pKMWl4EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_F9pKMml4EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_F9pKM2l4EeKcJOdUfTHW_g" points="[18, 12, -84, -51]$[98, 83, -4, 20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_F9qYUGl4EeKcJOdUfTHW_g" id="(0.85,0.7333333333333333)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Q2vasGl4EeKcJOdUfTHW_g" type="4002" source="_pvA4oGl0EeKcJOdUfTHW_g" target="_L4h0QGl4EeKcJOdUfTHW_g">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Q2vasWl4EeKcJOdUfTHW_g"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Q2vasml4EeKcJOdUfTHW_g" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Q2vas2l4EeKcJOdUfTHW_g" points="[-10, 14, 15, -52]$[-85, 57, -60, -9]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q2wBwGl4EeKcJOdUfTHW_g" id="(0.13333333333333333,0.8666666666666667)"/>
+  </edges>
+</notation:Diagram>
