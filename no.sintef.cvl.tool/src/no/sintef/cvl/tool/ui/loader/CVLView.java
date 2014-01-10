@@ -346,11 +346,11 @@ public class CVLView {
 		JComponent nextParent = null;
 		
 		if(v instanceof VClassifier){
-			JComponent c = new AddVClassifier().init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+			JComponent c = new AddVClassifier(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 			vspecvmMap.put(c, v);
 			nextParent = c;
 		}else if(v instanceof Choice){
-			JComponent c = new AddChoice().init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+			JComponent c = new AddChoice(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 			vspecvmMap.put(c, v);
 			nextParent = c;
 		}
@@ -377,7 +377,8 @@ public class CVLView {
 		}
 		
 		for(VSpec vs : v.getChild()){
-			loadCVLVSpecView(vs, model, nextParent, cu);
+			if(!minimized.contains(v))
+				loadCVLVSpecView(vs, model, nextParent, cu);
 		}
 	}
 	
@@ -532,5 +533,15 @@ public class CVLView {
 			}
 		}
 		
+	}
+	
+	List<VSpec> minimized = new ArrayList<VSpec>();
+
+	public void setMinimized(VSpec v) {
+		minimized.add(v);
+	}
+	
+	public void setMaximized(VSpec v) {
+		minimized.remove(v);
 	}
 }

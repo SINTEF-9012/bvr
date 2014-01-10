@@ -19,6 +19,8 @@ import no.sintef.cvl.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.cvl.tool.ui.command.event.AddConstraintEvent;
 import no.sintef.cvl.tool.ui.command.event.AddVariableEvent;
 import no.sintef.cvl.tool.ui.command.event.CutEvent;
+import no.sintef.cvl.tool.ui.command.event.MaximizeEvent;
+import no.sintef.cvl.tool.ui.command.event.MinimizeEvent;
 import no.sintef.cvl.tool.ui.command.event.PasteChildEvent;
 import no.sintef.cvl.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.cvl.tool.ui.command.event.RemoveChoiceEvent;
@@ -121,5 +123,13 @@ class ClassifierDropdown extends JPopupMenu {
 		JMenu change = new JMenu("change to");
 		change.add(new JMenuItem("classifier"));
 		add(change);
+		
+		// Change to
+		JMenuItem minimize = new JMenuItem("minimize");
+		minimize.addActionListener(new MinimizeEvent(cp, vmMap, nodes, bindings, view));
+		add(minimize);
+		JMenuItem maximize = new JMenuItem("maximize");
+		maximize.addActionListener(new MaximizeEvent(cp, vmMap, nodes, bindings, view));
+		add(maximize);
     }
 }
