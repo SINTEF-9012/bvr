@@ -186,7 +186,8 @@ public class OCLCustomUtil {
 		for (TreeIterator<EObject> iterator = root.eAllContents(); iterator
 				.hasNext();) {
 			node = (EObject) iterator.next();
-			if (node instanceof VSpec && !((VSpec) node).getName().equals("")) {
+			if (node instanceof VSpec && ((VSpec) node).getName() != null
+					&& !((VSpec) node).getName().equals("")) {
 				keywordsInModel.add(((VSpec) node).getName());
 			}
 		}
