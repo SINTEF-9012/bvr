@@ -23,10 +23,7 @@ public class ConstraintPropertyDescriptor extends PropertyDescriptor {
 		return new ExtendedDialogCellEditor(parent, getLabelProvider()) {
 			@Override
 			protected Object openDialogBox(Control cellEditorWindow) {
-				// Here you are free to open a custom dialog that you have
-				// created. In this example, we simply open an
-				// ElementListSelectionDialog
-
+			
 				// Dialog creation
 				ConstraintDialog dialog = new ConstraintDialog(PlatformUI
 						.getWorkbench().getModalDialogShellProvider(),
