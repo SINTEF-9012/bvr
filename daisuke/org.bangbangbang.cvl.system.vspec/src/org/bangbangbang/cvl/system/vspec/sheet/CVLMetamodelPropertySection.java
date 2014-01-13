@@ -1,6 +1,8 @@
 package org.bangbangbang.cvl.system.vspec.sheet;
 
-import org.bangbangbang.cvl.diagram.custom.property.CustomPropertySource;
+import org.bangbangbang.cvl.Choice;
+import org.bangbangbang.cvl.system.vspec.custom.property.CustomChoiceItemProvider;
+import org.bangbangbang.cvl.system.vspec.custom.property.CustomPropertySource;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
@@ -15,11 +17,12 @@ public class CVLMetamodelPropertySection extends DefaultPropertySection
 
 	/**
 	 * Modify/unwrap selection.
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected Object transformSelection(Object selected) {
-		selected = /*super.*/transformSelectionToDomain(selected);
+		selected = /* super. */transformSelectionToDomain(selected);
 		return selected;
 	}
 
@@ -31,8 +34,12 @@ public class CVLMetamodelPropertySection extends DefaultPropertySection
 		AdapterFactory af = getAdapterFactory(object);
 		IItemPropertySource ips = null;
 		if (af != null) {
+			if(object instanceof Choice){
+				ips = new CustomChoiceItemProvider(af);
+			} else{
 			ips = (IItemPropertySource) af.adapt(object,
 					IItemPropertySource.class);
+			}
 		}
 		if (object != null && ips != null) {
 			return new CustomPropertySource(object, ips);
