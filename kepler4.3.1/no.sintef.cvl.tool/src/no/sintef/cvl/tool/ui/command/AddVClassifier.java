@@ -30,7 +30,12 @@ public class AddVClassifier implements Command {
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
+	private boolean minimized;
 	
+	public AddVClassifier(boolean minimized) {
+		this.minimized = minimized;
+	}
+
 	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
@@ -60,7 +65,7 @@ public class AddVClassifier implements Command {
         MultiplicityInterval m = vc.getInstanceMultiplicity();
         int l = m.getLower();
         int u = m.getUpper();
-        c.setNameAndCardinality(vc.getName(), l, u);
+        c.setNameAndCardinality((minimized?"(+) ":"") + vc.getName(), l, u);
         
         for(VSpec vs : vc.getChild()){
         	if(vs instanceof Variable){

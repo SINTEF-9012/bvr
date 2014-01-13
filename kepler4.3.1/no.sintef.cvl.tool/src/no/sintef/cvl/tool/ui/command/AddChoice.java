@@ -31,7 +31,12 @@ public class AddChoice implements Command {
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private CVLView view;
+	private boolean minimized;
 	
+	public AddChoice(boolean minimized) {
+		this.minimized = minimized;
+	}
+
 	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof Choice){
 			this.rootPanel = rootPanel;
@@ -61,7 +66,7 @@ public class AddChoice implements Command {
 
         
         
-        cp.setTitle(c.getName());
+        cp.setTitle((minimized?"(+) ":"") + c.getName());
         
         for(VSpec vs : c.getChild()){
         	if(vs instanceof Variable){
