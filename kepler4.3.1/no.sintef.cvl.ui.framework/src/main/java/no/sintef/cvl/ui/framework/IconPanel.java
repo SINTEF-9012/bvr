@@ -34,6 +34,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -54,7 +55,7 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
     public IconPanel(String imgPath) {
         setLayout(new BorderLayout());
         try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(imgPath));
+            image = ImageIO.read(new File(imgPath));
         } catch (IOException ex) {
             System.out.println(ex);
         }

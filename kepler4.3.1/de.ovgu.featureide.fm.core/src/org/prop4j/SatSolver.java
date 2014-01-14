@@ -12,7 +12,6 @@ import org.sat4j.specs.ISolver;
 import org.sat4j.specs.IVecInt;
 import org.sat4j.specs.IteratorInt;
 import org.sat4j.specs.TimeoutException;
-import org.sat4j.tools.ConstrGroup;
 import org.sat4j.tools.ModelIterator;
 import org.sat4j.tools.RemiUtils;
 import org.sat4j.tools.SolutionCounter;
@@ -163,7 +162,7 @@ public class SatSolver {
 		if (!(node instanceof And))
 			node = new And(node);
 
-		ConstrGroup group = new ConstrGroup();
+		org.sat4j.core.ConstrGroup group = new org.sat4j.core.ConstrGroup();
 		IVecInt unit = new VecInt();
 		try {
 			for (Node child : node.getChildren()) {

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Framework
+Bundle-SymbolicName: no.sintef.cvl.ui.framework
+Bundle-Version: 1.0.0.qualifier
+Export-Package: no.sintef.cvl.ui.framework,
+ no.sintef.cvl.ui.framework.data,
+ no.sintef.cvl.ui.framework.elements,
+ no.sintef.cvl.ui.framework.listener
+Bundle-ClassPath: lib/org.kevoree.extra.macwidgets-0.9.6.jar,
+ .,
+ lib/swingx-core-1.6.2-2.jar,
+ lib/org.abego.treelayout.core-1.0.1.jar
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.core.internal.resources

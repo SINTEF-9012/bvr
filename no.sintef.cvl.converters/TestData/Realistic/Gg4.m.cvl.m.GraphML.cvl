@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="GPL">
+  <ownedVSpec xsi:type="cvl:Choice" name="GPL" isImpliedByParent="true">
+    <groupMultiplicity upper="1" lower="1"/>
+    <child xsi:type="cvl:Choice" name="MainGpl">
+      <child xsi:type="cvl:Choice" name="TestProg" isImpliedByParent="true"/>
+      <child xsi:type="cvl:Choice" name="Alg" isImpliedByParent="true">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Number"/>
+        <child xsi:type="cvl:Choice" name="Connected"/>
+        <child xsi:type="cvl:Choice" name="StrongC">
+          <child xsi:type="cvl:Choice" name="Transpose" isImpliedByParent="true"/>
+          <child xsi:type="cvl:Choice" name="StronglyConnected" isImpliedByParent="true"/>
+        </child>
+        <child xsi:type="cvl:Choice" name="Cycle"/>
+        <child xsi:type="cvl:Choice" name="MSTPrim"/>
+        <child xsi:type="cvl:Choice" name="MSTKruskal"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Src">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="BFS"/>
+        <child xsi:type="cvl:Choice" name="DFS"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="HiddenWgt" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="WeightOptions">
+          <child xsi:type="cvl:Choice" name="WeightedWithEdges"/>
+          <child xsi:type="cvl:Choice" name="WeightedWithNeighbors"/>
+          <child xsi:type="cvl:Choice" name="WeightedOnlyVertices"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="Wgt" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Weighted"/>
+        <child xsi:type="cvl:Choice" name="Unweighted"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="HiddenGtp" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="DirectedWithEdges"/>
+        <child xsi:type="cvl:Choice" name="DirectedWithNeighbors"/>
+        <child xsi:type="cvl:Choice" name="DirectedOnlyVertices"/>
+        <child xsi:type="cvl:Choice" name="UndirectedWithEdges"/>
+        <child xsi:type="cvl:Choice" name="UndirectedWithNeighbors"/>
+        <child xsi:type="cvl:Choice" name="UndirectedOnlyVertices"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Gtp" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Directed"/>
+        <child xsi:type="cvl:Choice" name="Undirected"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Implementation" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="OnlyVertices"/>
+        <child xsi:type="cvl:Choice" name="WithNeighbors"/>
+        <child xsi:type="cvl:Choice" name="WithEdges"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Base" isImpliedByParent="true"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Number implies Gtp and Src"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Connected implies Undirected and Src"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="StrongC implies Directed and DFS"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Cycle implies Gtp and DFS"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="MSTKruskal or MSTPrim implies Undirected and Weighted"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="MSTKruskal or MSTPrim implies not (MSTKruskal and MSTPrim)"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="OnlyVertices and Weighted implies WeightedOnlyVertices"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="WithNeighbors and Weighted implies WeightedWithNeighbors"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="WithEdges and Weighted implies WeightedWithEdges"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="OnlyVertices and Directed implies DirectedOnlyVertices"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="WithNeighbors and Directed implies DirectedWithNeighbors"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="WithEdges and Directed implies DirectedWithEdges"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="OnlyVertices and Undirected implies UndirectedOnlyVertices"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="WithNeighbors and Undirected implies UndirectedWithNeighbors"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="WithEdges and Undirected implies UndirectedWithEdges"/>
+</cvl:ConfigurableUnit>

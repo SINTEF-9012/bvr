@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="Car">
+  <ownedVSpec xsi:type="cvl:Choice" name="Car" isImpliedByParent="true">
+    <child xsi:type="cvl:Choice" name="AutomatedDrivingController">
+      <child xsi:type="cvl:Choice" name="CollisionAvoidanceBraking" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="StandardAvoidance"/>
+        <child xsi:type="cvl:Choice" name="EnhancedAvoidance"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="ParallelParking"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Sensors" isImpliedByParent="true">
+      <child xsi:type="cvl:Choice" name="LateralRangeFinder"/>
+      <child xsi:type="cvl:Choice" name="ForwardRangeFinder"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not EnhancedAvoidance or ForwardRangeFinder"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not ParallelParking or LateralRangeFinder"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Car"/>
+</cvl:ConfigurableUnit>

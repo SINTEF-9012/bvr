@@ -8,13 +8,15 @@ import java.util.List;
 
 import javax.swing.JTabbedPane;
 
-import no.sintef.cvl.ui.loader.CVLModel;
-import no.sintef.cvl.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.CVLModel;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -42,21 +44,6 @@ public class CVLModelUIEditor extends EditorPart implements IResourceChangeListe
 		
 	}
 
-	
-	public static CVLModel load(File file) {
-		org.eclipse.emf.ecore.resource.ResourceSet rs = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
-		 org.eclipse.emf.common.util.URI xmiuri = org.eclipse.emf.common.util.URI.createFileURI(file.getAbsolutePath());
-		org.eclipse.emf.ecore.resource.Resource model = rs.createResource(xmiuri);
-		try {
-			model.load(null);
-			return (CVLModel) model.getContents().get(0);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	@Override
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
@@ -71,13 +58,14 @@ public class CVLModelUIEditor extends EditorPart implements IResourceChangeListe
 				if(inEditor!= null){
 					try {
 			            System.out.println("init=" + inEditor.getFile().getLocation().toString());
-			        	CVLModel m = load(new File(inEditor.getFile().getLocation().toString()));
+			        	CVLModel m = new CVLModel(new File(inEditor.getFile().getLocation().toString()));
 			        	if (m != null) {
 			        		models.add(m);
 			        		views.add(new CVLView(m, pane));
 			        	}
 					} catch(Exception e){
-						System.err.println("Cannot open file"+e.getMessage());						
+						e.printStackTrace();
+						System.err.println("Cannot open file" + e + " " + e.getMessage());						
 					}
 		        }
 			}

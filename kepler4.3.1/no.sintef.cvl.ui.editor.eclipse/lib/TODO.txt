@@ -1,1 +1,0 @@
-Instead of manageing all these libs by hand, we should be able to generate a big jar out of no.sintef.cvl.ui.loader with all the dependencies, using Maven.

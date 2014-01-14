@@ -1,0 +1,44 @@
+[1mdiff --git a/no.sintef.cvl.ui.framework/.classpath b/no.sintef.cvl.ui.framework/.classpath[m
+[1mindex ea2de12..fdc2574 100644[m
+[1m--- a/no.sintef.cvl.ui.framework/.classpath[m
+[1m+++ b/no.sintef.cvl.ui.framework/.classpath[m
+[36m@@ -28,6 +28,5 @@[m
+ 		</attributes>[m
+ 	</classpathentry>[m
+ 	<classpathentry kind="src" path="/no.sintef.cvl.model"/>[m
+[31m-	<classpathentry kind="lib" path="/no.sintef.cvl.ui.loader/lib/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>[m
+ 	<classpathentry kind="output" path="target/classes"/>[m
+ </classpath>[m
+[1mdiff --git a/no.sintef.cvl.ui.loader/.classpath b/no.sintef.cvl.ui.loader/.classpath[m
+[1mindex 8ba6f6e..5fe7bb4 100644[m
+[1m--- a/no.sintef.cvl.ui.loader/.classpath[m
+[1m+++ b/no.sintef.cvl.ui.loader/.classpath[m
+[36m@@ -4,7 +4,8 @@[m
+ 	<classpathentry kind="src" path="/no.sintef.cvl.ui.framework"/>[m
+ 	<classpathentry kind="src" path="/no.sintef.ict.splcatool"/>[m
+ 	<classpathentry combineaccessrules="false" kind="src" path="/no.sintef.cvl.model"/>[m
+[31m-	<classpathentry kind="lib" path="lib/org.eclipse.emf.common_2.8.0.v20120911-0500.jar"/>[m
+[32m+[m	[32m<classpathentry combineaccessrules="false" kind="src" path="/de.ovgu.featureide.fm.core"/>[m[41m[m
+[32m+[m	[32m<classpathentry combineaccessrules="false" kind="src" path="/SPLAR"/>[m[41m[m
+ 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">[m
+ 		<attributes>[m
+ 			<attribute name="maven.pomderived" value="true"/>[m
+[36m@@ -15,7 +16,5 @@[m
+ 			<attribute name="maven.pomderived" value="true"/>[m
+ 		</attributes>[m
+ 	</classpathentry>[m
+[31m-	<classpathentry combineaccessrules="false" kind="src" path="/de.ovgu.featureide.fm.core"/>[m
+[31m-	<classpathentry combineaccessrules="false" kind="src" path="/SPLAR"/>[m
+ 	<classpathentry kind="output" path="target/classes"/>[m
+ </classpath>[m
+[1mdiff --git a/no.sintef.ict.splcatool/.classpath b/no.sintef.ict.splcatool/.classpath[m
+[1mindex 400aa76..54422b7 100644[m
+[1m--- a/no.sintef.ict.splcatool/.classpath[m
+[1m+++ b/no.sintef.ict.splcatool/.classpath[m
+[36m@@ -15,5 +15,6 @@[m
+ 	<classpathentry kind="lib" path="lib/apoi/xmlbeans-2.3.0.jar"/>[m
+ 	<classpathentry kind="lib" path="lib/org.eclipse.emf.ecore.xmi_2.8.0.v20120606-0717.jar"/>[m
+ 	<classpathentry kind="lib" path="lib/jgrapht-jdk1.6.jar"/>[m
+[32m+[m	[32m<classpathentry combineaccessrules="false" kind="src" path="/org.variabilitymodeling.cvl1.2"/>[m[41m[m
+ 	<classpathentry kind="output" path="bin"/>[m
+ </classpath>[m

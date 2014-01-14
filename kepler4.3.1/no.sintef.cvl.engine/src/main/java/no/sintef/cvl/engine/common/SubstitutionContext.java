@@ -2,13 +2,13 @@ package no.sintef.cvl.engine.common;
 
 import java.util.HashMap;
 
-
 import no.sintef.cvl.common.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public enum SubstitutionContext {
 	ME;
@@ -20,7 +20,8 @@ public enum SubstitutionContext {
 	
 	SubstitutionContext () {
 		/*Spring initialization START*/
-		context = new ClassPathXmlApplicationContext(new String[] {configLocation});
+		//context = new ClassPathXmlApplicationContext(new String[] {configLocation});
+		context = new FileSystemXmlApplicationContext(new String[] {"C:/Users/mjoha/workspace-CVLTool2/cvl/kepler4.3.1/no.sintef.cvl.ui.editor.eclipselauncher/META-INF/beans.xml"});
 		/*Spring initialization END*/
 		
 		logger = (Logger) this.context.getBean("defaultLogger");

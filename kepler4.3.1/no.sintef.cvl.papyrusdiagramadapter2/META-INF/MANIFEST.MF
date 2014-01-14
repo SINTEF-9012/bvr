@@ -5,8 +5,7 @@ Bundle-SymbolicName: no.sintef.cvl.papyrusdiagramadapter2; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.cvl.papyrusdiagramadapter2.Activator
 Bundle-Vendor: SINTEF
-Require-Bundle: no.sintef.cvl.thirdparty;bundle-version="1.0.0",
- org.eclipse.draw2d;bundle-version="3.9.0",
+Require-Bundle: org.eclipse.draw2d;bundle-version="3.9.0",
  org.eclipse.emf.ecore;bundle-version="2.9.1",
  org.eclipse.gef;bundle-version="3.9.0",
  org.eclipse.gmf;bundle-version="1.7.0",
@@ -200,3 +199,5 @@ Require-Bundle: no.sintef.cvl.thirdparty;bundle-version="1.0.0",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: no.sintef.cvl.papyrusdiagramadapter2.editors
+Import-Package: no.sintef.cvl.thirdparty.editor
+Bundle-ClassPath: .

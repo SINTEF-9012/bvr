@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="FAME_DBMS">
+  <ownedVSpec xsi:type="cvl:Choice" name="FAME_DBMS" isImpliedByParent="true">
+    <child xsi:type="cvl:Choice" name="OS" isImpliedByParent="true">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Nut_OS"/>
+      <child xsi:type="cvl:Choice" name="Win"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Buffer_Manager" isImpliedByParent="true">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Persistent">
+        <child xsi:type="cvl:Choice" name="Memory_Allocation" isImpliedByParent="true">
+          <groupMultiplicity upper="1" lower="1"/>
+          <child xsi:type="cvl:Choice" name="Static"/>
+          <child xsi:type="cvl:Choice" name="Dynamic"/>
+        </child>
+        <child xsi:type="cvl:Choice" name="Page_Replication" isImpliedByParent="true">
+          <groupMultiplicity upper="1" lower="1"/>
+          <child xsi:type="cvl:Choice" name="LRU"/>
+          <child xsi:type="cvl:Choice" name="LFU"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="In_Memory"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Debug_Logging"/>
+    <child xsi:type="cvl:Choice" name="Storage" isImpliedByParent="true">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="API">
+        <child xsi:type="cvl:Choice" name="Get"/>
+        <child xsi:type="cvl:Choice" name="Put"/>
+        <child xsi:type="cvl:Choice" name="Delete"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="BPlus_Tree"/>
+      <child xsi:type="cvl:Choice" name="Unindexed"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="FAME_DBMS"/>
+</cvl:ConfigurableUnit>

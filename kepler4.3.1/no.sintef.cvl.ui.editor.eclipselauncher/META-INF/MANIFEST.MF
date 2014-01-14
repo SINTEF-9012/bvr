@@ -9,16 +9,23 @@ Require-Bundle: org.eclipse.ui,
  no.sintef.cvl.model;bundle-version="1.0.0",
  no.sintef.cvl.model.edit;bundle-version="1.0.0",
  no.sintef.cvl.model.editor;bundle-version="1.0.0",
- no.sintef.cvl.ui.editor.eclipse;bundle-version="1.0.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.junit;bundle-version="4.11.0"
+ org.junit;bundle-version="4.11.0",
+ no.sintef.cvl.tool;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: no.sintef.cvl.tool,
  no.sintef.cvl.ui.editor.eclipselauncher,
  no.sintef.cvl.ui.editor.eclipselauncher.actions
-Import-Package: no.sintef.cvl.papyrusdiagramadapter2.editors,
- no.sintef.cvl.thirdparty.editor,
- no.sintef.cvl.tool
-Bundle-ClassPath: SINTEF-CVLTool2-v0.2a1.jar,
- .
+Import-Package: no.sintef.cvl.engine.common,
+ no.sintef.cvl.papyrusdiagramadapter2.editors,
+ no.sintef.cvl.thirdparty.common,
+ no.sintef.cvl.tool,
+ no.sintef.cvl.tool.chain.impl,
+ no.sintef.cvl.tool.context,
+ no.sintef.cvl.tool.exception,
+ no.sintef.cvl.tool.primitive,
+ no.sintef.cvl.tool.primitive.impl,
+ no.sintef.cvl.tool.strategy.impl,
+ no.sintef.cvl.tool.ui.loader
+Bundle-ClassPath: .

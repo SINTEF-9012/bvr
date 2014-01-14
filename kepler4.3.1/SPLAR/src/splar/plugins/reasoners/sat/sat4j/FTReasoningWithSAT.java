@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import org.sat4j.core.LiteralsUtils;
 import org.sat4j.core.VecInt;
+import org.sat4j.minisat.core.IOrder;
 import org.sat4j.minisat.core.Solver;
 import org.sat4j.specs.ISolver;
 import org.sat4j.specs.IVecInt;
@@ -573,7 +574,7 @@ public class FTReasoningWithSAT extends ReasoningWithSAT {
 			}		
 //				System.out.println("");
 			satOrderObj.setValueOrder(valueOrder);
-			setVariableOrderObject(satOrderObj);
+			setVariableOrderObject((IOrder) satOrderObj);
 		}
 		
 	}

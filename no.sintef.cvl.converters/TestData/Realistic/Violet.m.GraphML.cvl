@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="Violet">
+  <ownedVSpec xsi:type="cvl:Choice" name="Violet" isImpliedByParent="true">
+    <groupMultiplicity upper="1" lower="1"/>
+    <child xsi:type="cvl:Choice" name="VioletDef">
+      <child xsi:type="cvl:Choice" name="Additional">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="CommandLine"/>
+        <child xsi:type="cvl:Choice" name="VersionChecker"/>
+        <child xsi:type="cvl:Choice" name="VioletFilter"/>
+        <child xsi:type="cvl:Choice" name="ImageFilter"/>
+        <child xsi:type="cvl:Choice" name="SetTitle"/>
+        <child xsi:type="cvl:Choice" name="Preferences"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="Help">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="About"/>
+        <child xsi:type="cvl:Choice" name="License"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="HelpMenu"/>
+      <child xsi:type="cvl:Choice" name="Window">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="CloseWindow"/>
+        <child xsi:type="cvl:Choice" name="RestoreWindow"/>
+        <child xsi:type="cvl:Choice" name="MaximizeWindow"/>
+        <child xsi:type="cvl:Choice" name="PreviousWindow"/>
+        <child xsi:type="cvl:Choice" name="NextWindow"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="WindowMenu"/>
+      <child xsi:type="cvl:Choice" name="View">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="LookAndFeel"/>
+        <child xsi:type="cvl:Choice" name="ZoomOut"/>
+        <child xsi:type="cvl:Choice" name="ZoomIn"/>
+        <child xsi:type="cvl:Choice" name="GrowDrawingArea"/>
+        <child xsi:type="cvl:Choice" name="ClipDrawingArea"/>
+        <child xsi:type="cvl:Choice" name="SmallerGrid"/>
+        <child xsi:type="cvl:Choice" name="LargerGrid"/>
+        <child xsi:type="cvl:Choice" name="HideGrid"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="ViewMenu"/>
+      <child xsi:type="cvl:Choice" name="Edit">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="EditProperties"/>
+        <child xsi:type="cvl:Choice" name="DeleteItem"/>
+        <child xsi:type="cvl:Choice" name="SelectNext"/>
+        <child xsi:type="cvl:Choice" name="SelectPrevious"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="EditMenu"/>
+      <child xsi:type="cvl:Choice" name="ClassDiagram">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="ClassNode"/>
+        <child xsi:type="cvl:Choice" name="InterfaceNode"/>
+        <child xsi:type="cvl:Choice" name="PackageNode"/>
+        <child xsi:type="cvl:Choice" name="ClassNoteNode"/>
+        <child xsi:type="cvl:Choice" name="ClassDependencyEdge"/>
+        <child xsi:type="cvl:Choice" name="ClassInheritanceEdge"/>
+        <child xsi:type="cvl:Choice" name="ClassAggregationEdge"/>
+        <child xsi:type="cvl:Choice" name="ClassAssociationEdge"/>
+        <child xsi:type="cvl:Choice" name="ClassCompositionEdge"/>
+        <child xsi:type="cvl:Choice" name="ClassInterfaceEdge"/>
+        <child xsi:type="cvl:Choice" name="ClassNoteEdge"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="ClassD"/>
+      <child xsi:type="cvl:Choice" name="SequenceDiagram">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="SequenceParameterNode"/>
+        <child xsi:type="cvl:Choice" name="SequenceCallNode"/>
+        <child xsi:type="cvl:Choice" name="SequenceNoteNode"/>
+        <child xsi:type="cvl:Choice" name="SequenceCallEdge"/>
+        <child xsi:type="cvl:Choice" name="SequenceReturnEdge"/>
+        <child xsi:type="cvl:Choice" name="SequenceNoteEdge"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="SequenceD"/>
+      <child xsi:type="cvl:Choice" name="StateDiagram">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="StateNode"/>
+        <child xsi:type="cvl:Choice" name="InitialStateNode"/>
+        <child xsi:type="cvl:Choice" name="FinalStateNode"/>
+        <child xsi:type="cvl:Choice" name="StateNoteNode"/>
+        <child xsi:type="cvl:Choice" name="StateTransitionEdge"/>
+        <child xsi:type="cvl:Choice" name="StateNoteEdge"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="StateD"/>
+      <child xsi:type="cvl:Choice" name="ObjectDiagram">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="ObjectNode"/>
+        <child xsi:type="cvl:Choice" name="ObjectFieldNode"/>
+        <child xsi:type="cvl:Choice" name="ObjectNoteNode"/>
+        <child xsi:type="cvl:Choice" name="ObjectReferenceEdge"/>
+        <child xsi:type="cvl:Choice" name="ObjectAssociationEdge"/>
+        <child xsi:type="cvl:Choice" name="ObjectNoteEdge"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="ObjectD"/>
+      <child xsi:type="cvl:Choice" name="UseCaseDiagram">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Actor"/>
+        <child xsi:type="cvl:Choice" name="UseCaseNode"/>
+        <child xsi:type="cvl:Choice" name="UseCaseNoteNode"/>
+        <child xsi:type="cvl:Choice" name="UseCaseAssociationEdge"/>
+        <child xsi:type="cvl:Choice" name="ExtendRelationshipEdge"/>
+        <child xsi:type="cvl:Choice" name="IncludeRelationshipEdge"/>
+        <child xsi:type="cvl:Choice" name="UseCaseGeneralizationEdge"/>
+        <child xsi:type="cvl:Choice" name="UseCaseNoteEdge"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="UseCaseD"/>
+      <child xsi:type="cvl:Choice" name="DiagramSupport"/>
+      <child xsi:type="cvl:Choice" name="File">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Exit"/>
+        <child xsi:type="cvl:Choice" name="Print"/>
+        <child xsi:type="cvl:Choice" name="ExportImage"/>
+        <child xsi:type="cvl:Choice" name="SaveFile"/>
+        <child xsi:type="cvl:Choice" name="SaveAs"/>
+        <child xsi:type="cvl:Choice" name="RecentFile"/>
+        <child xsi:type="cvl:Choice" name="OpenFile"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="NewFile"/>
+      <child xsi:type="cvl:Choice" name="FileMenu"/>
+      <child xsi:type="cvl:Choice" name="Read"/>
+      <child xsi:type="cvl:Choice" name="InternalFrame"/>
+      <child xsi:type="cvl:Choice" name="FileUtility"/>
+      <child xsi:type="cvl:Choice" name="ExtensionFilter"/>
+      <child xsi:type="cvl:Choice" name="GraphUtility"/>
+      <child xsi:type="cvl:Choice" name="MenuResources"/>
+      <child xsi:type="cvl:Choice" name="base" isImpliedByParent="true"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="File or NewFile or Edit or View or Window or Help or Additional implies MenuResources and GraphUtility and ExtensionFilter and FileUtility and InternalFrame and Read"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="File or NewFile implies FileMenu"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Edit implies EditMenu"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="View implies ViewMenu"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Window implies WindowMenu"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="Help implies HelpMenu"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ClassDiagram or SequenceDiagram or StateDiagram or ObjectDiagram or UseCaseDiagram implies DiagramSupport and NewFile"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ClassDiagram implies ClassD"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="SequenceDiagram implies SequenceD"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="StateDiagram implies StateD"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ObjectDiagram implies ObjectD"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="UseCaseDiagram implies UseCaseD"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="RecentFile implies OpenFile"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="SaveFile implies SaveAs"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ImageFilter implies ExtensionFilter and ExportImage"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="VioletFilter implies ExtensionFilter"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="CommandLine implies OpenFile"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ClassDependencyEdge or ClassInheritanceEdge or ClassAggregationEdge or ClassAssociationEdge or ClassCompositionEdge or ClassInterfaceEdge implies ClassNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ClassNoteEdge implies ClassNoteNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="SequenceCallEdge or SequenceReturnEdge implies SequenceCallNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="SequenceNoteEdge implies SequenceNoteNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="StateTransitionEdge implies StateNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="StateNoteEdge implies StateNoteNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ObjectReferenceEdge or ObjectAssociationEdge implies ObjectNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ObjectNoteEdge implies ObjectNoteNode"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="UseCaseAssociationEdge or ExtendRelationshipEdge or IncludeRelationshipEdge or UseCaseGeneralizationEdge implies Actor"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="UseCaseNoteEdge implies UseCaseNoteNode"/>
+</cvl:ConfigurableUnit>

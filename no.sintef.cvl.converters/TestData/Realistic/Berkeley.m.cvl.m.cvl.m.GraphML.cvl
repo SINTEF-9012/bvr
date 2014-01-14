@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="BerkeleyDb">
+  <ownedVSpec xsi:type="cvl:Choice" name="BerkeleyDb" isImpliedByParent="true">
+    <groupMultiplicity upper="1" lower="1"/>
+    <child xsi:type="cvl:Choice" name="BerkeleyDB">
+      <child xsi:type="cvl:Choice" name="FLogging">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Logging">
+          <child xsi:type="cvl:Choice" name="featureLoggingFile"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingConsole"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingDbLog"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingFinest"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingFiner"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingFine"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingInfo"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingConfig"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingSevere"/>
+          <child xsi:type="cvl:Choice" name="featureLoggingBase" isImpliedByParent="true"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="FPersistency" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Persistency">
+          <child xsi:type="cvl:Choice" name="FPersistencyFeatures">
+            <groupMultiplicity upper="-1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="featureChecksum"/>
+            <child xsi:type="cvl:Choice" name="featureFileHandleCache"/>
+            <child xsi:type="cvl:Choice" name="featureHandleFullDiscError"/>
+            <child xsi:type="cvl:Choice" name="featureEnvironmentLock"/>
+            <child xsi:type="cvl:Choice" name="Checkpointer">
+              <child xsi:type="cvl:Choice" name="featureCustomizableCheckpointerTime"/>
+              <child xsi:type="cvl:Choice" name="featureCustomizableCheckpointerBytes"/>
+              <child xsi:type="cvl:Choice" name="featureCheckpointerDaemon"/>
+            </child>
+            <child xsi:type="cvl:Choice" name="Cleaner">
+              <child xsi:type="cvl:Choice" name="featureLookAheadCache"/>
+              <child xsi:type="cvl:Choice" name="featureCleanerDaemon"/>
+            </child>
+          </child>
+          <child xsi:type="cvl:Choice" name="FIOFeature" isImpliedByParent="true">
+            <groupMultiplicity upper="1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="NIO">
+              <child xsi:type="cvl:Choice" name="featureDirectNIO"/>
+              <child xsi:type="cvl:Choice" name="FNIOType" isImpliedByParent="true">
+                <groupMultiplicity upper="1" lower="1"/>
+                <child xsi:type="cvl:Choice" name="NotChunked">
+                  <child xsi:type="cvl:Choice" name="featureNIO" isImpliedByParent="true"/>
+                </child>
+                <child xsi:type="cvl:Choice" name="Chunked">
+                  <child xsi:type="cvl:Choice" name="featureChunkedNIO" isImpliedByParent="true"/>
+                </child>
+              </child>
+            </child>
+            <child xsi:type="cvl:Choice" name="IO">
+              <child xsi:type="cvl:Choice" name="featureSynchronizedIO"/>
+              <child xsi:type="cvl:Choice" name="featureIO" isImpliedByParent="true"/>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="FStatistics">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="Statistics">
+          <child xsi:type="cvl:Choice" name="FStatisticsFeatures" isImpliedByParent="true">
+            <groupMultiplicity upper="-1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="EnvStats">
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvLog"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvINCompressor"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvFSync"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvEvictor"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvCleaner"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvCheckpointer"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvCaching"/>
+              <child xsi:type="cvl:Choice" name="featureStatisticsEnvBase" isImpliedByParent="true"/>
+            </child>
+            <child xsi:type="cvl:Choice" name="featureStatisticsDatabase"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsLock"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsPreload"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsSequence"/>
+            <child xsi:type="cvl:Choice" name="featureStatisticsTransaction"/>
+          </child>
+          <child xsi:type="cvl:Choice" name="featureStatisticsBase" isImpliedByParent="true"/>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="featureMemoryBudget"/>
+      <child xsi:type="cvl:Choice" name="FConcurrency">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="featureLatch"/>
+        <child xsi:type="cvl:Choice" name="featureFSync"/>
+        <child xsi:type="cvl:Choice" name="featureTransaction"/>
+        <child xsi:type="cvl:Choice" name="dummyFeatureLocking"/>
+        <child xsi:type="cvl:Choice" name="featureCheckLeaks"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="FDbOperation">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="featureDeleteDb"/>
+        <child xsi:type="cvl:Choice" name="featureTruncateDb"/>
+      </child>
+      <child xsi:type="cvl:Choice" name="FBtree" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="BTree">
+          <child xsi:type="cvl:Choice" name="featureVerifier"/>
+          <child xsi:type="cvl:Choice" name="featureTreeVisitor"/>
+          <child xsi:type="cvl:Choice" name="featureINCompressor"/>
+          <child xsi:type="cvl:Choice" name="FEvictor">
+            <groupMultiplicity upper="1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="Evictor">
+              <child xsi:type="cvl:Choice" name="featureCriticalEviction"/>
+              <child xsi:type="cvl:Choice" name="featureEvictorDaemon"/>
+              <child xsi:type="cvl:Choice" name="featureEvictor" isImpliedByParent="true"/>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="BASE" isImpliedByParent="true"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureEvictor or featureEvictorDaemon or featureLookAheadCache or featureStatisticsEnvCaching implies featureMemoryBudget"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureCheckLeaks implies featureStatisticsLock"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureCriticalEviction implies featureINCompressor"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureCustomizableCheckpointerBytes implies featureCustomizableCheckpointerTime"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureDeleteDb implies dummyFeatureLocking and featureEvictor and featureINCompressor and featureMemoryBudget"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureLatch implies dummyFeatureLocking and featureCheckLeaks and featureDeleteDb and featureEvictor and featureFileHandleCache and featureFSync and featureINCompressor and featureMemoryBudget and featureStatisticsLock and featureTreeVisitor and featureTruncateDb and featureVerifier"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureLoggingSevere implies featureEnvironmentLock"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureLoggingFine implies dummyFeatureLocking and featureEvictor and featureINCompressor"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureLoggingInfo implies featureChecksum and featureMemoryBudget"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureLoggingBase or featureLoggingFinest implies featureTransaction"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureMemoryBudget implies featureEvictor and featureLatch"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureStatisticsLock or featureStatisticsTransaction implies dummyFeatureLocking"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureStatisticsEnvEvictor implies featureEvictor"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureStatisticsEnvFSync implies featureFSync"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureStatisticsEnvINCompressor implies featureINCompressor"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureStatisticsTransaction implies featureTransaction"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureStatisticsDatabase implies featureTreeVisitor"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureTransaction implies dummyFeatureLocking and featureDeleteDb and featureTruncateDb"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureTruncateDb implies featureDeleteDb"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="featureVerifier implies featureINCompressor and featureTreeVisitor"/>
+</cvl:ConfigurableUnit>

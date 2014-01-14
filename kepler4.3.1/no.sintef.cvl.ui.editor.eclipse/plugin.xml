@@ -5,7 +5,43 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="CVL Model UI Editor"
+            name="BVR VSpec Editor (MVC)"
+            extensions="cvl"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
+            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+      </editor>
+   </extension>
+   
+         <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="BVR VSpec Editor (GMF)"
+            extensions="cvl"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
+            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+      </editor>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="BVR Resolution Editor (MVC)"
+            extensions="cvl"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
+            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+      </editor>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="BVR Realization Editor"
             extensions="cvl"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"

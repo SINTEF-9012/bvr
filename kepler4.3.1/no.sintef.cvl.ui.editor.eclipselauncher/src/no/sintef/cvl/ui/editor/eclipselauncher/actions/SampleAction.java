@@ -74,7 +74,6 @@ class CVLEditorThread implements Runnable {
 
 	public void run() {
 		Main m = new Main();
-		m.setEclipseWindow(window);
 		m.main();
     }
 }

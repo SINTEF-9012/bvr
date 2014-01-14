@@ -14,26 +14,13 @@ Export-Package: de.ovgu.featureide.fm.core;uses:="org.prop4j,org.eclipse.core.re
  de.ovgu.featureide.fm.core.io.waterloo,
  de.ovgu.featureide.fm.core.io.xml,
  guidsl,
- org.prop4j,
- org.sat4j;uses:="org.sat4j.core,org.sat4j.specs,org.sat4j.reader",
- org.sat4j.core;uses:="org.sat4j.specs",
- org.sat4j.minisat;uses:="org.sat4j.minisat.core,org.sat4j.core,org.sat4j.specs",
- org.sat4j.minisat.constraints;uses:="org.sat4j.minisat.core,org.sat4j.specs",
- org.sat4j.minisat.constraints.card;uses:="org.sat4j.minisat.core,org.sat4j.specs",
- org.sat4j.minisat.constraints.cnf;uses:="org.sat4j.minisat.core,org.sat4j.specs",
- org.sat4j.minisat.core;uses:="org.sat4j.specs",
- org.sat4j.minisat.learning;uses:="org.sat4j.minisat.core",
- org.sat4j.minisat.orders;uses:="org.sat4j.minisat.core",
- org.sat4j.minisat.restarts;uses:="org.sat4j.minisat.core",
- org.sat4j.minisat.uip;uses:="org.sat4j.minisat.core,org.sat4j.specs",
- org.sat4j.opt;uses:="org.sat4j.tools,org.sat4j.specs",
- org.sat4j.reader;uses:="org.sat4j.specs",
- org.sat4j.specs,
- org.sat4j.tools;uses:="org.sat4j.specs"
+ org.prop4j
 Bundle-ClassPath: .,
- lib/guidsl.jar,
- lib/org.sat4j.core.jar
+ lib/guidsl.jar
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Activator: de.ovgu.featureide.fm.core.FMCorePlugin
 Bundle-Vendor: University of Magdeburg
+Import-Package: org.sat4j.core;version="2.3.5.v20130525",
+ org.sat4j.minisat;version="2.3.5.v20130525",
+ org.sat4j.specs,
+ org.sat4j.tools;version="2.3.5.v20130525"
 

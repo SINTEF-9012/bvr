@@ -1,12 +1,10 @@
 package no.sintef.cvl.tool.ui.loader;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
 
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -14,8 +12,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import org.eclipse.ui.IWorkbenchWindow;
 
 import no.sintef.cvl.tool.common.Constants;
 import no.sintef.cvl.tool.context.Context;
@@ -52,14 +48,6 @@ public class Main {
 	public static void main(String[] args){
 		new Main().main();
 	}
-	
-	// Eclipse connection
-	private IWorkbenchWindow w;
-	public void setEclipseWindow(IWorkbenchWindow w){
-		this.w = w;
-		Context.eINSTANCE.setIWorkbenchWindow(w);
-	}
-	// --
 
 	public void main(){
 		try {
