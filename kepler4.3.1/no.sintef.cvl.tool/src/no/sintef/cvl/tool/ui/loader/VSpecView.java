@@ -1,16 +1,16 @@
 package no.sintef.cvl.tool.ui.loader;
 
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JApplet;
 import javax.swing.JComponent;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -23,7 +23,6 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.cvl.tool.common.Constants;
 import no.sintef.cvl.tool.context.Context;
-import no.sintef.cvl.tool.context.ViewChanageManager;
 import no.sintef.cvl.tool.exception.CVLModelException;
 import no.sintef.cvl.tool.subject.ConfigurableUnitSubject;
 import no.sintef.cvl.tool.subject.SelectedFragmentSubstitutionSubject;
@@ -37,7 +36,6 @@ import no.sintef.cvl.tool.ui.command.AddVClassifier;
 import no.sintef.cvl.tool.ui.command.AddVInstance;
 import no.sintef.cvl.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.cvl.tool.ui.dropdown.VSpecResDropDownListener;
-import no.sintef.cvl.tool.ui.edit.CVLEditorPanel;
 import no.sintef.cvl.tool.ui.editor.BindingJTable;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
 import no.sintef.cvl.tool.ui.editor.FragmentSubstitutionJTable;
@@ -58,30 +56,6 @@ import cvl.VInstance;
 import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.VariableValueAssignment;
-
-class MyScroll extends JScrollPane{
-
-	public MyScroll(JScrollPane MyScroll) {
-		super(MyScroll);
-	}
-
-	@Override
-	public void repaint(long tm, int x, int y, int width, int height) {
-		//System.out.println("here");
-		//return;
-		super.repaint(tm, x, y, width, height);
-	}
-
-	@Override
-	public void repaint(Rectangle r) {
-		//System.out.println("here");
-		//return;
-		super.repaint(r);
-	}
-	
-	
-	
-}
 
 public class VSpecView {
 	private CVLModel m;
@@ -114,15 +88,18 @@ public class VSpecView {
 	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
-	public EditableModelPanel x;
+	private JApplet parentapplet;
 
-	public CVLEditorPanel e;
+	private Frame parentframe;
 
 	public CVLUIKernel getKernel() {
 		return vSpeccvluikernel;
 	}
 	
-	public VSpecView(CVLModel m) {
+	public VSpecView(CVLModel m, JApplet a, Frame frame) {
+		this.parentapplet = a;
+		this.parentframe = frame;
+		
 		// Alloc
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
@@ -142,9 +119,7 @@ public class VSpecView {
 		this.m = m;
 		
     	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
-		
-		// Make model pane
-		modelPane = new JTabbedPane();
+	
 		
 		// VSpec pane
 		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
@@ -156,7 +131,7 @@ public class VSpecView {
         
         autoLayoutVSpec();
 		
-		vspecScrollPane = new MyScroll(new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
+		vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		//IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
         //x = vspecEpanel;
@@ -191,167 +166,6 @@ public class VSpecView {
         */
 	}
 	
-	public ConfigurableUnitSubject getConfigurableUnitSubject(){
-		return configurableUnitSubject;
-	}
-
-	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
-		selectedFS = new SelectedFragmentSubstitutionSubject(null);
-		
-		tableFragmSubst = new FragmentSubstitutionJTable();
-		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
-		
-		tableSubstFragm = new SubstitutionFragmentJTable();
-		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
-		
-		JPanel panel = new JPanel(new GridLayout(1, 2));
-		panel.setName(Constants.REALIZATION_VP_SUBTAB_NAME);
-		panel.add(scrollPanelFragmSubst);
-		panel.add(scrollPanelSubstFragm);
-		realizationPanel.add(panel);
-		 
-		bindingEditor = new BindingJTable();
-		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
-		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
-		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
-		
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableFragmSubst);
-		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableFragmSubst);
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableSubstFragm);
-		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableSubstFragm);
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, bindingEditor);
-		Context.eINSTANCE.getViewChangeManager().register(selectedFS, bindingEditor);
-		
-		configurableUnitSubject.notifyObserver();
-		selectedFS.notifyObserver();
-	}
-	
-	public void notifyRelalizationViewReset(){
-		selectedFS.resetSelectedFragmentSubstitution();
-		selectedFS.notifyObserver();
-		configurableUnitSubject.setConfigurableUnit(getCU());
-		configurableUnitSubject.notifyObserver();
-	}
-	
-	private void autoLayoutResolutions() {
-		for(int i = 0; i < resolutionPanes.size(); i++){
-			Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
-			Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
-			
-			for(JComponent c : resolutionNodes.get(i)){
-				String title = ((TitledElement)c).getTitle();
-				//System.out.println(title);
-				TextInBox t = new TextInBox(title, c.getWidth(), c.getHeight());
-				nodemap.put(c, t);
-				nodemapr.put(t, c);
-			}
-			
-			TextInBox root = nodemap.get(resolutionNodes.get(i).get(0));
-	
-			DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(root);
-			
-			for(Pair<JComponent, JComponent> p : resolutionBindings.get(i)){
-				TextInBox a = nodemap.get(p.a);
-				TextInBox b = nodemap.get(p.b);
-				tree.addChild(a, b);
-			}
-			
-			// setup the tree layout configuration
-			double gapBetweenLevels = 30;
-			double gapBetweenNodes = 10;
-			DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(gapBetweenLevels, gapBetweenNodes);
-	
-			// create the NodeExtentProvider for TextInBox nodes
-			TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
-			TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree, nodeExtentProvider, configuration);
-			
-			// Set positions
-			for(JComponent c : resolutionNodes.get(i)){
-				TextInBox t = nodemap.get(c);
-				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
-				Double z = x.get(t);
-				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
-			}
-		}
-	}
-	
-	int choiceCount = 1;
-
-	private void loadCVLResolutionView(ConfigurableUnit cu, List<CVLUIKernel> resolutionkernels, JTabbedPane resPane) throws CVLModelException{
-		if(cu.getOwnedVSpecResolution().size() == 0) return;
-		
-		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
-			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
-			resolutionkernels.add(resKernel);
-	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	        EditableModelPanel epanel = new EditableModelPanel(scrollPane);
-	        
-	        resolutionPanes.add(scrollPane);
-	        resolutionEpanels.add(epanel);
-	        Map<JComponent, NamedElement> vmMap = new HashMap<JComponent, NamedElement>();
-	    	resolutionvmMaps.add(vmMap);
-	        List<JComponent> nodes = new ArrayList<JComponent>();
-	    	resolutionNodes.add(nodes);
-	    	List<Pair<JComponent, JComponent>> bindings = new ArrayList<Pair<JComponent,JComponent>>();
-	    	resolutionBindings.add(bindings);
-			
-			loadCVLResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings);
-			String tabtitle = "";
-			if(v instanceof ChoiceResolutuion){
-				ChoiceResolutuion cr = (ChoiceResolutuion) v;
-				String choicename = "null";
-				if(cr.getResolvedVSpec() != null){
-					choicename = cr.getResolvedVSpec().getName();
-				}
-				tabtitle = choicename + " " + choiceCount;
-				choiceCount++;
-			}else if(v instanceof VInstance){
-				VInstance vi = (VInstance) v;
-				tabtitle = vi.getName() + ":" + vi.getResolvedVSpec().getName();
-			}
-			resPane.addTab(tabtitle, null, epanel, "");
-			resPane.addMouseListener(new VSpecResDropDownListener(cu, v, this));
-		}
-	}
-
-	private void loadCVLResolutionView(VSpecResolution v, CVLUIKernel cvluikernel, JComponent parent, ConfigurableUnit cu, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws CVLModelException {
-		JComponent nextParent = null;
-		
-		// Add view
-		//System.out.println(v.getClass().getSimpleName());
-		if(v instanceof VInstance){
-			//System.out.println(v + ", " + cvluikernel);
-			
-			nextParent = new AddVInstance().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
-			
-			vmMap.put(nextParent, v);
-			
-		}else if(v instanceof ChoiceResolutuion){
-			//System.out.println(v);
-			
-			nextParent = new AddChoiceResolutuion().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
-			
-			vmMap.put(nextParent, v);
-			
-		}else if(v instanceof VariableValueAssignment){
-			//System.out.println(v);
-			
-			nextParent = new AddVariableValueAssignment().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
-			
-			vmMap.put(nextParent, v);
-			
-		}else{
-			throw new CVLModelException("Unknown element: " + v.getClass());
-		}
-		
-		// Recursive step
-		//System.out.println();
-		for(VSpecResolution vs : v.getChild()){
-			//System.out.println("Treating " + vs.getResolvedVSpec().getName());
-			loadCVLResolutionView(vs, cvluikernel, nextParent, cu, vmMap, nodes, bindings);
-		}
-	}
-
 	private void loadCVLVSpecView(ConfigurableUnit cu, CVLUIKernel model) throws CVLModelException {
 		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 		
@@ -416,92 +230,70 @@ public class VSpecView {
 				loadCVLVSpecView(vs, model, nextParent, cu);
 		}
 	}
-	
+
+	public ConfigurableUnitSubject getConfigurableUnitSubject(){
+		return configurableUnitSubject;
+	}
+
 	public void notifyVspecViewUpdate() {
 		// Save scroll coordinates
 		Point vpos = vspecScrollPane.getViewport().getViewPosition();
 		
 		// Clear everything
-		vSpeccvluikernel.getModelPanel().removeAll();
+		parentapplet.remove(vspecEpanel);
+		
+		/*
+		//ConfigurableUnitPanel cup = vSpeccvluikernel.getModelPanel();
+		//cup.removeAll();
 		//vspecScrollPane.remove(vSpeccvluikernel.getModelPanel());
 		//vspecScrollPane.removeAll();
-		
+		*/
 		vspecNodes.clear();
 		vspecBindings.clear();
 		vspecvmMap.clear();
 		
-        // Add stuff
-		//vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
-        try {
+	    // Add stuff
+		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
+	    try {
 			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
 			e.printStackTrace();
 		}
-        
-        // Automatically Layout Diagram
-        autoLayoutVSpec();
-        
-        // Draw
-        /*vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
-        vspecEpanel = new EditableModelPanel(vspecScrollPane);
-        
-        modelPane.setComponentAt(0, vspecEpanel);
-        */
+	    
+	    // Automatically Layout Diagram
+	    autoLayoutVSpec();
+	    
+	    // Draw
+	    vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    //IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
+	    vspecEpanel = new EditableModelPanel(vspecScrollPane);
+	    
+	    parentapplet.add(vspecEpanel);
+	    
+	    /*modelPane.setComponentAt(0, vspecEpanel);
+	    */
 		//jframe.repaint();
-        
-        // Restore scroll coordinates
-        vspecScrollPane.getViewport().setViewPosition(vpos);
-        
-        System.out.println(vspecEpanel);
-        vspecEpanel.repaint();
-        
-        configurableUnitSubject.notifyObserver();
+	    
+	    // Restore scroll coordinates
+	    
+	    vspecScrollPane.getViewport().setViewPosition(vpos);
+	    parentframe.revalidate();
+	    parentframe.repaint();
+	    /*
+	    System.out.println(vspecEpanel);
+	    vspecEpanel.repaint();
+	    
+	    configurableUnitSubject.notifyObserver();
+	    
+	    */
 	}
 
 	public ConfigurableUnit getCU() {
 		return m.getCU();
 	}
 
-	public void notifyResolutionViewUpdate() {
-		// Save
-		boolean isEmpty = resPane.getTabCount() == 0;
-		int resmodels = getCU().getOwnedVSpecResolution().size();
-		boolean modelIsEmpty = getCU().getOwnedVSpecResolution().size() == 0;
-		
-		int selected = 0;
-		Point pos = null;
-		if(!isEmpty){
-			selected = resPane.getSelectedIndex();
-			pos = resolutionPanes.get(selected).getViewport().getViewPosition();
-		}
-		
-		// Clean up
-		resPane.removeAll();
-	    resolutionPanes = new ArrayList<JScrollPane>();
-	    resolutionEpanels = new ArrayList<EditableModelPanel>();
-	    resolutionkernels = new ArrayList<CVLUIKernel>();
-		resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
-		resolutionNodes = new ArrayList<List<JComponent>>();
-		resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
-		
-		choiceCount = 1;
-	    
-	    try {
-			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
-		} catch (CVLModelException e) {
-			e.printStackTrace();
-		}
-	    
-	    autoLayoutResolutions();
-	    
-	    // Restore positions
-	    if(!isEmpty && !modelIsEmpty && selected <= resmodels){
-		    resPane.setSelectedIndex(selected);
-		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
-	    }
-	}
-	
+	int choiceCount = 1;
+
 	public void notifyAllViews(){
 		this.notifyVspecViewUpdate();
 		this.notifyResolutionViewUpdate();
@@ -580,6 +372,200 @@ public class VSpecView {
 		minimized.add(v);
 	}
 	
+	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
+		selectedFS = new SelectedFragmentSubstitutionSubject(null);
+		
+		tableFragmSubst = new FragmentSubstitutionJTable();
+		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
+		
+		tableSubstFragm = new SubstitutionFragmentJTable();
+		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
+		
+		JPanel panel = new JPanel(new GridLayout(1, 2));
+		panel.setName(Constants.REALIZATION_VP_SUBTAB_NAME);
+		panel.add(scrollPanelFragmSubst);
+		panel.add(scrollPanelSubstFragm);
+		realizationPanel.add(panel);
+		 
+		bindingEditor = new BindingJTable();
+		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
+		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
+		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
+		
+		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableFragmSubst);
+		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableFragmSubst);
+		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableSubstFragm);
+		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableSubstFragm);
+		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, bindingEditor);
+		Context.eINSTANCE.getViewChangeManager().register(selectedFS, bindingEditor);
+		
+		configurableUnitSubject.notifyObserver();
+		selectedFS.notifyObserver();
+	}
+
+	private void autoLayoutResolutions() {
+		for(int i = 0; i < resolutionPanes.size(); i++){
+			Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
+			Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
+			
+			for(JComponent c : resolutionNodes.get(i)){
+				String title = ((TitledElement)c).getTitle();
+				//System.out.println(title);
+				TextInBox t = new TextInBox(title, c.getWidth(), c.getHeight());
+				nodemap.put(c, t);
+				nodemapr.put(t, c);
+			}
+			
+			TextInBox root = nodemap.get(resolutionNodes.get(i).get(0));
+	
+			DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(root);
+			
+			for(Pair<JComponent, JComponent> p : resolutionBindings.get(i)){
+				TextInBox a = nodemap.get(p.a);
+				TextInBox b = nodemap.get(p.b);
+				tree.addChild(a, b);
+			}
+			
+			// setup the tree layout configuration
+			double gapBetweenLevels = 30;
+			double gapBetweenNodes = 10;
+			DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(gapBetweenLevels, gapBetweenNodes);
+	
+			// create the NodeExtentProvider for TextInBox nodes
+			TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
+			TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree, nodeExtentProvider, configuration);
+			
+			// Set positions
+			for(JComponent c : resolutionNodes.get(i)){
+				TextInBox t = nodemap.get(c);
+				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
+				Double z = x.get(t);
+				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
+			}
+		}
+	}
+
+	public void notifyRelalizationViewReset(){
+		selectedFS.resetSelectedFragmentSubstitution();
+		selectedFS.notifyObserver();
+		configurableUnitSubject.setConfigurableUnit(getCU());
+		configurableUnitSubject.notifyObserver();
+	}
+
+	public void notifyResolutionViewUpdate() {
+		// Save
+		boolean isEmpty = resPane.getTabCount() == 0;
+		int resmodels = getCU().getOwnedVSpecResolution().size();
+		boolean modelIsEmpty = getCU().getOwnedVSpecResolution().size() == 0;
+		
+		int selected = 0;
+		Point pos = null;
+		if(!isEmpty){
+			selected = resPane.getSelectedIndex();
+			pos = resolutionPanes.get(selected).getViewport().getViewPosition();
+		}
+		
+		// Clean up
+		resPane.removeAll();
+	    resolutionPanes = new ArrayList<JScrollPane>();
+	    resolutionEpanels = new ArrayList<EditableModelPanel>();
+	    resolutionkernels = new ArrayList<CVLUIKernel>();
+		resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
+		resolutionNodes = new ArrayList<List<JComponent>>();
+		resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
+		
+		choiceCount = 1;
+	    
+	    try {
+			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
+		} catch (CVLModelException e) {
+			e.printStackTrace();
+		}
+	    
+	    autoLayoutResolutions();
+	    
+	    // Restore positions
+	    if(!isEmpty && !modelIsEmpty && selected <= resmodels){
+		    resPane.setSelectedIndex(selected);
+		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
+	    }
+	}
+
+	private void loadCVLResolutionView(ConfigurableUnit cu, List<CVLUIKernel> resolutionkernels, JTabbedPane resPane) throws CVLModelException{
+		if(cu.getOwnedVSpecResolution().size() == 0) return;
+		
+		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
+			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
+			resolutionkernels.add(resKernel);
+	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	        EditableModelPanel epanel = new EditableModelPanel(scrollPane);
+	        
+	        resolutionPanes.add(scrollPane);
+	        resolutionEpanels.add(epanel);
+	        Map<JComponent, NamedElement> vmMap = new HashMap<JComponent, NamedElement>();
+	    	resolutionvmMaps.add(vmMap);
+	        List<JComponent> nodes = new ArrayList<JComponent>();
+	    	resolutionNodes.add(nodes);
+	    	List<Pair<JComponent, JComponent>> bindings = new ArrayList<Pair<JComponent,JComponent>>();
+	    	resolutionBindings.add(bindings);
+			
+			loadCVLResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings);
+			String tabtitle = "";
+			if(v instanceof ChoiceResolutuion){
+				ChoiceResolutuion cr = (ChoiceResolutuion) v;
+				String choicename = "null";
+				if(cr.getResolvedVSpec() != null){
+					choicename = cr.getResolvedVSpec().getName();
+				}
+				tabtitle = choicename + " " + choiceCount;
+				choiceCount++;
+			}else if(v instanceof VInstance){
+				VInstance vi = (VInstance) v;
+				tabtitle = vi.getName() + ":" + vi.getResolvedVSpec().getName();
+			}
+			resPane.addTab(tabtitle, null, epanel, "");
+			resPane.addMouseListener(new VSpecResDropDownListener(cu, v, this));
+		}
+	}
+
+	private void loadCVLResolutionView(VSpecResolution v, CVLUIKernel cvluikernel, JComponent parent, ConfigurableUnit cu, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws CVLModelException {
+		JComponent nextParent = null;
+		
+		// Add view
+		//System.out.println(v.getClass().getSimpleName());
+		if(v instanceof VInstance){
+			//System.out.println(v + ", " + cvluikernel);
+			
+			nextParent = new AddVInstance().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			
+			vmMap.put(nextParent, v);
+			
+		}else if(v instanceof ChoiceResolutuion){
+			//System.out.println(v);
+			
+			nextParent = new AddChoiceResolutuion().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			
+			vmMap.put(nextParent, v);
+			
+		}else if(v instanceof VariableValueAssignment){
+			//System.out.println(v);
+			
+			nextParent = new AddVariableValueAssignment().init(cvluikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			
+			vmMap.put(nextParent, v);
+			
+		}else{
+			throw new CVLModelException("Unknown element: " + v.getClass());
+		}
+		
+		// Recursive step
+		//System.out.println();
+		for(VSpecResolution vs : v.getChild()){
+			//System.out.println("Treating " + vs.getResolvedVSpec().getName());
+			loadCVLResolutionView(vs, cvluikernel, nextParent, cu, vmMap, nodes, bindings);
+		}
+	}
+
 	public void setMaximized(VSpec v) {
 		minimized.remove(v);
 	}

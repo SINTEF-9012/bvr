@@ -1,0 +1,6 @@
+JApplet
+ - EditableModelPanel
+  - JScrollPane
+   - ConfigurableUnitPanel
+    - ChoicePanel
+    - ...
