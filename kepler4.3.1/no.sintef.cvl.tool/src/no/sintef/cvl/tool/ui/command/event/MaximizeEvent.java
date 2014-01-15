@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
 import no.sintef.cvl.ui.framework.elements.VSpecPanel;
@@ -20,9 +20,9 @@ public class MaximizeEvent implements ActionListener {
 
 	private VSpecPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private VSpecView view;
+	private CVLView view;
 
-	public MaximizeEvent(VSpecPanel cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public MaximizeEvent(VSpecPanel cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
@@ -14,9 +14,9 @@ import cvl.VSpecResolution;
 public class ChangeVSpecResolvedEvent implements ActionListener {
 	private ChoiceResolutuion cr;
 	private Choice target;
-	private VSpecView view;
+	private CVLView view;
 	
-	public ChangeVSpecResolvedEvent(ChoiceResolutuion a, Choice b, VSpecView view) {
+	public ChangeVSpecResolvedEvent(ChoiceResolutuion a, Choice b, CVLView view) {
 		cr = a;
 		target = b;
 		this.view = view;

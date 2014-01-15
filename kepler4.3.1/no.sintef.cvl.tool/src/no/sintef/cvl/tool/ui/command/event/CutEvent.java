@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -20,9 +20,9 @@ public class CutEvent implements ActionListener {
 
 	private Map<JComponent, NamedElement> vmMap;
 	private JPanel p;
-	private VSpecView view;
+	private CVLView view;
 
-	public CutEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public CutEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;

@@ -42,7 +42,7 @@ import cvl.NamedElement;
 public class Main {
 	private CVLJFrame jframe;
 	public static NamedElement vSpecCut;
-	private List<VSpecView> views = Context.eINSTANCE.getCvlViews();
+	private List<CVLView> views = Context.eINSTANCE.getCvlViews();
 	private List<CVLModel> models = Context.eINSTANCE.getCvlModels();
 
 	public void startVSpecView(){

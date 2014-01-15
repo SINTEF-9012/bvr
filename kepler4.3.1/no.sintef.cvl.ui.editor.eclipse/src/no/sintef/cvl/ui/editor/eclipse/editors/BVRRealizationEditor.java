@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
 import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
 import no.sintef.cvl.tool.ui.loader.RealizationView;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;

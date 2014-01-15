@@ -24,7 +24,7 @@ import javax.swing.SpringLayout;
 
 import no.sintef.cvl.tool.common.Constants;
 import no.sintef.cvl.tool.ui.command.event.SettingsToolEvent;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudCheckBoxUI;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
@@ -32,7 +32,7 @@ import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 
 public class CVLOptionEditorPanel extends JPanel {
 	
-	protected VSpecView view;
+	protected CVLView view;
 	
 	protected JPanel top;
 	protected JPanel bottom;

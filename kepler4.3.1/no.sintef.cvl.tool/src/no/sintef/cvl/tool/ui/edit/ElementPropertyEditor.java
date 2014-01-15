@@ -28,7 +28,7 @@ import javax.swing.text.BadLocationException;
 import no.sintef.cvl.tool.ui.command.Command;
 import no.sintef.cvl.tool.ui.command.UpdateVSpec;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
@@ -38,7 +38,7 @@ import cvl.VSpec;
 
 public class ElementPropertyEditor extends JPanel {
 	
-	protected VSpecView view;
+	protected CVLView view;
 	
 	protected JPanel top;
 	protected JPanel bottom;
@@ -65,7 +65,7 @@ public class ElementPropertyEditor extends JPanel {
     	command.init(null, obj, null, null, null, null, view);
     }
     
-    public ElementPropertyEditor(CVLUIKernel _kernel, NamedElement _obj, VSpecView _view) {
+    public ElementPropertyEditor(CVLUIKernel _kernel, NamedElement _obj, CVLView _view) {
 
         this.setOpaque(false);
         this.setBorder(null);

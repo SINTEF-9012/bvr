@@ -8,13 +8,13 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 public class ClearSelectionRelalizationEvent implements ActionListener {
 
 	private JTabbedPane filePane;
-	private List<VSpecView> views;
-	public ClearSelectionRelalizationEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views){
+	private List<CVLView> views;
+	public ClearSelectionRelalizationEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
 		this.filePane = filePane;
 		this.views = views;
 	}

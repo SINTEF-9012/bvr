@@ -17,7 +17,7 @@ import no.sintef.cvl.tool.common.Messages;
 import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.ui.context.StaticUICommands;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 
 public class ExecuteResolutionEvent implements ActionListener {
@@ -36,7 +36,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 		int i = x.getSelectedIndex();
 		
 		List<CVLModel> models = Context.eINSTANCE.getCvlModels();
-		List<VSpecView> views = Context.eINSTANCE.getCvlViews();
+		List<CVLView> views = Context.eINSTANCE.getCvlViews();
 		
 		CVLModel m = models.get(tab);
 		

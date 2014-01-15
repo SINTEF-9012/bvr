@@ -10,15 +10,15 @@ import cvl.ChoiceResolutuion;
 import cvl.CvlFactory;
 
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 public class NewResolutionEvent implements ActionListener {
 
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<VSpecView> views;
+	private List<CVLView> views;
 
-	public NewResolutionEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views) {
+	public NewResolutionEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -27,7 +27,7 @@ public class NewResolutionEvent implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
 		CVLModel m = models.get(i);
-		VSpecView v = views.get(i);
+		CVLView v = views.get(i);
 		
 		ChoiceResolutuion cr = CvlFactory.eINSTANCE.createChoiceResolutuion();
 		m.getCU().getOwnedVSpecResolution().add(cr);

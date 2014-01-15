@@ -20,7 +20,7 @@ import no.sintef.cvl.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import cvl.NamedElement;
@@ -32,9 +32,9 @@ public class ConfigurableUnitDropDownListener extends MouseAdapter {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private VSpecView view;
+	private CVLView view;
 
-	public ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view){
+	public ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -61,7 +61,7 @@ public class ConfigurableUnitDropDownListener extends MouseAdapter {
 class ConfigurableUnitDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ConfigurableUnitDropdown(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view){
+    public ConfigurableUnitDropdown(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");

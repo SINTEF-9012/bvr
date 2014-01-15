@@ -24,7 +24,7 @@ import no.sintef.cvl.tool.common.LoaderUtility;
 import no.sintef.cvl.tool.common.Messages;
 import no.sintef.cvl.tool.primitive.DataItem;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.model.SubFragTableModel;
 
 public class DeletePlacementReplacementFragmentEvent implements ActionListener {
@@ -32,9 +32,9 @@ public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 	
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<VSpecView> views;
+	private List<CVLView> views;
 
-	public DeletePlacementReplacementFragmentEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views){
+	public DeletePlacementReplacementFragmentEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

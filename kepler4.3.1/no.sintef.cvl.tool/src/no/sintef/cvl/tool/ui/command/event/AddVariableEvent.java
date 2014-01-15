@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import cvl.BCLConstraint;
 import cvl.ConfigurableUnit;
@@ -24,9 +24,9 @@ public class AddVariableEvent implements ActionListener {
 	
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private VSpecView view;
+	private CVLView view;
 
-	public AddVariableEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public AddVariableEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;

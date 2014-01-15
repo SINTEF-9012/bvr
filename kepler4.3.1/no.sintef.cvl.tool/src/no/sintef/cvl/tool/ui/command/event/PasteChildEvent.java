@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -19,9 +19,9 @@ public class PasteChildEvent implements ActionListener {
 
 	private Object p;
 	private Map<JComponent, NamedElement> vmMap;
-	private VSpecView view;
+	private CVLView view;
 
-	public PasteChildEvent(Object cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public PasteChildEvent(Object cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;

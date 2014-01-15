@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import cvl.BCLConstraint;
@@ -26,9 +26,9 @@ public class AddConstraintEvent implements ActionListener {
 
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private VSpecView view;
+	private CVLView view;
 
-	public AddConstraintEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public AddConstraintEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;

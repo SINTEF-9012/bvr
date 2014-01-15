@@ -57,7 +57,7 @@ import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.VariableValueAssignment;
 
-public class ResolutionView extends VSpecView{
+public class ResolutionView extends CVLView{
 	private CVLModel m;
 	
 	public JTabbedPane modelPane;
@@ -88,25 +88,16 @@ public class ResolutionView extends VSpecView{
 	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
-	private JApplet parentapplet;
-
-	private Frame parentframe;
-
 	public CVLUIKernel getKernel() {
 		return vSpeccvluikernel;
 	}
 	
-	public ResolutionView(CVLModel m, JApplet a, Frame frame) {
+	public ResolutionView(CVLModel m, BVRNotifier ep) {
 		super();
-		this.parentapplet = a;
-		this.parentframe = frame;
+		
+		this.ep = ep;
 		
 		// Alloc
-		/*
-		vspecvmMap = new HashMap<JComponent, NamedElement>();
-		vspecNodes = new ArrayList<JComponent>();
-		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
-		*/
 		
         resolutionPanes = new ArrayList<JScrollPane>();
         resolutionEpanels = new ArrayList<EditableModelPanel>();
@@ -123,28 +114,12 @@ public class ResolutionView extends VSpecView{
 	
     	vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
-		// VSpec pane
-/*        try {
-			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
-		} catch (CVLModelException e) {
-			e.printStackTrace();
-		}
-        
-        autoLayoutVSpec();
-*/		
+
 		vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		//IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
-        vspecEpanel = new EditableModelPanel(vspecScrollPane);
-        //x = vspecEpanel;
-        //modelPane.add(x);
-        
-        //tp.addTab(m.getShortFileName(), null, modelPane, m.getLongFileName());
-        
+        vspecEpanel = new EditableModelPanel(vspecScrollPane);        
         
         // Resolution panes
-        resPane = new JTabbedPane();
-        //modelPane.addTab("Resolution", null, resPane, "");
-        
+        resPane = new JTabbedPane();        
         
         try {
 			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
@@ -153,119 +128,15 @@ public class ResolutionView extends VSpecView{
 		}
         
         autoLayoutResolutions();
-        
-        /*
-        // Realization panel
-        realizationPanel = new JTabbedPane();
-        modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
-        
-        try{
-        	loadCVLRelalizationView(m.getCVLM().getCU());
-        } catch (Exception e){
-        	e.printStackTrace();
-        }
-        */
+
 	}
 	
-	private void loadCVLVSpecView(ConfigurableUnit cu, CVLUIKernel model) throws CVLModelException {
-		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-		
-		for(VSpec v : cu.getOwnedVSpec()){
-			loadCVLVSpecView(v, model, c, cu);
-		}
-		
-		// Add context-free constraints
-		for(Constraint cs : cu.getOwnedConstraint()){
-			if(cs instanceof OpaqueConstraint){
-				OpaqueConstraint oc = (OpaqueConstraint) cs;
-				if(oc.getContext() == null){
-					new AddOpaqueConstraint().init(model, oc, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-				}
-			}
-			if(cs instanceof BCLConstraint){
-				BCLConstraint bcl = (BCLConstraint) cs;
-				if(bcl.getContext() == null){
-					JComponent comp = new AddBCLConstraint().init(model, bcl, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-					vspecvmMap.put(comp, bcl);
-				}
-			}
-		}
-	}
-
-	private void loadCVLVSpecView(VSpec v, CVLUIKernel model, JComponent parent, ConfigurableUnit cu) throws CVLModelException {
-		JComponent nextParent = null;
-		
-		if(v instanceof VClassifier){
-			JComponent c = new AddVClassifier(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-			vspecvmMap.put(c, v);
-			nextParent = c;
-		}else if(v instanceof Choice){
-			JComponent c = new AddChoice(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-			vspecvmMap.put(c, v);
-			nextParent = c;
-		}
-		
-		if(v.getGroupMultiplicity() != null){
-			nextParent = new AddGroupMultiplicity().init(model, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-		}
-		
-		for(Constraint c : cu.getOwnedConstraint()){
-			if(c instanceof OpaqueConstraint){
-				OpaqueConstraint oc = (OpaqueConstraint) c;
-				if(c.getContext() == v){
-					JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-					vspecvmMap.put(comp, c);
-				}
-			}
-			if(c instanceof BCLConstraint){
-				BCLConstraint bcl = (BCLConstraint) c;
-				if(bcl.getContext() == v){
-					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-					vspecvmMap.put(comp, c);
-				}
-			}
-		}
-		
-		for(VSpec vs : v.getChild()){
-			if(!minimized.contains(v))
-				loadCVLVSpecView(vs, model, nextParent, cu);
-		}
+	public boolean isDirty() {
+		return m.isNotSaved();
 	}
 
 	public ConfigurableUnitSubject getConfigurableUnitSubject(){
 		return configurableUnitSubject;
-	}
-
-	public void notifyVspecViewUpdate() {
-		// Save scroll coordinates
-		Point vpos = vspecScrollPane.getViewport().getViewPosition();
-				
-		// Clear everything
-		ConfigurableUnitPanel cup = vSpeccvluikernel.getModelPanel();
-		cup.clear();
-
-		vspecNodes.clear();
-		vspecBindings.clear();
-		vspecvmMap.clear();
-		
-	    // Add stuff
-	    try {
-			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
-		} catch (CVLModelException e) {
-			e.printStackTrace();
-		}
-	    
-	    // Automatically Layout Diagram
-	    autoLayoutVSpec();
-	    
-	    // Restore scroll coordinates
-	    vspecScrollPane.getViewport().setViewPosition(vpos);
-	    
-	    // Draw
-	    /*
-	    parentframe.revalidate();
-	    parentframe.repaint();
-	    */
 	}
 
 	public ConfigurableUnit getCU() {
@@ -274,114 +145,9 @@ public class ResolutionView extends VSpecView{
 
 	int choiceCount = 1;
 
-	public void notifyAllViews(){
-		this.notifyVspecViewUpdate();
-		this.notifyResolutionViewUpdate();
-		this.notifyRelalizationViewReset();
-	}
-
-	private void autoLayoutVSpec() {
-		Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
-		Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
-		
-		// Add VSpecs
-		for(JComponent c : vspecNodes){
-			String title = ((TitledElement)c).getTitle();
-			//System.out.println(title);
-			TextInBox t = new TextInBox(title, c.getWidth(), c.getHeight());
-			if(c instanceof GroupPanel){
-				t = new TextInBox(title, 17, 15);
-			}
-			nodemap.put(c, t);
-			nodemapr.put(t, c);
-		}
-		
-		TextInBox root = nodemap.get(vspecNodes.get(0));
-	
-		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(root);
-		
-		for(Pair<JComponent, JComponent> p : vspecBindings){
-			TextInBox a = nodemap.get(p.a);
-			if(p.a instanceof GroupPanel){
-				for(Pair<JComponent, JComponent> pc : vspecBindings){
-					if(pc.b == p.a){
-						a = nodemap.get(pc.a);
-					}
-				}
-			}
-			TextInBox b = nodemap.get(p.b);
-			if(!(p.b instanceof GroupPanel))
-				tree.addChild(a, b);
-		}
-		
-		// setup the tree layout configuration
-		double gapBetweenLevels = 30;
-		double gapBetweenNodes = 10;
-		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(gapBetweenLevels, gapBetweenNodes);
-	
-		// create the NodeExtentProvider for TextInBox nodes
-		TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
-		TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree, nodeExtentProvider, configuration);
-		
-		// Set positions
-		for(JComponent c : vspecNodes){
-			if(!(c instanceof GroupPanel)){
-				TextInBox t = nodemap.get(c);
-				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
-				Double z = x.get(t);
-				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
-			}else{
-				// Find parent
-				JComponent p = null;
-				for(Pair<JComponent, JComponent> x : vspecBindings){
-					if(x.b == c){
-						p = x.a;
-					}
-				}
-				
-				// Set pos
-				c.setBounds(p.getX()-15+(p.getWidth()-20)/2, p.getY()+p.getHeight()-10, c.getWidth(), c.getHeight());
-			}
-		}
-		
-	}
-	
 	List<VSpec> minimized = new ArrayList<VSpec>();
 
-	public void setMinimized(VSpec v) {
-		minimized.add(v);
-	}
-	
-	private void loadCVLRelalizationView(ConfigurableUnit cu) throws Exception {
-		selectedFS = new SelectedFragmentSubstitutionSubject(null);
-		
-		tableFragmSubst = new FragmentSubstitutionJTable();
-		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
-		
-		tableSubstFragm = new SubstitutionFragmentJTable();
-		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
-		
-		JPanel panel = new JPanel(new GridLayout(1, 2));
-		panel.setName(Constants.REALIZATION_VP_SUBTAB_NAME);
-		panel.add(scrollPanelFragmSubst);
-		panel.add(scrollPanelSubstFragm);
-		realizationPanel.add(panel);
-		 
-		bindingEditor = new BindingJTable();
-		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
-		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
-		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
-		
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableFragmSubst);
-		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableFragmSubst);
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableSubstFragm);
-		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableSubstFragm);
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, bindingEditor);
-		Context.eINSTANCE.getViewChangeManager().register(selectedFS, bindingEditor);
-		
-		configurableUnitSubject.notifyObserver();
-		selectedFS.notifyObserver();
-	}
+	private BVRNotifier ep;
 
 	private void autoLayoutResolutions() {
 		for(int i = 0; i < resolutionPanes.size(); i++){
@@ -425,13 +191,6 @@ public class ResolutionView extends VSpecView{
 		}
 	}
 
-	public void notifyRelalizationViewReset(){
-		selectedFS.resetSelectedFragmentSubstitution();
-		selectedFS.notifyObserver();
-		configurableUnitSubject.setConfigurableUnit(getCU());
-		configurableUnitSubject.notifyObserver();
-	}
-
 	public void notifyResolutionViewUpdate() {
 		// Save
 		boolean isEmpty = resPane.getTabCount() == 0;
@@ -469,6 +228,10 @@ public class ResolutionView extends VSpecView{
 		    resPane.setSelectedIndex(selected);
 		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 	    }
+	    
+	    // Mark dirty
+	    m.markNotSaved();
+	    ep.notifyProbeDirty();
 	}
 
 	private void loadCVLResolutionView(ConfigurableUnit cu, List<CVLUIKernel> resolutionkernels, JTabbedPane resPane) throws CVLModelException{
@@ -546,7 +309,28 @@ public class ResolutionView extends VSpecView{
 		}
 	}
 
+	@Override
+	public void notifyVspecViewUpdate() {
+		throw new UnsupportedOperationException();		
+	}
+
+	@Override
+	public void notifyRelalizationViewReset() {
+		throw new UnsupportedOperationException();		
+	}
+
+	@Override
+	public void notifyAllViews() {
+		throw new UnsupportedOperationException();		
+	}
+
+	@Override
 	public void setMaximized(VSpec v) {
-		minimized.remove(v);
+		throw new UnsupportedOperationException();		
+	}
+
+	@Override
+	public void setMinimized(VSpec v) {
+		throw new UnsupportedOperationException();		
 	}
 }

@@ -26,7 +26,7 @@ import no.sintef.cvl.tool.common.Messages;
 import no.sintef.cvl.tool.primitive.DataItem;
 import no.sintef.cvl.tool.primitive.impl.DataBindingItem;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.model.BindingTableModel;
 import no.sintef.cvl.tool.ui.model.FragSubTableModel;
 
@@ -34,9 +34,9 @@ public class DeleteBindingEvent implements ActionListener {
 
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<VSpecView> views;
+	private List<CVLView> views;
 
-	public DeleteBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views){
+	public DeleteBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

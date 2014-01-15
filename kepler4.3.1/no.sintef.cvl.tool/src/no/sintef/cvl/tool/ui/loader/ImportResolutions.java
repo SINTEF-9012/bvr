@@ -24,9 +24,9 @@ import no.sintef.ict.splcatool.GraphMLFM;
 public class ImportResolutions implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<VSpecView> views;
+	private List<CVLView> views;
 	
-	public ImportResolutions(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views) {
+	public ImportResolutions(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -35,7 +35,7 @@ public class ImportResolutions implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		int i = filePane.getSelectedIndex();
 		CVLModel m = models.get(i);
-		VSpecView v = views.get(i);
+		CVLView v = views.get(i);
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new SHFilter());

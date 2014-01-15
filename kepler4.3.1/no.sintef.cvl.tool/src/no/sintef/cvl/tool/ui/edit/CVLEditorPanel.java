@@ -28,7 +28,7 @@ import javax.swing.JSplitPane;
 
 import no.sintef.cvl.tool.ui.command.SelectInstanceCommand;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -54,7 +54,7 @@ import cvl.VariableValueAssignment;
 public class CVLEditorPanel extends JPanel {
 
 	private Map<JComponent, NamedElement> vmMap;
-	private VSpecView view;
+	private CVLView view;
 	
     private CVLUIKernel kernel/* = new CVLUIKernel()*/;
 
@@ -71,7 +71,7 @@ public class CVLEditorPanel extends JPanel {
     private SelectElement current;
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 
-    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, VSpecView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, CVLView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;
     	this.resolutionvmMaps = resolutionvmMaps;
     	this.kernel = _kernel;

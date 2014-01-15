@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.tool.ui.dropdown.VInstanceDropDownListener;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
@@ -26,9 +26,9 @@ public class AddVInstance implements Command{
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private VSpecView view;
+	private CVLView view;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		this.rootPanel = rootPanel;
 		this.vc = (VInstance) p;
 		this.parent = parent;

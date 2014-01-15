@@ -26,7 +26,7 @@ import javax.swing.event.DocumentListener;
 
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import cvl.PrimitiveTypeEnum;
 import cvl.PrimitveType;
@@ -41,7 +41,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, VSpecView view) {
+	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, CVLView view) {
 		super(kernel, (VSpec) elem, view);
 		
         //Lower bound

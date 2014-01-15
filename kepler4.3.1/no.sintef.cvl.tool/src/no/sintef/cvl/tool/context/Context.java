@@ -17,7 +17,7 @@ import no.sintef.cvl.tool.filter.CVLFilter;
 import no.sintef.cvl.tool.filter.FMFilter;
 import no.sintef.cvl.tool.primitive.Symbol;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SXFM;
@@ -37,7 +37,7 @@ public final class Context {
 	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager(); 
 	
 	private final List<CVLModel> cvlModels = new ArrayList<CVLModel>();
-	private final List<VSpecView> cvlViews = new ArrayList<VSpecView>();
+	private final List<CVLView> cvlViews = new ArrayList<CVLView>();
 	
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
@@ -120,7 +120,7 @@ public final class Context {
 		return cvlModels;
 	}
 	
-	public final List<VSpecView> getCvlViews(){
+	public final List<CVLView> getCvlViews(){
 		return cvlViews;
 	}
 	
@@ -128,7 +128,7 @@ public final class Context {
 		cvlModels.add(model);
 	}
 	
-	public void addCvlView(VSpecView view){
+	public void addCvlView(CVLView view){
 		cvlViews.add(view);
 	}
 

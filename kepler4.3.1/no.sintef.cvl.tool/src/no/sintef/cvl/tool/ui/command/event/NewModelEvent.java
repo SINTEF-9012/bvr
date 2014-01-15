@@ -9,7 +9,7 @@ import javax.swing.JTabbedPane;
 import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.ui.context.StaticUICommands;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 public class NewModelEvent implements ActionListener {
 

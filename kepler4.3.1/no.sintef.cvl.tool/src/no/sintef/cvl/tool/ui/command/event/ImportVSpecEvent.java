@@ -17,16 +17,16 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.cvl.tool.filter.CVLFilter;
 import no.sintef.cvl.tool.filter.FMFilter;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.SXFM;
 
 public class ImportVSpecEvent implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<VSpecView> views;
+	private List<CVLView> views;
 
-	public ImportVSpecEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views) {
+	public ImportVSpecEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -35,7 +35,7 @@ public class ImportVSpecEvent implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
 		CVLModel m = models.get(i);
-		VSpecView v = views.get(i);
+		CVLView v = views.get(i);
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());

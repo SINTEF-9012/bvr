@@ -10,6 +10,7 @@ public class CVLModel {
 	private File f;
 	private boolean platform = false;
 	private String loadFilename;
+	private boolean saved = true;
 
 	public CVLModel(File sf) {
 		f = sf;
@@ -78,5 +79,17 @@ public class CVLModel {
 	
 	public void setLoadFilename(String loadName){		
 		loadFilename = loadName;
+	}
+	
+	public boolean isNotSaved(){
+		return !saved;
+	}
+	
+	public void markNotSaved(){
+		saved = false;
+	}
+
+	public void markSaved() {
+		saved = true;
 	}
 }

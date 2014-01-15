@@ -16,7 +16,7 @@ import javax.swing.text.JTextComponent;
 import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import cvl.Choice;
 import cvl.PrimitiveTypeEnum;
 import cvl.PrimitveType;
@@ -30,7 +30,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public ChoicePropertyEditor(CVLUIKernel kernel, VSpec elem, VSpecView view) {
+	public ChoicePropertyEditor(CVLUIKernel kernel, VSpec elem, CVLView view) {
 		super(kernel, (VSpec) elem, view);
 		
 		int count = 1;

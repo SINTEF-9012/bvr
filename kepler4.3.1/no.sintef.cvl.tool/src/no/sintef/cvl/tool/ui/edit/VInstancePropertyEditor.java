@@ -14,7 +14,7 @@ import javax.swing.event.DocumentListener;
 import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVInstance;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import cvl.PrimitiveTypeEnum;
 import cvl.PrimitveType;
@@ -28,7 +28,7 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VInstancePropertyEditor(CVLUIKernel kernel, VInstance vInstance, VSpecView view) {
+	public VInstancePropertyEditor(CVLUIKernel kernel, VInstance vInstance, CVLView view) {
 		super(kernel, vInstance, view);
 	}
 

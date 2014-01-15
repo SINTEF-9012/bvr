@@ -20,7 +20,7 @@ import no.sintef.cvl.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.VClassifierPanel;
 import cvl.ConfigurableUnit;
@@ -29,10 +29,10 @@ import cvl.VSpecResolution;
 
 public class VSpecResDropDownListener extends MouseAdapter {
 	private VSpecResolution v;
-	private VSpecView cvlView;
+	private CVLView cvlView;
 	private ConfigurableUnit cu;
 
-	public VSpecResDropDownListener(ConfigurableUnit cu, VSpecResolution v,	VSpecView cvlView) {
+	public VSpecResDropDownListener(ConfigurableUnit cu, VSpecResolution v,	CVLView cvlView) {
 		this.cu = cu;
 		this.v = v;
 		this.cvlView = cvlView;
@@ -57,7 +57,7 @@ public class VSpecResDropDownListener extends MouseAdapter {
 class VSpecResDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecResDropdown(ConfigurableUnit cu, VSpecResolution v, VSpecView cvlView){
+    public VSpecResDropdown(ConfigurableUnit cu, VSpecResolution v, CVLView cvlView){
     	/*JMenuItem del = new JMenuItem("delete");
     	del.addActionListener(new DelResEvent(cu, v, cvlView));
 		add(del);

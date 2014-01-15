@@ -25,10 +25,10 @@ import no.sintef.ict.splcatool.GraphMLFM;
 public class CalculateCoverage implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<VSpecView> views;
+	private List<CVLView> views;
 	private int t;
 
-	public CalculateCoverage(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views, int t) {
+	public CalculateCoverage(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, int t) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

@@ -2,15 +2,18 @@ package no.sintef.cvl.ui.editor.eclipse.editors;
 
 import java.awt.Frame;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JApplet;
 import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import no.sintef.cvl.tool.ui.loader.BVRNotifier;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
 import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -22,10 +25,12 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.ISaveablePart;
+import org.eclipse.ui.IWorkbenchPartConstants;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeListener {
+public class BVRVSpecEditorMVC extends EditorPart implements ISaveablePart, IResourceChangeListener, BVRNotifier {
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
@@ -43,23 +48,31 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 	public void resourceChanged(IResourceChangeEvent event) {
 		
 	}
+	
+	VSpecView v;
+	CVLModel m;
+	private String filename;
 
 	@Override
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {	
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		final BVRNotifier ep = this;
+		
 		setSite(site);
 		setInput(input);
 		final org.eclipse.ui.part.FileEditorInput inEditor = (org.eclipse.ui.part.FileEditorInput) input;
-		setContentDescription("CVLEditor:"+inEditor.getFile().getLocation().toString());
+		filename = inEditor.getFile().getLocation().toString();
+		setContentDescription("CVLEditor:" + filename);
+		setPartName(new File(filename).getName() + " (VSpec)");
 				
 		new Thread(){
 			public void run(){
 				if(inEditor!= null){
 					try {
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			        	CVLModel m = CVLModelSingleton.getModel(new File(inEditor.getFile().getLocation().toString()));
+			        	m = CVLModelSingleton.getModel(new File(filename));
 			        	if (m != null) {
 			        		JApplet a = new JApplet(); 
-			        		VSpecView v = new VSpecView(m, a, frame);
+			        		v = new VSpecView(m, ep);
 			        		// "The first child of the embedded frame must be a heavyweight component."
 			        		frame.add(a);
 			        		a.add(v.vspecEpanel);
@@ -68,6 +81,7 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 			        		a.setSize(w, h);
 			        		frame.revalidate();
 			        		frame.repaint();
+			        		ep.notifyProbeDirty();
 			        	}
 					} catch(Exception e){
 						e.printStackTrace();
@@ -80,8 +94,13 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		// TODO Auto-generated method stub
-		
+		try {
+			m.getCVLM().writeToFile(filename);
+			m.markSaved();
+			notifyProbeDirty();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -89,17 +108,19 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public boolean isDirty() {
-		// TODO Auto-generated method stub
-		return false;
+		if(v != null){
+			return v.isDirty();
+		}else{
+			return false;
+		}
 	}
 
 	@Override
 	public boolean isSaveAsAllowed() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -114,6 +135,11 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 	public void setFocus() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void notifyProbeDirty() {
+		firePropertyChange(ISaveablePart.PROP_DIRTY);
 	}
 
 

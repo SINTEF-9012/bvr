@@ -20,7 +20,7 @@ import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.command.UpdateVSpec;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import cvl.Choice;
 import cvl.ConfigurableUnit;
 import cvl.PrimitiveTypeEnum;
@@ -35,7 +35,7 @@ public class ConfigurableUnitPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public ConfigurableUnitPropertyEditor(CVLUIKernel kernel, ConfigurableUnit elem, VSpecView view) {
+	public ConfigurableUnitPropertyEditor(CVLUIKernel kernel, ConfigurableUnit elem, CVLView view) {
 		super(kernel, elem, view);
 	}
 

@@ -9,7 +9,7 @@ import no.sintef.cvl.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.cvl.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.cvl.tool.ui.dropdown.ChoiceDropDownListener;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.VSpecView;
+import no.sintef.cvl.tool.ui.loader.CVLView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
@@ -30,14 +30,14 @@ public class AddChoice implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private VSpecView view;
+	private CVLView view;
 	private boolean minimized;
 	
 	public AddChoice(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
 		if(p instanceof Choice){
 			this.rootPanel = rootPanel;
 			this.c = (Choice) p;
