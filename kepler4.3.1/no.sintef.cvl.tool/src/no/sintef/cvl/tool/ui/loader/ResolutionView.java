@@ -66,8 +66,6 @@ public class ResolutionView extends CVLView{
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
 	private Map<JComponent, NamedElement> vspecvmMap;
-	private List<JComponent> vspecNodes;
-	private List<Pair<JComponent, JComponent>> vspecBindings;
 	private CVLUIKernel vSpeccvluikernel;
 	
 	// Resolutions
@@ -79,13 +77,6 @@ public class ResolutionView extends CVLView{
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 	
-	// Realization
-	private JTabbedPane realizationPanel;
-	private FragmentSubstitutionJTable tableFragmSubst;
-	private SubstitutionFragmentJTable tableSubstFragm;
-	private BindingJTable bindingEditor;
-	
-	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
 	public CVLUIKernel getKernel() {
