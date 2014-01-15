@@ -3,9 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tool
 Bundle-SymbolicName: no.sintef.cvl.tool
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: lib/org.kevoree.extra.macwidgets-0.9.6.jar,
- lib/swingx-core-1.6.2-2.jar,
- lib/org.abego.treelayout.core-1.0.1.jar,
+Bundle-ClassPath: lib/org.abego.treelayout.core-1.0.1.jar,
  lib/combinatoricslib-2.0.jar,
  lib/batik-svggen-1.6.jar,
  lib/batik-dom-1.6-1.jar,
@@ -13,7 +11,8 @@ Bundle-ClassPath: lib/org.kevoree.extra.macwidgets-0.9.6.jar,
  lib/org.abego.treelayout.demo-1.0.1.jar,
  lib/antlr-4.0-complete.jar,
  .,
- lib/batik-util-1.6-1.jar
+ lib/batik-util-1.6-1.jar,
+ lib/swingx-all-1.6.5-1.jar
 Export-Package: no.sintef.cvl.tool,
  no.sintef.cvl.tool.chain,
  no.sintef.cvl.tool.chain.impl,
@@ -71,13 +70,15 @@ Export-Package: no.sintef.cvl.tool,
  org.antlr.v4.tool.templates.codegen.Java,
  org.antlr.v4.tool.templates.dot,
  org.antlr.v4.tool.templates.messages.formats,
+ org.jdesktop.swingx.util,
  org.stringtemplate.v4,
  org.stringtemplate.v4.compiler,
  org.stringtemplate.v4.debug,
  org.stringtemplate.v4.gui,
  org.stringtemplate.v4.misc,
  schema
-Import-Package: cvl,
+Import-Package: com.explodingpixels.macwidgets,
+ cvl,
  cvl.impl,
  no.sintef.cvl.common.logging,
  no.sintef.cvl.constraints.bcl,

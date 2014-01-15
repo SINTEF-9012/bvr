@@ -11,7 +11,7 @@ import cvl.VSpec;
 import cvl.CvlFactory;
 
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -23,9 +23,9 @@ public class SelectChoiceCommand implements Command {
 	private ChoicePanel p;
 	private JComponent parent;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private VSpecView view;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
 		this.rootPanel = rootPanel;
 		this.p = (ChoicePanel)p;
 		this.parent = parent;

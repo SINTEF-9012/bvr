@@ -19,7 +19,7 @@ import no.sintef.cvl.tool.filter.PNGFilter;
 import no.sintef.cvl.tool.filter.SVGFilter;
 import no.sintef.cvl.tool.ui.context.StaticUICommands;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGeneratorContext;
@@ -40,7 +40,7 @@ public class ExportModelSVG implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		int i = filePane.getSelectedIndex();
-		CVLView view = Context.eINSTANCE.getCvlViews().get(i);
+		VSpecView view = Context.eINSTANCE.getCvlViews().get(i);
 		CVLModel model = Context.eINSTANCE.getCvlModels().get(i);
 		
 		FileFilter[] filters = {new SVGFilter()};

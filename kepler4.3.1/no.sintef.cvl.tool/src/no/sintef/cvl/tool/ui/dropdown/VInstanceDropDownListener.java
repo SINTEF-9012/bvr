@@ -18,7 +18,7 @@ import no.sintef.cvl.tool.ui.command.event.AddChoiceResolvedEvent;
 import no.sintef.cvl.tool.ui.command.event.AddVInstanceEvent;
 import no.sintef.cvl.tool.ui.command.event.AddVariableValueAssignmentEvent;
 import no.sintef.cvl.tool.ui.command.event.RemoveVSpecResolutionEvent;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.cvl.ui.framework.elements.VInstancePanel;
@@ -34,10 +34,10 @@ import cvl.Variable;
 public class VInstanceDropDownListener  extends MouseAdapter {
 	private VInstancePanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private VSpecView view;
 	private VInstance c;
 	
-    public VInstanceDropDownListener(VInstancePanel cp, VInstance c, CVLView view, Map<JComponent, NamedElement> vmMap) {
+    public VInstanceDropDownListener(VInstancePanel cp, VInstance c, VSpecView view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
 		this.c = c;
 		this.view = view;
@@ -63,7 +63,7 @@ public class VInstanceDropDownListener  extends MouseAdapter {
 class VInstanceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VInstanceDropdown(VInstancePanel cp, VInstance c, CVLView view, Map<JComponent, NamedElement> vmMap){
+    public VInstanceDropdown(VInstancePanel cp, VInstance c, VSpecView view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");

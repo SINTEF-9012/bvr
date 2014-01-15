@@ -14,7 +14,7 @@ import no.sintef.cvl.tool.primitive.impl.DataBindingItem;
 import no.sintef.cvl.tool.primitive.impl.DataBoundaryItem;
 import no.sintef.cvl.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.tool.ui.editor.BindingJTable;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.model.BindingTableModel;
 import cvl.BoundaryElementBinding;
 import cvl.ConfigurableUnit;

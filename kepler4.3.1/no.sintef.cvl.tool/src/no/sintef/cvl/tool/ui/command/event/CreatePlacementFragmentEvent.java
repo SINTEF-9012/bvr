@@ -15,7 +15,7 @@ import no.sintef.cvl.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.cvl.tool.strategy.impl.GetSelectionContext;
 import no.sintef.cvl.tool.ui.context.StaticUICommands;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -40,7 +40,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 	public void actionPerformed(ActionEvent ev) {
 		int tab = filePane.getSelectedIndex();
 		List<CVLModel> models = Context.eINSTANCE.getCvlModels();
-		List<CVLView> views = Context.eINSTANCE.getCvlViews();
+		List<VSpecView> views = Context.eINSTANCE.getCvlViews();
 		
 		CVLModel m = models.get(tab);
 		ConfigurableUnit cu = m.getCU();

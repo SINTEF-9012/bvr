@@ -26,9 +26,9 @@ import no.sintef.ict.splcatool.CoveringArray;
 public class SATValidateResolutions implements ActionListener {
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<VSpecView> views;
 	
-	public SATValidateResolutions(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public SATValidateResolutions(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -38,7 +38,7 @@ public class SATValidateResolutions implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
 		CVLModel m = models.get(i);
-		CVLView v = views.get(i);
+		VSpecView v = views.get(i);
 		
 		no.sintef.ict.splcatool.CVLModel x = m.getCVLM();
 		

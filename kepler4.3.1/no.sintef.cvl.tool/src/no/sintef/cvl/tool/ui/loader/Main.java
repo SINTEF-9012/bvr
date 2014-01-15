@@ -42,14 +42,10 @@ import cvl.NamedElement;
 public class Main {
 	private CVLJFrame jframe;
 	public static NamedElement vSpecCut;
-	private List<CVLView> views = Context.eINSTANCE.getCvlViews();
+	private List<VSpecView> views = Context.eINSTANCE.getCvlViews();
 	private List<CVLModel> models = Context.eINSTANCE.getCvlModels();
 
-	public static void main(String[] args){
-		new Main().main();
-	}
-
-	public void main(){
+	public void startVSpecView(){
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException

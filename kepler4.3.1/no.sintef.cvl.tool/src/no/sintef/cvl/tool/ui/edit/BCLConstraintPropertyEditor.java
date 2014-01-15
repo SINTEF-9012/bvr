@@ -16,7 +16,7 @@ import no.sintef.cvl.tool.ui.command.UpdateBCLConstraint;
 import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import cvl.BCLConstraint;
 import cvl.VSpec;
 
@@ -27,7 +27,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public BCLConstraintPropertyEditor(CVLUIKernel kernel, BCLConstraint elem, CVLView view) {
+	public BCLConstraintPropertyEditor(CVLUIKernel kernel, BCLConstraint elem, VSpecView view) {
 		super(kernel, elem, view);
 		
 		// Constraint

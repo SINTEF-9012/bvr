@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 
 import no.sintef.cvl.tool.ui.dropdown.ClassifierDropDownListener;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
@@ -29,14 +29,14 @@ public class AddVClassifier implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private VSpecView view;
 	private boolean minimized;
 	
 	public AddVClassifier(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
 			this.vc = (VClassifier) p;

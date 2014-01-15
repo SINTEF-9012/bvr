@@ -23,16 +23,16 @@ import no.sintef.cvl.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.cvl.tool.strategy.impl.GetSelectionContext;
 import no.sintef.cvl.tool.strategy.impl.SingleDummyToPlacementBoundaryCalcStrategy;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.model.BindingTableModel;
 
 public class CreateToBindingEvent implements ActionListener {
 
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<VSpecView> views;
 
-	public CreateToBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
+	public CreateToBindingEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views){
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

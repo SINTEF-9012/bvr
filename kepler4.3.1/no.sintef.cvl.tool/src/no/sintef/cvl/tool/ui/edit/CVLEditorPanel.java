@@ -28,7 +28,7 @@ import javax.swing.JSplitPane;
 
 import no.sintef.cvl.tool.ui.command.SelectInstanceCommand;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.ui.framework.ParallelogramTitledPanel;
 import no.sintef.cvl.ui.framework.SelectElement;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -43,8 +43,6 @@ import org.jdesktop.swingx.JXPanel;
 import org.jdesktop.swingx.painter.CompoundPainter;
 import org.jdesktop.swingx.painter.MattePainter;
 
-import com.explodingpixels.macwidgets.IAppWidgetFactory;
-
 import cvl.BCLConstraint;
 import cvl.Choice;
 import cvl.NamedElement;
@@ -56,7 +54,7 @@ import cvl.VariableValueAssignment;
 public class CVLEditorPanel extends JPanel {
 
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private VSpecView view;
 	
     private CVLUIKernel kernel/* = new CVLUIKernel()*/;
 
@@ -73,7 +71,7 @@ public class CVLEditorPanel extends JPanel {
     private SelectElement current;
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 
-    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, CVLView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, VSpecView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;
     	this.resolutionvmMaps = resolutionvmMaps;
     	this.kernel = _kernel;
@@ -92,7 +90,7 @@ public class CVLEditorPanel extends JPanel {
         this.setLayout(new BorderLayout());
 
         JScrollPane scrollpane = new JScrollPane();
-        IAppWidgetFactory.makeIAppScrollPane(scrollpane);
+        //IAppWidgetFactory.makeIAppScrollPane(scrollpane);
         editableModelPanel = new EditableModelPanel(scrollpane);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 leftpanel, editableModelPanel);

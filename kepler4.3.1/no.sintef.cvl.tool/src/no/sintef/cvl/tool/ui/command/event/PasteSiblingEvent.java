@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -22,9 +22,9 @@ public class PasteSiblingEvent implements ActionListener {
 
 	private JPanel p;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private VSpecView view;
 
-	public PasteSiblingEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public PasteSiblingEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;

@@ -16,7 +16,7 @@ import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.command.UpdateVInstance;
 import no.sintef.cvl.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
@@ -43,7 +43,7 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VariableValueAssignmentPropertyEditor(CVLUIKernel kernel, VariableValueAssignment elem, CVLView view) {
+	public VariableValueAssignmentPropertyEditor(CVLUIKernel kernel, VariableValueAssignment elem, VSpecView view) {
 		super(kernel, elem, view);
 		
 		// Find value

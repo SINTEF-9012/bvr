@@ -29,7 +29,7 @@ import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.command.UpdateVSpec;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
@@ -48,7 +48,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, CVLView view) {
+	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, VSpecView view) {
 		super(kernel, (VSpec) elem, view);
 		
         //Lower bound

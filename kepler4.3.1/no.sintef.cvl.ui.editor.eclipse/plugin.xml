@@ -10,7 +10,7 @@
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
       </editor>
    </extension>
    
@@ -22,7 +22,7 @@
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
       </editor>
    </extension>
    
@@ -34,7 +34,19 @@
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
+      </editor>
+   </extension>
+   
+         <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="BVR Resolution Editor (Table)"
+            extensions="cvl"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
+            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
       </editor>
    </extension>
    
@@ -46,7 +58,7 @@
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.KevModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
       </editor>
    </extension>
 

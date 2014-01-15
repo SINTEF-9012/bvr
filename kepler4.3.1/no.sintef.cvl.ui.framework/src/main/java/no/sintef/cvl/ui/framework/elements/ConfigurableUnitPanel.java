@@ -41,7 +41,6 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
         bindingPanel.revalidate();
         vspecPanel.repaint();
         vspecPanel.revalidate();
-
     }
 
 

@@ -17,7 +17,7 @@ import no.sintef.cvl.constraints.bcl.BCLBuilder;
 import no.sintef.cvl.constraints.bcl.BCLLexer;
 import no.sintef.cvl.constraints.bcl.BCLParser;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import cvl.BCLConstraint;
 import cvl.BCLExpression;
@@ -32,7 +32,7 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 	@Override
 	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+			List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
 		this.bcl = (BCLConstraint)p;
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}

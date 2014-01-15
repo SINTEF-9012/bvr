@@ -35,9 +35,9 @@ public class ValidateResolution implements ActionListener {
 	
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<VSpecView> views;
 
-	public ValidateResolution(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public ValidateResolution(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

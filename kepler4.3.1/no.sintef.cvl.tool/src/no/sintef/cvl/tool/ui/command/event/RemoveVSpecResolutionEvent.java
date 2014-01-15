@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;
 import cvl.VSpecResolution;
@@ -14,9 +14,9 @@ import cvl.VSpecResolution;
 public class RemoveVSpecResolutionEvent implements ActionListener  {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private VSpecView view;
 
-	public RemoveVSpecResolutionEvent(JComponent p, Map<JComponent, NamedElement> vmMap, CVLView view) {
+	public RemoveVSpecResolutionEvent(JComponent p, Map<JComponent, NamedElement> vmMap, VSpecView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;

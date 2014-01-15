@@ -28,7 +28,7 @@ import no.sintef.cvl.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.cvl.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.cvl.tool.ui.command.event.ToggleOptionalEvent;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.elements.ChoicePanel;
@@ -38,9 +38,9 @@ public class ChoiceDropDownListener extends MouseAdapter {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private VSpecView view;
 
-	public ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+	public ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -65,7 +65,7 @@ public class ChoiceDropDownListener extends MouseAdapter {
 class ChoiceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view){
+    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");

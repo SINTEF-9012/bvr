@@ -32,6 +32,7 @@ package no.sintef.cvl.ui.framework.elements;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -45,6 +46,7 @@ import javax.swing.JPanel;
 
 //import no.sintef.cvl.ui.commands.SelectInstanceCommand;
 
+
 import com.explodingpixels.macwidgets.HudWindow;
 
 /**
@@ -52,7 +54,7 @@ import com.explodingpixels.macwidgets.HudWindow;
  */
 public class EditableModelPanel extends JLayeredPane {
 
-    private JPanel propertiesPanel = null;
+	private JPanel propertiesPanel = null;
     private JButton closeProperties = new JButton("Close");
     private JComponent modelPanel = null;
 

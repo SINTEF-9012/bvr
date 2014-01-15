@@ -24,17 +24,17 @@ import no.sintef.cvl.tool.common.LoaderUtility;
 import no.sintef.cvl.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.model.SubFragTableModel;
 
 public class CreateFragmentSubstitutionEvent implements ActionListener {
 
 	private JTabbedPane filePane;
 	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<VSpecView> views;
 	static int count = 0;
 
-	public CreateFragmentSubstitutionEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
+	public CreateFragmentSubstitutionEvent(JTabbedPane filePane, List<CVLModel> models, List<VSpecView> views){
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

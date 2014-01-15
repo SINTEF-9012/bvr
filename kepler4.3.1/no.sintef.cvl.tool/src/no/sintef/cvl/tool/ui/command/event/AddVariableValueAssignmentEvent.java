@@ -3,7 +3,7 @@ package no.sintef.cvl.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import cvl.BCLExpression;
 import cvl.BooleanLiteralExp;
 import cvl.ChoiceResolutuion;
@@ -26,10 +26,10 @@ import cvl.Variabletype;
 public class AddVariableValueAssignmentEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Variable target;
-	private CVLView view;
+	private VSpecView view;
 	static private int count = 0;
 	
-	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, CVLView view) {
+	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, VSpecView view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;

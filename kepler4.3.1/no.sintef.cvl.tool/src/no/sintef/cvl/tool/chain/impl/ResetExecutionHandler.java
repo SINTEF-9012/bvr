@@ -6,7 +6,7 @@ import no.sintef.cvl.tool.exception.AbstractError;
 import no.sintef.cvl.tool.exception.UnexpectedException;
 import no.sintef.cvl.tool.primitive.ExecutionRequest;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 public class ResetExecutionHandler implements ExecutionHandler {
 	
@@ -18,7 +18,7 @@ public class ResetExecutionHandler implements ExecutionHandler {
 
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
-		CVLView cvlView = (CVLView) request.getDataField("cvlView");
+		VSpecView cvlView = (VSpecView) request.getDataField("cvlView");
 		CVLModel cvlModel = (CVLModel) request.getDataField("cvlModel");
 		if(cvlView == null){
 			throw new UnexpectedException("cvlView is required to reset model");

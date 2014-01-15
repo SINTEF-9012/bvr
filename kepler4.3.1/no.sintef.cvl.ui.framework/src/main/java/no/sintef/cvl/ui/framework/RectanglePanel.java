@@ -35,7 +35,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
-import org.jdesktop.swingx.graphics.GraphicsUtilities;
+import org.jdesktop.swingx.util.GraphicsUtilities;
 import org.jdesktop.swingx.graphics.ShadowRenderer;
 
 /**
@@ -149,8 +149,7 @@ public class RectanglePanel extends JPanel implements ChangeAwareComponent {
         if (h < 0 || w < 0) return;
 
         int shadowSize = SHADOW_SIZE;
-        shadow =
-                GraphicsUtilities.createCompatibleTranslucentImage(w, h);
+        shadow = GraphicsUtilities.createCompatibleTranslucentImage(w, h);
         Graphics2D g2 = shadow.createGraphics();
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, w, h);

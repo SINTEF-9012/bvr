@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 import no.sintef.cvl.constraints.bcl.BCLPrettyPrinter;
 import no.sintef.cvl.tool.ui.dropdown.BCLConstraintDropDownListener;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import no.sintef.cvl.ui.framework.OptionalElement.OPTION_STATE;
@@ -26,10 +26,10 @@ public class AddBCLConstraint implements Command {
 	JComponent parent;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private VSpecView view;
 	private Map<JComponent, NamedElement> vmMap;
 	
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, VSpecView view) {
 		this.rootPanel = rootPanel;
 		this.oc = (BCLConstraint) p;
 		this.parent = parent;

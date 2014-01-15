@@ -2,6 +2,7 @@ package no.sintef.cvl.tool.ui.loader;
 
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+
 import org.abego.treelayout.TreeLayout;
 import org.abego.treelayout.demo.TextInBox;
 import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
@@ -34,16 +37,15 @@ import no.sintef.cvl.tool.ui.command.AddVClassifier;
 import no.sintef.cvl.tool.ui.command.AddVInstance;
 import no.sintef.cvl.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.cvl.tool.ui.dropdown.VSpecResDropDownListener;
+import no.sintef.cvl.tool.ui.edit.CVLEditorPanel;
 import no.sintef.cvl.tool.ui.editor.BindingJTable;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
 import no.sintef.cvl.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.cvl.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.cvl.ui.framework.TitledElement;
+import no.sintef.cvl.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.cvl.ui.framework.elements.EditableModelPanel;
 import no.sintef.cvl.ui.framework.elements.GroupPanel;
-
-import com.explodingpixels.macwidgets.IAppWidgetFactory;
-
 import cvl.BCLConstraint;
 import cvl.Choice;
 import cvl.ChoiceResolutuion;
@@ -57,14 +59,38 @@ import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.VariableValueAssignment;
 
-public class CVLView {
+class MyScroll extends JScrollPane{
+
+	public MyScroll(JScrollPane MyScroll) {
+		super(MyScroll);
+	}
+
+	@Override
+	public void repaint(long tm, int x, int y, int width, int height) {
+		//System.out.println("here");
+		//return;
+		super.repaint(tm, x, y, width, height);
+	}
+
+	@Override
+	public void repaint(Rectangle r) {
+		//System.out.println("here");
+		//return;
+		super.repaint(r);
+	}
+	
+	
+	
+}
+
+public class VSpecView {
 	private CVLModel m;
 	
-	private JTabbedPane modelPane;
+	public JTabbedPane modelPane;
 	
 	// VSpec
-	private JScrollPane vspecScrollPane;
-	private EditableModelPanel vspecEpanel;
+	public JScrollPane vspecScrollPane;
+	public EditableModelPanel vspecEpanel;
 	private Map<JComponent, NamedElement> vspecvmMap;
 	private List<JComponent> vspecNodes;
 	private List<Pair<JComponent, JComponent>> vspecBindings;
@@ -88,22 +114,28 @@ public class CVLView {
 	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
+	public EditableModelPanel x;
+
+	public CVLEditorPanel e;
+
 	public CVLUIKernel getKernel() {
 		return vSpeccvluikernel;
 	}
 	
-	public CVLView(CVLModel m, JTabbedPane tp) {
+	public VSpecView(CVLModel m) {
 		// Alloc
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
 		
+		/* REF
         resolutionPanes = new ArrayList<JScrollPane>();
         resolutionEpanels = new ArrayList<EditableModelPanel>();
         resolutionkernels = new ArrayList<CVLUIKernel>();
     	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
     	resolutionNodes = new ArrayList<List<JComponent>>();
     	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
+    	*/
     	
     	//cvlViewSubject = new CVLViewSubject(this);
 		
@@ -124,13 +156,16 @@ public class CVLView {
         
         autoLayoutVSpec();
 		
-		vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
+		vspecScrollPane = new MyScroll(new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
+		//IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
+        //x = vspecEpanel;
+        //modelPane.add(x);
         
-        tp.addTab(m.getShortFileName(), null, modelPane, m.getLongFileName());
-        modelPane.addTab("VSpec", null, vspecEpanel, "");
+        //tp.addTab(m.getShortFileName(), null, modelPane, m.getLongFileName());
         
+        
+        /* REF
         // Resolution panes
         resPane = new JTabbedPane();
         modelPane.addTab("Resolution", null, resPane, "");
@@ -153,6 +188,7 @@ public class CVLView {
         } catch (Exception e){
         	e.printStackTrace();
         }
+        */
 	}
 	
 	public ConfigurableUnitSubject getConfigurableUnitSubject(){
@@ -248,7 +284,6 @@ public class CVLView {
 			CVLUIKernel resKernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	        IAppWidgetFactory.makeIAppScrollPane(scrollPane);
 	        EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 	        
 	        resolutionPanes.add(scrollPane);
@@ -388,15 +423,15 @@ public class CVLView {
 		
 		// Clear everything
 		vSpeccvluikernel.getModelPanel().removeAll();
-		vspecScrollPane.remove(vSpeccvluikernel.getModelPanel());
-		vspecScrollPane.removeAll();
+		//vspecScrollPane.remove(vSpeccvluikernel.getModelPanel());
+		//vspecScrollPane.removeAll();
 		
-		vspecNodes = new ArrayList<JComponent>();
-		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
-		vspecvmMap = new HashMap<JComponent, NamedElement>();
+		vspecNodes.clear();
+		vspecBindings.clear();
+		vspecvmMap.clear();
 		
         // Add stuff
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
+		//vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
         try {
 			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
@@ -407,15 +442,19 @@ public class CVLView {
         autoLayoutVSpec();
         
         // Draw
-        vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        /*vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
         
         modelPane.setComponentAt(0, vspecEpanel);
+        */
 		//jframe.repaint();
         
         // Restore scroll coordinates
         vspecScrollPane.getViewport().setViewPosition(vpos);
+        
+        System.out.println(vspecEpanel);
+        vspecEpanel.repaint();
         
         configurableUnitSubject.notifyObserver();
 	}

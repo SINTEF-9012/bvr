@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.ui.context.StaticUICommands;
 import no.sintef.cvl.tool.ui.loader.CVLModel;
-import no.sintef.cvl.tool.ui.loader.CVLView;
+import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 public class OpenModelEvent implements ActionListener {
 	
@@ -34,7 +34,7 @@ public class OpenModelEvent implements ActionListener {
 			
 			CVLModel m = Context.eINSTANCE.loadModelFromFile(sf);
 			Context.eINSTANCE.addCvlModel(m);
-			Context.eINSTANCE.addCvlView(new CVLView(m, c));
+			//Context.eINSTANCE.addCvlView(new VSpecView(m, c));
 		}catch(Exception e){
 			Context.eINSTANCE.logger.error("some error on Open", e);
 			StaticUICommands.showMessageErrorDialog(null, e, "Failed to load file due to:");
