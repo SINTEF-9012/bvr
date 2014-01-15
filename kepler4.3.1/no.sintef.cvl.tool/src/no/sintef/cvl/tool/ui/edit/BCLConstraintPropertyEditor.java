@@ -8,9 +8,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
-
 import no.sintef.cvl.constraints.bcl.BCLPrettyPrinter;
 import no.sintef.cvl.tool.ui.command.UpdateBCLConstraint;
 import no.sintef.cvl.tool.ui.command.UpdateChoice;
@@ -36,11 +33,9 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
         p2.setOpaque(false);
 		
         JLabel l2 = new JLabel("BCL Constraint", JLabel.TRAILING);
-        l2.setUI(new HudLabelUI());
 
         p2.add(l2);
         JTextField textField2 = new JTextField(15);
-        textField2.setUI(new HudTextFieldUI());
 
         l2.setLabelFor(textField2);
         p2.add(textField2);

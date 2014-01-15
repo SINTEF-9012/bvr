@@ -98,18 +98,25 @@ public class EditableModelPanel extends JLayeredPane {
 
     private JPanel previousPropertiesPanel = null;
 
-    HudWindow hud = new HudWindow("Properties editor");
+    //HudWindow hud = new HudWindow("Properties editor");
 
     public void displayProperties(JPanel prop) {
-        hud.getJDialog().setSize(320, 440);
+        /*
+    	hud.getJDialog().setSize(320, 440);
         hud.getJDialog().setLocationRelativeTo(null);
         hud.getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         hud.setContentPane(prop);
         hud.getJDialog().setVisible(true);
+        */
+    	JFrame frame = new JFrame("Properties editor");
+    	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    	frame.getContentPane().add(prop, BorderLayout.CENTER);
+    	frame.pack();
+    	frame.setVisible(true);
     }
 
     public void undisplayProperties() {
-        hud.getJDialog().setVisible(false);
+        //hud.getJDialog().setVisible(false);
         //SelectInstanceCommand.unselect();
     }
 }

@@ -6,6 +6,7 @@ import java.io.File;
 import javax.swing.JApplet;
 import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 
 import no.sintef.cvl.tool.ui.loader.CVLModel;
 import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
@@ -54,6 +55,7 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 			public void run(){
 				if(inEditor!= null){
 					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			        	CVLModel m = CVLModelSingleton.getModel(new File(inEditor.getFile().getLocation().toString()));
 			        	if (m != null) {
 			        		JApplet a = new JApplet(); 

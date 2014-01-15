@@ -96,11 +96,11 @@ public class ElementPropertyEditor extends JPanel {
         p.setOpaque(false);
         
         JLabel l = new JLabel("Name", JLabel.TRAILING);
-        l.setUI(new HudLabelUI());
+        //l.setUI(new HudLabelUI());
 
         p.add(l);
         JTextField textField = new JTextField(15);
-        textField.setUI(new HudTextFieldUI());
+        //textField.setUI(new HudTextFieldUI());
 
         l.setLabelFor(textField);
         p.add(textField);

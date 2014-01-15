@@ -13,9 +13,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
-
 import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
@@ -56,12 +53,10 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         
         // Name
         final JTextField name = new JTextField(10);
-        name.setUI(new HudTextFieldUI());
         name.setText(v.getName());
         
         // Type
         JLabel l = new JLabel(((PrimitveType)v.getType()).getType().getName(), JLabel.TRAILING);
-        l.setUI(new HudLabelUI());
         
         final JComboBox types = new JComboBox();
         int index = 0;

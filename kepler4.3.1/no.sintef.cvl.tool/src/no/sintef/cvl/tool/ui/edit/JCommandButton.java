@@ -18,7 +18,6 @@ public class JCommandButton extends JButton {
     	this.command = command;
         this.setText(title);
         this.setOpaque(false);
-        this.setUI(new HudButtonUI());
         this.addMouseListener(new MouseAdapter() {
         @Override
             public void mouseClicked(MouseEvent e) {

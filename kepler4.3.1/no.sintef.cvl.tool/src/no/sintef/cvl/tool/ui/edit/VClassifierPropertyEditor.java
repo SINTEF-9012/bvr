@@ -23,18 +23,11 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
 
-import no.sintef.cvl.tool.ui.command.UpdateChoice;
 import no.sintef.cvl.tool.ui.command.UpdateVClassifier;
-import no.sintef.cvl.tool.ui.command.UpdateVSpec;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
 
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
-
-import cvl.Choice;
 import cvl.PrimitiveTypeEnum;
 import cvl.PrimitveType;
 import cvl.VClassifier;
@@ -57,11 +50,11 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         p2.setOpaque(false);
 		
         JLabel l2 = new JLabel("Lower", JLabel.TRAILING);
-        l2.setUI(new HudLabelUI());
+        //l2.setUI(new HudLabelUI());
 
         p2.add(l2);
         final JTextField textField2 = new JTextField(15);
-        textField2.setUI(new HudTextFieldUI());
+        //textField2.setUI(new HudTextFieldUI());
 
         l2.setLabelFor(textField2);
         p2.add(textField2);
@@ -80,11 +73,11 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         p3.setOpaque(false);
         
         JLabel l3 = new JLabel("Upper", JLabel.TRAILING);
-        l3.setUI(new HudLabelUI());
+        //l3.setUI(new HudLabelUI());
 
         p3.add(l3);
         final JTextField textField3 = new JTextField(15);
-        textField3.setUI(new HudTextFieldUI());
+        //textField3.setUI(new HudTextFieldUI());
 
         l3.setLabelFor(textField3);
         p3.add(textField3);
@@ -165,12 +158,12 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         
         // Name
         final JTextField name = new JTextField(10);
-        name.setUI(new HudTextFieldUI());
+        //name.setUI(new HudTextFieldUI());
         name.setText(v.getName());
         
         // Type
         JLabel l = new JLabel(((PrimitveType)v.getType()).getType().getName(), JLabel.TRAILING);
-        l.setUI(new HudLabelUI());
+        //l.setUI(new HudLabelUI());
         
         final JComboBox types = new JComboBox();
         int index = 0;

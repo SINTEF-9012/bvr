@@ -18,9 +18,6 @@ import no.sintef.cvl.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
 
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
-
 import cvl.BCLExpression;
 import cvl.BooleanLiteralExp;
 import cvl.IntegerLiteralExp;
@@ -56,11 +53,9 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
         p2.setOpaque(false);
 		
         JLabel l2 = new JLabel("Value", JLabel.TRAILING);
-        l2.setUI(new HudLabelUI());
 
         p2.add(l2);
         final JTextField textField2 = new JTextField(15);
-        textField2.setUI(new HudTextFieldUI());
 
         l2.setLabelFor(textField2);
         p2.add(textField2);

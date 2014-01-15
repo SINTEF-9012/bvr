@@ -61,13 +61,9 @@ public class SelectInstanceCommand implements Command {
         currentlySelected = selectableElement;
 		
 		currentlySelected.setSelected(!currentlySelected.isSelected());
-        if (currentlySelected.isSelected()) {
-        	//System.out.println("kernel = " + kernel);
-        	//System.out.println("kernel.getEditorPanel() = " + kernel.getEditorPanel());
-            kernel.getEditorPanel().showPropertyFor((JPanel) currentlySelected);
-        } else {
-            kernel.getEditorPanel().unshowPropertyEditor();
-        }
+
+        kernel.getEditorPanel().showPropertyFor((JPanel) currentlySelected);
+
 
         ((JPanel)currentlySelected).repaint();
         ((JPanel)currentlySelected).revalidate();

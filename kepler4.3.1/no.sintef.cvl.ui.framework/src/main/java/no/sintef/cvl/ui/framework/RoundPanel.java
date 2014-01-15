@@ -128,11 +128,12 @@ public class RoundPanel extends JPanel implements ChangeAwareComponent {
             //g2.setPaint(grad);
             g2.fillRoundRect(x, y, w, h, arc, arc);
             g2.setStroke(new BasicStroke(2f));
-            if (active) {
+            /*if (active) {
                 g2.setColor(new Color(243, 238, 39, 150));
             } else {
+            */
                 g2.setColor(Color.BLACK);
-            }
+            //}
 
             //g2.setComposite(AlphaComposite.Clear);
             g2.drawRoundRect(x, y, w, h, arc, arc);
@@ -156,10 +157,8 @@ public class RoundPanel extends JPanel implements ChangeAwareComponent {
         g2.fillRoundRect(0, 0, w, h, arc, arc);
         g2.dispose();
         ShadowRenderer renderer = new ShadowRenderer(shadowSize, 0.5f, Color.BLACK);
-        shadow =
-                renderer.createShadow(shadow);
-        g2 =
-                shadow.createGraphics();
+        shadow = renderer.createShadow(shadow);
+        g2 = shadow.createGraphics();
         g2.setColor(Color.GRAY);
         g2.setComposite(AlphaComposite.Clear);
         g2.fillRoundRect(shadowSize, shadowSize, w, h, arc, arc);

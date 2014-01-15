@@ -16,9 +16,6 @@ import no.sintef.cvl.tool.ui.command.UpdateVInstance;
 import no.sintef.cvl.tool.ui.editor.CVLUIKernel;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
 
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
-
 import cvl.PrimitiveTypeEnum;
 import cvl.PrimitveType;
 import cvl.VInstance;
@@ -43,7 +40,6 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
         
         // Name
         final JTextField name = new JTextField(10);
-        name.setUI(new HudTextFieldUI());
         name.setText(v.getName());
         
         // Add
