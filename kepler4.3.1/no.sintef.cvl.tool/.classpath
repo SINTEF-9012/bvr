@@ -7,6 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.kevoree.extra.macwidgets-0.9.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/swingx-all-1.6.5-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/batik-util-1.6-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/antlr-4.0-complete.jar"/>

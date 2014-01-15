@@ -238,22 +238,16 @@ public class VSpecView {
 	public void notifyVspecViewUpdate() {
 		// Save scroll coordinates
 		Point vpos = vspecScrollPane.getViewport().getViewPosition();
-		
+				
 		// Clear everything
-		parentapplet.remove(vspecEpanel);
-		
-		/*
-		//ConfigurableUnitPanel cup = vSpeccvluikernel.getModelPanel();
-		//cup.removeAll();
-		//vspecScrollPane.remove(vSpeccvluikernel.getModelPanel());
-		//vspecScrollPane.removeAll();
-		*/
+		ConfigurableUnitPanel cup = vSpeccvluikernel.getModelPanel();
+		cup.clear();
+
 		vspecNodes.clear();
 		vspecBindings.clear();
 		vspecvmMap.clear();
 		
 	    // Add stuff
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
 	    try {
 			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
@@ -263,29 +257,12 @@ public class VSpecView {
 	    // Automatically Layout Diagram
 	    autoLayoutVSpec();
 	    
-	    // Draw
-	    vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	    //IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
-	    vspecEpanel = new EditableModelPanel(vspecScrollPane);
-	    
-	    parentapplet.add(vspecEpanel);
-	    
-	    /*modelPane.setComponentAt(0, vspecEpanel);
-	    */
-		//jframe.repaint();
-	    
 	    // Restore scroll coordinates
-	    
 	    vspecScrollPane.getViewport().setViewPosition(vpos);
+	    
+	    // Draw
 	    parentframe.revalidate();
 	    parentframe.repaint();
-	    /*
-	    System.out.println(vspecEpanel);
-	    vspecEpanel.repaint();
-	    
-	    configurableUnitSubject.notifyObserver();
-	    
-	    */
 	}
 
 	public ConfigurableUnit getCU() {
