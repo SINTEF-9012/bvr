@@ -49,8 +49,8 @@ public class GraphMLFM {
 	public GraphMLFM() throws ParserConfigurationException, SAXException{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-		File schemaLocation = new File("schema/graphml.xsd");
-		File schemaLocationYed = new File("schema/ygraphml.xsd");
+		File schemaLocation = new File("C:/Users/mjoha/workspace-CVLTool2/cvl/kepler4.3.1/no.sintef.cvl.tool/schema/graphml.xsd");
+		File schemaLocationYed = new File("C:/Users/mjoha/workspace-CVLTool2/cvl/kepler4.3.1/no.sintef.cvl.tool/schema/ygraphml.xsd");
 		schema = factory.newSchema(schemaLocation);
 		schemayed = factory.newSchema(schemaLocationYed);
 		docFactory.setSchema(schema);

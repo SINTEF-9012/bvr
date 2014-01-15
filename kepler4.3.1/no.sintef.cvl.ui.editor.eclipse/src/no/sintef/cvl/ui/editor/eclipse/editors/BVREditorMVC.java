@@ -1,5 +1,6 @@
 package no.sintef.cvl.ui.editor.eclipse.editors;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;

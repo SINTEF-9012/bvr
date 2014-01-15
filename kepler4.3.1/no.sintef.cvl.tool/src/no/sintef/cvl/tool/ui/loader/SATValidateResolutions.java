@@ -24,21 +24,16 @@ import no.sintef.ict.splcatool.CVLException;
 import no.sintef.ict.splcatool.CoveringArray;
 
 public class SATValidateResolutions implements ActionListener {
-	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
-	
-	public SATValidateResolutions(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
-		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
+	private CVLModel m;
+	private CVLView v;
+
+	public SATValidateResolutions(CVLModel m, CVLView cvlView) {
+		this.m = m;
+		this.v = cvlView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		int i = filePane.getSelectedIndex();
-		CVLModel m = models.get(i);
-		CVLView v = views.get(i);
 		
 		no.sintef.ict.splcatool.CVLModel x = m.getCVLM();
 		

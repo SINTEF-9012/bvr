@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
+import cvl.ConfigurableUnit;
 import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.filter.CVLFilter;
 import no.sintef.cvl.tool.filter.SHFilter;
@@ -22,25 +23,20 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
 public class ImportResolutions implements ActionListener {
-	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
-	
-	public ImportResolutions(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
-		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
+	private CVLModel m;
+	private CVLView v;
+
+	public ImportResolutions(CVLModel m, CVLView cvlView) {
+		this.m = m;
+		this.v = cvlView;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		int i = filePane.getSelectedIndex();
-		CVLModel m = models.get(i);
-		CVLView v = views.get(i);
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new SHFilter());
 		fc.addChoosableFileFilter(new CVLFilter());
-		fc.showOpenDialog(filePane);
+		fc.showOpenDialog(null);
 		
 		File sf = fc.getSelectedFile();
 		GraphMLFM gfm = null;
