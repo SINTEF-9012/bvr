@@ -8,6 +8,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.tool.ui.loader.CVLModel;
+import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -53,7 +54,7 @@ public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeList
 			public void run(){
 				if(inEditor!= null){
 					try {
-			        	CVLModel m = new CVLModel(new File(inEditor.getFile().getLocation().toString()));
+			        	CVLModel m = CVLModelSingleton.getModel(new File(inEditor.getFile().getLocation().toString()));
 			        	if (m != null) {
 			        		JApplet a = new JApplet(); 
 			        		VSpecView v = new VSpecView(m, a, frame);

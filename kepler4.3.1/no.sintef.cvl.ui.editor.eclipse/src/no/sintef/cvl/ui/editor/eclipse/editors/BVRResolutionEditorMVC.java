@@ -8,6 +8,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.tool.ui.loader.CVLModel;
+import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
 import no.sintef.cvl.tool.ui.loader.ResolutionView;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
 
@@ -52,7 +53,7 @@ public class BVRResolutionEditorMVC extends EditorPart implements IResourceChang
 			public void run(){
 				if(inEditor!= null){
 					try {
-			        	CVLModel m = new CVLModel(new File(inEditor.getFile().getLocation().toString()));
+			        	CVLModel m = CVLModelSingleton.getModel(new File(inEditor.getFile().getLocation().toString()));
 			        	if (m != null) {
 			        		JApplet a = new JApplet(); 
 			        		ResolutionView v = new ResolutionView(m, a, frame);

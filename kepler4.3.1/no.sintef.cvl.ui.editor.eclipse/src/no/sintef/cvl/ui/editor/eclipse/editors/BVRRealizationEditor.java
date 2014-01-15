@@ -8,6 +8,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.cvl.tool.ui.loader.CVLModel;
+import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
 import no.sintef.cvl.tool.ui.loader.RealizationView;
 import no.sintef.cvl.tool.ui.loader.VSpecView;
 
@@ -54,7 +55,7 @@ public class BVRRealizationEditor extends EditorPart implements IResourceChangeL
 			public void run(){
 				if(inEditor!= null){
 					try {
-			        	CVLModel m = new CVLModel(new File(inEditor.getFile().getLocation().toString()));
+			        	CVLModel m = CVLModelSingleton.getModel(new File(inEditor.getFile().getLocation().toString()));
 			        	if (m != null) {
 			        		JApplet a = new JApplet(); 
 			        		RealizationView v = new RealizationView(m, a, frame);
