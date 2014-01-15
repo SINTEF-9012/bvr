@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="VncViewer">
+  <ownedVSpec xsi:type="cvl:Choice" name="VncViewer" isImpliedByParent="true">
+    <groupMultiplicity upper="1" lower="1"/>
+    <child xsi:type="cvl:Choice" name="VncViewerMain">
+      <child xsi:type="cvl:Choice" name="Type" isImpliedByParent="true">
+        <groupMultiplicity upper="1" lower="1"/>
+        <child xsi:type="cvl:Choice" name="VncViewerType">
+          <child xsi:type="cvl:Choice" name="Opt">
+            <groupMultiplicity upper="-1" lower="1"/>
+            <child xsi:type="cvl:Choice" name="OptionsMenuFeatures">
+              <child xsi:type="cvl:Choice" name="MOpt">
+                <groupMultiplicity upper="-1" lower="1"/>
+                <child xsi:type="cvl:Choice" name="OpEncodingFeat"/>
+                <child xsi:type="cvl:Choice" name="OpCompressionFeat"/>
+                <child xsi:type="cvl:Choice" name="OpJPEGqualityFeat"/>
+                <child xsi:type="cvl:Choice" name="OpCursorShapeFeat"/>
+                <child xsi:type="cvl:Choice" name="OpCopyRectFeat"/>
+                <child xsi:type="cvl:Choice" name="OpRestrictedColorsFeat"/>
+                <child xsi:type="cvl:Choice" name="OpMouse23Feat"/>
+                <child xsi:type="cvl:Choice" name="OpViewFeat"/>
+                <child xsi:type="cvl:Choice" name="OpShareFeat"/>
+              </child>
+              <child xsi:type="cvl:Choice" name="OptionsFeat" isImpliedByParent="true"/>
+            </child>
+            <child xsi:type="cvl:Choice" name="ButtonFeature">
+              <child xsi:type="cvl:Choice" name="BOpt">
+                <groupMultiplicity upper="-1" lower="1"/>
+                <child xsi:type="cvl:Choice" name="AboutButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="AltTabButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="RefreshButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="CtrlAltDelButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="RecordButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="ClipboardButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="OptionsButtonFeat"/>
+                <child xsi:type="cvl:Choice" name="DisconnectButtonFeat"/>
+              </child>
+            </child>
+            <child xsi:type="cvl:Choice" name="ClipboardFeat"/>
+            <child xsi:type="cvl:Choice" name="RecordingFeat"/>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="cvl:Choice" name="Base" isImpliedByParent="true"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="RecordButtonFeat implies RecordingFeat"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="OptionsButtonFeat implies OptionsFeat"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="ClipboardButtonFeat implies ClipboardFeat"/>
+</cvl:ConfigurableUnit>

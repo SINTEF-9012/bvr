@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="node.presentation.NodeModelWizardID"
+            name="%_UI_NodeModelWizard_label"
+            class="node.presentation.NodeModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/NodeModelFile.gif">
+         <description>%_UI_NodeModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="node.presentation.NodeEditorID"
+            name="%_UI_NodeEditor_label"
+            icon="icons/full/obj16/NodeModelFile.gif"
+            extensions="node"
+            class="node.presentation.NodeEditor"
+            contributorClass="node.presentation.NodeActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,5 @@
+/bin
+*.class
+/target
+base_new.node
+model_new.uml

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="ARI CVL Model">
+  <ownedVSpec xsi:type="cvl:CVSpec" name="Basic ARI Example">
+    <child xsi:type="cvl:CVSpec" name="Operator Substitution"/>
+    <child xsi:type="cvl:CVSpec" name="Coeficient Substitution"/>
+    <child xsi:type="cvl:CVSpec" name="Variable Substitution"/>
+  </ownedVSpec>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="[-]"/>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="[-] -> [+]"/>
+</cvl:ConfigurableUnit>

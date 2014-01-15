@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ASCII"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="GPL">
+  <ownedVSpec xsi:type="cvl:Choice" name="GPL" isImpliedByParent="true">
+    <child xsi:type="cvl:Choice" name="Driver" isImpliedByParent="true">
+      <child xsi:type="cvl:Choice" name="Benchmark" isImpliedByParent="true"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Gtp" isImpliedByParent="true">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Directed"/>
+      <child xsi:type="cvl:Choice" name="Undirected"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Weight">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Weighted"/>
+      <child xsi:type="cvl:Choice" name="Unweighted"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Search">
+      <groupMultiplicity upper="1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="BFS"/>
+      <child xsi:type="cvl:Choice" name="DFS"/>
+    </child>
+    <child xsi:type="cvl:Choice" name="Algorithms" isImpliedByParent="true">
+      <groupMultiplicity upper="-1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Number"/>
+      <child xsi:type="cvl:Choice" name="Connected"/>
+      <child xsi:type="cvl:Choice" name="StronglyC"/>
+      <child xsi:type="cvl:Choice" name="Cycle"/>
+      <child xsi:type="cvl:Choice" name="MSTPrim"/>
+      <child xsi:type="cvl:Choice" name="MSTKruskal"/>
+      <child xsi:type="cvl:Choice" name="Shortest"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Number or BFS"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Number or DFS"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Connected or Undirected"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Connected or Weighted"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not StronglyC or Directed"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not StronglyC or DFS"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Cycle or DFS"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not MSTKruskal or Undirected"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not MSTKruskal or Unweighted"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not MSTPrim or Undirected"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not MSTPrim or Unweighted"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not MSTKruskal or not MSTPrim"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Shortest or Directed"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="not Shortest or Unweighted"/>
+  <ownedConstraint xsi:type="cvl:OpaqueConstraint" constraint="GPL"/>
+</cvl:ConfigurableUnit>
