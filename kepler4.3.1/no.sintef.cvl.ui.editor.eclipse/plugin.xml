@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="BVR VSpec Editor (MVC)"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.BVRVSpecEditorGMF"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="cvl"
             icon="icons/sample.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.BVRVSpecEditorGMF"
+            name="BVR VSpec Editor (GMF)">
       </editor>
    </extension>
-   
-         <extension
+   <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="BVR VSpec Editor (GMF)"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.BVRVSpecEditorMVC"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="cvl"
             icon="icons/sample.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.BVRVSpecEditorMVC"
+            name="BVR VSpec Editor (MVC)">
       </editor>
    </extension>
-   
-      <extension
+   <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="BVR Resolution Editor (MVC)"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.BVRResolutionEditorTBL"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="cvl"
             icon="icons/sample.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.BVRResolutionEditorTBL"
+            name="BVR Resolution Editor (Table)">
       </editor>
    </extension>
-   
-         <extension
+   <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="BVR Resolution Editor (Table)"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.BVRResolutionEditorMVC"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="cvl"
             icon="icons/sample.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.BVRResolutionEditorMVC"
+            name="BVR Resolution Editor (MVC)">
       </editor>
    </extension>
-   
-      <extension
+   <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="BVR Realization Editor"
+            class="no.sintef.cvl.ui.editor.eclipse.editors.BVRRealizationEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="cvl"
             icon="icons/sample.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.CVLModelUIEditor">
+            id="no.sintef.cvl.ui.editor.eclipse.editors.BVRRealizationEditor"
+            name="BVR Realization Editor">
       </editor>
    </extension>
+
+   
+   
+   
+   
 
 
 

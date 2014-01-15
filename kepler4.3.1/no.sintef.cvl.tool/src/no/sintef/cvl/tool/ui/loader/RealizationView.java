@@ -57,7 +57,7 @@ import cvl.VSpec;
 import cvl.VSpecResolution;
 import cvl.VariableValueAssignment;
 
-public class VSpecView {
+public class RealizationView extends VSpecView{
 	private CVLModel m;
 	
 	public JTabbedPane modelPane;
@@ -71,7 +71,7 @@ public class VSpecView {
 	private CVLUIKernel vSpeccvluikernel;
 	
 	// Resolutions
-	private JTabbedPane resPane;
+	public JTabbedPane resPane;
 	private List<JScrollPane> resolutionPanes;
 	private List<EditableModelPanel> resolutionEpanels;
 	private List<CVLUIKernel> resolutionkernels;
@@ -80,7 +80,7 @@ public class VSpecView {
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 	
 	// Realization
-	private JTabbedPane realizationPanel;
+	public JTabbedPane realizationPanel;
 	private FragmentSubstitutionJTable tableFragmSubst;
 	private SubstitutionFragmentJTable tableSubstFragm;
 	private BindingJTable bindingEditor;
@@ -96,16 +96,19 @@ public class VSpecView {
 		return vSpeccvluikernel;
 	}
 	
-	public VSpecView(CVLModel m, JApplet a, Frame frame) {
+	public RealizationView(CVLModel m, JApplet a, Frame frame) {
+		super();
 		this.parentapplet = a;
 		this.parentframe = frame;
 		
 		// Alloc
+		/*
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
+		*/
 		
-		/* REF
+		/*
         resolutionPanes = new ArrayList<JScrollPane>();
         resolutionEpanels = new ArrayList<EditableModelPanel>();
         resolutionkernels = new ArrayList<CVLUIKernel>();
@@ -120,17 +123,17 @@ public class VSpecView {
 		
     	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 	
+    	vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
 		// VSpec pane
-		vSpeccvluikernel = new CVLUIKernel(vspecvmMap, this, resolutionvmMaps);
-        try {
+/*        try {
 			loadCVLVSpecView(m.getCVLM().getCU(), vSpeccvluikernel);
 		} catch (CVLModelException e) {
 			e.printStackTrace();
 		}
         
         autoLayoutVSpec();
-		
+*/		
 		vspecScrollPane = new JScrollPane(vSpeccvluikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		//IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
@@ -140,10 +143,11 @@ public class VSpecView {
         //tp.addTab(m.getShortFileName(), null, modelPane, m.getLongFileName());
         
         
-        /* REF
         // Resolution panes
+        /*
         resPane = new JTabbedPane();
-        modelPane.addTab("Resolution", null, resPane, "");
+        //modelPane.addTab("Resolution", null, resPane, "");
+        
         
         try {
 			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
@@ -152,24 +156,19 @@ public class VSpecView {
 		}
         
         autoLayoutResolutions();
-        
+        */
         
         // Realization panel
         realizationPanel = new JTabbedPane();
-        modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
+        //modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
         
         try{
         	loadCVLRelalizationView(m.getCVLM().getCU());
         } catch (Exception e){
         	e.printStackTrace();
         }
-        */
 	}
 	
-	public VSpecView() {
-		// TODO Auto-generated constructor stub
-	}
-
 	private void loadCVLVSpecView(ConfigurableUnit cu, CVLUIKernel model) throws CVLModelException {
 		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 		

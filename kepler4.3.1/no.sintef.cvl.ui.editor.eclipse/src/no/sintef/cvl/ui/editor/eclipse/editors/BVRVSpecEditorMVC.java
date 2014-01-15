@@ -23,14 +23,14 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-public class CVLModelUIEditor extends EditorPart implements IResourceChangeListener {
+public class BVRVSpecEditorMVC extends EditorPart implements IResourceChangeListener {
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
 	private Frame frame;
 	private Composite composite;
 	
-	public CVLModelUIEditor(){
+	public BVRVSpecEditorMVC(){
 		super();
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 	}
