@@ -76,8 +76,7 @@ Export-Package: no.sintef.cvl.tool,
  org.stringtemplate.v4.compiler,
  org.stringtemplate.v4.debug,
  org.stringtemplate.v4.gui,
- org.stringtemplate.v4.misc,
- schema
+ org.stringtemplate.v4.misc
 Import-Package: com.explodingpixels.macwidgets,
  cvl,
  cvl.impl,

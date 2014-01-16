@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Constraints
 Bundle-SymbolicName: no.sintef.cvl.constraints
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: lib/antlr-4.0-complete.jar,
- .
+Bundle-ClassPath: .,
+ lib/antlr-4.0-complete.jar
 Export-Package: no.sintef.cvl.constraints.bcl,
  org.abego.treelayout,
  org.abego.treelayout.internal.util,

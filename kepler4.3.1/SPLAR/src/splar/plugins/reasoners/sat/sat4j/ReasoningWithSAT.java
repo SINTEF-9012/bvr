@@ -42,7 +42,7 @@ public abstract class ReasoningWithSAT extends FMReasoningInterface {
 	}
 	
 	public void setVariableOrder(String order[]) {
-		((Solver)satSolver).setOrder((IOrder) new StaticVariableOrderSAT(order, false, varName2IndexMap, varIndex2NameMap));
+		((Solver)satSolver).setOrder(new StaticVariableOrderSAT(order, false, varName2IndexMap, varIndex2NameMap));
 	}
 	
 	public void setVariableOrderObject(IOrder order) {
