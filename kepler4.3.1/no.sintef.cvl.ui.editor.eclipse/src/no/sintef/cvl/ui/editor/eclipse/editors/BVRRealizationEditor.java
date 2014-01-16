@@ -6,7 +6,6 @@ import javax.swing.JApplet;
 
 import no.sintef.cvl.tool.ui.loader.BVRNotifier;
 import no.sintef.cvl.tool.ui.loader.RealizationView;
-import no.sintef.cvl.tool.ui.loader.ResolutionView;
 
 import org.eclipse.core.resources.IResourceChangeListener;
 

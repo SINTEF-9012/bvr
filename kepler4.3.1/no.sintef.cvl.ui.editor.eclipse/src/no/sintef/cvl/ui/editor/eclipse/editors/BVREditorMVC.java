@@ -1,6 +1,5 @@
 package no.sintef.cvl.ui.editor.eclipse.editors;
 
-import java.awt.Color;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +15,11 @@ import no.sintef.cvl.tool.ui.loader.CVLModel;
 import no.sintef.cvl.tool.ui.loader.CVLModelSingleton;
 import no.sintef.cvl.tool.ui.loader.CVLView;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
@@ -29,6 +30,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.part.FileEditorInput;
 
 public abstract class BVREditorMVC extends EditorPart implements ISaveablePart, IResourceChangeListener, BVRNotifier {
 
@@ -50,6 +52,8 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart, 
 	CVLView v;
 	CVLModel m;
 	protected String filename;
+	
+	FileEditorInput fileinput;
 
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
@@ -57,14 +61,14 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart, 
 		
 		setSite(site);
 		setInput(input);
-		final org.eclipse.ui.part.FileEditorInput inEditor = (org.eclipse.ui.part.FileEditorInput) input;
-		filename = inEditor.getFile().getLocation().toString();
+		fileinput = (FileEditorInput) input;
+		filename = fileinput.getFile().getLocation().toString();
 		setContentDescription("CVLEditor:" + filename);
 		setTitle();
 				
 		new Thread(){
 			public void run(){
-				if(inEditor!= null){
+				if(fileinput!= null){
 					try {
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			        	m = CVLModelSingleton.getModel(new File(filename));
@@ -102,7 +106,18 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart, 
 			m.getCVLM().writeToFile(filename);
 			m.markSaved();
 			notifyProbeDirty();
+			fileinput.getFile().refreshLocal(IResource.DEPTH_ZERO, null);
 		} catch (final IOException e) {
+			new Thread(){
+				public void run(){
+					JOptionPane.showMessageDialog(frame,
+						"Error Saving: " + e.getMessage(),
+						"Saving Failed",
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
+			}.start();
+		} catch (final CoreException e) {
 			new Thread(){
 				public void run(){
 					JOptionPane.showMessageDialog(frame,

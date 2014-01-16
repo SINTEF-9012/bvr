@@ -12,8 +12,6 @@
 package no.sintef.ict.splcatool;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -353,7 +351,6 @@ public class CoveringArrayAlgJ11Utils extends CoveringArray {
 		List<Pair2> uncovered = new ArrayList<Pair2>();
 		List<BooleanVariableInterface> vars2 = new ArrayList<BooleanVariableInterface>(vars);
 		long invalid = 0;
-		long ignored = 0;
 		for(BooleanVariableInterface var1 : vars){
 			vars2.remove(var1);
 			for(BooleanVariableInterface var2 : vars2){
@@ -364,7 +361,6 @@ public class CoveringArrayAlgJ11Utils extends CoveringArray {
 					else if(p.v1 == var2 && p.v2 == var1) nonaff = true;
 				}
 				if(nonaff){
-					ignored+=4;
 					continue;
 				}
 				

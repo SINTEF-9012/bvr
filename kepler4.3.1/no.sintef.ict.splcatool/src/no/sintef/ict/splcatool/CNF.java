@@ -145,7 +145,6 @@ public class CNF {
 		
 		String filec = new FileUtility().readFileAsString(file);
 		
-		int j = 0;
 		int c_count = 0;
 		int nc_count = 0;
 		int p_count = 0;
@@ -181,7 +180,6 @@ public class CNF {
 				}else{
 					c_count++;
 				}
-				j++;
 			}else if(line.startsWith("p cnf")){
 				given_p = new Integer(line.split(" ")[2]);
 				given_c = new Integer(line.split(" ")[3]);
@@ -235,7 +233,6 @@ public class CNF {
 		
 		String filec = new FileUtility().readFileAsString(dimacsFile);
 		
-		int j = 0;
 		int c_count = 0;
 		int nc_count = 0;
 		int p_count = 0;
@@ -271,7 +268,6 @@ public class CNF {
 				}else{
 					c_count++;
 				}
-				j++;
 			}else if(line.startsWith("p cnf")){
 				given_p = new Integer(line.split(" ")[2]);
 				given_c = new Integer(line.split(" ")[3]);

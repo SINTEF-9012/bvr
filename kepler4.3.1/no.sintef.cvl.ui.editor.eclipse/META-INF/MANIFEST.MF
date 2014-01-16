@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
  no.sintef.cvl.tool,
  org.eclipse.gmf.runtime.emf.commands.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.cvl.gmf.vspec.edit.parts,
  no.sintef.cvl.gmf.vspec.part,

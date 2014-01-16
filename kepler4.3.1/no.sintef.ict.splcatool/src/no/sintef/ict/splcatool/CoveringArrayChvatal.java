@@ -77,7 +77,6 @@ public class CoveringArrayChvatal extends CoveringArray {
 		// Calculate uncovered tuples
 		List<Pair2> uncovered = new ArrayList<Pair2>();
 		List<BooleanVariableInterface> vars2 = new ArrayList<BooleanVariableInterface>(vars);
-		long ignored = 0;
 		long alreadyCovered = 0;
 		for(BooleanVariableInterface var1 : vars){
 			vars2.remove(var1);
@@ -89,7 +88,6 @@ public class CoveringArrayChvatal extends CoveringArray {
 					else if(p.v1 == var2 && p.v2 == var1) nonaff = true;
 				}
 				if(nonaff){
-					ignored+=4;
 					continue;
 				}
 				
@@ -641,7 +639,6 @@ public class CoveringArrayChvatal extends CoveringArray {
 		List<Pair3> uncovered = new ArrayList<Pair3>();
 		List<BooleanVariableInterface> vars2 = new ArrayList<BooleanVariableInterface>(vars);
 		List<BooleanVariableInterface> vars3 = new ArrayList<BooleanVariableInterface>(vars);
-		long ignored = 0;
 		long alreadyCovered = 0;
 		for(int i = 0; i < vars.size(); i++){
 			BooleanVariableInterface var1 = vars.get(i);
@@ -660,7 +657,6 @@ public class CoveringArrayChvatal extends CoveringArray {
 						else if(p.v1 == var1 && p.v2 == var3 && p.v3 == var2) nonaff = true;
 					}
 					if(nonaff){
-						ignored+=8;
 						continue;
 					}
 					
@@ -1003,7 +999,6 @@ public class CoveringArrayChvatal extends CoveringArray {
 		List<BooleanVariableInterface> vars2 = new ArrayList<BooleanVariableInterface>(vars);
 		List<BooleanVariableInterface> vars3 = new ArrayList<BooleanVariableInterface>(vars);
 		List<BooleanVariableInterface> vars4 = new ArrayList<BooleanVariableInterface>(vars);
-		long ignored = 0;
 		long alreadyCovered = 0;
 		for(int i = 0; i < vars.size(); i++){
 			BooleanVariableInterface var1 = vars.get(i);
@@ -1023,7 +1018,6 @@ public class CoveringArrayChvatal extends CoveringArray {
 							if(s1.equals(s2)) nonaff = true;
 						}
 						if(nonaff){
-							ignored+=8;
 							continue;
 						}
 						

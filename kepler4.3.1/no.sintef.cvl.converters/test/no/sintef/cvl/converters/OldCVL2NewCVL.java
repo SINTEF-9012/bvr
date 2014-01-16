@@ -1,10 +1,6 @@
 package no.sintef.cvl.converters;
 
-import java.io.File;
 import java.io.IOException;
-
-import no.sintef.ict.splcatool.CVLModel;
-import no.sintef.ict.splcatool.OldCVLModel;
 
 import org.junit.Test;
 
