@@ -8,6 +8,7 @@ Export-Package: no.sintef.cvl.common,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: cvl,
  org.eclipse.emf.common.util,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.util
 Bundle-ClassPath: lib/guava-14.0.1.jar,
  .
