@@ -19,7 +19,7 @@ import no.sintef.cvl.ui.framework.IconPanel;
 public class GroupPanel extends IconPanel {
 
     public GroupPanel() {
-    	super("C:/Users/mjoha/workspace-CVLTool2/cvl/kepler4.3.1/no.sintef.cvl.tool/src/1349960253_triangle.png");
+    	super("/graphics/1349960253_triangle.png");
     }
     
     public void setCardinality(int lower, int upper) {

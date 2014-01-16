@@ -2,6 +2,7 @@ package no.sintef.ict.splcatool;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +37,6 @@ import cvl.VClassifier;
 import cvl.VSpec;
 import cvl.CvlFactory;
 import cvl.impl.CvlPackageImpl;
-
 import de.ovgu.featureide.fm.core.Feature;
 
 public class GraphMLFM {
@@ -49,8 +49,8 @@ public class GraphMLFM {
 	public GraphMLFM() throws ParserConfigurationException, SAXException{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
-		File schemaLocation = new File("schema/graphml.xsd");
-		File schemaLocationYed = new File("schema/ygraphml.xsd");
+		URL schemaLocation = GraphMLFM.class.getResource("/schema/graphml.xsd");
+		URL schemaLocationYed = GraphMLFM.class.getResource("/schema/ygraphml.xsd");
 		schema = factory.newSchema(schemaLocation);
 		schemayed = factory.newSchema(schemaLocationYed);
 		docFactory.setSchema(schema);

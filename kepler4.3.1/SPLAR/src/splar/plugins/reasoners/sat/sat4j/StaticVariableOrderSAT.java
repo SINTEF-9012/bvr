@@ -4,19 +4,8 @@ import java.util.Map;
 import java.util.Random;
 
 import org.sat4j.core.LiteralsUtils;
-
-class ILits2{
-	
-}
-
-class VarOrder<T>{
-
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-}
+import org.sat4j.minisat.core.ILits2;
+import org.sat4j.minisat.orders.VarOrder;
 
 public class StaticVariableOrderSAT extends VarOrder<ILits2> {
 
@@ -27,12 +16,6 @@ public class StaticVariableOrderSAT extends VarOrder<ILits2> {
     private String[] varIndex2NameMap;
     private Boolean phase = false;  // false: negative first, true: positive first, null: random
     private int valueOrder[] = null;
-
-	private int[] order;
-
-	private int lastVar;
-
-	private int[] varpos;
     
     public StaticVariableOrderSAT(String varOrder[], Boolean phase, Map<String,Integer> varName2IndexMap, String[] varIndex2NameMap) {
     	this.varOrder = varOrder;

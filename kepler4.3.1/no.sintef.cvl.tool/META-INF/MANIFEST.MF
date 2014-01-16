@@ -76,11 +76,11 @@ Export-Package: no.sintef.cvl.tool,
  org.stringtemplate.v4.compiler,
  org.stringtemplate.v4.debug,
  org.stringtemplate.v4.gui,
- org.stringtemplate.v4.misc,
- schema
+ org.stringtemplate.v4.misc
 Import-Package: com.explodingpixels.macwidgets,
  cvl,
  cvl.impl,
+ no.sintef.cvl.common,
  no.sintef.cvl.common.logging,
  no.sintef.cvl.constraints.bcl,
  no.sintef.cvl.engine.adjacent,
@@ -95,7 +95,8 @@ Import-Package: com.explodingpixels.macwidgets,
  org.eclipse.emf.ecore.xmi.impl,
  org.eclipse.emf.transaction,
  org.eclipse.jface.viewers,
- org.eclipse.ui
+ org.eclipse.ui,
+ splar.core.fm
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.9.1",
  de.ovgu.featureide.fm.core;bundle-version="2.5.0",

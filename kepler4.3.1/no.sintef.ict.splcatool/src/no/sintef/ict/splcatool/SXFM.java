@@ -155,7 +155,7 @@ public class SXFM {
 		try {
 			solutions = fmr.countValidConfigurations();
 		} catch (OperationNotSupportedException e) {
-			
+			e.printStackTrace();
 		} catch (NullPointerException npe){
 			npe.printStackTrace();
 		}

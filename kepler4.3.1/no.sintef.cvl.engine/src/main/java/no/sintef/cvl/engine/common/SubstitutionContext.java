@@ -20,8 +20,7 @@ public enum SubstitutionContext {
 	
 	SubstitutionContext () {
 		/*Spring initialization START*/
-		//context = new ClassPathXmlApplicationContext(new String[] {configLocation});
-		context = new FileSystemXmlApplicationContext(new String[] {"C:/Users/mjoha/workspace-CVLTool2/cvl/kepler4.3.1/no.sintef.cvl.ui.editor.eclipselauncher/META-INF/beans.xml"});
+		context = new ClassPathXmlApplicationContext(new String[] {configLocation});
 		/*Spring initialization END*/
 		
 		logger = (Logger) this.context.getBean("defaultLogger");

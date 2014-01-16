@@ -1,11 +1,13 @@
 package no.sintef.cvl.ui.editor.eclipse.editors;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JApplet;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
@@ -100,8 +102,16 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart, 
 			m.getCVLM().writeToFile(filename);
 			m.markSaved();
 			notifyProbeDirty();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (final IOException e) {
+			new Thread(){
+				public void run(){
+					JOptionPane.showMessageDialog(frame,
+						"Error Saving: " + e.getMessage(),
+						"Saving Failed",
+						JOptionPane.ERROR_MESSAGE
+					);
+				}
+			}.start();
 		}
 	}
 

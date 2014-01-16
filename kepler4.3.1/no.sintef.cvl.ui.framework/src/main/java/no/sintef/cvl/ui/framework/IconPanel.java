@@ -36,6 +36,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -55,7 +56,9 @@ public class IconPanel extends JPanel implements SelectElement, TitledElement, E
     public IconPanel(String imgPath) {
         setLayout(new BorderLayout());
         try {
-            image = ImageIO.read(new File(imgPath));
+        	InputStream x = IconPanel.class.getResourceAsStream(imgPath);
+        	if(x == null) throw new IOException("File not found: " + imgPath);
+            image = ImageIO.read(x);
         } catch (IOException ex) {
             System.out.println(ex);
         }

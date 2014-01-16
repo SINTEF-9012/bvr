@@ -1,5 +1,6 @@
 package no.sintef.cvl.tool.ui.loader;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
@@ -110,7 +111,7 @@ public class ResolutionView extends CVLView{
         vspecEpanel = new EditableModelPanel(vspecScrollPane);        
         
         // Resolution panes
-        resPane = new JTabbedPane();        
+        resPane = new JTabbedPane();
         
         try {
 			loadCVLResolutionView(m.getCVLM().getCU(), resolutionkernels, resPane);
@@ -226,6 +227,8 @@ public class ResolutionView extends CVLView{
 	}
 
 	private void loadCVLResolutionView(ConfigurableUnit cu, List<CVLUIKernel> resolutionkernels, JTabbedPane resPane) throws CVLModelException{
+		resPane.addMouseListener(new VSpecResDropDownListener(m, cu, this));
+		
 		if(cu.getOwnedVSpecResolution().size() == 0) return;
 		
 		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
@@ -257,8 +260,8 @@ public class ResolutionView extends CVLView{
 				VInstance vi = (VInstance) v;
 				tabtitle = vi.getName() + ":" + vi.getResolvedVSpec().getName();
 			}
+
 			resPane.addTab(tabtitle, null, epanel, "");
-			resPane.addMouseListener(new VSpecResDropDownListener(cu, v, this));
 		}
 	}
 

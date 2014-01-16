@@ -12,6 +12,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="graphics/"/>
 	<classpathentry exported="true" kind="lib" path="lib/swingx-all-1.6.5-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/org.kevoree.extra.macwidgets-0.9.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/org.abego.treelayout.core-1.0.1.jar"/>

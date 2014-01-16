@@ -9,7 +9,10 @@ Require-Bundle: org.junit,
  no.sintef.cvl.model
 Import-Package: cvl,
  org.eclipse.emf.ecore.xmi.impl,
- splar.core.constraints
+ splar.core.constraints,
+ splar.core.fm,
+ splar.core.heuristics
 Export-Package: no.sintef.ict.splcatool
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ schema/

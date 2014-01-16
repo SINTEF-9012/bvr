@@ -69,20 +69,6 @@ public class Main {
 
 		// File
 		JMenu filemenu = new JMenu("File");
-		JMenuItem x = new JMenuItem("New");
-		x.addActionListener(new NewModelEvent(filePane));
-		filemenu.add(x);
-		JMenuItem openfile = new JMenuItem("Open ...");
-		openfile.addActionListener(new OpenModelEvent(filePane));
-		filemenu.add(openfile);
-		filemenu.add(new JSeparator());
-		JMenuItem save = new JMenuItem("Save");
-		filemenu.add(save);
-		save.addActionListener(new SaveModelAsEvent(filePane, true));
-		//TODO: filemenu.add(new JMenuItem("Save all"));
-		JMenuItem saveas = new JMenuItem("Save as ...");
-		saveas.addActionListener(new SaveModelAsEvent(filePane, false));
-		filemenu.add(saveas);
 		JMenuItem close = new JMenuItem("Close");
 		close.addActionListener(new CloseModelEvent(filePane));
 		filemenu.add(close);
@@ -96,9 +82,6 @@ public class Main {
 		filemenu.add(saveasSVG);
 		saveasSVG.addActionListener(new ExportModelSVG(filePane));
 		
-		//TODO: filemenu.add(new JSeparator());
-		
-		//TODO: filemenu.add(new JMenuItem("Exit"));
 		menuBar.add(filemenu);
 
 		// VSpec
@@ -110,65 +93,7 @@ public class Main {
 		//TODO: vsmenu.add(new JMenuItem("Count Solutions"));
 		menuBar.add(vsmenu);
 
-		// Resolutions
-		JMenu resmenu = new JMenu("Resolution");
-		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolutionEvent(filePane, models, views));
-		resmenu.add(newres);
-		resmenu.add(new JSeparator());
-		JMenuItem importres = new JMenuItem("Import ...");
-		importres.addActionListener(new ImportResolutions(filePane, models, views));
-		resmenu.add(importres);
-		//TODO: camenu.add(new JMenuItem("Export ..."));
-		resmenu.add(new JSeparator());
-		JMenuItem valres = new JMenuItem("Validate Resolution");
-		valres.addActionListener(new ValidateResolution(filePane, models, views));
-		resmenu.add(valres);
-		
-		/* Choice-only options */{
-			JMenu camenu = new JMenu("Models with Choices Only");
-			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
-			satvalres.addActionListener(new SATValidateResolutions(filePane, models, views));
-			camenu.add(satvalres);
-			JMenu cc1 = new JMenu("Calculate Coverage");
-			JMenuItem calccov1 = new JMenuItem("1-wise");
-			calccov1.addActionListener(new CalculateCoverage(filePane, models, views, 1));
-			cc1.add(calccov1);
-			JMenuItem calccov2 = new JMenuItem("2-wise");
-			calccov2.addActionListener(new CalculateCoverage(filePane, models, views, 2));
-			cc1.add(calccov2);
-			JMenuItem calccov3 = new JMenuItem("3-wise");
-			calccov3.addActionListener(new CalculateCoverage(filePane, models, views, 3));
-			cc1.add(calccov3);
-			camenu.add(cc1);
-			camenu.add(new JSeparator());
-			
-			JMenu genca = new JMenu("Generate Covering Array");
-			JMenuItem genca1 = new JMenuItem("1-wise");
-			genca1.addActionListener(new GenerateCoveringArray(filePane, models, views, 1));
-			genca.add(genca1);
-			JMenuItem genca2 = new JMenuItem("2-wise");
-			genca2.addActionListener(new GenerateCoveringArray(filePane, models, views, 2));
-			genca.add(genca2);
-			JMenuItem genca3 = new JMenuItem("3-wise");
-			genca3.addActionListener(new GenerateCoveringArray(filePane, models, views, 3));
-			genca.add(genca3);
-			camenu.add(genca);
-			
-			resmenu.add(new JSeparator());
-			resmenu.add(camenu);
-		}
-		
-		resmenu.add(new JSeparator());
-		
-		JMenuItem execute = new JMenuItem(Constants.RESOLUTION_EXECUTE_NAME);
-		execute.addActionListener(new ExecuteResolutionEvent(filePane));
-		resmenu.add(execute);
-		
-		JMenuItem executeAll = new JMenuItem(Constants.RESOLUTION_EXECUTE_ALL_NAME);
-		resmenu.add(executeAll);
-		
-		menuBar.add(resmenu);
+
 		
 		// realization menu
 		JMenu realizationMenu = new JMenu(Constants.REALIZATION_MAIN_MENU_NAME);

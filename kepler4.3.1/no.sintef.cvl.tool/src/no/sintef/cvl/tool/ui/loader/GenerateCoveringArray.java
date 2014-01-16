@@ -20,22 +20,17 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
 public class GenerateCoveringArray implements ActionListener {
-	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
 	private int t;
-
-	public GenerateCoveringArray(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, int t) {
-		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
+	private CVLModel m;
+	private CVLView v;
+	
+	public GenerateCoveringArray(CVLModel m, CVLView cvlView, int t) {
+		this.m = m;
+		this.v = cvlView;
 		this.t = t;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		int i = filePane.getSelectedIndex();
-		CVLModel m = models.get(i);
-		CVLView v = views.get(i);
 		
 		try {
 			GUIDSL gdsl = m.getCVLM().getGUIDSL();

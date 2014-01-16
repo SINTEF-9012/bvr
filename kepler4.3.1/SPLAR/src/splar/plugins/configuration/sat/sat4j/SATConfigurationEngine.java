@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.sat4j.core.VecInt;
-import org.sat4j.minisat.core.IOrder;
 import org.sat4j.minisat.core.Solver;
 import org.sat4j.specs.ContradictionException;
+
 
 import splar.core.fm.FTTraversalNodeSelector;
 import splar.core.fm.FTTraversals;
@@ -127,7 +127,7 @@ public class SATConfigurationEngine extends ConfigurationEngine {
 				satVarOrder[index++] = node.getID();
 			}
 			StaticVariableOrderSAT satOrderObj = new StaticVariableOrderSAT(satVarOrder, valueOrder, reasoner.getVarName2IndexMap(), reasoner.getVarIndex2NameMap());
-			reasoner.setVariableOrderObject((IOrder) satOrderObj);
+			reasoner.setVariableOrderObject(satOrderObj);
 			
 			Solver satSolver = (Solver)reasoner.getSolver();
 			

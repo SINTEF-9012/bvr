@@ -23,22 +23,16 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
 public class CalculateCoverage implements ActionListener {
-	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
 	private int t;
+	private CVLModel m;
 
-	public CalculateCoverage(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views, int t) {
-		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
+	public CalculateCoverage(CVLModel m, CVLView cvlView, int t) {
+		this.m = m;
 		this.t = t;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		int i = filePane.getSelectedIndex();
-		CVLModel m = models.get(i);
 		
 		Integer cov = null;
 		
