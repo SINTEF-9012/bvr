@@ -17,7 +17,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -43,16 +42,13 @@ public class GraphMLFM {
 	private Document doc;
 	private Schema schema;
 	Element graph;
-	private Schema schemayed;
 	Element root;
 	
 	public GraphMLFM() throws ParserConfigurationException, SAXException{
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		SchemaFactory factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 		URL schemaLocation = GraphMLFM.class.getResource("/schema/graphml.xsd");
-		URL schemaLocationYed = GraphMLFM.class.getResource("/schema/ygraphml.xsd");
 		schema = factory.newSchema(schemaLocation);
-		schemayed = factory.newSchema(schemaLocationYed);
 		docFactory.setSchema(schema);
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
  
@@ -110,7 +106,6 @@ public class GraphMLFM {
 		StreamResult result = new StreamResult(new File(filename));
 		
 		// validate
-		Validator validator = schema.newValidator();
 		//validator.validate(source); // TODO: Make it work. Maybe load file anew?
  
 		// Output to console for testing
@@ -469,9 +464,7 @@ public class GraphMLFM {
 				String targetName = x.getAttributes().getNamedItem("target").getTextContent();
 				
 				//System.out.println(srcName + " -> " + targetName);
-				
-				DefaultEdge e = g.addEdge(srcName, targetName);
-				
+								
 				if(!mandatories.containsKey(srcName)) mandatories.put(srcName, true);
 				if(!mandatories.containsKey(targetName)) mandatories.put(targetName, true);
 				boolean mandatory = true;

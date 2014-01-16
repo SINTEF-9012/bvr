@@ -54,16 +54,13 @@ public class MandatoryAndDeadDetection {
 			for(int z : s)
 				solution.add(z);
 			
-			int negative = 0, positive = 0;
 			for(int i=0;i<solution.size();i++){
 				if(solution.get(i)<0){
-					negative++;
 					for(BooleanVariableInterface var : vars){
 						if(var.getID().equals(nrid.get(new Integer(-solution.get(i)))))
 							notmandatory.add(var);
 					}
 				}else{
-					positive++;
 					for(BooleanVariableInterface var : vars){
 						if(var.getID().equals(nrid.get(new Integer(solution.get(i)))))
 							notdead.add(var);
@@ -89,16 +86,13 @@ public class MandatoryAndDeadDetection {
 			for(int z : s)
 				solution.add(z);
 			
-			int negative = 0, positive = 0;
 			for(int i=0;i<solution.size();i++){
 				if(solution.get(i)>0){
-					negative++;
 					for(BooleanVariableInterface var : vars){
 						if(var.getID().equals(nrid.get(new Integer(solution.get(i)))))
 							notmandatory.add(var);
 					}
 				}else{
-					positive++;
 					for(BooleanVariableInterface var : vars){
 						if(var.getID().equals(nrid.get(new Integer(-solution.get(i)))))
 							notdead.add(var);
