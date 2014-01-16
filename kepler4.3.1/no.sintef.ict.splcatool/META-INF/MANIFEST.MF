@@ -14,5 +14,4 @@ Import-Package: cvl,
  splar.core.heuristics
 Export-Package: no.sintef.ict.splcatool
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ClassPath: .,
- schema/
+Bundle-ClassPath: .
