@@ -21,5 +21,6 @@ Import-Package: no.sintef.cvl.common,
  org.eclipse.papyrus.uml.diagram.clazz.edit.parts,
  org.eclipse.ui.ide
 Export-Package: no.sintef.cvl.thirdparty.common,
- no.sintef.cvl.thirdparty.editor
+ no.sintef.cvl.thirdparty.editor,
+ no.sintef.cvl.thirdparty.exception
 Bundle-ClassPath: .

@@ -15,12 +15,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui;bundle-version="3.105.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
  no.sintef.cvl.tool,
- org.eclipse.gmf.runtime.emf.commands.core
+ org.eclipse.gmf.runtime.emf.commands.core,
+ org.junit;bundle-version="4.11.0",
+ no.sintef.cvl.engine;bundle-version="1.0.0",
+ no.sintef.cvl.thirdparty;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.ui.editor,
  no.sintef.cvl.gmf.vspec.edit.parts,
  no.sintef.cvl.gmf.vspec.part,
+ no.sintef.cvl.thirdparty.common,
+ no.sintef.cvl.thirdparty.editor,
+ no.sintef.cvl.thirdparty.exception,
  no.sintef.cvl.ui.framework,
  no.sintef.cvl.ui.framework.elements,
  no.sintef.ict.splcatool,

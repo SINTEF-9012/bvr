@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="AutroSystem">
+  <ownedVSpec xsi:type="cvl:Choice" name="Installation" isImpliedByParent="true">
+    <child xsi:type="cvl:Choice" name="AutroPrime" isImpliedByParent="true">
+      <groupMultiplicity upper="-1" lower="1"/>
+      <child xsi:type="cvl:Choice" name="Main"/>
+      <child xsi:type="cvl:Choice" name="Sub"/>
+    </child>
+  </ownedVSpec>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="AcontLess">
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_bJkW8CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_eFYn0CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_rnBvQCNlEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_eFYAwCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" name="((Property) a).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" name="((Package) Base).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" name="((Class) A).&lt;Property>ownedAttribute[1]={b}" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.3" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.4" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.4"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-AcontLess-rAcontLess-3" bindingVSpec="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.3"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:PlacementFragment" name="Bproperty_b">
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_eFYAwCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_bJkW8CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_cwQA4CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_rnBvQCNlEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_eFYAwyNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_eFYn0CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" name="((Class) A).&lt;Property>ownedAttribute" propertyName="ownedAttribute" insideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="cvl:ToPlacement" name="((Package) Base).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.2 //@ownedVariationPoint.2/@sourceObject.4" outsideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.3"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" name="((Property) a).&lt;Type>type[1]={A}" outsideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.1" insideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.5"/>
+    <placementBoundaryElement xsi:type="cvl:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.6" insideBoundaryElement="//@ownedVariationPoint.2/@sourceObject.6"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-Bproperty_b-rBproperty_rb-4" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0" placement="//@ownedVariationPoint.2" replacement="//@ownedVariabletype.1">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.2/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.2/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.2/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.2"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="cvl:FragmentSubstitution" name="FragmentSubstititution-Bproperty_b-rCproperty_rc-1" bindingVSpec="//@ownedVSpec.0/@child.0/@child.1" placement="//@ownedVariationPoint.2" replacement="//@ownedVariabletype.2">
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.2/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="cvl:ToBinding" toPlacement="//@ownedVariationPoint.2/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="cvl:FromBinding" fromPlacement="//@ownedVariationPoint.2/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.2"/>
+  </ownedVariationPoint>
+  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
+    <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0" decision="true">
+      <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0" decision="true"/>
+      <child xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.1" decision="true"/>
+    </child>
+  </ownedVSpecResolution>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="rAcontLess">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Property) rA).&lt;Type>type[1]={rA}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Property) rA).&lt;Type>type[1]={rA}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rA}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" name="((Class) rA).&lt;Property>ownedAttribute" propertyName="ownedAttribute" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.4 //@ownedVariabletype.0/@sourceObject.5"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_nlWiMCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_qfTx4SNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_sfWXASNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_vPUroCNlEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_qfTK0CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_sfVv8CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="rBproperty_rb">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Class) rA).&lt;Property>ownedAttribute[1]={rB}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rB,rA_rB_1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2 //@ownedVariabletype.1/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" name="((Property) rA).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rB}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rA_rB_1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_qfTK0CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_nlWiMCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_oqF8sCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_vPUroCNlEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_qfTx4CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_qfTx4SNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="cvl:ReplacementFragmentType" name="rCproperty_rc">
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Class) rA).&lt;Property>ownedAttribute[1]={rC}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rC,rA_rC_1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.2 //@ownedVariabletype.2/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:FromReplacement" name="((Property) rA).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rC}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rA_rC_1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="cvl:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_sfVv8CNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_nlWiMCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_pTRckCNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_vPUroCNlEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_sfWXASNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../models20092013/modeladjacenttest.uml#_sfWXACNoEeOnuM2G4CXrwQ"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+</cvl:ConfigurableUnit>
