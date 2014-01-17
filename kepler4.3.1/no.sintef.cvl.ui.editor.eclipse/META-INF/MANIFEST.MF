@@ -31,4 +31,3 @@ Import-Package: no.sintef.cvl.gmf.vspec.edit.parts,
  org.eclipse.ui.part,
  org.eclipse.ui.plugin
 Bundle-ClassPath: .
-Export-Package: no.sintef.bvr.ui.editor

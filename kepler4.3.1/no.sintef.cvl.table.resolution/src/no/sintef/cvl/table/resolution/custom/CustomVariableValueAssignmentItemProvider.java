@@ -1,23 +1,10 @@
 /**
  */
-package org.bangbangbang.cvl.resolution.custom;
+package no.sintef.cvl.table.resolution.custom;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.bangbangbang.cvl.BooleanLiteralExp;
-import org.bangbangbang.cvl.CvlFactory;
-import org.bangbangbang.cvl.CvlPackage;
-import org.bangbangbang.cvl.IntegerLiteralExp;
-import org.bangbangbang.cvl.PrimitiveTypeEnum;
-import org.bangbangbang.cvl.PrimitiveValueSpecification;
-import org.bangbangbang.cvl.PrimitveType;
-import org.bangbangbang.cvl.RealLiteralExp;
-import org.bangbangbang.cvl.StringLiteralExp;
-import org.bangbangbang.cvl.UnlimitedLiteralExp;
-import org.bangbangbang.cvl.Variable;
-import org.bangbangbang.cvl.VariableValueAssignment;
-import org.bangbangbang.cvl.provider.VSpecResolutionItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -34,9 +21,23 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import cvl.BooleanLiteralExp;
+import cvl.CvlFactory;
+import cvl.CvlPackage;
+import cvl.IntegerLiteralExp;
+import cvl.PrimitiveTypeEnum;
+import cvl.PrimitiveValueSpecification;
+import cvl.PrimitveType;
+import cvl.RealLiteralExp;
+import cvl.StringLiteralExp;
+import cvl.UnlimitedLiteralExp;
+import cvl.Variable;
+import cvl.VariableValueAssignment;
+import cvl.provider.VSpecResolutionItemProvider;
+
 /**
  * This is the item provider adapter for a
- * {@link org.bangbangbang.cvl.VariableValueAssignment} object. <!--
+ * {@link no.sintef.cvl.model.VariableValueAssignment} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

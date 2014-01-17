@@ -1,6 +1,6 @@
 /**
  */
-package org.bangbangbang.cvl.resolution.editors;
+package no.sintef.cvl.table.resolution.editors;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,21 +14,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bangbangbang.cvl.Choice;
-import org.bangbangbang.cvl.ChoiceResolutuion;
-import org.bangbangbang.cvl.ConfigurableUnit;
-import org.bangbangbang.cvl.VClassifier;
-import org.bangbangbang.cvl.VSpec;
-import org.bangbangbang.cvl.VSpecResolution;
-import org.bangbangbang.cvl.Variable;
-import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryContentProvider;
-import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryEditingDomain;
-import org.bangbangbang.cvl.resolution.custom.CustomAdapterFactoryLabelProvider;
-import org.bangbangbang.cvl.resolution.custom.CustomCvlItemProviderAdapterFactory;
-import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxControlTreeListner;
-import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxNotifyChangedListener;
-import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxStateListener;
-import org.bangbangbang.cvl.resolution.editors.listeners.CheckBoxUpdateTreeViewerListener;
+import no.sintef.cvl.table.resolution.custom.CustomAdapterFactoryContentProvider;
+import no.sintef.cvl.table.resolution.custom.CustomAdapterFactoryEditingDomain;
+import no.sintef.cvl.table.resolution.custom.CustomAdapterFactoryLabelProvider;
+import no.sintef.cvl.table.resolution.custom.CustomCvlItemProviderAdapterFactory;
+import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxControlTreeListner;
+import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxNotifyChangedListener;
+import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxStateListener;
+import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxUpdateTreeViewerListener;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -124,6 +118,14 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+
+import cvl.Choice;
+import cvl.ChoiceResolutuion;
+import cvl.ConfigurableUnit;
+import cvl.VClassifier;
+import cvl.VSpec;
+import cvl.VSpecResolution;
+import cvl.Variable;
 
 /**
  * This is an example of a Cvl model editor. <!-- begin-user-doc --> <!--
@@ -856,7 +858,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 			//
 			currentViewer = viewer;
 
-			// Set the org.bangbangbang.cvl.resolution.editors selection based
+			// Set the no.sintef.cvl.model.resolution.editors selection based
 			// on the current viewer's
 			// selection.
 			//

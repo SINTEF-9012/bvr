@@ -1,13 +1,14 @@
 /**
  */
-package org.bangbangbang.cvl.resolution.custom;
+package no.sintef.cvl.table.resolution.custom;
 
-import org.bangbangbang.cvl.ChoiceResolutuion;
-import org.bangbangbang.cvl.CvlPackage;
-import org.bangbangbang.cvl.provider.ChoiceResolutuionItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import cvl.ChoiceResolutuion;
+import cvl.CvlPackage;
+import cvl.provider.ChoiceResolutuionItemProvider;
 
 /**
  * This is the item provider adapter for a {@link cvl.ChoiceResolutuion} object.

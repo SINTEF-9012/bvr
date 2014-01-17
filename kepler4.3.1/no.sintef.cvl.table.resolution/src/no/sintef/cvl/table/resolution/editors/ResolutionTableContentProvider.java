@@ -1,4 +1,4 @@
-package org.bangbangbang.cvl.resolution.editors;
+package no.sintef.cvl.table.resolution.editors;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,28 +6,26 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.bangbangbang.cvl.BooleanLiteralExp;
-import org.bangbangbang.cvl.ChoiceResolutuion;
-import org.bangbangbang.cvl.ConfigurableUnit;
-import org.bangbangbang.cvl.IntegerLiteralExp;
-import org.bangbangbang.cvl.PrimitiveTypeEnum;
-import org.bangbangbang.cvl.PrimitiveValueSpecification;
-import org.bangbangbang.cvl.PrimitveType;
-import org.bangbangbang.cvl.RealLiteralExp;
-import org.bangbangbang.cvl.StringLiteralExp;
-import org.bangbangbang.cvl.UnlimitedLiteralExp;
-import org.bangbangbang.cvl.VClassifier;
-import org.bangbangbang.cvl.VInstance;
-import org.bangbangbang.cvl.VSpec;
-import org.bangbangbang.cvl.VSpecResolution;
-import org.bangbangbang.cvl.Variable;
-import org.bangbangbang.cvl.VariableValueAssignment;
-import org.bangbangbang.cvl.util.CvlSwitch;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+
+import cvl.BooleanLiteralExp;
+import cvl.ChoiceResolutuion;
+import cvl.ConfigurableUnit;
+import cvl.IntegerLiteralExp;
+import cvl.PrimitiveTypeEnum;
+import cvl.PrimitiveValueSpecification;
+import cvl.PrimitveType;
+import cvl.RealLiteralExp;
+import cvl.StringLiteralExp;
+import cvl.UnlimitedLiteralExp;
+import cvl.VClassifier;
+import cvl.VInstance;
+import cvl.VSpec;
+import cvl.VSpecResolution;
+import cvl.Variable;
+import cvl.VariableValueAssignment;
+import cvl.util.CvlSwitch;
 
 public class ResolutionTableContentProvider implements
 		IStructuredContentProvider {
@@ -76,6 +74,7 @@ public class ResolutionTableContentProvider implements
 		//
 	}
 
+	
 	@Override
 	public Object[] getElements(Object inputElement) {
 		resultMapList.clear();
@@ -174,7 +173,6 @@ public class ResolutionTableContentProvider implements
 						.getType()).getType();
 			}
 
-
 			if (type == PrimitiveTypeEnum.INTEGER) {
 				return String
 						.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) object
@@ -199,7 +197,7 @@ public class ResolutionTableContentProvider implements
 
 		@Override
 		public Object caseVInstance(VInstance object) {
-
+			
 			return object.getName();
 		}
 
