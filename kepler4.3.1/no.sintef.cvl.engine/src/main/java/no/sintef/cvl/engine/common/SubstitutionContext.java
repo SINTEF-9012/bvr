@@ -6,24 +6,26 @@ import no.sintef.cvl.common.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import no.sintef.cvl.engine.logging.impl.ConsoleEngineLogger;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
+//import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public enum SubstitutionContext {
 	ME;
 	private static final String configLocation = "META-INF/beans.xml";
-	public ApplicationContext context;
+	//public ApplicationContext context;
 	private EList<Resource> baseModel;
 	private HashMap<Resource, ResourceContentCopier> copyBaseModelMap;
 	private Logger logger;
 	
 	SubstitutionContext () {
 		/*Spring initialization START*/
-		context = new ClassPathXmlApplicationContext(new String[] {configLocation});
+		//context = new ClassPathXmlApplicationContext(new String[] {configLocation});
 		/*Spring initialization END*/
 		
-		logger = (Logger) this.context.getBean("defaultLogger");
+		//logger = (Logger) this.context.getBean("defaultLogger");
+		logger = new ConsoleEngineLogger();
 	}
 	
 	public Logger getLogger(){
