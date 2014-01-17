@@ -20,6 +20,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.cvl.gmf.vspec.edit.parts,
  no.sintef.cvl.gmf.vspec.part,
+ no.sintef.cvl.table.resolution.editors,
  no.sintef.cvl.tool.ui.loader,
  no.sintef.cvl.ui.framework.elements,
  no.sintef.ict.splcatool,
@@ -31,5 +32,5 @@ Import-Package: no.sintef.cvl.gmf.vspec.edit.parts,
  org.eclipse.ui.part,
  org.eclipse.ui.plugin
 Bundle-ClassPath: .
-Export-Package:  no.sintef.cvl.ui.editor.eclipse,
+Export-Package: no.sintef.cvl.ui.editor.eclipse,
  no.sintef.cvl.ui.editor.eclipse.editors

@@ -26,11 +26,11 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="no.sintef.cvl.ui.editor.eclipse.editors.BVRResolutionEditorTBL"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="no.sintef.cvl.table.resolution.editors.CvlResolutionEditor"
+            contributorClass="no.sintef.cvl.table.resolution.editors.CvlActionBarContributor"
             extensions="cvl"
             icon="icons/sample.gif"
-            id="no.sintef.cvl.ui.editor.eclipse.editors.BVRResolutionEditorTBL"
+            id="no.sintef.cvl.table.resolution.editors.CvlResolutionEditorID"
             name="BVR Resolution Editor (Table)">
       </editor>
    </extension>
