@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CVL :: Eclipse Editor
 Bundle-SymbolicName: no.sintef.cvl.ui.editor.eclipse;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: no.sintef.cvl.ui.editor.eclipse.Activator
+Bundle-Activator: no.sintef.bvr.ui.editor.Activator
 Bundle-Vendor: SINTEF
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text,
@@ -31,5 +31,4 @@ Import-Package: no.sintef.cvl.gmf.vspec.edit.parts,
  org.eclipse.ui.part,
  org.eclipse.ui.plugin
 Bundle-ClassPath: .
-Export-Package:  no.sintef.cvl.ui.editor.eclipse,
- no.sintef.cvl.ui.editor.eclipse.editors
+Export-Package: no.sintef.bvr.ui.editor

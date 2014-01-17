@@ -5,6 +5,6 @@ public class Pair<T, S>{
 		a = from;
 		b = to;
 	}
-	T a;
-	S b;
+	public T a;
+	public S b;
 }

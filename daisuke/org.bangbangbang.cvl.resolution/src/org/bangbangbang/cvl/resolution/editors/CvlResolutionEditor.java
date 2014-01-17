@@ -1077,7 +1077,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		List<VSpec> headers = createTableColumns(cu);
 		for (VSpec vs : headers) {
 			TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
-			layout.addColumnData(new ColumnWeightData(2, 10, true));
+			layout.addColumnData(new ColumnWeightData(2, 50, true));
 			selfColumn.setText(vs.getName());
 			selfColumn.setResizable(true);
 		}
