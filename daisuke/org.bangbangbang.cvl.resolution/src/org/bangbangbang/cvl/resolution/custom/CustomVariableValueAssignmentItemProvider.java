@@ -365,7 +365,9 @@ public class CustomVariableValueAssignmentItemProvider extends
 		String label = getString("_UI_VariableValueAssignment_type");
 
 		if (((Variable) ((VariableValueAssignment) object)
-				.getResolvedVariable()).getType() == null) {
+				.getResolvedVariable()) == null
+				|| ((Variable) ((VariableValueAssignment) object)
+						.getResolvedVariable()).getType() == null) {
 			return label;
 		}
 		label += " "

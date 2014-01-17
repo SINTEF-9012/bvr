@@ -76,7 +76,6 @@ public class ResolutionTableContentProvider implements
 		//
 	}
 
-	
 	@Override
 	public Object[] getElements(Object inputElement) {
 		resultMapList.clear();
@@ -160,8 +159,21 @@ public class ResolutionTableContentProvider implements
 
 		@Override
 		public Object caseVariableValueAssignment(VariableValueAssignment object) {
-			PrimitiveTypeEnum type = ((PrimitveType) ((Variable) object
-					.getResolvedVariable()).getType()).getType();
+			PrimitiveTypeEnum type;
+			if (object.getResolvedVariable() == null) {
+				if (((Variable) object.getResolvedVSpec()).getType() == null) {
+					return "n/a";
+				}
+				type = ((PrimitveType) ((Variable) object.getResolvedVSpec())
+						.getType()).getType();
+			} else {
+				if (((Variable) object.getResolvedVariable()).getType() == null) {
+					return "n/a";
+				}
+				type = ((PrimitveType) ((Variable) object.getResolvedVariable())
+						.getType()).getType();
+			}
+
 
 			if (type == PrimitiveTypeEnum.INTEGER) {
 				return String
@@ -187,7 +199,7 @@ public class ResolutionTableContentProvider implements
 
 		@Override
 		public Object caseVInstance(VInstance object) {
-			
+
 			return object.getName();
 		}
 

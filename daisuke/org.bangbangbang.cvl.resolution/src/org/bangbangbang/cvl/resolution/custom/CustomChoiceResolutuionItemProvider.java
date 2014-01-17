@@ -47,8 +47,12 @@ public class CustomChoiceResolutuionItemProvider extends
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ChoiceResolutuion) object).getResolvedChoice()
-				.getName();
+		String label;
+		if (((ChoiceResolutuion) object).getResolvedChoice() != null) {
+			label = ((ChoiceResolutuion) object).getResolvedChoice().getName();
+		} else {
+			label = ((ChoiceResolutuion) object).getResolvedVSpec().getName();
+		}
 		if (((ChoiceResolutuion) object).getName() != null
 				&& ((ChoiceResolutuion) object).getName().length() != 0) {
 			label = ((ChoiceResolutuion) object).getName()
