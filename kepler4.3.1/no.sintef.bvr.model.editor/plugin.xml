@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated BVRMetamodel -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="bvr.presentation.BvrModelWizardID"
+            name="%_UI_BvrModelWizard_label"
+            class="bvr.presentation.BvrModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BvrModelFile.gif">
+         <description>%_UI_BvrModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated BVRMetamodel -->
+      <editor
+            id="bvr.presentation.BvrEditorID"
+            name="%_UI_BvrEditor_label"
+            icon="icons/full/obj16/BvrModelFile.gif"
+            extensions="bvr"
+            class="bvr.presentation.BvrEditor"
+            contributorClass="bvr.presentation.BvrActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
