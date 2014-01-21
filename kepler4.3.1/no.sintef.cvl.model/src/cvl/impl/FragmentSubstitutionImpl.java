@@ -8,7 +8,6 @@ import cvl.FragmentSubstitution;
 import cvl.PlacementFragment;
 import cvl.RepeatableVariationPoint;
 import cvl.ReplacementFragmentType;
-import cvl.ReplacementFragment;
 import cvl.VClassifier;
 
 import java.util.Collection;

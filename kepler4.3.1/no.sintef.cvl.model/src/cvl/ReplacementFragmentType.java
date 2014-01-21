@@ -68,7 +68,7 @@ public interface ReplacementFragmentType extends Variabletype {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Object</em>' containment reference list.
 	 * @see cvl.CvlPackage#getReplacementFragmentType_SourceObject()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<ObjectHandle> getSourceObject();

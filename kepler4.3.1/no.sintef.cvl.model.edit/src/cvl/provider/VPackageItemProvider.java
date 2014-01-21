@@ -280,26 +280,6 @@ public class VPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createToPlacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createToReplacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createFromPlacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 CvlFactory.eINSTANCE.createFromReplacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
 				 CvlFactory.eINSTANCE.createOpaqueConstraint()));
 
 		newChildDescriptors.add

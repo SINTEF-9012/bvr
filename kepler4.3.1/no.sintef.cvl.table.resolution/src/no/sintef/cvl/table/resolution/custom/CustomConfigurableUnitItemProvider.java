@@ -283,8 +283,7 @@ public class CustomConfigurableUnitItemProvider extends
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT
-				|| childFeature == CvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT;
+		boolean qualify = childFeature == CvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] {

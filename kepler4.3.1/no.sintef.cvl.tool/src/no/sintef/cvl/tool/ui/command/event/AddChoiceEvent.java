@@ -8,14 +8,10 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.cvl.tool.ui.loader.CVLView;
-import no.sintef.cvl.tool.ui.loader.Main;
 import no.sintef.cvl.tool.ui.loader.Pair;
 import cvl.Choice;
 import cvl.ConfigurableUnit;
 import cvl.NamedElement;
-import cvl.ObjectHandle;
-import cvl.PlacementFragment;
-import cvl.ReplacementFragment;
 import cvl.VSpec;
 import cvl.CvlFactory;
 

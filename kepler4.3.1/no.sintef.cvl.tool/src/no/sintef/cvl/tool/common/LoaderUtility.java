@@ -25,6 +25,7 @@ import cvl.CvlFactory;
 import cvl.FragmentSubstitution;
 import cvl.FromPlacement;
 import cvl.FromReplacement;
+import cvl.NamedElement;
 import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
@@ -41,7 +42,7 @@ public class LoaderUtility {
 	public static String TOREPLCMNT = "toReplacement";
 	public static String FROMREPLCMNT = "fromReplacement";
 	
-	public static boolean isNullBoundary(VariationPoint boundary){
+	public static boolean isNullBoundary(NamedElement boundary){
 		if(boundary instanceof ToReplacement){
 			ToReplacement toReplacement = (ToReplacement) boundary;
 			if(toReplacement.getInsideBoundaryElement().size() == 1 && toReplacement.getInsideBoundaryElement().get(0).equals(toReplacement.getOutsideBoundaryElement()) && toReplacement.getOutsideBoundaryElement().getMOFRef() == null){
@@ -66,16 +67,16 @@ public class LoaderUtility {
 		return false;
 	}
 	
-	public static ToReplacement getNullToReplacement(EList<? extends VariationPoint> boundaries){
-		for(VariationPoint boundary : boundaries){
+	public static ToReplacement getNullToReplacement(EList<? extends ReplacementBoundaryElement> boundaries){
+		for(ReplacementBoundaryElement boundary : boundaries){
 			if(isNullBoundary(boundary))
 				return (ToReplacement) boundary;
 		}
 		return null;
 	}
 	
-	public static FromPlacement getNullFromPlacement(EList<? extends VariationPoint> boundaries){
-		for(VariationPoint boundary : boundaries){
+	public static FromPlacement getNullFromPlacement(EList<? extends PlacementBoundaryElement> boundaries){
+		for(PlacementBoundaryElement boundary : boundaries){
 			if(isNullBoundary(boundary))
 				return (FromPlacement) boundary;
 		}
@@ -91,12 +92,12 @@ public class LoaderUtility {
 		return resolvedList;
 	}
 	
-	public static HashMap<String, ArrayList<VariationPoint>> sortBoundariesByType(PlacementFragment placement, ReplacementFragmentType replacement){
-		HashMap<String, ArrayList<VariationPoint>> boundariesMap = new HashMap<String, ArrayList<VariationPoint>>();
-		ArrayList<VariationPoint> toPlacements = new ArrayList<VariationPoint>();
-		ArrayList<VariationPoint> fromPlacements = new ArrayList<VariationPoint>();
-		ArrayList<VariationPoint> toReplacements = new ArrayList<VariationPoint>();
-		ArrayList<VariationPoint> fromReplacements = new ArrayList<VariationPoint>();
+	public static HashMap<String, ArrayList<NamedElement>> sortBoundariesByType(PlacementFragment placement, ReplacementFragmentType replacement){
+		HashMap<String, ArrayList<NamedElement>> boundariesMap = new HashMap<String, ArrayList<NamedElement>>();
+		ArrayList<NamedElement> toPlacements = new ArrayList<NamedElement>();
+		ArrayList<NamedElement> fromPlacements = new ArrayList<NamedElement>();
+		ArrayList<NamedElement> toReplacements = new ArrayList<NamedElement>();
+		ArrayList<NamedElement> fromReplacements = new ArrayList<NamedElement>();
 		
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementBoundaryElement();
 		EList<ReplacementBoundaryElement> replacementBoundaries = replacement.getReplacementBoundaryElement();

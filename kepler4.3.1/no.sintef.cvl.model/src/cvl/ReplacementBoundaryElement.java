@@ -17,5 +17,5 @@ package cvl;
  * @model abstract="true"
  * @generated
  */
-public interface ReplacementBoundaryElement extends VariationPoint {
+public interface ReplacementBoundaryElement extends NamedElement {
 } // ReplacementBoundaryElement

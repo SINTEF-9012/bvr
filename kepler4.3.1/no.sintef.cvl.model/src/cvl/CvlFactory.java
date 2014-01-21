@@ -94,6 +94,24 @@ public interface CvlFactory extends EFactory {
 	PlacementFragment createPlacementFragment();
 
 	/**
+	 * Returns a new object of class '<em>Object Handle</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Object Handle</em>'.
+	 * @generated
+	 */
+	ObjectHandle createObjectHandle();
+
+	/**
+	 * Returns a new object of class '<em>Base Model Handle</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Base Model Handle</em>'.
+	 * @generated
+	 */
+	BaseModelHandle createBaseModelHandle();
+
+	/**
 	 * Returns a new object of class '<em>Replacement Fragment Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,24 +137,6 @@ public interface CvlFactory extends EFactory {
 	 * @generated
 	 */
 	ObjectSubstitution createObjectSubstitution();
-
-	/**
-	 * Returns a new object of class '<em>Object Handle</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Handle</em>'.
-	 * @generated
-	 */
-	ObjectHandle createObjectHandle();
-
-	/**
-	 * Returns a new object of class '<em>Base Model Handle</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Base Model Handle</em>'.
-	 * @generated
-	 */
-	BaseModelHandle createBaseModelHandle();
 
 	/**
 	 * Returns a new object of class '<em>Variable</em>'.

@@ -7,6 +7,7 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated CVLMetamodel -->
       <factory
             uri="http:///cvl.ecore"
             class="cvl.provider.CvlItemProviderAdapterFactory"

@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.CvlPackage;
-
 import cvl.FromBinding;
+
 import java.util.Collection;
 import java.util.List;
 

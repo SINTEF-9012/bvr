@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: cvl.provider.CVLMetamodelEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: cvl.provider
 Require-Bundle: org.eclipse.core.runtime,
  no.sintef.cvl.model;visibility:=reexport,

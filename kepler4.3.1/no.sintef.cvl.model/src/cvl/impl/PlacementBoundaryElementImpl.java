@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class PlacementBoundaryElementImpl extends VariationPointImpl implements PlacementBoundaryElement {
+public abstract class PlacementBoundaryElementImpl extends NamedElementImpl implements PlacementBoundaryElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

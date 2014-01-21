@@ -255,8 +255,6 @@
         <details key="documentation" value="&lt;p>Specifies the replacement to be utilized.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" upperBound="-1"
-        eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChoiceVariationPoint" abstract="true"
       eSuperTypes="#//VariationPoint">
@@ -282,7 +280,8 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BoundaryElementBinding" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="BoundaryElementBinding" abstract="true"
+      eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Specifies the binding between the boundary elements of the placement fragment and the replacement fragment."/>
     </eAnnotations>
@@ -297,10 +296,25 @@
         <details key="documentation" value="The boundary elements captures all the relations from and to the fragment."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" ordered="false"
+        upperBound="-1" eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true"
+      eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents the boundary between a placement fragment and the rest of the base model."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectHandle" eSuperTypes="#//BaseModelHandle">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="&lt;p>&#xD;&#xA;    An object handle identifies an object of the base model. This Class abstracts over the cross-domain referencing&#xD;&#xA;    mechanism needed to refer from CVL elements to base model objects.&#xD;&#xA;&lt;/p>"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="MOFRef" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseModelHandle">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="&lt;p>Represents the commonalities of ObjectHandle and LinkHandle as the means to relate to objects of the base model.&lt;/p>"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReplacementFragmentType" eSuperTypes="#//Variabletype">
@@ -319,13 +333,16 @@
         <details key="documentation" value="Set of placements contained by the replacement fragment."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" ordered="false"
+        upperBound="-1" eType="#//ObjectHandle" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variabletype" eSuperTypes="#//VPackageable">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>The type of a variable or a value specification.&lt;/p>"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true"
+      eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Represents the boundary between a replacement fragment and the rest of the base model."/>
     </eAnnotations>
@@ -346,18 +363,6 @@
         <details key="documentation" value="The&amp;nbsp;object handle identifying the base model object&amp;nbsp;replacing&amp;nbsp;to&amp;nbsp;the&amp;nbsp;placement&amp;nbsp;object in this&#xD;&#xA;substitution. If no replacement is specified then the object is expected to arrive in a variable, that is the variation&#xD;&#xA;point must be bound to a variable to be acted on."/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ObjectHandle" eSuperTypes="#//BaseModelHandle">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="&lt;p>&#xD;&#xA;    An object handle identifies an object of the base model. This Class abstracts over the cross-domain referencing&#xD;&#xA;    mechanism needed to refer from CVL elements to base model objects.&#xD;&#xA;&lt;/p>"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="MOFRef" lowerBound="1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BaseModelHandle">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="&lt;p>Represents the commonalities of ObjectHandle and LinkHandle as the means to relate to objects of the base model.&lt;/p>"/>
-    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//VSpec">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -642,12 +647,6 @@
         lowerBound="1" eType="#//BaseModelHandle" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The place holder of the OpaqueVariationPoint.&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//ObjectHandle" containment="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The source objects of the OpaqueVariationPoint.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"

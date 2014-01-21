@@ -3,24 +3,15 @@
 package cvl.impl;
 
 import cvl.CvlPackage;
-import cvl.ObjectHandle;
 import cvl.VSpec;
 import cvl.VariationPoint;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +21,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link cvl.impl.VariationPointImpl#getBindingVSpec <em>Binding VSpec</em>}</li>
- *   <li>{@link cvl.impl.VariationPointImpl#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,16 +36,6 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	 * @ordered
 	 */
 	protected VSpec bindingVSpec;
-
-	/**
-	 * The cached value of the '{@link #getSourceObject() <em>Source Object</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceObject()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ObjectHandle> sourceObject;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,40 +99,12 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ObjectHandle> getSourceObject() {
-		if (sourceObject == null) {
-			sourceObject = new EObjectContainmentEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.VARIATION_POINT__SOURCE_OBJECT);
-		}
-		return sourceObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case CvlPackage.VARIATION_POINT__SOURCE_OBJECT:
-				return ((InternalEList<?>)getSourceObject()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				if (resolve) return getBindingVSpec();
 				return basicGetBindingVSpec();
-			case CvlPackage.VARIATION_POINT__SOURCE_OBJECT:
-				return getSourceObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,16 +114,11 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				setBindingVSpec((VSpec)newValue);
-				return;
-			case CvlPackage.VARIATION_POINT__SOURCE_OBJECT:
-				getSourceObject().clear();
-				getSourceObject().addAll((Collection<? extends ObjectHandle>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,9 +135,6 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				setBindingVSpec((VSpec)null);
 				return;
-			case CvlPackage.VARIATION_POINT__SOURCE_OBJECT:
-				getSourceObject().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -205,8 +149,6 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 		switch (featureID) {
 			case CvlPackage.VARIATION_POINT__BINDING_VSPEC:
 				return bindingVSpec != null;
-			case CvlPackage.VARIATION_POINT__SOURCE_OBJECT:
-				return sourceObject != null && !sourceObject.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

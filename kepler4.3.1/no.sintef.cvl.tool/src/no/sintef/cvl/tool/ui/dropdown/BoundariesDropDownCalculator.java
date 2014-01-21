@@ -14,6 +14,7 @@ import no.sintef.cvl.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.cvl.tool.strategy.impl.BoundaryCalculatorContext;
 import cvl.FragmentSubstitution;
 import cvl.FromReplacement;
+import cvl.NamedElement;
 import cvl.PlacementFragment;
 import cvl.ReplacementFragmentType;
 import cvl.ToPlacement;
@@ -30,20 +31,20 @@ public class BoundariesDropDownCalculator {
 			throw new PlacementReplacementNullException("placement or replacement is null however it should not be here this way, or we should handle it somehow"); 
 		}
 		
-		HashMap<String, ArrayList<VariationPoint>> fileterdBoundaries = LoaderUtility.sortBoundariesByType(placement, replacement);
-		ArrayList<VariationPoint> toPlacements = fileterdBoundaries.get(LoaderUtility.TOPLCMNT);
-		ArrayList<VariationPoint> toReplacements = fileterdBoundaries.get(LoaderUtility.TOREPLCMNT);
-		for(VariationPoint toPlacement : toPlacements){
-			ArrayList<VariationPoint> toReplcmnts = boundaryCalculator.getCompliedBoundaries((ToPlacement) toPlacement, toReplacements);		
+		HashMap<String, ArrayList<NamedElement>> fileterdBoundaries = LoaderUtility.sortBoundariesByType(placement, replacement);
+		ArrayList<NamedElement> toPlacements = fileterdBoundaries.get(LoaderUtility.TOPLCMNT);
+		ArrayList<NamedElement> toReplacements = fileterdBoundaries.get(LoaderUtility.TOREPLCMNT);
+		for(NamedElement toPlacement : toPlacements){
+			ArrayList<NamedElement> toReplcmnts = boundaryCalculator.getCompliedBoundaries((ToPlacement) toPlacement, toReplacements);		
 			DataNamedElementItem toPlacementDataItem = new DataNamedElementItem(new JLabel(toPlacement.getName()), toPlacement);
 			ArrayList<DataItem> toReplcmntsDataItem = wrapBoundaries(toReplcmnts);
 			map.put(toPlacementDataItem, toReplcmntsDataItem);
 		}
 		
-		ArrayList<VariationPoint> fromReplacements = fileterdBoundaries.get(LoaderUtility.FROMREPLCMNT);
-		ArrayList<VariationPoint> fromPlacements = fileterdBoundaries.get(LoaderUtility.FROMPLCMNT);
-		for(VariationPoint fromReplacement : fromReplacements){
-			ArrayList<VariationPoint> fromPlcmnts = boundaryCalculator.getCompliedBoundaries((FromReplacement) fromReplacement, fromPlacements);
+		ArrayList<NamedElement> fromReplacements = fileterdBoundaries.get(LoaderUtility.FROMREPLCMNT);
+		ArrayList<NamedElement> fromPlacements = fileterdBoundaries.get(LoaderUtility.FROMPLCMNT);
+		for(NamedElement fromReplacement : fromReplacements){
+			ArrayList<NamedElement> fromPlcmnts = boundaryCalculator.getCompliedBoundaries((FromReplacement) fromReplacement, fromPlacements);
 			DataNamedElementItem fromReplacementDataItem = new DataNamedElementItem(new JLabel(fromReplacement.getName()), fromReplacement);
 			ArrayList<DataItem> fromPlcmntsDataItem = wrapBoundaries(fromPlcmnts);
 			map.put(fromReplacementDataItem, fromPlcmntsDataItem);
@@ -52,9 +53,9 @@ public class BoundariesDropDownCalculator {
 		return map;
 	}
 	
-	private static ArrayList<DataItem> wrapBoundaries(ArrayList<VariationPoint> boundaries){
+	private static ArrayList<DataItem> wrapBoundaries(ArrayList<NamedElement> boundaries){
 		ArrayList<DataItem> wrappedItems = new ArrayList<DataItem>();
-		for(VariationPoint boundary : boundaries){
+		for(NamedElement boundary : boundaries){
 			DataBoundaryItem item = new DataBoundaryItem(new JLabel(boundary.getName()), boundary);
 			wrappedItems.add(item);
 		}

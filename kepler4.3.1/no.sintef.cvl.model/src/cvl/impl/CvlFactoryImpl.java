@@ -28,7 +28,7 @@ public class CvlFactoryImpl extends EFactoryImpl implements CvlFactory {
 	 */
 	public static CvlFactory init() {
 		try {
-			CvlFactory theCvlFactory = (CvlFactory)EPackage.Registry.INSTANCE.getEFactory("http:///cvl.ecore"); 
+			CvlFactory theCvlFactory = (CvlFactory)EPackage.Registry.INSTANCE.getEFactory(CvlPackage.eNS_URI);
 			if (theCvlFactory != null) {
 				return theCvlFactory;
 			}
@@ -65,11 +65,11 @@ public class CvlFactoryImpl extends EFactoryImpl implements CvlFactory {
 			case CvlPackage.VINSTANCE: return createVInstance();
 			case CvlPackage.FRAGMENT_SUBSTITUTION: return createFragmentSubstitution();
 			case CvlPackage.PLACEMENT_FRAGMENT: return createPlacementFragment();
+			case CvlPackage.OBJECT_HANDLE: return createObjectHandle();
+			case CvlPackage.BASE_MODEL_HANDLE: return createBaseModelHandle();
 			case CvlPackage.REPLACEMENT_FRAGMENT_TYPE: return createReplacementFragmentType();
 			case CvlPackage.VARIABLETYPE: return createVariabletype();
 			case CvlPackage.OBJECT_SUBSTITUTION: return createObjectSubstitution();
-			case CvlPackage.OBJECT_HANDLE: return createObjectHandle();
-			case CvlPackage.BASE_MODEL_HANDLE: return createBaseModelHandle();
 			case CvlPackage.VARIABLE: return createVariable();
 			case CvlPackage.VARIABLE_VALUE_ASSIGNMENT: return createVariableValueAssignment();
 			case CvlPackage.PRIMITVE_TYPE: return createPrimitveType();
@@ -240,6 +240,26 @@ public class CvlFactoryImpl extends EFactoryImpl implements CvlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ObjectHandle createObjectHandle() {
+		ObjectHandleImpl objectHandle = new ObjectHandleImpl();
+		return objectHandle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BaseModelHandle createBaseModelHandle() {
+		BaseModelHandleImpl baseModelHandle = new BaseModelHandleImpl();
+		return baseModelHandle;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ReplacementFragmentType createReplacementFragmentType() {
 		ReplacementFragmentTypeImpl replacementFragmentType = new ReplacementFragmentTypeImpl();
 		return replacementFragmentType;
@@ -263,26 +283,6 @@ public class CvlFactoryImpl extends EFactoryImpl implements CvlFactory {
 	public ObjectSubstitution createObjectSubstitution() {
 		ObjectSubstitutionImpl objectSubstitution = new ObjectSubstitutionImpl();
 		return objectSubstitution;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ObjectHandle createObjectHandle() {
-		ObjectHandleImpl objectHandle = new ObjectHandleImpl();
-		return objectHandle;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BaseModelHandle createBaseModelHandle() {
-		BaseModelHandleImpl baseModelHandle = new BaseModelHandleImpl();
-		return baseModelHandle;
 	}
 
 	/**

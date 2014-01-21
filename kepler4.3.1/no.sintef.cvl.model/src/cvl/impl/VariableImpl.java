@@ -4,7 +4,6 @@ package cvl.impl;
 
 import cvl.CvlPackage;
 import cvl.ReplacementFragmentType;
-import cvl.ReplacementFragment;
 import cvl.ValueSpecification;
 import cvl.Variable;
 import cvl.Variabletype;

@@ -7,7 +7,7 @@ import cvl.CvlPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class BaseModelHandleImpl extends EObjectImpl implements BaseModelHandle {
+public class BaseModelHandleImpl extends MinimalEObjectImpl.Container implements BaseModelHandle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

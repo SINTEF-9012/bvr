@@ -17,5 +17,5 @@ package cvl;
  * @model abstract="true"
  * @generated
  */
-public interface PlacementBoundaryElement extends VariationPoint {
+public interface PlacementBoundaryElement extends NamedElement {
 } // PlacementBoundaryElement

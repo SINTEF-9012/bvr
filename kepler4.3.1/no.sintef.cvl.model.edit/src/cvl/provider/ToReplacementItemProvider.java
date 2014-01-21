@@ -4,8 +4,8 @@ package cvl.provider;
 
 
 import cvl.CvlPackage;
-
 import cvl.ToReplacement;
+
 import java.util.Collection;
 import java.util.List;
 

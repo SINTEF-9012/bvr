@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import no.sintef.cvl.tool.exception.AbstractError;
 import no.sintef.cvl.tool.strategy.BoundaryCalculatorStrategy;
-
 import cvl.FromReplacement;
+import cvl.NamedElement;
 import cvl.ToPlacement;
 import cvl.VariationPoint;
 
@@ -24,8 +24,8 @@ public class BoundaryCalculatorContext {
 		defaultFromReplacementStrategy = new FromReplacementBoundaryCalculator();
 	}
 	
-	public ArrayList<VariationPoint> getCompliedBoundaries(VariationPoint forBoundary, ArrayList<VariationPoint> options) throws AbstractError{
-		ArrayList<VariationPoint> compliedVP;
+	public ArrayList<NamedElement> getCompliedBoundaries(NamedElement forBoundary, ArrayList<NamedElement> options) throws AbstractError{
+		ArrayList<NamedElement> compliedVP;
 		if(forBoundary instanceof ToPlacement){
 			compliedVP = defualtToPlacementStrategy.getCompliedBoundaries(forBoundary, options);
 		} else if(forBoundary instanceof FromReplacement){

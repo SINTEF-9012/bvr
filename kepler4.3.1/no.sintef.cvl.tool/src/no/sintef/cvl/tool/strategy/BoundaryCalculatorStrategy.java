@@ -7,12 +7,12 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.cvl.tool.exception.AbstractError;
-
+import cvl.NamedElement;
 import cvl.VariationPoint;
 
 public abstract class BoundaryCalculatorStrategy {
 
-	public abstract ArrayList<VariationPoint> getCompliedBoundaries(VariationPoint forBoundary, ArrayList<VariationPoint> options) throws AbstractError;
+	public abstract ArrayList<NamedElement> getCompliedBoundaries(NamedElement forBoundary, ArrayList<NamedElement> options) throws AbstractError;
 	
 	protected boolean isInstance(EClassifier eClassifier, EList<EObject> eObjectList){
 		for(EObject eObject : eObjectList){

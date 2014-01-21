@@ -75,6 +75,7 @@ public class PlacementFragmentItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(CvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT);
+			childrenFeatures.add(CvlPackage.Literals.PLACEMENT_FRAGMENT__SOURCE_OBJECT);
 		}
 		return childrenFeatures;
 	}
@@ -130,6 +131,7 @@ public class PlacementFragmentItemProvider
 
 		switch (notification.getFeatureID(PlacementFragment.class)) {
 			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
+			case CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -156,6 +158,11 @@ public class PlacementFragmentItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT,
 				 CvlFactory.eINSTANCE.createFromPlacement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CvlPackage.Literals.PLACEMENT_FRAGMENT__SOURCE_OBJECT,
+				 CvlFactory.eINSTANCE.createObjectHandle()));
 	}
 
 }

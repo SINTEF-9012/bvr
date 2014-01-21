@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
@@ -86,6 +87,15 @@ public interface CvlPackage extends EPackage {
 	int NAMED_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VPackageableImpl <em>VPackageable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,6 +122,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VPACKAGEABLE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>VPackageable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGEABLE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VSpecImpl <em>VSpec</em>}' class.
@@ -176,6 +195,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VSPEC_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>VSpec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ChoiceImpl <em>Choice</em>}' class.
@@ -260,6 +288,15 @@ public interface CvlPackage extends EPackage {
 	int CHOICE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Choice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.MultiplicityIntervalImpl <em>Multiplicity Interval</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,6 +334,15 @@ public interface CvlPackage extends EPackage {
 	int MULTIPLICITY_INTERVAL_FEATURE_COUNT = 2;
 
 	/**
+	 * The number of operations of the '<em>Multiplicity Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLICITY_INTERVAL_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VSpecDerivationImpl <em>VSpec Derivation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,6 +378,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VSPEC_DERIVATION_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>VSpec Derivation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_DERIVATION_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VClassifierImpl <em>VClassifier</em>}' class.
@@ -407,6 +462,15 @@ public interface CvlPackage extends EPackage {
 	int VCLASSIFIER_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>VClassifier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VSpecResolutionImpl <em>VSpec Resolution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -451,6 +515,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VSPEC_RESOLUTION_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>VSpec Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_RESOLUTION_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ChoiceResolutuionImpl <em>Choice Resolutuion</em>}' class.
@@ -517,6 +590,15 @@ public interface CvlPackage extends EPackage {
 	int CHOICE_RESOLUTUION_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Choice Resolutuion</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_RESOLUTUION_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VInstanceImpl <em>VInstance</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,6 +654,15 @@ public interface CvlPackage extends EPackage {
 	int VINSTANCE_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>VInstance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VINSTANCE_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VariationPointImpl <em>Variation Point</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -600,22 +691,22 @@ public interface CvlPackage extends EPackage {
 	int VARIATION_POINT__BINDING_VSPEC = VPACKAGEABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIATION_POINT__SOURCE_OBJECT = VPACKAGEABLE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Variation Point</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 2;
+	int VARIATION_POINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ChoiceVariationPointImpl <em>Choice Variation Point</em>}' class.
@@ -646,15 +737,6 @@ public interface CvlPackage extends EPackage {
 	int CHOICE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -671,6 +753,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHOICE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Choice Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.FragmentSubstitutionImpl <em>Fragment Substitution</em>}' class.
@@ -699,15 +790,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int FRAGMENT_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -773,6 +855,15 @@ public interface CvlPackage extends EPackage {
 	int FRAGMENT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 5;
 
 	/**
+	 * The number of operations of the '<em>Fragment Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.RepeatableVariationPointImpl <em>Repeatable Variation Point</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -801,15 +892,6 @@ public interface CvlPackage extends EPackage {
 	int REPEATABLE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPEATABLE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Binding Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -826,6 +908,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPEATABLE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Repeatable Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATABLE_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.BoundaryElementBindingImpl <em>Boundary Element Binding</em>}' class.
@@ -856,6 +947,15 @@ public interface CvlPackage extends EPackage {
 	int BOUNDARY_ELEMENT_BINDING_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The number of operations of the '<em>Boundary Element Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDARY_ELEMENT_BINDING_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.PlacementFragmentImpl <em>Placement Fragment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -884,15 +984,6 @@ public interface CvlPackage extends EPackage {
 	int PLACEMENT_FRAGMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACEMENT_FRAGMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Placement Boundary Element</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -902,13 +993,31 @@ public interface CvlPackage extends EPackage {
 	int PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_FRAGMENT__SOURCE_OBJECT = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Placement Fragment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLACEMENT_FRAGMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+	int PLACEMENT_FRAGMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Placement Fragment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_FRAGMENT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.PlacementBoundaryElementImpl <em>Placement Boundary Element</em>}' class.
@@ -927,25 +1036,7 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLACEMENT_BOUNDARY_ELEMENT__NAME = VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+	int PLACEMENT_BOUNDARY_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Placement Boundary Element</em>' class.
@@ -954,7 +1045,81 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 0;
+	int PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Placement Boundary Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link cvl.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see cvl.impl.BaseModelHandleImpl
+	 * @see cvl.impl.CvlPackageImpl#getBaseModelHandle()
+	 * @generated
+	 */
+	int BASE_MODEL_HANDLE = 18;
+
+	/**
+	 * The number of structural features of the '<em>Base Model Handle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASE_MODEL_HANDLE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Base Model Handle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASE_MODEL_HANDLE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link cvl.impl.ObjectHandleImpl <em>Object Handle</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see cvl.impl.ObjectHandleImpl
+	 * @see cvl.impl.CvlPackageImpl#getObjectHandle()
+	 * @generated
+	 */
+	int OBJECT_HANDLE = 17;
+
+	/**
+	 * The feature id for the '<em><b>MOF Ref</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_HANDLE__MOF_REF = BASE_MODEL_HANDLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Object Handle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_HANDLE_FEATURE_COUNT = BASE_MODEL_HANDLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Object Handle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_HANDLE_OPERATION_COUNT = BASE_MODEL_HANDLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VariabletypeImpl <em>Variabletype</em>}' class.
@@ -964,7 +1129,7 @@ public interface CvlPackage extends EPackage {
 	 * @see cvl.impl.CvlPackageImpl#getVariabletype()
 	 * @generated
 	 */
-	int VARIABLETYPE = 18;
+	int VARIABLETYPE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -985,6 +1150,15 @@ public interface CvlPackage extends EPackage {
 	int VARIABLETYPE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The number of operations of the '<em>Variabletype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLETYPE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -992,7 +1166,7 @@ public interface CvlPackage extends EPackage {
 	 * @see cvl.impl.CvlPackageImpl#getReplacementFragmentType()
 	 * @generated
 	 */
-	int REPLACEMENT_FRAGMENT_TYPE = 17;
+	int REPLACEMENT_FRAGMENT_TYPE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1040,6 +1214,15 @@ public interface CvlPackage extends EPackage {
 	int REPLACEMENT_FRAGMENT_TYPE_FEATURE_COUNT = VARIABLETYPE_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>Replacement Fragment Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE_OPERATION_COUNT = VARIABLETYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ReplacementBoundaryElementImpl <em>Replacement Boundary Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1047,7 +1230,7 @@ public interface CvlPackage extends EPackage {
 	 * @see cvl.impl.CvlPackageImpl#getReplacementBoundaryElement()
 	 * @generated
 	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT = 19;
+	int REPLACEMENT_BOUNDARY_ELEMENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1056,25 +1239,7 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT__NAME = VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
+	int REPLACEMENT_BOUNDARY_ELEMENT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Replacement Boundary Element</em>' class.
@@ -1083,7 +1248,16 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 0;
+	int REPLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Replacement Boundary Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ObjectSubstitutionImpl <em>Object Substitution</em>}' class.
@@ -1093,7 +1267,7 @@ public interface CvlPackage extends EPackage {
 	 * @see cvl.impl.CvlPackageImpl#getObjectSubstitution()
 	 * @generated
 	 */
-	int OBJECT_SUBSTITUTION = 20;
+	int OBJECT_SUBSTITUTION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1112,15 +1286,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -1159,51 +1324,13 @@ public interface CvlPackage extends EPackage {
 	int OBJECT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link cvl.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see cvl.impl.BaseModelHandleImpl
-	 * @see cvl.impl.CvlPackageImpl#getBaseModelHandle()
-	 * @generated
-	 */
-	int BASE_MODEL_HANDLE = 22;
-
-	/**
-	 * The number of structural features of the '<em>Base Model Handle</em>' class.
+	 * The number of operations of the '<em>Object Substitution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASE_MODEL_HANDLE_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link cvl.impl.ObjectHandleImpl <em>Object Handle</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see cvl.impl.ObjectHandleImpl
-	 * @see cvl.impl.CvlPackageImpl#getObjectHandle()
-	 * @generated
-	 */
-	int OBJECT_HANDLE = 21;
-
-	/**
-	 * The feature id for the '<em><b>MOF Ref</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_HANDLE__MOF_REF = BASE_MODEL_HANDLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Object Handle</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_HANDLE_FEATURE_COUNT = BASE_MODEL_HANDLE_FEATURE_COUNT + 1;
+	int OBJECT_SUBSTITUTION_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VariableImpl <em>Variable</em>}' class.
@@ -1297,6 +1424,15 @@ public interface CvlPackage extends EPackage {
 	int VARIABLE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1323,6 +1459,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_SPECIFICATION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VariableValueAssignmentImpl <em>Variable Value Assignment</em>}' class.
@@ -1389,6 +1534,15 @@ public interface CvlPackage extends EPackage {
 	int VARIABLE_VALUE_ASSIGNMENT_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Variable Value Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_VALUE_ASSIGNMENT_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.PrimitveTypeImpl <em>Primitve Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1426,6 +1580,15 @@ public interface CvlPackage extends EPackage {
 	int PRIMITVE_TYPE_FEATURE_COUNT = VARIABLETYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Primitve Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITVE_TYPE_OPERATION_COUNT = VARIABLETYPE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1461,6 +1624,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_TYPE_FEATURE_COUNT = VARIABLETYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Object Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_TYPE_OPERATION_COUNT = VARIABLETYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VInterfaceImpl <em>VInterface</em>}' class.
@@ -1509,6 +1681,15 @@ public interface CvlPackage extends EPackage {
 	int VINTERFACE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>VInterface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VINTERFACE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ConstraintImpl <em>Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1546,6 +1727,15 @@ public interface CvlPackage extends EPackage {
 	int CONSTRAINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.SlotAssignmentImpl <em>Slot Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1572,15 +1762,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int SLOT_ASSIGNMENT__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SLOT_ASSIGNMENT__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -1628,6 +1809,15 @@ public interface CvlPackage extends EPackage {
 	int SLOT_ASSIGNMENT_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>Slot Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_ASSIGNMENT_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ObjectExistenceImpl <em>Object Existence</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1654,15 +1844,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -1692,6 +1873,15 @@ public interface CvlPackage extends EPackage {
 	int OBJECT_EXISTENCE_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Object Existence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_EXISTENCE_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.LinkEndSubstitutionImpl <em>Link End Substitution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1718,15 +1908,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK_END_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -1774,6 +1955,15 @@ public interface CvlPackage extends EPackage {
 	int LINK_END_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>Link End Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_END_SUBSTITUTION_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.LinkHandleImpl <em>Link Handle</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1800,6 +1990,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK_HANDLE_FEATURE_COUNT = BASE_MODEL_HANDLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Link Handle</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_HANDLE_OPERATION_COUNT = BASE_MODEL_HANDLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.CompositeVariationPointImpl <em>Composite Variation Point</em>}' class.
@@ -1830,15 +2029,6 @@ public interface CvlPackage extends EPackage {
 	int COMPOSITE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1855,6 +2045,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Composite Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ConfigurableUnitImpl <em>Configurable Unit</em>}' class.
@@ -1883,15 +2082,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURABLE_UNIT__BINDING_VSPEC = COMPOSITE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__SOURCE_OBJECT = COMPOSITE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
@@ -1984,6 +2174,15 @@ public interface CvlPackage extends EPackage {
 	int CONFIGURABLE_UNIT_FEATURE_COUNT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 8;
 
 	/**
+	 * The number of operations of the '<em>Configurable Unit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURABLE_UNIT_OPERATION_COUNT = COMPOSITE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.CVSpecImpl <em>CV Spec</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2055,6 +2254,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CV_SPEC_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>CV Spec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CV_SPEC_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VConfigurationImpl <em>VConfiguration</em>}' class.
@@ -2130,6 +2338,15 @@ public interface CvlPackage extends EPackage {
 	int VCONFIGURATION_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>VConfiguration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCONFIGURATION_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.LinkExistenceImpl <em>Link Existence</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2158,15 +2375,6 @@ public interface CvlPackage extends EPackage {
 	int LINK_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2192,6 +2400,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINK_EXISTENCE_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Link Existence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_EXISTENCE_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.OpaqueVariationPointImpl <em>Opaque Variation Point</em>}' class.
@@ -2222,15 +2439,6 @@ public interface CvlPackage extends EPackage {
 	int OPAQUE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Place Holder</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2256,6 +2464,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPAQUE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Opaque Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.OVPTypeImpl <em>OVP Type</em>}' class.
@@ -2295,6 +2512,15 @@ public interface CvlPackage extends EPackage {
 	int OVP_TYPE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>OVP Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OVP_TYPE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.OVPSemanticSpecImpl <em>OVP Semantic Spec</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2330,6 +2556,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int OVP_SEMANTIC_SPEC_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>OVP Semantic Spec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OVP_SEMANTIC_SPEC_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ObjectSpecificationImpl <em>Object Specification</em>}' class.
@@ -2369,6 +2604,15 @@ public interface CvlPackage extends EPackage {
 	int OBJECT_SPECIFICATION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Object Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_SPECIFICATION_OPERATION_COUNT = VALUE_SPECIFICATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ReplacementFragmentSpecificationImpl <em>Replacement Fragment Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2395,6 +2639,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPLACEMENT_FRAGMENT_SPECIFICATION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Replacement Fragment Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_SPECIFICATION_OPERATION_COUNT = VALUE_SPECIFICATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VPackageImpl <em>VPackage</em>}' class.
@@ -2432,6 +2685,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VPACKAGE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>VPackage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ToBindingImpl <em>To Binding</em>}' class.
@@ -2480,6 +2742,15 @@ public interface CvlPackage extends EPackage {
 	int TO_BINDING_FEATURE_COUNT = BOUNDARY_ELEMENT_BINDING_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>To Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_BINDING_OPERATION_COUNT = BOUNDARY_ELEMENT_BINDING_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ToPlacementImpl <em>To Placement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2497,24 +2768,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int TO_PLACEMENT__NAME = PLACEMENT_BOUNDARY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TO_PLACEMENT__BINDING_VSPEC = PLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TO_PLACEMENT__SOURCE_OBJECT = PLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>To Replacement</b></em>' reference.
@@ -2562,6 +2815,15 @@ public interface CvlPackage extends EPackage {
 	int TO_PLACEMENT_FEATURE_COUNT = PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The number of operations of the '<em>To Placement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_PLACEMENT_OPERATION_COUNT = PLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ToReplacementImpl <em>To Replacement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2579,24 +2841,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int TO_REPLACEMENT__NAME = REPLACEMENT_BOUNDARY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TO_REPLACEMENT__BINDING_VSPEC = REPLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TO_REPLACEMENT__SOURCE_OBJECT = REPLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Inside Boundary Element</b></em>' reference list.
@@ -2633,6 +2877,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int TO_REPLACEMENT_FEATURE_COUNT = REPLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>To Replacement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_REPLACEMENT_OPERATION_COUNT = REPLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.FromBindingImpl <em>From Binding</em>}' class.
@@ -2681,6 +2934,15 @@ public interface CvlPackage extends EPackage {
 	int FROM_BINDING_FEATURE_COUNT = BOUNDARY_ELEMENT_BINDING_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>From Binding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_BINDING_OPERATION_COUNT = BOUNDARY_ELEMENT_BINDING_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.FromPlacementImpl <em>From Placement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2698,24 +2960,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int FROM_PLACEMENT__NAME = PLACEMENT_BOUNDARY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FROM_PLACEMENT__BINDING_VSPEC = PLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FROM_PLACEMENT__SOURCE_OBJECT = PLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>From Replacement</b></em>' reference.
@@ -2754,6 +2998,15 @@ public interface CvlPackage extends EPackage {
 	int FROM_PLACEMENT_FEATURE_COUNT = PLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>From Placement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_PLACEMENT_OPERATION_COUNT = PLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.FromReplacementImpl <em>From Replacement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2771,24 +3024,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int FROM_REPLACEMENT__NAME = REPLACEMENT_BOUNDARY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FROM_REPLACEMENT__BINDING_VSPEC = REPLACEMENT_BOUNDARY_ELEMENT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FROM_REPLACEMENT__SOURCE_OBJECT = REPLACEMENT_BOUNDARY_ELEMENT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -2836,6 +3071,15 @@ public interface CvlPackage extends EPackage {
 	int FROM_REPLACEMENT_FEATURE_COUNT = REPLACEMENT_BOUNDARY_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The number of operations of the '<em>From Replacement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_REPLACEMENT_OPERATION_COUNT = REPLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.BCLExpressionImpl <em>BCL Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2853,6 +3097,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int BCL_EXPRESSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>BCL Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BCL_EXPRESSION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.VSpecRefImpl <em>VSpec Ref</em>}' class.
@@ -2881,6 +3134,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VSPEC_REF_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>VSpec Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_REF_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.OpaqueConstraintImpl <em>Opaque Constraint</em>}' class.
@@ -2938,6 +3200,15 @@ public interface CvlPackage extends EPackage {
 	int OPAQUE_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Opaque Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ParametricVariationPointImpl <em>Parametric Variation Point</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2966,15 +3237,6 @@ public interface CvlPackage extends EPackage {
 	int PARAMETRIC_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT = VARIATION_POINT__SOURCE_OBJECT;
-
-	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2991,6 +3253,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Parametric Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.SlotValueExistenceImpl <em>Slot Value Existence</em>}' class.
@@ -3019,15 +3290,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int SLOT_VALUE_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SLOT_VALUE_EXISTENCE__SOURCE_OBJECT = CHOICE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -3066,6 +3328,15 @@ public interface CvlPackage extends EPackage {
 	int SLOT_VALUE_EXISTENCE_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Slot Value Existence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_VALUE_EXISTENCE_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ParametricLinkEndSubstitutionImpl <em>Parametric Link End Substitution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3092,15 +3363,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_LINK_END_SUBSTITUTION__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION__SOURCE_OBJECT = PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
@@ -3139,6 +3401,15 @@ public interface CvlPackage extends EPackage {
 	int PARAMETRIC_LINK_END_SUBSTITUTION_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Parametric Link End Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_LINK_END_SUBSTITUTION_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ParametricObjectSubstitutionImpl <em>Parametric Object Substitution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3165,15 +3436,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_OBJECT_SUBSTITUTION__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION__SOURCE_OBJECT = PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
@@ -3203,6 +3465,15 @@ public interface CvlPackage extends EPackage {
 	int PARAMETRIC_OBJECT_SUBSTITUTION_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Parametric Object Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_OBJECT_SUBSTITUTION_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ParametricSlotAssignmetImpl <em>Parametric Slot Assignmet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3229,15 +3500,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_SLOT_ASSIGNMET__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET__SOURCE_OBJECT = PARAMETRIC_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
@@ -3274,6 +3536,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_SLOT_ASSIGNMET_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Parametric Slot Assignmet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_SLOT_ASSIGNMET_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.ChoiceDerivationImpl <em>Choice Derivation</em>}' class.
@@ -3331,6 +3602,15 @@ public interface CvlPackage extends EPackage {
 	int CHOICE_DERIVATION_FEATURE_COUNT = VSPEC_DERIVATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Choice Derivation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_DERIVATION_OPERATION_COUNT = VSPEC_DERIVATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.VariableDerivationImpl <em>Variable Derivation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3384,6 +3664,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_DERIVATION_FEATURE_COUNT = VSPEC_DERIVATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Variable Derivation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DERIVATION_OPERATION_COUNT = VSPEC_DERIVATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.CVSpecDerivationImpl <em>CV Spec Derivation</em>}' class.
@@ -3450,6 +3739,15 @@ public interface CvlPackage extends EPackage {
 	int CV_SPEC_DERIVATION_FEATURE_COUNT = VSPEC_DERIVATION_FEATURE_COUNT + 3;
 
 	/**
+	 * The number of operations of the '<em>CV Spec Derivation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CV_SPEC_DERIVATION_OPERATION_COUNT = VSPEC_DERIVATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.ConfigurableUnitUsageImpl <em>Configurable Unit Usage</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3476,15 +3774,6 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURABLE_UNIT_USAGE__BINDING_VSPEC = COMPOSITE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Source Object</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__SOURCE_OBJECT = COMPOSITE_VARIATION_POINT__SOURCE_OBJECT;
 
 	/**
 	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
@@ -3541,6 +3830,15 @@ public interface CvlPackage extends EPackage {
 	int CONFIGURABLE_UNIT_USAGE_FEATURE_COUNT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 4;
 
 	/**
+	 * The number of operations of the '<em>Configurable Unit Usage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURABLE_UNIT_USAGE_OPERATION_COUNT = COMPOSITE_VARIATION_POINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.PrimitiveValueSpecificationImpl <em>Primitive Value Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3576,6 +3874,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITIVE_VALUE_SPECIFICATION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Primitive Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITIVE_VALUE_SPECIFICATION_OPERATION_COUNT = VALUE_SPECIFICATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.BCLConstraintImpl <em>BCL Constraint</em>}' class.
@@ -3624,6 +3931,15 @@ public interface CvlPackage extends EPackage {
 	int BCL_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>BCL Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BCL_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3661,6 +3977,15 @@ public interface CvlPackage extends EPackage {
 	int OPERATION_CALL_EXP_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
+	 * The number of operations of the '<em>Operation Call Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3687,6 +4012,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Boolean Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -3717,6 +4051,15 @@ public interface CvlPackage extends EPackage {
 	int STRING_LITERAL_EXP_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>String Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3734,6 +4077,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERIC_LITERAL_EXP_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Numeric Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_LITERAL_EXP_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -3764,6 +4116,15 @@ public interface CvlPackage extends EPackage {
 	int INTEGER_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Integer Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.UnlimitedLiteralExpImpl <em>Unlimited Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3792,6 +4153,15 @@ public interface CvlPackage extends EPackage {
 	int UNLIMITED_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of operations of the '<em>Unlimited Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLIMITED_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link cvl.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3818,6 +4188,15 @@ public interface CvlPackage extends EPackage {
 	 * @ordered
 	 */
 	int REAL_LITERAL_EXP_FEATURE_COUNT = NUMERIC_LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Real Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link cvl.PrimitiveTypeEnum <em>Primitive Type Enum</em>}' enum.
@@ -4138,17 +4517,6 @@ public interface CvlPackage extends EPackage {
 	EReference getVariationPoint_BindingVSpec();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link cvl.VariationPoint#getSourceObject <em>Source Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Object</em>'.
-	 * @see cvl.VariationPoint#getSourceObject()
-	 * @see #getVariationPoint()
-	 * @generated
-	 */
-	EReference getVariationPoint_SourceObject();
-
-	/**
 	 * Returns the meta object for class '{@link cvl.FragmentSubstitution <em>Fragment Substitution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4276,6 +4644,17 @@ public interface CvlPackage extends EPackage {
 	EReference getPlacementFragment_PlacementBoundaryElement();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link cvl.PlacementFragment#getSourceObject <em>Source Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Source Object</em>'.
+	 * @see cvl.PlacementFragment#getSourceObject()
+	 * @see #getPlacementFragment()
+	 * @generated
+	 */
+	EReference getPlacementFragment_SourceObject();
+
+	/**
 	 * Returns the meta object for class '{@link cvl.PlacementBoundaryElement <em>Placement Boundary Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4284,6 +4663,37 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPlacementBoundaryElement();
+
+	/**
+	 * Returns the meta object for class '{@link cvl.ObjectHandle <em>Object Handle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Handle</em>'.
+	 * @see cvl.ObjectHandle
+	 * @generated
+	 */
+	EClass getObjectHandle();
+
+	/**
+	 * Returns the meta object for the reference '{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>MOF Ref</em>'.
+	 * @see cvl.ObjectHandle#getMOFRef()
+	 * @see #getObjectHandle()
+	 * @generated
+	 */
+	EReference getObjectHandle_MOFRef();
+
+	/**
+	 * Returns the meta object for class '{@link cvl.BaseModelHandle <em>Base Model Handle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Base Model Handle</em>'.
+	 * @see cvl.BaseModelHandle
+	 * @generated
+	 */
+	EClass getBaseModelHandle();
 
 	/**
 	 * Returns the meta object for class '{@link cvl.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
@@ -4379,37 +4789,6 @@ public interface CvlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getObjectSubstitution_ReplacementObject();
-
-	/**
-	 * Returns the meta object for class '{@link cvl.ObjectHandle <em>Object Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Object Handle</em>'.
-	 * @see cvl.ObjectHandle
-	 * @generated
-	 */
-	EClass getObjectHandle();
-
-	/**
-	 * Returns the meta object for the reference '{@link cvl.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>MOF Ref</em>'.
-	 * @see cvl.ObjectHandle#getMOFRef()
-	 * @see #getObjectHandle()
-	 * @generated
-	 */
-	EReference getObjectHandle_MOFRef();
-
-	/**
-	 * Returns the meta object for class '{@link cvl.BaseModelHandle <em>Base Model Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Base Model Handle</em>'.
-	 * @see cvl.BaseModelHandle
-	 * @generated
-	 */
-	EClass getBaseModelHandle();
 
 	/**
 	 * Returns the meta object for class '{@link cvl.Variable <em>Variable</em>}'.
@@ -5915,6 +6294,7 @@ public interface CvlPackage extends EPackage {
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
@@ -6169,14 +6549,6 @@ public interface CvlPackage extends EPackage {
 		EReference VARIATION_POINT__BINDING_VSPEC = eINSTANCE.getVariationPoint_BindingVSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Object</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIATION_POINT__SOURCE_OBJECT = eINSTANCE.getVariationPoint_SourceObject();
-
-		/**
 		 * The meta object literal for the '{@link cvl.impl.FragmentSubstitutionImpl <em>Fragment Substitution</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6283,6 +6655,14 @@ public interface CvlPackage extends EPackage {
 		EReference PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getPlacementFragment_PlacementBoundaryElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Source Object</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLACEMENT_FRAGMENT__SOURCE_OBJECT = eINSTANCE.getPlacementFragment_SourceObject();
+
+		/**
 		 * The meta object literal for the '{@link cvl.impl.PlacementBoundaryElementImpl <em>Placement Boundary Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6291,6 +6671,34 @@ public interface CvlPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getPlacementBoundaryElement();
+
+		/**
+		 * The meta object literal for the '{@link cvl.impl.ObjectHandleImpl <em>Object Handle</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see cvl.impl.ObjectHandleImpl
+		 * @see cvl.impl.CvlPackageImpl#getObjectHandle()
+		 * @generated
+		 */
+		EClass OBJECT_HANDLE = eINSTANCE.getObjectHandle();
+
+		/**
+		 * The meta object literal for the '<em><b>MOF Ref</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
+
+		/**
+		 * The meta object literal for the '{@link cvl.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see cvl.impl.BaseModelHandleImpl
+		 * @see cvl.impl.CvlPackageImpl#getBaseModelHandle()
+		 * @generated
+		 */
+		EClass BASE_MODEL_HANDLE = eINSTANCE.getBaseModelHandle();
 
 		/**
 		 * The meta object literal for the '{@link cvl.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
@@ -6371,34 +6779,6 @@ public interface CvlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT = eINSTANCE.getObjectSubstitution_ReplacementObject();
-
-		/**
-		 * The meta object literal for the '{@link cvl.impl.ObjectHandleImpl <em>Object Handle</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see cvl.impl.ObjectHandleImpl
-		 * @see cvl.impl.CvlPackageImpl#getObjectHandle()
-		 * @generated
-		 */
-		EClass OBJECT_HANDLE = eINSTANCE.getObjectHandle();
-
-		/**
-		 * The meta object literal for the '<em><b>MOF Ref</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
-
-		/**
-		 * The meta object literal for the '{@link cvl.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see cvl.impl.BaseModelHandleImpl
-		 * @see cvl.impl.CvlPackageImpl#getBaseModelHandle()
-		 * @generated
-		 */
-		EClass BASE_MODEL_HANDLE = eINSTANCE.getBaseModelHandle();
 
 		/**
 		 * The meta object literal for the '{@link cvl.impl.VariableImpl <em>Variable</em>}' class.

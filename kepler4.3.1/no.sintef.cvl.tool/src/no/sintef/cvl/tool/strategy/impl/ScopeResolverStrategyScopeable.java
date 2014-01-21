@@ -577,8 +577,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private void dublicateToPlacementAttr(ToPlacement newToPlacement, ToPlacement toPlacement){
 		if(toPlacement.getName() != null)
 			newToPlacement.setName(toPlacement.getName());
-		if(toPlacement.getBindingVSpec() != null)
-			newToPlacement.setBindingVSpec(toPlacement.getBindingVSpec());
 		if(toPlacement.getPropertyName() != null)
 			newToPlacement.setPropertyName(toPlacement.getPropertyName());
 		if(toPlacement.getToReplacement() != null)
@@ -588,8 +586,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private void dublicateToReplacementAttr(ToReplacement newToReplacement, ToReplacement toReplacement){
 		if(toReplacement.getName() != null)
 			newToReplacement.setName(toReplacement.getName());
-		if(toReplacement.getBindingVSpec() != null)
-			newToReplacement.setBindingVSpec(toReplacement.getBindingVSpec());
 		if(toReplacement.getToPlacement() != null)
 			newToReplacement.setToPlacement(toReplacement.getToPlacement());
 	}
@@ -597,8 +593,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private void dublicateFromPlacementAttr(FromPlacement newFromPlacement, FromPlacement fromPlacement){
 		if(fromPlacement.getName() != null)
 			newFromPlacement.setName(fromPlacement.getName());
-		if(fromPlacement.getBindingVSpec() != null)
-			newFromPlacement.setBindingVSpec(fromPlacement.getBindingVSpec());
 		if(fromPlacement.getFromReplacement() != null)
 			newFromPlacement.setFromReplacement(fromPlacement.getFromReplacement());
 	}
@@ -606,8 +600,6 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	private void dublicateFromReplacementAttr(FromReplacement newFromReplacement, FromReplacement fromReplacement){
 		if(fromReplacement.getName() != null)
 			newFromReplacement.setName(fromReplacement.getName());
-		if(fromReplacement.getBindingVSpec() != null)
-			newFromReplacement.setBindingVSpec(fromReplacement.getBindingVSpec());
 		if(fromReplacement.getFromPlacement() != null)
 			newFromReplacement.setFromPlacement(fromReplacement.getFromPlacement());
 		if(fromReplacement.getPropertyName() != null)

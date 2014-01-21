@@ -3,6 +3,7 @@
 package cvl.impl;
 
 import cvl.CvlPackage;
+import cvl.ObjectHandle;
 import cvl.PlacementBoundaryElement;
 import cvl.PlacementFragment;
 
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link cvl.impl.PlacementFragmentImpl#getPlacementBoundaryElement <em>Placement Boundary Element</em>}</li>
+ *   <li>{@link cvl.impl.PlacementFragmentImpl#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +43,16 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	 * @ordered
 	 */
 	protected EList<PlacementBoundaryElement> placementBoundaryElement;
+
+	/**
+	 * The cached value of the '{@link #getSourceObject() <em>Source Object</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ObjectHandle> sourceObject;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,11 +90,25 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ObjectHandle> getSourceObject() {
+		if (sourceObject == null) {
+			sourceObject = new EObjectContainmentEList<ObjectHandle>(ObjectHandle.class, this, CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT);
+		}
+		return sourceObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				return ((InternalEList<?>)getPlacementBoundaryElement()).basicRemove(otherEnd, msgs);
+			case CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT:
+				return ((InternalEList<?>)getSourceObject()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -97,6 +123,8 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 		switch (featureID) {
 			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				return getPlacementBoundaryElement();
+			case CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT:
+				return getSourceObject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +142,10 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 				getPlacementBoundaryElement().clear();
 				getPlacementBoundaryElement().addAll((Collection<? extends PlacementBoundaryElement>)newValue);
 				return;
+			case CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT:
+				getSourceObject().clear();
+				getSourceObject().addAll((Collection<? extends ObjectHandle>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -129,6 +161,9 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				getPlacementBoundaryElement().clear();
 				return;
+			case CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT:
+				getSourceObject().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,6 +178,8 @@ public class PlacementFragmentImpl extends VariationPointImpl implements Placeme
 		switch (featureID) {
 			case CvlPackage.PLACEMENT_FRAGMENT__PLACEMENT_BOUNDARY_ELEMENT:
 				return placementBoundaryElement != null && !placementBoundaryElement.isEmpty();
+			case CvlPackage.PLACEMENT_FRAGMENT__SOURCE_OBJECT:
+				return sourceObject != null && !sourceObject.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

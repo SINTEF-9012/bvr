@@ -79,7 +79,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 		}
 	}
 	
-	private EList<HashMap<EObject, Integer>> getObjectsToHighlight(VariationPoint boundary) throws IllegalOperationException{
+	private EList<HashMap<EObject, Integer>> getObjectsToHighlight(NamedElement boundary) throws IllegalOperationException{
 		EList<HashMap<EObject, Integer>> list = new BasicEList<HashMap<EObject, Integer>>();
 		if(boundary instanceof ToPlacement || boundary instanceof ToReplacement){
 			boolean isToPlacement = (boundary instanceof ToPlacement) ? true : false;

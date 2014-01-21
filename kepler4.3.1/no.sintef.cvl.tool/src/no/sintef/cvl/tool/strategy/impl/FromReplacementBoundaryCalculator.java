@@ -13,9 +13,9 @@ import no.sintef.cvl.tool.context.Context;
 import no.sintef.cvl.tool.exception.AbstractError;
 import no.sintef.cvl.tool.exception.CVLModelException;
 import no.sintef.cvl.tool.strategy.BoundaryCalculatorStrategy;
-
 import cvl.FromPlacement;
 import cvl.FromReplacement;
+import cvl.NamedElement;
 import cvl.ObjectHandle;
 import cvl.VariationPoint;
 
@@ -26,8 +26,8 @@ public class FromReplacementBoundaryCalculator extends
 	private Logger logger = Context.eINSTANCE.logger;
 	
 	@Override
-	public ArrayList<VariationPoint> getCompliedBoundaries(
-			VariationPoint forBoundary, ArrayList<VariationPoint> options) throws AbstractError {
+	public ArrayList<NamedElement> getCompliedBoundaries(
+			NamedElement forBoundary, ArrayList<NamedElement> options) throws AbstractError {
 		FromReplacement fromReplacement = (FromReplacement) forBoundary;
 		String propertyNameSrcObject = fromReplacement.getPropertyName();
 		EObject srcObject = fromReplacement.getInsideBoundaryElement().getMOFRef();
@@ -46,8 +46,8 @@ public class FromReplacementBoundaryCalculator extends
 		logger.debug("processing fromReplacement " + fromReplacement);
 		logger.debug("calculating applicable boundaries for the element '" + srcObject + "' with the property '" + propertyNameSrcObject + "' of the type '" + srcObjectType + "' with the following cardinality lowerBound=" + lowerBound + " upperBound=" + upperBound);
 		
-		ArrayList<VariationPoint> fromPlacements = new ArrayList<VariationPoint>();
-		for(VariationPoint boundary : options){
+		ArrayList<NamedElement> fromPlacements = new ArrayList<NamedElement>();
+		for(NamedElement boundary : options){
 			if(LoaderUtility.isNullBoundary(boundary)){
 				nullFromPlacement = (FromPlacement) boundary;
 			}else{

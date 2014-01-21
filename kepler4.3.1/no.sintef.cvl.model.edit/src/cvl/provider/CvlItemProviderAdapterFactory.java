@@ -256,6 +256,52 @@ public class CvlItemProviderAdapterFactory extends CvlAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link cvl.ObjectHandle} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ObjectHandleItemProvider objectHandleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link cvl.ObjectHandle}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectHandleAdapter() {
+		if (objectHandleItemProvider == null) {
+			objectHandleItemProvider = new ObjectHandleItemProvider(this);
+		}
+
+		return objectHandleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link cvl.BaseModelHandle} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BaseModelHandleItemProvider baseModelHandleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link cvl.BaseModelHandle}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBaseModelHandleAdapter() {
+		if (baseModelHandleItemProvider == null) {
+			baseModelHandleItemProvider = new BaseModelHandleItemProvider(this);
+		}
+
+		return baseModelHandleItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link cvl.ReplacementFragmentType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,52 +368,6 @@ public class CvlItemProviderAdapterFactory extends CvlAdapterFactory implements 
 		}
 
 		return objectSubstitutionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link cvl.ObjectHandle} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ObjectHandleItemProvider objectHandleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link cvl.ObjectHandle}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createObjectHandleAdapter() {
-		if (objectHandleItemProvider == null) {
-			objectHandleItemProvider = new ObjectHandleItemProvider(this);
-		}
-
-		return objectHandleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link cvl.BaseModelHandle} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BaseModelHandleItemProvider baseModelHandleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link cvl.BaseModelHandle}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBaseModelHandleAdapter() {
-		if (baseModelHandleItemProvider == null) {
-			baseModelHandleItemProvider = new BaseModelHandleItemProvider(this);
-		}
-
-		return baseModelHandleItemProvider;
 	}
 
 	/**
@@ -1535,11 +1535,11 @@ public class CvlItemProviderAdapterFactory extends CvlAdapterFactory implements 
 		if (vInstanceItemProvider != null) vInstanceItemProvider.dispose();
 		if (fragmentSubstitutionItemProvider != null) fragmentSubstitutionItemProvider.dispose();
 		if (placementFragmentItemProvider != null) placementFragmentItemProvider.dispose();
+		if (objectHandleItemProvider != null) objectHandleItemProvider.dispose();
+		if (baseModelHandleItemProvider != null) baseModelHandleItemProvider.dispose();
 		if (replacementFragmentTypeItemProvider != null) replacementFragmentTypeItemProvider.dispose();
 		if (variabletypeItemProvider != null) variabletypeItemProvider.dispose();
 		if (objectSubstitutionItemProvider != null) objectSubstitutionItemProvider.dispose();
-		if (objectHandleItemProvider != null) objectHandleItemProvider.dispose();
-		if (baseModelHandleItemProvider != null) baseModelHandleItemProvider.dispose();
 		if (variableItemProvider != null) variableItemProvider.dispose();
 		if (variableValueAssignmentItemProvider != null) variableValueAssignmentItemProvider.dispose();
 		if (primitveTypeItemProvider != null) primitveTypeItemProvider.dispose();

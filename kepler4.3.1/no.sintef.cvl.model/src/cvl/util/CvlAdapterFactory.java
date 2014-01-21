@@ -136,6 +136,14 @@ public class CvlAdapterFactory extends AdapterFactoryImpl {
 				return createPlacementBoundaryElementAdapter();
 			}
 			@Override
+			public Adapter caseObjectHandle(ObjectHandle object) {
+				return createObjectHandleAdapter();
+			}
+			@Override
+			public Adapter caseBaseModelHandle(BaseModelHandle object) {
+				return createBaseModelHandleAdapter();
+			}
+			@Override
 			public Adapter caseReplacementFragmentType(ReplacementFragmentType object) {
 				return createReplacementFragmentTypeAdapter();
 			}
@@ -150,14 +158,6 @@ public class CvlAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseObjectSubstitution(ObjectSubstitution object) {
 				return createObjectSubstitutionAdapter();
-			}
-			@Override
-			public Adapter caseObjectHandle(ObjectHandle object) {
-				return createObjectHandleAdapter();
-			}
-			@Override
-			public Adapter caseBaseModelHandle(BaseModelHandle object) {
-				return createBaseModelHandleAdapter();
 			}
 			@Override
 			public Adapter caseVariable(Variable object) {
@@ -614,6 +614,34 @@ public class CvlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link cvl.ObjectHandle <em>Object Handle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cvl.ObjectHandle
+	 * @generated
+	 */
+	public Adapter createObjectHandleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cvl.BaseModelHandle <em>Base Model Handle</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cvl.BaseModelHandle
+	 * @generated
+	 */
+	public Adapter createBaseModelHandleAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link cvl.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -666,34 +694,6 @@ public class CvlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createObjectSubstitutionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link cvl.ObjectHandle <em>Object Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see cvl.ObjectHandle
-	 * @generated
-	 */
-	public Adapter createObjectHandleAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link cvl.BaseModelHandle <em>Base Model Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see cvl.BaseModelHandle
-	 * @generated
-	 */
-	public Adapter createBaseModelHandleAdapter() {
 		return null;
 	}
 

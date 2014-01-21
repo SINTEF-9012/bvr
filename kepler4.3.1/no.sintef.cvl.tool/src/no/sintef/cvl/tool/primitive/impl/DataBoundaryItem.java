@@ -8,7 +8,7 @@ import no.sintef.cvl.tool.primitive.AbstractDataItem;
 
 public class DataBoundaryItem extends AbstractDataItem {
 	
-	public DataBoundaryItem(JLabel label, VariationPoint boundaryElement){
+	public DataBoundaryItem(JLabel label, NamedElement boundaryElement){
 		this.label = label;
 		this.data = boundaryElement;
 	}

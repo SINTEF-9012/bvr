@@ -251,26 +251,6 @@ public class ConfigurableUnitItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 CvlFactory.eINSTANCE.createToPlacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 CvlFactory.eINSTANCE.createToReplacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 CvlFactory.eINSTANCE.createFromPlacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
-				 CvlFactory.eINSTANCE.createFromReplacement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIATION_POINT,
 				 CvlFactory.eINSTANCE.createSlotValueExistence()));
 
 		newChildDescriptors.add
@@ -372,29 +352,6 @@ public class ConfigurableUnitItemProvider
 			(createChildParameter
 				(CvlPackage.Literals.CONFIGURABLE_UNIT__OWNED_VARIABLETYPE,
 				 CvlFactory.eINSTANCE.createObjectType()));
-	}
-
-	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-		Object childFeature = feature;
-		Object childObject = child;
-
-		boolean qualify =
-			childFeature == CvlPackage.Literals.VARIATION_POINT__SOURCE_OBJECT ||
-			childFeature == CvlPackage.Literals.CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT;
-
-		if (qualify) {
-			return getString
-				("_UI_CreateChild_text2",
-				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		}
-		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

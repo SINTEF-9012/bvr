@@ -7,25 +7,27 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated CVLMetamodel -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
             id="cvl.presentation.CvlModelWizardID"
-            name="%_UI_cvlModelWizard_label"
+            name="%_UI_CvlModelWizard_label"
             class="cvl.presentation.CvlModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/cvlModelFile.gif">
-         <description>%_UI_cvlModelWizard_description</description>
+            icon="icons/full/obj16/CvlModelFile.gif">
+         <description>%_UI_CvlModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
+      <!-- @generated CVLMetamodel -->
       <editor
             id="cvl.presentation.CvlEditorID"
             name="%_UI_CvlEditor_label"
-            icon="icons/full/obj16/cvlModelFile.gif"
+            icon="icons/full/obj16/CvlModelFile.gif"
             extensions="cvl"
             class="cvl.presentation.CvlEditor"
             contributorClass="cvl.presentation.CvlActionBarContributor">

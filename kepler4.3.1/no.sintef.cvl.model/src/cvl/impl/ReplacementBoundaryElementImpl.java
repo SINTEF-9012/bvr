@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class ReplacementBoundaryElementImpl extends VariationPointImpl implements ReplacementBoundaryElement {
+public abstract class ReplacementBoundaryElementImpl extends NamedElementImpl implements ReplacementBoundaryElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

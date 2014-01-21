@@ -24,6 +24,7 @@ import cvl.ToBinding;
 import cvl.ToPlacement;
 import cvl.ToReplacement;
 import cvl.VariationPoint;
+import cvl.NamedElement;
 import no.sintef.cvl.tool.common.LoaderUtility;
 import no.sintef.cvl.tool.exception.AbstractError;
 import no.sintef.cvl.tool.exception.UnexpectedException;
@@ -48,18 +49,18 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		if(placementBoundaries.size() == 0 || replacementBoundaries.size() == 0)
 			throw new UnexpectedException("boundaries for placement or replacement are not generated" + placement + " " + replacement);
 		
-		HashMap<String, ArrayList<VariationPoint>> sortedBoundaries = LoaderUtility.sortBoundariesByType(placement, replacement);
-		ArrayList<VariationPoint> toPlacements = sortedBoundaries.get(LoaderUtility.TOPLCMNT);
-		ArrayList<VariationPoint> fromReplacements = sortedBoundaries.get(LoaderUtility.FROMREPLCMNT);
+		HashMap<String, ArrayList<NamedElement>> sortedBoundaries = LoaderUtility.sortBoundariesByType(placement, replacement);
+		ArrayList<NamedElement> toPlacements = sortedBoundaries.get(LoaderUtility.TOPLCMNT);
+		ArrayList<NamedElement> fromReplacements = sortedBoundaries.get(LoaderUtility.FROMREPLCMNT);
 
 		if(fragmentSubstitution.getBoundaryElementBinding().size() == 0){
-			for(VariationPoint toPlacemenet : toPlacements){
+			for(NamedElement toPlacemenet : toPlacements){
 				ToBinding toBinding = CvlFactory.eINSTANCE.createToBinding();
 				toBinding.setToPlacement((ToPlacement) toPlacemenet);
 				toBinding.setToReplacement(nullToReplacement);
 				fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
 			}
-			for(VariationPoint fromReplacement : fromReplacements){
+			for(NamedElement fromReplacement : fromReplacements){
 				FromBinding fromBinding = CvlFactory.eINSTANCE.createFromBinding();
 				fromBinding.setFromReplacement((FromReplacement) fromReplacement);
 				fromBinding.setFromPlacement(nullFromPlacement);
@@ -75,16 +76,16 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 				if(binding instanceof FromBinding)
 					boundedFromReplacements.add(((FromBinding) binding).getFromReplacement());
 			}
-			SetView<VariationPoint> toPlacementsToProcess = Sets.symmetricDifference(new HashSet<VariationPoint>(toPlacements), new HashSet<VariationPoint>(boundedToPlacements));
-			for(VariationPoint toPlacemenet : toPlacementsToProcess){
+			SetView<NamedElement> toPlacementsToProcess = Sets.symmetricDifference(new HashSet<NamedElement>(toPlacements), new HashSet<NamedElement>(boundedToPlacements));
+			for(NamedElement toPlacemenet : toPlacementsToProcess){
 				ToBinding toBinding = CvlFactory.eINSTANCE.createToBinding();
 				toBinding.setToPlacement((ToPlacement) toPlacemenet);
 				toBinding.setToReplacement(nullToReplacement);
 				fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
 			}
 			
-			SetView<VariationPoint> fromReplacementsToProcess = Sets.symmetricDifference(new HashSet<VariationPoint>(fromReplacements), new HashSet<VariationPoint>(boundedFromReplacements));
-			for(VariationPoint fromReplacement : fromReplacementsToProcess){
+			SetView<NamedElement> fromReplacementsToProcess = Sets.symmetricDifference(new HashSet<NamedElement>(fromReplacements), new HashSet<NamedElement>(boundedFromReplacements));
+			for(NamedElement fromReplacement : fromReplacementsToProcess){
 				FromBinding fromBinding = CvlFactory.eINSTANCE.createFromBinding();
 				fromBinding.setFromReplacement((FromReplacement) fromReplacement);
 				fromBinding.setFromPlacement(nullFromPlacement);

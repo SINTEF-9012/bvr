@@ -7,6 +7,6 @@ Export-Package: no.sintef.cvl.converters
 Import-Package: de.ovgu.featureide.fm.core.io,
  no.sintef.ict.splcatool,
  splar.core.fm
-Require-Bundle: no.sintef.cvl.model;bundle-version="1.0.0"
+Require-Bundle: no.sintef.cvl.model;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: .

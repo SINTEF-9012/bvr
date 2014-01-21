@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link cvl.PlacementFragment#getPlacementBoundaryElement <em>Placement Boundary Element</em>}</li>
+ *   <li>{@link cvl.PlacementFragment#getSourceObject <em>Source Object</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,5 +41,21 @@ public interface PlacementFragment extends VariationPoint {
 	 * @generated
 	 */
 	EList<PlacementBoundaryElement> getPlacementBoundaryElement();
+
+	/**
+	 * Returns the value of the '<em><b>Source Object</b></em>' containment reference list.
+	 * The list contents are of type {@link cvl.ObjectHandle}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Object</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Object</em>' containment reference list.
+	 * @see cvl.CvlPackage#getPlacementFragment_SourceObject()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<ObjectHandle> getSourceObject();
 
 } // PlacementFragment
