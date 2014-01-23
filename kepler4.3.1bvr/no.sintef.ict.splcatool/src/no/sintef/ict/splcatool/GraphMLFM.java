@@ -28,14 +28,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import cvl.Choice;
-import cvl.ConfigurableUnit;
-import cvl.MultiplicityInterval;
-import cvl.OpaqueConstraint;
-import cvl.VClassifier;
-import cvl.VSpec;
-import cvl.CvlFactory;
-import cvl.impl.CvlPackageImpl;
+import bvr.Choice;
+import bvr.ConfigurableUnit;
+import bvr.MultiplicityInterval;
+import bvr.OpaqueConstraint;
+import bvr.VClassifier;
+import bvr.VSpec;
+import bvr.BvrFactory;
+import bvr.impl.BvrPackageImpl;
 import de.ovgu.featureide.fm.core.Feature;
 
 public class GraphMLFM {
@@ -426,14 +426,14 @@ public class GraphMLFM {
 		shapenode.appendChild(nodelabel);
 	}
 	
-	CVLModel cvl;
+	CVLModel bvr;
 	Map<String, Boolean> mandatories = new HashMap<String, Boolean>();
 
 	public CVLModel getCVLModel() {
 		// Make empty CVL model
-		CvlPackageImpl.init();
-		ConfigurableUnit cu = CvlFactory.eINSTANCE.createConfigurableUnit();
-		cvl = new CVLModel(cu);
+		BvrPackageImpl.init();
+		ConfigurableUnit cu = BvrFactory.eINSTANCE.createConfigurableUnit();
+		bvr = new CVLModel(cu);
 		
 		// Make graph
 		DirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
@@ -509,14 +509,14 @@ public class GraphMLFM {
 				if(x.getNodeName().equals("edge")) continue;
 				//System.out.println(id);
 				
-				OpaqueConstraint e = CvlFactory.eINSTANCE.createOpaqueConstraint();
+				OpaqueConstraint e = BvrFactory.eINSTANCE.createOpaqueConstraint();
 				e.setConstraint(getLabel(id));
 				cu.getOwnedConstraint().add(e);
 			}
 		}
 		
 		// Return
-		return cvl;
+		return bvr;
 	}
 	
 	VSpec traverse(DirectedGraph<String, DefaultEdge> g, String root){
@@ -537,19 +537,19 @@ public class GraphMLFM {
 		VSpec v = null;
 		//System.out.println(tag);
 		if(tag.equals("roundrectangle")){
-			Choice c = CvlFactory.eINSTANCE.createChoice();
+			Choice c = BvrFactory.eINSTANCE.createChoice();
 			idmap.put(root, c);
 			c.setName(getLabel(root));
 			c.setIsImpliedByParent(mandatories.get(root));
 			v = c;
 		}else if(tag.equals("rectangle")){
-			VClassifier c = CvlFactory.eINSTANCE.createVClassifier();
+			VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 			idmap.put(root, c);
 			String mstr = getMultiplicity(root);
 			c.setName(getLabel(root).replace("[" + mstr + "]", ""));
 			v = c;
 		}else if(tag.equals("parallelogram")){
-			OpaqueConstraint c =  CvlFactory.eINSTANCE.createOpaqueConstraint();
+			OpaqueConstraint c =  BvrFactory.eINSTANCE.createOpaqueConstraint();
 			String l = getLabel(root);
 			c.setConstraint(l);
 			for(DefaultEdge e : g.edgesOf(root)){
@@ -558,9 +558,9 @@ public class GraphMLFM {
 				c.setContext(idmap.get(g.getEdgeSource(e)));
 			}
 
-			cvl.getCU().getOwnedConstraint().add(c);
+			bvr.getCU().getOwnedConstraint().add(c);
 		}else if(tag.equals("UMLClassNode")){
-			v = (VSpec) CvlFactory.eINSTANCE.createVClassifier();
+			v = (VSpec) BvrFactory.eINSTANCE.createVClassifier();
 			idmap.put(root, v);
 			String mstr = getMultiplicity(root);
 			v.setName(getLabel(root).replace("[" + mstr + "]", ""));
@@ -656,7 +656,7 @@ public class GraphMLFM {
 		if(!lstr.equals("*")) li = Integer.parseInt(lstr);
 		int ui = -1;
 		if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(li);
 		mi.setUpper(ui);
 		c.setInstanceMultiplicity(mi);
@@ -669,7 +669,7 @@ public class GraphMLFM {
 		if(!lstr.equals("*")) li = Integer.parseInt(lstr);
 		int ui = -1;
 		if(!ustr.equals("*")) ui = Integer.parseInt(ustr);
-		MultiplicityInterval mi = CvlFactory.eINSTANCE.createMultiplicityInterval();
+		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(li);
 		mi.setUpper(ui);
 		c.setGroupMultiplicity(mi);

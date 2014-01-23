@@ -1,0 +1,140 @@
+<!-- $Id: pom.xml 13513 2010-11-15 17:12:54Z kermeta_bot $ -->
+<!-- License    : EPL 									 -->
+<!-- Copyright  : IRISA / INRIA / Universite de Rennes 1 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>no.sintef</groupId>
+    <artifactId>no.sintef.bvr.ui.loader</artifactId>
+    <packaging>jar</packaging>
+    <name>CVL :: UI :: Loader</name>
+    <version>1.0.0</version>
+
+ <!-- <parent>
+        <artifactId>org.kevoree.tools.root</artifactId>
+        <groupId>org.kevoree.tools</groupId>
+        <version>1.8.8</version>
+        <relativePath>../org.kevoree.tools.root/pom.xml</relativePath>
+    </parent>
+     --> 
+
+    <dependencies>
+        <dependency>
+            <groupId>no.sintef</groupId>
+            <artifactId>no.sintef.bvr.ui.framework</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>no.sintef</groupId>
+            <artifactId>no.sintef.bvr.engine</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>no.sintef</groupId>
+            <artifactId>no.sintef.bvr.common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency> 
+        <dependency>
+            <groupId>org.abego.treelayout</groupId>
+            <artifactId>org.abego.treelayout.core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.abego.treelayout</groupId>
+            <artifactId>org.abego.treelayout.demo</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx-core</artifactId>
+            <version>1.6.2-2</version>
+        </dependency>
+    	<dependency>
+            <groupId>org.kevoree.extra</groupId>
+            <artifactId>org.kevoree.extra.macwidgets</artifactId>
+            <version>0.9.6</version>
+        </dependency>
+        <dependency>
+            <groupId>batik</groupId>
+            <artifactId>batik-svggen</artifactId>
+            <version>1.6-1</version>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>xercesImpl</artifactId>
+            		<groupId>xerces</groupId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+		<!--<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
+			<version>2.6.0.v20100614-1136</version>
+		</dependency>-->
+		
+		<dependency>
+    		<groupId>com.google.guava</groupId>
+    		<artifactId>guava</artifactId>
+    		<version>14.0.1</version><!-- 13.0.1  -->
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.combinatoricslib</groupId>
+			<artifactId>combinatoricslib</artifactId>
+			<version>2.0</version>
+		</dependency>           
+            
+<!--         <dependency>
+            <groupId>org.kevoree</groupId>
+            <artifactId>org.kevoree.model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+ --> 
+ 
+	 	<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>	
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>java.net-m2</id>
+            <name>java.net - Maven 2</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/java.net-m2</url>
+        </repository>
+        <repository>
+            <id>kevoree-libs-release-local</id>
+            <url>http://maven.kevoree.org/release</url>
+        </repository>
+        <repository>
+            <id>kevoree-snapshots</id>
+            <url>http://maven.kevoree.org/snapshots</url>
+        </repository>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </repository>
+        <repository>
+    		<id>thirdparty</id>
+    		<name>ThingML Repository</name>
+    		<url>http://maven.thingml.org/archiva/repository/thirdparty/</url>
+		</repository>
+    </repositories>
+
+  <build>
+      <sourceDirectory>src</sourceDirectory>
+    <plugins>
+       <plugin>
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <version>2.3.1</version>
+           <configuration>
+               <source>1.7</source>
+               <target>1.7</target>
+           </configuration>
+       </plugin>    
+    </plugins>
+  </build>
+</project>

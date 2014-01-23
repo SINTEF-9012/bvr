@@ -1,7 +1,0 @@
-# Tracing options for the no.sintef.cvl.gmf.vspec plug-in
-
-# Common issues
-no.sintef.cvl.gmf.vspec/debug=false
-
-# Visual IDs
-no.sintef.cvl.gmf.vspec/debug/visualID=false

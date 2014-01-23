@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http://org.variabilitymodeling.bvr" name="SafetyDrive">
+  <variabilitySpecification xsi:type="bvr:CompositeVariability" name="varModel">
+    <variabilitySpecification xsi:type="bvr:CompositeVariability" name="SafetyDrive">
+      <variabilitySpecification xsi:type="bvr:CompositeVariability" name="SafetyModule">
+        <variabilitySpecification xsi:type="bvr:PlacementFragment" name="CS_sm_plcm">
+          <boundaryElement xsi:type="bvr:FromPlacement" name=":Class[1]">
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromPlacement" name=":Class[1]">
+            <outsideBoundaryElement href="model.uml#_mE1ScGlfEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].ownedElement" propertyName="ownedElement">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].ownedMember" propertyName="ownedMember">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].member" propertyName="member">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].feature" propertyName="feature">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].attribute" propertyName="attribute">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].ownedAttribute" propertyName="ownedAttribute">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Class].role" propertyName="role">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_fSJBMGlgEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:ConnectorEnd].partWithPort" propertyName="partWithPort">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_NmA7tGl2EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:ConnectorEnd].partWithPort" propertyName="partWithPort">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_QakG9Gl2EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:ConnectorEnd].partWithPort" propertyName="partWithPort">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_RAllIWl2EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:ConnectorEnd].partWithPort" propertyName="partWithPort">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_SH9c5Gl2EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:ConnectorEnd].partWithPort" propertyName="partWithPort">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_UqcnwWl2EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:ConnectorEnd].partWithPort" propertyName="partWithPort">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_VRv4VGl2EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Lifeline].represents" propertyName="represents">
+            <insideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="bvr:PlacementFragment" name="SD_sm_plcm">
+          <boundaryElement xsi:type="bvr:FromPlacement" name=":Interaction[1]">
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromPlacement" name=":Property[1]">
+            <outsideBoundaryElement href="model.uml#_5mVhMGl1EeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromPlacement" name=":InteractionFragment[5]">
+            <outsideBoundaryElement href="model.uml#_0paVMGlqEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_-QPFgGlqEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_AZ8kAGlrEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_GkFyEGlrEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_O3PUAGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Interaction].ownedElement" propertyName="ownedElement">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Interaction].ownedMember" propertyName="ownedMember">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Interaction].member" propertyName="member">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:Interaction].lifeline" propertyName="lifeline">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_FotBgGljEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_0paVMGlqEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_-QPFgGlqEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_AZ8kAGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:MessageOccurrenceSpecification].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_GkFyEGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToPlacement" name="[:StateInvariant].covered" propertyName="covered">
+            <insideBoundaryElement href="model.uml#_4kF0UGllEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="model.uml#_O3PUAGlrEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="bvr:ReplacementFragment" name="CS_sm_rplcm">
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Property].owner" propertyName="owner">
+            <outsideBoundaryElement href="lib.uml#_pCY1cGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Property].namespace" propertyName="namespace">
+            <outsideBoundaryElement href="lib.uml#_pCY1cGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Property].redefinitionContext" propertyName="redefinitionContext">
+            <outsideBoundaryElement href="lib.uml#_pCY1cGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Property].featuringClassifier" propertyName="featuringClassifier">
+            <outsideBoundaryElement href="lib.uml#_pCY1cGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Property].type" propertyName="type">
+            <outsideBoundaryElement href="lib.uml#_IPjjcGltEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Property].class" propertyName="class">
+            <outsideBoundaryElement href="lib.uml#_pCY1cGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToReplacement" name=":Element[1]">
+            <insideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="bvr:ReplacementFragment" name="SD_sm_rplcm">
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Lifeline].owner" propertyName="owner">
+            <outsideBoundaryElement href="lib.uml#_IFedkGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Lifeline].namespace" propertyName="namespace">
+            <outsideBoundaryElement href="lib.uml#_IFedkGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Lifeline].interaction" propertyName="interaction">
+            <outsideBoundaryElement href="lib.uml#_IFedkGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Lifeline].represents" propertyName="represents">
+            <outsideBoundaryElement href="lib.uml#_s-SqUGlvEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:FromReplacement" name="[:Lifeline].coveredBy" propertyName="coveredBy">
+            <outsideBoundaryElement href="lib.uml#_xtvKEGlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#_3lrN0WlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#_5rzz4GlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#_7ZZ-IWlxEeKcJOdUfTHW_g"/>
+            <outsideBoundaryElement href="lib.uml#__HTzQGlxEeKcJOdUfTHW_g"/>
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+          <boundaryElement xsi:type="bvr:ToReplacement" name=":Element[1]">
+            <insideBoundaryElement href="lib.uml#_hP9wEGlxEeKcJOdUfTHW_g"/>
+          </boundaryElement>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="bvr:FragmentSubstitution" name="CS_sm_plcm-CS_sm_rplcm" placement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0" replacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2">
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:Class].ownedAttribute" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.7" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:ConnectorEnd].partWithPort" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.9" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:ConnectorEnd].partWithPort" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.10" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:ConnectorEnd].partWithPort" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.11" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:ConnectorEnd].partWithPort" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.12" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:ConnectorEnd].partWithPort" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.13" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:ConnectorEnd].partWithPort" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.14" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:Lifeline].represents" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.15" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.6"/>
+          <boundaryElementBinding xsi:type="bvr:FromBinding" name="[:Property].type" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.1" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.4"/>
+          <boundaryElementBinding xsi:type="bvr:FromBinding" name="[:Property].class" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.0/@boundaryElement.1" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.2/@boundaryElement.5"/>
+        </variabilitySpecification>
+        <variabilitySpecification xsi:type="bvr:FragmentSubstitution" name="SD_sm_plcm-SD_sm_rplcm" placement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1" replacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3">
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:Interaction].lifeline" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.6" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.7" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.8" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.9" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:MessageOccurrenceSpecification].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.10" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="bvr:ToBinding" name="[:StateInvariant].covered" toPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.11" toReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.5"/>
+          <boundaryElementBinding xsi:type="bvr:FromBinding" name="[:Lifeline].interaction" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.0" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.2"/>
+          <boundaryElementBinding xsi:type="bvr:FromBinding" name="[:Lifeline].represents" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.1" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.3"/>
+          <boundaryElementBinding xsi:type="bvr:FromBinding" name="[:Lifeline].coveredBy" fromPlacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.1/@boundaryElement.0" fromReplacement="//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.0/@variabilitySpecification.3/@boundaryElement.4"/>
+        </variabilitySpecification>
+      </variabilitySpecification>
+    </variabilitySpecification>
+  </variabilitySpecification>
+  <resolutionSpecification xsi:type="bvr:ResolutionElement" name="simple"/>
+  <base href="model.uml#_lqFFkGleEeKcJOdUfTHW_g"/>
+</bvr:CVLModel>
