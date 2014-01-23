@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="no.sintef.bvr.ui.editor.mvc.resolution.BVRResolutionEditorMVC"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="bvr"
+            icon="icons/sample.gif"
+            id="no.sintef.bvr.ui.editor.eclipse.editors.BVRResolutionEditorMVC"
+            name="BVR Resolution Editor (MVC)">
+      </editor>
+   </extension>
+
+</plugin>
