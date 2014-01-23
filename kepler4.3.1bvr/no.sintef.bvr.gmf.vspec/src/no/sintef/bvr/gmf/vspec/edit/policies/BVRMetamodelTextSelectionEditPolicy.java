@@ -15,7 +15,7 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedback
 /**
  * @generated
  */
-public class CVLMetamodelTextSelectionEditPolicy extends SelectionEditPolicy
+public class BVRMetamodelTextSelectionEditPolicy extends SelectionEditPolicy
 		implements IRefreshableFeedbackEditPolicy {
 
 	/**

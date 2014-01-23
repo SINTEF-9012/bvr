@@ -68,7 +68,7 @@ public class DiagramEditorContextMenuProvider extends
 						}
 					});
 		} catch (Exception e) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Error building context menu", e);
 		}
 	}

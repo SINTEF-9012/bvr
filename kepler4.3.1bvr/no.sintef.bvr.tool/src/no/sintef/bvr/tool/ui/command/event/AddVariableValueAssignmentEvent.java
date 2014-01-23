@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.ChoiceResolutuion;
@@ -26,10 +26,10 @@ import bvr.Variabletype;
 public class AddVariableValueAssignmentEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Variable target;
-	private CVLView view;
+	private BVRView view;
 	static private int count = 0;
 	
-	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, CVLView view) {
+	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, BVRView view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;

@@ -13,15 +13,15 @@ import javax.swing.JTabbedPane;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
-public class CVLJFrame extends JFrame {
+public class BVRJFrame extends JFrame {
 	
-	private CVLJFrame frame;
+	private BVRJFrame frame;
 	private JTabbedPane tabbedPane;
 	private static final String title = Messages.EDITOR_TITLE;
 	
-	public CVLJFrame() {
+	public BVRJFrame() {
 		super(title);
 		frame = this;
 		tabbedPane = new JTabbedPane();
@@ -41,7 +41,7 @@ public class CVLJFrame extends JFrame {
 						if(result == JOptionPane.YES_OPTION){
 							int componentCount = tabbedPane.getComponentCount();
 							for(int index = 0; index<componentCount; index++){
-								CVLModel model = Context.eINSTANCE.getBvrModels().get(index);
+								BVRModel model = Context.eINSTANCE.getBvrModels().get(index);
 								StaticUICommands.saveModelToFile((JComponent) tabbedPane.getComponent(index), model, true);
 							}
 						}

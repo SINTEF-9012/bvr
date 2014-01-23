@@ -1,10 +1,10 @@
 package no.sintef.bvr.engine.error;
 
-public class ContainmentCVLModelException extends BasicCVLEngineException {
+public class ContainmentBVRModelException extends BasicBVREngineException {
 
 	private static final long serialVersionUID = 4839962650937653176L;
 
-	public ContainmentCVLModelException(String message) {
+	public ContainmentBVRModelException(String message) {
 		super(message);
 	}
 

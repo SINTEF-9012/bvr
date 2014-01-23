@@ -17,7 +17,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 /**
  * @generated
  */
-public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
+public class BVRMetamodelCreationWizard extends Wizard implements INewWizard {
 
 	/**
 	 * @generated
@@ -32,12 +32,12 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	protected CVLMetamodelCreationWizardPage diagramModelFilePage;
+	protected BVRMetamodelCreationWizardPage diagramModelFilePage;
 
 	/**
 	 * @generated
 	 */
-	protected CVLMetamodelCreationWizardPage domainModelFilePage;
+	protected BVRMetamodelCreationWizardPage domainModelFilePage;
 
 	/**
 	 * @generated
@@ -91,8 +91,8 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(Messages.CVLMetamodelCreationWizardTitle);
-		setDefaultPageImageDescriptor(CVLMetamodelDiagramEditorPlugin
+		setWindowTitle(Messages.BVRMetamodelCreationWizardTitle);
+		setDefaultPageImageDescriptor(BVRMetamodelDiagramEditorPlugin
 				.getBundledImageDescriptor("icons/wizban/NewBvrWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
@@ -101,15 +101,15 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public void addPages() {
-		diagramModelFilePage = new CVLMetamodelCreationWizardPage(
+		diagramModelFilePage = new BVRMetamodelCreationWizardPage(
 				"DiagramModelFile", getSelection(), "bvr_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
-				.setTitle(Messages.CVLMetamodelCreationWizard_DiagramModelFilePageTitle);
+				.setTitle(Messages.BVRMetamodelCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
-				.setDescription(Messages.CVLMetamodelCreationWizard_DiagramModelFilePageDescription);
+				.setDescription(Messages.BVRMetamodelCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new CVLMetamodelCreationWizardPage(
+		domainModelFilePage = new BVRMetamodelCreationWizardPage(
 				"DomainModelFile", getSelection(), "bvr") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
@@ -117,7 +117,7 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length()
 							- ".bvr_diagram".length()); //$NON-NLS-1$
-					setFileName(CVLMetamodelDiagramEditorUtil
+					setFileName(BVRMetamodelDiagramEditorUtil
 							.getUniqueFileName(getContainerFullPath(),
 									fileName, "bvr")); //$NON-NLS-1$
 				}
@@ -125,9 +125,9 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 			}
 		};
 		domainModelFilePage
-				.setTitle(Messages.CVLMetamodelCreationWizard_DomainModelFilePageTitle);
+				.setTitle(Messages.BVRMetamodelCreationWizard_DomainModelFilePageTitle);
 		domainModelFilePage
-				.setDescription(Messages.CVLMetamodelCreationWizard_DomainModelFilePageDescription);
+				.setDescription(Messages.BVRMetamodelCreationWizard_DomainModelFilePageDescription);
 		addPage(domainModelFilePage);
 	}
 
@@ -139,17 +139,17 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 
 			protected void execute(IProgressMonitor monitor)
 					throws CoreException, InterruptedException {
-				diagram = CVLMetamodelDiagramEditorUtil.createDiagram(
+				diagram = BVRMetamodelDiagramEditorUtil.createDiagram(
 						diagramModelFilePage.getURI(),
 						domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
-						CVLMetamodelDiagramEditorUtil.openDiagram(diagram);
+						BVRMetamodelDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
 						ErrorDialog
 								.openError(
 										getContainer().getShell(),
-										Messages.CVLMetamodelCreationWizardOpenEditorError,
+										Messages.BVRMetamodelCreationWizardOpenEditorError,
 										null, e.getStatus());
 					}
 				}
@@ -162,10 +162,10 @@ public class CVLMetamodelCreationWizard extends Wizard implements INewWizard {
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
 				ErrorDialog.openError(getContainer().getShell(),
-						Messages.CVLMetamodelCreationWizardCreationError, null,
+						Messages.BVRMetamodelCreationWizardCreationError, null,
 						((CoreException) e.getTargetException()).getStatus());
 			} else {
-				CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+				BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 						"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;

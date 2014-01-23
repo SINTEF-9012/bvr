@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import no.sintef.ict.splcatool.CVLModel;
+import no.sintef.ict.splcatool.BVRModel;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -28,9 +28,9 @@ public class Loader {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel();
-		ConfigurableUnit cu = buildExampleCVL(cm);
+		// Build BVR
+		BVRModel cm = new BVRModel();
+		ConfigurableUnit cu = buildExampleBVR(cm);
 		
 		Variable minSpeed = BvrFactory.eINSTANCE.createVariable();
 		//Variabletype minSpeedType = bvrFactory.eINSTANCE.createVariabletype();
@@ -50,7 +50,7 @@ public class Loader {
 		System.out.println(s);
 	}
 
-	private static ConfigurableUnit buildExampleCVL(CVLModel cm) {
+	private static ConfigurableUnit buildExampleBVR(BVRModel cm) {
 		ConfigurableUnit cu = cm.getCU();
 		
 		Choice printer = BvrFactory.eINSTANCE.createChoice();

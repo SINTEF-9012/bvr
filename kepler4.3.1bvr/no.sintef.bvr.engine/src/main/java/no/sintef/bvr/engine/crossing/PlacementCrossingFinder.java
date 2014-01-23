@@ -12,7 +12,7 @@ import com.google.common.collect.Sets.SetView;
 import bvr.PlacementFragment;
 
 import no.sintef.bvr.engine.common.SubstitutionContext;
-import no.sintef.bvr.engine.error.IncorrectCVLModel;
+import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 
@@ -31,7 +31,7 @@ public class PlacementCrossingFinder {
 						"' intersects the placement '" + ((PlacementFragment) intersection.get(1)).getName() +
 						"' on the elements :" + intersection.get(2) + "\n";
 			}
-			throw new IncorrectCVLModel("can not handle a placements intersection:\n" + message);
+			throw new IncorrectBVRModel("can not handle a placements intersection:\n" + message);
 		}
 	}
 	

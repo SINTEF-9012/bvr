@@ -21,10 +21,10 @@ import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierNameEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableNameEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelParserProvider;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelParserProvider;
 
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
@@ -47,18 +47,18 @@ import bvr.ConfigurableUnit;
 /**
  * @generated
  */
-public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
+public class BVRMetamodelNavigatorLabelProvider extends LabelProvider implements
 		ICommonLabelProvider, ITreePathLabelProvider {
 
 	/**
 	 * @generated
 	 */
 	static {
-		CVLMetamodelDiagramEditorPlugin
+		BVRMetamodelDiagramEditorPlugin
 				.getInstance()
 				.getImageRegistry()
 				.put("Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
-		CVLMetamodelDiagramEditorPlugin
+		BVRMetamodelDiagramEditorPlugin
 				.getInstance()
 				.getImageRegistry()
 				.put("Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
@@ -69,8 +69,8 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	public void updateLabel(ViewerLabel label, TreePath elementPath) {
 		Object element = elementPath.getLastSegment();
-		if (element instanceof CVLMetamodelNavigatorItem
-				&& !isOwnView(((CVLMetamodelNavigatorItem) element).getView())) {
+		if (element instanceof BVRMetamodelNavigatorItem
+				&& !isOwnView(((BVRMetamodelNavigatorItem) element).getView())) {
 			return;
 		}
 		label.setText(getText(element));
@@ -81,14 +81,14 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof CVLMetamodelNavigatorGroup) {
-			CVLMetamodelNavigatorGroup group = (CVLMetamodelNavigatorGroup) element;
-			return CVLMetamodelDiagramEditorPlugin.getInstance()
+		if (element instanceof BVRMetamodelNavigatorGroup) {
+			BVRMetamodelNavigatorGroup group = (BVRMetamodelNavigatorGroup) element;
+			return BVRMetamodelDiagramEditorPlugin.getInstance()
 					.getBundledImage(group.getIcon());
 		}
 
-		if (element instanceof CVLMetamodelNavigatorItem) {
-			CVLMetamodelNavigatorItem navigatorItem = (CVLMetamodelNavigatorItem) element;
+		if (element instanceof BVRMetamodelNavigatorItem) {
+			BVRMetamodelNavigatorItem navigatorItem = (BVRMetamodelNavigatorItem) element;
 			if (!isOwnView(navigatorItem.getView())) {
 				return super.getImage(element);
 			}
@@ -102,43 +102,43 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public Image getImage(View view) {
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http:///bvr.ecore?ConfigurableUnit", CVLMetamodelElementTypes.ConfigurableUnit_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http:///bvr.ecore?ConfigurableUnit", BVRMetamodelElementTypes.ConfigurableUnit_1000); //$NON-NLS-1$
 		case ChoiceEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///bvr.ecore?Choice", CVLMetamodelElementTypes.Choice_2005); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http:///bvr.ecore?Choice", BVRMetamodelElementTypes.Choice_2005); //$NON-NLS-1$
 		case OpaqueConstraintEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///bvr.ecore?OpaqueConstraint", CVLMetamodelElementTypes.OpaqueConstraint_2014); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http:///bvr.ecore?OpaqueConstraint", BVRMetamodelElementTypes.OpaqueConstraint_2014); //$NON-NLS-1$
 		case Choice2EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///bvr.ecore?Choice", CVLMetamodelElementTypes.Choice_2015); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http:///bvr.ecore?Choice", BVRMetamodelElementTypes.Choice_2015); //$NON-NLS-1$
 		case VariableEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///bvr.ecore?Variable", CVLMetamodelElementTypes.Variable_2016); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http:///bvr.ecore?Variable", BVRMetamodelElementTypes.Variable_2016); //$NON-NLS-1$
 		case VClassifierEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http:///bvr.ecore?VClassifier", CVLMetamodelElementTypes.VClassifier_2017); //$NON-NLS-1$
+					"Navigator?TopLevelNode?http:///bvr.ecore?VClassifier", BVRMetamodelElementTypes.VClassifier_2017); //$NON-NLS-1$
 		case MultiplicityInterval2EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", CVLMetamodelElementTypes.MultiplicityInterval_3001); //$NON-NLS-1$
+					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", BVRMetamodelElementTypes.MultiplicityInterval_3001); //$NON-NLS-1$
 		case MultiplicityIntervalEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", CVLMetamodelElementTypes.MultiplicityInterval_3002); //$NON-NLS-1$
+					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", BVRMetamodelElementTypes.MultiplicityInterval_3002); //$NON-NLS-1$
 		case MultiplicityInterval3EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", CVLMetamodelElementTypes.MultiplicityInterval_3003); //$NON-NLS-1$
+					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", BVRMetamodelElementTypes.MultiplicityInterval_3003); //$NON-NLS-1$
 		case MultiplicityInterval4EditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", CVLMetamodelElementTypes.MultiplicityInterval_3004); //$NON-NLS-1$
+					"Navigator?Node?http:///bvr.ecore?MultiplicityInterval", BVRMetamodelElementTypes.MultiplicityInterval_3004); //$NON-NLS-1$
 		case VSpecChildEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http:///bvr.ecore?VSpec?child", CVLMetamodelElementTypes.VSpecChild_4001); //$NON-NLS-1$
+					"Navigator?Link?http:///bvr.ecore?VSpec?child", BVRMetamodelElementTypes.VSpecChild_4001); //$NON-NLS-1$
 		case ConstraintContextEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http:///bvr.ecore?Constraint?context", CVLMetamodelElementTypes.ConstraintContext_4003); //$NON-NLS-1$
+					"Navigator?Link?http:///bvr.ecore?Constraint?context", BVRMetamodelElementTypes.ConstraintContext_4003); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -147,12 +147,12 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private Image getImage(String key, IElementType elementType) {
-		ImageRegistry imageRegistry = CVLMetamodelDiagramEditorPlugin
+		ImageRegistry imageRegistry = BVRMetamodelDiagramEditorPlugin
 				.getInstance().getImageRegistry();
 		Image image = imageRegistry.get(key);
 		if (image == null && elementType != null
-				&& CVLMetamodelElementTypes.isKnownElementType(elementType)) {
-			image = CVLMetamodelElementTypes.getImage(elementType);
+				&& BVRMetamodelElementTypes.isKnownElementType(elementType)) {
+			image = BVRMetamodelElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
 
@@ -167,13 +167,13 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public String getText(Object element) {
-		if (element instanceof CVLMetamodelNavigatorGroup) {
-			CVLMetamodelNavigatorGroup group = (CVLMetamodelNavigatorGroup) element;
+		if (element instanceof BVRMetamodelNavigatorGroup) {
+			BVRMetamodelNavigatorGroup group = (BVRMetamodelNavigatorGroup) element;
 			return group.getGroupName();
 		}
 
-		if (element instanceof CVLMetamodelNavigatorItem) {
-			CVLMetamodelNavigatorItem navigatorItem = (CVLMetamodelNavigatorItem) element;
+		if (element instanceof BVRMetamodelNavigatorItem) {
+			BVRMetamodelNavigatorItem navigatorItem = (BVRMetamodelNavigatorItem) element;
 			if (!isOwnView(navigatorItem.getView())) {
 				return null;
 			}
@@ -190,7 +190,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		if (view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
 		}
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
 			return getConfigurableUnit_1000Text(view);
 		case ChoiceEditPart.VISUAL_ID:
@@ -228,7 +228,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -238,17 +238,17 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getChoice_2005Text(View view) {
-		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.Choice_2005,
+		IParser parser = BVRMetamodelParserProvider.getParser(
+				BVRMetamodelElementTypes.Choice_2005,
 				view.getElement() != null ? view.getElement() : view,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(ChoiceNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -258,17 +258,17 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getOpaqueConstraint_2014Text(View view) {
-		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.OpaqueConstraint_2014, view
+		IParser parser = BVRMetamodelParserProvider.getParser(
+				BVRMetamodelElementTypes.OpaqueConstraint_2014, view
 						.getElement() != null ? view.getElement() : view,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(OpaqueConstraintConstraintEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5014); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -278,17 +278,17 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getChoice_2015Text(View view) {
-		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.Choice_2015,
+		IParser parser = BVRMetamodelParserProvider.getParser(
+				BVRMetamodelElementTypes.Choice_2015,
 				view.getElement() != null ? view.getElement() : view,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(ChoiceName2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5022); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -298,17 +298,17 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getVariable_2016Text(View view) {
-		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.Variable_2016,
+		IParser parser = BVRMetamodelParserProvider.getParser(
+				BVRMetamodelElementTypes.Variable_2016,
 				view.getElement() != null ? view.getElement() : view,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(VariableNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5023); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -318,17 +318,17 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getVClassifier_2017Text(View view) {
-		IParser parser = CVLMetamodelParserProvider.getParser(
-				CVLMetamodelElementTypes.VClassifier_2017,
+		IParser parser = BVRMetamodelParserProvider.getParser(
+				BVRMetamodelElementTypes.VClassifier_2017,
 				view.getElement() != null ? view.getElement() : view,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(VClassifierNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5024); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -338,18 +338,18 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getMultiplicityInterval_3001Text(View view) {
-		IParser parser = CVLMetamodelParserProvider
+		IParser parser = BVRMetamodelParserProvider
 				.getParser(
-						CVLMetamodelElementTypes.MultiplicityInterval_3001,
+						BVRMetamodelElementTypes.MultiplicityInterval_3001,
 						view.getElement() != null ? view.getElement() : view,
-						CVLMetamodelVisualIDRegistry
+						BVRMetamodelVisualIDRegistry
 								.getType(MultiplicityIntervalLowerUpper2EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5018); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -359,18 +359,18 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getMultiplicityInterval_3002Text(View view) {
-		IParser parser = CVLMetamodelParserProvider
+		IParser parser = BVRMetamodelParserProvider
 				.getParser(
-						CVLMetamodelElementTypes.MultiplicityInterval_3002,
+						BVRMetamodelElementTypes.MultiplicityInterval_3002,
 						view.getElement() != null ? view.getElement() : view,
-						CVLMetamodelVisualIDRegistry
+						BVRMetamodelVisualIDRegistry
 								.getType(MultiplicityIntervalLowerUpperEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5026); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -380,18 +380,18 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getMultiplicityInterval_3003Text(View view) {
-		IParser parser = CVLMetamodelParserProvider
+		IParser parser = BVRMetamodelParserProvider
 				.getParser(
-						CVLMetamodelElementTypes.MultiplicityInterval_3003,
+						BVRMetamodelElementTypes.MultiplicityInterval_3003,
 						view.getElement() != null ? view.getElement() : view,
-						CVLMetamodelVisualIDRegistry
+						BVRMetamodelVisualIDRegistry
 								.getType(MultiplicityIntervalLowerUpper3EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5027); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -401,18 +401,18 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getMultiplicityInterval_3004Text(View view) {
-		IParser parser = CVLMetamodelParserProvider
+		IParser parser = BVRMetamodelParserProvider
 				.getParser(
-						CVLMetamodelElementTypes.MultiplicityInterval_3004,
+						BVRMetamodelElementTypes.MultiplicityInterval_3004,
 						view.getElement() != null ? view.getElement() : view,
-						CVLMetamodelVisualIDRegistry
+						BVRMetamodelVisualIDRegistry
 								.getType(MultiplicityIntervalLowerUpper4EditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(
 					view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
 		} else {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Parser was not found for label " + 5028); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
@@ -476,7 +476,7 @@ public class CVLMetamodelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private boolean isOwnView(View view) {
 		return ConfigurableUnitEditPart.MODEL_ID
-				.equals(CVLMetamodelVisualIDRegistry.getModelID(view));
+				.equals(BVRMetamodelVisualIDRegistry.getModelID(view));
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
@@ -23,7 +23,7 @@ import org.eclipse.ui.navigator.ICommonContentProvider;
 /**
  * @generated
  */
-public class CVLMetamodelDomainNavigatorContentProvider implements
+public class BVRMetamodelDomainNavigatorContentProvider implements
 		ICommonContentProvider {
 
 	/**
@@ -59,9 +59,9 @@ public class CVLMetamodelDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelDomainNavigatorContentProvider() {
+	public BVRMetamodelDomainNavigatorContentProvider() {
 		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
-				CVLMetamodelDiagramEditorPlugin.getInstance()
+				BVRMetamodelDiagramEditorPlugin.getInstance()
 						.getItemProvidersAdapterFactory());
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
 				.createEditingDomain();
@@ -187,9 +187,9 @@ public class CVLMetamodelDomainNavigatorContentProvider implements
 					parentElement);
 		}
 
-		if (parentElement instanceof CVLMetamodelDomainNavigatorItem) {
+		if (parentElement instanceof BVRMetamodelDomainNavigatorItem) {
 			return wrapEObjects(
-					myAdapterFctoryContentProvier.getChildren(((CVLMetamodelDomainNavigatorItem) parentElement)
+					myAdapterFctoryContentProvier.getChildren(((BVRMetamodelDomainNavigatorItem) parentElement)
 							.getEObject()), parentElement);
 		}
 		return EMPTY_ARRAY;
@@ -202,7 +202,7 @@ public class CVLMetamodelDomainNavigatorContentProvider implements
 		Collection result = new ArrayList();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
-				result.add(new CVLMetamodelDomainNavigatorItem(
+				result.add(new BVRMetamodelDomainNavigatorItem(
 						(EObject) objects[i], parentElement,
 						myAdapterFctoryContentProvier));
 			}
@@ -214,8 +214,8 @@ public class CVLMetamodelDomainNavigatorContentProvider implements
 	 * @generated
 	 */
 	public Object getParent(Object element) {
-		if (element instanceof CVLMetamodelAbstractNavigatorItem) {
-			CVLMetamodelAbstractNavigatorItem abstractNavigatorItem = (CVLMetamodelAbstractNavigatorItem) element;
+		if (element instanceof BVRMetamodelAbstractNavigatorItem) {
+			BVRMetamodelAbstractNavigatorItem abstractNavigatorItem = (BVRMetamodelAbstractNavigatorItem) element;
 			return abstractNavigatorItem.getParent();
 		}
 		return null;

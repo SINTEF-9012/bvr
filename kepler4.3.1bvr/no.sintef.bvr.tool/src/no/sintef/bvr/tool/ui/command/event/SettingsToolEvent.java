@@ -4,18 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.edit.CVLOptionsEditor;
+import no.sintef.bvr.tool.ui.edit.BVROptionsEditor;
 
 public class SettingsToolEvent implements ActionListener {
 
 
-	private CVLOptionsEditor settingsEditor;
+	private BVROptionsEditor settingsEditor;
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(settingsEditor != null)
 			settingsEditor.unshowEditor();
-		settingsEditor = new CVLOptionsEditor();
+		settingsEditor = new BVROptionsEditor();
 		settingsEditor.showEditor();
 	}
 	

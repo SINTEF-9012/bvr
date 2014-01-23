@@ -3,8 +3,8 @@ package no.sintef.bvr.gmf.vspec.part;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.gmf.vspec.edit.policies.CVLMetamodelBaseItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.expressions.CVLMetamodelOCLFactory;
+import no.sintef.bvr.gmf.vspec.edit.policies.BVRMetamodelBaseItemSemanticEditPolicy;
+import no.sintef.bvr.gmf.vspec.expressions.BVRMetamodelOCLFactory;
 import no.sintef.bvr.gmf.vspec.providers.ElementInitializers;
 
 import org.eclipse.core.runtime.IPath;
@@ -29,7 +29,7 @@ import bvr.provider.BvrItemProviderAdapterFactory;
 /**
  * @generated
  */
-public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
+public class BVRMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * @generated
@@ -45,7 +45,7 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	private static CVLMetamodelDiagramEditorPlugin instance;
+	private static BVRMetamodelDiagramEditorPlugin instance;
 
 	/**
 	 * @generated
@@ -55,12 +55,12 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	private CVLMetamodelDocumentProvider documentProvider;
+	private BVRMetamodelDocumentProvider documentProvider;
 
 	/**
 	 * @generated
 	 */
-	private CVLMetamodelBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
+	private BVRMetamodelBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
 
 	/**
 	 * @generated
@@ -70,12 +70,12 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	private CVLMetamodelOCLFactory oclFactory;
+	private BVRMetamodelOCLFactory oclFactory;
 
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelDiagramEditorPlugin() {
+	public BVRMetamodelDiagramEditorPlugin() {
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static CVLMetamodelDiagramEditorPlugin getInstance() {
+	public static BVRMetamodelDiagramEditorPlugin getInstance() {
 		return instance;
 	}
 
@@ -207,9 +207,9 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelDocumentProvider getDocumentProvider() {
+	public BVRMetamodelDocumentProvider getDocumentProvider() {
 		if (documentProvider == null) {
-			documentProvider = new CVLMetamodelDocumentProvider();
+			documentProvider = new BVRMetamodelDocumentProvider();
 		}
 		return documentProvider;
 	}
@@ -217,7 +217,7 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
+	public BVRMetamodelBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
 		return linkConstraints;
 	}
 
@@ -225,7 +225,7 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void setLinkConstraints(
-			CVLMetamodelBaseItemSemanticEditPolicy.LinkConstraints lc) {
+			BVRMetamodelBaseItemSemanticEditPolicy.LinkConstraints lc) {
 		this.linkConstraints = lc;
 	}
 
@@ -246,14 +246,14 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelOCLFactory getCVLMetamodelOCLFactory() {
+	public BVRMetamodelOCLFactory getBVRMetamodelOCLFactory() {
 		return oclFactory;
 	}
 
 	/**
 	 * @generated
 	 */
-	public void setCVLMetamodelOCLFactory(CVLMetamodelOCLFactory f) {
+	public void setBVRMetamodelOCLFactory(BVRMetamodelOCLFactory f) {
 		this.oclFactory = f;
 	}
 
@@ -272,7 +272,7 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 			error = throwable.getMessage();
 		}
 		getLog().log(
-				new Status(IStatus.ERROR, CVLMetamodelDiagramEditorPlugin.ID,
+				new Status(IStatus.ERROR, BVRMetamodelDiagramEditorPlugin.ID,
 						IStatus.OK, error, throwable));
 		debug(error, throwable);
 	}
@@ -292,7 +292,7 @@ public class CVLMetamodelDiagramEditorPlugin extends AbstractUIPlugin {
 			message = throwable.getMessage();
 		}
 		getLog().log(
-				new Status(IStatus.INFO, CVLMetamodelDiagramEditorPlugin.ID,
+				new Status(IStatus.INFO, BVRMetamodelDiagramEditorPlugin.ID,
 						IStatus.OK, message, throwable));
 		debug(message, throwable);
 	}

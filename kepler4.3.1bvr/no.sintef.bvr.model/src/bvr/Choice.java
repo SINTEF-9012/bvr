@@ -9,7 +9,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p class="MsoNormal"><span style="font-size:8pt;font-family:Tahoma;">A choice is VSpec whose resolution requires a yes/no decision (True/False). When a variation point is bound to a choice, the decision resolving that choice determines whether or not the variation point will be applied during materialization.</span></p><p>####CVLSemanticStart####</p><p>Invariant : If a choice is implied by parent, it must have a parent.</p><p>OCL :</p><p>-- Choice</p><p>-- If a choice is implied by parent, it must have a parent.</p><p>context Choice :</p><p>inv isImpliedByParentsImpliesAParent :</p><p>self.isImpliedByParent implies VSpec.allInstances()->exists(vSpec | vSpec.childVSpec->includes(self))</p><p>####CVLSemanticEnd####</p>
+ * <p class="MsoNormal"><span style="font-size:8pt;font-family:Tahoma;">A choice is VSpec whose resolution requires a yes/no decision (True/False). When a variation point is bound to a choice, the decision resolving that choice determines whether or not the variation point will be applied during materialization.</span></p><p>####BVRSemanticStart####</p><p>Invariant : If a choice is implied by parent, it must have a parent.</p><p>OCL :</p><p>-- Choice</p><p>-- If a choice is implied by parent, it must have a parent.</p><p>context Choice :</p><p>inv isImpliedByParentsImpliesAParent :</p><p>self.isImpliedByParent implies VSpec.allInstances()->exists(vSpec | vSpec.childVSpec->includes(self))</p><p>####BVRSemanticEnd####</p>
  * <!-- end-model-doc -->
  *
  * <p>

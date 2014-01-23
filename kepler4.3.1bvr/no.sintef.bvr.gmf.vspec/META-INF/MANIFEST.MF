@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: no.sintef.bvr.gmf.vspec; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin
+Bundle-Activator: no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: no.sintef.bvr.gmf.vspec.custom.ocl,

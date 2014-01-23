@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -20,9 +20,9 @@ public class CutEvent implements ActionListener {
 
 	private Map<JComponent, NamedElement> vmMap;
 	private JPanel p;
-	private CVLView view;
+	private BVRView view;
 
-	public CutEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public CutEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;

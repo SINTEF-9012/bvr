@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.EList;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.exception.AbstractError;
-import no.sintef.bvr.tool.exception.CVLModelException;
+import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
 import no.sintef.bvr.tool.primitive.impl.DataBoundaryItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
@@ -115,12 +115,12 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 		return isEditable;
 	}
 	
-	public void updateBindingEditor(FragmentSubstitution fragSub) throws CVLModelException{
+	public void updateBindingEditor(FragmentSubstitution fragSub) throws BVRModelException{
 		loadBindings(fragSub);
 		fireTableDataChanged();
 	}
 
-	private void loadBindings(FragmentSubstitution fragSub) throws CVLModelException{
+	private void loadBindings(FragmentSubstitution fragSub) throws BVRModelException{
 		fs = fragSub;
 		data.clear();
 		if(fragSub != null){
@@ -136,7 +136,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						ToPlacement toPlacement = toBinding.getToPlacement();
 						ToReplacement toReplacement = toBinding.getToReplacement();
 						if(toPlacement == null || toReplacement == null){
-							throw new CVLModelException("binding should reference toPlacement and toReplacement");
+							throw new BVRModelException("binding should reference toPlacement and toReplacement");
 						}
 						
 						JLabel lableToB = new JLabel(Constants.BINDING_TYPE_TO_BINDING_NAME);
@@ -158,7 +158,7 @@ public class BindingTableModel extends AbstractTableModel implements TableModel 
 						FromPlacement fromPlacement = fromBinding.getFromPlacement();
 						FromReplacement fromReplacement = fromBinding.getFromReplacement();
 						if(fromPlacement == null || fromReplacement == null){
-							throw new CVLModelException("binding should reference fromPlacement and fromReplacement");
+							throw new BVRModelException("binding should reference fromPlacement and fromReplacement");
 						}
 						
 						JLabel lableFromB = new JLabel(Constants.BINDING_TYPE_FROM_BINDING_NAME);

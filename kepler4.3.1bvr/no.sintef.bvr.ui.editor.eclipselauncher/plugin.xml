@@ -16,10 +16,10 @@
             </separator>
          </menu>
          <action
-               label="&amp;CVL Editor"
+               label="&amp;BVR Editor"
                icon="icons/sample.gif"
                class="no.sintef.bvr.ui.editor.eclipselauncher.actions.SampleAction"
-               tooltip="CVL 2 Editor by SINTEF"
+               tooltip="BVR 2 Editor by SINTEF"
                menubarPath="sampleMenu/sampleGroup"
                toolbarPath="sampleGroup"
                id="test.actions.SampleAction">

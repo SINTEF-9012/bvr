@@ -31,13 +31,13 @@ import bvr.ToReplacement;
 import bvr.VInstance;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.engine.common.CVLElementDeepCopier;
+import no.sintef.bvr.engine.common.BVRElementDeepCopier;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.impl.ReplacementElementHolder;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.exception.CVLModelException;
+import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.primitive.SymbolTable;
@@ -47,14 +47,14 @@ import no.sintef.bvr.tool.strategy.ScopeResolverStrategy;
 public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	
 	private HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>> replcmntSymbolMap;
-	private HashMap<ReplacementFragmentType, CVLElementDeepCopier> replacementCopyMap;
+	private HashMap<ReplacementFragmentType, BVRElementDeepCopier> replacementCopyMap;
 	private HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> replcmntPlcmntMap;
 	private HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
 	private HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>> replacementNewReplBoundaryMap;
 
 	@Override
 	public void resolveScopes(SymbolTable table) {
-		replacementCopyMap = new HashMap<ReplacementFragmentType, CVLElementDeepCopier>();
+		replacementCopyMap = new HashMap<ReplacementFragmentType, BVRElementDeepCopier>();
 		replcmntSymbolMap = new HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>>();
 		replacementNewReplBoundaryMap = new HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>>();
 		replcmntPlcmntMap = new HashMap<ReplacementFragmentType, HashSet<PlacementFragment>>();
@@ -127,7 +127,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 							}
 							if(copiedReplacement == null)
 								throw new UnsupportedOperationException("can not find copied replacement in the parent scope");
-							CVLElementDeepCopier copyReplacementMap = replacementCopyMap.get(copiedReplacement);
+							BVRElementDeepCopier copyReplacementMap = replacementCopyMap.get(copiedReplacement);
 							if(copyReplacementMap == null)
 								throw new UnsupportedOperationException("replacement that containd a given placement was copied, but can not find map that contains original objects");
 							newPlacement = createPlacementFragmentFromOriginal(copiedReplacement, copyReplacementMap, placement, placementBoundaryMap);
@@ -173,10 +173,10 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 			ReplacementElementHolder replacementHolder;
 			try {
 				replacementHolder = new ReplacementElementHolder(replacement);
-			} catch (BasicCVLEngineException e) {
+			} catch (BasicBVREngineException e) {
 				throw new UnsupportedOperationException(e);
 			}
-			CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
+			BVRElementDeepCopier rplCopier = new BVRElementDeepCopier();
 			//HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
 			//replacementElements.addAll(replacementHolder.getNeighboringOutsideElements());
 			HashSet<EObject> replacementElements = calculateReplacementCopiedElements(replacementHolder);
@@ -196,10 +196,10 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				ReplacementElementHolder replacementHolder;
 				try {
 					replacementHolder = new ReplacementElementHolder(replacement);
-				} catch (BasicCVLEngineException e) {
+				} catch (BasicBVREngineException e) {
 					throw new UnsupportedOperationException(e);
 				}
-				CVLElementDeepCopier rplCopier = new CVLElementDeepCopier();
+				BVRElementDeepCopier rplCopier = new BVRElementDeepCopier();
 				//HashSet<EObject> replacementElements = replacementHolder.getNeighboringInsideElements();
 				//replacementElements.addAll(replacementHolder.getNeighboringOutsideElements());
 				HashSet<EObject> replacementElements = calculateReplacementCopiedElements(replacementHolder);
@@ -292,7 +292,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	}
 
 	private ReplacementFragmentType createReplacementFromOriginal(
-			CVLElementDeepCopier rplCopier,
+			BVRElementDeepCopier rplCopier,
 			ReplacementFragmentType replacement,
 			HashMap<ReplacementBoundaryElement,
 			ReplacementBoundaryElement> boundaryMap)
@@ -478,7 +478,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	
 	private PlacementFragment createPlacementFragmentFromOriginal(
 			ReplacementFragmentType replacementCopied,
-			CVLElementDeepCopier replacementCopyMap,
+			BVRElementDeepCopier replacementCopyMap,
 			PlacementFragment originalPlacement,
 			HashMap<PlacementBoundaryElement,
 			PlacementBoundaryElement> boundaryMap)
@@ -639,7 +639,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						replcmList.add(replacement);
 					}
 				}else if(result == EngineUtility.P_CNTND){
-					throw new CVLModelException("the placement: " + placement + " is partially contained in the replacement: " + replacement + ", can not handle");
+					throw new BVRModelException("the placement: " + placement + " is partially contained in the replacement: " + replacement + ", can not handle");
 				}
 			}
 		}

@@ -6,7 +6,7 @@ import java.util.List;
 
 import no.sintef.bvr.gmf.vspec.edit.parts.ConstraintContextEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -179,7 +179,7 @@ public class EditPartViewElementUtil {
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(incomingLink) == VSpecChildEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(incomingLink) == VSpecChildEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -200,7 +200,7 @@ public class EditPartViewElementUtil {
 				cmd.add(new DeleteCommand(editDomain, incomingLink));
 				continue;
 			}
-			if (CVLMetamodelVisualIDRegistry.getVisualID(incomingLink) == ConstraintContextEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(incomingLink) == ConstraintContextEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -211,7 +211,7 @@ public class EditPartViewElementUtil {
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(outgoingLink) == VSpecChildEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(outgoingLink) == VSpecChildEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);

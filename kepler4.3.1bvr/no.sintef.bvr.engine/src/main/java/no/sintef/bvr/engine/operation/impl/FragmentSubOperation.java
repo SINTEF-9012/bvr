@@ -19,14 +19,14 @@ import bvr.ToPlacement;
 import bvr.ToReplacement;
 
 import no.sintef.bvr.common.logging.Logger;
-import no.sintef.bvr.engine.common.CVLFragmentCopier;
+import no.sintef.bvr.engine.common.BVRFragmentCopier;
 import no.sintef.bvr.engine.common.SubstitutionContext;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
-import no.sintef.bvr.engine.error.ContainmentCVLModelException;
-import no.sintef.bvr.engine.error.GeneralCVLEngineException;
-import no.sintef.bvr.engine.error.IllegalCVLOperation;
-import no.sintef.bvr.engine.error.IncorrectCVLModel;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
+import no.sintef.bvr.engine.error.ContainmentBVRModelException;
+import no.sintef.bvr.engine.error.GeneralBVREngineException;
+import no.sintef.bvr.engine.error.IllegalBVROperation;
+import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
@@ -37,7 +37,7 @@ public class FragmentSubOperation implements Substitution {
 
 	private PlacementElementHolder placement;
 	private ReplacementElementHolder replacement;
-	private CVLFragmentCopier rplCopier;
+	private BVRFragmentCopier rplCopier;
 	private FragmentSubstitutionHolder fragSubHolder;
 	private Logger logger = SubstitutionContext.ME.getLogger();
 
@@ -48,18 +48,18 @@ public class FragmentSubOperation implements Substitution {
 	}
 	
 	@Override
-	public void execute(boolean replace) throws BasicCVLEngineException {
+	public void execute(boolean replace) throws BasicBVREngineException {
 		replacement.update();
 		copyReplacementElements();
 		bindBounderies(replace);
 	}
 	
-	public void checkConsistence() throws ContainmentCVLModelException{
+	public void checkConsistence() throws ContainmentBVRModelException{
 		checkPlacementElementsContainment();
 		checkContainmentOutsideBoundaryElement();
 	}
 
-	private void bindBounderies(boolean replace) throws BasicCVLEngineException{
+	private void bindBounderies(boolean replace) throws BasicBVREngineException{
 		EList<ToBinding> toBindings = fragSubHolder.getToBindings();
 		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
 		for(ToBinding toBinding : toBindings){
@@ -78,7 +78,7 @@ public class FragmentSubOperation implements Substitution {
 					EList<EObject> insideBERepl = this.getInsideBEToReplacement(toReplacement);
 					EStructuralFeature property = outsideBEPlac.eClass().getEStructuralFeature(propertyName);
 					if(property == null){
-						throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
+						throw new GeneralBVREngineException("failed to find property to bind, property name : " + propertyName);
 					}
 					
 					if(!property.isDerived() && !property.isTransient()){
@@ -96,7 +96,7 @@ public class FragmentSubOperation implements Substitution {
 							EList<EObject> elemenetsToRemove = (replace) ? insideBEPlacCurrent : new BasicEList<EObject>();
 							EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
 							if(upperBound != -1 && propertyValueNew.size() > upperBound){
-								throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+								throw new IllegalBVROperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 							}
 							
 							EngineUtility.setProperty(propertyValueOutBEPlac, elemenetsToRemove, insideBERepl);
@@ -112,17 +112,17 @@ public class FragmentSubOperation implements Substitution {
 						}else{
 							//property.getUpperBound() == 0 || == 1
 							if(upperBound == 0){
-								throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
+								throw new IncorrectBVRModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + outsideBEPlac.eGet(property));
 							}
 							if(insideBERepl.size() > upperBound){
-								throw new IllegalCVLOperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
+								throw new IllegalBVROperation("cardinality does not match for property :" + propertyName + "of" + fragSubHolder.getFragment());
 							}
 							Object propertyValueOutBEPlac = outsideBEPlac.eGet(property);
 							if(propertyValueOutBEPlac != null && !replace){
-								throw new IllegalCVLOperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
+								throw new IllegalBVROperation("replace flag is set to false, but the cardinality is 1 and property is not empty already");
 							}
 							if(insideBEPlacCurrent.size() > 1){
-								throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
+								throw new GeneralBVREngineException("EPIC FAIL: holy crap, the insideBoundatyElement reference seems to reference more then one element, while the cardinality is 1");
 							}
 							
 							EObject propertyValueNew = (insideBERepl.size() == 1) ? insideBERepl.get(0) : null;
@@ -148,7 +148,7 @@ public class FragmentSubOperation implements Substitution {
 				
 				}
 			}else {
-				throw new IncorrectCVLModel("toPlacement and toReplacement are null or toPlacement is null! It seems to be incorrect!");
+				throw new IncorrectBVRModel("toPlacement and toReplacement are null or toPlacement is null! It seems to be incorrect!");
 			}
 		}
 		for(FromBinding fromBinding : fromBindings){
@@ -161,7 +161,7 @@ public class FragmentSubOperation implements Substitution {
 				EObject insideBERepl = this.getInsideBEFromReplacement(fromReplacement);
 				EStructuralFeature property = insideBERepl.eClass().getEStructuralFeature(propertyName);
 				if(property == null){
-					throw new GeneralCVLEngineException("failed to find property to bind, property name : " + propertyName);
+					throw new GeneralBVREngineException("failed to find property to bind, property name : " + propertyName);
 				}
 				
 				if(!property.isDerived() && !property.isTransient()){
@@ -180,7 +180,7 @@ public class FragmentSubOperation implements Substitution {
 						EList<EObject> propertyValueInsBERepl = EngineUtility.getListPropertyValue(insideBERepl, property);
 						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
 						if(upperBound != -1 && propertyValueNew.size() > upperBound){
-							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
+							throw new IllegalBVROperation("cardinality does not correspond for property : " + propertyName + "of" + fragSubHolder.getFragment());
 						}
 						
 						EngineUtility.setProperty(propertyValueInsBERepl, outsideBEReplCurrent, outsideBEPlac);
@@ -191,13 +191,13 @@ public class FragmentSubOperation implements Substitution {
 					}else{
 						//property.getUpperBound() == 0 || == 1
 						if(upperBound == 0){
-							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
+							throw new IncorrectBVRModel("model is incorrect, cardianlity for reference is set to 0, but something is there" + insideBERepl.eGet(property));
 						}
 						if(outsideBEPlac.size() > upperBound){
-							throw new IllegalCVLOperation("cardinality does not match for property :'" + propertyName + "'of " + fragSubHolder.getFragment());
+							throw new IllegalBVROperation("cardinality does not match for property :'" + propertyName + "'of " + fragSubHolder.getFragment());
 						}
 						if(outsideBEReplCurrent.size() > 1){
-							throw new GeneralCVLEngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
+							throw new GeneralBVREngineException("EPIC FAIL: holy crap, the outsideBoundatyElement reference seems to point more then one element, while the cardinality is 1");
 						}
 						EObject propertyValueNew = (outsideBEPlac.size() == 1) ? outsideBEPlac.get(0) : null;
 						
@@ -221,23 +221,23 @@ public class FragmentSubOperation implements Substitution {
 					logger.warn("derived or transient properties should not been used for fromBinding, skip it " + property);
 				}
 			}else{
-				throw new IncorrectCVLModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
+				throw new IncorrectBVRModel("fromPlacement and fromReplacement are null or fromReplacement is null! It seems to be incorrect!");
 			}	
 		}
 		fragSubHolder.update(replace);
 	}
 		
-	private void checkPlacementElementsContainment() throws ContainmentCVLModelException {
+	private void checkPlacementElementsContainment() throws ContainmentBVRModelException {
 		HashSet<EObject> placementElements = placement.getElements();
 		for(EObject eObject : placementElements){
 			Resource resource = eObject.eResource();
 			if(resource == null)
-				throw new ContainmentCVLModelException("placement element:" + eObject + " is not contained by any element, check your VM");
+				throw new ContainmentBVRModelException("placement element:" + eObject + " is not contained by any element, check your VM");
 		}
 		
 	}
 	
-	private void checkContainmentOutsideBoundaryElement() throws ContainmentCVLModelException {
+	private void checkContainmentOutsideBoundaryElement() throws ContainmentBVRModelException {
 		EList<FromBinding> fromBindings = fragSubHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
 			FromPlacement fromPlacement = fromBinding.getFromPlacement();
@@ -245,7 +245,7 @@ public class FragmentSubOperation implements Substitution {
 			for(EObject outsideBoundaryElement : outsideBoundaryElements){
 				Resource resource = outsideBoundaryElement.eResource();
 				if(resource == null)
-					throw new ContainmentCVLModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
+					throw new ContainmentBVRModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
 			}
 		}
 		EList<ToBinding> toBindings = fragSubHolder.getToBindings();
@@ -255,52 +255,52 @@ public class FragmentSubOperation implements Substitution {
 			EObject outsideBoundaryElement = EngineUtility.resolveProxies(toPlacement.getOutsideBoundaryElement());
 			Resource resource = outsideBoundaryElement.eResource();
 			if(resource == null)
-				throw new ContainmentCVLModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
+				throw new ContainmentBVRModelException("outsideBoundaryElement element:" + outsideBoundaryElement + " is not contained by any element, check your VM");
 			HashSet<ObjectHandle> objectHandles = outsideToBoundaryMap.get(toPlacement);
 			if(objectHandles != null){
 				EList<EObject> outsideBoundaryElements = EngineUtility.resolveProxies(new BasicEList<ObjectHandle>(objectHandles));
 				for(EObject eObject : outsideBoundaryElements){
 					resource = eObject.eResource();
 					if(resource == null)
-						throw new ContainmentCVLModelException("outsideBoundaryElement element:" + eObject + " is not contained by any element, check your VM");
+						throw new ContainmentBVRModelException("outsideBoundaryElement element:" + eObject + " is not contained by any element, check your VM");
 				}
 			}
 		}
 	}
 		
 	private void copyReplacementElements() {
-		rplCopier = new CVLFragmentCopier();
+		rplCopier = new BVRFragmentCopier();
 		HashSet<EObject> replacementInnerElements = replacement.getElements();
 		rplCopier.copyFragment(replacementInnerElements);
 	}
 
-	private EObject getReplCopyElementFromOriginal(EObject originalObject) throws GeneralCVLEngineException{
+	private EObject getReplCopyElementFromOriginal(EObject originalObject) throws GeneralBVREngineException{
 		EObject copyObject = rplCopier.get(originalObject);
 		if(copyObject == null){
-			throw new GeneralCVLEngineException("Copy map for replacement is incorrect, can not find a copy for " + originalObject);
+			throw new GeneralBVREngineException("Copy map for replacement is incorrect, can not find a copy for " + originalObject);
 		}
 		return copyObject;
 	}
 	
-	private EList<EObject> getReplCopyElementFromOriginal(EList<EObject> originalList) throws GeneralCVLEngineException{
+	private EList<EObject> getReplCopyElementFromOriginal(EList<EObject> originalList) throws GeneralBVREngineException{
 		EList<EObject> copyEList = new BasicEList<EObject>();
 		for(EObject object : originalList){
 			EObject copyObject = rplCopier.get(object);
 			if(copyObject == null){
-				throw new GeneralCVLEngineException("Copy map for replacement is incorrect, can not find a copy for " + object);
+				throw new GeneralBVREngineException("Copy map for replacement is incorrect, can not find a copy for " + object);
 			}
 			copyEList.add(copyObject);
 		}
 		return copyEList;
 	}
 	
-	private EList<EObject> getInsideBEToReplacement(ToReplacement toReplacement) throws GeneralCVLEngineException{
+	private EList<EObject> getInsideBEToReplacement(ToReplacement toReplacement) throws GeneralBVREngineException{
 		EList<EObject> nullList = new BasicEList<EObject>();
 		EList<EObject> insideBERepl = (!EngineUtility.isDummyToReplacement(toReplacement)) ? this.getReplCopyElementFromOriginal(EngineUtility.resolveProxies(toReplacement.getInsideBoundaryElement())) : nullList;
 		return insideBERepl;
 	}
 	
-	private EObject getInsideBEFromReplacement(FromReplacement fromReplacement) throws GeneralCVLEngineException{
+	private EObject getInsideBEFromReplacement(FromReplacement fromReplacement) throws GeneralBVREngineException{
 		return this.getReplCopyElementFromOriginal(EngineUtility.resolveProxies(fromReplacement.getInsideBoundaryElement()));
 	}
 		
@@ -324,7 +324,7 @@ public class FragmentSubOperation implements Substitution {
 		return objectHandles.get(0);
 	}
 	
-	private void updateInsideBoundaryElementObjectHandleBoundaries(ObjectHandle objectHandle, ObjectHandle replacementObjectHandle, boolean replace) throws GeneralCVLEngineException{
+	private void updateInsideBoundaryElementObjectHandleBoundaries(ObjectHandle objectHandle, ObjectHandle replacementObjectHandle, boolean replace) throws GeneralBVREngineException{
 		EList<PlacementBoundaryElement> placementBoundaries = placement.getPlacementFragment().getPlacementBoundaryElement();
 		for(PlacementBoundaryElement boundary : placementBoundaries){
 			if(boundary instanceof FromPlacement){
@@ -335,7 +335,7 @@ public class FragmentSubOperation implements Substitution {
 					HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementMap = fragSubHolder.getFromPlacementInsideBoundaryElementMap();
 					HashSet<ObjectHandle> insideBoundaryElementsSet = (replace) ? new HashSet<ObjectHandle>() : fromPlacementMap.get(fromPlacement);
 					if(insideBoundaryElementsSet == null){
-						throw new GeneralCVLEngineException("insideBoundaryElement set is null for given fromPlacement, should not happen");
+						throw new GeneralBVREngineException("insideBoundaryElement set is null for given fromPlacement, should not happen");
 					}
 					insideBoundaryElementsSet.add(replacementObjectHandle);
 					fromPlacementMap.put(fromPlacement, insideBoundaryElementsSet);

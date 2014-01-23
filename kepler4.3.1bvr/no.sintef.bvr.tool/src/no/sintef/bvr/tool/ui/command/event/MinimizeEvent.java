@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.VSpecPanel;
@@ -20,9 +20,9 @@ public class MinimizeEvent implements ActionListener {
 
 	private VSpecPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private BVRView view;
 
-	public MinimizeEvent(VSpecPanel cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public MinimizeEvent(VSpecPanel cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;

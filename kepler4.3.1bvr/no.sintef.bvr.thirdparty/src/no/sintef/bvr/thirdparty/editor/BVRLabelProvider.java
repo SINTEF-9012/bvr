@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-import no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor.IDProvider;
+import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor.IDProvider;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -24,13 +24,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
 
-public class CVLLabelProvider implements ILabelProvider, ITableLabelProvider, INotifyChangedListener, IColorProvider, ITableColorProvider, IFontProvider, ITableFontProvider {
+public class BVRLabelProvider implements ILabelProvider, ITableLabelProvider, INotifyChangedListener, IColorProvider, ITableColorProvider, IFontProvider, ITableFontProvider {
 	
 	protected AdapterFactoryLabelProvider adapterFactoryLabelProvider = null;
 	
 	protected HashMap<String, Integer> highlight = new HashMap<String, Integer>();
 	
-	public CVLLabelProvider(AdapterFactoryLabelProvider adapterFactoryLabelProvider) {
+	public BVRLabelProvider(AdapterFactoryLabelProvider adapterFactoryLabelProvider) {
 		this.adapterFactoryLabelProvider = adapterFactoryLabelProvider;
 	}
 	
@@ -70,22 +70,22 @@ public class CVLLabelProvider implements ILabelProvider, ITableLabelProvider, IN
 		if(!highlight.containsKey(IDProvider.getObjectId((EObject) element))) return null;
 		
 		switch (highlight.get(IDProvider.getObjectId((EObject) element))) {
-		case ICVLEnabledEditor.HL_PLACEMENT : 
-			return ICVLEnabledEditor.PLACEMENT;
-		case ICVLEnabledEditor.HL_PLACEMENT_OUT : 
-			return ICVLEnabledEditor.PLACEMENT_OUT;
-		case ICVLEnabledEditor.HL_PLACEMENT_IN : 
-			return ICVLEnabledEditor.PLACEMENT_IN;
-		case ICVLEnabledEditor.HL_PLACEMENT_IN_OUT : 
-			return ICVLEnabledEditor.PLACEMENT_IN_OUT;
-		case ICVLEnabledEditor.HL_REPLACEMENT : 
-			return ICVLEnabledEditor.REPLACEMENT;
-		case ICVLEnabledEditor.HL_REPLACEMENT_OUT : 
-			return ICVLEnabledEditor.REPLACEMENT_OUT;
-		case ICVLEnabledEditor.HL_REPLACEMENT_IN : 
-			return ICVLEnabledEditor.REPLACEMENT_IN;
-		case ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT : 
-			return ICVLEnabledEditor.REPLACEMENT_IN_OUT;
+		case IBVREnabledEditor.HL_PLACEMENT : 
+			return IBVREnabledEditor.PLACEMENT;
+		case IBVREnabledEditor.HL_PLACEMENT_OUT : 
+			return IBVREnabledEditor.PLACEMENT_OUT;
+		case IBVREnabledEditor.HL_PLACEMENT_IN : 
+			return IBVREnabledEditor.PLACEMENT_IN;
+		case IBVREnabledEditor.HL_PLACEMENT_IN_OUT : 
+			return IBVREnabledEditor.PLACEMENT_IN_OUT;
+		case IBVREnabledEditor.HL_REPLACEMENT : 
+			return IBVREnabledEditor.REPLACEMENT;
+		case IBVREnabledEditor.HL_REPLACEMENT_OUT : 
+			return IBVREnabledEditor.REPLACEMENT_OUT;
+		case IBVREnabledEditor.HL_REPLACEMENT_IN : 
+			return IBVREnabledEditor.REPLACEMENT_IN;
+		case IBVREnabledEditor.HL_REPLACEMENT_IN_OUT : 
+			return IBVREnabledEditor.REPLACEMENT_IN_OUT;
 		default : 
 			return null;
 		}
@@ -143,7 +143,7 @@ public class CVLLabelProvider implements ILabelProvider, ITableLabelProvider, IN
 	}
 
 	public void highlightObjects(ArrayList<String> xmi_ids, int type) {
-		if (type == ICVLEnabledEditor.HL_NONE) {
+		if (type == IBVREnabledEditor.HL_NONE) {
 			for(String xmi_id : xmi_ids) highlight.remove(xmi_id);
 		}
 		else {
@@ -152,7 +152,7 @@ public class CVLLabelProvider implements ILabelProvider, ITableLabelProvider, IN
 	}
 	
 	public void highlightObject(String xmi_id, int type) {
-		if (type == ICVLEnabledEditor.HL_NONE) {
+		if (type == IBVREnabledEditor.HL_NONE) {
 			highlight.remove(xmi_id);
 		}
 		else {

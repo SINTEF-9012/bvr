@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.navigator;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -27,7 +27,7 @@ import org.eclipse.ui.part.FileEditorInput;
 /**
  * @generated
  */
-public class CVLMetamodelNavigatorLinkHelper implements ILinkHelper {
+public class BVRMetamodelNavigatorLinkHelper implements ILinkHelper {
 
 	/**
 	 * @generated
@@ -54,7 +54,7 @@ public class CVLMetamodelNavigatorLinkHelper implements ILinkHelper {
 	 * @generated
 	 */
 	public IStructuredSelection findSelection(IEditorInput anInput) {
-		IDiagramDocument document = CVLMetamodelDiagramEditorPlugin
+		IDiagramDocument document = BVRMetamodelDiagramEditorPlugin
 				.getInstance().getDocumentProvider()
 				.getDiagramDocument(anInput);
 		if (document == null) {
@@ -66,7 +66,7 @@ public class CVLMetamodelNavigatorLinkHelper implements ILinkHelper {
 		}
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if (file != null) {
-			CVLMetamodelNavigatorItem item = new CVLMetamodelNavigatorItem(
+			BVRMetamodelNavigatorItem item = new BVRMetamodelNavigatorItem(
 					diagram, file, false);
 			return new StructuredSelection(item);
 		}
@@ -81,20 +81,20 @@ public class CVLMetamodelNavigatorLinkHelper implements ILinkHelper {
 		if (aSelection == null || aSelection.isEmpty()) {
 			return;
 		}
-		if (false == aSelection.getFirstElement() instanceof CVLMetamodelAbstractNavigatorItem) {
+		if (false == aSelection.getFirstElement() instanceof BVRMetamodelAbstractNavigatorItem) {
 			return;
 		}
 
-		CVLMetamodelAbstractNavigatorItem abstractNavigatorItem = (CVLMetamodelAbstractNavigatorItem) aSelection
+		BVRMetamodelAbstractNavigatorItem abstractNavigatorItem = (BVRMetamodelAbstractNavigatorItem) aSelection
 				.getFirstElement();
 		View navigatorView = null;
-		if (abstractNavigatorItem instanceof CVLMetamodelNavigatorItem) {
-			navigatorView = ((CVLMetamodelNavigatorItem) abstractNavigatorItem)
+		if (abstractNavigatorItem instanceof BVRMetamodelNavigatorItem) {
+			navigatorView = ((BVRMetamodelNavigatorItem) abstractNavigatorItem)
 					.getView();
-		} else if (abstractNavigatorItem instanceof CVLMetamodelNavigatorGroup) {
-			CVLMetamodelNavigatorGroup navigatorGroup = (CVLMetamodelNavigatorGroup) abstractNavigatorItem;
-			if (navigatorGroup.getParent() instanceof CVLMetamodelNavigatorItem) {
-				navigatorView = ((CVLMetamodelNavigatorItem) navigatorGroup
+		} else if (abstractNavigatorItem instanceof BVRMetamodelNavigatorGroup) {
+			BVRMetamodelNavigatorGroup navigatorGroup = (BVRMetamodelNavigatorGroup) abstractNavigatorItem;
+			if (navigatorGroup.getParent() instanceof BVRMetamodelNavigatorItem) {
+				navigatorView = ((BVRMetamodelNavigatorItem) navigatorGroup
 						.getParent()).getView();
 			}
 		}

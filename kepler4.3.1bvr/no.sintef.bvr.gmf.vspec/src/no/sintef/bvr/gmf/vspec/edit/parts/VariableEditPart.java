@@ -6,8 +6,8 @@ import java.util.List;
 
 import no.sintef.bvr.gmf.vspec.edit.policies.VariableCanonicalEditPolicy;
 import no.sintef.bvr.gmf.vspec.edit.policies.VariableItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
@@ -252,7 +252,7 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(CVLMetamodelVisualIDRegistry
+		return getChildBySemanticHint(BVRMetamodelVisualIDRegistry
 				.getType(VariableNameEditPart.VISUAL_ID));
 	}
 
@@ -261,7 +261,7 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+		types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		return types;
 	}
 
@@ -272,16 +272,16 @@ public class VariableEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ChoiceEditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof Choice2EditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof VClassifierEditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		return types;
 	}
@@ -291,11 +291,11 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			//types.add(CVLMetamodelElementTypes.Choice_2005);
-			types.add(CVLMetamodelElementTypes.Choice_2015);
-			types.add(CVLMetamodelElementTypes.Variable_2016);
-			types.add(CVLMetamodelElementTypes.VClassifier_2017);
+		if (relationshipType == BVRMetamodelElementTypes.VSpecChild_4001) {
+			//types.add(BVRMetamodelElementTypes.Choice_2005);
+			types.add(BVRMetamodelElementTypes.Choice_2015);
+			types.add(BVRMetamodelElementTypes.Variable_2016);
+			types.add(BVRMetamodelElementTypes.VClassifier_2017);
 		}
 		return types;
 	}
@@ -305,8 +305,8 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(CVLMetamodelElementTypes.VSpecChild_4001);
-		types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+		types.add(BVRMetamodelElementTypes.VSpecChild_4001);
+		types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		return types;
 	}
 
@@ -315,13 +315,13 @@ public class VariableEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2005);
-			types.add(CVLMetamodelElementTypes.Choice_2015);
-			types.add(CVLMetamodelElementTypes.Variable_2016);
-			types.add(CVLMetamodelElementTypes.VClassifier_2017);
-		} else if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4003) {
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2014);
+		if (relationshipType == BVRMetamodelElementTypes.VSpecChild_4001) {
+			types.add(BVRMetamodelElementTypes.Choice_2005);
+			types.add(BVRMetamodelElementTypes.Choice_2015);
+			types.add(BVRMetamodelElementTypes.Variable_2016);
+			types.add(BVRMetamodelElementTypes.VClassifier_2017);
+		} else if (relationshipType == BVRMetamodelElementTypes.ConstraintContext_4003) {
+			types.add(BVRMetamodelElementTypes.OpaqueConstraint_2014);
 		}
 		return types;
 	}

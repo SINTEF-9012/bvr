@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Display;
  * This interface should be implemented by the the DSL EditorPart.
  * An example editor is provided in package bvr.emfEditor.
  */
-public interface ICVLEnabledEditor {
+public interface IBVREnabledEditor {
 	
 	public static final int HL_NONE = 0; // no highlighting
 	public static final int HL_PLACEMENT = 1; // placement,  red
@@ -44,7 +44,7 @@ public interface ICVLEnabledEditor {
 	 * Highlight in the editor the object identified by xmi_id with the color 
 	 * corresponding to type. 
 	 * The ID of object is provided by the static operation
-	 * ICVLEnabledEditor.IDProvider.getObjectId(EObject obj). Only this operation
+	 * IBVREnabledEditor.IDProvider.getObjectId(EObject obj). Only this operation
 	 * should be used to compute the ID of EObjects.
 	 * @param object The object to highlight
 	 * @param type The type of highlighting to use

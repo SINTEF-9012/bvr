@@ -3,7 +3,7 @@ package no.sintef.bvr.engine.operation;
 import java.io.File;
 import java.util.HashMap;
 
-import no.sintef.bvr.engine.error.IllegalCVLOperation;
+import no.sintef.bvr.engine.error.IllegalBVROperation;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
@@ -67,7 +67,7 @@ public class FragmentSubstitutionCardinalityTest {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		try{
 			fso.execute(false);
-		}catch(IllegalCVLOperation e){
+		}catch(IllegalBVROperation e){
 			return;
 		}
 		Assert.assertTrue("Cardinality is 1, but we try to execute substitution with replace=false, exception not raised", false);
@@ -79,7 +79,7 @@ public class FragmentSubstitutionCardinalityTest {
 		fso.execute(true);
 		try{
 			fso.execute(false);
-		}catch(IllegalCVLOperation e){
+		}catch(IllegalBVROperation e){
 			return;
 		}
 		Assert.assertTrue("Cardinality is 1, but we try to execute substitution with replace=false, exception not raised", false);

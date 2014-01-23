@@ -7,7 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import no.sintef.ict.splcatool.CSVException;
-import no.sintef.ict.splcatool.CVLModel;
+import no.sintef.ict.splcatool.BVRModel;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayFile;
 import no.sintef.ict.splcatool.FileUtility;
@@ -22,7 +22,7 @@ import splar.core.fm.FeatureModelException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-public class ConfGraphml2CVLTest {
+public class ConfGraphml2BVRTest {
 	@Test
 	public void test() throws UnsupportedModelException, IOException, FeatureModelException, TransformerException, ParserConfigurationException, SAXException, CSVException{
 		//int i = 0;
@@ -35,7 +35,7 @@ public class ConfGraphml2CVLTest {
 			
 			System.out.println("Injecting configurations of: " + new File(file).getName()+".conf.GraphML" + " into " + new File(file).getName());
 			
-			CVLModel bvr = new CVLModel(file);
+			BVRModel bvr = new BVRModel(file);
 			GraphMLFM gfm = new GraphMLFM(file + ".conf.GraphML");
 			bvr.injectConfigurations(gfm);
 			

@@ -5,7 +5,7 @@ import no.sintef.bvr.gmf.vspec.edit.commands.ChoiceCreateCommand;
 import no.sintef.bvr.gmf.vspec.edit.commands.OpaqueConstraintCreateCommand;
 import no.sintef.bvr.gmf.vspec.edit.commands.VClassifierCreateCommand;
 import no.sintef.bvr.gmf.vspec.edit.commands.VariableCreateCommand;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
@@ -18,32 +18,32 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
  * @generated
  */
 public class ConfigurableUnitItemSemanticEditPolicy extends
-		CVLMetamodelBaseItemSemanticEditPolicy {
+		BVRMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ConfigurableUnitItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.ConfigurableUnit_1000);
+		super(BVRMetamodelElementTypes.ConfigurableUnit_1000);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (CVLMetamodelElementTypes.Choice_2005 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.Choice_2005 == req.getElementType()) {
 			return getGEFWrapper(new ChoiceCreateCommand(req));
 		}
-		if (CVLMetamodelElementTypes.Choice_2015 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.Choice_2015 == req.getElementType()) {
 			return getGEFWrapper(new Choice2CreateCommand(req));
 		}
-		if (CVLMetamodelElementTypes.Variable_2016 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.Variable_2016 == req.getElementType()) {
 			return getGEFWrapper(new VariableCreateCommand(req));
 		}
-		if (CVLMetamodelElementTypes.VClassifier_2017 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.VClassifier_2017 == req.getElementType()) {
 			return getGEFWrapper(new VClassifierCreateCommand(req));
 		}
-		if (CVLMetamodelElementTypes.OpaqueConstraint_2014 == req
+		if (BVRMetamodelElementTypes.OpaqueConstraint_2014 == req
 				.getElementType()) {
 			return getGEFWrapper(new OpaqueConstraintCreateCommand(req));
 		}

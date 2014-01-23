@@ -9,7 +9,7 @@ import bvr.ConfigurableUnit;
 /**
  * @generated
  */
-public class ChoiceEditHelper extends CVLMetamodelBaseEditHelper {
+public class ChoiceEditHelper extends BVRMetamodelBaseEditHelper {
 
 	/**
 	 * @generated NOT

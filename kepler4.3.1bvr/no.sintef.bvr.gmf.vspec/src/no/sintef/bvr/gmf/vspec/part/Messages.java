@@ -23,107 +23,107 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizardTitle;
+	public static String BVRMetamodelCreationWizardTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizard_DiagramModelFilePageTitle;
+	public static String BVRMetamodelCreationWizard_DiagramModelFilePageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizard_DiagramModelFilePageDescription;
+	public static String BVRMetamodelCreationWizard_DiagramModelFilePageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizard_DomainModelFilePageTitle;
+	public static String BVRMetamodelCreationWizard_DomainModelFilePageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizard_DomainModelFilePageDescription;
+	public static String BVRMetamodelCreationWizard_DomainModelFilePageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizardOpenEditorError;
+	public static String BVRMetamodelCreationWizardOpenEditorError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizardCreationError;
+	public static String BVRMetamodelCreationWizardCreationError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelCreationWizardPageExtensionError;
+	public static String BVRMetamodelCreationWizardPageExtensionError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditorUtil_OpenModelResourceErrorDialogTitle;
+	public static String BVRMetamodelDiagramEditorUtil_OpenModelResourceErrorDialogTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditorUtil_OpenModelResourceErrorDialogMessage;
+	public static String BVRMetamodelDiagramEditorUtil_OpenModelResourceErrorDialogMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditorUtil_CreateDiagramProgressTask;
+	public static String BVRMetamodelDiagramEditorUtil_CreateDiagramProgressTask;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditorUtil_CreateDiagramCommandLabel;
+	public static String BVRMetamodelDiagramEditorUtil_CreateDiagramCommandLabel;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_isModifiable;
+	public static String BVRMetamodelDocumentProvider_isModifiable;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_handleElementContentChanged;
+	public static String BVRMetamodelDocumentProvider_handleElementContentChanged;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_IncorrectInputError;
+	public static String BVRMetamodelDocumentProvider_IncorrectInputError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_NoDiagramInResourceError;
+	public static String BVRMetamodelDocumentProvider_NoDiagramInResourceError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_DiagramLoadingError;
+	public static String BVRMetamodelDocumentProvider_DiagramLoadingError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_UnsynchronizedFileSaveError;
+	public static String BVRMetamodelDocumentProvider_UnsynchronizedFileSaveError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_SaveDiagramTask;
+	public static String BVRMetamodelDocumentProvider_SaveDiagramTask;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_SaveNextResourceTask;
+	public static String BVRMetamodelDocumentProvider_SaveNextResourceTask;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDocumentProvider_SaveAsOperation;
+	public static String BVRMetamodelDocumentProvider_SaveAsOperation;
 
 	/**
 	 * @generated
@@ -148,87 +148,87 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_CreationPageName;
+	public static String BVRMetamodelNewDiagramFileWizard_CreationPageName;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_CreationPageTitle;
+	public static String BVRMetamodelNewDiagramFileWizard_CreationPageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_CreationPageDescription;
+	public static String BVRMetamodelNewDiagramFileWizard_CreationPageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_RootSelectionPageName;
+	public static String BVRMetamodelNewDiagramFileWizard_RootSelectionPageName;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_RootSelectionPageTitle;
+	public static String BVRMetamodelNewDiagramFileWizard_RootSelectionPageTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_RootSelectionPageDescription;
+	public static String BVRMetamodelNewDiagramFileWizard_RootSelectionPageDescription;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_RootSelectionPageSelectionTitle;
+	public static String BVRMetamodelNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
+	public static String BVRMetamodelNewDiagramFileWizard_RootSelectionPageNoSelectionMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
+	public static String BVRMetamodelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_InitDiagramCommand;
+	public static String BVRMetamodelNewDiagramFileWizard_InitDiagramCommand;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelNewDiagramFileWizard_IncorrectRootError;
+	public static String BVRMetamodelNewDiagramFileWizard_IncorrectRootError;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditor_SavingDeletedFile;
+	public static String BVRMetamodelDiagramEditor_SavingDeletedFile;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditor_SaveAsErrorTitle;
+	public static String BVRMetamodelDiagramEditor_SaveAsErrorTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditor_SaveAsErrorMessage;
+	public static String BVRMetamodelDiagramEditor_SaveAsErrorMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditor_SaveErrorTitle;
+	public static String BVRMetamodelDiagramEditor_SaveErrorTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelDiagramEditor_SaveErrorMessage;
+	public static String BVRMetamodelDiagramEditor_SaveErrorMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelElementChooserDialog_SelectModelElementTitle;
+	public static String BVRMetamodelElementChooserDialog_SelectModelElementTitle;
 
 	/**
 	 * @generated
@@ -393,12 +393,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelModelingAssistantProviderTitle;
+	public static String BVRMetamodelModelingAssistantProviderTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String CVLMetamodelModelingAssistantProviderMessage;
+	public static String BVRMetamodelModelingAssistantProviderMessage;
 
 	//TODO: put accessor fields manually	
 }

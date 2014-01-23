@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelNodeDescriptor;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelNodeDescriptor;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -73,7 +73,7 @@ public class ChoiceCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<CVLMetamodelNodeDescriptor> childDescriptors = /* see #352271 */Collections
+		List<BVRMetamodelNodeDescriptor> childDescriptors = /* see #352271 */Collections
 				.emptyList();
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
@@ -88,10 +88,10 @@ public class ChoiceCanonicalEditPolicy extends CanonicalEditPolicy {
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<CVLMetamodelNodeDescriptor> descriptorsIterator = childDescriptors
+		for (Iterator<BVRMetamodelNodeDescriptor> descriptorsIterator = childDescriptors
 				.iterator(); descriptorsIterator.hasNext();) {
-			CVLMetamodelNodeDescriptor next = descriptorsIterator.next();
-			String hint = CVLMetamodelVisualIDRegistry.getType(next
+			BVRMetamodelNodeDescriptor next = descriptorsIterator.next();
+			String hint = BVRMetamodelVisualIDRegistry.getType(next
 					.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			for (View childView : getViewChildren()) {
@@ -117,8 +117,8 @@ public class ChoiceCanonicalEditPolicy extends CanonicalEditPolicy {
 		//
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
-		for (CVLMetamodelNodeDescriptor next : childDescriptors) {
-			String hint = CVLMetamodelVisualIDRegistry.getType(next
+		for (BVRMetamodelNodeDescriptor next : childDescriptors) {
+			String hint = BVRMetamodelVisualIDRegistry.getType(next
 					.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(
 					next.getModelElement(), hint);

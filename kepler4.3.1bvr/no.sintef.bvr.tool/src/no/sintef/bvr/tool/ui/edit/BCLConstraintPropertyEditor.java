@@ -12,8 +12,8 @@ import no.sintef.bvr.constraints.bcl.BCLPrettyPrinter;
 import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.BCLConstraint;
 import bvr.VSpec;
 
@@ -24,7 +24,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public BCLConstraintPropertyEditor(CVLUIKernel kernel, BCLConstraint elem, CVLView view) {
+	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRView view) {
 		super(kernel, elem, view);
 		
 		// Constraint

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
-import no.sintef.bvr.engine.error.GeneralCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
+import no.sintef.bvr.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.bvr.engine.fragment.impl.ReplacementElementHolder;
 
@@ -93,10 +93,10 @@ public class EngineUtility {
 		return null;
 	}
 	
-	public static EList<EObject> getListPropertyValue(EObject holder, EStructuralFeature property) throws GeneralCVLEngineException{
+	public static EList<EObject> getListPropertyValue(EObject holder, EStructuralFeature property) throws GeneralBVREngineException{
 		Object propertyValue = holder.eGet(property);
 		if(!(propertyValue instanceof EList)){
-			throw new GeneralCVLEngineException("property is not the list " + propertyValue);
+			throw new GeneralBVREngineException("property is not the list " + propertyValue);
 		}
 		@SuppressWarnings("unchecked") EList<EObject> eList = (EList<EObject>) propertyValue;
 		return eList;
@@ -163,7 +163,7 @@ public class EngineUtility {
 		try {
 			replcntHolder = new ReplacementElementHolder(replcnt);
 			plcntHolder = new PlacementElementHolder(plcnt);
-		} catch (BasicCVLEngineException e) {
+		} catch (BasicBVREngineException e) {
 			throw new UnsupportedOperationException(e);
 		}
 		HashSet<EObject> plcntElements = plcntHolder.getElements();

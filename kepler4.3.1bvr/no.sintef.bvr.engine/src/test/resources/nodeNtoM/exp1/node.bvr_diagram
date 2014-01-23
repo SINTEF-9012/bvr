@@ -29,7 +29,7 @@
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gZtwY2e3EeKdzpywEhe_Kw" x="365" y="215"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_MspI0We3EeKdzpywEhe_Kw"/>
-  <element xmi:type="bvr:CVLModel" href="node.bvr#/"/>
+  <element xmi:type="bvr:BVRModel" href="node.bvr#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_i2gi8Ge3EeKdzpywEhe_Kw" type="4002" source="_OdA6QGe3EeKdzpywEhe_Kw" target="_gZtwYGe3EeKdzpywEhe_Kw">
     <styles xmi:type="notation:RoutingStyle" xmi:id="_i2gi8We3EeKdzpywEhe_Kw"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_i2gi8me3EeKdzpywEhe_Kw" fontName="Segoe UI"/>

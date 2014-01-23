@@ -37,7 +37,7 @@ public class OCLCustomUtil {
 			"intersection", "including", "excluding" };
 	public final static String[] OCL_OPERATOR = { "oclIsKindOf", "oclIsTypeOf",
 			"oclAsType", "oclInState" };
-	public final static String[] CVL_TYPE = { "ChoiceResolutuion", "VInstance",
+	public final static String[] BVR_TYPE = { "ChoiceResolutuion", "VInstance",
 			"type", "resolvedChoice", "decision", "resolvedVariable",
 			"VariableValueAssignment", "ValueSpecification", "value",
 			"expression", "StringLiteralExp", "string", "BooleanLiteralExp",
@@ -68,7 +68,7 @@ public class OCLCustomUtil {
 		for (String s : COLLECTION_OPERATOR) {
 			keywords.add(s);
 		}
-		for (String s : CVL_TYPE) {
+		for (String s : BVR_TYPE) {
 			keywords.add(s);
 		}
 		for (String s : keywordsInModel) {

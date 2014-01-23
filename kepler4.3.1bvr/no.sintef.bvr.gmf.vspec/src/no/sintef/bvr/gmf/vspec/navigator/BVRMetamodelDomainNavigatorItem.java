@@ -11,7 +11,7 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 /**
  * @generated
  */
-public class CVLMetamodelDomainNavigatorItem extends PlatformObject {
+public class BVRMetamodelDomainNavigatorItem extends PlatformObject {
 
 	/**
 	 * @generated
@@ -24,8 +24,8 @@ public class CVLMetamodelDomainNavigatorItem extends PlatformObject {
 
 					public Object getAdapter(Object adaptableObject,
 							Class adapterType) {
-						if (adaptableObject instanceof no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem) {
-							no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem domainNavigatorItem = (no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem) adaptableObject;
+						if (adaptableObject instanceof no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem) {
+							no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem domainNavigatorItem = (no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem) adaptableObject;
 							EObject eObject = domainNavigatorItem.getEObject();
 							if (adapterType == EObject.class) {
 								return eObject;
@@ -44,7 +44,7 @@ public class CVLMetamodelDomainNavigatorItem extends PlatformObject {
 						return supportedTypes;
 					}
 				},
-				no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem.class);
+				no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem.class);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class CVLMetamodelDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelDomainNavigatorItem(EObject eObject, Object parent,
+	public BVRMetamodelDomainNavigatorItem(EObject eObject, Object parent,
 			IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
@@ -97,11 +97,11 @@ public class CVLMetamodelDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem) {
+		if (obj instanceof no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem) {
 			return EcoreUtil
 					.getURI(getEObject())
 					.equals(EcoreUtil
-							.getURI(((no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem) obj)
+							.getURI(((no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem) obj)
 									.getEObject()));
 		}
 		return super.equals(obj);

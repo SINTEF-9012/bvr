@@ -65,7 +65,7 @@
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_fdeso2CbEeKvcsBuO0c3RQ" x="483" y="367"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_kyTjoWCYEeKvcsBuO0c3RQ"/>
-  <element xmi:type="bvr:CVLModel" href="node.bvr#/"/>
+  <element xmi:type="bvr:BVRModel" href="node.bvr#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_J2ExQGCZEeKvcsBuO0c3RQ" type="4002" source="_Dwq5QGCZEeKvcsBuO0c3RQ" target="_FIJpkGCZEeKvcsBuO0c3RQ">
     <styles xmi:type="notation:RoutingStyle" xmi:id="_J2ExQWCZEeKvcsBuO0c3RQ"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_J2ExQmCZEeKvcsBuO0c3RQ" fontName="Segoe UI"/>

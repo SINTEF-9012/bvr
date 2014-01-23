@@ -5,38 +5,38 @@ import java.io.File;
 import bvr.ConfigurableUnit;
 import bvr.VSpec;
 
-public class CVLModel {
-	private no.sintef.ict.splcatool.CVLModel bvrm;
+public class BVRModel {
+	private no.sintef.ict.splcatool.BVRModel bvrm;
 	private File f;
 	private boolean platform = false;
 	private String loadFilename;
 	private boolean saved = true;
 
-	public CVLModel(File sf) {
+	public BVRModel(File sf) {
 		f = sf;
-		bvrm = new no.sintef.ict.splcatool.CVLModel(f);
+		bvrm = new no.sintef.ict.splcatool.BVRModel(f);
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public CVLModel(File sf, no.sintef.ict.splcatool.CVLModel x) {
+	public BVRModel(File sf, no.sintef.ict.splcatool.BVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public CVLModel(File sf, String loadLocation, boolean isPlatform){
+	public BVRModel(File sf, String loadLocation, boolean isPlatform){
 		f = sf;
 		platform = isPlatform;
 		loadFilename = loadLocation;
-		bvrm = new no.sintef.ict.splcatool.CVLModel(loadFilename, platform);
+		bvrm = new no.sintef.ict.splcatool.BVRModel(loadFilename, platform);
 	}
 
-	public CVLModel() {
-		bvrm = new no.sintef.ict.splcatool.CVLModel();
+	public BVRModel() {
+		bvrm = new no.sintef.ict.splcatool.BVRModel();
 	}
 	
 	public void reload(){
-		bvrm = (!platform) ? new no.sintef.ict.splcatool.CVLModel(f) : new no.sintef.ict.splcatool.CVLModel(loadFilename, platform);
+		bvrm = (!platform) ? new no.sintef.ict.splcatool.BVRModel(f) : new no.sintef.ict.splcatool.BVRModel(loadFilename, platform);
 	}
 
 	String getShortFileName(){
@@ -49,11 +49,11 @@ public class CVLModel {
 		return f.getAbsolutePath();
 	}
 	
-	public no.sintef.ict.splcatool.CVLModel getCVLM(){
+	public no.sintef.ict.splcatool.BVRModel getBVRM(){
 		return bvrm;
 	}
 	
-	public void setCVLM(no.sintef.ict.splcatool.CVLModel bvrm){
+	public void setBVRM(no.sintef.ict.splcatool.BVRModel bvrm){
 		this.bvrm = bvrm;
 	}
 

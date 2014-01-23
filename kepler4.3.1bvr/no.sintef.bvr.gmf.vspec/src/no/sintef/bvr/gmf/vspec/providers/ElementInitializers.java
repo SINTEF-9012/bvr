@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.providers;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 /**
  * @generated
@@ -15,10 +15,10 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	public static ElementInitializers getInstance() {
-		ElementInitializers cached = CVLMetamodelDiagramEditorPlugin
+		ElementInitializers cached = BVRMetamodelDiagramEditorPlugin
 				.getInstance().getElementInitializers();
 		if (cached == null) {
-			CVLMetamodelDiagramEditorPlugin.getInstance()
+			BVRMetamodelDiagramEditorPlugin.getInstance()
 					.setElementInitializers(cached = new ElementInitializers());
 		}
 		return cached;

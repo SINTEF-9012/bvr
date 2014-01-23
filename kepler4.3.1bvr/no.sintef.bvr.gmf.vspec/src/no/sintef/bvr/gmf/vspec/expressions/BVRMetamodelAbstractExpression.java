@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.util.Collections;
 import java.util.Map;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 /**
  * @generated
  */
-public abstract class CVLMetamodelAbstractExpression {
+public abstract class BVRMetamodelAbstractExpression {
 
 	/**
 	 * @generated
@@ -29,11 +29,11 @@ public abstract class CVLMetamodelAbstractExpression {
 	 * @generated
 	 */
 	protected void setStatus(int severity, String message, Throwable throwable) {
-		String pluginID = CVLMetamodelDiagramEditorPlugin.ID;
+		String pluginID = BVRMetamodelDiagramEditorPlugin.ID;
 		this.status = new Status(severity, pluginID, -1,
 				(message != null) ? message : "", throwable); //$NON-NLS-1$
 		if (!this.status.isOK()) {
-			CVLMetamodelDiagramEditorPlugin
+			BVRMetamodelDiagramEditorPlugin
 					.getInstance()
 					.logError(
 							"Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
@@ -74,7 +74,7 @@ public abstract class CVLMetamodelAbstractExpression {
 	/**
 	 * @generated
 	 */
-	protected CVLMetamodelAbstractExpression(String body, EClassifier context) {
+	protected BVRMetamodelAbstractExpression(String body, EClassifier context) {
 		myBody = body;
 		myContext = context;
 	}
@@ -101,7 +101,7 @@ public abstract class CVLMetamodelAbstractExpression {
 			try {
 				return doEvaluate(context, env);
 			} catch (Exception e) {
-				CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+				BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 						"Expression evaluation failure: " + body(), e); //$NON-NLS-1$
 			}
 		}

@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import no.sintef.bvr.gmf.vspec.edit.parts.ConfigurableUnitEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorUtil;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorUtil;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -116,7 +116,7 @@ public class BVRVSpecEditorGMF extends EditorPart {
 
 	/**
 	 * Copy from generated function of generating diagram file at
-	 * CVLMetamodelInitDiagramFileAction and CVLMetamodelNewDiagramFileWizard
+	 * BVRMetamodelInitDiagramFileAction and BVRMetamodelNewDiagramFileWizard
 	 * 
 	 * @param modelFile
 	 * @param diagramFile
@@ -132,13 +132,13 @@ public class BVRVSpecEditorGMF extends EditorPart {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
 			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 
 		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 
-		// CVLMetamodelDiagramEditorUtil.setCharset(diagramFile);
+		// BVRMetamodelDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
 		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile
 				.getFullPath().toString(), true);
@@ -151,7 +151,7 @@ public class BVRVSpecEditorGMF extends EditorPart {
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				int diagramVID = CVLMetamodelVisualIDRegistry
+				int diagramVID = BVRMetamodelVisualIDRegistry
 						.getDiagramVisualID(diagramRoot);
 				if (diagramVID != ConfigurableUnitEditPart.VISUAL_ID) {
 					return CommandResult
@@ -161,7 +161,7 @@ public class BVRVSpecEditorGMF extends EditorPart {
 						.createDiagram(
 								diagramRoot,
 								ConfigurableUnitEditPart.MODEL_ID,
-								CVLMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+								BVRMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
 			}
@@ -170,16 +170,16 @@ public class BVRVSpecEditorGMF extends EditorPart {
 			OperationHistoryFactory.getOperationHistory().execute(command,
 					new NullProgressMonitor(), null);
 			diagramResource
-					.save(CVLMetamodelDiagramEditorUtil.getSaveOptions());
-			CVLMetamodelDiagramEditorUtil.openDiagram(diagramResource);
+					.save(BVRMetamodelDiagramEditorUtil.getSaveOptions());
+			BVRMetamodelDiagramEditorUtil.openDiagram(diagramResource);
 		} catch (ExecutionException e) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to create model and diagram", e); //$NON-NLS-1$
 		} catch (IOException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
 		} catch (PartInitException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return;
@@ -200,10 +200,10 @@ public class BVRVSpecEditorGMF extends EditorPart {
 		final Resource diagramResource = resourceSet.getResource(
 				diagramModelURI, true);
 		try {
-			CVLMetamodelDiagramEditorUtil.openDiagram(diagramResource);
+			BVRMetamodelDiagramEditorUtil.openDiagram(diagramResource);
 
 		} catch (PartInitException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return;

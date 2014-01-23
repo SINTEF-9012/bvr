@@ -41,11 +41,11 @@ import org.eclipse.jface.viewers.Viewer;
  * http://docs.oracle.com/javase/6/docs/technotes/guides/reflection/proxy.html */
 
 public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
-	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, ICVLEnabledEditor {
+	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, IBVREnabledEditor {
 	
 	private MultiPageEditorPart editor;
 	private TreeViewer treeViewer;
-	private CVLLabelProvider labelProvider = null;
+	private BVRLabelProvider labelProvider = null;
 
 	public ProxyThirdPartyTreeEditor(Object multiPageEditor) throws NotSupportedThirdPartyEditor {
 		if(Display.getDefault() == null)
@@ -71,12 +71,12 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 		
 		
 		// Extend the label provider to support colors and fonts
-		if(!(treeViewer.getLabelProvider() instanceof CVLLabelProvider)){
+		if(!(treeViewer.getLabelProvider() instanceof BVRLabelProvider)){
 			AdapterFactoryLabelProvider old = (AdapterFactoryLabelProvider) treeViewer.getLabelProvider();
-			labelProvider = new CVLLabelProvider(old);
+			labelProvider = new BVRLabelProvider(old);
 			treeViewer.setLabelProvider(labelProvider);
 		}else{
-			labelProvider = (CVLLabelProvider) treeViewer.getLabelProvider();
+			labelProvider = (BVRLabelProvider) treeViewer.getLabelProvider();
 		}
 	}
 
@@ -215,7 +215,7 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 			String eObjectId = IDProvider.getObjectId(eObject);
 			if(labelProvider.highlight.containsKey(eObjectId)){
 				Integer type = labelProvider.highlight.get(eObjectId);
-				treeViewer.expandToLevel(eObject, ((type == ICVLEnabledEditor.HL_PLACEMENT) || (type == ICVLEnabledEditor.HL_REPLACEMENT)) ? treeViewer.ALL_LEVELS : 0);
+				treeViewer.expandToLevel(eObject, ((type == IBVREnabledEditor.HL_PLACEMENT) || (type == IBVREnabledEditor.HL_REPLACEMENT)) ? treeViewer.ALL_LEVELS : 0);
 			}
 		}
 	}

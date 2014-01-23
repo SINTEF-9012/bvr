@@ -2,9 +2,9 @@ package no.sintef.bvr.gmf.vspec.edit.policies;
 
 import java.util.Iterator;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -42,7 +42,7 @@ import bvr.VSpec;
 /**
  * @generated
  */
-public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
+public class BVRMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
@@ -58,7 +58,7 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected CVLMetamodelBaseItemSemanticEditPolicy(IElementType elementType) {
+	protected BVRMetamodelBaseItemSemanticEditPolicy(IElementType elementType) {
 		myElementType = elementType;
 	}
 
@@ -77,7 +77,7 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					.getModel();
 			if (view instanceof View) {
 				Integer id = new Integer(
-						CVLMetamodelVisualIDRegistry.getVisualID((View) view));
+						BVRMetamodelVisualIDRegistry.getVisualID((View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -151,7 +151,7 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	private IElementType getContextElementType(IEditCommandRequest request) {
-		IElementType requestContextElementType = CVLMetamodelElementTypes
+		IElementType requestContextElementType = BVRMetamodelElementTypes
 				.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType
 				: myElementType;
@@ -301,10 +301,10 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	public static LinkConstraints getLinkConstraints() {
-		LinkConstraints cached = CVLMetamodelDiagramEditorPlugin.getInstance()
+		LinkConstraints cached = BVRMetamodelDiagramEditorPlugin.getInstance()
 				.getLinkConstraints();
 		if (cached == null) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().setLinkConstraints(
+			BVRMetamodelDiagramEditorPlugin.getInstance().setLinkConstraints(
 					cached = new LinkConstraints());
 		}
 		return cached;
@@ -373,7 +373,7 @@ public class CVLMetamodelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				return true;
 			} catch (Exception e) {
-				CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+				BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 						"Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}

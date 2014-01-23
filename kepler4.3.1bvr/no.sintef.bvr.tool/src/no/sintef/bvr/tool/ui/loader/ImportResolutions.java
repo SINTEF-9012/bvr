@@ -13,7 +13,7 @@ import javax.swing.filechooser.FileFilter;
 
 import bvr.ConfigurableUnit;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.filter.CVLFilter;
+import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.SHFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CSVException;
@@ -23,10 +23,10 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
 public class ImportResolutions implements ActionListener {
-	private CVLModel m;
-	private CVLView v;
+	private BVRModel m;
+	private BVRView v;
 
-	public ImportResolutions(CVLModel m, CVLView bvrView) {
+	public ImportResolutions(BVRModel m, BVRView bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}
@@ -35,14 +35,14 @@ public class ImportResolutions implements ActionListener {
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new SHFilter());
-		fc.addChoosableFileFilter(new CVLFilter());
+		fc.addChoosableFileFilter(new BVRFilter());
 		fc.showOpenDialog(null);
 		
 		File sf = fc.getSelectedFile();
 		GraphMLFM gfm = null;
 		try {
 			CoveringArray ca = new CoveringArrayFile(sf);
-			GUIDSL gdsl = m.getCVLM().getGUIDSL();
+			GUIDSL gdsl = m.getBVRM().getGUIDSL();
 			gfm = gdsl.getGraphMLFMConf(ca);
 		} catch (Exception e) {
 			Context.eINSTANCE.logger.error("Importing resolutions failed: ", e);
@@ -50,7 +50,7 @@ public class ImportResolutions implements ActionListener {
 			return;
 		}
 		
-		m.getCVLM().injectConfigurations(gfm);
+		m.getBVRM().injectConfigurations(gfm);
 		
 		v.notifyResolutionViewUpdate();
 	}

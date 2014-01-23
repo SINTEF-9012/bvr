@@ -10,7 +10,7 @@ import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -21,15 +21,15 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	private ConfigHelper configHelper = EclipseLessConfigHelper.getConfig();
 	
 	@Override
-	public CVLModel loadModelFromFile(File file) {
-		no.sintef.ict.splcatool.CVLModel bvrm = new no.sintef.ict.splcatool.CVLModel(file);
-		return new CVLModel(file, bvrm);
+	public BVRModel loadModelFromFile(File file) {
+		no.sintef.ict.splcatool.BVRModel bvrm = new no.sintef.ict.splcatool.BVRModel(file);
+		return new BVRModel(file, bvrm);
 	}
 	
 	@Override
-	public void writeModelToFile(CVLModel model, File file) {
+	public void writeModelToFile(BVRModel model, File file) {
 		try {
-			model.getCVLM().writeToFile(file.getAbsolutePath());
+			model.getBVRM().writeToFile(file.getAbsolutePath());
 			model.setFile(file);
 			configHelper.saveLastLocation(file.getAbsolutePath());
 		} catch (IOException e) {

@@ -86,7 +86,7 @@ public class testBCLModel {
 	@Test
 	public void test1() throws Exception {
 		// ConstraintChecking/test1.xmi
-		CVLModel cm = new CVLModel("TestData/ConstraintChecking/test1.xmi");
+		BVRModel cm = new BVRModel("TestData/ConstraintChecking/test1.xmi");
 		BCLChecker bc = new JaCoPBCLChecker(cm);
 		
 		// isValid() -> true
@@ -111,7 +111,7 @@ public class testBCLModel {
 	@Test
 	public void test2() throws Exception {
 		// ConstraintChecking/test2.xmi
-		CVLModel cm = new CVLModel("TestData/ConstraintChecking/test2.xmi");
+		BVRModel cm = new BVRModel("TestData/ConstraintChecking/test2.xmi");
 		BCLChecker bc = new JaCoPBCLChecker(cm);
 		
 		// isValid() -> true
@@ -137,7 +137,7 @@ public class testBCLModel {
 	@Test
 	public void test3() throws Exception {
 		// ConstraintChecking/test3.xmi
-		CVLModel cm = new CVLModel("TestData/ConstraintChecking/test3.xmi");
+		BVRModel cm = new BVRModel("TestData/ConstraintChecking/test3.xmi");
 		BCLChecker bc = new JaCoPBCLChecker(cm);
 		
 		// isValid() -> true
@@ -156,7 +156,7 @@ public class testBCLModel {
 	public void test5() throws Exception {
 		// ConstraintChecking/test5.xmi
 		// A.a, B.b, C.c + "A.a > B.b and B.b > C.c and C.c > A.a"
-		CVLModel cm = new CVLModel("TestData/ConstraintChecking/test5.xmi");
+		BVRModel cm = new BVRModel("TestData/ConstraintChecking/test5.xmi");
 		BCLChecker bc = new JaCoPBCLChecker(cm);
 		
 		// isValid() -> false

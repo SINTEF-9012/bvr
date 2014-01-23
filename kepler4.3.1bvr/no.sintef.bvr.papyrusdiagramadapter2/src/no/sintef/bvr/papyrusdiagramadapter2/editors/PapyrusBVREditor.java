@@ -20,10 +20,10 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 
-import no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor;
+import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 
 
-public class PapyrusCVLEditor extends PapyrusMultiDiagramEditor implements ICVLEnabledEditor {
+public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVREnabledEditor {
 	
 	private Map<IFigure,Color> foregroundColor = new HashMap<IFigure,Color>();
 	private Map<IFigure,Color> backgroundColor = new HashMap<IFigure,Color>();
@@ -60,22 +60,22 @@ public class PapyrusCVLEditor extends PapyrusMultiDiagramEditor implements ICVLE
 		EObject eObject = (EObject) object;
 		Color c = ColorConstants.black;
 		switch (type) {
-			case ICVLEnabledEditor.HL_PLACEMENT : 
-				c = ICVLEnabledEditor.PLACEMENT; break;
-			case ICVLEnabledEditor.HL_PLACEMENT_OUT : 
-				c = ICVLEnabledEditor.PLACEMENT_OUT; break;
-			case ICVLEnabledEditor.HL_PLACEMENT_IN : 
-				c = ICVLEnabledEditor.PLACEMENT_IN; break;
-			case ICVLEnabledEditor.HL_PLACEMENT_IN_OUT : 
-				c = ICVLEnabledEditor.PLACEMENT_IN_OUT; break;
-			case ICVLEnabledEditor.HL_REPLACEMENT : 
-				c = ICVLEnabledEditor.REPLACEMENT; break;
-			case ICVLEnabledEditor.HL_REPLACEMENT_OUT : 
-				c = ICVLEnabledEditor.REPLACEMENT_OUT; break;
-			case ICVLEnabledEditor.HL_REPLACEMENT_IN : 
-				c = ICVLEnabledEditor.REPLACEMENT_IN; break;
-			case ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT : 
-				c = ICVLEnabledEditor.REPLACEMENT_IN_OUT; break;
+			case IBVREnabledEditor.HL_PLACEMENT : 
+				c = IBVREnabledEditor.PLACEMENT; break;
+			case IBVREnabledEditor.HL_PLACEMENT_OUT : 
+				c = IBVREnabledEditor.PLACEMENT_OUT; break;
+			case IBVREnabledEditor.HL_PLACEMENT_IN : 
+				c = IBVREnabledEditor.PLACEMENT_IN; break;
+			case IBVREnabledEditor.HL_PLACEMENT_IN_OUT : 
+				c = IBVREnabledEditor.PLACEMENT_IN_OUT; break;
+			case IBVREnabledEditor.HL_REPLACEMENT : 
+				c = IBVREnabledEditor.REPLACEMENT; break;
+			case IBVREnabledEditor.HL_REPLACEMENT_OUT : 
+				c = IBVREnabledEditor.REPLACEMENT_OUT; break;
+			case IBVREnabledEditor.HL_REPLACEMENT_IN : 
+				c = IBVREnabledEditor.REPLACEMENT_IN; break;
+			case IBVREnabledEditor.HL_REPLACEMENT_IN_OUT : 
+				c = IBVREnabledEditor.REPLACEMENT_IN_OUT; break;
 			default : 
 				throw new UnsupportedOperationException("coloring of this type is not supported " + type);
 		}

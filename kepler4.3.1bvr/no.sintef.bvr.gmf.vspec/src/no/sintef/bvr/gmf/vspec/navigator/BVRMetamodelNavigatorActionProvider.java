@@ -1,9 +1,9 @@
 package no.sintef.bvr.gmf.vspec.navigator;
 
 import no.sintef.bvr.gmf.vspec.edit.parts.ConfigurableUnitEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditor;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditor;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 import no.sintef.bvr.gmf.vspec.part.Messages;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -31,7 +31,7 @@ import org.eclipse.ui.part.FileEditorInput;
 /**
  * @generated
  */
-public class CVLMetamodelNavigatorActionProvider extends CommonActionProvider {
+public class BVRMetamodelNavigatorActionProvider extends CommonActionProvider {
 
 	/**
 	 * @generated
@@ -115,8 +115,8 @@ public class CVLMetamodelNavigatorActionProvider extends CommonActionProvider {
 			myDiagram = null;
 			if (selection.size() == 1) {
 				Object selectedElement = selection.getFirstElement();
-				if (selectedElement instanceof CVLMetamodelNavigatorItem) {
-					selectedElement = ((CVLMetamodelNavigatorItem) selectedElement)
+				if (selectedElement instanceof BVRMetamodelNavigatorItem) {
+					selectedElement = ((BVRMetamodelNavigatorItem) selectedElement)
 							.getView();
 				} else if (selectedElement instanceof IAdaptable) {
 					selectedElement = ((IAdaptable) selectedElement)
@@ -125,7 +125,7 @@ public class CVLMetamodelNavigatorActionProvider extends CommonActionProvider {
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
 					if (ConfigurableUnitEditPart.MODEL_ID
-							.equals(CVLMetamodelVisualIDRegistry
+							.equals(BVRMetamodelVisualIDRegistry
 									.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
@@ -145,9 +145,9 @@ public class CVLMetamodelNavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = getEditorInput(myDiagram);
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
-				page.openEditor(editorInput, CVLMetamodelDiagramEditor.ID);
+				page.openEditor(editorInput, BVRMetamodelDiagramEditor.ID);
 			} catch (PartInitException e) {
-				CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+				BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 						"Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}

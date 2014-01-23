@@ -1,6 +1,6 @@
 package no.sintef.bvr.engine.error;
 
-public class UnexpectedOperationFailure extends BasicCVLEngineException {
+public class UnexpectedOperationFailure extends BasicBVREngineException {
 
 	/**
 	 * 

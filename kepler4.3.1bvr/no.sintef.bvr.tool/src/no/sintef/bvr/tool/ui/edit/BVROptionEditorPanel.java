@@ -24,15 +24,15 @@ import javax.swing.SpringLayout;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.ui.command.event.SettingsToolEvent;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import com.explodingpixels.macwidgets.plaf.HudCheckBoxUI;
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 
 
-public class CVLOptionEditorPanel extends JPanel {
+public class BVROptionEditorPanel extends JPanel {
 	
-	protected CVLView view;
+	protected BVRView view;
 	
 	protected JPanel top;
 	protected JPanel bottom;
@@ -49,7 +49,7 @@ public class CVLOptionEditorPanel extends JPanel {
 
     }
 
-    public CVLOptionEditorPanel() {
+    public BVROptionEditorPanel() {
         this.setOpaque(false);
         this.setBorder(null);
         

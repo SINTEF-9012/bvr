@@ -10,7 +10,7 @@ import no.sintef.bvr.gmf.vspec.edit.parts.OpaqueConstraintConstraintEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierNameEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableNameEditPart;
 import no.sintef.bvr.gmf.vspec.parsers.MessageFormatParser;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAttribute;
@@ -30,7 +30,7 @@ import bvr.BvrPackage;
 /**
  * @generated
  */
-public class CVLMetamodelParserProvider extends AbstractProvider implements
+public class BVRMetamodelParserProvider extends AbstractProvider implements
 		IParserProvider {
 
 	/**
@@ -254,11 +254,11 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(CVLMetamodelVisualIDRegistry.getVisualID(vid));
+			return getParser(BVRMetamodelVisualIDRegistry.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(CVLMetamodelVisualIDRegistry.getVisualID(view));
+			return getParser(BVRMetamodelVisualIDRegistry.getVisualID(view));
 		}
 		return null;
 	}
@@ -269,7 +269,7 @@ public class CVLMetamodelParserProvider extends AbstractProvider implements
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (CVLMetamodelElementTypes.getElement(hint) == null) {
+			if (BVRMetamodelElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;

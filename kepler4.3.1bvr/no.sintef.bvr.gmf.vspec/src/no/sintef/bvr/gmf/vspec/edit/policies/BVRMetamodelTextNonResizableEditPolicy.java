@@ -21,7 +21,7 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.labels.IRefreshableFeedback
 /**
  * @generated
  */
-public class CVLMetamodelTextNonResizableEditPolicy extends
+public class BVRMetamodelTextNonResizableEditPolicy extends
 		NonResizableEditPolicyEx implements IRefreshableFeedbackEditPolicy {
 
 	/**

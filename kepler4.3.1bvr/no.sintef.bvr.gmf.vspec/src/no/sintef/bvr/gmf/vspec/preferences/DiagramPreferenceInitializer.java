@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.preferences;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -27,7 +27,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	 * @generated
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return CVLMetamodelDiagramEditorPlugin.getInstance()
+		return BVRMetamodelDiagramEditorPlugin.getInstance()
 				.getPreferenceStore();
 	}
 }

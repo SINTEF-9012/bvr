@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.edit.commands;
 
-import no.sintef.bvr.gmf.vspec.edit.policies.CVLMetamodelBaseItemSemanticEditPolicy;
+import no.sintef.bvr.gmf.vspec.edit.policies.BVRMetamodelBaseItemSemanticEditPolicy;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -54,7 +54,7 @@ public class VSpecChildCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return CVLMetamodelBaseItemSemanticEditPolicy.getLinkConstraints()
+		return BVRMetamodelBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateVSpecChild_4001(getSource(), getTarget());
 	}
 

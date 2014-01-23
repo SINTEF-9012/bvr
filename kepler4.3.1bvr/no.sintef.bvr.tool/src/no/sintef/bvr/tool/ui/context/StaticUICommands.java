@@ -15,15 +15,15 @@ import com.google.common.collect.Lists;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.filter.CVLFilter;
+import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 public class StaticUICommands {
 
-	public static File saveModelToFile(JComponent parent, CVLModel model, boolean trydirectsave){
+	public static File saveModelToFile(JComponent parent, BVRModel model, boolean trydirectsave){
 		try{
-			final String CVL_EXT = "." + CVLFilter.CVL_EXT;
+			final String BVR_EXT = "." + BVRFilter.BVR_EXT;
 			if(trydirectsave){
 				if(model.getFile() != null){
 					try{
@@ -45,8 +45,8 @@ public class StaticUICommands {
 			File sf = fc.getSelectedFile();
 			if(sf == null) return null;
 			
-			if(!sf.getAbsolutePath().endsWith(CVL_EXT))
-				sf = new File(sf.getAbsolutePath() + CVL_EXT);
+			if(!sf.getAbsolutePath().endsWith(BVR_EXT))
+				sf = new File(sf.getAbsolutePath() + BVR_EXT);
 			
 			if(sf.exists()){
 				int result = JOptionPane.showConfirmDialog(parent, "File already exist, overwrite?", "alert", JOptionPane.YES_NO_OPTION);
@@ -71,10 +71,10 @@ public class StaticUICommands {
 		return fc;
 	}
 	
-	public static JFileChooser getCVLFileChooser(){
+	public static JFileChooser getBVRFileChooser(){
 		JFileChooser fc = Context.eINSTANCE.getFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());
-		CVLFilter bvrFilter = new CVLFilter();
+		BVRFilter bvrFilter = new BVRFilter();
 		fc.addChoosableFileFilter(bvrFilter);
 		fc.setFileFilter(bvrFilter);
 		return fc;

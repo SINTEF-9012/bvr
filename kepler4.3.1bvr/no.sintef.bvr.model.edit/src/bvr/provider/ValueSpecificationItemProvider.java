@@ -128,7 +128,7 @@ public class ValueSpecificationItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return CVLMetamodelEditPlugin.INSTANCE;
+		return BVRMetamodelEditPlugin.INSTANCE;
 	}
 
 }

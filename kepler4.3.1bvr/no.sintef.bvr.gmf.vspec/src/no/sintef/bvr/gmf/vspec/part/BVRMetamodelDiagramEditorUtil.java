@@ -63,7 +63,7 @@ import bvr.Variabletype;
 /**
  * @generated
  */
-public class CVLMetamodelDiagramEditorUtil {
+public class BVRMetamodelDiagramEditorUtil {
 
 	/**
 	 * @generated
@@ -88,7 +88,7 @@ public class CVLMetamodelDiagramEditorUtil {
 			IWorkbenchPage page = PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getActivePage();
 			return null != page.openEditor(new FileEditorInput(
-					(IFile) workspaceResource), CVLMetamodelDiagramEditor.ID);
+					(IFile) workspaceResource), BVRMetamodelDiagramEditor.ID);
 		}
 		return false;
 	}
@@ -103,7 +103,7 @@ public class CVLMetamodelDiagramEditorUtil {
 		try {
 			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
 		} catch (CoreException e) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
 		}
 	}
@@ -124,7 +124,7 @@ public class CVLMetamodelDiagramEditorUtil {
 	 * @generated
 	 */
 	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
-		IDialogSettings pluginDialogSettings = CVLMetamodelDiagramEditorPlugin
+		IDialogSettings pluginDialogSettings = BVRMetamodelDiagramEditorPlugin
 				.getInstance().getDialogSettings();
 		IDialogSettings wizardDialogSettings = pluginDialogSettings
 				.getSection(settingsKey);
@@ -152,7 +152,7 @@ public class CVLMetamodelDiagramEditorUtil {
 				.createEditingDomain();
 		progressMonitor
 				.beginTask(
-						Messages.CVLMetamodelDiagramEditorUtil_CreateDiagramProgressTask,
+						Messages.BVRMetamodelDiagramEditorUtil_CreateDiagramProgressTask,
 						3);
 		final Resource diagramResource = editingDomain.getResourceSet()
 				.createResource(diagramURI);
@@ -161,7 +161,7 @@ public class CVLMetamodelDiagramEditorUtil {
 		final String diagramName = diagramURI.lastSegment();
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
 				editingDomain,
-				Messages.CVLMetamodelDiagramEditorUtil_CreateDiagramCommandLabel,
+				Messages.BVRMetamodelDiagramEditorUtil_CreateDiagramCommandLabel,
 				Collections.EMPTY_LIST) {
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
@@ -173,7 +173,7 @@ public class CVLMetamodelDiagramEditorUtil {
 						.createDiagram(
 								model,
 								ConfigurableUnitEditPart.MODEL_ID,
-								CVLMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+								BVRMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
@@ -182,14 +182,14 @@ public class CVLMetamodelDiagramEditorUtil {
 
 				try {
 					modelResource
-							.save(no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorUtil
+							.save(no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorUtil
 									.getSaveOptions());
 					diagramResource
-							.save(no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorUtil
+							.save(no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorUtil
 									.getSaveOptions());
 				} catch (IOException e) {
 
-					CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+					BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 							"Unable to store model and diagram resources", e); //$NON-NLS-1$
 				}
 				return CommandResult.newOKCommandResult();
@@ -199,7 +199,7 @@ public class CVLMetamodelDiagramEditorUtil {
 			OperationHistoryFactory.getOperationHistory().execute(command,
 					new SubProgressMonitor(progressMonitor, 1), null);
 		} catch (ExecutionException e) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to create model and diagram", e); //$NON-NLS-1$
 		}
 		setCharset(WorkspaceSynchronizer.getFile(modelResource));

@@ -21,7 +21,7 @@ import splar.core.fm.FeatureModelException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-public class GuidslAndConf2CVLTest {
+public class GuidslAndConf2BVRTest {
 	@Test
 	public void test() throws UnsupportedModelException, IOException, FeatureModelException, TransformerException, ParserConfigurationException, SAXException, CSVException{
 		//int i = 0;

@@ -22,7 +22,7 @@ import bvr.ToReplacement;
 import bvr.VariationPoint;
 
 import no.sintef.bvr.common.logging.Logger;
-import no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor;
+import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
@@ -89,7 +89,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			EObject eObject = (isToPlacement) ? ((ToPlacement) boundary).getOutsideBoundaryElement().getMOFRef() : ((ToReplacement) boundary).getOutsideBoundaryElement().getMOFRef();
 			if(eObject != null){
 				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
-				map.put(eObject, (isToPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_IN : ICVLEnabledEditor.HL_REPLACEMENT_IN);
+				map.put(eObject, (isToPlacement) ? IBVREnabledEditor.HL_PLACEMENT_IN : IBVREnabledEditor.HL_REPLACEMENT_IN);
 				list.add(map);
 			}else{
 				logger.error("outside boundary element reference is null for toBoundary" + boundary);
@@ -100,7 +100,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				eObject = oh.getMOFRef();
 				if(eObject != null){
 					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
-					map.put(eObject, (isToPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT);
+					map.put(eObject, (isToPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT);
 					list.add(map);
 				}else{
 					logger.error("inside boundary element reference is null for toBoundary" + boundary);
@@ -114,7 +114,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 			EObject eObject = (isFromPlacement) ? ((FromPlacement) boundary).getInsideBoundaryElement().getMOFRef() : ((FromReplacement) boundary).getInsideBoundaryElement().getMOFRef();
 			if(eObject != null){
 				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
-				map.put(eObject, (isFromPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT);
+				map.put(eObject, (isFromPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT);
 				list.add(map);
 			}else{
 				logger.error("inside boundary element reference is null for fromBoundary" + boundary);
@@ -125,7 +125,7 @@ public class BindingRowSelectionEvent implements ListSelectionListener {
 				eObject = oh.getMOFRef();
 				if(eObject != null){
 					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
-					map.put(eObject, (isFromPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_OUT : ICVLEnabledEditor.HL_REPLACEMENT_OUT);
+					map.put(eObject, (isFromPlacement) ? IBVREnabledEditor.HL_PLACEMENT_OUT : IBVREnabledEditor.HL_REPLACEMENT_OUT);
 					list.add(map);
 				}else{
 					logger.error("outside boundary element reference is null for fromBoundary" + boundary);

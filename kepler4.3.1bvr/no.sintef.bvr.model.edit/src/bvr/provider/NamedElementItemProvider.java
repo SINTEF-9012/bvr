@@ -140,7 +140,7 @@ public class NamedElementItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return CVLMetamodelEditPlugin.INSTANCE;
+		return BVRMetamodelEditPlugin.INSTANCE;
 	}
 
 }

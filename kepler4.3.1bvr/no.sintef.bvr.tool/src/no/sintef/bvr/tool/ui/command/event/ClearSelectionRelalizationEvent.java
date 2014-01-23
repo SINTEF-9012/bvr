@@ -7,14 +7,14 @@ import java.util.List;
 import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class ClearSelectionRelalizationEvent implements ActionListener {
 
 	private JTabbedPane filePane;
-	private List<CVLView> views;
-	public ClearSelectionRelalizationEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
+	private List<BVRView> views;
+	public ClearSelectionRelalizationEvent(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views){
 		this.filePane = filePane;
 		this.views = views;
 	}

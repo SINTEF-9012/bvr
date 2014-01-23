@@ -13,8 +13,8 @@ import javax.swing.event.DocumentListener;
 
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -28,7 +28,7 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VInstancePropertyEditor(CVLUIKernel kernel, VInstance vInstance, CVLView view) {
+	public VInstancePropertyEditor(BVRUIKernel kernel, VInstance vInstance, BVRView view) {
 		super(kernel, vInstance, view);
 	}
 

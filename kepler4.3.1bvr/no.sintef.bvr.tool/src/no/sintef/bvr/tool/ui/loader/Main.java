@@ -36,14 +36,14 @@ import no.sintef.bvr.tool.ui.command.event.NewResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.OpenModelEvent;
 import no.sintef.bvr.tool.ui.command.event.SaveModelAsEvent;
 import no.sintef.bvr.tool.ui.command.event.SettingsToolEvent;
-import no.sintef.bvr.tool.ui.editor.CVLJFrame;
+import no.sintef.bvr.tool.ui.editor.BVRJFrame;
 import bvr.NamedElement;
 
 public class Main {
-	private CVLJFrame jframe;
+	private BVRJFrame jframe;
 	public static NamedElement vSpecCut;
-	private List<CVLView> views = Context.eINSTANCE.getBvrViews();
-	private List<CVLModel> models = Context.eINSTANCE.getBvrModels();
+	private List<BVRView> views = Context.eINSTANCE.getBvrViews();
+	private List<BVRModel> models = Context.eINSTANCE.getBvrModels();
 
 	public void startVSpecView(){
 		try {
@@ -58,7 +58,7 @@ public class Main {
 		models = Context.eINSTANCE.getBvrModels();
 
 		// Create window
-		jframe = new CVLJFrame();
+		jframe = new BVRJFrame();
 		
 		// Tabbed pane
 		JTabbedPane filePane = jframe.getJTabbedPane();

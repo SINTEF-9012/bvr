@@ -6,7 +6,7 @@ import java.util.Map;
 
 import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.ElementHolderOIF;
 import no.sintef.bvr.engine.fragment.PlacementElementFinderStrategy;
 
@@ -29,7 +29,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 	private HashMap<ToPlacement, HashSet<EObject>> toPlacementOutBoundaryMap;
 	private PlacementElementFinderStrategy elementFinder;
 
-	public PlacementElementHolder(PlacementFragment pf) throws BasicCVLEngineException {
+	public PlacementElementHolder(PlacementFragment pf) throws BasicBVREngineException {
 		elementFinder = new StrategyPlacementElemenetFinder();
 		placement = pf;
 		fromPlacementInsBoundaryMap = new HashMap<FromPlacement, HashSet<EObject>>();
@@ -51,12 +51,12 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		this.locate();
 	}
 		
-	public void update() throws BasicCVLEngineException{
+	public void update() throws BasicBVREngineException{
 		this.locate();
 	}
 	
 	@Override
-	protected void locate() throws BasicCVLEngineException{
+	protected void locate() throws BasicBVREngineException{
 		super.locate();
 		outerElements = new HashSet<EObject>();
 		innerElements = new HashSet<EObject>();

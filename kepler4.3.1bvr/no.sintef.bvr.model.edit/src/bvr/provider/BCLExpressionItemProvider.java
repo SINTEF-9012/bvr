@@ -113,7 +113,7 @@ public class BCLExpressionItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return CVLMetamodelEditPlugin.INSTANCE;
+		return BVRMetamodelEditPlugin.INSTANCE;
 	}
 
 }

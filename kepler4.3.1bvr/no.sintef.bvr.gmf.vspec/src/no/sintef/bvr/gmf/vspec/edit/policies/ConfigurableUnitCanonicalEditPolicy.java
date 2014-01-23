@@ -20,10 +20,10 @@ import no.sintef.bvr.gmf.vspec.edit.parts.MultiplicityIntervalEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.OpaqueConstraintEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramUpdater;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelLinkDescriptor;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelNodeDescriptor;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramUpdater;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelLinkDescriptor;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelNodeDescriptor;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -100,9 +100,9 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<CVLMetamodelNodeDescriptor> childDescriptors = CVLMetamodelDiagramUpdater
+		List<BVRMetamodelNodeDescriptor> childDescriptors = BVRMetamodelDiagramUpdater
 				.getConfigurableUnit_1000SemanticChildren(viewObject);
-		for (CVLMetamodelNodeDescriptor d : childDescriptors) {
+		for (BVRMetamodelNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
@@ -121,7 +121,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = CVLMetamodelVisualIDRegistry.getVisualID(view);
+		int visualID = BVRMetamodelVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
 		case ChoiceEditPart.VISUAL_ID:
 		case Choice2EditPart.VISUAL_ID:
@@ -141,7 +141,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<CVLMetamodelNodeDescriptor> childDescriptors = CVLMetamodelDiagramUpdater
+		List<BVRMetamodelNodeDescriptor> childDescriptors = BVRMetamodelDiagramUpdater
 				.getConfigurableUnit_1000SemanticChildren((View) getHost()
 						.getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
@@ -153,15 +153,15 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 		}
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
-		HashMap<CVLMetamodelNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<CVLMetamodelNodeDescriptor, LinkedList<View>>();
+		HashMap<BVRMetamodelNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<BVRMetamodelNodeDescriptor, LinkedList<View>>();
 		//
 		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
 		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
 		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
-		for (Iterator<CVLMetamodelNodeDescriptor> descriptorsIterator = childDescriptors
+		for (Iterator<BVRMetamodelNodeDescriptor> descriptorsIterator = childDescriptors
 				.iterator(); descriptorsIterator.hasNext();) {
-			CVLMetamodelNodeDescriptor next = descriptorsIterator.next();
-			String hint = CVLMetamodelVisualIDRegistry.getType(next
+			BVRMetamodelNodeDescriptor next = descriptorsIterator.next();
+			String hint = BVRMetamodelVisualIDRegistry.getType(next
 					.getVisualID());
 			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
 			LinkedList<View> potentialMatch = new LinkedList<View>(); // semanticElement matches, hint does not
@@ -195,8 +195,8 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 				DiagramUIMessages.SetLocationCommand_Label_Resize);
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
 				childDescriptors.size());
-		for (CVLMetamodelNodeDescriptor next : childDescriptors) {
-			String hint = CVLMetamodelVisualIDRegistry.getType(next
+		for (BVRMetamodelNodeDescriptor next : childDescriptors) {
+			String hint = BVRMetamodelVisualIDRegistry.getType(next
 					.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(
 					next.getModelElement(), hint);
@@ -278,13 +278,13 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<IAdaptable> refreshConnections() {
 		Domain2Notation domain2NotationMap = new Domain2Notation();
-		Collection<CVLMetamodelLinkDescriptor> linkDescriptors = collectAllLinks(
+		Collection<BVRMetamodelLinkDescriptor> linkDescriptors = collectAllLinks(
 				getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
 		for (Iterator linksIterator = existingLinks.iterator(); linksIterator
 				.hasNext();) {
 			Edge nextDiagramLink = (Edge) linksIterator.next();
-			int diagramLinkVisualID = CVLMetamodelVisualIDRegistry
+			int diagramLinkVisualID = BVRMetamodelVisualIDRegistry
 					.getVisualID(nextDiagramLink);
 			if (diagramLinkVisualID == -1) {
 				if (nextDiagramLink.getSource() != null
@@ -296,9 +296,9 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (Iterator<CVLMetamodelLinkDescriptor> linkDescriptorsIterator = linkDescriptors
+			for (Iterator<BVRMetamodelLinkDescriptor> linkDescriptorsIterator = linkDescriptors
 					.iterator(); linkDescriptorsIterator.hasNext();) {
-				CVLMetamodelLinkDescriptor nextLinkDescriptor = linkDescriptorsIterator
+				BVRMetamodelLinkDescriptor nextLinkDescriptor = linkDescriptorsIterator
 						.next();
 				if (diagramLinkObject == nextLinkDescriptor.getModelElement()
 						&& diagramLinkSrc == nextLinkDescriptor.getSource()
@@ -319,17 +319,17 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection<CVLMetamodelLinkDescriptor> collectAllLinks(View view,
+	private Collection<BVRMetamodelLinkDescriptor> collectAllLinks(View view,
 			Domain2Notation domain2NotationMap) {
 		if (!ConfigurableUnitEditPart.MODEL_ID
-				.equals(CVLMetamodelVisualIDRegistry.getModelID(view))) {
+				.equals(BVRMetamodelVisualIDRegistry.getModelID(view))) {
 			return Collections.emptyList();
 		}
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getConfigurableUnit_1000ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -337,7 +337,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case ChoiceEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getChoice_2005ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -345,7 +345,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case Choice2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getChoice_2015ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -353,7 +353,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case VariableEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getVariable_2016ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -361,7 +361,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case VClassifierEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getVClassifier_2017ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -369,7 +369,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case OpaqueConstraintEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getOpaqueConstraint_2014ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -377,7 +377,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case MultiplicityIntervalEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getMultiplicityInterval_3002ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -385,7 +385,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case MultiplicityInterval3EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getMultiplicityInterval_3003ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -393,7 +393,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case MultiplicityInterval2EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getMultiplicityInterval_3001ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -401,7 +401,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		case MultiplicityInterval4EditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(CVLMetamodelDiagramUpdater
+				result.addAll(BVRMetamodelDiagramUpdater
 						.getMultiplicityInterval_3004ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
@@ -424,10 +424,10 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Collection<IAdaptable> createConnections(
-			Collection<CVLMetamodelLinkDescriptor> linkDescriptors,
+			Collection<BVRMetamodelLinkDescriptor> linkDescriptors,
 			Domain2Notation domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
-		for (CVLMetamodelLinkDescriptor nextLinkDescriptor : linkDescriptors) {
+		for (BVRMetamodelLinkDescriptor nextLinkDescriptor : linkDescriptors) {
 			EditPart sourceEditPart = getSourceEditPart(nextLinkDescriptor,
 					domain2NotationMap);
 			EditPart targetEditPart = getTargetEditPart(nextLinkDescriptor,
@@ -437,7 +437,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
 					nextLinkDescriptor.getSemanticAdapter(),
-					CVLMetamodelVisualIDRegistry.getType(nextLinkDescriptor
+					BVRMetamodelVisualIDRegistry.getType(nextLinkDescriptor
 							.getVisualID()), ViewUtil.APPEND, false,
 					((IGraphicalEditPart) getHost())
 							.getDiagramPreferencesHint());
@@ -502,7 +502,7 @@ public class ConfigurableUnitCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected final EditPart getHintedEditPart(EObject domainModelElement,
 			Domain2Notation domain2NotationMap, int hintVisualId) {
 		View view = (View) domain2NotationMap.getHinted(domainModelElement,
-				CVLMetamodelVisualIDRegistry.getType(hintVisualId));
+				BVRMetamodelVisualIDRegistry.getType(hintVisualId));
 		if (view != null) {
 			return (EditPart) getHost().getViewer().getEditPartRegistry()
 					.get(view);

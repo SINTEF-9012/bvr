@@ -34,7 +34,7 @@ import org.jdesktop.swingx.painter.MattePainter;
 import com.explodingpixels.macwidgets.IAppWidgetFactory;
 
 
-public class CVLOptionsEditor extends JPanel {
+public class BVROptionsEditor extends JPanel {
 
     private JXPanel leftpanel = new JXPanel();
 
@@ -42,7 +42,7 @@ public class CVLOptionsEditor extends JPanel {
     private JSplitPane splitPane = null;
 	private ConfigurableUnitPanel modelPanel;
 
-    public CVLOptionsEditor() {
+    public BVROptionsEditor() {
     	modelPanel = new ConfigurableUnitPanel();
     	this.setBackground(Color.WHITE);
 
@@ -81,7 +81,7 @@ public class CVLOptionsEditor extends JPanel {
     }
 
     public void showEditor(){
-    	CVLOptionEditorPanel prop = new CVLOptionEditorPanel();
+    	BVROptionEditorPanel prop = new BVROptionEditorPanel();
     	editableModelPanel.displayProperties(prop);
     }
     

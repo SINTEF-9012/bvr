@@ -10,8 +10,8 @@ import no.sintef.bvr.gmf.vspec.edit.parts.ChoiceChoiceGroupMultiplicityCompartme
 import no.sintef.bvr.gmf.vspec.edit.parts.ConstraintContextEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.MultiplicityIntervalEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -38,13 +38,13 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class ChoiceItemSemanticEditPolicy extends
-		CVLMetamodelBaseItemSemanticEditPolicy {
+		BVRMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public ChoiceItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.Choice_2005);
+		super(BVRMetamodelElementTypes.Choice_2005);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class ChoiceItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(incomingLink) == VSpecChildEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(incomingLink) == VSpecChildEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -78,7 +78,7 @@ public class ChoiceItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (CVLMetamodelVisualIDRegistry.getVisualID(incomingLink) == ConstraintContextEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(incomingLink) == ConstraintContextEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -89,7 +89,7 @@ public class ChoiceItemSemanticEditPolicy extends
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(outgoingLink) == VSpecChildEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(outgoingLink) == VSpecChildEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -131,12 +131,12 @@ public class ChoiceItemSemanticEditPolicy extends
 		View view = (View) getHost().getModel();
 		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node) nit.next();
-			switch (CVLMetamodelVisualIDRegistry.getVisualID(node)) {
+			switch (BVRMetamodelVisualIDRegistry.getVisualID(node)) {
 			case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
 				for (Iterator<?> cit = node.getChildren().iterator(); cit
 						.hasNext();) {
 					Node cnode = (Node) cit.next();
-					switch (CVLMetamodelVisualIDRegistry.getVisualID(cnode)) {
+					switch (BVRMetamodelVisualIDRegistry.getVisualID(cnode)) {
 					case MultiplicityIntervalEditPart.VISUAL_ID:
 						cmd.add(new DestroyElementCommand(
 								new DestroyElementRequest(getEditingDomain(),
@@ -166,11 +166,11 @@ public class ChoiceItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (CVLMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
 			return getGEFWrapper(new VSpecChildCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (CVLMetamodelElementTypes.ConstraintContext_4003 == req
+		if (BVRMetamodelElementTypes.ConstraintContext_4003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -182,11 +182,11 @@ public class ChoiceItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (CVLMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
 			return getGEFWrapper(new VSpecChildCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (CVLMetamodelElementTypes.ConstraintContext_4003 == req
+		if (BVRMetamodelElementTypes.ConstraintContext_4003 == req
 				.getElementType()) {
 			return getGEFWrapper(new ConstraintContextCreateCommand(req,
 					req.getSource(), req.getTarget()));

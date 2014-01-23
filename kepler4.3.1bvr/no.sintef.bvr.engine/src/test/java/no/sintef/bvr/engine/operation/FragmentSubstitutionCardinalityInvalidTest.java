@@ -3,7 +3,7 @@ package no.sintef.bvr.engine.operation;
 import java.io.File;
 import java.util.HashMap;
 
-import no.sintef.bvr.engine.error.IncorrectCVLModel;
+import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
@@ -57,7 +57,7 @@ public class FragmentSubstitutionCardinalityInvalidTest {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		try{
 			fso.execute(true);
-		}catch(IncorrectCVLModel e){
+		}catch(IncorrectBVRModel e){
 			return;
 		}
 		Assert.assertTrue("The model is incorrect, the cardinality is 0, but no exeption", false);
@@ -68,7 +68,7 @@ public class FragmentSubstitutionCardinalityInvalidTest {
 		FragmentSubOperation fso = new FragmentSubOperation(fragmentSubHolder);
 		try{
 			fso.execute(false);
-		}catch(IncorrectCVLModel e){
+		}catch(IncorrectBVRModel e){
 			return;
 		}
 		Assert.assertTrue("The model is incorrect, the cardinality is 0, but no exeption", false);

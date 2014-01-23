@@ -8,8 +8,8 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceDropDownListener;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
@@ -23,21 +23,21 @@ import bvr.Variable;
 
 public class AddChoice implements Command {
 
-	CVLUIKernel rootPanel;
+	BVRUIKernel rootPanel;
 	Choice c;
 	JComponent parent;
 	
 	private Map<JComponent, NamedElement> vmMap;
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private BVRView view;
 	private boolean minimized;
 	
 	public AddChoice(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		if(p instanceof Choice){
 			this.rootPanel = rootPanel;
 			this.c = (Choice) p;

@@ -9,7 +9,7 @@ import org.eclipse.ui.PartInitException;
 /**
  * @generated
  */
-public class CVLMetamodelMatchingStrategy implements IEditorMatchingStrategy {
+public class BVRMetamodelMatchingStrategy implements IEditorMatchingStrategy {
 
 	/**
 	 * @generated

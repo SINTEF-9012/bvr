@@ -8,7 +8,7 @@
     <groupId>no.sintef</groupId>
     <artifactId>no.sintef.bvr.ui.loader</artifactId>
     <packaging>jar</packaging>
-    <name>CVL :: UI :: Loader</name>
+    <name>BVR :: UI :: Loader</name>
     <version>1.0.0</version>
 
  <!-- <parent>

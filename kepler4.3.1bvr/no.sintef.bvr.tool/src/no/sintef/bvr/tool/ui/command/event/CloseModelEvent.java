@@ -9,7 +9,7 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 public class CloseModelEvent implements ActionListener {
 
@@ -22,7 +22,7 @@ public class CloseModelEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		int selected = filePane.getSelectedIndex();
-		CVLModel model = Context.eINSTANCE.getBvrModels().get(selected);
+		BVRModel model = Context.eINSTANCE.getBvrModels().get(selected);
 
 		try{
 			int result = JOptionPane.showConfirmDialog(filePane, "Save changes?", "alert", JOptionPane.YES_NO_OPTION);

@@ -14,7 +14,7 @@ import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
 import no.sintef.bvr.tool.primitive.impl.DataBoundaryItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.ui.editor.BindingJTable;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 import bvr.BoundaryElementBinding;
 import bvr.ConfigurableUnit;

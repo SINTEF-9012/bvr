@@ -18,7 +18,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class CVLMetamodelDiagramUpdateCommand implements IHandler {
+public class BVRMetamodelDiagramUpdateCommand implements IHandler {
 
 	/**
 	 * @generated

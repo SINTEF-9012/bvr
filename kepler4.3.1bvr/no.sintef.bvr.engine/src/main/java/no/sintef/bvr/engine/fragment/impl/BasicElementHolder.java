@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.ElementHolder;
 
 public abstract class BasicElementHolder implements ElementHolder {
@@ -46,7 +46,7 @@ public abstract class BasicElementHolder implements ElementHolder {
 		return frNeighboringOutsideElements;
 	}
 		
-	protected void locate() throws BasicCVLEngineException {
+	protected void locate() throws BasicBVREngineException {
 		frElementsOriginal = new HashSet<EObject>();
 		frBElementsInternal = new HashSet<EObject>();
 		frBElementsExternal = new HashSet<EObject>();

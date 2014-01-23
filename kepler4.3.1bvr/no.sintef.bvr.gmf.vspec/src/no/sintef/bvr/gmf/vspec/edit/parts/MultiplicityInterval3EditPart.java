@@ -2,7 +2,7 @@ package no.sintef.bvr.gmf.vspec.edit.parts;
 
 import no.sintef.bvr.gmf.vspec.edit.policies.MultiplicityInterval3CanonicalEditPolicy;
 import no.sintef.bvr.gmf.vspec.edit.policies.MultiplicityInterval3ItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
@@ -253,7 +253,7 @@ public class MultiplicityInterval3EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(CVLMetamodelVisualIDRegistry
+		return getChildBySemanticHint(BVRMetamodelVisualIDRegistry
 				.getType(MultiplicityIntervalLowerUpper3EditPart.VISUAL_ID));
 	}
 

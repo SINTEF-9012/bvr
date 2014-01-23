@@ -6,26 +6,26 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import bvr.NamedElement;
-import no.sintef.bvr.tool.ui.edit.CVLEditorPanel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 
-public class CVLUIKernel {
+public class BVRUIKernel {
 	
-	private CVLEditorPanel editorPanel;
+	private BVREditorPanel editorPanel;
 	private ConfigurableUnitPanel modelPanel;
-	private CVLView view;
+	private BVRView view;
 	
-	public CVLUIKernel(Map<JComponent, NamedElement> vmMap, CVLView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
 		this.view = view;
 		modelPanel = new ConfigurableUnitPanel();
-		editorPanel = new CVLEditorPanel(this, vmMap, view, resolutionvmMaps);
+		editorPanel = new BVREditorPanel(this, vmMap, view, resolutionvmMaps);
 	}
 	
-	public CVLEditorPanel getEditorPanel() {
+	public BVREditorPanel getEditorPanel() {
 		return editorPanel;
 	}
-	public void setEditorPanel(CVLEditorPanel editorPanel) {
+	public void setEditorPanel(BVREditorPanel editorPanel) {
 		this.editorPanel = editorPanel;
 	}
 	public ConfigurableUnitPanel getModelPanel() {

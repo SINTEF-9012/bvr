@@ -5,8 +5,8 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.ExecutionRequest;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class ResetExecutionHandler implements ExecutionHandler {
 	
@@ -18,8 +18,8 @@ public class ResetExecutionHandler implements ExecutionHandler {
 
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
-		CVLView bvrView = (CVLView) request.getDataField("bvrView");
-		CVLModel bvrModel = (CVLModel) request.getDataField("bvrModel");
+		BVRView bvrView = (BVRView) request.getDataField("bvrView");
+		BVRModel bvrModel = (BVRModel) request.getDataField("bvrModel");
 		if(bvrView == null){
 			throw new UnexpectedException("bvrView is required to reset model");
 		}

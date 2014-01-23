@@ -23,7 +23,7 @@ import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierMultiplicityIntervalCompart
 import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierMultiplicityIntervalCompartmentEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -45,13 +45,13 @@ import bvr.Variable;
 /**
  * @generated
  */
-public class CVLMetamodelDiagramUpdater {
+public class BVRMetamodelDiagramUpdater {
 
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getSemanticChildren(View view) {
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+	public static List<BVRMetamodelNodeDescriptor> getSemanticChildren(View view) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
 			return getConfigurableUnit_1000SemanticChildren(view);
 		case ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID:
@@ -69,20 +69,20 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getConfigurableUnit_1000SemanticChildren(
+	public static List<BVRMetamodelNodeDescriptor> getConfigurableUnit_1000SemanticChildren(
 			View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
 		ConfigurableUnit modelElement = (ConfigurableUnit) view.getElement();
-		LinkedList<CVLMetamodelNodeDescriptor> result = new LinkedList<CVLMetamodelNodeDescriptor>();
+		LinkedList<BVRMetamodelNodeDescriptor> result = new LinkedList<BVRMetamodelNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getOwnedVSpec().iterator(); it
 				.hasNext();) {
 			VSpec childElement = (VSpec) it.next();
-			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
+			int visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == ChoiceEditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						visualID));
 				continue;
 			}
@@ -90,10 +90,10 @@ public class CVLMetamodelDiagramUpdater {
 		for (Iterator<?> it = modelElement.getOwnedConstraint().iterator(); it
 				.hasNext();) {
 			Constraint childElement = (Constraint) it.next();
-			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
+			int visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == OpaqueConstraintEditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						visualID));
 				continue;
 			}
@@ -105,21 +105,21 @@ public class CVLMetamodelDiagramUpdater {
 			if (childElement == modelElement) {
 				continue;
 			}
-			if (CVLMetamodelVisualIDRegistry
+			if (BVRMetamodelVisualIDRegistry
 					.getNodeVisualID(view, childElement) == Choice2EditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						Choice2EditPart.VISUAL_ID));
 				continue;
 			}
-			if (CVLMetamodelVisualIDRegistry
+			if (BVRMetamodelVisualIDRegistry
 					.getNodeVisualID(view, childElement) == VariableEditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						VariableEditPart.VISUAL_ID));
 				continue;
 			}
-			if (CVLMetamodelVisualIDRegistry
+			if (BVRMetamodelVisualIDRegistry
 					.getNodeVisualID(view, childElement) == VClassifierEditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						VClassifierEditPart.VISUAL_ID));
 				continue;
 			}
@@ -130,7 +130,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7005SemanticChildren(
+	public static List<BVRMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7005SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -140,14 +140,14 @@ public class CVLMetamodelDiagramUpdater {
 			return Collections.emptyList();
 		}
 		Choice modelElement = (Choice) containerView.getElement();
-		LinkedList<CVLMetamodelNodeDescriptor> result = new LinkedList<CVLMetamodelNodeDescriptor>();
+		LinkedList<BVRMetamodelNodeDescriptor> result = new LinkedList<BVRMetamodelNodeDescriptor>();
 		{
 			MultiplicityInterval childElement = modelElement
 					.getGroupMultiplicity();
-			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
+			int visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == MultiplicityIntervalEditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						visualID));
 			}
 		}
@@ -157,7 +157,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7004SemanticChildren(
+	public static List<BVRMetamodelNodeDescriptor> getChoiceChoiceGroupMultiplicityCompartment_7004SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -167,14 +167,14 @@ public class CVLMetamodelDiagramUpdater {
 			return Collections.emptyList();
 		}
 		Choice modelElement = (Choice) containerView.getElement();
-		LinkedList<CVLMetamodelNodeDescriptor> result = new LinkedList<CVLMetamodelNodeDescriptor>();
+		LinkedList<BVRMetamodelNodeDescriptor> result = new LinkedList<BVRMetamodelNodeDescriptor>();
 		{
 			MultiplicityInterval childElement = modelElement
 					.getGroupMultiplicity();
-			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
+			int visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == MultiplicityInterval3EditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						visualID));
 			}
 		}
@@ -184,7 +184,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getVClassifierVClassifierGroupMultiplicityCompartment_7003SemanticChildren(
+	public static List<BVRMetamodelNodeDescriptor> getVClassifierVClassifierGroupMultiplicityCompartment_7003SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -194,14 +194,14 @@ public class CVLMetamodelDiagramUpdater {
 			return Collections.emptyList();
 		}
 		VClassifier modelElement = (VClassifier) containerView.getElement();
-		LinkedList<CVLMetamodelNodeDescriptor> result = new LinkedList<CVLMetamodelNodeDescriptor>();
+		LinkedList<BVRMetamodelNodeDescriptor> result = new LinkedList<BVRMetamodelNodeDescriptor>();
 		{
 			MultiplicityInterval childElement = modelElement
 					.getGroupMultiplicity();
-			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
+			int visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == MultiplicityInterval4EditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						visualID));
 			}
 		}
@@ -211,7 +211,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelNodeDescriptor> getVClassifierVClassifierInstanceMultiplicityIntervalCompartment_7006SemanticChildren(
+	public static List<BVRMetamodelNodeDescriptor> getVClassifierVClassifierInstanceMultiplicityIntervalCompartment_7006SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
@@ -221,14 +221,14 @@ public class CVLMetamodelDiagramUpdater {
 			return Collections.emptyList();
 		}
 		VClassifier modelElement = (VClassifier) containerView.getElement();
-		LinkedList<CVLMetamodelNodeDescriptor> result = new LinkedList<CVLMetamodelNodeDescriptor>();
+		LinkedList<BVRMetamodelNodeDescriptor> result = new LinkedList<BVRMetamodelNodeDescriptor>();
 		{
 			MultiplicityInterval childElement = modelElement
 					.getInstanceMultiplicity();
-			int visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(view,
+			int visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(view,
 					childElement);
 			if (visualID == MultiplicityInterval2EditPart.VISUAL_ID) {
-				result.add(new CVLMetamodelNodeDescriptor(childElement,
+				result.add(new BVRMetamodelNodeDescriptor(childElement,
 						visualID));
 			}
 		}
@@ -245,8 +245,8 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getContainedLinks(View view) {
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+	public static List<BVRMetamodelLinkDescriptor> getContainedLinks(View view) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ConfigurableUnitEditPart.VISUAL_ID:
 			return getConfigurableUnit_1000ContainedLinks(view);
 		case ChoiceEditPart.VISUAL_ID:
@@ -274,8 +274,8 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getIncomingLinks(View view) {
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+	public static List<BVRMetamodelLinkDescriptor> getIncomingLinks(View view) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ChoiceEditPart.VISUAL_ID:
 			return getChoice_2005IncomingLinks(view);
 		case Choice2EditPart.VISUAL_ID:
@@ -301,8 +301,8 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOutgoingLinks(View view) {
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+	public static List<BVRMetamodelLinkDescriptor> getOutgoingLinks(View view) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 		case ChoiceEditPart.VISUAL_ID:
 			return getChoice_2005OutgoingLinks(view);
 		case Choice2EditPart.VISUAL_ID:
@@ -328,7 +328,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getConfigurableUnit_1000ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getConfigurableUnit_1000ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -336,10 +336,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2005ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getChoice_2005ContainedLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -347,10 +347,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2015ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getChoice_2015ContainedLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -358,10 +358,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getVariable_2016ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getVariable_2016ContainedLinks(
 			View view) {
 		Variable modelElement = (Variable) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -369,10 +369,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getVClassifier_2017ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getVClassifier_2017ContainedLinks(
 			View view) {
 		VClassifier modelElement = (VClassifier) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -380,10 +380,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2014ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getOpaqueConstraint_2014ContainedLinks(
 			View view) {
 		OpaqueConstraint modelElement = (OpaqueConstraint) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_4003(modelElement));
 		return result;
 	}
@@ -391,7 +391,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3002ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3002ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -399,7 +399,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3003ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3003ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -407,7 +407,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3001ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3001ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -415,7 +415,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3004ContainedLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3004ContainedLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -423,12 +423,12 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2005IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getChoice_2005IncomingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_4003(
@@ -439,12 +439,12 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2015IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getChoice_2015IncomingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_4003(
@@ -455,12 +455,12 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getVariable_2016IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getVariable_2016IncomingLinks(
 			View view) {
 		Variable modelElement = (Variable) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_4003(
@@ -471,12 +471,12 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getVClassifier_2017IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getVClassifier_2017IncomingLinks(
 			View view) {
 		VClassifier modelElement = (VClassifier) view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
 				.find(view.eResource().getResourceSet().getResources());
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_4003(
@@ -487,7 +487,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2014IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getOpaqueConstraint_2014IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -495,7 +495,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3002IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3002IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -503,7 +503,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3003IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3003IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -511,7 +511,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3001IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3001IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -519,7 +519,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3004IncomingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3004IncomingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -527,10 +527,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2005OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getChoice_2005OutgoingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -538,10 +538,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getChoice_2015OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getChoice_2015OutgoingLinks(
 			View view) {
 		Choice modelElement = (Choice) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -549,10 +549,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getVariable_2016OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getVariable_2016OutgoingLinks(
 			View view) {
 		Variable modelElement = (Variable) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -560,10 +560,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getVClassifier_2017OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getVClassifier_2017OutgoingLinks(
 			View view) {
 		VClassifier modelElement = (VClassifier) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(modelElement));
 		return result;
 	}
@@ -571,10 +571,10 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getOpaqueConstraint_2014OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getOpaqueConstraint_2014OutgoingLinks(
 			View view) {
 		OpaqueConstraint modelElement = (OpaqueConstraint) view.getElement();
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_4003(modelElement));
 		return result;
 	}
@@ -582,7 +582,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3002OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3002OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -590,7 +590,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3003OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3003OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -598,7 +598,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3001OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3001OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -606,7 +606,7 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<CVLMetamodelLinkDescriptor> getMultiplicityInterval_3004OutgoingLinks(
+	public static List<BVRMetamodelLinkDescriptor> getMultiplicityInterval_3004OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}
@@ -614,17 +614,17 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<CVLMetamodelLinkDescriptor> getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
+	private static Collection<BVRMetamodelLinkDescriptor> getIncomingFeatureModelFacetLinks_VSpec_Child_4001(
 			VSpec target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == BvrPackage.eINSTANCE
 					.getVSpec_Child()) {
-				result.add(new CVLMetamodelLinkDescriptor(setting.getEObject(),
-						target, CVLMetamodelElementTypes.VSpecChild_4001,
+				result.add(new BVRMetamodelLinkDescriptor(setting.getEObject(),
+						target, BVRMetamodelElementTypes.VSpecChild_4001,
 						VSpecChildEditPart.VISUAL_ID));
 			}
 		}
@@ -634,18 +634,18 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<CVLMetamodelLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_Context_4003(
+	private static Collection<BVRMetamodelLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_Context_4003(
 			VSpec target,
 			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences
 				.get(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == BvrPackage.eINSTANCE
 					.getConstraint_Context()) {
-				result.add(new CVLMetamodelLinkDescriptor(setting.getEObject(),
+				result.add(new BVRMetamodelLinkDescriptor(setting.getEObject(),
 						target,
-						CVLMetamodelElementTypes.ConstraintContext_4003,
+						BVRMetamodelElementTypes.ConstraintContext_4003,
 						ConstraintContextEditPart.VISUAL_ID));
 			}
 		}
@@ -655,14 +655,14 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<CVLMetamodelLinkDescriptor> getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(
+	private static Collection<BVRMetamodelLinkDescriptor> getOutgoingFeatureModelFacetLinks_VSpec_Child_4001(
 			VSpec source) {
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		for (Iterator<?> destinations = source.getChild().iterator(); destinations
 				.hasNext();) {
 			VSpec destination = (VSpec) destinations.next();
-			result.add(new CVLMetamodelLinkDescriptor(source, destination,
-					CVLMetamodelElementTypes.VSpecChild_4001,
+			result.add(new BVRMetamodelLinkDescriptor(source, destination,
+					BVRMetamodelElementTypes.VSpecChild_4001,
 					VSpecChildEditPart.VISUAL_ID));
 		}
 		return result;
@@ -671,15 +671,15 @@ public class CVLMetamodelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<CVLMetamodelLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_Context_4003(
+	private static Collection<BVRMetamodelLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_Context_4003(
 			Constraint source) {
-		LinkedList<CVLMetamodelLinkDescriptor> result = new LinkedList<CVLMetamodelLinkDescriptor>();
+		LinkedList<BVRMetamodelLinkDescriptor> result = new LinkedList<BVRMetamodelLinkDescriptor>();
 		VSpec destination = source.getContext();
 		if (destination == null) {
 			return result;
 		}
-		result.add(new CVLMetamodelLinkDescriptor(source, destination,
-				CVLMetamodelElementTypes.ConstraintContext_4003,
+		result.add(new BVRMetamodelLinkDescriptor(source, destination,
+				BVRMetamodelElementTypes.ConstraintContext_4003,
 				ConstraintContextEditPart.VISUAL_ID));
 		return result;
 	}
@@ -692,32 +692,32 @@ public class CVLMetamodelDiagramUpdater {
 		 * @generated
 		 */
 		@Override
-		public List<CVLMetamodelNodeDescriptor> getSemanticChildren(View view) {
-			return CVLMetamodelDiagramUpdater.getSemanticChildren(view);
+		public List<BVRMetamodelNodeDescriptor> getSemanticChildren(View view) {
+			return BVRMetamodelDiagramUpdater.getSemanticChildren(view);
 		}
 
 		/**
 		 * @generated
 		 */
 		@Override
-		public List<CVLMetamodelLinkDescriptor> getContainedLinks(View view) {
-			return CVLMetamodelDiagramUpdater.getContainedLinks(view);
+		public List<BVRMetamodelLinkDescriptor> getContainedLinks(View view) {
+			return BVRMetamodelDiagramUpdater.getContainedLinks(view);
 		}
 
 		/**
 		 * @generated
 		 */
 		@Override
-		public List<CVLMetamodelLinkDescriptor> getIncomingLinks(View view) {
-			return CVLMetamodelDiagramUpdater.getIncomingLinks(view);
+		public List<BVRMetamodelLinkDescriptor> getIncomingLinks(View view) {
+			return BVRMetamodelDiagramUpdater.getIncomingLinks(view);
 		}
 
 		/**
 		 * @generated
 		 */
 		@Override
-		public List<CVLMetamodelLinkDescriptor> getOutgoingLinks(View view) {
-			return CVLMetamodelDiagramUpdater.getOutgoingLinks(view);
+		public List<BVRMetamodelLinkDescriptor> getOutgoingLinks(View view) {
+			return BVRMetamodelDiagramUpdater.getOutgoingLinks(view);
 		}
 	};
 

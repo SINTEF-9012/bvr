@@ -17,16 +17,16 @@ import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
-import no.sintef.ict.splcatool.CVLException;
+import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
 public class CalculateCoverage implements ActionListener {
 	private int t;
-	private CVLModel m;
+	private BVRModel m;
 
-	public CalculateCoverage(CVLModel m, CVLView bvrView, int t) {
+	public CalculateCoverage(BVRModel m, BVRView bvrView, int t) {
 		this.m = m;
 		this.t = t;
 	}
@@ -38,11 +38,11 @@ public class CalculateCoverage implements ActionListener {
 		
 		try {
 			// Get FM:
-			GUIDSL gdsl = m.getCVLM().getGUIDSL();
+			GUIDSL gdsl = m.getBVRM().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			
 			// Get Covering Array
-			CoveringArray ca = m.getCVLM().getCoveringArray();
+			CoveringArray ca = m.getBVRM().getCoveringArray();
 			
 			// Calculate
 			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));

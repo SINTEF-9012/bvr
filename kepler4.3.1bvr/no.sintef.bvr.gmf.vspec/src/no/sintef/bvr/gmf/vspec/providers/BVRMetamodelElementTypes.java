@@ -17,7 +17,7 @@ import no.sintef.bvr.gmf.vspec.edit.parts.OpaqueConstraintEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -33,12 +33,12 @@ import bvr.BvrPackage;
 /**
  * @generated
  */
-public class CVLMetamodelElementTypes {
+public class BVRMetamodelElementTypes {
 
 	/**
 	 * @generated
 	 */
-	private CVLMetamodelElementTypes() {
+	private BVRMetamodelElementTypes() {
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class CVLMetamodelElementTypes {
 	 * @generated
 	 */
 	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
-			CVLMetamodelDiagramEditorPlugin.getInstance()
+			BVRMetamodelDiagramEditorPlugin.getInstance()
 					.getItemProvidersAdapterFactory());
 
 	/**
@@ -253,7 +253,7 @@ public class CVLMetamodelElementTypes {
 		 */
 		@Override
 		public boolean isKnownElementType(IElementType elementType) {
-			return no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes
+			return no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes
 					.isKnownElementType(elementType);
 		}
 
@@ -262,7 +262,7 @@ public class CVLMetamodelElementTypes {
 		 */
 		@Override
 		public IElementType getElementTypeForVisualId(int visualID) {
-			return no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes
+			return no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes
 					.getElementType(visualID);
 		}
 
@@ -272,7 +272,7 @@ public class CVLMetamodelElementTypes {
 		@Override
 		public ENamedElement getDefiningNamedElement(
 				IAdaptable elementTypeAdapter) {
-			return no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes
+			return no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes
 					.getElement(elementTypeAdapter);
 		}
 	};

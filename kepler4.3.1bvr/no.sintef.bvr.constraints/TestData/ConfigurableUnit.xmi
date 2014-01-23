@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:bvr="http:///bvr.ecore"
-    xsi:schemaLocation="http:///bvr.ecore CVLMetamodel.ecore">
+    xsi:schemaLocation="http:///bvr.ecore BVRMetamodel.ecore">
   <ownedVSpec
       xsi:type="bvr:Choice"
       name="R">

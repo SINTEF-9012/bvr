@@ -6,7 +6,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 /**
  * @generated
  */
-public class CVLMetamodelUriEditorInputTester extends PropertyTester {
+public class BVRMetamodelUriEditorInputTester extends PropertyTester {
 
 	/**
 	 * @generated

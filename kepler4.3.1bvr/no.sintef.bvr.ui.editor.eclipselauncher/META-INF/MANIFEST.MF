@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CVL 2 Editor Eclipse Launcher
+Bundle-Name: BVR 2 Editor Eclipse Launcher
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.eclipselauncher;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.bvr.ui.editor.eclipselauncher.Activator

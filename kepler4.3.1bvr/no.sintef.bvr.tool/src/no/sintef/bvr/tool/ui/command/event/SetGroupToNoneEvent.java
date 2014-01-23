@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
@@ -16,9 +16,9 @@ import bvr.VSpec;
 public class SetGroupToNoneEvent implements ActionListener {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private BVRView view;
 
-	public SetGroupToNoneEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public SetGroupToNoneEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;

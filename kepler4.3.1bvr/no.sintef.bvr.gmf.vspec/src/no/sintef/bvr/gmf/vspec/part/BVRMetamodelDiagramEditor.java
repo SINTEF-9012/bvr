@@ -1,7 +1,7 @@
 package no.sintef.bvr.gmf.vspec.part;
 
 import no.sintef.bvr.gmf.vspec.custom.resolution.ResolutionConsistency;
-import no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorItem;
+import no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorItem;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -49,13 +49,13 @@ import bvr.ConfigurableUnit;
 /**
  * @generated
  */
-public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
+public class BVRMetamodelDiagramEditor extends DiagramDocumentEditor implements
 		IGotoMarker {
 
 	/**
 	 * @generated
 	 */
-	public static final String ID = "no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID"; //$NON-NLS-1$
+	public static final String ID = "no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"; //$NON-NLS-1$
 
 
 	/**
@@ -66,7 +66,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelDiagramEditor() {
+	public BVRMetamodelDiagramEditor() {
 		super(true);
 	}
 
@@ -82,7 +82,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	 */
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
-		new CVLMetamodelPaletteFactory().fillPalette(root);
+		new BVRMetamodelPaletteFactory().fillPalette(root);
 		return root;
 	}
 
@@ -90,14 +90,14 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	 * @generated
 	 */
 	protected PreferencesHint getPreferencesHint() {
-		return CVLMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+		return BVRMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
 	/**
 	 * @generated
 	 */
 	public String getContributorId() {
-		return CVLMetamodelDiagramEditorPlugin.ID;
+		return BVRMetamodelDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
-			return CVLMetamodelDiagramEditorPlugin.getInstance()
+			return BVRMetamodelDiagramEditorPlugin.getInstance()
 					.getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
@@ -145,7 +145,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput
 				|| input instanceof URIEditorInput) {
-			setDocumentProvider(CVLMetamodelDiagramEditorPlugin.getInstance()
+			setDocumentProvider(BVRMetamodelDiagramEditorPlugin.getInstance()
 					.getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
@@ -214,7 +214,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 		}
 		if (provider.isDeleted(input) && original != null) {
 			String message = NLS.bind(
-					Messages.CVLMetamodelDiagramEditor_SavingDeletedFile,
+					Messages.BVRMetamodelDiagramEditor_SavingDeletedFile,
 					original.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
@@ -244,8 +244,8 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
 				MessageDialog.openWarning(shell,
-						Messages.CVLMetamodelDiagramEditor_SaveAsErrorTitle,
-						Messages.CVLMetamodelDiagramEditor_SaveAsErrorMessage);
+						Messages.BVRMetamodelDiagramEditor_SaveAsErrorTitle,
+						Messages.BVRMetamodelDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
@@ -260,8 +260,8 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
 				ErrorDialog.openError(shell,
-						Messages.CVLMetamodelDiagramEditor_SaveErrorTitle,
-						Messages.CVLMetamodelDiagramEditor_SaveErrorMessage,
+						Messages.BVRMetamodelDiagramEditor_SaveErrorTitle,
+						Messages.BVRMetamodelDiagramEditor_SaveErrorMessage,
 						x.getStatus());
 			}
 		} finally {
@@ -296,7 +296,7 @@ public class CVLMetamodelDiagramEditor extends DiagramDocumentEditor implements
 		}
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if (file != null) {
-			CVLMetamodelNavigatorItem item = new CVLMetamodelNavigatorItem(
+			BVRMetamodelNavigatorItem item = new BVRMetamodelNavigatorItem(
 					diagram, file, false);
 			return new StructuredSelection(item);
 		}

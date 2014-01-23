@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.edit.parts;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -12,7 +12,7 @@ import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAcces
 /**
  * @generated
  */
-public class CVLMetamodelEditPartFactory implements EditPartFactory {
+public class BVRMetamodelEditPartFactory implements EditPartFactory {
 
 	/**
 	 * @generated
@@ -20,7 +20,7 @@ public class CVLMetamodelEditPartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (CVLMetamodelVisualIDRegistry.getVisualID(view)) {
+			switch (BVRMetamodelVisualIDRegistry.getVisualID(view)) {
 
 			case ConfigurableUnitEditPart.VISUAL_ID:
 				return new ConfigurableUnitEditPart(view);

@@ -18,14 +18,14 @@
    <extension point="org.eclipse.ui.editors" id="gmf-editor">
       <?gmfgen generated="true"?>
       <editor
-         id="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID"
+         id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/BvrDiagramFile.gif"
          extensions="bvr_diagram"
          default="true"
-         class="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditor"
-         matchingStrategy="no.sintef.bvr.gmf.vspec.part.CVLMetamodelMatchingStrategy"
-         contributorClass="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramActionBarContributor">
+         class="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditor"
+         matchingStrategy="no.sintef.bvr.gmf.vspec.part.BVRMetamodelMatchingStrategy"
+         contributorClass="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramActionBarContributor">
       </editor>
    </extension>
    
@@ -45,8 +45,8 @@
   	     name="%newWizardName"
   	     icon="icons/obj16/BvrDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
-  	     class="no.sintef.bvr.gmf.vspec.part.CVLMetamodelCreationWizard"
-  	     id="no.sintef.bvr.gmf.vspec.part.CVLMetamodelCreationWizardID">
+  	     class="no.sintef.bvr.gmf.vspec.part.BVRMetamodelCreationWizard"
+  	     id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelCreationWizardID">
   	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
@@ -59,7 +59,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="%initDiagramActionLabel"
-               class="no.sintef.bvr.gmf.vspec.part.CVLMetamodelInitDiagramFileAction"
+               class="no.sintef.bvr.gmf.vspec.part.BVRMetamodelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="no.sintef.bvr.gmf.vspec.InitDiagramAction">
@@ -71,9 +71,9 @@
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="CVLMetamodelPresentation">
+         id="BVRMetamodelPresentation">
          <Priority name="Lowest"/>
-         <ViewId id="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID">
+         <ViewId id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -88,9 +88,9 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="CVLMetamodelPresentationIDE">
+         id="BVRMetamodelPresentationIDE">
          <Priority name="Lowest"/>
-         <ViewId id="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID">
+         <ViewId id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
@@ -98,9 +98,9 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="CVLMetamodelRender">
+            id="BVRMetamodelRender">
          <Priority name="Lowest"/>
-         <ViewId id="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID">
+         <ViewId id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>
@@ -153,7 +153,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="no.sintef.bvr.gmf.vspec"
-            labelProvider="no.sintef.bvr.gmf.vspec.sheet.CVLMetamodelSheetLabelProvider">
+            labelProvider="no.sintef.bvr.gmf.vspec.sheet.BVRMetamodelSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -204,19 +204,19 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="no.sintef.bvr.gmf.vspec.sheet.CVLMetamodelPropertySection">
+            class="no.sintef.bvr.gmf.vspec.sheet.BVRMetamodelPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
+            <input type="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
-      <viewProvider class="no.sintef.bvr.gmf.vspec.providers.CVLMetamodelViewProvider">
+      <viewProvider class="no.sintef.bvr.gmf.vspec.providers.BVRMetamodelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CVLMetamodel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="BVRMetamodel"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005,2015,2016,2017,2014,3002,3003,3001,3004"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4003"/>
       </viewProvider>
@@ -224,10 +224,10 @@
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="true"?>
-      <editpartProvider class="no.sintef.bvr.gmf.vspec.providers.CVLMetamodelEditPartProvider">
+      <editpartProvider class="no.sintef.bvr.gmf.vspec.providers.BVRMetamodelEditPartProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
-            <method name="getType()" value="CVLMetamodel"/>
+            <method name="getType()" value="BVRMetamodel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
             <method name="getType()" value="2005,2015,2016,2017,2014,3002,3003,3001,3004"/>
@@ -247,7 +247,7 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="no.sintef.bvr.gmf.vspec.providers.CVLMetamodelModelingAssistantProvider">
+      <modelingAssistantProvider class="no.sintef.bvr.gmf.vspec.providers.BVRMetamodelModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="no.sintef.bvr.gmf.vspec.edit.parts.ConfigurableUnitEditPart" id="ConfigurableUnit_1000"/>
          <object class="no.sintef.bvr.gmf.vspec.edit.parts.ChoiceEditPart" id="Choice_2005"/>
@@ -265,14 +265,14 @@
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
-      <IconProvider class="no.sintef.bvr.gmf.vspec.providers.CVLMetamodelIconProvider">
+      <IconProvider class="no.sintef.bvr.gmf.vspec.providers.BVRMetamodelIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
       <?gmfgen generated="true"?>
-      <ParserProvider class="no.sintef.bvr.gmf.vspec.providers.CVLMetamodelParserProvider">
+      <ParserProvider class="no.sintef.bvr.gmf.vspec.providers.BVRMetamodelParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -427,7 +427,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="no.sintef.bvr.gmf.vspec"
            properties="isURIEditorInput"
-           class="no.sintef.bvr.gmf.vspec.part.CVLMetamodelUriEditorInputTester">
+           class="no.sintef.bvr.gmf.vspec.part.BVRMetamodelUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -453,8 +453,8 @@
             id="no.sintef.bvr.gmf.vspec.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorContentProvider" 
-            labelProvider="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorLabelProvider"
+            contentProvider="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorContentProvider" 
+            labelProvider="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorLabelProvider"
             icon="icons/obj16/BvrDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -463,24 +463,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="bvr_diagram"/>
                </and>
-               <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
+               <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
+         	   <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="no.sintef.bvr.gmf.vspec.navigatorSorter" 
-               class="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorSorter">
+               class="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="bvr_diagram"/>
                   </and>
-                  <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
+                  <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -489,8 +489,8 @@
             id="no.sintef.bvr.gmf.vspec.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorContentProvider" 
-            labelProvider="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorLabelProvider"
+            contentProvider="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorContentProvider" 
+            labelProvider="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorLabelProvider"
             icon="icons/obj16/BvrDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -499,19 +499,19 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="bvr"/>
                </and>
-               <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem"/>
+               <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
-            <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelDomainNavigatorItem"/>
+            <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelDomainNavigatorItem"/>
          </possibleChildren>
       </navigatorContent>
       <actionProvider
             id="no.sintef.bvr.gmf.vspec.navigatorActionProvider"
-            class="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorActionProvider">
+            class="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
+               <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -521,7 +521,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="no.sintef.bvr.gmf.vspec.navigatorLinkHelper"
-            class="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorLinkHelper">
+            class="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -529,7 +529,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem"/>
+            <instanceof value="no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -537,7 +537,7 @@
       <?gmfgen generated="false"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramUpdateCommand"
+         defaultHandler="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramUpdateCommand"
          description="%update.diagram.description"
          id="no.sintef.bvr.gmf.vspec.updateDiagram"
          name="%update.diagram.name"/>
@@ -574,7 +574,7 @@
          <command commandId="no.sintef.bvr.gmf.vspec.LoadResourceAction">
             <visibleWhen>
                <and>
-                  <with variable="activePartId"><equals value="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID"/></with>
+                  <with variable="activePartId"><equals value="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
                      <instanceof value="no.sintef.bvr.gmf.vspec.edit.parts.ConfigurableUnitEditPart"/>
                   </iterate></with>
@@ -586,7 +586,7 @@
          <command label="CustomLayout" 
             commandId="no.sintef.bvr.gmf.vspec.custom.layout.customLayout" style="push">
              <visibleWhen>
-                  <with variable="activePartId"><equals value="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID"/></with>
+                  <with variable="activePartId"><equals value="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"/></with>
             </visibleWhen>
          </command>
      </menuContribution>
@@ -595,7 +595,7 @@
             commandId="no.sintef.bvr.gmf.vspec.custom.collapse.collapsenode" style="push">
              <visibleWhen>
              <and>
-                  <with variable="activePartId"><equals value="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID"/></with>
+                  <with variable="activePartId"><equals value="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"/></with>
                   <with variable="selection">
                      <iterate ifEmpty="false"> <or>
                      <instanceof value="no.sintef.bvr.gmf.vspec.edit.parts.Choice2EditPart"/>
@@ -612,10 +612,10 @@
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
       <?gmfgen generated="true"?>
-      <category id="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <category id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
       <command id="no.sintef.bvr.gmf.vspec.LoadResourceAction"
          name="Load Resource"
-         categoryId="no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorID"
+         categoryId="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"
          defaultHandler="no.sintef.bvr.gmf.vspec.part.LoadResourceAction"/>
    </extension>
 

@@ -6,8 +6,8 @@ import java.util.List;
 
 import no.sintef.bvr.gmf.vspec.edit.policies.Choice2CanonicalEditPolicy;
 import no.sintef.bvr.gmf.vspec.edit.policies.Choice2ItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ChopboxAnchor;
@@ -86,7 +86,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicyWithCustomReparent(
-						CVLMetamodelVisualIDRegistry.TYPED_INSTANCE));
+						BVRMetamodelVisualIDRegistry.TYPED_INSTANCE));
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new Choice2ItemSemanticEditPolicy());
@@ -376,7 +376,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(CVLMetamodelVisualIDRegistry
+		return getChildBySemanticHint(BVRMetamodelVisualIDRegistry
 				.getType(ChoiceName2EditPart.VISUAL_ID));
 	}
 
@@ -385,7 +385,7 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+		types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		return types;
 	}
 
@@ -396,16 +396,16 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ChoiceEditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof no.sintef.bvr.gmf.vspec.edit.parts.Choice2EditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof VariableEditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		if (targetEditPart instanceof VClassifierEditPart) {
-			types.add(CVLMetamodelElementTypes.VSpecChild_4001);
+			types.add(BVRMetamodelElementTypes.VSpecChild_4001);
 		}
 		return types;
 	}
@@ -415,11 +415,11 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			// types.add(CVLMetamodelElementTypes.Choice_2005);
-			types.add(CVLMetamodelElementTypes.Choice_2015);
-			types.add(CVLMetamodelElementTypes.Variable_2016);
-			types.add(CVLMetamodelElementTypes.VClassifier_2017);
+		if (relationshipType == BVRMetamodelElementTypes.VSpecChild_4001) {
+			// types.add(BVRMetamodelElementTypes.Choice_2005);
+			types.add(BVRMetamodelElementTypes.Choice_2015);
+			types.add(BVRMetamodelElementTypes.Variable_2016);
+			types.add(BVRMetamodelElementTypes.VClassifier_2017);
 		}
 		return types;
 	}
@@ -429,8 +429,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(CVLMetamodelElementTypes.VSpecChild_4001);
-		types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+		types.add(BVRMetamodelElementTypes.VSpecChild_4001);
+		types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		return types;
 	}
 
@@ -439,13 +439,13 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == CVLMetamodelElementTypes.VSpecChild_4001) {
-			types.add(CVLMetamodelElementTypes.Choice_2005);
-			types.add(CVLMetamodelElementTypes.Choice_2015);
-			types.add(CVLMetamodelElementTypes.Variable_2016);
-			types.add(CVLMetamodelElementTypes.VClassifier_2017);
-		} else if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4003) {
-			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2014);
+		if (relationshipType == BVRMetamodelElementTypes.VSpecChild_4001) {
+			types.add(BVRMetamodelElementTypes.Choice_2005);
+			types.add(BVRMetamodelElementTypes.Choice_2015);
+			types.add(BVRMetamodelElementTypes.Variable_2016);
+			types.add(BVRMetamodelElementTypes.VClassifier_2017);
+		} else if (relationshipType == BVRMetamodelElementTypes.ConstraintContext_4003) {
+			types.add(BVRMetamodelElementTypes.OpaqueConstraint_2014);
 		}
 		return types;
 	}
@@ -460,8 +460,8 @@ public class Choice2EditPart extends ShapeNodeEditPart {
 					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter
 					.getAdapter(IElementType.class);
-			if (type == CVLMetamodelElementTypes.MultiplicityInterval_3003) {
-				return getChildBySemanticHint(CVLMetamodelVisualIDRegistry
+			if (type == BVRMetamodelElementTypes.MultiplicityInterval_3003) {
+				return getChildBySemanticHint(BVRMetamodelVisualIDRegistry
 						.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID));
 			}
 		}

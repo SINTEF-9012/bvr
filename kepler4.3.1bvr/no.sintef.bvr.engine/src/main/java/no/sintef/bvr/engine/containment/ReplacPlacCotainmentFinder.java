@@ -22,7 +22,7 @@ import bvr.ToPlacement;
 import bvr.ToReplacement;
 
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.IncorrectCVLModel;
+import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 
 public class ReplacPlacCotainmentFinder {
@@ -54,7 +54,7 @@ public class ReplacPlacCotainmentFinder {
 				PlacementFragment placement = pHolder.getPlacement().getPlacementFragment();
 				int result = EngineUtility.testPlacementIntersection(replacement, placement);
 				if(result == EngineUtility.P_CNTND)
-					throw new IncorrectCVLModel("placement is partially contained in replacement, can not handle");
+					throw new IncorrectBVRModel("placement is partially contained in replacement, can not handle");
 				
 				if(result == EngineUtility.CNTND){
 					if(placementStaleElements.get(placement) == null)

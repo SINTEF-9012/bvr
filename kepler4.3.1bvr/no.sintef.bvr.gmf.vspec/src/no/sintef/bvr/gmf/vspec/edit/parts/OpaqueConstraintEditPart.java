@@ -6,8 +6,8 @@ import java.util.List;
 
 import no.sintef.bvr.gmf.vspec.edit.policies.OpaqueConstraintCanonicalEditPolicy;
 import no.sintef.bvr.gmf.vspec.edit.policies.OpaqueConstraintItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
@@ -314,7 +314,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(CVLMetamodelVisualIDRegistry
+		return getChildBySemanticHint(BVRMetamodelVisualIDRegistry
 				.getType(OpaqueConstraintConstraintEditPart.VISUAL_ID));
 	}
 
@@ -323,7 +323,7 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+		types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		return types;
 	}
 
@@ -334,16 +334,16 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof ChoiceEditPart) {
-			types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+			types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		}
 		if (targetEditPart instanceof Choice2EditPart) {
-			types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+			types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		}
 		if (targetEditPart instanceof VariableEditPart) {
-			types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+			types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		}
 		if (targetEditPart instanceof VClassifierEditPart) {
-			types.add(CVLMetamodelElementTypes.ConstraintContext_4003);
+			types.add(BVRMetamodelElementTypes.ConstraintContext_4003);
 		}
 		return types;
 	}
@@ -353,11 +353,11 @@ public class OpaqueConstraintEditPart extends ShapeNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == CVLMetamodelElementTypes.ConstraintContext_4003) {
-			types.add(CVLMetamodelElementTypes.Choice_2005);
-			types.add(CVLMetamodelElementTypes.Choice_2015);
-			types.add(CVLMetamodelElementTypes.Variable_2016);
-			types.add(CVLMetamodelElementTypes.VClassifier_2017);
+		if (relationshipType == BVRMetamodelElementTypes.ConstraintContext_4003) {
+			types.add(BVRMetamodelElementTypes.Choice_2005);
+			types.add(BVRMetamodelElementTypes.Choice_2015);
+			types.add(BVRMetamodelElementTypes.Variable_2016);
+			types.add(BVRMetamodelElementTypes.VClassifier_2017);
 		}
 		return types;
 	}

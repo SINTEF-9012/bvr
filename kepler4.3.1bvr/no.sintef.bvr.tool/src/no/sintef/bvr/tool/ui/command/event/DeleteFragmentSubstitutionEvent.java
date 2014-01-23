@@ -17,17 +17,17 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.primitive.DataItem;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 
 public class DeleteFragmentSubstitutionEvent implements ActionListener {
 
 	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<BVRModel> models;
+	private List<BVRView> views;
 
-	public DeleteFragmentSubstitutionEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views){
+	public DeleteFragmentSubstitutionEvent(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views){
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -36,7 +36,7 @@ public class DeleteFragmentSubstitutionEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int tab = filePane.getSelectedIndex();
-		CVLModel m = models.get(tab);
+		BVRModel m = models.get(tab);
 		ConfigurableUnit cu = m.getCU();
 		
 		if(!LoaderUtility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){

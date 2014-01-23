@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" xsi:schemaLocation="http:///bvr.ecore CVLMetamodel.ecore" name="Configurable Unit 1">
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" xsi:schemaLocation="http:///bvr.ecore BVRMetamodel.ecore" name="Configurable Unit 1">
   <ownedVSpec xsi:type="bvr:Choice" name="fs1">
     <child xsi:type="bvr:Choice" name="fs2twin"/>
     <child xsi:type="bvr:Choice" name="fs3twin"/>

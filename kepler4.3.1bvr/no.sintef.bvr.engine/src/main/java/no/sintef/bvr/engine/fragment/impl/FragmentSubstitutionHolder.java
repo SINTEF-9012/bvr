@@ -20,7 +20,7 @@ import bvr.PlacementBoundaryElement;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.FragSubHolder;
 
 public class FragmentSubstitutionHolder implements FragSubHolder {
@@ -34,7 +34,7 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 	private HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementOHInsideBoundaryMap;
 	private HashMap<ToPlacement, HashSet<ObjectHandle>> toPlacementOHOutsideBoundaryMap;
 
-	public FragmentSubstitutionHolder(FragmentSubstitution fs) throws BasicCVLEngineException {
+	public FragmentSubstitutionHolder(FragmentSubstitution fs) throws BasicBVREngineException {
 		fragment = fs;
 		placement = new PlacementElementHolder(fragment.getPlacement());
 		replacement = new ReplacementElementHolder(fragment.getReplacement());
@@ -55,14 +55,14 @@ public class FragmentSubstitutionHolder implements FragSubHolder {
 		}
 	}
 	
-	public void update(boolean replace) throws BasicCVLEngineException{
+	public void update(boolean replace) throws BasicBVREngineException{
 		if(replace) removeNotBoundBoundaries();
 		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
 		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
 		placement.update();
 	}
 	
-	public void refresh() throws BasicCVLEngineException{
+	public void refresh() throws BasicBVREngineException{
 		placement.setFromPlacementInsBoundaryMap(fromPlacementOHInsideBoundaryMap);
 		placement.setToPlacementOutBoundaryMap(toPlacementOHOutsideBoundaryMap);
 		placement.update();

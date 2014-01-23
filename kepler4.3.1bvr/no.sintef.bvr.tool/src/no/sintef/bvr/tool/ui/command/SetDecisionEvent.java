@@ -3,8 +3,8 @@ package no.sintef.bvr.tool.ui.command;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
@@ -13,10 +13,10 @@ import bvr.VSpecResolution;
 
 public class SetDecisionEvent implements ActionListener {
 	private ChoiceResolutuion cr;
-	private CVLView view;
+	private BVRView view;
 	private boolean newdecision;
 	
-	public SetDecisionEvent(ChoiceResolutuion a, CVLView view, boolean newdecision) {
+	public SetDecisionEvent(ChoiceResolutuion a, BVRView view, boolean newdecision) {
 		cr = a;
 		this.newdecision = newdecision;
 		this.view = view;

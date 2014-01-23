@@ -12,7 +12,7 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 	 * @generated
 	 */
 	public ModelElementSelectionPage(String pageName) {
-		super(CVLMetamodelDiagramEditorPlugin.getInstance()
+		super(BVRMetamodelDiagramEditorPlugin.getInstance()
 				.getItemProvidersAdapterFactory(), pageName);
 	}
 

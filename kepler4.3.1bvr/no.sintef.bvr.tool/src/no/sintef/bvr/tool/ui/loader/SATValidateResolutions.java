@@ -20,14 +20,14 @@ import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
-import no.sintef.ict.splcatool.CVLException;
+import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CoveringArray;
 
 public class SATValidateResolutions implements ActionListener {
-	private CVLModel m;
-	private CVLView v;
+	private BVRModel m;
+	private BVRView v;
 
-	public SATValidateResolutions(CVLModel m, CVLView bvrView) {
+	public SATValidateResolutions(BVRModel m, BVRView bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}
@@ -35,7 +35,7 @@ public class SATValidateResolutions implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		no.sintef.ict.splcatool.CVLModel x = m.getCVLM();
+		no.sintef.ict.splcatool.BVRModel x = m.getBVRM();
 		
 		CoveringArray ca;
 		try {
@@ -44,7 +44,7 @@ public class SATValidateResolutions implements ActionListener {
 			Context.eINSTANCE.logger.error("Getting CA failed: ", e);
 			StaticUICommands.showMessageErrorDialog(null, e, "Getting CA failed: ");
 			return;
-		} catch (CVLException e) {
+		} catch (BVRException e) {
 			Context.eINSTANCE.logger.error("Getting CA failed: ", e);
 			StaticUICommands.showMessageErrorDialog(null, e, "Getting CA failed: ");
 			return;

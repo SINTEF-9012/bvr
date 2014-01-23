@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: no.sintef.bvr.model.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: bvr.presentation.CVLMetamodelEditorPlugin$Implementation
+Bundle-Activator: bvr.presentation.BVRMetamodelEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

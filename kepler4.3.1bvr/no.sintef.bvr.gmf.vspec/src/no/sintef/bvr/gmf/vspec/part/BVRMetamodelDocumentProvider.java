@@ -57,7 +57,7 @@ import org.eclipse.ui.part.FileEditorInput;
 /**
  * @generated
  */
-public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
+public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 		implements IDiagramDocumentProvider {
 
 	/**
@@ -70,10 +70,10 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 			throw new CoreException(
 					new Status(
 							IStatus.ERROR,
-							CVLMetamodelDiagramEditorPlugin.ID,
+							BVRMetamodelDiagramEditorPlugin.ID,
 							0,
 							NLS.bind(
-									Messages.CVLMetamodelDocumentProvider_IncorrectInputError,
+									Messages.BVRMetamodelDocumentProvider_IncorrectInputError,
 									new Object[] {
 											element,
 											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
@@ -97,10 +97,10 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 			throw new CoreException(
 					new Status(
 							IStatus.ERROR,
-							CVLMetamodelDiagramEditorPlugin.ID,
+							BVRMetamodelDiagramEditorPlugin.ID,
 							0,
 							NLS.bind(
-									Messages.CVLMetamodelDocumentProvider_IncorrectInputError,
+									Messages.BVRMetamodelDocumentProvider_IncorrectInputError,
 									new Object[] {
 											element,
 											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
@@ -247,7 +247,7 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					}
 				}
 				throw new RuntimeException(
-						Messages.CVLMetamodelDocumentProvider_NoDiagramInResourceError);
+						Messages.BVRMetamodelDocumentProvider_NoDiagramInResourceError);
 			} catch (Exception e) {
 				CoreException thrownExcp = null;
 				if (e instanceof CoreException) {
@@ -257,10 +257,10 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					thrownExcp = new CoreException(
 							new Status(
 									IStatus.ERROR,
-									CVLMetamodelDiagramEditorPlugin.ID,
+									BVRMetamodelDiagramEditorPlugin.ID,
 									0,
 									msg != null ? msg
-											: Messages.CVLMetamodelDocumentProvider_DiagramLoadingError,
+											: Messages.BVRMetamodelDocumentProvider_DiagramLoadingError,
 									e));
 				}
 				throw thrownExcp;
@@ -269,10 +269,10 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 			throw new CoreException(
 					new Status(
 							IStatus.ERROR,
-							CVLMetamodelDiagramEditorPlugin.ID,
+							BVRMetamodelDiagramEditorPlugin.ID,
 							0,
 							NLS.bind(
-									Messages.CVLMetamodelDocumentProvider_IncorrectInputError,
+									Messages.BVRMetamodelDocumentProvider_IncorrectInputError,
 									new Object[] {
 											element,
 											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
@@ -359,8 +359,8 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					CVLMetamodelDiagramEditorPlugin.getInstance().logError(
-							Messages.CVLMetamodelDocumentProvider_isModifiable,
+					BVRMetamodelDiagramEditorPlugin.getInstance().logError(
+							Messages.BVRMetamodelDocumentProvider_isModifiable,
 							ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -386,8 +386,8 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					CVLMetamodelDiagramEditorPlugin.getInstance().logError(
-							Messages.CVLMetamodelDocumentProvider_isModifiable,
+					BVRMetamodelDiagramEditorPlugin.getInstance().logError(
+							Messages.BVRMetamodelDocumentProvider_isModifiable,
 							ex);
 					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -585,33 +585,33 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 				throw new CoreException(
 						new Status(
 								IStatus.ERROR,
-								CVLMetamodelDiagramEditorPlugin.ID,
+								BVRMetamodelDiagramEditorPlugin.ID,
 								IResourceStatus.OUT_OF_SYNC_LOCAL,
-								Messages.CVLMetamodelDocumentProvider_UnsynchronizedFileSaveError,
+								Messages.BVRMetamodelDocumentProvider_UnsynchronizedFileSaveError,
 								null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
 				monitor.beginTask(
-						Messages.CVLMetamodelDocumentProvider_SaveDiagramTask,
+						Messages.BVRMetamodelDocumentProvider_SaveDiagramTask,
 						info.getResourceSet().getResources().size() + 1); //"Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
 						.hasNext();) {
 					Resource nextResource = it.next();
 					monitor.setTaskName(NLS
-							.bind(Messages.CVLMetamodelDocumentProvider_SaveNextResourceTask,
+							.bind(Messages.BVRMetamodelDocumentProvider_SaveNextResourceTask,
 									nextResource.getURI()));
 					if (nextResource.isLoaded()
 							&& !info.getEditingDomain()
 									.isReadOnly(nextResource)) {
 						try {
-							nextResource.save(CVLMetamodelDiagramEditorUtil
+							nextResource.save(BVRMetamodelDiagramEditorUtil
 									.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
 							throw new CoreException(new Status(IStatus.ERROR,
-									CVLMetamodelDiagramEditorPlugin.ID,
+									BVRMetamodelDiagramEditorPlugin.ID,
 									EditorStatusCodes.RESOURCE_FAILURE,
 									e.getLocalizedMessage(), null));
 						}
@@ -641,10 +641,10 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 				throw new CoreException(
 						new Status(
 								IStatus.ERROR,
-								CVLMetamodelDiagramEditorPlugin.ID,
+								BVRMetamodelDiagramEditorPlugin.ID,
 								0,
 								NLS.bind(
-										Messages.CVLMetamodelDocumentProvider_IncorrectInputError,
+										Messages.BVRMetamodelDocumentProvider_IncorrectInputError,
 										new Object[] {
 												element,
 												"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
@@ -655,7 +655,7 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 				throw new CoreException(
 						new Status(
 								IStatus.ERROR,
-								CVLMetamodelDiagramEditorPlugin.ID,
+								BVRMetamodelDiagramEditorPlugin.ID,
 								0,
 								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -668,7 +668,7 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 				new AbstractTransactionalCommand(
 						diagramDocument.getEditingDomain(),
 						NLS.bind(
-								Messages.CVLMetamodelDocumentProvider_SaveAsOperation,
+								Messages.BVRMetamodelDocumentProvider_SaveAsOperation,
 								diagramCopy.getName()), affectedFiles) {
 					protected CommandResult doExecuteWithResult(
 							IProgressMonitor monitor, IAdaptable info)
@@ -678,16 +678,16 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					}
 				}.execute(monitor, null);
 				newResource
-						.save(CVLMetamodelDiagramEditorUtil.getSaveOptions());
+						.save(BVRMetamodelDiagramEditorUtil.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(new Status(IStatus.ERROR,
-						CVLMetamodelDiagramEditorPlugin.ID, 0,
+						BVRMetamodelDiagramEditorPlugin.ID, 0,
 						e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(new Status(IStatus.ERROR,
-						CVLMetamodelDiagramEditorPlugin.ID, 0,
+						BVRMetamodelDiagramEditorPlugin.ID, 0,
 						e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
@@ -704,10 +704,10 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				CVLMetamodelDiagramEditorPlugin
+				BVRMetamodelDiagramEditorPlugin
 						.getInstance()
 						.logError(
-								Messages.CVLMetamodelDocumentProvider_handleElementContentChanged,
+								Messages.BVRMetamodelDocumentProvider_handleElementContentChanged,
 								ex);
 				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}

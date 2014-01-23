@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bvr:CVLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http://org.variabilitymodeling.bvr" name="varexp">
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http://org.variabilitymodeling.bvr" name="varexp">
   <variabilitySpecification xsi:type="bvr:CompositeVariability" name="varModel">
     <variabilitySpecification xsi:type="bvr:CompositeVariability" name="exp">
       <variabilitySpecification xsi:type="bvr:PlacementFragment" name="p1">
@@ -81,4 +81,4 @@
     </variabilitySpecification>
   </variabilitySpecification>
   <base href="base.node#/"/>
-</bvr:CVLModel>
+</bvr:BVRModel>

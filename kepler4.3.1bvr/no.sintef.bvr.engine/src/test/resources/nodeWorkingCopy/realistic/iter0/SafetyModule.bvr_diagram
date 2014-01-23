@@ -410,7 +410,7 @@
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_D6OyE2TEEeKEWa8HNusMWg" x="455" y="80"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_Iaia8Z3uEeCbs6GRQzh2GA"/>
-  <element xmi:type="bvr:CVLModel" href="SafetyModule.bvr#/"/>
+  <element xmi:type="bvr:BVRModel" href="SafetyModule.bvr#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_QtK_gJ3uEeCbs6GRQzh2GA" type="4002" source="_Kpb7cJ3uEeCbs6GRQzh2GA" target="_OF-TwJ3uEeCbs6GRQzh2GA">
     <styles xmi:type="notation:RoutingStyle" xmi:id="_QtK_gZ3uEeCbs6GRQzh2GA"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_QtK_gp3uEeCbs6GRQzh2GA"/>

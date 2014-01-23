@@ -14,8 +14,8 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -39,10 +39,10 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ev) {
 		int tab = filePane.getSelectedIndex();
-		List<CVLModel> models = Context.eINSTANCE.getBvrModels();
-		List<CVLView> views = Context.eINSTANCE.getBvrViews();
+		List<BVRModel> models = Context.eINSTANCE.getBvrModels();
+		List<BVRView> views = Context.eINSTANCE.getBvrViews();
 		
-		CVLModel m = models.get(tab);
+		BVRModel m = models.get(tab);
 		ConfigurableUnit cu = m.getCU();
 		
 		PlacementFragment placement = BvrFactory.eINSTANCE.createPlacementFragment();

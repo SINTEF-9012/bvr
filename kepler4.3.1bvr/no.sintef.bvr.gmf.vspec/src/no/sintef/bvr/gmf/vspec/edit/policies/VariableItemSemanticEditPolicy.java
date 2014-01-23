@@ -10,8 +10,8 @@ import no.sintef.bvr.gmf.vspec.edit.commands.ConstraintContextReorientCommand;
 import no.sintef.bvr.gmf.vspec.edit.commands.VSpecChildCreateCommand;
 import no.sintef.bvr.gmf.vspec.edit.parts.ConstraintContextEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -41,13 +41,13 @@ import bvr.VSpec;
  * @generated
  */
 public class VariableItemSemanticEditPolicy extends
-		CVLMetamodelBaseItemSemanticEditPolicy {
+		BVRMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public VariableItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.Variable_2016);
+		super(BVRMetamodelElementTypes.Variable_2016);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class VariableItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(incomingLink) == VSpecChildEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(incomingLink) == VSpecChildEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -81,7 +81,7 @@ public class VariableItemSemanticEditPolicy extends
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
-			if (CVLMetamodelVisualIDRegistry.getVisualID(incomingLink) == ConstraintContextEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(incomingLink) == ConstraintContextEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						incomingLink.getSource().getElement(), null,
 						incomingLink.getTarget().getElement(), false);
@@ -92,7 +92,7 @@ public class VariableItemSemanticEditPolicy extends
 		}
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(outgoingLink) == VSpecChildEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(outgoingLink) == VSpecChildEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -187,11 +187,11 @@ public class VariableItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (CVLMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
 			return getGEFWrapper(new VSpecChildCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (CVLMetamodelElementTypes.ConstraintContext_4003 == req
+		if (BVRMetamodelElementTypes.ConstraintContext_4003 == req
 				.getElementType()) {
 			return null;
 		}
@@ -203,11 +203,11 @@ public class VariableItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (CVLMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
+		if (BVRMetamodelElementTypes.VSpecChild_4001 == req.getElementType()) {
 			return getGEFWrapper(new VSpecChildCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (CVLMetamodelElementTypes.ConstraintContext_4003 == req
+		if (BVRMetamodelElementTypes.ConstraintContext_4003 == req
 				.getElementType()) {
 			return getGEFWrapper(new ConstraintContextCreateCommand(req,
 					req.getSource(), req.getTarget()));

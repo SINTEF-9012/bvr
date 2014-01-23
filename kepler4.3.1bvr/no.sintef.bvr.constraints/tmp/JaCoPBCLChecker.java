@@ -26,7 +26,7 @@ import JaCoP.search.Search;
 import JaCoP.search.SelectChoicePoint;
 import JaCoP.set.constraints.AeqB;
 
-import no.sintef.ict.splcatool.CVLModel;
+import no.sintef.ict.splcatool.BVRModel;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -43,14 +43,14 @@ import bvr.VSpecResolution;
 import bvr.Variable;
 
 public class JaCoPBCLChecker implements BCLChecker {
-	private CVLModel cm;
+	private BVRModel cm;
 	private Store store;
 	private List<IntVar> vars;
 	
 	private IntVar inc;
 	private IntVar exc;
 
-	public JaCoPBCLChecker(CVLModel cm) {
+	public JaCoPBCLChecker(BVRModel cm) {
 		this.cm = cm;
 		vars = new ArrayList<IntVar>();
 		this.store = buildStore();

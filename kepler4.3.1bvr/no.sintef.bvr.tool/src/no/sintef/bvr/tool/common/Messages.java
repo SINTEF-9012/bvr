@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.common;
 
 public class Messages {
 	
-	public static final String EDITOR_TITLE = "CVL 2 Editor by SINTEF";
+	public static final String EDITOR_TITLE = "BVR 2 Editor by SINTEF";
 	
 	public static final String DIALOG_MSG_FAIL_TOSAVE_RES = "can not save the following resource";
 	public static final String DIALOG_MSG_GENERAL_ERROR = "Error (consult error log)";

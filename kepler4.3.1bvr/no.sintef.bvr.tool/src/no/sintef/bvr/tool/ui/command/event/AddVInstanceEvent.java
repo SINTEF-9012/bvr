@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.BvrFactory;
@@ -15,9 +15,9 @@ import bvr.VSpecResolution;
 public class AddVInstanceEvent implements ActionListener {
 	private VSpecResolution cr;
 	private VClassifier target;
-	private CVLView view;
+	private BVRView view;
 	
-	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, CVLView view) {
+	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, BVRView view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;

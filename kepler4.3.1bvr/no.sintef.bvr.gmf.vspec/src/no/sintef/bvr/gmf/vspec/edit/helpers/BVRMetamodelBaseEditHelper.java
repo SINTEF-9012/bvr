@@ -5,6 +5,6 @@ import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 /**
  * @generated
  */
-public class CVLMetamodelBaseEditHelper extends GeneratedEditHelperBase {
+public class BVRMetamodelBaseEditHelper extends GeneratedEditHelperBase {
 
 }

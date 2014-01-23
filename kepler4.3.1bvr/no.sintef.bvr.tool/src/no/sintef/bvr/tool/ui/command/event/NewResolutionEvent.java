@@ -9,14 +9,14 @@ import javax.swing.JTabbedPane;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.BvrFactory;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class NewResolutionEvent implements ActionListener {
 	private ConfigurableUnit cu;
-	private CVLView v;
+	private BVRView v;
 
-	public NewResolutionEvent(ConfigurableUnit cu, CVLView bvrView) {
+	public NewResolutionEvent(ConfigurableUnit cu, BVRView bvrView) {
 		this.cu = cu;
 		this.v = bvrView;
 	}

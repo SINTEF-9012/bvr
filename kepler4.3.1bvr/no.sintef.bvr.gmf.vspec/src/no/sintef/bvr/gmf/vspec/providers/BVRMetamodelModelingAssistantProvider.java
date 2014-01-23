@@ -13,7 +13,7 @@ import no.sintef.bvr.gmf.vspec.edit.parts.ConfigurableUnitEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.OpaqueConstraintEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 import no.sintef.bvr.gmf.vspec.part.Messages;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -33,7 +33,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 /**
  * @generated
  */
-public class CVLMetamodelModelingAssistantProvider extends
+public class BVRMetamodelModelingAssistantProvider extends
 		ModelingAssistantProvider {
 
 	/**
@@ -44,27 +44,27 @@ public class CVLMetamodelModelingAssistantProvider extends
 				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof ConfigurableUnitEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-			//			types.add(CVLMetamodelElementTypes.Choice_2005);
-			//			types.add(CVLMetamodelElementTypes.Choice_2015);
-			//			types.add(CVLMetamodelElementTypes.Variable_2016);
-			//			types.add(CVLMetamodelElementTypes.VClassifier_2017);
-			//			types.add(CVLMetamodelElementTypes.OpaqueConstraint_2014);
+			//			types.add(BVRMetamodelElementTypes.Choice_2005);
+			//			types.add(BVRMetamodelElementTypes.Choice_2015);
+			//			types.add(BVRMetamodelElementTypes.Variable_2016);
+			//			types.add(BVRMetamodelElementTypes.VClassifier_2017);
+			//			types.add(BVRMetamodelElementTypes.OpaqueConstraint_2014);
 			return types;
 		}
 		if (editPart instanceof ChoiceEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3002);
+			types.add(BVRMetamodelElementTypes.MultiplicityInterval_3002);
 			return types;
 		}
 		if (editPart instanceof Choice2EditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3003);
+			types.add(BVRMetamodelElementTypes.MultiplicityInterval_3003);
 			return types;
 		}
 		if (editPart instanceof VClassifierEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3004);
-			//			types.add(CVLMetamodelElementTypes.MultiplicityInterval_3001);
+			types.add(BVRMetamodelElementTypes.MultiplicityInterval_3004);
+			//			types.add(BVRMetamodelElementTypes.MultiplicityInterval_3001);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -267,12 +267,12 @@ public class CVLMetamodelModelingAssistantProvider extends
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				CVLMetamodelDiagramEditorPlugin.getInstance()
+				BVRMetamodelDiagramEditorPlugin.getInstance()
 						.getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
 				shell, labelProvider);
-		dialog.setMessage(Messages.CVLMetamodelModelingAssistantProviderMessage);
-		dialog.setTitle(Messages.CVLMetamodelModelingAssistantProviderTitle);
+		dialog.setMessage(Messages.BVRMetamodelModelingAssistantProviderMessage);
+		dialog.setTitle(Messages.BVRMetamodelModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;

@@ -11,7 +11,7 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 /**
  * @generated NOT
  */
-public class CVLMetamodelPropertySection extends DefaultPropertySection
+public class BVRMetamodelPropertySection extends DefaultPropertySection
 		implements IPropertySourceProvider {
 
 	/**

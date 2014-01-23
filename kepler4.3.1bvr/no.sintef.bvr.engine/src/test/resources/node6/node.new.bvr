@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" xsi:schemaLocation="http:///bvr.ecore CVLMetamodel.ecore" name="exp">
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" xsi:schemaLocation="http:///bvr.ecore BVRMetamodel.ecore" name="exp">
   <ownedVSpec xsi:type="bvr:Choice" name="varModel">
     <child xsi:type="bvr:Choice" name="exp"/>
   </ownedVSpec>

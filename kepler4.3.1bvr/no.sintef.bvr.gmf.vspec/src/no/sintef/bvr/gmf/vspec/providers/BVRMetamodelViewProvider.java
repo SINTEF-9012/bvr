@@ -27,7 +27,7 @@ import no.sintef.bvr.gmf.vspec.edit.parts.VClassifierNameEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VSpecChildEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableEditPart;
 import no.sintef.bvr.gmf.vspec.edit.parts.VariableNameEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -71,7 +71,7 @@ import org.eclipse.swt.graphics.FontData;
 /**
  * @generated
  */
-public class CVLMetamodelViewProvider extends AbstractProvider implements
+public class BVRMetamodelViewProvider extends AbstractProvider implements
 		IViewProvider {
 
 	/**
@@ -110,7 +110,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
 		return ConfigurableUnitEditPart.MODEL_ID.equals(op.getSemanticHint())
-				&& CVLMetamodelVisualIDRegistry
+				&& BVRMetamodelVisualIDRegistry
 						.getDiagramVisualID(getSemanticElement(op
 								.getSemanticAdapter())) != -1;
 	}
@@ -133,13 +133,13 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			if (elementType != null || domainElement == null) {
 				return false;
 			}
-			visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(
+			visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(
 					op.getContainerView(), domainElement);
 		} else {
-			visualID = CVLMetamodelVisualIDRegistry.getVisualID(op
+			visualID = BVRMetamodelVisualIDRegistry.getVisualID(op
 					.getSemanticHint());
 			if (elementType != null) {
-				if (!CVLMetamodelElementTypes.isKnownElementType(elementType)
+				if (!BVRMetamodelElementTypes.isKnownElementType(elementType)
 						|| (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
@@ -149,14 +149,14 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
 				if (domainElement != null
-						&& visualID != CVLMetamodelVisualIDRegistry
+						&& visualID != BVRMetamodelVisualIDRegistry
 								.getNodeVisualID(op.getContainerView(),
 										domainElement)) {
 					return false; // visual id for node EClass should match visual id from element type
 				}
 			} else {
 				if (!ConfigurableUnitEditPart.MODEL_ID
-						.equals(CVLMetamodelVisualIDRegistry.getModelID(op
+						.equals(BVRMetamodelVisualIDRegistry.getModelID(op
 								.getContainerView()))) {
 					return false; // foreign diagram
 				}
@@ -171,7 +171,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				case MultiplicityInterval2EditPart.VISUAL_ID:
 				case MultiplicityInterval4EditPart.VISUAL_ID:
 					if (domainElement == null
-							|| visualID != CVLMetamodelVisualIDRegistry
+							|| visualID != BVRMetamodelVisualIDRegistry
 									.getNodeVisualID(op.getContainerView(),
 											domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
@@ -199,7 +199,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op
 				.getSemanticAdapter());
-		if (!CVLMetamodelElementTypes.isKnownElementType(elementType)
+		if (!BVRMetamodelElementTypes.isKnownElementType(elementType)
 				|| (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
@@ -209,11 +209,11 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 						.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		int visualID = CVLMetamodelVisualIDRegistry
+		int visualID = BVRMetamodelVisualIDRegistry
 				.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		if (domainElement != null
-				&& visualID != CVLMetamodelVisualIDRegistry
+				&& visualID != BVRMetamodelVisualIDRegistry
 						.getLinkWithClassVisualID(domainElement)) {
 			return false; // visual id for link EClass should match visual id from element type
 		}
@@ -242,10 +242,10 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final int visualID;
 		if (semanticHint == null) {
-			visualID = CVLMetamodelVisualIDRegistry.getNodeVisualID(
+			visualID = BVRMetamodelVisualIDRegistry.getNodeVisualID(
 					containerView, domainElement);
 		} else {
-			visualID = CVLMetamodelVisualIDRegistry.getVisualID(semanticHint);
+			visualID = BVRMetamodelVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
 		case ChoiceEditPart.VISUAL_ID:
@@ -288,7 +288,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		switch (CVLMetamodelVisualIDRegistry.getVisualID(elementTypeHint)) {
+		switch (BVRMetamodelVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case VSpecChildEditPart.VISUAL_ID:
 			return createVSpecChild_4001(containerView, index, persisted,
 					preferencesHint);
@@ -307,7 +307,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(ChoiceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -341,11 +341,11 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5005 = createLabel(node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(ChoiceNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(ChoiceChoiceGroupMultiplicityCompartment2EditPart.VISUAL_ID),
 				false, false, true, true);
 		return node;
@@ -358,7 +358,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(Choice2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -392,11 +392,11 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5022 = createLabel(node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(ChoiceName2EditPart.VISUAL_ID));
 		createCompartment(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(ChoiceChoiceGroupMultiplicityCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		return node;
@@ -413,7 +413,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(VariableEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -441,7 +441,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5023 = createLabel(node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(VariableNameEditPart.VISUAL_ID));
 		return node;
 	}
@@ -458,7 +458,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(VClassifierEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -486,16 +486,16 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5024 = createLabel(node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(VClassifierNameEditPart.VISUAL_ID));
 		createCompartment(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(VClassifierMultiplicityIntervalCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		createCompartment(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(VClassifierMultiplicityIntervalCompartment2EditPart.VISUAL_ID),
 				false, false, true, true);
 		return node;
@@ -513,7 +513,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(OpaqueConstraintEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -541,7 +541,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5014 = createLabel(node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(OpaqueConstraintConstraintEditPart.VISUAL_ID));
 		return node;
 	}
@@ -554,7 +554,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(MultiplicityIntervalEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -588,7 +588,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5026 = createLabel(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(MultiplicityIntervalLowerUpperEditPart.VISUAL_ID));
 		return node;
 	}
@@ -601,7 +601,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(MultiplicityInterval3EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -635,7 +635,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5027 = createLabel(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(MultiplicityIntervalLowerUpper3EditPart.VISUAL_ID));
 		return node;
 	}
@@ -648,7 +648,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(MultiplicityInterval2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -682,7 +682,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5018 = createLabel(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(MultiplicityIntervalLowerUpper2EditPart.VISUAL_ID));
 		return node;
 	}
@@ -695,7 +695,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(CVLMetamodelVisualIDRegistry
+		node.setType(BVRMetamodelVisualIDRegistry
 				.getType(MultiplicityInterval4EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
@@ -729,7 +729,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 				FigureUtilities.RGBToInteger(fillRGB));
 		Node label5028 = createLabel(
 				node,
-				CVLMetamodelVisualIDRegistry
+				BVRMetamodelVisualIDRegistry
 						.getType(MultiplicityIntervalLowerUpper4EditPart.VISUAL_ID));
 		return node;
 	}
@@ -751,7 +751,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(CVLMetamodelVisualIDRegistry
+		edge.setType(BVRMetamodelVisualIDRegistry
 				.getType(VSpecChildEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
@@ -798,7 +798,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(CVLMetamodelVisualIDRegistry
+		edge.setType(BVRMetamodelVisualIDRegistry
 				.getType(ConstraintContextEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
@@ -833,7 +833,7 @@ public class CVLMetamodelViewProvider extends AbstractProvider implements
 	 */
 	private void stampShortcut(View containerView, Node target) {
 		if (!ConfigurableUnitEditPart.MODEL_ID
-				.equals(CVLMetamodelVisualIDRegistry.getModelID(containerView))) {
+				.equals(BVRMetamodelVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
 					.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$

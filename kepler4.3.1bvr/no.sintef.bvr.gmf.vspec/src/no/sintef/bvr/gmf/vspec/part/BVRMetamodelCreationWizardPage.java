@@ -11,7 +11,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 /**
  * @generated
  */
-public class CVLMetamodelCreationWizardPage extends WizardNewFileCreationPage {
+public class BVRMetamodelCreationWizardPage extends WizardNewFileCreationPage {
 
 	/**
 	 * @generated
@@ -21,7 +21,7 @@ public class CVLMetamodelCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelCreationWizardPage(String pageName,
+	public BVRMetamodelCreationWizardPage(String pageName,
 			IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
@@ -63,7 +63,7 @@ public class CVLMetamodelCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(CVLMetamodelDiagramEditorUtil.getUniqueFileName(
+		setFileName(BVRMetamodelDiagramEditorUtil.getUniqueFileName(
 				getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
@@ -79,7 +79,7 @@ public class CVLMetamodelCreationWizardPage extends WizardNewFileCreationPage {
 		if (extension != null
 				&& !getFilePath().toString().endsWith("." + extension)) {
 			setErrorMessage(NLS.bind(
-					Messages.CVLMetamodelCreationWizardPageExtensionError,
+					Messages.BVRMetamodelCreationWizardPageExtensionError,
 					extension));
 			return false;
 		}

@@ -17,8 +17,8 @@ import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.adjacent.AdjacentResolver;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
-import no.sintef.bvr.engine.error.ContainmentCVLModelException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
+import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.tool.context.Context;
@@ -53,7 +53,7 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 				FragmentSubstitution fs = (FragmentSubstitution) vp;
 				try {
 					fsHMap.put(fs, new FragmentSubstitutionHolder(fs));
-				} catch (BasicCVLEngineException e) {
+				} catch (BasicBVREngineException e) {
 					e.printStackTrace();
 				}
 			}
@@ -88,7 +88,7 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 				protected void doExecute() {
 					try {
 						Context.eINSTANCE.getSubEngine().subsitute(fs, !symbol.getMulti());
-					} catch (ContainmentCVLModelException e) {
+					} catch (ContainmentBVRModelException e) {
 						e.printStackTrace();
 					}
 					
@@ -96,7 +96,7 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 						fso.execute(!symbol.getMulti());
 						adjacentResolver.resolve(fsH);
 						fso.checkConsistence();
-					} catch (BasicCVLEngineException e) {
+					} catch (BasicBVREngineException e) {
 						e.printStackTrace();
 					}*/
 				}

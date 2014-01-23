@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: CVL :: Eclipse Editor
+Bundle-Name: BVR :: Eclipse Editor
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.eclipse;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: no.sintef.bvr.ui.editor.Activator

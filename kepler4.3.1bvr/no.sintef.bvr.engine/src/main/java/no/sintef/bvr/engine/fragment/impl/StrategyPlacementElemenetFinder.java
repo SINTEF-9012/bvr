@@ -15,7 +15,7 @@ import bvr.PlacementBoundaryElement;
 import bvr.ToPlacement;
 import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.GeneralCVLEngineException;
+import no.sintef.bvr.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.engine.fragment.AbstractElementFinder;
 import no.sintef.bvr.engine.fragment.PlacementElementFinderStrategy;
 
@@ -49,7 +49,7 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 				
 				HashSet<EObject> outsideBoundaryElements = EngineUtility.clearSet(toPlacementOutBoundaryMap.get(toPlacement));
 				if(outsideBoundaryElements == null)
-					throw new GeneralCVLEngineException("failed to locate given toPlacement in the map");
+					throw new GeneralBVREngineException("failed to locate given toPlacement in the map");
 				
 				HashSet<EObject> outsideElements = testOutsideBoundaryElements(outsideBoundaryElements, insideBoundaryElements);
 				elementsHolder.addOuterInsideReferenceElements(outsideElements);
@@ -70,7 +70,7 @@ public class StrategyPlacementElemenetFinder extends AbstractElementFinder
 				
 				HashSet<EObject> insideBoundaryElements = EngineUtility.clearSet(fromPlacementInsBoundaryMap.get(fromPlacement));
 				if(insideBoundaryElements == null)
-					throw new GeneralCVLEngineException("failed to locate given fromPlacement in the map");
+					throw new GeneralBVREngineException("failed to locate given fromPlacement in the map");
 				
 				if(outsideBoundaryElements.size() != 0)
 					elementsHolder.addBoundaryElementExternal(insideBoundaryElements);

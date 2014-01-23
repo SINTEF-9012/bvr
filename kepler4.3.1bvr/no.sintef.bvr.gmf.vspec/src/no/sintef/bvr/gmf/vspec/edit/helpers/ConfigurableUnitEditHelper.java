@@ -3,5 +3,5 @@ package no.sintef.bvr.gmf.vspec.edit.helpers;
 /**
  * @generated
  */
-public class ConfigurableUnitEditHelper extends CVLMetamodelBaseEditHelper {
+public class ConfigurableUnitEditHelper extends BVRMetamodelBaseEditHelper {
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VSpecResolution;
@@ -14,9 +14,9 @@ import bvr.VSpecResolution;
 public class RemoveVSpecResolutionEvent implements ActionListener  {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private BVRView view;
 
-	public RemoveVSpecResolutionEvent(JComponent p, Map<JComponent, NamedElement> vmMap, CVLView view) {
+	public RemoveVSpecResolutionEvent(JComponent p, Map<JComponent, NamedElement> vmMap, BVRView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;

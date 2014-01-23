@@ -16,8 +16,8 @@ import no.sintef.bvr.tool.common.DeriveProduct;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 
 public class ExecuteResolutionEvent implements ActionListener {
@@ -35,10 +35,10 @@ public class ExecuteResolutionEvent implements ActionListener {
 		JTabbedPane x = (JTabbedPane) ((JTabbedPane) filePane.getSelectedComponent()).getSelectedComponent();
 		int i = x.getSelectedIndex();
 		
-		List<CVLModel> models = Context.eINSTANCE.getBvrModels();
-		List<CVLView> views = Context.eINSTANCE.getBvrViews();
+		List<BVRModel> models = Context.eINSTANCE.getBvrModels();
+		List<BVRView> views = Context.eINSTANCE.getBvrViews();
 		
-		CVLModel m = models.get(tab);
+		BVRModel m = models.get(tab);
 		
 		if(m.getFile() == null){
 			JOptionPane.showMessageDialog(filePane, Messages.DIALOG_MSG_SAVE_MODEL);

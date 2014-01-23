@@ -30,7 +30,7 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	 */
 	public void run(IAction action) {
 		// Run		
-		Runnable r = new CVLEditorThread(window);
+		Runnable r = new BVREditorThread(window);
 		Thread t = new Thread(r);
 		t.start();
 	}
@@ -64,11 +64,11 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	}
 }
 
-class CVLEditorThread implements Runnable {
+class BVREditorThread implements Runnable {
 
     private IWorkbenchWindow window;
 
-	public CVLEditorThread(IWorkbenchWindow window) {
+	public BVREditorThread(IWorkbenchWindow window) {
 		this.window = window;
 	}
 

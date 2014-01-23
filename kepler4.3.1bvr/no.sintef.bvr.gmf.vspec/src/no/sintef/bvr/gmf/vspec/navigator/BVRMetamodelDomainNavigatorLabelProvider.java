@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.navigator;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -12,14 +12,14 @@ import org.eclipse.ui.navigator.ICommonLabelProvider;
 /**
  * @generated
  */
-public class CVLMetamodelDomainNavigatorLabelProvider implements
+public class BVRMetamodelDomainNavigatorLabelProvider implements
 		ICommonLabelProvider {
 
 	/**
 	 * @generated
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			CVLMetamodelDiagramEditorPlugin.getInstance()
+			BVRMetamodelDiagramEditorPlugin.getInstance()
 					.getItemProvidersAdapterFactory());
 
 	/**
@@ -32,9 +32,9 @@ public class CVLMetamodelDomainNavigatorLabelProvider implements
 	 * @generated
 	 */
 	public Image getImage(Object element) {
-		if (element instanceof CVLMetamodelDomainNavigatorItem) {
+		if (element instanceof BVRMetamodelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getImage(((CVLMetamodelDomainNavigatorItem) element)
+					.getImage(((BVRMetamodelDomainNavigatorItem) element)
 							.getEObject());
 		}
 		return null;
@@ -44,9 +44,9 @@ public class CVLMetamodelDomainNavigatorLabelProvider implements
 	 * @generated
 	 */
 	public String getText(Object element) {
-		if (element instanceof CVLMetamodelDomainNavigatorItem) {
+		if (element instanceof BVRMetamodelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getText(((CVLMetamodelDomainNavigatorItem) element)
+					.getText(((BVRMetamodelDomainNavigatorItem) element)
 							.getEObject());
 		}
 		return null;

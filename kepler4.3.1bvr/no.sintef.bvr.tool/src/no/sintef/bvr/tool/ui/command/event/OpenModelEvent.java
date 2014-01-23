@@ -10,8 +10,8 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class OpenModelEvent implements ActionListener {
 	
@@ -23,7 +23,7 @@ public class OpenModelEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		try{
-			JFileChooser fc = StaticUICommands.getCVLFileChooser();
+			JFileChooser fc = StaticUICommands.getBVRFileChooser();
 			
 			int isCanceled = fc.showOpenDialog(c);
 			if(isCanceled == JFileChooser.CANCEL_OPTION)
@@ -32,7 +32,7 @@ public class OpenModelEvent implements ActionListener {
 			File sf = fc.getSelectedFile();
 			if(sf == null) return;
 			
-			CVLModel m = Context.eINSTANCE.loadModelFromFile(sf);
+			BVRModel m = Context.eINSTANCE.loadModelFromFile(sf);
 			Context.eINSTANCE.addBvrModel(m);
 			//Context.eINSTANCE.addBvrView(new VSpecView(m, c));
 		}catch(Exception e){

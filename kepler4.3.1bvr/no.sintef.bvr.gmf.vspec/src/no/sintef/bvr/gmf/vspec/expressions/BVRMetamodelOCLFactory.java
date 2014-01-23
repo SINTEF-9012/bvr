@@ -3,7 +3,7 @@ package no.sintef.bvr.gmf.vspec.expressions;
 import java.util.Collections;
 import java.util.Map;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClassifier;
@@ -21,12 +21,12 @@ import org.eclipse.ocl.options.ParsingOptions;
 /**
  * @generated
  */
-public class CVLMetamodelOCLFactory {
+public class BVRMetamodelOCLFactory {
 
 	/**
 	 * @generated
 	 */
-	private final CVLMetamodelAbstractExpression[] expressions;
+	private final BVRMetamodelAbstractExpression[] expressions;
 
 	/**
 	 * @generated
@@ -36,8 +36,8 @@ public class CVLMetamodelOCLFactory {
 	/**
 	 * @generated
 	 */
-	protected CVLMetamodelOCLFactory() {
-		this.expressions = new CVLMetamodelAbstractExpression[1];
+	protected BVRMetamodelOCLFactory() {
+		this.expressions = new BVRMetamodelAbstractExpression[1];
 		this.expressionBodies = new String[] { "not self.oclIsTypeOf(ConfigurableUnit)", //$NON-NLS-1$
 		};
 	}
@@ -45,13 +45,13 @@ public class CVLMetamodelOCLFactory {
 	/**
 	 * @generated
 	 */
-	private static CVLMetamodelOCLFactory getInstance() {
-		CVLMetamodelOCLFactory instance = CVLMetamodelDiagramEditorPlugin
-				.getInstance().getCVLMetamodelOCLFactory();
+	private static BVRMetamodelOCLFactory getInstance() {
+		BVRMetamodelOCLFactory instance = BVRMetamodelDiagramEditorPlugin
+				.getInstance().getBVRMetamodelOCLFactory();
 		if (instance == null) {
-			CVLMetamodelDiagramEditorPlugin.getInstance()
-					.setCVLMetamodelOCLFactory(
-							instance = new CVLMetamodelOCLFactory());
+			BVRMetamodelDiagramEditorPlugin.getInstance()
+					.setBVRMetamodelOCLFactory(
+							instance = new BVRMetamodelOCLFactory());
 		}
 		return instance;
 	}
@@ -66,9 +66,9 @@ public class CVLMetamodelOCLFactory {
 	/**
 	 * @generated
 	 */
-	public static CVLMetamodelAbstractExpression getExpression(int index,
+	public static BVRMetamodelAbstractExpression getExpression(int index,
 			EClassifier context, Map<String, EClassifier> environment) {
-		CVLMetamodelOCLFactory cached = getInstance();
+		BVRMetamodelOCLFactory cached = getInstance();
 		if (index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
@@ -86,7 +86,7 @@ public class CVLMetamodelOCLFactory {
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
 	 * @generated
 	 */
-	public static CVLMetamodelAbstractExpression getExpression(String body,
+	public static BVRMetamodelAbstractExpression getExpression(String body,
 			EClassifier context, Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
 	}
@@ -95,7 +95,7 @@ public class CVLMetamodelOCLFactory {
 	 * This method will become private in the next release
 	 * @generated
 	 */
-	public static CVLMetamodelAbstractExpression getExpression(String body,
+	public static BVRMetamodelAbstractExpression getExpression(String body,
 			EClassifier context) {
 		return getExpression(body, context,
 				Collections.<String, EClassifier> emptyMap());
@@ -104,7 +104,7 @@ public class CVLMetamodelOCLFactory {
 	/**
 	 * @generated
 	 */
-	private static class Expression extends CVLMetamodelAbstractExpression {
+	private static class Expression extends BVRMetamodelAbstractExpression {
 
 		/**
 		 * @generated

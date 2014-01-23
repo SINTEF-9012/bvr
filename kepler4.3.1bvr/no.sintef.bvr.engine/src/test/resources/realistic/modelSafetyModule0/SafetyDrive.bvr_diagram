@@ -47,7 +47,7 @@
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_L4h0Q2l4EeKcJOdUfTHW_g" x="180" y="264"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_kiyrYWl0EeKcJOdUfTHW_g"/>
-  <element xmi:type="bvr:CVLModel" href="SafetyDrive.bvr#/"/>
+  <element xmi:type="bvr:BVRModel" href="SafetyDrive.bvr#/"/>
   <edges xmi:type="notation:Edge" xmi:id="_sZXmEGl0EeKcJOdUfTHW_g" type="4002" source="_nRAlIGl0EeKcJOdUfTHW_g" target="_pvA4oGl0EeKcJOdUfTHW_g">
     <styles xmi:type="notation:RoutingStyle" xmi:id="_sZXmEWl0EeKcJOdUfTHW_g"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_sZXmEml0EeKcJOdUfTHW_g" fontName="Segoe UI"/>

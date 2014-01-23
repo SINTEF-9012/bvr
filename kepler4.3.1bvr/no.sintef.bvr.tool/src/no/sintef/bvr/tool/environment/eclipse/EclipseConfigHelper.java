@@ -17,11 +17,11 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 	}
 	
 	private void setProperty(String name, String value){
-		Utility.setValueToPropertyStore(Constants.PLUGIN_ID_CVL_LAUNCHER, name, value);
+		Utility.setValueToPropertyStore(Constants.PLUGIN_ID_BVR_LAUNCHER, name, value);
 	}
 	
 	private String getProperty(String name){
-		return Utility.getValueFromPropertyStore(Constants.PLUGIN_ID_CVL_LAUNCHER, name);
+		return Utility.getValueFromPropertyStore(Constants.PLUGIN_ID_BVR_LAUNCHER, name);
 	}
 	
 	@Override

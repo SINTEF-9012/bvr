@@ -10,8 +10,8 @@ import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.containment.ReplacPlacCotainmentFinder;
 import no.sintef.bvr.engine.containment.ReplacPlacCotainmentResolver;
 import no.sintef.bvr.engine.crossing.PlacementCrossingFinder;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
-import no.sintef.bvr.engine.error.ContainmentCVLModelException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
+import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 
@@ -64,12 +64,12 @@ public final class SubstitutionEngine {
 			
 			placementInReplacementFinder = new ReplacPlacCotainmentFinder(fsMap.values());
 			placementInReplacementResolver = new ReplacPlacCotainmentResolver(placementInReplacementFinder);
-		} catch (BasicCVLEngineException e) {
+		} catch (BasicBVREngineException e) {
 			throw new UnsupportedOperationException(e);
 		}
 	}
 	
-	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentCVLModelException{
+	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentBVRModelException{
 		FragmentSubstitutionHolder fragmentHolder = fsMap.get(fragmentSubstitution);
 		if(fragmentHolder == null){
 			context.getLogger().warn("engine is not initialized with this fragment substitution " + fragmentSubstitution);
@@ -80,7 +80,7 @@ public final class SubstitutionEngine {
 			subsOperation.execute(replace);
 			adjacentResolver.resolve(fragmentHolder);
 			placementInReplacementResolver.resolve(fragmentHolder);
-		} catch (BasicCVLEngineException e) {
+		} catch (BasicBVREngineException e) {
 			throw new UnsupportedOperationException(e);
 		}
 		//this check seems to be invalid here since we may work with copies of base and library models

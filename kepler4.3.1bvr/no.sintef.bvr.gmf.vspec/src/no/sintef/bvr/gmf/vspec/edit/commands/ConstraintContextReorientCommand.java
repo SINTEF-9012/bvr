@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.edit.commands;
 
-import no.sintef.bvr.gmf.vspec.edit.policies.CVLMetamodelBaseItemSemanticEditPolicy;
+import no.sintef.bvr.gmf.vspec.edit.policies.BVRMetamodelBaseItemSemanticEditPolicy;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -74,7 +74,7 @@ public class ConstraintContextReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof VSpec && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return CVLMetamodelBaseItemSemanticEditPolicy.getLinkConstraints()
+		return BVRMetamodelBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistConstraintContext_4003(getNewSource(), getOldTarget());
 	}
 
@@ -85,7 +85,7 @@ public class ConstraintContextReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof VSpec && newEnd instanceof VSpec)) {
 			return false;
 		}
-		return CVLMetamodelBaseItemSemanticEditPolicy.getLinkConstraints()
+		return BVRMetamodelBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canExistConstraintContext_4003(getOldSource(), getNewTarget());
 	}
 

@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-public class OldCVL2NewCVL {
+public class OldBVR2NewBVR {
 	@Test
 	public void test() throws IOException{
-		/*OldCVLModel oldbvr = new OldCVLModel(new File("TestData/oldbvr/ARI.bvr"));
-		CVLModel newbvr = oldbvr.getNewCVL();
+		/*OldBVRModel oldbvr = new OldBVRModel(new File("TestData/oldbvr/ARI.bvr"));
+		BVRModel newbvr = oldbvr.getNewBVR();
 		newbvr.writeToFile(new File("TestData/oldbvr/ARI.new.bvr").getAbsolutePath());*/
 	}
 }

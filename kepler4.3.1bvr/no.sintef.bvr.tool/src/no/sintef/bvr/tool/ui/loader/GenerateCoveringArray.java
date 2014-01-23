@@ -21,10 +21,10 @@ import no.sintef.ict.splcatool.GraphMLFM;
 
 public class GenerateCoveringArray implements ActionListener {
 	private int t;
-	private CVLModel m;
-	private CVLView v;
+	private BVRModel m;
+	private BVRView v;
 	
-	public GenerateCoveringArray(CVLModel m, CVLView bvrView, int t) {
+	public GenerateCoveringArray(BVRModel m, BVRView bvrView, int t) {
 		this.m = m;
 		this.v = bvrView;
 		this.t = t;
@@ -33,17 +33,17 @@ public class GenerateCoveringArray implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		
 		try {
-			GUIDSL gdsl = m.getCVLM().getGUIDSL();
+			GUIDSL gdsl = m.getBVRM().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", t, 1);
-			if(m.getCVLM().getCU().getOwnedVSpecResolution().size() > 0){
-				CoveringArray startFrom = m.getCVLM().getCoveringArray();
+			if(m.getBVRM().getCU().getOwnedVSpecResolution().size() > 0){
+				CoveringArray startFrom = m.getBVRM().getCoveringArray();
 				ca.startFrom(startFrom);
 			}
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			m.getCVLM().getCU().getOwnedVSpecResolution().clear();
-			m.getCVLM().injectConfigurations(gfm);
+			m.getBVRM().getCU().getOwnedVSpecResolution().clear();
+			m.getBVRM().injectConfigurations(gfm);
 		} catch (Exception e) {
 			Context.eINSTANCE.logger.error("Generating covering array failed:", e);
 			StaticUICommands.showMessageErrorDialog(null, e, "Generating covering array failed:");

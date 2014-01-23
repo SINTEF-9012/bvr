@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.dropdown.ChoiceResolutionDropDownListener;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
@@ -20,13 +20,13 @@ public class AddChoiceResolutuion implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private BVRView view;
 	private JComponent parent;
-	private CVLUIKernel rootPanel;
+	private BVRUIKernel rootPanel;
 	private ChoiceResolutuion c;
 	private CommandMouseListener listener;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		if(p instanceof ChoiceResolutuion){
 			this.rootPanel = rootPanel;
 			this.c = (ChoiceResolutuion) p;

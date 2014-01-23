@@ -4,7 +4,7 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
-public class CVLFragmentCopier extends Copier {
+public class BVRFragmentCopier extends Copier {
 	
 	// do not copy an object if it has been already copied, useful for the way we represent a fragment as a simple
 	// list of all object

@@ -7,19 +7,19 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the CVLMetamodel edit plugin.
+ * This is the central singleton for the BVRMetamodel edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class CVLMetamodelEditPlugin extends EMFPlugin {
+public final class BVRMetamodelEditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final CVLMetamodelEditPlugin INSTANCE = new CVLMetamodelEditPlugin();
+	public static final BVRMetamodelEditPlugin INSTANCE = new BVRMetamodelEditPlugin();
 
 	/**
 	 * Keep track of the singleton.
@@ -35,7 +35,7 @@ public final class CVLMetamodelEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CVLMetamodelEditPlugin() {
+	public BVRMetamodelEditPlugin() {
 		super
 		  (new ResourceLocator [] {
 		   });

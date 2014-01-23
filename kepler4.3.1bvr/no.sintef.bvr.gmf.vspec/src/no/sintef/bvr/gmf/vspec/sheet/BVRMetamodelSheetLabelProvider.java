@@ -1,8 +1,8 @@
 package no.sintef.bvr.gmf.vspec.sheet;
 
-import no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorGroup;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorGroup;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -15,7 +15,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class CVLMetamodelSheetLabelProvider extends BaseLabelProvider implements
+public class BVRMetamodelSheetLabelProvider extends BaseLabelProvider implements
 		ILabelProvider {
 
 	/**
@@ -23,8 +23,8 @@ public class CVLMetamodelSheetLabelProvider extends BaseLabelProvider implements
 	 */
 	public String getText(Object element) {
 		element = unwrap(element);
-		if (element instanceof CVLMetamodelNavigatorGroup) {
-			return ((CVLMetamodelNavigatorGroup) element).getGroupName();
+		if (element instanceof BVRMetamodelNavigatorGroup) {
+			return ((BVRMetamodelNavigatorGroup) element).getGroupName();
 		}
 		IElementType etype = getElementType(getView(element));
 		return etype == null ? "" : etype.getDisplayName();
@@ -35,7 +35,7 @@ public class CVLMetamodelSheetLabelProvider extends BaseLabelProvider implements
 	 */
 	public Image getImage(Object element) {
 		IElementType etype = getElementType(getView(unwrap(element)));
-		return etype == null ? null : CVLMetamodelElementTypes.getImage(etype);
+		return etype == null ? null : BVRMetamodelElementTypes.getImage(etype);
 	}
 
 	/**
@@ -67,8 +67,8 @@ public class CVLMetamodelSheetLabelProvider extends BaseLabelProvider implements
 	private IElementType getElementType(View view) {
 		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
 		while (view != null) {
-			int vid = CVLMetamodelVisualIDRegistry.getVisualID(view);
-			IElementType etype = CVLMetamodelElementTypes.getElementType(vid);
+			int vid = BVRMetamodelVisualIDRegistry.getVisualID(view);
+			IElementType etype = BVRMetamodelElementTypes.getElementType(vid);
 			if (etype != null) {
 				return etype;
 			}

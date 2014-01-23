@@ -4,7 +4,7 @@ import java.text.FieldPosition;
 import java.text.MessageFormat;
 import java.text.ParsePosition;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditorPlugin;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin;
 import no.sintef.bvr.gmf.vspec.part.Messages;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -175,7 +175,7 @@ public class MessageFormatParser extends AbstractAttributeParser {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(CVLMetamodelDiagramEditorPlugin.ID,
+			return new ParserEditStatus(BVRMetamodelDiagramEditorPlugin.ID,
 					IParserEditStatus.UNEDITABLE, NLS.bind(
 							Messages.MessageFormatParser_InvalidInputError,
 							new Integer(pos.getErrorIndex())));

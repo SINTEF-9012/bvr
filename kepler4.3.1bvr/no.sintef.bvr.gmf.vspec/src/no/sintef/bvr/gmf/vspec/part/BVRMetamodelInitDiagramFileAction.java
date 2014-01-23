@@ -23,7 +23,7 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * @generated
  */
-public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate {
+public class BVRMetamodelInitDiagramFileAction implements IObjectActionDelegate {
 
 	/**
 	 * @generated
@@ -78,7 +78,7 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 			Resource resource = resourceSet.getResource(domainModelURI, true);
 			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
@@ -87,11 +87,11 @@ public class CVLMetamodelInitDiagramFileAction implements IObjectActionDelegate 
 					Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
-		Wizard wizard = new CVLMetamodelNewDiagramFileWizard(domainModelURI,
+		Wizard wizard = new BVRMetamodelNewDiagramFileWizard(domainModelURI,
 				diagramRoot, editingDomain);
 		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle,
 				ConfigurableUnitEditPart.MODEL_ID));
-		CVLMetamodelDiagramEditorUtil.runWizard(getShell(), wizard,
+		BVRMetamodelDiagramEditorUtil.runWizard(getShell(), wizard,
 				"InitDiagramFile"); //$NON-NLS-1$
 	}
 }

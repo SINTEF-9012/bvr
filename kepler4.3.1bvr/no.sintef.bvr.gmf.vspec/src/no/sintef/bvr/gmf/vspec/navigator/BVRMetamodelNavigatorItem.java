@@ -9,8 +9,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class CVLMetamodelNavigatorItem extends
-		CVLMetamodelAbstractNavigatorItem {
+public class BVRMetamodelNavigatorItem extends
+		BVRMetamodelAbstractNavigatorItem {
 
 	/**
 	 * @generated
@@ -22,9 +22,9 @@ public class CVLMetamodelNavigatorItem extends
 
 					public Object getAdapter(Object adaptableObject,
 							Class adapterType) {
-						if (adaptableObject instanceof no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorItem
+						if (adaptableObject instanceof no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorItem
 								&& (adapterType == View.class || adapterType == EObject.class)) {
-							return ((no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorItem) adaptableObject)
+							return ((no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorItem) adaptableObject)
 									.getView();
 						}
 						return null;
@@ -34,7 +34,7 @@ public class CVLMetamodelNavigatorItem extends
 						return supportedTypes;
 					}
 				},
-				no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorItem.class);
+				no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorItem.class);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class CVLMetamodelNavigatorItem extends
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelNavigatorItem(View view, Object parent, boolean isLeaf) {
+	public BVRMetamodelNavigatorItem(View view, Object parent, boolean isLeaf) {
 		super(parent);
 		myView = view;
 		myLeaf = isLeaf;
@@ -74,11 +74,11 @@ public class CVLMetamodelNavigatorItem extends
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorItem) {
+		if (obj instanceof no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorItem) {
 			return EcoreUtil
 					.getURI(getView())
 					.equals(EcoreUtil
-							.getURI(((no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorItem) obj)
+							.getURI(((no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorItem) obj)
 									.getView()));
 		}
 		return super.equals(obj);

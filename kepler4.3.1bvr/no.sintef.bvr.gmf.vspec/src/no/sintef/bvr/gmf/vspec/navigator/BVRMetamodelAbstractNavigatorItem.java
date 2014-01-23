@@ -8,7 +8,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 /**
  * @generated
  */
-public abstract class CVLMetamodelAbstractNavigatorItem extends PlatformObject {
+public abstract class BVRMetamodelAbstractNavigatorItem extends PlatformObject {
 
 	/**
 	 * @generated
@@ -25,7 +25,7 @@ public abstract class CVLMetamodelAbstractNavigatorItem extends PlatformObject {
 
 					public Object getAdapter(Object adaptableObject,
 							Class adapterType) {
-						if (adaptableObject instanceof no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem
+						if (adaptableObject instanceof no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem
 								&& adapterType == ITabbedPropertySheetPageContributor.class) {
 							return propertySheetPageContributor;
 						}
@@ -36,7 +36,7 @@ public abstract class CVLMetamodelAbstractNavigatorItem extends PlatformObject {
 						return supportedTypes;
 					}
 				},
-				no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelAbstractNavigatorItem.class);
+				no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelAbstractNavigatorItem.class);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public abstract class CVLMetamodelAbstractNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	protected CVLMetamodelAbstractNavigatorItem(Object parent) {
+	protected BVRMetamodelAbstractNavigatorItem(Object parent) {
 		myParent = parent;
 	}
 

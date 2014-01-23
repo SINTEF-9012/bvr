@@ -7,21 +7,21 @@
     <details key="description" value="The following is a full normative description of each meta-classes."/>
     <details key="css" value="common"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="CVLModel" eSuperTypes="#//CVLNamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="BVRModel" eSuperTypes="#//BVRNamedElement">
     <eAnnotations source="doc">
-      <details key="description" value="A CVL model is the root of the repository that describes the variabilities and resolutions relative to a specific base model."/>
-      <details key="semantics" value="CVL models are executed and the appropriate base model is copied and transformed according to the semantic rules. See BaseModel to get a definition of what portion of the base model to start with.&#xD;&#xA;&#xD;&#xA;A CVL Model assumes that model elements are connected by one-way references (see ModelElement).&#xD;&#xA;The CVL execution will copy a portion of the base model as the starting point of the execution. The portion that is copied is the base model tree defined by the following:&#xD;&#xA;1. CVLModel.base points out a model element, say me&#xD;&#xA;2. From me follow container reference as far as it goes. This model element defines the root of the tree that will define the base model to be copied.&#xD;&#xA;On this copy of the base model, the variabilitySpecification of the CVL Model is executed; during this execution executable primitives of the variabilitySpecification are executed, while the resolutionSpecifications of the CVL Model determines how the iterators as part of the variabilitySpecification are to be executed."/>
+      <details key="description" value="A BVR model is the root of the repository that describes the variabilities and resolutions relative to a specific base model."/>
+      <details key="semantics" value="BVR models are executed and the appropriate base model is copied and transformed according to the semantic rules. See BaseModel to get a definition of what portion of the base model to start with.&#xD;&#xA;&#xD;&#xA;A BVR Model assumes that model elements are connected by one-way references (see ModelElement).&#xD;&#xA;The BVR execution will copy a portion of the base model as the starting point of the execution. The portion that is copied is the base model tree defined by the following:&#xD;&#xA;1. BVRModel.base points out a model element, say me&#xD;&#xA;2. From me follow container reference as far as it goes. This model element defines the root of the tree that will define the base model to be copied.&#xD;&#xA;On this copy of the base model, the variabilitySpecification of the BVR Model is executed; during this execution executable primitives of the variabilitySpecification are executed, while the resolutionSpecifications of the BVR Model determines how the iterators as part of the variabilitySpecification are to be executed."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variabilitySpecification"
         eType="#//VariabilitySpecification" containment="true">
       <eAnnotations source="doc">
-        <details key="description" value="CVL Model contains a Variability Specification."/>
+        <details key="description" value="BVR Model contains a Variability Specification."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolutionSpecification"
         upperBound="-1" eType="#//ResolutionSpecification" containment="true">
       <eAnnotations source="doc">
-        <details key="description" value="CVL Model contains a number of Resolution Specifications."/>
+        <details key="description" value="BVR Model contains a number of Resolution Specifications."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
@@ -108,7 +108,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PlacementFragment" eSuperTypes="#//CVLNamedElement #//PlacementLiteral">
+  <eClassifiers xsi:type="ecore:EClass" name="PlacementFragment" eSuperTypes="#//BVRNamedElement #//PlacementLiteral">
     <eAnnotations source="doc">
       <details key="description" value="A PlacementFragment defines a fragment (set of model elements) of the base model that will be replaced by a ReplacementFragment during the variability transformation. The set of model elements of the fragment will be deleted."/>
       <details key="semantics" value="The semantics of the Placement Fragment can be found under Fragment Substitution."/>
@@ -122,7 +122,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="usage" eType="#//PlacementFragmentUsage"
         defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReplacementFragment" eSuperTypes="#//CVLNamedElement #//ReplacementFragmentAbstract">
+  <eClassifiers xsi:type="ecore:EClass" name="ReplacementFragment" eSuperTypes="#//BVRNamedElement #//ReplacementFragmentAbstract">
     <eAnnotations source="doc">
       <details key="description" value="Replacement Fragment defines a fragment of the base model that will be used as replacement for some placement fragment of the base model."/>
       <details key="semantics" value="The semantics of Replacement Fragment can be found under Fragment Substitution."/>
@@ -142,14 +142,14 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PlacementBoundaryElement" abstract="true"
-      eSuperTypes="#//CVLNamedElement">
+      eSuperTypes="#//BVRNamedElement">
     <eAnnotations source="doc">
       <details key="description" value="Represents the boundary between a placement fragment and the rest of the base model."/>
       <details key="semantics" value="The semantics of Variation Boundary Element is found under its specializations."/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReplacementBoundaryElement" abstract="true"
-      eSuperTypes="#//CVLNamedElement">
+      eSuperTypes="#//BVRNamedElement">
     <eAnnotations source="doc">
       <details key="description" value="Represents the boundary between a replacement fragment and the rest of the base model."/>
       <details key="semantics" value="The semantics of Replacement Boundary Element is found under its specializations."/>
@@ -251,9 +251,9 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CVLElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BVRElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoundaryElementBinding" abstract="true"
-      eSuperTypes="#//CVLNamedElement">
+      eSuperTypes="#//BVRNamedElement">
     <eAnnotations source="doc">
       <details key="description" value="Specifies the binding between the boundary elements of the placement fragment and the replacement fragment."/>
       <details key="semantics" value="The semantics of the BoundaryElementBinding is found under its specializations."/>
@@ -308,13 +308,13 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariabilitySpecification" abstract="true"
-      eSuperTypes="#//CVLNamedElement">
+      eSuperTypes="#//BVRNamedElement">
     <eAnnotations source="doc">
-      <details key="description" value="The VariabilitySpecifications of a CVLModel defines the variabilities on the base model represented by CVLModel. There are two kinds of VariabilitySpecifications: declarations and executable primitives."/>
+      <details key="description" value="The VariabilitySpecifications of a BVRModel defines the variabilities on the base model represented by BVRModel. There are two kinds of VariabilitySpecifications: declarations and executable primitives."/>
       <details key="semantics" value="The semantics of the variability specification is given by the specializations."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CVLNamedElement" abstract="true" eSuperTypes="#//CVLElement">
+  <eClassifiers xsi:type="ecore:EClass" name="BVRNamedElement" abstract="true" eSuperTypes="#//BVRElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PlacementLiteral" abstract="true" eSuperTypes="#//Declaration">
@@ -350,7 +350,7 @@
     <eAnnotations source="doc">
       <details key="description" value="A placement object represents a reference-typed attribute (with name propertyName) of the model element denoted by targetObject, a reference attribute that by a ReferenceSubstitution may be changed to denote a model element represented by a ReplacementObject."/>
       <details key="semantics" value="Attribute with the name propertyName of the model element denoted by targetObject."/>
-      <details key="constraint" value="targetObject must have a reference attribute with name propertyName. This is really a constraint on the combined CVL and base model."/>
+      <details key="constraint" value="targetObject must have a reference attribute with name propertyName. This is really a constraint on the combined BVR and base model."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="doc">
@@ -391,9 +391,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResolutionSpecification" abstract="true"
-      eSuperTypes="#//CVLNamedElement">
+      eSuperTypes="#//BVRNamedElement">
     <eAnnotations source="doc">
-      <details key="description" value="The VariabilitySpecifications of a CVLModel defines the resolutions on the variability model represented by CVLModel."/>
+      <details key="description" value="The VariabilitySpecifications of a BVRModel defines the resolutions on the variability model represented by BVRModel."/>
       <details key="semantics" value="The semantics of the Resolution Specification is given by the specializations."/>
     </eAnnotations>
   </eClassifiers>
@@ -452,7 +452,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rfRef" lowerBound="1" eType="#//ReplacementFragmentReference">
       <eAnnotations source="doc">
-        <details key="description" value="Specifies which ReplacementFragmentReference that will store the instance of the replacement fragment that will be the result of executing the body of the type, given the resolutions of the CVL Model."/>
+        <details key="description" value="Specifies which ReplacementFragmentReference that will store the instance of the replacement fragment that will be the result of executing the body of the type, given the resolutions of the BVR Model."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -541,14 +541,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExecutablePrimitive" abstract="true"
       eSuperTypes="#//VariabilitySpecification">
     <eAnnotations source="doc">
-      <details key="description" value="A CVL model is executed by executing its executable primitives. These will transform the copy of the base model according to substitutions."/>
-      <details key="semantics" value="An executable primitive is executed if it is part of a variability specification of a CVLModel and selected for execution by a resolution specification."/>
+      <details key="description" value="A BVR model is executed by executing its executable primitives. These will transform the copy of the base model according to substitutions."/>
+      <details key="semantics" value="An executable primitive is executed if it is part of a variability specification of a BVRModel and selected for execution by a resolution specification."/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//Declaration">
     <eAnnotations source="doc">
       <details key="description" value="Constraint is a way to describe restrictions to what resolutions can apply."/>
-      <details key="semantics" value="The CVL model will be validated using the specified constraints."/>
+      <details key="semantics" value="The BVR model will be validated using the specified constraints."/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NOT" eSuperTypes="#//Constraint">

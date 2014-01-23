@@ -3,7 +3,7 @@ package no.sintef.bvr.engine.operation;
 import java.io.File;
 import java.util.HashMap;
 
-import no.sintef.bvr.engine.error.ContainmentCVLModelException;
+import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
@@ -65,7 +65,7 @@ public class FragmentSubstitutionContainmentTest {
 		fso.execute(true);
 		try{
 			fso.checkConsistence();
-		}catch(ContainmentCVLModelException e){
+		}catch(ContainmentBVRModelException e){
 			exceptionRiased = true;
 		}
 		Assert.assertTrue("Required exception is not raised", exceptionRiased);

@@ -7,11 +7,11 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 /**
  * @generated
  */
-public class CVLMetamodelLinkDescriptor extends UpdaterLinkDescriptor {
+public class BVRMetamodelLinkDescriptor extends UpdaterLinkDescriptor {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelLinkDescriptor(EObject source, EObject destination,
+	public BVRMetamodelLinkDescriptor(EObject source, EObject destination,
 			IElementType elementType, int linkVID) {
 		super(source, destination, elementType, linkVID);
 	}
@@ -19,7 +19,7 @@ public class CVLMetamodelLinkDescriptor extends UpdaterLinkDescriptor {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelLinkDescriptor(EObject source, EObject destination,
+	public BVRMetamodelLinkDescriptor(EObject source, EObject destination,
 			EObject linkElement, IElementType elementType, int linkVID) {
 		super(source, destination, linkElement, elementType, linkVID);
 	}

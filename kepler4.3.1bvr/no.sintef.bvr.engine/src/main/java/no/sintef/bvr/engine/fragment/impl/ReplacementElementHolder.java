@@ -3,7 +3,7 @@ package no.sintef.bvr.engine.fragment.impl;
 import java.util.HashSet;
 
 import no.sintef.bvr.engine.common.HolderDataElement;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.ElementHolderOIF;
 import no.sintef.bvr.engine.fragment.ReplacementElementFinderStrategy;
 
@@ -25,18 +25,18 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 	private ReplacementFragmentType replacement;
 	private ReplacementElementFinderStrategy elementFinder;
 
-	public ReplacementElementHolder(ReplacementFragmentType rft) throws BasicCVLEngineException {
+	public ReplacementElementHolder(ReplacementFragmentType rft) throws BasicBVREngineException {
 		elementFinder = new StrategyReplacementElementFinder();
 		replacement = rft;
 		this.locate();
 	}
 	
-	public void update() throws BasicCVLEngineException{
+	public void update() throws BasicBVREngineException{
 		this.locate();
 	}
 
 	@Override
-	protected void locate() throws BasicCVLEngineException{
+	protected void locate() throws BasicBVREngineException{
 		super.locate();
 		outerElements = new HashSet<EObject>();
 		innerElements = new HashSet<EObject>();

@@ -6,8 +6,8 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.Choice;
 import bvr.BvrFactory;
@@ -25,9 +25,9 @@ public class UpdateChoice extends UpdateVSpec {
 	Map<Variable, String> varTypes = new HashMap<Variable, String>();
 
 	@Override
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent,
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
 

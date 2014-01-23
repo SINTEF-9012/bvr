@@ -1,13 +1,13 @@
 package no.sintef.bvr.gmf.vspec.navigator;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.jface.viewers.ViewerSorter;
 
 /**
  * @generated
  */
-public class CVLMetamodelNavigatorSorter extends ViewerSorter {
+public class BVRMetamodelNavigatorSorter extends ViewerSorter {
 
 	/**
 	 * @generated
@@ -18,9 +18,9 @@ public class CVLMetamodelNavigatorSorter extends ViewerSorter {
 	 * @generated
 	 */
 	public int category(Object element) {
-		if (element instanceof CVLMetamodelNavigatorItem) {
-			CVLMetamodelNavigatorItem item = (CVLMetamodelNavigatorItem) element;
-			return CVLMetamodelVisualIDRegistry.getVisualID(item.getView());
+		if (element instanceof BVRMetamodelNavigatorItem) {
+			BVRMetamodelNavigatorItem item = (BVRMetamodelNavigatorItem) element;
+			return BVRMetamodelVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;
 	}

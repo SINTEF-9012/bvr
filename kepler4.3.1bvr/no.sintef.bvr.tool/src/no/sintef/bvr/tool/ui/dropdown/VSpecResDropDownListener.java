@@ -24,8 +24,8 @@ import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
@@ -39,11 +39,11 @@ import bvr.VSpecResolution;
 
 public class VSpecResDropDownListener extends MouseAdapter {
 	private VSpecResolution v;
-	private CVLView bvrView;
+	private BVRView bvrView;
 	private ConfigurableUnit cu;
-	private CVLModel m;
+	private BVRModel m;
 
-	public VSpecResDropDownListener(CVLModel m, ConfigurableUnit cu, CVLView bvrView) {
+	public VSpecResDropDownListener(BVRModel m, ConfigurableUnit cu, BVRView bvrView) {
 		this.m = m;
 		this.cu = cu;
 		this.v = v;
@@ -69,7 +69,7 @@ public class VSpecResDropDownListener extends MouseAdapter {
 class VSpecResDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecResDropdown(CVLModel m, ConfigurableUnit cu, VSpecResolution v, CVLView bvrView){
+    public VSpecResDropdown(BVRModel m, ConfigurableUnit cu, VSpecResolution v, BVRView bvrView){
     	/*JMenuItem del = new JMenuItem("delete");
     	del.addActionListener(new DelResEvent(cu, v, bvrView));
 		add(del);

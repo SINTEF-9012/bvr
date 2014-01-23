@@ -4,15 +4,15 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CVLModelSingleton {
-	static Map<File, CVLModel> loaded = new HashMap<File, CVLModel>();
+public class BVRModelSingleton {
+	static Map<File, BVRModel> loaded = new HashMap<File, BVRModel>();
 	
-	public static CVLModel getModel(File f){
-		CVLModel m;
+	public static BVRModel getModel(File f){
+		BVRModel m;
 		if(loaded.containsKey(f)){
 			m = loaded.get(f);
 		}else{
-			m = new CVLModel(f);
+			m = new BVRModel(f);
 			loaded.put(f, m);
 		}
 		

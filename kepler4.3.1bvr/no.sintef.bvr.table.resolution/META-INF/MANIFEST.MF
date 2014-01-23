@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Resolution
 Bundle-SymbolicName: no.sintef.bvr.table.resolution;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: no.sintef.bvr.table.resolution.editors.CVLMetamodelEditorPlugin$Implementation
+Bundle-Activator: no.sintef.bvr.table.resolution.editors.BVRMetamodelEditorPlugin$Implementation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.8.100",
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",

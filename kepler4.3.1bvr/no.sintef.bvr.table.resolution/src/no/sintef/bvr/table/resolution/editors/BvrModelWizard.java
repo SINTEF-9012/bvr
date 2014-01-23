@@ -57,7 +57,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 import bvr.BvrFactory;
 import bvr.BvrPackage;
-import bvr.provider.CVLMetamodelEditPlugin;
+import bvr.provider.BVRMetamodelEditPlugin;
 
 /**
  * This is a simple wizard for creating a new model file. <!-- begin-user-doc
@@ -73,7 +73,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS = Collections
-			.unmodifiableList(Arrays.asList(CVLMetamodelEditorPlugin.INSTANCE
+			.unmodifiableList(Arrays.asList(BVRMetamodelEditorPlugin.INSTANCE
 					.getString("_UI_BvrEditorFilenameExtensions").split(
 							"\\s*,\\s*")));
 
@@ -83,7 +83,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 	 * 
 	 * @generated
 	 */
-	public static final String FORMATTED_FILE_EXTENSIONS = CVLMetamodelEditorPlugin.INSTANCE
+	public static final String FORMATTED_FILE_EXTENSIONS = BVRMetamodelEditorPlugin.INSTANCE
 			.getString("_UI_BvrEditorFilenameExtensions").replaceAll(
 					"\\s*,\\s*", ", ");
 
@@ -152,10 +152,10 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(CVLMetamodelEditorPlugin.INSTANCE
+		setWindowTitle(BVRMetamodelEditorPlugin.INSTANCE
 				.getString("_UI_Wizard_label"));
 		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-				.getImageDescriptor(CVLMetamodelEditorPlugin.INSTANCE
+				.getImageDescriptor(BVRMetamodelEditorPlugin.INSTANCE
 						.getImage("full/wizban/NewBvr")));
 	}
 
@@ -241,7 +241,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 								initialObjectCreationPage.getEncoding());
 						resource.save(options);
 					} catch (Exception exception) {
-						CVLMetamodelEditorPlugin.INSTANCE.log(exception);
+						BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 					} finally {
 						progressMonitor.done();
 					}
@@ -279,7 +279,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 								.getId());
 			} catch (PartInitException exception) {
 				MessageDialog.openError(workbenchWindow.getShell(),
-						CVLMetamodelEditorPlugin.INSTANCE
+						BVRMetamodelEditorPlugin.INSTANCE
 								.getString("_UI_OpenEditorError_label"),
 						exception.getMessage());
 				return false;
@@ -287,7 +287,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 
 			return true;
 		} catch (Exception exception) {
-			CVLMetamodelEditorPlugin.INSTANCE.log(exception);
+			BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -323,7 +323,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions"
 							: "_WARN_FilenameExtension";
-					setErrorMessage(CVLMetamodelEditorPlugin.INSTANCE
+					setErrorMessage(BVRMetamodelEditorPlugin.INSTANCE
 							.getString(key,
 									new Object[] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
@@ -401,7 +401,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(CVLMetamodelEditorPlugin.INSTANCE
+				containerLabel.setText(BVRMetamodelEditorPlugin.INSTANCE
 						.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
@@ -428,7 +428,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(CVLMetamodelEditorPlugin.INSTANCE
+				encodingLabel.setText(BVRMetamodelEditorPlugin.INSTANCE
 						.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
@@ -527,10 +527,10 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return CVLMetamodelEditPlugin.INSTANCE.getString("_UI_"
+				return BVRMetamodelEditPlugin.INSTANCE.getString("_UI_"
 						+ typeName + "_type");
 			} catch (MissingResourceException mre) {
-				CVLMetamodelEditorPlugin.INSTANCE.log(mre);
+				BVRMetamodelEditorPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -544,7 +544,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
 				for (StringTokenizer stringTokenizer = new StringTokenizer(
-						CVLMetamodelEditorPlugin.INSTANCE
+						BVRMetamodelEditorPlugin.INSTANCE
 								.getString("_UI_XMLEncodingChoices")); stringTokenizer
 						.hasMoreTokens();) {
 					encodings.add(stringTokenizer.nextToken());
@@ -566,11 +566,11 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 		//
 		newFileCreationPage = new BvrModelWizardNewFileCreationPage("Whatever",
 				selection);
-		newFileCreationPage.setTitle(CVLMetamodelEditorPlugin.INSTANCE
+		newFileCreationPage.setTitle(BVRMetamodelEditorPlugin.INSTANCE
 				.getString("_UI_BvrModelWizard_label"));
-		newFileCreationPage.setDescription(CVLMetamodelEditorPlugin.INSTANCE
+		newFileCreationPage.setDescription(BVRMetamodelEditorPlugin.INSTANCE
 				.getString("_UI_BvrModelWizard_description"));
-		newFileCreationPage.setFileName(CVLMetamodelEditorPlugin.INSTANCE
+		newFileCreationPage.setFileName(BVRMetamodelEditorPlugin.INSTANCE
 				.getString("_UI_BvrEditorFilenameDefaultBase")
 				+ "."
 				+ FILE_EXTENSIONS.get(0));
@@ -602,7 +602,7 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = CVLMetamodelEditorPlugin.INSTANCE
+					String defaultModelBaseFilename = BVRMetamodelEditorPlugin.INSTANCE
 							.getString("_UI_BvrEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS
 							.get(0);
@@ -619,10 +619,10 @@ public class BvrModelWizard extends Wizard implements INewWizard {
 		}
 		initialObjectCreationPage = new BvrModelWizardInitialObjectCreationPage(
 				"Whatever2");
-		initialObjectCreationPage.setTitle(CVLMetamodelEditorPlugin.INSTANCE
+		initialObjectCreationPage.setTitle(BVRMetamodelEditorPlugin.INSTANCE
 				.getString("_UI_BvrModelWizard_label"));
 		initialObjectCreationPage
-				.setDescription(CVLMetamodelEditorPlugin.INSTANCE
+				.setDescription(BVRMetamodelEditorPlugin.INSTANCE
 						.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}

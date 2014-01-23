@@ -11,7 +11,7 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.PrintStream;
 
-import no.sintef.ict.splcatool.CVLModel;
+import no.sintef.ict.splcatool.BVRModel;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -78,8 +78,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -102,8 +102,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -126,8 +126,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -150,8 +150,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -174,8 +174,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -198,8 +198,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -222,8 +222,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -246,8 +246,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test1.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test1.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -270,8 +270,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -294,8 +294,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -318,8 +318,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -342,8 +342,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -366,8 +366,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -390,8 +390,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -414,8 +414,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -438,8 +438,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model
@@ -462,8 +462,8 @@ public class testBCL {
 		TokenStream tokens = new CommonTokenStream(lexer);
 		BCLParser parser = new BCLParser(tokens);
 		
-		// Build CVL
-		CVLModel cm = new CVLModel("TestData/test2.xmi");
+		// Build BVR
+		BVRModel cm = new BVRModel("TestData/test2.xmi");
 		ConfigurableUnit cu = cm.getCU();
 		
 		// Build model

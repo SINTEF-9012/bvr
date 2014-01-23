@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.edit.policies;
 
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
@@ -14,13 +14,13 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class MultiplicityIntervalItemSemanticEditPolicy extends
-		CVLMetamodelBaseItemSemanticEditPolicy {
+		BVRMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public MultiplicityIntervalItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.MultiplicityInterval_3002);
+		super(BVRMetamodelElementTypes.MultiplicityInterval_3002);
 	}
 
 	/**

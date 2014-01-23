@@ -13,19 +13,19 @@ import org.eclipse.emf.ecore.resource.Resource;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 public interface Environment {
 	
-	public CVLModel loadModelFromFile(File file);
+	public BVRModel loadModelFromFile(File file);
 	
-	public void writeModelToFile(CVLModel model, File file);
+	public void writeModelToFile(BVRModel model, File file);
 	
 	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file);
 	
 	public void performSubstitutions(List<Symbol> symbols);
 	
-	public void reloadModel(CVLModel model);
+	public void reloadModel(BVRModel model);
 	
 	public EObject getEObject(Object object);
 	

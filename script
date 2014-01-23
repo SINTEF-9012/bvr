@@ -35,10 +35,11 @@ do
     echo 'change' "$file" 'to' `echo "$file" | sed s/CVL/BVR/g`
     mv "$file" `echo "$file" | sed s/CVL/BVR/g`
 done
-echo 'searching for occurances cvl or Cvl in files'
+echo 'searching for occurances cvl, Cvl, CVL in files'
 for file in $(find ./kepler4.3.1bvr -name "*" -type f )
 do
     echo 'file: ' "$file"
     sed -i 's/cvl/bvr/g' "$file"
     sed -i 's/Cvl/Bvr/g' "$file"
+    sed -i 's/CVL/BVR/g' "$file"
 done

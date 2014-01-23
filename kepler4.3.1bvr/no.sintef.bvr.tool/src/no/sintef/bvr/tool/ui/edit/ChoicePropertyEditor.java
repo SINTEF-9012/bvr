@@ -15,8 +15,8 @@ import javax.swing.text.JTextComponent;
 
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.Choice;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -30,7 +30,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public ChoicePropertyEditor(CVLUIKernel kernel, VSpec elem, CVLView view) {
+	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRView view) {
 		super(kernel, (VSpec) elem, view);
 		
 		int count = 1;

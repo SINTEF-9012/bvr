@@ -6,8 +6,8 @@ import java.util.LinkedList;
 /**
  * @generated
  */
-public class CVLMetamodelNavigatorGroup extends
-		CVLMetamodelAbstractNavigatorItem {
+public class BVRMetamodelNavigatorGroup extends
+		BVRMetamodelAbstractNavigatorItem {
 
 	/**
 	 * @generated
@@ -27,7 +27,7 @@ public class CVLMetamodelNavigatorGroup extends
 	/**
 	 * @generated
 	 */
-	CVLMetamodelNavigatorGroup(String groupName, String icon, Object parent) {
+	BVRMetamodelNavigatorGroup(String groupName, String icon, Object parent) {
 		super(parent);
 		myGroupName = groupName;
 		myIcon = icon;
@@ -79,8 +79,8 @@ public class CVLMetamodelNavigatorGroup extends
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if (obj instanceof no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorGroup) {
-			no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorGroup anotherGroup = (no.sintef.bvr.gmf.vspec.navigator.CVLMetamodelNavigatorGroup) obj;
+		if (obj instanceof no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorGroup) {
+			no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorGroup anotherGroup = (no.sintef.bvr.gmf.vspec.navigator.BVRMetamodelNavigatorGroup) obj;
 			if (getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}

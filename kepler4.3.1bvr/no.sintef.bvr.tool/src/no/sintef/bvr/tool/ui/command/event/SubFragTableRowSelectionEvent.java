@@ -26,7 +26,7 @@ import bvr.ToReplacement;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.common.logging.Logger;
-import no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor;
+import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
@@ -207,9 +207,9 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 	
 	private EList<HashMap<EObject, Integer>> markObjects(EList<EObject> outsideInsideElements, EList<EObject> outsideOutsideElements, EList<EObject> insideElements, boolean isPlacement){
 		EList<HashMap<EObject, Integer>> objectsToHL = new BasicEList<HashMap<EObject,Integer>>();
-		int fragment = (isPlacement) ? ICVLEnabledEditor.HL_PLACEMENT : ICVLEnabledEditor.HL_REPLACEMENT;
-		int fragment_in = (isPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_IN : ICVLEnabledEditor.HL_REPLACEMENT_IN;
-		int fragment_out = (isPlacement) ? ICVLEnabledEditor.HL_PLACEMENT_OUT : ICVLEnabledEditor.HL_REPLACEMENT_OUT;
+		int fragment = (isPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT;
+		int fragment_in = (isPlacement) ? IBVREnabledEditor.HL_PLACEMENT_IN : IBVREnabledEditor.HL_REPLACEMENT_IN;
+		int fragment_out = (isPlacement) ? IBVREnabledEditor.HL_PLACEMENT_OUT : IBVREnabledEditor.HL_REPLACEMENT_OUT;
 		for(EObject eObject : outsideInsideElements){
 			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
 			objectsToH.put(eObject, fragment_in);

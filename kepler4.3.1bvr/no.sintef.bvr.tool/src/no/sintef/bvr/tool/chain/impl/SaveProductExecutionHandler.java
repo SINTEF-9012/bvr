@@ -12,7 +12,7 @@ import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.ExecutionRequest;
 import no.sintef.bvr.tool.strategy.SaveProductStrategy;
 import no.sintef.bvr.tool.strategy.impl.SimpleSaveProductStrategy;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 public class SaveProductExecutionHandler implements ExecutionHandler {
 
@@ -28,7 +28,7 @@ public class SaveProductExecutionHandler implements ExecutionHandler {
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
 		ConfigurableUnit cu = (ConfigurableUnit) request.getDataField("cu");
 		JComponent parentComponent = (JComponent) request.getDataField("parentComponent");
-		CVLModel model =  (CVLModel) request.getDataField("bvrModel");
+		BVRModel model =  (BVRModel) request.getDataField("bvrModel");
 		
 		if(cu == null || parentComponent == null || model == null){
 			throw new UnexpectedException("require conifuration unit, parent jcomponent, and bvr model to handle this request");

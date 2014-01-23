@@ -19,8 +19,8 @@ import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.Choice;
 import bvr.ConfigurableUnit;
 import bvr.PrimitiveTypeEnum;
@@ -35,7 +35,7 @@ public class ConfigurableUnitPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public ConfigurableUnitPropertyEditor(CVLUIKernel kernel, ConfigurableUnit elem, CVLView view) {
+	public ConfigurableUnitPropertyEditor(BVRUIKernel kernel, ConfigurableUnit elem, BVRView view) {
 		super(kernel, elem, view);
 	}
 

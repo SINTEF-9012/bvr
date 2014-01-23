@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.logging.Logger;
-import no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor;
+import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.thirdparty.editor.ProxyThirdPartyTreeEditor;
 import no.sintef.bvr.tool.common.ModelSelector;
 import no.sintef.bvr.tool.exception.NoEclipseDetectedException;
@@ -47,7 +47,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 				Method method = object.getClass().getMethod("resolveSemanticElement");
 				eObject = (EObject) method.invoke(object, new Object[0]);
 			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException error) {
-				throw new UnsupportedOperationException("Can not access a model object, blame your editor. We should fall into a brach where we chech that an editor implements CVL enabled editor interface");
+				throw new UnsupportedOperationException("Can not access a model object, blame your editor. We should fall into a brach where we chech that an editor implements BVR enabled editor interface");
 			}
 		}
 		return eObject;
@@ -77,14 +77,14 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 				 * which is referenced by outsideBoundaryElement of either toPlacement or fromPlacement, then still color it differently. Otherwise we give a warning.
 				 * The same logic for replacements
 				 */
-				if(type == ICVLEnabledEditor.HL_PLACEMENT_IN && pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_OUT
-						|| type == ICVLEnabledEditor.HL_PLACEMENT_OUT && pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_IN
-						|| (type == ICVLEnabledEditor.HL_PLACEMENT_IN_OUT && (pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_OUT || pair.get(key) == ICVLEnabledEditor.HL_PLACEMENT_IN))){
-					pair.put(key, ICVLEnabledEditor.HL_PLACEMENT_IN_OUT);
-				}else if(type == ICVLEnabledEditor.HL_REPLACEMENT_IN && pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_OUT
-						|| type == ICVLEnabledEditor.HL_REPLACEMENT_OUT && pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_IN
-						|| (type == ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT && (pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_OUT || pair.get(key) == ICVLEnabledEditor.HL_REPLACEMENT_IN))){
-					pair.put(key, ICVLEnabledEditor.HL_REPLACEMENT_IN_OUT);
+				if(type == IBVREnabledEditor.HL_PLACEMENT_IN && pair.get(key) == IBVREnabledEditor.HL_PLACEMENT_OUT
+						|| type == IBVREnabledEditor.HL_PLACEMENT_OUT && pair.get(key) == IBVREnabledEditor.HL_PLACEMENT_IN
+						|| (type == IBVREnabledEditor.HL_PLACEMENT_IN_OUT && (pair.get(key) == IBVREnabledEditor.HL_PLACEMENT_OUT || pair.get(key) == IBVREnabledEditor.HL_PLACEMENT_IN))){
+					pair.put(key, IBVREnabledEditor.HL_PLACEMENT_IN_OUT);
+				}else if(type == IBVREnabledEditor.HL_REPLACEMENT_IN && pair.get(key) == IBVREnabledEditor.HL_REPLACEMENT_OUT
+						|| type == IBVREnabledEditor.HL_REPLACEMENT_OUT && pair.get(key) == IBVREnabledEditor.HL_REPLACEMENT_IN
+						|| (type == IBVREnabledEditor.HL_REPLACEMENT_IN_OUT && (pair.get(key) == IBVREnabledEditor.HL_REPLACEMENT_OUT || pair.get(key) == IBVREnabledEditor.HL_REPLACEMENT_IN))){
+					pair.put(key, IBVREnabledEditor.HL_REPLACEMENT_IN_OUT);
 				}else if(type != pair.get(key)){
 					Context.eINSTANCE.logger.warn("have no idea how to highlight element (highlighting will be partially correct): " + key);
 				}
@@ -104,7 +104,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    public void run() {
 		    	for(IEditorReference ref : editorReferences){
 		    		IEditorPart editorPart = ref.getEditor(false);
-		    		if(editorPart != null && !(editorPart instanceof ICVLEnabledEditor)){
+		    		if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
 		    			try {
 		    				ProxyThirdPartyTreeEditor bvrEnabledEditor = new ProxyThirdPartyTreeEditor(editorPart);
 		    				bvrEnabledEditor.clearHighlighting();
@@ -113,8 +113,8 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 						} catch (Exception e) {
 							Context.eINSTANCE.logger.warn("unsupported editor: -->"+ editorPart.getClass().toString() + "<--, can not highlight due to : " + e.getMessage());
 						}
-		    		}else if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
-		    			ICVLEnabledEditor bvrEnabledEditor = (ICVLEnabledEditor) editorPart;
+		    		}else if (editorPart != null && (editorPart instanceof IBVREnabledEditor)){
+		    			IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) editorPart;
 		    			bvrEnabledEditor.clearHighlighting();
 		    			highlightObjects(bvrEnabledEditor, objects);
 		    		}else{
@@ -124,7 +124,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    	}
 		    }
 		
-			private void highlightObjects(final ICVLEnabledEditor editor, final HashMap<EObject, Integer> objects){
+			private void highlightObjects(final IBVREnabledEditor editor, final HashMap<EObject, Integer> objects){
 				for(Map.Entry<EObject, Integer> entry : objects.entrySet()){
 					editor.highlightObject(entry.getKey(), entry.getValue());
 				}
@@ -144,15 +144,15 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 			public void run() {
 		    	for(IEditorReference ref : editorReferences){
 		    		IEditorPart editorPart = ref.getEditor(false);
-		    		if(editorPart != null && !(editorPart instanceof ICVLEnabledEditor)){
+		    		if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
 		    			try {
-		    				ICVLEnabledEditor editor = new ProxyThirdPartyTreeEditor(editorPart);
+		    				IBVREnabledEditor editor = new ProxyThirdPartyTreeEditor(editorPart);
 		    				editor.clearHighlighting();
 						} catch (Exception e) {
 							Context.eINSTANCE.logger.warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());
 						}
-		    		}if (editorPart != null && (editorPart instanceof ICVLEnabledEditor)){
-		    			ICVLEnabledEditor bvrEnabledEditor = (ICVLEnabledEditor) editorPart;
+		    		}if (editorPart != null && (editorPart instanceof IBVREnabledEditor)){
+		    			IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) editorPart;
 		    			bvrEnabledEditor.clearHighlighting();
 		    		}else{
 		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass().toString() : "null");

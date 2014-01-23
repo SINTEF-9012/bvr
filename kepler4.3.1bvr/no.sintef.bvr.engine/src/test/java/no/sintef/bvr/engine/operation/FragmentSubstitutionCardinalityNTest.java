@@ -3,7 +3,7 @@ package no.sintef.bvr.engine.operation;
 import java.io.File;
 import java.util.HashMap;
 
-import no.sintef.bvr.engine.error.IllegalCVLOperation;
+import no.sintef.bvr.engine.error.IllegalBVROperation;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
@@ -68,10 +68,10 @@ public class FragmentSubstitutionCardinalityNTest {
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod1.node", "base_new.node"));
 		try{
 			fso.execute(false);
-		}catch(IllegalCVLOperation e){
+		}catch(IllegalBVROperation e){
 			return;
 		}
-		Assert.assertTrue("IllegalCVLOperation is not raised, cardinality is 2", false);
+		Assert.assertTrue("IllegalBVROperation is not raised, cardinality is 2", false);
 		
 	}
 	
@@ -97,10 +97,10 @@ public class FragmentSubstitutionCardinalityNTest {
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod2.node", "base_new.node"));
 		try{
 			fso.execute(false);
-		}catch(IllegalCVLOperation e){
+		}catch(IllegalBVROperation e){
 			return;
 		}
-		Assert.assertTrue("IllegalCVLOperation is not raised, cardinality is 2", false);
+		Assert.assertTrue("IllegalBVROperation is not raised, cardinality is 2", false);
 	}
 	
 	@Test

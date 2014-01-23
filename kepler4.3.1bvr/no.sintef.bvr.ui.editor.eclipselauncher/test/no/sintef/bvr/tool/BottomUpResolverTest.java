@@ -8,7 +8,7 @@ import no.sintef.bvr.tool.primitive.SymbolTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
 
@@ -103,7 +103,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstances() throws IOException, CoreException {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
 			
@@ -125,7 +125,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstances1() throws IOException, CoreException {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
 			
@@ -147,7 +147,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstancesV1() throws IOException, CoreException {	
 			File fileVarModel = testResources[4].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
 			
@@ -169,7 +169,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstancesV1_1() throws IOException, CoreException {	
 			File fileVarModel = testResources[4].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
 			
@@ -191,7 +191,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void printerCartirdgeSveralInstances() throws IOException, CoreException {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
 			
@@ -213,7 +213,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void printerCartirdgeSingleInstance() throws IOException, CoreException {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
 			
@@ -235,7 +235,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void office1() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
 			
@@ -257,7 +257,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void office2() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
 			
@@ -279,7 +279,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void office3() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(2);
 			
@@ -301,7 +301,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void office4() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(3);
 			
@@ -323,7 +323,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException {	
 			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
 			
@@ -345,7 +345,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsScopeless1() throws IOException, CoreException {	
 			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
 			
@@ -367,7 +367,7 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsScopeless2() throws IOException, CoreException {	
 			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
-			CVLModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
 			ConfigurableUnit cu = model.getCU();
 			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
 			

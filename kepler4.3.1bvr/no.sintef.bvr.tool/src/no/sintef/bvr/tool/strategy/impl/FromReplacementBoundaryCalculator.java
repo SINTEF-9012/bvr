@@ -11,7 +11,7 @@ import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.AbstractError;
-import no.sintef.bvr.tool.exception.CVLModelException;
+import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.strategy.BoundaryCalculatorStrategy;
 import bvr.FromPlacement;
 import bvr.FromReplacement;
@@ -32,11 +32,11 @@ public class FromReplacementBoundaryCalculator extends
 		String propertyNameSrcObject = fromReplacement.getPropertyName();
 		EObject srcObject = fromReplacement.getInsideBoundaryElement().getMOFRef();
 		if(srcObject.eIsProxy())
-			throw new CVLModelException("can not resolve a proxy object, it must be a model error: " + srcObject);
+			throw new BVRModelException("can not resolve a proxy object, it must be a model error: " + srcObject);
 		
 		EStructuralFeature propertySrcObject = srcObject.eClass().getEStructuralFeature(propertyNameSrcObject);
 		if(propertySrcObject == null)
-			throw new CVLModelException("can not find property : '" + propertyNameSrcObject + "'");
+			throw new BVRModelException("can not find property : '" + propertyNameSrcObject + "'");
 		
 		int upperBound = propertySrcObject.getUpperBound();
 		int lowerBound = propertySrcObject.getLowerBound();
@@ -72,7 +72,7 @@ public class FromReplacementBoundaryCalculator extends
 		
 		if(lowerBound == 0){
 			if(nullFromPlacement == null){
-				throw new CVLModelException("can not find NULL boundary of the type ToReplacement");
+				throw new BVRModelException("can not find NULL boundary of the type ToReplacement");
 			}
 			fromPlacements.add(0, nullFromPlacement);
 		}else{

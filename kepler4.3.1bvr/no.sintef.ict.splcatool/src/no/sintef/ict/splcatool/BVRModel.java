@@ -34,31 +34,31 @@ import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-public class CVLModel {
+public class BVRModel {
 	private ConfigurableUnit cu;
 	
 	private final static String utf8Encoding = "UTF-8"; 
 
-	public CVLModel(){
+	public BVRModel(){
 		BvrPackage.eINSTANCE.eClass();
 		BvrFactory factory = BvrFactory.eINSTANCE;
 		cu = factory.createConfigurableUnit();
 		cu.setName("Configurable Unit 1");
 	}
 
-	public CVLModel(File f) {
+	public BVRModel(File f) {
 		cu = loadFromFile(f);
 	}
 	
-	public CVLModel(String bvrFileName, boolean isPlatform) {
+	public BVRModel(String bvrFileName, boolean isPlatform) {
 		cu = (!isPlatform) ?  loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
 	}
 
-	public CVLModel(ConfigurableUnit cu) {
+	public BVRModel(ConfigurableUnit cu) {
 		this.cu = cu;
 	}
 
-	public CVLModel(String bvrfile) {
+	public BVRModel(String bvrfile) {
 		this(new File(bvrfile));
 	}
 	
@@ -246,7 +246,7 @@ public class CVLModel {
 		return name;
 	}
 
-	public CoveringArray getCoveringArray() throws CVLException, CSVException {
+	public CoveringArray getCoveringArray() throws BVRException, CSVException {
 		//System.out.println("--------------------------------");
 		
 		//System.out.println(cu.getOwnedVSpecResolution().size());
@@ -256,7 +256,7 @@ public class CVLModel {
 		for(VSpecResolution c : cu.getOwnedVSpecResolution()){
 			Map<String, Boolean> as = new HashMap<String, Boolean>();
 			if(!(c instanceof ChoiceResolutuion)){
-				throw new CVLException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+				throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
 			}
 			as.putAll(recurse((ChoiceResolutuion)c));
 			//System.out.println(as);
@@ -307,14 +307,14 @@ public class CVLModel {
 		return ca;
 	}
 
-	private Map<String, Boolean> recurse(ChoiceResolutuion x) throws CVLException {
+	private Map<String, Boolean> recurse(ChoiceResolutuion x) throws BVRException {
 		Map<String, Boolean> as = new HashMap<String, Boolean>();
 		
 		as.put(x.getResolvedVSpec().getName(), x.isDecision());
 		
 		for(VSpecResolution c : x.getChild()){
 			if(!(c instanceof ChoiceResolutuion)){
-				throw new CVLException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+				throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
 			}
 			as.putAll(recurse((ChoiceResolutuion)c));
 		}

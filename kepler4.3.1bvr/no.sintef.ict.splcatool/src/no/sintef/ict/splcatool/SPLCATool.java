@@ -42,7 +42,7 @@ public class SPLCATool {
 	}
 	
 	public void mainObj(String[] args){
-		System.out.println("SPL Covering Array Tool v0.41 (CVL 2 Version)");
+		System.out.println("SPL Covering Array Tool v0.41 (BVR 2 Version)");
 		System.out.println("http://www.variabilitymodeling.org/");
 		
 		// Defaults

@@ -42,7 +42,7 @@ import bvr.BvrPackage;
  * 
  * @generated
  */
-public class CVLMetamodelVisualIDRegistry {
+public class BVRMetamodelVisualIDRegistry {
 
 	/**
 	 * @generated
@@ -60,7 +60,7 @@ public class CVLMetamodelVisualIDRegistry {
 				return -1;
 			}
 		}
-		return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+		return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 				.getVisualID(view.getType());
 	}
 
@@ -88,7 +88,7 @@ public class CVLMetamodelVisualIDRegistry {
 		} catch (NumberFormatException e) {
 			if (Boolean.TRUE.toString().equalsIgnoreCase(
 					Platform.getDebugOption(DEBUG_KEY))) {
-				CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+				BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 						"Unable to parse view type as a visualID number: "
 								+ type);
 			}
@@ -125,14 +125,14 @@ public class CVLMetamodelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		String containerModelID = no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+		String containerModelID = no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 				.getModelID(containerView);
 		if (!ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
 		if (ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			containerVisualID = no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
@@ -197,14 +197,14 @@ public class CVLMetamodelVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+		String containerModelID = no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 				.getModelID(containerView);
 		if (!ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
 		if (ConfigurableUnitEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			containerVisualID = no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
@@ -409,7 +409,7 @@ public class CVLMetamodelVisualIDRegistry {
 		 */
 		@Override
 		public int getVisualID(View view) {
-			return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.getVisualID(view);
 		}
 
@@ -418,7 +418,7 @@ public class CVLMetamodelVisualIDRegistry {
 		 */
 		@Override
 		public String getModelID(View view) {
-			return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.getModelID(view);
 		}
 
@@ -427,7 +427,7 @@ public class CVLMetamodelVisualIDRegistry {
 		 */
 		@Override
 		public int getNodeVisualID(View containerView, EObject domainElement) {
-			return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.getNodeVisualID(containerView, domainElement);
 		}
 
@@ -437,7 +437,7 @@ public class CVLMetamodelVisualIDRegistry {
 		@Override
 		public boolean checkNodeVisualID(View containerView,
 				EObject domainElement, int candidate) {
-			return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
@@ -446,7 +446,7 @@ public class CVLMetamodelVisualIDRegistry {
 		 */
 		@Override
 		public boolean isCompartmentVisualID(int visualID) {
-			return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.isCompartmentVisualID(visualID);
 		}
 
@@ -455,7 +455,7 @@ public class CVLMetamodelVisualIDRegistry {
 		 */
 		@Override
 		public boolean isSemanticLeafVisualID(int visualID) {
-			return no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry
+			return no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry
 					.isSemanticLeafVisualID(visualID);
 		}
 	};

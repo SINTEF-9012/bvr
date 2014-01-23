@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.dropdown.VInstanceDropDownListener;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
@@ -20,15 +20,15 @@ import bvr.VSpec;
 
 public class AddVInstance implements Command{
 
-	private CVLUIKernel rootPanel;
+	private BVRUIKernel rootPanel;
 	private JComponent parent;
 	private VInstance vc;
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private BVRView view;
 
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.rootPanel = rootPanel;
 		this.vc = (VInstance) p;
 		this.parent = parent;
@@ -57,9 +57,9 @@ public class AddVInstance implements Command{
         
         //MultiplicityInterval m = vc.getInstanceMultiplicity();
 
-        //I would prefer not to mix concerns (here validation. We should assume a valid CVL model as input).
+        //I would prefer not to mix concerns (here validation. We should assume a valid BVR model as input).
         /*if(m == null){
-        	throw new CVLModelException("VClassifier instance must have InstanceMultiplicity");
+        	throw new BVRModelException("VClassifier instance must have InstanceMultiplicity");
         }*/
 /*        int l = m.getLower();
         int u = m.getUpper();

@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.custom.layout;
 
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelDiagramEditor;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditor;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -31,10 +31,10 @@ public class TopDownWithouConstraintLayoutHandler extends AbstractHandler {
 	protected EditPart getParentEditPart(ExecutionEvent event) {
 		editorPart = HandlerUtil.getActiveEditor(event);
 
-		if (!(editorPart instanceof CVLMetamodelDiagramEditor)) {
+		if (!(editorPart instanceof BVRMetamodelDiagramEditor)) {
 			return null;
 		}
-		CVLMetamodelDiagramEditor bvrEditorPart = (CVLMetamodelDiagramEditor) editorPart;
+		BVRMetamodelDiagramEditor bvrEditorPart = (BVRMetamodelDiagramEditor) editorPart;
 		editingDomain = bvrEditorPart.getEditingDomain();
 		ISelection selection = null;
 		try {

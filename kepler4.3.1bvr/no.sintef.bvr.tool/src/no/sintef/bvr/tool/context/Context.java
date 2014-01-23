@@ -13,11 +13,11 @@ import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
-import no.sintef.bvr.tool.filter.CVLFilter;
+import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SXFM;
@@ -36,8 +36,8 @@ public final class Context {
 	private Environment environment = ContextFactory.eINSTANCE.createEnvironment();
 	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager(); 
 	
-	private final List<CVLModel> bvrModels = new ArrayList<CVLModel>();
-	private final List<CVLView> bvrViews = new ArrayList<CVLView>();
+	private final List<BVRModel> bvrModels = new ArrayList<BVRModel>();
+	private final List<BVRView> bvrViews = new ArrayList<BVRView>();
 	
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
@@ -52,15 +52,15 @@ public final class Context {
 		logger = environment.getLogger();
 	}
 	
-	public CVLModel loadModelFromFile(File file){
+	public BVRModel loadModelFromFile(File file){
 		String extension = LoaderUtility.getExtension(file);
-		CVLModel model = null;
-		if(extension.equals(CVLFilter.CVL_EXT) || extension.equals(CVLFilter.XMI_EXT)){
+		BVRModel model = null;
+		if(extension.equals(BVRFilter.BVR_EXT) || extension.equals(BVRFilter.XMI_EXT)){
 			model = environment.loadModelFromFile(file);
 		}else if(extension.equals(FMFilter.M_EXT)){
 			try{
-				no.sintef.ict.splcatool.CVLModel bvrm = new GUIDSL(file).getGraphMLFM().getCVLModel();
-				model = new CVLModel(file, bvrm);
+				no.sintef.ict.splcatool.BVRModel bvrm = new GUIDSL(file).getGraphMLFM().getBVRModel();
+				model = new BVRModel(file, bvrm);
 			}catch(Exception e){
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
 			}
@@ -68,8 +68,8 @@ public final class Context {
 			try {
 				SXFM sxfm = new SXFM(file.getAbsolutePath());
 				GraphMLFM gml = sxfm.getGUIDSL().getGraphMLFM();
-				no.sintef.ict.splcatool.CVLModel bvrm = gml.getCVLModel();
-				model = new CVLModel(file, bvrm);
+				no.sintef.ict.splcatool.BVRModel bvrm = gml.getBVRModel();
+				model = new BVRModel(file, bvrm);
 			} catch (Exception e) {
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
 			}
@@ -79,7 +79,7 @@ public final class Context {
 		return model;
 	}
 	
-	public void writeModelToFile(CVLModel model, File file){
+	public void writeModelToFile(BVRModel model, File file){
 		environment.writeModelToFile(model, file);
 	}
 	
@@ -91,7 +91,7 @@ public final class Context {
 		environment.performSubstitutions(symbols);
 	}
 	
-	public void reloadModel(CVLModel model){
+	public void reloadModel(BVRModel model){
 		environment.reloadModel(model);
 	}
 	
@@ -116,19 +116,19 @@ public final class Context {
 		return fc;
 	}
 	
-	public final List<CVLModel> getBvrModels(){
+	public final List<BVRModel> getBvrModels(){
 		return bvrModels;
 	}
 	
-	public final List<CVLView> getBvrViews(){
+	public final List<BVRView> getBvrViews(){
 		return bvrViews;
 	}
 	
-	public void addBvrModel(CVLModel model){
+	public void addBvrModel(BVRModel model){
 		bvrModels.add(model);
 	}
 	
-	public void addBvrView(CVLView view){
+	public void addBvrView(BVRView view){
 		bvrViews.add(view);
 	}
 

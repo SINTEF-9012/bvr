@@ -2,7 +2,7 @@ package no.sintef.bvr.gmf.vspec.edit.parts;
 
 import no.sintef.bvr.gmf.vspec.edit.policies.ChoiceChoiceGroupMultiplicityCompartment2CanonicalEditPolicy;
 import no.sintef.bvr.gmf.vspec.edit.policies.ChoiceChoiceGroupMultiplicityCompartment2ItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 import no.sintef.bvr.gmf.vspec.part.Messages;
 
 import org.eclipse.draw2d.IFigure;
@@ -67,7 +67,7 @@ public class ChoiceChoiceGroupMultiplicityCompartment2EditPart extends
 				new ChoiceChoiceGroupMultiplicityCompartment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicyWithCustomReparent(
-						CVLMetamodelVisualIDRegistry.TYPED_INSTANCE));
+						BVRMetamodelVisualIDRegistry.TYPED_INSTANCE));
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new DragDropEditPolicy());
 		installEditPolicy(

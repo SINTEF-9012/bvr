@@ -3,8 +3,8 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
@@ -17,9 +17,9 @@ import bvr.VSpecResolution;
 public class AddChoiceResolvedEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Choice target;
-	private CVLView view;
+	private BVRView view;
 	
-	public AddChoiceResolvedEvent(VSpecResolution a, Choice b, CVLView view) {
+	public AddChoiceResolvedEvent(VSpecResolution a, Choice b, BVRView view) {
 		cr = a;
 		target = b;
 		this.view = view;

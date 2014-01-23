@@ -9,21 +9,21 @@ import org.eclipse.ui.IWorkbenchPage;
 /**
  * @generated
  */
-public class CVLMetamodelDiagramActionBarContributor extends
+public class BVRMetamodelDiagramActionBarContributor extends
 		DiagramActionBarContributor {
 
 	/**
 	 * @generated
 	 */
 	protected Class getEditorClass() {
-		return CVLMetamodelDiagramEditor.class;
+		return BVRMetamodelDiagramEditor.class;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected String getEditorId() {
-		return CVLMetamodelDiagramEditor.ID;
+		return BVRMetamodelDiagramEditor.ID;
 	}
 
 	/**

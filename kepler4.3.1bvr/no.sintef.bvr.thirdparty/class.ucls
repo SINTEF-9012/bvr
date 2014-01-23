@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="no.sintef.bvr.thirdparty.editor.CVLLabelProvider" 
+  <class id="1" language="java" name="no.sintef.bvr.thirdparty.editor.BVRLabelProvider" 
     project="no.sintef.bvr.thirdparty" 
-    file="/no.sintef.bvr.thirdparty/src/no/sintef/bvr/thirdparty/editor/CVLLabelProvider.java" binary="false" 
+    file="/no.sintef.bvr.thirdparty/src/no/sintef/bvr/thirdparty/editor/BVRLabelProvider.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="135" width="313" x="51" y="-57"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -12,9 +12,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor.IDProvider" 
+  <class id="2" language="java" name="no.sintef.bvr.thirdparty.editor.IBVREnabledEditor.IDProvider" 
     project="no.sintef.bvr.thirdparty" 
-    file="/no.sintef.bvr.thirdparty/src/no/sintef/bvr/thirdparty/editor/ICVLEnabledEditor.java" binary="false" 
+    file="/no.sintef.bvr.thirdparty/src/no/sintef/bvr/thirdparty/editor/IBVREnabledEditor.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="538" y="27"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -23,9 +23,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="no.sintef.bvr.thirdparty.editor.ICVLEnabledEditor" 
+  <interface id="3" language="java" name="no.sintef.bvr.thirdparty.editor.IBVREnabledEditor" 
     project="no.sintef.bvr.thirdparty" 
-    file="/no.sintef.bvr.thirdparty/src/no/sintef/bvr/thirdparty/editor/ICVLEnabledEditor.java" binary="false" 
+    file="/no.sintef.bvr.thirdparty/src/no/sintef/bvr/thirdparty/editor/IBVREnabledEditor.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="772" y="111"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

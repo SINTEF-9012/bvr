@@ -9,7 +9,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A link handle identifies a link of the base model. This Class abstracts over the cross-domain referencing mechanism needed to refer from CVL elements to base model links.</p>
+ * <p>A link handle identifies a link of the base model. This Class abstracts over the cross-domain referencing mechanism needed to refer from BVR elements to base model links.</p>
  * <!-- end-model-doc -->
  *
  * <p>

@@ -25,8 +25,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -41,7 +41,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VClassifierPropertyEditor(CVLUIKernel kernel, VClassifier elem, CVLView view) {
+	public VClassifierPropertyEditor(BVRUIKernel kernel, VClassifier elem, BVRView view) {
 		super(kernel, (VSpec) elem, view);
 		
         //Lower bound

@@ -8,8 +8,8 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class NewModelEvent implements ActionListener {
 
@@ -21,7 +21,7 @@ public class NewModelEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		try{
-			CVLModel m = new CVLModel();
+			BVRModel m = new BVRModel();
 			Context.eINSTANCE.addBvrModel(m);
 			//Context.eINSTANCE.addBvrView(new VSpecView(m, c));
 		}catch(Exception e){

@@ -27,8 +27,8 @@ import javax.swing.text.BadLocationException;
 
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import com.explodingpixels.macwidgets.plaf.HudLabelUI;
 import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
@@ -38,12 +38,12 @@ import bvr.VSpec;
 
 public class ElementPropertyEditor extends JPanel {
 	
-	protected CVLView view;
+	protected BVRView view;
 	
 	protected JPanel top;
 	protected JPanel bottom;
 	
-	protected CVLUIKernel kernel;
+	protected BVRUIKernel kernel;
 	protected NamedElement obj;
 	
     public void addCenter(JComponent p) {
@@ -65,7 +65,7 @@ public class ElementPropertyEditor extends JPanel {
     	command.init(null, obj, null, null, null, null, view);
     }
     
-    public ElementPropertyEditor(CVLUIKernel _kernel, NamedElement _obj, CVLView _view) {
+    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRView _view) {
 
         this.setOpaque(false);
         this.setBorder(null);
@@ -138,9 +138,9 @@ public class ElementPropertyEditor extends JPanel {
 
 class EnterAccepter implements KeyListener {
 	private Command command;
-	private CVLEditorPanel ep;
+	private BVREditorPanel ep;
 
-	public EnterAccepter(Command command, CVLEditorPanel ep) {
+	public EnterAccepter(Command command, BVREditorPanel ep) {
 		this.command = command;
 		this.ep = ep;
 	}

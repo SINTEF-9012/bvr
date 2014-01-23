@@ -34,10 +34,10 @@ import bvr.impl.OperationCallExpImpl;
 public class ValidateResolution implements ActionListener {
 	
 	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<BVRModel> models;
+	private List<BVRView> views;
 
-	public ValidateResolution(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public ValidateResolution(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -48,7 +48,7 @@ public class ValidateResolution implements ActionListener {
 		int mi = filePane.getSelectedIndex();
 		JTabbedPane x = (JTabbedPane) ((JTabbedPane)filePane.getSelectedComponent()).getSelectedComponent();
 		int i = x.getSelectedIndex();
-		ConfigurableUnit cu = models.get(mi).getCVLM().getCU();
+		ConfigurableUnit cu = models.get(mi).getBVRM().getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
 		
 		//System.out.println("validating: " + cu.getName());

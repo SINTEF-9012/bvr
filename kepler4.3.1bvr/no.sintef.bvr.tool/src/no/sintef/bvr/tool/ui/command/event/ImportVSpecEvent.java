@@ -14,19 +14,19 @@ import org.xml.sax.SAXException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-import no.sintef.bvr.tool.filter.CVLFilter;
+import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.SXFM;
 
 public class ImportVSpecEvent implements ActionListener {
 	private JTabbedPane filePane;
-	private List<CVLModel> models;
-	private List<CVLView> views;
+	private List<BVRModel> models;
+	private List<BVRView> views;
 
-	public ImportVSpecEvent(JTabbedPane filePane, List<CVLModel> models, List<CVLView> views) {
+	public ImportVSpecEvent(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -34,21 +34,21 @@ public class ImportVSpecEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
-		CVLModel m = models.get(i);
-		CVLView v = views.get(i);
+		BVRModel m = models.get(i);
+		BVRView v = views.get(i);
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());
-		fc.addChoosableFileFilter(new CVLFilter());
+		fc.addChoosableFileFilter(new BVRFilter());
 		fc.showOpenDialog(filePane);
 		
 		File sf = fc.getSelectedFile();
-		no.sintef.ict.splcatool.CVLModel bvrm = null;
+		no.sintef.ict.splcatool.BVRModel bvrm = null;
 		try {
 			if(sf.getName().endsWith(".m"))
-				bvrm = new GUIDSL(sf).getGraphMLFM().getCVLModel();
+				bvrm = new GUIDSL(sf).getGraphMLFM().getBVRModel();
 			else if(sf.getName().endsWith(".xml"))
-				bvrm = new SXFM(sf.getAbsolutePath()).getGUIDSL().getGraphMLFM().getCVLModel();
+				bvrm = new SXFM(sf.getAbsolutePath()).getGUIDSL().getGraphMLFM().getBVRModel();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

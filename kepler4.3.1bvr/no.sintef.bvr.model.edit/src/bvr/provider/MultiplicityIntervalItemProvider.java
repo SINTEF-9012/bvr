@@ -173,7 +173,7 @@ public class MultiplicityIntervalItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return CVLMetamodelEditPlugin.INSTANCE;
+		return BVRMetamodelEditPlugin.INSTANCE;
 	}
 
 }

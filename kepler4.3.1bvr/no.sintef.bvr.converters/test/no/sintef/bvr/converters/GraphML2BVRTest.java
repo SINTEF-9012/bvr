@@ -6,7 +6,7 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import no.sintef.ict.splcatool.CVLModel;
+import no.sintef.ict.splcatool.BVRModel;
 import no.sintef.ict.splcatool.FileUtility;
 import no.sintef.ict.splcatool.GraphMLFM;
 
@@ -17,7 +17,7 @@ import splar.core.fm.FeatureModelException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-public class GraphML2CVLTest {
+public class GraphML2BVRTest {
 	@Test
 	public void test() throws UnsupportedModelException, IOException, FeatureModelException, TransformerException, ParserConfigurationException, SAXException{
 		List<String> ls = new FileUtility().traverseDirCollectFiles("TestData/Realistic");
@@ -26,7 +26,7 @@ public class GraphML2CVLTest {
 			if(file.endsWith("Eshop-fm.xml.GraphML")) continue; //TODO Fix this: Has cycle
 			System.out.println("Test converting to file: " + file + ".bvr");
 			GraphMLFM gmfm = new GraphMLFM(file);
-			CVLModel bvr = gmfm.getCVLModel();
+			BVRModel bvr = gmfm.getBVRModel();
 			bvr.writeToFile(file + ".bvr");
 		}
 	}

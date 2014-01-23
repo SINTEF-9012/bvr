@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import node.NodePackage;
@@ -31,10 +31,10 @@ public class RunExp {
 
 	/**
 	 * @param args
-	 * @throws BasicCVLEngineException 
+	 * @throws BasicBVREngineException 
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws BasicCVLEngineException, IOException {
+	public static void main(String[] args) throws BasicBVREngineException, IOException {
 		NodePackage.eINSTANCE.eClass();
 		int maxExp = 1;
 		EList<Long> finderTime = new BasicEList<Long>();

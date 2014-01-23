@@ -11,9 +11,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLModelSingleton;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRModelSingleton;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -50,8 +50,8 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 
 	}
 
-	protected CVLView v;
-	protected CVLModel m;
+	protected BVRView v;
+	protected BVRModel m;
 	protected String filename;
 
 	FileEditorInput fileinput;
@@ -64,7 +64,7 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 		setInput(input);
 		fileinput = (FileEditorInput) input;
 		filename = fileinput.getFile().getLocation().toString();
-		setContentDescription("CVLEditor:" + filename);
+		setContentDescription("BVREditor:" + filename);
 		setTitle();
 		
 
@@ -79,7 +79,7 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		try {
-			m.getCVLM().writeToFile(filename);
+			m.getBVRM().writeToFile(filename);
 			m.markSaved();
 			notifyProbeDirty();
 			fileinput.getFile().refreshLocal(IResource.DEPTH_ZERO, null);
@@ -137,7 +137,7 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 					try {
 						UIManager.setLookAndFeel(UIManager
 								.getSystemLookAndFeelClassName());
-						m = CVLModelSingleton.getModel(new File(filename));
+						m = BVRModelSingleton.getModel(new File(filename));
 						if (m != null) {
 							JApplet a = new JApplet();
 							createView(ep);

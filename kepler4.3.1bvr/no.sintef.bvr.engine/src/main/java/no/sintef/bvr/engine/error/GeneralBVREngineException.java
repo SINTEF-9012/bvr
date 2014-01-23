@@ -1,10 +1,10 @@
 package no.sintef.bvr.engine.error;
 
-public class GeneralCVLEngineException extends BasicCVLEngineException {
+public class GeneralBVREngineException extends BasicBVREngineException {
 
 	private static final long serialVersionUID = 8119658413310413022L;
 	
-	public GeneralCVLEngineException(String message) {
+	public GeneralBVREngineException(String message) {
 		super(message);
 	}
 

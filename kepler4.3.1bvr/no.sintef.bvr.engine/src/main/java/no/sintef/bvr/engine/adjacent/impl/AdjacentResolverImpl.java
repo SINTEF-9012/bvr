@@ -23,10 +23,10 @@ import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.adjacent.AdjacentFragment;
 import no.sintef.bvr.engine.adjacent.AdjacentResolver;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicCVLEngineException;
-import no.sintef.bvr.engine.error.GeneralCVLEngineException;
-import no.sintef.bvr.engine.error.IllegalCVLOperation;
-import no.sintef.bvr.engine.error.IncorrectCVLModel;
+import no.sintef.bvr.engine.error.BasicBVREngineException;
+import no.sintef.bvr.engine.error.GeneralBVREngineException;
+import no.sintef.bvr.engine.error.IllegalBVROperation;
+import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
@@ -40,14 +40,14 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 	}
 	
 	@Override
-	public void resolve(FragSubHolder fragmentHolderCurrent) throws BasicCVLEngineException {
+	public void resolve(FragSubHolder fragmentHolderCurrent) throws BasicBVREngineException {
 		AdjacentFragment aFrag = this.adjacentFinder.getAdjacentMap().get(fragmentHolderCurrent);
 		if(aFrag == null)
 			return;
 		
 		HashSet<AdjacentFragment> adjacentFragments = aFrag.getAdjacentFragments();
 		if(adjacentFragments.isEmpty())
-			throw new GeneralCVLEngineException("can not find any adjacent fragments to the fragment that seems to be adjacent" + fragmentHolderCurrent);
+			throw new GeneralBVREngineException("can not find any adjacent fragments to the fragment that seems to be adjacent" + fragmentHolderCurrent);
 
 		HashSet<AdjacentFragment> twinAFrag = aFrag.getTwinFragments();		
 		for(AdjacentFragment adjacentFragment : adjacentFragments){
@@ -64,7 +64,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 				HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryElementsFromPlacementMap = ((FragmentSubstitutionHolder) fragHolderAdjacent).getFromPlacementInsideBoundaryElementMap();
 				HashSet<ObjectHandle> insideBoundaryElementsFromPlacement = insideBoundaryElementsFromPlacementMap.get(fromBinding.getFromPlacement());
 				if(insideBoundaryElementsFromPlacement == null)
-					throw new GeneralCVLEngineException("failed to find insideBoundaryElements in the map for a given fromPlacement " + fromBinding.getFromPlacement() + " of the fromBinding " + fromBinding);
+					throw new GeneralBVREngineException("failed to find insideBoundaryElements in the map for a given fromPlacement " + fromBinding.getFromPlacement() + " of the fromBinding " + fromBinding);
 
 				HashSet<ObjectHandle> validOutsideOHFromPlacementBElements = new HashSet<ObjectHandle>();
 				
@@ -73,7 +73,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 					String propertyName = fromBinding.getFromReplacement().getPropertyName();
 					EStructuralFeature property = insideBoundaryElementPlc.eClass().getEStructuralFeature(propertyName);
 					if(property == null)
-						throw new GeneralCVLEngineException("failed to find property to adjust, property name : " + propertyName);
+						throw new GeneralBVREngineException("failed to find property to adjust, property name : " + propertyName);
 
 					validOutsideOHFromPlacementBElements.clear();
 					validOutsideOHFromPlacementBElements.addAll(insideBOHElmtsPlcReplaced);
@@ -94,7 +94,7 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 						EList<EObject> propertyValueNew = EngineUtility.subtractAugmentList(values, elementsToRemove, elementsToAdd);
 						
 						if(upperBound != -1 && propertyValueNew.size() > upperBound)
-							throw new IllegalCVLOperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolderAdjacent.getFragment());
+							throw new IllegalBVROperation("cardinality does not correspond for property : " + propertyName + "of" + fragHolderAdjacent.getFragment());
 
 						EngineUtility.setProperty(values, elementsToRemove, elementsToAdd);
 						
@@ -104,10 +104,10 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 					}else{
 						//property.getUpperBound() == 0 || == 1
 						if(upperBound == 0)
-							throw new IncorrectCVLModel("model is incorrect, cardianlity for reference is set to 0, but something is there " + insideBoundaryElementPlc.eGet(property));
+							throw new IncorrectBVRModel("model is incorrect, cardianlity for reference is set to 0, but something is there " + insideBoundaryElementPlc.eGet(property));
 
 						if(insideBOHElmtsPlcReplaced.size() != upperBound)
-							throw new IllegalCVLOperation("cardinality does not match for property : '" + propertyName + "' of " + fragHolderAdjacent.getFragment() + " objects: " + EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced));
+							throw new IllegalBVROperation("cardinality does not match for property : '" + propertyName + "' of " + fragHolderAdjacent.getFragment() + " objects: " + EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced));
 
 						EObject propertyValueNew = EngineUtility.resolveProxies(insideBOHElmtsPlcReplaced).get(0);
 						EngineUtility.setProperty(insideBoundaryElementPlc, property, propertyValueNew);

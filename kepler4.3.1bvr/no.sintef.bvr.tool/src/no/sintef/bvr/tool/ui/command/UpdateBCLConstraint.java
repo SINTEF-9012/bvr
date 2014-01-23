@@ -16,8 +16,8 @@ import org.antlr.v4.runtime.tree.RuleNode;
 import no.sintef.bvr.constraints.bcl.BCLBuilder;
 import no.sintef.bvr.constraints.bcl.BCLLexer;
 import no.sintef.bvr.constraints.bcl.BCLParser;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -30,9 +30,9 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 	private BCLConstraint bcl;
 
 	@Override
-	public Command init(CVLUIKernel rootPanel, Object p, JComponent parent,
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.bcl = (BCLConstraint)p;
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}

@@ -15,8 +15,8 @@ import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.command.UpdateVariableValueAssignment;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
@@ -40,7 +40,7 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VariableValueAssignmentPropertyEditor(CVLUIKernel kernel, VariableValueAssignment elem, CVLView view) {
+	public VariableValueAssignmentPropertyEditor(BVRUIKernel kernel, VariableValueAssignment elem, BVRView view) {
 		super(kernel, elem, view);
 		
 		// Find value

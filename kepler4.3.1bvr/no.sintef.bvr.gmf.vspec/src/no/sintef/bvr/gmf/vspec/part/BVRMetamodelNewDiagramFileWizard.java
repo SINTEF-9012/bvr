@@ -33,7 +33,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 /**
  * @generated
  */
-public class CVLMetamodelNewDiagramFileWizard extends Wizard {
+public class BVRMetamodelNewDiagramFileWizard extends Wizard {
 
 	/**
 	 * @generated
@@ -53,20 +53,20 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelNewDiagramFileWizard(URI domainModelURI,
+	public BVRMetamodelNewDiagramFileWizard(URI domainModelURI,
 			EObject diagramRoot, TransactionalEditingDomain editingDomain) {
 		assert domainModelURI != null : "Domain model uri must be specified"; //$NON-NLS-1$
 		assert diagramRoot != null : "Doagram root element must be specified"; //$NON-NLS-1$
 		assert editingDomain != null : "Editing domain must be specified"; //$NON-NLS-1$
 
 		myFileCreationPage = new WizardNewFileCreationPage(
-				Messages.CVLMetamodelNewDiagramFileWizard_CreationPageName,
+				Messages.BVRMetamodelNewDiagramFileWizard_CreationPageName,
 				StructuredSelection.EMPTY);
 		myFileCreationPage
-				.setTitle(Messages.CVLMetamodelNewDiagramFileWizard_CreationPageTitle);
+				.setTitle(Messages.BVRMetamodelNewDiagramFileWizard_CreationPageTitle);
 		myFileCreationPage
 				.setDescription(NLS
-						.bind(Messages.CVLMetamodelNewDiagramFileWizard_CreationPageDescription,
+						.bind(Messages.BVRMetamodelNewDiagramFileWizard_CreationPageDescription,
 								ConfigurableUnitEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = URI.decode(domainModelURI.trimFileExtension()
@@ -82,15 +82,15 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 					"Unsupported URI: " + domainModelURI); //$NON-NLS-1$
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
-		myFileCreationPage.setFileName(CVLMetamodelDiagramEditorUtil
+		myFileCreationPage.setFileName(BVRMetamodelDiagramEditorUtil
 				.getUniqueFileName(filePath, fileName, "bvr_diagram")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
-				Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageName);
+				Messages.BVRMetamodelNewDiagramFileWizard_RootSelectionPageName);
 		diagramRootElementSelectionPage
-				.setTitle(Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageTitle);
+				.setTitle(Messages.BVRMetamodelNewDiagramFileWizard_RootSelectionPageTitle);
 		diagramRootElementSelectionPage
-				.setDescription(Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageDescription);
+				.setDescription(Messages.BVRMetamodelNewDiagramFileWizard_RootSelectionPageDescription);
 		diagramRootElementSelectionPage.setModelElement(diagramRoot);
 
 		myEditingDomain = editingDomain;
@@ -110,7 +110,7 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 	public boolean performFinish() {
 		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
-		CVLMetamodelDiagramEditorUtil.setCharset(diagramFile);
+		BVRMetamodelDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
 		URI diagramModelURI = URI.createPlatformResourceURI(diagramFile
 				.getFullPath().toString(), true);
@@ -119,25 +119,25 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 				.createResource(diagramModelURI);
 		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
 				myEditingDomain,
-				Messages.CVLMetamodelNewDiagramFileWizard_InitDiagramCommand,
+				Messages.BVRMetamodelNewDiagramFileWizard_InitDiagramCommand,
 				affectedFiles) {
 
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
-				int diagramVID = CVLMetamodelVisualIDRegistry
+				int diagramVID = BVRMetamodelVisualIDRegistry
 						.getDiagramVisualID(diagramRootElementSelectionPage
 								.getModelElement());
 				if (diagramVID != ConfigurableUnitEditPart.VISUAL_ID) {
 					return CommandResult
-							.newErrorCommandResult(Messages.CVLMetamodelNewDiagramFileWizard_IncorrectRootError);
+							.newErrorCommandResult(Messages.BVRMetamodelNewDiagramFileWizard_IncorrectRootError);
 				}
 				Diagram diagram = ViewService
 						.createDiagram(
 								diagramRootElementSelectionPage
 										.getModelElement(),
 								ConfigurableUnitEditPart.MODEL_ID,
-								CVLMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+								BVRMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
 			}
@@ -146,16 +146,16 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 			OperationHistoryFactory.getOperationHistory().execute(command,
 					new NullProgressMonitor(), null);
 			diagramResource
-					.save(CVLMetamodelDiagramEditorUtil.getSaveOptions());
-			CVLMetamodelDiagramEditorUtil.openDiagram(diagramResource);
+					.save(BVRMetamodelDiagramEditorUtil.getSaveOptions());
+			BVRMetamodelDiagramEditorUtil.openDiagram(diagramResource);
 		} catch (ExecutionException e) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to create model and diagram", e); //$NON-NLS-1$
 		} catch (IOException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Save operation failed for: " + diagramModelURI, ex); //$NON-NLS-1$
 		} catch (PartInitException ex) {
-			CVLMetamodelDiagramEditorPlugin.getInstance().logError(
+			BVRMetamodelDiagramEditorPlugin.getInstance().logError(
 					"Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return true;
@@ -178,7 +178,7 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 		 * @generated
 		 */
 		protected String getSelectionTitle() {
-			return Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageSelectionTitle;
+			return Messages.BVRMetamodelNewDiagramFileWizard_RootSelectionPageSelectionTitle;
 		}
 
 		/**
@@ -186,7 +186,7 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 		 */
 		protected boolean validatePage() {
 			if (getModelElement() == null) {
-				setErrorMessage(Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
+				setErrorMessage(Messages.BVRMetamodelNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
 				return false;
 			}
 			boolean result = ViewService
@@ -195,9 +195,9 @@ public class CVLMetamodelNewDiagramFileWizard extends Wizard {
 							new CreateDiagramViewOperation(
 									new EObjectAdapter(getModelElement()),
 									ConfigurableUnitEditPart.MODEL_ID,
-									CVLMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+									BVRMetamodelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null
-					: Messages.CVLMetamodelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
+					: Messages.BVRMetamodelNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;
 		}
 	}

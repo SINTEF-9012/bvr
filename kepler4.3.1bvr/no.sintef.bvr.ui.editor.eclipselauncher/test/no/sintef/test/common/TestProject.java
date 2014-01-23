@@ -54,7 +54,7 @@ public class TestProject {
 	}
 	
 	public IFile copyFileFromPlugin(String source, String target) throws IOException, CoreException{
-		Bundle bundle = Platform.getBundle(Constants.PLUGIN_ID_CVL_LAUNCHER);
+		Bundle bundle = Platform.getBundle(Constants.PLUGIN_ID_BVR_LAUNCHER);
 		URL url = bundle.getEntry(source);
 		InputStream stream = url.openConnection().getInputStream();
 		IFile iFile = iProject.getFile(target);

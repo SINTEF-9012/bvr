@@ -10,7 +10,7 @@ import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
-import no.sintef.bvr.engine.error.ContainmentCVLModelException;
+import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.thirdparty.common.PluginLogger;
 import no.sintef.bvr.thirdparty.common.Utility;
 import no.sintef.bvr.tool.context.Context;
@@ -19,7 +19,7 @@ import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -58,25 +58,25 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public CVLModel loadModelFromFile(File file) {
+	public BVRModel loadModelFromFile(File file) {
 		String platformPath = Utility.findFileInWorkspace(file);
 		if(platformPath == null){
 			throw new UnsupportedOperationException("can not locate a selected file in the workspace: " + file.getAbsolutePath());
 		}
 		String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
 		configHelper.saveLastLocation(filePath);
-		return new CVLModel(file, platformPath, true);
+		return new BVRModel(file, platformPath, true);
 	}
 
 	@Override
-	public void writeModelToFile(CVLModel model, File file) {
+	public void writeModelToFile(BVRModel model, File file) {
 		String filepath = file.getAbsolutePath().replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
 			throw new UnsupportedOperationException("can not a VM model to the file, incorrect loacation: use workspace location");
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		try {
-			model.getCVLM().writeToPlatformFile(filepath);
+			model.getBVRM().writeToPlatformFile(filepath);
 			model.setFile(file);
 			model.setPlatform(true);
 			model.setLoadFilename(filepath);
@@ -211,7 +211,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 					protected void doExecute() {
 						try {
 							Context.eINSTANCE.getSubEngine().subsitute(fragment, !symbol.getMulti());
-						} catch (ContainmentCVLModelException e) {
+						} catch (ContainmentBVRModelException e) {
 							logger.error("bvr model failure", e);
 							messagesFS.put(fragment, "bvr model failure:" + e.getMessage());
 						} catch (Exception e){
@@ -240,7 +240,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public void reloadModel(CVLModel model) {
+	public void reloadModel(BVRModel model) {
 		model.reload();
 	}
 

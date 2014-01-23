@@ -426,14 +426,14 @@ public class GraphMLFM {
 		shapenode.appendChild(nodelabel);
 	}
 	
-	CVLModel bvr;
+	BVRModel bvr;
 	Map<String, Boolean> mandatories = new HashMap<String, Boolean>();
 
-	public CVLModel getCVLModel() {
-		// Make empty CVL model
+	public BVRModel getBVRModel() {
+		// Make empty BVR model
 		BvrPackageImpl.init();
 		ConfigurableUnit cu = BvrFactory.eINSTANCE.createConfigurableUnit();
-		bvr = new CVLModel(cu);
+		bvr = new BVRModel(cu);
 		
 		// Make graph
 		DirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);

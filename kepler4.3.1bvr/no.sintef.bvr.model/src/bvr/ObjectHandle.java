@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-model-doc -->
  * <p>
  *     An object handle identifies an object of the base model. This Class abstracts over the cross-domain referencing
- *     mechanism needed to refer from CVL elements to base model objects.
+ *     mechanism needed to refer from BVR elements to base model objects.
  * </p>
  * <!-- end-model-doc -->
  *

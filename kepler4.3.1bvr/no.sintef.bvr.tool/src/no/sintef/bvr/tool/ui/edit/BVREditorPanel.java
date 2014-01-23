@@ -27,8 +27,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import no.sintef.bvr.tool.ui.command.SelectInstanceCommand;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -51,14 +51,14 @@ import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VariableValueAssignment;
 
-public class CVLEditorPanel extends JPanel {
+public class BVREditorPanel extends JPanel {
 
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private BVRView view;
 	
-    private CVLUIKernel kernel/* = new CVLUIKernel()*/;
+    private BVRUIKernel kernel/* = new BVRUIKernel()*/;
 
-    public CVLUIKernel getKernel() {
+    public BVRUIKernel getKernel() {
         return kernel;
     }
 
@@ -71,7 +71,7 @@ public class CVLEditorPanel extends JPanel {
     private SelectElement current;
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 
-    public CVLEditorPanel(CVLUIKernel _kernel, Map<JComponent, NamedElement> vmMap, CVLView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+    public BVREditorPanel(BVRUIKernel _kernel, Map<JComponent, NamedElement> vmMap, BVRView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;
     	this.resolutionvmMaps = resolutionvmMaps;
     	this.kernel = _kernel;

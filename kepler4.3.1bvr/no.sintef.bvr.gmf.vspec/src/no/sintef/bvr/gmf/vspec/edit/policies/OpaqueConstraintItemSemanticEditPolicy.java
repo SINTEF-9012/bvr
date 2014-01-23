@@ -5,8 +5,8 @@ import java.util.Iterator;
 import no.sintef.bvr.gmf.vspec.edit.commands.ConstraintContextCreateCommand;
 import no.sintef.bvr.gmf.vspec.edit.commands.ConstraintContextReorientCommand;
 import no.sintef.bvr.gmf.vspec.edit.parts.ConstraintContextEditPart;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
@@ -25,13 +25,13 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class OpaqueConstraintItemSemanticEditPolicy extends
-		CVLMetamodelBaseItemSemanticEditPolicy {
+		BVRMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public OpaqueConstraintItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.OpaqueConstraint_2014);
+		super(BVRMetamodelElementTypes.OpaqueConstraint_2014);
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class OpaqueConstraintItemSemanticEditPolicy extends
 		cmd.setTransactionNestingEnabled(false);
 		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
-			if (CVLMetamodelVisualIDRegistry.getVisualID(outgoingLink) == ConstraintContextEditPart.VISUAL_ID) {
+			if (BVRMetamodelVisualIDRegistry.getVisualID(outgoingLink) == ConstraintContextEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(
 						outgoingLink.getSource().getElement(), null,
 						outgoingLink.getTarget().getElement(), false);
@@ -80,7 +80,7 @@ public class OpaqueConstraintItemSemanticEditPolicy extends
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (CVLMetamodelElementTypes.ConstraintContext_4003 == req
+		if (BVRMetamodelElementTypes.ConstraintContext_4003 == req
 				.getElementType()) {
 			return getGEFWrapper(new ConstraintContextCreateCommand(req,
 					req.getSource(), req.getTarget()));
@@ -93,7 +93,7 @@ public class OpaqueConstraintItemSemanticEditPolicy extends
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (CVLMetamodelElementTypes.ConstraintContext_4003 == req
+		if (BVRMetamodelElementTypes.ConstraintContext_4003 == req
 				.getElementType()) {
 			return null;
 		}

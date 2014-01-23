@@ -2,7 +2,7 @@ package no.sintef.bvr.gmf.vspec.edit.parts;
 
 import no.sintef.bvr.gmf.vspec.edit.policies.ConfigurableUnitCanonicalEditPolicy;
 import no.sintef.bvr.gmf.vspec.edit.policies.ConfigurableUnitItemSemanticEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -17,7 +17,7 @@ public class ConfigurableUnitEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "CVLMetamodel"; //$NON-NLS-1$
+	public final static String MODEL_ID = "BVRMetamodel"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -42,7 +42,7 @@ public class ConfigurableUnitEditPart extends DiagramEditPart {
 				new ConfigurableUnitCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicyWithCustomReparent(
-						CVLMetamodelVisualIDRegistry.TYPED_INSTANCE));
+						BVRMetamodelVisualIDRegistry.TYPED_INSTANCE));
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

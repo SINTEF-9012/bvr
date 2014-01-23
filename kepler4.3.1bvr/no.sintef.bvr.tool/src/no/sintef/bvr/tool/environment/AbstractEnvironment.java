@@ -8,9 +8,9 @@ import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
-import no.sintef.bvr.tool.exception.UnimplementedCVLException;
+import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -19,66 +19,66 @@ import org.eclipse.emf.ecore.resource.Resource;
 public class AbstractEnvironment implements Environment {
 	
 	@Override
-	public CVLModel loadModelFromFile(File file) {
-		throw new UnimplementedCVLException("loadModelFromFile is not implemented");
+	public BVRModel loadModelFromFile(File file) {
+		throw new UnimplementedBVRException("loadModelFromFile is not implemented");
 	}
 
 	@Override
-	public void writeModelToFile(CVLModel model, File file) {
-		throw new UnimplementedCVLException("writeModelToFile is not implemented");
+	public void writeModelToFile(BVRModel model, File file) {
+		throw new UnimplementedBVRException("writeModelToFile is not implemented");
 	}
 
 	@Override
-	public void reloadModel(CVLModel model) {
-		throw new UnimplementedCVLException("reloadModel is not implemented");
+	public void reloadModel(BVRModel model) {
+		throw new UnimplementedBVRException("reloadModel is not implemented");
 	}
 
 	@Override
 	public EObject getEObject(Object object) {
-		throw new UnimplementedCVLException("getEObject is not implemented");
+		throw new UnimplementedBVRException("getEObject is not implemented");
 	}
 
 	@Override
 	public List<Object> getSelections() {
-		throw new UnimplementedCVLException("getSelections is not implemented");
+		throw new UnimplementedBVRException("getSelections is not implemented");
 	}
 
 	@Override
 	public void highlightObjects(
 			EList<HashMap<EObject, Integer>> objectsToHighlightList) {
-		throw new UnimplementedCVLException("highlightObjects is not implemented");
+		throw new UnimplementedBVRException("highlightObjects is not implemented");
 
 	}
 
 	@Override
 	public void clearHighlights() {
-		throw new UnimplementedCVLException("clearHighlights is not implemented");
+		throw new UnimplementedBVRException("clearHighlights is not implemented");
 	}
 
 	@Override
 	public JFileChooser getFileChooser() {
-		throw new UnimplementedCVLException("getFileChooser is not implemented");
+		throw new UnimplementedBVRException("getFileChooser is not implemented");
 	}
 
 	@Override
 	public void writeProductsToFiles(
 			HashMap<Resource, ResourceContentCopier> baseProductMap, File file) {
-		throw new UnimplementedCVLException("writeProductsToFiles is not implemented");
+		throw new UnimplementedBVRException("writeProductsToFiles is not implemented");
 	}
 
 	@Override
 	public void performSubstitutions(List<Symbol> symbols) {
-		throw new UnimplementedCVLException("performSubstitutions is not implemented");
+		throw new UnimplementedBVRException("performSubstitutions is not implemented");
 	}
 
 	@Override
 	public Logger getLogger() {
-		throw new UnimplementedCVLException("getLogger is not implemented");
+		throw new UnimplementedBVRException("getLogger is not implemented");
 	}
 
 	@Override
 	public ConfigHelper getConfig() {
-		throw new UnimplementedCVLException("getConfig is not implemented");
+		throw new UnimplementedBVRException("getConfig is not implemented");
 	}
 
 }

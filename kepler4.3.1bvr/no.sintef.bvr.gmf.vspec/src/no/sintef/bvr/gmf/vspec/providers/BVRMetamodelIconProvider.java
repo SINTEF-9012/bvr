@@ -6,14 +6,14 @@ import org.eclipse.gmf.tooling.runtime.providers.DefaultElementTypeIconProvider;
 /**
  * @generated
  */
-public class CVLMetamodelIconProvider extends DefaultElementTypeIconProvider
+public class BVRMetamodelIconProvider extends DefaultElementTypeIconProvider
 		implements IIconProvider {
 
 	/**
 	 * @generated
 	 */
-	public CVLMetamodelIconProvider() {
-		super(CVLMetamodelElementTypes.TYPED_INSTANCE);
+	public BVRMetamodelIconProvider() {
+		super(BVRMetamodelElementTypes.TYPED_INSTANCE);
 	}
 
 }

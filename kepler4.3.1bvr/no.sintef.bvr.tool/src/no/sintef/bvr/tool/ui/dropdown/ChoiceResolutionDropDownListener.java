@@ -25,7 +25,7 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
@@ -42,10 +42,10 @@ import bvr.VariableValueAssignment;
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 	private ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private CVLView view;
+	private BVRView view;
 	private ChoiceResolutuion c;
 
-	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, CVLView view){
+	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, BVRView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -71,7 +71,7 @@ public class ChoiceResolutionDropDownListener extends MouseAdapter {
 class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, CVLView view, Map<JComponent, NamedElement> vmMap){
+    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, BVRView view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");

@@ -9,7 +9,7 @@ import bvr.VClassifier;
 /**
  * @generated
  */
-public class MultiplicityIntervalEditHelper extends CVLMetamodelBaseEditHelper {
+public class MultiplicityIntervalEditHelper extends BVRMetamodelBaseEditHelper {
 	/**
 	 * @generated NOT
 	 */

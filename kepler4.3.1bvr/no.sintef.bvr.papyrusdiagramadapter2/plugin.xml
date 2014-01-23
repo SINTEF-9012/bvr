@@ -5,12 +5,12 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="CVL2 Enabled Papyrus Editor"
+            name="BVR2 Enabled Papyrus Editor"
             extensions="di"
             icon="icons/sample.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="no.sintef.bvr.papyrusdiagramadapter2.editors.PapyrusCVLEditor"
-            id="no.sintef.bvr.papyrusdiagramadapter2.editors.PapyrusCVLEditor">
+            class="no.sintef.bvr.papyrusdiagramadapter2.editors.PapyrusBVREditor"
+            id="no.sintef.bvr.papyrusdiagramadapter2.editors.PapyrusBVREditor">
       </editor>
    </extension>
 

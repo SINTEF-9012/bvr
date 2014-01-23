@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.dropdown.ConfigurableUnitDropDownListener;
-import no.sintef.bvr.tool.ui.editor.CVLUIKernel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -21,15 +21,15 @@ import bvr.VSpec;
 
 public class AddConfigurableUnit {
 
-	private CVLUIKernel rootPanel;
+	private BVRUIKernel rootPanel;
 	private ConfigurableUnit cu;
 	private CommandMouseListener listener;
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private CVLView view;
+	private BVRView view;
 
-	public AddConfigurableUnit init(ConfigurableUnit cu, CVLUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, CVLView view) {
+	public AddConfigurableUnit init(ConfigurableUnit cu, BVRUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.rootPanel = rootPanel;
 		this.cu = cu;
 		this.vmMap = vmMap;

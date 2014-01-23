@@ -23,8 +23,8 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.CVLModel;
-import no.sintef.bvr.tool.ui.loader.CVLView;
+import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class ExportModelImage implements ActionListener {
 
@@ -37,8 +37,8 @@ public class ExportModelImage implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		int i = filePane.getSelectedIndex();
-		CVLView view = Context.eINSTANCE.getBvrViews().get(i);
-		CVLModel model = Context.eINSTANCE.getBvrModels().get(i);
+		BVRView view = Context.eINSTANCE.getBvrViews().get(i);
+		BVRModel model = Context.eINSTANCE.getBvrModels().get(i);
 		
 		FileFilter[] filters = {new PNGFilter()};
 		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);

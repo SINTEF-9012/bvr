@@ -3,10 +3,10 @@ package no.sintef.bvr.gmf.vspec.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import no.sintef.bvr.gmf.vspec.edit.policies.CVLMetamodelTextSelectionEditPolicy;
-import no.sintef.bvr.gmf.vspec.part.CVLMetamodelVisualIDRegistry;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelParserProvider;
+import no.sintef.bvr.gmf.vspec.edit.policies.BVRMetamodelTextSelectionEditPolicy;
+import no.sintef.bvr.gmf.vspec.part.BVRMetamodelVisualIDRegistry;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelParserProvider;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -99,7 +99,7 @@ public class MultiplicityIntervalLowerUpper4EditPart extends
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
-				new CVLMetamodelTextSelectionEditPolicy());
+				new BVRMetamodelTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
@@ -303,11 +303,11 @@ public class MultiplicityIntervalLowerUpper4EditPart extends
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = CVLMetamodelParserProvider
+			parser = BVRMetamodelParserProvider
 					.getParser(
-							CVLMetamodelElementTypes.MultiplicityInterval_3004,
+							BVRMetamodelElementTypes.MultiplicityInterval_3004,
 							getParserElement(),
-							CVLMetamodelVisualIDRegistry
+							BVRMetamodelVisualIDRegistry
 									.getType(no.sintef.bvr.gmf.vspec.edit.parts.MultiplicityIntervalLowerUpper4EditPart.VISUAL_ID));
 		}
 		return parser;
@@ -319,7 +319,7 @@ public class MultiplicityIntervalLowerUpper4EditPart extends
 	protected DirectEditManager getManager() {
 		if (manager == null) {
 			setManager(new TextDirectEditManager2(this, null,
-					CVLMetamodelEditPartFactory.getTextCellEditorLocator(this)));
+					BVRMetamodelEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}

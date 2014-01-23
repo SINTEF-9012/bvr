@@ -9,7 +9,7 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import no.sintef.ict.splcatool.CVLModel;
+import no.sintef.ict.splcatool.BVRModel;
 import no.sintef.ict.splcatool.FileUtility;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -21,7 +21,7 @@ import splar.core.fm.FeatureModelException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-public class CVL2GuidslTest {
+public class BVR2GuidslTest {
 	@Test
 	public void test() throws UnsupportedModelException, IOException, FeatureModelException, TransformerException, ParserConfigurationException, SAXException{
 		List<String> ls = new FileUtility().traverseDirCollectFiles("TestData/Realistic");
@@ -36,16 +36,16 @@ public class CVL2GuidslTest {
 			
 			// Load Files
 			GUIDSL gd = new GUIDSL(mfile);
-			CVLModel bvr = gd.getGraphMLFM().getCVLModel();
+			BVRModel bvr = gd.getGraphMLFM().getBVRModel();
 			bvr.writeToFile(bvrfile);
 			
 			// Load again
-			bvr = new CVLModel(bvrfile);
+			bvr = new BVRModel(bvrfile);
 			gd = bvr.getGUIDSL();
 			gd.writeToFile(bvrfile + ".m");
 			GraphMLFM gmlfm = gd.getGraphMLFM();
 			gmlfm.writeToFile(bvrfile + ".m.GraphML");
-			bvr = gmlfm.getCVLModel();
+			bvr = gmlfm.getBVRModel();
 			gd = bvr.getGUIDSL();
 			gd.writeToFile(bvrfile + ".m.bvr.m");
 			

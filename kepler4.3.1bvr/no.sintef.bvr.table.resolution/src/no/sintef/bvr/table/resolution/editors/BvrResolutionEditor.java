@@ -471,7 +471,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 					});
 				}
 			} catch (CoreException exception) {
-				CVLMetamodelEditorPlugin.INSTANCE.log(exception);
+				BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 			}
 		}
 	};
@@ -587,7 +587,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 					setActivePage(lastEditorPage);
 					showTabs();
 				} catch (PartInitException exception) {
-					CVLMetamodelEditorPlugin.INSTANCE.log(exception);
+					BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -597,7 +597,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 					try {
 						markerHelper.createMarkers(diagnostic);
 					} catch (CoreException exception) {
-						CVLMetamodelEditorPlugin.INSTANCE.log(exception);
+						BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -1472,7 +1472,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		} catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			CVLMetamodelEditorPlugin.INSTANCE.log(exception);
+			BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1688,7 +1688,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return CVLMetamodelEditorPlugin.INSTANCE.getString(key);
+		return BVRMetamodelEditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1698,7 +1698,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return CVLMetamodelEditorPlugin.INSTANCE.getString(key,
+		return BVRMetamodelEditorPlugin.INSTANCE.getString(key,
 				new Object[] { s1 });
 	}
 

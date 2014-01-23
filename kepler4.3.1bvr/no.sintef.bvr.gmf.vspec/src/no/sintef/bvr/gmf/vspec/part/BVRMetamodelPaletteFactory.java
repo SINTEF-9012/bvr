@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.PaletteContainer;
@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 /**
  * @generated
  */
-public class CVLMetamodelPaletteFactory {
+public class BVRMetamodelPaletteFactory {
 
 	/**
 	 * @generated
@@ -50,9 +50,9 @@ public class CVLMetamodelPaletteFactory {
 				Messages.VSpecChild1CreationTool_title,
 				Messages.VSpecChild1CreationTool_desc,
 				Collections
-						.singletonList(CVLMetamodelElementTypes.VSpecChild_4001));
+						.singletonList(BVRMetamodelElementTypes.VSpecChild_4001));
 		entry.setId("createVSpecChild1CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+		entry.setSmallIcon(BVRMetamodelDiagramEditorPlugin
 				.findImageDescriptor("/no.sintef.bvr.model.edit/icons/full/obj16/ChildNode.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
@@ -63,14 +63,14 @@ public class CVLMetamodelPaletteFactory {
 	 */
 	private ToolEntry createVSpecGroupMultiplicity2CreationTool() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-		types.add(CVLMetamodelElementTypes.MultiplicityInterval_3002);
-		types.add(CVLMetamodelElementTypes.MultiplicityInterval_3003);
-		types.add(CVLMetamodelElementTypes.MultiplicityInterval_3004);
+		types.add(BVRMetamodelElementTypes.MultiplicityInterval_3002);
+		types.add(BVRMetamodelElementTypes.MultiplicityInterval_3003);
+		types.add(BVRMetamodelElementTypes.MultiplicityInterval_3004);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.VSpecGroupMultiplicity2CreationTool_title,
 				Messages.VSpecGroupMultiplicity2CreationTool_desc, types);
 		entry.setId("createVSpecGroupMultiplicity2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+		entry.setSmallIcon(BVRMetamodelDiagramEditorPlugin
 				.findImageDescriptor("/no.sintef.bvr.model.edit/icons/full/obj16/MultiplicityInterval.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
@@ -84,9 +84,9 @@ public class CVLMetamodelPaletteFactory {
 				Messages.OpaqueConstraint3CreationTool_title,
 				Messages.OpaqueConstraint3CreationTool_desc,
 				Collections
-						.singletonList(CVLMetamodelElementTypes.OpaqueConstraint_2014));
+						.singletonList(BVRMetamodelElementTypes.OpaqueConstraint_2014));
 		entry.setId("createOpaqueConstraint3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+		entry.setSmallIcon(BVRMetamodelDiagramEditorPlugin
 				.findImageDescriptor("/no.sintef.bvr.model.edit/icons/full/obj16/OpaqueConstraint.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
@@ -100,9 +100,9 @@ public class CVLMetamodelPaletteFactory {
 				Messages.OpaqueConstraintLink4CreationTool_title,
 				Messages.OpaqueConstraintLink4CreationTool_desc,
 				Collections
-						.singletonList(CVLMetamodelElementTypes.ConstraintContext_4003));
+						.singletonList(BVRMetamodelElementTypes.ConstraintContext_4003));
 		entry.setId("createOpaqueConstraintLink4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(CVLMetamodelDiagramEditorPlugin
+		entry.setSmallIcon(BVRMetamodelDiagramEditorPlugin
 				.findImageDescriptor("/no.sintef.bvr.model.edit/icons/full/obj16/ConstraintLine.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;

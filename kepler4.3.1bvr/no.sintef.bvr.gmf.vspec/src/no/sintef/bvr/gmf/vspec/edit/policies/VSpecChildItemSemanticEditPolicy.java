@@ -1,6 +1,6 @@
 package no.sintef.bvr.gmf.vspec.edit.policies;
 
-import no.sintef.bvr.gmf.vspec.providers.CVLMetamodelElementTypes;
+import no.sintef.bvr.gmf.vspec.providers.BVRMetamodelElementTypes;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -18,13 +18,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
  * @generated
  */
 public class VSpecChildItemSemanticEditPolicy extends
-		CVLMetamodelBaseItemSemanticEditPolicy {
+		BVRMetamodelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	public VSpecChildItemSemanticEditPolicy() {
-		super(CVLMetamodelElementTypes.VSpecChild_4001);
+		super(BVRMetamodelElementTypes.VSpecChild_4001);
 	}
 
 	/**
