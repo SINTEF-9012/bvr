@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cm:consulmodel xmlns:cm="http://www.pure-systems.com/consul/model" cm:id="i17374968" cm:version="1.5" cm:type="ps:fm">
+  <cm:head>
+    <cm:properties>
+      <cm:property cm:id="i17374968name" cm:type="ps:string" cm:invisible="true" cm:name="ps:name">
+        <cm:constant cm:id="i17374968nameval" cm:type="ps:string">Car</cm:constant>
+      </cm:property>
+      <cm:property cm:id="i17374968author" cm:type="ps:string" cm:invisible="true" cm:name="ps:author">
+        <cm:constant cm:id="i17374968authorval" cm:type="ps:string">Pure::Consul</cm:constant>
+      </cm:property>
+      <cm:property cm:id="i17374968version" cm:type="ps:string" cm:invisible="true" cm:name="ps:version">
+        <cm:constant cm:id="i17374968versionval" cm:type="ps:string">0.3</cm:constant>
+      </cm:property>
+      <cm:property cm:id="i17374968created" cm:type="ps:datetime" cm:invisible="true" cm:name="ps:created">
+        <cm:constant cm:id="i17374968createdval" cm:type="ps:datetime">2004-10-01T10:00:00Z</cm:constant>
+      </cm:property>
+      <cm:property cm:id="iRSlsahjBoBnDJ5zt" cm:type="ps:mimetype" cm:invisible="true" cm:name="ps:DescriptionType">
+        <cm:constant cm:id="iINDC4kkSVMSVLY4i" cm:type="ps:mimetype">text/html</cm:constant>
+      </cm:property>
+    </cm:properties>
+  </cm:head>
+  <cm:elements cm:rootid="i31211">
+    <cm:element cm:id="i31205" cm:name="Automatic" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31205id766950" cm:class="ps:parents">
+        <cm:relation cm:id="izJTxcS7SYasaT3Wa" cm:type="ps:parent">
+          <cm:target cm:id="irzKDe5HeorYGGHma">./i31214</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id836252" cm:mimetype="text/plain" cm:encoding="utf-8">Automatic</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31206" cm:name="Brakes" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31206id830658" cm:class="ps:parents">
+        <cm:relation cm:id="iMzV2auAl5W2b2Z4d" cm:type="ps:parent">
+          <cm:target cm:id="imItIk7bcFdAEoXCT">./i31211</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i31206id777605" cm:class="ps:children">
+        <cm:relation cm:id="i2AwPdd5XgasnEG0m" cm:type="ps:mandatory">
+          <cm:target cm:id="iSiMed6mpurt6xz0c">./i31207</cm:target>
+          <cm:target cm:id="i3iHMbwddBs2mipKz">./i31221</cm:target>
+          <cm:target cm:id="ij7jtaiUj5Wc6lU0P">./i31218</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id777678" cm:mimetype="text/plain" cm:encoding="utf-8">Brakes</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31207" cm:name="BrakeActuation" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31207id777527" cm:class="ps:parents">
+        <cm:relation cm:id="iCPYkasyPkGXAqbyj" cm:type="ps:parent">
+          <cm:target cm:id="i_kyhaNzOAcyIPfGO">./i31206</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i31207id826967" cm:class="ps:children">
+        <cm:relation cm:id="idIYDmTqgPX7iHlia" cm:type="ps:alternative">
+          <cm:target cm:id="io3VpagWHVcUcgWOX">./i31209</cm:target>
+          <cm:target cm:id="iuV9fcObzeaF8TQCo">./i31210</cm:target>
+          <cm:target cm:id="iSgSKlHaUgWeqDrit">./i31215</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id777638" cm:mimetype="text/plain" cm:encoding="utf-8">Brake Actuation</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i5850" cm:name="Car_ABS" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i5850id835676" cm:class="ps:parents">
+        <cm:relation cm:id="ieQfnfcY-Udri4RGu" cm:type="ps:parent">
+          <cm:target cm:id="iSbz5aNb1lG4IPmCf">./i5852</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id828299" cm:mimetype="text/plain" cm:encoding="utf-8">ABS</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i5851" cm:name="Car_ESP" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i5851id836253" cm:class="ps:dependencies">
+        <cm:relation cm:id="ivfMjpUBBbvOYr6qQ" cm:type="ps:requires">
+          <cm:target cm:id="i95pgMlW_8FX2_IRx">i17374968/i5850</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i5851id766736" cm:class="ps:parents">
+        <cm:relation cm:id="id_VQgJO12XqqpWGa" cm:type="ps:parent">
+          <cm:target cm:id="i68nMc4JZeGlI3SKl">./i5852</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id828310" cm:mimetype="text/plain" cm:encoding="utf-8">ESP</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i5852" cm:name="Car_Safety" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i5852id831002" cm:class="ps:parents">
+        <cm:relation cm:id="iid6zcpiwUG_-18aj" cm:type="ps:parent">
+          <cm:target cm:id="i7JKgbun0Qa8PiuWe">./i31211</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i5852id830855" cm:class="ps:children">
+        <cm:relation cm:id="i4HHWjOI3dake6MuU" cm:type="ps:optional">
+          <cm:target cm:id="isiTffJRF9GBHxpmC">./i5850</cm:target>
+          <cm:target cm:id="i6f79d9BujsLeuNew">./i5851</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id766871" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Sicherheitsfunktionen</cm:mimedesc>
+        <cm:mimedesc cm:id="i17374968id830766" cm:mimetype="text/plain" cm:encoding="utf-8">Safety Functions</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31208" cm:name="Diesel" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31208id828976" cm:class="ps:parents">
+        <cm:relation cm:id="iK17fdh6AfcI27yOb" cm:type="ps:parent">
+          <cm:target cm:id="irdWqaxa9FawzUb0g">./i31217</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:properties>
+        
+        
+        
+      </cm:properties>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id826975" cm:mimetype="text/plain" cm:encoding="utf-8">Diesel</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31209" cm:name="Electric" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31209id828798" cm:class="ps:parents">
+        <cm:relation cm:id="iL6PYdczYtaWRuH0N" cm:type="ps:parent">
+          <cm:target cm:id="ipSbxarWbsWrsnBCm">./i31207</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id828834" cm:mimetype="text/plain" cm:encoding="utf-8">Electric</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31210" cm:name="Electrohydraulic" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31210id777461" cm:class="ps:parents">
+        <cm:relation cm:id="i3Sz8gNM64qHeJNGf" cm:type="ps:parent">
+          <cm:target cm:id="iojAia2lfbqoNaxCx">./i31207</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id829792" cm:mimetype="text/plain" cm:encoding="utf-8">Electrohydraulic</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31211" cm:name="Car" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31211id828166" cm:class="ps:children">
+        <cm:relation cm:id="iUzTeiS08raEJHbCc" cm:type="ps:optional">
+          <cm:target cm:id="i_W7xfe0bxq9BsNKa">./i5852</cm:target>
+        </cm:relation>
+        <cm:relation cm:id="imgjeizIjqWfZF_Sc" cm:type="ps:mandatory">
+          <cm:target cm:id="i0hPrhfzfsH0Eh-Ge">./i31206</cm:target>
+          <cm:target cm:id="immUdaTR8Xr757ACd">./i31214</cm:target>
+          <cm:target cm:id="imgn2bVZMiakM-_8a">./i31217</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:properties>
+        
+        
+        
+        
+      </cm:properties>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id836344" cm:mimetype="text/plain" cm:encoding="utf-8">Car</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31212" cm:name="Gasoline" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31212id830711" cm:class="ps:parents">
+        <cm:relation cm:id="ijM88eS5TvWpOhhib" cm:type="ps:parent">
+          <cm:target cm:id="ii36Dlqt5xamgKTOi">./i31217</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id831024" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Benzin</cm:mimedesc>
+        <cm:mimedesc cm:id="i17374968id826873" cm:mimetype="text/plain" cm:encoding="utf-8">Gasoline</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31213" cm:name="Gears" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31213id827998" cm:class="ps:parents">
+        <cm:relation cm:id="iydgXaek8nbCu4Quo" cm:type="ps:parent">
+          <cm:target cm:id="izgNbaCJAoIZGMfeC">./i31214</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:properties>
+        <cm:property cm:id="iAIupixFE-wYIM4O3" cm:type="ps:integer" cm:name="Count">
+        </cm:property>
+        
+        
+        
+        
+      </cm:properties>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id828814" cm:mimetype="text/plain" cm:encoding="utf-8">Gears</cm:mimedesc>
+        <cm:mimedesc cm:id="imICJlOPH64EnW42Q" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Gänge</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31214" cm:name="Gearbox" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31214id830844" cm:class="ps:parents">
+        <cm:relation cm:id="iVfJqkFtgcWy4sjKp" cm:type="ps:parent">
+          <cm:target cm:id="iut47az5VSW0i2bmG">./i31211</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i31214id830062" cm:class="ps:children">
+        <cm:relation cm:id="ivNRxbpP3BqHqzAmp" cm:type="ps:or">
+          <cm:target cm:id="iaePZcPoCVXzTZfCo">./i31205</cm:target>
+          <cm:target cm:id="itnpubQlm1qmAgV0b">./i31216</cm:target>
+        </cm:relation>
+        <cm:relation cm:id="iqhRPeTLtCaI0_Bei" cm:type="ps:mandatory">
+          <cm:target cm:id="iAp1kbtILycv0CUe2">./i31213</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id777621" cm:mimetype="text/plain" cm:encoding="utf-8">Gear Box</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31221" cm:name="Rear" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31221id834424" cm:class="ps:parents">
+        <cm:relation cm:id="i4pIuaTcSFGrKR9Gj" cm:type="ps:parent">
+          <cm:target cm:id="icQ7OgT7MwXqduFKK">./i31206</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i31221id829838" cm:class="ps:children">
+        <cm:relation cm:id="iumKYeBtC9HQCQGCN" cm:type="ps:alternative">
+          <cm:target cm:id="i71N-aqQUMWdMNDOl">./i31219</cm:target>
+          <cm:target cm:id="iicK1accUoWz26xWj">./i31222</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id828009" cm:mimetype="text/plain" cm:encoding="utf-8">Rear</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31215" cm:name="Hydraulisch" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31215id829701" cm:class="ps:parents">
+        <cm:relation cm:id="i4nzolvX2paxGYcuc" cm:type="ps:parent">
+          <cm:target cm:id="ibFX0aY9EZc7QQ4Oz">./i31207</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id830191" cm:mimetype="text/plain" cm:encoding="utf-8">Hydraulic</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31216" cm:name="Manual" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31216id828948" cm:class="ps:parents">
+        <cm:relation cm:id="imbsEjtenWrgqmFWo" cm:type="ps:parent">
+          <cm:target cm:id="iHkZkaJxtfHQewdug">./i31214</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:properties>
+        
+        
+        
+        
+      </cm:properties>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id827633" cm:mimetype="text/plain" cm:encoding="utf-8">Manual</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31217" cm:name="Engine" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31217id836055" cm:class="ps:parents">
+        <cm:relation cm:id="iWhfAbYt6XrCiv8Wf" cm:type="ps:parent">
+          <cm:target cm:id="imJpVcugvIW2iVfqB">./i31211</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i31217id834779" cm:class="ps:children">
+        <cm:relation cm:id="iwP9-aXIHRH893Hak" cm:type="ps:alternative">
+          <cm:target cm:id="iIt7NfpszGq6jWGKa">./i31208</cm:target>
+          <cm:target cm:id="icYUhaUCGtbwJK2ia">./i31212</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id829018" cm:mimetype="text/plain" cm:encoding="utf-8">Engine</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31219" cm:name="Disc_rear" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31219id829874" cm:class="ps:parents">
+        <cm:relation cm:id="iBiuwaHxwhHo3DPGv" cm:type="ps:parent">
+          <cm:target cm:id="i-jC2bQFybXkG5SSb">./i31221</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id830590" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Scheibe</cm:mimedesc>
+        <cm:mimedesc cm:id="i17374968id830567" cm:mimetype="text/plain" cm:encoding="utf-8">Disc</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31220" cm:name="Disc_front" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31220id828337" cm:class="ps:parents">
+        <cm:relation cm:id="iranHcAUM4WSElEOp" cm:type="ps:parent">
+          <cm:target cm:id="iqg9Fcib-dqiOSNCu">./i31218</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:properties>
+        
+        
+        
+        
+      </cm:properties>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id828779" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Scheibe</cm:mimedesc>
+        <cm:mimedesc cm:id="i17374968id829659" cm:mimetype="text/plain" cm:encoding="utf-8">Disc</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31222" cm:name="Drum_rear" cm:type="ps:feature" cm:class="ps:feature" cm:default="off">
+      <cm:relations cm:id="i31222id829883" cm:class="ps:parents">
+        <cm:relation cm:id="iShaJaO1ZUYvc6r4n" cm:type="ps:parent">
+          <cm:target cm:id="ie0tXb9Ov9HMWTEKm">./i31221</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:properties>
+        
+        
+        
+        
+      </cm:properties>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id829634" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Trommel</cm:mimedesc>
+        <cm:mimedesc cm:id="i17374968id830314" cm:mimetype="text/plain" cm:encoding="utf-8">Drum</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31223" cm:name="Drum_front" cm:type="ps:feature" cm:class="ps:feature">
+      <cm:relations cm:id="i31223id834302" cm:class="ps:parents">
+        <cm:relation cm:id="iTfxQagbd3WPWx54h" cm:type="ps:parent">
+          <cm:target cm:id="iz2GebuRTnbs6BFeo">./i31218</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id827777" cm:mimetype="text/plain" cm:lang="de" cm:encoding="utf-8">Trommel</cm:mimedesc>
+        <cm:mimedesc cm:id="i17374968id830518" cm:mimetype="text/plain" cm:encoding="utf-8">Drum</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+    <cm:element cm:id="i31218" cm:name="Front" cm:type="ps:feature" cm:class="ps:feature" cm:default="on">
+      <cm:relations cm:id="i31218id834672" cm:class="ps:parents">
+        <cm:relation cm:id="iJGoWbx3I6q7e-FCy" cm:type="ps:parent">
+          <cm:target cm:id="iUmAucP61krua8tqC">./i31206</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:relations cm:id="i31218id834641" cm:class="ps:children">
+        <cm:relation cm:id="ijD6saIbmYr_Zvjqa" cm:type="ps:alternative">
+          <cm:target cm:id="iGfTcad96aWcePRmR">./i31220</cm:target>
+          <cm:target cm:id="iMZWxajQ0hIdwLYKt">./i31223</cm:target>
+        </cm:relation>
+      </cm:relations>
+      <cm:vname>
+        <cm:mimedesc cm:id="i17374968id829780" cm:mimetype="text/plain" cm:encoding="utf-8">Front</cm:mimedesc>
+      </cm:vname>
+    </cm:element>
+  </cm:elements>
+</cm:consulmodel>

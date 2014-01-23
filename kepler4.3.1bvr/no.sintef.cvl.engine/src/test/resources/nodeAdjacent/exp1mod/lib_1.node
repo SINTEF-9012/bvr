@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node">
+  <contains links="//@contains.2 //@contains.4" name="r0"/>
+  <contains links="//@contains.4" name="r00"/>
+  <contains links="//@contains.3" name="r1"/>
+  <contains name="r2"/>
+  <contains links="//@contains.2 //@contains.3 //@contains.5" name="r3"/>
+  <contains links="//@contains.11" name="r4"/>
+  <contains links="//@contains.3 //@contains.7 //@contains.9" name="r5"/>
+  <contains links="//@contains.9 //@contains.8" name="r6"/>
+  <contains links="//@contains.10 //@contains.12 //@contains.13" name="r7"/>
+  <contains name="r8"/>
+  <contains links="//@contains.8 //@contains.11 //@contains.14" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.15" name="r11"/>
+  <contains links="//@contains.12 //@contains.14" name="r12"/>
+  <contains links="//@contains.15" name="r13"/>
+  <contains name="r14"/>
+  <contains links="//@contains.18 //@contains.20" name="r0"/>
+  <contains links="//@contains.20" name="r00"/>
+  <contains links="//@contains.19" name="r1"/>
+  <contains name="r2"/>
+  <contains links="//@contains.18 //@contains.19 //@contains.21" name="r3"/>
+  <contains links="//@contains.27" name="r4"/>
+  <contains links="//@contains.19 //@contains.23 //@contains.25" name="r5"/>
+  <contains links="//@contains.25 //@contains.24" name="r6"/>
+  <contains links="//@contains.26 //@contains.28 //@contains.29" name="r7"/>
+  <contains name="r8"/>
+  <contains links="//@contains.24 //@contains.27 //@contains.30" name="r9"/>
+  <contains name="r10"/>
+  <contains links="//@contains.31" name="r11"/>
+  <contains links="//@contains.28 //@contains.30" name="r12"/>
+  <contains links="//@contains.31" name="r13"/>
+  <contains name="r14"/>
+</node:Node>

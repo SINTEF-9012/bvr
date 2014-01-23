@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" language="java" name="no.sintef.cvl.engine.adjacent" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/adjacent" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="206" y="107"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="no.sintef.cvl.engine.adjacent.impl" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/adjacent/impl" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="219" y="181"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="no.sintef.cvl.engine.common" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/common" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="443" y="99"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="no.sintef.cvl.engine.containment" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/containment" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="456" y="180"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="no.sintef.cvl.engine.crossing" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/crossing" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="208" y="255"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="6" language="java" name="no.sintef.cvl.engine.error" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/error" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="197" y="334"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="7" language="java" name="no.sintef.cvl.engine.fragment" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/fragment" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="687" y="179"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="8" language="java" name="no.sintef.cvl.engine.fragment.impl" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/fragment/impl" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="698" y="99"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="9" language="java" name="no.sintef.cvl.engine.logging" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/logging" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="440" y="257"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="10" language="java" name="no.sintef.cvl.engine.logging.impl" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/logging/impl" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="457" y="332"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="11" language="java" name="no.sintef.cvl.engine.operation" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/operation" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="689" y="262"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <package id="12" language="java" name="no.sintef.cvl.engine.operation.impl" project="no.sintef.cvl.engine" 
+    file="/no.sintef.cvl.engine/src/main/java/no/sintef/cvl/engine/operation/impl" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="702" y="329"/>    
+    <display autosize="true" stereotype="true" accessors="true"/>  
+  </package>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

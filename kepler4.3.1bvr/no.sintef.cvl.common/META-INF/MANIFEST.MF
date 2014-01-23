@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Common
+Bundle-SymbolicName: no.sintef.cvl.common
+Bundle-Version: 1.0.0.qualifier
+Export-Package: no.sintef.cvl.common,
+ no.sintef.cvl.common.logging
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: cvl,
+ org.eclipse.emf.common.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.util
+Bundle-ClassPath: lib/guava-14.0.1.jar,
+ .
