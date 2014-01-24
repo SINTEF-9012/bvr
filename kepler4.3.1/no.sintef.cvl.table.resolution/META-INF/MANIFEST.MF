@@ -20,4 +20,7 @@ Bundle-Localization: plugin
 Import-Package: cvl,
  cvl.impl,
  cvl.provider,
- cvl.util
+ cvl.util,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace,
+ org.eclipse.gmf.runtime.diagram.core

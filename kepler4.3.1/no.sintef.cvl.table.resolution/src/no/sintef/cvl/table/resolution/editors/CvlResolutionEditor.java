@@ -22,6 +22,7 @@ import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxControlTreeListn
 import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxNotifyChangedListener;
 import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxStateListener;
 import no.sintef.cvl.table.resolution.editors.listeners.CheckBoxUpdateTreeViewerListener;
+import no.sintef.cvl.table.resolution.editors.listeners.TableNotifyChangedListener;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -631,7 +632,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 * This sets up the editing domain for the model editor. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
@@ -651,41 +652,45 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		//
 		BasicCommandStack commandStack = new BasicCommandStack();
 
-		// Add a listener to set the most recent command's affected objects to
-		// be the selection of the viewer with focus.
-		//
-		commandStack.addCommandStackListener(new CommandStackListener() {
-			public void commandStackChanged(final EventObject event) {
-				getContainer().getDisplay().asyncExec(new Runnable() {
-					public void run() {
-						firePropertyChange(IEditorPart.PROP_DIRTY);
-
-						// Try to select the affected objects.
-						//
-						Command mostRecentCommand = ((CommandStack) event
-								.getSource()).getMostRecentCommand();
-						if (mostRecentCommand != null) {
-							setSelectionToViewer(mostRecentCommand
-									.getAffectedObjects());
-						}
-						for (Iterator<PropertySheetPage> i = propertySheetPages
-								.iterator(); i.hasNext();) {
-							PropertySheetPage propertySheetPage = i.next();
-							if (propertySheetPage.getControl().isDisposed()) {
-								i.remove();
-							} else {
-								propertySheetPage.refresh();
-							}
-						}
-					}
-				});
-			}
-		});
-
 		// Create the editing domain with a special command stack.
 		//
 		editingDomain = new CustomAdapterFactoryEditingDomain(adapterFactory,
 				commandStack, new HashMap<Resource, Boolean>());
+
+		// Add a listener to set the most recent command's affected objects to
+		// be the selection of the viewer with focus.
+		//
+		editingDomain.getCommandStack().addCommandStackListener(
+				new CommandStackListener() {
+					public void commandStackChanged(final EventObject event) {
+						getContainer().getDisplay().asyncExec(new Runnable() {
+							public void run() {
+								firePropertyChange(IEditorPart.PROP_DIRTY);
+
+								// Try to select the affected objects.
+								//
+								Command mostRecentCommand = ((CommandStack) event
+										.getSource()).getMostRecentCommand();
+								if (mostRecentCommand != null) {
+									setSelectionToViewer(mostRecentCommand
+											.getAffectedObjects());
+								}
+								for (Iterator<PropertySheetPage> i = propertySheetPages
+										.iterator(); i.hasNext();) {
+									PropertySheetPage propertySheetPage = i
+											.next();
+									if (propertySheetPage.getControl()
+											.isDisposed()) {
+										i.remove();
+									} else {
+										propertySheetPage.refresh();
+									}
+								}
+							}
+						});
+					}
+				});
+
 	}
 
 	/**
@@ -976,7 +981,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				headers.add((Choice) element);
 			} else if (element instanceof Variable) {
 				headers.add((Variable) element);
-			} else if (element instanceof VClassifier){
+			} else if (element instanceof VClassifier) {
 				headers.add((VClassifier) element);
 			}
 		}
@@ -1090,6 +1095,9 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		tableViewer.setLabelProvider(new ResolutionTableLabelProvider());
 
 		tableViewer.setInput(cu);
+
+		adapterFactory.addListener(new TableNotifyChangedListener(tableViewer,
+				editingDomain));
 
 		createContextMenuFor(tableViewer);
 		return viewerPane;
@@ -1213,11 +1221,12 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		// TODO if n/a is shown in table view, ConfigurableUnit should use same
 		// instance.
 		selectionViewer.setInput(editingDomain.getResourceSet());
-		
+
 		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
 				.getResources().get(0).getContents().get(0);
 		List<VSpec> headers = createTableColumns(cu);
-		((ResolutionTableContentProvider)tableViewer.getContentProvider()).setHeaders(headers);
+		((ResolutionTableContentProvider) tableViewer.getContentProvider())
+				.setHeaders(headers);
 		tableViewer.setInput(cu);
 
 		super.pageChange(pageIndex);

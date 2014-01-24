@@ -17,7 +17,7 @@
       </wizard>
    </extension>
 
-<!--   <extension point="org.eclipse.ui.editors">
+<extension point="org.eclipse.ui.editors">
       <editor
             id="no.sintef.cvl.table.resolution.editors.CvlResolutionEditorID"
             name="%_UI_CvlEditor_label"
@@ -27,7 +27,7 @@
             contributorClass="no.sintef.cvl.table.resolution.editors.CvlActionBarContributor">
       </editor>
    </extension>
-   -->
+
    <extension point="org.eclipse.ui.commands">
       <command
          categoryId="org.eclipse.ui.category.edit"
@@ -66,7 +66,7 @@
         <visibleWhen
               checkEnabled="false">
           <iterate ifEmpty="false">
-      		<adapt type="no.sintef.cvl.table.ConfigurableUnit">
+      		<adapt type="cvl.ConfigurableUnit">
       		</adapt>
     	  </iterate>
         </visibleWhen>
@@ -90,7 +90,7 @@
        <visibleWhen
               checkEnabled="false">
           <iterate ifEmpty="false">
-      		<adapt type="no.sintef.cvl.table.VSpecResolution">
+      		<adapt type="cvl.VSpecResolution">
       		</adapt>
     	  </iterate>
         </visibleWhen>
@@ -102,7 +102,7 @@
        <visibleWhen
               checkEnabled="false">
           <iterate ifEmpty="false">
-      		<adapt type="no.sintef.cvl.table.ConfigurableUnit">
+      		<adapt type="cvl.ConfigurableUnit">
       		</adapt>
     	  </iterate>
         </visibleWhen>
@@ -111,6 +111,13 @@
 
   
 </extension>
-
+   <!-- gmf generator persistent region begin -->
+   <extension
+         point="org.eclipse.emf.transaction.editingDomains">
+      <editingDomain
+            factory="org.eclipse.emf.workspace.WorkspaceEditingDomainFactory"
+            id="no.sintef.cvl.gmf.vspec.EditingDomain"/>
+   </extension>
+<!-- gmf generator persistent region end -->
 </plugin>
 
