@@ -42,17 +42,17 @@ import bvr.ToPlacement;
 import bvr.VariationPoint;
 
 public class FragmentSubstitutionAdjacentEst {
-	@Before
+	//@Before
 	public void setUp() throws Exception {
 		NodePackage.eINSTANCE.eClass();
 	}
 
-	@After
+	//@After
 	public void tearDown() throws Exception {
 		//SetUpUtils.tearDown(map);
 	}
 	
-	@Test
+	//@Test
 	public void testAdjacentTrue() throws Exception {
 		int maxExp = 1;
 		EList<Long> finderTime = new BasicEList<Long>();
