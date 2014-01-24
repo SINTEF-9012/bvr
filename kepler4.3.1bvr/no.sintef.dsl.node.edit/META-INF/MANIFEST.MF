@@ -5,7 +5,7 @@ Bundle-SymbolicName: no.sintef.dsl.node.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: node.provider.NodeEditPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Vendor: SINTEF
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: node.provider

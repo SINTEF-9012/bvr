@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: BVR :: Eclipse Editor (GMF) VSpec
 Bundle-SymbolicName: no.sintef.bvr.gmf.vspec; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorPlugin
-Bundle-Vendor: %providerName
+Bundle-Vendor: SINTEF
 Bundle-Localization: plugin
 Export-Package: no.sintef.bvr.gmf.vspec.custom.ocl,
  no.sintef.bvr.gmf.vspec.custom.property,

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Resolution
+Bundle-Name: BVR :: Editor Table Resolution
 Bundle-SymbolicName: no.sintef.bvr.table.resolution;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.bvr.table.resolution.editors.BVRMetamodelEditorPlugin$Implementation
@@ -21,3 +21,4 @@ Import-Package: bvr,
  bvr.impl,
  bvr.provider,
  bvr.util
+Bundle-Vendor: SINTEF

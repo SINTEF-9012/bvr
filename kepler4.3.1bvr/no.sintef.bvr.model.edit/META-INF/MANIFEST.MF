@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: BVR :: Model Edit Support
 Bundle-SymbolicName: no.sintef.bvr.model.edit;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: bvr.provider.BVRMetamodelEditPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Vendor: SINTEF
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: bvr.provider

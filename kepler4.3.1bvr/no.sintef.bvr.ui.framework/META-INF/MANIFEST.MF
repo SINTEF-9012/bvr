@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Framework
+Bundle-Name: BVR: UI MVC Editor Framework
 Bundle-SymbolicName: no.sintef.bvr.ui.framework
 Bundle-Version: 1.0.0.qualifier
 Export-Package: com.explodingpixels.macwidgets,
@@ -15,3 +15,4 @@ Bundle-ClassPath: .,
  graphics/
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.core.internal.resources
+Bundle-Vendor: SINTEF

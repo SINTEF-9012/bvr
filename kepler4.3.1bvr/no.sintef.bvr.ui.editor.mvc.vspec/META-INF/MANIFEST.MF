@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: BVR :: Eclipse Editor
+Bundle-Name: BVR :: Eclipse Editor (MVC) VSpec
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.mvc.vspec;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: no.sintef.bvr.ui.editor.mvc.vspec.Activator
@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
  no.sintef.bvr.tool,
  org.eclipse.gmf.runtime.emf.commands.core,
- no.sintef.bvr.ui.editor.eclipse;bundle-version="1.0.0"
+ no.sintef.bvr.ui.editor.common;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.ui.editor,

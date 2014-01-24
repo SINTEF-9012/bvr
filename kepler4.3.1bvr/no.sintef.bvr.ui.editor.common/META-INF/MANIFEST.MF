@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: BVR :: Eclipse Editor
-Bundle-SymbolicName: no.sintef.bvr.ui.editor.eclipse;singleton:=true
+Bundle-Name: BVR :: Eclipse Editor Common
+Bundle-SymbolicName: no.sintef.bvr.ui.editor.common;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: no.sintef.bvr.ui.editor.Activator
 Bundle-Vendor: SINTEF

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Tool
+Bundle-Name: BVR :: MVC Editor Tool
 Bundle-SymbolicName: no.sintef.bvr.tool
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: lib/org.abego.treelayout.core-1.0.1.jar,
@@ -110,3 +110,4 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.9.1",
  no.sintef.bvr.thirdparty;bundle-version="1.0.0",
  no.sintef.bvr.common;bundle-version="1.0.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1"
+Bundle-Vendor: SINTEF

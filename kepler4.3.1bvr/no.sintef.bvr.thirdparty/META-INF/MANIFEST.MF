@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Thirdparty
+Bundle-Name: BVR :: Thirdparty
 Bundle-SymbolicName: no.sintef.bvr.thirdparty
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -24,3 +24,4 @@ Export-Package: no.sintef.bvr.thirdparty.common,
  no.sintef.bvr.thirdparty.editor,
  no.sintef.bvr.thirdparty.exception
 Bundle-ClassPath: .
+Bundle-Vendor: SINTEF

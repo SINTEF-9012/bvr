@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Constraints
+Bundle-Name: BVR :: Constraints
 Bundle-SymbolicName: no.sintef.bvr.constraints
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
@@ -47,3 +47,4 @@ Import-Package: bvr,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: SINTEF

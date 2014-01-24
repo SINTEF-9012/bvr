@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrusdiagramadapter2
+Bundle-Name: BVR :: Papyrus Diagram Adapter
 Bundle-SymbolicName: no.sintef.bvr.papyrusdiagramadapter2; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.bvr.papyrusdiagramadapter2.Activator

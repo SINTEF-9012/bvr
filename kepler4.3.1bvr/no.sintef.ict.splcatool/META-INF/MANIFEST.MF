@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: no.sintef.ict.splcatool
+Bundle-Name: SPLCATOOL
 Bundle-SymbolicName: no.sintef.ict.splcatool
 Bundle-Version: 0.1.0
 Require-Bundle: org.junit,
@@ -18,3 +18,4 @@ Import-Package: bvr,
 Export-Package: no.sintef.ict.splcatool
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ClassPath: .
+Bundle-Vendor: SINTEF
