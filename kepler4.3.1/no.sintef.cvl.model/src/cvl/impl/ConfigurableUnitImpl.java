@@ -248,7 +248,8 @@ public class ConfigurableUnitImpl extends CompositeVariationPointImpl implements
 		// TODO: implement this method to return the 'Unit Interface' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+		return null;
 	}
 
 	/**
