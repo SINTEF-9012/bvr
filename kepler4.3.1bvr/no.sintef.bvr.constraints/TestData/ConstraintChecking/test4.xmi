@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" name="Configurable Unit 1">
+  <ownedVSpec xsi:type="bvr:VClassifier" name="A">
+    <child xsi:type="bvr:Choice" name="B"/>
+    <child xsi:type="bvr:Choice" name="C"/>
+    <child xsi:type="bvr:VClassifier" name="D">
+      <child xsi:type="bvr:Choice" name="E"/>
+      <instanceMultiplicity upper="-1"/>
+    </child>
+    <instanceMultiplicity upper="-1"/>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint1" context="//@ownedVSpec.0">
+    <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
+      <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.0"/>
+      <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.1"/>
+    </expression>
+  </ownedConstraint>
+  <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint2" context="//@ownedVSpec.0/@child.2">
+    <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
+      <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.2/@child.0"/>
+      <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.1"/>
+    </expression>
+  </ownedConstraint>
+</bvr:ConfigurableUnit>

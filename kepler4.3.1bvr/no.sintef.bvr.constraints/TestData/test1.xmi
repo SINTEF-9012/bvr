@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bvr:ConfigurableUnit
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bvr="http:///bvr.ecore"
+    xsi:schemaLocation="http:///bvr.ecore BVRMetamodel.ecore">
+  <ownedVSpec
+      xsi:type="bvr:Choice"
+      name="copier"/>
+  <ownedVSpec
+      xsi:type="bvr:VClassifier"
+      name="PrinterPool">
+    <child xsi:type="bvr:Choice"
+        name="printer">
+      <child
+          xsi:type="bvr:Variable"
+          name="Speed"/>
+      <child
+          xsi:type="bvr:Variable"
+          name="minSpeed"/>
+      <child
+          xsi:type="bvr:Choice"
+          name="HighSpeed"/>
+      <child
+          xsi:type="bvr:Choice"
+          name="EmergencyPower">
+        <child
+            xsi:type="bvr:Variable"
+            name="threshold"
+            resolutionTime=""
+            type="//@ownedVariabletype.0"/>
+      </child>
+    </child>
+    <child xsi:type="bvr:Choice"
+        name="fax"/>
+    <child xsi:type="bvr:Choice"
+        name="scan"/>
+  </ownedVSpec>
+  <ownedVariabletype
+      name="Int"/>
+</bvr:ConfigurableUnit>

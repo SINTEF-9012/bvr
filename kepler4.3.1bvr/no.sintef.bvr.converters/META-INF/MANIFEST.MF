@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR :: Converters
+Bundle-SymbolicName: no.sintef.bvr.converters
+Bundle-Version: 1.0.0.qualifier
+Export-Package: no.sintef.bvr.converters
+Import-Package: de.ovgu.featureide.fm.core.io,
+ no.sintef.ict.splcatool,
+ splar.core.fm
+Require-Bundle: no.sintef.bvr.model;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .
+Bundle-Vendor: SINTEF

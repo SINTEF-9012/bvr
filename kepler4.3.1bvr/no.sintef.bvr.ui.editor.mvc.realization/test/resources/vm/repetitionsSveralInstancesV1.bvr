@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" name="Office">
+  <ownedVSpec xsi:type="bvr:Choice" name="Equipment">
+    <child xsi:type="bvr:VClassifier" name="PrinterPool">
+      <child xsi:type="bvr:Choice" name="Extras">
+        <groupMultiplicity upper="-1" lower="1"/>
+        <child xsi:type="bvr:Choice" name="ExtraItem0"/>
+        <child xsi:type="bvr:Choice" name="ExtraItem1"/>
+        <child xsi:type="bvr:Choice" name="ExtraItem2"/>
+      </child>
+      <instanceMultiplicity upper="-1" lower="1"/>
+    </child>
+  </ownedVSpec>
+  <ownedVariationPoint xsi:type="bvr:PlacementFragment" name="printerPool">
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_HK7bEA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_ArAxUA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_HK8CIQ_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_C3hFIA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_7D_ecA_bEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_E5xQwA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_HK8CIA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_JPZNMw_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_Kp6DYA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_BwytoA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Class) Office).&lt;Property>ownedAttribute" propertyName="ownedAttribute" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Property) office).&lt;Type>type[1]={Office}" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.1" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Package) Base).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.3 //@ownedVariationPoint.0/@sourceObject.5 //@ownedVariationPoint.0/@sourceObject.6 //@ownedVariationPoint.0/@sourceObject.7 //@ownedVariationPoint.0/@sourceObject.8 //@ownedVariationPoint.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.4"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.10" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.10"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:PlacementFragment" name="extraItem">
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_iSVGMA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_8QUusA_bEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_glH9gA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_oSFpMQ_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_oSFCIA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_oSFpMA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Package) Lib).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.0 //@ownedVariationPoint.1/@sourceObject.5" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Property) rExtras).&lt;Type>type[1]={rExtras}" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.2" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.3"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Class) rExtras).&lt;Property>ownedAttribute" propertyName="ownedAttribute" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.4" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.6" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.6"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-printerPool-printerPoolR-1" bindingVSpec="//@ownedVSpec.0/@child.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.0">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.2" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-extraItem-extraItem0-2" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0" placement="//@ownedVariationPoint.1" replacement="//@ownedVariabletype.1">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.2" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.1" fromReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-extraItem-extraItem1-3" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1" placement="//@ownedVariationPoint.1" replacement="//@ownedVariabletype.2">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.2" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.1" fromReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-extraItem-extraItem2-4" bindingVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.2" placement="//@ownedVariationPoint.1" replacement="//@ownedVariabletype.3">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.3/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.2" toReplacement="//@ownedVariabletype.3/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.1" fromReplacement="//@ownedVariabletype.3/@replacementBoundaryElement.2"/>
+  </ownedVariationPoint>
+  <ownedVSpecResolution xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
+    <child xsi:type="bvr:VInstance" name="pp1" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0" decision="true">
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0" decision="true"/>
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1" decision="true"/>
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.2" decision="true"/>
+      </child>
+    </child>
+    <child xsi:type="bvr:VInstance" name="pp2" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0" decision="true">
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0" decision="true"/>
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1" decision="true"/>
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.2"/>
+      </child>
+    </child>
+  </ownedVSpecResolution>
+  <ownedVSpecResolution xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
+    <child xsi:type="bvr:VInstance" name="pp" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0" decision="true">
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.0" decision="true"/>
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.1" decision="true"/>
+        <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0/@child.2" decision="true"/>
+      </child>
+    </child>
+  </ownedVSpecResolution>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="printerPoolR">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[6]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) rOffice).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Class) rOffice).&lt;Property>ownedAttribute[1]={rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.7" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rPrinterPool_rExtras_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rOffice_rPrinterPool_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rExtras}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rPrinterPool_rExtras_1,rExtras}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rOffice_rPrinterPool_1,rExtras}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rPrinterPool_rExtras_1,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rOffice_rPrinterPool_1,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rExtras,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rExtras,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rOffice_rPrinterPool_1,rExtras,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rExtraItem}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rPrinterPool_rExtras_1,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rOffice_rPrinterPool_1,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rExtras,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rExtras,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rOffice_rPrinterPool_1,rExtras,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rOffice_rPrinterPool_1,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rExtras,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rExtras,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rOffice_rPrinterPool_1,rExtras,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[5]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rExtraItem,rPrinterPool}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rPrinterPool_rExtras_1,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rOffice_rPrinterPool_1,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rExtras,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rExtras,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rOffice_rPrinterPool_1,rExtras,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rOffice_rPrinterPool_1,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rExtras,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rExtras,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rOffice_rPrinterPool_1,rExtras,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[5]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rExtraItem,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rPrinterPool_rExtras_1,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rOffice_rPrinterPool_1,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rExtras,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rExtras,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rOffice_rPrinterPool_1,rExtras,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[5]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtras,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[3]={rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rPrinterPool_rExtras_1,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rOffice_rPrinterPool_1,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[5]={rPrinterPool_rExtras_1,rOffice_rPrinterPool_1,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[4]={rExtras,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[5]={rPrinterPool_rExtras_1,rExtras,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[5]={rOffice_rPrinterPool_1,rExtras,rExtraItem,rPrinterPool,rExtras_rExtraItem_1}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.5 //@ownedVariabletype.0/@sourceObject.6 //@ownedVariabletype.0/@sourceObject.8 //@ownedVariabletype.0/@sourceObject.9" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.10" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.10"/>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_m1BOQw_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_8QUusA_bEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_kKoroA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_dtS0wA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_kKoroQ_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_glH9gA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_iSVGMA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_kKoEkA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_eqy-0A_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_oSFpMA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="extraItem0">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={extras_extraItem0_1,ExtraItem0}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0 //@ownedVariabletype.1/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) extras).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Class) Extras).&lt;Property>ownedAttribute[1]={extraItem0}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.4" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={extras_extraItem0_1}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={ExtraItem0}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_YNZdkA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_8QUusA_bEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_P6kEsA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_YNZdkQ_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_YNY2gA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_ScWsAA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="extraItem1">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Class) Extras).&lt;Property>ownedAttribute[1]={extraItem1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) extras).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={extras_extraItem1_1,ExtraItem1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3 //@ownedVariabletype.2/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={extras_extraItem1_1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={ExtraItem1}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_aVRJAA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_P6kEsA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_aVRJBA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_aVRJAw_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_8QUusA_bEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_Tf2wYA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="extraItem2">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[2]={extras_extraItem2_1,ExtraItem2}" insideBoundaryElement="//@ownedVariabletype.3/@sourceObject.0 //@ownedVariabletype.3/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.3/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Class) Extras).&lt;Property>ownedAttribute[1]={extraItem2}" insideBoundaryElement="//@ownedVariabletype.3/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.3/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) extras).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.3/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.3/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={extras_extraItem2_1}" insideBoundaryElement="//@ownedVariabletype.3/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.3/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) Lib).&lt;PackageableElement>packagedElement[1]={ExtraItem2}" insideBoundaryElement="//@ownedVariabletype.3/@sourceObject.2" outsideBoundaryElement="//@ownedVariabletype.3/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.3/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.3/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_bvfEQw_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_8QUusA_bEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_VJLeoA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_bvfEQA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_P6kEsA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../repetitiopnsV1.uml#_bvfERA_cEeOmS7DlYrP6Gw"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+</bvr:ConfigurableUnit>

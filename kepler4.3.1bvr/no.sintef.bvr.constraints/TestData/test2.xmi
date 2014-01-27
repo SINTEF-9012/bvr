@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" name="Configurable Unit 1">
+  <ownedVSpec xsi:type="bvr:Choice" name="A">
+    <child xsi:type="bvr:Choice" name="B"/>
+    <child xsi:type="bvr:Choice" name="C"/>
+  </ownedVSpec>
+</bvr:ConfigurableUnit>

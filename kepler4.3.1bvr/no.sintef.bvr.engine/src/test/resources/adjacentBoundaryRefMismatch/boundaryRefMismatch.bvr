@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" name="Configurable Unit 1">
+  <ownedVSpec xsi:type="bvr:Choice" name="Choice1"/>
+  <ownedVariationPoint xsi:type="bvr:PlacementFragment" name="pCB">
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_Xnl5IFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsAsFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_N6wAYFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Property) cB).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Package) PackA).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.3" insideBoundaryElement="//@ownedVariationPoint.0/@sourceObject.3"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:PlacementFragment" name="pPackA">
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_N6wAYFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_KraWkFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_WImLkFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_Xnl5IFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsnwFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Model) model).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Package) PackA).&lt;PackageableElement>packagedElement[3]={CA,CB,cA_cB_1}" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.2 //@ownedVariationPoint.1/@sourceObject.3 //@ownedVariationPoint.1/@sourceObject.4" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.5" insideBoundaryElement="//@ownedVariationPoint.1/@sourceObject.5"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-pPackA-rPackA-1" bindingVSpec="//@ownedVSpec.0" placement="//@ownedVariationPoint.1" replacement="//@ownedVariabletype.0">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.1/@placementBoundaryElement.1" fromReplacement="//@ownedVariabletype.0/@replacementBoundaryElement.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-pCB-rCB-2" bindingVSpec="//@ownedVSpec.0" placement="//@ownedVariationPoint.0" replacement="//@ownedVariabletype.1">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.0/@placementBoundaryElement.1" toReplacement="//@ownedVariabletype.1/@replacementBoundaryElement.1"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:PlacementFragment" name="pCA">
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsAsFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsnwFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_Xnl5IFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_WImLkFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsnwVWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_N6wAYFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Association) cA_cB_1).&lt;Property>memberEnd" propertyName="memberEnd" insideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.0" outsideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Property) cB).&lt;Type>type[1]={CB}" outsideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.2" insideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Property) cB).&lt;Association>association[1]={cA_cB_1}" outsideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.1" insideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Property) cA).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.3" outsideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.4"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Package) PackA).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.3" outsideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.5"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.6" insideBoundaryElement="//@ownedVariationPoint.4/@sourceObject.6"/>
+  </ownedVariationPoint>
+  <ownedVariationPoint xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-pCA-rCA-3" bindingVSpec="//@ownedVSpec.0" placement="//@ownedVariationPoint.4" replacement="//@ownedVariabletype.2">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.4/@placementBoundaryElement.0" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.4/@placementBoundaryElement.3" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.3"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@ownedVariationPoint.4/@placementBoundaryElement.4" toReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.4"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.4/@placementBoundaryElement.1" fromReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@ownedVariationPoint.4/@placementBoundaryElement.2" fromReplacement="//@ownedVariabletype.2/@replacementBoundaryElement.2"/>
+  </ownedVariationPoint>
+  <ownedVSpecResolution xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true"/>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="rPackA">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Model) model).&lt;PackageableElement>packagedElement[1]={PackLibA}" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Package) PackLibA).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.2 //@ownedVariabletype.0/@sourceObject.3 //@ownedVariabletype.0/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5" outsideBoundaryElement="//@ownedVariabletype.0/@sourceObject.5"/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bAHCMFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_Z8C9IFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_YfRnsFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bwSFcFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLiEUFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="rCB">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Property) rCB).&lt;Type>type[1]={rCB}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) PackLibA).&lt;PackageableElement>packagedElement[1]={rCB}" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.1/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bwSFcFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLckwFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bAHCMFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+  <ownedVariabletype xsi:type="bvr:ReplacementFragmentType" name="rCA">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Association) rCA_rCB_1).&lt;Property>memberEnd[1]={rCB}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) rCB).&lt;Type>type" propertyName="type" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) rCB).&lt;Association>association" propertyName="association" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.0" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Property) rCA).&lt;Type>type[1]={rCA}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.4"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) PackLibA).&lt;PackageableElement>packagedElement[1]={rCA}" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.3" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.5"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6" outsideBoundaryElement="//@ownedVariabletype.2/@sourceObject.6"/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLckwFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLiEUFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bwSFcFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_YfRnsFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLiEUVWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bAHCMFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+  </ownedVariabletype>
+</bvr:ConfigurableUnit>

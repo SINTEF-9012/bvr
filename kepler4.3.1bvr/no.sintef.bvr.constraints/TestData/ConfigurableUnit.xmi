@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bvr:ConfigurableUnit
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bvr="http:///bvr.ecore"
+    xsi:schemaLocation="http:///bvr.ecore BVRMetamodel.ecore">
+  <ownedVSpec
+      xsi:type="bvr:Choice"
+      name="R">
+    <child xsi:type="bvr:Variable"
+        name="X"/>
+  </ownedVSpec>
+  <ownedConstraint
+      xsi:type="bvr:BCLConstraint">
+    <expression
+        xsi:type="bvr:OperationCallExp"
+        operation="lte">
+      <argument
+          xsi:type="bvr:VSpecRef"
+          vSpec="//@ownedVSpec.0/@child.0"/>
+      <argument
+          xsi:type="bvr:IntegerLiteralExp"
+          integer="5"/>
+    </expression>
+  </ownedConstraint>
+</bvr:ConfigurableUnit>

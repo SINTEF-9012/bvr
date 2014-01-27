@@ -1,0 +1,72 @@
+<!-- $Id: pom.xml 13513 2010-11-15 17:12:54Z kermeta_bot $ -->
+<!-- License    : EPL 									 -->
+<!-- Copyright  : IRISA / INRIA / Universite de Rennes 1 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>no.sintef</groupId>
+    <artifactId>no.sintef.bvr.ui.framework</artifactId>
+    <packaging>jar</packaging>
+    <name>BVR :: UI :: Framework</name>
+    <version>1.0.0</version>
+
+ <!-- <parent>
+        <artifactId>org.kevoree.tools.root</artifactId>
+        <groupId>org.kevoree.tools</groupId>
+        <version>1.8.8</version>
+        <relativePath>../org.kevoree.tools.root/pom.xml</relativePath>
+    </parent>
+     --> 
+
+    <dependencies>
+        <dependency>
+            <groupId>org.abego.treelayout</groupId>
+            <artifactId>org.abego.treelayout.core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx-core</artifactId>
+            <version>1.6.2-2</version>
+        </dependency>
+    <dependency>
+            <groupId>org.kevoree.extra</groupId>
+            <artifactId>org.kevoree.extra.macwidgets</artifactId>
+            <version>0.9.6</version>
+        </dependency>
+<!--        <dependency>
+            <groupId>org.kevoree</groupId>
+            <artifactId>org.kevoree.model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+ --> 
+ 
+ 		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
+			<version>2.6.0.v20100614-1136</version>
+		</dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>java.net-m2</id>
+            <name>java.net - Maven 2</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/java.net-m2</url>
+        </repository>
+        <repository>
+            <id>kevoree-libs-release-local</id>
+            <url>http://maven.kevoree.org/release</url>
+        </repository>
+        <repository>
+            <id>kevoree-snapshots</id>
+            <url>http://maven.kevoree.org/snapshots</url>
+        </repository>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </repository>
+    </repositories>
+
+</project>

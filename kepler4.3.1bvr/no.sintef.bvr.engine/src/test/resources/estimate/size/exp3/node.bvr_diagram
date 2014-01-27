@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http://org.variabilitymodeling.bvr" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_-8BgQJRmEeK26ph20FWuqw" type="Bvr_visitor" name="node.bvr_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="__yZHkJRmEeK26ph20FWuqw" type="2004">
+    <children xmi:type="notation:BasicCompartment" xmi:id="__yoYIJRmEeK26ph20FWuqw" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="__yoYIZRmEeK26ph20FWuqw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="__yoYIpRmEeK26ph20FWuqw"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="__yZHkZRmEeK26ph20FWuqw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="__yZHkpRmEeK26ph20FWuqw" fontName="Segoe UI"/>
+    <element xmi:type="bvr:CompositeVariability" href="node.bvr#//@variabilitySpecification"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__yZHk5RmEeK26ph20FWuqw"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_BZuRwJRnEeK26ph20FWuqw" type="2009">
+    <children xmi:type="notation:DecorationNode" xmi:id="_BZuRxJRnEeK26ph20FWuqw" type="5008"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_BZuRxZRnEeK26ph20FWuqw" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_BZuRxpRnEeK26ph20FWuqw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_BZuRx5RnEeK26ph20FWuqw"/>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_BZuRwZRnEeK26ph20FWuqw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_BZuRwpRnEeK26ph20FWuqw" fontName="Segoe UI"/>
+    <element xmi:type="bvr:CompositeVariability" href="node.bvr#//@variabilitySpecification/@variabilitySpecification.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BZuRw5RnEeK26ph20FWuqw" x="240" y="96"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_pTLTEJRnEeK26ph20FWuqw" type="2005">
+    <children xmi:type="notation:DecorationNode" xmi:id="_pTL6IJRnEeK26ph20FWuqw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_pTLTEZRnEeK26ph20FWuqw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_pTLTEpRnEeK26ph20FWuqw" fontName="Segoe UI"/>
+    <element xmi:type="bvr:FragmentSubstitution" href="node.bvr#//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pTLTE5RnEeK26ph20FWuqw" x="240" y="240"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_vnc_oJSKEeK26ph20FWuqw" type="2005">
+    <children xmi:type="notation:DecorationNode" xmi:id="_vnc_pJSKEeK26ph20FWuqw" type="5004"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_vnc_oZSKEeK26ph20FWuqw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vnc_opSKEeK26ph20FWuqw" fontName="Segoe UI"/>
+    <element xmi:type="bvr:FragmentSubstitution" href="node.bvr#//@variabilitySpecification/@variabilitySpecification.0/@variabilitySpecification.5"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vnc_o5SKEeK26ph20FWuqw" x="408" y="240"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_-8CHUJRmEeK26ph20FWuqw"/>
+  <element xmi:type="bvr:BVRModel" href="node.bvr#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_rqz40JRnEeK26ph20FWuqw" type="4002" source="_BZuRwJRnEeK26ph20FWuqw" target="_pTLTEJRnEeK26ph20FWuqw">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_rqz40ZRnEeK26ph20FWuqw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_rqz40pRnEeK26ph20FWuqw" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rqz405RnEeK26ph20FWuqw" points="[60, 41, -113, -68]$[164, 129, -9, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_x9wIoJSKEeK26ph20FWuqw" type="4002" source="_BZuRwJRnEeK26ph20FWuqw" target="_vnc_oJSKEeK26ph20FWuqw">
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_x9wIoZSKEeK26ph20FWuqw"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_x9wIopSKEeK26ph20FWuqw" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_x9wIo5SKEeK26ph20FWuqw" points="[10, 7, -127, -82]$[77, 82, -60, -7]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_x-PQ0JSKEeK26ph20FWuqw" id="(0.9166666666666666,0.8)"/>
+  </edges>
+</notation:Diagram>
