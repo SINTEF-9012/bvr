@@ -41,7 +41,6 @@ public class CustomAdapterFactoryEditingDomain extends
 					.createEditingDomain();
 			editingDomain.setID("no.sintef.cvl.gmf.vspec.EditingDomain"); //$NON-NLS-1$
 		}
-		
 	}
 
 	@Override
@@ -89,14 +88,14 @@ public class CustomAdapterFactoryEditingDomain extends
 			return UnexecutableCommand.INSTANCE;
 		} else if (command instanceof PasteFromClipboardCommand) {
 			if (commandParameter.getOwner() instanceof ConfigurableUnit
-					&& clipboard != null && clipboard.size() == 1) {
-				Object target = ((List<?>) clipboard).get(0);
+					&& editingDomain.getClipboard() != null && editingDomain.getClipboard().size() == 1) {
+				Object target = ((List<?>) editingDomain.getClipboard()).get(0);
 				if (target instanceof ChoiceResolutuion) {
 					return command;
 				}
 			} else if (commandParameter.getOwner() instanceof VirtualVClassifier
-					&& clipboard != null && clipboard.size() == 1) {
-				Object target = ((List<?>) clipboard).get(0);
+					&& editingDomain.getClipboard() != null && editingDomain.getClipboard().size() == 1) {
+				Object target = ((List<?>) editingDomain.getClipboard()).get(0);
 				if (target instanceof VInstance
 						&& ((VInstance) target).getResolvedVSpec() == ((VirtualVClassifier) commandParameter
 								.getOwner()).getResolvedVSpec()) {
