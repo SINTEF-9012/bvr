@@ -5,12 +5,13 @@ package no.sintef.cvl.table.resolution.editors;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +38,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.MarkerHelper;
@@ -55,6 +53,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -70,6 +69,7 @@ import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -91,6 +91,7 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.ControlAdapter;
@@ -515,7 +516,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 * Handles what to do with changed resources on activation. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void handleChangedResources() {
 		if (!changedResources.isEmpty()
@@ -529,17 +530,17 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 			updateProblemIndication = false;
 			for (Resource resource : changedResources) {
 				if (resource.isLoaded()) {
-					resource.unload();
-					try {
-						resource.load(Collections.EMPTY_MAP);
-					} catch (IOException exception) {
-						if (!resourceToDiagnosticMap.containsKey(resource)) {
-							resourceToDiagnosticMap
-									.put(resource,
-											analyzeResourceProblems(resource,
-													exception));
-						}
-					}
+					// resource.unload();
+					// try {
+					// resource.load(Collections.EMPTY_MAP);
+					// } catch (IOException exception) {
+					// if (!resourceToDiagnosticMap.containsKey(resource)) {
+					// resourceToDiagnosticMap
+					// .put(resource,
+					// analyzeResourceProblems(resource,
+					// exception));
+					// }
+					// }
 				}
 			}
 
@@ -660,36 +661,36 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		// Add a listener to set the most recent command's affected objects to
 		// be the selection of the viewer with focus.
 		//
-		editingDomain.getCommandStack().addCommandStackListener(
-				new CommandStackListener() {
-					public void commandStackChanged(final EventObject event) {
-						getContainer().getDisplay().asyncExec(new Runnable() {
-							public void run() {
-								firePropertyChange(IEditorPart.PROP_DIRTY);
-
-								// Try to select the affected objects.
-								//
-								Command mostRecentCommand = ((CommandStack) event
-										.getSource()).getMostRecentCommand();
-								if (mostRecentCommand != null) {
-									setSelectionToViewer(mostRecentCommand
-											.getAffectedObjects());
-								}
-								for (Iterator<PropertySheetPage> i = propertySheetPages
-										.iterator(); i.hasNext();) {
-									PropertySheetPage propertySheetPage = i
-											.next();
-									if (propertySheetPage.getControl()
-											.isDisposed()) {
-										i.remove();
-									} else {
-										propertySheetPage.refresh();
-									}
-								}
-							}
-						});
-					}
-				});
+		// editingDomain.getCommandStack().addCommandStackListener(
+		// new CommandStackListener() {
+		// public void commandStackChanged(final EventObject event) {
+		// getContainer().getDisplay().asyncExec(new Runnable() {
+		// public void run() {
+		// firePropertyChange(IEditorPart.PROP_DIRTY);
+		//
+		// // Try to select the affected objects.
+		// //
+		// Command mostRecentCommand = ((CommandStack) event
+		// .getSource()).getMostRecentCommand();
+		// if (mostRecentCommand != null) {
+		// setSelectionToViewer(mostRecentCommand
+		// .getAffectedObjects());
+		// }
+		// for (Iterator<PropertySheetPage> i = propertySheetPages
+		// .iterator(); i.hasNext();) {
+		// PropertySheetPage propertySheetPage = i
+		// .next();
+		// if (propertySheetPage.getControl()
+		// .isDisposed()) {
+		// i.remove();
+		// } else {
+		// propertySheetPage.refresh();
+		// }
+		// }
+		// }
+		// });
+		// }
+		// });
 
 	}
 
@@ -1069,25 +1070,13 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 		tableViewer = (TableViewer) viewerPane.getViewer();
 
 		Table table = tableViewer.getTable();
-		TableLayout layout = new TableLayout();
-		table.setLayout(layout);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		TableColumn firstColumn = new TableColumn(table, SWT.LEFT);
-		layout.addColumnData(new ColumnWeightData(3, 100, true));
-		firstColumn.setText("Product");
-		firstColumn.setResizable(true);
+		ConfigurableUnit cu = getCU();
 
-		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
-				.getResources().get(0).getContents().get(0);
 		List<VSpec> headers = createTableColumns(cu);
-		for (VSpec vs : headers) {
-			TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
-			layout.addColumnData(new ColumnWeightData(2, 50, true));
-			selfColumn.setText(vs.getName());
-			selfColumn.setResizable(true);
-		}
+		createLayout(headers);
 
 		ResolutionTableContentProvider provider = new ResolutionTableContentProvider();
 		provider.setHeaders(headers);
@@ -1101,6 +1090,23 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 
 		createContextMenuFor(tableViewer);
 		return viewerPane;
+	}
+
+	private ConfigurableUnit getCU() {
+
+		if (getXMIResource() != null) {
+			return (ConfigurableUnit) getXMIResource().getContents().get(0);
+		}
+		return null;
+	}
+
+	private XMIResource getXMIResource() {
+		for (Resource res : editingDomain.getResourceSet().getResources()) {
+			if (res instanceof XMIResource && !(res instanceof GMFResource)) {
+				return (XMIResource) res;
+			}
+		}
+		return null;
 	}
 
 	private ViewerPane createTreeViewerPage() {
@@ -1145,8 +1151,8 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 				selectionViewer, editingDomain));
 
 		selectionViewer.setInput(editingDomain.getResourceSet());
-		selectionViewer.setSelection(new StructuredSelection(editingDomain
-				.getResourceSet().getResources().get(0)), true);
+		selectionViewer.setSelection(new StructuredSelection(getXMIResource()),
+				true);
 		// Action Listener for CheckBox
 		selectionViewer.addCheckStateListener(new CheckBoxStateListener(
 				selectionViewer, editingDomain));
@@ -1155,14 +1161,31 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 
 		new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
+		// Set filter for remove GMFResource
+		ViewerFilter[] filters = selectionViewer.getFilters();
+		List<ViewerFilter> filterList = new LinkedList<ViewerFilter>(
+				Arrays.asList(filters));
+		filterList.add(new ViewerFilter() {
+			@Override
+			public boolean select(Viewer viewer, Object parentElement,
+					Object element) {
+				if (element instanceof GMFResource) {
+					return false;
+				}
+				return true;
+			}
+
+		});
+		selectionViewer.setFilters((ViewerFilter[]) filterList
+				.toArray(new ViewerFilter[0]));
+
 		// Context Menu
 		createContextMenuFor(selectionViewer);
 
 		// selectionViewer Init.
 		selectionViewer.setGrayChecked(selectionViewer.getTree().getTopItem()
 				.getData(), true);
-		for (TreeIterator<EObject> iterator = getEditingDomain()
-				.getResourceSet().getResources().get(0).getAllContents(); iterator
+		for (TreeIterator<EObject> iterator = getXMIResource().getAllContents(); iterator
 				.hasNext();) {
 			EObject element = iterator.next();
 			if (element instanceof ChoiceResolutuion) {
@@ -1218,15 +1241,16 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	 */
 	@Override
 	protected void pageChange(int pageIndex) {
-		// TODO if n/a is shown in table view, ConfigurableUnit should use same
-		// instance.
 		selectionViewer.setInput(editingDomain.getResourceSet());
 
-		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
-				.getResources().get(0).getContents().get(0);
+		ConfigurableUnit cu = getCU();
 		List<VSpec> headers = createTableColumns(cu);
+
 		((ResolutionTableContentProvider) tableViewer.getContentProvider())
 				.setHeaders(headers);
+
+		createLayout(headers);
+
 		tableViewer.setInput(cu);
 
 		super.pageChange(pageIndex);
@@ -1235,6 +1259,34 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 			handleContentOutlineSelection(contentOutlinePage.getSelection());
 		}
 
+	}
+
+	private TableLayout createLayout(List<VSpec> headers) {
+		TableLayout layout = new TableLayout();
+		Table table = tableViewer.getTable();
+
+		table.setRedraw(false);
+		while (table.getColumnCount() > 0) {
+			table.getColumns()[0].dispose();
+		}
+
+		TableColumn firstColumn = new TableColumn(table, SWT.LEFT);
+		layout.addColumnData(new ColumnWeightData(3, 100, true));
+		firstColumn.setText("Product");
+		firstColumn.setResizable(true);
+
+		for (VSpec vs : headers) {
+			TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
+			layout.addColumnData(new ColumnWeightData(2, 50, true));
+			selfColumn.setText(vs.getName());
+			selfColumn.setResizable(true);
+		}
+
+		table.setLayout(layout);
+		table.layout();
+		table.setRedraw(true);
+
+		return layout;
 	}
 
 	/**
@@ -1295,8 +1347,7 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 						//
 						contentOutlineViewer
 								.setSelection(new StructuredSelection(
-										editingDomain.getResourceSet()
-												.getResources().get(0)), true);
+										getXMIResource()), true);
 					}
 				}
 
@@ -1544,10 +1595,10 @@ public class CvlResolutionEditor extends MultiPageEditorPart implements
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-		(editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+		getXMIResource().setURI(uri);
 		setInputWithNotify(editorInput);
 		setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor = getActionBars()
