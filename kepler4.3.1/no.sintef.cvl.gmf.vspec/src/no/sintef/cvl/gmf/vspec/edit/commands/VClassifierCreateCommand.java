@@ -50,7 +50,7 @@ public class VClassifierCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
@@ -67,6 +67,8 @@ public class VClassifierCreateCommand extends EditElementCommand {
 
 		doConfigure(newElement, monitor, info);
 
+		newElement.setInstanceMultiplicity(CvlFactory.eINSTANCE.createMultiplicityInterval());
+		
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
