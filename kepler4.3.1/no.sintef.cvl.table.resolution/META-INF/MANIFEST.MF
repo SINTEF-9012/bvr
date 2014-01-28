@@ -23,4 +23,5 @@ Import-Package: cvl,
  cvl.util,
  org.eclipse.emf.transaction,
  org.eclipse.emf.workspace,
- org.eclipse.gmf.runtime.diagram.core
+ org.eclipse.gmf.runtime.diagram.core,
+ org.eclipse.gmf.runtime.emf.core.resources
