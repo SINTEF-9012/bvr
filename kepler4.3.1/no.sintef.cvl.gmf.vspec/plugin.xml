@@ -631,4 +631,12 @@
   </layoutProvider>
 </extension>
    <!-- optionally, specify keybindings -->
+   <!-- gmf generator persistent region begin -->
+   <extension
+         point="org.eclipse.emf.transaction.editingDomains">
+      <editingDomain
+            factory="org.eclipse.emf.workspace.WorkspaceEditingDomainFactory"
+            id="no.sintef.cvl.gmf.vspec.EditingDomain"/>
+   </extension>
+<!-- gmf generator persistent region end -->
 </plugin>

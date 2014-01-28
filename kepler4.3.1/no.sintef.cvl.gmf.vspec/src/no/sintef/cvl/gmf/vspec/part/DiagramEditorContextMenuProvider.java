@@ -1,9 +1,9 @@
 package no.sintef.cvl.gmf.vspec.part;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.ContributionItemService;
+import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider;
 import org.eclipse.jface.action.IMenuManager;
@@ -48,14 +48,19 @@ public class DiagramEditorContextMenuProvider extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionUtil.getEditingDomain(
-					(EObject) getViewer().getContents().getModel())
-					.runExclusive(new Runnable() {
+			TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("no.sintef.cvl.gmf.vspec.EditingDomain"); //$NON-NLS-1$
+			if (editingDomain == null) {
+				editingDomain = DiagramEditingDomainFactory.getInstance()
+						.createEditingDomain();
+				editingDomain.setID("no.sintef.cvl.gmf.vspec.EditingDomain"); //$NON-NLS-1$
+			}
+			editingDomain.runExclusive(new Runnable() {
 
 						public void run() {
 							ContributionItemService

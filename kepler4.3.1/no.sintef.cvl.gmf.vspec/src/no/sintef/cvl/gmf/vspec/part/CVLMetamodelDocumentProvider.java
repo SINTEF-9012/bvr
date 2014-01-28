@@ -113,12 +113,14 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * Sets up the given document as it would be provided for the given element. The
-	 * content of the document is not changed. This default implementation is empty.
-	 * Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element.
+	 * The content of the document is not changed. This default implementation
+	 * is empty. Subclasses may reimplement.
 	 * 
-	 * @param element the blue-print element
-	 * @param document the document to set up
+	 * @param element
+	 *            the blue-print element
+	 * @param document
+	 *            the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -155,12 +157,17 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private TransactionalEditingDomain createEditingDomain() {
-		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory
-				.getInstance().createEditingDomain();
-		editingDomain.setID("no.sintef.cvl.gmf.vspec.EditingDomain"); //$NON-NLS-1$
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("no.sintef.cvl.gmf.vspec.EditingDomain"); //$NON-NLS-1$
+		if (editingDomain == null) {
+			editingDomain = DiagramEditingDomainFactory.getInstance()
+					.createEditingDomain();
+			editingDomain.setID("no.sintef.cvl.gmf.vspec.EditingDomain"); //$NON-NLS-1$
+		}
+		
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter
 				.createNotifierFilter(editingDomain.getResourceSet())
 				.and(NotificationFilter.createEventTypeFilter(Notification.ADD))
@@ -222,8 +229,9 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					try {
 						Map options = new HashMap(
 								GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060 
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+						// @see 171060
+						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE,
+						// Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
@@ -362,7 +370,8 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					CVLMetamodelDiagramEditorPlugin.getInstance().logError(
 							Messages.CVLMetamodelDocumentProvider_isModifiable,
 							ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from
+					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -389,7 +398,8 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					CVLMetamodelDiagramEditorPlugin.getInstance().logError(
 							Messages.CVLMetamodelDocumentProvider_isModifiable,
 							ex);
-					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from
+					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -595,7 +605,7 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 			try {
 				monitor.beginTask(
 						Messages.CVLMetamodelDocumentProvider_SaveDiagramTask,
-						info.getResourceSet().getResources().size() + 1); //"Saving diagram"
+						info.getResourceSet().getResources().size() + 1); // "Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
 						.hasNext();) {
 					Resource nextResource = it.next();
@@ -709,7 +719,8 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 						.logError(
 								Messages.CVLMetamodelDocumentProvider_handleElementContentChanged,
 								ex);
-				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from
+				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -881,17 +892,17 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator<Resource> it = getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource resource = it.next();
-				resource.unload();
-			}
-			getEditingDomain().dispose();
+			// for (Iterator<Resource> it = getLoadedResourcesIterator(); it
+			// .hasNext();) {
+			// Resource resource = it.next();
+			// resource.unload();
+			// }
+			//getEditingDomain().dispose();
 		}
 
 		/**
@@ -1093,7 +1104,7 @@ public class CVLMetamodelDocumentProvider extends AbstractDocumentProvider
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
+						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
 								.getLoadedResourcesIterator(); it.hasNext()
 								&& !modified;) {
 							Resource nextResource = (Resource) it.next();
