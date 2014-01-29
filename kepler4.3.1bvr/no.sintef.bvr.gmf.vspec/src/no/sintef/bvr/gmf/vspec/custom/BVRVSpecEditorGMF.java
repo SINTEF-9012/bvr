@@ -36,6 +36,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.ISetSelectionTarget;
 
 public class BVRVSpecEditorGMF extends EditorPart {
 	private EObject diagramRoot = null;
@@ -92,8 +93,17 @@ public class BVRVSpecEditorGMF extends EditorPart {
 
 			@Override
 			public void partBroughtToTop(IWorkbenchPart part) {
-				BVRVSpecEditorGMF.this.getSite().getPage()
-						.closeEditor(BVRVSpecEditorGMF.this, false);
+				getSite().getShell().getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						BVRVSpecEditorGMF.this.getSite().getPage()
+								.closeEditor(BVRVSpecEditorGMF.this, false);
+					}
+				});
 			}
 
 			@Override
