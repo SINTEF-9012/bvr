@@ -10,7 +10,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -43,8 +47,17 @@ public class CheckValidationAllProduct implements IHandler {
 		BvrResolutionEditor bvrEditorPart = (BvrResolutionEditor) editorPart;
 		editingDomain = bvrEditorPart.getEditingDomain();
 
-		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
-				.getResources().get(0).getContents().get(0);
+		XMIResource resource = null;
+		for (Resource res : editingDomain.getResourceSet().getResources()) {
+			if (res instanceof XMIResource
+					&& !(res instanceof GMFResource)
+					&& ((XMIResource) res).getURI().equals(
+							EditUIUtil.getURI(bvrEditorPart.getEditorInput()))) {
+				resource =  (XMIResource) res;
+			}
+		}
+		
+		ConfigurableUnit cu = (ConfigurableUnit) resource.getContents().get(0);
 
 		for (VSpecResolution vsr : cu.getOwnedVSpecResolution()) {
 			if (vsr instanceof ChoiceResolutuion) {

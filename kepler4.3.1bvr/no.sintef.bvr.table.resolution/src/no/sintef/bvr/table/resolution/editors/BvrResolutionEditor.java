@@ -37,7 +37,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -1101,7 +1100,10 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 
 	private XMIResource getXMIResource() {
 		for (Resource res : editingDomain.getResourceSet().getResources()) {
-			if (res instanceof XMIResource && !(res instanceof GMFResource)) {
+			if (res instanceof XMIResource
+					&& !(res instanceof GMFResource)
+					&& ((XMIResource) res).getURI().equals(
+							EditUIUtil.getURI(getEditorInput()))) {
 				return (XMIResource) res;
 			}
 		}
