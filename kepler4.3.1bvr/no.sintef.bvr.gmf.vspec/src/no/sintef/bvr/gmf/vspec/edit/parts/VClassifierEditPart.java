@@ -470,49 +470,6 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 		return super.getTargetEditPart(request);
 	}
 
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-
-		if (notification.getEventType() == Notification.ADD) {
-			if (((VClassifier) ((Node) this.getModel()).getElement())
-					.getInstanceMultiplicity() == null) {
-				createInstanceMultiplicity();
-
-			}
-		}
-		super.handleNotificationEvent(notification);
-
-	}
-
-	/**
-	 * @generated NOT Create InstanceMultiplicity
-	 */
-	protected void createInstanceMultiplicity() {
-
-		String compartemntsSemanticHint = BVRMetamodelVisualIDRegistry
-				.getType(no.sintef.bvr.gmf.vspec.edit.parts.VClassifierMultiplicityIntervalCompartment2EditPart.VISUAL_ID);
-
-		VClassifierMultiplicityIntervalCompartment2EditPart compartment = (VClassifierMultiplicityIntervalCompartment2EditPart) this
-				.getChildBySemanticHint(compartemntsSemanticHint);
-
-		IElementType type = BVRMetamodelElementTypes.MultiplicityInterval_3001;
-
-		CreateViewAndElementRequest.ViewAndElementDescriptor viewDescriptor = new CreateViewAndElementRequest.ViewAndElementDescriptor(
-				new CreateElementRequestAdapter(new CreateElementRequest(type)),
-				Node.class, ((IHintedType) type).getSemanticHint(), this
-						.getDiagramPreferencesHint());
-
-		CreateViewAndElementRequest req = new CreateViewAndElementRequest(
-				viewDescriptor);
-
-		CompoundCommand cmd = new CompoundCommand(
-				"Create Multiplicity in VClassifier");
-		cmd.add(compartment.getCommand(req));
-		this.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
-	}
 
 	/**
 	 * @generated

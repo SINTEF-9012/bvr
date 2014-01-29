@@ -28,7 +28,16 @@
          contributorClass="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramActionBarContributor">
       </editor>
    </extension>
-   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="no.sintef.bvr.gmf.vspec.custom.BVRVSpecEditorGMF"
+            extensions="bvr"
+            icon="icons/sample.gif"
+            id="no.sintef.bvr.gmf.vspec.custom.BVRVSpecEditorGMF"
+            name="BVR VSpec Editor (GMF)">
+      </editor>
+   </extension>
    <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
@@ -631,4 +640,12 @@
   </layoutProvider>
 </extension>
    <!-- optionally, specify keybindings -->
+<!-- gmf generator persistent region begin -->
+<extension
+    point="org.eclipse.emf.transaction.editingDomains">
+	<editingDomain
+    	factory="org.eclipse.emf.workspace.WorkspaceEditingDomainFactory"
+        id="no.sintef.bvr.shared.EditingDomain"/>
+</extension>
+<!-- gmf generator persistent region end -->
 </plugin>
