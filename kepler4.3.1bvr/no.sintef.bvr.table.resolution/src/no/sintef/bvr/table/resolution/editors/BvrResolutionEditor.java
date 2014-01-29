@@ -37,6 +37,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -1169,6 +1170,11 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 					Object element) {
 				if (element instanceof GMFResource) {
 					return false;
+				} else if (element instanceof XMIResource) {
+					if (!((XMIResource) element).getURI().equals(
+							EditUIUtil.getURI(getEditorInput()))) {
+						return false;
+					}
 				}
 				return true;
 			}
@@ -1258,7 +1264,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		}
 
 	}
-	
+
 	private TableLayout createLayout(List<VSpec> headers) {
 		TableLayout layout = new TableLayout();
 		Table table = tableViewer.getTable();
@@ -1286,8 +1292,6 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 
 		return layout;
 	}
-
-
 
 	/**
 	 * This is how the framework determines which interfaces we implement. <!--
