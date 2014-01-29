@@ -17,17 +17,16 @@
       </wizard>
    </extension>
 
-<!--   <extension point="org.eclipse.ui.editors">
+  <extension point="org.eclipse.ui.editors">
       <editor
             id="no.sintef.bvr.table.resolution.editors.BvrResolutionEditorID"
-            name="%_UI_BvrEditor_label"
-            icon="icons/full/obj16/BvrModelFile.gif"
+            name="BVR Resolution Editor (TABLE)"
+            icon="icons/sample.gif"
             extensions="bvr"
             class="no.sintef.bvr.table.resolution.editors.BvrResolutionEditor"
             contributorClass="no.sintef.bvr.table.resolution.editors.BvrActionBarContributor">
       </editor>
    </extension>
-   -->
    <extension point="org.eclipse.ui.commands">
       <command
          categoryId="org.eclipse.ui.category.edit"
@@ -66,7 +65,7 @@
         <visibleWhen
               checkEnabled="false">
           <iterate ifEmpty="false">
-      		<adapt type="no.sintef.bvr.table.ConfigurableUnit">
+      		<adapt type="bvr.ConfigurableUnit">
       		</adapt>
     	  </iterate>
         </visibleWhen>
@@ -90,7 +89,7 @@
        <visibleWhen
               checkEnabled="false">
           <iterate ifEmpty="false">
-      		<adapt type="no.sintef.bvr.table.VSpecResolution">
+      		<adapt type="bvr.VSpecResolution">
       		</adapt>
     	  </iterate>
         </visibleWhen>
@@ -102,7 +101,7 @@
        <visibleWhen
               checkEnabled="false">
           <iterate ifEmpty="false">
-      		<adapt type="no.sintef.bvr.table.ConfigurableUnit">
+      		<adapt type="bvr.ConfigurableUnit">
       		</adapt>
     	  </iterate>
         </visibleWhen>
@@ -111,6 +110,13 @@
 
   
 </extension>
-
+<!-- gmf generator persistent region begin -->
+<extension
+    point="org.eclipse.emf.transaction.editingDomains">
+	<editingDomain
+    	factory="org.eclipse.emf.workspace.WorkspaceEditingDomainFactory"
+        id="no.sintef.bvr.shared.EditingDomain"/>
+</extension>
+<!-- gmf generator persistent region end -->
 </plugin>
 

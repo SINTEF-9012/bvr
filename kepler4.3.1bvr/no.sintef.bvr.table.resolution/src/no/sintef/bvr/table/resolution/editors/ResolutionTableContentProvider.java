@@ -74,7 +74,6 @@ public class ResolutionTableContentProvider implements
 		//
 	}
 
-	
 	@Override
 	public Object[] getElements(Object inputElement) {
 		resultMapList.clear();
@@ -104,7 +103,9 @@ public class ResolutionTableContentProvider implements
 		if (visitor.doSwitch(vr) != null) {
 			int columnIndex = this.getHeaderIndex(vr.getResolvedVSpec());
 			List<String> currentRow = getResultMap(row);
-			currentRow.set(columnIndex, (String) visitor.doSwitch(vr));
+			if (columnIndex >= 0) {
+				currentRow.set(columnIndex, (String) visitor.doSwitch(vr));
+			}
 		}
 		// Traverse children
 		int maxRow = row;
@@ -197,7 +198,7 @@ public class ResolutionTableContentProvider implements
 
 		@Override
 		public Object caseVInstance(VInstance object) {
-			
+
 			return object.getName();
 		}
 

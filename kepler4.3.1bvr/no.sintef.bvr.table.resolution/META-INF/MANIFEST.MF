@@ -20,5 +20,9 @@ Bundle-Localization: plugin
 Import-Package: bvr,
  bvr.impl,
  bvr.provider,
- bvr.util
+ bvr.util,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace,
+ org.eclipse.gmf.runtime.diagram.core,
+ org.eclipse.gmf.runtime.emf.core.resources
 Bundle-Vendor: SINTEF

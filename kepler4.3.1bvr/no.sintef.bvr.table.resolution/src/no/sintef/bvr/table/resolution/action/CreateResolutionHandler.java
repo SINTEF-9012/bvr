@@ -13,7 +13,9 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.Viewer;
@@ -22,11 +24,11 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
+import bvr.BvrFactory;
+import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
-import bvr.BvrFactory;
-import bvr.BvrPackage;
 import bvr.IntegerLiteralExp;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
@@ -79,8 +81,16 @@ public class CreateResolutionHandler implements IHandler {
 
 		// TODO If ConfigurationUnit has composite ConfigurationUnit
 		// it needs selection form of configurationUnit
-		ConfigurableUnit cu = (ConfigurableUnit) editingDomain.getResourceSet()
-				.getResources().get(0).getContents().get(0);
+		XMIResource resource = null;
+		for(Resource res : editingDomain.getResourceSet().getResources()){
+			if(res instanceof XMIResource){
+				resource = (XMIResource) res;
+			}
+		}
+		if(resource == null){
+			return null;
+		}
+		ConfigurableUnit cu = (ConfigurableUnit) resource.getContents().get(0);
 
 		CreateResolutionVisitor visitor = new CreateResolutionVisitor();
 		visitor.setConfigurableUnit(cu);
