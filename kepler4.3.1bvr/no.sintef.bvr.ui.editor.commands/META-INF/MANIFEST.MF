@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Commands
+Bundle-SymbolicName: no.sintef.bvr.ui.editor.commands
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: no.sintef.bvr.model;bundle-version="0.1.0"
+Import-Package: org.eclipse.emf.common.util
