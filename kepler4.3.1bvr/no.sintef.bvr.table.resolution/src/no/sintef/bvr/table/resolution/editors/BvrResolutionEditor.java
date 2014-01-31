@@ -669,31 +669,37 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		editingDomain.getCommandStack().addCommandStackListener(
 				new CommandStackListener() {
 					public void commandStackChanged(final EventObject event) {
-						getContainer().getDisplay().asyncExec(new Runnable() {
-							public void run() {
-								firePropertyChange(IEditorPart.PROP_DIRTY);
+						if (!getContainer().isDisposed()) {
+							getContainer().getDisplay().asyncExec(
+									new Runnable() {
+										public void run() {
+											firePropertyChange(IEditorPart.PROP_DIRTY);
 
-								// Try to select the affected objects.
-								//
-								Command mostRecentCommand = ((CommandStack) event
-										.getSource()).getMostRecentCommand();
-								if (mostRecentCommand != null) {
-									setSelectionToViewer(mostRecentCommand
-											.getAffectedObjects());
-								}
-								for (Iterator<PropertySheetPage> i = propertySheetPages
-										.iterator(); i.hasNext();) {
-									PropertySheetPage propertySheetPage = i
-											.next();
-									if (propertySheetPage.getControl()
-											.isDisposed()) {
-										i.remove();
-									} else {
-										propertySheetPage.refresh();
-									}
-								}
-							}
-						});
+											// Try to select the affected
+											// objects.
+											//
+											Command mostRecentCommand = ((CommandStack) event
+													.getSource())
+													.getMostRecentCommand();
+											if (mostRecentCommand != null) {
+												setSelectionToViewer(mostRecentCommand
+														.getAffectedObjects());
+											}
+											for (Iterator<PropertySheetPage> i = propertySheetPages
+													.iterator(); i.hasNext();) {
+												PropertySheetPage propertySheetPage = i
+														.next();
+												if (propertySheetPage
+														.getControl()
+														.isDisposed()) {
+													i.remove();
+												} else {
+													propertySheetPage.refresh();
+												}
+											}
+										}
+									});
+						}
 					}
 				});
 	}
