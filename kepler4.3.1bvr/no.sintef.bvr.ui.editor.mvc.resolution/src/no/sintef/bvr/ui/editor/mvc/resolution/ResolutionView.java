@@ -285,7 +285,6 @@ public class ResolutionView extends BVRView{
 
 	@Override
 	public void notifyVspecViewUpdate() {
-		throw new UnsupportedOperationException();		
 	}
 
 	@Override
