@@ -234,4 +234,9 @@ public class CustomAdapterFactoryEditingDomain extends
 	public boolean isControllable(Object object) {
 		return editingDomain.isControllable(object);
 	}
+
+	public TransactionalEditingDomain getTransactionalDomain() {
+		
+		return editingDomain;
+	}
 }

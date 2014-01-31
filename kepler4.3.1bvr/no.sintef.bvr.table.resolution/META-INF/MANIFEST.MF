@@ -22,6 +22,8 @@ Import-Package: bvr,
  bvr.provider,
  bvr.util,
  org.eclipse.emf.transaction,
+ org.eclipse.emf.transaction.ui.provider,
+ org.eclipse.emf.transaction.ui.view,
  org.eclipse.emf.workspace,
  org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.gmf.runtime.emf.core.resources

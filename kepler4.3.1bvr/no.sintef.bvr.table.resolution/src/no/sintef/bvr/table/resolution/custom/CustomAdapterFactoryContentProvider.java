@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 
 import bvr.VClassifier;
 import bvr.VInstance;
@@ -14,10 +15,11 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class CustomAdapterFactoryContentProvider extends
-		AdapterFactoryContentProvider {
+		TransactionalAdapterFactoryContentProvider {
 
-	public CustomAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
+	public CustomAdapterFactoryContentProvider(
+			TransactionalEditingDomain domain, AdapterFactory adapterFactory) {
+		super(domain, adapterFactory);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -38,6 +39,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.MarkerHelper;
@@ -68,7 +72,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.eclipse.emf.transaction.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -661,36 +666,36 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		// Add a listener to set the most recent command's affected objects to
 		// be the selection of the viewer with focus.
 		//
-		// editingDomain.getCommandStack().addCommandStackListener(
-		// new CommandStackListener() {
-		// public void commandStackChanged(final EventObject event) {
-		// getContainer().getDisplay().asyncExec(new Runnable() {
-		// public void run() {
-		// firePropertyChange(IEditorPart.PROP_DIRTY);
-		//
-		// // Try to select the affected objects.
-		// //
-		// Command mostRecentCommand = ((CommandStack) event
-		// .getSource()).getMostRecentCommand();
-		// if (mostRecentCommand != null) {
-		// setSelectionToViewer(mostRecentCommand
-		// .getAffectedObjects());
-		// }
-		// for (Iterator<PropertySheetPage> i = propertySheetPages
-		// .iterator(); i.hasNext();) {
-		// PropertySheetPage propertySheetPage = i
-		// .next();
-		// if (propertySheetPage.getControl()
-		// .isDisposed()) {
-		// i.remove();
-		// } else {
-		// propertySheetPage.refresh();
-		// }
-		// }
-		// }
-		// });
-		// }
-		// });
+		editingDomain.getCommandStack().addCommandStackListener(
+				new CommandStackListener() {
+					public void commandStackChanged(final EventObject event) {
+						getContainer().getDisplay().asyncExec(new Runnable() {
+							public void run() {
+								firePropertyChange(IEditorPart.PROP_DIRTY);
+
+								// Try to select the affected objects.
+								//
+								Command mostRecentCommand = ((CommandStack) event
+										.getSource()).getMostRecentCommand();
+								if (mostRecentCommand != null) {
+									setSelectionToViewer(mostRecentCommand
+											.getAffectedObjects());
+								}
+								for (Iterator<PropertySheetPage> i = propertySheetPages
+										.iterator(); i.hasNext();) {
+									PropertySheetPage propertySheetPage = i
+											.next();
+									if (propertySheetPage.getControl()
+											.isDisposed()) {
+										i.remove();
+									} else {
+										propertySheetPage.refresh();
+									}
+								}
+							}
+						});
+					}
+				});
 	}
 
 	/**
@@ -1142,10 +1147,12 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		selectionViewer = (CheckboxTreeViewer) viewerPane.getViewer();
 		selectionViewer
 				.setContentProvider(new CustomAdapterFactoryContentProvider(
-						adapterFactory));
+						((CustomAdapterFactoryEditingDomain) editingDomain)
+								.getTransactionalDomain(), adapterFactory));
 
 		selectionViewer.setLabelProvider(new CustomAdapterFactoryLabelProvider(
-				adapterFactory));
+				((CustomAdapterFactoryEditingDomain) editingDomain)
+						.getTransactionalDomain(), adapterFactory));
 
 		// Add change listener
 		adapterFactory.addListener(new CheckBoxNotifyChangedListener(
@@ -1395,11 +1402,12 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * This accesses a cached version of the property sheet. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
 		PropertySheetPage propertySheetPage = new ExtendedPropertySheetPage(
-				editingDomain) {
+				(AdapterFactoryEditingDomain) ((CustomAdapterFactoryEditingDomain) editingDomain)
+						.getTransactionalDomain()) {
 			@Override
 			public void setSelectionToViewer(List<?> selection) {
 				BvrResolutionEditor.this.setSelectionToViewer(selection);
@@ -1412,9 +1420,11 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 				getActionBarContributor().shareGlobalActions(this, actionBars);
 			}
 		};
+
 		propertySheetPage
-				.setPropertySourceProvider(new AdapterFactoryContentProvider(
-						adapterFactory));
+				.setPropertySourceProvider(new TransactionalAdapterFactoryContentProvider(
+						((CustomAdapterFactoryEditingDomain) editingDomain)
+								.getTransactionalDomain(), adapterFactory));
 		propertySheetPages.add(propertySheetPage);
 
 		return propertySheetPage;
@@ -1479,7 +1489,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * This is for implementing {@link IEditorPart} and simply saves the model
 	 * file. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
@@ -1499,27 +1509,47 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 			//
 			@Override
 			public void execute(IProgressMonitor monitor) {
-				// Save the resources to the file system.
-				//
-				boolean first = true;
-				for (Resource resource : editingDomain.getResourceSet()
-						.getResources()) {
-					if ((first || !resource.getContents().isEmpty() || isPersisted(resource))
-							&& !editingDomain.isReadOnly(resource)) {
-						try {
-							long timeStamp = resource.getTimeStamp();
-							resource.save(saveOptions);
-							if (resource.getTimeStamp() != timeStamp) {
-								savedResources.add(resource);
-							}
-						} catch (Exception exception) {
-							resourceToDiagnosticMap
-									.put(resource,
-											analyzeResourceProblems(resource,
-													exception));
-						}
-						first = false;
-					}
+				try {
+					((CustomAdapterFactoryEditingDomain) editingDomain)
+							.getTransactionalDomain().runExclusive(
+									new Runnable() {
+										public void run() {
+											// Save the resources to the file
+											// system.
+											//
+											boolean first = true;
+											for (Resource resource : editingDomain
+													.getResourceSet()
+													.getResources()) {
+												if ((first
+														|| !resource
+																.getContents()
+																.isEmpty() || isPersisted(resource))
+														&& !editingDomain
+																.isReadOnly(resource)) {
+													try {
+														long timeStamp = resource
+																.getTimeStamp();
+														resource.save(saveOptions);
+														if (resource
+																.getTimeStamp() != timeStamp) {
+															savedResources
+																	.add(resource);
+														}
+													} catch (Exception exception) {
+														resourceToDiagnosticMap
+																.put(resource,
+																		analyzeResourceProblems(
+																				resource,
+																				exception));
+													}
+													first = false;
+												}
+											}
+										}
+									});
+				} catch (InterruptedException exception) {
+					exception.printStackTrace();
 				}
 			}
 		};
