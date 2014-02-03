@@ -18,11 +18,11 @@ import bvr.VSpec;
 
 public class MinimizeEvent implements ActionListener {
 
-	private VSpecPanel cp;
+	private Object cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRView view;
 
-	public MinimizeEvent(VSpecPanel cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public MinimizeEvent(Object cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -30,13 +30,14 @@ public class MinimizeEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		VSpec v = (VSpec)vmMap.get(cp);
+		Object v = vmMap.get(cp);
 		
 		// Modify model
 		view.setMinimized(v);
 		
 		// Regenerate view
 		view.notifyVspecViewUpdate();
+		view.notifyResolutionViewUpdate();
 	}
 
 }

@@ -17,6 +17,8 @@ import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
 import no.sintef.bvr.tool.ui.command.event.AddVInstanceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
+import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
+import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -70,5 +72,13 @@ class VariableValueAssignmentDropdown extends JPopupMenu {
 		JMenuItem remove = new JMenuItem("Remove");
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
 		add(remove);
+		
+		// max/min
+		JMenuItem minimize = new JMenuItem("minimize");
+		minimize.addActionListener(new MinimizeEvent(cp, vmMap, null, null, view));
+		add(minimize);
+		JMenuItem maximize = new JMenuItem("maximize");
+		maximize.addActionListener(new MaximizeEvent(cp, vmMap, null, null, view));
+		add(maximize);
     }
 }

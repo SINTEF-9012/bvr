@@ -117,7 +117,7 @@ public class ResolutionView extends BVRView{
 
 	int choiceCount = 1;
 
-	List<VSpec> minimized = new ArrayList<VSpec>();
+	List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
 
 	private BVRNotifier ep;
 
@@ -253,21 +253,21 @@ public class ResolutionView extends BVRView{
 		if(v instanceof VInstance){
 			//System.out.println(v + ", " + bvruikernel);
 			
-			nextParent = new AddVInstance().init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			nextParent = new AddVInstance(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
 			vmMap.put(nextParent, v);
 			
 		}else if(v instanceof ChoiceResolutuion){
 			//System.out.println(v);
 			
-			nextParent = new AddChoiceResolutuion().init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			nextParent = new AddChoiceResolutuion(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
 			vmMap.put(nextParent, v);
 			
 		}else if(v instanceof VariableValueAssignment){
 			//System.out.println(v);
 			
-			nextParent = new AddVariableValueAssignment().init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			nextParent = new AddVariableValueAssignment(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
 			vmMap.put(nextParent, v);
 			
@@ -279,7 +279,8 @@ public class ResolutionView extends BVRView{
 		//System.out.println();
 		for(VSpecResolution vs : v.getChild()){
 			//System.out.println("Treating " + vs.getResolvedVSpec().getName());
-			loadBVRResolutionView(vs, bvruikernel, nextParent, cu, vmMap, nodes, bindings);
+			if(!minimized.contains(v))
+				loadBVRResolutionView(vs, bvruikernel, nextParent, cu, vmMap, nodes, bindings);
 		}
 	}
 
@@ -298,12 +299,12 @@ public class ResolutionView extends BVRView{
 	}
 
 	@Override
-	public void setMaximized(VSpec v) {
-		throw new UnsupportedOperationException();		
+	public void setMaximized(Object v) {
+		minimized.remove(v);
 	}
 
 	@Override
-	public void setMinimized(VSpec v) {
-		throw new UnsupportedOperationException();		
+	public void setMinimized(Object v) {
+		minimized.add((VSpecResolution)v);
 	}
 }
