@@ -1,9 +1,10 @@
 package no.sintef.bvr.gmf.vspec.part;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.ContributionItemService;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider;
 import org.eclipse.jface.action.IMenuManager;
@@ -48,18 +49,15 @@ public class DiagramEditorContextMenuProvider extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
-			if (editingDomain == null) {
-				editingDomain = DiagramEditingDomainFactory.getInstance()
-						.createEditingDomain();
-				editingDomain.setID("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
-			}
+			TransactionalEditingDomain editingDomain = TransactionUtil
+					.getEditingDomain((EObject) getViewer().getContents()
+							.getModel());
+
 			editingDomain.runExclusive(new Runnable() {
 
 				public void run() {

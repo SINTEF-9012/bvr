@@ -157,7 +157,7 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private TransactionalEditingDomain createEditingDomain() {
 		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
