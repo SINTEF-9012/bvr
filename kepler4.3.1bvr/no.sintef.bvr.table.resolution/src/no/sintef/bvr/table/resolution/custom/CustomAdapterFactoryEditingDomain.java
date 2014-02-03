@@ -41,6 +41,9 @@ public class CustomAdapterFactoryEditingDomain extends
 					.createEditingDomain();
 			editingDomain.setID("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
 		}
+		((AdapterFactoryEditingDomain) editingDomain)
+				.setAdapterFactory(adapterFactory);
+
 	}
 
 	@Override
@@ -236,7 +239,7 @@ public class CustomAdapterFactoryEditingDomain extends
 	}
 
 	public TransactionalEditingDomain getTransactionalDomain() {
-		
+
 		return editingDomain;
 	}
 }

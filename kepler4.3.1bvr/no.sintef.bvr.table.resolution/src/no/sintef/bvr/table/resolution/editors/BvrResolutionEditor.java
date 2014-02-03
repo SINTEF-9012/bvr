@@ -533,21 +533,21 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 			editingDomain.getCommandStack().flush();
 
 			updateProblemIndication = false;
-			for (Resource resource : changedResources) {
-				// if (resource.isLoaded()) {
-				// resource.unload();
-				// try {
-				// resource.load(Collections.EMPTY_MAP);
-				// } catch (IOException exception) {
-				// if (!resourceToDiagnosticMap.containsKey(resource)) {
-				// resourceToDiagnosticMap
-				// .put(resource,
-				// analyzeResourceProblems(resource,
-				// exception));
-				// }
-				// }
-				// }
-			}
+			// for (Resource resource : changedResources) {
+			// if (resource.isLoaded()) {
+			// resource.unload();
+			// try {
+			// resource.load(Collections.EMPTY_MAP);
+			// } catch (IOException exception) {
+			// if (!resourceToDiagnosticMap.containsKey(resource)) {
+			// resourceToDiagnosticMap
+			// .put(resource,
+			// analyzeResourceProblems(resource,
+			// exception));
+			// }
+			// }
+			// }
+			// }
 
 			if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
 				setSelection(StructuredSelection.EMPTY);
@@ -1160,10 +1160,6 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 				((CustomAdapterFactoryEditingDomain) editingDomain)
 						.getTransactionalDomain(), adapterFactory));
 
-		// Add change listener
-		adapterFactory.addListener(new CheckBoxNotifyChangedListener(
-				selectionViewer, editingDomain));
-
 		selectionViewer.setInput(editingDomain.getResourceSet());
 		selectionViewer.setSelection(new StructuredSelection(getXMIResource()),
 				true);
@@ -1172,6 +1168,13 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 				selectionViewer, editingDomain));
 
 		viewerPane.setTitle(editingDomain.getResourceSet());
+
+		// Add change listener
+		adapterFactory
+				.addListener(new CheckBoxNotifyChangedListener(
+						selectionViewer,
+						(AdapterFactoryEditingDomain) ((CustomAdapterFactoryEditingDomain) editingDomain)
+								.getTransactionalDomain()));
 
 		new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 

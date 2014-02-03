@@ -48,7 +48,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 		IItemLabelProvider, IItemPropertySource {
 
 	private ItemPropertyDescriptor valuePropertyDescriptor = null;
-
+	private PrimitiveTypeEnum previousType = null;
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -74,9 +74,13 @@ public class CustomVariableValueAssignmentItemProvider extends
 			addResolvedVariablePropertyDescriptor(object);
 			addValuePropertyDescriptor(object);
 		} else {
-			itemPropertyDescriptors.remove(valuePropertyDescriptor);
-			addValuePropertyDescriptor(object);
+			PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
+					.getResolvedVariable()).getType()).getType();
 
+			if (previousType != type) {
+				itemPropertyDescriptors.remove(valuePropertyDescriptor);
+				addValuePropertyDescriptor(object);
+			}
 		}
 		return itemPropertyDescriptors;
 	}
@@ -112,7 +116,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 	protected void addValuePropertyDescriptor(Object object) {
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
 				.getResolvedVariable()).getType()).getType();
-
+		previousType = type;
 		if (type == PrimitiveTypeEnum.INTEGER) {
 			valuePropertyDescriptor = new ItemPropertyDescriptor(
 					((ComposeableAdapterFactory) adapterFactory)
