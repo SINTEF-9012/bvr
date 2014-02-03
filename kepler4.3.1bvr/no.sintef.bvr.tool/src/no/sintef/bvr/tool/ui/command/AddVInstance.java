@@ -27,6 +27,11 @@ public class AddVInstance implements Command{
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private BVRView view;
+	private boolean contains;
+
+	public AddVInstance(boolean contains) {
+		this.contains = contains;
+	}
 
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.rootPanel = rootPanel;
@@ -65,7 +70,7 @@ public class AddVInstance implements Command{
         int u = m.getUpper();
         c.setNameAndCardinality(vc.getName(), l, u);
  */  
-		c.setName(vc.getName() + " : " + vc.getResolvedVSpec().getName());
+		c.setName((contains?"(+) ":"") + vc.getName() + " : " + vc.getResolvedVSpec().getName());
         rootPanel.getModelPanel().addNode(c);
         
         Helper.bind(parent, c, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);

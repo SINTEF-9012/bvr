@@ -25,6 +25,11 @@ public class AddChoiceResolutuion implements Command {
 	private BVRUIKernel rootPanel;
 	private ChoiceResolutuion c;
 	private CommandMouseListener listener;
+	private boolean contains;
+
+	public AddChoiceResolutuion(boolean contains) {
+		this.contains = contains;
+	}
 
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		if(p instanceof ChoiceResolutuion){
@@ -57,7 +62,7 @@ public class AddChoiceResolutuion implements Command {
 			choicename = c.getResolvedVSpec().getName();
 		}
 		
-        cp.setTitle(choicename + " = " + c.isDecision());
+        cp.setTitle((contains?"(+) ":"") + choicename + " = " + c.isDecision());
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         return cp;

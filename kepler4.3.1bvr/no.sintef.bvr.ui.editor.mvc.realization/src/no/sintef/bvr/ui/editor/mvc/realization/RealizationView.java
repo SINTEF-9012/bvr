@@ -190,21 +190,18 @@ public class RealizationView extends BVRView{
 
 	@Override
 	public void notifyResolutionViewUpdate() {
+	}
+
+	@Override
+	public void notifyVspecViewUpdate() {	}
+
+	@Override
+	public void setMaximized(Object v) {
 		throw new UnsupportedOperationException();		
 	}
 
 	@Override
-	public void notifyVspecViewUpdate() {
-		throw new UnsupportedOperationException();		
-	}
-
-	@Override
-	public void setMaximized(VSpec v) {
-		throw new UnsupportedOperationException();		
-	}
-
-	@Override
-	public void setMinimized(VSpec v) {
+	public void setMinimized(Object v) {
 		throw new UnsupportedOperationException();		
 	}
 }

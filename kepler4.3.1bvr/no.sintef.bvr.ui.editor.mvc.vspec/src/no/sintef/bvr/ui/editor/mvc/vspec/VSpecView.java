@@ -283,11 +283,11 @@ public class VSpecView extends BVRView {
 	
 	List<VSpec> minimized = new ArrayList<VSpec>();
 
-	public void setMinimized(VSpec v) {
-		minimized.add(v);
+	public void setMinimized(Object v) {
+		minimized.add((VSpec)v);
 	}
 	
-	public void setMaximized(VSpec v) {
+	public void setMaximized(Object v) {
 		minimized.remove(v);
 	}
 
@@ -296,7 +296,6 @@ public class VSpecView extends BVRView {
 	}
 
 	public void notifyResolutionViewUpdate() {
-		throw new UnsupportedOperationException();
 	}
 
 }

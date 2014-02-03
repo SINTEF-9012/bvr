@@ -33,6 +33,11 @@ public class AddVariableValueAssignment implements Command {
 	private BVRUIKernel rootPanel;
 	private VariableValueAssignment c;
 	private CommandMouseListener listener;
+	private boolean contains;
+
+	public AddVariableValueAssignment(boolean contains) {
+		this.contains = contains;
+	}
 
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.rootPanel = rootPanel;
@@ -85,7 +90,7 @@ public class AddVariableValueAssignment implements Command {
 				throw new UnsupportedOperationException();
 		}
 
-        cp.setTitle(name + " = " + value);
+        cp.setTitle((contains?"(+) ":"") + name + " = " + value);
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         return cp;

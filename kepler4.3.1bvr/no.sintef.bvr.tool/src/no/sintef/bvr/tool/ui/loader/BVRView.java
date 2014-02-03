@@ -16,6 +16,6 @@ abstract public class BVRView {
 	abstract  public void notifyVspecViewUpdate();
 	abstract public void notifyRelalizationViewReset() ;
 	abstract public void notifyAllViews() ;
-	abstract public void setMaximized(VSpec v);
-	abstract public void setMinimized(VSpec v) ;
+	abstract public void setMaximized(Object v);
+	abstract public void setMinimized(Object v) ;
 }
