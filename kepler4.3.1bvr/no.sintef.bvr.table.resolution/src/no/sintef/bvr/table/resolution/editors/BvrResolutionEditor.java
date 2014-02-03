@@ -81,7 +81,6 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnWeightData;
@@ -404,7 +403,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * This listens for workspace changes. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
 		public void resourceChanged(IResourceChangeEvent event) {
@@ -476,6 +475,13 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 							}
 						}
 					});
+				}
+				// If resouce is saved by other editor,
+				// set saveIsDone and remove * at tab.
+				if (delta.getFlags() == IResourceDelta.NO_CHANGE) {
+					((BasicCommandStack) editingDomain.getCommandStack())
+							.saveIsDone();
+					firePropertyChange(IEditorPart.PROP_DIRTY);
 				}
 			} catch (CoreException exception) {
 				BVRMetamodelEditorPlugin.INSTANCE.log(exception);
@@ -613,21 +619,22 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 
 	/**
 	 * Shows a dialog that asks if conflicting changes should be discarded. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * begin-user-doc --> Force replace resource<!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected boolean handleDirtyConflict() {
-		return MessageDialog.openQuestion(getSite().getShell(),
-				getString("_UI_FileConflict_label"),
-				getString("_WARN_FileConflict"));
+		return true;
+		// MessageDialog.openQuestion(getSite().getShell(),
+		// getString("_UI_FileConflict_label"),
+		// getString("_WARN_FileConflict"));
 	}
 
 	/**
 	 * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public BvrResolutionEditor() {
 		super();

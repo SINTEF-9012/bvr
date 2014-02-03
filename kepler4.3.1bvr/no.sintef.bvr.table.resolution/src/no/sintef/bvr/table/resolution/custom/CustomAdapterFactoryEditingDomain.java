@@ -1,5 +1,6 @@
 package no.sintef.bvr.table.resolution.custom;
 
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
