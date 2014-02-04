@@ -37,7 +37,7 @@ public final class CheckBoxNotifyChangedListener implements
 		final Notification notification = temp;
 		Control control = selectionViewer.getControl();
 		if ((control != null) && !(control.isDisposed())) {
-			control.getDisplay().syncExec(new Runnable() {
+			control.getDisplay().asyncExec(new Runnable() {
 				public void run() {
 					selectionViewer.refresh();
 
