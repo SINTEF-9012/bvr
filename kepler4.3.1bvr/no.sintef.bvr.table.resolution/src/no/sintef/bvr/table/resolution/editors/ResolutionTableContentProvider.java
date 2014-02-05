@@ -173,25 +173,29 @@ public class ResolutionTableContentProvider implements
 				type = ((PrimitveType) ((Variable) object.getResolvedVariable())
 						.getType()).getType();
 			}
-
-			if (type == PrimitiveTypeEnum.INTEGER) {
-				return String
-						.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) object
-								.getValue()).getExpression()).getInteger());
-			} else if (type == PrimitiveTypeEnum.REAL) {
-				return ((RealLiteralExp) ((PrimitiveValueSpecification) object
-						.getValue()).getExpression()).getReal();
-			} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
-				return String
-						.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) object
-								.getValue()).getExpression()).getUnlimited());
-			} else if (type == PrimitiveTypeEnum.BOOLEAN) {
-				return String
-						.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) object
-								.getValue()).getExpression()).isBool());
-			} else if (type == PrimitiveTypeEnum.STRING) {
-				return ((StringLiteralExp) ((PrimitiveValueSpecification) object
-						.getValue()).getExpression()).getString();
+			try {
+				if (type == PrimitiveTypeEnum.INTEGER) {
+					return String
+							.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) object
+									.getValue()).getExpression()).getInteger());
+				} else if (type == PrimitiveTypeEnum.REAL) {
+					return ((RealLiteralExp) ((PrimitiveValueSpecification) object
+							.getValue()).getExpression()).getReal();
+				} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+					return String
+							.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) object
+									.getValue()).getExpression())
+									.getUnlimited());
+				} else if (type == PrimitiveTypeEnum.BOOLEAN) {
+					return String
+							.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) object
+									.getValue()).getExpression()).isBool());
+				} else if (type == PrimitiveTypeEnum.STRING) {
+					return ((StringLiteralExp) ((PrimitiveValueSpecification) object
+							.getValue()).getExpression()).getString();
+				}
+			} catch (ClassCastException cce) {
+				return "n/a";
 			}
 			return "n/a";
 		}

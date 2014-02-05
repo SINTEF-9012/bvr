@@ -478,16 +478,31 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 				}
 				// If resouce is saved by other editor,
 				// set saveIsDone and remove * at tab.
-				if (delta.getFlags() == IResourceDelta.NO_CHANGE) {
-					((BasicCommandStack) editingDomain.getCommandStack())
-							.saveIsDone();
-					firePropertyChange(IEditorPart.PROP_DIRTY);
+				if (!visitor.getChangedResources().isEmpty()
+						&& EditUIUtil.getURI(getEditorInput()).equals(
+								((Resource) visitor.getChangedResources()
+										.toArray()[0]).getURI())) {
+
+					if (delta.getFlags() == IResourceDelta.NO_CHANGE) {
+						// ((BasicCommandStack) editingDomain.getCommandStack())
+						// .saveIsDone();
+						isDirty = false;
+						firePropertyChange(IEditorPart.PROP_DIRTY);
+					}
 				}
+
 			} catch (CoreException exception) {
 				BVRMetamodelEditorPlugin.INSTANCE.log(exception);
 			}
 		}
 	};
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	protected boolean isDirty = false;
 
 	/**
 	 * Handles activation of the editor or it's associated views. <!--
@@ -677,17 +692,38 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 				new CommandStackListener() {
 					public void commandStackChanged(final EventObject event) {
 						if (!getContainer().isDisposed()) {
+
+							// Avoid other resource or other editor
+							final Command mostRecentCommand = ((CommandStack) event
+									.getSource()).getMostRecentCommand();
+							if (mostRecentCommand != null) {
+								Collection<?> targets = mostRecentCommand
+										.getAffectedObjects();
+								if (!targets.isEmpty()
+										&& targets.toArray()[0] instanceof EObject) {
+									if (!EditUIUtil.getURI(getEditorInput())
+											.equals(EcoreUtil
+													.getURI((EObject) targets
+															.toArray()[0])
+													.trimFragment())) {
+										return;
+									}
+
+								}
+							}else{
+								// from GMF editor
+								return;
+							}
+
 							getContainer().getDisplay().asyncExec(
 									new Runnable() {
 										public void run() {
+											isDirty = true;
 											firePropertyChange(IEditorPart.PROP_DIRTY);
 
 											// Try to select the affected
 											// objects.
 											//
-											Command mostRecentCommand = ((CommandStack) event
-													.getSource())
-													.getMostRecentCommand();
 											if (mostRecentCommand != null) {
 												setSelectionToViewer(mostRecentCommand
 														.getAffectedObjects());
@@ -1493,12 +1529,13 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * This is for implementing {@link IEditorPart} and simply tests the command
 	 * stack. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isDirty() {
-		return ((BasicCommandStack) editingDomain.getCommandStack())
-				.isSaveNeeded();
+		return isDirty;
+		// return ((BasicCommandStack) editingDomain.getCommandStack())
+		// .isSaveNeeded();
 	}
 
 	/**
@@ -1537,6 +1574,13 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 											for (Resource resource : editingDomain
 													.getResourceSet()
 													.getResources()) {
+												// Avoid other resource
+												if (!EditUIUtil.getURI(
+														getEditorInput())
+														.equals(resource
+																.getURI())) {
+													continue;
+												}
 												if ((first
 														|| !resource
 																.getContents()
@@ -1579,7 +1623,9 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 
 			// Refresh the necessary state.
 			//
-			((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+			// ((BasicCommandStack)
+			// editingDomain.getCommandStack()).saveIsDone();
+			isDirty = false;
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		} catch (Exception exception) {
 			// Something went wrong that shouldn't.

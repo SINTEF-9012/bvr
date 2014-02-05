@@ -49,6 +49,7 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 	private ItemPropertyDescriptor valuePropertyDescriptor = null;
 	private PrimitiveTypeEnum previousType = null;
+
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -133,14 +134,16 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 				@Override
 				public Object getPropertyValue(Object object) {
-					// TODO null pointer exception
-					return ((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).getInteger();
+					try {
+						return ((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).getInteger();
+					} catch (ClassCastException cce) {
+						return 0;
+					}
 				}
 
 				@Override
 				public void setPropertyValue(Object object, Object value) {
-					// TODO null pointer exception
 					EditingDomain editingDomain = getEditingDomain(object);
 					EObject eObject = (IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
 							.getValue()).getExpression();
@@ -169,14 +172,16 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 				@Override
 				public Object getPropertyValue(Object object) {
-					// TODO null pointer exception
-					return ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).getReal();
+					try {
+						return ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).getReal();
+					} catch (ClassCastException cce) {
+						return 0;
+					}
 				}
 
 				@Override
 				public void setPropertyValue(Object object, Object value) {
-					// TODO null pointer exception
 					EditingDomain editingDomain = getEditingDomain(object);
 					EObject eObject = (RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
 							.getValue()).getExpression();
@@ -207,14 +212,16 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 				@Override
 				public Object getPropertyValue(Object object) {
-					// TODO null pointer exception
-					return ((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).getUnlimited();
+					try {
+						return ((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).getUnlimited();
+					} catch (ClassCastException cce) {
+						return 0;
+					}
 				}
 
 				@Override
 				public void setPropertyValue(Object object, Object value) {
-					// TODO null pointer exception
 					EditingDomain editingDomain = getEditingDomain(object);
 					EObject eObject = (UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
 							.getValue()).getExpression();
@@ -245,14 +252,16 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 				@Override
 				public Object getPropertyValue(Object object) {
-					// TODO null pointer exception
-					return ((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).isBool();
+					try {
+						return ((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).isBool();
+					} catch (ClassCastException cce) {
+						return false;
+					}
 				}
 
 				@Override
 				public void setPropertyValue(Object object, Object value) {
-					// TODO null pointer exception
 					EditingDomain editingDomain = getEditingDomain(object);
 					EObject eObject = (BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
 							.getValue()).getExpression();
@@ -283,14 +292,16 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 				@Override
 				public Object getPropertyValue(Object object) {
-					// TODO null pointer exception
-					return ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).getString();
+					try {
+						return ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).getString();
+					} catch (ClassCastException cce) {
+						return "";
+					}
 				}
 
 				@Override
 				public void setPropertyValue(Object object, Object value) {
-					// TODO null pointer exception
 					EditingDomain editingDomain = getEditingDomain(object);
 					EObject eObject = (StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
 							.getValue()).getExpression();
@@ -383,25 +394,28 @@ public class CustomVariableValueAssignmentItemProvider extends
 
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable) ((VariableValueAssignment) object)
 				.getResolvedVariable()).getType()).getType();
-
-		if (type == PrimitiveTypeEnum.INTEGER) {
-			label += String
-					.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).getInteger());
-		} else if (type == PrimitiveTypeEnum.REAL) {
-			label += ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-					.getValue()).getExpression()).getReal();
-		} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
-			label += String
-					.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).getUnlimited());
-		} else if (type == PrimitiveTypeEnum.BOOLEAN) {
-			label += String
-					.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-							.getValue()).getExpression()).isBool());
-		} else if (type == PrimitiveTypeEnum.STRING) {
-			label += ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
-					.getValue()).getExpression()).getString();
+		try {
+			if (type == PrimitiveTypeEnum.INTEGER) {
+				label += String
+						.valueOf(((IntegerLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).getInteger());
+			} else if (type == PrimitiveTypeEnum.REAL) {
+				label += ((RealLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+						.getValue()).getExpression()).getReal();
+			} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+				label += String
+						.valueOf(((UnlimitedLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).getUnlimited());
+			} else if (type == PrimitiveTypeEnum.BOOLEAN) {
+				label += String
+						.valueOf(((BooleanLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+								.getValue()).getExpression()).isBool());
+			} else if (type == PrimitiveTypeEnum.STRING) {
+				label += ((StringLiteralExp) ((PrimitiveValueSpecification) ((VariableValueAssignment) object)
+						.getValue()).getExpression()).getString();
+			}
+		} catch (ClassCastException cce) {
+			// Nothing.
 		}
 		return label;
 	}

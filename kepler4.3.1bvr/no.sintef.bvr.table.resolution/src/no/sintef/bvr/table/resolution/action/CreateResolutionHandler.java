@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -78,16 +79,10 @@ public class CreateResolutionHandler implements IHandler {
 		}
 		BvrResolutionEditor bvrEditorPart = (BvrResolutionEditor) editorPart;
 		editingDomain = bvrEditorPart.getEditingDomain();
-
-		// TODO If ConfigurationUnit has composite ConfigurationUnit
-		// it needs selection form of configurationUnit
-		XMIResource resource = null;
-		for(Resource res : editingDomain.getResourceSet().getResources()){
-			if(res instanceof XMIResource){
-				resource = (XMIResource) res;
-			}
-		}
-		if(resource == null){
+		
+		XMIResource resource = (XMIResource) editingDomain.getResourceSet().getResource(
+				EditUIUtil.getURI(editorPart.getEditorInput()), false);
+		if (resource == null) {
 			return null;
 		}
 		ConfigurableUnit cu = (ConfigurableUnit) resource.getContents().get(0);
@@ -179,23 +174,18 @@ public class CreateResolutionHandler implements IHandler {
 			BCLExpression exp = null;
 			if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.BOOLEAN) {
 				exp = BvrFactory.eINSTANCE.createBooleanLiteralExp();
-				// TODO default value
 				((BooleanLiteralExp) exp).setBool(false);
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.INTEGER) {
 				exp = BvrFactory.eINSTANCE.createIntegerLiteralExp();
-				// TODO default value
 				((IntegerLiteralExp) exp).setInteger(0);
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.REAL) {
 				exp = BvrFactory.eINSTANCE.createRealLiteralExp();
-				// TODO default value
 				((RealLiteralExp) exp).setReal("0.0");
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
 				exp = BvrFactory.eINSTANCE.createUnlimitedLiteralExp();
-				// TODO default value
 				((UnlimitedLiteralExp) exp).setUnlimited(0);
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.STRING) {
 				exp = BvrFactory.eINSTANCE.createStringLiteralExp();
-				// TODO default value
 				((StringLiteralExp) exp).setString("");
 			}
 
