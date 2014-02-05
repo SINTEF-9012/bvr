@@ -111,8 +111,10 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
@@ -710,7 +712,7 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 									}
 
 								}
-							}else{
+							} else {
 								// from GMF editor
 								return;
 							}
@@ -1696,14 +1698,32 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 	 * @generated NOT
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-		getXMIResource().setURI(uri);
-		setInputWithNotify(editorInput);
-		setPartName(editorInput.getName());
+
 		IProgressMonitor progressMonitor = getActionBars()
 				.getStatusLineManager() != null ? getActionBars()
 				.getStatusLineManager().getProgressMonitor()
 				: new NullProgressMonitor();
-		doSave(progressMonitor);
+
+		FileEditorInput originInput = (FileEditorInput) this.getEditorInput();
+		FileEditorInput newInput = (FileEditorInput) editorInput;
+		IFile originFile = originInput.getFile();
+
+		try {
+			originFile.copy(newInput.getFile().getProjectRelativePath(), true,
+					progressMonitor);
+		} catch (CoreException e) {
+			BVRMetamodelEditorPlugin.INSTANCE.log(e);
+		}
+
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
+		try {
+			page.openEditor(new FileEditorInput(newInput.getFile()),
+					"no.sintef.bvr.table.resolution.editors.BvrResolutionEditorID");
+		} catch (PartInitException e) {
+			BVRMetamodelEditorPlugin.INSTANCE.log(e);
+		}
+
 	}
 
 	/**
