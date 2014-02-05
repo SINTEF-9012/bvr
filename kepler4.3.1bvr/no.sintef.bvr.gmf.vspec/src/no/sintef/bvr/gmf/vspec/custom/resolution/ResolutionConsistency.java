@@ -230,23 +230,18 @@ public class ResolutionConsistency {
 			BCLExpression exp = null;
 			if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.BOOLEAN) {
 				exp = BvrFactory.eINSTANCE.createBooleanLiteralExp();
-				// TODO default value
 				((BooleanLiteralExp) exp).setBool(false);
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.INTEGER) {
 				exp = BvrFactory.eINSTANCE.createIntegerLiteralExp();
-				// TODO default value
 				((IntegerLiteralExp) exp).setInteger(0);
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.REAL) {
 				exp = BvrFactory.eINSTANCE.createRealLiteralExp();
-				// TODO default value
 				((RealLiteralExp) exp).setReal("0.0");
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
 				exp = BvrFactory.eINSTANCE.createUnlimitedLiteralExp();
-				// TODO default value
 				((UnlimitedLiteralExp) exp).setUnlimited(0);
 			} else if (((PrimitveType) object.getType()).getType() == PrimitiveTypeEnum.STRING) {
 				exp = BvrFactory.eINSTANCE.createStringLiteralExp();
-				// TODO default value
 				((StringLiteralExp) exp).setString("");
 			}
 

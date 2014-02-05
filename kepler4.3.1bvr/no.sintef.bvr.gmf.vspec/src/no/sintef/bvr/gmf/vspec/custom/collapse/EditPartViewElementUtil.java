@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -50,6 +51,8 @@ public class EditPartViewElementUtil {
 	 */
 	public static List<View> getInvisibleViews(GraphicalEditPart part) {
 		List<View> result = new LinkedList<View>();
+		
+		// TODO avoid other file's gmf resource
 		ResourceSet resSet = part.getEditingDomain().getResourceSet();
 		for (Resource res : resSet.getResources()) {
 			if (res instanceof GMFResource) {

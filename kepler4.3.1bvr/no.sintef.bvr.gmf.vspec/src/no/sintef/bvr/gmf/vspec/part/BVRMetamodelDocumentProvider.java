@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -584,7 +585,7 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void doSaveDocument(IProgressMonitor monitor, Object element,
 			IDocument document, boolean overwrite) throws CoreException {
@@ -605,27 +606,46 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 				monitor.beginTask(
 						Messages.BVRMetamodelDocumentProvider_SaveDiagramTask,
 						info.getResourceSet().getResources().size() + 1); // "Saving diagram"
+
+				// Get target EMF and GMF resource URI
+				URI emf = null;
+				URI gmf = null;
+				if (info.fDocument.getContent() != null
+						&& info.fDocument.getContent() instanceof Diagram) {
+					emf = EcoreUtil.getURI(
+							((Diagram) info.fDocument.getContent())
+									.getElement()).trimFragment();
+				}
+				gmf = EditUIUtil.getURI((IEditorInput) element);
+
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
 						.hasNext();) {
 					Resource nextResource = it.next();
-					monitor.setTaskName(NLS
-							.bind(Messages.BVRMetamodelDocumentProvider_SaveNextResourceTask,
-									nextResource.getURI()));
-					if (nextResource.isLoaded()
-							&& !info.getEditingDomain()
-									.isReadOnly(nextResource)) {
-						try {
-							nextResource.save(BVRMetamodelDiagramEditorUtil
-									.getSaveOptions());
-						} catch (IOException e) {
-							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR,
-									BVRMetamodelDiagramEditorPlugin.ID,
-									EditorStatusCodes.RESOURCE_FAILURE,
-									e.getLocalizedMessage(), null));
+
+					// Avoid other resources
+					if (nextResource.getURI().equals(emf)
+							|| nextResource.getURI().equals(gmf)) {
+
+						monitor.setTaskName(NLS
+								.bind(Messages.BVRMetamodelDocumentProvider_SaveNextResourceTask,
+										nextResource.getURI()));
+						if (nextResource.isLoaded()
+								&& !info.getEditingDomain().isReadOnly(
+										nextResource)) {
+							try {
+								nextResource.save(BVRMetamodelDiagramEditorUtil
+										.getSaveOptions());
+							} catch (IOException e) {
+								fireElementStateChangeFailed(element);
+								throw new CoreException(new Status(
+										IStatus.ERROR,
+										BVRMetamodelDiagramEditorPlugin.ID,
+										EditorStatusCodes.RESOURCE_FAILURE,
+										e.getLocalizedMessage(), null));
+							}
 						}
+						monitor.worked(1);
 					}
-					monitor.worked(1);
 				}
 				monitor.done();
 				info.setModificationStamp(computeModificationStamp(info));
@@ -704,7 +724,7 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void handleElementChanged(ResourceSetInfo info,
 			Resource changedResource, IProgressMonitor monitor) {
@@ -722,7 +742,8 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
-		changedResource.unload();
+		// REMOVE unload after save.
+		// changedResource.unload();
 
 		fireElementContentAboutToBeReplaced(info.getEditorInput());
 		removeUnchangedElementListeners(info.getEditorInput(), info);
@@ -996,9 +1017,25 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 			}
 
 			/**
-			 * @generated
+			 * @generated NOT
 			 */
 			public boolean handleResourceChanged(final Resource resource) {
+				// Get target EMF and GMF resource URI
+				// Avoid other resources
+				URI emf = null;
+				URI gmf = null;
+				if (fDocument.getContent() != null
+						&& fDocument.getContent() instanceof Diagram) {
+					emf = EcoreUtil.getURI(
+							((Diagram) fDocument.getContent()).getElement())
+							.trimFragment();
+				}
+				gmf = EditUIUtil.getURI((IEditorInput) fElement);
+				if (!resource.getURI().equals(emf)
+						&& !resource.getURI().equals(gmf)) {
+					return true;
+				}
+
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
@@ -1091,7 +1128,7 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void notifyChanged(Notification notification) {
 			if (notification.getNotifier() instanceof ResourceSet) {
@@ -1103,12 +1140,29 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
+						// Get target EMF and GMF resource URI
+						URI emf = null;
+						URI gmf = null;
+						
+						if ( myInfo.fDocument.getContent() != null
+								&& myInfo.fDocument.getContent() instanceof Diagram) {
+							emf = EcoreUtil.getURI(
+									((Diagram) myInfo.fDocument.getContent())
+											.getElement()).trimFragment();
+						}
+						gmf = EditUIUtil.getURI((IEditorInput) myInfo.fElement);
+
 						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
 								.getLoadedResourcesIterator(); it.hasNext()
 								&& !modified;) {
 							Resource nextResource = (Resource) it.next();
-							if (nextResource.isLoaded()) {
-								modified = nextResource.isModified();
+							// Avoid other resources
+							if (nextResource.getURI().equals(emf)
+									|| nextResource.getURI().equals(gmf)) {
+
+								if (nextResource.isLoaded()) {
+									modified = nextResource.isModified();
+								}
 							}
 						}
 						boolean dirtyStateChanged = false;
