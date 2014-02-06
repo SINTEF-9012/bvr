@@ -39,6 +39,7 @@ Require-Bundle: org.eclipse.core.runtime,
  no.sintef.bvr.model;visibility:=reexport,
  no.sintef.bvr.model.edit;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.eclipse.gef;visibility:=reexport
+ org.eclipse.gef;visibility:=reexport,
+ no.sintef.bvr.ui.editor.commands;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

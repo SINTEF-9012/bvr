@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -21,7 +23,6 @@ import org.eclipse.emf.edit.command.OverrideableCommand;
 import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
@@ -35,13 +36,7 @@ public class CustomAdapterFactoryEditingDomain extends
 	public CustomAdapterFactoryEditingDomain(AdapterFactory adapterFactory,
 			CommandStack commandStack, HashMap<Resource, Boolean> hashMap) {
 		super(adapterFactory, commandStack, hashMap);
-		editingDomain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
-		if (editingDomain == null) {
-			editingDomain = DiagramEditingDomainFactory.getInstance()
-					.createEditingDomain();
-			editingDomain.setID("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
-		}
+		editingDomain = EditorEMFTransactionalCommands.Get().testTransactionalEditingDomain();
 		((AdapterFactoryEditingDomain) editingDomain)
 				.setAdapterFactory(adapterFactory);
 
