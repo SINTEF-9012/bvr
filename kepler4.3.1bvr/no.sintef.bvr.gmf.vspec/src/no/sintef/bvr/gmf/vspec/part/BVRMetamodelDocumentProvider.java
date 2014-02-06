@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.NotEnabledException;
+import org.eclipse.core.commands.NotHandledException;
+import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceStatus;
@@ -37,8 +40,12 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
@@ -49,10 +56,14 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.Diagram
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 
 /**
@@ -719,7 +730,7 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 						BVRMetamodelDiagramEditorPlugin.ID, 0,
 						e.getLocalizedMessage(), null));
 			}
-			newResource.unload();
+			// newResource.unload();
 		}
 	}
 
@@ -1143,8 +1154,8 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 						// Get target EMF and GMF resource URI
 						URI emf = null;
 						URI gmf = null;
-						
-						if ( myInfo.fDocument.getContent() != null
+
+						if (myInfo.fDocument.getContent() != null
 								&& myInfo.fDocument.getContent() instanceof Diagram) {
 							emf = EcoreUtil.getURI(
 									((Diagram) myInfo.fDocument.getContent())
@@ -1185,9 +1196,107 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 						}
 					}
 				}
-			}
+			} //else if (!notification.isTouch()) {
+				// for add or remove nodes by other editor
+			if (notification.getNotifier() instanceof EObject || notification.getNotifier() instanceof Resource) {
+				URI target = null;
+				if (notification.getNotifier() instanceof EObject) {
+				target = EcoreUtil.getURI(
+							(EObject) notification.getNotifier())
+							.trimFragment();
+				}else{
+					target = ((Resource)notification.getNotifier()).getURI();
+				}
+					URI emf = null;
+					if (myInfo.fDocument.getContent() != null
+							&& myInfo.fDocument.getContent() instanceof Diagram) {
+						emf = EcoreUtil.getURI(
+								((Diagram) myInfo.fDocument.getContent())
+										.getElement()).trimFragment();
+					}
+
+					final URI gmf = EditUIUtil
+							.getURI((IEditorInput) myInfo.fElement);
+
+					if (target.equals(emf)) {
+						// refresh diagram
+//						if (notification.getEventType() == Notification.ADD
+//								|| notification.getEventType() == Notification.REMOVE) {
+							updateExecution();
+//						}
+					}
+
+				}
+
+			//}
 		}
 
+		private void updateExecution() {
+			Display.getDefault().asyncExec(new Runnable() {
+				@Override
+				public void run() {
+					boolean modified = false;
+
+					boolean dirtyStateChanged = false;
+					synchronized (myInfo) {
+						if (modified != myInfo.fCanBeSaved) {
+							myInfo.fCanBeSaved = modified;
+							dirtyStateChanged = true;
+						}
+					}
+
+					if (dirtyStateChanged) {
+						fireElementDirtyStateChanged(myInfo.getEditorInput(),
+								modified);
+						if (!modified) {
+							myInfo.setModificationStamp(computeModificationStamp(myInfo));
+						}
+					}
+
+					IEditorReference[] editors = PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getActivePage()
+							.getEditorReferences();
+					for (IEditorReference editor : editors) {
+						try {
+							if (editor.getEditorInput().equals(
+									myInfo.myEditorInput)
+									&& editor.getId().equals(
+											BVRMetamodelDiagramEditor.ID)) {
+
+								EditPart ep = null;
+								if (editor.getEditor(true) instanceof GraphicalEditor) {
+									GraphicalEditor graphicalEditor = (GraphicalEditor) editor
+											.getEditor(true);
+									ep = (RootEditPart) graphicalEditor
+											.getAdapter(EditPart.class);
+								}
+
+								if (ep.getRoot().getContents() instanceof EditPart
+										&& ep.getRoot().getContents()
+												.getModel() instanceof View) {
+									EObject modelElement = ((View) ep.getRoot()
+											.getContents().getModel())
+											.getElement();
+									List editPolicies = CanonicalEditPolicy
+											.getRegisteredEditPolicies(modelElement);
+									for (Iterator it = editPolicies.iterator(); it
+											.hasNext();) {
+										CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
+												.next();
+										nextEditPolicy.refresh();
+									}
+
+								}
+							}
+						} catch (PartInitException e) {
+							BVRMetamodelDiagramEditorPlugin.getInstance()
+									.logError("Update command fail");
+						}
+					}
+
+				}
+			});
+		}
 	}
 
 }
