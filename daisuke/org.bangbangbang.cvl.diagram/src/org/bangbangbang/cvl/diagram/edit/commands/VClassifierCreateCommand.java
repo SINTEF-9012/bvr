@@ -49,15 +49,16 @@ public class VClassifierCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
-		// Uncomment to put "phantom" objects into the diagram file.		
-		// org.eclipse.emf.ecore.resource.Resource resource = 
-		// 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer().eResource();
+		// Uncomment to put "phantom" objects into the diagram file.
+		// org.eclipse.emf.ecore.resource.Resource resource =
+		// ((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
+		// getRequest()).getContainer().eResource();
 		// if (resource == null) {
-		// 	return null;
+		// return null;
 		// }
 		Resource resource = getElementToEdit().eResource();
 		VClassifier newElement = CvlFactory.eINSTANCE.createVClassifier();
@@ -65,6 +66,9 @@ public class VClassifierCreateCommand extends EditElementCommand {
 		resource.getContents().add(newElement);
 
 		doConfigure(newElement, monitor, info);
+
+		newElement.setInstanceMultiplicity(CvlFactory.eINSTANCE
+				.createMultiplicityInterval());
 
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
