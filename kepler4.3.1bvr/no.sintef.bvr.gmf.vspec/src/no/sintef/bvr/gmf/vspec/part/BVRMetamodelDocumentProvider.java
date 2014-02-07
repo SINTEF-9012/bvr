@@ -9,10 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
+
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.NotEnabledException;
-import org.eclipse.core.commands.NotHandledException;
-import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceStatus;
@@ -44,7 +43,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
@@ -172,13 +170,8 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 	 * @generated NOT
 	 */
 	private TransactionalEditingDomain createEditingDomain() {
-		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
-		if (editingDomain == null) {
-			editingDomain = DiagramEditingDomainFactory.getInstance()
-					.createEditingDomain();
-			editingDomain.setID("no.sintef.bvr.shared.EditingDomain"); //$NON-NLS-1$
-		}
+		TransactionalEditingDomain editingDomain = EditorEMFTransactionalCommands
+				.Get().testTransactionalEditingDomain();
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter
 				.createNotifierFilter(editingDomain.getResourceSet())
 				.and(NotificationFilter.createEventTypeFilter(Notification.ADD))
@@ -1196,39 +1189,35 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 						}
 					}
 				}
-			} //else if (!notification.isTouch()) {
-				// for add or remove nodes by other editor
-			if (notification.getNotifier() instanceof EObject || notification.getNotifier() instanceof Resource) {
+			}
+			// Update diagram
+			if (notification.getNotifier() instanceof EObject
+					|| notification.getNotifier() instanceof Resource) {
 				URI target = null;
 				if (notification.getNotifier() instanceof EObject) {
-				target = EcoreUtil.getURI(
+					target = EcoreUtil.getURI(
 							(EObject) notification.getNotifier())
 							.trimFragment();
-				}else{
-					target = ((Resource)notification.getNotifier()).getURI();
+				} else {
+					target = ((Resource) notification.getNotifier()).getURI();
 				}
-					URI emf = null;
-					if (myInfo.fDocument.getContent() != null
-							&& myInfo.fDocument.getContent() instanceof Diagram) {
-						emf = EcoreUtil.getURI(
-								((Diagram) myInfo.fDocument.getContent())
-										.getElement()).trimFragment();
-					}
-
-					final URI gmf = EditUIUtil
-							.getURI((IEditorInput) myInfo.fElement);
-
-					if (target.equals(emf)) {
-						// refresh diagram
-//						if (notification.getEventType() == Notification.ADD
-//								|| notification.getEventType() == Notification.REMOVE) {
-							updateExecution();
-//						}
-					}
-
+				URI emf = null;
+				if (myInfo.fDocument.getContent() != null
+						&& myInfo.fDocument.getContent() instanceof Diagram) {
+					emf = EcoreUtil.getURI(
+							((Diagram) myInfo.fDocument.getContent())
+									.getElement()).trimFragment();
 				}
 
-			//}
+				final URI gmf = EditUIUtil
+						.getURI((IEditorInput) myInfo.fElement);
+
+				if (target.equals(emf)) {
+					updateExecution();
+				}
+
+			}
+
 		}
 
 		private void updateExecution() {

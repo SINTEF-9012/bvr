@@ -1,5 +1,7 @@
 package no.sintef.bvr.ui.editor.commands;
 
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 import bvr.Choice;
 import bvr.ConfigurableUnit;
 import bvr.VSpec;
@@ -23,6 +25,11 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void addChoice(Choice choice, VSpec vs) {
 		vs.getChild().add(choice);
+	}
+
+	@Override
+	public TransactionalEditingDomain testTransactionalEditingDomain() {
+		throw new UnsupportedOperationException("Pure MVC does not support transactional model");
 	}
 
 }
