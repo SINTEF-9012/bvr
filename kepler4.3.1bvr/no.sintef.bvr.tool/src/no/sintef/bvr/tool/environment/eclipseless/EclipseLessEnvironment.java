@@ -69,7 +69,7 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	public ConfigHelper getConfig() {
 		return configHelper;
 	}
-	
+
 	@Override
 	public EditorCommands getEditorCommands() {
 		return commands;
