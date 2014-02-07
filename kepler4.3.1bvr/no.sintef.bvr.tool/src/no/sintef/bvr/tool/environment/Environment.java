@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.tree.DefaultTreeCellEditor.EditorContainer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -14,6 +15,7 @@ import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.ui.editor.commands.EditorCommands;
 
 public interface Environment {
 	
@@ -40,4 +42,6 @@ public interface Environment {
 	public Logger getLogger();
 	
 	public ConfigHelper getConfig();
+	
+	public EditorCommands getEditorCommands();
 }

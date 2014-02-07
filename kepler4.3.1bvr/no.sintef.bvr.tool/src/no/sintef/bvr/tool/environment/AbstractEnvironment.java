@@ -11,6 +11,7 @@ import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.ui.editor.commands.EditorCommands;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -79,6 +80,11 @@ public class AbstractEnvironment implements Environment {
 	@Override
 	public ConfigHelper getConfig() {
 		throw new UnimplementedBVRException("getConfig is not implemented");
+	}
+
+	@Override
+	public EditorCommands getEditorCommands() {
+		throw new UnimplementedBVRException("Commands are not implemented for this environment");
 	}
 
 }
