@@ -22,7 +22,7 @@ public class ParallelogramPanel extends RectanglePanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.shear(0.1, 0);
+		g2d.shear(-0.1, 0);
 		
 		super.paintComponent(g);
 	}
