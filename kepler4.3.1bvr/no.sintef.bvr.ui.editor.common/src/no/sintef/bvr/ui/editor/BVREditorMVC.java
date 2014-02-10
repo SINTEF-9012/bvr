@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRModelSingleton;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.eclipse.core.resources.IResource;
@@ -29,6 +29,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
@@ -43,6 +44,7 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 	public BVREditorMVC() {
 		super();
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
 	}
 
 	@Override
@@ -137,7 +139,8 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 					try {
 						UIManager.setLookAndFeel(UIManager
 								.getSystemLookAndFeelClassName());
-						m = BVRModelSingleton.getModel(new File(filename));
+						//m = BVRModelSingleton.getModel(new File(filename));
+						m = Context.eINSTANCE.getModel(new File(filename));
 						if (m != null) {
 							JApplet a = new JApplet();
 							createView(ep);

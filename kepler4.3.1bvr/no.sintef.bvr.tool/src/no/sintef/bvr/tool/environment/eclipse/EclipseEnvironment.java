@@ -21,7 +21,7 @@ import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
-import no.sintef.bvr.ui.editor.commands.EditorCommandsFactory;
+import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -50,7 +50,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	private Logger logger = PluginLogger.getLogger();
 	private ConfigHelper configHelper = EclipseConfigHelper.getConfig();
 	EList<TransactionalEditingDomain> editingDomains;
-	private EditorCommands commands;
+	private EditorCommands commands = EditorEMFTransactionalCommands.Get();
 	
 
 	public EclipseEnvironment(IWorkbenchWindow workbench) {
@@ -58,7 +58,6 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		ThirdpartyEditorSelector.setWorkbeach(iworkbench);
 		editorselector = ThirdpartyEditorSelector.getEditorSelector();
 		editingDomains = new BasicEList<TransactionalEditingDomain>();
-		commands = EditorCommandsFactory.Create(true);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFileChooser;
 
@@ -17,7 +18,9 @@ import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SXFM;
@@ -42,6 +45,8 @@ public final class Context {
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
 	public Logger logger = environment.getLogger();
+	
+	private Map<File, BVRModel> loaded = new HashMap<File, BVRModel>();
 	
 	private static Context getContext(){
 		return new Context();
@@ -147,5 +152,13 @@ public final class Context {
 	
 	public ConfigHelper getConfig() {
 		return environment.getConfig();
+	}
+	
+	public EditorCommands getEditorCommands(){
+		return environment.getEditorCommands();
+	}
+	
+	public BVRModel getModel(File file){
+		return new BVRTransactionalModel(file);
 	}
 }

@@ -12,7 +12,7 @@ import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
-import no.sintef.bvr.ui.editor.commands.EditorCommandsFactory;
+import no.sintef.bvr.ui.editor.commands.EditorMVCCommands;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +21,7 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 
 	private Logger logger = new DefaultLogger();
 	private ConfigHelper configHelper = EclipseLessConfigHelper.getConfig();
-	private EditorCommands commands = EditorCommandsFactory.Create();
+	private EditorCommands commands = EditorMVCCommands.Get();
 	
 	@Override
 	public BVRModel loadModelFromFile(File file) {

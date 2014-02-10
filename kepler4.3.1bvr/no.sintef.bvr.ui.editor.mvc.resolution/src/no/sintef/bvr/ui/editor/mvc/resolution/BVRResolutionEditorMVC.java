@@ -5,19 +5,12 @@ import java.io.File;
 import javax.swing.JApplet;
 
 import no.sintef.bvr.ui.editor.BVREditorMVC;
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.ui.ISaveablePart;
-import org.eclipse.ui.PlatformUI;
 
 public class BVRResolutionEditorMVC extends BVREditorMVC implements ISaveablePart, IResourceChangeListener, BVRNotifier {
-
-	public BVRResolutionEditorMVC(){
-		super();
-		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-	}
 	
 	public void setTitle() {
 		setPartName(new File(filename).getName() + " (Resolution)");
