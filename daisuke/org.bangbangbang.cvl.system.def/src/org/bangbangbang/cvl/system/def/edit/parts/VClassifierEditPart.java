@@ -451,51 +451,6 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 		return types;
 	}
 
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-
-		if (notification.getEventType() == Notification.ADD) {
-			if (((VClassifier) ((Node) this.getModel()).getElement())
-					.getInstanceMultiplicity() == null) {
-				createInstanceMultiplicity();
-
-			}
-		}
-		super.handleNotificationEvent(notification);
-
-	}
-
-	/**
-	 * Change : Create InstanceMultiplicity
-	 * 
-	 * @generated NOT
-	 */
-	protected void createInstanceMultiplicity() {
-
-		String compartemntsSemanticHint = CVLMetamodelVisualIDRegistry
-				.getType(org.bangbangbang.cvl.system.def.edit.parts.VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart.VISUAL_ID);
-
-		VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart compartment = (VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart) this
-				.getChildBySemanticHint(compartemntsSemanticHint);
-
-		IElementType type = CVLMetamodelElementTypes.MultiplicityInterval_3003;
-
-		CreateViewAndElementRequest.ViewAndElementDescriptor viewDescriptor = new CreateViewAndElementRequest.ViewAndElementDescriptor(
-				new CreateElementRequestAdapter(new CreateElementRequest(type)),
-				Node.class, ((IHintedType) type).getSemanticHint(), this
-						.getDiagramPreferencesHint());
-
-		CreateViewAndElementRequest req = new CreateViewAndElementRequest(
-				viewDescriptor);
-
-		CompoundCommand cmd = new CompoundCommand(
-				"Create Multiplicity in VClassifier");
-		cmd.add(compartment.getCommand(req));
-		this.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
-	}
 
 	/**
 	 * @generated
