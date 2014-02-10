@@ -20,7 +20,7 @@
       <editor
          id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/BvrDiagramFile.gif"
+         icon="icons/sample.gif"
          extensions="bvr_diagram"
          default="true"
          class="no.sintef.bvr.gmf.vspec.part.BVRMetamodelDiagramEditor"
@@ -52,7 +52,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/BvrDiagramFile.gif"
+  	     icon="icons/sample.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="no.sintef.bvr.gmf.vspec.part.BVRMetamodelCreationWizard"
   	     id="no.sintef.bvr.gmf.vspec.part.BVRMetamodelCreationWizardID">

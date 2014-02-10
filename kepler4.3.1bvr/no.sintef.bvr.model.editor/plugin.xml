@@ -16,7 +16,7 @@
             name="%_UI_BvrModelWizard_label"
             class="bvr.presentation.BvrModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/BvrModelFile.gif">
+            icon="icons/sample.gif">
          <description>%_UI_BvrModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
@@ -27,7 +27,7 @@
       <editor
             id="bvr.presentation.BvrEditorID"
             name="%_UI_BvrEditor_label"
-            icon="icons/full/obj16/BvrModelFile.gif"
+            icon="icons/sample.gif"
             extensions="bvr"
             class="bvr.presentation.BvrEditor"
             contributorClass="bvr.presentation.BvrActionBarContributor">
