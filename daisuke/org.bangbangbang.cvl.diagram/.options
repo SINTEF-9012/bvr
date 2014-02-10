@@ -1,7 +1,0 @@
-# Tracing options for the org.bangbangbang.cvl.diagram plug-in
-
-# Common issues
-org.bangbangbang.cvl.diagram/debug=false
-
-# Visual IDs
-org.bangbangbang.cvl.diagram/debug/visualID=false

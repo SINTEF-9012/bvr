@@ -1,7 +1,0 @@
-# Tracing options for the org.bangbangbang.cvl.system.vspec plug-in
-
-# Common issues
-org.bangbangbang.cvl.system.vspec/debug=false
-
-# Visual IDs
-org.bangbangbang.cvl.system.vspec/debug/visualID=false

@@ -1,7 +1,0 @@
-eclipse.preferences.version=1
-gmf_dashboard/domainGenerationModel=platform\:/resource/org.bangbangbang.cvl.model/model/CVLMetamodel.genmodel
-gmf_dashboard/domainModel=platform\:/resource/org.bangbangbang.cvl.model/model/CVLMetamodel.ecore
-gmf_dashboard/generationModel=platform\:/resource/org.bangbangbang.cvl.model/model/CVLSystemDef.gmfgen
-gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.bangbangbang.cvl.model/model/CVLSystemDef.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/org.bangbangbang.cvl.model/model/CVLSystemDef.gmfmap
-gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.bangbangbang.cvl.model/model/CVLSystemDef.gmftool

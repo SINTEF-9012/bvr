@@ -1,9 +1,0 @@
- [v] fikse en bug i constraints skriving
- [v] sørge for at ca-ting virker: graphml.xsd: Set the correct working dir
-
- [v] redigering av variable assignments
- [v] Implement deletion for resolutions
- [ ] validering av en fullstendig resolusjon med constraints
-
- [v] laging av fragment subst. og highlighting placement replacement
- [ ] lage eksempler
