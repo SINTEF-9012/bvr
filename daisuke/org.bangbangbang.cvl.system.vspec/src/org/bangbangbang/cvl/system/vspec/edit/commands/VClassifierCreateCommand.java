@@ -65,6 +65,9 @@ public class VClassifierCreateCommand extends EditElementCommand {
 
 		doConfigure(newElement, monitor, info);
 
+		newElement.setInstanceMultiplicity(CvlFactory.eINSTANCE
+				.createMultiplicityInterval());
+
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}

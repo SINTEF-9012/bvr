@@ -469,50 +469,6 @@ public class VClassifierEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT Create InstanceMultiplicity
-	 */
-	protected void createInstanceMultiplicity() {
-
-		String compartemntsSemanticHint = CVLMetamodelVisualIDRegistry
-				.getType(VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart.VISUAL_ID);
-
-		VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart compartment = (VClassifierVClassifierInstanceMultiplicityIntervalCompartmentEditPart) this
-				.getChildBySemanticHint(compartemntsSemanticHint);
-
-		IElementType type = CVLMetamodelElementTypes.MultiplicityInterval_3001;
-
-		CreateViewAndElementRequest.ViewAndElementDescriptor viewDescriptor = new CreateViewAndElementRequest.ViewAndElementDescriptor(
-				new CreateElementRequestAdapter(new CreateElementRequest(type)),
-				Node.class, ((IHintedType) type).getSemanticHint(), this
-						.getDiagramPreferencesHint());
-
-		CreateViewAndElementRequest req = new CreateViewAndElementRequest(
-				viewDescriptor);
-
-		CompoundCommand cmd = new CompoundCommand(
-				"Create Multiplicity in VClassifier");
-		cmd.add(compartment.getCommand(req));
-		this.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-
-		if (notification.getEventType() == Notification.ADD) {
-			if (((VClassifier) ((Node) this.getModel()).getElement())
-					.getInstanceMultiplicity() == null) {
-				createInstanceMultiplicity();
-
-			}
-		}
-		super.handleNotificationEvent(notification);
-
-	}
-
-	/**
 	 * @generated
 	 */
 	public class VClassifierFigure extends RectangleFigure {
