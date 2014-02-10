@@ -1,9 +1,11 @@
 package org.bangbangbang.cvl.system.vspec.custom.relation;
 
+import org.bangbangbang.cvl.Choice;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -22,15 +24,21 @@ public class RelationPropertyDescriptor extends PropertyDescriptor {
 		return new ExtendedDialogCellEditor(parent, getLabelProvider()) {
 			@Override
 			protected Object openDialogBox(Control cellEditorWindow) {
-
+				// Get Target Choice instance
+				Choice choice = null;
+				if (object instanceof Choice) {
+					choice = (Choice) object;
+				}
+				// Get uri
+				URI uri = EcoreUtil.getURI(choice).trimFragment();
+				
 				// Dialog creation
-				// ConstraintDialog dialog = new ConstraintDialog(PlatformUI
-				// .getWorkbench().getModalDialogShellProvider(),
-				// (OpaqueConstraint) object);
-				MessageDialog.openQuestion(PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getShell(), "Test",
-						"Is it ok?");
-				// dialog.setText((String) this.getValue());
+				RelationFormDialog dialog = new RelationFormDialog(PlatformUI
+						.getWorkbench().getActiveWorkbenchWindow().getShell());
+				dialog.setChoice(choice);
+				dialog.setURI(uri);
+				
+				dialog.open();
 
 				return null;
 			}

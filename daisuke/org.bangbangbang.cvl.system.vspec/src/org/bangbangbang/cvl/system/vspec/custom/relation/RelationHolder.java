@@ -2,6 +2,7 @@ package org.bangbangbang.cvl.system.vspec.custom.relation;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bangbangbang.cvl.VPackageable;
@@ -17,13 +18,21 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class RelationHolder {
 	public static RelationHolder self;
-	public static CVLReference model;
+	public static Map<URI, CVLReference> models;
 
 	private RelationHolder() {
-		self = new RelationHolder();
+		
 	}
-
-	public static void load(IPath filepath) {
+	private static void init(){
+		self = new RelationHolder();
+		models = new HashMap<URI, CVLReference>();
+	}
+	
+	public static void load(URI key, IPath filepath) {
+		if(self == null){
+			init();
+		}
+		
 		// Initialize the model
 		RelationPackage.eINSTANCE.eClass();
 
@@ -41,15 +50,21 @@ public class RelationHolder {
 				URI.createURI(filepath.toPortableString()), true);
 		// Get the first model element and cast it to the right type, in my
 		// example everything is hierarchical included in this first node
-		model = (CVLReference) resource.getContents().get(0);
+		models.put(key, (CVLReference) resource.getContents().get(0));
 	}
 
-	public static void createEmpty(VPackageable vp) {
-		model = RelationFactory.eINSTANCE.createCVLReference();
-		model.setCvl(vp);
+	public static void createEmpty(URI key, VPackageable vp) {
+		if(self == null){
+			init();
+		}
+		models.put(key, RelationFactory.eINSTANCE.createCVLReference());
+		models.get(key).setCvl(vp);
 	}
 
-	public static void save(IPath filepath) {
+	public static void save(URI key, IPath filepath) {
+		if(self == null){
+			init();
+		}
 		// Register the XMI resource factory for the .sim extension
 
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
@@ -64,7 +79,7 @@ public class RelationHolder {
 				.toPortableString()));
 		// Get the first model element and cast it to the right type, in my
 		// example everything is hierarchical included in this first node
-		resource.getContents().add(model);
+		resource.getContents().add(models.get(key));
 
 		// Now save the content.
 		try {
@@ -73,5 +88,12 @@ public class RelationHolder {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static CVLReference getModel(URI key) {
+		if(self == null){
+			init();
+		}
+		return models.get(key);
 	}
 }

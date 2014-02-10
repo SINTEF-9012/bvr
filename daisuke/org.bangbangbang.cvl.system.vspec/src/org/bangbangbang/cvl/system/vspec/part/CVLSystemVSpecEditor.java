@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -308,15 +309,17 @@ public class CVLSystemVSpecEditor extends DiagramDocumentEditor implements
 		if (input instanceof FileEditorInput) {
 			FileEditorInput fei = (FileEditorInput) input;
 			IPath p = fei.getFile().getFullPath();
+			URI key = URI.createPlatformResourceURI(p.toPortableString(), true);
+
 			p = p.removeFileExtension();
 			p = p.addFileExtension("cvlsystemrelation");
 			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
 					.getRoot();
 			relationFile = workspaceRoot.getFile(p);
 			if (relationFile.exists()) {
-				RelationHolder.load(p);
+				RelationHolder.load(key, p);
 			} else {
-				RelationHolder.createEmpty(getVInterface());
+				RelationHolder.createEmpty(key, getVInterface());
 			}
 		}
 	}
@@ -347,10 +350,12 @@ public class CVLSystemVSpecEditor extends DiagramDocumentEditor implements
 		if (input instanceof FileEditorInput) {
 			FileEditorInput fei = (FileEditorInput) input;
 			IPath p = fei.getFile().getFullPath();
+			URI key = URI.createPlatformResourceURI(p.toPortableString(), true);
+
 			p = p.removeFileExtension();
 			p = p.addFileExtension("cvlsystemrelation");
 
-			RelationHolder.save(p);
+			RelationHolder.save(key, p);
 		}
 	}
 
