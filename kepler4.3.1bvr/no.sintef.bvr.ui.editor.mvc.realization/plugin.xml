@@ -12,4 +12,44 @@
             name="BVR Realization Editor (MVC)">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=window">
+         <menu
+               label="BVR Realization">
+            <command
+                  commandId="no.sintef.bvr.ui.editor.mvc.realization.command3"
+                  style="push">
+            </command>
+            <command
+                  commandId="no.sintef.bvr.ui.editor.mvc.realization.command4"
+                  style="push">
+            </command>
+            <visibleWhen
+                  checkEnabled="true">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="no.sintef.bvr.ui.editor.eclipse.editors.BVRRealizationEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.CreatePlacementFragment"
+            id="no.sintef.bvr.ui.editor.mvc.realization.command3"
+            name="Create Placement Fragment">
+      </command>
+      <command
+            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.CreateReplacementFragment"
+            id="no.sintef.bvr.ui.editor.mvc.realization.command4"
+            name="Create Replacement Fragment">
+      </command>
+   </extension>
 </plugin>
