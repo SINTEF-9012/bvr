@@ -32,16 +32,16 @@ import com.google.common.collect.Lists;
 public class ExportModelSVG implements ActionListener {
 
 	JTabbedPane filePane;
+	private BVRView view;
+	private BVRModel model;
 	private static final String SVG_EXT = "." + SVGFilter.SVG_EXT;
 
-	public ExportModelSVG(JTabbedPane filePane) {
-		this.filePane = filePane;
+	public ExportModelSVG(BVRView view, BVRModel model) {
+		this.view = view;
+		this.model = model;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		int i = filePane.getSelectedIndex();
-		BVRView view = Context.eINSTANCE.getBvrViews().get(i);
-		BVRModel model = Context.eINSTANCE.getBvrModels().get(i);
 		
 		FileFilter[] filters = {new SVGFilter()};
 		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);

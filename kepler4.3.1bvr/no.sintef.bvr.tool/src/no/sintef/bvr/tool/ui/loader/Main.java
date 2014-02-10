@@ -75,13 +75,14 @@ public class Main {
 		
 		filemenu.add(new JSeparator());
 		
+		/*
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		filemenu.add(saveasImage);
 		saveasImage.addActionListener(new ExportModelImage(filePane));
 		JMenuItem saveasSVG = new JMenuItem("Export Diagram as SVG ...");
 		filemenu.add(saveasSVG);
 		saveasSVG.addActionListener(new ExportModelSVG(filePane));
-		
+		*/
 		menuBar.add(filemenu);
 
 		// VSpec

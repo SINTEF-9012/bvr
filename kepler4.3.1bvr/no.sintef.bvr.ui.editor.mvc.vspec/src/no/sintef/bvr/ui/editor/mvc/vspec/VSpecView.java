@@ -25,6 +25,8 @@ import no.sintef.bvr.tool.ui.command.AddConfigurableUnit;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
+import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
+import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
@@ -103,6 +105,8 @@ public class VSpecView extends BVRView {
 	}
 
 	private void loadBVRVSpecView(ConfigurableUnit cu, BVRUIKernel model) throws BVRModelException {
+		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, cu, this));
+		
 		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 		
 		for(VSpec v : cu.getOwnedVSpec()){

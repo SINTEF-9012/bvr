@@ -9,12 +9,18 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.internal.image.PNGFileFormat;
+
+import bvr.VSpecResolution;
 
 import com.google.common.collect.Lists;
 
@@ -25,21 +31,40 @@ import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 public class ExportModelImage implements ActionListener {
 
-	JTabbedPane filePane;
+	JLayeredPane view;
+	BVRModel model;
+	private EList<VSpecResolution> resolutions;
+	private JTabbedPane resPane;
+	
 	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
 
-	public ExportModelImage(JTabbedPane filePane) {
-		this.filePane = filePane;
+	public ExportModelImage(JLayeredPane cup, BVRModel model, EList<VSpecResolution> resolutions, JTabbedPane resPane) {
+		this.view = cup;
+		this.model = model;
+		this.resolutions = resolutions;
+		this.resPane = resPane;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		int i = filePane.getSelectedIndex();
-		BVRView view = Context.eINSTANCE.getBvrViews().get(i);
-		BVRModel model = Context.eINSTANCE.getBvrModels().get(i);
+		JLayeredPane x;
 		
+		if(resPane == null){
+			x = view;
+		}else{
+			EditableModelPanel draw = (EditableModelPanel) resPane.getSelectedComponent();
+			JScrollPane draw2 = (JScrollPane) draw.modelPanel;
+			x = (JLayeredPane) draw2.getViewport().getView();
+		}
+				
+		saveImg(x);
+	}
+
+	private void saveImg(JLayeredPane draw) {
 		FileFilter[] filters = {new PNGFilter()};
 		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);
 		
@@ -48,7 +73,7 @@ public class ExportModelImage implements ActionListener {
 			filechooser.setSelectedFile(new File(defualtName));
 		}
 		
-		int status = filechooser.showSaveDialog(filePane);
+		int status = filechooser.showSaveDialog(null);
 		if(status == JFileChooser.CANCEL_OPTION)
 			return;
 		
@@ -59,25 +84,25 @@ public class ExportModelImage implements ActionListener {
 			sf = new File(sf.getAbsolutePath() + PNG_EXT);
 		
 		if(sf.exists()){
-			int result = JOptionPane.showConfirmDialog(filePane, "File already exist, overwrite?", "alert", JOptionPane.YES_NO_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, "File already exist, overwrite?", "alert", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.NO_OPTION)
 				return;
 		}
 		
 		try {			
-			Dimension size = view.getKernel().getModelPanel().getSize();
+			Dimension size = draw.getSize();
 			BufferedImage bi = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
 			
 			final Graphics2D g2 = bi.createGraphics();
 
-			view.getKernel().getModelPanel().paintComponents(g2);
-			view.getKernel().getModelPanel().paint(g2);
+			draw.paintComponents(g2);
+			draw.paint(g2);
 			ImageIO.write(bi, "PNG", sf);
 			
 			Context.eINSTANCE.getConfig().saveLastLocation(sf.getAbsolutePath());
 		} catch (Exception ex) {
 			Context.eINSTANCE.logger.error("", ex);
-			StaticUICommands.showMessageErrorDialog(filePane, ex, "can not export a model");
+			StaticUICommands.showMessageErrorDialog(null, ex, "can not export a model");
 		}
 	}
 }
