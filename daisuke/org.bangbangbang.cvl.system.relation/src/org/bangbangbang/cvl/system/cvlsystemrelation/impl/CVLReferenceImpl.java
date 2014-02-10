@@ -3,24 +3,17 @@
 package org.bangbangbang.cvl.system.cvlsystemrelation.impl;
 
 import java.util.Collection;
-
 import org.bangbangbang.cvl.VPackageable;
-
 import org.bangbangbang.cvl.system.cvlsystemrelation.CVLReference;
-import org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation;
 import org.bangbangbang.cvl.system.cvlsystemrelation.RelationPackage;
-
+import org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -47,7 +40,7 @@ public class CVLReferenceImpl extends MinimalEObjectImpl.Container implements CV
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ChoiceRelation> relations;
+	protected EList<VSpecRelation> relations;
 
 	/**
 	 * The cached value of the '{@link #getCvl() <em>Cvl</em>}' reference.
@@ -83,9 +76,9 @@ public class CVLReferenceImpl extends MinimalEObjectImpl.Container implements CV
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ChoiceRelation> getRelations() {
+	public EList<VSpecRelation> getRelations() {
 		if (relations == null) {
-			relations = new EObjectContainmentEList<ChoiceRelation>(ChoiceRelation.class, this, RelationPackage.CVL_REFERENCE__RELATIONS);
+			relations = new EObjectContainmentEList<VSpecRelation>(VSpecRelation.class, this, RelationPackage.CVL_REFERENCE__RELATIONS);
 		}
 		return relations;
 	}
@@ -170,7 +163,7 @@ public class CVLReferenceImpl extends MinimalEObjectImpl.Container implements CV
 		switch (featureID) {
 			case RelationPackage.CVL_REFERENCE__RELATIONS:
 				getRelations().clear();
-				getRelations().addAll((Collection<? extends ChoiceRelation>)newValue);
+				getRelations().addAll((Collection<? extends VSpecRelation>)newValue);
 				return;
 			case RelationPackage.CVL_REFERENCE__CVL:
 				setCvl((VPackageable)newValue);

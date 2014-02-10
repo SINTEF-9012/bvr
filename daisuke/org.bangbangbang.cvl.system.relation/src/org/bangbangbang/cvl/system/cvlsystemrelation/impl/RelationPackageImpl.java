@@ -3,24 +3,21 @@
 package org.bangbangbang.cvl.system.cvlsystemrelation.impl;
 
 import org.bangbangbang.cvl.CvlPackage;
-
 import org.bangbangbang.cvl.system.cvlsystemrelation.AbstractChoiceReference;
 import org.bangbangbang.cvl.system.cvlsystemrelation.CVLReference;
 import org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceGroup;
 import org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceReference;
-import org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation;
 import org.bangbangbang.cvl.system.cvlsystemrelation.LogicalOperator;
 import org.bangbangbang.cvl.system.cvlsystemrelation.Quantifier;
 import org.bangbangbang.cvl.system.cvlsystemrelation.RelationFactory;
 import org.bangbangbang.cvl.system.cvlsystemrelation.RelationPackage;
 import org.bangbangbang.cvl.system.cvlsystemrelation.VClassifierReference;
-
+import org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -42,7 +39,7 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass choiceRelationEClass = null;
+	private EClass vSpecRelationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -182,8 +179,8 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChoiceRelation() {
-		return choiceRelationEClass;
+	public EClass getVSpecRelation() {
+		return vSpecRelationEClass;
 	}
 
 	/**
@@ -191,8 +188,8 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChoiceRelation_Context() {
-		return (EReference)choiceRelationEClass.getEStructuralFeatures().get(0);
+	public EReference getVSpecRelation_Context() {
+		return (EReference)vSpecRelationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -200,8 +197,8 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChoiceRelation_SystemChoice() {
-		return (EReference)choiceRelationEClass.getEStructuralFeatures().get(1);
+	public EReference getVSpecRelation_SystemVSpec() {
+		return (EReference)vSpecRelationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -209,8 +206,8 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChoiceRelation_References() {
-		return (EReference)choiceRelationEClass.getEStructuralFeatures().get(2);
+	public EReference getVSpecRelation_References() {
+		return (EReference)vSpecRelationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -353,10 +350,10 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 		createEReference(cvlReferenceEClass, CVL_REFERENCE__RELATIONS);
 		createEReference(cvlReferenceEClass, CVL_REFERENCE__CVL);
 
-		choiceRelationEClass = createEClass(CHOICE_RELATION);
-		createEReference(choiceRelationEClass, CHOICE_RELATION__CONTEXT);
-		createEReference(choiceRelationEClass, CHOICE_RELATION__SYSTEM_CHOICE);
-		createEReference(choiceRelationEClass, CHOICE_RELATION__REFERENCES);
+		vSpecRelationEClass = createEClass(VSPEC_RELATION);
+		createEReference(vSpecRelationEClass, VSPEC_RELATION__CONTEXT);
+		createEReference(vSpecRelationEClass, VSPEC_RELATION__SYSTEM_VSPEC);
+		createEReference(vSpecRelationEClass, VSPEC_RELATION__REFERENCES);
 
 		abstractChoiceReferenceEClass = createEClass(ABSTRACT_CHOICE_REFERENCE);
 
@@ -413,13 +410,13 @@ public class RelationPackageImpl extends EPackageImpl implements RelationPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(cvlReferenceEClass, CVLReference.class, "CVLReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCVLReference_Relations(), this.getChoiceRelation(), null, "relations", null, 0, -1, CVLReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCVLReference_Relations(), this.getVSpecRelation(), null, "relations", null, 0, -1, CVLReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCVLReference_Cvl(), theCvlPackage.getVPackageable(), null, "cvl", null, 0, 1, CVLReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(choiceRelationEClass, ChoiceRelation.class, "ChoiceRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChoiceRelation_Context(), theCvlPackage.getVSpec(), null, "context", null, 1, 1, ChoiceRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getChoiceRelation_SystemChoice(), theCvlPackage.getChoice(), null, "systemChoice", null, 1, 1, ChoiceRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getChoiceRelation_References(), this.getAbstractChoiceReference(), null, "references", null, 0, -1, ChoiceRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(vSpecRelationEClass, VSpecRelation.class, "VSpecRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVSpecRelation_Context(), theCvlPackage.getVSpec(), null, "context", null, 1, 1, VSpecRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVSpecRelation_SystemVSpec(), theCvlPackage.getVSpec(), null, "systemVSpec", null, 1, 1, VSpecRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVSpecRelation_References(), this.getAbstractChoiceReference(), null, "references", null, 0, -1, VSpecRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractChoiceReferenceEClass, AbstractChoiceReference.class, "AbstractChoiceReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

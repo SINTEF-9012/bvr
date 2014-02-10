@@ -104,14 +104,14 @@ public interface RelationPackage extends EPackage {
 	int CVL_REFERENCE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.impl.ChoiceRelationImpl <em>Choice Relation</em>}' class.
+	 * The meta object id for the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.impl.VSpecRelationImpl <em>VSpec Relation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.ChoiceRelationImpl
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.RelationPackageImpl#getChoiceRelation()
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.VSpecRelationImpl
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.RelationPackageImpl#getVSpecRelation()
 	 * @generated
 	 */
-	int CHOICE_RELATION = 1;
+	int VSPEC_RELATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -120,16 +120,16 @@ public interface RelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RELATION__CONTEXT = 0;
+	int VSPEC_RELATION__CONTEXT = 0;
 
 	/**
-	 * The feature id for the '<em><b>System Choice</b></em>' reference.
+	 * The feature id for the '<em><b>System VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RELATION__SYSTEM_CHOICE = 1;
+	int VSPEC_RELATION__SYSTEM_VSPEC = 1;
 
 	/**
 	 * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -138,25 +138,25 @@ public interface RelationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RELATION__REFERENCES = 2;
+	int VSPEC_RELATION__REFERENCES = 2;
 
 	/**
-	 * The number of structural features of the '<em>Choice Relation</em>' class.
+	 * The number of structural features of the '<em>VSpec Relation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RELATION_FEATURE_COUNT = 3;
+	int VSPEC_RELATION_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Choice Relation</em>' class.
+	 * The number of operations of the '<em>VSpec Relation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RELATION_OPERATION_COUNT = 0;
+	int VSPEC_RELATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.impl.AbstractChoiceReferenceImpl <em>Abstract Choice Reference</em>}' class.
@@ -378,47 +378,47 @@ public interface RelationPackage extends EPackage {
 	EReference getCVLReference_Cvl();
 
 	/**
-	 * Returns the meta object for class '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation <em>Choice Relation</em>}'.
+	 * Returns the meta object for class '{@link org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation <em>VSpec Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Choice Relation</em>'.
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation
+	 * @return the meta object for class '<em>VSpec Relation</em>'.
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation
 	 * @generated
 	 */
-	EClass getChoiceRelation();
+	EClass getVSpecRelation();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getContext <em>Context</em>}'.
+	 * Returns the meta object for the reference '{@link org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Context</em>'.
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getContext()
-	 * @see #getChoiceRelation()
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation#getContext()
+	 * @see #getVSpecRelation()
 	 * @generated
 	 */
-	EReference getChoiceRelation_Context();
+	EReference getVSpecRelation_Context();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getSystemChoice <em>System Choice</em>}'.
+	 * Returns the meta object for the reference '{@link org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation#getSystemVSpec <em>System VSpec</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>System Choice</em>'.
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getSystemChoice()
-	 * @see #getChoiceRelation()
+	 * @return the meta object for the reference '<em>System VSpec</em>'.
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation#getSystemVSpec()
+	 * @see #getVSpecRelation()
 	 * @generated
 	 */
-	EReference getChoiceRelation_SystemChoice();
+	EReference getVSpecRelation_SystemVSpec();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getReferences <em>References</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation#getReferences <em>References</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>References</em>'.
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getReferences()
-	 * @see #getChoiceRelation()
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation#getReferences()
+	 * @see #getVSpecRelation()
 	 * @generated
 	 */
-	EReference getChoiceRelation_References();
+	EReference getVSpecRelation_References();
 
 	/**
 	 * Returns the meta object for class '{@link org.bangbangbang.cvl.system.cvlsystemrelation.AbstractChoiceReference <em>Abstract Choice Reference</em>}'.
@@ -596,14 +596,14 @@ public interface RelationPackage extends EPackage {
 		EReference CVL_REFERENCE__CVL = eINSTANCE.getCVLReference_Cvl();
 
 		/**
-		 * The meta object literal for the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.impl.ChoiceRelationImpl <em>Choice Relation</em>}' class.
+		 * The meta object literal for the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.impl.VSpecRelationImpl <em>VSpec Relation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.ChoiceRelationImpl
-		 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.RelationPackageImpl#getChoiceRelation()
+		 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.VSpecRelationImpl
+		 * @see org.bangbangbang.cvl.system.cvlsystemrelation.impl.RelationPackageImpl#getVSpecRelation()
 		 * @generated
 		 */
-		EClass CHOICE_RELATION = eINSTANCE.getChoiceRelation();
+		EClass VSPEC_RELATION = eINSTANCE.getVSpecRelation();
 
 		/**
 		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
@@ -611,15 +611,15 @@ public interface RelationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHOICE_RELATION__CONTEXT = eINSTANCE.getChoiceRelation_Context();
+		EReference VSPEC_RELATION__CONTEXT = eINSTANCE.getVSpecRelation_Context();
 
 		/**
-		 * The meta object literal for the '<em><b>System Choice</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>System VSpec</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHOICE_RELATION__SYSTEM_CHOICE = eINSTANCE.getChoiceRelation_SystemChoice();
+		EReference VSPEC_RELATION__SYSTEM_VSPEC = eINSTANCE.getVSpecRelation_SystemVSpec();
 
 		/**
 		 * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
@@ -627,7 +627,7 @@ public interface RelationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHOICE_RELATION__REFERENCES = eINSTANCE.getChoiceRelation_References();
+		EReference VSPEC_RELATION__REFERENCES = eINSTANCE.getVSpecRelation_References();
 
 		/**
 		 * The meta object literal for the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.impl.AbstractChoiceReferenceImpl <em>Abstract Choice Reference</em>}' class.

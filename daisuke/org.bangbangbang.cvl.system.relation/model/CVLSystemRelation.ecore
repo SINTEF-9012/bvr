@@ -3,14 +3,14 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cvlsystemrelation" nsURI="http://cvlsystemrelation/1.0" nsPrefix="cvlsystemrelation">
   <eClassifiers xsi:type="ecore:EClass" name="CVLReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
-        eType="#//ChoiceRelation" containment="true"/>
+        eType="#//VSpecRelation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cvl" eType="ecore:EClass ../../org.bangbangbang.cvl.model/model/CVLMetamodel.ecore#//VPackageable"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChoiceRelation">
+  <eClassifiers xsi:type="ecore:EClass" name="VSpecRelation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="ecore:EClass ../../org.bangbangbang.cvl.model/model/CVLMetamodel.ecore#//VSpec"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="systemChoice" lowerBound="1"
-        eType="ecore:EClass ../../org.bangbangbang.cvl.model/model/CVLMetamodel.ecore#//Choice"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="systemVSpec" lowerBound="1"
+        eType="ecore:EClass ../../org.bangbangbang.cvl.model/model/CVLMetamodel.ecore#//VSpec"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
         eType="#//AbstractChoiceReference" containment="true"/>
   </eClassifiers>

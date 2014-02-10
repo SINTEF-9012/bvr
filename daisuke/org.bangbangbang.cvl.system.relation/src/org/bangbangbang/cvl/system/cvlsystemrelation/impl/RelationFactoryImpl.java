@@ -58,7 +58,7 @@ public class RelationFactoryImpl extends EFactoryImpl implements RelationFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case RelationPackage.CVL_REFERENCE: return createCVLReference();
-			case RelationPackage.CHOICE_RELATION: return createChoiceRelation();
+			case RelationPackage.VSPEC_RELATION: return createVSpecRelation();
 			case RelationPackage.CHOICE_REFERENCE: return createChoiceReference();
 			case RelationPackage.CHOICE_GROUP: return createChoiceGroup();
 			case RelationPackage.VCLASSIFIER_REFERENCE: return createVClassifierReference();
@@ -116,9 +116,9 @@ public class RelationFactoryImpl extends EFactoryImpl implements RelationFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChoiceRelation createChoiceRelation() {
-		ChoiceRelationImpl choiceRelation = new ChoiceRelationImpl();
-		return choiceRelation;
+	public VSpecRelation createVSpecRelation() {
+		VSpecRelationImpl vSpecRelation = new VSpecRelationImpl();
+		return vSpecRelation;
 	}
 
 	/**

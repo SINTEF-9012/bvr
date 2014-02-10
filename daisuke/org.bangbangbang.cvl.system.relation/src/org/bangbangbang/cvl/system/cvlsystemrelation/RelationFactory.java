@@ -31,13 +31,13 @@ public interface RelationFactory extends EFactory {
 	CVLReference createCVLReference();
 
 	/**
-	 * Returns a new object of class '<em>Choice Relation</em>'.
+	 * Returns a new object of class '<em>VSpec Relation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Choice Relation</em>'.
+	 * @return a new object of class '<em>VSpec Relation</em>'.
 	 * @generated
 	 */
-	ChoiceRelation createChoiceRelation();
+	VSpecRelation createVSpecRelation();
 
 	/**
 	 * Returns a new object of class '<em>Choice Reference</em>'.

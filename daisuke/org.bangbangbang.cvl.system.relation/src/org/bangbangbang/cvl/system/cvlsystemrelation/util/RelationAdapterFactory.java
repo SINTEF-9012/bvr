@@ -72,8 +72,8 @@ public class RelationAdapterFactory extends AdapterFactoryImpl {
 				return createCVLReferenceAdapter();
 			}
 			@Override
-			public Adapter caseChoiceRelation(ChoiceRelation object) {
-				return createChoiceRelationAdapter();
+			public Adapter caseVSpecRelation(VSpecRelation object) {
+				return createVSpecRelationAdapter();
 			}
 			@Override
 			public Adapter caseAbstractChoiceReference(AbstractChoiceReference object) {
@@ -126,16 +126,16 @@ public class RelationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation <em>Choice Relation</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation <em>VSpec Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation
 	 * @generated
 	 */
-	public Adapter createChoiceRelationAdapter() {
+	public Adapter createVSpecRelationAdapter() {
 		return null;
 	}
 

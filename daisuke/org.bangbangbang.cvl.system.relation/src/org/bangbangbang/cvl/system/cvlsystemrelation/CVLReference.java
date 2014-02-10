@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface CVLReference extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation}.
+	 * The list contents are of type {@link org.bangbangbang.cvl.system.cvlsystemrelation.VSpecRelation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
@@ -40,7 +40,7 @@ public interface CVLReference extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ChoiceRelation> getRelations();
+	EList<VSpecRelation> getRelations();
 
 	/**
 	 * Returns the value of the '<em><b>Cvl</b></em>' reference.

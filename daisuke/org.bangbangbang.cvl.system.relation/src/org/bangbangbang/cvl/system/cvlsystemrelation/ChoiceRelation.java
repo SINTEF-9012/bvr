@@ -2,11 +2,8 @@
  */
 package org.bangbangbang.cvl.system.cvlsystemrelation;
 
-import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.VSpec;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -18,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getContext <em>Context</em>}</li>
- *   <li>{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getSystemChoice <em>System Choice</em>}</li>
+ *   <li>{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getSystemVSpec <em>System VSpec</em>}</li>
  *   <li>{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getReferences <em>References</em>}</li>
  * </ul>
  * </p>
@@ -55,30 +52,30 @@ public interface ChoiceRelation extends EObject {
 	void setContext(VSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>System Choice</b></em>' reference.
+	 * Returns the value of the '<em><b>System VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>System Choice</em>' reference isn't clear,
+	 * If the meaning of the '<em>System VSpec</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>System Choice</em>' reference.
-	 * @see #setSystemChoice(Choice)
-	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.RelationPackage#getChoiceRelation_SystemChoice()
+	 * @return the value of the '<em>System VSpec</em>' reference.
+	 * @see #setSystemVSpec(VSpec)
+	 * @see org.bangbangbang.cvl.system.cvlsystemrelation.RelationPackage#getChoiceRelation_SystemVSpec()
 	 * @model required="true"
 	 * @generated
 	 */
-	Choice getSystemChoice();
+	VSpec getSystemVSpec();
 
 	/**
-	 * Sets the value of the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getSystemChoice <em>System Choice</em>}' reference.
+	 * Sets the value of the '{@link org.bangbangbang.cvl.system.cvlsystemrelation.ChoiceRelation#getSystemVSpec <em>System VSpec</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>System Choice</em>' reference.
-	 * @see #getSystemChoice()
+	 * @param value the new value of the '<em>System VSpec</em>' reference.
+	 * @see #getSystemVSpec()
 	 * @generated
 	 */
-	void setSystemChoice(Choice value);
+	void setSystemVSpec(VSpec value);
 
 	/**
 	 * Returns the value of the '<em><b>References</b></em>' containment reference list.

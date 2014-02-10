@@ -72,9 +72,9 @@ public class RelationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RelationPackage.CHOICE_RELATION: {
-				ChoiceRelation choiceRelation = (ChoiceRelation)theEObject;
-				T result = caseChoiceRelation(choiceRelation);
+			case RelationPackage.VSPEC_RELATION: {
+				VSpecRelation vSpecRelation = (VSpecRelation)theEObject;
+				T result = caseVSpecRelation(vSpecRelation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -124,17 +124,17 @@ public class RelationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Choice Relation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>VSpec Relation</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Choice Relation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>VSpec Relation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChoiceRelation(ChoiceRelation object) {
+	public T caseVSpecRelation(VSpecRelation object) {
 		return null;
 	}
 
