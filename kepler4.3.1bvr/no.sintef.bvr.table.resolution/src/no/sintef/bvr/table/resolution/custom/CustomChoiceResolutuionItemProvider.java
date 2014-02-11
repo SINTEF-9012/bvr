@@ -56,12 +56,8 @@ public class CustomChoiceResolutuionItemProvider extends
 		}
 		if (((ChoiceResolutuion) object).getName() != null
 				&& ((ChoiceResolutuion) object).getName().length() != 0) {
-			label = ((ChoiceResolutuion) object).getName()
-					+ " : "
-					+ getString("_UI_Choice_type")
-					+ " "
-					+ ((ChoiceResolutuion) object).getResolvedChoice()
-							.getName();
+			label = ((ChoiceResolutuion) object).getName() + " : "
+					+ getString("_UI_Choice_type") + " " + label;
 			return label;
 		} else {
 			return label == null || label.length() == 0 ? getString("_UI_Choice_type")
