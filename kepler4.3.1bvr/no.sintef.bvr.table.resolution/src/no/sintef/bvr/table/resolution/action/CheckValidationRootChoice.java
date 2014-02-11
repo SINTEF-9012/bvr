@@ -191,8 +191,15 @@ public class CheckValidationRootChoice implements IHandler {
 					&& entry.getKey().getInstanceMultiplicity() instanceof MultiplicityInterval) {
 				MultiplicityInterval interval = entry.getKey()
 						.getInstanceMultiplicity();
-				if (interval.getLower() > entry.getValue()
-						|| interval.getUpper() < entry.getValue()) {
+				int lower = interval.getLower();
+				int upper = interval.getUpper();
+				if (lower == -1) {
+					lower = Integer.MIN_VALUE;
+				}
+				if (upper == -1) {
+					upper = Integer.MAX_VALUE;
+				}
+				if (lower > entry.getValue() || upper < entry.getValue()) {
 					// Violation of InstanceMultiplicity with target and
 					// entry.getKey()
 					result.add(new ViolationEntry(
@@ -249,7 +256,15 @@ public class CheckValidationRootChoice implements IHandler {
 					count++;
 				}
 			}
-			if (interval.getLower() > count || interval.getUpper() < count) {
+			int lower = interval.getLower();
+			int upper = interval.getUpper();
+			if (lower == -1) {
+				lower = Integer.MIN_VALUE;
+			}
+			if (upper == -1) {
+				upper = Integer.MAX_VALUE;
+			}
+			if (lower > count || upper < count) {
 				// Violation
 				result.add(new ViolationEntry(" GroupMultiplicity Violation ["
 						+ String.valueOf(interval.getLower()) + ".."

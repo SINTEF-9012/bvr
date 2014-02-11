@@ -63,7 +63,7 @@ public final class CheckBoxNotifyChangedListener implements
 											.getResolvedChoice() != null) {
 								resolved = ((ChoiceResolutuion) element)
 										.getResolvedChoice();
-							} else {
+							} else if (element instanceof ChoiceResolutuion) {
 								resolved = ((ChoiceResolutuion) element)
 										.getResolvedVSpec();
 							}
