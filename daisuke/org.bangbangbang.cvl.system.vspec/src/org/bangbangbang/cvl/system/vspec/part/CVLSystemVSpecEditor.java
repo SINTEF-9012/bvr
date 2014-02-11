@@ -309,6 +309,9 @@ public class CVLSystemVSpecEditor extends DiagramDocumentEditor implements
 		if (input instanceof FileEditorInput) {
 			FileEditorInput fei = (FileEditorInput) input;
 			IPath p = fei.getFile().getFullPath();
+			
+			p = p.removeFileExtension();
+			p = p.addFileExtension("cvl");
 			URI key = URI.createPlatformResourceURI(p.toPortableString(), true);
 
 			p = p.removeFileExtension();
@@ -350,6 +353,10 @@ public class CVLSystemVSpecEditor extends DiagramDocumentEditor implements
 		if (input instanceof FileEditorInput) {
 			FileEditorInput fei = (FileEditorInput) input;
 			IPath p = fei.getFile().getFullPath();
+
+			p = p.removeFileExtension();
+			p = p.addFileExtension("cvl");
+
 			URI key = URI.createPlatformResourceURI(p.toPortableString(), true);
 
 			p = p.removeFileExtension();
