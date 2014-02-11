@@ -15,7 +15,18 @@ Import-Package: bvr,
  splar.core.constraints,
  splar.core.fm,
  splar.core.heuristics
-Export-Package: no.sintef.ict.splcatool
+Export-Package: no.sintef.ict.splcatool,
+ org.apache.commons.math,
+ org.apache.commons.math.util
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/commons-math-2.2.jar,
+ lib/apoi/dom4j-1.6.1.jar,
+ lib/apoi/poi-3.7-20101029.jar,
+ lib/apoi/poi-ooxml-3.7-20101029.jar,
+ lib/apoi/poi-ooxml-schemas-3.7-20101029.jar,
+ lib/apoi/xmlbeans-2.3.0.jar,
+ lib/annotations.jar,
+ lib/jgrapht-jdk1.6.jar,
+ lib/jsr305.jar
 Bundle-Vendor: SINTEF

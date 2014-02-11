@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import no.sintef.bvr.table.resolution.editors.BVRMetamodelEditorPlugin;
 import no.sintef.bvr.table.resolution.editors.BvrResolutionEditor;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -38,15 +39,16 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ListDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
-import bvr.BvrPackage;
 import bvr.MultiplicityInterval;
 import bvr.OpaqueConstraint;
 import bvr.VClassifier;
 import bvr.VInstance;
+import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
 
@@ -189,8 +191,15 @@ public class CheckValidationRootChoice implements IHandler {
 					&& entry.getKey().getInstanceMultiplicity() instanceof MultiplicityInterval) {
 				MultiplicityInterval interval = entry.getKey()
 						.getInstanceMultiplicity();
-				if (interval.getLower() > entry.getValue()
-						|| interval.getUpper() < entry.getValue()) {
+				int lower = interval.getLower();
+				int upper = interval.getUpper();
+				if (lower == -1) {
+					lower = Integer.MIN_VALUE;
+				}
+				if (upper == -1) {
+					upper = Integer.MAX_VALUE;
+				}
+				if (lower > entry.getValue() || upper < entry.getValue()) {
 					// Violation of InstanceMultiplicity with target and
 					// entry.getKey()
 					result.add(new ViolationEntry(
@@ -210,17 +219,31 @@ public class CheckValidationRootChoice implements IHandler {
 
 	private static void checkGroupMultiplicity(ChoiceResolutuion root,
 			List<ViolationEntry> result, VSpecResolution target) {
-		if ((target instanceof ChoiceResolutuion && ((ChoiceResolutuion) target)
-				.getResolvedChoice().getGroupMultiplicity() != null)
-				|| (target instanceof VInstance && ((VInstance) target)
-						.getType().getGroupMultiplicity() != null)) {
+		VSpec resolved = null;
+		if (target instanceof ChoiceResolutuion
+				&& ((ChoiceResolutuion) target).getResolvedChoice() != null) {
+			resolved = ((ChoiceResolutuion) target).getResolvedChoice();
+		} else if (target instanceof VInstance
+				&& ((VInstance) target).getType() != null) {
+			resolved = ((VInstance) target).getType();
+		} else {
+			resolved = target.getResolvedVSpec();
+		}
+		if (resolved == null) {
+			BVRMetamodelEditorPlugin.INSTANCE
+					.log("Resolved vspec is not exist.");
+			return;
+		}
+
+		if ((target instanceof ChoiceResolutuion && resolved
+				.getGroupMultiplicity() != null)
+				|| (target instanceof VInstance && resolved
+						.getGroupMultiplicity() != null)) {
 			MultiplicityInterval interval = null;
 			if (target instanceof ChoiceResolutuion) {
-				interval = ((ChoiceResolutuion) target).getResolvedChoice()
-						.getGroupMultiplicity();
+				interval = resolved.getGroupMultiplicity();
 			} else if (target instanceof VInstance) {
-				interval = ((VInstance) target).getType()
-						.getGroupMultiplicity();
+				interval = resolved.getGroupMultiplicity();
 			} else {
 				assert (false);
 			}
@@ -233,7 +256,15 @@ public class CheckValidationRootChoice implements IHandler {
 					count++;
 				}
 			}
-			if (interval.getLower() > count || interval.getUpper() < count) {
+			int lower = interval.getLower();
+			int upper = interval.getUpper();
+			if (lower == -1) {
+				lower = Integer.MIN_VALUE;
+			}
+			if (upper == -1) {
+				upper = Integer.MAX_VALUE;
+			}
+			if (lower > count || upper < count) {
 				// Violation
 				result.add(new ViolationEntry(" GroupMultiplicity Violation ["
 						+ String.valueOf(interval.getLower()) + ".."
@@ -286,7 +317,7 @@ public class CheckValidationRootChoice implements IHandler {
 				} else {
 					helper.setContext(BvrPackage.Literals.VSPEC_RESOLUTION);
 				}
-				
+
 				invariant = helper.createQuery(((OpaqueConstraint) constraint)
 						.getConstraint());
 				if (!ocl.check(target, invariant)) {

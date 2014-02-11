@@ -11,8 +11,10 @@ import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.swt.widgets.Control;
 
 import bvr.BvrPackage;
+import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
+import bvr.VSpec;
 import bvr.VSpecResolution;
 
 /**
@@ -55,9 +57,18 @@ public final class CheckBoxNotifyChangedListener implements
 								.getNotifier()).getChild().iterator(); iterator
 								.hasNext();) {
 							VSpecResolution element = iterator.next();
+							VSpec resolved = null;
 							if (element instanceof ChoiceResolutuion
 									&& ((ChoiceResolutuion) element)
-											.getResolvedChoice()
+											.getResolvedChoice() != null) {
+								resolved = ((ChoiceResolutuion) element)
+										.getResolvedChoice();
+							} else if (element instanceof ChoiceResolutuion) {
+								resolved = ((ChoiceResolutuion) element)
+										.getResolvedVSpec();
+							}
+							if (element instanceof ChoiceResolutuion
+									&& ((Choice) resolved)
 											.isIsImpliedByParent()) {
 								if (((ChoiceResolutuion) notification
 										.getNotifier()).isDecision() != ((ChoiceResolutuion) element)
