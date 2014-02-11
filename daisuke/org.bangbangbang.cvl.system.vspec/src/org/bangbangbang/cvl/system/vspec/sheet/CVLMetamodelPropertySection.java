@@ -1,8 +1,10 @@
 package org.bangbangbang.cvl.system.vspec.sheet;
 
 import org.bangbangbang.cvl.Choice;
+import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.system.vspec.custom.property.CustomChoiceItemProvider;
 import org.bangbangbang.cvl.system.vspec.custom.property.CustomPropertySource;
+import org.bangbangbang.cvl.system.vspec.custom.property.CustomVClassifierItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.gmf.tooling.runtime.sheet.DefaultPropertySection;
@@ -34,11 +36,13 @@ public class CVLMetamodelPropertySection extends DefaultPropertySection
 		AdapterFactory af = getAdapterFactory(object);
 		IItemPropertySource ips = null;
 		if (af != null) {
-			if(object instanceof Choice){
+			if (object instanceof Choice) {
 				ips = new CustomChoiceItemProvider(af);
-			} else{
-			ips = (IItemPropertySource) af.adapt(object,
-					IItemPropertySource.class);
+			} else if (object instanceof VClassifier) {
+				ips = new CustomVClassifierItemProvider(af);
+			} else {
+				ips = (IItemPropertySource) af.adapt(object,
+						IItemPropertySource.class);
 			}
 		}
 		if (object != null && ips != null) {

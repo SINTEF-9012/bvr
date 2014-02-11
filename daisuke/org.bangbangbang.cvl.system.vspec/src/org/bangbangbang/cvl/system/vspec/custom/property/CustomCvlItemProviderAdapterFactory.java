@@ -29,4 +29,28 @@ public class CustomCvlItemProviderAdapterFactory extends
 
 		return choiceItemProvider;
 	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link cvl.ChoiceResolutuion} instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	protected CustomVClassifierItemProvider vclasiffierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link cvl.ChoiceResolutuion}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public Adapter createVClassifierAdapter() {
+		if (vclasiffierItemProvider == null) {
+			vclasiffierItemProvider = new CustomVClassifierItemProvider(this);
+		}
+
+		return vclasiffierItemProvider;
+	}
 }

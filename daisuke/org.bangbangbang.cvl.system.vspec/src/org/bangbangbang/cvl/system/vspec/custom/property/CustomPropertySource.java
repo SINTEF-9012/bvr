@@ -3,10 +3,12 @@ package org.bangbangbang.cvl.system.vspec.custom.property;
 import org.bangbangbang.cvl.Choice;
 import org.bangbangbang.cvl.ConfigurableUnit;
 import org.bangbangbang.cvl.CvlPackage;
+import org.bangbangbang.cvl.VClassifier;
 import org.bangbangbang.cvl.VInterface;
 import org.bangbangbang.cvl.VPackageable;
 import org.bangbangbang.cvl.diagram.custom.ocl.OCLCustomUtil;
 import org.bangbangbang.cvl.diagram.custom.property.ConstraintPropertyDescriptor;
+import org.bangbangbang.cvl.system.vspec.custom.relation.ContextPropertyDescriptor;
 import org.bangbangbang.cvl.system.vspec.custom.relation.RelationPropertyDescriptor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -40,6 +42,13 @@ public class CustomPropertySource extends PropertySource {
 		} else if (object instanceof Choice) {
 			if (feature == CvlPackage.Literals.INTEGER_LITERAL_EXP__INTEGER) {
 				return new RelationPropertyDescriptor(object,
+						itemPropertyDescriptor);
+			} else {
+				return super.createPropertyDescriptor(itemPropertyDescriptor);
+			}
+		} else if (object instanceof VClassifier) {
+			if (feature == CvlPackage.Literals.INTEGER_LITERAL_EXP__INTEGER) {
+				return new ContextPropertyDescriptor(object,
 						itemPropertyDescriptor);
 			} else {
 				return super.createPropertyDescriptor(itemPropertyDescriptor);

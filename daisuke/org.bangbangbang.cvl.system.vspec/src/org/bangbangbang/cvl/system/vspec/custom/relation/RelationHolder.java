@@ -17,22 +17,23 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class RelationHolder {
-	public static RelationHolder self;
-	public static Map<URI, CVLReference> models;
+	private static RelationHolder self;
+	private static Map<URI, CVLReference> models;
 
 	private RelationHolder() {
-		
+
 	}
-	private static void init(){
+
+	private static void init() {
 		self = new RelationHolder();
 		models = new HashMap<URI, CVLReference>();
 	}
-	
+
 	public static void load(URI key, IPath filepath) {
-		if(self == null){
+		if (self == null) {
 			init();
 		}
-		
+
 		// Initialize the model
 		RelationPackage.eINSTANCE.eClass();
 
@@ -54,7 +55,7 @@ public class RelationHolder {
 	}
 
 	public static void createEmpty(URI key, VPackageable vp) {
-		if(self == null){
+		if (self == null) {
 			init();
 		}
 		models.put(key, RelationFactory.eINSTANCE.createCVLReference());
@@ -62,7 +63,7 @@ public class RelationHolder {
 	}
 
 	public static void save(URI key, IPath filepath) {
-		if(self == null){
+		if (self == null) {
 			init();
 		}
 		// Register the XMI resource factory for the .sim extension
@@ -91,7 +92,7 @@ public class RelationHolder {
 	}
 
 	public static CVLReference getModel(URI key) {
-		if(self == null){
+		if (self == null) {
 			init();
 		}
 		return models.get(key);
