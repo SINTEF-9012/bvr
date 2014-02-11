@@ -19,6 +19,8 @@ import no.sintef.bvr.tool.ui.command.DelResEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.ExecuteResolutionEvent;
+import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
+import no.sintef.bvr.tool.ui.command.event.ExportModelSVG;
 import no.sintef.bvr.tool.ui.command.event.NewResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
@@ -38,15 +40,15 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class VSpecResDropDownListener extends MouseAdapter {
-	private VSpecResolution v;
 	private BVRView bvrView;
 	private ConfigurableUnit cu;
 	private BVRModel m;
+	private JTabbedPane resPane;
 
-	public VSpecResDropDownListener(BVRModel m, ConfigurableUnit cu, BVRView bvrView) {
+	public VSpecResDropDownListener(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane) {
 		this.m = m;
 		this.cu = cu;
-		this.v = v;
+		this.resPane = resPane;
 		this.bvrView = bvrView;
 	}
 
@@ -61,7 +63,7 @@ public class VSpecResDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	VSpecResDropdown menu = new VSpecResDropdown(m, cu, v, bvrView);
+    	VSpecResDropdown menu = new VSpecResDropdown(m, cu, bvrView, resPane);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
@@ -69,7 +71,7 @@ public class VSpecResDropDownListener extends MouseAdapter {
 class VSpecResDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecResDropdown(BVRModel m, ConfigurableUnit cu, VSpecResolution v, BVRView bvrView){
+    public VSpecResDropdown(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane){
     	/*JMenuItem del = new JMenuItem("delete");
     	del.addActionListener(new DelResEvent(cu, v, bvrView));
 		add(del);
@@ -129,6 +131,16 @@ class VSpecResDropdown extends JPopupMenu {
 			add(new JSeparator());
 			add(camenu);
 		}
+		
+		add(new JSeparator());
+		
+		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
+		add(saveasImage);
+		saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
+		/*JMenuItem saveasSVG = new JMenuItem("Export Diagram as SVG ...");
+		add(saveasSVG);
+		saveasSVG.addActionListener(new ExportModelSVG(bvrView, m));
+		*/
 		
 		/* TODO
 		add(new JSeparator());

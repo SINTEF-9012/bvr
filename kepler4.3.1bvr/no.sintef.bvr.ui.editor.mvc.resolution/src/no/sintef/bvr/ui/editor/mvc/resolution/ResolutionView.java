@@ -207,7 +207,7 @@ public class ResolutionView extends BVRView{
 	}
 
 	private void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException{
-		resPane.addMouseListener(new VSpecResDropDownListener(m, cu, this));
+		resPane.addMouseListener(new VSpecResDropDownListener(m, cu, this, resPane));
 		
 		if(cu.getOwnedVSpecResolution().size() == 0) return;
 		

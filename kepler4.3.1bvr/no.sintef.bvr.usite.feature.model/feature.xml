@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="no.sintef.bvr.usite.feature.model"
+      label="BVR Model"
+      version="1.0.0.qualifier"
+      provider-name="SINTEF"
+      license-feature="no.sintef.bvr.usite.feature.splcatool"
+      license-feature-version="1.0.0.qualifier">
+
+   <description url="http://modelbased.net/">
+      [BVR model and default editors]
+   </description>
+
+   <copyright url="http://modelbased.net/">
+      [Copyright (c) 2014 SINTEF.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+Contributors:
+SINTEF - initial API and implementation]
+   </copyright>
+
+   <license url="http://modelbased.net/">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="no.sintef.bvr.model"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="no.sintef.bvr.model.edit"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="no.sintef.bvr.model"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.model.edit"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.model.editor"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+</feature>

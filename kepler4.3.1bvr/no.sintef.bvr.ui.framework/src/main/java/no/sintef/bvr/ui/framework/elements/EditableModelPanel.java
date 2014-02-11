@@ -56,7 +56,7 @@ public class EditableModelPanel extends JLayeredPane {
 
 	private JPanel propertiesPanel = null;
     private JButton closeProperties = new JButton("Close");
-    private JComponent modelPanel = null;
+    public JComponent modelPanel = null;
 
     public EditableModelPanel(JComponent _modelPanel) {
     	this.setBackground(Color.WHITE);    	

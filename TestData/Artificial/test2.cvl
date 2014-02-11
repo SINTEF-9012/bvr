@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<cvl:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cvl="http:///cvl.ecore" name="Configurable Unit 1">
-  <ownedVSpec xsi:type="cvl:Choice" name="Choice1"/>
-  <ownedVSpec xsi:type="cvl:Choice" name="Choice1"/>
-  <ownedVSpecResolution xsi:type="cvl:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" resolvedChoice="//@ownedVSpec.0" decision="true"/>
-</cvl:ConfigurableUnit>
