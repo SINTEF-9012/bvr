@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JApplet;
 
-import no.sintef.bvr.ui.editor.BVREditorMVC;
+import no.sintef.bvr.ui.editor.common.BVREditorMVC;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 
 import org.eclipse.core.resources.IResourceChangeListener;

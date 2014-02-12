@@ -1,4 +1,4 @@
-package no.sintef.bvr.ui.editor;
+package no.sintef.bvr.ui.editor.common;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

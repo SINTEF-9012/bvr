@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: BVR :: Eclipse Editor Common
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.common;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: no.sintef.bvr.ui.editor.Activator
+Bundle-Activator: no.sintef.bvr.ui.editor.common.Activator
 Bundle-Vendor: SINTEF
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text,
@@ -25,4 +25,4 @@ Import-Package: no.sintef.bvr.tool.ui.loader,
  org.eclipse.ui.part,
  org.eclipse.ui.plugin
 Bundle-ClassPath: .
-Export-Package: no.sintef.bvr.ui.editor
+Export-Package: no.sintef.bvr.ui.editor.common

@@ -14,8 +14,10 @@ abstract public class BVRView {
 	int choiceCount = 1;
 	abstract public void notifyResolutionViewUpdate() ;
 	abstract  public void notifyVspecViewUpdate();
-	abstract public void notifyRelalizationViewReset() ;
-	abstract public void notifyAllViews() ;
+	abstract public void notifyRelalizationViewReset();
+	abstract public void notifyAllViews();
 	abstract public void setMaximized(Object v);
 	abstract public void setMinimized(Object v) ;
+	
+	//abstract public void refresh();
 }

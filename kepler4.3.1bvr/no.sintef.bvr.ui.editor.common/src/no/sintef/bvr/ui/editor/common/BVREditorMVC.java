@@ -1,4 +1,4 @@
-package no.sintef.bvr.ui.editor;
+package no.sintef.bvr.ui.editor.common;
 
 import java.awt.Frame;
 import java.io.File;
@@ -29,7 +29,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener2;
-import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;

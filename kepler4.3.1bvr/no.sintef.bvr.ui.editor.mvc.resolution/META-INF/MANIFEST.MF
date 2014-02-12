@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  no.sintef.bvr.tool;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Import-Package: no.sintef.bvr.ui.editor,
+Import-Package: no.sintef.bvr.ui.editor.common,
  no.sintef.bvr.ui.framework,
  no.sintef.bvr.ui.framework.elements,
  no.sintef.ict.splcatool,
