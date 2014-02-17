@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.constraints.bcl.BCLPrettyPrinter;
 import no.sintef.bvr.tool.ui.dropdown.BCLConstraintDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
@@ -14,6 +13,7 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.elements.ConstraintPanel;
+import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;

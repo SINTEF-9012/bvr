@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import no.sintef.bvr.tool.context.Context;
+
 import org.eclipse.ui.IWorkbenchPart;
 
 public class BVRModelSingleton {
