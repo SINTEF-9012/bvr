@@ -43,6 +43,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel.ecore#//VSpec/resolutionTime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel.ecore#//VSpec/ownedVSpecDerivation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel.ecore#//VSpec/child"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel.ecore#//VSpec/comment"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BVRMetamodel.ecore#//VPackageable"/>
     <genClasses image="false" ecoreClass="BVRMetamodel.ecore#//NamedElement">
