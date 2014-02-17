@@ -4,13 +4,21 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="no.sintef.bvr.ui.editor.mvc.realization.BVRRealizationEditor"
+            class="no.sintef.bvr.ui.editor.mvc.realization.MVCRealizationEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="bvr"
             icon="icons/sample.gif"
             id="no.sintef.bvr.ui.editor.eclipse.editors.BVRRealizationEditor"
-            name="BVR Realization Editor">
+            name="BVR Realization Editor (MVC)">
       </editor>
    </extension>
-
+      <extension
+         point="org.eclipse.emf.transaction.listeners">
+      <listener
+            class="no.sintef.bvr.ui.editor.mvc.realization.listeners.RealizationResourceSetListener">
+         <editingDomain
+               id="no.sintef.bvr.shared.EditingDomain">
+         </editingDomain>
+      </listener>
+   </extension>
 </plugin>

@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.8.101",
  org.eclipse.ui;bundle-version="3.105.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
- no.sintef.bvr.tool
+ no.sintef.bvr.tool,
+ org.eclipse.emf.transaction
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.tool.ui.loader,
@@ -25,4 +26,5 @@ Import-Package: no.sintef.bvr.tool.ui.loader,
  org.eclipse.ui.part,
  org.eclipse.ui.plugin
 Bundle-ClassPath: .
-Export-Package: no.sintef.bvr.ui.editor.common
+Export-Package: no.sintef.bvr.ui.editor.common,
+ no.sintef.bvr.ui.editor.common.observer

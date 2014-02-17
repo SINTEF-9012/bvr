@@ -22,6 +22,11 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -37,23 +42,19 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
-public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
-		IResourceChangeListener, BVRNotifier {
+public abstract class MVCEditor extends EditorPart implements ISaveablePart, BVRNotifier {
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
 	private Frame frame;
 	private Composite composite;
 
-	public BVREditorMVC() {
+	public MVCEditor() {
 		super();
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
-		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-	}
-
-	@Override
-	public void resourceChanged(IResourceChangeEvent event) {
-		
+		System.out.println("Set workbench " + PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+		if(PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null){
+			Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+		}
 	}
 
 	protected BVRView v;
@@ -205,5 +206,4 @@ public abstract class BVREditorMVC extends EditorPart implements ISaveablePart,
 	public void notifyProbeDirty() {
 		firePropertyChange(ISaveablePart.PROP_DIRTY);
 	}
-
 }

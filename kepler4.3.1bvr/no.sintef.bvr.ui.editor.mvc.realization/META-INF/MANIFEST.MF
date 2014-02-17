@@ -17,13 +17,15 @@ Require-Bundle: org.eclipse.core.runtime,
  no.sintef.bvr.tool;bundle-version="1.0.0",
  org.junit;bundle-version="4.11.0",
  no.sintef.bvr.engine;bundle-version="1.0.0",
- no.sintef.bvr.thirdparty;bundle-version="1.0.0"
+ no.sintef.bvr.thirdparty;bundle-version="1.0.0",
+ org.eclipse.emf.transaction
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.thirdparty.common,
  no.sintef.bvr.thirdparty.editor,
  no.sintef.bvr.thirdparty.exception,
  no.sintef.bvr.ui.editor.common,
+ no.sintef.bvr.ui.editor.common.observer,
  no.sintef.bvr.ui.framework,
  no.sintef.bvr.ui.framework.elements,
  no.sintef.ict.splcatool,
