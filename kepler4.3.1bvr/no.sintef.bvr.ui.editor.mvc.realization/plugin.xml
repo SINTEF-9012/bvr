@@ -12,13 +12,4 @@
             name="BVR Realization Editor (MVC)">
       </editor>
    </extension>
-      <extension
-         point="org.eclipse.emf.transaction.listeners">
-      <listener
-            class="no.sintef.bvr.ui.editor.mvc.realization.listeners.RealizationResourceSetListener">
-         <editingDomain
-               id="no.sintef.bvr.shared.EditingDomain">
-         </editingDomain>
-      </listener>
-   </extension>
 </plugin>

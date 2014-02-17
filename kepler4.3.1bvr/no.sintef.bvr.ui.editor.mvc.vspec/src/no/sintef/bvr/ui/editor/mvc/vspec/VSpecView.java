@@ -26,7 +26,6 @@ import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
-import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
@@ -300,6 +299,11 @@ public class VSpecView extends BVRView {
 	}
 
 	public void notifyResolutionViewUpdate() {
+	}
+
+	@Override
+	public void refresh() {
+		this.notifyVspecViewUpdate();
 	}
 
 }

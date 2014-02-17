@@ -19,5 +19,5 @@ abstract public class BVRView {
 	abstract public void setMaximized(Object v);
 	abstract public void setMinimized(Object v) ;
 	
-	//abstract public void refresh();
+	abstract public void refresh();
 }

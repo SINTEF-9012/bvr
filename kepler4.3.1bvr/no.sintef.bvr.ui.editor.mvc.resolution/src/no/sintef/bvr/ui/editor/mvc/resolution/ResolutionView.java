@@ -307,4 +307,10 @@ public class ResolutionView extends BVRView{
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution)v);
 	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
 }

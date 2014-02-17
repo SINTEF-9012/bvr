@@ -23,11 +23,8 @@ public class BVRTransactionalModel extends BVRModel {
 	private boolean platform = false;
 	private String loadFilename;
 	private boolean saved = true;
-
-	public BVRTransactionalModel() {
-
-	}
-
+	private Resource resource;
+	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.BVRModel x) {
 		bvrm = x;
 		f = sf;
@@ -54,6 +51,10 @@ public class BVRTransactionalModel extends BVRModel {
 	public File getFile() {
 		return f;
 	}
+	
+	public Resource getResource(){
+		return resource;
+	}
 
 	private class BVRInnerModel extends no.sintef.ict.splcatool.BVRModel {
 		private ConfigurableUnit cu = null;
@@ -78,9 +79,9 @@ public class BVRTransactionalModel extends BVRModel {
 			URI platformURI = converter.normalize(URI.createFileURI(file
 					.getAbsolutePath()));
 
-			Resource resource = editingDomain.getResourceSet().getResource(
+			resource = editingDomain.getResourceSet().getResource(
 					platformURI, true);
-
+			
 			return (ConfigurableUnit) resource.getContents().get(0);
 		}
 
@@ -95,7 +96,7 @@ public class BVRTransactionalModel extends BVRModel {
 			converter.getURIMap().put(emptyFileURI, emptyPlatformURI);
 			URI platformURI = converter.normalize(URI.createFileURI(filename));
 
-			Resource resource = editingDomain.getResourceSet().getResource(
+			resource = editingDomain.getResourceSet().getResource(
 					platformURI, true);
 
 			Map<Object, Object> options = new HashMap<Object, Object>();

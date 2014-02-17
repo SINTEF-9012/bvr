@@ -14,6 +14,7 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRModelSingleton;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.eclipse.core.resources.IResource;
@@ -23,6 +24,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -46,15 +48,14 @@ public abstract class MVCEditor extends EditorPart implements ISaveablePart, BVR
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
+	protected URI resourceURI;
+	
 	private Frame frame;
 	private Composite composite;
 
 	public MVCEditor() {
 		super();
-		System.out.println("Set workbench " + PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-		if(PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null){
-			Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-		}
+		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
 	}
 
 	protected BVRView v;
@@ -170,6 +171,7 @@ public abstract class MVCEditor extends EditorPart implements ISaveablePart, BVR
 								.getSystemLookAndFeelClassName());
 						//m = BVRModelSingleton.getModel(new File(filename));
 						m = Context.eINSTANCE.getModel(new File(filename));
+						resourceURI = ((BVRTransactionalModel) m).getResource().getURI();
 
 						//m = BVRModelSingleton.getModel(new File(filename), iwp);
 

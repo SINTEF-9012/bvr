@@ -1,5 +1,9 @@
 package no.sintef.bvr.ui.editor.common;
 
+import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
+import no.sintef.bvr.ui.editor.common.listener.DomainResourceSetListener;
+
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -19,6 +23,9 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
+		EditorEMFTransactionalCommands commands = EditorEMFTransactionalCommands.Get();
+		TransactionalEditingDomain editingDomain = commands.testTransactionalEditingDomain();
+		editingDomain.addResourceSetListener(new DomainResourceSetListener());
 	}
 
 	/*

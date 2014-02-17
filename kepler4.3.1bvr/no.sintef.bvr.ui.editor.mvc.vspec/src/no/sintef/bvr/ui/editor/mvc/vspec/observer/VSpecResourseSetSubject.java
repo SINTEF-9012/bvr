@@ -1,13 +1,8 @@
 package no.sintef.bvr.ui.editor.mvc.vspec.observer;
 
 
-import no.sintef.bvr.ui.editor.common.observer.AbstractEditorSubject;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
 
-public final class VSpecResourseSetSubject extends AbstractEditorSubject {
+public final class VSpecResourseSetSubject extends ResourceSetEditorSubject {
 	
-	public static VSpecResourseSetSubject eINSTANCE = getInstance();
-	
-	private static VSpecResourseSetSubject getInstance(){
-		return new VSpecResourseSetSubject();
-	}
 }

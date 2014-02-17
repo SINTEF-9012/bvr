@@ -12,13 +12,4 @@
             name="BVR Resolution Editor (MVC)">
       </editor>
    </extension>
-   <extension
-         point="org.eclipse.emf.transaction.listeners">
-      <listener
-            class="no.sintef.bvr.ui.editor.mvc.resolution.listeners.ResolutionResourceSetListener">
-         <editingDomain
-               id="no.sintef.bvr.shared.EditingDomain">
-         </editingDomain>
-      </listener>
-   </extension>
 </plugin>

@@ -204,4 +204,10 @@ public class RealizationView extends BVRView{
 	public void setMinimized(Object v) {
 		throw new UnsupportedOperationException();		
 	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
 }
