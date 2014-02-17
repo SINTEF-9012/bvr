@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link bvr.impl.VSpecImpl#getResolutionTime <em>Resolution Time</em>}</li>
  *   <li>{@link bvr.impl.VSpecImpl#getOwnedVSpecDerivation <em>Owned VSpec Derivation</em>}</li>
  *   <li>{@link bvr.impl.VSpecImpl#getChild <em>Child</em>}</li>
+ *   <li>{@link bvr.impl.VSpecImpl#getComment <em>Comment</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,6 +89,26 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 * @ordered
 	 */
 	protected EList<VSpec> child;
+
+	/**
+	 * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComment()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COMMENT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComment()
+	 * @generated
+	 * @ordered
+	 */
+	protected String comment = COMMENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +222,27 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getComment() {
+		return comment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setComment(String newComment) {
+		String oldComment = comment;
+		comment = newComment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.VSPEC__COMMENT, oldComment, comment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -230,6 +272,8 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 				return getOwnedVSpecDerivation();
 			case BvrPackage.VSPEC__CHILD:
 				return getChild();
+			case BvrPackage.VSPEC__COMMENT:
+				return getComment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -257,6 +301,9 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 				getChild().clear();
 				getChild().addAll((Collection<? extends VSpec>)newValue);
 				return;
+			case BvrPackage.VSPEC__COMMENT:
+				setComment((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -281,6 +328,9 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 			case BvrPackage.VSPEC__CHILD:
 				getChild().clear();
 				return;
+			case BvrPackage.VSPEC__COMMENT:
+				setComment(COMMENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -301,6 +351,8 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 				return ownedVSpecDerivation != null && !ownedVSpecDerivation.isEmpty();
 			case BvrPackage.VSPEC__CHILD:
 				return child != null && !child.isEmpty();
+			case BvrPackage.VSPEC__COMMENT:
+				return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -317,6 +369,8 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (resolutionTime: ");
 		result.append(resolutionTime);
+		result.append(", comment: ");
+		result.append(comment);
 		result.append(')');
 		return result.toString();
 	}
