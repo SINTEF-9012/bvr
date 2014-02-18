@@ -26,7 +26,6 @@ import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
-import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
@@ -144,30 +143,32 @@ public class VSpecView extends BVRView {
 			nextParent = c;
 		}
 		
-		if(v.getGroupMultiplicity() != null){
-			nextParent = new AddGroupMultiplicity().init(model, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-		}
+		if(!minimized.contains(v)){
+			if(v.getGroupMultiplicity() != null){
+				nextParent = new AddGroupMultiplicity().init(model, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+			}
 		
-		for(Constraint c : cu.getOwnedConstraint()){
-			if(c instanceof OpaqueConstraint){
-				OpaqueConstraint oc = (OpaqueConstraint) c;
-				if(c.getContext() == v){
-					JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-					vspecvmMap.put(comp, c);
+		
+			for(Constraint c : cu.getOwnedConstraint()){
+				if(c instanceof OpaqueConstraint){
+					OpaqueConstraint oc = (OpaqueConstraint) c;
+					if(c.getContext() == v){
+						JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+						vspecvmMap.put(comp, c);
+					}
+				}
+				if(c instanceof BCLConstraint){
+					BCLConstraint bcl = (BCLConstraint) c;
+					if(bcl.getContext() == v){
+						JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+						vspecvmMap.put(comp, c);
+					}
 				}
 			}
-			if(c instanceof BCLConstraint){
-				BCLConstraint bcl = (BCLConstraint) c;
-				if(bcl.getContext() == v){
-					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-					vspecvmMap.put(comp, c);
-				}
-			}
-		}
 		
-		for(VSpec vs : v.getChild()){
-			if(!minimized.contains(v))
-				loadBVRVSpecView(vs, model, nextParent, cu);
+			for(VSpec vs : v.getChild()){
+					loadBVRVSpecView(vs, model, nextParent, cu);
+			}
 		}
 	}
 

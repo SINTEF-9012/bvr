@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.ConfigurableUnit;
+import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VSpec;
 
@@ -53,6 +55,14 @@ public class RemoveChoiceEvent implements ActionListener {
 		}else{
 			cuParent.getOwnedConstraint().remove(v);
 		}
+		
+		// Remove constraints
+		List<Constraint> toremove = new ArrayList<>();
+		for(Constraint c : view.getCU().getOwnedConstraint()){
+			if(c.getContext() == v)
+				toremove.add(c);
+		}
+		view.getCU().getOwnedConstraint().removeAll(toremove);
 		
 		// Regenerate view
 		view.notifyVspecViewUpdate();
