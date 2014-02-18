@@ -3,9 +3,9 @@ package no.sintef.bvr.tool.ui.command;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.VSpec;
@@ -23,7 +23,8 @@ public class ChangeVSpecResolvedEvent implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		cr.setResolvedVSpec(target);
+		//cr.setResolvedVSpec(target);
+		Context.eINSTANCE.getEditorCommands().setChoiceResolvedVSpec(cr, target);
 		
 		view.notifyResolutionViewUpdate();
 	}

@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.BvrFactory;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
@@ -24,7 +25,8 @@ public class NewResolutionEvent implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 	
 		ChoiceResolutuion cr = BvrFactory.eINSTANCE.createChoiceResolutuion();
-		cu.getOwnedVSpecResolution().add(cr);
+		//cu.getOwnedVSpecResolution().add(cr);
+		Context.eINSTANCE.getEditorCommands().createNewResolution(cr, cu);
 		
 		v.notifyResolutionViewUpdate();
 	}
