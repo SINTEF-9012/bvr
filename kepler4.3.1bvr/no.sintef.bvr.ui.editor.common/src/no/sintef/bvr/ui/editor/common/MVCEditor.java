@@ -18,17 +18,9 @@ import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.ResourceSetListener;
-import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -44,7 +36,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
-public abstract class MVCEditor extends EditorPart implements ISaveablePart, BVRNotifier {
+public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
