@@ -1224,23 +1224,7 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 			Display.getDefault().asyncExec(new Runnable() {
 				@Override
 				public void run() {
-					boolean modified = false;
 
-					boolean dirtyStateChanged = false;
-					synchronized (myInfo) {
-						if (modified != myInfo.fCanBeSaved) {
-							myInfo.fCanBeSaved = modified;
-							dirtyStateChanged = true;
-						}
-					}
-
-					if (dirtyStateChanged) {
-						fireElementDirtyStateChanged(myInfo.getEditorInput(),
-								modified);
-						if (!modified) {
-							myInfo.setModificationStamp(computeModificationStamp(myInfo));
-						}
-					}
 
 					IEditorReference[] editors = PlatformUI.getWorkbench()
 							.getActiveWorkbenchWindow().getActivePage()
