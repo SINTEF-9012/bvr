@@ -1049,6 +1049,11 @@ public abstract class FeatureModel extends DefaultTreeModel implements FeatureMo
 		if ( countConstraints() > 0 ) {
 			cnf.addClauses(EC2CNF().getClauses());
 		}
+		
+		/*for(CNFClause x : cnf.getClauses()){
+			System.out.println(x);
+		}*/
+		
 		return cnf;
 	}
 

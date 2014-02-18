@@ -17,12 +17,12 @@ import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VSpec;
 
-public class RemoveChoiceEvent implements ActionListener {
+public class RemoveVSpecEvent implements ActionListener {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRView view;
 
-	public RemoveChoiceEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public RemoveVSpecEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;

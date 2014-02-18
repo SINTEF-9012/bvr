@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;

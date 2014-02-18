@@ -23,7 +23,7 @@ import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
@@ -89,7 +89,7 @@ class ClassifierDropdown extends JPopupMenu {
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
+		removechoice.addActionListener(new RemoveVSpecEvent(cp, vmMap, nodes, bindings, view));
 		add(removechoice);
 		
 		// Cut Paste

@@ -16,7 +16,7 @@ import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
 import no.sintef.bvr.tool.ui.command.event.CutEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
@@ -78,7 +78,7 @@ class ConfigurableUnitDropdown extends JPopupMenu {
 		
 		// Remove
 		JMenuItem rename = new JMenuItem("rename");
-		rename.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
+		rename.addActionListener(new RemoveVSpecEvent(cp, vmMap, nodes, bindings, view));
 		add(rename);
 		
 		// Paste
