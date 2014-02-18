@@ -17,7 +17,6 @@ import no.sintef.bvr.tool.ui.editor.BindingJTable;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
@@ -25,7 +24,7 @@ import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VSpec;
 
-public class RealizationView extends BVRView{
+public class RealizationView extends BVRView {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;
@@ -48,15 +47,15 @@ public class RealizationView extends BVRView{
 	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
-	private BVRNotifier ep;
+	//private BVRNotifier ep;
 
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
 	
-	public RealizationView(BVRModel m, BVRNotifier ep) {
+	public RealizationView(BVRModel m) {
 		super();
-		this.ep = ep;
+		//this.ep = ep;
 		
 		// Alloc
 		/*
@@ -174,13 +173,8 @@ public class RealizationView extends BVRView{
 		configurableUnitSubject.notifyObserver();
 	    
 	    // Mark dirty
-	    m.markNotSaved();
-	    ep.notifyProbeDirty();
-	}
-
-	@Override
-	public boolean isDirty() {
-		return m.isNotSaved();
+	    //m.markNotSaved();
+	   // ep.notifyProbeDirty();
 	}
 
 	@Override

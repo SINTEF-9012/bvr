@@ -6,14 +6,15 @@ import java.util.List;
 import javax.swing.JApplet;
 
 import no.sintef.bvr.ui.editor.common.MVCEditor;
-import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
 import no.sintef.bvr.ui.editor.mvc.resolution.observer.ResolutionResourceSetSubject;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 
 
-public class MVCResolutionEditor extends MVCEditor implements EditorObserver {
+public class MVCResolutionEditor extends MVCEditor {
 	
 
 	public void setTitle() {
@@ -24,17 +25,28 @@ public class MVCResolutionEditor extends MVCEditor implements EditorObserver {
 		a.add(((ResolutionView)v).resPane);
 	}
 
-	public void createView(final BVRNotifier ep) {
-		v = new ResolutionView(m, ep);
-		List<EditorSubject> subjects = ResourceSubjectMap.eINSTANCE.getSubjects(resourceURI);
+	public void createView() {
+		v = new ResolutionView(m);
+		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResolutionResourceSetSubject subject = testResolutionResourceSetSubject(subjects);
 		subject.attach(this);
-		ResourceSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+		
+		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		sbjct.attach(this);
 	}
 
 	@Override
 	public void update(EditorSubject subject) {
-		System.out.println("update for MVCResolutionEditor " + this + " " + subject);	
+		System.out.println("update for MVCResolutionEditor " + this + " " + subject);
+		if(subject instanceof ResourceSetEditorSubject){
+			m.markNotSaved();
+			v.refresh();
+		}
+		if(subject instanceof ResourceSavedSubject){
+			m.markSaved();
+		}
+		super.update(subject);
 	}
 	
 	private ResolutionResourceSetSubject testResolutionResourceSetSubject(List<EditorSubject> subjects){
@@ -48,4 +60,14 @@ public class MVCResolutionEditor extends MVCEditor implements EditorObserver {
 		return new ResolutionResourceSetSubject();
 	}
 	
+	@Override
+	public void dispose() {
+		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResolutionResourceSetSubject subject = testResolutionResourceSetSubject(subjects);
+		subject.detach(this);
+		
+		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		sbjct.detach(this);
+		super.dispose();
+	}
 }

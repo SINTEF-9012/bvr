@@ -53,6 +53,6 @@ public class AddChoiceEvent implements ActionListener {
 		}
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 }

@@ -28,7 +28,7 @@ public class NewResolutionEvent implements ActionListener {
 		//cu.getOwnedVSpecResolution().add(cr);
 		Context.eINSTANCE.getEditorCommands().createNewResolution(cr, cu);
 		
-		v.notifyResolutionViewUpdate();
+		//v.notifyResolutionViewUpdate();
 	}
 
 }

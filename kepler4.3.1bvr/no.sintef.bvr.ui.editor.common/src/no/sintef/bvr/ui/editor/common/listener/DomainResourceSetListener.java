@@ -5,7 +5,7 @@ import java.util.List;
 
 import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
@@ -23,14 +23,14 @@ public class DomainResourceSetListener extends ResourceSetListenerImpl {
 			if(object instanceof EObject){
 				EObject eObject = (EObject) object;
 				URI resourceURI = eObject.eResource().getURI();
-				List<EditorSubject> subjects = ResourceSubjectMap.eINSTANCE.getSubjects(resourceURI);
+				List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 				if(subjects != null){
 					for(EditorSubject subject : subjects){
 						if(subject instanceof ResourceSetEditorSubject){
 							((ResourceSetEditorSubject) subject).setResourceSetChangeEvent(event);
 						}	
 					}
-					ResourceSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
+					ResourceResourceSetSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
 				}
 			}
 		}

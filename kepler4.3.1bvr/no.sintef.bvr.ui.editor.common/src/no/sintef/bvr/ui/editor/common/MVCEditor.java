@@ -12,10 +12,12 @@ import javax.swing.UIManager;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRModelSingleton;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
+import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -36,7 +38,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
-public abstract class MVCEditor extends EditorPart implements BVRNotifier {
+public abstract class MVCEditor extends EditorPart implements EditorObserver {
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
@@ -96,15 +98,14 @@ public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 
 	abstract public void setContents(JApplet a);
 
-	abstract public void createView(final BVRNotifier ep);
+	abstract public void createView();
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		try {
 			m.getBVRM().writeToFile(filename);
-			m.markSaved();
-			notifyProbeDirty();
 			fileinput.getFile().refreshLocal(IResource.DEPTH_ZERO, null);
+			ResourceResourceSavedSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
 		} catch (final IOException e) {
 			new Thread() {
 				public void run() {
@@ -127,16 +128,11 @@ public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 	@Override
 	public void doSaveAs() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public boolean isDirty() {
-		if (v != null) {
-			return v.isDirty();
-		} else {
-			return false;
-		}
+		return (m != null) ? m.isNotSaved() : false;
 	}
 
 	@Override
@@ -151,9 +147,6 @@ public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 		composite.setLayout(layout);
 		frame = SWT_AWT.new_Frame(composite);
 		
-		final BVRNotifier ep = this;
-		final IWorkbenchPart iwp = this;
-
 		new Thread() {
 			public void run() {
 				if (fileinput != null) {
@@ -161,15 +154,13 @@ public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 
 						UIManager.setLookAndFeel(UIManager
 								.getSystemLookAndFeelClassName());
-						//m = BVRModelSingleton.getModel(new File(filename));
+
 						m = Context.eINSTANCE.getModel(new File(filename));
 						resourceURI = ((BVRTransactionalModel) m).getResource().getURI();
 
-						//m = BVRModelSingleton.getModel(new File(filename), iwp);
-
 						if (m != null) {
 							JApplet a = new JApplet();
-							createView(ep);
+							createView();
 							// "The first child of the embedded frame must be a heavyweight component."
 							frame.add(a);
 							setContents(a);
@@ -178,7 +169,6 @@ public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 							a.setSize(w, h);
 							frame.revalidate();
 							frame.repaint();
-							ep.notifyProbeDirty();
 						}
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -195,9 +185,9 @@ public abstract class MVCEditor extends EditorPart implements BVRNotifier {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void notifyProbeDirty() {
+	
+	public void update(EditorSubject subject) {
 		firePropertyChange(ISaveablePart.PROP_DIRTY);
 	}
+	
 }

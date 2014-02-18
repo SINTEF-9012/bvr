@@ -6,10 +6,8 @@ import bvr.ConfigurableUnit;
 import bvr.VSpec;
 
 abstract public class BVRView {
-	protected BVRNotifier ep;
 	abstract public BVRUIKernel getKernel() ;
 	public abstract ConfigurableUnitSubject getConfigurableUnitSubject() ;
-	public abstract boolean isDirty() ;
 	public abstract ConfigurableUnit getCU();
 	int choiceCount = 1;
 	abstract public void notifyResolutionViewUpdate() ;

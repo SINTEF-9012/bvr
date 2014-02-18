@@ -6,13 +6,15 @@ import java.util.List;
 import javax.swing.JApplet;
 
 import no.sintef.bvr.ui.editor.common.MVCEditor;
-import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
 import no.sintef.bvr.ui.editor.mvc.realization.observer.RealizationResourceSetSubject;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 
-public class MVCRealizationEditor extends MVCEditor implements EditorObserver {
+
+public class MVCRealizationEditor extends MVCEditor{
 	
 	public void setTitle() {
 		setPartName(new File(filename).getName() + " (Realization)");
@@ -22,16 +24,27 @@ public class MVCRealizationEditor extends MVCEditor implements EditorObserver {
 		a.add(((RealizationView)v).realizationPanel);
 	}
 
-	public void createView(final BVRNotifier ep) {
-		v = new RealizationView(m, ep);
-		List<EditorSubject> subjects = ResourceSubjectMap.eINSTANCE.getSubjects(resourceURI);
+	public void createView() {
+		v = new RealizationView(m);
+		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		RealizationResourceSetSubject subject = testRealizationResourceSetSubject(subjects);
 		subject.attach(this);
-		ResourceSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+		
+		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		sbjct.attach(this);
 	}
 
 	@Override
 	public void update(EditorSubject subject) {
+		if(subject instanceof ResourceSetEditorSubject){
+			m.markNotSaved();
+			v.refresh();
+		}
+		if(subject instanceof ResourceSavedSubject){
+			m.markSaved();
+		}
+		super.update(subject);
 		System.out.println("update for MVCRealizationEditor " + this + " " + subject);	
 	}
 	
@@ -44,5 +57,16 @@ public class MVCRealizationEditor extends MVCEditor implements EditorObserver {
 			}
 		}
 		return new RealizationResourceSetSubject();
+	}
+	
+	@Override
+	public void dispose() {
+		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		RealizationResourceSetSubject subject = testRealizationResourceSetSubject(subjects);
+		subject.detach(this);
+		
+		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		sbjct.detach(this);
+		super.dispose();
 	}
 }

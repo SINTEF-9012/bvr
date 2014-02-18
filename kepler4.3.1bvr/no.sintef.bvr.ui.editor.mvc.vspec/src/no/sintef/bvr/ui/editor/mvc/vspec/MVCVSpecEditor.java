@@ -6,14 +6,15 @@ import java.util.List;
 import javax.swing.JApplet;
 
 import no.sintef.bvr.ui.editor.common.MVCEditor;
-import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
+import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
 import no.sintef.bvr.ui.editor.mvc.vspec.observer.VSpecResourseSetSubject;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 
 
-public class MVCVSpecEditor extends MVCEditor  implements EditorObserver {
+public class MVCVSpecEditor extends MVCEditor {
 		
 	@Override
 	public
@@ -29,19 +30,28 @@ public class MVCVSpecEditor extends MVCEditor  implements EditorObserver {
 
 	@Override
 	public
-	void createView(final BVRNotifier ep) {
-		v = new VSpecView(m, ep);
-		List<EditorSubject> subjects = ResourceSubjectMap.eINSTANCE.getSubjects(resourceURI);
+	void createView() {
+		v = new VSpecView(m);
+		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		VSpecResourseSetSubject subject = testVSpecResourseSetSubject(subjects);
 		subject.attach(this);
-		ResourceSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+		
+		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		sbjct.attach(this);
 	}
 
 	@Override
 	public void update(EditorSubject subject) {
 		System.out.println("update for MVCVSpecEditor " + this + " " + subject);
-		v.refresh();
-		
+		if(subject instanceof ResourceSetEditorSubject){
+			m.markNotSaved();
+			v.refresh();
+		}
+		if(subject instanceof ResourceSavedSubject){
+			m.markSaved();
+		}
+		super.update(subject);
 	}
 	
 	private VSpecResourseSetSubject testVSpecResourseSetSubject(List<EditorSubject> subjects){
@@ -53,5 +63,16 @@ public class MVCVSpecEditor extends MVCEditor  implements EditorObserver {
 			}
 		}
 		return new VSpecResourseSetSubject();
+	}
+	
+	@Override
+	public void dispose() {
+		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		VSpecResourseSetSubject subject = testVSpecResourseSetSubject(subjects);
+		subject.detach(this);
+		
+		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		sbjct.detach(this);
+		super.dispose();
 	}
 }

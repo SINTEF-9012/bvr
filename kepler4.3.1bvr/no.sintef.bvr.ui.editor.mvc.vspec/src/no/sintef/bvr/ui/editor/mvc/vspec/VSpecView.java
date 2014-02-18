@@ -27,7 +27,6 @@ import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -63,15 +62,12 @@ public class VSpecView extends BVRView {
 	// Realization
 	private ConfigurableUnitSubject configurableUnitSubject;
 
-	private BVRNotifier ep;
-
 
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
 	
-	public VSpecView(BVRModel m, BVRNotifier ep) {
-		this.ep = ep;
+	public VSpecView(BVRModel m) {
 	
 		// Alloc
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
@@ -200,12 +196,8 @@ public class VSpecView extends BVRView {
 	    vspecScrollPane.getViewport().setViewPosition(vpos);
 	    
 	    // Mark dirty
-	    m.markNotSaved();
-	    ep.notifyProbeDirty();
-	}
-
-	public boolean isDirty() {
-		return m.isNotSaved();
+	    //m.markNotSaved();
+	    //ep.notifyProbeDirty();
 	}
 
 	public ConfigurableUnit getCU() {
@@ -303,7 +295,7 @@ public class VSpecView extends BVRView {
 
 	@Override
 	public void refresh() {
-		this.notifyVspecViewUpdate();
+		notifyVspecViewUpdate();
 	}
 
 }

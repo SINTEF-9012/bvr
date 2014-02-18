@@ -26,7 +26,7 @@ public class SetDecisionEvent implements ActionListener {
 		//cr.setDecision(newdecision);
 		Context.eINSTANCE.getEditorCommands().setResolutionDecision(cr, newdecision);
 		
-		view.notifyResolutionViewUpdate();
+		//view.notifyResolutionViewUpdate();
 	}
 
 }

@@ -24,7 +24,6 @@ import no.sintef.bvr.tool.ui.command.AddVInstance;
 import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRNotifier;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -34,11 +33,10 @@ import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VInstance;
-import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.VariableValueAssignment;
 
-public class ResolutionView extends BVRView{
+public class ResolutionView extends BVRView {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;
@@ -64,10 +62,9 @@ public class ResolutionView extends BVRView{
 		return vSpecbvruikernel;
 	}
 	
-	public ResolutionView(BVRModel m, BVRNotifier ep) {
+	public ResolutionView(BVRModel m) {
 		super();
 		
-		this.ep = ep;
 		
 		// Alloc
 		
@@ -119,7 +116,6 @@ public class ResolutionView extends BVRView{
 
 	List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
 
-	private BVRNotifier ep;
 
 	private void autoLayoutResolutions() {
 		for(int i = 0; i < resolutionPanes.size(); i++){
@@ -202,8 +198,8 @@ public class ResolutionView extends BVRView{
 	    }
 	    
 	    // Mark dirty
-	    m.markNotSaved();
-	    ep.notifyProbeDirty();
+	    //m.markNotSaved();
+	   // ep.notifyProbeDirty();
 	}
 
 	private void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException{
@@ -310,7 +306,6 @@ public class ResolutionView extends BVRView{
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-		
+		notifyResolutionViewUpdate();
 	}
 }
