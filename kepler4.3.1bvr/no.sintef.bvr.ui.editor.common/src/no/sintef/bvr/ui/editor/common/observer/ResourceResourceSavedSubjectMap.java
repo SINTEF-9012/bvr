@@ -27,4 +27,8 @@ public final class ResourceResourceSavedSubjectMap extends AbstractResourceSubje
 		subjects.put(resourceURI, subjs);
 		return (ResourceSavedSubject) subjs.get(0);
 	}
+	
+	public List<URI> getReqisteredURIResources(){
+		return new ArrayList<URI>(subjects.keySet());
+	}
 }
