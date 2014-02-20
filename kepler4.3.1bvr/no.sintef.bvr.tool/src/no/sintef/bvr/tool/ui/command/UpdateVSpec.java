@@ -59,4 +59,8 @@ public class UpdateVSpec implements Command {
 		return null;
 	}
 
+	public void setComment(String text) {
+		((VSpec)vc).setComment(text);
+	}
+
 }

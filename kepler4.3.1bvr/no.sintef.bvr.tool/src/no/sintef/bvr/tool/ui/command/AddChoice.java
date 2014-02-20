@@ -63,10 +63,13 @@ public class AddChoice implements Command {
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
         
-
-        
-        
         cp.setTitle((minimized?"(+) ":"") + c.getName());
+        
+        if(c != null){
+	        if(c.getComment() != null && !c.getComment().equals("")){
+	        	cp.addAttribute("\""+c.getComment()+"\"", "");
+	        }
+        }
         
         for(VSpec vs : c.getChild()){
         	if(vs instanceof Variable){

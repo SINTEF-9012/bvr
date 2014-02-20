@@ -1,11 +1,13 @@
 package no.sintef.bvr.tool.ui.edit;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
@@ -15,6 +17,7 @@ import javax.swing.text.JTextComponent;
 
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
+import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.Choice;
@@ -33,7 +36,50 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRView view) {
 		super(kernel, (VSpec) elem, view);
 		
-		int count = 1;
+        // Comment
+        JPanel p = new JPanel(new SpringLayout());
+        p.setBorder(null);
+        p.setOpaque(false);
+        
+        JLabel l = new JLabel("Comment", JLabel.TRAILING);
+        //l.setUI(new HudLabelUI());
+
+        p.add(l);
+        JTextField comment = new JTextField(15);
+        //textField.setUI(new HudTextFieldUI());
+
+        l.setLabelFor(comment);
+        p.add(comment);
+        comment.setText(elem.getComment());
+
+        top.add(p);
+        SpringUtilities.makeCompactGrid(p,
+                1, 2, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
+        
+        comment.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
+
+        comment.getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) {
+                try {
+                    ((UpdateVSpec) command).setComment(e.getDocument().getText(0, e.getDocument().getLength()));
+                } catch (BadLocationException ex) {
+                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+            	insertUpdate(e);
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+            	insertUpdate(e);
+            }
+        }); 
+		
+        // Vars
+		int count = 2;
 		for(VSpec x : elem.getChild()){
 			if(x instanceof Variable){
 				Variable v = (Variable)x;
