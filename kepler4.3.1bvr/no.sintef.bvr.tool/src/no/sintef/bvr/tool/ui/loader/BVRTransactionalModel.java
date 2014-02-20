@@ -81,6 +81,7 @@ public class BVRTransactionalModel extends BVRModel {
 
 			resource = editingDomain.getResourceSet().getResource(
 					platformURI, true);
+			resource.setTrackingModification(true);
 			
 			return (ConfigurableUnit) resource.getContents().get(0);
 		}
@@ -98,6 +99,7 @@ public class BVRTransactionalModel extends BVRModel {
 
 			resource = editingDomain.getResourceSet().getResource(
 					platformURI, true);
+			resource.setTrackingModification(true);
 
 			Map<Object, Object> options = new HashMap<Object, Object>();
 			options.put(XMIResource.OPTION_ENCODING, "UTF-8");
