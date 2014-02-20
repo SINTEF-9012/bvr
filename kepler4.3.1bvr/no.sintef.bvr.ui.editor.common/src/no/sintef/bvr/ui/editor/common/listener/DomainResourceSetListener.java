@@ -22,15 +22,17 @@ public class DomainResourceSetListener extends ResourceSetListenerImpl {
 			Object object = notification.getNotifier();
 			if(object instanceof EObject){
 				EObject eObject = (EObject) object;
-				URI resourceURI = eObject.eResource().getURI();
-				List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-				if(subjects != null){
-					for(EditorSubject subject : subjects){
-						if(subject instanceof ResourceSetEditorSubject){
-							((ResourceSetEditorSubject) subject).setResourceSetChangeEvent(event);
-						}	
+				if(eObject.eResource() != null){
+					URI resourceURI = eObject.eResource().getURI();
+					List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+					if(subjects != null){
+						for(EditorSubject subject : subjects){
+							if(subject instanceof ResourceSetEditorSubject){
+								((ResourceSetEditorSubject) subject).setResourceSetChangeEvent(event);
+							}	
+						}
+						ResourceResourceSetSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
 					}
-					ResourceResourceSetSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
 				}
 			}
 		}
