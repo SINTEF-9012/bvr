@@ -11,6 +11,7 @@ import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public class EditorEMFTransactionalCommands implements EditorCommands {
 
@@ -66,8 +67,16 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = new AddCommand(editingDomain, cr, BvrPackage.eINSTANCE.getChoiceResolutuion_ResolvedChoice(), choice);
+		SetCommand cmd = new SetCommand(editingDomain, cr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), choice);
 		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addChoiceResolved(Choice refrencedVSpec, VSpecResolution parentVSpecResolution, ChoiceResolutuion childChoiceResolution) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = new AddCommand(editingDomain, parentVSpecResolution, BvrPackage.eINSTANCE.getVSpecResolution_Child(), childChoiceResolution);
+		editingDomain.getCommandStack().execute(cmd);
+		setChoiceResolvedVSpec(childChoiceResolution, refrencedVSpec);
 	}
 
 }

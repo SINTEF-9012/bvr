@@ -6,6 +6,7 @@ import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public interface EditorCommands {
 	
@@ -20,4 +21,6 @@ public interface EditorCommands {
 	public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
 	
 	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
+	
+	public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
 }

@@ -6,6 +6,7 @@ import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public class EditorMVCCommands implements EditorCommands {
 	
@@ -46,6 +47,13 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice) {
 		cr.setResolvedVSpec(choice);	
+	}
+
+	@Override
+	public void addChoiceResolved(Choice target, VSpecResolution vsper,
+			ChoiceResolutuion cr) {
+		cr.setResolvedVSpec(target);
+		vsper.getChild().add(cr);	
 	}
 
 }

@@ -26,7 +26,7 @@ public class ChangeVSpecResolvedEvent implements ActionListener {
 		//cr.setResolvedVSpec(target);
 		Context.eINSTANCE.getEditorCommands().setChoiceResolvedVSpec(cr, target);
 		
-		view.notifyResolutionViewUpdate();
+		//view.notifyResolutionViewUpdate();
 	}
 
 }
