@@ -28,6 +28,7 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
@@ -128,7 +129,13 @@ class VSpecResDropdown extends JPopupMenu {
 			genca.add(genca3);
 			camenu.add(genca);
 			
+			camenu.add(new JSeparator());
 			add(new JSeparator());
+			
+			JMenuItem calcost = new JMenuItem("Calculate Costs");
+			calcost.addActionListener(new CalculateCost(m, bvrView));
+			camenu.add(calcost);
+			
 			add(camenu);
 		}
 		
