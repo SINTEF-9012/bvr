@@ -750,6 +750,15 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVSpec_Comment() {
+		return (EAttribute)vSpecEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVPackageable() {
 		return vPackageableEClass;
 	}
@@ -2456,6 +2465,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		createEAttribute(vSpecEClass, VSPEC__RESOLUTION_TIME);
 		createEReference(vSpecEClass, VSPEC__OWNED_VSPEC_DERIVATION);
 		createEReference(vSpecEClass, VSPEC__CHILD);
+		createEAttribute(vSpecEClass, VSPEC__COMMENT);
 
 		vPackageableEClass = createEClass(VPACKAGEABLE);
 
@@ -2823,6 +2833,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEAttribute(getVSpec_ResolutionTime(), ecorePackage.getEString(), "resolutionTime", null, 1, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVSpec_OwnedVSpecDerivation(), this.getVSpecDerivation(), null, "ownedVSpecDerivation", null, 0, -1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVSpec_Child(), this.getVSpec(), null, "child", null, 0, -1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getVSpec_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(vPackageableEClass, VPackageable.class, "VPackageable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

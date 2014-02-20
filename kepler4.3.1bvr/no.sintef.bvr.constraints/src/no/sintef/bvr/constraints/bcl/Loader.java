@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import no.sintef.ict.splcatool.BVRModel;
 
 import org.antlr.v4.runtime.ANTLRInputStream;

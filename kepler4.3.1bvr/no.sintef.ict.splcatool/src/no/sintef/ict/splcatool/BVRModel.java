@@ -20,6 +20,7 @@ import org.prop4j.NodeReader;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import bvr.BCLConstraint;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
@@ -116,12 +117,23 @@ public class BVRModel {
 		// Add constraints
 		//System.out.println(fm.getFeatureNames());
 		for(Constraint c : cu.getOwnedConstraint()){
-			OpaqueConstraint oc = (OpaqueConstraint)c;
-			NodeReader nr = new NodeReader();
-			Node n = nr.stringToNode(oc.getConstraint(), new ArrayList<String>(fm.getFeatureNames()));
-			fm.addPropositionalNode(n);
-			//System.out.println(n.toString(NodeWriter.textualSymbols));
-			//System.out.println(oc.getConstraint() + " became " + NodeWriter.nodeToString(n));
+			if(c instanceof OpaqueConstraint){
+				OpaqueConstraint oc = (OpaqueConstraint)c;
+				NodeReader nr = new NodeReader();
+				Node n = nr.stringToNode(oc.getConstraint(), new ArrayList<String>(fm.getFeatureNames()));
+				fm.addPropositionalNode(n);
+				//System.out.println(n.toString(NodeWriter.textualSymbols));
+				//System.out.println(oc.getConstraint() + " became " + NodeWriter.nodeToString(n));
+			}else if(c instanceof BCLConstraint){
+				BCLConstraint bc = (BCLConstraint)c;
+				String s = new BCLPrettyPrinter().prettyPrint(bc.getExpression().get(0), cu); // This is an assumption
+				System.out.println(s);
+				NodeReader nr = new NodeReader();
+				Node n = nr.stringToNode(s, new ArrayList<String>(fm.getFeatureNames()));
+				fm.addPropositionalNode(n);
+			}else{
+				throw new UnsupportedOperationException("Cannot read constraints from " + c);
+			}
 		}
 		
 		// Store

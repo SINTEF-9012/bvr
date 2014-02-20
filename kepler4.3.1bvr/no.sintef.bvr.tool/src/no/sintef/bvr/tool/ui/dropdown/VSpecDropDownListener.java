@@ -22,7 +22,7 @@ import no.sintef.bvr.tool.ui.command.event.ExecuteResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.ExportModelSVG;
 import no.sintef.bvr.tool.ui.command.event.NewResolutionEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;

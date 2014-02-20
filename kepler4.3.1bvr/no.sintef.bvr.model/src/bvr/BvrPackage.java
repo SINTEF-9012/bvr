@@ -188,13 +188,22 @@ public interface BvrPackage extends EPackage {
 	int VSPEC__CHILD = VPACKAGEABLE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC__COMMENT = VPACKAGEABLE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>VSpec</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 4;
+	int VSPEC_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>VSpec</em>' class.
@@ -259,6 +268,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHOICE__CHILD = VSPEC__CHILD;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__COMMENT = VSPEC__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
@@ -442,6 +460,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int VCLASSIFIER__CHILD = VSPEC__CHILD;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER__COMMENT = VSPEC__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Instance Multiplicity</b></em>' containment reference.
@@ -1388,6 +1415,15 @@ public interface BvrPackage extends EPackage {
 	int VARIABLE__CHILD = VSPEC__CHILD;
 
 	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__COMMENT = VSPEC__COMMENT;
+
+	/**
 	 * The feature id for the '<em><b>Replacement Fragment Typesubsetstype</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2236,6 +2272,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int CV_SPEC__CHILD = VSPEC__CHILD;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CV_SPEC__COMMENT = VSPEC__COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -4306,6 +4351,17 @@ public interface BvrPackage extends EPackage {
 	EReference getVSpec_Child();
 
 	/**
+	 * Returns the meta object for the attribute '{@link bvr.VSpec#getComment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Comment</em>'.
+	 * @see bvr.VSpec#getComment()
+	 * @see #getVSpec()
+	 * @generated
+	 */
+	EAttribute getVSpec_Comment();
+
+	/**
 	 * Returns the meta object for class '{@link bvr.VPackageable <em>VPackageable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6369,6 +6425,14 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VSPEC__CHILD = eINSTANCE.getVSpec_Child();
+
+		/**
+		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VSPEC__COMMENT = eINSTANCE.getVSpec_Comment();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.VPackageableImpl <em>VPackageable</em>}' class.

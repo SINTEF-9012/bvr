@@ -19,7 +19,7 @@ import no.sintef.bvr.tool.ui.command.event.AddVariableEvent;
 import no.sintef.bvr.tool.ui.command.event.CutEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
@@ -73,7 +73,7 @@ class BCLConstraintDropdown extends JPopupMenu {
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveChoiceEvent(constraint1, vmMap, nodes, bindings, view));
+		removechoice.addActionListener(new RemoveVSpecEvent(constraint1, vmMap, nodes, bindings, view));
 		add(removechoice);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveChoiceEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
@@ -63,10 +63,13 @@ public class AddChoice implements Command {
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
         
-
-        
-        
         cp.setTitle((minimized?"(+) ":"") + c.getName());
+        
+        if(c != null){
+	        if(c.getComment() != null && !c.getComment().equals("")){
+	        	cp.addAttribute("\""+c.getComment()+"\"", "");
+	        }
+        }
         
         for(VSpec vs : c.getChild()){
         	if(vs instanceof Variable){

@@ -1,4 +1,4 @@
-package no.sintef.bvr.constraints.bcl;
+package no.sintef.ict.splcatool;
 
 import bvr.BCLExpression;
 import bvr.ConfigurableUnit;

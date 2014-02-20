@@ -61,7 +61,9 @@ public class ChoicePanel extends ThreePartRoundedPanel implements VSpecPanel, Se
     	JXLabel att = new JXLabel();
     	
     	att.setForeground(Color.BLACK);
-        att.setText(name + " : " + type);
+    	String comma = " : ";
+    	if(type.equals("")) comma = "";
+    		att.setText(name + comma + type);
         att.setHorizontalAlignment(SwingConstants.LEFT);
         att.setVisible(true);
         att.setFont(new Font(null, Font.PLAIN, 11));

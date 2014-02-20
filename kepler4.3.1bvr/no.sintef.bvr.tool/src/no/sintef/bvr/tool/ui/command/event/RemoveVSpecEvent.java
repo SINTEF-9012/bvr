@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,15 +13,16 @@ import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.ConfigurableUnit;
+import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VSpec;
 
-public class RemoveChoiceEvent implements ActionListener {
+public class RemoveVSpecEvent implements ActionListener {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRView view;
 
-	public RemoveChoiceEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public RemoveVSpecEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -53,6 +55,14 @@ public class RemoveChoiceEvent implements ActionListener {
 		}else{
 			cuParent.getOwnedConstraint().remove(v);
 		}
+		
+		// Remove constraints
+		List<Constraint> toremove = new ArrayList<>();
+		for(Constraint c : view.getCU().getOwnedConstraint()){
+			if(c.getContext() == v)
+				toremove.add(c);
+		}
+		view.getCU().getOwnedConstraint().removeAll(toremove);
 		
 		// Regenerate view
 		view.notifyVspecViewUpdate();

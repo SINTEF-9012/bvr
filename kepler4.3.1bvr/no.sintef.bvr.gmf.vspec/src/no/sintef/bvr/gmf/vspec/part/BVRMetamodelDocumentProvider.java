@@ -1224,8 +1224,13 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 			Display.getDefault().asyncExec(new Runnable() {
 				@Override
 				public void run() {
-
-
+					if (PlatformUI.getWorkbench() == null
+							|| PlatformUI.getWorkbench()
+									.getActiveWorkbenchWindow() == null
+							|| PlatformUI.getWorkbench()
+									.getActiveWorkbenchWindow().getActivePage() == null) {
+						return;
+					}
 					IEditorReference[] editors = PlatformUI.getWorkbench()
 							.getActiveWorkbenchWindow().getActivePage()
 							.getEditorReferences();

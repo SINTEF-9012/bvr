@@ -61,6 +61,7 @@ public class VSpecItemProvider
 			super.getPropertyDescriptors(object);
 
 			addResolutionTimePropertyDescriptor(object);
+			addCommentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,6 +80,28 @@ public class VSpecItemProvider
 				 getString("_UI_VSpec_resolutionTime_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_resolutionTime_feature", "_UI_VSpec_type"),
 				 BvrPackage.Literals.VSPEC__RESOLUTION_TIME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Comment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VSpec_comment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_comment_feature", "_UI_VSpec_type"),
+				 BvrPackage.Literals.VSPEC__COMMENT,
 				 true,
 				 false,
 				 false,
@@ -146,6 +169,7 @@ public class VSpecItemProvider
 
 		switch (notification.getFeatureID(VSpec.class)) {
 			case BvrPackage.VSPEC__RESOLUTION_TIME:
+			case BvrPackage.VSPEC__COMMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
