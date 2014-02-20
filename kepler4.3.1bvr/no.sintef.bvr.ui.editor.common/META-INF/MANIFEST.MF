@@ -21,6 +21,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.tool.ui.loader,
  no.sintef.bvr.ui.editor.commands,
+ no.sintef.bvr.ui.framework.elements,
  no.sintef.ict.splcatool,
  org.eclipse.core.resources,
  org.eclipse.jface.resource,

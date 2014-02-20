@@ -4,7 +4,6 @@ import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JApplet;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
@@ -43,6 +42,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
 	protected URI resourceURI;
+	protected CustomJApplet jApplet;
 	
 	private Frame frame;
 	private Composite composite;
@@ -96,7 +96,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 
 	abstract public void setTitle();
 
-	abstract public void setContents(JApplet a);
+	abstract public void setContents();
 
 	abstract public void createView();
 
@@ -139,7 +139,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
-
+	
 	@Override
 	public void createPartControl(Composite parent) {
 		composite = new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND);
@@ -151,7 +151,6 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 			public void run() {
 				if (fileinput != null) {
 					try {
-
 						UIManager.setLookAndFeel(UIManager
 								.getSystemLookAndFeelClassName());
 
@@ -159,14 +158,14 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 						resourceURI = ((BVRTransactionalModel) m).getResource().getURI();
 
 						if (m != null) {
-							JApplet a = new JApplet();
+							jApplet = new CustomJApplet();
 							createView();
 							// "The first child of the embedded frame must be a heavyweight component."
-							frame.add(a);
-							setContents(a);
+							frame.add(jApplet);
+							setContents();
 							int w = (int) frame.getBounds().getWidth();
 							int h = (int) frame.getBounds().getHeight();
-							a.setSize(w, h);
+							jApplet.setSize(w, h);
 							frame.revalidate();
 							frame.repaint();
 						}
@@ -177,7 +176,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 					}
 				}
 			}
-		}.start();
+		}.start();		
 	}
 
 	@Override

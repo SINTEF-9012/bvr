@@ -1,10 +1,10 @@
 package no.sintef.bvr.ui.editor.mvc.realization;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.JApplet;
-
+import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
@@ -20,8 +20,8 @@ public class MVCRealizationEditor extends MVCEditor{
 		setPartName(new File(filename).getName() + " (Realization)");
 	}
 	
-	public void setContents(JApplet a) {
-		a.add(((RealizationView)v).realizationPanel);
+	public void setContents() {
+		jApplet.add(((RealizationView)v).realizationPanel);
 	}
 
 	public void createView() {
@@ -37,15 +37,15 @@ public class MVCRealizationEditor extends MVCEditor{
 
 	@Override
 	public void update(EditorSubject subject) {
+		System.out.println("update for MVCRealizationEditor " + this + " " + subject);	
 		if(subject instanceof ResourceSetEditorSubject){
 			m.markNotSaved();
-			v.refresh();
+			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
 		if(subject instanceof ResourceSavedSubject){
 			m.markSaved();
 		}
 		super.update(subject);
-		System.out.println("update for MVCRealizationEditor " + this + " " + subject);	
 	}
 	
 	private RealizationResourceSetSubject testRealizationResourceSetSubject(List<EditorSubject> subjects){

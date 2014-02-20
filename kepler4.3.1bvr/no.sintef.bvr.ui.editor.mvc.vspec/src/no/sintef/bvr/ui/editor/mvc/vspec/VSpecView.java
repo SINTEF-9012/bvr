@@ -297,5 +297,4 @@ public class VSpecView extends BVRView {
 	public void refresh() {
 		notifyVspecViewUpdate();
 	}
-
 }

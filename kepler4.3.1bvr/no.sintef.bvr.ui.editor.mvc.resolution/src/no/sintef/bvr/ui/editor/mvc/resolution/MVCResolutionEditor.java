@@ -1,10 +1,10 @@
 package no.sintef.bvr.ui.editor.mvc.resolution;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.JApplet;
-
+import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
@@ -21,8 +21,8 @@ public class MVCResolutionEditor extends MVCEditor {
 		setPartName(new File(filename).getName() + " (Resolution)");
 	}
 	
-	public void setContents(JApplet a) {
-		a.add(((ResolutionView)v).resPane);
+	public void setContents() {
+		jApplet.add(((ResolutionView)v).resPane);
 	}
 
 	public void createView() {
@@ -41,7 +41,7 @@ public class MVCResolutionEditor extends MVCEditor {
 		System.out.println("update for MVCResolutionEditor " + this + " " + subject);
 		if(subject instanceof ResourceSetEditorSubject){
 			m.markNotSaved();
-			v.refresh();
+			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
 		if(subject instanceof ResourceSavedSubject){
 			m.markSaved();

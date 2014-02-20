@@ -1,11 +1,11 @@
 package no.sintef.bvr.ui.editor.mvc.vspec;
 
+import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.JApplet;
-
 import no.sintef.bvr.ui.editor.common.MVCEditor;
+import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
@@ -15,7 +15,7 @@ import no.sintef.bvr.ui.editor.mvc.vspec.observer.VSpecResourseSetSubject;
 
 
 public class MVCVSpecEditor extends MVCEditor {
-		
+	
 	@Override
 	public
 	void setTitle() {
@@ -24,8 +24,8 @@ public class MVCVSpecEditor extends MVCEditor {
 	
 	@Override
 	public
-	void setContents(JApplet a) {
-		a.add(((VSpecView)v).vspecEpanel);
+	void setContents() {
+		jApplet.add(((VSpecView)v).vspecEpanel);
 	}
 
 	@Override
@@ -43,10 +43,9 @@ public class MVCVSpecEditor extends MVCEditor {
 
 	@Override
 	public void update(EditorSubject subject) {
-		System.out.println("update for MVCVSpecEditor " + this + " " + subject);
 		if(subject instanceof ResourceSetEditorSubject){
 			m.markNotSaved();
-			v.refresh();
+			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
 		if(subject instanceof ResourceSavedSubject){
 			m.markSaved();
