@@ -3,6 +3,7 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
@@ -32,9 +33,10 @@ public class AddVInstanceEvent implements ActionListener {
 		vi.setResolvedVSpec(v);
 		count++;
 		vi.setName("vInstance" + count);
-		cr.getChild().add(vi);
 		
-		view.notifyResolutionViewUpdate();
+		Context.eINSTANCE.getEditorCommands().addVInstance(cr, vi);
+		//cr.getChild().add(vi);
+		
+		//view.notifyResolutionViewUpdate();
 	}
-
 }

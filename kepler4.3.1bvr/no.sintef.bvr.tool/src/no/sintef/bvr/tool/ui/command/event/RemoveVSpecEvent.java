@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -48,23 +49,29 @@ public class RemoveVSpecEvent implements ActionListener {
 			}
 		}
 		if(parent != null){
-			parent.getChild().remove(v);
+			//parent.getChild().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpec(parent, v);
 		}else if(cuParent == null){
 			ConfigurableUnit cu = view.getCU();
-			cu.getOwnedVSpec().remove(v);
+			//cu.getOwnedVSpec().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeNamedElementConfigurableUnit(cu, v);
 		}else{
-			cuParent.getOwnedConstraint().remove(v);
+			//cuParent.getOwnedConstraint().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);
 		}
 		
 		// Remove constraints
 		List<Constraint> toremove = new ArrayList<>();
 		for(Constraint c : view.getCU().getOwnedConstraint()){
-			if(c.getContext() == v)
-				toremove.add(c);
+			if(c.getContext() == v){
+				//toremove.add(c);
+				Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);
+			}
 		}
-		view.getCU().getOwnedConstraint().removeAll(toremove);
+		//view.getCU().getOwnedConstraint().removeAll(toremove);
+		//Context.eINSTANCE.getEditorCommands().removeAllConstraintConfigurableUnit(cuParent, toremove);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 }

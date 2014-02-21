@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
@@ -39,15 +40,6 @@ public class AddConstraintEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		VSpec v = (VSpec)vmMap.get(p);
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
-		
-		// Modify model
-		/*
-		OpaqueConstraint c = BvrFactory.eINSTANCE.createOpaqueConstraint();
-		c.setConstraint("xx");
-		c.setConstraintLanguage("PropLogic");
-		c.setName("Constraint"+x);
-		*/
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		c.setName("Constraint"+x);
 		x++;
@@ -57,10 +49,11 @@ public class AddConstraintEvent implements ActionListener {
 		c.setContext(v);
 		
 		ConfigurableUnit cu = view.getCU();
-		cu.getOwnedConstraint().add(c);
+		Context.eINSTANCE.getEditorCommands().addBCLConstraint(cu, c);
+		//cu.getOwnedConstraint().add(c);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 
 }

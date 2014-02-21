@@ -1,12 +1,22 @@
 package no.sintef.bvr.ui.editor.commands;
 
+import java.util.List;
+
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+import bvr.BCLConstraint;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
+import bvr.Constraint;
+import bvr.NamedElement;
+import bvr.PrimitveType;
+import bvr.VClassifier;
+import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.Variable;
+import bvr.VariableValueAssignment;
 
 public class EditorMVCCommands implements EditorCommands {
 	
@@ -50,10 +60,74 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addChoiceResolved(Choice target, VSpecResolution vsper,
-			ChoiceResolutuion cr) {
+	public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr) {
 		cr.setResolvedVSpec(target);
 		vsper.getChild().add(cr);	
 	}
 
+	@Override
+	public void addVClassifierToVSpec(VSpec parentVSpec, VClassifier childCClassifier) {
+		parentVSpec.getChild().add(childCClassifier);
+	}
+
+	@Override
+	public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier) {
+		cu.getOwnedVSpec().add(childCClassifier);
+	}
+
+	@Override
+	public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint) {
+		cu.getOwnedConstraint().add(constraint);
+	}
+
+	@Override
+	public void addVariableType(ConfigurableUnit cu, PrimitveType primType) {
+		cu.getOwnedVariabletype().add(primType);
+	}
+
+	@Override
+	public void addVariable(VSpec vSpec, Variable variable) {
+		vSpec.getChild().add(variable);
+	}
+
+	@Override
+	public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment) {
+		parentVSpecResolution.getChild().add(varValueAssignment);
+	}
+
+	@Override
+	public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance) {
+		parentVSpecResolution.getChild().add(vInstance);
+	}
+
+	@Override
+	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement) {
+		parentVSpec.getChild().remove(namedElement);
+	}
+
+	@Override
+	public void removeNamedElementConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
+		cu.getOwnedVSpec().remove(namedElement);
+	}
+
+	@Override
+	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec) {
+		parentVSpec.getChild().add(childVSpec);
+	}
+
+	@Override
+	public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec) {
+		cu.getOwnedVSpec().add(childVSpec);
+	}
+
+	@Override
+	public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
+		cu.getOwnedConstraint().remove(namedElement);
+	}
+
+	@Override
+	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints) {
+		//cu.getOwnedConstraint().removeAll(constraints);
+	}
+	
 }

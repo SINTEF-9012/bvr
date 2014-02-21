@@ -3,6 +3,7 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
@@ -107,7 +108,8 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 			vt = BvrFactory.eINSTANCE.createPrimitveType();
 			vt.setType(type);
 			vt.setName("xx");
-			view.getCU().getOwnedVariabletype().add(vt);
+			//view.getCU().getOwnedVariabletype().add(vt);
+			Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
 		}
 		value.setType(vt);
 		
@@ -115,11 +117,12 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 		vi.setValue(value);
 		
 		// Add
-		cr.getChild().add(vi);
+		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(cr, vi);
+		//cr.getChild().add(vi);
 		
 
 		
-		view.notifyResolutionViewUpdate();
+		//view.notifyResolutionViewUpdate();
 	}
 
 }

@@ -7,8 +7,8 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.ConfigurableUnit;
 import bvr.MultiplicityInterval;
@@ -45,14 +45,16 @@ public class AddClassifierEvent implements ActionListener {
 		x++;
 		
 		if(v != null){
-			v.getChild().add(c);
+			//v.getChild().add(c);
+			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec(v, c);
 		}else{
 			ConfigurableUnit cu = view.getCU();
-			cu.getOwnedVSpec().add(c);
+			//cu.getOwnedVSpec().add(c);
+			Context.eINSTANCE.getEditorCommands().addVClassifierToConfigurableUnit(cu, c);
 		}
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 
 }

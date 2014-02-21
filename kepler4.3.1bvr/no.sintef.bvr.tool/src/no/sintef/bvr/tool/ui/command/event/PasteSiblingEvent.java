@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -48,14 +49,15 @@ public class PasteSiblingEvent implements ActionListener {
 		if(Main.vSpecCut != null){
 			EList<VSpec> x = parent.getChild();
 			int i = x.indexOf(v);
-			if(Main.vSpecCut instanceof VSpec)
-				x.add(i+1, (VSpec)Main.vSpecCut);
-			//parent.getChild().add(Main.vSpecCut);
+			if(Main.vSpecCut instanceof VSpec){
+				//x.add(i+1, (VSpec)Main.vSpecCut);
+				Context.eINSTANCE.getEditorCommands().addVSpecToVSpec(parent, (VSpec) Main.vSpecCut);
+			}
 			Main.vSpecCut = null;
 		}
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 
 }

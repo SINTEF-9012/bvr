@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
@@ -46,16 +47,18 @@ public class AddVariableEvent implements ActionListener {
 		vt.setType(PrimitiveTypeEnum.INTEGER);
 		vt.setName("xx");
 		
-		view.getCU().getOwnedVariabletype().add(vt);
+		Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
+		//view.getCU().getOwnedVariabletype().add(vt);
 		
 		var.setName("Var" + x);
 		var.setType(vt);
 		x++;
 		
-		v.getChild().add(var);
+		Context.eINSTANCE.getEditorCommands().addVariable(v, var);
+		//v.getChild().add(var);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 
 }

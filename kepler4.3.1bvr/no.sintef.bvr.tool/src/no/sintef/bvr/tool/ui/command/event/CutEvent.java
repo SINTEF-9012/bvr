@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -43,17 +44,19 @@ public class CutEvent implements ActionListener {
 		}
 		
 		if(parent != null){
-			parent.getChild().remove(v);
+			//parent.getChild().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpec(parent, v);
 		}else{
 			ConfigurableUnit cu = view.getCU();
-			cu.getOwnedVSpec().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeNamedElementConfigurableUnit(cu, v);
+			//cu.getOwnedVSpec().remove(v);
 		}
 		
 		// Save cut
 		Main.vSpecCut = v;
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -34,18 +35,23 @@ public class PasteChildEvent implements ActionListener {
 		// Modify model
 		if(Main.vSpecCut != null){
 			if(v != null){
-				if(v instanceof VSpec && Main.vSpecCut instanceof VSpec)
-					((VSpec)v).getChild().add((VSpec)Main.vSpecCut);
+				if(v instanceof VSpec && Main.vSpecCut instanceof VSpec){
+					//((VSpec)v).getChild().add((VSpec)Main.vSpecCut);
+					VSpec vSpec = (VSpec) v;
+					Context.eINSTANCE.getEditorCommands().addVSpecToVSpec(vSpec, (VSpec) Main.vSpecCut);
+				}
 			}else{
 				ConfigurableUnit cu = view.getCU();
-				if(Main.vSpecCut instanceof VSpec)
-					cu.getOwnedVSpec().add((VSpec)Main.vSpecCut);
+				if(Main.vSpecCut instanceof VSpec){
+					//cu.getOwnedVSpec().add((VSpec)Main.vSpecCut);
+					Context.eINSTANCE.getEditorCommands().addVSpecToConfigurableUnit(cu, (VSpec) Main.vSpecCut);
+				}
 			}
 			Main.vSpecCut = null;
 		}
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 
 }
