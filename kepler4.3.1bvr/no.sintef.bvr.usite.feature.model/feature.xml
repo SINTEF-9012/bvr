@@ -42,21 +42,21 @@ SINTEF - initial API and implementation]
          id="no.sintef.bvr.model"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.model.edit"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.model.editor"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

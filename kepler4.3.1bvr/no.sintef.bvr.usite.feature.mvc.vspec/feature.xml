@@ -96,70 +96,70 @@ SINTEF - initial API and implementation]
          id="no.sintef.bvr.common"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.constraints"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.engine"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.tool"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.ui.editor.commands"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.ui.editor.common"
          download-size="0"
          install-size="0"
-         version="1.0.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.ui.editor.mvc.vspec"
          download-size="0"
          install-size="0"
-         version="1.0.0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.ui.framework"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.thirdparty"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.dsl.node"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

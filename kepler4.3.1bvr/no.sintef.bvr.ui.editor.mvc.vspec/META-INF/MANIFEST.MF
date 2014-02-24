@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: BVR :: Eclipse Editor (MVC) VSpec
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.mvc.vspec;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.bvr.ui.editor.mvc.vspec.Activator
 Bundle-Vendor: SINTEF
 Require-Bundle: org.eclipse.core.runtime,
