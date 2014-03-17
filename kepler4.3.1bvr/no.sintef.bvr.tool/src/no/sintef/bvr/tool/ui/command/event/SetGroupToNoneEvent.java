@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -28,9 +29,10 @@ public class SetGroupToNoneEvent implements ActionListener {
 		VSpec v = (VSpec)vmMap.get(p);
 		
 		// Modify model
-		v.setGroupMultiplicity(null);
+		//v.setGroupMultiplicity(null);
+		Context.eINSTANCE.getEditorCommands().setVSpecGroupMultiplicity(v, null);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 }

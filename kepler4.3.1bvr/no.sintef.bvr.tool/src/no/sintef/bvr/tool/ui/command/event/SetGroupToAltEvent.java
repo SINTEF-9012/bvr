@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -33,9 +34,10 @@ public class SetGroupToAltEvent implements ActionListener {
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
-		v.setGroupMultiplicity(mi);
+		//v.setGroupMultiplicity(mi);
+		Context.eINSTANCE.getEditorCommands().setVSpecGroupMultiplicity(v, mi);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 }

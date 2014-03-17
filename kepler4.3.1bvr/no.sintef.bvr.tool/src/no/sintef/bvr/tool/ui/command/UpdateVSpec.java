@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -53,14 +54,16 @@ public class UpdateVSpec implements Command {
 
 	public JComponent execute() {
 		//System.out.println("vc: " + vc);
-		vc.setName(name);
-		view.notifyVspecViewUpdate();
+		//vc.setName(name);
+		//view.notifyVspecViewUpdate();
+		Context.eINSTANCE.getEditorCommands().setName(vc, name);
 		
 		return null;
 	}
 
 	public void setComment(String text) {
-		((VSpec)vc).setComment(text);
+		//((VSpec)vc).setComment(text);
+		Context.eINSTANCE.getEditorCommands().setVSpecComment((VSpec)vc, text);
 	}
 
 }

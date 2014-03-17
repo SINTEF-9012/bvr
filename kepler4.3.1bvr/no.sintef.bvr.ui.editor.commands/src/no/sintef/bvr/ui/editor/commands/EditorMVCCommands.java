@@ -2,6 +2,7 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -9,6 +10,7 @@ import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
 import bvr.VClassifier;
@@ -127,7 +129,27 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints) {
-		//cu.getOwnedConstraint().removeAll(constraints);
+		cu.getOwnedConstraint().removeAll(constraints);
+	}
+
+	@Override
+	public void setName(NamedElement namedElement, String name) {
+		namedElement.setName(name);
+	}
+
+	@Override
+	public void setVSpecComment(VSpec vSpec, String comment) {
+		vSpec.setComment(comment);
+	}
+
+	@Override
+	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
+		choice.setIsImpliedByParent(isImplied);
+	}
+	
+	@Override
+	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject){
+		vSpec.setGroupMultiplicity(eObject);
 	}
 	
 }

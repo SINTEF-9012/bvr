@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -15,6 +16,7 @@ import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
 import bvr.VClassifier;
@@ -180,4 +182,33 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		RemoveCommand cmd = new RemoveCommand(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedConstraint(), constraints);
 		editingDomain.getCommandStack().execute(cmd);
 	}
+
+	@Override
+	public void setName(NamedElement namedElement, String name) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = new SetCommand(editingDomain, namedElement, BvrPackage.eINSTANCE.getNamedElement_Name(), name);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void setVSpecComment(VSpec vSpec, String comment) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = new SetCommand(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Comment(), comment);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = new SetCommand(editingDomain, choice, BvrPackage.eINSTANCE.getChoice_IsImpliedByParent(), isImplied);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = new SetCommand(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_GroupMultiplicity(), eObject);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
 }

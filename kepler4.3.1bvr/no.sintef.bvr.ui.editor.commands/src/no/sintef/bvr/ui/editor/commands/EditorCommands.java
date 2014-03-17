@@ -2,6 +2,7 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -9,6 +10,7 @@ import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
 import bvr.VClassifier;
@@ -59,4 +61,12 @@ public interface EditorCommands {
 	public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
 	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints);
+	
+	public void setName(NamedElement namedElement, String name);
+	
+	public void setVSpecComment(VSpec vSpec, String comment);
+	
+	public void setIsImpliedByParent(Choice choice, boolean isImplied);
+	
+	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject);
 }
