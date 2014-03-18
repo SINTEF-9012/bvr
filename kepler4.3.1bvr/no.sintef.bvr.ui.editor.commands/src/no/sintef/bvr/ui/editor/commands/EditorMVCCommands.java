@@ -2,7 +2,6 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -19,6 +18,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
+import bvr.Variabletype;
 
 public class EditorMVCCommands implements EditorCommands {
 	
@@ -150,6 +150,21 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject){
 		vSpec.setGroupMultiplicity(eObject);
+	}
+	
+	@Override
+	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound){
+		mInterval.setUpper(upperBound);
+	}
+	
+	@Override
+	public void setGroupMultiplicityLowerBound(MultiplicityInterval mInterval, int lowerBound){
+		mInterval.setLower(lowerBound);
+	}
+	
+	@Override
+	public void setTypeForVariable(Variable variable, Variabletype variableType){
+		variable.setType(variableType);
 	}
 	
 }

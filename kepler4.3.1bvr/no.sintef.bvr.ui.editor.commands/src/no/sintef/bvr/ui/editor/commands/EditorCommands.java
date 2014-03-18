@@ -19,6 +19,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
+import bvr.Variabletype;
 
 public interface EditorCommands {
 	
@@ -69,4 +70,10 @@ public interface EditorCommands {
 	public void setIsImpliedByParent(Choice choice, boolean isImplied);
 	
 	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject);
+	
+	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound);
+	
+	public void setGroupMultiplicityLowerBound(MultiplicityInterval mInterval, int lowerBound);
+
+	public void setTypeForVariable(Variable variable, Variabletype variableType);
 }

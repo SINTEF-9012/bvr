@@ -24,6 +24,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
+import bvr.Variabletype;
 
 public class EditorEMFTransactionalCommands implements EditorCommands {
 
@@ -210,4 +211,24 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		editingDomain.getCommandStack().execute(cmd);
 	}
 	
+	@Override
+	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound){
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, mInterval, BvrPackage.eINSTANCE.getMultiplicityInterval_Upper(), upperBound);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void setGroupMultiplicityLowerBound(MultiplicityInterval mInterval, int lowerBound){
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, mInterval, BvrPackage.eINSTANCE.getMultiplicityInterval_Lower(), lowerBound);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void setTypeForVariable(Variable variable, Variabletype variableType){
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variable, BvrPackage.eINSTANCE.getVariable_Type(), variableType);
+		editingDomain.getCommandStack().execute(cmd);
+	}
 }

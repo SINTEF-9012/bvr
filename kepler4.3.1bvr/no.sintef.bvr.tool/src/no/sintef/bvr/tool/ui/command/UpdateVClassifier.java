@@ -6,10 +6,10 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-
 import bvr.Choice;
 import bvr.BvrFactory;
 import bvr.NamedElement;
@@ -44,18 +44,21 @@ public class UpdateVClassifier extends UpdateVSpec {
 
 	public JComponent execute() {
 		super.execute();
-		((VClassifier) vc).getInstanceMultiplicity().setLower(lower);
-		((VClassifier) vc).getInstanceMultiplicity().setUpper(upper);
+
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(((VClassifier) vc).getInstanceMultiplicity(), upper);
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(((VClassifier) vc).getInstanceMultiplicity(), lower);
 		for(VSpec c : ((VSpec)vc).getChild()){
 			if(c instanceof Variable){
 				Variable v = (Variable)c;
 				
 				// Set name
 				String newName = varNames.get(v);
-				v.setName(newName);
+				//v.setName(newName);
+				Context.eINSTANCE.getEditorCommands().setName(v, newName);
 				
 				if(newName.equals("")){
-					((VSpec)vc).getChild().remove(v);
+					//((VSpec)vc).getChild().remove(v);
+					Context.eINSTANCE.getEditorCommands().removeNamedElementVSpec((VSpec)vc, v);
 					break;
 				}
 				
@@ -76,13 +79,15 @@ public class UpdateVClassifier extends UpdateVSpec {
 			        }
 					vt.setType(t);
 					vt.setName("xx");
-					view.getCU().getOwnedVariabletype().add(vt);
+					//view.getCU().getOwnedVariabletype().add(vt);
+					Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
 					tvt = vt;
 				}
-				v.setType(tvt);
+				//v.setType(tvt);
+				Context.eINSTANCE.getEditorCommands().setTypeForVariable(v, tvt);
 			}
 		}
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 		return null;
 	}
 
