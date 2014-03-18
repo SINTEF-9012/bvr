@@ -90,14 +90,8 @@ public class ResolutionView extends BVRView {
         // Resolution panes
         resPane = new JTabbedPane();
         
-        try {
-			loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
-		} catch (BVRModelException e) {
-			e.printStackTrace();
-		}
-        
+		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
         autoLayoutResolutions();
-
 	}
 	
 	public boolean isDirty() {

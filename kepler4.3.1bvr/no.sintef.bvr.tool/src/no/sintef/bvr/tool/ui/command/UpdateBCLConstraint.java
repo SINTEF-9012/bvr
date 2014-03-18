@@ -1,7 +1,5 @@
 package no.sintef.bvr.tool.ui.command;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -16,13 +14,13 @@ import org.antlr.v4.runtime.tree.RuleNode;
 import no.sintef.bvr.constraints.bcl.BCLBuilder;
 import no.sintef.bvr.constraints.bcl.BCLLexer;
 import no.sintef.bvr.constraints.bcl.BCLParser;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.NamedElement;
-import bvr.VSpec;
 
 public class UpdateBCLConstraint extends UpdateVSpec {
 
@@ -43,11 +41,13 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 		
 		RuleNode root = parseBCL(text);
 		BCLExpression e = new BCLBuilder().recurse(root, 0, view.getCU(), false);
-		bcl.getExpression().clear();
-		bcl.getExpression().add(e);
+		Context.eINSTANCE.getEditorCommands().clearBCLConstraintExpressions(bcl);
+		Context.eINSTANCE.getEditorCommands().addBCLExpressionConstraint(bcl, e);
+		//bcl.getExpression().clear();
+		//bcl.getExpression().add(e);
 		
 		super.execute();
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 		return null;
 	}
 

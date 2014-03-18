@@ -10,6 +10,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 
 import bvr.BCLConstraint;
+import bvr.BCLExpression;
 import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
@@ -229,6 +230,20 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void setTypeForVariable(Variable variable, Variabletype variableType){
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variable, BvrPackage.eINSTANCE.getVariable_Type(), variableType);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void clearBCLConstraintExpressions(BCLConstraint constraint) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, constraint, BvrPackage.eINSTANCE.getBCLConstraint_Expression(), constraint.getExpression());
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, constraint, BvrPackage.eINSTANCE.getBCLConstraint_Expression(), expression);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 }

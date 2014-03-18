@@ -9,7 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.loader.BVRModelSingleton;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
@@ -22,10 +24,12 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener2;
@@ -173,10 +177,25 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 						e.printStackTrace();
 						System.err.println("Cannot open file" + e + " "
 								+ e.getMessage());
+						throw new RuntimeException(e);
 					}
 				}
 			}
-		}.start();		
+		}.start();
+		
+		 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+		      public void uncaughtException(Thread t, Throwable e) {
+		    	  e.printStackTrace();
+		    	  StaticUICommands.showMessageErrorDialog(jApplet, e, "Error in Thread " + t);
+		    	  /*PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+		    		  public void run() {
+		    			  Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		    			  MessageDialog dialog = new MessageDialog(activeShell, "Error", null, stackTrace, MessageDialog.ERROR, new String[] {"Close"}, 0);
+		    			  dialog.open();
+		        	}
+		        });*/
+		      }
+		 });
 	}
 
 	@Override

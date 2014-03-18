@@ -118,11 +118,7 @@ public class RealizationView extends BVRView {
         realizationPanel = new JTabbedPane();
         //modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
         
-        try{
-        	loadBVRRelalizationView(m.getBVRM().getCU());
-        } catch (Exception e){
-        	e.printStackTrace();
-        }
+        loadBVRRelalizationView(m.getBVRM().getCU());
 	}
 
 	public ConfigurableUnitSubject getConfigurableUnitSubject(){
@@ -135,7 +131,7 @@ public class RealizationView extends BVRView {
 
 	int choiceCount = 1;
 
-	private void loadBVRRelalizationView(ConfigurableUnit cu) throws Exception {
+	private void loadBVRRelalizationView(ConfigurableUnit cu) {
 		selectedFS = new SelectedFragmentSubstitutionSubject(null);
 		
 		tableFragmSubst = new FragmentSubstitutionJTable();

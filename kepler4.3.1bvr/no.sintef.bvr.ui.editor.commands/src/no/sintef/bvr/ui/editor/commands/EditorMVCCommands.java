@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
+import bvr.BCLExpression;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
@@ -165,6 +166,16 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void setTypeForVariable(Variable variable, Variabletype variableType){
 		variable.setType(variableType);
+	}
+
+	@Override
+	public void clearBCLConstraintExpressions(BCLConstraint constraint) {
+		constraint.getExpression().clear();
+	}
+
+	@Override
+	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression) {
+		constraint.getExpression().add(expression);
 	}
 	
 }

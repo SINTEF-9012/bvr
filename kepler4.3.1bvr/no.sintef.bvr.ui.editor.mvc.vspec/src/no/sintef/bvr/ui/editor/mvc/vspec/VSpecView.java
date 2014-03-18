@@ -83,11 +83,7 @@ public class VSpecView extends BVRView {
 		
 		// VSpec pane
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
-        try {
-			loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
-		} catch (BVRModelException e) {
-			e.printStackTrace();
-		}
+		loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
         
         autoLayoutVSpec();
 		

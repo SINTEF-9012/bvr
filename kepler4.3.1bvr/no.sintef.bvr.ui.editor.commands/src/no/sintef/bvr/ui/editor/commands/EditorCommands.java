@@ -2,10 +2,12 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
+
+
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
+import bvr.BCLExpression;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
@@ -76,4 +78,8 @@ public interface EditorCommands {
 	public void setGroupMultiplicityLowerBound(MultiplicityInterval mInterval, int lowerBound);
 
 	public void setTypeForVariable(Variable variable, Variabletype variableType);
+	
+	public void clearBCLConstraintExpressions(BCLConstraint constraint);
+	
+	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression);
 }
