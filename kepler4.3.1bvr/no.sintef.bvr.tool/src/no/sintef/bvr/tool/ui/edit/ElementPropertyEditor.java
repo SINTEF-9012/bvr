@@ -30,14 +30,16 @@ import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-import com.explodingpixels.macwidgets.plaf.HudTextFieldUI;
 
 import bvr.NamedElement;
-import bvr.VSpec;
 
 public class ElementPropertyEditor extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6151188246017274037L;
+
 	protected BVRView view;
 	
 	protected JPanel top;
@@ -87,7 +89,7 @@ public class ElementPropertyEditor extends JPanel {
         this.addCenter(top);
         this.addCenter(bottom);
         
-        final JCommandButton okButton = new JCommandButton("OK", command);
+        final JCommandButton okButton = new JCommandButton("OK", command, view);
         bottom.add(okButton);
         
         //Name

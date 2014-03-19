@@ -1,29 +1,29 @@
 package no.sintef.bvr.tool.ui.edit;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import no.sintef.bvr.tool.ui.command.UpdateChoice;
+
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
-import bvr.PrimitiveTypeEnum;
-import bvr.PrimitveType;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstancePropertyEditor extends ElementPropertyEditor{
-    protected void init() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 47770113151580106L;
+
+	protected void init() {
     	command = new UpdateVInstance();
     	command.init(null, obj, null, null, null, null, view);
     }

@@ -32,7 +32,10 @@ package no.sintef.bvr.ui.framework.elements;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Rectangle;
+import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -40,11 +43,17 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 //import no.sintef.bvr.ui.commands.SelectInstanceCommand;
+
+
+
+
 
 
 import com.explodingpixels.macwidgets.HudWindow;
@@ -57,6 +66,7 @@ public class EditableModelPanel extends JLayeredPane {
 	private JPanel propertiesPanel = null;
     private JButton closeProperties = new JButton("Close");
     public JComponent modelPanel = null;
+    public JDialog dialog = null;
 
     public EditableModelPanel(JComponent _modelPanel) {
     	this.setBackground(Color.WHITE);    	
@@ -108,15 +118,41 @@ public class EditableModelPanel extends JLayeredPane {
         hud.setContentPane(prop);
         hud.getJDialog().setVisible(true);
         */
-    	JFrame frame = new JFrame("Properties editor");
-    	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    	frame.getContentPane().add(prop, BorderLayout.CENTER);
-    	frame.pack();
-    	frame.setVisible(true);
+    	if(dialog != null)
+    		dialog.dispose();
+    	
+    	dialog = new JDialog();
+    	dialog.setTitle("Properties editor");
+    	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	dialog.setContentPane(prop);
+    	dialog.pack();
+    	dialog.setLocationRelativeTo(null);
+    	dialog.setVisible(true);
+    }
+    
+    public void displayProperties(JPanel content, Component parent, Dialog.ModalityType mode) {
+    	Window parentWindow = findWindow(parent);
+    	dialog = new JDialog(parentWindow, "Properties editor", mode);
+    	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	dialog.setContentPane(content);
+    	dialog.pack();
+    	dialog.setLocationRelativeTo(parentWindow);
+    	dialog.setVisible(true);
     }
 
     public void undisplayProperties() {
+    	dialog.dispose();
         //hud.getJDialog().setVisible(false);
         //SelectInstanceCommand.unselect();
+    }
+    
+    public static Window findWindow(Component c) {
+        if (c == null) {
+            return JOptionPane.getRootFrame();
+        } else if (c instanceof Window) {
+            return (Window) c;
+        } else {
+            return findWindow(c.getParent());
+        }
     }
 }

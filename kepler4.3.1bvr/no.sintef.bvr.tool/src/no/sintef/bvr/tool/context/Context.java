@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JApplet;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
@@ -47,6 +48,7 @@ public final class Context {
 	public Logger logger = environment.getLogger();
 	
 	private Map<File, BVRModel> loaded = new HashMap<File, BVRModel>();
+	private JApplet focusedJApplet = null;
 	
 	private static Context getContext(){
 		return new Context();
@@ -160,5 +162,13 @@ public final class Context {
 	
 	public BVRModel getModel(File file){
 		return new BVRTransactionalModel(file);
+	}
+	
+	public void setActiveJApplet(JApplet jApplet){
+		focusedJApplet = jApplet;
+	}
+	
+	public JApplet getActiveJApplet(){
+		return focusedJApplet;
 	}
 }

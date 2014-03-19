@@ -181,11 +181,9 @@ public class VSpecView extends BVRView {
 		vspecvmMap.clear();
 		
 	    // Add stuff
-	    try {
-			loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
-		} catch (BVRModelException e) {
-			e.printStackTrace();
-		}
+
+		loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
+
 	    
 	    // Automatically Layout Diagram
 	    autoLayoutVSpec();

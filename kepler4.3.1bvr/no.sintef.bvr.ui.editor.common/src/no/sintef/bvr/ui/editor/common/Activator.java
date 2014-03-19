@@ -1,5 +1,7 @@
 package no.sintef.bvr.ui.editor.common;
 
+import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 import no.sintef.bvr.ui.editor.common.listener.DomainResourceSetListener;
 import no.sintef.bvr.ui.editor.common.listener.ResourceSetChangedListener;
@@ -29,6 +31,12 @@ public class Activator extends AbstractUIPlugin {
 		TransactionalEditingDomain editingDomain = commands.testTransactionalEditingDomain();
 		editingDomain.addResourceSetListener(new DomainResourceSetListener());
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(new ResourceSetChangedListener());
+		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+		      public void uncaughtException(Thread t, Throwable e) {
+		    	  StaticUICommands.showMessageErrorDialog(Context.eINSTANCE.getActiveJApplet(), e, "Unhandled Error in Thread: " + t);
+		    	  Context.eINSTANCE.logger.error("Unhandled Error in Thread: " + t, e);
+		      }
+		 });
 	}
 
 	/*
