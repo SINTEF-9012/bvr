@@ -82,4 +82,6 @@ public interface EditorCommands {
 	public void clearBCLConstraintExpressions(BCLConstraint constraint);
 	
 	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression);
+	
+	public void removeVSpecVariable(VSpec vSpec, Variable var);
 }

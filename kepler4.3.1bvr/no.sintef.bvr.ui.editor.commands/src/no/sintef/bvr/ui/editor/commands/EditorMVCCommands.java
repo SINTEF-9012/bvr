@@ -177,5 +177,10 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression) {
 		constraint.getExpression().add(expression);
 	}
+
+	@Override
+	public void removeVSpecVariable(VSpec vSpec, Variable var) {
+		vSpec.getChild().remove(var);	
+	}
 	
 }

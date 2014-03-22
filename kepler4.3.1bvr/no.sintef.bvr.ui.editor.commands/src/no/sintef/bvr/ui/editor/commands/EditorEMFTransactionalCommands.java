@@ -246,4 +246,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, constraint, BvrPackage.eINSTANCE.getBCLConstraint_Expression(), expression);
 		editingDomain.getCommandStack().execute(cmd);
 	}
+
+	@Override
+	public void removeVSpecVariable(VSpec vSpec, Variable var) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Child(), var);
+		editingDomain.getCommandStack().execute(cmd);
+	}
 }

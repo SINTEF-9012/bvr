@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -14,7 +15,6 @@ import bvr.BvrFactory;
 import bvr.NamedElement;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
-import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.Variable;
 import bvr.Variabletype;
@@ -40,10 +40,12 @@ public class UpdateChoice extends UpdateVSpec {
 				
 				// Set name
 				String newName = varNames.get(v);
-				v.setName(newName);
+				//v.setName(newName);
+				Context.eINSTANCE.getEditorCommands().setName(v, newName);
 				
 				if(newName.equals("")){
-					((VSpec)vc).getChild().remove(v);
+					//((VSpec)vc).getChild().remove(v);
+					Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)vc, v);
 					break;
 				}
 				
@@ -63,14 +65,17 @@ public class UpdateChoice extends UpdateVSpec {
 			        	}
 			        }
 					vt.setType(t);
-					vt.setName("xx");
-					view.getCU().getOwnedVariabletype().add(vt);
+					//vt.setName("xx");
+					vt.setName(t.getLiteral());
+					//view.getCU().getOwnedVariabletype().add(vt);
+					Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
 					tvt = vt;
 				}
-				v.setType(tvt);
+				Context.eINSTANCE.getEditorCommands().setTypeForVariable(v, tvt);
+				//v.setType(tvt);
 			}
 		}
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 		return null;
 	}
 
