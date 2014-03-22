@@ -150,7 +150,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void removeNamedElementConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
+	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpec(), namedElement);
 		editingDomain.getCommandStack().execute(cmd);
@@ -253,4 +253,26 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Child(), var);
 		editingDomain.getCommandStack().execute(cmd);
 	}
+	
+	@Override
+	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecResolution, BvrPackage.eINSTANCE.getVSpecResolution_Child(), namedElement);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), namedElement);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void removeOwnedVSpecResolutions(ConfigurableUnit cu) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), cu.getOwnedVSpecResolution());
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
 }

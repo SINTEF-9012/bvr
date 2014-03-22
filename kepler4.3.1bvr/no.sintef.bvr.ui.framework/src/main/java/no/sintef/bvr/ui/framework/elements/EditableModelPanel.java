@@ -34,7 +34,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
-import java.awt.Rectangle;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -44,25 +43,26 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-//import no.sintef.bvr.ui.commands.SelectInstanceCommand;
 
 
 
 
 
 
-import com.explodingpixels.macwidgets.HudWindow;
+
+//import com.explodingpixels.macwidgets.HudWindow;
 
 /**
  * @author ffouquet
  */
 public class EditableModelPanel extends JLayeredPane {
 
+	private static final long serialVersionUID = 7573336297061006849L;
+	
 	private JPanel propertiesPanel = null;
     private JButton closeProperties = new JButton("Close");
     public JComponent modelPanel = null;
@@ -106,7 +106,7 @@ public class EditableModelPanel extends JLayeredPane {
         add(propertiesPanel, JLayeredPane.POPUP_LAYER);
     }
 
-    private JPanel previousPropertiesPanel = null;
+    
 
     //HudWindow hud = new HudWindow("Properties editor");
 
@@ -141,7 +141,8 @@ public class EditableModelPanel extends JLayeredPane {
     }
 
     public void undisplayProperties() {
-    	dialog.dispose();
+    	if(dialog != null)
+    		dialog.dispose();
         //hud.getJDialog().setVisible(false);
         //SelectInstanceCommand.unselect();
     }

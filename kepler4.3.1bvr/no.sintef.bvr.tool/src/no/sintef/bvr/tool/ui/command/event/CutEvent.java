@@ -48,7 +48,7 @@ public class CutEvent implements ActionListener {
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpec(parent, v);
 		}else{
 			ConfigurableUnit cu = view.getCU();
-			Context.eINSTANCE.getEditorCommands().removeNamedElementConfigurableUnit(cu, v);
+			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecConfigurableUnit(cu, v);
 			//cu.getOwnedVSpec().remove(v);
 		}
 		

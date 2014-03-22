@@ -55,7 +55,7 @@ public interface EditorCommands {
 	
 	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement);
 	
-	public void removeNamedElementConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
 	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec);
 
@@ -84,4 +84,10 @@ public interface EditorCommands {
 	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression);
 	
 	public void removeVSpecVariable(VSpec vSpec, Variable var);
+	
+	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement);
+	
+	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	
+	public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
 }

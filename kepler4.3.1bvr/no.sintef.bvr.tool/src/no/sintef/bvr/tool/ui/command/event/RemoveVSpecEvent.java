@@ -54,7 +54,7 @@ public class RemoveVSpecEvent implements ActionListener {
 		}else if(cuParent == null){
 			ConfigurableUnit cu = view.getCU();
 			//cu.getOwnedVSpec().remove(v);
-			Context.eINSTANCE.getEditorCommands().removeNamedElementConfigurableUnit(cu, v);
+			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecConfigurableUnit(cu, v);
 		}else{
 			//cuParent.getOwnedConstraint().remove(v);
 			Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);

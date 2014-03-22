@@ -109,7 +109,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void removeNamedElementConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
+	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
 		cu.getOwnedVSpec().remove(namedElement);
 	}
 
@@ -181,6 +181,21 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeVSpecVariable(VSpec vSpec, Variable var) {
 		vSpec.getChild().remove(var);	
+	}
+	
+	@Override
+	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement) {
+		vSpecResolution.getChild().remove(namedElement);
+	}
+
+	@Override
+	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
+		cu.getOwnedVSpecResolution().remove(namedElement);
+	}
+	
+	@Override
+	public void removeOwnedVSpecResolutions(ConfigurableUnit cu) {
+		cu.getOwnedVSpecResolution().clear();
 	}
 	
 }

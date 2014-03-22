@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
@@ -39,13 +40,15 @@ public class RemoveVSpecResolutionEvent implements ActionListener  {
 			}
 		}
 		if(parent != null){
-			parent.getChild().remove(v);
+			//parent.getChild().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(parent, v);
 		}else if(cuParent == null){
 			ConfigurableUnit cu = view.getCU();
-			cu.getOwnedVSpecResolution().remove(v);
+			//cu.getOwnedVSpecResolution().remove(v);
+			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(cu, v);
 		}
 		
 		// Regenerate view
-		view.notifyResolutionViewUpdate();
+		//view.notifyResolutionViewUpdate();
 	}
 }
