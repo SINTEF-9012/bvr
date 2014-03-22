@@ -57,14 +57,14 @@ SINTEF - initial API and implementation]
          id="no.sintef.bvr.table.resolution"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.ui.editor.commands"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

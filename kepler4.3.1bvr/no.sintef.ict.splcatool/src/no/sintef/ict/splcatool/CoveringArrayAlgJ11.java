@@ -81,30 +81,30 @@ public class CoveringArrayAlgJ11 extends CoveringArray {
 	}
 	
 	@Override
-		public Integer[] getRow(int n) {
-			if(nrs == null){
-				nrs = new ArrayList<Integer>(nrid.keySet());
-				Collections.sort(nrs);
-			}
-			
-			List<Integer> nl = result.get(n);
-			Integer[] res = new Integer[nl.size()];
-			
-	/*		if(nl.size() != nrs.size()){
-				System.out.println("Incompatible sizes: " + nl.size() + " and " + nrs.size());
-				System.exit(-1);
-			}
-	*/		
-			for(int i = 0; i < nrs.size(); i++){
-				int x = nrs.get(i);
-				for(int j = 0; j < nl.size(); j++){
-					if(Math.abs(nl.get(j)) == x)
-						res[i] = nl.get(j)<0?1:0;
-				}
-			}
-	
-			return res;
+	public Integer[] getRow(int n) {
+		if(nrs == null){
+			nrs = new ArrayList<Integer>(nrid.keySet());
+			Collections.sort(nrs);
 		}
+		
+		List<Integer> nl = result.get(n);
+		Integer[] res = new Integer[nl.size()];
+		
+/*		if(nl.size() != nrs.size()){
+			System.out.println("Incompatible sizes: " + nl.size() + " and " + nrs.size());
+			System.exit(-1);
+		}
+*/		
+		for(int i = 0; i < nrs.size(); i++){
+			int x = nrs.get(i);
+			for(int j = 0; j < nl.size(); j++){
+				if(Math.abs(nl.get(j)) == x)
+					res[i] = nl.get(j)<0?1:0;
+			}
+		}
+
+		return res;
+	}
 
 	@Override
 	public int getRowCount() {

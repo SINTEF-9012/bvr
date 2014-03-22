@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SPLCATOOL
 Bundle-SymbolicName: no.sintef.ict.splcatool
-Bundle-Version: 0.1.0
+Bundle-Version: 0.1.0.qualifier
 Require-Bundle: org.junit,
  org.sat4j.core,
  de.ovgu.featureide.fm.core,

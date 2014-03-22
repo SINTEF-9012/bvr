@@ -30,6 +30,7 @@ import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
+import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -115,6 +116,11 @@ class VSpecResDropdown extends JPopupMenu {
 			calccov3.addActionListener(new CalculateCoverage(m, bvrView, 3));
 			cc1.add(calccov3);
 			camenu.add(cc1);
+			
+			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
+			calcall.addActionListener(new GenerateAllProducts(m, bvrView));
+			camenu.add(calcall);
+			
 			camenu.add(new JSeparator());
 			
 			JMenu genca = new JMenu("Generate Covering Array");
