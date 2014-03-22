@@ -198,4 +198,9 @@ public class EditorMVCCommands implements EditorCommands {
 		cu.getOwnedVSpecResolution().clear();
 	}
 	
+	@Override
+	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution){
+		cu.getOwnedVSpecResolution().add(vSpecResolution);
+	}
+	
 }

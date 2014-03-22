@@ -90,4 +90,6 @@ public interface EditorCommands {
 	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
 	public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
+	
+	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
 }

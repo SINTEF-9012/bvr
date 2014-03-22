@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -36,7 +38,7 @@ import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 public class BVRModel {
-	private ConfigurableUnit cu;
+	protected ConfigurableUnit cu;
 	
 	private final static String utf8Encoding = "UTF-8"; 
 
@@ -179,7 +181,7 @@ public class BVRModel {
 		return f;
 	}
 
-	public void injectConfigurations(GraphMLFM gfm) {
+	public EList<ChoiceResolutuion> getChoiceResolutions(GraphMLFM gfm) {
 		Element e = gfm.graph;
 		
 		//System.out.println(e);
@@ -206,10 +208,13 @@ public class BVRModel {
 			confs.get(nr).put(fname, fa);
 		}
 		
+		EList<ChoiceResolutuion> resolutions = new BasicEList<ChoiceResolutuion>();
 		for(Map<String, Boolean> conf : confs){
 			ChoiceResolutuion cr = recursivelyResolve(conf, (Choice)cu.getOwnedVSpec().get(0));
-			cu.getOwnedVSpecResolution().add(cr);
+			//cu.getOwnedVSpecResolution().add(cr);
+			resolutions.add(cr);
 		}
+		return resolutions;
 	}
 	
 	private ChoiceResolutuion recursivelyResolve(Map<String, Boolean> conf, Choice choice) {

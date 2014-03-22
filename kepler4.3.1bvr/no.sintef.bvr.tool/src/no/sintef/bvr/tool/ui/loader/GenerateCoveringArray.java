@@ -9,8 +9,10 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import org.eclipse.emf.common.util.EList;
 
+import bvr.ChoiceResolutuion;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CNF;
@@ -42,14 +44,17 @@ public class GenerateCoveringArray implements ActionListener {
 			}
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			m.getBVRM().getCU().getOwnedVSpecResolution().clear();
-			m.getBVRM().injectConfigurations(gfm);
+			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(m.getBVRM().getCU());
+			//m.getBVRM().getCU().getOwnedVSpecResolution().clear();
+			EList<ChoiceResolutuion> resolutions = m.getBVRM().getChoiceResolutions(gfm);
+			for(ChoiceResolutuion resolution : resolutions)
+				Context.eINSTANCE.getEditorCommands().addOwnedVSpecResolutionConfigurableUnit(m.getBVRM().getCU(), resolution);
 		} catch (Exception e) {
 			Context.eINSTANCE.logger.error("Generating covering array failed:", e);
 			StaticUICommands.showMessageErrorDialog(null, e, "Generating covering array failed:");
 			return;
 		}
 		
-		v.notifyResolutionViewUpdate();
+		//v.notifyResolutionViewUpdate();
 	}
 }

@@ -39,7 +39,7 @@ public class GenerateAllProducts implements ActionListener {
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
 			m.getBVRM().getCU().getOwnedVSpecResolution().clear();
-			m.getBVRM().injectConfigurations(gfm);
+			m.getBVRM().getChoiceResolutions(gfm);
 		} catch (Exception e) {
 			Context.eINSTANCE.logger.error("Generating covering array failed:", e);
 			StaticUICommands.showMessageErrorDialog(null, e, "Generating covering array failed:");

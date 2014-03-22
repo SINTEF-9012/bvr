@@ -57,7 +57,6 @@ public class BVRTransactionalModel extends BVRModel {
 	}
 
 	private class BVRInnerModel extends no.sintef.ict.splcatool.BVRModel {
-		private ConfigurableUnit cu = null;
 
 		public BVRInnerModel(File f) {
 			cu = loadFromFile(f);

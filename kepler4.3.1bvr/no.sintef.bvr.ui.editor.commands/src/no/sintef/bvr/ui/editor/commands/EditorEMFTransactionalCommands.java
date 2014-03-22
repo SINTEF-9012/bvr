@@ -274,5 +274,12 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), cu.getOwnedVSpecResolution());
 		editingDomain.getCommandStack().execute(cmd);
 	}
+	
+	@Override
+	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution){
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), vSpecResolution);
+		editingDomain.getCommandStack().execute(cmd);
+	}
 
 }

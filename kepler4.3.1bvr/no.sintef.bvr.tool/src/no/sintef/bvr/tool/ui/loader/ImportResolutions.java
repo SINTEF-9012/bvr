@@ -50,7 +50,7 @@ public class ImportResolutions implements ActionListener {
 			return;
 		}
 		
-		m.getBVRM().injectConfigurations(gfm);
+		m.getBVRM().getChoiceResolutions(gfm);
 		
 		v.notifyResolutionViewUpdate();
 	}
