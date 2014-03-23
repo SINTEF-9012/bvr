@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -279,6 +280,13 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution){
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), vSpecResolution);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), vSpecResolutions);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

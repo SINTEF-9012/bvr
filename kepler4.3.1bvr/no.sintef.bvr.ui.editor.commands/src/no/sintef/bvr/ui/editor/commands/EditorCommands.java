@@ -4,6 +4,8 @@ import java.util.List;
 
 
 
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -92,4 +94,6 @@ public interface EditorCommands {
 	public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
 	
 	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
+	
+	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
 }

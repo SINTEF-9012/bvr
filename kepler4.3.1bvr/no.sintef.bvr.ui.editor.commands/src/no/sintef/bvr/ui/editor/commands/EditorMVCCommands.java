@@ -2,6 +2,7 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -202,5 +203,9 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution){
 		cu.getOwnedVSpecResolution().add(vSpecResolution);
 	}
-	
+
+	@Override
+	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions) {
+		cu.getOwnedVSpecResolution().addAll(vSpecResolutions);
+	}
 }
