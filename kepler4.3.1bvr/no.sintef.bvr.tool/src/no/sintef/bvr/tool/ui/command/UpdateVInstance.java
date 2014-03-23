@@ -22,7 +22,6 @@ public class UpdateVInstance extends UpdateVSpec  {
 	@Override
 	public JComponent execute() {
 		super.execute();
-		view.notifyResolutionViewUpdate();
 		return null;
 	}
 

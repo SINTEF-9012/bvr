@@ -36,8 +36,8 @@ public class MaximizeEvent implements ActionListener {
 		view.setMaximized(v);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
-		view.notifyResolutionViewUpdate();
+		//view.notifyVspecViewUpdate();
+		//view.notifyResolutionViewUpdate();
 	}
 
 }

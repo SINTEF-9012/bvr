@@ -22,7 +22,6 @@ import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
-import bvr.VSpec;
 
 public class RealizationView extends BVRView {
 	private BVRModel m;
@@ -172,18 +171,6 @@ public class RealizationView extends BVRView {
 	    //m.markNotSaved();
 	   // ep.notifyProbeDirty();
 	}
-
-	@Override
-	public void notifyAllViews() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void notifyResolutionViewUpdate() {
-	}
-
-	@Override
-	public void notifyVspecViewUpdate() {	}
 
 	@Override
 	public void setMaximized(Object v) {

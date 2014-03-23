@@ -21,7 +21,7 @@ public class ClearSelectionRelalizationEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int tab = filePane.getSelectedIndex();
-		views.get(tab).notifyRelalizationViewReset();
+		//views.get(tab).notifyRelalizationViewReset();
 		Context.eINSTANCE.clearHighlights();
 	}
 

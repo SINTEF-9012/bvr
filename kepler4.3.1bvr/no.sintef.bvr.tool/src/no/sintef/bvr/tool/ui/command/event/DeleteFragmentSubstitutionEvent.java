@@ -65,7 +65,7 @@ public class DeleteFragmentSubstitutionEvent implements ActionListener {
 		
 		//views.get(tab).notifyRelalizationViewUpdate();
 		//views.get(tab).getConfigurableUnitSubject().notifyObserver();
-		views.get(tab).notifyRelalizationViewReset();
+		//views.get(tab).notifyRelalizationViewReset();
 	}
 
 }

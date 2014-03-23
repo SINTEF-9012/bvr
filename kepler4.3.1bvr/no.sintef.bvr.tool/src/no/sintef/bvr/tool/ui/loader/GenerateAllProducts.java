@@ -46,6 +46,6 @@ public class GenerateAllProducts implements ActionListener {
 			return;
 		}
 		
-		v.notifyResolutionViewUpdate();
+		//v.notifyResolutionViewUpdate();
 	}
 }

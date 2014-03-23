@@ -55,6 +55,6 @@ public class ImportVSpecEvent implements ActionListener {
 		
 		m.addVSpec(bvrm.getCU().getOwnedVSpec().get(0));
 		
-		v.notifyVspecViewUpdate();
+		//v.notifyVspecViewUpdate();
 	}
 }

@@ -36,8 +36,8 @@ public class MinimizeEvent implements ActionListener {
 		view.setMinimized(v);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
-		view.notifyResolutionViewUpdate();
+		//view.notifyVspecViewUpdate();
+		//view.notifyResolutionViewUpdate();
 	}
 
 }

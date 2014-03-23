@@ -274,28 +274,17 @@ public class ResolutionView extends BVRView {
 		}
 	}
 
-	@Override
-	public void notifyVspecViewUpdate() {
-	}
-
-	@Override
-	public void notifyRelalizationViewReset() {
-		throw new UnsupportedOperationException();		
-	}
-
-	@Override
-	public void notifyAllViews() {
-		throw new UnsupportedOperationException();		
-	}
 
 	@Override
 	public void setMaximized(Object v) {
 		minimized.remove(v);
+		refresh();
 	}
 
 	@Override
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution)v);
+		refresh();
 	}
 
 	@Override

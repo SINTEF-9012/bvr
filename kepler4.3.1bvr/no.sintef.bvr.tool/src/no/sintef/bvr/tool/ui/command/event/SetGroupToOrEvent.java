@@ -38,6 +38,6 @@ public class SetGroupToOrEvent implements ActionListener {
 		Context.eINSTANCE.getEditorCommands().setVSpecGroupMultiplicity(v, mi);
 		
 		// Regenerate view
-		view.notifyVspecViewUpdate();
+		//view.notifyVspecViewUpdate();
 	}
 }

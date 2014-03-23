@@ -276,10 +276,12 @@ public class VSpecView extends BVRView {
 
 	public void setMinimized(Object v) {
 		minimized.add((VSpec)v);
+		refresh();
 	}
 	
 	public void setMaximized(Object v) {
 		minimized.remove(v);
+		refresh();
 	}
 
 	public void notifyRelalizationViewReset(){

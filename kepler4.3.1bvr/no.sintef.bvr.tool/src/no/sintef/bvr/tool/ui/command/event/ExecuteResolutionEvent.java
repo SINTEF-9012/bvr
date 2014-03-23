@@ -51,7 +51,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 		//Thus we save model and reload it before an execution.
 		Context.eINSTANCE.writeModelToFile(m, m.getFile());
 		Context.eINSTANCE.reloadModel(m);
-		views.get(tab).notifyAllViews();
+		//views.get(tab).notifyAllViews();
 		
 		ConfigurableUnit cu = m.getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
@@ -68,7 +68,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 			deriviator.run();
 		} catch (Exception error) {
 			Context.eINSTANCE.reloadModel(m);
-			views.get(tab).notifyAllViews();
+			//views.get(tab).notifyAllViews();
 			logger.error("some failure during execution", error);
 			StaticUICommands.showMessageErrorDialog(x, error, "some failure during execution");
 		}

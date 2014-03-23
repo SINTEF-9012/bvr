@@ -24,7 +24,7 @@ public class ResetExecutionHandler implements ExecutionHandler {
 			throw new UnexpectedException("bvrView is required to reset model");
 		}
 		Context.eINSTANCE.reloadModel(bvrModel);
-		bvrView.notifyAllViews();
+		//bvrView.notifyAllViews();
 		
 		if(this.successor != null)
 			this.successor.handleRequest(request);
