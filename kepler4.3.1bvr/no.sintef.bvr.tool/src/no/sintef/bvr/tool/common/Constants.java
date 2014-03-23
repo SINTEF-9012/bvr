@@ -69,6 +69,8 @@ public class Constants {
 	public static final String SETTINGS_CONTAINMENT_SELECTION_MODE = "Containment selection mode";
 	public static final String SETTINGS_HIGHLIGHTING_MODE = "Highlightinh mode (on/off)";
 	
+	public static final String PLUGIN_ID = "no.sintef.bvr.tool";
+	
 	/*//placement colors
 	public static final Color RED = new Color(Display.getDefault(), 240, 70, 0); // placement elements
 	public static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element
