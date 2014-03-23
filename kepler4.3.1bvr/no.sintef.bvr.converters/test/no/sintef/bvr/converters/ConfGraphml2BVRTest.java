@@ -11,11 +11,9 @@ import no.sintef.ict.splcatool.BVRModel;
 import no.sintef.ict.splcatool.FileUtility;
 import no.sintef.ict.splcatool.GraphMLFM;
 
-import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import bvr.ChoiceResolutuion;
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
@@ -34,9 +32,7 @@ public class ConfGraphml2BVRTest {
 			
 			BVRModel bvr = new BVRModel(file);
 			GraphMLFM gfm = new GraphMLFM(file + ".conf.GraphML");
-			EList<ChoiceResolutuion> resolutions = bvr.getChoiceResolutions(gfm);
-			for(ChoiceResolutuion resolution : resolutions)
-				bvr.getCU().getOwnedVSpecResolution().add(resolution);
+			bvr.injectConfigurations(gfm);
 			
 			bvr.writeToFile(file + ".conf.bvr");
 		}

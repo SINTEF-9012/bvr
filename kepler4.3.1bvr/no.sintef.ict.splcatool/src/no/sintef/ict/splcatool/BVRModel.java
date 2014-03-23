@@ -180,6 +180,11 @@ public class BVRModel {
 		
 		return f;
 	}
+	
+	public void injectConfigurations(GraphMLFM gfm){
+		EList<ChoiceResolutuion> resolutions  = getChoiceResolutions(gfm);
+		cu.getOwnedVSpecResolution().addAll(resolutions);
+	}
 
 	public EList<ChoiceResolutuion> getChoiceResolutions(GraphMLFM gfm) {
 		Element e = gfm.graph;
@@ -211,7 +216,6 @@ public class BVRModel {
 		EList<ChoiceResolutuion> resolutions = new BasicEList<ChoiceResolutuion>();
 		for(Map<String, Boolean> conf : confs){
 			ChoiceResolutuion cr = recursivelyResolve(conf, (Choice)cu.getOwnedVSpec().get(0));
-			//cu.getOwnedVSpecResolution().add(cr);
 			resolutions.add(cr);
 		}
 		return resolutions;
