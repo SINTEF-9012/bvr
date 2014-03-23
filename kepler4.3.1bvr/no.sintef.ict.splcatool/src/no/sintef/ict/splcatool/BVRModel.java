@@ -40,7 +40,7 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 public class BVRModel {
 	protected ConfigurableUnit cu;
 	
-	private final static String utf8Encoding = "UTF-8"; 
+	protected final static String utf8Encoding = "UTF-8"; 
 
 	public BVRModel(){
 		BvrPackage.eINSTANCE.eClass();

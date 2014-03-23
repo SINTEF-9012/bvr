@@ -38,7 +38,7 @@ public final class Context {
 	public static final Context eINSTANCE = getContext();
 	
 	private Environment environment = ContextFactory.eINSTANCE.createEnvironment();
-	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager(); 
+	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager();
 	
 	private final List<BVRModel> bvrModels = new ArrayList<BVRModel>();
 	private final List<BVRView> bvrViews = new ArrayList<BVRView>();
@@ -47,11 +47,17 @@ public final class Context {
 	
 	public Logger logger = environment.getLogger();
 	
-	private Map<File, BVRModel> loaded = new HashMap<File, BVRModel>();
+	private Map<File, BVRTransactionalModel> loadedModels = new HashMap<File, BVRTransactionalModel>();
 	private JApplet focusedJApplet = null;
 	
 	private static Context getContext(){
 		return new Context();
+	}
+	
+	private BVRTransactionalModel testBVRTransactionalModel(File file){
+		if(loadedModels.get(file) == null)
+			loadedModels.put(file, new BVRTransactionalModel(file));
+		return loadedModels.get(file);
 	}
 	
 	public void setIWorkbenchWindow(IWorkbenchWindow workbench){
@@ -161,7 +167,7 @@ public final class Context {
 	}
 	
 	public BVRModel getModel(File file){
-		return new BVRTransactionalModel(file);
+		return testBVRTransactionalModel(file);
 	}
 	
 	public void setActiveJApplet(JApplet jApplet){
