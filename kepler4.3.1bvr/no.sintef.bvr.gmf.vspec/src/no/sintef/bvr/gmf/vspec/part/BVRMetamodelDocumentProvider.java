@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -927,6 +928,14 @@ public class BVRMetamodelDocumentProvider extends AbstractDocumentProvider
 			// resource.unload();
 			// }
 			// getEditingDomain().dispose();
+			Resource res = ((Diagram) fDocument.getContent()).getElement().eResource();
+			IEditorReference[] editorReferences = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getActivePage()
+					.getEditorReferences();
+			boolean isCurrentResourceUsed = EditorEMFTransactionalCommands
+					.Get().testXMIResourceUnload((XMIResource) res,
+							editorReferences);
+			
 		}
 
 		/**

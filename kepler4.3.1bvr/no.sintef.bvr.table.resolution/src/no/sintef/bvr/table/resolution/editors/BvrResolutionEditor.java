@@ -25,6 +25,7 @@ import no.sintef.bvr.table.resolution.editors.listeners.CheckBoxNotifyChangedLis
 import no.sintef.bvr.table.resolution.editors.listeners.CheckBoxStateListener;
 import no.sintef.bvr.table.resolution.editors.listeners.CheckBoxUpdateTreeViewerListener;
 import no.sintef.bvr.table.resolution.editors.listeners.TableNotifyChangedListener;
+import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -109,6 +110,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
@@ -1345,9 +1347,9 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		for (VSpec vs : headers) {
 			TableColumn selfColumn = new TableColumn(table, SWT.CENTER);
 			layout.addColumnData(new ColumnWeightData(2, 50, true));
-			if(vs.getName() == null){
+			if (vs.getName() == null) {
 				selfColumn.setText("null");
-			}else{
+			} else {
 				selfColumn.setText(vs.getName());
 			}
 			selfColumn.setResizable(true);
@@ -1953,6 +1955,12 @@ public class BvrResolutionEditor extends MultiPageEditorPart implements
 		}
 
 		super.dispose();
+		IEditorReference[] editorReferences = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage()
+				.getEditorReferences();
+		boolean isCurrentResourceUsed = EditorEMFTransactionalCommands.Get()
+				.testXMIResourceUnload((XMIResource) getXMIResource(),
+						editorReferences);
 	}
 
 	/**
