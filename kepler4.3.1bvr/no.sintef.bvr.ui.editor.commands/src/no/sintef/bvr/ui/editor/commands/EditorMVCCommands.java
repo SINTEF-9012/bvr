@@ -3,9 +3,9 @@ package no.sintef.bvr.ui.editor.commands;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.IEditorReference;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -212,8 +212,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void testResourceUnload(Resource resource, IWorkbenchWindow workbenchWindow) {
+	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences) {
 		throw new UnsupportedOperationException("not implemented for MVC editor");
-		
 	}
 }

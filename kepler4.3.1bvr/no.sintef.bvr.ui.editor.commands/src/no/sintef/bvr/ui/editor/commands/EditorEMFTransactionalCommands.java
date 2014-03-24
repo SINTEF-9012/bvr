@@ -1,16 +1,28 @@
 package no.sintef.bvr.ui.editor.commands;
 
 
+import java.io.File;
 import java.util.List;
 
+
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
-import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.part.FileEditorInput;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -293,9 +305,44 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void testResourceUnload(Resource resource, IWorkbenchWindow workbenchWindow) {
-		// TODO Auto-generated method stub
+	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences) {
+		boolean isResourceUsed = false;
+		for(IEditorReference ref : editorReferences){
+			IEditorPart editorPart = ref.getEditor(false);
+			if(editorPart != null) {
+				IEditorInput editorInput = editorPart.getEditorInput();
+				if(editorInput instanceof FileEditorInput){
+					URIConverter converter = new ExtensibleURIConverterImpl();
+					URI emptyFileURI = URI.createFileURI(ResourcesPlugin.getWorkspace()
+							.getRoot().getLocation().toOSString() + File.separator);
+					URI emptyPlatformURI = URI.createPlatformResourceURI("/", false);
+					converter.getURIMap().put(emptyFileURI, emptyPlatformURI);
+					URI platformURI = converter.normalize(URI.createFileURI(((FileEditorInput) editorInput).getPath().toOSString()));
+					
+					TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+					Resource currentResource = editingDomain.getResourceSet().getResource(platformURI, true);
+					
+					if(currentResource instanceof GMFResource){
+						GMFResource gmfResource = (GMFResource) currentResource;
+						if(gmfResource.getContents().get(0) instanceof Diagram){
+							Diagram diagram = (Diagram) gmfResource.getContents().get(0);
+							if(diagram.getElement().eResource().equals(resource)){
+								isResourceUsed = true;
+								break;
+							}
+
+						}						
+					} else if (currentResource.equals(resource)){
+						isResourceUsed = true;
+					}
+					
+				}
+			}
+		}
 		
+		if(!isResourceUsed)
+			resource.unload();
+		return isResourceUsed;
 	}
 
 }

@@ -170,6 +170,11 @@ public final class Context {
 		return testBVRTransactionalModel(file);
 	}
 	
+	public void disposeModel(BVRModel model){
+		File file = model.getFile();
+		loadedModels.remove(file);
+	}
+	
 	public void setActiveJApplet(JApplet jApplet){
 		focusedJApplet = jApplet;
 	}
