@@ -10,6 +10,7 @@ import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
+import org.eclipse.ui.IWorkbenchWindow;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -292,8 +293,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void testResourceUnload(Resource resource) {
+	public void testResourceUnload(Resource resource, IWorkbenchWindow workbenchWindow) {
 		// TODO Auto-generated method stub
+		
 	}
 
 }
