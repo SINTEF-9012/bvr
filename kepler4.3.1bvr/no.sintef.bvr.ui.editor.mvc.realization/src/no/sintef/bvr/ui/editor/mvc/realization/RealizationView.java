@@ -18,12 +18,12 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 
-public class RealizationView extends BVRView {
+public class RealizationView extends BVRViewAbstract {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;
@@ -170,21 +170,5 @@ public class RealizationView extends BVRView {
 	    // Mark dirty
 	    //m.markNotSaved();
 	   // ep.notifyProbeDirty();
-	}
-
-	@Override
-	public void setMaximized(Object v) {
-		throw new UnsupportedOperationException();		
-	}
-
-	@Override
-	public void setMinimized(Object v) {
-		throw new UnsupportedOperationException();		
-	}
-
-	@Override
-	public void refresh() {
-		// TODO Auto-generated method stub
-		
 	}
 }

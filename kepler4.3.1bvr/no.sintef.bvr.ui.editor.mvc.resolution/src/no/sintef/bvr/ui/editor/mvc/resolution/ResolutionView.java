@@ -25,7 +25,7 @@ import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
@@ -36,7 +36,7 @@ import bvr.VInstance;
 import bvr.VSpecResolution;
 import bvr.VariableValueAssignment;
 
-public class ResolutionView extends BVRView {
+public class ResolutionView extends BVRViewAbstract {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;

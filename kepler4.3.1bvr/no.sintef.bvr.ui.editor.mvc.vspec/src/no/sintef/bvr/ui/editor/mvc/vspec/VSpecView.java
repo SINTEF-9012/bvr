@@ -28,7 +28,7 @@ import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
@@ -43,7 +43,7 @@ import bvr.OpaqueConstraint;
 import bvr.VClassifier;
 import bvr.VSpec;
 
-public class VSpecView extends BVRView {
+public class VSpecView extends BVRViewAbstract {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;
@@ -282,13 +282,6 @@ public class VSpecView extends BVRView {
 	public void setMaximized(Object v) {
 		minimized.remove(v);
 		refresh();
-	}
-
-	public void notifyRelalizationViewReset(){
-		throw new UnsupportedOperationException();
-	}
-
-	public void notifyResolutionViewUpdate() {
 	}
 
 	@Override
