@@ -5,7 +5,9 @@ import java.util.List;
 
 
 
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -32,6 +34,8 @@ public interface EditorCommands {
 	public void addChoice(Choice choice, VSpec vs);
 	
 	public TransactionalEditingDomain testTransactionalEditingDomain();
+	
+	public void testResourceUnload(Resource resource);
 	
 	public void createNewResolution(ChoiceResolutuion cr, ConfigurableUnit cu);
 	

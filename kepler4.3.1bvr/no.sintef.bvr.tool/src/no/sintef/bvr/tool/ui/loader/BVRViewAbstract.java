@@ -9,7 +9,7 @@ abstract public class BVRViewAbstract implements BVRView{
 	public int choiceCount = 1;
 	
 	public abstract BVRUIKernel getKernel() ;
-	public abstract ConfigurableUnitSubject getConfigurableUnitSubject() ;
+	public abstract ConfigurableUnitSubject getConfigurableUnitSubject();
 	public abstract ConfigurableUnit getCU();
 	
 	public void setMaximized(Object v) {

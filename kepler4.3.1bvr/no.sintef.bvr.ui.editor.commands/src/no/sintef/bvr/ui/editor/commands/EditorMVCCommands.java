@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.commands;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
@@ -207,5 +208,11 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions) {
 		cu.getOwnedVSpecResolution().addAll(vSpecResolutions);
+	}
+
+	@Override
+	public void testResourceUnload(Resource resource) {
+		throw new UnsupportedOperationException("not implemented for MVC editor");
+		
 	}
 }
