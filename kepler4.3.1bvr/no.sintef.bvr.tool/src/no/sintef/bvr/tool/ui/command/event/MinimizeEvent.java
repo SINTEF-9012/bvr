@@ -9,12 +9,8 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import no.sintef.bvr.ui.framework.elements.VSpecPanel;
-import bvr.BvrFactory;
-import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.VSpec;
+
 
 public class MinimizeEvent implements ActionListener {
 
