@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -36,6 +37,7 @@ import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.PrimitveType;
+import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
@@ -351,6 +353,13 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addPlacementFrgament(ConfigurableUnit cu, PlacementFragment placementFragment){
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), placementFragment);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), replacementFragment);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

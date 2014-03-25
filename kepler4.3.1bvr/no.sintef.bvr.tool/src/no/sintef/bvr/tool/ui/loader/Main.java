@@ -104,7 +104,7 @@ public class Main {
 		realizationMenu.add(createPlacement);
 		
 		JMenuItem createReplacement = new JMenuItem(Constants.REALIZATION_CR_RPLCMT_NAME);
-		createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane));
+		//createReplacement.addActionListener(new CreateReplacementFragmentEvent(filePane));
 		realizationMenu.add(createReplacement);
 		
 		JMenuItem createFragmentSubstitution = new JMenuItem(Constants.REALIZATION_CR_FS_NAME);
@@ -141,7 +141,7 @@ public class Main {
 		
 		realizationMenu.add(new JSeparator());
 		JMenuItem clearSelection = new JMenuItem(Constants.REALIZATION_CLEAR_SELECTION_NAME);
-		clearSelection.addActionListener(new ClearSelectionRelalizationEvent(filePane, models, views));
+		//clearSelection.addActionListener(new ClearSelectionRelalizationEvent(filePane, models, views));
 		realizationMenu.add(clearSelection);
 		
 		menuBar.add(realizationMenu);

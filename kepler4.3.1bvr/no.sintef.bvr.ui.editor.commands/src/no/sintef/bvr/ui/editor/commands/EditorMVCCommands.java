@@ -17,6 +17,7 @@ import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.PrimitveType;
+import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
@@ -220,5 +221,10 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void addPlacementFrgament(ConfigurableUnit cu, PlacementFragment placementFragment){
 		cu.getOwnedVariationPoint().add(placementFragment);
+	}
+	
+	@Override
+	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment) {
+		cu.getOwnedVariabletype().add(replacementFragment);
 	}
 }
