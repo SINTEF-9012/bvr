@@ -100,7 +100,7 @@ public class Main {
 		JMenu realizationMenu = new JMenu(Constants.REALIZATION_MAIN_MENU_NAME);
 		
 		JMenuItem createPlacement = new JMenuItem(Constants.REALIZATION_CR_PLCMT_NAME);
-		createPlacement.addActionListener(new CreatePlacementFragmentEvent(filePane));
+		//createPlacement.addActionListener(new CreatePlacementFragmentEvent(filePane));
 		realizationMenu.add(createPlacement);
 		
 		JMenuItem createReplacement = new JMenuItem(Constants.REALIZATION_CR_RPLCMT_NAME);

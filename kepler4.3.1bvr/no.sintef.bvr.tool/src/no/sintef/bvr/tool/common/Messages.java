@@ -16,6 +16,8 @@ public class Messages {
 	public static final String DIALOG_MSG_NON_ECLIPSE_DETECTED = "No Eclipse Connection Available";
 	public static final String DIALOG_MSG_MORE_THEN_ONE_SELECTION = "Several rows are selected, only one should be selected";
 	public static final String DIALOG_MSG_NOT_FRAG_SUB_SELECTION = "FragmentSubstitution should be selected in order to generate bindings";
+	public static final String DIALOG_TITLE_OPERATION_FAILED = "Operation failed";
+	public static final String DIALOG_PLACEMENT_EMPTY_SELECTION = "A selection is not found. Cannot create a placement fragement.";
 	
 	public static final String DIALOG_MSG_CAN_NOT_LOCATE_BINDING_TABLE = "can not locate a table with listed bindings";
 	public static final String DIALOG_MSG_BINDING_TAB_NO_FOCUS = "binding tab is not in focus";

@@ -15,6 +15,7 @@ import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.PlacementFragment;
 import bvr.PrimitveType;
 import bvr.VClassifier;
 import bvr.VInstance;
@@ -214,5 +215,10 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences) {
 		throw new UnsupportedOperationException("not implemented for MVC editor");
+	}
+	
+	@Override
+	public void addPlacementFrgament(ConfigurableUnit cu, PlacementFragment placementFragment){
+		cu.getOwnedVariationPoint().add(placementFragment);
 	}
 }

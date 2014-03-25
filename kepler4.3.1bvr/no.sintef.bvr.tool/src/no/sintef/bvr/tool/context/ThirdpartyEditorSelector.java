@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.context;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,8 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 
 	@Override
 	public List<Object> getSelections() {
+		if(workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider() == null)
+			return new ArrayList<Object>();
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();

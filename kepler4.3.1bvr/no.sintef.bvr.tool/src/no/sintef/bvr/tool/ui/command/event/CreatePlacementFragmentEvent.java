@@ -2,19 +2,16 @@ package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
-import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.eclipse.emf.common.util.EList;
@@ -26,41 +23,36 @@ import bvr.PlacementFragment;
 
 public class CreatePlacementFragmentEvent implements ActionListener {
 
-	private JTabbedPane filePane;
+	
+	private BVRView view;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public CreatePlacementFragmentEvent(JTabbedPane filePane) {
-		this.filePane = filePane;
-
+	public CreatePlacementFragmentEvent(BVRView _view) {
+		view = _view;
 	}
 	
 	static int count = 0;
 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		int tab = filePane.getSelectedIndex();
-		List<BVRModel> models = Context.eINSTANCE.getBvrModels();
-		List<BVRView> views = Context.eINSTANCE.getBvrViews();
-		
-		BVRModel m = models.get(tab);
-		ConfigurableUnit cu = m.getCU();
-		
-		PlacementFragment placement = BvrFactory.eINSTANCE.createPlacementFragment();
-		
+		ConfigurableUnit cu = view.getCU();
 		GetSelectionContext selectionContext = new GetSelectionContext();
 		try {
 			EList<EObject> selectedObjects = selectionContext.getSelectedObjects();
+			if(selectedObjects.size() == 0){
+				JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), Messages.DIALOG_PLACEMENT_EMPTY_SELECTION, Messages.DIALOG_TITLE_OPERATION_FAILED, JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			PlacementFragment placement = BvrFactory.eINSTANCE.createPlacementFragment();
 			CreateBoundaryContext createBoundaryContext = new CreateBoundaryContext();
 			createBoundaryContext.creatBoundaries(placement, selectedObjects);
 			
 			placement.setName(Constants.PLACEMENT_DEFAULT_NAME + count++);
-			cu.getOwnedVariationPoint().add(placement);
+			
+			Context.eINSTANCE.getEditorCommands().addPlacementFrgament(cu, placement);
 		} catch (Exception e) {
 			logger.error("some failure during placement creation", e);
-			StaticUICommands.showMessageErrorDialog(filePane, e, "some failure during placement creation");
+			throw new RethrownException("some failure during placement creation", e);
 		}
-		
-		//views.get(tab).notifyRelalizationViewUpdate();
-		views.get(tab).getConfigurableUnitSubject().notifyObserver();
 	}
 }

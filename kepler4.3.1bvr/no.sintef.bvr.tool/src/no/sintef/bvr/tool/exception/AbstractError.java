@@ -7,4 +7,8 @@ public abstract class AbstractError extends RuntimeException {
 	public AbstractError(String msg){
 		super(msg);
 	}
+
+	public AbstractError(String message, Throwable ex) {
+		super(message, ex);
+	}
 }

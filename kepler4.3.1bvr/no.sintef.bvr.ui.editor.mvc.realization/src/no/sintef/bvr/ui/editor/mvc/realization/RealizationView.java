@@ -13,6 +13,7 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
+import no.sintef.bvr.tool.ui.dropdown.SubstitutionFragmentDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BindingJTable;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
@@ -46,77 +47,22 @@ public class RealizationView extends BVRViewAbstract {
 	private SelectedFragmentSubstitutionSubject selectedFS;
 	private ConfigurableUnitSubject configurableUnitSubject;
 
-	//private BVRNotifier ep;
 
+	int choiceCount = 1;
+	
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
 	
-	public RealizationView(BVRModel m) {
-		super();
-		//this.ep = ep;
-		
-		// Alloc
-		/*
-		vspecvmMap = new HashMap<JComponent, NamedElement>();
-		vspecNodes = new ArrayList<JComponent>();
-		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
-		*/
-		
-		/*
-        resolutionPanes = new ArrayList<JScrollPane>();
-        resolutionEpanels = new ArrayList<EditableModelPanel>();
-        resolutionkernels = new ArrayList<BVRUIKernel>();
-    	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
-    	resolutionNodes = new ArrayList<List<JComponent>>();
-    	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
-    	*/
-    	
+	public RealizationView(BVRModel _m) {
+		m = _m;
     	//bvrViewSubject = new BVRViewSubject(this);
 		
-		this.m = m;
-		
-    	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
-	
+    	configurableUnitSubject = new ConfigurableUnitSubject(getCU());
     	vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
-		// VSpec pane
-/*        try {
-			loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
-		} catch (BVRModelException e) {
-			e.printStackTrace();
-		}
-        
-        autoLayoutVSpec();
-*/		
-		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		//IAppWidgetFactory.makeIAppScrollPane(vspecScrollPane);
-        vspecEpanel = new EditableModelPanel(vspecScrollPane);
-        //x = vspecEpanel;
-        //modelPane.add(x);
-        
-        //tp.addTab(m.getShortFileName(), null, modelPane, m.getLongFileName());
-        
-        
-        // Resolution panes
-        /*
-        resPane = new JTabbedPane();
-        //modelPane.addTab("Resolution", null, resPane, "");
-        
-        
-        try {
-			loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
-		} catch (BVRModelException e) {
-			e.printStackTrace();
-		}
-        
-        autoLayoutResolutions();
-        */
-        
         // Realization panel
         realizationPanel = new JTabbedPane();
-        //modelPane.addTab(Constants.REALIZATION_TAB_NAME, null, realizationPanel, "");
-        
         loadBVRRelalizationView(m.getBVRM().getCU());
 	}
 
@@ -128,8 +74,6 @@ public class RealizationView extends BVRViewAbstract {
 		return m.getCU();
 	}
 
-	int choiceCount = 1;
-
 	private void loadBVRRelalizationView(ConfigurableUnit cu) {
 		selectedFS = new SelectedFragmentSubstitutionSubject(null);
 		
@@ -138,6 +82,8 @@ public class RealizationView extends BVRViewAbstract {
 		
 		tableSubstFragm = new SubstitutionFragmentJTable();
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);
+		
+		scrollPanelSubstFragm.addMouseListener(new SubstitutionFragmentDropDownListener(this));
 		
 		JPanel panel = new JPanel(new GridLayout(1, 2));
 		panel.setName(Constants.REALIZATION_VP_SUBTAB_NAME);
@@ -166,9 +112,10 @@ public class RealizationView extends BVRViewAbstract {
 		selectedFS.notifyObserver();
 		configurableUnitSubject.setConfigurableUnit(getCU());
 		configurableUnitSubject.notifyObserver();
-	    
-	    // Mark dirty
-	    //m.markNotSaved();
-	   // ep.notifyProbeDirty();
+	}
+	
+	@Override
+	public void refresh() {
+		notifyRelalizationViewReset();
 	}
 }

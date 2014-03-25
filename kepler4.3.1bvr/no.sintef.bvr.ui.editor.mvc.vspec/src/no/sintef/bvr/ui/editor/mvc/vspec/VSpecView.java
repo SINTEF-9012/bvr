@@ -91,10 +91,6 @@ public class VSpecView extends BVRViewAbstract {
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
-	public VSpecView() {
-		// TODO Auto-generated constructor stub
-	}
-
 	private void loadBVRVSpecView(ConfigurableUnit cu, BVRUIKernel model) throws BVRModelException {
 		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, cu, this));
 		
