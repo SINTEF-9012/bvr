@@ -168,6 +168,7 @@ public class ResolutionView extends BVRViewAbstract {
 		
 		// Clean up
 		resPane.removeAll();
+		
 	    resolutionPanes = new ArrayList<JScrollPane>();
 	    resolutionEpanels = new ArrayList<EditableModelPanel>();
 	    resolutionkernels = new ArrayList<BVRUIKernel>();
@@ -177,11 +178,9 @@ public class ResolutionView extends BVRViewAbstract {
 		
 		choiceCount = 1;
 	    
-	    try {
-			loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
-		} catch (BVRModelException e) {
-			e.printStackTrace();
-		}
+
+		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
+
 	    
 	    autoLayoutResolutions();
 	    
@@ -190,10 +189,6 @@ public class ResolutionView extends BVRViewAbstract {
 		    resPane.setSelectedIndex(selected);
 		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 	    }
-	    
-	    // Mark dirty
-	    //m.markNotSaved();
-	   // ep.notifyProbeDirty();
 	}
 
 	private void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException{

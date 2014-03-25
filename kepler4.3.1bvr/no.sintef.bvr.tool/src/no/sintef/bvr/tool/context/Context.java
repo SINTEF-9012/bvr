@@ -55,8 +55,10 @@ public final class Context {
 	}
 	
 	private BVRTransactionalModel testBVRTransactionalModel(File file){
-		if(loadedModels.get(file) == null)
-			loadedModels.put(file, new BVRTransactionalModel(file));
+		synchronized(this){
+			if(loadedModels.get(file) == null)
+				loadedModels.put(file, new BVRTransactionalModel(file));
+		}
 		return loadedModels.get(file);
 	}
 	

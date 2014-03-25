@@ -30,7 +30,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -58,7 +57,6 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 
 	FileEditorInput fileinput;
 	
-	static IPartListener2 pl = null;
 	
 	public BVRModel getBVRModel(){
 		return m;
@@ -153,10 +151,8 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 							firePropertyChange(ISaveablePart.PROP_DIRTY);
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
-						System.err.println("Cannot open file" + e + " "
-								+ e.getMessage());
-						throw new RuntimeException(e);
+						Context.eINSTANCE.logger.error("Cannot open file " + e.getMessage() , e);
+						throw new RuntimeException("Rethrowing exception", e);
 					}
 				}
 			}
@@ -181,7 +177,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 		if(!isCurrentResourceUsed){
 			Context.eINSTANCE.logger.info("resource unloaded " + currentResource);
 			Context.eINSTANCE.disposeModel(m);
-			Context.eINSTANCE.logger.info("disposing the model object, beacuse can not find any MVC editors");
+			Context.eINSTANCE.logger.info("disposing the model object, because can not find any MVC editors");
 		}
 	}
 }
