@@ -26,6 +26,7 @@ import bvr.ToReplacement;
 import bvr.VariationPoint;
 import bvr.NamedElement;
 import no.sintef.bvr.tool.common.LoaderUtility;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.strategy.BindingCalculatorStrategy;
@@ -53,19 +54,24 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 		ArrayList<NamedElement> toPlacements = sortedBoundaries.get(LoaderUtility.TOPLCMNT);
 		ArrayList<NamedElement> fromReplacements = sortedBoundaries.get(LoaderUtility.FROMREPLCMNT);
 
+		EList<BoundaryElementBinding> listbindings = new BasicEList<BoundaryElementBinding>();
 		if(fragmentSubstitution.getBoundaryElementBinding().size() == 0){
 			for(NamedElement toPlacemenet : toPlacements){
 				ToBinding toBinding = BvrFactory.eINSTANCE.createToBinding();
 				toBinding.setToPlacement((ToPlacement) toPlacemenet);
 				toBinding.setToReplacement(nullToReplacement);
-				fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
+				//fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
+				listbindings.add(toBinding);
 			}
 			for(NamedElement fromReplacement : fromReplacements){
 				FromBinding fromBinding = BvrFactory.eINSTANCE.createFromBinding();
 				fromBinding.setFromReplacement((FromReplacement) fromReplacement);
 				fromBinding.setFromPlacement(nullFromPlacement);
-				fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
-			}	
+				//fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
+				listbindings.add(fromBinding);
+			}
+			if(listbindings.size() > 0)
+				Context.eINSTANCE.getEditorCommands().addBoudaryElementBindings(fragmentSubstitution, listbindings);
 		}else{
 			EList<BoundaryElementBinding> bindings = fragmentSubstitution.getBoundaryElementBinding();
 			EList<ToPlacement> boundedToPlacements = new BasicEList<ToPlacement>();
@@ -81,7 +87,8 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 				ToBinding toBinding = BvrFactory.eINSTANCE.createToBinding();
 				toBinding.setToPlacement((ToPlacement) toPlacemenet);
 				toBinding.setToReplacement(nullToReplacement);
-				fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
+				//fragmentSubstitution.getBoundaryElementBinding().add(toBinding);
+				listbindings.add(toBinding);
 			}
 			
 			SetView<NamedElement> fromReplacementsToProcess = Sets.symmetricDifference(new HashSet<NamedElement>(fromReplacements), new HashSet<NamedElement>(boundedFromReplacements));
@@ -89,8 +96,11 @@ public class DefaultBindingCalculatorStrategy implements BindingCalculatorStrate
 				FromBinding fromBinding = BvrFactory.eINSTANCE.createFromBinding();
 				fromBinding.setFromReplacement((FromReplacement) fromReplacement);
 				fromBinding.setFromPlacement(nullFromPlacement);
-				fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
+				//fragmentSubstitution.getBoundaryElementBinding().add(fromBinding);
+				listbindings.add(fromBinding);
 			}
+			if(listbindings.size() > 0)
+				Context.eINSTANCE.getEditorCommands().addBoudaryElementBindings(fragmentSubstitution, listbindings);
 		}
 	}
 

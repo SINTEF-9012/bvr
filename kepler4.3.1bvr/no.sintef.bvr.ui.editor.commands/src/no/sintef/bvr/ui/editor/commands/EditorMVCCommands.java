@@ -9,10 +9,12 @@ import org.eclipse.ui.IEditorReference;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.FragmentSubstitution;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
@@ -245,5 +247,40 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
 		cu.getOwnedVariabletype().removeAll(variationTypes);
+	}
+
+	@Override
+	public void addBoudaryElementBinding(
+			FragmentSubstitution fragmentSubsitution,
+			BoundaryElementBinding boundaryElementBinding) {
+		fragmentSubsitution.getBoundaryElementBinding().add(boundaryElementBinding);
+	}
+
+	@Override
+	public void removeBoudaryElementBinding(
+			FragmentSubstitution fragmentSubsitution,
+			BoundaryElementBinding boundaryElementBinding) {
+		fragmentSubsitution.getBoundaryElementBinding().remove(boundaryElementBinding);
+		
+	}
+
+	@Override
+	public void removeBoudaryElementBindings(
+			FragmentSubstitution fragmentSubsitution,
+			EList<BoundaryElementBinding> boundaryElementBindings) {
+		fragmentSubsitution.getBoundaryElementBinding().removeAll(boundaryElementBindings);
+	}
+
+	@Override
+	public void clearBoudaryElementBindings(
+			FragmentSubstitution fragmentSubsitution) {
+		fragmentSubsitution.getBoundaryElementBinding().removeAll(fragmentSubsitution.getBoundaryElementBinding());
+	}
+
+	@Override
+	public void addBoudaryElementBindings(
+			FragmentSubstitution fragmentSubsitution,
+			EList<BoundaryElementBinding> boundaryElementBindings) {
+		fragmentSubsitution.getBoundaryElementBinding().addAll(boundaryElementBindings);
 	}
 }

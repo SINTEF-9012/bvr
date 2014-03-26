@@ -6,11 +6,11 @@ import java.awt.event.MouseEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
 
-public class SubstitutionFragmentTableDropDownListener extends MouseAdapter {
+public class FragmentSubstitutionTableDropDownListener extends MouseAdapter {
 
 	BVRView view;
 	
-	public SubstitutionFragmentTableDropDownListener(BVRView _view) {
+	public FragmentSubstitutionTableDropDownListener(BVRView _view) {
 		view = _view;
 	}
 
@@ -25,7 +25,7 @@ public class SubstitutionFragmentTableDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	SubstitutionFragmentTableDropDown menu = new SubstitutionFragmentTableDropDown(view);
+    	FragmentSubstitutionTableDropDown menu = new FragmentSubstitutionTableDropDown(view);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }

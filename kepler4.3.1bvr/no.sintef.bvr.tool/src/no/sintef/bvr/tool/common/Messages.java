@@ -28,6 +28,8 @@ public class Messages {
 	public static final String DIALOG_MSG_SAVE_MODEL = "Save model first!";
 	public static final String DIALOG_MSG_EXIT = "Do you really want to exit?";
 	public static final String DIALOG_TITLE_EXIT = "Exit?";
+	public static final String DIALOG_MSG_TWO_ROWS_SELECTED = "two rows should be selected";
+	public static final String DIALOG_MSG_PLCM_REPL_SELECTED = "one placement and one replacement must be selected";
 	
 	public static final String BUTTONS_TITLE_SAVE_AND_EXIT = "Save and Exit";
 	public static final String BUTTONS_TITLE_EXIT = "Exit";

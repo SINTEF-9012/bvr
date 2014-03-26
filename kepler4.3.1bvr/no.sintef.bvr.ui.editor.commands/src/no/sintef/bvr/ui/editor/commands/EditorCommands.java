@@ -9,10 +9,12 @@ import org.eclipse.ui.IEditorReference;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.FragmentSubstitution;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
@@ -110,4 +112,14 @@ public interface EditorCommands {
 	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
 	
 	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
+	
+	public void addBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding);
+	
+	public void addBoudaryElementBindings(FragmentSubstitution fragmentSubsitution, EList<BoundaryElementBinding> boundaryElementBindings);
+	
+	public void removeBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding);
+	
+	public void removeBoudaryElementBindings(FragmentSubstitution fragmentSubsitution, EList<BoundaryElementBinding> boundaryElementBindings);
+	
+	public void clearBoudaryElementBindings(FragmentSubstitution fragmentSubsitution);
 }

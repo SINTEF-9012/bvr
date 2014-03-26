@@ -8,6 +8,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -29,11 +30,13 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BoundaryElementBinding;
 import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.FragmentSubstitution;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
@@ -388,6 +391,50 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationTypes);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addBoudaryElementBinding(
+			FragmentSubstitution fragmentSubsitution,
+			BoundaryElementBinding boundaryElementBinding) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBinding);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void removeBoudaryElementBinding(
+			FragmentSubstitution fragmentSubsitution,
+			BoundaryElementBinding boundaryElementBinding) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBinding);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void removeBoudaryElementBindings(
+			FragmentSubstitution fragmentSubsitution,
+			EList<BoundaryElementBinding> boundaryElementBindings) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBindings);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void clearBoudaryElementBindings(
+			FragmentSubstitution fragmentSubsitution) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), fragmentSubsitution.getBoundaryElementBinding());
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addBoudaryElementBindings(
+			FragmentSubstitution fragmentSubsitution,
+			EList<BoundaryElementBinding> boundaryElementBindings) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBindings);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

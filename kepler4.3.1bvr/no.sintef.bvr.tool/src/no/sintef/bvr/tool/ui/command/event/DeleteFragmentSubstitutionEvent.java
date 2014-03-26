@@ -3,69 +3,50 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 
 import bvr.ConfigurableUnit;
 import bvr.VariationPoint;
-
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.common.Messages;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.DataItem;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 
 public class DeleteFragmentSubstitutionEvent implements ActionListener {
 
-	private JTabbedPane filePane;
-	private List<BVRModel> models;
-	private List<BVRView> views;
+	private BVRView view;
 
-	public DeleteFragmentSubstitutionEvent(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views){
-		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
+	public DeleteFragmentSubstitutionEvent(BVRView _view){
+		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int tab = filePane.getSelectedIndex();
-		BVRModel m = models.get(tab);
-		ConfigurableUnit cu = m.getCU();
+		ConfigurableUnit cu = view.getCU();
 		
-		if(!LoaderUtility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
-			JOptionPane.showMessageDialog(null, Messages.VARIATION_TAB_NO_FOCUS);
-			return;
-		}
-		JPanel variationPanel = (JPanel) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
-		JTable fragSubTable = LoaderUtility.getFragmentSibstitutionTable(variationPanel);
-		if(fragSubTable == null){
-			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_CAN_NOT_LOCATE_FRAG_SUB_TABLE);
-			return;
-		}
-		if(fragSubTable.getSelectedRows().length == 0){
+		if(((BVRRealizationView ) view).getFragmentSubstitutionTable().getSelectedRows().length == 0){
 			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_NO_SELECTION);
 			return;
 		}
 		
-		int[] rowIndexes = fragSubTable.getSelectedRows();
-		FragSubTableModel model = (FragSubTableModel) fragSubTable.getModel();
+		int[] rowIndexes = ((BVRRealizationView ) view).getFragmentSubstitutionTable().getSelectedRows();
+		FragSubTableModel model = (FragSubTableModel) ((BVRRealizationView ) view).getFragmentSubstitutionTable().getModel();
 		ArrayList<ArrayList<DataItem>> data = model.getData();
+		EList<VariationPoint> fslist = new BasicEList<VariationPoint>();
 		for(int index : rowIndexes){
 			DataItem element = data.get(index).get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
 			VariationPoint vp = (VariationPoint) element.getNamedElement();
-			cu.getOwnedVariationPoint().remove(vp);
+			fslist.add(vp);
 		}
 		
-		//views.get(tab).notifyRelalizationViewUpdate();
-		//views.get(tab).getConfigurableUnitSubject().notifyObserver();
-		//views.get(tab).notifyRelalizationViewReset();
+		Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(cu, fslist);
 	}
 
 }

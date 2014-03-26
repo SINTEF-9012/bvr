@@ -13,6 +13,9 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
+import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionDropDown;
+import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionDropDownListener;
+import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionTableDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.SubstitutionFragmentDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.SubstitutionFragmentTableDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BindingJTable;
@@ -100,6 +103,9 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 		
 		tableFragmSubst = new FragmentSubstitutionJTable();
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
+		
+		tableFragmSubst.addMouseListener(new FragmentSubstitutionTableDropDownListener(this));
+		scrollPanelFragmSubst.addMouseListener(new FragmentSubstitutionDropDownListener(this));
 		
 		tableSubstFragm = new SubstitutionFragmentJTable();
 		JScrollPane scrollPanelSubstFragm = new JScrollPane(tableSubstFragm);

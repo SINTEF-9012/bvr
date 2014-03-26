@@ -108,12 +108,12 @@ public class Main {
 		realizationMenu.add(createReplacement);
 		
 		JMenuItem createFragmentSubstitution = new JMenuItem(Constants.REALIZATION_CR_FS_NAME);
-		createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(filePane, models, views));
+		//createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(filePane, models, views));
 		realizationMenu.add(createFragmentSubstitution);
 		realizationMenu.add(new JSeparator());
 		
 		JMenuItem generateBindings = new JMenuItem(Constants.REALIZATION_GENERATE_BINDINGS);
-		generateBindings.addActionListener(new CreateBindingsEvent(filePane, models, views));
+		//generateBindings.addActionListener(new CreateBindingsEvent(filePane, models, views));
 		realizationMenu.add(generateBindings);
 		
 		JMenuItem createToBinding = new JMenuItem(Constants.REALIZATION_GENERATE_TO_BINDING);
@@ -136,7 +136,7 @@ public class Main {
 		realizationMenu.add(deletePlacementReplacement);
 		
 		JMenuItem deleteFragmentSubstitution = new JMenuItem(Constants.REALIZATION_DL_FS_NAME);
-		deleteFragmentSubstitution.addActionListener(new DeleteFragmentSubstitutionEvent(filePane, models, views));
+		//deleteFragmentSubstitution.addActionListener(new DeleteFragmentSubstitutionEvent(filePane, models, views));
 		realizationMenu.add(deleteFragmentSubstitution);
 		
 		realizationMenu.add(new JSeparator());
