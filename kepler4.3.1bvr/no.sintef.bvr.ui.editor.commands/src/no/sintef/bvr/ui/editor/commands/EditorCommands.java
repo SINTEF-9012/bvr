@@ -15,9 +15,7 @@ import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.PlacementFragment;
 import bvr.PrimitveType;
-import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
@@ -101,9 +99,9 @@ public interface EditorCommands {
 	
 	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
 	
-	public void addPlacementFrgament(ConfigurableUnit cu, PlacementFragment placementFragment);
+	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	
-	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment);
+	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
 	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	

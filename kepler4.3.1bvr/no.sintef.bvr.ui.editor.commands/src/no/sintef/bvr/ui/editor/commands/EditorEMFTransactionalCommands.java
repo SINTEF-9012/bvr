@@ -36,9 +36,7 @@ import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.PlacementFragment;
 import bvr.PrimitveType;
-import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
@@ -352,16 +350,16 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 	
 	@Override
-	public void addPlacementFrgament(ConfigurableUnit cu, PlacementFragment placementFragment){
+	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint){
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), placementFragment);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoint);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 	
 	@Override
-	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment) {
+	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), replacementFragment);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationType);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

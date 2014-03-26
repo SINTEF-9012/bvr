@@ -23,6 +23,8 @@ public class Constants {
 	public static final String REALIZATION_MAIN_MENU_NAME = "Realization";
 	public static final String REALIZATION_CR_PLCMT_NAME = "Create Placement";
 	public static final String REALIZATION_CR_RPLCMT_NAME = "Create Replacement";
+	public static final String REALIZATION_CR_PLCMT_CNTLESS_NAME = "Create Placement (Containmentless)";
+	public static final String REALIZATION_CR_RPLCMT_CNTLESS_NAME = "Create Replacement (Containmentless)";
 	public static final String REALIZATION_CR_FS_NAME = "Create FragmentSubstitution";
 	public static final String REALIZATION_CLEAR_SELECTION_NAME = "Clear Selection";
 	public static final String REALIZATION_DL_PLCMT_RPLCMT_NAME = "Delete Placement/Replacement";

@@ -20,24 +20,21 @@ import bvr.ReplacementFragmentType;
 
 public class CreateReplacementFragmentEvent implements ActionListener {
 	
-	//private JTabbedPane filePane;
 	static int count = 0;
+	private boolean withContainment;
 	private BVRView view;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public CreateReplacementFragmentEvent(BVRView _view) {
-		//this.filePane = filePane;
+	public CreateReplacementFragmentEvent(BVRView _view, boolean _withContainment) {
 		view = _view;
+		withContainment = _withContainment;
 	}
 	
-
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		
+		Context.eINSTANCE.getConfig().setContainmentSelectionMode(withContainment);
 		ConfigurableUnit cu = view.getCU();
-		
 		ReplacementFragmentType replacement = BvrFactory.eINSTANCE.createReplacementFragmentType();
-		
 		GetSelectionContext selectionContext = new GetSelectionContext();
 		
 		try {
@@ -46,7 +43,7 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 			createBoundaryContext.creatBoundaries(replacement, selectedObjects);
 			
 			replacement.setName(Constants.REPLACEMENT_DEFAULT_NAME + count++);
-			Context.eINSTANCE.getEditorCommands().addReplacementFrgament(cu, replacement);
+			Context.eINSTANCE.getEditorCommands().addOwnedVariationType(cu, replacement);
 			cu.getOwnedVariabletype().add(replacement);
 		} catch (Exception e) {
 			logger.error("some failure during replacement creation", e);

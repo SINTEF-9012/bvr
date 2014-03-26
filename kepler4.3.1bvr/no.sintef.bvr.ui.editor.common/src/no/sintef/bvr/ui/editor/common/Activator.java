@@ -30,7 +30,7 @@ public class Activator extends AbstractUIPlugin {
 		EditorEMFTransactionalCommands commands = EditorEMFTransactionalCommands.Get();
 		TransactionalEditingDomain editingDomain = commands.testTransactionalEditingDomain();
 		editingDomain.addResourceSetListener(new DomainResourceSetListener());
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(new ResourceSetChangedListener());
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(new ResourceSetChangedListener());		
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 		      public void uncaughtException(Thread t, Throwable e) {
 		    	  Context.eINSTANCE.logger.error("Unhandled Error in Thread: " + t, e);

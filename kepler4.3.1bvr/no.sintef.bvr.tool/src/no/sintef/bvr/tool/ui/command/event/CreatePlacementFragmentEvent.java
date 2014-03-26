@@ -25,16 +25,19 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 
 	
 	private BVRView view;
+	private boolean withContainment;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public CreatePlacementFragmentEvent(BVRView _view) {
+	public CreatePlacementFragmentEvent(BVRView _view, boolean _withContainment) {
 		view = _view;
+		withContainment = _withContainment;
 	}
 	
 	static int count = 0;
 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
+		Context.eINSTANCE.getConfig().setContainmentSelectionMode(withContainment);
 		ConfigurableUnit cu = view.getCU();
 		GetSelectionContext selectionContext = new GetSelectionContext();
 		try {
@@ -49,7 +52,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 			
 			placement.setName(Constants.PLACEMENT_DEFAULT_NAME + count++);
 			
-			Context.eINSTANCE.getEditorCommands().addPlacementFrgament(cu, placement);
+			Context.eINSTANCE.getEditorCommands().addOwnedVariationPoint(cu, placement);
 		} catch (Exception e) {
 			logger.error("some failure during placement creation", e);
 			throw new RethrownException("some failure during placement creation", e);
