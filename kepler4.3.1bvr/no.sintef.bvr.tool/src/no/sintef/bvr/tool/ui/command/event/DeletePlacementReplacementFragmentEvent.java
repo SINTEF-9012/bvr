@@ -3,13 +3,10 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import bvr.ConfigurableUnit;
@@ -17,49 +14,28 @@ import bvr.FragmentSubstitution;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.ReplacementFragmentType;
+import bvr.Variabletype;
 import bvr.VariationPoint;
-
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.common.Messages;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.DataItem;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
 public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 
-	
-	private JTabbedPane filePane;
-	private List<BVRModel> models;
-	private List<BVRView> views;
+	private BVRView view;
 
-	public DeletePlacementReplacementFragmentEvent(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views){
-		this.filePane = filePane;
-		this.models = models;
-		this.views = views;
+	public DeletePlacementReplacementFragmentEvent(BVRView _view){
+		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int tab = filePane.getSelectedIndex();
-		BVRModel m = models.get(tab);
-		ConfigurableUnit cu = m.getCU();
-		
-		if(!LoaderUtility.isVariationPointsPanelInFocus(((JTabbedPane) filePane.getComponentAt(tab)))){
-			JOptionPane.showMessageDialog(null, Messages.VARIATION_TAB_NO_FOCUS);
-			return;
-		}
-		JPanel variationPanel = (JPanel) ((JTabbedPane)((JTabbedPane) filePane.getComponentAt(tab)).getSelectedComponent()).getSelectedComponent();
-		JTable subFragTable = LoaderUtility.getSibstitutionFragmentTable(variationPanel);
-		if(subFragTable == null){
-			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_CAN_NOT_LOCATE_SUB_FRAG_TABLE);
-			return;
-		}
-		if(subFragTable.getSelectedRows().length == 0){
-			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_NO_SELECTION);
-			return;
-		}
+		ConfigurableUnit cu = view.getCU();
+		BVRRealizationView rView = (BVRRealizationView) view;
 		
 		ArrayList<NamedElement> placReplcFragmentsUsed = new ArrayList<NamedElement>();
 		EList<VariationPoint> variationPoints = cu.getOwnedVariationPoint();
@@ -70,33 +46,40 @@ public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 			}
 		}
 		
-		int[] rowIndexes = subFragTable.getSelectedRows();
-		SubFragTableModel modelSubFrag = (SubFragTableModel) subFragTable.getModel();
+		int[] rowIndexes = rView.getSubsitutionFragmentTable().getSelectedRows();
+		SubFragTableModel modelSubFrag = (SubFragTableModel) rView.getSubsitutionFragmentTable().getModel();
 		ArrayList<ArrayList<Object>> dataSubFrag = modelSubFrag.getData();
 		ArrayList<NamedElement> placReplcFragmentsNotDeleted = new ArrayList<NamedElement>();
+		EList<VariationPoint> placements = new BasicEList<VariationPoint>();
+		EList<Variabletype> replacements = new BasicEList<Variabletype>();
 		for(int index : rowIndexes){
 			NamedElement fragment = ((DataItem) dataSubFrag.get(index).get(Constants.SUB_FRAG_FRAG_CLMN)).getNamedElement();
 			if(placReplcFragmentsUsed.indexOf(fragment) < 0){
 				if(fragment instanceof PlacementFragment){
-					cu.getOwnedVariationPoint().remove(fragment);
+					//cu.getOwnedVariationPoint().remove(fragment);
+					placements.add((VariationPoint) fragment);
 				}else if(fragment instanceof ReplacementFragmentType){
-					cu.getOwnedVariabletype().remove(fragment);
+					//cu.getOwnedVariabletype().remove(fragment);
+					replacements.add((Variabletype) fragment);
 				}
 			}else{
 				placReplcFragmentsNotDeleted.add(fragment);
 			}
 		}
 		
+		if(placements.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(cu, placements);
+		
+		if(replacements.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwnedVariationTypes(cu, replacements);
+		
 		if(placReplcFragmentsNotDeleted.size() > 0){
 			String name = new String(Messages.DIALOG_MSG_CAN_NOT_REMOVE_PLC_RPLC + "\n");
 			for(NamedElement element : placReplcFragmentsNotDeleted){
 				name+=element.getName() + "\n";
 			}
-			JOptionPane.showMessageDialog(null, name);
+			JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), name);
 		}
-		
-		//views.get(tab).notifyRelalizationViewUpdate();
-		views.get(tab).getConfigurableUnitSubject().notifyObserver();
 	}
 
 }

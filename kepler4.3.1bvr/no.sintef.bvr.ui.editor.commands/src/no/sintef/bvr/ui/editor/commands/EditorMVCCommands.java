@@ -25,6 +25,7 @@ import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.Variabletype;
+import bvr.VariationPoint;
 
 public class EditorMVCCommands implements EditorCommands {
 	
@@ -226,5 +227,25 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment) {
 		cu.getOwnedVariabletype().add(replacementFragment);
+	}
+
+	@Override
+	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
+		cu.getOwnedVariationPoint().remove(variationPoint);
+	}
+
+	@Override
+	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
+		cu.getOwnedVariabletype().remove(variationType);
+	}
+
+	@Override
+	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints) {
+		cu.getOwnedVariationPoint().removeAll(variationPoints);
+	}
+
+	@Override
+	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
+		cu.getOwnedVariabletype().removeAll(variationTypes);
 	}
 }

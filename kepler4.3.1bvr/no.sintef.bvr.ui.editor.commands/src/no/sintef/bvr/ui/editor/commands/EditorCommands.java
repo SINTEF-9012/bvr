@@ -25,6 +25,7 @@ import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.Variabletype;
+import bvr.VariationPoint;
 
 public interface EditorCommands {
 	
@@ -103,4 +104,12 @@ public interface EditorCommands {
 	public void addPlacementFrgament(ConfigurableUnit cu, PlacementFragment placementFragment);
 	
 	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment);
+	
+	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	
+	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
+	
+	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
+	
+	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
 }

@@ -98,12 +98,19 @@ public class ResolutionView extends BVRViewAbstract {
 		return m.isNotSaved();
 	}
 
+	@Override
 	public ConfigurableUnitSubject getConfigurableUnitSubject(){
 		return configurableUnitSubject;
 	}
 
+	@Override
 	public ConfigurableUnit getCU() {
 		return m.getCU();
+	}
+	
+	@Override
+	public BVRModel getModel() {
+		return m;
 	}
 
 	int choiceCount = 1;

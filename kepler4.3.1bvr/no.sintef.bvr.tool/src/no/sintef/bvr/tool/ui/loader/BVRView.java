@@ -5,12 +5,13 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.ConfigurableUnit;
 
 public interface BVRView {
-	abstract public BVRUIKernel getKernel() ;
-	public abstract ConfigurableUnitSubject getConfigurableUnitSubject() ;
-	public abstract ConfigurableUnit getCU();
+	public BVRUIKernel getKernel() ;
+	public ConfigurableUnitSubject getConfigurableUnitSubject() ;
+	public ConfigurableUnit getCU();
+	public BVRModel getModel();
 	
-	abstract public void setMaximized(Object v);
-	abstract public void setMinimized(Object v) ;
+	public void setMaximized(Object v);
+	public void setMinimized(Object v) ;
 	
-	abstract public void refresh();
+	public void refresh();
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -45,6 +46,7 @@ import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.Variabletype;
+import bvr.VariationPoint;
 
 public class EditorEMFTransactionalCommands implements EditorCommands {
 
@@ -360,6 +362,34 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addReplacementFrgament(ConfigurableUnit cu, ReplacementFragmentType replacementFragment) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), replacementFragment);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoint);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationType);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoints);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationTypes);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

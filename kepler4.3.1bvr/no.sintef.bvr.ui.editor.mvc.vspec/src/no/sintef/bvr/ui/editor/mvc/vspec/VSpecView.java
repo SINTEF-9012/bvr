@@ -192,10 +192,16 @@ public class VSpecView extends BVRViewAbstract {
 	    //ep.notifyProbeDirty();
 	}
 
+	@Override
 	public ConfigurableUnit getCU() {
 		return m.getCU();
 	}
 
+	@Override
+	public BVRModel getModel() {
+		return m;
+	}
+	
 	int choiceCount = 1;
 
 	public void notifyAllViews(){

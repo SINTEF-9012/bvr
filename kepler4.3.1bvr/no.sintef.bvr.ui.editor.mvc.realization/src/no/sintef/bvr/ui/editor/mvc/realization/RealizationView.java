@@ -20,12 +20,13 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
 import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 
-public class RealizationView extends BVRViewAbstract {
+public class RealizationView extends BVRViewAbstract implements BVRRealizationView {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;
@@ -51,6 +52,18 @@ public class RealizationView extends BVRViewAbstract {
 
 	int choiceCount = 1;
 	
+	public FragmentSubstitutionJTable getFragmentSubstitutionTable(){
+		return tableFragmSubst;
+	}
+	
+	public SubstitutionFragmentJTable getSubsitutionFragmentTable(){
+		return tableSubstFragm;
+	}
+	
+	public BindingJTable getBindingTable(){
+		return bindingEditor;
+	}
+	
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
@@ -67,12 +80,19 @@ public class RealizationView extends BVRViewAbstract {
         loadBVRRelalizationView(m.getBVRM().getCU());
 	}
 
+	@Override
 	public ConfigurableUnitSubject getConfigurableUnitSubject(){
 		return configurableUnitSubject;
 	}
 
+	@Override
 	public ConfigurableUnit getCU() {
 		return m.getCU();
+	}
+	
+	@Override
+	public BVRModel getModel() {
+		return m;
 	}
 
 	private void loadBVRRelalizationView(ConfigurableUnit cu) {
