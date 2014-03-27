@@ -15,9 +15,13 @@ import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.FragmentSubstitution;
+import bvr.FromBinding;
+import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
+import bvr.ToBinding;
+import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
@@ -288,5 +292,17 @@ public class EditorMVCCommands implements EditorCommands {
 	public void setBindingVariationPoint(VariationPoint variationPoint,
 			VSpec vSpec) {
 		variationPoint.setBindingVSpec(vSpec);
+	}
+
+	@Override
+	public void setToBindingToReplacement(ToBinding toBinding,
+			ToReplacement toReplacement) {
+		toBinding.setToReplacement(toReplacement);
+	}
+
+	@Override
+	public void setFromBindingFromPlacement(FromBinding fromBinding,
+			FromPlacement fromPlacement) {
+		fromBinding.setFromPlacement(fromPlacement);
 	}
 }

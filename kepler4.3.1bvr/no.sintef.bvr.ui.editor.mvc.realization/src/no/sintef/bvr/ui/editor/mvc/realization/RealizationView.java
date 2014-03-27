@@ -13,7 +13,6 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
-import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionDropDown;
 import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionTableDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.SubstitutionFragmentDropDownListener;
@@ -73,9 +72,9 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 	
 	public RealizationView(BVRModel _m) {
 		m = _m;
-    	//bvrViewSubject = new BVRViewSubject(this);
-		
     	configurableUnitSubject = new ConfigurableUnitSubject(getCU());
+    	selectedFS = new SelectedFragmentSubstitutionSubject(null);
+    	
     	vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
         // Realization panel
@@ -99,8 +98,6 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 	}
 
 	private void loadBVRRelalizationView(ConfigurableUnit cu) {
-		selectedFS = new SelectedFragmentSubstitutionSubject(null);
-		
 		tableFragmSubst = new FragmentSubstitutionJTable();
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		
@@ -136,9 +133,6 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 	}
 
 	public void notifyRelalizationViewReset(){
-		selectedFS.resetSelectedFragmentSubstitution();
-		selectedFS.notifyObserver();
-		configurableUnitSubject.setConfigurableUnit(getCU());
 		configurableUnitSubject.notifyObserver();
 	}
 	

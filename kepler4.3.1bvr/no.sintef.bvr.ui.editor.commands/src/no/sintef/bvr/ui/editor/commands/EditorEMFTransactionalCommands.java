@@ -10,6 +10,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -38,9 +39,13 @@ import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.FragmentSubstitution;
+import bvr.FromBinding;
+import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
+import bvr.ToBinding;
+import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
@@ -445,6 +450,22 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variationPoint, BvrPackage.eINSTANCE.getVariationPoint_BindingVSpec(), vSpec);
 		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void setToBindingToReplacement(ToBinding toBinding,
+			ToReplacement toReplacement) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, toBinding, BvrPackage.eINSTANCE.getToBinding_ToReplacement(), toReplacement);
+		editingDomain.getCommandStack().execute(cmd);		
+	}
+
+	@Override
+	public void setFromBindingFromPlacement(FromBinding fromBinding,
+			FromPlacement fromPlacement) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, fromBinding, BvrPackage.eINSTANCE.getFromBinding_FromPlacement(), fromPlacement);
+		editingDomain.getCommandStack().execute(cmd);		
 	}
 
 }
