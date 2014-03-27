@@ -6,6 +6,7 @@ public class Messages {
 	
 	public static final String DIALOG_MSG_FAIL_TOSAVE_RES = "can not save the following resource";
 	public static final String DIALOG_MSG_GENERAL_ERROR = "Error (consult error log)";
+	public static final String DIALOG_MSG_GENERAL_INFO= "Information";
 	public static final String DIALOG_MSG_CAN_NOT_REMOVE_PLC_RPLC = "following fragments are used by other FragmentSubstitution-s, not legal to remove";
 	public static final String DIALOG_MSG_NO_SELECTION = "no selection has been made";
 	public static final String DIALOG_MSG_CAN_NOT_LOCATE_SUB_FRAG_TABLE = "can not loacte a table with listed placement/replacement fragments";

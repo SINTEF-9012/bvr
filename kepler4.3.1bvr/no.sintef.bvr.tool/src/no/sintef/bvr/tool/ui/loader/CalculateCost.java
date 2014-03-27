@@ -2,27 +2,19 @@ package no.sintef.bvr.tool.ui.loader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 
-import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.TimeoutException;
 
 import bvr.ChoiceResolutuion;
 import bvr.VSpecResolution;
-import splar.core.fm.FeatureModelException;
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.ict.splcatool.CALib;
-import no.sintef.ict.splcatool.CNF;
-import no.sintef.ict.splcatool.CSVException;
-import no.sintef.ict.splcatool.BVRException;
-import no.sintef.ict.splcatool.CoveringArray;
+
 
 public class CalculateCost implements ActionListener {
 	private BVRModel m;
@@ -35,26 +27,36 @@ public class CalculateCost implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
-		no.sintef.ict.splcatool.BVRModel x = m.getBVRM();
-		
-		String cstr = "";
-		
-		int i = 0;
-		for(VSpecResolution z : x.getCU().getOwnedVSpecResolution()){
-			double d;
-			if(z instanceof ChoiceResolutuion){
-				d = calcCost((ChoiceResolutuion)z);
-			}else{
-				d = Double.NaN;
-			}
-			
-			i++;
-			cstr += i + " : " + d + "\n";
-		}
-		
-        JOptionPane.showMessageDialog(null, cstr, "Costs", JOptionPane.INFORMATION_MESSAGE);
-        System.out.println(cstr);
+		Job job = new Job("Calculating Costs...") {	
+			 @Override
+			 protected IStatus run(IProgressMonitor monitor) {
+				 try {
+					 no.sintef.ict.splcatool.BVRModel x = m.getBVRM();	
+					 String cstr = "";
+						
+					 int i = 0;
+					 for(VSpecResolution z : x.getCU().getOwnedVSpecResolution()){
+						 double d;
+						 if(z instanceof ChoiceResolutuion){
+							 d = calcCost((ChoiceResolutuion)z);
+						 }else{
+							 d = Double.NaN;
+						 }
+							
+						 i++;
+						 cstr += i + " : " + d + "\n";
+					 }
+					 Context.eINSTANCE.logger.info(cstr);
+					 StaticUICommands.showMessageInformationDialog(Context.eINSTANCE.getActiveJApplet(), cstr);
+				 } catch (Exception e) {
+					 Context.eINSTANCE.logger.error("Calculating Costs failed:", e);
+					 Status status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Calculating Costs failed (see log for more details): " + e.getMessage(), e);
+					 return status;
+				 }
+				 return Status.OK_STATUS;
+			 }
+		};
+		job.schedule();
 	}
 
 	private double calcCost(ChoiceResolutuion z) {

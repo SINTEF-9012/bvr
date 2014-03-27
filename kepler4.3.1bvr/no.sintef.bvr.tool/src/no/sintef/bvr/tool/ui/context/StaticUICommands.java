@@ -91,4 +91,15 @@ public class StaticUICommands {
 		};
 		JOptionPane.showMessageDialog(parent, scrollPane, Messages.DIALOG_MSG_GENERAL_ERROR, JOptionPane.ERROR_MESSAGE);
 	}
+	
+	public static void showMessageInformationDialog(Container parent, String message){
+		JTextArea textArea = new JTextArea(message);
+		JScrollPane scrollPane = new JScrollPane(textArea){
+			@Override
+			public Dimension getPreferredSize() {
+				return new Dimension(480, 320);
+			};
+		};
+		JOptionPane.showMessageDialog(parent, scrollPane, Messages.DIALOG_MSG_GENERAL_INFO, JOptionPane.INFORMATION_MESSAGE);
+	}
 }
