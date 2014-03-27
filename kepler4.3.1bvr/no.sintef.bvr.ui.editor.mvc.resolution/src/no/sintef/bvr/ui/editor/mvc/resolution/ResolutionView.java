@@ -22,9 +22,11 @@ import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
 import no.sintef.bvr.tool.ui.command.AddVInstance;
 import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
+import no.sintef.bvr.tool.ui.dropdown.ResolutionPanelDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
@@ -36,7 +38,7 @@ import bvr.VInstance;
 import bvr.VSpecResolution;
 import bvr.VariableValueAssignment;
 
-public class ResolutionView extends BVRViewAbstract {
+public class ResolutionView extends BVRViewAbstract implements BVRResolutionView {
 	private BVRModel m;
 	
 	public JTabbedPane modelPane;
@@ -64,18 +66,12 @@ public class ResolutionView extends BVRViewAbstract {
 	
 	public ResolutionView(BVRModel m) {
 		super();
-		
-		
-		// Alloc
-		
         resolutionPanes = new ArrayList<JScrollPane>();
         resolutionEpanels = new ArrayList<EditableModelPanel>();
         resolutionkernels = new ArrayList<BVRUIKernel>();
     	resolutionvmMaps = new ArrayList<Map<JComponent,NamedElement>>();
     	resolutionNodes = new ArrayList<List<JComponent>>();
     	resolutionBindings = new ArrayList<List<Pair<JComponent,JComponent>>>();
-    	
-    	//bvrViewSubject = new BVRViewSubject(this);
 		
 		this.m = m;
 		
@@ -92,6 +88,11 @@ public class ResolutionView extends BVRViewAbstract {
         
 		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
         autoLayoutResolutions();
+	}
+	
+	@Override
+	public JTabbedPane getResolutionPane(){
+		return resPane;
 	}
 	
 	public boolean isDirty() {
@@ -207,6 +208,7 @@ public class ResolutionView extends BVRViewAbstract {
 			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	        scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));
 	        EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 	        
 	        resolutionPanes.add(scrollPane);

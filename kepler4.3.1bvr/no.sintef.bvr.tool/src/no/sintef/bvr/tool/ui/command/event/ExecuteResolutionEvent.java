@@ -10,27 +10,29 @@ import javax.swing.JTabbedPane;
 
 import bvr.ConfigurableUnit;
 import bvr.VSpecResolution;
-
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.common.DeriveProduct;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
 
 public class ExecuteResolutionEvent implements ActionListener {
 
-	private JTabbedPane filePane;
+	private BVRView view;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public ExecuteResolutionEvent(JTabbedPane filePane) {
-		this.filePane = filePane;
+	public ExecuteResolutionEvent(BVRView _view) {
+		view =_view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		JTabbedPane filePane = ((BVRResolutionView) view).getResolutionPane();
+		
 		int tab = filePane.getSelectedIndex();
 		JTabbedPane x = (JTabbedPane) ((JTabbedPane) filePane.getSelectedComponent()).getSelectedComponent();
 		int i = x.getSelectedIndex();
