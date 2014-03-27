@@ -36,8 +36,7 @@ public class MVCRealizationEditor extends MVCEditor{
 	}
 
 	@Override
-	public void update(EditorSubject subject) {
-		System.out.println("update for MVCRealizationEditor " + this + " " + subject);	
+	public void update(EditorSubject subject) {	
 		if(subject instanceof ResourceSetEditorSubject){
 			m.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
