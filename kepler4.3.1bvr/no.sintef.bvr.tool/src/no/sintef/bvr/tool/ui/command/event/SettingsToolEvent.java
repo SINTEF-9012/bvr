@@ -1,25 +1,11 @@
 package no.sintef.bvr.tool.ui.command.event;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.edit.BVROptionsEditor;
 
-public class SettingsToolEvent implements ActionListener {
+public class SettingsToolEvent {
 
-
-	private BVROptionsEditor settingsEditor;
-
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		if(settingsEditor != null)
-			settingsEditor.unshowEditor();
-		settingsEditor = new BVROptionsEditor();
-		settingsEditor.showEditor();
-	}
-	
-	public static class SettingsCommand{
+	public static class SettingsCommand {
 		
 		public static void setFromPlacementPermutation(Boolean isSet){
 			Context.eINSTANCE.getConfig().setFromPlacementPermutation(isSet);

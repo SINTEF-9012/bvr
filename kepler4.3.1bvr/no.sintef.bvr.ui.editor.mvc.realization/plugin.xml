@@ -20,11 +20,7 @@
          <menu
                label="BVR Realization">
             <command
-                  commandId="no.sintef.bvr.ui.editor.mvc.realization.command3"
-                  style="push">
-            </command>
-            <command
-                  commandId="no.sintef.bvr.ui.editor.mvc.realization.command4"
+                  commandId="no.sintef.bvr.ui.editor.mvc.realization.command0"
                   style="push">
             </command>
             <visibleWhen
@@ -42,14 +38,9 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.CreatePlacementFragment"
-            id="no.sintef.bvr.ui.editor.mvc.realization.command3"
-            name="Create Placement Fragment">
-      </command>
-      <command
-            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.CreateReplacementFragment"
-            id="no.sintef.bvr.ui.editor.mvc.realization.command4"
-            name="Create Replacement Fragment">
+            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.OpenSetting"
+            id="no.sintef.bvr.ui.editor.mvc.realization.command0"
+            name="Options">
       </command>
    </extension>
 </plugin>

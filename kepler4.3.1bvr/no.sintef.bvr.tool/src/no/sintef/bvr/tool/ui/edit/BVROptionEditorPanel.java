@@ -26,12 +26,11 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.ui.command.event.SettingsToolEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 
-import com.explodingpixels.macwidgets.plaf.HudCheckBoxUI;
-import com.explodingpixels.macwidgets.plaf.HudLabelUI;
-
 
 public class BVROptionEditorPanel extends JPanel {
 	
+	private static final long serialVersionUID = -2149521036852534933L;
+
 	protected BVRView view;
 	
 	protected JPanel top;
@@ -69,12 +68,12 @@ public class BVROptionEditorPanel extends JPanel {
         p.setOpaque(false);
         
         JLabel l = new JLabel(Constants.SETTINGS_FROMPLACEMENT_PERMUTATION, JLabel.TRAILING);
-        l.setUI(new HudLabelUI());
+        //l.setUI(new HudLabelUI());
 
         p.add(l);
         
         JCheckBox checkBoxFromPlacement = new JCheckBox();
-        checkBoxFromPlacement.setUI(new HudCheckBoxUI());
+        //checkBoxFromPlacement.setUI(new HudCheckBoxUI());
         
         checkBoxFromPlacement.setSelected(SettingsToolEvent.SettingsCommand.getFromPlacementPermutation());
         
@@ -93,12 +92,12 @@ public class BVROptionEditorPanel extends JPanel {
         p1.setOpaque(false);
         
         JLabel l1 = new JLabel(Constants.SETTINGS_TOREPLACEMENT_PERMUTATION, JLabel.TRAILING);
-        l1.setUI(new HudLabelUI());
+        //l1.setUI(new HudLabelUI());
 
         p1.add(l1);
         
         JCheckBox checkBoxToReplacement = new JCheckBox();
-        checkBoxToReplacement.setUI(new HudCheckBoxUI());
+        //checkBoxToReplacement.setUI(new HudCheckBoxUI());
         
         checkBoxToReplacement.setSelected(SettingsToolEvent.SettingsCommand.getToReplacementPermutation());
         
@@ -111,7 +110,7 @@ public class BVROptionEditorPanel extends JPanel {
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
         
-        JPanel p2 = new JPanel(new SpringLayout());
+        /*JPanel p2 = new JPanel(new SpringLayout());
         p2.setBorder(null);
         p2.setOpaque(false);
         
@@ -130,21 +129,21 @@ public class BVROptionEditorPanel extends JPanel {
         
         top.add(p2);
         SpringUtilities.makeCompactGrid(p2,
-                1, 2, //rows, cols
-                6, 6,        //initX, initY
-                6, 6);       //xPad, yPad
+                1, 2, 
+                6, 6,
+                6, 6);*/
         
         JPanel p3 = new JPanel(new SpringLayout());
         p3.setBorder(null);
         p3.setOpaque(false);
         
         JLabel l3 = new JLabel(Constants.SETTINGS_HIGHLIGHTING_MODE, JLabel.TRAILING);
-        l3.setUI(new HudLabelUI());
+        //l3.setUI(new HudLabelUI());
 
         p3.add(l3);
         
         JCheckBox checkBoxHighlighting = new JCheckBox();
-        checkBoxHighlighting.setUI(new HudCheckBoxUI());
+        //checkBoxHighlighting.setUI(new HudCheckBoxUI());
         
         checkBoxHighlighting.setSelected(SettingsToolEvent.SettingsCommand.getHighlightingMode());
         
@@ -157,7 +156,7 @@ public class BVROptionEditorPanel extends JPanel {
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
 
-        pack(4,1);
+        pack(3,1);
         
         checkBoxFromPlacement.addItemListener(new ItemListener() {
 			
@@ -183,7 +182,7 @@ public class BVROptionEditorPanel extends JPanel {
 			}
 		});
         
-        checkBoxContainment.addItemListener(new ItemListener() {
+        /*checkBoxContainment.addItemListener(new ItemListener() {
 			
 			@Override
 			public void itemStateChanged(ItemEvent event) {
@@ -193,7 +192,7 @@ public class BVROptionEditorPanel extends JPanel {
 					SettingsToolEvent.SettingsCommand.setContainmentSelectionMode(false);
 				}
 			}
-		});
+		});*/
         
         checkBoxHighlighting.addItemListener(new ItemListener() {
 			
