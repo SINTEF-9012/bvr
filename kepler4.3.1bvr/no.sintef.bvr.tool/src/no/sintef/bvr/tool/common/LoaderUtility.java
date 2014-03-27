@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.primitive.SymbolTable;
 import no.sintef.bvr.tool.ui.editor.BindingJTable;
@@ -223,7 +224,8 @@ public class LoaderUtility {
 		}
 		ObjectHandle objectHandle = BvrFactory.eINSTANCE.createObjectHandle();
 		objectHandle.setMOFRef(eObject);
-		placement.getSourceObject().add(objectHandle);
+		Context.eINSTANCE.getEditorCommands().addObjectHandlePlacement(placement, objectHandle);
+		//placement.getSourceObject().add(objectHandle);
 		return objectHandle;
 	}
 	
@@ -238,7 +240,8 @@ public class LoaderUtility {
 		}
 		ObjectHandle objectHandle = BvrFactory.eINSTANCE.createObjectHandle();
 		objectHandle.setMOFRef(eObject);
-		replacement.getSourceObject().add(objectHandle);
+		Context.eINSTANCE.getEditorCommands().addObjectHandleReplacement(replacement, objectHandle);
+		//replacement.getSourceObject().add(objectHandle);
 		return objectHandle;
 	}
 	

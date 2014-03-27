@@ -23,7 +23,6 @@ import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
-import bvr.VariationPoint;
 import bvr.NamedElement;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;

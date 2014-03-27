@@ -13,6 +13,8 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
+import no.sintef.bvr.tool.ui.dropdown.BindingEditorDropDownListener;
+import no.sintef.bvr.tool.ui.dropdown.BindingEditorTableDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.FragmentSubstitutionTableDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.SubstitutionFragmentDropDownListener;
@@ -117,7 +119,11 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 		realizationPanel.add(panel);
 		 
 		bindingEditor = new BindingJTable();
+		bindingEditor.addMouseListener(new BindingEditorTableDropDownListener(this));
+		
 		JScrollPane scrollPanelBinding = new JScrollPane(bindingEditor);
+		scrollPanelBinding.addMouseListener(new BindingEditorDropDownListener(this));
+		
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
 		

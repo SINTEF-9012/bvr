@@ -117,15 +117,15 @@ public class Main {
 		realizationMenu.add(generateBindings);
 		
 		JMenuItem createToBinding = new JMenuItem(Constants.REALIZATION_GENERATE_TO_BINDING);
-		createToBinding.addActionListener(new CreateToBindingEvent(filePane, models, views));
+		//createToBinding.addActionListener(new CreateToBindingEvent(filePane, models, views));
 		realizationMenu.add(createToBinding);
 		
 		JMenuItem deleteBinding = new JMenuItem(Constants.REALIZATION_DELETE_BINDING);
-		deleteBinding.addActionListener(new DeleteBindingEvent(filePane, models, views));
+		//deleteBinding.addActionListener(new DeleteBindingEvent(filePane, models, views));
 		realizationMenu.add(deleteBinding);
 		
 		JMenuItem deleteAllBinding = new JMenuItem(Constants.REALIZATION_DELETE_ALL_BINDING);
-		deleteAllBinding.addActionListener(new DeleteBindingAllEvent(filePane, models, views));
+		//deleteAllBinding.addActionListener(new DeleteBindingAllEvent(filePane, models, views));
 		realizationMenu.add(deleteAllBinding);
 		
 		realizationMenu.add(new JSeparator());

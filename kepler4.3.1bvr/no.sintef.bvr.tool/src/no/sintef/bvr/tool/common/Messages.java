@@ -23,7 +23,7 @@ public class Messages {
 	public static final String DIALOG_MSG_BINDING_TAB_NO_FOCUS = "binding tab is not in focus";
 	public static final String DIALOG_MSG_NO_FRAG_SUB_DETECTED = "no fragment substitution is detected to generate a binding";
 	public static final String DIALOG_MSG_BINDING_REMOVE_TITLE = "Binding Deletion";
-	public static final String DIALOG_MSG_BINDING_NOT_DUMMY = "Boundary is not a dummy one, corresponding boundary refrences sonething inside the placement fragment. Remove?";
+	public static final String DIALOG_MSG_BINDING_NOT_DUMMY = "Boundary is not a dummy one, corresponding boundary references something inside the placement fragment. Remove?";
 	public static final String DIALOG_WRONG_LOCATION = "Can not save a model to the specified location, save somewhere in the workspace location";
 	public static final String DIALOG_MSG_SAVE_MODEL = "Save model first!";
 	public static final String DIALOG_MSG_EXIT = "Do you really want to exit?";

@@ -8,9 +8,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import bvr.ObjectHandle;
 import bvr.PlacementFragment;
 import bvr.ToPlacement;
 import no.sintef.bvr.tool.common.LoaderUtility;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.AbstractBoundaryCalculator;
 import no.sintef.bvr.tool.strategy.PlacementBoundaryCalcStrategy;
 
@@ -33,8 +35,11 @@ public class SingleDummyToPlacementBoundaryCalcStrategy extends AbstractBoundary
 				
 				//since when we generate a a new toPlacement, the boundary does not really cut any reference going inside the placement fragment
 				//therefore insideBoundaryElement should not point to any specific element
-				toPlacement.getInsideBoundaryElement().clear();
-				toPlacement.getInsideBoundaryElement().add(LoaderUtility.testObjectHandle(placement, null));
+				//toPlacement.getInsideBoundaryElement().clear();
+				//toPlacement.getInsideBoundaryElement().add(LoaderUtility.testObjectHandle(placement, null));
+				Context.eINSTANCE.getEditorCommands().clearInsideBElementToPlacement(toPlacement);
+				ObjectHandle objectHandle = LoaderUtility.testObjectHandle(placement, null);
+				Context.eINSTANCE.getEditorCommands().addInsideBElementToPlacement(toPlacement, objectHandle);
 			}
 			//containment
 			EObject sourceEObject = eObject.eContainer();
@@ -45,8 +50,11 @@ public class SingleDummyToPlacementBoundaryCalcStrategy extends AbstractBoundary
 				ToPlacement toPlacement = testToPlacementBoundary(placement, sourceEObject, eObject, property);
 				//since when we generate a a new toPlacement, the boundary does not really cut any reference going inside the placement fragment
 				//therefore insideBoundaryElement should not point to any specific element
-				toPlacement.getInsideBoundaryElement().clear();
-				toPlacement.getInsideBoundaryElement().add(LoaderUtility.testObjectHandle(placement, null));
+				//toPlacement.getInsideBoundaryElement().clear();
+				//toPlacement.getInsideBoundaryElement().add(LoaderUtility.testObjectHandle(placement, null));
+				Context.eINSTANCE.getEditorCommands().clearInsideBElementToPlacement(toPlacement);
+				ObjectHandle objectHandle = LoaderUtility.testObjectHandle(placement, null);
+				Context.eINSTANCE.getEditorCommands().addInsideBElementToPlacement(toPlacement, objectHandle);
 			}
 		}
 	}

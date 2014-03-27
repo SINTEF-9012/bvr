@@ -19,8 +19,14 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.ObjectHandle;
+import bvr.PlacementBoundaryElement;
+import bvr.PlacementFragment;
 import bvr.PrimitveType;
+import bvr.ReplacementBoundaryElement;
+import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
+import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VInstance;
@@ -304,5 +310,51 @@ public class EditorMVCCommands implements EditorCommands {
 	public void setFromBindingFromPlacement(FromBinding fromBinding,
 			FromPlacement fromPlacement) {
 		fromBinding.setFromPlacement(fromPlacement);
+	}
+
+	@Override
+	public void addObjectHandlePlacement(PlacementFragment placement,
+			ObjectHandle objectHandle) {
+		placement.getSourceObject().add(objectHandle);
+		
+	}
+
+	@Override
+	public void addObjectHandleReplacement(ReplacementFragmentType replacement,
+			ObjectHandle objectHandle) {
+		replacement.getSourceObject().add(objectHandle);
+	}
+
+	@Override
+	public void addPlacementBoundaryElement(PlacementFragment placement,
+			PlacementBoundaryElement boundary) {
+		placement.getPlacementBoundaryElement().add(boundary);
+		
+	}
+
+	@Override
+	public void addReplacementBoundaryElement(
+			ReplacementFragmentType replacement,
+			ReplacementBoundaryElement boundary) {
+		replacement.getReplacementBoundaryElement().add(boundary);
+		
+	}
+
+	@Override
+	public void clearInsideBElementToPlacement(
+			ToPlacement boundary) {
+		boundary.getInsideBoundaryElement().clear();
+	}
+
+	@Override
+	public void addInsideBElementToPlacement(
+			ToPlacement boundary, ObjectHandle objectHandle) {
+		boundary.getInsideBoundaryElement().add(objectHandle);
+	}
+
+	@Override
+	public void addInsideBElementToPlacement(
+			ToPlacement boundary, EList<ObjectHandle> objectHandle) {
+		boundary.getInsideBoundaryElement().addAll(objectHandle);
 	}
 }

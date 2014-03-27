@@ -11,6 +11,9 @@ import java.util.List;
 
 
 
+
+
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -43,8 +46,14 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.ObjectHandle;
+import bvr.PlacementBoundaryElement;
+import bvr.PlacementFragment;
 import bvr.PrimitveType;
+import bvr.ReplacementBoundaryElement;
+import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
+import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VInstance;
@@ -466,6 +475,62 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, fromBinding, BvrPackage.eINSTANCE.getFromBinding_FromPlacement(), fromPlacement);
 		editingDomain.getCommandStack().execute(cmd);		
+	}
+
+	@Override
+	public void addObjectHandlePlacement(PlacementFragment placement,
+			ObjectHandle objectHandle) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, placement, BvrPackage.eINSTANCE.getPlacementFragment_SourceObject(), objectHandle);
+		editingDomain.getCommandStack().execute(cmd);	
+	}
+
+	@Override
+	public void addObjectHandleReplacement(ReplacementFragmentType replacement,
+			ObjectHandle objectHandle) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, replacement, BvrPackage.eINSTANCE.getReplacementFragmentType_SourceObject(), objectHandle);
+		editingDomain.getCommandStack().execute(cmd);	
+	}
+
+	@Override
+	public void addPlacementBoundaryElement(PlacementFragment placement,
+			PlacementBoundaryElement boundary) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, placement, BvrPackage.eINSTANCE.getPlacementFragment_PlacementBoundaryElement(), boundary);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addReplacementBoundaryElement(
+			ReplacementFragmentType replacement,
+			ReplacementBoundaryElement boundary) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, replacement, BvrPackage.eINSTANCE.getReplacementFragmentType_ReplacementBoundaryElement(), boundary);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void clearInsideBElementToPlacement(ToPlacement boundary) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), boundary.getInsideBoundaryElement());
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addInsideBElementToPlacement(ToPlacement boundary,
+			ObjectHandle objectHandle) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), objectHandle);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addInsideBElementToPlacement(ToPlacement boundary,
+			EList<ObjectHandle> objectHandle) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), objectHandle);
+		editingDomain.getCommandStack().execute(cmd);
 	}
 
 }

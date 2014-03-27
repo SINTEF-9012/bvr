@@ -107,7 +107,8 @@ public class AbstractBoundaryCalculator {
 			toPlacement = createToPlacement(placement, sourceEObject, targetEObject, property);
 		}else{
 			ObjectHandle targetObjectHandle = LoaderUtility.testObjectHandle(placement, targetEObject);
-			toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
+			//toPlacement.getInsideBoundaryElement().add(targetObjectHandle);
+			Context.eINSTANCE.getEditorCommands().addInsideBElementToPlacement(toPlacement, targetObjectHandle);
 		}
 		return toPlacement;
 	}
@@ -144,7 +145,8 @@ public class AbstractBoundaryCalculator {
 		toPlacement.setName(createBoundaryName(sourceEObject, null, property, false));
 		String propertyName = property.getName();
 		toPlacement.setPropertyName(propertyName);
-		placement.getPlacementBoundaryElement().add(toPlacement);
+		//placement.getPlacementBoundaryElement().add(toPlacement);
+		Context.eINSTANCE.getEditorCommands().addPlacementBoundaryElement(placement, toPlacement);
 		return toPlacement;
 	}
 	
@@ -155,7 +157,8 @@ public class AbstractBoundaryCalculator {
 		fromPlacement.setInsideBoundaryElement(sourceObjectHandle);
 		fromPlacement.getOutsideBoundaryElement().add(targetObjectHandle);
 		fromPlacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(fromPlacement.getOutsideBoundaryElement()), reference, true));
-		placement.getPlacementBoundaryElement().add(fromPlacement);
+		//placement.getPlacementBoundaryElement().add(fromPlacement);
+		Context.eINSTANCE.getEditorCommands().addPlacementBoundaryElement(placement, fromPlacement);
 		return fromPlacement;
 	}
 	
@@ -166,7 +169,8 @@ public class AbstractBoundaryCalculator {
 		toReplacement.setOutsideBoundaryElement(sourceObjectHandle);
 		toReplacement.getInsideBoundaryElement().add(targetObjectHandle);
 		toReplacement.setName(createBoundaryName(sourceEObject, LoaderUtility.resolveProxies(toReplacement.getInsideBoundaryElement()), property, true));
-		replacement.getReplacementBoundaryElement().add(toReplacement);
+		//replacement.getReplacementBoundaryElement().add(toReplacement);
+		Context.eINSTANCE.getEditorCommands().addReplacementBoundaryElement(replacement, toReplacement);
 		return toReplacement;
 	}
 	
@@ -179,7 +183,8 @@ public class AbstractBoundaryCalculator {
 		String propertyName = reference.getName();
 		fromReplacement.setName(createBoundaryName(sourceEObject, null, reference, false));
 		fromReplacement.setPropertyName(propertyName);
-		replacement.getReplacementBoundaryElement().add(fromReplacement);
+		//replacement.getReplacementBoundaryElement().add(fromReplacement);
+		Context.eINSTANCE.getEditorCommands().addReplacementBoundaryElement(replacement, fromReplacement);
 		return fromReplacement;
 	}
 	
