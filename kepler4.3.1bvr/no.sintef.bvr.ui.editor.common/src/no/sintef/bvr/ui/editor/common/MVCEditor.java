@@ -139,6 +139,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 
 						if (m != null) {
 							jApplet = new CustomJApplet();
+							Context.eINSTANCE.setActiveJApplet(jApplet);
 							createView();
 							// "The first child of the embedded frame must be a heavyweight component."
 							frame.add(jApplet);

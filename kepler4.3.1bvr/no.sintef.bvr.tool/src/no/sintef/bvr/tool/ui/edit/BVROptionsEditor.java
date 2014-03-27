@@ -16,6 +16,7 @@ package no.sintef.bvr.tool.ui.edit;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.GradientPaint;
 import java.awt.Point;
 
@@ -23,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
@@ -81,7 +83,7 @@ public class BVROptionsEditor extends JPanel {
 
     public void showEditor(){
     	BVROptionEditorPanel prop = new BVROptionEditorPanel();
-    	editableModelPanel.displayProperties(prop);
+    	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
     }
     
     public void unshowEditor() {

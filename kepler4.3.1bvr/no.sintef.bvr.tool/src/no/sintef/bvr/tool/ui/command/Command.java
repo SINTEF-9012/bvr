@@ -20,7 +20,6 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import bvr.NamedElement;
-import bvr.VSpec;
 
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;

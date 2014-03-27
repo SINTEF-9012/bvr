@@ -1,7 +1,5 @@
 package no.sintef.bvr.tool.ui.command.event;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,17 +17,18 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import no.sintef.bvr.thirdparty.common.Utility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.ui.command.TrivialCommand;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
-public class CopyModelEvent implements ActionListener {
+public class CopyModelEvent implements TrivialCommand {
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void execute () {
 		try{
 			FileFilter[] filters = {};
 			JFileChooser filechooser = StaticUICommands.getFileChooser(filters, null);
 			
-			int status = filechooser.showOpenDialog(null);
+			int status = filechooser.showOpenDialog(Context.eINSTANCE.getActiveJApplet());
 			if(status == JFileChooser.CANCEL_OPTION)
 				return;
 			
@@ -69,7 +68,7 @@ public class CopyModelEvent implements ActionListener {
 			productResource.save(options);
 		} catch (Exception e) {
 			Context.eINSTANCE.logger.error("some exception on copying", e);
-			StaticUICommands.showMessageErrorDialog(null, e, "some exception on copying");
+			StaticUICommands.showMessageErrorDialog(Context.eINSTANCE.getActiveJApplet(), e, "some exception on copying");
 		}
 	}
 

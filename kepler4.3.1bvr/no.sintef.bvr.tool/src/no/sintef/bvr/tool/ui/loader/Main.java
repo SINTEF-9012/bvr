@@ -149,7 +149,7 @@ public class Main {
 		// tools menu
 		JMenu toolsMenu = new JMenu(Constants.TOOLS_MENU_NAME);
 		JMenuItem copyModel = new JMenuItem(Constants.TOOLS_COPY_MODEL);
-		copyModel.addActionListener(new CopyModelEvent());
+		//copyModel.addActionListener(new CopyModelEvent());
 		toolsMenu.add(copyModel);
 		
 		JMenuItem settings = new JMenuItem(Constants.TOOLS_OPTIONS);

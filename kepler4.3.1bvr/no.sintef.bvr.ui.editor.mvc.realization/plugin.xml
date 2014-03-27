@@ -32,6 +32,13 @@
                   </equals>
                </with>
             </visibleWhen>
+            <menu
+                  label="Tools">
+               <command
+                     commandId="no.sintef.bvr.ui.editor.mvc.realization.command1"
+                     style="push">
+               </command>
+            </menu>
          </menu>
       </menuContribution>
    </extension>
@@ -41,6 +48,11 @@
             defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.OpenSetting"
             id="no.sintef.bvr.ui.editor.mvc.realization.command0"
             name="Options">
+      </command>
+      <command
+            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.CopyModel"
+            id="no.sintef.bvr.ui.editor.mvc.realization.command1"
+            name="Copy Model">
       </command>
    </extension>
 </plugin>

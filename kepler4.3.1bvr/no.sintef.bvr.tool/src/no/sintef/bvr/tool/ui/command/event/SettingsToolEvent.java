@@ -2,9 +2,21 @@ package no.sintef.bvr.tool.ui.command.event;
 
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.ui.command.TrivialCommand;
+import no.sintef.bvr.tool.ui.edit.BVROptionsEditor;
 
-public class SettingsToolEvent {
+public class SettingsToolEvent implements TrivialCommand {
+	
+	private BVROptionsEditor settingsEditor;
 
+	@Override
+	public void execute() {
+		if(settingsEditor != null)
+			settingsEditor.unshowEditor();
+		settingsEditor = new BVROptionsEditor();
+		settingsEditor.showEditor();
+	}
+	
 	public static class SettingsCommand {
 		
 		public static void setFromPlacementPermutation(Boolean isSet){
