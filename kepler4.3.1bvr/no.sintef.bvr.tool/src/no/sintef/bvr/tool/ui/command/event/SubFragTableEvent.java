@@ -40,11 +40,12 @@ public class SubFragTableEvent implements TableModelListener {
 						String newName = label.getText();
 						String currentName = vp.getName();
 						if(!newName.equals(currentName)){
-							vp.setName(label.getText());
-							ArrayList<Subject> subjects = Context.eINSTANCE.getViewChangeManager().registeredSubjects(jtable);
+							Context.eINSTANCE.getEditorCommands().setName(vp, label.getText());
+							//vp.setName(label.getText());
+							/*ArrayList<Subject> subjects = Context.eINSTANCE.getViewChangeManager().registeredSubjects(jtable);
 							for(Subject subject : subjects)
 								if(subject instanceof ConfigurableUnitSubject)
-									Context.eINSTANCE.getViewChangeManager().refreshSubject(subject);
+									Context.eINSTANCE.getViewChangeManager().refreshSubject(subject);*/
 						}
 					}
 				}else{

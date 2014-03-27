@@ -46,13 +46,12 @@ public class BindingModelTableEvent implements TableModelListener {
 				BoundaryElementBinding binding = (BoundaryElementBinding) bindingCell.getNamedElement();
 				if(columnIndex == Constants.BINDING_VALUE_CLMN){
 					DataBoundaryItem valueCell = (DataBoundaryItem) data.get(rowIndex).get(Constants.BINDING_VALUE_CLMN);
-					VariationPoint boundary = (VariationPoint) valueCell.getNamedElement();
 					if(binding instanceof ToBinding){
 						ToBinding toBinding = (ToBinding) binding;
-						toBinding.setToReplacement((ToReplacement) boundary);
+						toBinding.setToReplacement((ToReplacement) valueCell.getNamedElement());
 					}else if(binding instanceof FromBinding) {
 						FromBinding fromBinding = (FromBinding) binding;
-						fromBinding.setFromPlacement((FromPlacement) boundary);
+						fromBinding.setFromPlacement((FromPlacement) valueCell.getNamedElement());
 					}else{
 						try {
 							throw new UnexpectedException("OMG this should never happen!");

@@ -42,23 +42,26 @@ public class FragSubTableEvent implements TableModelListener {
 						String newName = label.getText();
 						String currentName = vp.getName();
 						if(!newName.equals(currentName)){
-							vp.setName(label.getText());
-							for(Subject subject : subjects)
+							//vp.setName(label.getText());
+							Context.eINSTANCE.getEditorCommands().setName(vp, label.getText());
+							/*for(Subject subject : subjects)
 								if(subject instanceof ConfigurableUnitSubject)
-									Context.eINSTANCE.getViewChangeManager().refreshSubject(subject);
+									Context.eINSTANCE.getViewChangeManager().refreshSubject(subject);*/
 						}
 					}
 					if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){
 						DataItem vspeCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VSPEC_CLMN);
 						VSpec vSpec = (VSpec) vspeCell.getNamedElement();
 						if(vSpec instanceof NullVSpec){
-							vp.setBindingVSpec(null);
+							//vp.setBindingVSpec(null);
+							Context.eINSTANCE.getEditorCommands().setBindingVariationPoint(vp, null);
 						}else{
-							vp.setBindingVSpec(vSpec);
+							//vp.setBindingVSpec(vSpec);
+							Context.eINSTANCE.getEditorCommands().setBindingVariationPoint(vp, vSpec);
 						}
-						for(Subject subject : subjects)
+						/*for(Subject subject : subjects)
 							if(subject instanceof ConfigurableUnitSubject)
-								ViewChanageManager.getChangeManager().refreshSubject(subject);
+								ViewChanageManager.getChangeManager().refreshSubject(subject);*/
 					}
 				}else{
 					throw new UnsupportedOperationException("Few rows were updated - not implemented");

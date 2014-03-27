@@ -283,4 +283,10 @@ public class EditorMVCCommands implements EditorCommands {
 			EList<BoundaryElementBinding> boundaryElementBindings) {
 		fragmentSubsitution.getBoundaryElementBinding().addAll(boundaryElementBindings);
 	}
+
+	@Override
+	public void setBindingVariationPoint(VariationPoint variationPoint,
+			VSpec vSpec) {
+		variationPoint.setBindingVSpec(vSpec);
+	}
 }

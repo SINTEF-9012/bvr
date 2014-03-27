@@ -44,7 +44,6 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 			
 			replacement.setName(Constants.REPLACEMENT_DEFAULT_NAME + count++);
 			Context.eINSTANCE.getEditorCommands().addOwnedVariationType(cu, replacement);
-			cu.getOwnedVariabletype().add(replacement);
 		} catch (Exception e) {
 			logger.error("some failure during replacement creation", e);
 			throw new RethrownException("some failure during replacement creation", e);

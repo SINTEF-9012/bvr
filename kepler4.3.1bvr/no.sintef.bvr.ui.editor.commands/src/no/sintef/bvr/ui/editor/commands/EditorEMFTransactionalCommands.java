@@ -9,6 +9,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -435,6 +436,14 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 			EList<BoundaryElementBinding> boundaryElementBindings) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBindings);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void setBindingVariationPoint(VariationPoint variationPoint,
+			VSpec vSpec) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variationPoint, BvrPackage.eINSTANCE.getVariationPoint_BindingVSpec(), vSpec);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

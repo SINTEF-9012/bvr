@@ -27,12 +27,12 @@ public class SubstitutionFragmentDropDown extends JPopupMenu {
 		add(new JSeparator());
 		
 		JMenuItem createPlacmentCntLess = new JMenuItem(Constants.REALIZATION_CR_PLCMT_CNTLESS_NAME);
-		createPlacment.addActionListener(new CreatePlacementFragmentEvent(_view, false));
+		createPlacmentCntLess.addActionListener(new CreatePlacementFragmentEvent(_view, false));
 		add(createPlacmentCntLess);
 		
 	
 		JMenuItem createReplacmentCntLess = new JMenuItem(Constants.REALIZATION_CR_RPLCMT_CNTLESS_NAME);
-		createReplacment.addActionListener(new CreateReplacementFragmentEvent(_view, false));
+		createReplacmentCntLess.addActionListener(new CreateReplacementFragmentEvent(_view, false));
 		add(createReplacmentCntLess);
 		
 		add(new JSeparator());

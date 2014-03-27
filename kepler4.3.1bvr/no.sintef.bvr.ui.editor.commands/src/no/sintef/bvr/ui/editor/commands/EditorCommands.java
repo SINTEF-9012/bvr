@@ -122,4 +122,6 @@ public interface EditorCommands {
 	public void removeBoudaryElementBindings(FragmentSubstitution fragmentSubsitution, EList<BoundaryElementBinding> boundaryElementBindings);
 	
 	public void clearBoudaryElementBindings(FragmentSubstitution fragmentSubsitution);
+	
+	public void setBindingVariationPoint(VariationPoint variationPoint, VSpec vSpec);
 }
