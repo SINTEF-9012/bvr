@@ -18,8 +18,6 @@ public class DelAllResEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(cu);
-		//cu.getOwnedVSpecResolution().clear();
-		//bvrView.notifyResolutionViewUpdate();
 	}
 
 }

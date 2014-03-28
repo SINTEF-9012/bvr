@@ -19,6 +19,8 @@ public class Constants {
 	public static final int BINDING_VALUE_CLMN = 2;
 	
 	public static final String RESOLUTION_EXECUTE_PRODUCT = "Derive Product";
+	public static final String RESOLUTION_EXPORT_PNG = "Export Diagram as PNG ...";
+	public static final String RESOLUTION_REMOVE = "Remove";
 	
 	public static final String REALIZATION_TAB_NAME = "Realization";
 	public static final String REALIZATION_VP_SUBTAB_NAME = "Variation points";

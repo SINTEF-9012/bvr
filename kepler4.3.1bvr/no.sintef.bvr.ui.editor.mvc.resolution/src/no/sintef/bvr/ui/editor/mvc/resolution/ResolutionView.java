@@ -193,7 +193,7 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 	    autoLayoutResolutions();
 	    
 	    // Restore positions
-	    if(!isEmpty && !modelIsEmpty && selected <= resmodels){
+	    if(!isEmpty && !modelIsEmpty && selected < resmodels){
 		    resPane.setSelectedIndex(selected);
 		    resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 	    }
