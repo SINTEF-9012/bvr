@@ -27,6 +27,7 @@ public class Messages {
 	public static final String DIALOG_MSG_BINDING_NOT_DUMMY = "Boundary is not a dummy one, corresponding boundary references something inside the placement fragment. Remove?";
 	public static final String DIALOG_WRONG_LOCATION = "Can not save a model to the specified location, save somewhere in the workspace location";
 	public static final String DIALOG_MSG_SAVE_MODEL = "Save model first!";
+	public static final String DIALOG_MSG_NO_FILE_SELECTED = "No file slected!";
 	public static final String DIALOG_MSG_EXIT = "Do you really want to exit?";
 	public static final String DIALOG_TITLE_EXIT = "Exit?";
 	public static final String DIALOG_MSG_TWO_ROWS_SELECTED = "two rows should be selected";

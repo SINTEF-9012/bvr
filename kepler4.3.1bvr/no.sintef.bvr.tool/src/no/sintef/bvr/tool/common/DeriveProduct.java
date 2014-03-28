@@ -6,7 +6,6 @@ import no.sintef.bvr.tool.chain.ExecutionHandler;
 import no.sintef.bvr.tool.chain.impl.ExecutionRealizationHandler;
 import no.sintef.bvr.tool.chain.impl.IntersactionResolverExecutionHandler;
 import no.sintef.bvr.tool.chain.impl.ParserExecutionHandler;
-import no.sintef.bvr.tool.chain.impl.ResetExecutionHandler;
 import no.sintef.bvr.tool.chain.impl.SaveProductExecutionHandler;
 import no.sintef.bvr.tool.chain.impl.ScopeResolverExecutionHandler;
 import no.sintef.bvr.tool.exception.AbstractError;
@@ -21,8 +20,7 @@ public class DeriveProduct {
 	public DeriveProduct(HashMap<String, Object> keywords) throws AbstractError{
 		request = new SingleExecutionRequest(keywords);
 		
-		ResetExecutionHandler resetModel = new ResetExecutionHandler(null);
-		SaveProductExecutionHandler saveProduct = new SaveProductExecutionHandler(resetModel);
+		SaveProductExecutionHandler saveProduct = new SaveProductExecutionHandler(null);
 		ExecutionRealizationHandler realization = new ExecutionRealizationHandler(saveProduct);
 		ScopeResolverExecutionHandler scopeResolving = new ScopeResolverExecutionHandler(realization);
 		IntersactionResolverExecutionHandler intersectionResolver = new IntersactionResolverExecutionHandler(scopeResolving);

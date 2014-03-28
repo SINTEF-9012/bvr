@@ -17,12 +17,15 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -293,4 +296,16 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	public EditorCommands getEditorCommands() {
 		return commands;
 	}
+	
+	@Override
+	public void disposeModel(BVRModel model) {
+		IFile iFile = Utility.findIFileInWorkspaceFile(model.getFile());
+		try {
+			iFile.delete(true, null);
+		} catch (CoreException e) {
+			throw new RethrownException("failed to remove file", e);
+		}
+		model.dispose();
+	}
+
 }

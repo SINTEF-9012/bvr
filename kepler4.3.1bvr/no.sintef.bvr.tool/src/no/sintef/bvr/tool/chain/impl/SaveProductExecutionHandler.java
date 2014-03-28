@@ -1,11 +1,9 @@
 package no.sintef.bvr.tool.chain.impl;
 
+import java.io.File;
 import java.util.HashMap;
 
-import javax.swing.JComponent;
-
 import bvr.ConfigurableUnit;
-
 import no.sintef.bvr.tool.chain.ExecutionHandler;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -27,16 +25,16 @@ public class SaveProductExecutionHandler implements ExecutionHandler {
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
 		ConfigurableUnit cu = (ConfigurableUnit) request.getDataField("cu");
-		JComponent parentComponent = (JComponent) request.getDataField("parentComponent");
+		File destFile = (File) request.getDataField("destFile");
 		BVRModel model =  (BVRModel) request.getDataField("bvrModel");
 		
-		if(cu == null || parentComponent == null || model == null){
-			throw new UnexpectedException("require conifuration unit, parent jcomponent, and bvr model to handle this request");
+		if(cu == null || destFile == null || model == null){
+			throw new UnexpectedException("require conifuration unit, destinition file, and bvr model to handle this request");
 		}
 		
 		HashMap<String, Object> keywords = new HashMap<String, Object>();
 		keywords.put("cu", cu);
-		keywords.put("parentComponent", parentComponent);
+		keywords.put("destFile", destFile);
 		keywords.put("bvrModel", model);
 		
 		defaultStrategy.saveProduct(keywords);

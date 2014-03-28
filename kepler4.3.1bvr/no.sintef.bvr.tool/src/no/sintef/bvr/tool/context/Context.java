@@ -126,6 +126,10 @@ public final class Context {
 		environment.clearHighlights();
 	}
 	
+	public void nullSetModel(BVRModel model){
+		environment.disposeModel(model);
+	}
+	
 	public JFileChooser getFileChooser(){
 		JFileChooser fc = environment.getFileChooser();
 		return fc;

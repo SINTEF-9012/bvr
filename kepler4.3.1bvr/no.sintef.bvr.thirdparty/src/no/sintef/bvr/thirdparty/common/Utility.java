@@ -28,6 +28,12 @@ public final class Utility {
 		return (files.length == 1) ? files[0].getFullPath().toString() : null;
 	}
 	
+	public static IFile findIFileInWorkspaceFile(File file) {
+		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+		URI uri = URIUtil.toURI(file.getAbsolutePath());
+		IFile[] files = myWorkspaceRoot.findFilesForLocationURI(uri);
+		return (files.length == 1) ? files[0] : null;
+	}
 	
 	public final static String statusCode = "statusCode";
 	public final static String message = "message";

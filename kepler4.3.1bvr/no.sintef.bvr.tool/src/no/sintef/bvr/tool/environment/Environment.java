@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JFileChooser;
-import javax.swing.tree.DefaultTreeCellEditor.EditorContainer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -44,4 +43,6 @@ public interface Environment {
 	public ConfigHelper getConfig();
 	
 	public EditorCommands getEditorCommands();
+	
+	public void disposeModel(BVRModel model);
 }

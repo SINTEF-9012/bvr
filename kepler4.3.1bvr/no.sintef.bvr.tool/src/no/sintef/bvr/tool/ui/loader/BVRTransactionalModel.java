@@ -18,11 +18,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import bvr.ConfigurableUnit;
 
 public class BVRTransactionalModel extends BVRModel {
-	private no.sintef.ict.splcatool.BVRModel bvrm;
-	private File f;
-	private boolean platform = false;
-	private String loadFilename;
-	private boolean saved = true;
 	private Resource resource;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.BVRModel x) {

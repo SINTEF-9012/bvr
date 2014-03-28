@@ -87,4 +87,8 @@ public class AbstractEnvironment implements Environment {
 		throw new UnimplementedBVRException("Commands are not implemented for this environment");
 	}
 
+	@Override
+	public void disposeModel(BVRModel model) {
+		throw new UnimplementedBVRException("disposeModel is not implemented for this environment");
+	}
 }

@@ -6,11 +6,11 @@ import bvr.ConfigurableUnit;
 import bvr.VSpec;
 
 public class BVRModel {
-	private no.sintef.ict.splcatool.BVRModel bvrm;
-	private File f;
-	private boolean platform = false;
-	private String loadFilename;
-	private boolean saved = true;
+	protected no.sintef.ict.splcatool.BVRModel bvrm;
+	protected File f;
+	protected boolean platform = false;
+	protected String loadFilename;
+	protected boolean saved = true;
 
 	public BVRModel(File sf) {
 		f = sf;
@@ -37,6 +37,14 @@ public class BVRModel {
 	
 	public void reload(){
 		bvrm = (!platform) ? new no.sintef.ict.splcatool.BVRModel(f) : new no.sintef.ict.splcatool.BVRModel(loadFilename, platform);
+	}
+	
+	public void dispose() {
+		f = null;
+		bvrm = null;
+		saved = false;
+		loadFilename = "";
+		platform = false;
 	}
 
 	String getShortFileName(){
