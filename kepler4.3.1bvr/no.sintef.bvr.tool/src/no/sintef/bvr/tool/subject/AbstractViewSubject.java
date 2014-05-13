@@ -2,8 +2,6 @@ package no.sintef.bvr.tool.subject;
 
 import java.util.ArrayList;
 
-import bvr.ConfigurableUnit;
-
 import no.sintef.bvr.tool.context.ViewChanageManager;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
