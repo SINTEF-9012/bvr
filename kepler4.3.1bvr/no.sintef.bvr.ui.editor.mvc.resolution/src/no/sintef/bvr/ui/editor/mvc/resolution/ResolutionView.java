@@ -295,4 +295,16 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 	public void refresh() {
 		notifyResolutionViewUpdate();
 	}
+	//implement to use striped functionality, else ignore
+	@Override
+	public void setUnstripped(VSpecResolution vsr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setStripped(VSpecResolution vsr) {
+		// TODO Auto-generated method stub
+		
+	}
 }

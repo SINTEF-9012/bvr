@@ -29,6 +29,7 @@ import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
+import bvr.VSpecResolution;
 
 public class RealizationView extends BVRViewAbstract implements BVRRealizationView {
 	private BVRModel m;
@@ -145,5 +146,18 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 	@Override
 	public void refresh() {
 		notifyRelalizationViewReset();
+	}
+
+	//implement to use striped functionality, else ignore
+	@Override
+	public void setUnstripped(VSpecResolution vsr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setStripped(VSpecResolution vsr) {
+		// TODO Auto-generated method stub
+		
 	}
 }

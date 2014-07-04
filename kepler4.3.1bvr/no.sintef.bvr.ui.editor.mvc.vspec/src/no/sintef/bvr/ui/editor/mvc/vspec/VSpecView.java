@@ -42,6 +42,7 @@ import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 import bvr.VClassifier;
 import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public class VSpecView extends BVRViewAbstract {
 	private BVRModel m;
@@ -289,5 +290,18 @@ public class VSpecView extends BVRViewAbstract {
 	@Override
 	public void refresh() {
 		notifyVspecViewUpdate();
+	}
+
+	//implement to use striped functionality, else ignore
+	@Override
+	public void setUnstripped(VSpecResolution vsr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setStripped(VSpecResolution vsr) {
+		// TODO Auto-generated method stub
+		
 	}
 }

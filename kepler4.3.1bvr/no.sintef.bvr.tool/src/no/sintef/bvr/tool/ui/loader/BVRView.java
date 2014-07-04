@@ -3,6 +3,7 @@ package no.sintef.bvr.tool.ui.loader;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.ConfigurableUnit;
+import bvr.VSpecResolution;
 
 public interface BVRView {
 	public BVRUIKernel getKernel() ;
@@ -14,4 +15,8 @@ public interface BVRView {
 	public void setMinimized(Object v) ;
 	
 	public void refresh();
+	
+	//added strip functionality for resolutioneditor v2 to avoid code dupplication
+	public void setUnstripped(VSpecResolution vsr);
+	public void setStripped(VSpecResolution vsr);
 }
