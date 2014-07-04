@@ -150,13 +150,13 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 
 	//implement to use striped functionality, else ignore
 	@Override
-	public void setUnstripped(VSpecResolution vsr) {
+	public void setUnstripped(Object vsr) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setStripped(VSpecResolution vsr) {
+	public void setStripped(Object vsr) {
 		// TODO Auto-generated method stub
 		
 	}

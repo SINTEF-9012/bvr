@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVariableValueAssignmentEventV2;
 import bvr.BvrFactory;
@@ -86,6 +85,7 @@ public class AddResolution implements ResCommand {
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
 		AddVariableValueAssignmentEventV2 v = new AddVariableValueAssignmentEventV2(parent, vSpecFound, view);
 		v.actionPerformed(null);
+		System.out.println(v.getVarableValueAssignment().getName());
 		return v.getVarableValueAssignment();
 	}
 }

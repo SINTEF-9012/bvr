@@ -8,7 +8,7 @@ import bvr.ConfigurableUnit;
 
 public interface BVRViewV2 extends BVRView {
 
-		public Iterators getAlgorithms();
+
 		public BVRUIKernel getKernel();
 		public ConfigurableUnitSubject getConfigurableUnitSubject() ;
 		public ConfigurableUnit getCU();

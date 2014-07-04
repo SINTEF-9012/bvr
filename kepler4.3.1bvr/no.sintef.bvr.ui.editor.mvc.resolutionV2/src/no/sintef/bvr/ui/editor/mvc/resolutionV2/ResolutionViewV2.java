@@ -361,20 +361,4 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		}
 		return false;
 	}
-
-	@Override
-	public Iterators getAlgorithms() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setUnstripped(VSpecResolution vsr) {
-		this.stripped.remove(vsr);
-		
-	}
-	@Override
-	public void setStripped(VSpecResolution vsr) {
-	this.stripped.add(vsr);	
-	}
-
 }

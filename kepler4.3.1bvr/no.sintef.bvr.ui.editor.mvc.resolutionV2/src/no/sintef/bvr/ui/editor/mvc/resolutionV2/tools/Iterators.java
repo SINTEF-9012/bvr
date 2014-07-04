@@ -28,7 +28,7 @@ static long i;
 				command.init(view, x, vsrParent, onlyOneInstance);
 				List<VSpecResolution> newResolutions = command.execute();
 				for (VSpecResolution newResolution : newResolutions) {
-					System.out.println(newResolution.getResolvedVSpec().getName());
+					System.out.println("resolution to resolve: "+ newResolution.getName());
 					iterateEmptyWithChildren(view, command, x, newResolution, onlyOneInstance);
 				}
 			}

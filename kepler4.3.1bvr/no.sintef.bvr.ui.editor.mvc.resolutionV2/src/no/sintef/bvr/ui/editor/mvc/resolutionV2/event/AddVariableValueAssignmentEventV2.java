@@ -1,28 +1,21 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import bvr.BCLExpression;
-import bvr.BooleanLiteralExp;
-import bvr.ChoiceResolutuion;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.PrimitiveTypeGenerator;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.PrimitiveValueGenerator;
 import bvr.BvrFactory;
-import bvr.IntegerLiteralExp;
-import bvr.NumericLiteralExp;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
-import bvr.RealLiteralExp;
-import bvr.StringLiteralExp;
-import bvr.UnlimitedLiteralExp;
-import bvr.VClassifier;
-import bvr.VInstance;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
-import bvr.Variabletype;
+
 
 public class AddVariableValueAssignmentEventV2 implements ActionListener {
 	private VSpecResolution cr;
@@ -30,6 +23,8 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 	private BVRView view;
 	static private int count = 0;
 	private VariableValueAssignment vi;
+
+
 
 	public AddVariableValueAssignmentEventV2(VSpecResolution parent, Variable toResolve, BVRView view) {
 		cr = parent;
@@ -40,79 +35,23 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		Variable v = target;
 
-		VariableValueAssignment vi = BvrFactory.eINSTANCE.createVariableValueAssignment();
+		vi = BvrFactory.eINSTANCE.createVariableValueAssignment();
 
 		// Variable
 		vi.setResolvedVSpec(v);
 
 		// Name
 		count++;
-		vi.setName("variableAssignment" + count);
+		vi.setName(target.getName() + " Assignment");
 
 		// Value
-		PrimitiveValueSpecification value = BvrFactory.eINSTANCE.createPrimitiveValueSpecification();
+		PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make(v));
 		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
-
-		BCLExpression le;
-		if (type == PrimitiveTypeEnum.INTEGER) {
-			IntegerLiteralExp ie = BvrFactory.eINSTANCE.createIntegerLiteralExp();
-			ie.setInteger(0);
-			value.setExpression(ie);
-
-			le = ie;
-		} else if (type == PrimitiveTypeEnum.REAL) {
-			RealLiteralExp ie = BvrFactory.eINSTANCE.createRealLiteralExp();
-			ie.setReal("0.0");
-			value.setExpression(ie);
-
-			le = ie;
-		} else if (type == PrimitiveTypeEnum.BOOLEAN) {
-			BooleanLiteralExp ie = BvrFactory.eINSTANCE.createBooleanLiteralExp();
-			ie.setBool(false);
-			value.setExpression(ie);
-
-			le = ie;
-		} else if (type == PrimitiveTypeEnum.STRING) {
-			StringLiteralExp ie = BvrFactory.eINSTANCE.createStringLiteralExp();
-			ie.setString("");
-			value.setExpression(ie);
-
-			le = ie;
-		} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
-			UnlimitedLiteralExp ie = BvrFactory.eINSTANCE.createUnlimitedLiteralExp();
-			ie.setUnlimited(0);
-			value.setExpression(ie);
-
-			le = ie;
-		} else {
-			throw new UnsupportedOperationException("Unsupported: " + type);
-		}
-
 		// Try searching for a type
 
-		// This is wrong, ReplacementGragmentType is a Variabletype, but not a
-		// PrimitveType, thus we throw an exeption
-		// COMMENTED OUT for now!!!
-		PrimitveType vt = null;
-		for (Variabletype x : view.getCU().getOwnedVariabletype()) {
-			if (x instanceof PrimitveType) {
-				PrimitveType pt = (PrimitveType) x;
-				if (pt.getType() == type)
-					vt = pt;
-			} else {
-				System.out.println("we shoould throw here exception COMMENTED OUT");
-				// throw new UnsupportedOperationException();
-			}
-		}
-
-		// Create type
-		if (vt == null) {
-			vt = BvrFactory.eINSTANCE.createPrimitveType();
-			vt.setType(type);
-			vt.setName("xx");
-			// view.getCU().getOwnedVariabletype().add(vt);
-			Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
-		}
+		//This is wrong, ReplacementGragmentType is a Variabletype, but not a  PrimitveType, thus we throw an exeption
+		//COMMENTED OUT for now!!!
+		PrimitveType vt = (new PrimitiveTypeGenerator().make(view, type));
 		value.setType(vt);
 
 		// Set exp
@@ -120,13 +59,13 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 
 		// Add
 		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(cr, vi);
-		// cr.getChild().add(vi);
+		//cr.getChild().add(vi);
 
-		// view.notifyResolutionViewUpdate();
+
+
+		//view.notifyResolutionViewUpdate();
 	}
-
-	public VSpecResolution getVarableValueAssignment() {
-		// TODO Auto-generated method stub
+	public VariableValueAssignment getVarableValueAssignment(){
 		return vi;
 	}
 

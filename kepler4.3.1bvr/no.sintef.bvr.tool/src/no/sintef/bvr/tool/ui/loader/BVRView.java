@@ -17,6 +17,6 @@ public interface BVRView {
 	public void refresh();
 	
 	//added strip functionality for resolutioneditor v2 to avoid code dupplication
-	public void setUnstripped(VSpecResolution vsr);
-	public void setStripped(VSpecResolution vsr);
+	public void setUnstripped(Object vsr);
+	public void setStripped(Object vsr);
 }

@@ -32,6 +32,7 @@ import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.Variabletype;
@@ -356,5 +357,11 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addInsideBElementToPlacement(
 			ToPlacement boundary, EList<ObjectHandle> objectHandle) {
 		boundary.getInsideBoundaryElement().addAll(objectHandle);
+	}
+
+	@Override
+	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
+		// TODO Auto-generated method stub
+		
 	}
 }

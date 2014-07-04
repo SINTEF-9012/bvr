@@ -14,6 +14,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -59,6 +60,7 @@ import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.Variabletype;
@@ -532,5 +534,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), objectHandle);
 		editingDomain.getCommandStack().execute(cmd);
 	}
-
+	@Override
+	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, elem, BvrPackage.eINSTANCE.getVariableValueAssignment_Value(), value);
+		editingDomain.getCommandStack().execute(cmd);
+		
+	}
 }

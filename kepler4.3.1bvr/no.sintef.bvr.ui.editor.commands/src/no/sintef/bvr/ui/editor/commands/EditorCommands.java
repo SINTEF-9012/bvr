@@ -32,6 +32,7 @@ import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.Variabletype;
@@ -152,4 +153,6 @@ public interface EditorCommands {
 	public void addInsideBElementToPlacement(ToPlacement boundary, ObjectHandle objectHandle);
 	
 	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle);
+
+	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value);
 }
