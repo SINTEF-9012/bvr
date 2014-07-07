@@ -34,9 +34,8 @@ public class ResV2DropdownListener extends MouseAdapter {
 	private BVRModel m;
 	private JTabbedPane resPane;
 	Map<JComponent, NamedElement> vmMap;
-	
-	public ResV2DropdownListener(BVRView bvrView, ConfigurableUnit cu,
-			BVRModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+
+	public ResV2DropdownListener(BVRView bvrView, ConfigurableUnit cu, BVRModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 		this.vmMap = vmMap;
 		this.bvrViewV2 = bvrView;
 		this.cu = cu;
@@ -63,12 +62,12 @@ public class ResV2DropdownListener extends MouseAdapter {
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane,Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
 		JMenuItem newres = new JMenuItem("New");
 		newres.addActionListener(new NewResolutionV2Event(cu, bvrView));
 		add(newres);
-		if(!(cu.getOwnedVSpecResolution().size() == 0)){
+		if (!(cu.getOwnedVSpecResolution().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");
 			remove.addActionListener(new DeleteResolution(bvrView));
 			add(remove);
@@ -126,19 +125,14 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel()
-				.getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(),
-				resPane));
-		
-		JMenuItem showGroupingImage = new JMenuItem("Show grouping");
-		add(showGroupingImage);
-		saveasImage.addActionListener(new ToggleShowGroupEvent((BVRViewV2) bvrView));
+		saveasImage
+				.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
 
+		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
+		add(showGrouping);
+		showGrouping.addActionListener(new ToggleShowGroupEvent((BVRViewV2) bvrView));
 
 	}
-
-
-
 
 	private static final long serialVersionUID = -4129916117036201146L;
 

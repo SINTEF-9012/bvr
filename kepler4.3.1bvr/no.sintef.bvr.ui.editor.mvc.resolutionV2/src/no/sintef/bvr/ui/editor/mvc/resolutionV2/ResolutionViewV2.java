@@ -295,8 +295,8 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			} else {
 				throw new BVRModelException("Unknown element: " + v.getClass());
 			}
-			if (!minimized.contains(v)) {// TODO add show/hide visuals
-				if ((v.getResolvedVSpec().getGroupMultiplicity() != null) && showGroups) {
+			if (!minimized.contains(v) && showGroups) {// TODO add show/hide visuals
+				if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
 					nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
 							.execute();
 				}
@@ -362,7 +362,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	@Override
 	public boolean showGrouping() {
 		
-		return this.showGrouping();
+		return this.showGroups;
 	}
 
 	@Override

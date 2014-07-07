@@ -14,21 +14,11 @@ public class ToggleShowGroupEvent implements ActionListener {
 		this.view = view;
 
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
 		view.setGrouping(!view.showGrouping());
-		//view.setStripped(v);
-		
-		//vsr = (VSpecResolution) ((ChoiceResolutuionImpl) v).getResolvedChoice();
-		
-		
-		//System.out.println("object get "+ (System.currentTimeMillis()-i));
-		
-		//i = System.currentTimeMillis();
-	
-		//System.out.println("total time for stripped event = "+ (System.currentTimeMillis()-i));
-		//System.out.println("seting striped");
+		view.refresh();
 	}
 }
