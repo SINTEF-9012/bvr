@@ -1,9 +1,5 @@
 package no.sintef.bvr.tool.ui.edit;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -11,27 +7,17 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
-import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.IntegerLiteralExp;
-import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
-import bvr.PrimitveType;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
-import bvr.VClassifier;
-import bvr.VInstance;
-import bvr.VSpec;
 import bvr.ValueSpecification;
-import bvr.Variable;
 import bvr.VariableValueAssignment;
 
 public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor{

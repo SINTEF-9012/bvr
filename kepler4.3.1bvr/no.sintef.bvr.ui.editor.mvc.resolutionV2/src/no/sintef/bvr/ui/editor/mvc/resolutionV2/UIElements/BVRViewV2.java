@@ -7,7 +7,8 @@ import bvr.ConfigurableUnit;
 
 public interface BVRViewV2 extends BVRView {
 
-
+		public boolean showGrouping();
+		public void setGrouping(boolean group);
 		public BVRUIKernel getKernel();
 		public ConfigurableUnitSubject getConfigurableUnitSubject() ;
 		public ConfigurableUnit getCU();

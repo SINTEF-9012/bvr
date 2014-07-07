@@ -2,14 +2,18 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
+import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
+import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
@@ -18,18 +22,22 @@ import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolutionV2Event;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
 import bvr.ConfigurableUnit;
+import bvr.NamedElement;
 
 public class ResV2DropdownListener extends MouseAdapter {
 	private BVRView bvrViewV2;
 	private ConfigurableUnit cu;
 	private BVRModel m;
 	private JTabbedPane resPane;
-
+	Map<JComponent, NamedElement> vmMap;
+	
 	public ResV2DropdownListener(BVRView bvrView, ConfigurableUnit cu,
-			BVRModel m, JTabbedPane resPane) {
-
+			BVRModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+		this.vmMap = vmMap;
 		this.bvrViewV2 = bvrView;
 		this.cu = cu;
 		this.m = m;
@@ -48,19 +56,23 @@ public class ResV2DropdownListener extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, cu, bvrViewV2, resPane);
+		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, cu, bvrViewV2, resPane, vmMap);
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
 }
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane) {
+	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane,Map<JComponent, NamedElement> vmMap) {
 
 		JMenuItem newres = new JMenuItem("New");
 		newres.addActionListener(new NewResolutionV2Event(cu, bvrView));
 		add(newres);
-
+		if(!(cu.getOwnedVSpecResolution().size() == 0)){
+			JMenuItem remove = new JMenuItem("Remove");
+			remove.addActionListener(new DeleteResolution(bvrView));
+			add(remove);
+		}
 		JMenuItem importres = new JMenuItem("Import ...");
 		importres.addActionListener(new ImportResolutions(m, bvrView));
 		add(importres);
@@ -117,6 +129,11 @@ class ResV2DropdownMenu extends JPopupMenu {
 		saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel()
 				.getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(),
 				resPane));
+		
+		JMenuItem showGroupingImage = new JMenuItem("Show grouping");
+		add(showGroupingImage);
+		saveasImage.addActionListener(new ToggleShowGroupEvent((BVRViewV2) bvrView));
+
 
 	}
 

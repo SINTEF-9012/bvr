@@ -14,7 +14,6 @@ import javax.swing.JTabbedPane;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
-import no.sintef.bvr.tool.ui.dropdown.ResolutionPanelDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
@@ -24,7 +23,6 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutuionV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVInstanceV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVariableValueAssignmentV2;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
@@ -46,7 +44,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	private BVRModel m;
 
 	public JTabbedPane modelPane;
-
+	private boolean showGroups;
 	// VSpec
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
@@ -64,7 +62,6 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	private ConfigurableUnitSubject configurableUnitSubject;
 	// tools
-	Iterators algo;
 
 	public ResolutionViewV2(BVRModel m) {
 		super();
@@ -74,8 +71,8 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		resolutionvmMaps = new ArrayList<Map<JComponent, NamedElement>>();
 		resolutionNodes = new ArrayList<List<JComponent>>();
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
-		this.algo = new Iterators();
 		this.m = m;
+		this.showGroups = true;
 
 		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 
@@ -91,6 +88,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
 		autoLayoutResolutions();
 	}
+
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
@@ -123,7 +121,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
 	List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
-	
+
 	protected void autoLayoutResolutions() {// TODO
 		for (int i = 0; i < resolutionPanes.size(); i++) {
 			Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
@@ -223,7 +221,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
  */
 
 	protected void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
-		resPane.addMouseListener(new ResV2DropdownListener((BVRViewV2) this, cu, m, resPane));
+		resPane.addMouseListener(new ResV2DropdownListener((BVRViewV2) this, cu, m, resPane, vspecvmMap));
 
 		if (cu.getOwnedVSpecResolution().size() == 0)
 			return;
@@ -233,7 +231,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			resolutionkernels.add(resKernel);
 			JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 					JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-			scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));
+			scrollPane.addMouseListener(new ResV2DropdownListener(this, cu, m, resPane, vspecvmMap));
 			EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 
 			resolutionPanes.add(scrollPane);
@@ -298,7 +296,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				throw new BVRModelException("Unknown element: " + v.getClass());
 			}
 			if (!minimized.contains(v)) {// TODO add show/hide visuals
-				if (v.getResolvedVSpec().getGroupMultiplicity() != null) {
+				if ((v.getResolvedVSpec().getGroupMultiplicity() != null) && showGroups) {
 					nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
 							.execute();
 				}
@@ -330,12 +328,12 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	public void setStripped(Object v) {
 		stripped.add((VSpecResolution) v);
-		//refresh();
+		// refresh();
 	}
 
 	public void setUnstripped(Object v) {
 		stripped.remove(v);
-		//refresh();
+		// refresh();
 	}
 
 	@Override
@@ -355,10 +353,21 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		for (VSpecResolution x : v.getChild()) {
 			if (x instanceof ChoiceResolutuion && stripped.contains(x)) {
 				if (!((ChoiceResolutuion) x).isDecision())
-					;
-				return true;
+					return true;
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public boolean showGrouping() {
+		
+		return this.showGrouping();
+	}
+
+	@Override
+	public void setGrouping(boolean group) {
+		this.showGroups = group;
+		
 	}
 }

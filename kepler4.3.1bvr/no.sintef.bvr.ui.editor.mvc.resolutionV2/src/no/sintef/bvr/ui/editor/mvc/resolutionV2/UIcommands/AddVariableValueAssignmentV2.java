@@ -37,7 +37,7 @@ public class AddVariableValueAssignmentV2 extends AddVariableValueAssignment imp
         listener = new CommandMouseListener();
         cp.addMouseListener(new VariableValueAssignmentDropDownListenerV2(cp, c, view, vmMap));
         
-        SelectInstanceCommand command = new SelectInstanceCommand();
+        SelectInstanceCommandV2 command = new SelectInstanceCommandV2();
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
         cp.addMouseListener(listener);

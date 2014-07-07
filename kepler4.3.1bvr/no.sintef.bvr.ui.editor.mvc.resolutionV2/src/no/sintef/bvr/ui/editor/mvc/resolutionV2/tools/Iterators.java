@@ -28,7 +28,6 @@ static long i;
 				command.init(view, x, vsrParent, onlyOneInstance);
 				List<VSpecResolution> newResolutions = command.execute();
 				for (VSpecResolution newResolution : newResolutions) {
-					System.out.println("resolution to resolve: "+ ((newResolution.getName()!= null)? newResolution.getName() : newResolution.getResolvedVSpec().getName()));
 					iterateEmptyWithChildren(view, command, x, newResolution, onlyOneInstance);
 				}
 			}
@@ -37,9 +36,7 @@ static long i;
 	public void iterateExisting(BVRView view, ResCommand command,VSpec vsParent,  VSpecResolution vsrParent, boolean onlyOneInstance){
 		command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		for(VSpecResolution vsr : vsrParent.getChild()){
-			i = System.currentTimeMillis();
 			command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
-			System.out.print("doing operation to " +vsr.getResolvedVSpec().getName() +"is taking" + (System.currentTimeMillis()-i) + "milliseconds \n");
 			iterateExisting(view, command, vsParent, vsr, onlyOneInstance);			
 		}
 	}
