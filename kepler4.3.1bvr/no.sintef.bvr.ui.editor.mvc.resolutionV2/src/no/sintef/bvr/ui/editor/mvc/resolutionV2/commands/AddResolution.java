@@ -21,6 +21,7 @@ public class AddResolution implements ResCommand {
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
 
+
 	@Override
 	public ResCommand init(BVRView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
@@ -39,15 +40,16 @@ public class AddResolution implements ResCommand {
 		}
 		if (target instanceof VClassifier) {
 			int min;
-
 			if (((VClassifier) target).getInstanceMultiplicity() != null && !onlyOneInstance) {
 				min = ((VClassifier) target).getInstanceMultiplicity().getLower();
 			} else {
 				System.err.println("instance error");
 				min = 1;
 			}
+			
 			for (int i = 0; i < min; i++) {
-				thisResolution.add(addResolution((VClassifier) target, parent));
+				
+				thisResolution.add(addResolution((VClassifier) target, parent, (i +1)));
 				// new recursiveResolve().init(view, target, thisResolution).execute();
 			}
 			min = 0;
@@ -63,12 +65,13 @@ public class AddResolution implements ResCommand {
 		return thisResolution;
 	}
 
-	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent) {
+	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent, int count_) {
+		int count = count_;
 		VInstance thisResolution = BvrFactory.eINSTANCE.createVInstance();
 		thisResolution.setResolvedVSpec(target);
 		// count++;
 		// vi.setName("vInstance" + count);
-		thisResolution.setName("instance");
+		thisResolution.setName("instance " + count);
 		Context.eINSTANCE.getEditorCommands().addVInstance(parent, thisResolution);
 		return thisResolution;
 	}
@@ -85,7 +88,7 @@ public class AddResolution implements ResCommand {
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
 		AddVariableValueAssignmentEventV2 v = new AddVariableValueAssignmentEventV2(parent, vSpecFound, view);
 		v.actionPerformed(null);
-		System.out.println(v.getVarableValueAssignment().getName());
+		//System.out.println(v.getVarableValueAssignment().getName());
 		return v.getVarableValueAssignment();
 	}
 }
