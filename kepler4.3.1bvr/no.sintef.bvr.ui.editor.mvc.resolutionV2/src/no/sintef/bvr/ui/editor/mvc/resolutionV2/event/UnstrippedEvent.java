@@ -29,11 +29,8 @@ public class UnstrippedEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object v = vmMap.get(cp);
-		
-		//view.setStripped(v);
-		
-		//vsr = (VSpecResolution) ((ChoiceResolutuionImpl) v).getResolvedChoice();
 		(new Iterators()).iterateExisting(view, new UnstripCommand(), x, (VSpecResolution) v, true);
-		//System.out.println("seting Unstriped");
+		view.refresh();
+		
 	}
 }

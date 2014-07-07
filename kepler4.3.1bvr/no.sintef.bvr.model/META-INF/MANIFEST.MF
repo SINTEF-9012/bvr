@@ -8,6 +8,7 @@ Bundle-Vendor: SINTEF
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: bvr,
+ bvr.common,
  bvr.impl,
  bvr.util
 Require-Bundle: org.eclipse.core.runtime,

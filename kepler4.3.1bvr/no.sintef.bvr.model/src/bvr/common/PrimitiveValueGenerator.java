@@ -1,4 +1,4 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
+package bvr.common;
 
 import bvr.BooleanLiteralExp;
 import bvr.BvrFactory;

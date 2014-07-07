@@ -330,12 +330,12 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	public void setStripped(Object v) {
 		stripped.add((VSpecResolution) v);
-		refresh();
+		//refresh();
 	}
 
 	public void setUnstripped(Object v) {
 		stripped.remove(v);
-		refresh();
+		//refresh();
 	}
 
 	@Override

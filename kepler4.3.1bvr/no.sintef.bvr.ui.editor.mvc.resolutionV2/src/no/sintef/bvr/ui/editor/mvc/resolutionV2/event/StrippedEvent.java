@@ -28,12 +28,20 @@ public class StrippedEvent implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+
 		Object v = vmMap.get(cp);
 		
 		//view.setStripped(v);
 		
 		//vsr = (VSpecResolution) ((ChoiceResolutuionImpl) v).getResolvedChoice();
+		
+		
+		//System.out.println("object get "+ (System.currentTimeMillis()-i));
+		
+		//i = System.currentTimeMillis();
 		(new Iterators()).iterateExisting(view, new StripCommand(), x, (VSpecResolution) v, true);
+		view.refresh();
+		//System.out.println("total time for stripped event = "+ (System.currentTimeMillis()-i));
 		//System.out.println("seting striped");
 	}
 }

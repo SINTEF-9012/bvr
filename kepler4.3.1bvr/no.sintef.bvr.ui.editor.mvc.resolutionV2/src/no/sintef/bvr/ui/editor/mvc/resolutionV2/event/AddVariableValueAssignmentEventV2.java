@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.PrimitiveTypeGenerator;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.PrimitiveValueGenerator;
 import bvr.BvrFactory;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
@@ -15,6 +13,9 @@ import bvr.PrimitveType;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
+import bvr.common.PrimitiveTypeGenerator;
+import bvr.common.PrimitiveValueGenerator;
+
 
 
 public class AddVariableValueAssignmentEventV2 implements ActionListener {
@@ -42,7 +43,7 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 
 		// Name
 		count++;
-		vi.setName(target.getName() + " Assignment");
+		vi.setName(target.getName() + " Assignment " + count);
 
 		// Value
 		PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make(v));
@@ -51,7 +52,7 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 
 		//This is wrong, ReplacementGragmentType is a Variabletype, but not a  PrimitveType, thus we throw an exeption
 		//COMMENTED OUT for now!!!
-		PrimitveType vt = (new PrimitiveTypeGenerator().make(view, type));
+		PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
 		value.setType(vt);
 
 		// Set exp

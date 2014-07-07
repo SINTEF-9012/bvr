@@ -3,7 +3,6 @@ import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.ConfigurableUnit;
 
 public interface BVRViewV2 extends BVRView {

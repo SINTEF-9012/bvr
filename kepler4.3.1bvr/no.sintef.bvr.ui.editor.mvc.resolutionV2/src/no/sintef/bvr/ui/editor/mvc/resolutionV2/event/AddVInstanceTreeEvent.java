@@ -26,7 +26,7 @@ public class AddVInstanceTreeEvent implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		List<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();
 		thisResolution = new AddResolution().init(view, x, c, true).execute();
-		new Iterators().iterateEmptyWithChildren(view, new AddResolution(), x, thisResolution.get(0), true);
+		new Iterators().iterateEmptyWithChildren(view, new AddResolution(), x, thisResolution.get(0), false);
 	}
 
 }

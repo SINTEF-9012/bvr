@@ -1,8 +1,8 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
+package bvr.common;
 
-import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+
 import bvr.BvrFactory;
+import bvr.ConfigurableUnit;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.Variabletype;
@@ -11,9 +11,9 @@ public class PrimitiveTypeGenerator {
 	
 	
 	
-	public PrimitveType make(BVRView view, PrimitiveTypeEnum type){
+	public PrimitveType make(ConfigurableUnit cu, PrimitiveTypeEnum type){
 		PrimitveType vt = null;
-	for(Variabletype x : view.getCU().getOwnedVariabletype()){
+	for(Variabletype x : cu.getOwnedVariabletype()){
 		if(x instanceof PrimitveType){
 			PrimitveType pt = (PrimitveType)x;
 			if(pt.getType() == type)
@@ -30,7 +30,7 @@ public class PrimitiveTypeGenerator {
 		vt.setType(type);
 		vt.setName("xx");
 		//view.getCU().getOwnedVariabletype().add(vt);
-		Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
+		//Context.eINSTANCE.getEditorCommands().addVariableType(cu, vt);
 	}
 	return vt;
 	}

@@ -8,7 +8,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  no.sintef.bvr.tool,
  org.eclipse.swt,
- no.sintef.bvr.model
+ no.sintef.bvr.model,
+ org.eclipse.ui.editors;bundle-version="3.8.100"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: bvr,
