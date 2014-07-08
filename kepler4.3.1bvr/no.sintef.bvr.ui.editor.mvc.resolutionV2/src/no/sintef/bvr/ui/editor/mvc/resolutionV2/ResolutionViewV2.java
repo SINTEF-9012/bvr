@@ -19,8 +19,10 @@ import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV2DropdownListener;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutuionV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddErrorGroup;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVInstanceV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVariableValueAssignmentV2;
 import no.sintef.bvr.ui.framework.TitledElement;
@@ -61,6 +63,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 
 	private ConfigurableUnitSubject configurableUnitSubject;
+
 	// tools
 
 	public ResolutionViewV2(BVRModel m) {
@@ -156,7 +159,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 			// Set positions
 			for (JComponent c : resolutionNodes.get(i)) {
-				if (!(c instanceof GroupPanel)) {
+				if (!((c instanceof GroupPanel)||(c instanceof GroupPanelWithError))) {
 					TextInBox t = nodemap.get(c);
 					Map<TextInBox, Double> x = treeLayout.getNodeBounds();
 					Double z = x.get(t);
@@ -297,8 +300,28 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			}
 			if (!minimized.contains(v) && showGroups) {// TODO add show/hide visuals
 				if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
-					nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
-							.execute();
+					boolean error = false;
+					int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
+					int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
+					int i = 0;
+					for (VSpecResolution x : v.getChild()) {
+						if (x instanceof ChoiceResolutuion) {
+							if (((ChoiceResolutuion) x).isDecision())
+								i++;
+							System.out.println(upper);
+							if ((i > upper) && (upper != -1))
+								error = true;
+						}
+					}
+					if (i < lower)
+						error = true;
+					if (error) {
+						nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this).execute();
+					} else {
+						nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
+								.execute();
+
+					}
 				}
 			}
 
@@ -311,6 +334,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 				}
 			}
+
 		}
 	}
 
@@ -361,13 +385,13 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	@Override
 	public boolean showGrouping() {
-		
+
 		return this.showGroups;
 	}
 
 	@Override
 	public void setGrouping(boolean group) {
 		this.showGroups = group;
-		
+
 	}
 }
