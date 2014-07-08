@@ -24,7 +24,10 @@ public class AddResolution implements ResCommand{
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
-
+/**
+ * NOT TRANSACTIONAL
+ * For use on non-implemented root nodes
+ */
 	@Override
 	public ResCommand init(BVRView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;

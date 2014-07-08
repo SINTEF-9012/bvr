@@ -45,6 +45,5 @@ public class NewResolutionV2Event implements ActionListener {
 			System.err.println("model must start with a choice");
 			// Context.eINSTANCE.getEditorCommands().addVInstance((VSpecResolution) cu, (VInstance)x);
 		}
-		System.out.println("starting with " + x.getName());
 	}
 }
