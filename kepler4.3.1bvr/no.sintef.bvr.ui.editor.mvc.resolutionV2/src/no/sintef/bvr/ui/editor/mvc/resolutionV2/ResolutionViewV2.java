@@ -159,7 +159,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 			// Set positions
 			for (JComponent c : resolutionNodes.get(i)) {
-				if (!((c instanceof GroupPanel)||(c instanceof GroupPanelWithError))) {
+				if (!((c instanceof GroupPanel) || (c instanceof GroupPanelWithError))) {
 					TextInBox t = nodemap.get(c);
 					Map<TextInBox, Double> x = treeLayout.getNodeBounds();
 					Double z = x.get(t);
@@ -299,6 +299,10 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				throw new BVRModelException("Unknown element: " + v.getClass());
 			}
 			if (!minimized.contains(v) && showGroups) {// TODO add show/hide visuals
+				if(v.getResolvedVSpec()==null)System.err.println(v + "does not contain resolved VSpec");
+				else{
+					System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
+				}
 				if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
 					boolean error = false;
 					int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
@@ -308,7 +312,6 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 						if (x instanceof ChoiceResolutuion) {
 							if (((ChoiceResolutuion) x).isDecision())
 								i++;
-							System.out.println(upper);
 							if ((i > upper) && (upper != -1))
 								error = true;
 						}

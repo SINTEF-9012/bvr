@@ -3,24 +3,27 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVariableValueAssignmentEventV2;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
+import bvr.PrimitiveTypeEnum;
+import bvr.PrimitiveValueSpecification;
+import bvr.PrimitveType;
 import bvr.VClassifier;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
+import bvr.VariableValueAssignment;
+import bvr.common.PrimitiveTypeGenerator;
+import bvr.common.PrimitiveValueGenerator;
 
-public class AddResolution implements ResCommand {
+public class AddResolution implements ResCommand{
 	private BVRView view;
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
-
 
 	@Override
 	public ResCommand init(BVRView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
@@ -46,18 +49,13 @@ public class AddResolution implements ResCommand {
 				System.err.println("instance error");
 				min = 1;
 			}
-			
 			for (int i = 0; i < min; i++) {
-				
-				thisResolution.add(addResolution((VClassifier) target, parent, (i +1)));
-				// new recursiveResolve().init(view, target, thisResolution).execute();
+				thisResolution.add(addResolution((VClassifier) target, parent, (i + 1)));
 			}
 			min = 0;
 		}
 		if (target instanceof Variable) {
-
 			thisResolution.add(addResolution((Variable) target, parent));
-
 		}
 		if (thisResolution.size() == 0) {
 			System.err.println("VSpecResolution of this type is not implemented");
@@ -68,27 +66,40 @@ public class AddResolution implements ResCommand {
 	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent, int count_) {
 		int count = count_;
 		VInstance thisResolution = BvrFactory.eINSTANCE.createVInstance();
-		thisResolution.setResolvedVSpec(target);
 		// count++;
 		// vi.setName("vInstance" + count);
 		thisResolution.setName("instance " + count);
-		Context.eINSTANCE.getEditorCommands().addVInstance(parent, thisResolution);
+		thisResolution.setResolvedVSpec(target);
+		parent.getChild().add(thisResolution);
 		return thisResolution;
 	}
 
 	// resolve Choice
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
 		ChoiceResolutuion thisResolution = BvrFactory.eINSTANCE.createChoiceResolutuion();
-		Context.eINSTANCE.getEditorCommands().addChoiceResolved(target, parent, thisResolution);
-		Context.eINSTANCE.getEditorCommands().setResolutionDecision(thisResolution, false);
+		thisResolution.setDecision(false);
+		thisResolution.setName(target.getName() + " resolution");
+		thisResolution.setResolvedVSpec(target);
+		parent.getChild().add(thisResolution);
+
 		return thisResolution;
 	}
 
 	// resolve Variable
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
-		AddVariableValueAssignmentEventV2 v = new AddVariableValueAssignmentEventV2(parent, vSpecFound, view);
-		v.actionPerformed(null);
-		//System.out.println(v.getVarableValueAssignment().getName());
-		return v.getVarableValueAssignment();
+		VSpecResolution thisResolution = BvrFactory.eINSTANCE.createVariableValueAssignment();
+		thisResolution.setName(target.getName() + " Assignment ");
+		// Value		
+		PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make((Variable) vSpecFound));
+		PrimitiveTypeEnum type = ((PrimitveType) ((Variable)vSpecFound).getType()).getType();
+		// Try searching for a type
+		PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
+		value.setType(vt);
+		
+		((VariableValueAssignment)thisResolution).setValue(value);
+		thisResolution.setResolvedVSpec(vSpecFound);
+		parent.getChild().add(thisResolution);
+		
+		return thisResolution;
 	}
 }

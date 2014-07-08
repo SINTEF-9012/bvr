@@ -27,19 +27,24 @@ public class NewResolutionV2Event implements ActionListener {
 		// cu.getOwnedVSpecResolution().add(cr);
 
 		/* TODO add checks for type here */
-		// create resolution editor pane
-		ChoiceResolutuion cr = BvrFactory.eINSTANCE.createChoiceResolutuion();
-		Context.eINSTANCE.getEditorCommands().createNewResolution(cr, cu);
+		ChoiceResolutuion root = BvrFactory.eINSTANCE.createChoiceResolutuion();
 		// populate top choice
 		VSpec x = cu.getOwnedVSpec().get(0);
+		root.setResolvedVSpec(x);
+		root.setName(x.getName());
+		System.out.println(x.getChild());
 		if (x instanceof Choice) {
-			Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) x, cr, cr);
-			Context.eINSTANCE.getEditorCommands().setResolutionDecision( cr, true);
+			(new Iterators()).iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
+
+			root.setDecision(true);
+			// create resolution model
+			Context.eINSTANCE.getEditorCommands().createNewResolution(root, cu);
+			Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) x, root, root);
+			
 		} else {
 			System.err.println("model must start with a choice");
 			// Context.eINSTANCE.getEditorCommands().addVInstance((VSpecResolution) cu, (VInstance)x);
 		}
 		System.out.println("starting with " + x.getName());
-		(new Iterators()).iterateEmptyWithChildren(this.view, new AddResolution(), x, cr, false);
 	}
 }

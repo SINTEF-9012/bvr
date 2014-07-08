@@ -19,16 +19,16 @@ import bvr.common.PrimitiveValueGenerator;
 
 
 public class AddVariableValueAssignmentEventV2 implements ActionListener {
-	private VSpecResolution cr;
+	private VSpecResolution vsr;
 	private Variable target;
 	private BVRView view;
 	static private int count = 0;
-	private VariableValueAssignment vi;
+	private VariableValueAssignment vva;
 
 
 
 	public AddVariableValueAssignmentEventV2(VSpecResolution parent, Variable toResolve, BVRView view) {
-		cr = parent;
+		vsr = parent;
 		target = toResolve;
 		this.view = view;
 	}
@@ -36,38 +36,36 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		Variable v = target;
 
-		vi = BvrFactory.eINSTANCE.createVariableValueAssignment();
+		vva = BvrFactory.eINSTANCE.createVariableValueAssignment();
 
 		// Variable
-		vi.setResolvedVSpec(v);
+		vva.setResolvedVSpec(v);
 
 		// Name
 		count++;
-		vi.setName(target.getName() + " Assignment " + count);
+		vva.setName(target.getName() + " Assignment " + count);
 
 		// Value
 		PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make(v));
 		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
 		// Try searching for a type
 
-		//This is wrong, ReplacementGragmentType is a Variabletype, but not a  PrimitveType, thus we throw an exeption
-		//COMMENTED OUT for now!!!
 		PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
 		value.setType(vt);
 
 		// Set exp
-		vi.setValue(value);
+		vva.setValue(value);
 
 		// Add
-		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(cr, vi);
-		//cr.getChild().add(vi);
+		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(vsr, vva);
+
 
 
 
 		//view.notifyResolutionViewUpdate();
 	}
 	public VariableValueAssignment getVarableValueAssignment(){
-		return vi;
+		return vva;
 	}
 
 }

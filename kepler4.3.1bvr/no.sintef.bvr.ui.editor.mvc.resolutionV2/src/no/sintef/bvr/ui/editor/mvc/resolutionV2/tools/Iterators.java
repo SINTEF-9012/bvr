@@ -14,28 +14,26 @@ static long i;
 		List<VSpecResolution> newResolutions = command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		if (newResolutions != null) {
 			for (VSpecResolution newResolution : newResolutions) {
-				iterateEmptyWithChildren(view, command, vsParent, newResolution, onlyOneInstance);
+				iterateEmptyOnChildren(view, command, vsParent, newResolution, onlyOneInstance);
 			}
 		}
 		//System.out.println("no new resolutions");
 	}
 
-	public void iterateEmptyWithChildren(BVRView view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
+	public void iterateEmptyOnChildren(BVRView view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		if (vsParent != null) {
 			for (VSpec x : vsParent.getChild()) {
-				
-				
 				command.init(view, x, vsrParent, onlyOneInstance);
 				List<VSpecResolution> newResolutions = command.execute();
 				for (VSpecResolution newResolution : newResolutions) {
-					iterateEmptyWithChildren(view, command, x, newResolution, onlyOneInstance);
+					iterateEmptyOnChildren(view, command, x, newResolution, onlyOneInstance);
 				}
 			}
 		}
 	}
 	public void iterateExisting(BVRView view, ResCommand command,VSpec vsParent,  VSpecResolution vsrParent, boolean onlyOneInstance){
 		command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
-		for(VSpecResolution vsr : vsrParent.getChild()){
+		for(VSpecResolution vsr : vsrParent.getChild()){//TODO
 			command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 			iterateExisting(view, command, vsParent, vsr, onlyOneInstance);			
 		}
