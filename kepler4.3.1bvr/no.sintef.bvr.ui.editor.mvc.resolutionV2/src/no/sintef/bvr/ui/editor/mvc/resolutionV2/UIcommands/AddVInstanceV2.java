@@ -30,7 +30,7 @@ public class AddVInstanceV2 extends AddVInstance implements Command {
 		nodes.add(c);
 
 		CommandMouseListener listener = new CommandMouseListener();
-		SelectInstanceCommand command = new SelectInstanceCommand();
+		SelectInstanceCommandV2 command = new SelectInstanceCommandV2();
 		command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
 		listener.setLeftClickCommand(command);
 		c.addMouseListener(new VInstanceDropDownListenerV2(c, vc, (BVRView) view, vmMap));

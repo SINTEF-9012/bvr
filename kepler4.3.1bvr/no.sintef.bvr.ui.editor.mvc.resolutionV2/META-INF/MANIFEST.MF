@@ -24,4 +24,5 @@ Import-Package: bvr,
  no.sintef.ict.splcatool,
  org.eclipse.emf.common.util
 Bundle-Vendor: SINTEF
-Export-Package: no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements
+Export-Package: no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements,
+ no.sintef.bvr.ui.editor.mvc.resolutionV2.tools

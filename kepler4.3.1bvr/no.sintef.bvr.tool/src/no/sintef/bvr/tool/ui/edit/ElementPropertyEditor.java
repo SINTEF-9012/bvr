@@ -89,7 +89,7 @@ public class ElementPropertyEditor extends JPanel {
         this.addCenter(top);
         this.addCenter(bottom);
         
-        final JCommandButton okButton = new JCommandButton("OK", command, view);
+        final JCommandButton okButton = new JCommandButton("OK", command, kernel.getEditorPanel());
         bottom.add(okButton);
         
         //Name
@@ -102,6 +102,7 @@ public class ElementPropertyEditor extends JPanel {
 
         p.add(l);
         JTextField textField = new JTextField(15);
+        
         //textField.setUI(new HudTextFieldUI());
 
         l.setLabelFor(textField);

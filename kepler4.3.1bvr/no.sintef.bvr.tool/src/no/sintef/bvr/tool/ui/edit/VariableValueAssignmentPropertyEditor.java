@@ -25,7 +25,7 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
     	command = new UpdateVariableValueAssignment();
     	command.init(null, obj, null, null, null, null, view);
     }
-
+   
 	public VariableValueAssignmentPropertyEditor(BVRUIKernel kernel, VariableValueAssignment elem, BVRView view) {
 		super(kernel, elem, view);
 		
@@ -46,7 +46,6 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
         l2.setLabelFor(textField2);
         p2.add(textField2);
         textField2.setText(value);
-        
         top.add(p2);
         SpringUtilities.makeCompactGrid(p2,
                 1, 2, //rows, cols
@@ -54,8 +53,8 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
                 6, 6);       //xPad, yPad
 		
         pack(2, 1);
-        
-        ((UpdateVariableValueAssignment)command).setValue(value);
+
+      //  ((UpdateVariableValueAssignment)command).setValue(value);
     	
     	textField2.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
         
