@@ -299,10 +299,11 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				throw new BVRModelException("Unknown element: " + v.getClass());
 			}
 			if (!minimized.contains(v) && showGroups) {// TODO add show/hide visuals
-				if(v.getResolvedVSpec()==null)System.err.println(v + "does not contain resolved VSpec");
-				else{
-					System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
-				}
+				//for debug
+				//if(v.getResolvedVSpec()==null)System.err.println(v + "does not contain resolved VSpec");
+				//else{ 
+					//System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
+				//}
 				if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
 					boolean error = false;
 					int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
@@ -365,6 +366,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	@Override
 	public void refresh() {
+		System.out.println("refreshing");
 		notifyResolutionViewUpdate();
 	}
 

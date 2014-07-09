@@ -40,7 +40,7 @@ public class NewResolutionV2Event implements ActionListener {
 			// create resolution model
 			Context.eINSTANCE.getEditorCommands().createNewResolution(root, cu);
 			Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) x, root, root);
-			
+
 		} else {
 			System.err.println("model must start with a choice");
 			// Context.eINSTANCE.getEditorCommands().addVInstance((VSpecResolution) cu, (VInstance)x);

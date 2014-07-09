@@ -34,7 +34,6 @@ static long i;
 	public void iterateExisting(BVRView view, ResCommand command,VSpec vsParent,  VSpecResolution vsrParent, boolean onlyOneInstance){
 		command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		for(VSpecResolution vsr : vsrParent.getChild()){//TODO
-			command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 			iterateExisting(view, command, vsParent, vsr, onlyOneInstance);			
 		}
 	}

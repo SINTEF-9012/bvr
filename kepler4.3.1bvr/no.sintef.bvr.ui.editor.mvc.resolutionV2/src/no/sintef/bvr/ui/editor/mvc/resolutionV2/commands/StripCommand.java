@@ -25,7 +25,6 @@ public class StripCommand implements ResCommand {
 		view.setStripped(vsr);
 		ArrayList<VSpecResolution> a = new ArrayList<VSpecResolution>();
 		a.add(vsr);
-		System.out.println("time to add to list = " + (System.currentTimeMillis() - i) );
 		
 		return a;
 		
