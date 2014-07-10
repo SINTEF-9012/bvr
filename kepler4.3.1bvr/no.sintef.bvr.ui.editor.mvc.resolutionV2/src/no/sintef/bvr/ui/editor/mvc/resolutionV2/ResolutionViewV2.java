@@ -55,6 +55,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	public JTabbedPane modelPane;
 	private boolean showGroups;
+	private boolean showConstraints;
 	// VSpec
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanelV2 vspecEpanel;
@@ -84,6 +85,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
 		this.m = m;
 		this.showGroups = true;
+		this.showConstraints = false;
 
 		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 
@@ -308,20 +310,15 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				throw new BVRModelException("Unknown element: " + v.getClass());
 			}
 			if (!minimized.contains(v)) {// TODO add show/hide visuals
-				if (!false) {
+				if (showConstraints) {
 					for (Constraint c : cu.getOwnedConstraint()) {
-						
-						System.out.println("in " + v.getName() + "y is " + c.getClass() + "named " + c.getName());
 						if (c instanceof OpaqueConstraint) {
-							System.out.println("opaque adding constraint");
 							if (((OpaqueConstraint) c).getContext() == v.getResolvedVSpec()) {
-								
-								nextParent = new AddOpaqueConstraint().init(bvruikernel, c, parent, vmMap, nodes, bindings, this).execute();
-								vmMap.put(nextParent, v);
+								JComponent con = new AddOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
+								vmMap.put(con, v);
 							}
 						}
 						if (c instanceof BCLConstraint) {
-							System.out.println(((BCLConstraint) c).getContext() );
 							if (((BCLConstraint) c).getContext() == v.getResolvedVSpec()) {
 								JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
 								vmMap.put(con, v);
@@ -372,6 +369,14 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			}
 
 		}
+	}
+
+	public boolean isShowConstraints() {
+		return showConstraints;
+	}
+
+	public void setShowConstraints(boolean showConstraints) {
+		this.showConstraints = showConstraints;
 	}
 
 	@Override

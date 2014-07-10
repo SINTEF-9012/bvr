@@ -20,6 +20,8 @@ public interface BVRViewV2 extends BVRView {
 		public void refresh();
 		public void setStripped(Object v);
 		public void setUnstripped(Object v);
-	
+		public boolean isShowConstraints();
+
+		public void setShowConstraints(boolean showConstraints);
 
 }

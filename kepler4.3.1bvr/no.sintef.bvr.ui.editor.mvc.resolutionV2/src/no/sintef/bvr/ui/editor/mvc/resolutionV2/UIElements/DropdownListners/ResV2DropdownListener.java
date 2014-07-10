@@ -23,6 +23,7 @@ import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolutionV2Event;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
 import bvr.ConfigurableUnit;
 import bvr.NamedElement;
@@ -131,6 +132,9 @@ class ResV2DropdownMenu extends JPopupMenu {
 		add(showGrouping);
 		showGrouping.addActionListener(new ToggleShowGroupEvent((BVRViewV2) bvrView));
 
+		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
+		add(showConstraints);
+		showConstraints.addActionListener(new ToggleShowConstraintsEvent((BVRViewV2) bvrView));
 	}
 
 	private static final long serialVersionUID = -4129916117036201146L;
