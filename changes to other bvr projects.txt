@@ -6,6 +6,7 @@ Drop-down listeners are edited versions of tool.ui.dropdown
 UpdateVariableValueAssingment, changed in original project, uses Primitive generators
 
 
+
 EditableModelPanel, VariableValueAssingmentProperttyEditor, ElementPropertyEditor, UpdateVariableValueAssingment, UpdateVSpec
 
 made change to JCommandButton and ElementPropertyEditor, since JCommandButton is called in constructor.

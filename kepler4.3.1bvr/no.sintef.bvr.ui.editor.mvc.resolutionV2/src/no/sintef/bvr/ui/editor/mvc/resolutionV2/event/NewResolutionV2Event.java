@@ -31,7 +31,7 @@ public class NewResolutionV2Event implements ActionListener {
 		// populate top choice
 		VSpec x = cu.getOwnedVSpec().get(0);
 		root.setResolvedVSpec(x);
-		root.setName(x.getName());
+		root.setName(x.getName() + " resolution");
 		System.out.println(x.getChild());
 		if (x instanceof Choice) {
 			(new Iterators()).iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);

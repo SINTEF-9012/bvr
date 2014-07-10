@@ -143,14 +143,14 @@ public class VSpecView extends BVRViewAbstract {
 					OpaqueConstraint oc = (OpaqueConstraint) c;
 					if(c.getContext() == v){
 						JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-						vspecvmMap.put(comp, c);
+						vspecvmMap.put(comp, v);
 					}
 				}
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
 					if(bcl.getContext() == v){
 						JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-						vspecvmMap.put(comp, c);
+						vspecvmMap.put(comp, v);
 					}
 				}
 			}

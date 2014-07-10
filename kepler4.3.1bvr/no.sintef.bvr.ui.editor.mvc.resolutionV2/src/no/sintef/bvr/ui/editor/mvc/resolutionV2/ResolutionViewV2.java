@@ -13,7 +13,9 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
+import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
+import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
@@ -37,10 +39,14 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
+import bvr.BCLConstraint;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
+import bvr.Constraint;
 import bvr.NamedElement;
+import bvr.OpaqueConstraint;
 import bvr.VInstance;
+import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.VariableValueAssignment;
 
@@ -272,6 +278,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws BVRModelException {
 		JComponent nextParent = null;
 		if (!stripped(v)) {
+			
 			// Add view
 			// System.out.println(v.getClass().getSimpleName());
 			if (v instanceof VInstance) {
@@ -300,12 +307,34 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			} else {
 				throw new BVRModelException("Unknown element: " + v.getClass());
 			}
-			if (!minimized.contains(v) && showGroups) {// TODO add show/hide visuals
-				//for debug
-				//if(v.getResolvedVSpec()==null)System.err.println(v + "does not contain resolved VSpec");
-				//else{ 
-					//System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
-				//}
+			if (!minimized.contains(v)) {// TODO add show/hide visuals
+				if (!false) {
+					for (Constraint c : cu.getOwnedConstraint()) {
+						
+						System.out.println("in " + v.getName() + "y is " + c.getClass() + "named " + c.getName());
+						if (c instanceof OpaqueConstraint) {
+							System.out.println("opaque adding constraint");
+							if (((OpaqueConstraint) c).getContext() == v.getResolvedVSpec()) {
+								
+								nextParent = new AddOpaqueConstraint().init(bvruikernel, c, parent, vmMap, nodes, bindings, this).execute();
+								vmMap.put(nextParent, v);
+							}
+						}
+						if (c instanceof BCLConstraint) {
+							System.out.println(((BCLConstraint) c).getContext() );
+							if (((BCLConstraint) c).getContext() == v.getResolvedVSpec()) {
+								JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
+								vmMap.put(con, v);
+							}
+						}
+					}
+				}
+				// for debug
+				// if(v.getResolvedVSpec()==null)System.err.println(v + "does not contain resolved VSpec");
+				// else{
+				// System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
+				// }
+				if (showGroups){
 				if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
 					boolean error = false;
 					int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
@@ -329,6 +358,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 					}
 				}
+			}
 			}
 
 			// Recursive step
