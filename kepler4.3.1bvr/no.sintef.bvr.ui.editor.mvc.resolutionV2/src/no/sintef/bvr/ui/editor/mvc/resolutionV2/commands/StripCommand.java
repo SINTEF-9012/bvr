@@ -21,7 +21,6 @@ public class StripCommand implements ResCommand {
 
 	@Override
 	public List<VSpecResolution> execute() {
-		long i = System.currentTimeMillis();
 		view.setStripped(vsr);
 		ArrayList<VSpecResolution> a = new ArrayList<VSpecResolution>();
 		a.add(vsr);

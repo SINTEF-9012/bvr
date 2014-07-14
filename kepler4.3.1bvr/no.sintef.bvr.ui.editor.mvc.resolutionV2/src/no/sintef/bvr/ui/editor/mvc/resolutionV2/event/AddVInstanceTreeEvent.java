@@ -19,11 +19,11 @@ public class AddVInstanceTreeEvent implements ActionListener {
 	private VSpec target;
 	VSpecResolution c;
 
-	public AddVInstanceTreeEvent(VSpecResolution c, VSpec x, BVRView view) {
+	public AddVInstanceTreeEvent(VSpecResolution parent, VSpec target, BVRView view) {
 
 		this.view = view;
-		this.target = x;
-		this.c = c;
+		this.target = target;
+		this.c = parent;
 	}
 	public void actionPerformed(ActionEvent arg0) {
 	
