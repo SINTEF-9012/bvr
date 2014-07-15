@@ -113,7 +113,6 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 			} else if (parent instanceof VInstance) {
 				Context.eINSTANCE.getEditorCommands().addVInstance(grandParent, (VInstance) root);
 			}
-			Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), grandParent, (ChoiceResolutuion) root);
 			/*
 			 * } while(currentInstances < instancesRequested){ new AddVInstanceTreeEvent( parent, target, view).actionPerformed(e);
 			 * currentInstances++; }
@@ -124,8 +123,16 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	private VSpecResolution getParent(ConfigurableUnit cu, VSpecResolution child) {
 		for (VSpecResolution c : cu.getOwnedVSpecResolution())
 			if (c == child) {
-				ChoiceResolutuion root = BvrFactory.eINSTANCE.createChoiceResolutuion();
+				VSpecResolution root = null;
+				if (parent instanceof ChoiceResolutuion) {
+					root = BvrFactory.eINSTANCE.createChoiceResolutuion();
 
+				} else if (parent instanceof VariableValueAssignment) {
+					root = BvrFactory.eINSTANCE.createVariableValueAssignment();
+
+				} else if (parent instanceof VInstance) {
+					root = BvrFactory.eINSTANCE.createVInstance();
+				}
 				cloneItStart(root, parent);
 				if (currentInstances > instancesRequested) {
 					
@@ -150,8 +157,8 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 				}
 				System.out.println("root children: " + root.getChild());
 				Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(view.getCU(), child);
-				Context.eINSTANCE.getEditorCommands().createNewResolution(root, view.getCU());
-				Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), root, root);
+				Context.eINSTANCE.getEditorCommands().createNewResolution((ChoiceResolutuion) root, view.getCU());
+				Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), root, (ChoiceResolutuion) root);
 
 				return null;
 			}
