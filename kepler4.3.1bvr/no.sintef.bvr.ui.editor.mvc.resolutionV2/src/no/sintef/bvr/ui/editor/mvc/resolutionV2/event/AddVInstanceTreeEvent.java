@@ -26,16 +26,16 @@ public class AddVInstanceTreeEvent implements ActionListener {
 		this.c = parent;
 	}
 	public void actionPerformed(ActionEvent arg0) {
-	
+
 		VInstance root = BvrFactory.eINSTANCE.createVInstance();
 		root.setResolvedVSpec(target);
 		root.setName(target.getName());
-		
+
 		//List<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();
 		//thisResolution = new AddResolution().init(view, target, c, true).execute();
 		new Iterators().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		Context.eINSTANCE.getEditorCommands().addVInstance(c, root);
-		
+
 	}
 
 }
