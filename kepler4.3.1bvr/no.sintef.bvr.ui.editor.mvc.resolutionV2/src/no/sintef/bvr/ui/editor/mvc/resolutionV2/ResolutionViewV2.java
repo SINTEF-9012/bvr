@@ -29,6 +29,8 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutuionV
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddErrorGroup;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVInstanceV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVariableValueAssignmentV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedBCLConstraint;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedOpaqueConstraint;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
@@ -46,13 +48,12 @@ import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 import bvr.VInstance;
-import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.VariableValueAssignment;
 
 public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolutionView {
 	private BVRModel m;
-
+	public List<Constraint> invalidConstraints;
 	public JTabbedPane modelPane;
 	private boolean showGroups;
 	private boolean showConstraints;
@@ -77,6 +78,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	public ResolutionViewV2(BVRModel m) {
 		super();
+
 		resolutionPanes = new ArrayList<JScrollPane>();
 		resolutionEpanels = new ArrayList<EditableModelPanel>();
 		resolutionkernels = new ArrayList<BVRUIKernel>();
@@ -86,7 +88,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		this.m = m;
 		this.showGroups = true;
 		this.showConstraints = false;
-
+		this.invalidConstraints = new ArrayList<Constraint>();
 		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 
 		vSpecbvruikernel = new BVRUIKernelV2(vspecvmMap, this, resolutionvmMaps);
@@ -257,6 +259,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			resolutionBindings.add(bindings);
 
 			loadBVRResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings);
+
 			String tabtitle = "";
 			if (v instanceof ChoiceResolutuion) {
 				ChoiceResolutuion cr = (ChoiceResolutuion) v;
@@ -280,7 +283,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws BVRModelException {
 		JComponent nextParent = null;
 		if (!stripped(v)) {
-			
+
 			// Add view
 			// System.out.println(v.getClass().getSimpleName());
 			if (v instanceof VInstance) {
@@ -314,14 +317,28 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 					for (Constraint c : cu.getOwnedConstraint()) {
 						if (c instanceof OpaqueConstraint) {
 							if (((OpaqueConstraint) c).getContext() == v.getResolvedVSpec()) {
-								JComponent con = new AddOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
-								vmMap.put(con, v);
+								if (invalidConstraints.contains(c)) {
+									JComponent con = new AddViolatedOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this)
+											.execute();
+									vmMap.put(con, v);
+								} else {
+									JComponent con = new AddOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this)
+											.execute();
+									vmMap.put(con, v);
+								}
 							}
+
 						}
 						if (c instanceof BCLConstraint) {
 							if (((BCLConstraint) c).getContext() == v.getResolvedVSpec()) {
-								JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
-								vmMap.put(con, v);
+								if (invalidConstraints.contains(c)) {
+									JComponent con = new AddViolatedBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this)
+											.execute();
+									vmMap.put(con, v);
+								} else {
+									JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
+									vmMap.put(con, v);
+								}
 							}
 						}
 					}
@@ -331,31 +348,32 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				// else{
 				// System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
 				// }
-				if (showGroups){
-				if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
-					boolean error = false;
-					int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
-					int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
-					int i = 0;
-					for (VSpecResolution x : v.getChild()) {
-						if (x instanceof ChoiceResolutuion) {
-							if (((ChoiceResolutuion) x).isDecision())
-								i++;
-							if ((i > upper) && (upper != -1))
-								error = true;
+				if (showGroups) {
+					if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
+						boolean error = false;
+						int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
+						int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
+						int i = 0;
+						for (VSpecResolution x : v.getChild()) {
+							if (x instanceof ChoiceResolutuion) {
+								if (((ChoiceResolutuion) x).isDecision())
+									i++;
+								if ((i > upper) && (upper != -1))
+									error = true;
+							}
+						}
+						if (i < lower)
+							error = true;
+						if (error) {
+							nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
+									.execute();
+						} else {
+							nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
+									.execute();
+
 						}
 					}
-					if (i < lower)
-						error = true;
-					if (error) {
-						nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this).execute();
-					} else {
-						nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
-								.execute();
-
-					}
 				}
-			}
 			}
 
 			// Recursive step
@@ -435,5 +453,11 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	public void setGrouping(boolean group) {
 		this.showGroups = group;
 
+	}
+
+	@Override
+	public List<Constraint> getInvalidConstraints() {
+
+		return this.invalidConstraints;
 	}
 }

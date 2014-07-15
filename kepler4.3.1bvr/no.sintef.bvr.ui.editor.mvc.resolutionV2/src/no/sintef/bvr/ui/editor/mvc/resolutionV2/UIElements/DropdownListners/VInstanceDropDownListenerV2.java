@@ -16,6 +16,8 @@ import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVInstanceTreeEvent;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialog;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.UnstrippedEvent;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -80,7 +82,35 @@ class VInstanceDropdown extends JPopupMenu {
 	    	}
 	    	add(add);
     	}
-		
+		//addInstanceTree
+		if (c.getResolvedVSpec() != null) {
+			JMenu addTree = new JMenu("add realized VInstance subtree");
+			for (VSpec x : c.getResolvedVSpec().getChild()) {
+				JMenuItem addChild = new JMenuItem(x.getName());
+				if (x instanceof VClassifier) {
+					addChild.addActionListener(new AddVInstanceTreeEvent(c, (VClassifier) x, view));
+					addTree.add(addChild);
+				}
+			}
+			if (c.getResolvedVSpec().getChild().size() == 0) {
+				addTree.add(new JMenuItem("No VInstances to add"));
+			}
+			add(addTree);
+		}
+		if (c.getResolvedVSpec() != null) {
+			JMenu addMulTree = new JMenu("add multiple realized VInstance subtrees");
+			for (VSpec x : c.getResolvedVSpec().getChild()) {
+				JMenuItem addChild = new JMenuItem(x.getName());
+				if (x instanceof VClassifier) {
+					addChild.addActionListener(new ShowAddMultipleInstanceDialog((VClassifier) x, c, view));
+					addMulTree.add(addChild);
+				}
+			}
+			if (c.getResolvedVSpec().getChild().size() == 0) {
+				addMulTree.add(new JMenuItem("No VInstances to add"));
+			}
+			add(addMulTree);
+		}
 		
 		// Remove
 /*		JMenuItem removechoice = new JMenuItem("remove");

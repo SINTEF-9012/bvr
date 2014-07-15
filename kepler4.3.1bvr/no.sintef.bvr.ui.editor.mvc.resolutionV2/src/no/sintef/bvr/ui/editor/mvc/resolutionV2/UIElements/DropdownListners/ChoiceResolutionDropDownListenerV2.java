@@ -18,10 +18,12 @@ import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVInstanceTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialog;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.UnstrippedEvent;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ValidateEvent;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 import org.eclipse.emf.common.util.EList;
@@ -178,6 +180,10 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		JMenuItem unstrip = new JMenuItem("unstrip");
 		unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view, c.getResolvedVSpec()));
 		add(unstrip);
+		
+		JMenuItem validate = new JMenuItem("Validate");
+		validate.addActionListener(new ValidateEvent((BVRViewV2) view, c));
+		add(validate);
 		
 
 		

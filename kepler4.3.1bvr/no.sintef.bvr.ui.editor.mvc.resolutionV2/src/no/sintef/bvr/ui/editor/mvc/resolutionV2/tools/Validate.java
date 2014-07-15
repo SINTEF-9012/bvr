@@ -8,7 +8,8 @@ import bvr.Constraint;
 import bvr.VSpecResolution;
 
 public interface Validate {
-	void validate(BVRModel m, BVRView view, VSpecResolution vsr);
+	void validate(BVRView view, VSpecResolution vsr);
 	String getMessage();
-	List<Constraint> validatedConstraints();
+	List<Constraint> getInvalidConstraints();
+
 }
