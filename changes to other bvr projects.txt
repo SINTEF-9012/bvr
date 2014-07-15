@@ -11,3 +11,4 @@ EditableModelPanel, VariableValueAssingmentProperttyEditor, ElementPropertyEdito
 
 made change to JCommandButton and ElementPropertyEditor, since JCommandButton is called in constructor.
 Changes to VariableValueAssingmentProperttyEditor, added requestFocus. Created in constructor, so made changes to original Class
+Added in Features: ViolatedConstraints and GroupError
