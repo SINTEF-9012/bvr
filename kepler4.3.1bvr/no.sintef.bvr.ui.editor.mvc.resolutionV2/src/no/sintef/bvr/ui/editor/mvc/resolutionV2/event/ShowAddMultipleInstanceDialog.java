@@ -1,19 +1,15 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 
 import java.awt.Component;
-import java.awt.Dialog;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import bvr.VClassifier;
-import bvr.VSpecResolution;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.VInstanceMultiplicityPanel;
+import bvr.VClassifier;
+import bvr.VSpecResolution;
 
 public class ShowAddMultipleInstanceDialog implements ActionListener {
 	VClassifier c;
@@ -27,25 +23,22 @@ public class ShowAddMultipleInstanceDialog implements ActionListener {
 	
 
 	}
-
-	public static Window findWindow(Component c) {
-		if (c == null) {
-			return JOptionPane.getRootFrame();
-		} else if (c instanceof Window) {
-			return (Window) c;
-		} else {
-			return findWindow(c.getParent());
-		}
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		int currentInstances = 0;
+		for (VSpecResolution x : parent.getChild()) {
+			if (x.getResolvedVSpec() == c) {
+				if (x.getResolvedVSpec() == c) {
+					currentInstances++;
+				}
+			}
+		}
 		Component cParent = Context.eINSTANCE.getActiveJApplet();
-		Window parentWindow = findWindow(cParent);
 		Object[] possibilities = null;
 		String s = (String)JOptionPane.showInputDialog(
-							cParent,
-		                    "Set nr of VInstances, min: " +c.getInstanceMultiplicity().getLower()+ " max: "+c.getInstanceMultiplicity().getUpper() +"\n",
+				cParent,
+		                    "Set nr of VInstances to add, min total: " +c.getInstanceMultiplicity().getLower()+ " max total: "+ ((c.getInstanceMultiplicity().getUpper() == -1)? "*" : c.getInstanceMultiplicity().getUpper() ) +"\n" 
+		                    + "nr of instances left to add: " +(( c.getInstanceMultiplicity().getUpper() == -1 )? "*" : (c.getInstanceMultiplicity().getUpper() - currentInstances)),
 		                    "Customized Dialog",
 		                    JOptionPane.PLAIN_MESSAGE,
 		                    null, possibilities,

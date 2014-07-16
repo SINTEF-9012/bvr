@@ -17,8 +17,7 @@ import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeGenerator;
-import bvr.common.PrimitiveValueGenerator;
+import bvr.common.PrimitiveTypeHandler;
 
 public class UpdateVariableValueAssignmentV2 extends UpdateVariableValueAssignment  {
 	@Override
@@ -42,9 +41,9 @@ public class UpdateVariableValueAssignmentV2 extends UpdateVariableValueAssignme
 	
 	//this was not transactional, logic for creating primitivs moved to bvr.common for reusability, 
 	private void setValueAsString(VariableValueAssignment elem, String strValue) {
-	PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make((Variable) elem.getResolvedVSpec(), strValue));
+	PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification((Variable) elem.getResolvedVSpec(), strValue);
 	PrimitiveTypeEnum type = ((PrimitveType)((Variable)elem.getResolvedVSpec()).getType()).getType();
-	PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
+	PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
 	value.setType(vt);
 
 	Context.eINSTANCE.getEditorCommands().SetValueForVariableValueAssignment(elem, value);

@@ -34,7 +34,7 @@ public class NewResolutionV2Event implements ActionListener {
 		root.setName(x.getName() + " resolution");
 		System.out.println(x.getChild());
 		if (x instanceof Choice) {
-			(new Iterators()).iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
+			Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
 
 			root.setDecision(true);
 			// create resolution model

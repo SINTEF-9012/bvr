@@ -16,8 +16,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeGenerator;
-import bvr.common.PrimitiveValueGenerator;
+import bvr.common.PrimitiveTypeHandler;
 
 public class AddResolution implements ResCommand{
 	private BVRView view;
@@ -93,10 +92,10 @@ public class AddResolution implements ResCommand{
 		VSpecResolution thisResolution = BvrFactory.eINSTANCE.createVariableValueAssignment();
 		thisResolution.setName(target.getName() + " Assignment ");
 		// Value		
-		PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make((Variable) vSpecFound));
+		PrimitiveValueSpecification value = (PrimitiveTypeHandler.getInstance().makeValueSpecification((Variable) vSpecFound));
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable)vSpecFound).getType()).getType();
 		// Try searching for a type
-		PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
+		PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
 		value.setType(vt);
 		
 		((VariableValueAssignment)thisResolution).setValue(value);

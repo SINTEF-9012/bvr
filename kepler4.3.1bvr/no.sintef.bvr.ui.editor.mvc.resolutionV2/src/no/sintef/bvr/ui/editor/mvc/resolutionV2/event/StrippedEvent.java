@@ -39,7 +39,7 @@ public class StrippedEvent implements ActionListener {
 		//System.out.println("object get "+ (System.currentTimeMillis()-i));
 		
 		//i = System.currentTimeMillis();
-		(new Iterators()).iterateExisting(view, new StripCommand(), x, (VSpecResolution) v, true);
+		Iterators.getInstance().iterateExisting(view, new StripCommand(), x, (VSpecResolution) v, true);
 		view.refresh();
 		//System.out.println("total time for stripped event = "+ (System.currentTimeMillis()-i));
 		//System.out.println("seting striped");

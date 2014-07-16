@@ -13,8 +13,7 @@ import bvr.PrimitveType;
 import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeGenerator;
-import bvr.common.PrimitiveValueGenerator;
+import bvr.common.PrimitiveTypeHandler;
 
 
 
@@ -46,11 +45,11 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 		vva.setName(target.getName() + " Assignment " + count);
 
 		// Value
-		PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make(v));
+		PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification(v);
 		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
 		// Try searching for a type
 
-		PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
+		PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
 		value.setType(vt);
 
 		// Set exp

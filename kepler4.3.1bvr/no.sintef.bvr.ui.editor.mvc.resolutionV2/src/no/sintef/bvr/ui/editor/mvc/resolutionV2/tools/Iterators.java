@@ -8,7 +8,16 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class Iterators {
-static long i;
+	private static Iterators instance = null;
+	private Iterators(){
+		
+	}
+	public static synchronized Iterators getInstance(){
+		if(instance == null){
+			instance = new Iterators();
+		}
+		return instance;
+	}
 
 	public void iterateEmpty(BVRView view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		List<VSpecResolution> newResolutions = command.init(view, vsParent, vsrParent, onlyOneInstance).execute();

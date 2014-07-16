@@ -33,7 +33,7 @@ public class AddVInstanceTreeEvent implements ActionListener {
 
 		//List<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();
 		//thisResolution = new AddResolution().init(view, target, c, true).execute();
-		new Iterators().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
+		Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		Context.eINSTANCE.getEditorCommands().addVInstance(c, root);
 
 	}

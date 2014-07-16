@@ -6,28 +6,16 @@ import java.awt.event.ActionListener;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
-import bvr.BCLExpression;
-import bvr.BooleanLiteralExp;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
 import bvr.ConfigurableUnit;
-import bvr.IntegerLiteralExp;
-import bvr.PrimitiveTypeEnum;
-import bvr.PrimitiveValueSpecification;
-import bvr.PrimitveType;
-import bvr.RealLiteralExp;
-import bvr.StringLiteralExp;
-import bvr.UnlimitedLiteralExp;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
-import bvr.ValueSpecification;
-import bvr.Variable;
 import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeGenerator;
-import bvr.common.PrimitiveValueGenerator;
 
 public class AddMultipleInstanceTreesEvent implements ActionListener {
 	int currentInstances;
@@ -79,27 +67,16 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 			}
 			// populate top choice
 
-			cloneItStart(root, parent);
-			if (currentInstances > instancesRequested) {
-				
-				for (int i = root.getChild().size()-1; i >= 0; i--) {
-					System.out.println("does : " + root.getChild().get(i) + " equal " + target);
-					if ((currentInstances > instancesRequested) && (root.getChild().get(i).getResolvedVSpec() == target)) {
-						System.out.println("removeing: " +root.getChild().get(i));
-						root.getChild().remove(i);
-						currentInstances--;
-					}
-				}
-			}
+			CloneRes.getInstance().cloneItStart(root, parent, view);
 
-			while (currentInstances < instancesRequested) {
+			for (int i = 0; i <instancesRequested; i++) {
 				System.out.println("currentInstances < instancesRequested");
 				VInstance newInstance = BvrFactory.eINSTANCE.createVInstance();
 				newInstance.setResolvedVSpec(target);
 				newInstance.setName(target.getName());
-				new Iterators().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
+				Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 				root.getChild().add(newInstance);
-				currentInstances++;
+				i++;
 			}
 
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
@@ -133,7 +110,8 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 				} else if (parent instanceof VInstance) {
 					root = BvrFactory.eINSTANCE.createVInstance();
 				}
-				cloneItStart(root, parent);
+				CloneRes.getInstance().cloneItStart(root, parent, view);
+				/* uncomment to implement set size
 				if (currentInstances > instancesRequested) {
 					
 					for (int i = root.getChild().size()-1; i >= 0; i--) {
@@ -144,16 +122,16 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 							currentInstances--;
 						}
 					}
-				}
-				while (currentInstances < instancesRequested) {
+				}*/
+				for (int i = 0; i <instancesRequested; i++) {
 					System.out.println("currentInstances < instancesRequested");
 					VInstance newInstance = BvrFactory.eINSTANCE.createVInstance();
 					newInstance.setResolvedVSpec(target);
 					System.out.println("target: " + target);
 					newInstance.setName(target.getName());
-					new Iterators().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
+					Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 					root.getChild().add(newInstance);
-					currentInstances++;
+					i++;
 				}
 				System.out.println("root children: " + root.getChild());
 				Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(view.getCU(), child);
@@ -182,84 +160,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 		return null;
 	}
 
-	private void cloneRes(VSpecResolution copyTo, VSpecResolution copyFrom) {
 
-		if (copyFrom instanceof ChoiceResolutuion) {
 
-			((ChoiceResolutuion) copyTo).setDecision(((ChoiceResolutuion) copyFrom).isDecision());
 
-		} else if (copyFrom instanceof VariableValueAssignment) {
-			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();
-			String vString = getValueAsString((VariableValueAssignment) copyFrom);
-			PrimitiveValueSpecification value = (new PrimitiveValueGenerator().make(vSpecFound, vString));
-			PrimitiveTypeEnum type = ((PrimitveType) ((Variable) vSpecFound).getType()).getType();
-			// Try searching for a type
-			PrimitveType vt = (new PrimitiveTypeGenerator().make(view.getCU(), type));
-			value.setType(vt);
-
-			((VariableValueAssignment) copyTo).setValue(value);
-			// ((VariableValueAssignment) copyFrom).getValue()
-		} else if (copyFrom instanceof VInstance) {
-			// copyTo = BvrFactory.eINSTANCE.createVInstance();
-
-		}
-		copyTo.setResolvedVSpec(copyFrom.getResolvedVSpec());
-		copyTo.setName(copyFrom.getName());
-	}
-
-	private void cloneItStart(VSpecResolution parentTo, VSpecResolution parentFrom) {
-		cloneRes(parentTo, parentFrom);
-		cloneIterate(parentTo, parentFrom);
-	}
-
-	private void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom) {
-		if (parentFrom != null) {
-			VSpecResolution newNode = null;
-			for (VSpecResolution x : parentFrom.getChild()) {
-				if (x instanceof ChoiceResolutuion) {
-					newNode = BvrFactory.eINSTANCE.createChoiceResolutuion();
-
-				} else if (x instanceof VariableValueAssignment) {
-					newNode = BvrFactory.eINSTANCE.createVariableValueAssignment();
-
-				} else if (x instanceof VInstance) {
-					newNode = BvrFactory.eINSTANCE.createVInstance();
-				}
-
-				cloneRes(newNode, x);
-				parentTo.getChild().add(newNode);
-				cloneIterate(newNode, x);
-			}
-		}
-	}
-
-	private String getValueAsString(VariableValueAssignment elem) {
-		String value = "";
-		ValueSpecification vs = elem.getValue();
-		if (vs instanceof PrimitiveValueSpecification) {
-			PrimitiveValueSpecification pvs = (PrimitiveValueSpecification) vs;
-			BCLExpression e = pvs.getExpression();
-			if (e instanceof StringLiteralExp) {
-				StringLiteralExp sle = (StringLiteralExp) e;
-				value = sle.getString();
-			} else if (e instanceof IntegerLiteralExp) {
-				IntegerLiteralExp sle = (IntegerLiteralExp) e;
-				value = "" + sle.getInteger();
-			} else if (e instanceof RealLiteralExp) {
-				RealLiteralExp sle = (RealLiteralExp) e;
-				value = sle.getReal();
-			} else if (e instanceof BooleanLiteralExp) {
-				BooleanLiteralExp sle = (BooleanLiteralExp) e;
-				value = "" + sle.isBool();
-			} else if (e instanceof UnlimitedLiteralExp) {
-				UnlimitedLiteralExp sle = (UnlimitedLiteralExp) e;
-				value = "" + sle.getUnlimited();
-			} else {
-				throw new UnsupportedOperationException();
-			}
-		} else {
-			throw new UnsupportedOperationException();
-		}
-		return value;
-	}
 }
