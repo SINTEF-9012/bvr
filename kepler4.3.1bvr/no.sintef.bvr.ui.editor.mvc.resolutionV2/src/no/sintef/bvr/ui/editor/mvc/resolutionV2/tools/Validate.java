@@ -2,7 +2,6 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 import java.util.List;
 
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.Constraint;
 import bvr.VSpecResolution;

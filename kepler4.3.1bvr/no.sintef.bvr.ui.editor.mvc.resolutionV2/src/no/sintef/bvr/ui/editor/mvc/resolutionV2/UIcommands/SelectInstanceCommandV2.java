@@ -19,13 +19,12 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import bvr.NamedElement;
-import bvr.VSpec;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.SelectElement;
+import bvr.NamedElement;
 
 public class SelectInstanceCommandV2 implements Command {
 

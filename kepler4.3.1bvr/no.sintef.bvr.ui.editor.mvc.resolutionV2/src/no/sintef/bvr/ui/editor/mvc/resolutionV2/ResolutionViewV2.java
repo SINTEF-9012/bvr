@@ -427,6 +427,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	private boolean stripped(VSpecResolution v) {
 		if (v instanceof ChoiceResolutuion && stripped.contains(v)) {
+			if (!getCU().getOwnedVSpecResolution().contains(v))
 			return !((ChoiceResolutuion) v).isDecision();
 		}
 

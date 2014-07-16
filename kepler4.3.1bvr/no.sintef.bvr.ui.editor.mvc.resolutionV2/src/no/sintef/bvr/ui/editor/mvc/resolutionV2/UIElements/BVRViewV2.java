@@ -10,13 +10,13 @@ import bvr.Constraint;
 
 public interface BVRViewV2 extends BVRView {
 
+	public int nameCounter = 0;
 		public boolean showGrouping();
 		public void setGrouping(boolean group);
 		public BVRUIKernel getKernel();
 		public ConfigurableUnitSubject getConfigurableUnitSubject() ;
 		public ConfigurableUnit getCU();
 		public BVRModel getModel();
-		
 		public void setMaximized(Object v);
 		public void setMinimized(Object v) ;
 		

@@ -19,6 +19,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVInstanceTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialog;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
@@ -164,6 +165,10 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		JMenuItem remove = new JMenuItem("Remove");
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
 		add(remove);
+		//Resolve subtree
+		JMenuItem resTree = new JMenuItem("resolve subtree");
+		resTree.addActionListener(new AddSubTreeEvent(c, view));
+		add(resTree);
 
 		// max/min
 		JMenuItem minimize = new JMenuItem("minimize");

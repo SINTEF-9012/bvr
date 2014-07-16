@@ -2,13 +2,10 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 
 import java.util.List;
 
-import com.sun.glass.ui.View;
-
-import bvr.Constraint;
-import bvr.VSpecResolution;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Validate;
+import bvr.Constraint;
+import bvr.VSpecResolution;
 
 public class Validator implements Validate {
 	 BVRView view;
