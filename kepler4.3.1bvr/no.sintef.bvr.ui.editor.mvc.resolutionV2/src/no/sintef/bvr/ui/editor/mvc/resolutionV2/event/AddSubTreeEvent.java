@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddMissingResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -33,20 +32,9 @@ public class AddSubTreeEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		VSpecResolution grandParent = getParent(this.view.getCU(), parent);
-		VSpecResolution root = null;
+
 		if (grandParent != null) {
-			if (parent instanceof ChoiceResolutuion) {
-				root = BvrFactory.eINSTANCE.createChoiceResolutuion();
-
-			} else if (parent instanceof VariableValueAssignment) {
-				root = BvrFactory.eINSTANCE.createVariableValueAssignment();
-
-			} else if (parent instanceof VInstance) {
-				root = BvrFactory.eINSTANCE.createVInstance();
-			}
-			root.setResolvedVSpec(target);
-			root.setName(root.getResolvedVSpec().getName());
-			Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), target, root, false);
+			VSpecResolution root = create();
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof ChoiceResolutuion) {
 				Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), grandParent, (ChoiceResolutuion) root);
@@ -65,20 +53,7 @@ public class AddSubTreeEvent implements ActionListener {
 	private VSpecResolution getParent(ConfigurableUnit cu, VSpecResolution child) {
 		for (VSpecResolution c : cu.getOwnedVSpecResolution())
 			if (c == child) {
-				VSpecResolution root = null;
-				if (parent instanceof ChoiceResolutuion) {
-					root = BvrFactory.eINSTANCE.createChoiceResolutuion();
-
-				} else if (parent instanceof VariableValueAssignment) {
-					System.err.println("root must be Choice");
-					throw new UnsupportedOperationException();
-
-				} else if (parent instanceof VInstance) {
-					System.err.println("root must be Choice");
-					throw new UnsupportedOperationException();
-				}
-				root.setResolvedVSpec(target);
-				Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), target, root, false);
+				VSpecResolution root = create();
 
 				Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(view.getCU(), child);
 				Context.eINSTANCE.getEditorCommands().createNewResolution((ChoiceResolutuion) root, view.getCU());
@@ -104,5 +79,22 @@ public class AddSubTreeEvent implements ActionListener {
 				return found;
 		}
 		return null;
+	}
+
+	VSpecResolution create() {
+		VSpecResolution root = null;
+		if (parent instanceof ChoiceResolutuion) {
+			root = BvrFactory.eINSTANCE.createChoiceResolutuion();
+
+		} else if (parent instanceof VariableValueAssignment) {
+			root = BvrFactory.eINSTANCE.createVariableValueAssignment();
+
+		} else if (parent instanceof VInstance) {
+			root = BvrFactory.eINSTANCE.createVInstance();
+		}
+		root.setResolvedVSpec(target);
+		root.setName(root.getResolvedVSpec().getName());
+		Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddMissingResolutions(), target, root, false);
+		return root;
 	}
 }

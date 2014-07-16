@@ -283,7 +283,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws BVRModelException {
 		JComponent nextParent = null;
 		if (!stripped(v)) {
-
+			if(v.getResolvedVSpec() == null) return;
 			// Add view
 			// System.out.println(v.getClass().getSimpleName());
 			if (v instanceof VInstance) {

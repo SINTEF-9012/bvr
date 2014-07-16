@@ -42,6 +42,7 @@ public class ValidateEvent implements ActionListener{
 		}
 		JOptionPane.showMessageDialog(
 				Context.eINSTANCE.getActiveJApplet(), message);
+		view.refresh();
 	}
 
 }
