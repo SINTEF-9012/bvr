@@ -34,7 +34,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 		this.view = view;
 	}
 
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
 
 		if (currentInstances < 0) {

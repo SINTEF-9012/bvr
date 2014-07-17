@@ -14,16 +14,18 @@ import bvr.common.PrimitiveTypeHandler;
 
 public class CloneRes {
 	private static CloneRes clone = null;
-	private CloneRes(){
-		
+
+	private CloneRes() {
+
 	}
-	public static synchronized CloneRes getInstance(){
-		if(clone == null){
+
+	public static synchronized CloneRes getInstance() {
+		if (clone == null) {
 			clone = new CloneRes();
 		}
 		return clone;
 	}
-	
+
 	public void cloneRes(VSpecResolution copyTo, VSpecResolution copyFrom, BVRView view) {
 
 		if (copyFrom instanceof ChoiceResolutuion) {
@@ -36,6 +38,10 @@ public class CloneRes {
 			PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification(vSpecFound, vString);
 			PrimitiveTypeEnum type = ((PrimitveType) ((Variable) vSpecFound).getType()).getType();
 			// Try searching for a type
+			System.out.println("copyFrom: " + copyFrom);
+			System.out.println("copyTo: " + copyTo);
+			System.out.println("type: " + type);
+			System.out.println("view: " + view);
 			PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
 			value.setType(vt);
 
@@ -68,7 +74,7 @@ public class CloneRes {
 					newNode = BvrFactory.eINSTANCE.createVInstance();
 				}
 
-				cloneRes(newNode, x, null);
+				cloneRes(newNode, x, view);
 				parentTo.getChild().add(newNode);
 				cloneIterate(newNode, x, view);
 			}
