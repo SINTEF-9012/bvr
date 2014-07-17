@@ -7,6 +7,7 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddMissingResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Inheritance;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -39,7 +40,7 @@ public class AddSubTreeEvent implements ActionListener {
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof ChoiceResolutuion) {
 				Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), grandParent, (ChoiceResolutuion) root);
-
+				Inheritance.getInstance().passInheritance( (ChoiceResolutuion) root, ((ChoiceResolutuion) root).isDecision());
 			} else if (parent instanceof VariableValueAssignment) {
 				Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(grandParent, (VariableValueAssignment) root);
 

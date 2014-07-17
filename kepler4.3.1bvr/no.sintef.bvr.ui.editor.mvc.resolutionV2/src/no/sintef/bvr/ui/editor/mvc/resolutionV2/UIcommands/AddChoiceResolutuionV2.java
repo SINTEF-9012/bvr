@@ -11,6 +11,7 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.CommandMouseListenerV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ToggleChoiceCommand;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
+import bvr.Choice;
 
 public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Command {
 
@@ -42,9 +43,10 @@ public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Comm
 		}
 		
         cp.setTitle((contains?"(+) ":"") + (stripContains?"(*) ":"") + choicename + " = " + c.isDecision());
-
+       
+        
 		rootPanel.getModelPanel().addNode(cp);
-        Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
+        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( ((Choice)c.getResolvedVSpec()).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
 	}
 
