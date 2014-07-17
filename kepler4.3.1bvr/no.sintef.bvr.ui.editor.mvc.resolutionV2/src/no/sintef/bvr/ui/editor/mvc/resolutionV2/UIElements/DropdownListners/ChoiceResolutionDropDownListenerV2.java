@@ -40,10 +40,10 @@ import bvr.Variable;
 public class ChoiceResolutionDropDownListenerV2 extends MouseAdapter {
 	private ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRViewV2 view;
 	private ChoiceResolutuion c;
 
-	public ChoiceResolutionDropDownListenerV2(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, BVRView view) {
+	public ChoiceResolutionDropDownListenerV2(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, BVRViewV2 view) {
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -61,7 +61,7 @@ public class ChoiceResolutionDropDownListenerV2 extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ChoiceResolutionDropdown menu = new ChoiceResolutionDropdown(cp, c, (BVRView) view, vmMap);
+		ChoiceResolutionDropdown menu = new ChoiceResolutionDropdown(cp, c, (BVRViewV2) view, vmMap);
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
 }
@@ -70,7 +70,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
 
-	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, BVRView view, Map<JComponent, NamedElement> vmMap) {
+	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, BVRViewV2 view, Map<JComponent, NamedElement> vmMap) {
 		// Add
 		if (c.getResolvedVSpec() != null) {
 			JMenu add = new JMenu("add");

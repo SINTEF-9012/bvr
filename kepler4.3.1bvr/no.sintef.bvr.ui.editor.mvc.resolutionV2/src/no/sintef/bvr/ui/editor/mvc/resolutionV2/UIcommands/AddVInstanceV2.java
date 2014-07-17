@@ -7,6 +7,7 @@ import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.VInstanceDropDownListenerV2;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -32,7 +33,7 @@ public class AddVInstanceV2 extends AddVInstance implements Command {
 		SelectInstanceCommandV2 command = new SelectInstanceCommandV2();
 		command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
 		listener.setLeftClickCommand(command);
-		c.addMouseListener(new VInstanceDropDownListenerV2(c, vc, (BVRView) view, vmMap));
+		c.addMouseListener(new VInstanceDropDownListenerV2(c, vc, (BVRViewV2) view, vmMap));
 		c.addMouseListener(listener);
 
 		// MultiplicityInterval m = vc.getInstanceMultiplicity();

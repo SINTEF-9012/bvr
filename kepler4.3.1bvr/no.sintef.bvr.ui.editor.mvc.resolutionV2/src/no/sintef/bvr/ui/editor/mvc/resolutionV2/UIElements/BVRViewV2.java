@@ -10,7 +10,7 @@ import bvr.Constraint;
 
 public interface BVRViewV2 extends BVRView {
 
-	public int nameCounter = 0;
+		public int getIncrementedNameCounter();
 		public boolean showGrouping();
 		public void setGrouping(boolean group);
 		public BVRUIKernel getKernel();

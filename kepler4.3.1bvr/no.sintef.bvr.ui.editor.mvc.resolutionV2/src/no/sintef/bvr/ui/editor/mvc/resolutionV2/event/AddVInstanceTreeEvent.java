@@ -3,9 +3,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.BvrFactory;
@@ -15,11 +14,11 @@ import bvr.VSpecResolution;
 
 public class AddVInstanceTreeEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRViewV2  view;
 	private VSpec target;
 	VSpecResolution c;
 
-	public AddVInstanceTreeEvent(VSpecResolution parent, VSpec target, BVRView view) {
+	public AddVInstanceTreeEvent(VSpecResolution parent, VSpec target, BVRViewV2  view) {
 
 		this.view = view;
 		this.target = target;
@@ -29,7 +28,7 @@ public class AddVInstanceTreeEvent implements ActionListener {
 
 		VInstance root = BvrFactory.eINSTANCE.createVInstance();
 		root.setResolvedVSpec(target);
-		root.setName(target.getName());
+		root.setName("I" + view.getIncrementedNameCounter());
 
 		//List<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();
 		//thisResolution = new AddResolution().init(view, target, c, true).execute();

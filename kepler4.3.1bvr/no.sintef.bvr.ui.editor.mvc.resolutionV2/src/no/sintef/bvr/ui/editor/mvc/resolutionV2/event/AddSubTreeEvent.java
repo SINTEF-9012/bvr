@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddMissingResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
@@ -21,9 +21,9 @@ public class AddSubTreeEvent implements ActionListener {
 
 	private VSpecResolution parent;
 	private VSpec target;
-	private BVRView view;
+	private BVRViewV2  view;
 
-	public AddSubTreeEvent(VSpecResolution parent, BVRView view) {
+	public AddSubTreeEvent(VSpecResolution parent, BVRViewV2  view) {
 		super();
 		this.parent = parent;
 		this.target = parent.getResolvedVSpec();

@@ -3,7 +3,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
@@ -19,7 +20,7 @@ import bvr.VariableValueAssignment;
 import bvr.common.PrimitiveTypeHandler;
 
 public class AddResolution implements ResCommand{
-	private BVRView view;
+	private BVRViewV2 view;
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
@@ -28,7 +29,7 @@ public class AddResolution implements ResCommand{
  * For use on non-implemented root nodes
  */
 	@Override
-	public ResCommand init(BVRView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
+	public ResCommand init(BVRViewV2 view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = vs;
 		this.parent = vsr;
@@ -52,7 +53,7 @@ public class AddResolution implements ResCommand{
 				min = 1;
 			}
 			for (int i = 0; i < min; i++) {
-				thisResolution.add(addResolution((VClassifier) target, parent, (i + 1)));
+				thisResolution.add(addResolution((VClassifier) target, parent));
 			}
 			min = 0;
 		}
@@ -65,12 +66,11 @@ public class AddResolution implements ResCommand{
 		return thisResolution;
 	}
 
-	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent, int count_) {
-		int count = count_;
+	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent) {
 		VInstance thisResolution = BvrFactory.eINSTANCE.createVInstance();
 		// count++;
 		// vi.setName("vInstance" + count);
-		thisResolution.setName("instance " + count);
+		thisResolution.setName("I" + view.getIncrementedNameCounter());
 		thisResolution.setResolvedVSpec(target);
 		parent.getChild().add(thisResolution);
 		return thisResolution;
@@ -80,7 +80,7 @@ public class AddResolution implements ResCommand{
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
 		ChoiceResolutuion thisResolution = BvrFactory.eINSTANCE.createChoiceResolutuion();
 		thisResolution.setDecision(false);
-		thisResolution.setName(target.getName() + " resolution");
+		thisResolution.setName(target.getName() + " res");
 		thisResolution.setResolvedVSpec(target);
 		parent.getChild().add(thisResolution);
 
@@ -90,7 +90,7 @@ public class AddResolution implements ResCommand{
 	// resolve Variable
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
 		VSpecResolution thisResolution = BvrFactory.eINSTANCE.createVariableValueAssignment();
-		thisResolution.setName(target.getName() + " Assignment ");
+		thisResolution.setName(target.getName() + " Assignment");
 		// Value		
 		PrimitiveValueSpecification value = (PrimitiveTypeHandler.getInstance().makeValueSpecification((Variable) vSpecFound));
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable)vSpecFound).getType()).getType();

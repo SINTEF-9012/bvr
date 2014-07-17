@@ -29,13 +29,13 @@ import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 
 public class ResV2DropdownListener extends MouseAdapter {
-	private BVRView bvrViewV2;
+	private BVRViewV2 bvrViewV2;
 	private ConfigurableUnit cu;
 	private BVRModel m;
 	private JTabbedPane resPane;
 	Map<JComponent, NamedElement> vmMap;
 
-	public ResV2DropdownListener(BVRView bvrView, ConfigurableUnit cu, BVRModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownListener(BVRViewV2 bvrView, ConfigurableUnit cu, BVRModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 		this.vmMap = vmMap;
 		this.bvrViewV2 = bvrView;
 		this.cu = cu;
@@ -62,7 +62,7 @@ public class ResV2DropdownListener extends MouseAdapter {
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRViewV2 bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
 		JMenuItem newres = new JMenuItem("New");
 		newres.addActionListener(new NewResolutionV2Event(cu, bvrView));

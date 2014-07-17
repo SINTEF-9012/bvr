@@ -43,7 +43,7 @@ public class VInstanceMultiplicityPanel extends JPanel {
 		 */
 	private static final long serialVersionUID = -4949756230330251228L;
 
-	protected BVRView view;
+	protected BVRViewV2 view;
 	int requestedInstances;
 	protected JPanel top;
 	protected JPanel bottom;
@@ -72,7 +72,7 @@ public class VInstanceMultiplicityPanel extends JPanel {
 		command.init(null, c, null, null, null, null, view);
 	}
 
-	public VInstanceMultiplicityPanel(final VClassifier c, final VSpecResolution parent, final BVRView view) {
+	public VInstanceMultiplicityPanel(final VClassifier c, final VSpecResolution parent, final BVRViewV2 view) {
 		requestedInstances = 0;
 		for (VSpecResolution x : parent.getChild()){
 			if (x instanceof VInstance){

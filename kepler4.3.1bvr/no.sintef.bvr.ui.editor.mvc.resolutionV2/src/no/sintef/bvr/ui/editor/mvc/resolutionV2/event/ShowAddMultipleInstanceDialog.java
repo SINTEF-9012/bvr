@@ -7,15 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.VClassifier;
 import bvr.VSpecResolution;
 
 public class ShowAddMultipleInstanceDialog implements ActionListener {
 	VClassifier c;
 	VSpecResolution parent;
-	BVRView view;
-	public ShowAddMultipleInstanceDialog(VClassifier c, VSpecResolution parent, BVRView view) {		
+	BVRViewV2  view;
+	public ShowAddMultipleInstanceDialog(VClassifier c, VSpecResolution parent, BVRViewV2  view) {		
 		this.c = c;
 		this.parent = parent;
 		this.view = view;

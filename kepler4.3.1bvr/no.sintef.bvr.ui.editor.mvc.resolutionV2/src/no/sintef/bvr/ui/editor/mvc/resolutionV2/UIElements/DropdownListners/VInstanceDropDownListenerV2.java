@@ -15,7 +15,7 @@ import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVInstanceTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialog;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
@@ -31,10 +31,10 @@ import bvr.Variable;
 public class VInstanceDropDownListenerV2  extends MouseAdapter {
 	private VInstancePanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRViewV2 view;
 	private VInstance c;
 	
-    public VInstanceDropDownListenerV2(VInstancePanel cp, VInstance c, BVRView view, Map<JComponent, NamedElement> vmMap) {
+    public VInstanceDropDownListenerV2(VInstancePanel cp, VInstance c, BVRViewV2 view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
 		this.c = c;
 		this.view = view;
@@ -60,7 +60,7 @@ public class VInstanceDropDownListenerV2  extends MouseAdapter {
 class VInstanceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VInstanceDropdown(VInstancePanel cp, VInstance c, BVRView view, Map<JComponent, NamedElement> vmMap){
+    public VInstanceDropdown(VInstancePanel cp, VInstance c, BVRViewV2 view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");

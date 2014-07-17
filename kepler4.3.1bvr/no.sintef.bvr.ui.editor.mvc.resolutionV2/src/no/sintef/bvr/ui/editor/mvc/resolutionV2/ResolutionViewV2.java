@@ -74,32 +74,31 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	private ConfigurableUnitSubject configurableUnitSubject;
 
-	//namecounters
+	// namecounters
 	int choiceCount = 1;
-	
-	//draw variables
+	int instanceNameCounter;
+
+	// draw variables
 	List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
 	List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
 
-	
 	// tools
 
 	public ResolutionViewV2(BVRModel m) {
 		super();
-		
+
 		resolutionPanes = new ArrayList<JScrollPane>();
 		resolutionEpanels = new ArrayList<EditableModelPanel>();
 		resolutionkernels = new ArrayList<BVRUIKernel>();
 		resolutionvmMaps = new ArrayList<Map<JComponent, NamedElement>>();
 		resolutionNodes = new ArrayList<List<JComponent>>();
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
-		
-		
+
 		this.m = m;
 		this.showGroups = true;
 		this.showConstraints = false;
 		this.invalidConstraints = new ArrayList<Constraint>();
-		
+
 		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 
 		vSpecbvruikernel = new BVRUIKernelV2(vspecvmMap, this, resolutionvmMaps);
@@ -142,7 +141,6 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	public BVRModel getModel() {
 		return m;
 	}
-
 
 	protected void autoLayoutResolutions() {// TODO
 		for (int i = 0; i < resolutionPanes.size(); i++) {
@@ -244,7 +242,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	protected void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
 		resPane.addMouseListener(new ResV2DropdownListener((BVRViewV2) this, cu, m, resPane, vspecvmMap));
-		
+
 		if (cu.getOwnedVSpecResolution().size() == 0)
 			return;
 
@@ -265,7 +263,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			List<Pair<JComponent, JComponent>> bindings = new ArrayList<Pair<JComponent, JComponent>>();
 			resolutionBindings.add(bindings);
 
-			loadBVRResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings, false);
+			loadBVRResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings, false, false);
 
 			String tabtitle = "";
 			if (v instanceof ChoiceResolutuion) {
@@ -274,7 +272,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				if (cr.getResolvedVSpec() != null) {
 					choicename = cr.getResolvedVSpec().getName();
 				}
-				tabtitle = choicename + " " + choiceCount;
+				tabtitle = choicename + choiceCount;
 				choiceCount++;
 			} else if (v instanceof VInstance) {
 				VInstance vi = (VInstance) v;
@@ -287,30 +285,33 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	// TODO
 	protected void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, ConfigurableUnit cu,
-			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, boolean printAnyway_) throws BVRModelException {
+			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, boolean printAnyway_,
+			boolean secondPrint_) throws BVRModelException {
 		JComponent nextParent = null;
 		boolean printAnyway = printAnyway_;
-		boolean secondPrint = false;
-		if(printAnyway){
-			secondPrint = true;
-		}
-		if (!stripped(v, printAnyway)) {
+		boolean secondPrint = secondPrint_;
+
+		if (!stripped(v, printAnyway, secondPrint)) {
+			if (printAnyway) {
+				secondPrint = true;
+			}
 			printAnyway = false;
-			if(v.getResolvedVSpec() == null) return;
+			if (v.getResolvedVSpec() == null)
+				return;
 			// Add view
 			// System.out.println(v.getClass().getSimpleName());
 			if (v instanceof VInstance) {
 				// System.out.println(v + ", " + bvruikernel);
 
-				nextParent = new AddVInstanceV2(minimized.contains(v), childrenStripped(v))
-						.init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+				nextParent = new AddVInstanceV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
+						vmMap, nodes, bindings, this).execute();
 
 				vmMap.put(nextParent, v);
 
 			} else if (v instanceof ChoiceResolutuion) {
 				// System.out.println(v);
-				nextParent = new AddChoiceResolutuionV2(minimized.contains(v), childrenStripped(v)).init(bvruikernel, v, parent, vmMap, nodes,
-						bindings, this).execute();
+				nextParent = new AddChoiceResolutuionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v,
+						parent, vmMap, nodes, bindings, this).execute();
 
 				vmMap.put(nextParent, v);
 
@@ -363,24 +364,12 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				// }
 				if (showGroups) {
 					if ((v.getResolvedVSpec().getGroupMultiplicity() != null)) {
-						boolean error = false;
-						int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
-						int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
-						int i = 0;
-						for (VSpecResolution x : v.getChild()) {
-							if (x instanceof ChoiceResolutuion) {
-								if (((ChoiceResolutuion) x).isDecision())
-									i++;
-								if ((i > upper) && (upper != -1))
-									error = true;
-							}
-						}
-						if (i < lower)
-							error = true;
+						boolean error = findGroupError(v);
+
 						if (error) {
 							nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
 									.execute();
-							if(!secondPrint)
+							if (!secondPrint)
 								printAnyway = true;
 						} else {
 							nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
@@ -396,12 +385,32 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 			for (VSpecResolution vs : v.getChild()) {
 				if (!minimized.contains(v)) {
-					loadBVRResolutionView(vs, bvruikernel, nextParent, cu, vmMap, nodes, bindings, printAnyway);
+					loadBVRResolutionView(vs, bvruikernel, nextParent, cu, vmMap, nodes, bindings, printAnyway, secondPrint);
 
 				}
 			}
-			
+
 		}
+	}
+
+	private boolean findGroupError(VSpecResolution v) {
+		boolean error = false;
+		int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
+		int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
+		int i = 0;
+		for (VSpecResolution x : v.getChild()) {
+			if (x instanceof ChoiceResolutuion) {
+				if (((ChoiceResolutuion) x).isDecision())
+					i++;
+				if ((i > upper) && (upper != -1)){
+					error = true;
+					continue;
+				}
+			}
+		}
+		if (i < lower)
+			error = true;
+		return error;
 	}
 
 	public boolean isShowConstraints() {
@@ -436,26 +445,30 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 	@Override
 	public void refresh() {
-	//	System.out.println("refreshing");
+		// System.out.println("refreshing");
 		notifyResolutionViewUpdate();
 	}
 
-	private boolean stripped(VSpecResolution v, boolean printAnyway) {
+	// strips if node is stripped choice node, or secondPrint is set
+	private boolean stripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
 		if (v instanceof ChoiceResolutuion && stripped.contains(v) && !printAnyway) {
 			if (!getCU().getOwnedVSpecResolution().contains(v))
-			return !((ChoiceResolutuion) v).isDecision();
+				return !((ChoiceResolutuion) v).isDecision();
 		}
-
+		else if(secondPrint && stripped.contains(v)){
+			return true;
+		}
 		return false;
 	}
 
-	private boolean childrenStripped(VSpecResolution v) {
+	// returns if children are stripped
+	private boolean childrenStripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
 		for (VSpecResolution x : v.getChild()) {
-			if (x instanceof ChoiceResolutuion && stripped.contains(x)) {
-				if (!((ChoiceResolutuion) x).isDecision())
-					return true;
+			if (stripped( x,  false,  false))
+				if(!findGroupError(v)) //remove to show stripped mark on stripped nodes showing all due to group error
+				return true;
 			}
-		}
+		
 		return false;
 	}
 
@@ -475,5 +488,11 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	public List<Constraint> getInvalidConstraints() {
 
 		return this.invalidConstraints;
+	}
+
+	@Override
+	public synchronized int getIncrementedNameCounter() {
+		instanceNameCounter++;
+		return instanceNameCounter;
 	}
 }

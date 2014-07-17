@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
@@ -22,10 +22,10 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	int instancesRequested;
 	VSpecResolution parent;
 	VSpec target;
-	BVRView view;
+	BVRViewV2  view;
 
 	// parent er choice o.l. over
-	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRView view) {
+	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRViewV2  view) {
 		super();
 		this.instancesRequested = instancesRequested;
 		this.currentInstances = 0;
@@ -120,10 +120,10 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 
 		CloneRes.getInstance().cloneItStart(root, parent, view);
 
-		for (int i = 0; i <instancesRequested; i++) {
+		for (int i = 0; i <=instancesRequested; i++) {
 			VInstance newInstance = BvrFactory.eINSTANCE.createVInstance();
 			newInstance.setResolvedVSpec(target);
-			newInstance.setName(target.getName());
+			newInstance.setName("I" + view.getIncrementedNameCounter());
 			Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 			root.getChild().add(newInstance);
 			i++;
