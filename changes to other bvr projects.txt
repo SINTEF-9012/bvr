@@ -20,3 +20,5 @@ Added in Features: ViolatedConstraints and GroupError
 
 other:
 does not draw resolutions w\o VSpec, does not delete from model. 
+
+add exchange node to commands
