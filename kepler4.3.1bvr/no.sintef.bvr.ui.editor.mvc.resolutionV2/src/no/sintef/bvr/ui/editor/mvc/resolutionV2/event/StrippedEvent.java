@@ -32,11 +32,8 @@ public class StrippedEvent implements ActionListener {
 		Object v = vmMap.get(cp);
 		if (!view.getStripped().contains(v))
 			Iterators.getInstance().iterateExisting(view, new StripCommand(), x, (VSpecResolution) v, true);
-		else {
-			for (VSpecResolution vs : ((VSpecResolution) v).getChild()) {
-				Iterators.getInstance().iterateExisting(view, new StripCommand(), x, (VSpecResolution) vs, true);
-			}
-		}
 		view.refresh();
-	}
+		}
+	
+
 }

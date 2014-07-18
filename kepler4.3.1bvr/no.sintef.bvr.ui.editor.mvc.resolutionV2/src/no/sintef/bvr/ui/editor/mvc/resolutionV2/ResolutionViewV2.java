@@ -452,7 +452,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	private boolean childrenStripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
 		for (VSpecResolution x : v.getChild()) {
 			if (stripped( x,  false,  false))
-				if(!findGroupError(v)) //remove to show stripped mark on stripped nodes showing all due to group error
+				if(!findGroupError(x)) //remove to show stripped mark on stripped nodes showing all due to group error
 				return true;
 			}
 		return false;
