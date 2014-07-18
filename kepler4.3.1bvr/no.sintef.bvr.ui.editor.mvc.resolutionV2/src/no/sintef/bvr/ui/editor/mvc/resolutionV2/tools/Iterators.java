@@ -4,6 +4,7 @@ import java.util.List;
 
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ResCommand;
+import bvr.ConfigurableUnit;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -47,5 +48,28 @@ public class Iterators {
 			iterateExisting(view, command, vsParent, vsr, onlyOneInstance);			
 		}
 	}
+	public VSpecResolution getParent(ConfigurableUnit cu, VSpecResolution child) {
+		for (VSpecResolution c : cu.getOwnedVSpecResolution())
+			if (c == child) {
+				return null;
+			}
+		for (VSpecResolution r : cu.getOwnedVSpecResolution()) {
+			VSpecResolution found = getParent(r, child);
+			if (found != null)
+				return found;
+		}
+		return null;
+	}
 
+	private VSpecResolution getParent(VSpecResolution root, VSpecResolution child) {
+		for (VSpecResolution r : root.getChild())
+			if (r == child)
+				return root;
+		for (VSpecResolution r : root.getChild()) {
+			VSpecResolution found = getParent(r, child);
+			if (found != null)
+				return found;
+		}
+		return null;
+	}
 }

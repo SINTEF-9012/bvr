@@ -19,9 +19,6 @@ public class ShowAddMultipleInstanceDialog implements ActionListener {
 		this.c = c;
 		this.parent = parent;
 		this.view = view;
-		
-	
-
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -35,7 +32,9 @@ public class ShowAddMultipleInstanceDialog implements ActionListener {
 		}
 		Component cParent = Context.eINSTANCE.getActiveJApplet();
 		Object[] possibilities = null;
-		String s = (String)JOptionPane.showInputDialog(
+		
+		//create Dialog
+		String requestedInstancesAsString = (String)JOptionPane.showInputDialog(
 				cParent,
 		                    "Set nr of VInstances to add, min total: " +c.getInstanceMultiplicity().getLower()+ " max total: "+ ((c.getInstanceMultiplicity().getUpper() == -1)? "*" : c.getInstanceMultiplicity().getUpper() ) +"\n" 
 		                    + "nr of instances left to add: " +(( c.getInstanceMultiplicity().getUpper() == -1 )? "*" : (c.getInstanceMultiplicity().getUpper() - currentInstances)),
@@ -45,21 +44,8 @@ public class ShowAddMultipleInstanceDialog implements ActionListener {
 		                    null);
 		
 		//If a string was returned, say so.
-		if ((s != null) && (s.length() > 0)) {
-		  new AddMultipleInstanceTreesEvent(Integer.parseInt(s), parent, c, view).actionPerformed(e);
+		if ((requestedInstancesAsString != null) && (requestedInstancesAsString.length() > 0)) {
+		  new AddMultipleInstanceTreesEvent(Integer.parseInt(requestedInstancesAsString), parent, c, view).actionPerformed(e);
 		}
-		
-		/*
-		VInstanceMultiplicityPanel content = new VInstanceMultiplicityPanel( c,  parent,  view);
-		Dialog.ModalityType mode = Dialog.ModalityType.APPLICATION_MODAL;
-		Component cParent = Context.eINSTANCE.getActiveJApplet();
-		Window parentWindow = findWindow(cParent);
-		JDialog dialog = new JDialog(parentWindow, "Properties editor", mode);
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		dialog.setContentPane(content);
-		dialog.pack();
-		dialog.setLocationRelativeTo(parentWindow);
-		dialog.setVisible(true);
-*/		
 	}
 }

@@ -9,10 +9,8 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddMissingResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Inheritance;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
-import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
 import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -33,9 +31,18 @@ public class AddSubTreeEvent implements ActionListener {
 
 
 	public void actionPerformed(ActionEvent e) {
-		VSpecResolution grandParent = getParent(this.view.getCU(), parent);
+		VSpecResolution grandParent = Iterators.getInstance().getParent(this.view.getCU(), parent);
 
-		if (grandParent != null) {
+		if (grandParent == null) {
+			for (VSpecResolution c : this.view.getCU().getOwnedVSpecResolution())
+				if (c == parent) {
+					VSpecResolution root = create();
+					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(view.getCU(), parent);
+					Context.eINSTANCE.getEditorCommands().createNewResolution((ChoiceResolutuion) root, view.getCU());
+					Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), root, (ChoiceResolutuion) root);
+				}
+		}
+		else{
 			VSpecResolution root = create();
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof ChoiceResolutuion) {
@@ -47,54 +54,11 @@ public class AddSubTreeEvent implements ActionListener {
 			} else if (parent instanceof VInstance) {
 				Context.eINSTANCE.getEditorCommands().addVInstance(grandParent, (VInstance) root);
 			}
-
 		}
-
-	}
-
-	private VSpecResolution getParent(ConfigurableUnit cu, VSpecResolution child) {
-		for (VSpecResolution c : cu.getOwnedVSpecResolution())
-			if (c == child) {
-				VSpecResolution root = create();
-
-				Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(view.getCU(), child);
-				Context.eINSTANCE.getEditorCommands().createNewResolution((ChoiceResolutuion) root, view.getCU());
-				Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) root.getResolvedVSpec(), root, (ChoiceResolutuion) root);
-
-				return null;
-			}
-		for (VSpecResolution r : cu.getOwnedVSpecResolution()) {
-			VSpecResolution found = getParent(r, child);
-			if (found != null)
-				return found;
-		}
-		return null;
-	}
-
-	private VSpecResolution getParent(VSpecResolution root, VSpecResolution child) {
-		for (VSpecResolution r : root.getChild())
-			if (r == child)
-				return root;
-		for (VSpecResolution r : root.getChild()) {
-			VSpecResolution found = getParent(r, child);
-			if (found != null)
-				return found;
-		}
-		return null;
 	}
 
 	VSpecResolution create() {
-		VSpecResolution root = null;
-		if (parent instanceof ChoiceResolutuion) {
-			root = BvrFactory.eINSTANCE.createChoiceResolutuion();
-
-		} else if (parent instanceof VariableValueAssignment) {
-			root = BvrFactory.eINSTANCE.createVariableValueAssignment();
-
-		} else if (parent instanceof VInstance) {
-			root = BvrFactory.eINSTANCE.createVInstance();
-		}
-		CloneRes.getInstance().cloneItStart(root, parent, view);
+		VSpecResolution root = CloneRes.getInstance().cloneItStart(parent, view);
 		Iterators.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
 		return root;
 	}

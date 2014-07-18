@@ -96,6 +96,7 @@ public class EditableModelPanelV2 extends EditableModelPanel {
     }
 
 
+    //show dialog relative to element
 
     public void displayProperties(VariableValueAssignmentPropertyEditor content, Component parent, Dialog.ModalityType mode, VariableAssignmentPanel elem) {
 		

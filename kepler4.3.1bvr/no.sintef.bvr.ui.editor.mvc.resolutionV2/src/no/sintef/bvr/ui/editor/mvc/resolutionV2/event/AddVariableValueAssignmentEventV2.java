@@ -33,22 +33,22 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		Variable v = target;
+		
 
 		vva = BvrFactory.eINSTANCE.createVariableValueAssignment();
 
 		// Variable
-		vva.setResolvedVSpec(v);
+		vva.setResolvedVSpec(target);
 
 		// Name
 		count++;
 		vva.setName(target.getName() + " Assignment " + count);
 
 		// Value
-		PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification(v);
-		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
+		PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification(target);
+		PrimitiveTypeEnum type = ((PrimitveType) target.getType()).getType();
+		
 		// Try searching for a type
-
 		PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
 		value.setType(vt);
 
@@ -58,10 +58,6 @@ public class AddVariableValueAssignmentEventV2 implements ActionListener {
 		// Add
 		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(vsr, vva);
 
-
-
-
-		//view.notifyResolutionViewUpdate();
 	}
 	public VariableValueAssignment getVarableValueAssignment(){
 		return vva;

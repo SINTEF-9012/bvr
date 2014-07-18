@@ -20,7 +20,6 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRUIKernelV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
@@ -61,7 +60,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanelV2 vspecEpanel;
 	private Map<JComponent, NamedElement> vspecvmMap;
-	private BVRUIKernelV2 vSpecbvruikernel;
+	private BVRUIKernel vSpecbvruikernel;
 
 	// Resolutions
 	public JTabbedPane resPane;
@@ -101,7 +100,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 
 		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 
-		vSpecbvruikernel = new BVRUIKernelV2(vspecvmMap, this, resolutionvmMaps);
+		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -247,7 +246,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 			return;
 
 		for (VSpecResolution v : cu.getOwnedVSpecResolution()) {
-			BVRUIKernel resKernel = new BVRUIKernelV2(vspecvmMap, this, resolutionvmMaps);
+			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
 			JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 					JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -283,7 +282,8 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		}
 	}
 
-	// TODO
+	// printAnyway and secondPrint added for single layer stripped functionality
+	// stripped nodes are not drawn. 
 	protected void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, ConfigurableUnit cu,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, boolean printAnyway_,
 			boolean secondPrint_) throws BVRModelException {

@@ -22,7 +22,7 @@ import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolutionV2Event;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
 import bvr.ConfigurableUnit;
@@ -65,7 +65,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRViewV2 bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
 		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolutionV2Event(cu, bvrView));
+		newres.addActionListener(new NewResolvedResolutionEvent(cu, bvrView));
 		add(newres);
 		if (!(cu.getOwnedVSpecResolution().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");

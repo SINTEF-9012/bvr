@@ -26,13 +26,14 @@ public class CloneRes {
 		return clone;
 	}
 
-	public void cloneRes(VSpecResolution copyTo, VSpecResolution copyFrom, BVRView view) {
-
+	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRView view) {
+		VSpecResolution copyTo = null;
+		
 		if (copyFrom instanceof ChoiceResolutuion) {
-
+			copyTo = BvrFactory.eINSTANCE.createChoiceResolutuion();
 			((ChoiceResolutuion) copyTo).setDecision(((ChoiceResolutuion) copyFrom).isDecision());
-
 		} else if (copyFrom instanceof VariableValueAssignment) {
+			copyTo = BvrFactory.eINSTANCE.createVariableValueAssignment();
 			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();
 			String vString = PrimitiveTypeHandler.getInstance().getValueAsString(((VariableValueAssignment) copyFrom));
 			PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification(vSpecFound, vString);
@@ -46,35 +47,26 @@ public class CloneRes {
 			value.setType(vt);
 
 			((VariableValueAssignment) copyTo).setValue(value);
-			// ((VariableValueAssignment) copyFrom).getValue()
 		} else if (copyFrom instanceof VInstance) {
-			// copyTo = BvrFactory.eINSTANCE.createVInstance();
-
+			copyTo = BvrFactory.eINSTANCE.createVInstance();
 		}
+		
 		copyTo.setResolvedVSpec(copyFrom.getResolvedVSpec());
 		copyTo.setName(copyFrom.getName());
+		return copyTo;
 	}
 
-	public void cloneItStart(VSpecResolution parentTo, VSpecResolution parentFrom, BVRView view) {
-		cloneRes(parentTo, parentFrom, view);
+	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRView view) {
+		VSpecResolution parentTo = cloneRes(parentFrom, view);
 		cloneIterate(parentTo, parentFrom, view);
+		return parentTo;
 	}
 
 	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRView view) {
 		if (parentFrom != null) {
 			VSpecResolution newNode = null;
 			for (VSpecResolution x : parentFrom.getChild()) {
-				if (x instanceof ChoiceResolutuion) {
-					newNode = BvrFactory.eINSTANCE.createChoiceResolutuion();
-
-				} else if (x instanceof VariableValueAssignment) {
-					newNode = BvrFactory.eINSTANCE.createVariableValueAssignment();
-
-				} else if (x instanceof VInstance) {
-					newNode = BvrFactory.eINSTANCE.createVInstance();
-				}
-
-				cloneRes(newNode, x, view);
+				newNode = cloneRes(x, view);
 				parentTo.getChild().add(newNode);
 				cloneIterate(newNode, x, view);
 			}

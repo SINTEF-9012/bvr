@@ -10,9 +10,6 @@ import bvr.Constraint;
 
 public interface BVRViewV2 extends BVRView {
 
-		public int getIncrementedNameCounter();
-		public boolean showGrouping();
-		public void setGrouping(boolean group);
 		public BVRUIKernel getKernel();
 		public ConfigurableUnitSubject getConfigurableUnitSubject() ;
 		public ConfigurableUnit getCU();
@@ -25,9 +22,13 @@ public interface BVRViewV2 extends BVRView {
 		public void setStripped(Object v);
 		public void setUnstripped(Object v);
 		
+		public boolean showGrouping();
+		public void setGrouping(boolean group);
+
 		public boolean isShowConstraints();
 		public void setShowConstraints(boolean showConstraints);
 		
+		public int getIncrementedNameCounter();
 		public List<Constraint> getInvalidConstraints();
 
 }

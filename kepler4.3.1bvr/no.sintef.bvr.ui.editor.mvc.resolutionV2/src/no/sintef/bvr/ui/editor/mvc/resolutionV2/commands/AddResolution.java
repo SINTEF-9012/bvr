@@ -3,7 +3,6 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.BvrFactory;
 import bvr.Choice;
