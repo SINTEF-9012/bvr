@@ -14,7 +14,6 @@ import javax.swing.JTabbedPane;
 import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;

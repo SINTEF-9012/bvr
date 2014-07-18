@@ -86,7 +86,6 @@ public class BVREditorPanelV2 extends BVREditorPanel {
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
            // System.out.println("Here!");
         }else if (p instanceof ConfigurableUnitSymbolPanel) {
-        	ConfigurableUnitSymbolPanel elem = (ConfigurableUnitSymbolPanel)p;
         	ConfigurableUnitPropertyEditor prop = new ConfigurableUnitPropertyEditor(kernel, view.getCU(), view);        	
             editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
             //System.out.println("Here!");

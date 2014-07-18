@@ -22,7 +22,10 @@ public class AddMissingResolutions implements ResCommand {
 		this.parent = parent;
 		return this;
 	}
-
+	/**
+	 * NOT TRANSACTIONAL
+	 * ONLY for use with nodes NOT added to model
+	 */
 	@Override
 	public List<VSpecResolution> execute() {
 		ArrayList<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();

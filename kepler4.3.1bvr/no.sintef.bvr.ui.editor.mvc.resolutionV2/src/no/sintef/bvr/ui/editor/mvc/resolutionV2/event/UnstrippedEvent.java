@@ -29,6 +29,9 @@ public class UnstrippedEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object v = vmMap.get(cp);
+		while(view.getStripped().contains(v)){
+			view.setUnstripped(v);
+		}
 		Iterators.getInstance().iterateExisting(view, new UnstripCommand(), x, (VSpecResolution) v, true);
 		view.refresh();
 		

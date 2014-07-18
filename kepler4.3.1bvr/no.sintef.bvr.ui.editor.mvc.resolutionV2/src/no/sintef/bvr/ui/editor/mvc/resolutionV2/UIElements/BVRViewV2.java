@@ -7,6 +7,7 @@ import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import bvr.ConfigurableUnit;
 import bvr.Constraint;
+import bvr.VSpecResolution;
 
 public interface BVRViewV2 extends BVRView {
 
@@ -21,6 +22,7 @@ public interface BVRViewV2 extends BVRView {
 		
 		public void setStripped(Object v);
 		public void setUnstripped(Object v);
+		public List<VSpecResolution> getStripped();
 		
 		public boolean showGrouping();
 		public void setGrouping(boolean group);

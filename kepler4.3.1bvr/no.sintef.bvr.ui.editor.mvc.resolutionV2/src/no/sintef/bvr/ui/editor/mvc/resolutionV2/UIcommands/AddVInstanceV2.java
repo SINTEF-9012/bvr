@@ -6,7 +6,6 @@ import no.sintef.bvr.tool.ui.command.AddVInstance;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.VInstanceDropDownListenerV2;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;

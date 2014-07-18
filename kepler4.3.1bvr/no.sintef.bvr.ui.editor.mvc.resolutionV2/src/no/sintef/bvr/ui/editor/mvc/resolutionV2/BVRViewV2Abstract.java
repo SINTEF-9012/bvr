@@ -1,10 +1,13 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2;
 
+import java.util.List;
+
 import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.ConfigurableUnit;
+import bvr.VSpecResolution;
 
 public abstract class BVRViewV2Abstract implements BVRViewV2 {
 
@@ -61,5 +64,7 @@ public abstract class BVRViewV2Abstract implements BVRViewV2 {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("not supported for this view"); 
 	}
-
+	public List<VSpecResolution> getStripped(){
+		throw new UnsupportedOperationException("not supported for this view"); 
+	}
 }

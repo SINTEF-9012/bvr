@@ -25,7 +25,7 @@ public class AddResolution implements ResCommand{
 	private VSpecResolution parent;
 /**
  * NOT TRANSACTIONAL
- * For use on non-implemented root nodes
+ * ONLY for use with nodes NOT added to model
  */
 	@Override
 	public ResCommand init(BVRViewV2 view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
@@ -59,9 +59,7 @@ public class AddResolution implements ResCommand{
 		if (target instanceof Variable) {
 			thisResolution.add(addResolution((Variable) target, parent));
 		}
-		if (thisResolution.size() == 0) {
-			System.err.println("VSpecResolution of this type is not implemented");
-		}
+
 		return thisResolution;
 	}
 
@@ -79,7 +77,7 @@ public class AddResolution implements ResCommand{
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
 		ChoiceResolutuion thisResolution = BvrFactory.eINSTANCE.createChoiceResolutuion();
 		thisResolution.setDecision(false);
-		thisResolution.setName(target.getName() + " res");
+		thisResolution.setName(target.getName());
 		thisResolution.setResolvedVSpec(target);
 		parent.getChild().add(thisResolution);
 
@@ -89,7 +87,7 @@ public class AddResolution implements ResCommand{
 	// resolve Variable
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
 		VSpecResolution thisResolution = BvrFactory.eINSTANCE.createVariableValueAssignment();
-		thisResolution.setName(target.getName() + " Assignment");
+		thisResolution.setName(target.getName());
 		// Value		
 		PrimitiveValueSpecification value = (PrimitiveTypeHandler.getInstance().makeValueSpecification((Variable) vSpecFound));
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable)vSpecFound).getType()).getType();

@@ -32,10 +32,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements;
 
 import java.awt.Component;
 import java.awt.Dialog;
-import java.awt.Dialog.ModalityType;
 import java.awt.Window;
 
-import javax.swing.JApplet;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JPanel;

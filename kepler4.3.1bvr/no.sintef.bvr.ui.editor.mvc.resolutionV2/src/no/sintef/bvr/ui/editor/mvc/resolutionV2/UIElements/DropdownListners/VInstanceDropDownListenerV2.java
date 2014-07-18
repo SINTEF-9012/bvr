@@ -17,7 +17,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVInstanceTreeEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialog;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialogAndAddEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.UnstrippedEvent;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -102,7 +102,7 @@ class VInstanceDropdown extends JPopupMenu {
 			for (VSpec x : c.getResolvedVSpec().getChild()) {
 				JMenuItem addChild = new JMenuItem(x.getName());
 				if (x instanceof VClassifier) {
-					addChild.addActionListener(new ShowAddMultipleInstanceDialog((VClassifier) x, c, view));
+					addChild.addActionListener(new ShowAddMultipleInstanceDialogAndAddEvent((VClassifier) x, c, view));
 					addMulTree.add(addChild);
 				}
 			}

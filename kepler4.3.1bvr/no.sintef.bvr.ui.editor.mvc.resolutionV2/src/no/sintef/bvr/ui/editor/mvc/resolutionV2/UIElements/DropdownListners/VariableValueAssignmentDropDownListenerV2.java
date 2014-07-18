@@ -8,8 +8,6 @@ import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
-import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
@@ -54,12 +52,5 @@ class VariableValueAssignmentDropdown extends JPopupMenu {
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
 		add(remove);
 		
-		// max/min
-		JMenuItem minimize = new JMenuItem("minimize");
-		minimize.addActionListener(new MinimizeEvent(cp, vmMap, null, null, view));
-		add(minimize);
-		JMenuItem maximize = new JMenuItem("maximize");
-		maximize.addActionListener(new MaximizeEvent(cp, vmMap, null, null, view));
-		add(maximize);
     }
 }

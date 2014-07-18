@@ -52,7 +52,11 @@ import bvr.VariableValueAssignment;
 
 public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolutionView {
 	private BVRModel m;
-	public List<Constraint> invalidConstraints;
+	private List<Constraint> invalidConstraints;
+	public void setInvalidConstraints(List<Constraint> invalidConstraints) {
+		this.invalidConstraints = invalidConstraints;
+	}
+
 	public JTabbedPane modelPane;
 	private boolean showGroups;
 	private boolean showConstraints;
@@ -74,12 +78,12 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	private ConfigurableUnitSubject configurableUnitSubject;
 
 	// namecounters
-	int choiceCount = 1;
-	int instanceNameCounter;
+	private int choiceCount = 1;
+	private int instanceNameCounter;
 
 	// draw variables
-	List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
-	List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
+	private List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
+	private List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
 
 	// tools
 
@@ -393,25 +397,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 		}
 	}
 
-	private boolean findGroupError(VSpecResolution v) {
-		boolean error = false;
-		int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
-		int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
-		int i = 0;
-		for (VSpecResolution x : v.getChild()) {
-			if (x instanceof ChoiceResolutuion) {
-				if (((ChoiceResolutuion) x).isDecision())
-					i++;
-				if ((i > upper) && (upper != -1)){
-					error = true;
-					continue;
-				}
-			}
-		}
-		if (i < lower)
-			error = true;
-		return error;
-	}
+
 
 	public boolean isShowConstraints() {
 		return showConstraints;
@@ -439,6 +425,7 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	}
 
 	public void setUnstripped(Object v) {
+		if(v != null && stripped.contains(v))
 		stripped.remove(v);
 		// refresh();
 	}
@@ -468,10 +455,29 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 				if(!findGroupError(v)) //remove to show stripped mark on stripped nodes showing all due to group error
 				return true;
 			}
-		
 		return false;
 	}
+	
+	private boolean findGroupError(VSpecResolution v) {
 
+		if (v.getResolvedVSpec().getGroupMultiplicity() == null)
+			return false;
+		int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
+		int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
+		int i = 0;
+		for (VSpecResolution x : v.getChild()) {
+			if (x instanceof ChoiceResolutuion) {
+				if (((ChoiceResolutuion) x).isDecision())
+					i++;
+				if ((i > upper) && (upper != -1)){
+					return true;
+				}
+			}
+		}
+		if (i < lower)
+			return true;
+		return false;
+	}
 	@Override
 	public boolean showGrouping() {
 
@@ -494,5 +500,10 @@ public class ResolutionViewV2 extends BVRViewV2Abstract implements BVRResolution
 	public synchronized int getIncrementedNameCounter() {
 		instanceNameCounter++;
 		return instanceNameCounter;
+	}
+
+	@Override
+	public List<VSpecResolution> getStripped() {
+		return this.stripped;
 	}
 }
