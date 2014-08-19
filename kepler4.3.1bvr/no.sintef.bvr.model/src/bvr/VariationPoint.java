@@ -16,6 +16,7 @@ package bvr;
  * The following features are supported:
  * <ul>
  *   <li>{@link bvr.VariationPoint#getBindingVSpec <em>Binding VSpec</em>}</li>
+ *   <li>{@link bvr.VariationPoint#getStagedVariationPoint <em>Staged Variation Point</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,7 +24,7 @@ package bvr;
  * @model abstract="true"
  * @generated
  */
-public interface VariationPoint extends VPackageable {
+public interface VariationPoint extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -48,5 +49,33 @@ public interface VariationPoint extends VPackageable {
 	 * @generated
 	 */
 	void setBindingVSpec(VSpec value);
+
+	/**
+	 * Returns the value of the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link bvr.StagedVariationPoint#getMember <em>Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Staged Variation Point</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Staged Variation Point</em>' container reference.
+	 * @see #setStagedVariationPoint(StagedVariationPoint)
+	 * @see bvr.BvrPackage#getVariationPoint_StagedVariationPoint()
+	 * @see bvr.StagedVariationPoint#getMember
+	 * @model opposite="member" transient="false" ordered="false"
+	 * @generated
+	 */
+	StagedVariationPoint getStagedVariationPoint();
+
+	/**
+	 * Sets the value of the '{@link bvr.VariationPoint#getStagedVariationPoint <em>Staged Variation Point</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Staged Variation Point</em>' container reference.
+	 * @see #getStagedVariationPoint()
+	 * @generated
+	 */
+	void setStagedVariationPoint(StagedVariationPoint value);
 
 } // VariationPoint

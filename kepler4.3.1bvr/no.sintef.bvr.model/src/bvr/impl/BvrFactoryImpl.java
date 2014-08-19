@@ -58,32 +58,24 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BvrPackage.CHOICE: return createChoice();
+			case BvrPackage.NOTE: return createNote();
+			case BvrPackage.TARGET: return createTarget();
 			case BvrPackage.MULTIPLICITY_INTERVAL: return createMultiplicityInterval();
-			case BvrPackage.VSPEC_DERIVATION: return createVSpecDerivation();
+			case BvrPackage.CONSTRAINT: return createConstraint();
+			case BvrPackage.VARIABLE: return createVariable();
 			case BvrPackage.VCLASSIFIER: return createVClassifier();
-			case BvrPackage.CHOICE_RESOLUTUION: return createChoiceResolutuion();
-			case BvrPackage.VINSTANCE: return createVInstance();
+			case BvrPackage.CHOICE_OCCURRENCE: return createChoiceOccurrence();
+			case BvrPackage.VTYPE: return createVType();
+			case BvrPackage.VCLASS_OCCURRENCE: return createVClassOccurrence();
+			case BvrPackage.STAGED_VARIATION_POINT: return createStagedVariationPoint();
 			case BvrPackage.FRAGMENT_SUBSTITUTION: return createFragmentSubstitution();
 			case BvrPackage.PLACEMENT_FRAGMENT: return createPlacementFragment();
 			case BvrPackage.OBJECT_HANDLE: return createObjectHandle();
-			case BvrPackage.BASE_MODEL_HANDLE: return createBaseModelHandle();
 			case BvrPackage.REPLACEMENT_FRAGMENT_TYPE: return createReplacementFragmentType();
-			case BvrPackage.VARIABLETYPE: return createVariabletype();
-			case BvrPackage.OBJECT_SUBSTITUTION: return createObjectSubstitution();
-			case BvrPackage.VARIABLE: return createVariable();
-			case BvrPackage.VARIABLE_VALUE_ASSIGNMENT: return createVariableValueAssignment();
+			case BvrPackage.VALUE_RESOLUTION: return createValueResolution();
 			case BvrPackage.PRIMITVE_TYPE: return createPrimitveType();
 			case BvrPackage.OBJECT_TYPE: return createObjectType();
-			case BvrPackage.VINTERFACE: return createVInterface();
-			case BvrPackage.CONSTRAINT: return createConstraint();
 			case BvrPackage.SLOT_ASSIGNMENT: return createSlotAssignment();
-			case BvrPackage.OBJECT_EXISTENCE: return createObjectExistence();
-			case BvrPackage.LINK_END_SUBSTITUTION: return createLinkEndSubstitution();
-			case BvrPackage.LINK_HANDLE: return createLinkHandle();
-			case BvrPackage.CONFIGURABLE_UNIT: return createConfigurableUnit();
-			case BvrPackage.CV_SPEC: return createCVSpec();
-			case BvrPackage.VCONFIGURATION: return createVConfiguration();
-			case BvrPackage.LINK_EXISTENCE: return createLinkExistence();
 			case BvrPackage.OPAQUE_VARIATION_POINT: return createOpaqueVariationPoint();
 			case BvrPackage.OVP_TYPE: return createOVPType();
 			case BvrPackage.OVP_SEMANTIC_SPEC: return createOVPSemanticSpec();
@@ -96,17 +88,10 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 			case BvrPackage.FROM_BINDING: return createFromBinding();
 			case BvrPackage.FROM_PLACEMENT: return createFromPlacement();
 			case BvrPackage.FROM_REPLACEMENT: return createFromReplacement();
-			case BvrPackage.VSPEC_REF: return createVSpecRef();
+			case BvrPackage.TARGET_REF: return createTargetRef();
 			case BvrPackage.BCL_EXPRESSION: return createBCLExpression();
 			case BvrPackage.OPAQUE_CONSTRAINT: return createOpaqueConstraint();
-			case BvrPackage.SLOT_VALUE_EXISTENCE: return createSlotValueExistence();
-			case BvrPackage.PARAMETRIC_LINK_END_SUBSTITUTION: return createParametricLinkEndSubstitution();
-			case BvrPackage.PARAMETRIC_OBJECT_SUBSTITUTION: return createParametricObjectSubstitution();
-			case BvrPackage.PARAMETRIC_SLOT_ASSIGNMET: return createParametricSlotAssignmet();
-			case BvrPackage.CHOICE_DERIVATION: return createChoiceDerivation();
-			case BvrPackage.VARIABLE_DERIVATION: return createVariableDerivation();
-			case BvrPackage.CV_SPEC_DERIVATION: return createCVSpecDerivation();
-			case BvrPackage.CONFIGURABLE_UNIT_USAGE: return createConfigurableUnitUsage();
+			case BvrPackage.PARAMETRIC_SLOT_ASSIGNMENT: return createParametricSlotAssignment();
 			case BvrPackage.PRIMITIVE_VALUE_SPECIFICATION: return createPrimitiveValueSpecification();
 			case BvrPackage.BCL_CONSTRAINT: return createBCLConstraint();
 			case BvrPackage.OPERATION_CALL_EXP: return createOperationCallExp();
@@ -116,6 +101,13 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 			case BvrPackage.INTEGER_LITERAL_EXP: return createIntegerLiteralExp();
 			case BvrPackage.UNLIMITED_LITERAL_EXP: return createUnlimitedLiteralExp();
 			case BvrPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
+			case BvrPackage.NEG_RESOLUTION: return createNegResolution();
+			case BvrPackage.POS_RESOLUTION: return createPosResolution();
+			case BvrPackage.VREF: return createVRef();
+			case BvrPackage.VREF_VALUE_SPECIFICATION: return createVRefValueSpecification();
+			case BvrPackage.RESOLUTION_LITERAL_DEFINITION: return createResolutionLiteralDefinition();
+			case BvrPackage.RESOLUTION_LITERAL_USE: return createResolutionLiteralUse();
+			case BvrPackage.BVR_MODEL: return createBVRModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -170,6 +162,26 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Note createNote() {
+		NoteImpl note = new NoteImpl();
+		return note;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Target createTarget() {
+		TargetImpl target = new TargetImpl();
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MultiplicityInterval createMultiplicityInterval() {
 		MultiplicityIntervalImpl multiplicityInterval = new MultiplicityIntervalImpl();
 		return multiplicityInterval;
@@ -180,9 +192,19 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VSpecDerivation createVSpecDerivation() {
-		VSpecDerivationImpl vSpecDerivation = new VSpecDerivationImpl();
-		return vSpecDerivation;
+	public Constraint createConstraint() {
+		ConstraintImpl constraint = new ConstraintImpl();
+		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Variable createVariable() {
+		VariableImpl variable = new VariableImpl();
+		return variable;
 	}
 
 	/**
@@ -200,9 +222,9 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ChoiceResolutuion createChoiceResolutuion() {
-		ChoiceResolutuionImpl choiceResolutuion = new ChoiceResolutuionImpl();
-		return choiceResolutuion;
+	public ChoiceOccurrence createChoiceOccurrence() {
+		ChoiceOccurrenceImpl choiceOccurrence = new ChoiceOccurrenceImpl();
+		return choiceOccurrence;
 	}
 
 	/**
@@ -210,9 +232,29 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VInstance createVInstance() {
-		VInstanceImpl vInstance = new VInstanceImpl();
-		return vInstance;
+	public VType createVType() {
+		VTypeImpl vType = new VTypeImpl();
+		return vType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VClassOccurrence createVClassOccurrence() {
+		VClassOccurrenceImpl vClassOccurrence = new VClassOccurrenceImpl();
+		return vClassOccurrence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StagedVariationPoint createStagedVariationPoint() {
+		StagedVariationPointImpl stagedVariationPoint = new StagedVariationPointImpl();
+		return stagedVariationPoint;
 	}
 
 	/**
@@ -250,16 +292,6 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BaseModelHandle createBaseModelHandle() {
-		BaseModelHandleImpl baseModelHandle = new BaseModelHandleImpl();
-		return baseModelHandle;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ReplacementFragmentType createReplacementFragmentType() {
 		ReplacementFragmentTypeImpl replacementFragmentType = new ReplacementFragmentTypeImpl();
 		return replacementFragmentType;
@@ -270,39 +302,9 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variabletype createVariabletype() {
-		VariabletypeImpl variabletype = new VariabletypeImpl();
-		return variabletype;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ObjectSubstitution createObjectSubstitution() {
-		ObjectSubstitutionImpl objectSubstitution = new ObjectSubstitutionImpl();
-		return objectSubstitution;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Variable createVariable() {
-		VariableImpl variable = new VariableImpl();
-		return variable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VariableValueAssignment createVariableValueAssignment() {
-		VariableValueAssignmentImpl variableValueAssignment = new VariableValueAssignmentImpl();
-		return variableValueAssignment;
+	public ValueResolution createValueResolution() {
+		ValueResolutionImpl valueResolution = new ValueResolutionImpl();
+		return valueResolution;
 	}
 
 	/**
@@ -330,99 +332,9 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VInterface createVInterface() {
-		VInterfaceImpl vInterface = new VInterfaceImpl();
-		return vInterface;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Constraint createConstraint() {
-		ConstraintImpl constraint = new ConstraintImpl();
-		return constraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SlotAssignment createSlotAssignment() {
 		SlotAssignmentImpl slotAssignment = new SlotAssignmentImpl();
 		return slotAssignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ObjectExistence createObjectExistence() {
-		ObjectExistenceImpl objectExistence = new ObjectExistenceImpl();
-		return objectExistence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LinkEndSubstitution createLinkEndSubstitution() {
-		LinkEndSubstitutionImpl linkEndSubstitution = new LinkEndSubstitutionImpl();
-		return linkEndSubstitution;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LinkHandle createLinkHandle() {
-		LinkHandleImpl linkHandle = new LinkHandleImpl();
-		return linkHandle;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConfigurableUnit createConfigurableUnit() {
-		ConfigurableUnitImpl configurableUnit = new ConfigurableUnitImpl();
-		return configurableUnit;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CVSpec createCVSpec() {
-		CVSpecImpl cvSpec = new CVSpecImpl();
-		return cvSpec;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VConfiguration createVConfiguration() {
-		VConfigurationImpl vConfiguration = new VConfigurationImpl();
-		return vConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LinkExistence createLinkExistence() {
-		LinkExistenceImpl linkExistence = new LinkExistenceImpl();
-		return linkExistence;
 	}
 
 	/**
@@ -550,9 +462,9 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VSpecRef createVSpecRef() {
-		VSpecRefImpl vSpecRef = new VSpecRefImpl();
-		return vSpecRef;
+	public TargetRef createTargetRef() {
+		TargetRefImpl targetRef = new TargetRefImpl();
+		return targetRef;
 	}
 
 	/**
@@ -580,79 +492,9 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SlotValueExistence createSlotValueExistence() {
-		SlotValueExistenceImpl slotValueExistence = new SlotValueExistenceImpl();
-		return slotValueExistence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParametricLinkEndSubstitution createParametricLinkEndSubstitution() {
-		ParametricLinkEndSubstitutionImpl parametricLinkEndSubstitution = new ParametricLinkEndSubstitutionImpl();
-		return parametricLinkEndSubstitution;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParametricObjectSubstitution createParametricObjectSubstitution() {
-		ParametricObjectSubstitutionImpl parametricObjectSubstitution = new ParametricObjectSubstitutionImpl();
-		return parametricObjectSubstitution;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParametricSlotAssignmet createParametricSlotAssignmet() {
-		ParametricSlotAssignmetImpl parametricSlotAssignmet = new ParametricSlotAssignmetImpl();
-		return parametricSlotAssignmet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ChoiceDerivation createChoiceDerivation() {
-		ChoiceDerivationImpl choiceDerivation = new ChoiceDerivationImpl();
-		return choiceDerivation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VariableDerivation createVariableDerivation() {
-		VariableDerivationImpl variableDerivation = new VariableDerivationImpl();
-		return variableDerivation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CVSpecDerivation createCVSpecDerivation() {
-		CVSpecDerivationImpl cvSpecDerivation = new CVSpecDerivationImpl();
-		return cvSpecDerivation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConfigurableUnitUsage createConfigurableUnitUsage() {
-		ConfigurableUnitUsageImpl configurableUnitUsage = new ConfigurableUnitUsageImpl();
-		return configurableUnitUsage;
+	public ParametricSlotAssignment createParametricSlotAssignment() {
+		ParametricSlotAssignmentImpl parametricSlotAssignment = new ParametricSlotAssignmentImpl();
+		return parametricSlotAssignment;
 	}
 
 	/**
@@ -743,6 +585,76 @@ public class BvrFactoryImpl extends EFactoryImpl implements BvrFactory {
 	public RealLiteralExp createRealLiteralExp() {
 		RealLiteralExpImpl realLiteralExp = new RealLiteralExpImpl();
 		return realLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NegResolution createNegResolution() {
+		NegResolutionImpl negResolution = new NegResolutionImpl();
+		return negResolution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PosResolution createPosResolution() {
+		PosResolutionImpl posResolution = new PosResolutionImpl();
+		return posResolution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VRef createVRef() {
+		VRefImpl vRef = new VRefImpl();
+		return vRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VRefValueSpecification createVRefValueSpecification() {
+		VRefValueSpecificationImpl vRefValueSpecification = new VRefValueSpecificationImpl();
+		return vRefValueSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResolutionLiteralDefinition createResolutionLiteralDefinition() {
+		ResolutionLiteralDefinitionImpl resolutionLiteralDefinition = new ResolutionLiteralDefinitionImpl();
+		return resolutionLiteralDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResolutionLiteralUse createResolutionLiteralUse() {
+		ResolutionLiteralUseImpl resolutionLiteralUse = new ResolutionLiteralUseImpl();
+		return resolutionLiteralUse;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BVRModel createBVRModel() {
+		BVRModelImpl bvrModel = new BVRModelImpl();
+		return bvrModel;
 	}
 
 	/**

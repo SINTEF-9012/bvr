@@ -2,9 +2,9 @@
  */
 package bvr.impl;
 
-import bvr.BaseModelHandle;
 import bvr.BvrPackage;
 import bvr.OVPType;
+import bvr.ObjectHandle;
 import bvr.OpaqueVariationPoint;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -38,7 +38,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 * @generated
 	 * @ordered
 	 */
-	protected BaseModelHandle placeHolder;
+	protected ObjectHandle placeHolder;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
@@ -74,7 +74,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BaseModelHandle getPlaceHolder() {
+	public ObjectHandle getPlaceHolder() {
 		return placeHolder;
 	}
 
@@ -83,8 +83,8 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPlaceHolder(BaseModelHandle newPlaceHolder, NotificationChain msgs) {
-		BaseModelHandle oldPlaceHolder = placeHolder;
+	public NotificationChain basicSetPlaceHolder(ObjectHandle newPlaceHolder, NotificationChain msgs) {
+		ObjectHandle oldPlaceHolder = placeHolder;
 		placeHolder = newPlaceHolder;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BvrPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER, oldPlaceHolder, newPlaceHolder);
@@ -98,7 +98,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPlaceHolder(BaseModelHandle newPlaceHolder) {
+	public void setPlaceHolder(ObjectHandle newPlaceHolder) {
 		if (newPlaceHolder != placeHolder) {
 			NotificationChain msgs = null;
 			if (placeHolder != null)
@@ -190,7 +190,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BvrPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
-				setPlaceHolder((BaseModelHandle)newValue);
+				setPlaceHolder((ObjectHandle)newValue);
 				return;
 			case BvrPackage.OPAQUE_VARIATION_POINT__TYPE:
 				setType((OVPType)newValue);
@@ -208,7 +208,7 @@ public class OpaqueVariationPointImpl extends VariationPointImpl implements Opaq
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BvrPackage.OPAQUE_VARIATION_POINT__PLACE_HOLDER:
-				setPlaceHolder((BaseModelHandle)null);
+				setPlaceHolder((ObjectHandle)null);
 				return;
 			case BvrPackage.OPAQUE_VARIATION_POINT__TYPE:
 				setType((OVPType)null);

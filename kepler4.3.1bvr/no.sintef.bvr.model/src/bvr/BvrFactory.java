@@ -31,6 +31,24 @@ public interface BvrFactory extends EFactory {
 	Choice createChoice();
 
 	/**
+	 * Returns a new object of class '<em>Note</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Note</em>'.
+	 * @generated
+	 */
+	Note createNote();
+
+	/**
+	 * Returns a new object of class '<em>Target</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target</em>'.
+	 * @generated
+	 */
+	Target createTarget();
+
+	/**
 	 * Returns a new object of class '<em>Multiplicity Interval</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,13 +58,22 @@ public interface BvrFactory extends EFactory {
 	MultiplicityInterval createMultiplicityInterval();
 
 	/**
-	 * Returns a new object of class '<em>VSpec Derivation</em>'.
+	 * Returns a new object of class '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VSpec Derivation</em>'.
+	 * @return a new object of class '<em>Constraint</em>'.
 	 * @generated
 	 */
-	VSpecDerivation createVSpecDerivation();
+	Constraint createConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variable</em>'.
+	 * @generated
+	 */
+	Variable createVariable();
 
 	/**
 	 * Returns a new object of class '<em>VClassifier</em>'.
@@ -58,22 +85,40 @@ public interface BvrFactory extends EFactory {
 	VClassifier createVClassifier();
 
 	/**
-	 * Returns a new object of class '<em>Choice Resolutuion</em>'.
+	 * Returns a new object of class '<em>Choice Occurrence</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Choice Resolutuion</em>'.
+	 * @return a new object of class '<em>Choice Occurrence</em>'.
 	 * @generated
 	 */
-	ChoiceResolutuion createChoiceResolutuion();
+	ChoiceOccurrence createChoiceOccurrence();
 
 	/**
-	 * Returns a new object of class '<em>VInstance</em>'.
+	 * Returns a new object of class '<em>VType</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VInstance</em>'.
+	 * @return a new object of class '<em>VType</em>'.
 	 * @generated
 	 */
-	VInstance createVInstance();
+	VType createVType();
+
+	/**
+	 * Returns a new object of class '<em>VClass Occurrence</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>VClass Occurrence</em>'.
+	 * @generated
+	 */
+	VClassOccurrence createVClassOccurrence();
+
+	/**
+	 * Returns a new object of class '<em>Staged Variation Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Staged Variation Point</em>'.
+	 * @generated
+	 */
+	StagedVariationPoint createStagedVariationPoint();
 
 	/**
 	 * Returns a new object of class '<em>Fragment Substitution</em>'.
@@ -103,15 +148,6 @@ public interface BvrFactory extends EFactory {
 	ObjectHandle createObjectHandle();
 
 	/**
-	 * Returns a new object of class '<em>Base Model Handle</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Base Model Handle</em>'.
-	 * @generated
-	 */
-	BaseModelHandle createBaseModelHandle();
-
-	/**
 	 * Returns a new object of class '<em>Replacement Fragment Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -121,40 +157,13 @@ public interface BvrFactory extends EFactory {
 	ReplacementFragmentType createReplacementFragmentType();
 
 	/**
-	 * Returns a new object of class '<em>Variabletype</em>'.
+	 * Returns a new object of class '<em>Value Resolution</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variabletype</em>'.
+	 * @return a new object of class '<em>Value Resolution</em>'.
 	 * @generated
 	 */
-	Variabletype createVariabletype();
-
-	/**
-	 * Returns a new object of class '<em>Object Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Substitution</em>'.
-	 * @generated
-	 */
-	ObjectSubstitution createObjectSubstitution();
-
-	/**
-	 * Returns a new object of class '<em>Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable</em>'.
-	 * @generated
-	 */
-	Variable createVariable();
-
-	/**
-	 * Returns a new object of class '<em>Variable Value Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Value Assignment</em>'.
-	 * @generated
-	 */
-	VariableValueAssignment createVariableValueAssignment();
+	ValueResolution createValueResolution();
 
 	/**
 	 * Returns a new object of class '<em>Primitve Type</em>'.
@@ -175,24 +184,6 @@ public interface BvrFactory extends EFactory {
 	ObjectType createObjectType();
 
 	/**
-	 * Returns a new object of class '<em>VInterface</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VInterface</em>'.
-	 * @generated
-	 */
-	VInterface createVInterface();
-
-	/**
-	 * Returns a new object of class '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint</em>'.
-	 * @generated
-	 */
-	Constraint createConstraint();
-
-	/**
 	 * Returns a new object of class '<em>Slot Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,69 +191,6 @@ public interface BvrFactory extends EFactory {
 	 * @generated
 	 */
 	SlotAssignment createSlotAssignment();
-
-	/**
-	 * Returns a new object of class '<em>Object Existence</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Object Existence</em>'.
-	 * @generated
-	 */
-	ObjectExistence createObjectExistence();
-
-	/**
-	 * Returns a new object of class '<em>Link End Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link End Substitution</em>'.
-	 * @generated
-	 */
-	LinkEndSubstitution createLinkEndSubstitution();
-
-	/**
-	 * Returns a new object of class '<em>Link Handle</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Handle</em>'.
-	 * @generated
-	 */
-	LinkHandle createLinkHandle();
-
-	/**
-	 * Returns a new object of class '<em>Configurable Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Configurable Unit</em>'.
-	 * @generated
-	 */
-	ConfigurableUnit createConfigurableUnit();
-
-	/**
-	 * Returns a new object of class '<em>CV Spec</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CV Spec</em>'.
-	 * @generated
-	 */
-	CVSpec createCVSpec();
-
-	/**
-	 * Returns a new object of class '<em>VConfiguration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VConfiguration</em>'.
-	 * @generated
-	 */
-	VConfiguration createVConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Link Existence</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Link Existence</em>'.
-	 * @generated
-	 */
-	LinkExistence createLinkExistence();
 
 	/**
 	 * Returns a new object of class '<em>Opaque Variation Point</em>'.
@@ -373,13 +301,13 @@ public interface BvrFactory extends EFactory {
 	FromReplacement createFromReplacement();
 
 	/**
-	 * Returns a new object of class '<em>VSpec Ref</em>'.
+	 * Returns a new object of class '<em>Target Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>VSpec Ref</em>'.
+	 * @return a new object of class '<em>Target Ref</em>'.
 	 * @generated
 	 */
-	VSpecRef createVSpecRef();
+	TargetRef createTargetRef();
 
 	/**
 	 * Returns a new object of class '<em>BCL Expression</em>'.
@@ -400,76 +328,13 @@ public interface BvrFactory extends EFactory {
 	OpaqueConstraint createOpaqueConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Slot Value Existence</em>'.
+	 * Returns a new object of class '<em>Parametric Slot Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Slot Value Existence</em>'.
+	 * @return a new object of class '<em>Parametric Slot Assignment</em>'.
 	 * @generated
 	 */
-	SlotValueExistence createSlotValueExistence();
-
-	/**
-	 * Returns a new object of class '<em>Parametric Link End Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parametric Link End Substitution</em>'.
-	 * @generated
-	 */
-	ParametricLinkEndSubstitution createParametricLinkEndSubstitution();
-
-	/**
-	 * Returns a new object of class '<em>Parametric Object Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parametric Object Substitution</em>'.
-	 * @generated
-	 */
-	ParametricObjectSubstitution createParametricObjectSubstitution();
-
-	/**
-	 * Returns a new object of class '<em>Parametric Slot Assignmet</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parametric Slot Assignmet</em>'.
-	 * @generated
-	 */
-	ParametricSlotAssignmet createParametricSlotAssignmet();
-
-	/**
-	 * Returns a new object of class '<em>Choice Derivation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Choice Derivation</em>'.
-	 * @generated
-	 */
-	ChoiceDerivation createChoiceDerivation();
-
-	/**
-	 * Returns a new object of class '<em>Variable Derivation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Derivation</em>'.
-	 * @generated
-	 */
-	VariableDerivation createVariableDerivation();
-
-	/**
-	 * Returns a new object of class '<em>CV Spec Derivation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CV Spec Derivation</em>'.
-	 * @generated
-	 */
-	CVSpecDerivation createCVSpecDerivation();
-
-	/**
-	 * Returns a new object of class '<em>Configurable Unit Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Configurable Unit Usage</em>'.
-	 * @generated
-	 */
-	ConfigurableUnitUsage createConfigurableUnitUsage();
+	ParametricSlotAssignment createParametricSlotAssignment();
 
 	/**
 	 * Returns a new object of class '<em>Primitive Value Specification</em>'.
@@ -551,6 +416,69 @@ public interface BvrFactory extends EFactory {
 	 * @generated
 	 */
 	RealLiteralExp createRealLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Neg Resolution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Neg Resolution</em>'.
+	 * @generated
+	 */
+	NegResolution createNegResolution();
+
+	/**
+	 * Returns a new object of class '<em>Pos Resolution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pos Resolution</em>'.
+	 * @generated
+	 */
+	PosResolution createPosResolution();
+
+	/**
+	 * Returns a new object of class '<em>VRef</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>VRef</em>'.
+	 * @generated
+	 */
+	VRef createVRef();
+
+	/**
+	 * Returns a new object of class '<em>VRef Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>VRef Value Specification</em>'.
+	 * @generated
+	 */
+	VRefValueSpecification createVRefValueSpecification();
+
+	/**
+	 * Returns a new object of class '<em>Resolution Literal Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resolution Literal Definition</em>'.
+	 * @generated
+	 */
+	ResolutionLiteralDefinition createResolutionLiteralDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Resolution Literal Use</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Resolution Literal Use</em>'.
+	 * @generated
+	 */
+	ResolutionLiteralUse createResolutionLiteralUse();
+
+	/**
+	 * Returns a new object of class '<em>BVR Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>BVR Model</em>'.
+	 * @generated
+	 */
+	BVRModel createBVRModel();
 
 	/**
 	 * Returns the package supported by this factory.

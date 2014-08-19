@@ -3,8 +3,8 @@
 package bvr.provider;
 
 
-import bvr.Choice;
 import bvr.BvrPackage;
+import bvr.Choice;
 
 import java.util.Collection;
 import java.util.List;

@@ -70,7 +70,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				Choice choice = (Choice)theEObject;
 				T result = caseChoice(choice);
 				if (result == null) result = caseVSpec(choice);
-				if (result == null) result = caseVPackageable(choice);
 				if (result == null) result = caseNamedElement(choice);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -78,8 +77,75 @@ public class BvrSwitch<T> extends Switch<T> {
 			case BvrPackage.VSPEC: {
 				VSpec vSpec = (VSpec)theEObject;
 				T result = caseVSpec(vSpec);
-				if (result == null) result = caseVPackageable(vSpec);
 				if (result == null) result = caseNamedElement(vSpec);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.NOTE: {
+				Note note = (Note)theEObject;
+				T result = caseNote(note);
+				if (result == null) result = caseNamedElement(note);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.TARGET: {
+				Target target = (Target)theEObject;
+				T result = caseTarget(target);
+				if (result == null) result = caseNamedElement(target);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.COMPOUND_NODE: {
+				CompoundNode compoundNode = (CompoundNode)theEObject;
+				T result = caseCompoundNode(compoundNode);
+				if (result == null) result = caseVNode(compoundNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VNODE: {
+				VNode vNode = (VNode)theEObject;
+				T result = caseVNode(vNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.MULTIPLICITY_INTERVAL: {
+				MultiplicityInterval multiplicityInterval = (MultiplicityInterval)theEObject;
+				T result = caseMultiplicityInterval(multiplicityInterval);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.CONSTRAINT: {
+				Constraint constraint = (Constraint)theEObject;
+				T result = caseConstraint(constraint);
+				if (result == null) result = caseNamedElement(constraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VARIABLE: {
+				Variable variable = (Variable)theEObject;
+				T result = caseVariable(variable);
+				if (result == null) result = caseVSpec(variable);
+				if (result == null) result = caseNamedElement(variable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VALUE_SPECIFICATION: {
+				ValueSpecification valueSpecification = (ValueSpecification)theEObject;
+				T result = caseValueSpecification(valueSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VARIABLETYPE: {
+				Variabletype variabletype = (Variabletype)theEObject;
+				T result = caseVariabletype(variabletype);
+				if (result == null) result = caseVPackageable(variabletype);
+				if (result == null) result = caseNamedElement(variabletype);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -90,31 +156,10 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.NAMED_ELEMENT: {
-				NamedElement namedElement = (NamedElement)theEObject;
-				T result = caseNamedElement(namedElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.MULTIPLICITY_INTERVAL: {
-				MultiplicityInterval multiplicityInterval = (MultiplicityInterval)theEObject;
-				T result = caseMultiplicityInterval(multiplicityInterval);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.VSPEC_DERIVATION: {
-				VSpecDerivation vSpecDerivation = (VSpecDerivation)theEObject;
-				T result = caseVSpecDerivation(vSpecDerivation);
-				if (result == null) result = caseVPackageable(vSpecDerivation);
-				if (result == null) result = caseNamedElement(vSpecDerivation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BvrPackage.VCLASSIFIER: {
 				VClassifier vClassifier = (VClassifier)theEObject;
 				T result = caseVClassifier(vClassifier);
 				if (result == null) result = caseVSpec(vClassifier);
-				if (result == null) result = caseVPackageable(vClassifier);
 				if (result == null) result = caseNamedElement(vClassifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -122,34 +167,58 @@ public class BvrSwitch<T> extends Switch<T> {
 			case BvrPackage.VSPEC_RESOLUTION: {
 				VSpecResolution vSpecResolution = (VSpecResolution)theEObject;
 				T result = caseVSpecResolution(vSpecResolution);
-				if (result == null) result = caseVPackageable(vSpecResolution);
 				if (result == null) result = caseNamedElement(vSpecResolution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.CHOICE_RESOLUTUION: {
-				ChoiceResolutuion choiceResolutuion = (ChoiceResolutuion)theEObject;
-				T result = caseChoiceResolutuion(choiceResolutuion);
-				if (result == null) result = caseVSpecResolution(choiceResolutuion);
-				if (result == null) result = caseVPackageable(choiceResolutuion);
-				if (result == null) result = caseNamedElement(choiceResolutuion);
+			case BvrPackage.CHOICE_RESOLUTION: {
+				ChoiceResolution choiceResolution = (ChoiceResolution)theEObject;
+				T result = caseChoiceResolution(choiceResolution);
+				if (result == null) result = caseVSpecResolution(choiceResolution);
+				if (result == null) result = caseNamedElement(choiceResolution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.VINSTANCE: {
-				VInstance vInstance = (VInstance)theEObject;
-				T result = caseVInstance(vInstance);
-				if (result == null) result = caseVSpecResolution(vInstance);
-				if (result == null) result = caseVPackageable(vInstance);
-				if (result == null) result = caseNamedElement(vInstance);
+			case BvrPackage.CHOICE_OCCURRENCE: {
+				ChoiceOccurrence choiceOccurrence = (ChoiceOccurrence)theEObject;
+				T result = caseChoiceOccurrence(choiceOccurrence);
+				if (result == null) result = caseVSpec(choiceOccurrence);
+				if (result == null) result = caseVNode(choiceOccurrence);
+				if (result == null) result = caseNamedElement(choiceOccurrence);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VTYPE: {
+				VType vType = (VType)theEObject;
+				T result = caseVType(vType);
+				if (result == null) result = caseCompoundNode(vType);
+				if (result == null) result = caseVPackageable(vType);
+				if (result == null) result = caseVNode(vType);
+				if (result == null) result = caseNamedElement(vType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VCLASS_OCCURRENCE: {
+				VClassOccurrence vClassOccurrence = (VClassOccurrence)theEObject;
+				T result = caseVClassOccurrence(vClassOccurrence);
+				if (result == null) result = caseVSpec(vClassOccurrence);
+				if (result == null) result = caseVNode(vClassOccurrence);
+				if (result == null) result = caseNamedElement(vClassOccurrence);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case BvrPackage.VARIATION_POINT: {
 				VariationPoint variationPoint = (VariationPoint)theEObject;
 				T result = caseVariationPoint(variationPoint);
-				if (result == null) result = caseVPackageable(variationPoint);
 				if (result == null) result = caseNamedElement(variationPoint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.STAGED_VARIATION_POINT: {
+				StagedVariationPoint stagedVariationPoint = (StagedVariationPoint)theEObject;
+				T result = caseStagedVariationPoint(stagedVariationPoint);
+				if (result == null) result = caseVariationPoint(stagedVariationPoint);
+				if (result == null) result = caseNamedElement(stagedVariationPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -159,7 +228,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = caseChoiceVariationPoint(fragmentSubstitution);
 				if (result == null) result = caseRepeatableVariationPoint(fragmentSubstitution);
 				if (result == null) result = caseVariationPoint(fragmentSubstitution);
-				if (result == null) result = caseVPackageable(fragmentSubstitution);
 				if (result == null) result = caseNamedElement(fragmentSubstitution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -168,7 +236,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				ChoiceVariationPoint choiceVariationPoint = (ChoiceVariationPoint)theEObject;
 				T result = caseChoiceVariationPoint(choiceVariationPoint);
 				if (result == null) result = caseVariationPoint(choiceVariationPoint);
-				if (result == null) result = caseVPackageable(choiceVariationPoint);
 				if (result == null) result = caseNamedElement(choiceVariationPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -177,7 +244,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				RepeatableVariationPoint repeatableVariationPoint = (RepeatableVariationPoint)theEObject;
 				T result = caseRepeatableVariationPoint(repeatableVariationPoint);
 				if (result == null) result = caseVariationPoint(repeatableVariationPoint);
-				if (result == null) result = caseVPackageable(repeatableVariationPoint);
 				if (result == null) result = caseNamedElement(repeatableVariationPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -193,7 +259,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				PlacementFragment placementFragment = (PlacementFragment)theEObject;
 				T result = casePlacementFragment(placementFragment);
 				if (result == null) result = caseVariationPoint(placementFragment);
-				if (result == null) result = caseVPackageable(placementFragment);
 				if (result == null) result = caseNamedElement(placementFragment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -208,13 +273,6 @@ public class BvrSwitch<T> extends Switch<T> {
 			case BvrPackage.OBJECT_HANDLE: {
 				ObjectHandle objectHandle = (ObjectHandle)theEObject;
 				T result = caseObjectHandle(objectHandle);
-				if (result == null) result = caseBaseModelHandle(objectHandle);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.BASE_MODEL_HANDLE: {
-				BaseModelHandle baseModelHandle = (BaseModelHandle)theEObject;
-				T result = caseBaseModelHandle(baseModelHandle);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -227,14 +285,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.VARIABLETYPE: {
-				Variabletype variabletype = (Variabletype)theEObject;
-				T result = caseVariabletype(variabletype);
-				if (result == null) result = caseVPackageable(variabletype);
-				if (result == null) result = caseNamedElement(variabletype);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BvrPackage.REPLACEMENT_BOUNDARY_ELEMENT: {
 				ReplacementBoundaryElement replacementBoundaryElement = (ReplacementBoundaryElement)theEObject;
 				T result = caseReplacementBoundaryElement(replacementBoundaryElement);
@@ -242,37 +292,11 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.OBJECT_SUBSTITUTION: {
-				ObjectSubstitution objectSubstitution = (ObjectSubstitution)theEObject;
-				T result = caseObjectSubstitution(objectSubstitution);
-				if (result == null) result = caseChoiceVariationPoint(objectSubstitution);
-				if (result == null) result = caseVariationPoint(objectSubstitution);
-				if (result == null) result = caseVPackageable(objectSubstitution);
-				if (result == null) result = caseNamedElement(objectSubstitution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.VARIABLE: {
-				Variable variable = (Variable)theEObject;
-				T result = caseVariable(variable);
-				if (result == null) result = caseVSpec(variable);
-				if (result == null) result = caseVPackageable(variable);
-				if (result == null) result = caseNamedElement(variable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.VALUE_SPECIFICATION: {
-				ValueSpecification valueSpecification = (ValueSpecification)theEObject;
-				T result = caseValueSpecification(valueSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.VARIABLE_VALUE_ASSIGNMENT: {
-				VariableValueAssignment variableValueAssignment = (VariableValueAssignment)theEObject;
-				T result = caseVariableValueAssignment(variableValueAssignment);
-				if (result == null) result = caseVSpecResolution(variableValueAssignment);
-				if (result == null) result = caseVPackageable(variableValueAssignment);
-				if (result == null) result = caseNamedElement(variableValueAssignment);
+			case BvrPackage.VALUE_RESOLUTION: {
+				ValueResolution valueResolution = (ValueResolution)theEObject;
+				T result = caseValueResolution(valueResolution);
+				if (result == null) result = caseVSpecResolution(valueResolution);
+				if (result == null) result = caseNamedElement(valueResolution);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,103 +318,12 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.VINTERFACE: {
-				VInterface vInterface = (VInterface)theEObject;
-				T result = caseVInterface(vInterface);
-				if (result == null) result = caseVPackageable(vInterface);
-				if (result == null) result = caseNamedElement(vInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.CONSTRAINT: {
-				Constraint constraint = (Constraint)theEObject;
-				T result = caseConstraint(constraint);
-				if (result == null) result = caseVPackageable(constraint);
-				if (result == null) result = caseNamedElement(constraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BvrPackage.SLOT_ASSIGNMENT: {
 				SlotAssignment slotAssignment = (SlotAssignment)theEObject;
 				T result = caseSlotAssignment(slotAssignment);
 				if (result == null) result = caseChoiceVariationPoint(slotAssignment);
 				if (result == null) result = caseVariationPoint(slotAssignment);
-				if (result == null) result = caseVPackageable(slotAssignment);
 				if (result == null) result = caseNamedElement(slotAssignment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.OBJECT_EXISTENCE: {
-				ObjectExistence objectExistence = (ObjectExistence)theEObject;
-				T result = caseObjectExistence(objectExistence);
-				if (result == null) result = caseChoiceVariationPoint(objectExistence);
-				if (result == null) result = caseVariationPoint(objectExistence);
-				if (result == null) result = caseVPackageable(objectExistence);
-				if (result == null) result = caseNamedElement(objectExistence);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.LINK_END_SUBSTITUTION: {
-				LinkEndSubstitution linkEndSubstitution = (LinkEndSubstitution)theEObject;
-				T result = caseLinkEndSubstitution(linkEndSubstitution);
-				if (result == null) result = caseChoiceVariationPoint(linkEndSubstitution);
-				if (result == null) result = caseVariationPoint(linkEndSubstitution);
-				if (result == null) result = caseVPackageable(linkEndSubstitution);
-				if (result == null) result = caseNamedElement(linkEndSubstitution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.LINK_HANDLE: {
-				LinkHandle linkHandle = (LinkHandle)theEObject;
-				T result = caseLinkHandle(linkHandle);
-				if (result == null) result = caseBaseModelHandle(linkHandle);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.CONFIGURABLE_UNIT: {
-				ConfigurableUnit configurableUnit = (ConfigurableUnit)theEObject;
-				T result = caseConfigurableUnit(configurableUnit);
-				if (result == null) result = caseCompositeVariationPoint(configurableUnit);
-				if (result == null) result = caseVariationPoint(configurableUnit);
-				if (result == null) result = caseVPackageable(configurableUnit);
-				if (result == null) result = caseNamedElement(configurableUnit);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.COMPOSITE_VARIATION_POINT: {
-				CompositeVariationPoint compositeVariationPoint = (CompositeVariationPoint)theEObject;
-				T result = caseCompositeVariationPoint(compositeVariationPoint);
-				if (result == null) result = caseVariationPoint(compositeVariationPoint);
-				if (result == null) result = caseVPackageable(compositeVariationPoint);
-				if (result == null) result = caseNamedElement(compositeVariationPoint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.CV_SPEC: {
-				CVSpec cvSpec = (CVSpec)theEObject;
-				T result = caseCVSpec(cvSpec);
-				if (result == null) result = caseVSpec(cvSpec);
-				if (result == null) result = caseVPackageable(cvSpec);
-				if (result == null) result = caseNamedElement(cvSpec);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.VCONFIGURATION: {
-				VConfiguration vConfiguration = (VConfiguration)theEObject;
-				T result = caseVConfiguration(vConfiguration);
-				if (result == null) result = caseVSpecResolution(vConfiguration);
-				if (result == null) result = caseVPackageable(vConfiguration);
-				if (result == null) result = caseNamedElement(vConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.LINK_EXISTENCE: {
-				LinkExistence linkExistence = (LinkExistence)theEObject;
-				T result = caseLinkExistence(linkExistence);
-				if (result == null) result = caseChoiceVariationPoint(linkExistence);
-				if (result == null) result = caseVariationPoint(linkExistence);
-				if (result == null) result = caseVPackageable(linkExistence);
-				if (result == null) result = caseNamedElement(linkExistence);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -398,7 +331,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				OpaqueVariationPoint opaqueVariationPoint = (OpaqueVariationPoint)theEObject;
 				T result = caseOpaqueVariationPoint(opaqueVariationPoint);
 				if (result == null) result = caseVariationPoint(opaqueVariationPoint);
-				if (result == null) result = caseVPackageable(opaqueVariationPoint);
 				if (result == null) result = caseNamedElement(opaqueVariationPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -487,10 +419,10 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.VSPEC_REF: {
-				VSpecRef vSpecRef = (VSpecRef)theEObject;
-				T result = caseVSpecRef(vSpecRef);
-				if (result == null) result = caseBCLExpression(vSpecRef);
+			case BvrPackage.TARGET_REF: {
+				TargetRef targetRef = (TargetRef)theEObject;
+				T result = caseTargetRef(targetRef);
+				if (result == null) result = caseBCLExpression(targetRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -504,7 +436,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				OpaqueConstraint opaqueConstraint = (OpaqueConstraint)theEObject;
 				T result = caseOpaqueConstraint(opaqueConstraint);
 				if (result == null) result = caseConstraint(opaqueConstraint);
-				if (result == null) result = caseVPackageable(opaqueConstraint);
 				if (result == null) result = caseNamedElement(opaqueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -513,85 +444,16 @@ public class BvrSwitch<T> extends Switch<T> {
 				ParametricVariationPoint parametricVariationPoint = (ParametricVariationPoint)theEObject;
 				T result = caseParametricVariationPoint(parametricVariationPoint);
 				if (result == null) result = caseVariationPoint(parametricVariationPoint);
-				if (result == null) result = caseVPackageable(parametricVariationPoint);
 				if (result == null) result = caseNamedElement(parametricVariationPoint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BvrPackage.SLOT_VALUE_EXISTENCE: {
-				SlotValueExistence slotValueExistence = (SlotValueExistence)theEObject;
-				T result = caseSlotValueExistence(slotValueExistence);
-				if (result == null) result = caseChoiceVariationPoint(slotValueExistence);
-				if (result == null) result = caseVariationPoint(slotValueExistence);
-				if (result == null) result = caseVPackageable(slotValueExistence);
-				if (result == null) result = caseNamedElement(slotValueExistence);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.PARAMETRIC_LINK_END_SUBSTITUTION: {
-				ParametricLinkEndSubstitution parametricLinkEndSubstitution = (ParametricLinkEndSubstitution)theEObject;
-				T result = caseParametricLinkEndSubstitution(parametricLinkEndSubstitution);
-				if (result == null) result = caseParametricVariationPoint(parametricLinkEndSubstitution);
-				if (result == null) result = caseVariationPoint(parametricLinkEndSubstitution);
-				if (result == null) result = caseVPackageable(parametricLinkEndSubstitution);
-				if (result == null) result = caseNamedElement(parametricLinkEndSubstitution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.PARAMETRIC_OBJECT_SUBSTITUTION: {
-				ParametricObjectSubstitution parametricObjectSubstitution = (ParametricObjectSubstitution)theEObject;
-				T result = caseParametricObjectSubstitution(parametricObjectSubstitution);
-				if (result == null) result = caseParametricVariationPoint(parametricObjectSubstitution);
-				if (result == null) result = caseVariationPoint(parametricObjectSubstitution);
-				if (result == null) result = caseVPackageable(parametricObjectSubstitution);
-				if (result == null) result = caseNamedElement(parametricObjectSubstitution);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.PARAMETRIC_SLOT_ASSIGNMET: {
-				ParametricSlotAssignmet parametricSlotAssignmet = (ParametricSlotAssignmet)theEObject;
-				T result = caseParametricSlotAssignmet(parametricSlotAssignmet);
-				if (result == null) result = caseParametricVariationPoint(parametricSlotAssignmet);
-				if (result == null) result = caseVariationPoint(parametricSlotAssignmet);
-				if (result == null) result = caseVPackageable(parametricSlotAssignmet);
-				if (result == null) result = caseNamedElement(parametricSlotAssignmet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.CHOICE_DERIVATION: {
-				ChoiceDerivation choiceDerivation = (ChoiceDerivation)theEObject;
-				T result = caseChoiceDerivation(choiceDerivation);
-				if (result == null) result = caseVSpecDerivation(choiceDerivation);
-				if (result == null) result = caseVPackageable(choiceDerivation);
-				if (result == null) result = caseNamedElement(choiceDerivation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.VARIABLE_DERIVATION: {
-				VariableDerivation variableDerivation = (VariableDerivation)theEObject;
-				T result = caseVariableDerivation(variableDerivation);
-				if (result == null) result = caseVSpecDerivation(variableDerivation);
-				if (result == null) result = caseVPackageable(variableDerivation);
-				if (result == null) result = caseNamedElement(variableDerivation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.CV_SPEC_DERIVATION: {
-				CVSpecDerivation cvSpecDerivation = (CVSpecDerivation)theEObject;
-				T result = caseCVSpecDerivation(cvSpecDerivation);
-				if (result == null) result = caseVSpecDerivation(cvSpecDerivation);
-				if (result == null) result = caseVPackageable(cvSpecDerivation);
-				if (result == null) result = caseNamedElement(cvSpecDerivation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BvrPackage.CONFIGURABLE_UNIT_USAGE: {
-				ConfigurableUnitUsage configurableUnitUsage = (ConfigurableUnitUsage)theEObject;
-				T result = caseConfigurableUnitUsage(configurableUnitUsage);
-				if (result == null) result = caseCompositeVariationPoint(configurableUnitUsage);
-				if (result == null) result = caseVariationPoint(configurableUnitUsage);
-				if (result == null) result = caseVPackageable(configurableUnitUsage);
-				if (result == null) result = caseNamedElement(configurableUnitUsage);
+			case BvrPackage.PARAMETRIC_SLOT_ASSIGNMENT: {
+				ParametricSlotAssignment parametricSlotAssignment = (ParametricSlotAssignment)theEObject;
+				T result = caseParametricSlotAssignment(parametricSlotAssignment);
+				if (result == null) result = caseParametricVariationPoint(parametricSlotAssignment);
+				if (result == null) result = caseVariationPoint(parametricSlotAssignment);
+				if (result == null) result = caseNamedElement(parametricSlotAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -606,7 +468,6 @@ public class BvrSwitch<T> extends Switch<T> {
 				BCLConstraint bclConstraint = (BCLConstraint)theEObject;
 				T result = caseBCLConstraint(bclConstraint);
 				if (result == null) result = caseConstraint(bclConstraint);
-				if (result == null) result = caseVPackageable(bclConstraint);
 				if (result == null) result = caseNamedElement(bclConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -663,6 +524,78 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BvrPackage.COMPOUND_RESOLUTION: {
+				CompoundResolution compoundResolution = (CompoundResolution)theEObject;
+				T result = caseCompoundResolution(compoundResolution);
+				if (result == null) result = caseChoiceResolution(compoundResolution);
+				if (result == null) result = caseVSpecResolution(compoundResolution);
+				if (result == null) result = caseNamedElement(compoundResolution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.NEG_RESOLUTION: {
+				NegResolution negResolution = (NegResolution)theEObject;
+				T result = caseNegResolution(negResolution);
+				if (result == null) result = caseChoiceResolution(negResolution);
+				if (result == null) result = caseVSpecResolution(negResolution);
+				if (result == null) result = caseNamedElement(negResolution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.POS_RESOLUTION: {
+				PosResolution posResolution = (PosResolution)theEObject;
+				T result = casePosResolution(posResolution);
+				if (result == null) result = caseCompoundResolution(posResolution);
+				if (result == null) result = caseChoiceResolution(posResolution);
+				if (result == null) result = caseVSpecResolution(posResolution);
+				if (result == null) result = caseNamedElement(posResolution);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VREF: {
+				VRef vRef = (VRef)theEObject;
+				T result = caseVRef(vRef);
+				if (result == null) result = caseVariabletype(vRef);
+				if (result == null) result = caseVPackageable(vRef);
+				if (result == null) result = caseNamedElement(vRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.VREF_VALUE_SPECIFICATION: {
+				VRefValueSpecification vRefValueSpecification = (VRefValueSpecification)theEObject;
+				T result = caseVRefValueSpecification(vRefValueSpecification);
+				if (result == null) result = caseValueSpecification(vRefValueSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.RESOLUTION_LITERAL_DEFINITION: {
+				ResolutionLiteralDefinition resolutionLiteralDefinition = (ResolutionLiteralDefinition)theEObject;
+				T result = caseResolutionLiteralDefinition(resolutionLiteralDefinition);
+				if (result == null) result = caseCompoundResolution(resolutionLiteralDefinition);
+				if (result == null) result = caseChoiceResolution(resolutionLiteralDefinition);
+				if (result == null) result = caseVSpecResolution(resolutionLiteralDefinition);
+				if (result == null) result = caseNamedElement(resolutionLiteralDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.RESOLUTION_LITERAL_USE: {
+				ResolutionLiteralUse resolutionLiteralUse = (ResolutionLiteralUse)theEObject;
+				T result = caseResolutionLiteralUse(resolutionLiteralUse);
+				if (result == null) result = caseChoiceResolution(resolutionLiteralUse);
+				if (result == null) result = caseVSpecResolution(resolutionLiteralUse);
+				if (result == null) result = caseNamedElement(resolutionLiteralUse);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.BVR_MODEL: {
+				BVRModel bvrModel = (BVRModel)theEObject;
+				T result = caseBVRModel(bvrModel);
+				if (result == null) result = caseVPackage(bvrModel);
+				if (result == null) result = caseVPackageable(bvrModel);
+				if (result == null) result = caseNamedElement(bvrModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -698,21 +631,6 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>VPackageable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>VPackageable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVPackageable(VPackageable object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -724,6 +642,66 @@ public class BvrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Note</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Note</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNote(Note object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTarget(Target object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompoundNode(CompoundNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VNode</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VNode</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVNode(VNode object) {
 		return null;
 	}
 
@@ -743,17 +721,77 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>VSpec Derivation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>VSpec Derivation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVSpecDerivation(VSpecDerivation object) {
+	public T caseConstraint(Constraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariable(Variable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueSpecification(ValueSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variabletype</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variabletype</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariabletype(Variabletype object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VPackageable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VPackageable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVPackageable(VPackageable object) {
 		return null;
 	}
 
@@ -788,32 +826,62 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Choice Resolutuion</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Choice Resolution</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Choice Resolutuion</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Choice Resolution</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseChoiceResolutuion(ChoiceResolutuion object) {
+	public T caseChoiceResolution(ChoiceResolution object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>VInstance</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Choice Occurrence</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>VInstance</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Choice Occurrence</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVInstance(VInstance object) {
+	public T caseChoiceOccurrence(ChoiceOccurrence object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VType</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VType</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVType(VType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VClass Occurrence</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VClass Occurrence</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVClassOccurrence(VClassOccurrence object) {
 		return null;
 	}
 
@@ -829,6 +897,21 @@ public class BvrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVariationPoint(VariationPoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Staged Variation Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Staged Variation Point</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStagedVariationPoint(StagedVariationPoint object) {
 		return null;
 	}
 
@@ -938,21 +1021,6 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Base Model Handle</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Base Model Handle</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBaseModelHandle(BaseModelHandle object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Replacement Fragment Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -964,21 +1032,6 @@ public class BvrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReplacementFragmentType(ReplacementFragmentType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variabletype</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variabletype</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariabletype(Variabletype object) {
 		return null;
 	}
 
@@ -998,62 +1051,17 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Object Substitution</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Value Resolution</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Object Substitution</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Value Resolution</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseObjectSubstitution(ObjectSubstitution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariable(Variable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueSpecification(ValueSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Value Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Value Assignment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariableValueAssignment(VariableValueAssignment object) {
+	public T caseValueResolution(ValueResolution object) {
 		return null;
 	}
 
@@ -1088,36 +1096,6 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>VInterface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>VInterface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVInterface(VInterface object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstraint(Constraint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Slot Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1129,126 +1107,6 @@ public class BvrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSlotAssignment(SlotAssignment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Object Existence</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Object Existence</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseObjectExistence(ObjectExistence object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link End Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link End Substitution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkEndSubstitution(LinkEndSubstitution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Handle</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link Handle</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkHandle(LinkHandle object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configurable Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configurable Unit</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfigurableUnit(ConfigurableUnit object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Composite Variation Point</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Composite Variation Point</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompositeVariationPoint(CompositeVariationPoint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CV Spec</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CV Spec</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCVSpec(CVSpec object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>VConfiguration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>VConfiguration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVConfiguration(VConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link Existence</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link Existence</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLinkExistence(LinkExistence object) {
 		return null;
 	}
 
@@ -1433,17 +1291,17 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>VSpec Ref</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Target Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>VSpec Ref</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Target Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVSpecRef(VSpecRef object) {
+	public T caseTargetRef(TargetRef object) {
 		return null;
 	}
 
@@ -1493,122 +1351,17 @@ public class BvrSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Slot Value Existence</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Parametric Slot Assignment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Slot Value Existence</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Parametric Slot Assignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSlotValueExistence(SlotValueExistence object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parametric Link End Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parametric Link End Substitution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParametricLinkEndSubstitution(ParametricLinkEndSubstitution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parametric Object Substitution</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parametric Object Substitution</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParametricObjectSubstitution(ParametricObjectSubstitution object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parametric Slot Assignmet</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parametric Slot Assignmet</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParametricSlotAssignmet(ParametricSlotAssignmet object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Choice Derivation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Choice Derivation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseChoiceDerivation(ChoiceDerivation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Derivation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Derivation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariableDerivation(VariableDerivation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CV Spec Derivation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CV Spec Derivation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCVSpecDerivation(CVSpecDerivation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configurable Unit Usage</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configurable Unit Usage</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfigurableUnitUsage(ConfigurableUnitUsage object) {
+	public T caseParametricSlotAssignment(ParametricSlotAssignment object) {
 		return null;
 	}
 
@@ -1744,6 +1497,126 @@ public class BvrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRealLiteralExp(RealLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Resolution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Resolution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompoundResolution(CompoundResolution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Neg Resolution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Neg Resolution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNegResolution(NegResolution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pos Resolution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pos Resolution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePosResolution(PosResolution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VRef</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VRef</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVRef(VRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>VRef Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>VRef Value Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVRefValueSpecification(VRefValueSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resolution Literal Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resolution Literal Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResolutionLiteralDefinition(ResolutionLiteralDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Resolution Literal Use</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Resolution Literal Use</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResolutionLiteralUse(ResolutionLiteralUse object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>BVR Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>BVR Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBVRModel(BVRModel object) {
 		return null;
 	}
 

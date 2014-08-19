@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A generic class for expressions available in the basic constraint language.</p>
+ * <p>A generic class for expressions of the basic constraint language (BCL).</p>
  * <!-- end-model-doc -->
  *
  *

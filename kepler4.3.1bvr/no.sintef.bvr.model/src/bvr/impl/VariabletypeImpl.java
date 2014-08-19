@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class VariabletypeImpl extends VPackageableImpl implements Variabletype {
+public abstract class VariabletypeImpl extends VPackageableImpl implements Variabletype {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

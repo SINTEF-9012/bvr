@@ -2,8 +2,8 @@
  */
 package bvr.impl;
 
-import bvr.Choice;
 import bvr.BvrPackage;
+import bvr.Choice;
 
 import org.eclipse.emf.common.notify.Notification;
 

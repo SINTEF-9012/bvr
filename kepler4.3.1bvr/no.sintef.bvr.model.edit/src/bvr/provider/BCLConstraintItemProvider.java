@@ -155,7 +155,7 @@ public class BCLConstraintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.BCL_CONSTRAINT__EXPRESSION,
-				 BvrFactory.eINSTANCE.createVSpecRef()));
+				 BvrFactory.eINSTANCE.createTargetRef()));
 
 		newChildDescriptors.add
 			(createChildParameter

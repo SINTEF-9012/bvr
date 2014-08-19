@@ -175,7 +175,7 @@ public class OVPSemanticSpecItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return BVRMetamodelEditPlugin.INSTANCE;
+		return BVRMetamodel5EditPlugin.INSTANCE;
 	}
 
 }

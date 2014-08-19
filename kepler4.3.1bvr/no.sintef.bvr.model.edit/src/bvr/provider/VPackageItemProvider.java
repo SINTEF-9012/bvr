@@ -150,62 +150,12 @@ public class VPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createChoice()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVSpecDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVClassifier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createChoiceResolutuion()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVInstance()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createFragmentSubstitution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createPlacementFragment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVariabletype()));
+				 BvrFactory.eINSTANCE.createVType()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
 				 BvrFactory.eINSTANCE.createReplacementFragmentType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createObjectSubstitution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVariable()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVariableValueAssignment()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -220,56 +170,6 @@ public class VPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVInterface()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createSlotAssignment()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createObjectExistence()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createLinkEndSubstitution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createConfigurableUnit()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createCVSpec()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createLinkExistence()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createOpaqueVariationPoint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
 				 BvrFactory.eINSTANCE.createOVPType()));
 
 		newChildDescriptors.add
@@ -280,52 +180,12 @@ public class VPackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createOpaqueConstraint()));
+				 BvrFactory.eINSTANCE.createVRef()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createSlotValueExistence()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createParametricLinkEndSubstitution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createParametricObjectSubstitution()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createParametricSlotAssignmet()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createChoiceDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createVariableDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createCVSpecDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createConfigurableUnitUsage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VPACKAGE__PACKAGE_ELEMENT,
-				 BvrFactory.eINSTANCE.createBCLConstraint()));
+				 BvrFactory.eINSTANCE.createBVRModel()));
 	}
 
 }

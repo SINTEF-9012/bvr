@@ -76,20 +76,48 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 				return createVSpecAdapter();
 			}
 			@Override
-			public Adapter caseVPackageable(VPackageable object) {
-				return createVPackageableAdapter();
-			}
-			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseNote(Note object) {
+				return createNoteAdapter();
+			}
+			@Override
+			public Adapter caseTarget(Target object) {
+				return createTargetAdapter();
+			}
+			@Override
+			public Adapter caseCompoundNode(CompoundNode object) {
+				return createCompoundNodeAdapter();
+			}
+			@Override
+			public Adapter caseVNode(VNode object) {
+				return createVNodeAdapter();
 			}
 			@Override
 			public Adapter caseMultiplicityInterval(MultiplicityInterval object) {
 				return createMultiplicityIntervalAdapter();
 			}
 			@Override
-			public Adapter caseVSpecDerivation(VSpecDerivation object) {
-				return createVSpecDerivationAdapter();
+			public Adapter caseConstraint(Constraint object) {
+				return createConstraintAdapter();
+			}
+			@Override
+			public Adapter caseVariable(Variable object) {
+				return createVariableAdapter();
+			}
+			@Override
+			public Adapter caseValueSpecification(ValueSpecification object) {
+				return createValueSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseVariabletype(Variabletype object) {
+				return createVariabletypeAdapter();
+			}
+			@Override
+			public Adapter caseVPackageable(VPackageable object) {
+				return createVPackageableAdapter();
 			}
 			@Override
 			public Adapter caseVClassifier(VClassifier object) {
@@ -100,16 +128,28 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 				return createVSpecResolutionAdapter();
 			}
 			@Override
-			public Adapter caseChoiceResolutuion(ChoiceResolutuion object) {
-				return createChoiceResolutuionAdapter();
+			public Adapter caseChoiceResolution(ChoiceResolution object) {
+				return createChoiceResolutionAdapter();
 			}
 			@Override
-			public Adapter caseVInstance(VInstance object) {
-				return createVInstanceAdapter();
+			public Adapter caseChoiceOccurrence(ChoiceOccurrence object) {
+				return createChoiceOccurrenceAdapter();
+			}
+			@Override
+			public Adapter caseVType(VType object) {
+				return createVTypeAdapter();
+			}
+			@Override
+			public Adapter caseVClassOccurrence(VClassOccurrence object) {
+				return createVClassOccurrenceAdapter();
 			}
 			@Override
 			public Adapter caseVariationPoint(VariationPoint object) {
 				return createVariationPointAdapter();
+			}
+			@Override
+			public Adapter caseStagedVariationPoint(StagedVariationPoint object) {
+				return createStagedVariationPointAdapter();
 			}
 			@Override
 			public Adapter caseFragmentSubstitution(FragmentSubstitution object) {
@@ -140,36 +180,16 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 				return createObjectHandleAdapter();
 			}
 			@Override
-			public Adapter caseBaseModelHandle(BaseModelHandle object) {
-				return createBaseModelHandleAdapter();
-			}
-			@Override
 			public Adapter caseReplacementFragmentType(ReplacementFragmentType object) {
 				return createReplacementFragmentTypeAdapter();
-			}
-			@Override
-			public Adapter caseVariabletype(Variabletype object) {
-				return createVariabletypeAdapter();
 			}
 			@Override
 			public Adapter caseReplacementBoundaryElement(ReplacementBoundaryElement object) {
 				return createReplacementBoundaryElementAdapter();
 			}
 			@Override
-			public Adapter caseObjectSubstitution(ObjectSubstitution object) {
-				return createObjectSubstitutionAdapter();
-			}
-			@Override
-			public Adapter caseVariable(Variable object) {
-				return createVariableAdapter();
-			}
-			@Override
-			public Adapter caseValueSpecification(ValueSpecification object) {
-				return createValueSpecificationAdapter();
-			}
-			@Override
-			public Adapter caseVariableValueAssignment(VariableValueAssignment object) {
-				return createVariableValueAssignmentAdapter();
+			public Adapter caseValueResolution(ValueResolution object) {
+				return createValueResolutionAdapter();
 			}
 			@Override
 			public Adapter casePrimitveType(PrimitveType object) {
@@ -180,48 +200,8 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 				return createObjectTypeAdapter();
 			}
 			@Override
-			public Adapter caseVInterface(VInterface object) {
-				return createVInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseConstraint(Constraint object) {
-				return createConstraintAdapter();
-			}
-			@Override
 			public Adapter caseSlotAssignment(SlotAssignment object) {
 				return createSlotAssignmentAdapter();
-			}
-			@Override
-			public Adapter caseObjectExistence(ObjectExistence object) {
-				return createObjectExistenceAdapter();
-			}
-			@Override
-			public Adapter caseLinkEndSubstitution(LinkEndSubstitution object) {
-				return createLinkEndSubstitutionAdapter();
-			}
-			@Override
-			public Adapter caseLinkHandle(LinkHandle object) {
-				return createLinkHandleAdapter();
-			}
-			@Override
-			public Adapter caseConfigurableUnit(ConfigurableUnit object) {
-				return createConfigurableUnitAdapter();
-			}
-			@Override
-			public Adapter caseCompositeVariationPoint(CompositeVariationPoint object) {
-				return createCompositeVariationPointAdapter();
-			}
-			@Override
-			public Adapter caseCVSpec(CVSpec object) {
-				return createCVSpecAdapter();
-			}
-			@Override
-			public Adapter caseVConfiguration(VConfiguration object) {
-				return createVConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseLinkExistence(LinkExistence object) {
-				return createLinkExistenceAdapter();
 			}
 			@Override
 			public Adapter caseOpaqueVariationPoint(OpaqueVariationPoint object) {
@@ -272,8 +252,8 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 				return createFromReplacementAdapter();
 			}
 			@Override
-			public Adapter caseVSpecRef(VSpecRef object) {
-				return createVSpecRefAdapter();
+			public Adapter caseTargetRef(TargetRef object) {
+				return createTargetRefAdapter();
 			}
 			@Override
 			public Adapter caseBCLExpression(BCLExpression object) {
@@ -288,36 +268,8 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 				return createParametricVariationPointAdapter();
 			}
 			@Override
-			public Adapter caseSlotValueExistence(SlotValueExistence object) {
-				return createSlotValueExistenceAdapter();
-			}
-			@Override
-			public Adapter caseParametricLinkEndSubstitution(ParametricLinkEndSubstitution object) {
-				return createParametricLinkEndSubstitutionAdapter();
-			}
-			@Override
-			public Adapter caseParametricObjectSubstitution(ParametricObjectSubstitution object) {
-				return createParametricObjectSubstitutionAdapter();
-			}
-			@Override
-			public Adapter caseParametricSlotAssignmet(ParametricSlotAssignmet object) {
-				return createParametricSlotAssignmetAdapter();
-			}
-			@Override
-			public Adapter caseChoiceDerivation(ChoiceDerivation object) {
-				return createChoiceDerivationAdapter();
-			}
-			@Override
-			public Adapter caseVariableDerivation(VariableDerivation object) {
-				return createVariableDerivationAdapter();
-			}
-			@Override
-			public Adapter caseCVSpecDerivation(CVSpecDerivation object) {
-				return createCVSpecDerivationAdapter();
-			}
-			@Override
-			public Adapter caseConfigurableUnitUsage(ConfigurableUnitUsage object) {
-				return createConfigurableUnitUsageAdapter();
+			public Adapter caseParametricSlotAssignment(ParametricSlotAssignment object) {
+				return createParametricSlotAssignmentAdapter();
 			}
 			@Override
 			public Adapter casePrimitiveValueSpecification(PrimitiveValueSpecification object) {
@@ -354,6 +306,38 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRealLiteralExp(RealLiteralExp object) {
 				return createRealLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseCompoundResolution(CompoundResolution object) {
+				return createCompoundResolutionAdapter();
+			}
+			@Override
+			public Adapter caseNegResolution(NegResolution object) {
+				return createNegResolutionAdapter();
+			}
+			@Override
+			public Adapter casePosResolution(PosResolution object) {
+				return createPosResolutionAdapter();
+			}
+			@Override
+			public Adapter caseVRef(VRef object) {
+				return createVRefAdapter();
+			}
+			@Override
+			public Adapter caseVRefValueSpecification(VRefValueSpecification object) {
+				return createVRefValueSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseResolutionLiteralDefinition(ResolutionLiteralDefinition object) {
+				return createResolutionLiteralDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseResolutionLiteralUse(ResolutionLiteralUse object) {
+				return createResolutionLiteralUseAdapter();
+			}
+			@Override
+			public Adapter caseBVRModel(BVRModel object) {
+				return createBVRModelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -404,20 +388,6 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VPackageable <em>VPackageable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.VPackageable
-	 * @generated
-	 */
-	public Adapter createVPackageableAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link bvr.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -428,6 +398,62 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.Note <em>Note</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.Note
+	 * @generated
+	 */
+	public Adapter createNoteAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.Target <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.Target
+	 * @generated
+	 */
+	public Adapter createTargetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.CompoundNode <em>Compound Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.CompoundNode
+	 * @generated
+	 */
+	public Adapter createCompoundNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.VNode <em>VNode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.VNode
+	 * @generated
+	 */
+	public Adapter createVNodeAdapter() {
 		return null;
 	}
 
@@ -446,16 +472,72 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VSpecDerivation <em>VSpec Derivation</em>}'.
+	 * Creates a new adapter for an object of class '{@link bvr.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bvr.VSpecDerivation
+	 * @see bvr.Constraint
 	 * @generated
 	 */
-	public Adapter createVSpecDerivationAdapter() {
+	public Adapter createConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.Variable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.Variable
+	 * @generated
+	 */
+	public Adapter createVariableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.ValueSpecification <em>Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.ValueSpecification
+	 * @generated
+	 */
+	public Adapter createValueSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.Variabletype <em>Variabletype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.Variabletype
+	 * @generated
+	 */
+	public Adapter createVariabletypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.VPackageable <em>VPackageable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.VPackageable
+	 * @generated
+	 */
+	public Adapter createVPackageableAdapter() {
 		return null;
 	}
 
@@ -488,30 +570,58 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ChoiceResolutuion <em>Choice Resolutuion</em>}'.
+	 * Creates a new adapter for an object of class '{@link bvr.ChoiceResolution <em>Choice Resolution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bvr.ChoiceResolutuion
+	 * @see bvr.ChoiceResolution
 	 * @generated
 	 */
-	public Adapter createChoiceResolutuionAdapter() {
+	public Adapter createChoiceResolutionAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VInstance <em>VInstance</em>}'.
+	 * Creates a new adapter for an object of class '{@link bvr.ChoiceOccurrence <em>Choice Occurrence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bvr.VInstance
+	 * @see bvr.ChoiceOccurrence
 	 * @generated
 	 */
-	public Adapter createVInstanceAdapter() {
+	public Adapter createChoiceOccurrenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.VType <em>VType</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.VType
+	 * @generated
+	 */
+	public Adapter createVTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.VClassOccurrence <em>VClass Occurrence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.VClassOccurrence
+	 * @generated
+	 */
+	public Adapter createVClassOccurrenceAdapter() {
 		return null;
 	}
 
@@ -526,6 +636,20 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVariationPointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.StagedVariationPoint <em>Staged Variation Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.StagedVariationPoint
+	 * @generated
+	 */
+	public Adapter createStagedVariationPointAdapter() {
 		return null;
 	}
 
@@ -628,20 +752,6 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.BaseModelHandle <em>Base Model Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.BaseModelHandle
-	 * @generated
-	 */
-	public Adapter createBaseModelHandleAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link bvr.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -652,20 +762,6 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReplacementFragmentTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.Variabletype <em>Variabletype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.Variabletype
-	 * @generated
-	 */
-	public Adapter createVariabletypeAdapter() {
 		return null;
 	}
 
@@ -684,58 +780,16 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ObjectSubstitution <em>Object Substitution</em>}'.
+	 * Creates a new adapter for an object of class '{@link bvr.ValueResolution <em>Value Resolution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bvr.ObjectSubstitution
+	 * @see bvr.ValueResolution
 	 * @generated
 	 */
-	public Adapter createObjectSubstitutionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.Variable <em>Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.Variable
-	 * @generated
-	 */
-	public Adapter createVariableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ValueSpecification <em>Value Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ValueSpecification
-	 * @generated
-	 */
-	public Adapter createValueSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VariableValueAssignment <em>Variable Value Assignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.VariableValueAssignment
-	 * @generated
-	 */
-	public Adapter createVariableValueAssignmentAdapter() {
+	public Adapter createValueResolutionAdapter() {
 		return null;
 	}
 
@@ -768,34 +822,6 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VInterface <em>VInterface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.VInterface
-	 * @generated
-	 */
-	public Adapter createVInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.Constraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.Constraint
-	 * @generated
-	 */
-	public Adapter createConstraintAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link bvr.SlotAssignment <em>Slot Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -806,118 +832,6 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSlotAssignmentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ObjectExistence <em>Object Existence</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ObjectExistence
-	 * @generated
-	 */
-	public Adapter createObjectExistenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.LinkEndSubstitution <em>Link End Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.LinkEndSubstitution
-	 * @generated
-	 */
-	public Adapter createLinkEndSubstitutionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.LinkHandle <em>Link Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.LinkHandle
-	 * @generated
-	 */
-	public Adapter createLinkHandleAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ConfigurableUnit <em>Configurable Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ConfigurableUnit
-	 * @generated
-	 */
-	public Adapter createConfigurableUnitAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.CompositeVariationPoint <em>Composite Variation Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.CompositeVariationPoint
-	 * @generated
-	 */
-	public Adapter createCompositeVariationPointAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.CVSpec <em>CV Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.CVSpec
-	 * @generated
-	 */
-	public Adapter createCVSpecAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VConfiguration <em>VConfiguration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.VConfiguration
-	 * @generated
-	 */
-	public Adapter createVConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.LinkExistence <em>Link Existence</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.LinkExistence
-	 * @generated
-	 */
-	public Adapter createLinkExistenceAdapter() {
 		return null;
 	}
 
@@ -1090,16 +1004,16 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VSpecRef <em>VSpec Ref</em>}'.
+	 * Creates a new adapter for an object of class '{@link bvr.TargetRef <em>Target Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bvr.VSpecRef
+	 * @see bvr.TargetRef
 	 * @generated
 	 */
-	public Adapter createVSpecRefAdapter() {
+	public Adapter createTargetRefAdapter() {
 		return null;
 	}
 
@@ -1146,114 +1060,16 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link bvr.SlotValueExistence <em>Slot Value Existence</em>}'.
+	 * Creates a new adapter for an object of class '{@link bvr.ParametricSlotAssignment <em>Parametric Slot Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see bvr.SlotValueExistence
+	 * @see bvr.ParametricSlotAssignment
 	 * @generated
 	 */
-	public Adapter createSlotValueExistenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ParametricLinkEndSubstitution <em>Parametric Link End Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ParametricLinkEndSubstitution
-	 * @generated
-	 */
-	public Adapter createParametricLinkEndSubstitutionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ParametricObjectSubstitution <em>Parametric Object Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ParametricObjectSubstitution
-	 * @generated
-	 */
-	public Adapter createParametricObjectSubstitutionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ParametricSlotAssignmet <em>Parametric Slot Assignmet</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ParametricSlotAssignmet
-	 * @generated
-	 */
-	public Adapter createParametricSlotAssignmetAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ChoiceDerivation <em>Choice Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ChoiceDerivation
-	 * @generated
-	 */
-	public Adapter createChoiceDerivationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.VariableDerivation <em>Variable Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.VariableDerivation
-	 * @generated
-	 */
-	public Adapter createVariableDerivationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.CVSpecDerivation <em>CV Spec Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.CVSpecDerivation
-	 * @generated
-	 */
-	public Adapter createCVSpecDerivationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link bvr.ConfigurableUnitUsage <em>Configurable Unit Usage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see bvr.ConfigurableUnitUsage
-	 * @generated
-	 */
-	public Adapter createConfigurableUnitUsageAdapter() {
+	public Adapter createParametricSlotAssignmentAdapter() {
 		return null;
 	}
 
@@ -1380,6 +1196,118 @@ public class BvrAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRealLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.CompoundResolution <em>Compound Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.CompoundResolution
+	 * @generated
+	 */
+	public Adapter createCompoundResolutionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.NegResolution <em>Neg Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.NegResolution
+	 * @generated
+	 */
+	public Adapter createNegResolutionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.PosResolution <em>Pos Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.PosResolution
+	 * @generated
+	 */
+	public Adapter createPosResolutionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.VRef <em>VRef</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.VRef
+	 * @generated
+	 */
+	public Adapter createVRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.VRefValueSpecification <em>VRef Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.VRefValueSpecification
+	 * @generated
+	 */
+	public Adapter createVRefValueSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.ResolutionLiteralDefinition <em>Resolution Literal Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.ResolutionLiteralDefinition
+	 * @generated
+	 */
+	public Adapter createResolutionLiteralDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.ResolutionLiteralUse <em>Resolution Literal Use</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.ResolutionLiteralUse
+	 * @generated
+	 */
+	public Adapter createResolutionLiteralUseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link bvr.BVRModel <em>BVR Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see bvr.BVRModel
+	 * @generated
+	 */
+	public Adapter createBVRModelAdapter() {
 		return null;
 	}
 

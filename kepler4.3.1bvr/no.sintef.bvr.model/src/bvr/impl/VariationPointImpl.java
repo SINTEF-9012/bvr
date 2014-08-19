@@ -3,15 +3,19 @@
 package bvr.impl;
 
 import bvr.BvrPackage;
+import bvr.StagedVariationPoint;
 import bvr.VSpec;
 import bvr.VariationPoint;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,12 +25,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link bvr.impl.VariationPointImpl#getBindingVSpec <em>Binding VSpec</em>}</li>
+ *   <li>{@link bvr.impl.VariationPointImpl#getStagedVariationPoint <em>Staged Variation Point</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class VariationPointImpl extends VPackageableImpl implements VariationPoint {
+public abstract class VariationPointImpl extends NamedElementImpl implements VariationPoint {
 	/**
 	 * The cached value of the '{@link #getBindingVSpec() <em>Binding VSpec</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -99,12 +104,99 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StagedVariationPoint getStagedVariationPoint() {
+		if (eContainerFeatureID() != BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT) return null;
+		return (StagedVariationPoint)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStagedVariationPoint(StagedVariationPoint newStagedVariationPoint, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newStagedVariationPoint, BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStagedVariationPoint(StagedVariationPoint newStagedVariationPoint) {
+		if (newStagedVariationPoint != eInternalContainer() || (eContainerFeatureID() != BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT && newStagedVariationPoint != null)) {
+			if (EcoreUtil.isAncestor(this, newStagedVariationPoint))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newStagedVariationPoint != null)
+				msgs = ((InternalEObject)newStagedVariationPoint).eInverseAdd(this, BvrPackage.STAGED_VARIATION_POINT__MEMBER, StagedVariationPoint.class, msgs);
+			msgs = basicSetStagedVariationPoint(newStagedVariationPoint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT, newStagedVariationPoint, newStagedVariationPoint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetStagedVariationPoint((StagedVariationPoint)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				return basicSetStagedVariationPoint(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				return eInternalContainer().eInverseRemove(this, BvrPackage.STAGED_VARIATION_POINT__MEMBER, StagedVariationPoint.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BvrPackage.VARIATION_POINT__BINDING_VSPEC:
 				if (resolve) return getBindingVSpec();
 				return basicGetBindingVSpec();
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				return getStagedVariationPoint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,6 +211,9 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 		switch (featureID) {
 			case BvrPackage.VARIATION_POINT__BINDING_VSPEC:
 				setBindingVSpec((VSpec)newValue);
+				return;
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				setStagedVariationPoint((StagedVariationPoint)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,6 +230,9 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 			case BvrPackage.VARIATION_POINT__BINDING_VSPEC:
 				setBindingVSpec((VSpec)null);
 				return;
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				setStagedVariationPoint((StagedVariationPoint)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -149,6 +247,8 @@ public abstract class VariationPointImpl extends VPackageableImpl implements Var
 		switch (featureID) {
 			case BvrPackage.VARIATION_POINT__BINDING_VSPEC:
 				return bindingVSpec != null;
+			case BvrPackage.VARIATION_POINT__STAGED_VARIATION_POINT:
+				return getStagedVariationPoint() != null;
 		}
 		return super.eIsSet(featureID);
 	}

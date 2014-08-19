@@ -66,7 +66,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 3;
+	int NAMED_ELEMENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -78,13 +78,22 @@ public interface BvrPackage extends EPackage {
 	int NAMED_ELEMENT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NOTE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -94,43 +103,6 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMED_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.VPackageableImpl <em>VPackageable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VPackageableImpl
-	 * @see bvr.impl.BvrPackageImpl#getVPackageable()
-	 * @generated
-	 */
-	int VPACKAGEABLE = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VPACKAGEABLE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The number of structural features of the '<em>VPackageable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VPACKAGEABLE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>VPackageable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VPACKAGEABLE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.VSpecImpl <em>VSpec</em>}' class.
@@ -149,16 +121,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC__NAME = VPACKAGEABLE__NAME;
+	int VSPEC__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC__GROUP_MULTIPLICITY = VPACKAGEABLE_FEATURE_COUNT + 0;
+	int VSPEC__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
@@ -167,34 +139,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC__RESOLUTION_TIME = VPACKAGEABLE_FEATURE_COUNT + 1;
+	int VSPEC__RESOLUTION_TIME = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC__OWNED_VSPEC_DERIVATION = VPACKAGEABLE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC__CHILD = VPACKAGEABLE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC__COMMENT = VPACKAGEABLE_FEATURE_COUNT + 4;
+	int VSPEC__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>VSpec</em>' class.
@@ -203,7 +157,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 5;
+	int VSPEC_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>VSpec</em>' class.
@@ -212,7 +166,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+	int VSPEC_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.ChoiceImpl <em>Choice</em>}' class.
@@ -234,13 +188,13 @@ public interface BvrPackage extends EPackage {
 	int CHOICE__NAME = VSPEC__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE__GROUP_MULTIPLICITY = VSPEC__GROUP_MULTIPLICITY;
+	int CHOICE__NOTE = VSPEC__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
@@ -252,31 +206,13 @@ public interface BvrPackage extends EPackage {
 	int CHOICE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
 
 	/**
-	 * The feature id for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE__OWNED_VSPEC_DERIVATION = VSPEC__OWNED_VSPEC_DERIVATION;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__CHILD = VSPEC__CHILD;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__COMMENT = VSPEC__COMMENT;
+	int CHOICE__TARGET = VSPEC__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
@@ -315,6 +251,244 @@ public interface BvrPackage extends EPackage {
 	int CHOICE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link bvr.impl.NoteImpl <em>Note</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.NoteImpl
+	 * @see bvr.impl.BvrPackageImpl#getNote()
+	 * @generated
+	 */
+	int NOTE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__NOTE = NAMED_ELEMENT__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__KIND = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Expr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__EXPR = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Note</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Note</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.TargetImpl <em>Target</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.TargetImpl
+	 * @see bvr.impl.BvrPackageImpl#getTarget()
+	 * @generated
+	 */
+	int TARGET = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET__NOTE = NAMED_ELEMENT__NOTE;
+
+	/**
+	 * The number of structural features of the '<em>Target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VNodeImpl <em>VNode</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VNodeImpl
+	 * @see bvr.impl.BvrPackageImpl#getVNode()
+	 * @generated
+	 */
+	int VNODE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE__GROUP_MULTIPLICITY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE__OWNED_CONSTRAINT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE__VARIABLE = 2;
+
+	/**
+	 * The number of structural features of the '<em>VNode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>VNode</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VNODE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.CompoundNodeImpl <em>Compound Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.CompoundNodeImpl
+	 * @see bvr.impl.BvrPackageImpl#getCompoundNode()
+	 * @generated
+	 */
+	int COMPOUND_NODE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE__GROUP_MULTIPLICITY = VNODE__GROUP_MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE__OWNED_CONSTRAINT = VNODE__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE__VARIABLE = VNODE__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE__MEMBER = VNODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE__TARGET = VNODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Compound Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE_FEATURE_COUNT = VNODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Compound Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_NODE_OPERATION_COUNT = VNODE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link bvr.impl.MultiplicityIntervalImpl <em>Multiplicity Interval</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,7 +496,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getMultiplicityInterval()
 	 * @generated
 	 */
-	int MULTIPLICITY_INTERVAL = 4;
+	int MULTIPLICITY_INTERVAL = 7;
 
 	/**
 	 * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -361,14 +535,14 @@ public interface BvrPackage extends EPackage {
 	int MULTIPLICITY_INTERVAL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.VSpecDerivationImpl <em>VSpec Derivation</em>}' class.
+	 * The meta object id for the '{@link bvr.impl.ConstraintImpl <em>Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VSpecDerivationImpl
-	 * @see bvr.impl.BvrPackageImpl#getVSpecDerivation()
+	 * @see bvr.impl.ConstraintImpl
+	 * @see bvr.impl.BvrPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int VSPEC_DERIVATION = 5;
+	int CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -377,34 +551,245 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_DERIVATION__NAME = VPACKAGEABLE__NAME;
+	int CONSTRAINT__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Derived VSpec</b></em>' reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_DERIVATION__DERIVED_VSPEC = VPACKAGEABLE_FEATURE_COUNT + 0;
+	int CONSTRAINT__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
-	 * The number of structural features of the '<em>VSpec Derivation</em>' class.
+	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_DERIVATION_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
+	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>VSpec Derivation</em>' class.
+	 * The number of operations of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_DERIVATION_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+	int CONSTRAINT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VariableImpl <em>Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VariableImpl
+	 * @see bvr.impl.BvrPackageImpl#getVariable()
+	 * @generated
+	 */
+	int VARIABLE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__NAME = VSPEC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__NOTE = VSPEC__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__TARGET = VSPEC__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Defaul Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__DEFAUL_VALUE = VSPEC_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__TYPE = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.ValueSpecificationImpl
+	 * @see bvr.impl.BvrPackageImpl#getValueSpecification()
+	 * @generated
+	 */
+	int VALUE_SPECIFICATION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION__TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VPackageableImpl <em>VPackageable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VPackageableImpl
+	 * @see bvr.impl.BvrPackageImpl#getVPackageable()
+	 * @generated
+	 */
+	int VPACKAGEABLE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGEABLE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGEABLE__NOTE = NAMED_ELEMENT__NOTE;
+
+	/**
+	 * The number of structural features of the '<em>VPackageable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGEABLE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>VPackageable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGEABLE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VariabletypeImpl <em>Variabletype</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VariabletypeImpl
+	 * @see bvr.impl.BvrPackageImpl#getVariabletype()
+	 * @generated
+	 */
+	int VARIABLETYPE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLETYPE__NAME = VPACKAGEABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLETYPE__NOTE = VPACKAGEABLE__NOTE;
+
+	/**
+	 * The number of structural features of the '<em>Variabletype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLETYPE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Variabletype</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLETYPE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.VClassifierImpl <em>VClassifier</em>}' class.
@@ -414,7 +799,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getVClassifier()
 	 * @generated
 	 */
-	int VCLASSIFIER = 6;
+	int VCLASSIFIER = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -426,13 +811,13 @@ public interface BvrPackage extends EPackage {
 	int VCLASSIFIER__NAME = VSPEC__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VCLASSIFIER__GROUP_MULTIPLICITY = VSPEC__GROUP_MULTIPLICITY;
+	int VCLASSIFIER__NOTE = VSPEC__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
@@ -444,31 +829,13 @@ public interface BvrPackage extends EPackage {
 	int VCLASSIFIER__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
 
 	/**
-	 * The feature id for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VCLASSIFIER__OWNED_VSPEC_DERIVATION = VSPEC__OWNED_VSPEC_DERIVATION;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCLASSIFIER__CHILD = VSPEC__CHILD;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCLASSIFIER__COMMENT = VSPEC__COMMENT;
+	int VCLASSIFIER__TARGET = VSPEC__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Instance Multiplicity</b></em>' containment reference.
@@ -505,7 +872,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getVSpecResolution()
 	 * @generated
 	 */
-	int VSPEC_RESOLUTION = 7;
+	int VSPEC_RESOLUTION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -514,7 +881,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_RESOLUTION__NAME = VPACKAGEABLE__NAME;
+	int VSPEC_RESOLUTION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_RESOLUTION__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
@@ -523,16 +899,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_RESOLUTION__RESOLVED_VSPEC = VPACKAGEABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC_RESOLUTION__CHILD = VPACKAGEABLE_FEATURE_COUNT + 1;
+	int VSPEC_RESOLUTION__RESOLVED_VSPEC = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>VSpec Resolution</em>' class.
@@ -541,7 +908,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_RESOLUTION_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 2;
+	int VSPEC_RESOLUTION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>VSpec Resolution</em>' class.
@@ -550,17 +917,17 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_RESOLUTION_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+	int VSPEC_RESOLUTION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.ChoiceResolutuionImpl <em>Choice Resolutuion</em>}' class.
+	 * The meta object id for the '{@link bvr.impl.ChoiceResolutionImpl <em>Choice Resolution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ChoiceResolutuionImpl
-	 * @see bvr.impl.BvrPackageImpl#getChoiceResolutuion()
+	 * @see bvr.impl.ChoiceResolutionImpl
+	 * @see bvr.impl.BvrPackageImpl#getChoiceResolution()
 	 * @generated
 	 */
-	int CHOICE_RESOLUTUION = 8;
+	int CHOICE_RESOLUTION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -569,7 +936,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RESOLUTUION__NAME = VSPEC_RESOLUTION__NAME;
+	int CHOICE_RESOLUTION__NAME = VSPEC_RESOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_RESOLUTION__NOTE = VSPEC_RESOLUTION__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
@@ -578,16 +954,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RESOLUTUION__RESOLVED_VSPEC = VSPEC_RESOLUTION__RESOLVED_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_RESOLUTUION__CHILD = VSPEC_RESOLUTION__CHILD;
+	int CHOICE_RESOLUTION__RESOLVED_VSPEC = VSPEC_RESOLUTION__RESOLVED_VSPEC;
 
 	/**
 	 * The feature id for the '<em><b>Resolved Choice</b></em>' reference.
@@ -596,44 +963,62 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RESOLUTUION__RESOLVED_CHOICE = VSPEC_RESOLUTION_FEATURE_COUNT + 0;
+	int CHOICE_RESOLUTION__RESOLVED_CHOICE = VSPEC_RESOLUTION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Decision</b></em>' attribute.
+	 * The feature id for the '<em><b>Resolved Choice Occ</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RESOLUTUION__DECISION = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
+	int CHOICE_RESOLUTION__RESOLVED_CHOICE_OCC = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Choice Resolutuion</em>' class.
+	 * The feature id for the '<em><b>Resolved VClass Occ</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RESOLUTUION_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
+	int CHOICE_RESOLUTION__RESOLVED_VCLASS_OCC = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Choice Resolutuion</em>' class.
+	 * The feature id for the '<em><b>Resolved VClassifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_RESOLUTUION_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+	int CHOICE_RESOLUTION__RESOLVED_VCLASSIFIER = VSPEC_RESOLUTION_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.VInstanceImpl <em>VInstance</em>}' class.
+	 * The number of structural features of the '<em>Choice Resolution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VInstanceImpl
-	 * @see bvr.impl.BvrPackageImpl#getVInstance()
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_RESOLUTION_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Choice Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_RESOLUTION_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.ChoiceOccurrenceImpl <em>Choice Occurrence</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.ChoiceOccurrenceImpl
+	 * @see bvr.impl.BvrPackageImpl#getChoiceOccurrence()
 	 * @generated
 	 */
-	int VINSTANCE = 9;
+	int CHOICE_OCCURRENCE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -642,52 +1027,288 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VINSTANCE__NAME = VSPEC_RESOLUTION__NAME;
+	int CHOICE_OCCURRENCE__NAME = VSPEC__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VINSTANCE__RESOLVED_VSPEC = VSPEC_RESOLUTION__RESOLVED_VSPEC;
+	int CHOICE_OCCURRENCE__NOTE = VSPEC__NOTE;
 
 	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VINSTANCE__CHILD = VSPEC_RESOLUTION__CHILD;
+	int CHOICE_OCCURRENCE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VINSTANCE__TYPE = VSPEC_RESOLUTION_FEATURE_COUNT + 0;
+	int CHOICE_OCCURRENCE__TARGET = VSPEC__TARGET;
 
 	/**
-	 * The number of structural features of the '<em>VInstance</em>' class.
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VINSTANCE_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
+	int CHOICE_OCCURRENCE__GROUP_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>VInstance</em>' class.
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VINSTANCE_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+	int CHOICE_OCCURRENCE__OWNED_CONSTRAINT = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__VARIABLE = VSPEC_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>VType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__VTYPE = VSPEC_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Choice Occurrence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of operations of the '<em>Choice Occurrence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VTypeImpl <em>VType</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VTypeImpl
+	 * @see bvr.impl.BvrPackageImpl#getVType()
+	 * @generated
+	 */
+	int VTYPE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__GROUP_MULTIPLICITY = COMPOUND_NODE__GROUP_MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__OWNED_CONSTRAINT = COMPOUND_NODE__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__VARIABLE = COMPOUND_NODE__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__MEMBER = COMPOUND_NODE__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__TARGET = COMPOUND_NODE__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__NAME = COMPOUND_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE__NOTE = COMPOUND_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>VType</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE_FEATURE_COUNT = COMPOUND_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>VType</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VTYPE_OPERATION_COUNT = COMPOUND_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VClassOccurrenceImpl <em>VClass Occurrence</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VClassOccurrenceImpl
+	 * @see bvr.impl.BvrPackageImpl#getVClassOccurrence()
+	 * @generated
+	 */
+	int VCLASS_OCCURRENCE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__NAME = VSPEC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__NOTE = VSPEC__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__TARGET = VSPEC__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__GROUP_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__OWNED_CONSTRAINT = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__VARIABLE = VSPEC_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>VType</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__VTYPE = VSPEC_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Instance Multiplicity</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY = VSPEC_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>VClass Occurrence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>VClass Occurrence</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASS_OCCURRENCE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.VariationPointImpl <em>Variation Point</em>}' class.
@@ -697,7 +1318,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getVariationPoint()
 	 * @generated
 	 */
-	int VARIATION_POINT = 10;
+	int VARIATION_POINT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -706,7 +1327,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT__NAME = VPACKAGEABLE__NAME;
+	int VARIATION_POINT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
@@ -715,7 +1345,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT__BINDING_VSPEC = VPACKAGEABLE_FEATURE_COUNT + 0;
+	int VARIATION_POINT__BINDING_VSPEC = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIATION_POINT__STAGED_VARIATION_POINT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Variation Point</em>' class.
@@ -724,7 +1363,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
+	int VARIATION_POINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Variation Point</em>' class.
@@ -733,7 +1372,89 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIATION_POINT_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+	int VARIATION_POINT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.StagedVariationPointImpl <em>Staged Variation Point</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.StagedVariationPointImpl
+	 * @see bvr.impl.BvrPackageImpl#getStagedVariationPoint()
+	 * @generated
+	 */
+	int STAGED_VARIATION_POINT = 20;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT__NAME = VARIATION_POINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT__NOTE = VARIATION_POINT__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT__STAGED_VARIATION_POINT = VARIATION_POINT__STAGED_VARIATION_POINT;
+
+	/**
+	 * The feature id for the '<em><b>Binding Staged VP</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT__BINDING_STAGED_VP = VARIATION_POINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT__MEMBER = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Staged Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Staged Variation Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAGED_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.ChoiceVariationPointImpl <em>Choice Variation Point</em>}' class.
@@ -743,7 +1464,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getChoiceVariationPoint()
 	 * @generated
 	 */
-	int CHOICE_VARIATION_POINT = 12;
+	int CHOICE_VARIATION_POINT = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -755,6 +1476,15 @@ public interface BvrPackage extends EPackage {
 	int CHOICE_VARIATION_POINT__NAME = VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VARIATION_POINT__NOTE = VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,6 +1492,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHOICE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VARIATION_POINT__STAGED_VARIATION_POINT = VARIATION_POINT__STAGED_VARIATION_POINT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -773,13 +1512,31 @@ public interface BvrPackage extends EPackage {
 	int CHOICE_VARIATION_POINT__BINDING_CHOICE = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Binding Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VARIATION_POINT__BINDING_CHOICE_OCC = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Resolution kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VARIATION_POINT__RESOLUTION_KIND = VARIATION_POINT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Choice Variation Point</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+	int CHOICE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Choice Variation Point</em>' class.
@@ -798,7 +1555,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getFragmentSubstitution()
 	 * @generated
 	 */
-	int FRAGMENT_SUBSTITUTION = 11;
+	int FRAGMENT_SUBSTITUTION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -810,6 +1567,15 @@ public interface BvrPackage extends EPackage {
 	int FRAGMENT_SUBSTITUTION__NAME = CHOICE_VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION__NOTE = CHOICE_VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,6 +1583,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int FRAGMENT_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION__STAGED_VARIATION_POINT = CHOICE_VARIATION_POINT__STAGED_VARIATION_POINT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
@@ -828,6 +1603,24 @@ public interface BvrPackage extends EPackage {
 	int FRAGMENT_SUBSTITUTION__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
 
 	/**
+	 * The feature id for the '<em><b>Binding Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION__BINDING_CHOICE_OCC = CHOICE_VARIATION_POINT__BINDING_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolution kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION__RESOLUTION_KIND = CHOICE_VARIATION_POINT__RESOLUTION_KIND;
+
+	/**
 	 * The feature id for the '<em><b>Binding Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -837,13 +1630,22 @@ public interface BvrPackage extends EPackage {
 	int FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER = CHOICE_VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Binding VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Boundary Element Binding</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
+	int FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Placement</b></em>' reference.
@@ -852,7 +1654,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_SUBSTITUTION__PLACEMENT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
+	int FRAGMENT_SUBSTITUTION__PLACEMENT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Multi</b></em>' attribute.
@@ -861,7 +1663,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_SUBSTITUTION__MULTI = CHOICE_VARIATION_POINT_FEATURE_COUNT + 3;
+	int FRAGMENT_SUBSTITUTION__MULTI = CHOICE_VARIATION_POINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Replacement</b></em>' reference.
@@ -870,7 +1672,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_SUBSTITUTION__REPLACEMENT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 4;
+	int FRAGMENT_SUBSTITUTION__REPLACEMENT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Fragment Substitution</em>' class.
@@ -879,7 +1681,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 5;
+	int FRAGMENT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Fragment Substitution</em>' class.
@@ -898,7 +1700,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getRepeatableVariationPoint()
 	 * @generated
 	 */
-	int REPEATABLE_VARIATION_POINT = 13;
+	int REPEATABLE_VARIATION_POINT = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -910,6 +1712,15 @@ public interface BvrPackage extends EPackage {
 	int REPEATABLE_VARIATION_POINT__NAME = VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATABLE_VARIATION_POINT__NOTE = VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -917,6 +1728,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPEATABLE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATABLE_VARIATION_POINT__STAGED_VARIATION_POINT = VARIATION_POINT__STAGED_VARIATION_POINT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Classifier</b></em>' reference.
@@ -928,13 +1748,22 @@ public interface BvrPackage extends EPackage {
 	int REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER = VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Binding VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPEATABLE_VARIATION_POINT__BINDING_VCLASS_OCC = VARIATION_POINT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Repeatable Variation Point</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPEATABLE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
+	int REPEATABLE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Repeatable Variation Point</em>' class.
@@ -953,7 +1782,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getBoundaryElementBinding()
 	 * @generated
 	 */
-	int BOUNDARY_ELEMENT_BINDING = 14;
+	int BOUNDARY_ELEMENT_BINDING = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -963,6 +1792,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUNDARY_ELEMENT_BINDING__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDARY_ELEMENT_BINDING__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
 	 * The number of structural features of the '<em>Boundary Element Binding</em>' class.
@@ -990,7 +1828,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getPlacementFragment()
 	 * @generated
 	 */
-	int PLACEMENT_FRAGMENT = 15;
+	int PLACEMENT_FRAGMENT = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1002,6 +1840,15 @@ public interface BvrPackage extends EPackage {
 	int PLACEMENT_FRAGMENT__NAME = VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_FRAGMENT__NOTE = VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1009,6 +1856,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int PLACEMENT_FRAGMENT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_FRAGMENT__STAGED_VARIATION_POINT = VARIATION_POINT__STAGED_VARIATION_POINT;
 
 	/**
 	 * The feature id for the '<em><b>Placement Boundary Element</b></em>' containment reference list.
@@ -1054,7 +1910,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getPlacementBoundaryElement()
 	 * @generated
 	 */
-	int PLACEMENT_BOUNDARY_ELEMENT = 16;
+	int PLACEMENT_BOUNDARY_ELEMENT = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1064,6 +1920,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int PLACEMENT_BOUNDARY_ELEMENT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLACEMENT_BOUNDARY_ELEMENT__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
 	 * The number of structural features of the '<em>Placement Boundary Element</em>' class.
@@ -1084,34 +1949,6 @@ public interface BvrPackage extends EPackage {
 	int PLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.BaseModelHandleImpl
-	 * @see bvr.impl.BvrPackageImpl#getBaseModelHandle()
-	 * @generated
-	 */
-	int BASE_MODEL_HANDLE = 18;
-
-	/**
-	 * The number of structural features of the '<em>Base Model Handle</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BASE_MODEL_HANDLE_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Base Model Handle</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BASE_MODEL_HANDLE_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link bvr.impl.ObjectHandleImpl <em>Object Handle</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1119,16 +1956,16 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getObjectHandle()
 	 * @generated
 	 */
-	int OBJECT_HANDLE = 17;
+	int OBJECT_HANDLE = 27;
 
 	/**
-	 * The feature id for the '<em><b>MOF Ref</b></em>' reference.
+	 * The feature id for the '<em><b>MOF Ref</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_HANDLE__MOF_REF = BASE_MODEL_HANDLE_FEATURE_COUNT + 0;
+	int OBJECT_HANDLE__MOF_REF = 0;
 
 	/**
 	 * The number of structural features of the '<em>Object Handle</em>' class.
@@ -1137,7 +1974,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_HANDLE_FEATURE_COUNT = BASE_MODEL_HANDLE_FEATURE_COUNT + 1;
+	int OBJECT_HANDLE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Object Handle</em>' class.
@@ -1146,44 +1983,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_HANDLE_OPERATION_COUNT = BASE_MODEL_HANDLE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.VariabletypeImpl <em>Variabletype</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VariabletypeImpl
-	 * @see bvr.impl.BvrPackageImpl#getVariabletype()
-	 * @generated
-	 */
-	int VARIABLETYPE = 20;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLETYPE__NAME = VPACKAGEABLE__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Variabletype</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLETYPE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Variabletype</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLETYPE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
+	int OBJECT_HANDLE_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
@@ -1193,7 +1993,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getReplacementFragmentType()
 	 * @generated
 	 */
-	int REPLACEMENT_FRAGMENT_TYPE = 19;
+	int REPLACEMENT_FRAGMENT_TYPE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1203,6 +2003,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPLACEMENT_FRAGMENT_TYPE__NAME = VARIABLETYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_FRAGMENT_TYPE__NOTE = VARIABLETYPE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Replacement Boundary Element</b></em>' containment reference list.
@@ -1257,7 +2066,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getReplacementBoundaryElement()
 	 * @generated
 	 */
-	int REPLACEMENT_BOUNDARY_ELEMENT = 21;
+	int REPLACEMENT_BOUNDARY_ELEMENT = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1267,6 +2076,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPLACEMENT_BOUNDARY_ELEMENT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACEMENT_BOUNDARY_ELEMENT__NOTE = NAMED_ELEMENT__NOTE;
 
 	/**
 	 * The number of structural features of the '<em>Replacement Boundary Element</em>' class.
@@ -1287,14 +2105,14 @@ public interface BvrPackage extends EPackage {
 	int REPLACEMENT_BOUNDARY_ELEMENT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.ObjectSubstitutionImpl <em>Object Substitution</em>}' class.
+	 * The meta object id for the '{@link bvr.impl.ValueResolutionImpl <em>Value Resolution</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ObjectSubstitutionImpl
-	 * @see bvr.impl.BvrPackageImpl#getObjectSubstitution()
+	 * @see bvr.impl.ValueResolutionImpl
+	 * @see bvr.impl.BvrPackageImpl#getValueResolution()
 	 * @generated
 	 */
-	int OBJECT_SUBSTITUTION = 22;
+	int VALUE_RESOLUTION = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1303,226 +2121,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_SUBSTITUTION__NAME = CHOICE_VARIATION_POINT__NAME;
+	int VALUE_RESOLUTION__NAME = VSPEC_RESOLUTION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECT_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_SUBSTITUTION__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
-
-	/**
-	 * The feature id for the '<em><b>Placement Object</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_SUBSTITUTION__PLACEMENT_OBJECT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Replacement Object</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Object Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Object Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_SUBSTITUTION_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.VariableImpl <em>Variable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VariableImpl
-	 * @see bvr.impl.BvrPackageImpl#getVariable()
-	 * @generated
-	 */
-	int VARIABLE = 23;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__NAME = VSPEC__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__GROUP_MULTIPLICITY = VSPEC__GROUP_MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
-
-	/**
-	 * The feature id for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__OWNED_VSPEC_DERIVATION = VSPEC__OWNED_VSPEC_DERIVATION;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__CHILD = VSPEC__CHILD;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__COMMENT = VSPEC__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Replacement Fragment Typesubsetstype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE = VSPEC_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Defaul Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__DEFAUL_VALUE = VSPEC_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE__TYPE = VSPEC_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Variable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Variable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ValueSpecificationImpl
-	 * @see bvr.impl.BvrPackageImpl#getValueSpecification()
-	 * @generated
-	 */
-	int VALUE_SPECIFICATION = 24;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION__TYPE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Value Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Value Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.VariableValueAssignmentImpl <em>Variable Value Assignment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VariableValueAssignmentImpl
-	 * @see bvr.impl.BvrPackageImpl#getVariableValueAssignment()
-	 * @generated
-	 */
-	int VARIABLE_VALUE_ASSIGNMENT = 25;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_VALUE_ASSIGNMENT__NAME = VSPEC_RESOLUTION__NAME;
+	int VALUE_RESOLUTION__NOTE = VSPEC_RESOLUTION__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
@@ -1531,16 +2139,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VSPEC = VSPEC_RESOLUTION__RESOLVED_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_VALUE_ASSIGNMENT__CHILD = VSPEC_RESOLUTION__CHILD;
+	int VALUE_RESOLUTION__RESOLVED_VSPEC = VSPEC_RESOLUTION__RESOLVED_VSPEC;
 
 	/**
 	 * The feature id for the '<em><b>Resolved Variable</b></em>' reference.
@@ -1549,7 +2148,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE = VSPEC_RESOLUTION_FEATURE_COUNT + 0;
+	int VALUE_RESOLUTION__RESOLVED_VARIABLE = VSPEC_RESOLUTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1558,25 +2157,25 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_VALUE_ASSIGNMENT__VALUE = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
+	int VALUE_RESOLUTION__VALUE = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Variable Value Assignment</em>' class.
+	 * The number of structural features of the '<em>Value Resolution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_VALUE_ASSIGNMENT_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
+	int VALUE_RESOLUTION_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Variable Value Assignment</em>' class.
+	 * The number of operations of the '<em>Value Resolution</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_VALUE_ASSIGNMENT_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
+	int VALUE_RESOLUTION_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.PrimitveTypeImpl <em>Primitve Type</em>}' class.
@@ -1586,7 +2185,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getPrimitveType()
 	 * @generated
 	 */
-	int PRIMITVE_TYPE = 26;
+	int PRIMITVE_TYPE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1596,6 +2195,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITVE_TYPE__NAME = VARIABLETYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMITVE_TYPE__NOTE = VARIABLETYPE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1632,7 +2240,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getObjectType()
 	 * @generated
 	 */
-	int OBJECT_TYPE = 27;
+	int OBJECT_TYPE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1642,6 +2250,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_TYPE__NAME = VARIABLETYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_TYPE__NOTE = VARIABLETYPE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Meta Class</b></em>' attribute.
@@ -1671,107 +2288,6 @@ public interface BvrPackage extends EPackage {
 	int OBJECT_TYPE_OPERATION_COUNT = VARIABLETYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.VInterfaceImpl <em>VInterface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VInterfaceImpl
-	 * @see bvr.impl.BvrPackageImpl#getVInterface()
-	 * @generated
-	 */
-	int VINTERFACE = 28;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VINTERFACE__NAME = VPACKAGEABLE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VINTERFACE__MEMBER = VPACKAGEABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VINTERFACE__OWNED_CONSTRAINT = VPACKAGEABLE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>VInterface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VINTERFACE_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>VInterface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VINTERFACE_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ConstraintImpl <em>Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ConstraintImpl
-	 * @see bvr.impl.BvrPackageImpl#getConstraint()
-	 * @generated
-	 */
-	int CONSTRAINT = 29;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__NAME = VPACKAGEABLE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__CONTEXT = VPACKAGEABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_FEATURE_COUNT = VPACKAGEABLE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_OPERATION_COUNT = VPACKAGEABLE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link bvr.impl.SlotAssignmentImpl <em>Slot Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1779,7 +2295,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getSlotAssignment()
 	 * @generated
 	 */
-	int SLOT_ASSIGNMENT = 30;
+	int SLOT_ASSIGNMENT = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1791,6 +2307,15 @@ public interface BvrPackage extends EPackage {
 	int SLOT_ASSIGNMENT__NAME = CHOICE_VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_ASSIGNMENT__NOTE = CHOICE_VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1800,6 +2325,15 @@ public interface BvrPackage extends EPackage {
 	int SLOT_ASSIGNMENT__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_ASSIGNMENT__STAGED_VARIATION_POINT = CHOICE_VARIATION_POINT__STAGED_VARIATION_POINT;
+
+	/**
 	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1807,6 +2341,24 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int SLOT_ASSIGNMENT__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
+
+	/**
+	 * The feature id for the '<em><b>Binding Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_ASSIGNMENT__BINDING_CHOICE_OCC = CHOICE_VARIATION_POINT__BINDING_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolution kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SLOT_ASSIGNMENT__RESOLUTION_KIND = CHOICE_VARIATION_POINT__RESOLUTION_KIND;
 
 	/**
 	 * The feature id for the '<em><b>Slot Identifier</b></em>' attribute.
@@ -1854,608 +2406,6 @@ public interface BvrPackage extends EPackage {
 	int SLOT_ASSIGNMENT_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.ObjectExistenceImpl <em>Object Existence</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ObjectExistenceImpl
-	 * @see bvr.impl.BvrPackageImpl#getObjectExistence()
-	 * @generated
-	 */
-	int OBJECT_EXISTENCE = 31;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE__NAME = CHOICE_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
-
-	/**
-	 * The feature id for the '<em><b>Optional Object</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE__OPTIONAL_OBJECT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Object Existence</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Object Existence</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OBJECT_EXISTENCE_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.LinkEndSubstitutionImpl <em>Link End Substitution</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.LinkEndSubstitutionImpl
-	 * @see bvr.impl.BvrPackageImpl#getLinkEndSubstitution()
-	 * @generated
-	 */
-	int LINK_END_SUBSTITUTION = 32;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__NAME = CHOICE_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
-
-	/**
-	 * The feature id for the '<em><b>Link</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__LINK = CHOICE_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Link End Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Replacement Object</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Link End Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Link End Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_END_SUBSTITUTION_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.LinkHandleImpl <em>Link Handle</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.LinkHandleImpl
-	 * @see bvr.impl.BvrPackageImpl#getLinkHandle()
-	 * @generated
-	 */
-	int LINK_HANDLE = 33;
-
-	/**
-	 * The feature id for the '<em><b>MOF Ref</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_HANDLE__MOF_REF = BASE_MODEL_HANDLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Link Handle</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_HANDLE_FEATURE_COUNT = BASE_MODEL_HANDLE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Link Handle</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_HANDLE_OPERATION_COUNT = BASE_MODEL_HANDLE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.CompositeVariationPointImpl <em>Composite Variation Point</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.CompositeVariationPointImpl
-	 * @see bvr.impl.BvrPackageImpl#getCompositeVariationPoint()
-	 * @generated
-	 */
-	int COMPOSITE_VARIATION_POINT = 35;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_VARIATION_POINT__NAME = VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC = VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Composite Variation Point</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_VARIATION_POINT_FEATURE_COUNT = VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Composite Variation Point</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ConfigurableUnitImpl <em>Configurable Unit</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ConfigurableUnitImpl
-	 * @see bvr.impl.BvrPackageImpl#getConfigurableUnit()
-	 * @generated
-	 */
-	int CONFIGURABLE_UNIT = 34;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__NAME = COMPOSITE_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__BINDING_VSPEC = COMPOSITE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__BINDING_CV_SPEC = COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC;
-
-	/**
-	 * The feature id for the '<em><b>Owned VSpec</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__OWNED_VSPEC = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Variation Point</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__OWNED_VARIATION_POINT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__OWNED_CONSTRAINT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Configurable Container Object</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned VSpec Resolution</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Unit Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__UNIT_INTERFACE = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Owned Variabletype</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT__OWNED_VARIABLETYPE = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 7;
-
-	/**
-	 * The number of structural features of the '<em>Configurable Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_FEATURE_COUNT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 8;
-
-	/**
-	 * The number of operations of the '<em>Configurable Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_OPERATION_COUNT = COMPOSITE_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.CVSpecImpl <em>CV Spec</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.CVSpecImpl
-	 * @see bvr.impl.BvrPackageImpl#getCVSpec()
-	 * @generated
-	 */
-	int CV_SPEC = 36;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__NAME = VSPEC__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__GROUP_MULTIPLICITY = VSPEC__GROUP_MULTIPLICITY;
-
-	/**
-	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
-
-	/**
-	 * The feature id for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__OWNED_VSPEC_DERIVATION = VSPEC__OWNED_VSPEC_DERIVATION;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__CHILD = VSPEC__CHILD;
-
-	/**
-	 * The feature id for the '<em><b>Comment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__COMMENT = VSPEC__COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC__TYPE = VSPEC_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>CV Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>CV Spec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.VConfigurationImpl <em>VConfiguration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VConfigurationImpl
-	 * @see bvr.impl.BvrPackageImpl#getVConfiguration()
-	 * @generated
-	 */
-	int VCONFIGURATION = 37;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION__NAME = VSPEC_RESOLUTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION__RESOLVED_VSPEC = VSPEC_RESOLUTION__RESOLVED_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION__CHILD = VSPEC_RESOLUTION__CHILD;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION__MEMBER = VSPEC_RESOLUTION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Is Partial</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION__IS_PARTIAL = VSPEC_RESOLUTION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Resolved CV Spec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION__RESOLVED_CV_SPEC = VSPEC_RESOLUTION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>VConfiguration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION_FEATURE_COUNT = VSPEC_RESOLUTION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>VConfiguration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VCONFIGURATION_OPERATION_COUNT = VSPEC_RESOLUTION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.LinkExistenceImpl <em>Link Existence</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.LinkExistenceImpl
-	 * @see bvr.impl.BvrPackageImpl#getLinkExistence()
-	 * @generated
-	 */
-	int LINK_EXISTENCE = 38;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE__NAME = CHOICE_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
-
-	/**
-	 * The feature id for the '<em><b>Optional Link</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE__OPTIONAL_LINK = CHOICE_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Link Existence</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Link Existence</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINK_EXISTENCE_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link bvr.impl.OpaqueVariationPointImpl <em>Opaque Variation Point</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2463,7 +2413,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOpaqueVariationPoint()
 	 * @generated
 	 */
-	int OPAQUE_VARIATION_POINT = 39;
+	int OPAQUE_VARIATION_POINT = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2475,6 +2425,15 @@ public interface BvrPackage extends EPackage {
 	int OPAQUE_VARIATION_POINT__NAME = VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_VARIATION_POINT__NOTE = VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2482,6 +2441,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPAQUE_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_VARIATION_POINT__STAGED_VARIATION_POINT = VARIATION_POINT__STAGED_VARIATION_POINT;
 
 	/**
 	 * The feature id for the '<em><b>Place Holder</b></em>' containment reference.
@@ -2527,7 +2495,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOVPType()
 	 * @generated
 	 */
-	int OVP_TYPE = 40;
+	int OVP_TYPE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2537,6 +2505,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int OVP_TYPE__NAME = VPACKAGEABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OVP_TYPE__NOTE = VPACKAGEABLE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Spec</b></em>' containment reference.
@@ -2573,7 +2550,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOVPSemanticSpec()
 	 * @generated
 	 */
-	int OVP_SEMANTIC_SPEC = 41;
+	int OVP_SEMANTIC_SPEC = 36;
 
 	/**
 	 * The feature id for the '<em><b>Model Transformation</b></em>' attribute.
@@ -2619,7 +2596,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getObjectSpecification()
 	 * @generated
 	 */
-	int OBJECT_SPECIFICATION = 42;
+	int OBJECT_SPECIFICATION = 37;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2665,7 +2642,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getReplacementFragmentSpecification()
 	 * @generated
 	 */
-	int REPLACEMENT_FRAGMENT_SPECIFICATION = 43;
+	int REPLACEMENT_FRAGMENT_SPECIFICATION = 38;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -2702,7 +2679,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getVPackage()
 	 * @generated
 	 */
-	int VPACKAGE = 44;
+	int VPACKAGE = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2712,6 +2689,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int VPACKAGE__NAME = VPACKAGEABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VPACKAGE__NOTE = VPACKAGEABLE__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Package Element</b></em>' containment reference list.
@@ -2748,7 +2734,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getToBinding()
 	 * @generated
 	 */
-	int TO_BINDING = 45;
+	int TO_BINDING = 40;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2758,6 +2744,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int TO_BINDING__NAME = BOUNDARY_ELEMENT_BINDING__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_BINDING__NOTE = BOUNDARY_ELEMENT_BINDING__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>To Placement</b></em>' reference.
@@ -2803,7 +2798,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getToPlacement()
 	 * @generated
 	 */
-	int TO_PLACEMENT = 46;
+	int TO_PLACEMENT = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2813,6 +2808,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int TO_PLACEMENT__NAME = PLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_PLACEMENT__NOTE = PLACEMENT_BOUNDARY_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>To Replacement</b></em>' reference.
@@ -2876,7 +2880,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getToReplacement()
 	 * @generated
 	 */
-	int TO_REPLACEMENT = 47;
+	int TO_REPLACEMENT = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2886,6 +2890,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int TO_REPLACEMENT__NAME = REPLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TO_REPLACEMENT__NOTE = REPLACEMENT_BOUNDARY_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Inside Boundary Element</b></em>' reference list.
@@ -2940,7 +2953,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getFromBinding()
 	 * @generated
 	 */
-	int FROM_BINDING = 48;
+	int FROM_BINDING = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2950,6 +2963,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int FROM_BINDING__NAME = BOUNDARY_ELEMENT_BINDING__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_BINDING__NOTE = BOUNDARY_ELEMENT_BINDING__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>From Placement</b></em>' reference.
@@ -2995,7 +3017,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getFromPlacement()
 	 * @generated
 	 */
-	int FROM_PLACEMENT = 49;
+	int FROM_PLACEMENT = 44;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3005,6 +3027,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int FROM_PLACEMENT__NAME = PLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_PLACEMENT__NOTE = PLACEMENT_BOUNDARY_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>From Replacement</b></em>' reference.
@@ -3059,7 +3090,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getFromReplacement()
 	 * @generated
 	 */
-	int FROM_REPLACEMENT = 50;
+	int FROM_REPLACEMENT = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3069,6 +3100,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int FROM_REPLACEMENT__NAME = REPLACEMENT_BOUNDARY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_REPLACEMENT__NOTE = REPLACEMENT_BOUNDARY_ELEMENT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
@@ -3132,7 +3172,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getBCLExpression()
 	 * @generated
 	 */
-	int BCL_EXPRESSION = 52;
+	int BCL_EXPRESSION = 47;
 
 	/**
 	 * The number of structural features of the '<em>BCL Expression</em>' class.
@@ -3153,41 +3193,41 @@ public interface BvrPackage extends EPackage {
 	int BCL_EXPRESSION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.VSpecRefImpl <em>VSpec Ref</em>}' class.
+	 * The meta object id for the '{@link bvr.impl.TargetRefImpl <em>Target Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VSpecRefImpl
-	 * @see bvr.impl.BvrPackageImpl#getVSpecRef()
+	 * @see bvr.impl.TargetRefImpl
+	 * @see bvr.impl.BvrPackageImpl#getTargetRef()
 	 * @generated
 	 */
-	int VSPEC_REF = 51;
+	int TARGET_REF = 46;
 
 	/**
-	 * The feature id for the '<em><b>VSpec</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_REF__VSPEC = BCL_EXPRESSION_FEATURE_COUNT + 0;
+	int TARGET_REF__TARGET = BCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>VSpec Ref</em>' class.
+	 * The number of structural features of the '<em>Target Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_REF_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 1;
+	int TARGET_REF_FEATURE_COUNT = BCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>VSpec Ref</em>' class.
+	 * The number of operations of the '<em>Target Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VSPEC_REF_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
+	int TARGET_REF_OPERATION_COUNT = BCL_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.OpaqueConstraintImpl <em>Opaque Constraint</em>}' class.
@@ -3197,7 +3237,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOpaqueConstraint()
 	 * @generated
 	 */
-	int OPAQUE_CONSTRAINT = 53;
+	int OPAQUE_CONSTRAINT = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3209,13 +3249,13 @@ public interface BvrPackage extends EPackage {
 	int OPAQUE_CONSTRAINT__NAME = CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_CONSTRAINT__CONTEXT = CONSTRAINT__CONTEXT;
+	int OPAQUE_CONSTRAINT__NOTE = CONSTRAINT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' attribute.
@@ -3261,7 +3301,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getParametricVariationPoint()
 	 * @generated
 	 */
-	int PARAMETRIC_VARIATION_POINT = 54;
+	int PARAMETRIC_VARIATION_POINT = 49;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3273,6 +3313,15 @@ public interface BvrPackage extends EPackage {
 	int PARAMETRIC_VARIATION_POINT__NAME = VARIATION_POINT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_VARIATION_POINT__NOTE = VARIATION_POINT__NOTE;
+
+	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3280,6 +3329,15 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETRIC_VARIATION_POINT__BINDING_VSPEC = VARIATION_POINT__BINDING_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_VARIATION_POINT__STAGED_VARIATION_POINT = VARIATION_POINT__STAGED_VARIATION_POINT;
 
 	/**
 	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
@@ -3309,14 +3367,14 @@ public interface BvrPackage extends EPackage {
 	int PARAMETRIC_VARIATION_POINT_OPERATION_COUNT = VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link bvr.impl.SlotValueExistenceImpl <em>Slot Value Existence</em>}' class.
+	 * The meta object id for the '{@link bvr.impl.ParametricSlotAssignmentImpl <em>Parametric Slot Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see bvr.impl.SlotValueExistenceImpl
-	 * @see bvr.impl.BvrPackageImpl#getSlotValueExistence()
+	 * @see bvr.impl.ParametricSlotAssignmentImpl
+	 * @see bvr.impl.BvrPackageImpl#getParametricSlotAssignment()
 	 * @generated
 	 */
-	int SLOT_VALUE_EXISTENCE = 55;
+	int PARAMETRIC_SLOT_ASSIGNMENT = 50;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3325,7 +3383,16 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE__NAME = CHOICE_VARIATION_POINT__NAME;
+	int PARAMETRIC_SLOT_ASSIGNMENT__NAME = PARAMETRIC_VARIATION_POINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_SLOT_ASSIGNMENT__NOTE = PARAMETRIC_VARIATION_POINT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
@@ -3334,16 +3401,25 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE__BINDING_VSPEC = CHOICE_VARIATION_POINT__BINDING_VSPEC;
+	int PARAMETRIC_SLOT_ASSIGNMENT__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
 
 	/**
-	 * The feature id for the '<em><b>Binding Choice</b></em>' reference.
+	 * The feature id for the '<em><b>Staged Variation Point</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE__BINDING_CHOICE = CHOICE_VARIATION_POINT__BINDING_CHOICE;
+	int PARAMETRIC_SLOT_ASSIGNMENT__STAGED_VARIATION_POINT = PARAMETRIC_VARIATION_POINT__STAGED_VARIATION_POINT;
+
+	/**
+	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETRIC_SLOT_ASSIGNMENT__BINDING_VARIABLE = PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE;
 
 	/**
 	 * The feature id for the '<em><b>Slot Identifier</b></em>' attribute.
@@ -3352,7 +3428,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE__SLOT_IDENTIFIER = CHOICE_VARIATION_POINT_FEATURE_COUNT + 0;
+	int PARAMETRIC_SLOT_ASSIGNMENT__SLOT_IDENTIFIER = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Slot Owner</b></em>' containment reference.
@@ -3361,527 +3437,25 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE__SLOT_OWNER = CHOICE_VARIATION_POINT_FEATURE_COUNT + 1;
+	int PARAMETRIC_SLOT_ASSIGNMENT__SLOT_OWNER = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Slot Value Existence</em>' class.
+	 * The number of structural features of the '<em>Parametric Slot Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE_FEATURE_COUNT = CHOICE_VARIATION_POINT_FEATURE_COUNT + 2;
+	int PARAMETRIC_SLOT_ASSIGNMENT_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Slot Value Existence</em>' class.
+	 * The number of operations of the '<em>Parametric Slot Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SLOT_VALUE_EXISTENCE_OPERATION_COUNT = CHOICE_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ParametricLinkEndSubstitutionImpl <em>Parametric Link End Substitution</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ParametricLinkEndSubstitutionImpl
-	 * @see bvr.impl.BvrPackageImpl#getParametricLinkEndSubstitution()
-	 * @generated
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION = 56;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION__NAME = PARAMETRIC_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION__BINDING_VARIABLE = PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Link End Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Link</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION__LINK = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Parametric Link End Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Parametric Link End Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_LINK_END_SUBSTITUTION_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ParametricObjectSubstitutionImpl <em>Parametric Object Substitution</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ParametricObjectSubstitutionImpl
-	 * @see bvr.impl.BvrPackageImpl#getParametricObjectSubstitution()
-	 * @generated
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION = 57;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION__NAME = PARAMETRIC_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION__BINDING_VARIABLE = PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Placement Object</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Parametric Object Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Parametric Object Substitution</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_OBJECT_SUBSTITUTION_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ParametricSlotAssignmetImpl <em>Parametric Slot Assignmet</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ParametricSlotAssignmetImpl
-	 * @see bvr.impl.BvrPackageImpl#getParametricSlotAssignmet()
-	 * @generated
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET = 58;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET__NAME = PARAMETRIC_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET__BINDING_VSPEC = PARAMETRIC_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET__BINDING_VARIABLE = PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE;
-
-	/**
-	 * The feature id for the '<em><b>Slot Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Slot Owner</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Parametric Slot Assignmet</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET_FEATURE_COUNT = PARAMETRIC_VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Parametric Slot Assignmet</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETRIC_SLOT_ASSIGNMET_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ChoiceDerivationImpl <em>Choice Derivation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ChoiceDerivationImpl
-	 * @see bvr.impl.BvrPackageImpl#getChoiceDerivation()
-	 * @generated
-	 */
-	int CHOICE_DERIVATION = 59;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_DERIVATION__NAME = VSPEC_DERIVATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Derived VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_DERIVATION__DERIVED_VSPEC = VSPEC_DERIVATION__DERIVED_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Deriving Constraint</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_DERIVATION__DERIVING_CONSTRAINT = VSPEC_DERIVATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Derived Choice</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_DERIVATION__DERIVED_CHOICE = VSPEC_DERIVATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Choice Derivation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_DERIVATION_FEATURE_COUNT = VSPEC_DERIVATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Choice Derivation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_DERIVATION_OPERATION_COUNT = VSPEC_DERIVATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.VariableDerivationImpl <em>Variable Derivation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.VariableDerivationImpl
-	 * @see bvr.impl.BvrPackageImpl#getVariableDerivation()
-	 * @generated
-	 */
-	int VARIABLE_DERIVATION = 60;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DERIVATION__NAME = VSPEC_DERIVATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Derived VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DERIVATION__DERIVED_VSPEC = VSPEC_DERIVATION__DERIVED_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Deriving Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DERIVATION__DERIVING_EXPRESSION = VSPEC_DERIVATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Derived Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DERIVATION__DERIVED_VARIABLE = VSPEC_DERIVATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Variable Derivation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DERIVATION_FEATURE_COUNT = VSPEC_DERIVATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Variable Derivation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DERIVATION_OPERATION_COUNT = VSPEC_DERIVATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.CVSpecDerivationImpl <em>CV Spec Derivation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.CVSpecDerivationImpl
-	 * @see bvr.impl.BvrPackageImpl#getCVSpecDerivation()
-	 * @generated
-	 */
-	int CV_SPEC_DERIVATION = 61;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION__NAME = VSPEC_DERIVATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Derived VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION__DERIVED_VSPEC = VSPEC_DERIVATION__DERIVED_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Member Derivation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION__MEMBER_DERIVATION = VSPEC_DERIVATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Deriving CVspec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION__DERIVING_CVSPEC = VSPEC_DERIVATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Derived CV Spec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION__DERIVED_CV_SPEC = VSPEC_DERIVATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>CV Spec Derivation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION_FEATURE_COUNT = VSPEC_DERIVATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>CV Spec Derivation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CV_SPEC_DERIVATION_OPERATION_COUNT = VSPEC_DERIVATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link bvr.impl.ConfigurableUnitUsageImpl <em>Configurable Unit Usage</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see bvr.impl.ConfigurableUnitUsageImpl
-	 * @see bvr.impl.BvrPackageImpl#getConfigurableUnitUsage()
-	 * @generated
-	 */
-	int CONFIGURABLE_UNIT_USAGE = 62;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__NAME = COMPOSITE_VARIATION_POINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Binding VSpec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__BINDING_VSPEC = COMPOSITE_VARIATION_POINT__BINDING_VSPEC;
-
-	/**
-	 * The feature id for the '<em><b>Binding CV Spec</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__BINDING_CV_SPEC = COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC;
-
-	/**
-	 * The feature id for the '<em><b>Used Unit</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__USED_UNIT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Usage Reference</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Link End Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Unit Usage Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Configurable Unit Usage</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE_FEATURE_COUNT = COMPOSITE_VARIATION_POINT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Configurable Unit Usage</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURABLE_UNIT_USAGE_OPERATION_COUNT = COMPOSITE_VARIATION_POINT_OPERATION_COUNT + 0;
+	int PARAMETRIC_SLOT_ASSIGNMENT_OPERATION_COUNT = PARAMETRIC_VARIATION_POINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.PrimitiveValueSpecificationImpl <em>Primitive Value Specification</em>}' class.
@@ -3891,7 +3465,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getPrimitiveValueSpecification()
 	 * @generated
 	 */
-	int PRIMITIVE_VALUE_SPECIFICATION = 63;
+	int PRIMITIVE_VALUE_SPECIFICATION = 51;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -3937,7 +3511,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getBCLConstraint()
 	 * @generated
 	 */
-	int BCL_CONSTRAINT = 64;
+	int BCL_CONSTRAINT = 52;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3949,13 +3523,13 @@ public interface BvrPackage extends EPackage {
 	int BCL_CONSTRAINT__NAME = CONSTRAINT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BCL_CONSTRAINT__CONTEXT = CONSTRAINT__CONTEXT;
+	int BCL_CONSTRAINT__NOTE = CONSTRAINT__NOTE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference list.
@@ -3992,7 +3566,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 65;
+	int OPERATION_CALL_EXP = 53;
 
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
@@ -4038,7 +3612,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getBooleanLiteralExp()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXP = 66;
+	int BOOLEAN_LITERAL_EXP = 54;
 
 	/**
 	 * The feature id for the '<em><b>Bool</b></em>' attribute.
@@ -4075,7 +3649,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 67;
+	int STRING_LITERAL_EXP = 55;
 
 	/**
 	 * The feature id for the '<em><b>String</b></em>' attribute.
@@ -4112,7 +3686,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 68;
+	int NUMERIC_LITERAL_EXP = 56;
 
 	/**
 	 * The number of structural features of the '<em>Numeric Literal Exp</em>' class.
@@ -4140,7 +3714,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 69;
+	int INTEGER_LITERAL_EXP = 57;
 
 	/**
 	 * The feature id for the '<em><b>Integer</b></em>' attribute.
@@ -4177,7 +3751,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getUnlimitedLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_LITERAL_EXP = 70;
+	int UNLIMITED_LITERAL_EXP = 58;
 
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
@@ -4214,7 +3788,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 71;
+	int REAL_LITERAL_EXP = 59;
 
 	/**
 	 * The feature id for the '<em><b>Real</b></em>' attribute.
@@ -4244,6 +3818,707 @@ public interface BvrPackage extends EPackage {
 	int REAL_LITERAL_EXP_OPERATION_COUNT = NUMERIC_LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link bvr.impl.CompoundResolutionImpl <em>Compound Resolution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.CompoundResolutionImpl
+	 * @see bvr.impl.BvrPackageImpl#getCompoundResolution()
+	 * @generated
+	 */
+	int COMPOUND_RESOLUTION = 60;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__NAME = CHOICE_RESOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__NOTE = CHOICE_RESOLUTION__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__RESOLVED_VSPEC = CHOICE_RESOLUTION__RESOLVED_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__RESOLVED_CHOICE = CHOICE_RESOLUTION__RESOLVED_CHOICE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__RESOLVED_CHOICE_OCC = CHOICE_RESOLUTION__RESOLVED_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__RESOLVED_VCLASS_OCC = CHOICE_RESOLUTION__RESOLVED_VCLASS_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClassifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__RESOLVED_VCLASSIFIER = CHOICE_RESOLUTION__RESOLVED_VCLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION__MEMBERS = CHOICE_RESOLUTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Compound Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION_FEATURE_COUNT = CHOICE_RESOLUTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Compound Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_RESOLUTION_OPERATION_COUNT = CHOICE_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.NegResolutionImpl <em>Neg Resolution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.NegResolutionImpl
+	 * @see bvr.impl.BvrPackageImpl#getNegResolution()
+	 * @generated
+	 */
+	int NEG_RESOLUTION = 61;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__NAME = CHOICE_RESOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__NOTE = CHOICE_RESOLUTION__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__RESOLVED_VSPEC = CHOICE_RESOLUTION__RESOLVED_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__RESOLVED_CHOICE = CHOICE_RESOLUTION__RESOLVED_CHOICE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__RESOLVED_CHOICE_OCC = CHOICE_RESOLUTION__RESOLVED_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__RESOLVED_VCLASS_OCC = CHOICE_RESOLUTION__RESOLVED_VCLASS_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClassifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION__RESOLVED_VCLASSIFIER = CHOICE_RESOLUTION__RESOLVED_VCLASSIFIER;
+
+	/**
+	 * The number of structural features of the '<em>Neg Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION_FEATURE_COUNT = CHOICE_RESOLUTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Neg Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NEG_RESOLUTION_OPERATION_COUNT = CHOICE_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.PosResolutionImpl <em>Pos Resolution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.PosResolutionImpl
+	 * @see bvr.impl.BvrPackageImpl#getPosResolution()
+	 * @generated
+	 */
+	int POS_RESOLUTION = 62;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__NAME = COMPOUND_RESOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__NOTE = COMPOUND_RESOLUTION__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__RESOLVED_VSPEC = COMPOUND_RESOLUTION__RESOLVED_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__RESOLVED_CHOICE = COMPOUND_RESOLUTION__RESOLVED_CHOICE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__RESOLVED_CHOICE_OCC = COMPOUND_RESOLUTION__RESOLVED_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__RESOLVED_VCLASS_OCC = COMPOUND_RESOLUTION__RESOLVED_VCLASS_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClassifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__RESOLVED_VCLASSIFIER = COMPOUND_RESOLUTION__RESOLVED_VCLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION__MEMBERS = COMPOUND_RESOLUTION__MEMBERS;
+
+	/**
+	 * The number of structural features of the '<em>Pos Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION_FEATURE_COUNT = COMPOUND_RESOLUTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Pos Resolution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POS_RESOLUTION_OPERATION_COUNT = COMPOUND_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VRefImpl <em>VRef</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VRefImpl
+	 * @see bvr.impl.BvrPackageImpl#getVRef()
+	 * @generated
+	 */
+	int VREF = 63;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF__NAME = VARIABLETYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF__NOTE = VARIABLETYPE__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Ref VSpec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF__REF_VSPEC = VARIABLETYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>VRef</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF_FEATURE_COUNT = VARIABLETYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>VRef</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF_OPERATION_COUNT = VARIABLETYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.VRefValueSpecificationImpl <em>VRef Value Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.VRefValueSpecificationImpl
+	 * @see bvr.impl.BvrPackageImpl#getVRefValueSpecification()
+	 * @generated
+	 */
+	int VREF_VALUE_SPECIFICATION = 64;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF_VALUE_SPECIFICATION__TYPE = VALUE_SPECIFICATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>VSpec Resolution</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF_VALUE_SPECIFICATION__VSPEC_RESOLUTION = VALUE_SPECIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>VRef Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF_VALUE_SPECIFICATION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>VRef Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VREF_VALUE_SPECIFICATION_OPERATION_COUNT = VALUE_SPECIFICATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.ResolutionLiteralDefinitionImpl <em>Resolution Literal Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.ResolutionLiteralDefinitionImpl
+	 * @see bvr.impl.BvrPackageImpl#getResolutionLiteralDefinition()
+	 * @generated
+	 */
+	int RESOLUTION_LITERAL_DEFINITION = 65;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__NAME = COMPOUND_RESOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__NOTE = COMPOUND_RESOLUTION__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__RESOLVED_VSPEC = COMPOUND_RESOLUTION__RESOLVED_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__RESOLVED_CHOICE = COMPOUND_RESOLUTION__RESOLVED_CHOICE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__RESOLVED_CHOICE_OCC = COMPOUND_RESOLUTION__RESOLVED_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__RESOLVED_VCLASS_OCC = COMPOUND_RESOLUTION__RESOLVED_VCLASS_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClassifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__RESOLVED_VCLASSIFIER = COMPOUND_RESOLUTION__RESOLVED_VCLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__MEMBERS = COMPOUND_RESOLUTION__MEMBERS;
+
+	/**
+	 * The feature id for the '<em><b>Literal Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION__LITERAL_TYPE = COMPOUND_RESOLUTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Resolution Literal Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION_FEATURE_COUNT = COMPOUND_RESOLUTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Resolution Literal Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_DEFINITION_OPERATION_COUNT = COMPOUND_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.ResolutionLiteralUseImpl <em>Resolution Literal Use</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.ResolutionLiteralUseImpl
+	 * @see bvr.impl.BvrPackageImpl#getResolutionLiteralUse()
+	 * @generated
+	 */
+	int RESOLUTION_LITERAL_USE = 66;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__NAME = CHOICE_RESOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__NOTE = CHOICE_RESOLUTION__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VSpec</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__RESOLVED_VSPEC = CHOICE_RESOLUTION__RESOLVED_VSPEC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__RESOLVED_CHOICE = CHOICE_RESOLUTION__RESOLVED_CHOICE;
+
+	/**
+	 * The feature id for the '<em><b>Resolved Choice Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__RESOLVED_CHOICE_OCC = CHOICE_RESOLUTION__RESOLVED_CHOICE_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__RESOLVED_VCLASS_OCC = CHOICE_RESOLUTION__RESOLVED_VCLASS_OCC;
+
+	/**
+	 * The feature id for the '<em><b>Resolved VClassifier</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__RESOLVED_VCLASSIFIER = CHOICE_RESOLUTION__RESOLVED_VCLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Def Literal</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE__DEF_LITERAL = CHOICE_RESOLUTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Resolution Literal Use</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE_FEATURE_COUNT = CHOICE_RESOLUTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Resolution Literal Use</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOLUTION_LITERAL_USE_OPERATION_COUNT = CHOICE_RESOLUTION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link bvr.impl.BVRModelImpl <em>BVR Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.BVRModelImpl
+	 * @see bvr.impl.BvrPackageImpl#getBVRModel()
+	 * @generated
+	 */
+	int BVR_MODEL = 67;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__NAME = VPACKAGE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__NOTE = VPACKAGE__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Package Element</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__PACKAGE_ELEMENT = VPACKAGE__PACKAGE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Variability Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__VARIABILITY_MODEL = VPACKAGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__RESOLUTION_MODELS = VPACKAGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Model Base</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__BASE_MODEL_BASE = VPACKAGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Base Model Libraries</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__BASE_MODEL_LIBRARIES = VPACKAGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Realization Model</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL__REALIZATION_MODEL = VPACKAGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>BVR Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL_FEATURE_COUNT = VPACKAGE_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>BVR Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BVR_MODEL_OPERATION_COUNT = VPACKAGE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link bvr.PrimitiveTypeEnum <em>Primitive Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4251,7 +4526,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getPrimitiveTypeEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_ENUM = 72;
+	int PRIMITIVE_TYPE_ENUM = 68;
 
 	/**
 	 * The meta object id for the '{@link bvr.Operation <em>Operation</em>}' enum.
@@ -4261,7 +4536,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 73;
+	int OPERATION = 69;
 
 
 	/**
@@ -4307,17 +4582,6 @@ public interface BvrPackage extends EPackage {
 	EClass getVSpec();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link bvr.VSpec#getGroupMultiplicity <em>Group Multiplicity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Group Multiplicity</em>'.
-	 * @see bvr.VSpec#getGroupMultiplicity()
-	 * @see #getVSpec()
-	 * @generated
-	 */
-	EReference getVSpec_GroupMultiplicity();
-
-	/**
 	 * Returns the meta object for the attribute '{@link bvr.VSpec#getResolutionTime <em>Resolution Time</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4329,47 +4593,15 @@ public interface BvrPackage extends EPackage {
 	EAttribute getVSpec_ResolutionTime();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VSpec#getOwnedVSpecDerivation <em>Owned VSpec Derivation</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.VSpec#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned VSpec Derivation</em>'.
-	 * @see bvr.VSpec#getOwnedVSpecDerivation()
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see bvr.VSpec#getTarget()
 	 * @see #getVSpec()
 	 * @generated
 	 */
-	EReference getVSpec_OwnedVSpecDerivation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VSpec#getChild <em>Child</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Child</em>'.
-	 * @see bvr.VSpec#getChild()
-	 * @see #getVSpec()
-	 * @generated
-	 */
-	EReference getVSpec_Child();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.VSpec#getComment <em>Comment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comment</em>'.
-	 * @see bvr.VSpec#getComment()
-	 * @see #getVSpec()
-	 * @generated
-	 */
-	EAttribute getVSpec_Comment();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.VPackageable <em>VPackageable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>VPackageable</em>'.
-	 * @see bvr.VPackageable
-	 * @generated
-	 */
-	EClass getVPackageable();
+	EReference getVSpec_Target();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.NamedElement <em>Named Element</em>}'.
@@ -4391,6 +4623,134 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.NamedElement#getNote <em>Note</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Note</em>'.
+	 * @see bvr.NamedElement#getNote()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EReference getNamedElement_Note();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.Note <em>Note</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Note</em>'.
+	 * @see bvr.Note
+	 * @generated
+	 */
+	EClass getNote();
+
+	/**
+	 * Returns the meta object for the attribute '{@link bvr.Note#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see bvr.Note#getKind()
+	 * @see #getNote()
+	 * @generated
+	 */
+	EAttribute getNote_Kind();
+
+	/**
+	 * Returns the meta object for the attribute '{@link bvr.Note#getExpr <em>Expr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expr</em>'.
+	 * @see bvr.Note#getExpr()
+	 * @see #getNote()
+	 * @generated
+	 */
+	EAttribute getNote_Expr();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.Target <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Target</em>'.
+	 * @see bvr.Target
+	 * @generated
+	 */
+	EClass getTarget();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.CompoundNode <em>Compound Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound Node</em>'.
+	 * @see bvr.CompoundNode
+	 * @generated
+	 */
+	EClass getCompoundNode();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.CompoundNode#getMember <em>Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Member</em>'.
+	 * @see bvr.CompoundNode#getMember()
+	 * @see #getCompoundNode()
+	 * @generated
+	 */
+	EReference getCompoundNode_Member();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.CompoundNode#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Target</em>'.
+	 * @see bvr.CompoundNode#getTarget()
+	 * @see #getCompoundNode()
+	 * @generated
+	 */
+	EReference getCompoundNode_Target();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.VNode <em>VNode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VNode</em>'.
+	 * @see bvr.VNode
+	 * @generated
+	 */
+	EClass getVNode();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link bvr.VNode#getGroupMultiplicity <em>Group Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Group Multiplicity</em>'.
+	 * @see bvr.VNode#getGroupMultiplicity()
+	 * @see #getVNode()
+	 * @generated
+	 */
+	EReference getVNode_GroupMultiplicity();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.VNode#getOwnedConstraint <em>Owned Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Constraint</em>'.
+	 * @see bvr.VNode#getOwnedConstraint()
+	 * @see #getVNode()
+	 * @generated
+	 */
+	EReference getVNode_OwnedConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.VNode#getVariable <em>Variable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Variable</em>'.
+	 * @see bvr.VNode#getVariable()
+	 * @see #getVNode()
+	 * @generated
+	 */
+	EReference getVNode_Variable();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.MultiplicityInterval <em>Multiplicity Interval</em>}'.
@@ -4425,25 +4785,87 @@ public interface BvrPackage extends EPackage {
 	EAttribute getMultiplicityInterval_Lower();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.VSpecDerivation <em>VSpec Derivation</em>}'.
+	 * Returns the meta object for class '{@link bvr.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>VSpec Derivation</em>'.
-	 * @see bvr.VSpecDerivation
+	 * @return the meta object for class '<em>Constraint</em>'.
+	 * @see bvr.Constraint
 	 * @generated
 	 */
-	EClass getVSpecDerivation();
+	EClass getConstraint();
 
 	/**
-	 * Returns the meta object for the reference '{@link bvr.VSpecDerivation#getDerivedVSpec <em>Derived VSpec</em>}'.
+	 * Returns the meta object for class '{@link bvr.Variable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived VSpec</em>'.
-	 * @see bvr.VSpecDerivation#getDerivedVSpec()
-	 * @see #getVSpecDerivation()
+	 * @return the meta object for class '<em>Variable</em>'.
+	 * @see bvr.Variable
 	 * @generated
 	 */
-	EReference getVSpecDerivation_DerivedVSpec();
+	EClass getVariable();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link bvr.Variable#getDefaulValue <em>Defaul Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Defaul Value</em>'.
+	 * @see bvr.Variable#getDefaulValue()
+	 * @see #getVariable()
+	 * @generated
+	 */
+	EReference getVariable_DefaulValue();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.Variable#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see bvr.Variable#getType()
+	 * @see #getVariable()
+	 * @generated
+	 */
+	EReference getVariable_Type();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.ValueSpecification <em>Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Value Specification</em>'.
+	 * @see bvr.ValueSpecification
+	 * @generated
+	 */
+	EClass getValueSpecification();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.ValueSpecification#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see bvr.ValueSpecification#getType()
+	 * @see #getValueSpecification()
+	 * @generated
+	 */
+	EReference getValueSpecification_Type();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.Variabletype <em>Variabletype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Variabletype</em>'.
+	 * @see bvr.Variabletype
+	 * @generated
+	 */
+	EClass getVariabletype();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.VPackageable <em>VPackageable</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VPackageable</em>'.
+	 * @see bvr.VPackageable
+	 * @generated
+	 */
+	EClass getVPackageable();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.VClassifier <em>VClassifier</em>}'.
@@ -4488,68 +4910,121 @@ public interface BvrPackage extends EPackage {
 	EReference getVSpecResolution_ResolvedVSpec();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VSpecResolution#getChild <em>Child</em>}'.
+	 * Returns the meta object for class '{@link bvr.ChoiceResolution <em>Choice Resolution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Child</em>'.
-	 * @see bvr.VSpecResolution#getChild()
-	 * @see #getVSpecResolution()
+	 * @return the meta object for class '<em>Choice Resolution</em>'.
+	 * @see bvr.ChoiceResolution
 	 * @generated
 	 */
-	EReference getVSpecResolution_Child();
+	EClass getChoiceResolution();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.ChoiceResolutuion <em>Choice Resolutuion</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Choice Resolutuion</em>'.
-	 * @see bvr.ChoiceResolutuion
-	 * @generated
-	 */
-	EClass getChoiceResolutuion();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.ChoiceResolutuion#getResolvedChoice <em>Resolved Choice</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.ChoiceResolution#getResolvedChoice <em>Resolved Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Resolved Choice</em>'.
-	 * @see bvr.ChoiceResolutuion#getResolvedChoice()
-	 * @see #getChoiceResolutuion()
+	 * @see bvr.ChoiceResolution#getResolvedChoice()
+	 * @see #getChoiceResolution()
 	 * @generated
 	 */
-	EReference getChoiceResolutuion_ResolvedChoice();
+	EReference getChoiceResolution_ResolvedChoice();
 
 	/**
-	 * Returns the meta object for the attribute '{@link bvr.ChoiceResolutuion#isDecision <em>Decision</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.ChoiceResolution#getResolvedChoiceOcc <em>Resolved Choice Occ</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Decision</em>'.
-	 * @see bvr.ChoiceResolutuion#isDecision()
-	 * @see #getChoiceResolutuion()
+	 * @return the meta object for the reference '<em>Resolved Choice Occ</em>'.
+	 * @see bvr.ChoiceResolution#getResolvedChoiceOcc()
+	 * @see #getChoiceResolution()
 	 * @generated
 	 */
-	EAttribute getChoiceResolutuion_Decision();
+	EReference getChoiceResolution_ResolvedChoiceOcc();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.VInstance <em>VInstance</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.ChoiceResolution#getResolvedVClassOcc <em>Resolved VClass Occ</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>VInstance</em>'.
-	 * @see bvr.VInstance
+	 * @return the meta object for the reference '<em>Resolved VClass Occ</em>'.
+	 * @see bvr.ChoiceResolution#getResolvedVClassOcc()
+	 * @see #getChoiceResolution()
 	 * @generated
 	 */
-	EClass getVInstance();
+	EReference getChoiceResolution_ResolvedVClassOcc();
 
 	/**
-	 * Returns the meta object for the reference '{@link bvr.VInstance#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.ChoiceResolution#getResolvedVClassifier <em>Resolved VClassifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see bvr.VInstance#getType()
-	 * @see #getVInstance()
+	 * @return the meta object for the reference '<em>Resolved VClassifier</em>'.
+	 * @see bvr.ChoiceResolution#getResolvedVClassifier()
+	 * @see #getChoiceResolution()
 	 * @generated
 	 */
-	EReference getVInstance_Type();
+	EReference getChoiceResolution_ResolvedVClassifier();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.ChoiceOccurrence <em>Choice Occurrence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Choice Occurrence</em>'.
+	 * @see bvr.ChoiceOccurrence
+	 * @generated
+	 */
+	EClass getChoiceOccurrence();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.ChoiceOccurrence#getVType <em>VType</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>VType</em>'.
+	 * @see bvr.ChoiceOccurrence#getVType()
+	 * @see #getChoiceOccurrence()
+	 * @generated
+	 */
+	EReference getChoiceOccurrence_VType();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.VType <em>VType</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VType</em>'.
+	 * @see bvr.VType
+	 * @generated
+	 */
+	EClass getVType();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.VClassOccurrence <em>VClass Occurrence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VClass Occurrence</em>'.
+	 * @see bvr.VClassOccurrence
+	 * @generated
+	 */
+	EClass getVClassOccurrence();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.VClassOccurrence#getVType <em>VType</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>VType</em>'.
+	 * @see bvr.VClassOccurrence#getVType()
+	 * @see #getVClassOccurrence()
+	 * @generated
+	 */
+	EReference getVClassOccurrence_VType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.VClassOccurrence#getInstanceMultiplicity <em>Instance Multiplicity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Multiplicity</em>'.
+	 * @see bvr.VClassOccurrence#getInstanceMultiplicity()
+	 * @see #getVClassOccurrence()
+	 * @generated
+	 */
+	EReference getVClassOccurrence_InstanceMultiplicity();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.VariationPoint <em>Variation Point</em>}'.
@@ -4571,6 +5046,49 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVariationPoint_BindingVSpec();
+
+	/**
+	 * Returns the meta object for the container reference '{@link bvr.VariationPoint#getStagedVariationPoint <em>Staged Variation Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Staged Variation Point</em>'.
+	 * @see bvr.VariationPoint#getStagedVariationPoint()
+	 * @see #getVariationPoint()
+	 * @generated
+	 */
+	EReference getVariationPoint_StagedVariationPoint();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.StagedVariationPoint <em>Staged Variation Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Staged Variation Point</em>'.
+	 * @see bvr.StagedVariationPoint
+	 * @generated
+	 */
+	EClass getStagedVariationPoint();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.StagedVariationPoint#getBindingStagedVP <em>Binding Staged VP</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Binding Staged VP</em>'.
+	 * @see bvr.StagedVariationPoint#getBindingStagedVP()
+	 * @see #getStagedVariationPoint()
+	 * @generated
+	 */
+	EReference getStagedVariationPoint_BindingStagedVP();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.StagedVariationPoint#getMember <em>Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Member</em>'.
+	 * @see bvr.StagedVariationPoint#getMember()
+	 * @see #getStagedVariationPoint()
+	 * @generated
+	 */
+	EReference getStagedVariationPoint_Member();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.FragmentSubstitution <em>Fragment Substitution</em>}'.
@@ -4648,6 +5166,28 @@ public interface BvrPackage extends EPackage {
 	EReference getChoiceVariationPoint_BindingChoice();
 
 	/**
+	 * Returns the meta object for the reference '{@link bvr.ChoiceVariationPoint#getBindingChoiceOcc <em>Binding Choice Occ</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Binding Choice Occ</em>'.
+	 * @see bvr.ChoiceVariationPoint#getBindingChoiceOcc()
+	 * @see #getChoiceVariationPoint()
+	 * @generated
+	 */
+	EReference getChoiceVariationPoint_BindingChoiceOcc();
+
+	/**
+	 * Returns the meta object for the attribute '{@link bvr.ChoiceVariationPoint#isResolution_kind <em>Resolution kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Resolution kind</em>'.
+	 * @see bvr.ChoiceVariationPoint#isResolution_kind()
+	 * @see #getChoiceVariationPoint()
+	 * @generated
+	 */
+	EAttribute getChoiceVariationPoint_Resolution_kind();
+
+	/**
 	 * Returns the meta object for class '{@link bvr.RepeatableVariationPoint <em>Repeatable Variation Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4667,6 +5207,17 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRepeatableVariationPoint_BindingClassifier();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.RepeatableVariationPoint#getBindingVClassOcc <em>Binding VClass Occ</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Binding VClass Occ</em>'.
+	 * @see bvr.RepeatableVariationPoint#getBindingVClassOcc()
+	 * @see #getRepeatableVariationPoint()
+	 * @generated
+	 */
+	EReference getRepeatableVariationPoint_BindingVClassOcc();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.BoundaryElementBinding <em>Boundary Element Binding</em>}'.
@@ -4731,25 +5282,15 @@ public interface BvrPackage extends EPackage {
 	EClass getObjectHandle();
 
 	/**
-	 * Returns the meta object for the reference '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
+	 * Returns the meta object for the attribute '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>MOF Ref</em>'.
+	 * @return the meta object for the attribute '<em>MOF Ref</em>'.
 	 * @see bvr.ObjectHandle#getMOFRef()
 	 * @see #getObjectHandle()
 	 * @generated
 	 */
-	EReference getObjectHandle_MOFRef();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.BaseModelHandle <em>Base Model Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Base Model Handle</em>'.
-	 * @see bvr.BaseModelHandle
-	 * @generated
-	 */
-	EClass getBaseModelHandle();
+	EAttribute getObjectHandle_MOFRef();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
@@ -4795,16 +5336,6 @@ public interface BvrPackage extends EPackage {
 	EReference getReplacementFragmentType_SourceObject();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.Variabletype <em>Variabletype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variabletype</em>'.
-	 * @see bvr.Variabletype
-	 * @generated
-	 */
-	EClass getVariabletype();
-
-	/**
 	 * Returns the meta object for class '{@link bvr.ReplacementBoundaryElement <em>Replacement Boundary Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4815,132 +5346,36 @@ public interface BvrPackage extends EPackage {
 	EClass getReplacementBoundaryElement();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.ObjectSubstitution <em>Object Substitution</em>}'.
+	 * Returns the meta object for class '{@link bvr.ValueResolution <em>Value Resolution</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Object Substitution</em>'.
-	 * @see bvr.ObjectSubstitution
+	 * @return the meta object for class '<em>Value Resolution</em>'.
+	 * @see bvr.ValueResolution
 	 * @generated
 	 */
-	EClass getObjectSubstitution();
+	EClass getValueResolution();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ObjectSubstitution#getPlacementObject <em>Placement Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Placement Object</em>'.
-	 * @see bvr.ObjectSubstitution#getPlacementObject()
-	 * @see #getObjectSubstitution()
-	 * @generated
-	 */
-	EReference getObjectSubstitution_PlacementObject();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ObjectSubstitution#getReplacementObject <em>Replacement Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Replacement Object</em>'.
-	 * @see bvr.ObjectSubstitution#getReplacementObject()
-	 * @see #getObjectSubstitution()
-	 * @generated
-	 */
-	EReference getObjectSubstitution_ReplacementObject();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.Variable <em>Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable</em>'.
-	 * @see bvr.Variable
-	 * @generated
-	 */
-	EClass getVariable();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.Variable#getReplacementFragmentTypesubsetstype <em>Replacement Fragment Typesubsetstype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Replacement Fragment Typesubsetstype</em>'.
-	 * @see bvr.Variable#getReplacementFragmentTypesubsetstype()
-	 * @see #getVariable()
-	 * @generated
-	 */
-	EReference getVariable_ReplacementFragmentTypesubsetstype();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.Variable#getDefaulValue <em>Defaul Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Defaul Value</em>'.
-	 * @see bvr.Variable#getDefaulValue()
-	 * @see #getVariable()
-	 * @generated
-	 */
-	EReference getVariable_DefaulValue();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.Variable#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see bvr.Variable#getType()
-	 * @see #getVariable()
-	 * @generated
-	 */
-	EReference getVariable_Type();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ValueSpecification <em>Value Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Value Specification</em>'.
-	 * @see bvr.ValueSpecification
-	 * @generated
-	 */
-	EClass getValueSpecification();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.ValueSpecification#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see bvr.ValueSpecification#getType()
-	 * @see #getValueSpecification()
-	 * @generated
-	 */
-	EReference getValueSpecification_Type();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.VariableValueAssignment <em>Variable Value Assignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable Value Assignment</em>'.
-	 * @see bvr.VariableValueAssignment
-	 * @generated
-	 */
-	EClass getVariableValueAssignment();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.VariableValueAssignment#getResolvedVariable <em>Resolved Variable</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.ValueResolution#getResolvedVariable <em>Resolved Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Resolved Variable</em>'.
-	 * @see bvr.VariableValueAssignment#getResolvedVariable()
-	 * @see #getVariableValueAssignment()
+	 * @see bvr.ValueResolution#getResolvedVariable()
+	 * @see #getValueResolution()
 	 * @generated
 	 */
-	EReference getVariableValueAssignment_ResolvedVariable();
+	EReference getValueResolution_ResolvedVariable();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link bvr.VariableValueAssignment#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link bvr.ValueResolution#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see bvr.VariableValueAssignment#getValue()
-	 * @see #getVariableValueAssignment()
+	 * @see bvr.ValueResolution#getValue()
+	 * @see #getValueResolution()
 	 * @generated
 	 */
-	EReference getVariableValueAssignment_Value();
+	EReference getValueResolution_Value();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.PrimitveType <em>Primitve Type</em>}'.
@@ -4985,59 +5420,6 @@ public interface BvrPackage extends EPackage {
 	EAttribute getObjectType_MetaClass();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.VInterface <em>VInterface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>VInterface</em>'.
-	 * @see bvr.VInterface
-	 * @generated
-	 */
-	EClass getVInterface();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VInterface#getMember <em>Member</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Member</em>'.
-	 * @see bvr.VInterface#getMember()
-	 * @see #getVInterface()
-	 * @generated
-	 */
-	EReference getVInterface_Member();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VInterface#getOwnedConstraint <em>Owned Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Constraint</em>'.
-	 * @see bvr.VInterface#getOwnedConstraint()
-	 * @see #getVInterface()
-	 * @generated
-	 */
-	EReference getVInterface_OwnedConstraint();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.Constraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constraint</em>'.
-	 * @see bvr.Constraint
-	 * @generated
-	 */
-	EClass getConstraint();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.Constraint#getContext <em>Context</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Context</em>'.
-	 * @see bvr.Constraint#getContext()
-	 * @see #getConstraint()
-	 * @generated
-	 */
-	EReference getConstraint_Context();
-
-	/**
 	 * Returns the meta object for class '{@link bvr.SlotAssignment <em>Slot Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5079,295 +5461,6 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSlotAssignment_SlotOwner();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ObjectExistence <em>Object Existence</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Object Existence</em>'.
-	 * @see bvr.ObjectExistence
-	 * @generated
-	 */
-	EClass getObjectExistence();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ObjectExistence#getOptionalObject <em>Optional Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Optional Object</em>'.
-	 * @see bvr.ObjectExistence#getOptionalObject()
-	 * @see #getObjectExistence()
-	 * @generated
-	 */
-	EReference getObjectExistence_OptionalObject();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.LinkEndSubstitution <em>Link End Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Link End Substitution</em>'.
-	 * @see bvr.LinkEndSubstitution
-	 * @generated
-	 */
-	EClass getLinkEndSubstitution();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.LinkEndSubstitution#getLink <em>Link</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Link</em>'.
-	 * @see bvr.LinkEndSubstitution#getLink()
-	 * @see #getLinkEndSubstitution()
-	 * @generated
-	 */
-	EReference getLinkEndSubstitution_Link();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.LinkEndSubstitution#getLinkEndIdentifier <em>Link End Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Link End Identifier</em>'.
-	 * @see bvr.LinkEndSubstitution#getLinkEndIdentifier()
-	 * @see #getLinkEndSubstitution()
-	 * @generated
-	 */
-	EAttribute getLinkEndSubstitution_LinkEndIdentifier();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.LinkEndSubstitution#getReplacementObject <em>Replacement Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Replacement Object</em>'.
-	 * @see bvr.LinkEndSubstitution#getReplacementObject()
-	 * @see #getLinkEndSubstitution()
-	 * @generated
-	 */
-	EReference getLinkEndSubstitution_ReplacementObject();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.LinkHandle <em>Link Handle</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Link Handle</em>'.
-	 * @see bvr.LinkHandle
-	 * @generated
-	 */
-	EClass getLinkHandle();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.LinkHandle#getMOFRef <em>MOF Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>MOF Ref</em>'.
-	 * @see bvr.LinkHandle#getMOFRef()
-	 * @see #getLinkHandle()
-	 * @generated
-	 */
-	EAttribute getLinkHandle_MOFRef();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ConfigurableUnit <em>Configurable Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configurable Unit</em>'.
-	 * @see bvr.ConfigurableUnit
-	 * @generated
-	 */
-	EClass getConfigurableUnit();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.ConfigurableUnit#getOwnedVSpec <em>Owned VSpec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned VSpec</em>'.
-	 * @see bvr.ConfigurableUnit#getOwnedVSpec()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_OwnedVSpec();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.ConfigurableUnit#getOwnedVariationPoint <em>Owned Variation Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Variation Point</em>'.
-	 * @see bvr.ConfigurableUnit#getOwnedVariationPoint()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_OwnedVariationPoint();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.ConfigurableUnit#getOwnedConstraint <em>Owned Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Constraint</em>'.
-	 * @see bvr.ConfigurableUnit#getOwnedConstraint()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_OwnedConstraint();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ConfigurableUnit#getConfigurableContainerObject <em>Configurable Container Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Configurable Container Object</em>'.
-	 * @see bvr.ConfigurableUnit#getConfigurableContainerObject()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_ConfigurableContainerObject();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.ConfigurableUnit#getOwnedVSpecResolution <em>Owned VSpec Resolution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned VSpec Resolution</em>'.
-	 * @see bvr.ConfigurableUnit#getOwnedVSpecResolution()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_OwnedVSpecResolution();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.ConfigurableUnit#getUnitInterface <em>Unit Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Unit Interface</em>'.
-	 * @see bvr.ConfigurableUnit#getUnitInterface()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_UnitInterface();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.ConfigurableUnit#getOwnedVSpecDerivation <em>Owned VSpec Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned VSpec Derivation</em>'.
-	 * @see bvr.ConfigurableUnit#getOwnedVSpecDerivation()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_OwnedVSpecDerivation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.ConfigurableUnit#getOwnedVariabletype <em>Owned Variabletype</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Variabletype</em>'.
-	 * @see bvr.ConfigurableUnit#getOwnedVariabletype()
-	 * @see #getConfigurableUnit()
-	 * @generated
-	 */
-	EReference getConfigurableUnit_OwnedVariabletype();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.CompositeVariationPoint <em>Composite Variation Point</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Composite Variation Point</em>'.
-	 * @see bvr.CompositeVariationPoint
-	 * @generated
-	 */
-	EClass getCompositeVariationPoint();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.CompositeVariationPoint#getBindingCVSpec <em>Binding CV Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Binding CV Spec</em>'.
-	 * @see bvr.CompositeVariationPoint#getBindingCVSpec()
-	 * @see #getCompositeVariationPoint()
-	 * @generated
-	 */
-	EReference getCompositeVariationPoint_BindingCVSpec();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.CVSpec <em>CV Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CV Spec</em>'.
-	 * @see bvr.CVSpec
-	 * @generated
-	 */
-	EClass getCVSpec();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.CVSpec#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see bvr.CVSpec#getType()
-	 * @see #getCVSpec()
-	 * @generated
-	 */
-	EReference getCVSpec_Type();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.VConfiguration <em>VConfiguration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>VConfiguration</em>'.
-	 * @see bvr.VConfiguration
-	 * @generated
-	 */
-	EClass getVConfiguration();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VConfiguration#getMember <em>Member</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Member</em>'.
-	 * @see bvr.VConfiguration#getMember()
-	 * @see #getVConfiguration()
-	 * @generated
-	 */
-	EReference getVConfiguration_Member();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.VConfiguration#isIsPartial <em>Is Partial</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Partial</em>'.
-	 * @see bvr.VConfiguration#isIsPartial()
-	 * @see #getVConfiguration()
-	 * @generated
-	 */
-	EAttribute getVConfiguration_IsPartial();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.VConfiguration#getResolvedCVSpec <em>Resolved CV Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Resolved CV Spec</em>'.
-	 * @see bvr.VConfiguration#getResolvedCVSpec()
-	 * @see #getVConfiguration()
-	 * @generated
-	 */
-	EReference getVConfiguration_ResolvedCVSpec();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.LinkExistence <em>Link Existence</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Link Existence</em>'.
-	 * @see bvr.LinkExistence
-	 * @generated
-	 */
-	EClass getLinkExistence();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.LinkExistence#getOptionalLink <em>Optional Link</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Optional Link</em>'.
-	 * @see bvr.LinkExistence#getOptionalLink()
-	 * @see #getLinkExistence()
-	 * @generated
-	 */
-	EReference getLinkExistence_OptionalLink();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.OpaqueVariationPoint <em>Opaque Variation Point</em>}'.
@@ -5765,25 +5858,25 @@ public interface BvrPackage extends EPackage {
 	EReference getFromReplacement_FromPlacement();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.VSpecRef <em>VSpec Ref</em>}'.
+	 * Returns the meta object for class '{@link bvr.TargetRef <em>Target Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>VSpec Ref</em>'.
-	 * @see bvr.VSpecRef
+	 * @return the meta object for class '<em>Target Ref</em>'.
+	 * @see bvr.TargetRef
 	 * @generated
 	 */
-	EClass getVSpecRef();
+	EClass getTargetRef();
 
 	/**
-	 * Returns the meta object for the reference '{@link bvr.VSpecRef#getVSpec <em>VSpec</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.TargetRef#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>VSpec</em>'.
-	 * @see bvr.VSpecRef#getVSpec()
-	 * @see #getVSpecRef()
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see bvr.TargetRef#getTarget()
+	 * @see #getTargetRef()
 	 * @generated
 	 */
-	EReference getVSpecRef_VSpec();
+	EReference getTargetRef_Target();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.BCLExpression <em>BCL Expression</em>}'.
@@ -5849,282 +5942,36 @@ public interface BvrPackage extends EPackage {
 	EReference getParametricVariationPoint_BindingVariable();
 
 	/**
-	 * Returns the meta object for class '{@link bvr.SlotValueExistence <em>Slot Value Existence</em>}'.
+	 * Returns the meta object for class '{@link bvr.ParametricSlotAssignment <em>Parametric Slot Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Slot Value Existence</em>'.
-	 * @see bvr.SlotValueExistence
+	 * @return the meta object for class '<em>Parametric Slot Assignment</em>'.
+	 * @see bvr.ParametricSlotAssignment
 	 * @generated
 	 */
-	EClass getSlotValueExistence();
+	EClass getParametricSlotAssignment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link bvr.SlotValueExistence#getSlotIdentifier <em>Slot Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link bvr.ParametricSlotAssignment#getSlotIdentifier <em>Slot Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Slot Identifier</em>'.
-	 * @see bvr.SlotValueExistence#getSlotIdentifier()
-	 * @see #getSlotValueExistence()
+	 * @see bvr.ParametricSlotAssignment#getSlotIdentifier()
+	 * @see #getParametricSlotAssignment()
 	 * @generated
 	 */
-	EAttribute getSlotValueExistence_SlotIdentifier();
+	EAttribute getParametricSlotAssignment_SlotIdentifier();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link bvr.SlotValueExistence#getSlotOwner <em>Slot Owner</em>}'.
+	 * Returns the meta object for the containment reference '{@link bvr.ParametricSlotAssignment#getSlotOwner <em>Slot Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Slot Owner</em>'.
-	 * @see bvr.SlotValueExistence#getSlotOwner()
-	 * @see #getSlotValueExistence()
+	 * @see bvr.ParametricSlotAssignment#getSlotOwner()
+	 * @see #getParametricSlotAssignment()
 	 * @generated
 	 */
-	EReference getSlotValueExistence_SlotOwner();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ParametricLinkEndSubstitution <em>Parametric Link End Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Parametric Link End Substitution</em>'.
-	 * @see bvr.ParametricLinkEndSubstitution
-	 * @generated
-	 */
-	EClass getParametricLinkEndSubstitution();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.ParametricLinkEndSubstitution#getLinkEndIdentifier <em>Link End Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Link End Identifier</em>'.
-	 * @see bvr.ParametricLinkEndSubstitution#getLinkEndIdentifier()
-	 * @see #getParametricLinkEndSubstitution()
-	 * @generated
-	 */
-	EAttribute getParametricLinkEndSubstitution_LinkEndIdentifier();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ParametricLinkEndSubstitution#getLink <em>Link</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Link</em>'.
-	 * @see bvr.ParametricLinkEndSubstitution#getLink()
-	 * @see #getParametricLinkEndSubstitution()
-	 * @generated
-	 */
-	EReference getParametricLinkEndSubstitution_Link();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ParametricObjectSubstitution <em>Parametric Object Substitution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Parametric Object Substitution</em>'.
-	 * @see bvr.ParametricObjectSubstitution
-	 * @generated
-	 */
-	EClass getParametricObjectSubstitution();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ParametricObjectSubstitution#getPlacementObject <em>Placement Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Placement Object</em>'.
-	 * @see bvr.ParametricObjectSubstitution#getPlacementObject()
-	 * @see #getParametricObjectSubstitution()
-	 * @generated
-	 */
-	EReference getParametricObjectSubstitution_PlacementObject();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ParametricSlotAssignmet <em>Parametric Slot Assignmet</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Parametric Slot Assignmet</em>'.
-	 * @see bvr.ParametricSlotAssignmet
-	 * @generated
-	 */
-	EClass getParametricSlotAssignmet();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.ParametricSlotAssignmet#getSlotIdentifier <em>Slot Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Slot Identifier</em>'.
-	 * @see bvr.ParametricSlotAssignmet#getSlotIdentifier()
-	 * @see #getParametricSlotAssignmet()
-	 * @generated
-	 */
-	EAttribute getParametricSlotAssignmet_SlotIdentifier();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ParametricSlotAssignmet#getSlotOwner <em>Slot Owner</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Slot Owner</em>'.
-	 * @see bvr.ParametricSlotAssignmet#getSlotOwner()
-	 * @see #getParametricSlotAssignmet()
-	 * @generated
-	 */
-	EReference getParametricSlotAssignmet_SlotOwner();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ChoiceDerivation <em>Choice Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Choice Derivation</em>'.
-	 * @see bvr.ChoiceDerivation
-	 * @generated
-	 */
-	EClass getChoiceDerivation();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ChoiceDerivation#getDerivingConstraint <em>Deriving Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Deriving Constraint</em>'.
-	 * @see bvr.ChoiceDerivation#getDerivingConstraint()
-	 * @see #getChoiceDerivation()
-	 * @generated
-	 */
-	EReference getChoiceDerivation_DerivingConstraint();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.ChoiceDerivation#getDerivedChoice <em>Derived Choice</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Choice</em>'.
-	 * @see bvr.ChoiceDerivation#getDerivedChoice()
-	 * @see #getChoiceDerivation()
-	 * @generated
-	 */
-	EReference getChoiceDerivation_DerivedChoice();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.VariableDerivation <em>Variable Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable Derivation</em>'.
-	 * @see bvr.VariableDerivation
-	 * @generated
-	 */
-	EClass getVariableDerivation();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.VariableDerivation#getDerivingExpression <em>Deriving Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Deriving Expression</em>'.
-	 * @see bvr.VariableDerivation#getDerivingExpression()
-	 * @see #getVariableDerivation()
-	 * @generated
-	 */
-	EReference getVariableDerivation_DerivingExpression();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.VariableDerivation#getDerivedVariable <em>Derived Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived Variable</em>'.
-	 * @see bvr.VariableDerivation#getDerivedVariable()
-	 * @see #getVariableDerivation()
-	 * @generated
-	 */
-	EReference getVariableDerivation_DerivedVariable();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.CVSpecDerivation <em>CV Spec Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>CV Spec Derivation</em>'.
-	 * @see bvr.CVSpecDerivation
-	 * @generated
-	 */
-	EClass getCVSpecDerivation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.CVSpecDerivation#getMemberDerivation <em>Member Derivation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Member Derivation</em>'.
-	 * @see bvr.CVSpecDerivation#getMemberDerivation()
-	 * @see #getCVSpecDerivation()
-	 * @generated
-	 */
-	EReference getCVSpecDerivation_MemberDerivation();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.CVSpecDerivation#getDerivingCVspec <em>Deriving CVspec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Deriving CVspec</em>'.
-	 * @see bvr.CVSpecDerivation#getDerivingCVspec()
-	 * @see #getCVSpecDerivation()
-	 * @generated
-	 */
-	EReference getCVSpecDerivation_DerivingCVspec();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.CVSpecDerivation#getDerivedCVSpec <em>Derived CV Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Derived CV Spec</em>'.
-	 * @see bvr.CVSpecDerivation#getDerivedCVSpec()
-	 * @see #getCVSpecDerivation()
-	 * @generated
-	 */
-	EReference getCVSpecDerivation_DerivedCVSpec();
-
-	/**
-	 * Returns the meta object for class '{@link bvr.ConfigurableUnitUsage <em>Configurable Unit Usage</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configurable Unit Usage</em>'.
-	 * @see bvr.ConfigurableUnitUsage
-	 * @generated
-	 */
-	EClass getConfigurableUnitUsage();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.ConfigurableUnitUsage#getUsedUnit <em>Used Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Used Unit</em>'.
-	 * @see bvr.ConfigurableUnitUsage#getUsedUnit()
-	 * @see #getConfigurableUnitUsage()
-	 * @generated
-	 */
-	EReference getConfigurableUnitUsage_UsedUnit();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link bvr.ConfigurableUnitUsage#getUsageReference <em>Usage Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Usage Reference</em>'.
-	 * @see bvr.ConfigurableUnitUsage#getUsageReference()
-	 * @see #getConfigurableUnitUsage()
-	 * @generated
-	 */
-	EReference getConfigurableUnitUsage_UsageReference();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.ConfigurableUnitUsage#getLinkEndIdentifier <em>Link End Identifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Link End Identifier</em>'.
-	 * @see bvr.ConfigurableUnitUsage#getLinkEndIdentifier()
-	 * @see #getConfigurableUnitUsage()
-	 * @generated
-	 */
-	EAttribute getConfigurableUnitUsage_LinkEndIdentifier();
-
-	/**
-	 * Returns the meta object for the reference '{@link bvr.ConfigurableUnitUsage#getUnitUsageInterface <em>Unit Usage Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Unit Usage Interface</em>'.
-	 * @see bvr.ConfigurableUnitUsage#getUnitUsageInterface()
-	 * @see #getConfigurableUnitUsage()
-	 * @generated
-	 */
-	EReference getConfigurableUnitUsage_UnitUsageInterface();
+	EReference getParametricSlotAssignment_SlotOwner();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.PrimitiveValueSpecification <em>Primitive Value Specification</em>}'.
@@ -6316,6 +6163,196 @@ public interface BvrPackage extends EPackage {
 	EAttribute getRealLiteralExp_Real();
 
 	/**
+	 * Returns the meta object for class '{@link bvr.CompoundResolution <em>Compound Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound Resolution</em>'.
+	 * @see bvr.CompoundResolution
+	 * @generated
+	 */
+	EClass getCompoundResolution();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.CompoundResolution#getMembers <em>Members</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Members</em>'.
+	 * @see bvr.CompoundResolution#getMembers()
+	 * @see #getCompoundResolution()
+	 * @generated
+	 */
+	EReference getCompoundResolution_Members();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.NegResolution <em>Neg Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Neg Resolution</em>'.
+	 * @see bvr.NegResolution
+	 * @generated
+	 */
+	EClass getNegResolution();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.PosResolution <em>Pos Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pos Resolution</em>'.
+	 * @see bvr.PosResolution
+	 * @generated
+	 */
+	EClass getPosResolution();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.VRef <em>VRef</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VRef</em>'.
+	 * @see bvr.VRef
+	 * @generated
+	 */
+	EClass getVRef();
+
+	/**
+	 * Returns the meta object for the reference list '{@link bvr.VRef#getRefVSpec <em>Ref VSpec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Ref VSpec</em>'.
+	 * @see bvr.VRef#getRefVSpec()
+	 * @see #getVRef()
+	 * @generated
+	 */
+	EReference getVRef_RefVSpec();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.VRefValueSpecification <em>VRef Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>VRef Value Specification</em>'.
+	 * @see bvr.VRefValueSpecification
+	 * @generated
+	 */
+	EClass getVRefValueSpecification();
+
+	/**
+	 * Returns the meta object for the reference list '{@link bvr.VRefValueSpecification#getVSpecResolution <em>VSpec Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>VSpec Resolution</em>'.
+	 * @see bvr.VRefValueSpecification#getVSpecResolution()
+	 * @see #getVRefValueSpecification()
+	 * @generated
+	 */
+	EReference getVRefValueSpecification_VSpecResolution();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.ResolutionLiteralDefinition <em>Resolution Literal Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Resolution Literal Definition</em>'.
+	 * @see bvr.ResolutionLiteralDefinition
+	 * @generated
+	 */
+	EClass getResolutionLiteralDefinition();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.ResolutionLiteralDefinition#getLiteralType <em>Literal Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Literal Type</em>'.
+	 * @see bvr.ResolutionLiteralDefinition#getLiteralType()
+	 * @see #getResolutionLiteralDefinition()
+	 * @generated
+	 */
+	EReference getResolutionLiteralDefinition_LiteralType();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.ResolutionLiteralUse <em>Resolution Literal Use</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Resolution Literal Use</em>'.
+	 * @see bvr.ResolutionLiteralUse
+	 * @generated
+	 */
+	EClass getResolutionLiteralUse();
+
+	/**
+	 * Returns the meta object for the reference '{@link bvr.ResolutionLiteralUse#getDefLiteral <em>Def Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Def Literal</em>'.
+	 * @see bvr.ResolutionLiteralUse#getDefLiteral()
+	 * @see #getResolutionLiteralUse()
+	 * @generated
+	 */
+	EReference getResolutionLiteralUse_DefLiteral();
+
+	/**
+	 * Returns the meta object for class '{@link bvr.BVRModel <em>BVR Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>BVR Model</em>'.
+	 * @see bvr.BVRModel
+	 * @generated
+	 */
+	EClass getBVRModel();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link bvr.BVRModel#getVariabilityModel <em>Variability Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Variability Model</em>'.
+	 * @see bvr.BVRModel#getVariabilityModel()
+	 * @see #getBVRModel()
+	 * @generated
+	 */
+	EReference getBVRModel_VariabilityModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.BVRModel#getResolutionModels <em>Resolution Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Resolution Models</em>'.
+	 * @see bvr.BVRModel#getResolutionModels()
+	 * @see #getBVRModel()
+	 * @generated
+	 */
+	EReference getBVRModel_ResolutionModels();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link bvr.BVRModel#getBaseModelBase <em>Base Model Base</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Base Model Base</em>'.
+	 * @see bvr.BVRModel#getBaseModelBase()
+	 * @see #getBVRModel()
+	 * @generated
+	 */
+	EReference getBVRModel_BaseModelBase();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.BVRModel#getBaseModelLibraries <em>Base Model Libraries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Base Model Libraries</em>'.
+	 * @see bvr.BVRModel#getBaseModelLibraries()
+	 * @see #getBVRModel()
+	 * @generated
+	 */
+	EReference getBVRModel_BaseModelLibraries();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link bvr.BVRModel#getRealizationModel <em>Realization Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Realization Model</em>'.
+	 * @see bvr.BVRModel#getRealizationModel()
+	 * @see #getBVRModel()
+	 * @generated
+	 */
+	EReference getBVRModel_RealizationModel();
+
+	/**
 	 * Returns the meta object for enum '{@link bvr.PrimitiveTypeEnum <em>Primitive Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6395,14 +6432,6 @@ public interface BvrPackage extends EPackage {
 		EClass VSPEC = eINSTANCE.getVSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Group Multiplicity</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VSPEC__GROUP_MULTIPLICITY = eINSTANCE.getVSpec_GroupMultiplicity();
-
-		/**
 		 * The meta object literal for the '<em><b>Resolution Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6411,38 +6440,12 @@ public interface BvrPackage extends EPackage {
 		EAttribute VSPEC__RESOLUTION_TIME = eINSTANCE.getVSpec_ResolutionTime();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VSPEC__OWNED_VSPEC_DERIVATION = eINSTANCE.getVSpec_OwnedVSpecDerivation();
-
-		/**
-		 * The meta object literal for the '<em><b>Child</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VSPEC__CHILD = eINSTANCE.getVSpec_Child();
-
-		/**
-		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VSPEC__COMMENT = eINSTANCE.getVSpec_Comment();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.VPackageableImpl <em>VPackageable</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VPackageableImpl
-		 * @see bvr.impl.BvrPackageImpl#getVPackageable()
-		 * @generated
-		 */
-		EClass VPACKAGEABLE = eINSTANCE.getVPackageable();
+		EReference VSPEC__TARGET = eINSTANCE.getVSpec_Target();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -6461,6 +6464,110 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Note</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NAMED_ELEMENT__NOTE = eINSTANCE.getNamedElement_Note();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.NoteImpl <em>Note</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.NoteImpl
+		 * @see bvr.impl.BvrPackageImpl#getNote()
+		 * @generated
+		 */
+		EClass NOTE = eINSTANCE.getNote();
+
+		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NOTE__KIND = eINSTANCE.getNote_Kind();
+
+		/**
+		 * The meta object literal for the '<em><b>Expr</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NOTE__EXPR = eINSTANCE.getNote_Expr();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.TargetImpl <em>Target</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.TargetImpl
+		 * @see bvr.impl.BvrPackageImpl#getTarget()
+		 * @generated
+		 */
+		EClass TARGET = eINSTANCE.getTarget();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.CompoundNodeImpl <em>Compound Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.CompoundNodeImpl
+		 * @see bvr.impl.BvrPackageImpl#getCompoundNode()
+		 * @generated
+		 */
+		EClass COMPOUND_NODE = eINSTANCE.getCompoundNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Member</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOUND_NODE__MEMBER = eINSTANCE.getCompoundNode_Member();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOUND_NODE__TARGET = eINSTANCE.getCompoundNode_Target();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VNodeImpl <em>VNode</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VNodeImpl
+		 * @see bvr.impl.BvrPackageImpl#getVNode()
+		 * @generated
+		 */
+		EClass VNODE = eINSTANCE.getVNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Group Multiplicity</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VNODE__GROUP_MULTIPLICITY = eINSTANCE.getVNode_GroupMultiplicity();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Constraint</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VNODE__OWNED_CONSTRAINT = eINSTANCE.getVNode_OwnedConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VNODE__VARIABLE = eINSTANCE.getVNode_Variable();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.MultiplicityIntervalImpl <em>Multiplicity Interval</em>}' class.
@@ -6489,22 +6596,78 @@ public interface BvrPackage extends EPackage {
 		EAttribute MULTIPLICITY_INTERVAL__LOWER = eINSTANCE.getMultiplicityInterval_Lower();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.VSpecDerivationImpl <em>VSpec Derivation</em>}' class.
+		 * The meta object literal for the '{@link bvr.impl.ConstraintImpl <em>Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VSpecDerivationImpl
-		 * @see bvr.impl.BvrPackageImpl#getVSpecDerivation()
+		 * @see bvr.impl.ConstraintImpl
+		 * @see bvr.impl.BvrPackageImpl#getConstraint()
 		 * @generated
 		 */
-		EClass VSPEC_DERIVATION = eINSTANCE.getVSpecDerivation();
+		EClass CONSTRAINT = eINSTANCE.getConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Derived VSpec</b></em>' reference feature.
+		 * The meta object literal for the '{@link bvr.impl.VariableImpl <em>Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VariableImpl
+		 * @see bvr.impl.BvrPackageImpl#getVariable()
+		 * @generated
+		 */
+		EClass VARIABLE = eINSTANCE.getVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Defaul Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VSPEC_DERIVATION__DERIVED_VSPEC = eINSTANCE.getVSpecDerivation_DerivedVSpec();
+		EReference VARIABLE__DEFAUL_VALUE = eINSTANCE.getVariable_DefaulValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE__TYPE = eINSTANCE.getVariable_Type();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.ValueSpecificationImpl
+		 * @see bvr.impl.BvrPackageImpl#getValueSpecification()
+		 * @generated
+		 */
+		EClass VALUE_SPECIFICATION = eINSTANCE.getValueSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_SPECIFICATION__TYPE = eINSTANCE.getValueSpecification_Type();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VariabletypeImpl <em>Variabletype</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VariabletypeImpl
+		 * @see bvr.impl.BvrPackageImpl#getVariabletype()
+		 * @generated
+		 */
+		EClass VARIABLETYPE = eINSTANCE.getVariabletype();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VPackageableImpl <em>VPackageable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VPackageableImpl
+		 * @see bvr.impl.BvrPackageImpl#getVPackageable()
+		 * @generated
+		 */
+		EClass VPACKAGEABLE = eINSTANCE.getVPackageable();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.VClassifierImpl <em>VClassifier</em>}' class.
@@ -6543,22 +6706,14 @@ public interface BvrPackage extends EPackage {
 		EReference VSPEC_RESOLUTION__RESOLVED_VSPEC = eINSTANCE.getVSpecResolution_ResolvedVSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Child</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link bvr.impl.ChoiceResolutionImpl <em>Choice Resolution</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see bvr.impl.ChoiceResolutionImpl
+		 * @see bvr.impl.BvrPackageImpl#getChoiceResolution()
 		 * @generated
 		 */
-		EReference VSPEC_RESOLUTION__CHILD = eINSTANCE.getVSpecResolution_Child();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ChoiceResolutuionImpl <em>Choice Resolutuion</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ChoiceResolutuionImpl
-		 * @see bvr.impl.BvrPackageImpl#getChoiceResolutuion()
-		 * @generated
-		 */
-		EClass CHOICE_RESOLUTUION = eINSTANCE.getChoiceResolutuion();
+		EClass CHOICE_RESOLUTION = eINSTANCE.getChoiceResolution();
 
 		/**
 		 * The meta object literal for the '<em><b>Resolved Choice</b></em>' reference feature.
@@ -6566,33 +6721,85 @@ public interface BvrPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CHOICE_RESOLUTUION__RESOLVED_CHOICE = eINSTANCE.getChoiceResolutuion_ResolvedChoice();
+		EReference CHOICE_RESOLUTION__RESOLVED_CHOICE = eINSTANCE.getChoiceResolution_ResolvedChoice();
 
 		/**
-		 * The meta object literal for the '<em><b>Decision</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Resolved Choice Occ</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CHOICE_RESOLUTUION__DECISION = eINSTANCE.getChoiceResolutuion_Decision();
+		EReference CHOICE_RESOLUTION__RESOLVED_CHOICE_OCC = eINSTANCE.getChoiceResolution_ResolvedChoiceOcc();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.VInstanceImpl <em>VInstance</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VInstanceImpl
-		 * @see bvr.impl.BvrPackageImpl#getVInstance()
-		 * @generated
-		 */
-		EClass VINSTANCE = eINSTANCE.getVInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Resolved VClass Occ</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VINSTANCE__TYPE = eINSTANCE.getVInstance_Type();
+		EReference CHOICE_RESOLUTION__RESOLVED_VCLASS_OCC = eINSTANCE.getChoiceResolution_ResolvedVClassOcc();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolved VClassifier</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHOICE_RESOLUTION__RESOLVED_VCLASSIFIER = eINSTANCE.getChoiceResolution_ResolvedVClassifier();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.ChoiceOccurrenceImpl <em>Choice Occurrence</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.ChoiceOccurrenceImpl
+		 * @see bvr.impl.BvrPackageImpl#getChoiceOccurrence()
+		 * @generated
+		 */
+		EClass CHOICE_OCCURRENCE = eINSTANCE.getChoiceOccurrence();
+
+		/**
+		 * The meta object literal for the '<em><b>VType</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHOICE_OCCURRENCE__VTYPE = eINSTANCE.getChoiceOccurrence_VType();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VTypeImpl <em>VType</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VTypeImpl
+		 * @see bvr.impl.BvrPackageImpl#getVType()
+		 * @generated
+		 */
+		EClass VTYPE = eINSTANCE.getVType();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VClassOccurrenceImpl <em>VClass Occurrence</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VClassOccurrenceImpl
+		 * @see bvr.impl.BvrPackageImpl#getVClassOccurrence()
+		 * @generated
+		 */
+		EClass VCLASS_OCCURRENCE = eINSTANCE.getVClassOccurrence();
+
+		/**
+		 * The meta object literal for the '<em><b>VType</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VCLASS_OCCURRENCE__VTYPE = eINSTANCE.getVClassOccurrence_VType();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Multiplicity</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY = eINSTANCE.getVClassOccurrence_InstanceMultiplicity();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.VariationPointImpl <em>Variation Point</em>}' class.
@@ -6611,6 +6818,40 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VARIATION_POINT__BINDING_VSPEC = eINSTANCE.getVariationPoint_BindingVSpec();
+
+		/**
+		 * The meta object literal for the '<em><b>Staged Variation Point</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIATION_POINT__STAGED_VARIATION_POINT = eINSTANCE.getVariationPoint_StagedVariationPoint();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.StagedVariationPointImpl <em>Staged Variation Point</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.StagedVariationPointImpl
+		 * @see bvr.impl.BvrPackageImpl#getStagedVariationPoint()
+		 * @generated
+		 */
+		EClass STAGED_VARIATION_POINT = eINSTANCE.getStagedVariationPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Binding Staged VP</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STAGED_VARIATION_POINT__BINDING_STAGED_VP = eINSTANCE.getStagedVariationPoint_BindingStagedVP();
+
+		/**
+		 * The meta object literal for the '<em><b>Member</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STAGED_VARIATION_POINT__MEMBER = eINSTANCE.getStagedVariationPoint_Member();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.FragmentSubstitutionImpl <em>Fragment Substitution</em>}' class.
@@ -6673,6 +6914,22 @@ public interface BvrPackage extends EPackage {
 		EReference CHOICE_VARIATION_POINT__BINDING_CHOICE = eINSTANCE.getChoiceVariationPoint_BindingChoice();
 
 		/**
+		 * The meta object literal for the '<em><b>Binding Choice Occ</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHOICE_VARIATION_POINT__BINDING_CHOICE_OCC = eINSTANCE.getChoiceVariationPoint_BindingChoiceOcc();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolution kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHOICE_VARIATION_POINT__RESOLUTION_KIND = eINSTANCE.getChoiceVariationPoint_Resolution_kind();
+
+		/**
 		 * The meta object literal for the '{@link bvr.impl.RepeatableVariationPointImpl <em>Repeatable Variation Point</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6689,6 +6946,14 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER = eINSTANCE.getRepeatableVariationPoint_BindingClassifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Binding VClass Occ</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REPEATABLE_VARIATION_POINT__BINDING_VCLASS_OCC = eINSTANCE.getRepeatableVariationPoint_BindingVClassOcc();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.BoundaryElementBindingImpl <em>Boundary Element Binding</em>}' class.
@@ -6747,22 +7012,12 @@ public interface BvrPackage extends EPackage {
 		EClass OBJECT_HANDLE = eINSTANCE.getObjectHandle();
 
 		/**
-		 * The meta object literal for the '<em><b>MOF Ref</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>MOF Ref</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.BaseModelHandleImpl <em>Base Model Handle</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.BaseModelHandleImpl
-		 * @see bvr.impl.BvrPackageImpl#getBaseModelHandle()
-		 * @generated
-		 */
-		EClass BASE_MODEL_HANDLE = eINSTANCE.getBaseModelHandle();
+		EAttribute OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.
@@ -6799,16 +7054,6 @@ public interface BvrPackage extends EPackage {
 		EReference REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT = eINSTANCE.getReplacementFragmentType_SourceObject();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.VariabletypeImpl <em>Variabletype</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VariabletypeImpl
-		 * @see bvr.impl.BvrPackageImpl#getVariabletype()
-		 * @generated
-		 */
-		EClass VARIABLETYPE = eINSTANCE.getVariabletype();
-
-		/**
 		 * The meta object literal for the '{@link bvr.impl.ReplacementBoundaryElementImpl <em>Replacement Boundary Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6819,92 +7064,14 @@ public interface BvrPackage extends EPackage {
 		EClass REPLACEMENT_BOUNDARY_ELEMENT = eINSTANCE.getReplacementBoundaryElement();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.ObjectSubstitutionImpl <em>Object Substitution</em>}' class.
+		 * The meta object literal for the '{@link bvr.impl.ValueResolutionImpl <em>Value Resolution</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ObjectSubstitutionImpl
-		 * @see bvr.impl.BvrPackageImpl#getObjectSubstitution()
+		 * @see bvr.impl.ValueResolutionImpl
+		 * @see bvr.impl.BvrPackageImpl#getValueResolution()
 		 * @generated
 		 */
-		EClass OBJECT_SUBSTITUTION = eINSTANCE.getObjectSubstitution();
-
-		/**
-		 * The meta object literal for the '<em><b>Placement Object</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_SUBSTITUTION__PLACEMENT_OBJECT = eINSTANCE.getObjectSubstitution_PlacementObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Replacement Object</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT = eINSTANCE.getObjectSubstitution_ReplacementObject();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.VariableImpl <em>Variable</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VariableImpl
-		 * @see bvr.impl.BvrPackageImpl#getVariable()
-		 * @generated
-		 */
-		EClass VARIABLE = eINSTANCE.getVariable();
-
-		/**
-		 * The meta object literal for the '<em><b>Replacement Fragment Typesubsetstype</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE = eINSTANCE.getVariable_ReplacementFragmentTypesubsetstype();
-
-		/**
-		 * The meta object literal for the '<em><b>Defaul Value</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIABLE__DEFAUL_VALUE = eINSTANCE.getVariable_DefaulValue();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIABLE__TYPE = eINSTANCE.getVariable_Type();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ValueSpecificationImpl
-		 * @see bvr.impl.BvrPackageImpl#getValueSpecification()
-		 * @generated
-		 */
-		EClass VALUE_SPECIFICATION = eINSTANCE.getValueSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VALUE_SPECIFICATION__TYPE = eINSTANCE.getValueSpecification_Type();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.VariableValueAssignmentImpl <em>Variable Value Assignment</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VariableValueAssignmentImpl
-		 * @see bvr.impl.BvrPackageImpl#getVariableValueAssignment()
-		 * @generated
-		 */
-		EClass VARIABLE_VALUE_ASSIGNMENT = eINSTANCE.getVariableValueAssignment();
+		EClass VALUE_RESOLUTION = eINSTANCE.getValueResolution();
 
 		/**
 		 * The meta object literal for the '<em><b>Resolved Variable</b></em>' reference feature.
@@ -6912,7 +7079,7 @@ public interface BvrPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE = eINSTANCE.getVariableValueAssignment_ResolvedVariable();
+		EReference VALUE_RESOLUTION__RESOLVED_VARIABLE = eINSTANCE.getValueResolution_ResolvedVariable();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -6920,7 +7087,7 @@ public interface BvrPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_VALUE_ASSIGNMENT__VALUE = eINSTANCE.getVariableValueAssignment_Value();
+		EReference VALUE_RESOLUTION__VALUE = eINSTANCE.getValueResolution_Value();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.PrimitveTypeImpl <em>Primitve Type</em>}' class.
@@ -6959,50 +7126,6 @@ public interface BvrPackage extends EPackage {
 		EAttribute OBJECT_TYPE__META_CLASS = eINSTANCE.getObjectType_MetaClass();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.VInterfaceImpl <em>VInterface</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VInterfaceImpl
-		 * @see bvr.impl.BvrPackageImpl#getVInterface()
-		 * @generated
-		 */
-		EClass VINTERFACE = eINSTANCE.getVInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Member</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VINTERFACE__MEMBER = eINSTANCE.getVInterface_Member();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Constraint</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VINTERFACE__OWNED_CONSTRAINT = eINSTANCE.getVInterface_OwnedConstraint();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ConstraintImpl <em>Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ConstraintImpl
-		 * @see bvr.impl.BvrPackageImpl#getConstraint()
-		 * @generated
-		 */
-		EClass CONSTRAINT = eINSTANCE.getConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRAINT__CONTEXT = eINSTANCE.getConstraint_Context();
-
-		/**
 		 * The meta object literal for the '{@link bvr.impl.SlotAssignmentImpl <em>Slot Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7035,238 +7158,6 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SLOT_ASSIGNMENT__SLOT_OWNER = eINSTANCE.getSlotAssignment_SlotOwner();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ObjectExistenceImpl <em>Object Existence</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ObjectExistenceImpl
-		 * @see bvr.impl.BvrPackageImpl#getObjectExistence()
-		 * @generated
-		 */
-		EClass OBJECT_EXISTENCE = eINSTANCE.getObjectExistence();
-
-		/**
-		 * The meta object literal for the '<em><b>Optional Object</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OBJECT_EXISTENCE__OPTIONAL_OBJECT = eINSTANCE.getObjectExistence_OptionalObject();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.LinkEndSubstitutionImpl <em>Link End Substitution</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.LinkEndSubstitutionImpl
-		 * @see bvr.impl.BvrPackageImpl#getLinkEndSubstitution()
-		 * @generated
-		 */
-		EClass LINK_END_SUBSTITUTION = eINSTANCE.getLinkEndSubstitution();
-
-		/**
-		 * The meta object literal for the '<em><b>Link</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LINK_END_SUBSTITUTION__LINK = eINSTANCE.getLinkEndSubstitution_Link();
-
-		/**
-		 * The meta object literal for the '<em><b>Link End Identifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER = eINSTANCE.getLinkEndSubstitution_LinkEndIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Replacement Object</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT = eINSTANCE.getLinkEndSubstitution_ReplacementObject();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.LinkHandleImpl <em>Link Handle</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.LinkHandleImpl
-		 * @see bvr.impl.BvrPackageImpl#getLinkHandle()
-		 * @generated
-		 */
-		EClass LINK_HANDLE = eINSTANCE.getLinkHandle();
-
-		/**
-		 * The meta object literal for the '<em><b>MOF Ref</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LINK_HANDLE__MOF_REF = eINSTANCE.getLinkHandle_MOFRef();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ConfigurableUnitImpl <em>Configurable Unit</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ConfigurableUnitImpl
-		 * @see bvr.impl.BvrPackageImpl#getConfigurableUnit()
-		 * @generated
-		 */
-		EClass CONFIGURABLE_UNIT = eINSTANCE.getConfigurableUnit();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned VSpec</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__OWNED_VSPEC = eINSTANCE.getConfigurableUnit_OwnedVSpec();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Variation Point</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__OWNED_VARIATION_POINT = eINSTANCE.getConfigurableUnit_OwnedVariationPoint();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Constraint</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__OWNED_CONSTRAINT = eINSTANCE.getConfigurableUnit_OwnedConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Configurable Container Object</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT = eINSTANCE.getConfigurableUnit_ConfigurableContainerObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned VSpec Resolution</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION = eINSTANCE.getConfigurableUnit_OwnedVSpecResolution();
-
-		/**
-		 * The meta object literal for the '<em><b>Unit Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__UNIT_INTERFACE = eINSTANCE.getConfigurableUnit_UnitInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned VSpec Derivation</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION = eINSTANCE.getConfigurableUnit_OwnedVSpecDerivation();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Variabletype</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT__OWNED_VARIABLETYPE = eINSTANCE.getConfigurableUnit_OwnedVariabletype();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.CompositeVariationPointImpl <em>Composite Variation Point</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.CompositeVariationPointImpl
-		 * @see bvr.impl.BvrPackageImpl#getCompositeVariationPoint()
-		 * @generated
-		 */
-		EClass COMPOSITE_VARIATION_POINT = eINSTANCE.getCompositeVariationPoint();
-
-		/**
-		 * The meta object literal for the '<em><b>Binding CV Spec</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC = eINSTANCE.getCompositeVariationPoint_BindingCVSpec();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.CVSpecImpl <em>CV Spec</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.CVSpecImpl
-		 * @see bvr.impl.BvrPackageImpl#getCVSpec()
-		 * @generated
-		 */
-		EClass CV_SPEC = eINSTANCE.getCVSpec();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CV_SPEC__TYPE = eINSTANCE.getCVSpec_Type();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.VConfigurationImpl <em>VConfiguration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VConfigurationImpl
-		 * @see bvr.impl.BvrPackageImpl#getVConfiguration()
-		 * @generated
-		 */
-		EClass VCONFIGURATION = eINSTANCE.getVConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Member</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VCONFIGURATION__MEMBER = eINSTANCE.getVConfiguration_Member();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Partial</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VCONFIGURATION__IS_PARTIAL = eINSTANCE.getVConfiguration_IsPartial();
-
-		/**
-		 * The meta object literal for the '<em><b>Resolved CV Spec</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VCONFIGURATION__RESOLVED_CV_SPEC = eINSTANCE.getVConfiguration_ResolvedCVSpec();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.LinkExistenceImpl <em>Link Existence</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.LinkExistenceImpl
-		 * @see bvr.impl.BvrPackageImpl#getLinkExistence()
-		 * @generated
-		 */
-		EClass LINK_EXISTENCE = eINSTANCE.getLinkExistence();
-
-		/**
-		 * The meta object literal for the '<em><b>Optional Link</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LINK_EXISTENCE__OPTIONAL_LINK = eINSTANCE.getLinkExistence_OptionalLink();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.OpaqueVariationPointImpl <em>Opaque Variation Point</em>}' class.
@@ -7589,22 +7480,22 @@ public interface BvrPackage extends EPackage {
 		EReference FROM_REPLACEMENT__FROM_PLACEMENT = eINSTANCE.getFromReplacement_FromPlacement();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.VSpecRefImpl <em>VSpec Ref</em>}' class.
+		 * The meta object literal for the '{@link bvr.impl.TargetRefImpl <em>Target Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VSpecRefImpl
-		 * @see bvr.impl.BvrPackageImpl#getVSpecRef()
+		 * @see bvr.impl.TargetRefImpl
+		 * @see bvr.impl.BvrPackageImpl#getTargetRef()
 		 * @generated
 		 */
-		EClass VSPEC_REF = eINSTANCE.getVSpecRef();
+		EClass TARGET_REF = eINSTANCE.getTargetRef();
 
 		/**
-		 * The meta object literal for the '<em><b>VSpec</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VSPEC_REF__VSPEC = eINSTANCE.getVSpecRef_VSpec();
+		EReference TARGET_REF__TARGET = eINSTANCE.getTargetRef_Target();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.BCLExpressionImpl <em>BCL Expression</em>}' class.
@@ -7661,14 +7552,14 @@ public interface BvrPackage extends EPackage {
 		EReference PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE = eINSTANCE.getParametricVariationPoint_BindingVariable();
 
 		/**
-		 * The meta object literal for the '{@link bvr.impl.SlotValueExistenceImpl <em>Slot Value Existence</em>}' class.
+		 * The meta object literal for the '{@link bvr.impl.ParametricSlotAssignmentImpl <em>Parametric Slot Assignment</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see bvr.impl.SlotValueExistenceImpl
-		 * @see bvr.impl.BvrPackageImpl#getSlotValueExistence()
+		 * @see bvr.impl.ParametricSlotAssignmentImpl
+		 * @see bvr.impl.BvrPackageImpl#getParametricSlotAssignment()
 		 * @generated
 		 */
-		EClass SLOT_VALUE_EXISTENCE = eINSTANCE.getSlotValueExistence();
+		EClass PARAMETRIC_SLOT_ASSIGNMENT = eINSTANCE.getParametricSlotAssignment();
 
 		/**
 		 * The meta object literal for the '<em><b>Slot Identifier</b></em>' attribute feature.
@@ -7676,7 +7567,7 @@ public interface BvrPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SLOT_VALUE_EXISTENCE__SLOT_IDENTIFIER = eINSTANCE.getSlotValueExistence_SlotIdentifier();
+		EAttribute PARAMETRIC_SLOT_ASSIGNMENT__SLOT_IDENTIFIER = eINSTANCE.getParametricSlotAssignment_SlotIdentifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Slot Owner</b></em>' containment reference feature.
@@ -7684,205 +7575,7 @@ public interface BvrPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SLOT_VALUE_EXISTENCE__SLOT_OWNER = eINSTANCE.getSlotValueExistence_SlotOwner();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ParametricLinkEndSubstitutionImpl <em>Parametric Link End Substitution</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ParametricLinkEndSubstitutionImpl
-		 * @see bvr.impl.BvrPackageImpl#getParametricLinkEndSubstitution()
-		 * @generated
-		 */
-		EClass PARAMETRIC_LINK_END_SUBSTITUTION = eINSTANCE.getParametricLinkEndSubstitution();
-
-		/**
-		 * The meta object literal for the '<em><b>Link End Identifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER = eINSTANCE.getParametricLinkEndSubstitution_LinkEndIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Link</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETRIC_LINK_END_SUBSTITUTION__LINK = eINSTANCE.getParametricLinkEndSubstitution_Link();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ParametricObjectSubstitutionImpl <em>Parametric Object Substitution</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ParametricObjectSubstitutionImpl
-		 * @see bvr.impl.BvrPackageImpl#getParametricObjectSubstitution()
-		 * @generated
-		 */
-		EClass PARAMETRIC_OBJECT_SUBSTITUTION = eINSTANCE.getParametricObjectSubstitution();
-
-		/**
-		 * The meta object literal for the '<em><b>Placement Object</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT = eINSTANCE.getParametricObjectSubstitution_PlacementObject();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ParametricSlotAssignmetImpl <em>Parametric Slot Assignmet</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ParametricSlotAssignmetImpl
-		 * @see bvr.impl.BvrPackageImpl#getParametricSlotAssignmet()
-		 * @generated
-		 */
-		EClass PARAMETRIC_SLOT_ASSIGNMET = eINSTANCE.getParametricSlotAssignmet();
-
-		/**
-		 * The meta object literal for the '<em><b>Slot Identifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER = eINSTANCE.getParametricSlotAssignmet_SlotIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Slot Owner</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER = eINSTANCE.getParametricSlotAssignmet_SlotOwner();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ChoiceDerivationImpl <em>Choice Derivation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ChoiceDerivationImpl
-		 * @see bvr.impl.BvrPackageImpl#getChoiceDerivation()
-		 * @generated
-		 */
-		EClass CHOICE_DERIVATION = eINSTANCE.getChoiceDerivation();
-
-		/**
-		 * The meta object literal for the '<em><b>Deriving Constraint</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CHOICE_DERIVATION__DERIVING_CONSTRAINT = eINSTANCE.getChoiceDerivation_DerivingConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Choice</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CHOICE_DERIVATION__DERIVED_CHOICE = eINSTANCE.getChoiceDerivation_DerivedChoice();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.VariableDerivationImpl <em>Variable Derivation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.VariableDerivationImpl
-		 * @see bvr.impl.BvrPackageImpl#getVariableDerivation()
-		 * @generated
-		 */
-		EClass VARIABLE_DERIVATION = eINSTANCE.getVariableDerivation();
-
-		/**
-		 * The meta object literal for the '<em><b>Deriving Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIABLE_DERIVATION__DERIVING_EXPRESSION = eINSTANCE.getVariableDerivation_DerivingExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived Variable</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VARIABLE_DERIVATION__DERIVED_VARIABLE = eINSTANCE.getVariableDerivation_DerivedVariable();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.CVSpecDerivationImpl <em>CV Spec Derivation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.CVSpecDerivationImpl
-		 * @see bvr.impl.BvrPackageImpl#getCVSpecDerivation()
-		 * @generated
-		 */
-		EClass CV_SPEC_DERIVATION = eINSTANCE.getCVSpecDerivation();
-
-		/**
-		 * The meta object literal for the '<em><b>Member Derivation</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CV_SPEC_DERIVATION__MEMBER_DERIVATION = eINSTANCE.getCVSpecDerivation_MemberDerivation();
-
-		/**
-		 * The meta object literal for the '<em><b>Deriving CVspec</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CV_SPEC_DERIVATION__DERIVING_CVSPEC = eINSTANCE.getCVSpecDerivation_DerivingCVspec();
-
-		/**
-		 * The meta object literal for the '<em><b>Derived CV Spec</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CV_SPEC_DERIVATION__DERIVED_CV_SPEC = eINSTANCE.getCVSpecDerivation_DerivedCVSpec();
-
-		/**
-		 * The meta object literal for the '{@link bvr.impl.ConfigurableUnitUsageImpl <em>Configurable Unit Usage</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see bvr.impl.ConfigurableUnitUsageImpl
-		 * @see bvr.impl.BvrPackageImpl#getConfigurableUnitUsage()
-		 * @generated
-		 */
-		EClass CONFIGURABLE_UNIT_USAGE = eINSTANCE.getConfigurableUnitUsage();
-
-		/**
-		 * The meta object literal for the '<em><b>Used Unit</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT_USAGE__USED_UNIT = eINSTANCE.getConfigurableUnitUsage_UsedUnit();
-
-		/**
-		 * The meta object literal for the '<em><b>Usage Reference</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE = eINSTANCE.getConfigurableUnitUsage_UsageReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Link End Identifier</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER = eINSTANCE.getConfigurableUnitUsage_LinkEndIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Unit Usage Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE = eINSTANCE.getConfigurableUnitUsage_UnitUsageInterface();
+		EReference PARAMETRIC_SLOT_ASSIGNMENT__SLOT_OWNER = eINSTANCE.getParametricSlotAssignment_SlotOwner();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.PrimitiveValueSpecificationImpl <em>Primitive Value Specification</em>}' class.
@@ -8045,6 +7738,166 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REAL_LITERAL_EXP__REAL = eINSTANCE.getRealLiteralExp_Real();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.CompoundResolutionImpl <em>Compound Resolution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.CompoundResolutionImpl
+		 * @see bvr.impl.BvrPackageImpl#getCompoundResolution()
+		 * @generated
+		 */
+		EClass COMPOUND_RESOLUTION = eINSTANCE.getCompoundResolution();
+
+		/**
+		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOUND_RESOLUTION__MEMBERS = eINSTANCE.getCompoundResolution_Members();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.NegResolutionImpl <em>Neg Resolution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.NegResolutionImpl
+		 * @see bvr.impl.BvrPackageImpl#getNegResolution()
+		 * @generated
+		 */
+		EClass NEG_RESOLUTION = eINSTANCE.getNegResolution();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.PosResolutionImpl <em>Pos Resolution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.PosResolutionImpl
+		 * @see bvr.impl.BvrPackageImpl#getPosResolution()
+		 * @generated
+		 */
+		EClass POS_RESOLUTION = eINSTANCE.getPosResolution();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VRefImpl <em>VRef</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VRefImpl
+		 * @see bvr.impl.BvrPackageImpl#getVRef()
+		 * @generated
+		 */
+		EClass VREF = eINSTANCE.getVRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Ref VSpec</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VREF__REF_VSPEC = eINSTANCE.getVRef_RefVSpec();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.VRefValueSpecificationImpl <em>VRef Value Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.VRefValueSpecificationImpl
+		 * @see bvr.impl.BvrPackageImpl#getVRefValueSpecification()
+		 * @generated
+		 */
+		EClass VREF_VALUE_SPECIFICATION = eINSTANCE.getVRefValueSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>VSpec Resolution</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VREF_VALUE_SPECIFICATION__VSPEC_RESOLUTION = eINSTANCE.getVRefValueSpecification_VSpecResolution();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.ResolutionLiteralDefinitionImpl <em>Resolution Literal Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.ResolutionLiteralDefinitionImpl
+		 * @see bvr.impl.BvrPackageImpl#getResolutionLiteralDefinition()
+		 * @generated
+		 */
+		EClass RESOLUTION_LITERAL_DEFINITION = eINSTANCE.getResolutionLiteralDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Literal Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESOLUTION_LITERAL_DEFINITION__LITERAL_TYPE = eINSTANCE.getResolutionLiteralDefinition_LiteralType();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.ResolutionLiteralUseImpl <em>Resolution Literal Use</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.ResolutionLiteralUseImpl
+		 * @see bvr.impl.BvrPackageImpl#getResolutionLiteralUse()
+		 * @generated
+		 */
+		EClass RESOLUTION_LITERAL_USE = eINSTANCE.getResolutionLiteralUse();
+
+		/**
+		 * The meta object literal for the '<em><b>Def Literal</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESOLUTION_LITERAL_USE__DEF_LITERAL = eINSTANCE.getResolutionLiteralUse_DefLiteral();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.BVRModelImpl <em>BVR Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.BVRModelImpl
+		 * @see bvr.impl.BvrPackageImpl#getBVRModel()
+		 * @generated
+		 */
+		EClass BVR_MODEL = eINSTANCE.getBVRModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Variability Model</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BVR_MODEL__VARIABILITY_MODEL = eINSTANCE.getBVRModel_VariabilityModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Resolution Models</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BVR_MODEL__RESOLUTION_MODELS = eINSTANCE.getBVRModel_ResolutionModels();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Model Base</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BVR_MODEL__BASE_MODEL_BASE = eINSTANCE.getBVRModel_BaseModelBase();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Model Libraries</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BVR_MODEL__BASE_MODEL_LIBRARIES = eINSTANCE.getBVRModel_BaseModelLibraries();
+
+		/**
+		 * The meta object literal for the '<em><b>Realization Model</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BVR_MODEL__REALIZATION_MODEL = eINSTANCE.getBVRModel_RealizationModel();
 
 		/**
 		 * The meta object literal for the '{@link bvr.PrimitiveTypeEnum <em>Primitive Type Enum</em>}' enum.

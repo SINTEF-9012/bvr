@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A MultiplicityInterval specifies lower and upper multiplicities.</p><p>####BVRSemanticStart####</p><p><b></b>Invariant :<b></b> The value of the lower multiplicity must be inferior or equal to the upper multiplicity</p><p><b></b>OCL :<b></b></p><p>-- MultiplicityInterval</p><p>-- lower_inferior_upper : The value of the lower multiplicity must be inferior or equal to the upper multiplicity</p><p>context MultiplicityInterval :</p><p>inv lower_inferior_upper :</p><p>(self.upper == (-1))</p><p>or (self.lower &lt;&gt; -1 and self.upper &lt;&gt; -1 and self.lower &lt;= self.upper)</p><p>####BVRSemanticEnd####</p>
+ * <p>A MultiplicityInterval specifies lower and upper multiplicities.</p><p>####CVLSemanticStart####</p><p><b></b>Invariant :<b></b> The value of the lower multiplicity must be inferior or equal to the upper multiplicity</p><p><b></b>OCL :<b></b></p><p>-- MultiplicityInterval</p><p>-- lower_inferior_upper : The value of the lower multiplicity must be inferior or equal to the upper multiplicity</p><p>context MultiplicityInterval :</p><p>inv lower_inferior_upper :</p><p>(self.upper == (-1))</p><p>or (self.lower &lt;&gt; -1 and self.upper &lt;&gt; -1 and self.lower &lt;= self.upper)</p><p>####CVLSemanticEnd####</p>
  * <!-- end-model-doc -->
  *
  * <p>

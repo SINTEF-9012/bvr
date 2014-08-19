@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Replacement Fragment Type defines a fragment of the base model that will be used as replacement for some placement fragment<br>of the base model.</p><p>Constraints:</p><p>The placements contained in a replacement fragments should only involve model elements which are inside the replacement fragment. These placements can be used in all instances of a replacement fragment.</p><p>Semantics:</p><p>The semantics of Replacement Fragment Type can be found under Fragment Substitution.</p><p>####BVRSemanticStart####</p><p>Invariant :</p><p>OCL :</p><p></p><p>####BVRSemanticEnd####</p><p></p>
+ * <p>Replacement Fragment Type defines a fragment of the base model that will be used as replacement for some placement fragment<br>of the base model.</p><p>Constraints:</p><p>The placements contained in a replacement fragments should only involve model elements which are inside the replacement fragment. These placements can be used in all instances of a replacement fragment.</p><p>Semantics:</p><p>The semantics of Replacement Fragment Type can be found under Fragment Substitution.</p><p>####CVLSemanticStart####</p><p>Invariant :</p><p>OCL :</p><p></p><p>####CVLSemanticEnd####</p><p></p>
  * <!-- end-model-doc -->
  *
  * <p>

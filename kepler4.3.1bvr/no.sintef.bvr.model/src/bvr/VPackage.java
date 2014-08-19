@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A VPacakge (Variability Package) is the packaging mechanism of BVR.
+ * <p>A VPacakge (Variability Package) is the packaging mechanism of BVR.</p>
  * <!-- end-model-doc -->
  *
  * <p>

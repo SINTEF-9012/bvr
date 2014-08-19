@@ -8,6 +8,7 @@ import bvr.FragmentSubstitution;
 import bvr.PlacementFragment;
 import bvr.RepeatableVariationPoint;
 import bvr.ReplacementFragmentType;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 
 import java.util.Collection;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link bvr.impl.FragmentSubstitutionImpl#getBindingClassifier <em>Binding Classifier</em>}</li>
+ *   <li>{@link bvr.impl.FragmentSubstitutionImpl#getBindingVClassOcc <em>Binding VClass Occ</em>}</li>
  *   <li>{@link bvr.impl.FragmentSubstitutionImpl#getBoundaryElementBinding <em>Boundary Element Binding</em>}</li>
  *   <li>{@link bvr.impl.FragmentSubstitutionImpl#getPlacement <em>Placement</em>}</li>
  *   <li>{@link bvr.impl.FragmentSubstitutionImpl#isMulti <em>Multi</em>}</li>
@@ -52,6 +54,16 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 	 * @ordered
 	 */
 	protected VClassifier bindingClassifier;
+
+	/**
+	 * The cached value of the '{@link #getBindingVClassOcc() <em>Binding VClass Occ</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBindingVClassOcc()
+	 * @generated
+	 * @ordered
+	 */
+	protected VClassOccurrence bindingVClassOcc;
 
 	/**
 	 * The cached value of the '{@link #getBoundaryElementBinding() <em>Boundary Element Binding</em>}' containment reference list.
@@ -158,6 +170,44 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		bindingClassifier = newBindingClassifier;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER, oldBindingClassifier, bindingClassifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VClassOccurrence getBindingVClassOcc() {
+		if (bindingVClassOcc != null && bindingVClassOcc.eIsProxy()) {
+			InternalEObject oldBindingVClassOcc = (InternalEObject)bindingVClassOcc;
+			bindingVClassOcc = (VClassOccurrence)eResolveProxy(oldBindingVClassOcc);
+			if (bindingVClassOcc != oldBindingVClassOcc) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC, oldBindingVClassOcc, bindingVClassOcc));
+			}
+		}
+		return bindingVClassOcc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VClassOccurrence basicGetBindingVClassOcc() {
+		return bindingVClassOcc;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBindingVClassOcc(VClassOccurrence newBindingVClassOcc) {
+		VClassOccurrence oldBindingVClassOcc = bindingVClassOcc;
+		bindingVClassOcc = newBindingVClassOcc;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC, oldBindingVClassOcc, bindingVClassOcc));
 	}
 
 	/**
@@ -294,6 +344,9 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				if (resolve) return getBindingClassifier();
 				return basicGetBindingClassifier();
+			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC:
+				if (resolve) return getBindingVClassOcc();
+				return basicGetBindingVClassOcc();
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				return getBoundaryElementBinding();
 			case BvrPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
@@ -319,6 +372,9 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		switch (featureID) {
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				setBindingClassifier((VClassifier)newValue);
+				return;
+			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC:
+				setBindingVClassOcc((VClassOccurrence)newValue);
 				return;
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				getBoundaryElementBinding().clear();
@@ -348,6 +404,9 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				setBindingClassifier((VClassifier)null);
 				return;
+			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC:
+				setBindingVClassOcc((VClassOccurrence)null);
+				return;
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				getBoundaryElementBinding().clear();
 				return;
@@ -374,6 +433,8 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		switch (featureID) {
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER:
 				return bindingClassifier != null;
+			case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC:
+				return bindingVClassOcc != null;
 			case BvrPackage.FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING:
 				return boundaryElementBinding != null && !boundaryElementBinding.isEmpty();
 			case BvrPackage.FRAGMENT_SUBSTITUTION__PLACEMENT:
@@ -396,6 +457,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		if (baseClass == RepeatableVariationPoint.class) {
 			switch (derivedFeatureID) {
 				case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER: return BvrPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER;
+				case BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC: return BvrPackage.REPEATABLE_VARIATION_POINT__BINDING_VCLASS_OCC;
 				default: return -1;
 			}
 		}
@@ -412,6 +474,7 @@ public class FragmentSubstitutionImpl extends ChoiceVariationPointImpl implement
 		if (baseClass == RepeatableVariationPoint.class) {
 			switch (baseFeatureID) {
 				case BvrPackage.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER: return BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_CLASSIFIER;
+				case BvrPackage.REPEATABLE_VARIATION_POINT__BINDING_VCLASS_OCC: return BvrPackage.FRAGMENT_SUBSTITUTION__BINDING_VCLASS_OCC;
 				default: return -1;
 			}
 		}

@@ -4,12 +4,15 @@ package bvr.provider;
 
 
 import bvr.BvrPackage;
+import bvr.ObjectHandle;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -18,6 +21,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link bvr.ObjectHandle} object.
@@ -26,7 +32,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ObjectHandleItemProvider
-	extends BaseModelHandleItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -75,8 +81,8 @@ public class ObjectHandleItemProvider
 				 BvrPackage.Literals.OBJECT_HANDLE__MOF_REF,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -100,7 +106,10 @@ public class ObjectHandleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ObjectHandle_type");
+		String label = ((ObjectHandle)object).getMOFRef();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ObjectHandle_type") :
+			getString("_UI_ObjectHandle_type") + " " + label;
 	}
 
 	/**
@@ -113,6 +122,12 @@ public class ObjectHandleItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ObjectHandle.class)) {
+			case BvrPackage.OBJECT_HANDLE__MOF_REF:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -126,6 +141,17 @@ public class ObjectHandleItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return BVRMetamodel5EditPlugin.INSTANCE;
 	}
 
 }

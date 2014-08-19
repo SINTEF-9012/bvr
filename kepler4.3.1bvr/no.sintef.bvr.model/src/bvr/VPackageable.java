@@ -9,7 +9,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A VPackageable is an element that may be owned by a package.</p>
+ * <p>A VPackageable is an element that may be owned by a package.</p><p>VPackageable also represent namespaces. A namespace is where the names of the named elements must be unique. Names of other namespaces may be reached by remote notation.</p>
  * <!-- end-model-doc -->
  *
  *

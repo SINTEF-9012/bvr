@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-model-doc -->
  * <p>
  *     An object handle identifies an object of the base model. This Class abstracts over the cross-domain referencing
- *     mechanism needed to refer from BVR elements to base model objects.
+ *     mechanism needed to refer from CVL elements to base model objects.
  * </p>
  * <!-- end-model-doc -->
  *
@@ -27,31 +27,30 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ObjectHandle extends BaseModelHandle {
+public interface ObjectHandle extends EObject {
 	/**
-	 * Returns the value of the '<em><b>MOF Ref</b></em>' reference.
+	 * Returns the value of the '<em><b>MOF Ref</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>MOF Ref</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>MOF Ref</em>' reference.
-	 * @see #setMOFRef(EObject)
+	 * <!-- begin-model-doc -->
+	 * <p>Representing a MOF Reference.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>MOF Ref</em>' attribute.
+	 * @see #setMOFRef(String)
 	 * @see bvr.BvrPackage#getObjectHandle_MOFRef()
-	 * @model required="true"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	EObject getMOFRef();
+	String getMOFRef();
 
 	/**
-	 * Sets the value of the '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}' reference.
+	 * Sets the value of the '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>MOF Ref</em>' reference.
+	 * @param value the new value of the '<em>MOF Ref</em>' attribute.
 	 * @see #getMOFRef()
 	 * @generated
 	 */
-	void setMOFRef(EObject value);
+	void setMOFRef(String value);
 
 } // ObjectHandle
