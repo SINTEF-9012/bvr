@@ -74,6 +74,11 @@ public class VClassifierItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY);
+			childrenFeatures.add(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT);
+			childrenFeatures.add(BvrPackage.Literals.VNODE__VARIABLE);
+			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__MEMBER);
+			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS);
 			childrenFeatures.add(BvrPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY);
 		}
 		return childrenFeatures;
@@ -129,6 +134,11 @@ public class VClassifierItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VClassifier.class)) {
+			case BvrPackage.VCLASSIFIER__GROUP_MULTIPLICITY:
+			case BvrPackage.VCLASSIFIER__OWNED_CONSTRAINT:
+			case BvrPackage.VCLASSIFIER__VARIABLE:
+			case BvrPackage.VCLASSIFIER__MEMBER:
+			case BvrPackage.VCLASSIFIER__OWNED_TARGETS:
 			case BvrPackage.VCLASSIFIER__INSTANCE_MULTIPLICITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -149,8 +159,86 @@ public class VClassifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY,
+				 BvrFactory.eINSTANCE.createMultiplicityInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
+				 BvrFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
+				 BvrFactory.eINSTANCE.createOpaqueConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
+				 BvrFactory.eINSTANCE.createBCLConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__VARIABLE,
+				 BvrFactory.eINSTANCE.createVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVClassifier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createChoiceOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVClassOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS,
+				 BvrFactory.eINSTANCE.createTarget()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BvrPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY,
 				 BvrFactory.eINSTANCE.createMultiplicityInterval()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY ||
+			childFeature == BvrPackage.Literals.VCLASSIFIER__INSTANCE_MULTIPLICITY;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

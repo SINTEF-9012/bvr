@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link bvr.impl.CompoundNodeImpl#getMember <em>Member</em>}</li>
- *   <li>{@link bvr.impl.CompoundNodeImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link bvr.impl.CompoundNodeImpl#getOwnedTargets <em>Owned Targets</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,14 +45,14 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 	protected EList<VNode> member;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedTargets() <em>Owned Targets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
+	 * @see #getOwnedTargets()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Target> target;
+	protected EList<Target> ownedTargets;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,11 +90,11 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Target> getTarget() {
-		if (target == null) {
-			target = new EObjectContainmentEList<Target>(Target.class, this, BvrPackage.COMPOUND_NODE__TARGET);
+	public EList<Target> getOwnedTargets() {
+		if (ownedTargets == null) {
+			ownedTargets = new EObjectContainmentEList<Target>(Target.class, this, BvrPackage.COMPOUND_NODE__OWNED_TARGETS);
 		}
-		return target;
+		return ownedTargets;
 	}
 
 	/**
@@ -107,8 +107,8 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 		switch (featureID) {
 			case BvrPackage.COMPOUND_NODE__MEMBER:
 				return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
-			case BvrPackage.COMPOUND_NODE__TARGET:
-				return ((InternalEList<?>)getTarget()).basicRemove(otherEnd, msgs);
+			case BvrPackage.COMPOUND_NODE__OWNED_TARGETS:
+				return ((InternalEList<?>)getOwnedTargets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -123,8 +123,8 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 		switch (featureID) {
 			case BvrPackage.COMPOUND_NODE__MEMBER:
 				return getMember();
-			case BvrPackage.COMPOUND_NODE__TARGET:
-				return getTarget();
+			case BvrPackage.COMPOUND_NODE__OWNED_TARGETS:
+				return getOwnedTargets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,9 +142,9 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 				getMember().clear();
 				getMember().addAll((Collection<? extends VNode>)newValue);
 				return;
-			case BvrPackage.COMPOUND_NODE__TARGET:
-				getTarget().clear();
-				getTarget().addAll((Collection<? extends Target>)newValue);
+			case BvrPackage.COMPOUND_NODE__OWNED_TARGETS:
+				getOwnedTargets().clear();
+				getOwnedTargets().addAll((Collection<? extends Target>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -161,8 +161,8 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 			case BvrPackage.COMPOUND_NODE__MEMBER:
 				getMember().clear();
 				return;
-			case BvrPackage.COMPOUND_NODE__TARGET:
-				getTarget().clear();
+			case BvrPackage.COMPOUND_NODE__OWNED_TARGETS:
+				getOwnedTargets().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -178,8 +178,8 @@ public abstract class CompoundNodeImpl extends VNodeImpl implements CompoundNode
 		switch (featureID) {
 			case BvrPackage.COMPOUND_NODE__MEMBER:
 				return member != null && !member.isEmpty();
-			case BvrPackage.COMPOUND_NODE__TARGET:
-				return target != null && !target.isEmpty();
+			case BvrPackage.COMPOUND_NODE__OWNED_TARGETS:
+				return ownedTargets != null && !ownedTargets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

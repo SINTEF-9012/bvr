@@ -781,7 +781,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompoundNode_Target() {
+	public EReference getCompoundNode_OwnedTargets() {
 		return (EReference)compoundNodeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2246,7 +2246,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		compoundNodeEClass = createEClass(COMPOUND_NODE);
 		createEReference(compoundNodeEClass, COMPOUND_NODE__MEMBER);
-		createEReference(compoundNodeEClass, COMPOUND_NODE__TARGET);
+		createEReference(compoundNodeEClass, COMPOUND_NODE__OWNED_TARGETS);
 
 		vNodeEClass = createEClass(VNODE);
 		createEReference(vNodeEClass, VNODE__GROUP_MULTIPLICITY);
@@ -2499,6 +2499,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		// Add supertypes to classes
 		choiceEClass.getESuperTypes().add(this.getVSpec());
+		choiceEClass.getESuperTypes().add(this.getCompoundNode());
 		vSpecEClass.getESuperTypes().add(this.getNamedElement());
 		noteEClass.getESuperTypes().add(this.getNamedElement());
 		targetEClass.getESuperTypes().add(this.getNamedElement());
@@ -2508,6 +2509,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		variabletypeEClass.getESuperTypes().add(this.getVPackageable());
 		vPackageableEClass.getESuperTypes().add(this.getNamedElement());
 		vClassifierEClass.getESuperTypes().add(this.getVSpec());
+		vClassifierEClass.getESuperTypes().add(this.getCompoundNode());
 		vSpecResolutionEClass.getESuperTypes().add(this.getNamedElement());
 		choiceResolutionEClass.getESuperTypes().add(this.getVSpecResolution());
 		choiceOccurrenceEClass.getESuperTypes().add(this.getVSpec());
@@ -2585,7 +2587,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundNode_Member(), this.getVNode(), null, "member", null, 0, -1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getCompoundNode_Target(), this.getTarget(), null, "target", null, 0, -1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCompoundNode_OwnedTargets(), this.getTarget(), null, "ownedTargets", null, 0, -1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(vNodeEClass, VNode.class, "VNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVNode_GroupMultiplicity(), this.getMultiplicityInterval(), null, "groupMultiplicity", null, 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

@@ -70,7 +70,7 @@
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//VSpec">
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//VSpec #//CompoundNode">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p class=&quot;MsoNormal&quot;>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>A Choice is a VSpec and a VNode that represents a yes/no decision. When a VariationPoint is bound to a choice it is dependent upon whether the resolution is a PosResolution or a NegResolution to determine what VariationPoint to execute.&lt;/span>&lt;/p>&lt;p>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>&lt;/span>####CVLSemanticStart####&lt;/p>&lt;p>Invariant : If a choice is implied by parent, it must have a parent.&lt;/p>&lt;p>OCL :&lt;/p>&lt;p>-- Choice&lt;/p>&lt;p>-- If a choice is implied by parent, it must have a parent.&lt;/p>&lt;p>context Choice :&lt;/p>&lt;p>inv isImpliedByParentsImpliesAParent :&lt;/p>&lt;p>self.isImpliedByParent implies VSpec.allInstances()-&amp;gt;exists(vSpec | vSpec.childVSpec-&amp;gt;includes(self))&lt;/p>&lt;p>####CVLSemanticEnd####&lt;/p>"/>
     </eAnnotations>
@@ -153,7 +153,7 @@
         <details key="documentation" value="&lt;p>The members of the compound node constituting the next level of the VSpec tree.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTargets" ordered="false"
         upperBound="-1" eType="#//Target" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>Targets owned by this CompoundNode.&lt;/p>"/>
@@ -243,7 +243,7 @@
       <details key="documentation" value="&lt;p>A VPackageable is an element that may be owned by a package.&lt;/p>&lt;p>VPackageable also represent namespaces. A namespace is where the names of the named elements must be unique. Names of other namespaces may be reached by remote notation.&lt;/p>"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VClassifier" eSuperTypes="#//VSpec">
+  <eClassifiers xsi:type="ecore:EClass" name="VClassifier" eSuperTypes="#//VSpec #//CompoundNode">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>VClassifier is a set concept. The instanceMultiplicity defines the range of how many ChoiceResolutions that can be referring this particular VClassifier.&lt;/p>&lt;p>A VClassifier can also have a subtree as it is a CompoundNode which defines subordinate variability specifications (VNodes).&lt;/p>&lt;p>When a repeatable variation point is bound to a VClassifier it will be applied once for each resolution of the VClassifier during materialization.&lt;/p>"/>
     </eAnnotations>

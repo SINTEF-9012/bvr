@@ -53,7 +53,7 @@
     <genClasses ecoreClass="BVRMetamodel5.ecore#//Target"/>
     <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//CompoundNode">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//CompoundNode/member"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//CompoundNode/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//CompoundNode/ownedTargets"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VNode">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VNode/groupMultiplicity"/>

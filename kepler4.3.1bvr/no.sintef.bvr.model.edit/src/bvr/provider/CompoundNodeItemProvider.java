@@ -75,7 +75,7 @@ public class CompoundNodeItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__MEMBER);
-			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__TARGET);
+			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS);
 		}
 		return childrenFeatures;
 	}
@@ -117,7 +117,7 @@ public class CompoundNodeItemProvider
 
 		switch (notification.getFeatureID(CompoundNode.class)) {
 			case BvrPackage.COMPOUND_NODE__MEMBER:
-			case BvrPackage.COMPOUND_NODE__TARGET:
+			case BvrPackage.COMPOUND_NODE__OWNED_TARGETS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,6 +138,16 @@ public class CompoundNodeItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVClassifier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
 				 BvrFactory.eINSTANCE.createChoiceOccurrence()));
 
 		newChildDescriptors.add
@@ -152,7 +162,7 @@ public class CompoundNodeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__TARGET,
+				(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS,
 				 BvrFactory.eINSTANCE.createTarget()));
 	}
 

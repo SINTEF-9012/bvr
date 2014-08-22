@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link bvr.CompoundNode#getMember <em>Member</em>}</li>
- *   <li>{@link bvr.CompoundNode#getTarget <em>Target</em>}</li>
+ *   <li>{@link bvr.CompoundNode#getOwnedTargets <em>Owned Targets</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,18 +42,18 @@ public interface CompoundNode extends VNode {
 	EList<VNode> getMember();
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Owned Targets</b></em>' containment reference list.
 	 * The list contents are of type {@link bvr.Target}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Targets owned by this CompoundNode.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target</em>' containment reference list.
-	 * @see bvr.BvrPackage#getCompoundNode_Target()
+	 * @return the value of the '<em>Owned Targets</em>' containment reference list.
+	 * @see bvr.BvrPackage#getCompoundNode_OwnedTargets()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<Target> getTarget();
+	EList<Target> getOwnedTargets();
 
 } // CompoundNode

@@ -70,7 +70,9 @@ public class BvrSwitch<T> extends Switch<T> {
 				Choice choice = (Choice)theEObject;
 				T result = caseChoice(choice);
 				if (result == null) result = caseVSpec(choice);
+				if (result == null) result = caseCompoundNode(choice);
 				if (result == null) result = caseNamedElement(choice);
+				if (result == null) result = caseVNode(choice);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -160,7 +162,9 @@ public class BvrSwitch<T> extends Switch<T> {
 				VClassifier vClassifier = (VClassifier)theEObject;
 				T result = caseVClassifier(vClassifier);
 				if (result == null) result = caseVSpec(vClassifier);
+				if (result == null) result = caseCompoundNode(vClassifier);
 				if (result == null) result = caseNamedElement(vClassifier);
+				if (result == null) result = caseVNode(vClassifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

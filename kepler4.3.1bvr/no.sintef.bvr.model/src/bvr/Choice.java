@@ -24,7 +24,7 @@ package bvr;
  * @model
  * @generated
  */
-public interface Choice extends VSpec {
+public interface Choice extends VSpec, CompoundNode {
 	/**
 	 * Returns the value of the '<em><b>Default Resolution</b></em>' attribute.
 	 * <!-- begin-user-doc -->

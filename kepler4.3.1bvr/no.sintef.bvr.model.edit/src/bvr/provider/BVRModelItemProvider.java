@@ -158,6 +158,16 @@ public class BVRModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.BVR_MODEL__VARIABILITY_MODEL,
+				 BvrFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.BVR_MODEL__VARIABILITY_MODEL,
+				 BvrFactory.eINSTANCE.createVClassifier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.BVR_MODEL__VARIABILITY_MODEL,
 				 BvrFactory.eINSTANCE.createVType()));
 
 		newChildDescriptors.add

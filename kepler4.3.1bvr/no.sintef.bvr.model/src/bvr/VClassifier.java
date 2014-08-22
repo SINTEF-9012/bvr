@@ -23,7 +23,7 @@ package bvr;
  * @model
  * @generated
  */
-public interface VClassifier extends VSpec {
+public interface VClassifier extends VSpec, CompoundNode {
 	/**
 	 * Returns the value of the '<em><b>Instance Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

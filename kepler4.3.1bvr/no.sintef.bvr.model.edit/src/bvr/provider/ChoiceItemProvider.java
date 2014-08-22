@@ -3,6 +3,7 @@
 package bvr.provider;
 
 
+import bvr.BvrFactory;
 import bvr.BvrPackage;
 import bvr.Choice;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -108,6 +110,40 @@ public class ChoiceItemProvider
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY);
+			childrenFeatures.add(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT);
+			childrenFeatures.add(BvrPackage.Literals.VNODE__VARIABLE);
+			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__MEMBER);
+			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns Choice.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,6 +184,13 @@ public class ChoiceItemProvider
 			case BvrPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case BvrPackage.CHOICE__GROUP_MULTIPLICITY:
+			case BvrPackage.CHOICE__OWNED_CONSTRAINT:
+			case BvrPackage.CHOICE__VARIABLE:
+			case BvrPackage.CHOICE__MEMBER:
+			case BvrPackage.CHOICE__OWNED_TARGETS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -162,6 +205,61 @@ public class ChoiceItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY,
+				 BvrFactory.eINSTANCE.createMultiplicityInterval()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
+				 BvrFactory.eINSTANCE.createConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
+				 BvrFactory.eINSTANCE.createOpaqueConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
+				 BvrFactory.eINSTANCE.createBCLConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VNODE__VARIABLE,
+				 BvrFactory.eINSTANCE.createVariable()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVClassifier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createChoiceOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVType()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
+				 BvrFactory.eINSTANCE.createVClassOccurrence()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS,
+				 BvrFactory.eINSTANCE.createTarget()));
 	}
 
 }

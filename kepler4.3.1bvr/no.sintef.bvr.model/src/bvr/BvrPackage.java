@@ -215,13 +215,58 @@ public interface BvrPackage extends EPackage {
 	int CHOICE__TARGET = VSPEC__TARGET;
 
 	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__GROUP_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__OWNED_CONSTRAINT = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__VARIABLE = VSPEC_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__MEMBER = VSPEC_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owned Targets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__OWNED_TARGETS = VSPEC_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE__DEFAULT_RESOLUTION = VSPEC_FEATURE_COUNT + 0;
+	int CHOICE__DEFAULT_RESOLUTION = VSPEC_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Is Implied By Parent</b></em>' attribute.
@@ -230,7 +275,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE__IS_IMPLIED_BY_PARENT = VSPEC_FEATURE_COUNT + 1;
+	int CHOICE__IS_IMPLIED_BY_PARENT = VSPEC_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Choice</em>' class.
@@ -239,7 +284,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 2;
+	int CHOICE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Choice</em>' class.
@@ -462,13 +507,13 @@ public interface BvrPackage extends EPackage {
 	int COMPOUND_NODE__MEMBER = VNODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Targets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_NODE__TARGET = VNODE_FEATURE_COUNT + 1;
+	int COMPOUND_NODE__OWNED_TARGETS = VNODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Compound Node</em>' class.
@@ -838,13 +883,58 @@ public interface BvrPackage extends EPackage {
 	int VCLASSIFIER__TARGET = VSPEC__TARGET;
 
 	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER__GROUP_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER__OWNED_CONSTRAINT = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER__VARIABLE = VSPEC_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER__MEMBER = VSPEC_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Owned Targets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VCLASSIFIER__OWNED_TARGETS = VSPEC_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Instance Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VCLASSIFIER__INSTANCE_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
+	int VCLASSIFIER__INSTANCE_MULTIPLICITY = VSPEC_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>VClassifier</em>' class.
@@ -853,7 +943,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VCLASSIFIER_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 1;
+	int VCLASSIFIER_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>VClassifier</em>' class.
@@ -1157,13 +1247,13 @@ public interface BvrPackage extends EPackage {
 	int VTYPE__MEMBER = COMPOUND_NODE__MEMBER;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Targets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VTYPE__TARGET = COMPOUND_NODE__TARGET;
+	int VTYPE__OWNED_TARGETS = COMPOUND_NODE__OWNED_TARGETS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4699,15 +4789,15 @@ public interface BvrPackage extends EPackage {
 	EReference getCompoundNode_Member();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.CompoundNode#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the containment reference list '{@link bvr.CompoundNode#getOwnedTargets <em>Owned Targets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Target</em>'.
-	 * @see bvr.CompoundNode#getTarget()
+	 * @return the meta object for the containment reference list '<em>Owned Targets</em>'.
+	 * @see bvr.CompoundNode#getOwnedTargets()
 	 * @see #getCompoundNode()
 	 * @generated
 	 */
-	EReference getCompoundNode_Target();
+	EReference getCompoundNode_OwnedTargets();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.VNode <em>VNode</em>}'.
@@ -6528,12 +6618,12 @@ public interface BvrPackage extends EPackage {
 		EReference COMPOUND_NODE__MEMBER = eINSTANCE.getCompoundNode_Member();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Owned Targets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOUND_NODE__TARGET = eINSTANCE.getCompoundNode_Target();
+		EReference COMPOUND_NODE__OWNED_TARGETS = eINSTANCE.getCompoundNode_OwnedTargets();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.VNodeImpl <em>VNode</em>}' class.
