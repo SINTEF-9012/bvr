@@ -16,7 +16,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
 
@@ -24,7 +24,7 @@ public class FragmentSubstitutionContainmentTest {
 
 	private static File file;
 	private static HashMap<String, Object> map;
-	private static ConfigurableUnit cu;
+	private static BVRModel cu;
 	private static FragmentSubstitution fragSub;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder;
@@ -33,8 +33,8 @@ public class FragmentSubstitutionContainmentTest {
 	public void setUp() throws Exception {
 		file = new File("src/test/resources/nodeContainment/node.new.bvr");
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSub = (FragmentSubstitution) vp;

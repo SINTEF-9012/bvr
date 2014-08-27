@@ -18,7 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
 
@@ -26,7 +26,7 @@ public class FragmentSubstitutionAdjacentTwins2Test {
 
 	private File file;
 	private HashMap<String, Object> map;
-	private ConfigurableUnit cu;
+	private BVRModel cu;
 	private EList<FragmentSubstitution> fragSubs;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder1;
@@ -41,8 +41,8 @@ public class FragmentSubstitutionAdjacentTwins2Test {
 		fragSubs = new BasicEList<FragmentSubstitution>();
 		file = new File("src/test/resources/adjacentTwins2/adjtwins.bvr");
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSubs.add((FragmentSubstitution) vp);

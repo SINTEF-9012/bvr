@@ -40,7 +40,7 @@ public interface BvrPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///bvr.ecore";
+	String eNS_URI = "http:///bvr.ecore/2.0.0";
 
 	/**
 	 * The package namespace name.
@@ -2049,7 +2049,7 @@ public interface BvrPackage extends EPackage {
 	int OBJECT_HANDLE = 27;
 
 	/**
-	 * The feature id for the '<em><b>MOF Ref</b></em>' attribute.
+	 * The feature id for the '<em><b>MOF Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5372,15 +5372,15 @@ public interface BvrPackage extends EPackage {
 	EClass getObjectHandle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
+	 * Returns the meta object for the reference '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>MOF Ref</em>'.
+	 * @return the meta object for the reference '<em>MOF Ref</em>'.
 	 * @see bvr.ObjectHandle#getMOFRef()
 	 * @see #getObjectHandle()
 	 * @generated
 	 */
-	EAttribute getObjectHandle_MOFRef();
+	EReference getObjectHandle_MOFRef();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.ReplacementFragmentType <em>Replacement Fragment Type</em>}'.
@@ -7102,12 +7102,12 @@ public interface BvrPackage extends EPackage {
 		EClass OBJECT_HANDLE = eINSTANCE.getObjectHandle();
 
 		/**
-		 * The meta object literal for the '<em><b>MOF Ref</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>MOF Ref</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
+		EReference OBJECT_HANDLE__MOF_REF = eINSTANCE.getObjectHandle_MOFRef();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.ReplacementFragmentTypeImpl <em>Replacement Fragment Type</em>}' class.

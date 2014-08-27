@@ -1,46 +1,32 @@
 package no.sintef.bvr.engine.adjacent;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
-import node.NodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.collect.Sets;
-import com.google.common.collect.Sets.SetView;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
-import bvr.FromBinding;
-import bvr.FromPlacement;
-import bvr.ObjectHandle;
-import bvr.PlacementBoundaryElement;
-import bvr.ToBinding;
-import bvr.ToPlacement;
 import bvr.VariationPoint;
 
 public class FragmentSubstitutionAdjacentTwinsTest {
 
 	private File file;
 	private HashMap<String, Object> map;
-	private ConfigurableUnit cu;
+	private BVRModel cu;
 	private EList<FragmentSubstitution> fragSubs;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder1;
@@ -53,8 +39,8 @@ public class FragmentSubstitutionAdjacentTwinsTest {
 		fragSubs = new BasicEList<FragmentSubstitution>();
 		file = new File("src/test/resources/adjacentTwins/adjtwins.bvr");
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSubs.add((FragmentSubstitution) vp);

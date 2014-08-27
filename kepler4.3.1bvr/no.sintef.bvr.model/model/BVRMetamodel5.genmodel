@@ -124,7 +124,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//PlacementBoundaryElement"/>
     <genClasses ecoreClass="BVRMetamodel5.ecore#//ObjectHandle">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ObjectHandle/MOFRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ObjectHandle/MOFRef"/>
     </genClasses>
     <genClasses ecoreClass="BVRMetamodel5.ecore#//ReplacementFragmentType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ReplacementFragmentType/replacementBoundaryElement"/>

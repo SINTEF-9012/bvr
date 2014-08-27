@@ -1276,8 +1276,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getObjectHandle_MOFRef() {
-		return (EAttribute)objectHandleEClass.getEStructuralFeatures().get(0);
+	public EReference getObjectHandle_MOFRef() {
+		return (EReference)objectHandleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2323,7 +2323,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		placementBoundaryElementEClass = createEClass(PLACEMENT_BOUNDARY_ELEMENT);
 
 		objectHandleEClass = createEClass(OBJECT_HANDLE);
-		createEAttribute(objectHandleEClass, OBJECT_HANDLE__MOF_REF);
+		createEReference(objectHandleEClass, OBJECT_HANDLE__MOF_REF);
 
 		replacementFragmentTypeEClass = createEClass(REPLACEMENT_FRAGMENT_TYPE);
 		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT);
@@ -2664,7 +2664,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEClass(placementBoundaryElementEClass, PlacementBoundaryElement.class, "PlacementBoundaryElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(objectHandleEClass, ObjectHandle.class, "ObjectHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getObjectHandle_MOFRef(), ecorePackage.getEString(), "MOFRef", null, 1, 1, ObjectHandle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getObjectHandle_MOFRef(), ecorePackage.getEObject(), null, "MOFRef", null, 1, 1, ObjectHandle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(replacementFragmentTypeEClass, ReplacementFragmentType.class, "ReplacementFragmentType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReplacementFragmentType_ReplacementBoundaryElement(), this.getReplacementBoundaryElement(), null, "replacementBoundaryElement", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2892,7 +2892,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 			 "com.ibm.xtools.activities.umlBBRealization", "1",
 			 "com.ibm.xtools.activities.umlBBComponent", "1",
 			 "com.ibm.xtools.activities.umlBBSequenceDiagram", "1"
-		   });																																																																																																																																																																																															
+		   });																																																																																																																																																																																														
 	}
 
 } //BvrPackageImpl

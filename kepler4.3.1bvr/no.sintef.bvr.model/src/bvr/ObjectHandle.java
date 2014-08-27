@@ -29,28 +29,25 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ObjectHandle extends EObject {
 	/**
-	 * Returns the value of the '<em><b>MOF Ref</b></em>' attribute.
+	 * Returns the value of the '<em><b>MOF Ref</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Representing a MOF Reference.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>MOF Ref</em>' attribute.
-	 * @see #setMOFRef(String)
+	 * @return the value of the '<em>MOF Ref</em>' reference.
+	 * @see #setMOFRef(EObject)
 	 * @see bvr.BvrPackage#getObjectHandle_MOFRef()
-	 * @model required="true" ordered="false"
+	 * @model required="true"
 	 * @generated
 	 */
-	String getMOFRef();
+	EObject getMOFRef();
 
 	/**
-	 * Sets the value of the '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}' attribute.
+	 * Sets the value of the '{@link bvr.ObjectHandle#getMOFRef <em>MOF Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>MOF Ref</em>' attribute.
+	 * @param value the new value of the '<em>MOF Ref</em>' reference.
 	 * @see #getMOFRef()
 	 * @generated
 	 */
-	void setMOFRef(String value);
+	void setMOFRef(EObject value);
 
 } // ObjectHandle

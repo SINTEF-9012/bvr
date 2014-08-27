@@ -9,6 +9,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
@@ -27,24 +29,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements ObjectHandle {
 	/**
-	 * The default value of the '{@link #getMOFRef() <em>MOF Ref</em>}' attribute.
+	 * The cached value of the '{@link #getMOFRef() <em>MOF Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMOFRef()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MOF_REF_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMOFRef() <em>MOF Ref</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMOFRef()
-	 * @generated
-	 * @ordered
-	 */
-	protected String mofRef = MOF_REF_EDEFAULT;
+	protected EObject mofRef;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +62,15 @@ public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements Ob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMOFRef() {
+	public EObject getMOFRef() {
+		if (mofRef != null && mofRef.eIsProxy()) {
+			InternalEObject oldMOFRef = (InternalEObject)mofRef;
+			mofRef = eResolveProxy(oldMOFRef);
+			if (mofRef != oldMOFRef) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BvrPackage.OBJECT_HANDLE__MOF_REF, oldMOFRef, mofRef));
+			}
+		}
 		return mofRef;
 	}
 
@@ -79,8 +79,17 @@ public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements Ob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMOFRef(String newMOFRef) {
-		String oldMOFRef = mofRef;
+	public EObject basicGetMOFRef() {
+		return mofRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMOFRef(EObject newMOFRef) {
+		EObject oldMOFRef = mofRef;
 		mofRef = newMOFRef;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.OBJECT_HANDLE__MOF_REF, oldMOFRef, mofRef));
@@ -95,7 +104,8 @@ public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements Ob
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BvrPackage.OBJECT_HANDLE__MOF_REF:
-				return getMOFRef();
+				if (resolve) return getMOFRef();
+				return basicGetMOFRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,7 +119,7 @@ public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements Ob
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BvrPackage.OBJECT_HANDLE__MOF_REF:
-				setMOFRef((String)newValue);
+				setMOFRef((EObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -124,7 +134,7 @@ public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements Ob
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case BvrPackage.OBJECT_HANDLE__MOF_REF:
-				setMOFRef(MOF_REF_EDEFAULT);
+				setMOFRef((EObject)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -139,25 +149,9 @@ public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements Ob
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case BvrPackage.OBJECT_HANDLE__MOF_REF:
-				return MOF_REF_EDEFAULT == null ? mofRef != null : !MOF_REF_EDEFAULT.equals(mofRef);
+				return mofRef != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (MOFRef: ");
-		result.append(mofRef);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ObjectHandleImpl
