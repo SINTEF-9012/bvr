@@ -1,0 +1,148 @@
+modeltype BVR "strict" uses "http:///bvr.ecore";
+modeltype BVR2 "strict" uses "http:///bvr.ecore/2.0.0";
+
+transformation bvrTobvr2(in source:BVR, out target:BVR2);
+	
+
+main() {
+	source.rootObjects()[BVR::ConfigurableUnit] ->map ConfigUnit2BVRModel();
+}
+
+//VSpec Tree START
+mapping BVR::ConfigurableUnit::ConfigUnit2BVRModel() : BVR2::BVRModel {
+	name := self.name;
+	variabilityModel := self.ownedVSpec->any(oclIsKindOf(BVR::VSpec)).map ChoiceToChoice();
+	realizationModel += self.ownedVariationPoint->select(pf | pf.oclIsTypeOf(BVR::PlacementFragment)).map PlacementToPlacement();
+	packageElement += self.ownedVariabletype->select(rf | rf.oclIsTypeOf(BVR::ReplacementFragmentType)).map ReplacementToReplacement();
+	realizationModel += self.ownedVariationPoint->select(pf | pf.oclIsTypeOf(BVR::FragmentSubstitution)).map FragSubToFragSub();
+	
+	resolutionModels += self.ownedVSpecResolution->select(vr | vr.oclIsTypeOf(BVR::ChoiceResolutuion) and vr.oclAsType(BVR::ChoiceResolutuion).decision)->map ChoiceResToPosRes();
+}
+
+mapping BVR::VSpec::ChoiceToChoice() : BVR2::Choice {
+	log("BVR::VSpec::ChoiceToChoice() : BVR2::Choice " + self.toString());
+	name := self.name;
+	if(self.oclIsKindOf(BVR::Choice)) then {
+		log("Choice Trasformation " + self.toString());
+		isImpliedByParent := self.oclAsType(BVR::Choice).isImpliedByParent;
+		defaultResolution := self.oclAsType(BVR::Choice).defaultResolution;
+	} endif;
+	member += self.child->select(ch | ch.oclIsTypeOf(BVR::Choice))-> map ChoiceToChoice();
+	member += self.child->select(cl | cl.oclIsTypeOf(BVR::VClassifier))-> map VClassifierToVCLassifier();
+}
+
+mapping BVR::VSpec::VClassifierToVCLassifier() : BVR2::VClassifier {
+	log("BVR::VSpec::VClassifierToVCLassifier() : " + self.toString());
+	name := self.name;
+	
+	member += self.child->select(ch | ch.oclIsTypeOf(BVR::Choice))-> map ChoiceToChoice();
+	member += self.child->select(cl | cl.oclIsTypeOf(BVR::VClassifier))-> map VClassifierToVCLassifier();
+}
+//VSpec Tree END
+
+//Resolution layer START
+mapping BVR::VSpecResolution::ChoiceResToPosRes() : BVR2::PosResolution {
+	log("Calling ChoiceResToPosRes() " + self.toString());
+	name := self.name;
+	resolvedChoice := self.oclAsType(BVR::ChoiceResolutuion).resolvedVSpec.resolveone(BVR2::VSpec).oclAsType(BVR2::Choice);
+	
+	members += self.oclAsType(BVR::ChoiceResolutuion).child->select(ch | ch.oclIsTypeOf(BVR::ChoiceResolutuion) and ch.oclAsType(BVR::ChoiceResolutuion).decision)->map ChoiceResToPosRes();
+	members += self.oclAsType(BVR::ChoiceResolutuion).child->select(ch | ch.oclIsTypeOf(BVR::ChoiceResolutuion) and ch.oclAsType(BVR::ChoiceResolutuion).decision = false)->map ChoiceResToNegRes();
+	members += self.oclAsType(BVR::ChoiceResolutuion).child->select(vi | vi.oclIsTypeOf(BVR::VInstance))->map VInstanceToPosRes();
+}
+
+mapping BVR::VSpecResolution::ChoiceResToNegRes() : BVR2::NegResolution {
+	log("Calling ChoiceResToNegRes() " + self.toString());
+	name := self.name;
+	
+	resolvedChoice := self.oclAsType(BVR::ChoiceResolutuion).resolvedVSpec.resolveone(BVR2::VSpec).oclAsType(BVR2::Choice);
+}
+
+mapping BVR::VSpecResolution::VInstanceToPosRes() : BVR2::PosResolution {
+	log("Calling VInstanceToPosRes() " + self.toString());
+	name := self.name;
+	
+	resolvedVClassifier := self.oclAsType(BVR::VInstance).resolvedVSpec.resolveone(BVR2::VSpec).oclAsType(BVR2::VClassifier);
+	
+	members += self.oclAsType(BVR::VInstance).child->select(ch | ch.oclIsTypeOf(BVR::ChoiceResolutuion) and ch.oclAsType(BVR::ChoiceResolutuion).decision)->map ChoiceResToPosRes();
+	members += self.oclAsType(BVR::VInstance).child->select(ch | ch.oclIsTypeOf(BVR::ChoiceResolutuion) and ch.oclAsType(BVR::ChoiceResolutuion).decision = false)->map ChoiceResToNegRes();
+	members += self.oclAsType(BVR::VInstance).child->select(ch | ch.oclIsTypeOf(BVR::VInstance))->map VInstanceToPosRes();
+}
+//Resolution layer END
+
+//Realization layer START
+mapping BVR::VariationPoint::PlacementToPlacement() : BVR2::PlacementFragment {
+	log("Calling PlacementToPlacement() " + self.toString());
+	name := self.name;
+	sourceObject := self.oclAsType(BVR::PlacementFragment).sourceObject->map ObjectHandleToObjectHandle();
+	placementBoundaryElement += self.oclAsType(BVR::PlacementFragment).placementBoundaryElement->select(p | p.oclIsTypeOf(BVR::ToPlacement))->map toPlacement();
+	placementBoundaryElement += self.oclAsType(BVR::PlacementFragment).placementBoundaryElement->select(p | p.oclIsTypeOf(BVR::FromPlacement))->map fromPlacement();
+}
+
+mapping BVR::PlacementBoundaryElement::toPlacement() : BVR2::ToPlacement {
+	log("Calling toPlacemet() " + self.toString());
+	name := self.name;
+	insideBoundaryElement := self.oclAsType(BVR::ToPlacement).insideBoundaryElement->resolve(BVR2::ObjectHandle);
+	outsideBoundaryElement := self.oclAsType(BVR::ToPlacement).outsideBoundaryElement.resolveone(BVR2::ObjectHandle);
+}
+
+mapping BVR::PlacementBoundaryElement::fromPlacement() : BVR2::FromPlacement {
+	log("Calling fromPlacemet() " + self.toString());
+	name := self.name;
+	insideBoundaryElement := self.oclAsType(BVR::FromPlacement).insideBoundaryElement.resolveone(BVR2::ObjectHandle);
+	outsideBoundaryElement := self.oclAsType(BVR::FromPlacement).outsideBoundaryElement->resolve(BVR2::ObjectHandle);
+}
+
+mapping BVR::Variabletype::ReplacementToReplacement() : BVR2::ReplacementFragmentType {
+	log("Calling ReplacementToReplacement() " + self.toString());
+	name :=self.name;
+	sourceObject := self.oclAsType(BVR::ReplacementFragmentType).sourceObject->map ObjectHandleToObjectHandle();
+	replacementBoundaryElement += self.oclAsType(BVR::ReplacementFragmentType).replacementBoundaryElement->select(r | r.oclIsTypeOf(BVR::ToReplacement))->map toReplacement();
+	replacementBoundaryElement += self.oclAsType(BVR::ReplacementFragmentType).replacementBoundaryElement->select(r | r.oclIsTypeOf(BVR::FromReplacement))->map fromReplacement();
+}
+
+mapping BVR::ReplacementBoundaryElement::toReplacement() : BVR2::ToReplacement {
+	log("Calling toReplacement() " + self.toString());
+	name := self.name;
+	insideBoundaryElement := self.oclAsType(BVR::ToReplacement).insideBoundaryElement->resolve(BVR2::ObjectHandle);
+	outsideBoundaryElement := self.oclAsType(BVR::ToReplacement).outsideBoundaryElement.resolveone(BVR2::ObjectHandle);
+}
+
+mapping BVR::ReplacementBoundaryElement::fromReplacement() : BVR2::FromReplacement {
+	log("Calling fromReplacement() " + self.toString());
+	name := self.name;
+	insideBoundaryElement := self.oclAsType(BVR::FromReplacement).insideBoundaryElement.resolveone(BVR2::ObjectHandle);
+	outsideBoundaryElement := self.oclAsType(BVR::FromReplacement).outsideBoundaryElement->resolve(BVR2::ObjectHandle);
+}
+
+mapping BVR::ObjectHandle::ObjectHandleToObjectHandle() : BVR2::ObjectHandle {
+	log("Calling ObjectHandleToObjectHandle() " + self.toString());
+	MOFRef := self.MOFRef;
+}
+
+mapping BVR::VariationPoint::FragSubToFragSub() : BVR2::FragmentSubstitution {
+	log("Calling FragSubToFragSub() " + self.toString());
+	name := self.name;
+	placement := self.oclAsType(BVR::FragmentSubstitution).placement.resolveone(BVR2::PlacementFragment);
+	replacement := self.oclAsType(BVR::FragmentSubstitution).replacement.resolveone(BVR2::ReplacementFragmentType);
+	
+	boundaryElementBinding += self.oclAsType(BVR::FragmentSubstitution).boundaryElementBinding->select(b | b.oclIsTypeOf(BVR::ToBinding))->toBinding();
+	boundaryElementBinding += self.oclAsType(BVR::FragmentSubstitution).boundaryElementBinding->select(b | b.oclIsTypeOf(BVR::FromBinding))->fromBinding();
+	
+	bindingVSpec := self.oclAsType(BVR::FragmentSubstitution).bindingVSpec.resolveone(BVR2::VSpec);
+}
+
+mapping BVR::BoundaryElementBinding::toBinding() : BVR2::ToBinding {
+	log("Calling toBinding() " + self.toString());
+	name := self.name;
+	toPlacement := self.oclAsType(BVR::ToBinding).toPlacement.resolveone(BVR2::ToPlacement);
+	toReplacement := self.oclAsType(BVR::ToBinding).toReplacement.resolveone(BVR2::ToReplacement);
+}
+
+mapping BVR::BoundaryElementBinding::fromBinding() : BVR2::FromBinding {
+	log("Calling fromBinding() " + self.toString());
+	name := self.name;
+	fromPlacement := self.oclAsType(BVR::FromBinding).fromPlacement.resolveone(BVR2::FromPlacement);
+	fromReplacement := self.oclAsType(BVR::FromBinding).fromReplacement.resolveone(BVR2::FromReplacement);
+}
+//Realization layer END

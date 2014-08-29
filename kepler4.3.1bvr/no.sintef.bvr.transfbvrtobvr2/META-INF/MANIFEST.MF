@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Transfbvrtobvr2
+Bundle-SymbolicName: no.sintef.bvr.transfbvrtobvr2;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: no.sintef.bvr.transfbvrtobvr2.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ no.sintef.bvr.transformation0to2;bundle-version="1.0.0",
+ no.sintef.bvr.model;bundle-version="1.0.0",
+ no.sintef.bvr2.model;bundle-version="0.1.0",
+ org.eclipse.m2m.qvt.oml;bundle-version="3.4.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
