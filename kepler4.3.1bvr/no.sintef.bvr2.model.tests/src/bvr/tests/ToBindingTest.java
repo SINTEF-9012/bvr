@@ -1,0 +1,70 @@
+/**
+ */
+package bvr.tests;
+
+import bvr.BvrFactory;
+import bvr.ToBinding;
+
+import junit.textui.TestRunner;
+
+/**
+ * <!-- begin-user-doc -->
+ * A test case for the model object '<em><b>To Binding</b></em>'.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class ToBindingTest extends BoundaryElementBindingTest {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void main(String[] args) {
+		TestRunner.run(ToBindingTest.class);
+	}
+
+	/**
+	 * Constructs a new To Binding test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ToBindingTest(String name) {
+		super(name);
+	}
+
+	/**
+	 * Returns the fixture for this To Binding test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected ToBinding getFixture() {
+		return (ToBinding)fixture;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		setFixture(BvrFactory.eINSTANCE.createToBinding());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		setFixture(null);
+	}
+
+} //ToBindingTest

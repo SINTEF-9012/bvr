@@ -2618,18 +2618,18 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEReference(getVSpecResolution_ResolvedVSpec(), this.getVSpec(), null, "resolvedVSpec", null, 1, 1, VSpecResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(choiceResolutionEClass, ChoiceResolution.class, "ChoiceResolution", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChoiceResolution_ResolvedChoice(), this.getChoice(), null, "resolvedChoice", null, 1, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getChoiceResolution_ResolvedChoiceOcc(), this.getChoiceOccurrence(), null, "resolvedChoiceOcc", null, 1, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getChoiceResolution_ResolvedVClassOcc(), this.getVClassOccurrence(), null, "resolvedVClassOcc", null, 1, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getChoiceResolution_ResolvedVClassifier(), this.getVClassifier(), null, "resolvedVClassifier", null, 1, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedChoice(), this.getChoice(), null, "resolvedChoice", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedChoiceOcc(), this.getChoiceOccurrence(), null, "resolvedChoiceOcc", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedVClassOcc(), this.getVClassOccurrence(), null, "resolvedVClassOcc", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedVClassifier(), this.getVClassifier(), null, "resolvedVClassifier", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(choiceOccurrenceEClass, ChoiceOccurrence.class, "ChoiceOccurrence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChoiceOccurrence_VType(), this.getVType(), null, "vType", null, 1, 1, ChoiceOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceOccurrence_VType(), this.getVType(), null, "vType", null, 0, 1, ChoiceOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(vTypeEClass, VType.class, "VType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(vClassOccurrenceEClass, VClassOccurrence.class, "VClassOccurrence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVClassOccurrence_VType(), this.getVType(), null, "vType", null, 1, 1, VClassOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVClassOccurrence_VType(), this.getVType(), null, "vType", null, 0, 1, VClassOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getVClassOccurrence_InstanceMultiplicity(), this.getMultiplicityInterval(), null, "instanceMultiplicity", null, 0, -1, VClassOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(variationPointEClass, VariationPoint.class, "VariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

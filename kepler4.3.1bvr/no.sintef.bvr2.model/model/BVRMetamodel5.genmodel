@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.sintef.bvr2.model/src" modelPluginID="no.sintef.bvr2.model"
+    modelName="BVRMetamodel5" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>BVRMetamodel5.ecore</foreignModel>
+  <genPackages prefix="Bvr" disposableProviderFactory="true" ecorePackage="BVRMetamodel5.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BVRMetamodel5.ecore#//PrimitiveTypeEnum">
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//PrimitiveTypeEnum/String"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//PrimitiveTypeEnum/Boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//PrimitiveTypeEnum/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//PrimitiveTypeEnum/Real"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//PrimitiveTypeEnum/UnlimitedNatural"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BVRMetamodel5.ecore#//Operation">
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/logNot"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/logAnd"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/logOr"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/logImplies"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/logXor"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/logIff"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/arithPlus"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/arithMinus"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/arithNeg"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/arithMult"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/arithDev"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/strConc"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/eq"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/lte"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/gte"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/lt"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/gt"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/isDefined"/>
+      <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/isUndefined"/>
+    </genEnums>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//Choice">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//Choice/defaultResolution"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//Choice/isImpliedByParent"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//VSpec/resolutionTime"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VSpec/target"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//NamedElement/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//NamedElement/note"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//Note">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//Note/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//Note/expr"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//Target"/>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//CompoundNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//CompoundNode/member"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//CompoundNode/ownedTargets"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VNode/groupMultiplicity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VNode/ownedConstraint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VNode/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//MultiplicityInterval">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//MultiplicityInterval/upper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//MultiplicityInterval/lower"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//Constraint"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//Variable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//Variable/defaulValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//Variable/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//ValueSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ValueSpecification/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//Variabletype"/>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VPackageable"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//VClassifier">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VClassifier/instanceMultiplicity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VSpecResolution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VSpecResolution/resolvedVSpec"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//ChoiceResolution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceResolution/resolvedChoice"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceResolution/resolvedChoiceOcc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceResolution/resolvedVClassOcc"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceResolution/resolvedVClassifier"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ChoiceOccurrence">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceOccurrence/vType"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//VType"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//VClassOccurrence">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VClassOccurrence/vType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VClassOccurrence/instanceMultiplicity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VariationPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VariationPoint/bindingVSpec"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VariationPoint/stagedVariationPoint"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//StagedVariationPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//StagedVariationPoint/bindingStagedVP"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//StagedVariationPoint/member"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//FragmentSubstitution">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FragmentSubstitution/boundaryElementBinding"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FragmentSubstitution/placement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//FragmentSubstitution/multi"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FragmentSubstitution/replacement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//ChoiceVariationPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceVariationPoint/bindingChoice"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ChoiceVariationPoint/bindingChoiceOcc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ChoiceVariationPoint/resolution_kind"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//RepeatableVariationPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//RepeatableVariationPoint/bindingClassifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//RepeatableVariationPoint/bindingVClassOcc"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//BoundaryElementBinding"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//PlacementFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//PlacementFragment/placementBoundaryElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//PlacementFragment/sourceObject"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//PlacementBoundaryElement"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ObjectHandle">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ObjectHandle/MOFRef"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ReplacementFragmentType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ReplacementFragmentType/replacementBoundaryElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ReplacementFragmentType/placementFragment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ReplacementFragmentType/sourceObject"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//ReplacementBoundaryElement"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ValueResolution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ValueResolution/resolvedVariable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ValueResolution/value"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//PrimitveType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//PrimitveType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ObjectType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ObjectType/metaClass"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//SlotAssignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//SlotAssignment/slotIdentifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//SlotAssignment/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//SlotAssignment/slotOwner"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//OpaqueVariationPoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//OpaqueVariationPoint/placeHolder"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//OpaqueVariationPoint/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//OVPType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//OVPType/spec"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//OVPSemanticSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//OVPSemanticSpec/modelTransformation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//OVPSemanticSpec/transfromationLanguage"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ObjectSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ObjectSpecification/object"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ReplacementFragmentSpecification"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//VPackage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VPackage/packageElement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ToBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToBinding/toPlacement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToBinding/toReplacement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ToPlacement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToPlacement/toReplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ToPlacement/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToPlacement/insideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToPlacement/outsideBoundaryElement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ToReplacement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToReplacement/insideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToReplacement/outsideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ToReplacement/toPlacement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//FromBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromBinding/fromPlacement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromBinding/fromReplacement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//FromPlacement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromPlacement/fromReplacement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromPlacement/outsideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromPlacement/insideBoundaryElement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//FromReplacement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//FromReplacement/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromReplacement/insideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromReplacement/outsideBoundaryElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//FromReplacement/fromPlacement"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//TargetRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//TargetRef/target"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//BCLExpression"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//OpaqueConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//OpaqueConstraint/constraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//OpaqueConstraint/constraintLanguage"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//ParametricVariationPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ParametricVariationPoint/bindingVariable"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ParametricSlotAssignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ParametricSlotAssignment/slotIdentifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ParametricSlotAssignment/slotOwner"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//PrimitiveValueSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//PrimitiveValueSpecification/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//BCLConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BCLConstraint/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//OperationCallExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//OperationCallExp/argument"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//OperationCallExp/operation"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//BooleanLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//BooleanLiteralExp/bool"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//StringLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//StringLiteralExp/string"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//NumericLiteralExp"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//IntegerLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//IntegerLiteralExp/integer"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//UnlimitedLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//UnlimitedLiteralExp/unlimited"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//RealLiteralExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//RealLiteralExp/real"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//CompoundResolution">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//CompoundResolution/members"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//NegResolution"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//PosResolution"/>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//VRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VRef/refVSpec"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//VRefValueSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VRefValueSpecification/vSpecResolution"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ResolutionLiteralDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ResolutionLiteralDefinition/literalType"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//ResolutionLiteralUse">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//ResolutionLiteralUse/defLiteral"/>
+    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//BVRModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/variabilityModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/resolutionModels"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/baseModelBase"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/baseModelLibraries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/realizationModel"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
