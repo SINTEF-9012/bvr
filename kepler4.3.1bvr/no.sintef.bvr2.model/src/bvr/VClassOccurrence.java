@@ -37,7 +37,7 @@ public interface VClassOccurrence extends VSpec, VNode {
 	 * @return the value of the '<em>VType</em>' reference.
 	 * @see #setVType(VType)
 	 * @see bvr.BvrPackage#getVClassOccurrence_VType()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	VType getVType();

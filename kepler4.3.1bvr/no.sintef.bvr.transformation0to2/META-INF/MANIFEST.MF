@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Transformation0to2 Plug-in
+Bundle-Name: QVT Transformation Plug-in BVR->BVR2
 Bundle-SymbolicName: no.sintef.bvr.transformation0to2;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SINTEF
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.m2m.qvt.oml,

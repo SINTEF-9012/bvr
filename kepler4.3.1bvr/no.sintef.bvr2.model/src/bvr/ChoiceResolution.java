@@ -37,7 +37,7 @@ public interface ChoiceResolution extends VSpecResolution {
 	 * @return the value of the '<em>Resolved Choice</em>' reference.
 	 * @see #setResolvedChoice(Choice)
 	 * @see bvr.BvrPackage#getChoiceResolution_ResolvedChoice()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Choice getResolvedChoice();
@@ -62,7 +62,7 @@ public interface ChoiceResolution extends VSpecResolution {
 	 * @return the value of the '<em>Resolved Choice Occ</em>' reference.
 	 * @see #setResolvedChoiceOcc(ChoiceOccurrence)
 	 * @see bvr.BvrPackage#getChoiceResolution_ResolvedChoiceOcc()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	ChoiceOccurrence getResolvedChoiceOcc();
@@ -87,7 +87,7 @@ public interface ChoiceResolution extends VSpecResolution {
 	 * @return the value of the '<em>Resolved VClass Occ</em>' reference.
 	 * @see #setResolvedVClassOcc(VClassOccurrence)
 	 * @see bvr.BvrPackage#getChoiceResolution_ResolvedVClassOcc()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	VClassOccurrence getResolvedVClassOcc();
@@ -112,7 +112,7 @@ public interface ChoiceResolution extends VSpecResolution {
 	 * @return the value of the '<em>Resolved VClassifier</em>' reference.
 	 * @see #setResolvedVClassifier(VClassifier)
 	 * @see bvr.BvrPackage#getChoiceResolution_ResolvedVClassifier()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	VClassifier getResolvedVClassifier();

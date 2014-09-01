@@ -270,25 +270,25 @@
       <details key="documentation" value="&lt;p>A ChoiceResolution is a VSpecResolution which resolves a single choice positively (PosResolution) or negatively (NegResolution).&lt;/p>&lt;p>&lt;/p>&lt;p>####CVLSemanticStart####&lt;/p>&lt;p>Invariant&lt;/p>&lt;p>Invariant : If a choice is selected, the number of selected children must correspond to the multiplicity interval of the resolvedChoice&lt;/p>&lt;p>OCL :&lt;/p>&lt;p>-- ChoiceResolution&lt;/p>&lt;p>-- If a choice is selected, the number of selected children must correspond to the multiplicity interval of the resolvedChoice&lt;/p>&lt;p>context ChoiceResolutuion :&lt;/p>&lt;p>inv selectedChildrenMustCorrespondsToMultiplicityInterval :&lt;/p>&lt;p>if self.resolvedChoice.groupMultiplicity-&amp;gt;isEmpty()&lt;/p>&lt;p>then&lt;/p>&lt;p>(self.resolvedChoice.groupMultiplicity.upper &amp;lt;&amp;gt; (-1)&lt;/p>&lt;p>and self.resolvedChoice.groupMultiplicity.lower &amp;lt;= self.childResolution-&amp;gt;select (choiceRes | choiceRes.oclAsType(ChoiceResolutuion).decision)-&amp;gt;size()&lt;/p>&lt;p>and self.childResolution-&amp;gt;select (choiceRes | choiceRes.oclAsType(ChoiceResolutuion).decision)-&amp;gt;size() &amp;gt;= self.resolvedChoice.groupMultiplicity.upper&lt;/p>&lt;p>)&lt;/p>&lt;p>or&lt;/p>&lt;p>(self.resolvedChoice.groupMultiplicity.upper == (-1)&lt;/p>&lt;p>and self.resolvedChoice.groupMultiplicity.lower &amp;lt;= self.childResolution-&amp;gt;select (choiceRes | choiceRes.oclAsType(ChoiceResolutuion).decision)-&amp;gt;size()&lt;/p>&lt;p>)&lt;/p>&lt;p>else&lt;/p>&lt;p>-- no choice must be selected&lt;/p>&lt;p>self.childResolution-&amp;gt;select (choiceRes | choiceRes.oclAsType(ChoiceResolutuion).decision)-&amp;gt;isEmpty()&lt;/p>&lt;p>endif&lt;/p>&lt;p>Dynamic semantics&lt;/p>&lt;p>Pre and post condition&lt;/p>&lt;p>Pre-condition :&lt;/p>&lt;p>None&lt;/p>&lt;p>Post-condition:&lt;/p>&lt;p>After a Choice Resolution has been executed, the resolvedChoice is constained in the selected VSpecs set if the boolean decision is set to true, otherwise, the resolvedChoice is contained in the unselected VSpec set.&lt;/p>&lt;p>OCL :&lt;/p>&lt;p>-- ChoiceResolution&lt;/p>&lt;p>context ChoiceResolutuion::eval(ctx : CVLExecutionContext):&lt;/p>&lt;p>pre :&lt;/p>&lt;p>post :&lt;/p>&lt;p>self.decision implies&lt;/p>&lt;p>ctx.selectedVSpecs-&amp;gt;includes(self.resolvedChoice)&lt;/p>&lt;p>and not self.decision implies&lt;/p>&lt;p>ctx.unselectedVSpecs-&amp;gt;includes(self.resolvedChoice)&lt;/p>&lt;p>####CVLSemanticEnd####&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolvedChoice" ordered="false"
-        lowerBound="1" eType="#//Choice">
+        eType="#//Choice">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The resolved choice of this resolution.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolvedChoiceOcc" ordered="false"
-        lowerBound="1" eType="#//ChoiceOccurrence">
+        eType="#//ChoiceOccurrence">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The resolved choice occurrence&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolvedVClassOcc" ordered="false"
-        lowerBound="1" eType="#//VClassOccurrence">
+        eType="#//VClassOccurrence">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The resolved VClass occurrence&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resolvedVClassifier" ordered="false"
-        lowerBound="1" eType="#//VClassifier">
+        eType="#//VClassifier">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The resolved classifier&lt;/p>"/>
       </eAnnotations>
@@ -299,7 +299,7 @@
       <details key="documentation" value="&lt;p>ChoiceOccurrence is similar to a Choice, but refers to a VType instead of having the ability to define a subordinate VNode structure.&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vType" ordered="false"
-        lowerBound="1" eType="#//VType">
+        eType="#//VType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>vType refers to the VType that defines the details of the ChoiceOccurrence&lt;/p>"/>
       </eAnnotations>
@@ -315,7 +315,7 @@
       <details key="documentation" value="&lt;p>VClassOccurrence is a set concept similar to VClassifier. The difference is that VClassOccurence refers a VType and does not have its own defining subtree.&lt;/p>"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="vType" ordered="false"
-        lowerBound="1" eType="#//VType"/>
+        eType="#//VType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceMultiplicity" ordered="false"
         upperBound="-1" eType="#//MultiplicityInterval" containment="true"/>
   </eClassifiers>

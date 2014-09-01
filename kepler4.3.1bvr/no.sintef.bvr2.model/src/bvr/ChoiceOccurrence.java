@@ -34,7 +34,7 @@ public interface ChoiceOccurrence extends VSpec, VNode {
 	 * @return the value of the '<em>VType</em>' reference.
 	 * @see #setVType(VType)
 	 * @see bvr.BvrPackage#getChoiceOccurrence_VType()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	VType getVType();

@@ -1,8 +1,6 @@
 package no.sintef.bvr.transfbvrtobvr2.popup.actions;
 
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,15 +110,15 @@ public class RunTransformation implements IObjectActionDelegate {
 				List<EObject> outObjects = outModelExtend.getContents();
 				ResourceSetImpl resourceSetResult = new ResourceSetImpl();
 				
-				String relativeNewPath = file.getFullPath().toString().replaceFirst(file.getFullPath().segment(file.getFullPath().segmentCount() -1), newFileName);
-				Resource outResource = resourceSetResult.createResource(URI.createURI("platform:/resource/" + relativeNewPath));
-				outResource.getContents().addAll(outObjects);
-				Map<Object, Object> options = new HashMap<Object, Object>();
 				try {
+					String relativeNewPath = file.getFullPath().toString().replaceFirst(file.getFullPath().segment(file.getFullPath().segmentCount() -1), newFileName);
+					Resource outResource = resourceSetResult.createResource(URI.createURI("platform:/resource/" + relativeNewPath));
+					outResource.getContents().addAll(outObjects);
+					Map<Object, Object> options = new HashMap<Object, Object>();
 					outResource.save(options);
 				} catch (Exception e) {
 					e.printStackTrace();
-					MessageDialog.openError(shell, "Error saving the transformation", e.getStackTrace().toString());
+					MessageDialog.openError(shell, "Error saving the transformation or creating of the resource", e.getStackTrace().toString());
 				}
 		}else {
 			// turn the result diagnostic into status and send it to error log			
