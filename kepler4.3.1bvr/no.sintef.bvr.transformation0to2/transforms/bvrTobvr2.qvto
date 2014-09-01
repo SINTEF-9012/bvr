@@ -82,6 +82,7 @@ mapping BVR::VariationPoint::PlacementToPlacement() : BVR2::PlacementFragment {
 mapping BVR::PlacementBoundaryElement::toPlacement() : BVR2::ToPlacement {
 	log("Calling toPlacemet() " + self.toString());
 	name := self.name;
+	propertyName := self.oclAsType(BVR::ToPlacement).propertyName;
 	insideBoundaryElement := self.oclAsType(BVR::ToPlacement).insideBoundaryElement->resolve(BVR2::ObjectHandle);
 	outsideBoundaryElement := self.oclAsType(BVR::ToPlacement).outsideBoundaryElement.resolveone(BVR2::ObjectHandle);
 }
@@ -111,6 +112,7 @@ mapping BVR::ReplacementBoundaryElement::toReplacement() : BVR2::ToReplacement {
 mapping BVR::ReplacementBoundaryElement::fromReplacement() : BVR2::FromReplacement {
 	log("Calling fromReplacement() " + self.toString());
 	name := self.name;
+	propertyName := self.oclAsType(BVR::FromReplacement).propertyName;
 	insideBoundaryElement := self.oclAsType(BVR::FromReplacement).insideBoundaryElement.resolveone(BVR2::ObjectHandle);
 	outsideBoundaryElement := self.oclAsType(BVR::FromReplacement).outsideBoundaryElement->resolve(BVR2::ObjectHandle);
 }
