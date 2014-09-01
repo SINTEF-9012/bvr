@@ -95,7 +95,7 @@ public class RunTransformation implements IObjectActionDelegate {
 		TransformationExecutor qvtExecutor = new TransformationExecutor(transformationURI);
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource inResource = resourceSet.getResource(URI.createURI(file.getLocationURI().toString()), true);
+		Resource inResource = resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 		EList<EObject> inObjects = inResource.getContents();
 		
 		ModelExtent inModelExtend = new BasicModelExtent(inObjects);
