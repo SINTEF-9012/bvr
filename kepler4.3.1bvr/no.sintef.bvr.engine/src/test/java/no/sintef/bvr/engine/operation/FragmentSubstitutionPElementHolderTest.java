@@ -64,7 +64,7 @@ public class FragmentSubstitutionPElementHolderTest {
 	@Before
 	public void setUp() throws Exception {
 		//nodePackage.eINSTANCE.eClass();
-		file = new File("src/test/resources/node6/node.new.bvr");
+		file = new File("src/test/resources/node6/node.newbvr2.bvr");
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getRealizationModel();

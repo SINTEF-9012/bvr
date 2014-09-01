@@ -39,7 +39,7 @@ public class FragmentSubstitutionAdjacentTwins1Test {
 	public void setUp() throws Exception {
 		//NodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/adjacentTwins1/adjtwins.bvr");
+		file = new File("src/test/resources/adjacentTwins1/adjtwinsbvr2.bvr");
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getRealizationModel();

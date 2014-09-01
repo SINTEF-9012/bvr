@@ -36,7 +36,7 @@ public class FragmentSubstitutionRealisticUMLTest {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/realistic/modelSafetyModule0/SafetyDrive.cor.new.bvr");
+		file = new File("src/test/resources/realistic/modelSafetyModule0/SafetyDrive.cor.newbvr2.bvr");
 		UMLPackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);

@@ -31,7 +31,7 @@ public class FragmentSubstitutionCardinalityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/nodeCardinality1/node.new.bvr");
+		file = new File("src/test/resources/nodeCardinality1/node.newbvr2.bvr");
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getRealizationModel();

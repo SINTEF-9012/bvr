@@ -39,7 +39,7 @@ public class FragmentSubstitutionAdjacentBoundaryRefMismatchTest {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/adjacentBoundaryRefMismatch/boundaryRefMismatch.bvr");
+		file = new File("src/test/resources/adjacentBoundaryRefMismatch/boundaryRefMismatchbvr2.bvr");
 		UMLPackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);

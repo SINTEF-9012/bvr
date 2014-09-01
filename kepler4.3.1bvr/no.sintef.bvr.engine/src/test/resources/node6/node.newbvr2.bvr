@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" xsi:schemaLocation="http:///bvr.ecore/2.0.0 BVRMetamodel5.ecore" name="exp">
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="r1">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" insideBoundaryElement="//@packageElement.0/@sourceObject.5 //@packageElement.0/@sourceObject.23" outsideBoundaryElement="//@packageElement.0/@sourceObject.17"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" insideBoundaryElement="//@packageElement.0/@sourceObject.15" outsideBoundaryElement="//@packageElement.0/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" insideBoundaryElement="//@packageElement.0/@sourceObject.7" outsideBoundaryElement="//@packageElement.0/@sourceObject.20"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" insideBoundaryElement="//@packageElement.0/@sourceObject.14" outsideBoundaryElement="//@packageElement.0/@sourceObject.39"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" insideBoundaryElement="//@packageElement.0/@sourceObject.4 //@packageElement.0/@sourceObject.41 //@packageElement.0/@sourceObject.13 //@packageElement.0/@sourceObject.30 //@packageElement.0/@sourceObject.23 //@packageElement.0/@sourceObject.7 //@packageElement.0/@sourceObject.14 //@packageElement.0/@sourceObject.5 //@packageElement.0/@sourceObject.15 //@packageElement.0/@sourceObject.18 //@packageElement.0/@sourceObject.19 //@packageElement.0/@sourceObject.10" outsideBoundaryElement="//@packageElement.0/@sourceObject.38"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" propertyName="contains" insideBoundaryElement="//@packageElement.0/@sourceObject.19" outsideBoundaryElement="//@packageElement.0/@sourceObject.36 //@packageElement.0/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" propertyName="links" insideBoundaryElement="//@packageElement.0/@sourceObject.19" outsideBoundaryElement="//@packageElement.0/@sourceObject.31"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" propertyName="contains" insideBoundaryElement="//@packageElement.0/@sourceObject.4" outsideBoundaryElement="//@packageElement.0/@sourceObject.35"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" propertyName="links" insideBoundaryElement="//@packageElement.0/@sourceObject.30" outsideBoundaryElement="//@packageElement.0/@sourceObject.35"/>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.4/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.15/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.12"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.12"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.9"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.14"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.11"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#/"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.9"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.8"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.2"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.6"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.6"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.2"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.3"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.11"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.14"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.5"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.4"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.15"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.15"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.4/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.10"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.16"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.4"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.8"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.3"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.7"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.13"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.13"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.10"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.5"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.12/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.4/@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.17"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#/"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.18"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.7"/>
+    </sourceObject>
+  </packageElement>
+  <variabilityModel xsi:type="bvr:Choice" name="varModel">
+    <member xsi:type="bvr:Choice" name="exp"/>
+  </variabilityModel>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="p1">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" propertyName="links" insideBoundaryElement="//@realizationModel.0/@sourceObject.41" outsideBoundaryElement="//@realizationModel.0/@sourceObject.34"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" propertyName="contains" insideBoundaryElement="//@realizationModel.0/@sourceObject.6 //@realizationModel.0/@sourceObject.5 //@realizationModel.0/@sourceObject.23 //@realizationModel.0/@sourceObject.24 //@realizationModel.0/@sourceObject.37 //@realizationModel.0/@sourceObject.10 //@realizationModel.0/@sourceObject.13 //@realizationModel.0/@sourceObject.28 //@realizationModel.0/@sourceObject.3 //@realizationModel.0/@sourceObject.29 //@realizationModel.0/@sourceObject.2 //@realizationModel.0/@sourceObject.41" outsideBoundaryElement="//@realizationModel.0/@sourceObject.14"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" propertyName="links" insideBoundaryElement="//@realizationModel.0/@sourceObject.24" outsideBoundaryElement="//@realizationModel.0/@sourceObject.16"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" propertyName="links" insideBoundaryElement="//@realizationModel.0/@sourceObject.41" outsideBoundaryElement="//@realizationModel.0/@sourceObject.18"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" propertyName="links" insideBoundaryElement="//@realizationModel.0/@sourceObject.29" outsideBoundaryElement="//@realizationModel.0/@sourceObject.38"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" propertyName="contains" insideBoundaryElement="//@realizationModel.0/@sourceObject.35" outsideBoundaryElement="//@realizationModel.0/@sourceObject.38"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" outsideBoundaryElement="//@realizationModel.0/@sourceObject.30" insideBoundaryElement="//@realizationModel.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" outsideBoundaryElement="//@realizationModel.0/@sourceObject.7" insideBoundaryElement="//@realizationModel.0/@sourceObject.3"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" outsideBoundaryElement="//@realizationModel.0/@sourceObject.9" insideBoundaryElement="//@realizationModel.0/@sourceObject.5"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" outsideBoundaryElement="//@realizationModel.0/@sourceObject.27 //@realizationModel.0/@sourceObject.18" insideBoundaryElement="//@realizationModel.0/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.13"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.3"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.13"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.4"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.2"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.14"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.6"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.4/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.7"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.18"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.9"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.9"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.8"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.7"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#/"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.4"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.16"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.10"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#/"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.14"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.12"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.5"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.12"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.4/@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.2"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.8"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.11"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.17"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.6"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.11"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.5"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.15/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.15"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.10"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.15"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.4/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="lib.node#//@contains.12/@contains.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="base.node#//@contains.3"/>
+    </sourceObject>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="p1->r1" placement="//@realizationModel.0" replacement="//@packageElement.0">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.0" toReplacement="//@packageElement.0/@replacementBoundaryElement.3"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.1" toReplacement="//@packageElement.0/@replacementBoundaryElement.4"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.5" toReplacement="//@packageElement.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.2" toReplacement="//@packageElement.0/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.4" toReplacement="//@packageElement.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.3" toReplacement="//@packageElement.0/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.0/@placementBoundaryElement.7" fromReplacement="//@packageElement.0/@replacementBoundaryElement.5"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.0/@placementBoundaryElement.8" fromReplacement="//@packageElement.0/@replacementBoundaryElement.8"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.0/@placementBoundaryElement.9" fromReplacement="//@packageElement.0/@replacementBoundaryElement.6"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.0/@placementBoundaryElement.6" fromReplacement="//@packageElement.0/@replacementBoundaryElement.7"/>
+  </realizationModel>
+</bvr:BVRModel>

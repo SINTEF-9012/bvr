@@ -50,7 +50,7 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 	public void setUp() throws Exception {
 		//NodePackage.eINSTANCE.eClass();
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeAdjacent/exp2/node.new.bvr");
+		file = new File("src/test/resources/nodeAdjacent/exp2/node.newbvr2.bvr");
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
 		

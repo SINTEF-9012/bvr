@@ -33,7 +33,7 @@ public class FragmentSubstitutionNtoMTrivialTest {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/nodeNtoM/exp1/node.new.bvr");
+		file = new File("src/test/resources/nodeNtoM/exp1/node.newbvr2.bvr");
 		//nodePackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);

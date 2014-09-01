@@ -37,7 +37,7 @@ public class ReplacementElementHolderTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		file = new File("src/test/resources/node6/node.new.bvr");
+		file = new File("src/test/resources/node6/node.newbvr2.bvr");
 		map = SetUpUtils.load(file);
 		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
 		EList<VariationPoint> vps = cu.getRealizationModel();
