@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -24,11 +25,12 @@ import org.w3c.dom.NodeList;
 
 import bvr.BCLConstraint;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+import bvr.ChoiceResolution;
+import bvr.CompoundResolution;
 import bvr.MultiplicityInterval;
 import bvr.OpaqueConstraint;
-import bvr.VSpec;
+import bvr.PosResolution;
+import bvr.VNode;
 import bvr.VSpecResolution;
 import bvr.BvrFactory;
 import bvr.BvrPackage;
@@ -37,49 +39,49 @@ import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-public class BVRModel {
-	protected ConfigurableUnit cu;
+public class SPLCABVRModel {
+	protected bvr.BVRModel model;
 	
 	protected final static String utf8Encoding = "UTF-8"; 
 
-	public BVRModel(){
+	public SPLCABVRModel(){
 		BvrPackage.eINSTANCE.eClass();
 		BvrFactory factory = BvrFactory.eINSTANCE;
-		cu = factory.createConfigurableUnit();
-		cu.setName("Configurable Unit 1");
+		model = factory.createBVRModel();
+		model.setName("BVR Model 1");
 	}
 
-	public BVRModel(File f) {
-		cu = loadFromFile(f);
+	public SPLCABVRModel(File f) {
+		model = loadFromFile(f);
 	}
 	
-	public BVRModel(String bvrFileName, boolean isPlatform) {
-		cu = (!isPlatform) ?  loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
+	public SPLCABVRModel(String bvrFileName, boolean isPlatform) {
+		model = (!isPlatform) ?  loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
 	}
 
-	public BVRModel(ConfigurableUnit cu) {
-		this.cu = cu;
+	public SPLCABVRModel(bvr.BVRModel model) {
+		this.model = model;
 	}
 
-	public BVRModel(String bvrfile) {
+	public SPLCABVRModel(String bvrfile) {
 		this(new File(bvrfile));
 	}
 	
-	private ConfigurableUnit loadFromFile(File file){
+	private bvr.BVRModel loadFromFile(File file){
 		BvrPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
-		return (ConfigurableUnit) resource.getContents().get(0);
+		return (bvr.BVRModel) resource.getContents().get(0);
 	}
 	
-	private ConfigurableUnit loadFromPlatformFile(String bvrFileName){
+	private bvr.BVRModel loadFromPlatformFile(String bvrFileName){
 		BvrPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		URI uri = URI.createPlatformResourceURI(bvrFileName, true);
 		Resource resource = resSet.getResource(uri, true);
-		return (ConfigurableUnit) resource.getContents().get(0);
+		return (bvr.BVRModel) resource.getContents().get(0);
 	}
 	
 	public void writeToPlatformFile(String filename) throws IOException {
@@ -88,7 +90,7 @@ public class BVRModel {
 	    ResourceSet resSet = new ResourceSetImpl();
 	    URI uri = URI.createPlatformResourceURI(filename, true);
 	    Resource resource = resSet.createResource(uri);
-	    resource.getContents().add(cu);
+	    resource.getContents().add(model);
 	    
 	    Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put(XMIResource.OPTION_ENCODING, utf8Encoding);
@@ -100,25 +102,25 @@ public class BVRModel {
 	    ResourceSet resSet = new ResourceSetImpl();
 	    URI uri = URI.createFileURI(filename);
 	    Resource resource = resSet.createResource(uri);
-	    resource.getContents().add(cu);
+	    resource.getContents().add(model);
 	    
 	    Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put(XMIResource.OPTION_ENCODING, utf8Encoding);
 	    resource.save(options);
 	}
 
-	public ConfigurableUnit getCU() {
-		return cu;
+	public bvr.BVRModel getRootBVRModel() {
+		return model;
 	}
 
 	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException {
 		FeatureModel fm = new FeatureModel();
-		Feature root = recursiveConvert(fm, (Choice)cu.getOwnedVSpec().get(0)); // This is an assumption
+		Feature root = recursiveConvert(fm, (Choice) model.getVariabilityModel()); // This is an assumption
 		fm.setRoot(root);
 		
 		// Add constraints
 		//System.out.println(fm.getFeatureNames());
-		for(Constraint c : cu.getOwnedConstraint()){
+		for(Constraint c : model.getVariabilityModel().getOwnedConstraint()){
 			if(c instanceof OpaqueConstraint){
 				OpaqueConstraint oc = (OpaqueConstraint)c;
 				NodeReader nr = new NodeReader();
@@ -128,7 +130,7 @@ public class BVRModel {
 				//System.out.println(oc.getConstraint() + " became " + NodeWriter.nodeToString(n));
 			}else if(c instanceof BCLConstraint){
 				BCLConstraint bc = (BCLConstraint)c;
-				String s = new BCLPrettyPrinter().prettyPrint(bc.getExpression().get(0), cu); // This is an assumption
+				String s = new BCLPrettyPrinter().prettyPrint(bc.getExpression().get(0), model); // This is an assumption
 				System.out.println(s);
 				NodeReader nr = new NodeReader();
 				Node n = nr.stringToNode(s, new ArrayList<String>(fm.getFeatureNames()));
@@ -157,7 +159,7 @@ public class BVRModel {
 		fm.addFeature(f);
 		
 		// Add children
-		for(VSpec vc : vs.getChild()){
+		for(VNode vc : vs.getMember()){
 			Choice c = (Choice)vc;
 			Feature fc = recursiveConvert(fm, c);
 			fc.setMandatory(c.isIsImpliedByParent());
@@ -183,7 +185,8 @@ public class BVRModel {
 	
 	public void injectConfigurations(GraphMLFM gfm){
 		EList<VSpecResolution> resolutions  = getChoiceResolutions(gfm);
-		cu.getOwnedVSpecResolution().addAll(resolutions);
+		for(VSpecResolution resolution : resolutions)
+			model.getResolutionModels().add((CompoundResolution) resolution);
 	}
 
 	public EList<VSpecResolution> getChoiceResolutions(GraphMLFM gfm) {
@@ -215,22 +218,28 @@ public class BVRModel {
 		
 		EList<VSpecResolution> resolutions = new BasicEList<VSpecResolution>();
 		for(Map<String, Boolean> conf : confs){
-			ChoiceResolutuion cr = recursivelyResolve(conf, (Choice)cu.getOwnedVSpec().get(0));
+			ChoiceResolution cr = recursivelyResolve(conf, (Choice)model.getVariabilityModel());
 			resolutions.add(cr);
 		}
 		return resolutions;
 	}
 	
-	private ChoiceResolutuion recursivelyResolve(Map<String, Boolean> conf, Choice choice) {
+	private ChoiceResolution recursivelyResolve(Map<String, Boolean> conf, Choice choice) {
 		// Add node
-		ChoiceResolutuion cr = BvrFactory.eINSTANCE.createChoiceResolutuion();
-		cr.setResolvedVSpec(choice);
-		cr.setDecision(conf.get(choice.getName()));
+		ChoiceResolution cr;
+		if(conf.get(choice.getName())){
+			cr = BvrFactory.eINSTANCE.createPosResolution();
+		}else {
+			cr = BvrFactory.eINSTANCE.createNegResolution();
+		}
+		cr.setResolvedChoice(choice);
 		
 		// Add children
-		for(VSpec x : choice.getChild()){
-			ChoiceResolutuion crc = recursivelyResolve(conf, (Choice) x);
-			cr.getChild().add(crc);
+		for(VNode x : choice.getMember()){
+			ChoiceResolution crc = recursivelyResolve(conf, (Choice) x);
+			if(cr instanceof PosResolution){
+				((PosResolution) cr).getMembers().add(crc);
+			}
 		}
 		
 		// Done
@@ -274,12 +283,12 @@ public class BVRModel {
 		
 		// Read in
 		List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
-		for(VSpecResolution c : cu.getOwnedVSpecResolution()){
+		for(CompoundResolution c : model.getResolutionModels()){
 			Map<String, Boolean> as = new HashMap<String, Boolean>();
-			if(!(c instanceof ChoiceResolutuion)){
+			if(c.getResolvedVClassifier() != null){
 				throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
 			}
-			as.putAll(recurse((ChoiceResolutuion)c));
+			as.putAll(recurse((ChoiceResolution)c));
 			//System.out.println(as);
 			prods.add(as);
 		}
@@ -328,18 +337,19 @@ public class BVRModel {
 		return ca;
 	}
 
-	private Map<String, Boolean> recurse(ChoiceResolutuion x) throws BVRException {
+	private Map<String, Boolean> recurse(ChoiceResolution x) throws BVRException {
 		Map<String, Boolean> as = new HashMap<String, Boolean>();
 		
-		as.put(x.getResolvedVSpec().getName(), x.isDecision());
+		as.put(x.getResolvedVSpec().getName(), x instanceof PosResolution);
 		
-		for(VSpecResolution c : x.getChild()){
-			if(!(c instanceof ChoiceResolutuion)){
-				throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+		if(x instanceof PosResolution){
+			for(VSpecResolution c : ((PosResolution) x).getMembers()){
+				if(!(c instanceof ChoiceResolution) || ((c instanceof ChoiceResolution) && (((ChoiceResolution) c).getResolvedVClassifier() != null))){
+					throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+				}
+				as.putAll(recurse((ChoiceResolution)c));
 			}
-			as.putAll(recurse((ChoiceResolutuion)c));
-		}
-		
+		}		
 		return as;
 	}
 }

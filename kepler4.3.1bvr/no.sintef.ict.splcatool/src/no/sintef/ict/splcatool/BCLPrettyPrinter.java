@@ -1,25 +1,20 @@
 package no.sintef.ict.splcatool;
 
 import bvr.BCLExpression;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.IntegerLiteralExp;
 import bvr.OperationCallExp;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
-import bvr.VSpecRef;
+
 
 public class BCLPrettyPrinter{
-	public String prettyPrint(BCLExpression e, ConfigurableUnit cu) {
-		return prettyPrint(e, cu, 0);
+	public String prettyPrint(BCLExpression e, BVRModel bvrModel) {
+		return prettyPrint(e, bvrModel, 0);
 	}
 	
-	private String prettyPrint(BCLExpression e, ConfigurableUnit cu, int depth) {
-		if(e instanceof VSpecRef){
-			if(((VSpecRef) e).getVSpec() == null)
-				return "[null]";
-			else
-				return ((VSpecRef) e).getVSpec().getName();
-		}else if(e instanceof StringLiteralExp){
+	private String prettyPrint(BCLExpression e, BVRModel bvrModel, int depth) {
+		if(e instanceof StringLiteralExp){
 			return "\"" + ((StringLiteralExp)e).getString() + "\"";
 		}else if(e instanceof IntegerLiteralExp){
 			return ""+((IntegerLiteralExp)e).getInteger();
@@ -49,11 +44,11 @@ public class BCLPrettyPrinter{
 			
 			String in = "";
 			if(o.getArgument().size() == 1){
-				String a1 = prettyPrint(o.getArgument().get(0), cu, depth+1);
+				String a1 = prettyPrint(o.getArgument().get(0), bvrModel, depth+1);
 				in = opSym + " " + a1;
 			}else if(o.getArgument().size() == 2){
-				String a1 = prettyPrint(o.getArgument().get(0), cu, depth+1);
-				String a2 = prettyPrint(o.getArgument().get(1), cu, depth+1);
+				String a1 = prettyPrint(o.getArgument().get(0), bvrModel, depth+1);
+				String a2 = prettyPrint(o.getArgument().get(1), bvrModel, depth+1);
 				in = a1 + " " + opSym + " " + a2;
 			}else{
 				throw new UnsupportedOperationException();
