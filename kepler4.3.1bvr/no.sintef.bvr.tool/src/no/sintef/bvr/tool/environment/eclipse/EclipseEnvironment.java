@@ -43,7 +43,6 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IWorkbenchWindow;
 
-import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
 
 public class EclipseEnvironment extends AbstractEnvironment {
@@ -188,8 +187,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			logger.debug("processing Symbol " + symbol.getVSpec());
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
 			
-			ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
-			ResourceSet resSet = cu.eResource().getResourceSet();
+			bvr.BVRModel bvrModel = symbol.getScope().getBVRModel();
+			ResourceSet resSet = bvrModel.eResource().getResourceSet();
 			TransactionalEditingDomain editingDomain = getEdititingDomain(editingDomains, resSet);
 			if(editingDomain == null){
 				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);

@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import javax.swing.JComponent;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.VSpecResolution;
 
 public abstract class AbstractExecutionRequest implements ExecutionRequest {
 
 	protected VSpecResolution vSpecResolution;
 	protected SymbolTable table;
-	protected ConfigurableUnit cu;
+	protected BVRModel model;
 	protected JComponent parentComponent;
 	protected HashMap<String, Object> data;
 	

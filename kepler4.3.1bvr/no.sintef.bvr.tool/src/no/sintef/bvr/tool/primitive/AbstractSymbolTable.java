@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.primitive;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.VSpecResolution;
 
 public abstract class AbstractSymbolTable implements SymbolTable {
@@ -12,7 +12,7 @@ public abstract class AbstractSymbolTable implements SymbolTable {
 	protected HashMap<VSpecResolution, Symbol> table;
 	protected SymbolTable parent;
 	protected HashMap<VSpecResolution, SymbolTable> children;
-	protected ConfigurableUnit cu;
+	protected BVRModel bvrModel;
 
 	@Override
 	public Symbol lookup(VSpecResolution vSpecResolution) {
@@ -65,12 +65,12 @@ public abstract class AbstractSymbolTable implements SymbolTable {
 	}
 	
 	@Override
-	public void setConfigurableUnit(ConfigurableUnit cu) {
-		this.cu = cu;
+	public void setBVRModel(BVRModel bvrModel) {
+		this.bvrModel = bvrModel;
 	}
 	
 	@Override
-	public ConfigurableUnit getConfigurableUnit() {
-		return this.cu;
+	public BVRModel getBVRModel() {
+		return this.bvrModel;
 	}
 }

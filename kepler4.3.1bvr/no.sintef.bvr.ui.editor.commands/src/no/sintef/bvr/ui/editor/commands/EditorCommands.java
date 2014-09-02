@@ -9,11 +9,11 @@ import org.eclipse.ui.IEditorReference;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
-import bvr.Constraint;
+import bvr.CompoundNode;
+//import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
@@ -22,64 +22,64 @@ import bvr.NamedElement;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
-import bvr.PrimitveType;
+import bvr.PosResolution;
+//import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
-import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
 public interface EditorCommands {
 	
-	public void addChoice(Choice choice, ConfigurableUnit cu);
+	public void addChoice(Choice choice, BVRModel bvrModel);
 	
-	public void addChoice(Choice choice, VSpec vs);
+	public void addChoice(Choice choice, CompoundNode compoundNode);
 	
 	public TransactionalEditingDomain testTransactionalEditingDomain();
 	
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences);
 	
-	public void createNewResolution(ChoiceResolutuion cr, ConfigurableUnit cu);
+	public void createNewResolution(PosResolution pr, BVRModel bvrModel);
 	
-	public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
+	//public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
 	
-	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
+	//public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
 	
-	public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
+	//public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
 	
-	public void addVClassifierToVSpec(VSpec parentVSpec, VClassifier childCClassifier);
+	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	
-	public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
+	//public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
+	public void addVClassifierToBVRModel(VClassifier childCClassifier, BVRModel bvrModel);
 	
-	public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
+	//public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
 	
-	public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
+	//public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
 	
 	public void addVariable(VSpec vSpec, Variable variable);
 	
-	public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment);
+	//public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment);
 	
-	public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance);
+	//public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance);
 	
 	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement);
 	
-	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	//public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
 	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec);
 
-	public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec);
+	//public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec);
 	
-	public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	//public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
-	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints);
+	//public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints);
 	
 	public void setName(NamedElement namedElement, String name);
 	
@@ -103,25 +103,25 @@ public interface EditorCommands {
 	
 	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement);
 	
-	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	//public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
-	public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
+	//public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
 	
-	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
+	//public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
 	
-	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
+	//public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
 	
-	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	//public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	
-	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
+	//public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
-	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	//public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	
-	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
+	//public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
-	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
+	//public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
 	
-	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
+	//public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
 	
 	public void addBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding);
 	

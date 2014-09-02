@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.primitive;
 
 import java.util.ArrayList;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.VSpecResolution;
 
 public interface SymbolTable {
@@ -27,7 +27,7 @@ public interface SymbolTable {
 	
 	public ArrayList<Symbol> getSymbols();
 	
-	public void setConfigurableUnit(ConfigurableUnit cu);
-	
-	public ConfigurableUnit getConfigurableUnit();
+	void setBVRModel(BVRModel bvrModel);
+
+	BVRModel getBVRModel();
 }

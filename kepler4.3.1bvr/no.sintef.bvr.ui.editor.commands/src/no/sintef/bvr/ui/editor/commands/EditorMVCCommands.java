@@ -1,6 +1,6 @@
 package no.sintef.bvr.ui.editor.commands;
 
-import java.util.List;
+
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -9,11 +9,12 @@ import org.eclipse.ui.IEditorReference;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
-import bvr.Constraint;
+//import bvr.ChoiceResolutuion;
+import bvr.CompoundNode;
+//import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
@@ -22,18 +23,18 @@ import bvr.NamedElement;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
-import bvr.PrimitveType;
+import bvr.PosResolution;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
-import bvr.VInstance;
+//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
+//import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
@@ -48,22 +49,22 @@ public class EditorMVCCommands implements EditorCommands {
 		return eINSTANCE;
 	}
 
-	@Override
+	/*@Override
 	public void addChoice(Choice choice, ConfigurableUnit cu) {
 		cu.getOwnedVSpec().add(choice);
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void addChoice(Choice choice, VSpec vs) {
 		vs.getChild().add(choice);
-	}
+	}*/
 
 	@Override
 	public TransactionalEditingDomain testTransactionalEditingDomain() {
 		throw new UnsupportedOperationException("Pure MVC does not support transactional model");
 	}
 
-	@Override
+	/*@Override
 	public void createNewResolution(ChoiceResolutuion cr, ConfigurableUnit cu) {
 		cu.getOwnedVSpecResolution().add(cr);
 	}
@@ -147,7 +148,7 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints) {
 		cu.getOwnedConstraint().removeAll(constraints);
-	}
+	}*/
 
 	@Override
 	public void setName(NamedElement namedElement, String name) {
@@ -156,7 +157,7 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void setVSpecComment(VSpec vSpec, String comment) {
-		vSpec.setComment(comment);
+		//vSpec.setComment(comment);
 	}
 
 	@Override
@@ -166,7 +167,7 @@ public class EditorMVCCommands implements EditorCommands {
 	
 	@Override
 	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject){
-		vSpec.setGroupMultiplicity(eObject);
+		//vSpec.setGroupMultiplicity(eObject);
 	}
 	
 	@Override
@@ -194,7 +195,7 @@ public class EditorMVCCommands implements EditorCommands {
 		constraint.getExpression().add(expression);
 	}
 
-	@Override
+/*	@Override
 	public void removeVSpecVariable(VSpec vSpec, Variable var) {
 		vSpec.getChild().remove(var);	
 	}
@@ -257,7 +258,7 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
 		cu.getOwnedVariabletype().removeAll(variationTypes);
-	}
+	}*/
 
 	@Override
 	public void addBoudaryElementBinding(
@@ -356,5 +357,76 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addInsideBElementToPlacement(
 			ToPlacement boundary, EList<ObjectHandle> objectHandle) {
 		boundary.getInsideBoundaryElement().addAll(objectHandle);
+	}
+
+	@Override
+	public void addChoice(Choice choice, BVRModel bvrModel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addChoice(Choice choice, CompoundNode compoundNode) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean testXMIResourceUnload(XMIResource resource,
+			IEditorReference[] editorReferences) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVClassifierToVSpec(CompoundNode parentCompundNode,
+			VClassifier childCClassifier) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVClassifierToBVRModel(VClassifier childCClassifier,
+			BVRModel bvrModel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVariable(VSpec vSpec, Variable variable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeNamedElementVSpec(VSpec parentVSpec,
+			NamedElement namedElement) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeVSpecVariable(VSpec vSpec, Variable var) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeNamedElementVSpecResolution(
+			VSpecResolution vSpecResolution, NamedElement namedElement) {
+		// TODO Auto-generated method stub
+		
 	}
 }
