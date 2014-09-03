@@ -6,6 +6,7 @@ import bvr.IntegerLiteralExp;
 import bvr.OperationCallExp;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
+import bvr.TargetRef;
 
 
 public class BCLPrettyPrinter{
@@ -14,7 +15,10 @@ public class BCLPrettyPrinter{
 	}
 	
 	private String prettyPrint(BCLExpression e, BVRModel bvrModel, int depth) {
-		if(e instanceof StringLiteralExp){
+		if(e instanceof TargetRef){
+			String name = (((TargetRef) e).getTarget().getName() == null || ((TargetRef) e).getTarget().getName().equals("")) ? "[null]" : ((TargetRef) e).getTarget().getName();
+			return name;
+		} else if(e instanceof StringLiteralExp){
 			return "\"" + ((StringLiteralExp)e).getString() + "\"";
 		}else if(e instanceof IntegerLiteralExp){
 			return ""+((IntegerLiteralExp)e).getInteger();

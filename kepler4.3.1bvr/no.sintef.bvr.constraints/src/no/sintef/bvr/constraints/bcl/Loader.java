@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
-import no.sintef.ict.splcatool.BVRModel;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -15,8 +15,8 @@ import org.antlr.v4.runtime.tree.RuleNode;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BVRModel;
 import bvr.Choice;
-import bvr.ConfigurableUnit;
 import bvr.MultiplicityInterval;
 import bvr.VClassifier;
 import bvr.Variable;
@@ -30,29 +30,35 @@ public class Loader {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel();
-		ConfigurableUnit cu = buildExampleBVR(cm);
+		SPLCABVRModel cm = new SPLCABVRModel();
+		//ConfigurableUnit cu = buildExampleBVR(cm);
+		BVRModel model = buildExampleBVR(cm);
 		
 		Variable minSpeed = BvrFactory.eINSTANCE.createVariable();
 		//Variabletype minSpeedType = bvrFactory.eINSTANCE.createVariabletype();
 		minSpeed.setName("minSpeed");
 		//minSpeed.setType(minSpeedType);
-		cu.getOwnedVSpec().add(minSpeed);
+		//cu.getOwnedVSpec().add(minSpeed);
+		model.getVariabilityModel().getVariable().add(minSpeed);
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, true);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, true);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		System.out.println(s);
 	}
 
-	private static ConfigurableUnit buildExampleBVR(BVRModel cm) {
-		ConfigurableUnit cu = cm.getCU();
+	private static BVRModel buildExampleBVR(SPLCABVRModel cm) {
+		BVRModel bvrModel = cm.getRootBVRModel();
+		
+		Choice office = BvrFactory.eINSTANCE.createChoice();
+		office.setName("office");
+		bvrModel.setVariabilityModel(office);
 		
 		Choice printer = BvrFactory.eINSTANCE.createChoice();
 		printer.setName("printer");
@@ -62,23 +68,23 @@ public class Loader {
 		
 		Choice copier = BvrFactory.eINSTANCE.createChoice();
 		copier.setName("copier");
-		cu.getOwnedVSpec().add(copier);
+		office.getMember().add(copier);
 		
 		Choice scan = BvrFactory.eINSTANCE.createChoice();
 		scan.setName("scan");
-		cu.getOwnedVSpec().add(scan);
+		office.getMember().add(scan);
 		
 		Choice HighSpeed = BvrFactory.eINSTANCE.createChoice();
 		HighSpeed.setName("HighSpeed");
-		cu.getOwnedVSpec().add(HighSpeed);
+		office.getMember().add(HighSpeed);
 		
 		Choice Speed = BvrFactory.eINSTANCE.createChoice();
 		Speed.setName("Speed");
-		cu.getOwnedVSpec().add(Speed);
+		office.getMember().add(Speed);
 		
 		Choice threshold = BvrFactory.eINSTANCE.createChoice();
 		threshold.setName("threshold");
-		cu.getOwnedVSpec().add(threshold);
+		office.getMember().add(threshold);
 		
 		VClassifier PrinterPool = BvrFactory.eINSTANCE.createVClassifier();
 		PrinterPool.setName("PrinterPool");
@@ -86,11 +92,11 @@ public class Loader {
 		mi.setLower(0);
 		mi.setUpper(-1);
 		PrinterPool.setInstanceMultiplicity(mi);
-		cu.getOwnedVSpec().add(PrinterPool);
+		office.getMember().add(PrinterPool);
 		
-		PrinterPool.getChild().add(printer);
-		PrinterPool.getChild().add(fax);
+		PrinterPool.getMember().add(printer);
+		PrinterPool.getMember().add(fax);
 		
-		return cu;
+		return bvrModel;
 	}
 }

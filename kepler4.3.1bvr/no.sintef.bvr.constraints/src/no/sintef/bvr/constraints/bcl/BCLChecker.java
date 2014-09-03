@@ -2,7 +2,6 @@ package no.sintef.bvr.constraints.bcl;
 
 import java.util.Set;
 
-import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VSpecResolution;
 
