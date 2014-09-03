@@ -31,7 +31,7 @@ public class CalculateCost implements ActionListener {
 			 @Override
 			 protected IStatus run(IProgressMonitor monitor) {
 				 try {
-					 no.sintef.ict.splcatool.BVRModel x = m.getBVRM();	
+					 no.sintef.ict.splcatool.SPLCABVRModel x = m.getBVRM();	
 					 String cstr = "";
 						
 					 int i = 0;

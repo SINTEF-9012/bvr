@@ -25,7 +25,7 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	
 	@Override
 	public BVRModel loadModelFromFile(File file) {
-		no.sintef.ict.splcatool.BVRModel bvrm = new no.sintef.ict.splcatool.BVRModel(file);
+		no.sintef.ict.splcatool.SPLCABVRModel bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(file);
 		return new BVRModel(file, bvrm);
 	}
 	

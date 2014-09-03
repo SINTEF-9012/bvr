@@ -30,7 +30,7 @@ public class TestValModel {
 
 	private boolean validate(File f) throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException, BVRException {
 		BVRModel x = new BVRModel(f);
-		no.sintef.ict.splcatool.BVRModel z = x.getBVRM();
+		no.sintef.ict.splcatool.SPLCABVRModel z = x.getBVRM();
 		CoveringArray ca = z.getCoveringArray();
 		CNF cnf = z.getGUIDSL().getSXFM().getCNF();
 		boolean valid = CALib.verifyCA(cnf, ca, true, new ArrayList<String>());

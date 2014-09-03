@@ -74,7 +74,7 @@ public final class Context {
 			model = environment.loadModelFromFile(file);
 		}else if(extension.equals(FMFilter.M_EXT)){
 			try{
-				no.sintef.ict.splcatool.BVRModel bvrm = new GUIDSL(file).getGraphMLFM().getBVRModel();
+				no.sintef.ict.splcatool.SPLCABVRModel bvrm = new GUIDSL(file).getGraphMLFM().getBVRModel();
 				model = new BVRModel(file, bvrm);
 			}catch(Exception e){
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
@@ -83,7 +83,7 @@ public final class Context {
 			try {
 				SXFM sxfm = new SXFM(file.getAbsolutePath());
 				GraphMLFM gml = sxfm.getGUIDSL().getGraphMLFM();
-				no.sintef.ict.splcatool.BVRModel bvrm = gml.getBVRModel();
+				no.sintef.ict.splcatool.SPLCABVRModel bvrm = gml.getBVRModel();
 				model = new BVRModel(file, bvrm);
 			} catch (Exception e) {
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());

@@ -43,7 +43,7 @@ public class ImportVSpecEvent implements ActionListener {
 		fc.showOpenDialog(filePane);
 		
 		File sf = fc.getSelectedFile();
-		no.sintef.ict.splcatool.BVRModel bvrm = null;
+		no.sintef.ict.splcatool.SPLCABVRModel bvrm = null;
 		try {
 			if(sf.getName().endsWith(".m"))
 				bvrm = new GUIDSL(sf).getGraphMLFM().getBVRModel();

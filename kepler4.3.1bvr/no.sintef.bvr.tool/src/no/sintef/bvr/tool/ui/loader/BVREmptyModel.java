@@ -15,7 +15,7 @@ public class BVREmptyModel extends BVRModel {
 	}
 
 	@Override
-	public no.sintef.ict.splcatool.BVRModel getBVRM() {
+	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM() {
 		return bvrm;
 	}
 
@@ -33,7 +33,7 @@ public class BVREmptyModel extends BVRModel {
 		return f;
 	}
 	
-	private class BVRInnerModel extends no.sintef.ict.splcatool.BVRModel {
+	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
 		
 		public void setCU(ConfigurableUnit _cu){
 			cu =_cu;

@@ -35,7 +35,7 @@ public class SATValidateResolutions implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		no.sintef.ict.splcatool.BVRModel x = m.getBVRM();
+		no.sintef.ict.splcatool.SPLCABVRModel x = m.getBVRM();
 		
 		CoveringArray ca;
 		try {

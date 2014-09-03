@@ -6,7 +6,7 @@ import bvr.ConfigurableUnit;
 import bvr.VSpec;
 
 public class BVRModel {
-	protected no.sintef.ict.splcatool.BVRModel bvrm;
+	protected no.sintef.ict.splcatool.SPLCABVRModel bvrm;
 	protected File f;
 	protected boolean platform = false;
 	protected String loadFilename;
@@ -14,11 +14,11 @@ public class BVRModel {
 
 	public BVRModel(File sf) {
 		f = sf;
-		bvrm = new no.sintef.ict.splcatool.BVRModel(f);
+		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(f);
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public BVRModel(File sf, no.sintef.ict.splcatool.BVRModel x) {
+	public BVRModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath(); 
@@ -28,15 +28,15 @@ public class BVRModel {
 		f = sf;
 		platform = isPlatform;
 		loadFilename = loadLocation;
-		bvrm = new no.sintef.ict.splcatool.BVRModel(loadFilename, platform);
+		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
 	}
 
 	public BVRModel() {
-		bvrm = new no.sintef.ict.splcatool.BVRModel();
+		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel();
 	}
 	
 	public void reload(){
-		bvrm = (!platform) ? new no.sintef.ict.splcatool.BVRModel(f) : new no.sintef.ict.splcatool.BVRModel(loadFilename, platform);
+		bvrm = (!platform) ? new no.sintef.ict.splcatool.SPLCABVRModel(f) : new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
 	}
 	
 	public void dispose() {
@@ -57,11 +57,11 @@ public class BVRModel {
 		return f.getAbsolutePath();
 	}
 	
-	public no.sintef.ict.splcatool.BVRModel getBVRM(){
+	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM(){
 		return bvrm;
 	}
 	
-	public void setBVRM(no.sintef.ict.splcatool.BVRModel bvrm){
+	public void setBVRM(no.sintef.ict.splcatool.SPLCABVRModel bvrm){
 		this.bvrm = bvrm;
 	}
 

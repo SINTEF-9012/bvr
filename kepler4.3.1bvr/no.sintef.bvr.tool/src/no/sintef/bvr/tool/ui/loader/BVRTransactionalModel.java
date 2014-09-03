@@ -20,7 +20,7 @@ import bvr.ConfigurableUnit;
 public class BVRTransactionalModel extends BVRModel {
 	private Resource resource;
 	
-	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.BVRModel x) {
+	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath();
@@ -33,7 +33,7 @@ public class BVRTransactionalModel extends BVRModel {
 	}
 
 	@Override
-	public no.sintef.ict.splcatool.BVRModel getBVRM() {
+	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM() {
 		return bvrm;
 	}
 
@@ -51,7 +51,7 @@ public class BVRTransactionalModel extends BVRModel {
 		return resource;
 	}
 
-	private class BVRInnerModel extends no.sintef.ict.splcatool.BVRModel {
+	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
 			cu = loadFromFile(f);
