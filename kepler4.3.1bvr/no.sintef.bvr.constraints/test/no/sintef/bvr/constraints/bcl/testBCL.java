@@ -488,7 +488,8 @@ public class testBCL {
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
+		RuleNode ruleNode = (RuleNode)root.getChild(0);
+		BCLExpression e = new BCLBuilder().recurse(ruleNode, 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print

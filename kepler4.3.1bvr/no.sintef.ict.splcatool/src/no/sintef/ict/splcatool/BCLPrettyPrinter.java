@@ -2,6 +2,7 @@ package no.sintef.ict.splcatool;
 
 import bvr.BCLExpression;
 import bvr.BVRModel;
+import bvr.BooleanLiteralExp;
 import bvr.IntegerLiteralExp;
 import bvr.OperationCallExp;
 import bvr.RealLiteralExp;
@@ -24,6 +25,8 @@ public class BCLPrettyPrinter{
 			return ""+((IntegerLiteralExp)e).getInteger();
 		}else if(e instanceof RealLiteralExp){
 			return ""+((RealLiteralExp)e).getReal();
+		}else if( e instanceof BooleanLiteralExp){
+			return ""+((BooleanLiteralExp)e).isBool();
 		}else if(e instanceof OperationCallExp){
 			OperationCallExp o = (OperationCallExp) e;
 			String opSym = "";

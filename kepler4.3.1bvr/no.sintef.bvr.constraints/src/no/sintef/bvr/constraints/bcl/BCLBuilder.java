@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import bvr.BCLExpression;
 import bvr.BVRModel;
+import bvr.BooleanLiteralExp;
 import bvr.CompoundNode;
 import bvr.IntegerLiteralExp;
 import bvr.OperationCallExp;
@@ -104,7 +105,11 @@ public class BCLBuilder{
 				RealLiteralExp r = BvrFactory.eINSTANCE.createRealLiteralExp();
 				r.setReal(s);
 				e = r;
-			}else{
+			}else if(s.equals("true") || s.equals("false")){
+				BooleanLiteralExp r = BvrFactory.eINSTANCE.createBooleanLiteralExp();
+				r.setBool(Boolean.parseBoolean(s));
+				e = r;
+			}else {
 				IntegerLiteralExp r = BvrFactory.eINSTANCE.createIntegerLiteralExp();
 				r.setInteger(new Integer(s));
 				e = r;
