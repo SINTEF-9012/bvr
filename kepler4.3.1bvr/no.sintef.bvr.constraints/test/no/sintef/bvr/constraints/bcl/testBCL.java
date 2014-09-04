@@ -48,9 +48,13 @@ public class testBCL {
 		PrintStream oldOut = System.out;
 		System.setOut(new PrintStream(pipeOutOut));
 */	
+		//WARNING!
+		//the test case fail due to test18.bcl which just contains "true". It seems like there is a problem in the BCL grammar(see BCL.g4) or parser since "true" is valid BCL expression in general,
+		//but we get the following error line 1:4 -> mismatched input '<EOF>' expecting {'<', '<=', '=', '>', '>='}
+		//should be fixed at some point
 		int i = 0;
 		for(File f : new File("TestData").listFiles(ff)){
-			System.out.println(f.getName() + ":");
+			//System.out.println(f.getName() + ":" + f.getAbsolutePath());
 			
 			TestRig.main(new String [] {"BCL", "constraint", "-tree", f.getAbsolutePath()});
 			
@@ -63,6 +67,7 @@ public class testBCL {
 		while(pipeInErr.available() != 0){
 			s += "" + (char)pipeInErr.read();
 		}
+		System.out.println(s);
 		
 		System.setErr(oldErr);
 //		System.setOut(oldOut);		
