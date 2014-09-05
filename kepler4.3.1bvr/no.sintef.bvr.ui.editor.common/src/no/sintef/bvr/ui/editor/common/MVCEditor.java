@@ -10,9 +10,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
@@ -51,14 +51,14 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
 	}
 
-	protected BVRView v;
-	protected BVRModel m;
+	protected BVRToolView v;
+	protected BVRToolModel m;
 	protected String filename;
 
 	FileEditorInput fileinput;
 	
 	
-	public BVRModel getBVRModel(){
+	public BVRToolModel getBVRModel(){
 		return m;
 	}
 

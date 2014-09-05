@@ -9,7 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -23,9 +23,9 @@ public class PasteSiblingEvent implements ActionListener {
 
 	private JPanel p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public PasteSiblingEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public PasteSiblingEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -33,10 +33,9 @@ public class PasteSiblingEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		VSpec v = (VSpec)vmMap.get(p);
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
 		
 		// Find parent
-		VSpec parent = null;
+		/*VSpec parent = null;
 		for(NamedElement _c : vmMap.values()){
 			if(_c instanceof VSpec){
 				VSpec c = (VSpec)_c;
@@ -50,14 +49,10 @@ public class PasteSiblingEvent implements ActionListener {
 			EList<VSpec> x = parent.getChild();
 			int i = x.indexOf(v);
 			if(Main.vSpecCut instanceof VSpec){
-				//x.add(i+1, (VSpec)Main.vSpecCut);
 				Context.eINSTANCE.getEditorCommands().addVSpecToVSpec(parent, (VSpec) Main.vSpecCut);
 			}
 			Main.vSpecCut = null;
-		}
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
+		}*/
 	}
 
 }

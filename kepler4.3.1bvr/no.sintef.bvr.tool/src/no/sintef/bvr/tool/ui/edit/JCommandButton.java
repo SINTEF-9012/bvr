@@ -9,16 +9,16 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class JCommandButton extends JButton {
 
 	private static final long serialVersionUID = 6470959770787697161L;
 	protected Command command;
-	protected BVRView view;
+	protected BVRToolView view;
 	
-    public JCommandButton(final String title, final Command command, final BVRView view){
+    public JCommandButton(final String title, final Command command, final BVRToolView view){
     	this.command = command;
     	this.view = view;
         this.setText(title);

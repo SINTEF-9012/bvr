@@ -9,16 +9,22 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
+
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-
-import bvr.VInstance;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstancePropertyEditor extends ElementPropertyEditor{
-    /**
+    public VInstancePropertyEditor(BVRUIKernel _kernel, NamedElement _obj,
+			BVRToolView _view) {
+		super(_kernel, _obj, _view);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 47770113151580106L;
@@ -28,7 +34,7 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VInstancePropertyEditor(BVRUIKernel kernel, VInstance vInstance, BVRView view) {
+/*	public VInstancePropertyEditor(BVRUIKernel kernel, VInstance vInstance, BVRToolView view) {
 		super(kernel, vInstance, view);
 	}
 
@@ -71,5 +77,5 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
             }
         };
         name.getDocument().addDocumentListener(dl);
-	}
+	}*/
 }

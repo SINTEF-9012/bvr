@@ -9,11 +9,10 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VSpec;
 
@@ -21,17 +20,16 @@ public class CutEvent implements ActionListener {
 
 	private Map<JComponent, NamedElement> vmMap;
 	private JPanel p;
-	private BVRView view;
+	private BVRToolView view;
 
-	public CutEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public CutEvent(JPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		NamedElement v = vmMap.get(p);
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
+		/*NamedElement v = vmMap.get(p);
 		
 		// Modify model
 		VSpec parent = null;
@@ -53,10 +51,7 @@ public class CutEvent implements ActionListener {
 		}
 		
 		// Save cut
-		Main.vSpecCut = v;
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
+		Main.vSpecCut = v;*/
 	}
 
 }

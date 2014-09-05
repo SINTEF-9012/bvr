@@ -1,7 +1,7 @@
 package no.sintef.bvr.tool.ui.loader;
 
 
-abstract public class BVRViewAbstract implements BVRView{
+abstract public class BVRToolViewAbstract implements BVRToolView{
 	
 	public int choiceCount = 1;
 	

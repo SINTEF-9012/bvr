@@ -16,11 +16,11 @@ import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.IntegerLiteralExp;
+import bvr.NamedElement;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
@@ -28,19 +28,23 @@ import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 import bvr.VClassifier;
-import bvr.VInstance;
 import bvr.VSpec;
 import bvr.ValueSpecification;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
 
 public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor{
-    protected void init() {
+    public VariableValueAssignmentPropertyEditor(BVRUIKernel _kernel,
+			NamedElement _obj, BVRToolView _view) {
+		super(_kernel, _obj, _view);
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void init() {
     	command = new UpdateVariableValueAssignment();
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VariableValueAssignmentPropertyEditor(BVRUIKernel kernel, VariableValueAssignment elem, BVRView view) {
+	/*public VariableValueAssignmentPropertyEditor(BVRUIKernel kernel, VariableValueAssignment elem, BVRToolView view) {
 		super(kernel, elem, view);
 		
 		// Find value
@@ -118,5 +122,5 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
 			throw new UnsupportedOperationException();
 		}
 		return value;
-	}
+	}*/
 }

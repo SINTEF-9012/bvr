@@ -26,8 +26,8 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
@@ -37,19 +37,18 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
 import no.sintef.bvr.tool.ui.loader.ValidateResolution;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
-import bvr.ConfigurableUnit;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class VSpecResDropDownListener extends MouseAdapter {
-	private BVRView bvrView;
-	private ConfigurableUnit cu;
-	private BVRModel m;
+	private BVRToolView bvrView;
+	//private ConfigurableUnit cu;
+	private BVRToolModel m;
 	private JTabbedPane resPane;
 
-	public VSpecResDropDownListener(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane) {
+	public VSpecResDropDownListener(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRToolView bvrView, JTabbedPane resPane) {
 		this.m = m;
-		this.cu = cu;
+		//this.cu = cu;
 		this.resPane = resPane;
 		this.bvrView = bvrView;
 	}
@@ -65,15 +64,15 @@ public class VSpecResDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	VSpecResDropdown menu = new VSpecResDropdown(m, cu, bvrView, resPane);
-        menu.show(e.getComponent(), e.getX(), e.getY());
+    	//VSpecResDropdown menu = new VSpecResDropdown(m, cu, bvrView, resPane);
+        //menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
 
 class VSpecResDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecResDropdown(BVRModel m, ConfigurableUnit cu, BVRView bvrView, JTabbedPane resPane){
+    public VSpecResDropdown(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRToolView bvrView, JTabbedPane resPane){
     	/*JMenuItem del = new JMenuItem("delete");
     	del.addActionListener(new DelResEvent(cu, v, bvrView));
 		add(del);
@@ -81,7 +80,7 @@ class VSpecResDropdown extends JPopupMenu {
 		
 		// Resolutions
 		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolutionEvent(cu, bvrView));
+	//	newres.addActionListener(new NewResolutionEvent(cu, bvrView));
 		add(newres);
 		add(new JSeparator());
 		JMenuItem importres = new JMenuItem("Import ...");
@@ -95,9 +94,9 @@ class VSpecResDropdown extends JPopupMenu {
 */		
 		add(new JSeparator());
 		
-		JMenuItem delall = new JMenuItem("remove all");
+		/*JMenuItem delall = new JMenuItem("remove all");
 		delall.addActionListener(new DelAllResEvent(cu, bvrView));
-		add(delall);
+		add(delall);*/
 		
 		
 		/* Choice-only options */{
@@ -149,7 +148,7 @@ class VSpecResDropdown extends JPopupMenu {
 		
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
+		//saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
 		/*JMenuItem saveasSVG = new JMenuItem("Export Diagram as SVG ...");
 		add(saveasSVG);
 		saveasSVG.addActionListener(new ExportModelSVG(bvrView, m));

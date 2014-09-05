@@ -8,9 +8,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import bvr.ConfigurableUnit;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -21,9 +20,9 @@ import bvr.BvrFactory;
 public class AddClassifierEvent implements ActionListener {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public AddClassifierEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public AddClassifierEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -46,11 +45,11 @@ public class AddClassifierEvent implements ActionListener {
 		
 		if(v != null){
 			//v.getChild().add(c);
-			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec(v, c);
+			//Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec(v, c);
 		}else{
-			ConfigurableUnit cu = view.getCU();
+			//ConfigurableUnit cu = view.getCU();
 			//cu.getOwnedVSpec().add(c);
-			Context.eINSTANCE.getEditorCommands().addVClassifierToConfigurableUnit(cu, c);
+			//Context.eINSTANCE.getEditorCommands().addVClassifierToConfigurableUnit(cu, c);
 		}
 		
 		// Regenerate view

@@ -8,13 +8,13 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.ui.command.event.ClearSelectionRelalizationEvent;
 import no.sintef.bvr.tool.ui.command.event.CreatePlacementFragmentEvent;
 import no.sintef.bvr.tool.ui.command.event.CreateReplacementFragmentEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class SubstitutionFragmentDropDown extends JPopupMenu {
 
 	private static final long serialVersionUID = 1L;
 	
-    public SubstitutionFragmentDropDown(BVRView _view){	
+    public SubstitutionFragmentDropDown(BVRToolView _view){	
 		JMenuItem createPlacment = new JMenuItem(Constants.REALIZATION_CR_PLCMT_NAME);
 		createPlacment.addActionListener(new CreatePlacementFragmentEvent(_view, true));
 		add(createPlacment);

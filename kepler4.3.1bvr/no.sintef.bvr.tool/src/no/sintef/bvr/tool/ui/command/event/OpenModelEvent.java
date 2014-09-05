@@ -10,8 +10,8 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class OpenModelEvent implements ActionListener {
 	
@@ -32,7 +32,7 @@ public class OpenModelEvent implements ActionListener {
 			File sf = fc.getSelectedFile();
 			if(sf == null) return;
 			
-			BVRModel m = Context.eINSTANCE.loadModelFromFile(sf);
+			BVRToolModel m = Context.eINSTANCE.loadModelFromFile(sf);
 			Context.eINSTANCE.addBvrModel(m);
 			//Context.eINSTANCE.addBvrView(new VSpecView(m, c));
 		}catch(Exception e){

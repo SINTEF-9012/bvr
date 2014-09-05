@@ -29,21 +29,21 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 public class ExportModelImage implements ActionListener {
 
 	JLayeredPane view;
-	BVRModel model;
+	BVRToolModel model;
 	private EList<VSpecResolution> resolutions;
 	private JTabbedPane resPane;
 	
 	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
 
-	public ExportModelImage(JLayeredPane cup, BVRModel model, EList<VSpecResolution> resolutions, JTabbedPane resPane) {
+	public ExportModelImage(JLayeredPane cup, BVRToolModel model, EList<VSpecResolution> resolutions, JTabbedPane resPane) {
 		this.view = cup;
 		this.model = model;
 		this.resolutions = resolutions;

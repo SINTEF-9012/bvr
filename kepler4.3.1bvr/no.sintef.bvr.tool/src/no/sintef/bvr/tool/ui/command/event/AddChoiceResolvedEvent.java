@@ -4,18 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
 import bvr.BvrFactory;
 import bvr.VSpecResolution;
 
 public class AddChoiceResolvedEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Choice target;
-	private BVRView view;
+	private BVRToolView view;
 	
-	public AddChoiceResolvedEvent(VSpecResolution a, Choice b, BVRView view) {
+	public AddChoiceResolvedEvent(VSpecResolution a, Choice b, BVRToolView view) {
 		cr = a;
 		target = b;
 		this.view = view;
@@ -23,12 +22,9 @@ public class AddChoiceResolvedEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		Choice c = target;
-		ChoiceResolutuion ncr = BvrFactory.eINSTANCE.createChoiceResolutuion();
+		//ChoiceResolutuion ncr = BvrFactory.eINSTANCE.createChoiceResolutuion();
 		
-		Context.eINSTANCE.getEditorCommands().addChoiceResolved(target, cr, ncr);
-		//ncr.setResolvedVSpec(c);
-		//cr.getChild().add(ncr);
-		//view.notifyResolutionViewUpdate();
+		//Context.eINSTANCE.getEditorCommands().addChoiceResolved(target, cr, ncr);
 	}
 
 }

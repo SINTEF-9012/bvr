@@ -6,14 +6,14 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.tool.ui.loader.Main;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.VSpec;
+import bvr.VNode;
 
 public class AddGroupMultiplicity implements Command {
 
@@ -23,7 +23,7 @@ public class AddGroupMultiplicity implements Command {
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		if(p instanceof VSpec){
 			this.rootPanel = rootPanel;
 			this.v = (VSpec) p;
@@ -37,8 +37,8 @@ public class AddGroupMultiplicity implements Command {
 	}
 
 	public JComponent execute() {
-		if(v.getGroupMultiplicity() != null){
-			MultiplicityInterval m = v.getGroupMultiplicity();
+		if(((VNode) v).getGroupMultiplicity() != null){
+			MultiplicityInterval m = ((VNode) v).getGroupMultiplicity();
 			GroupPanel group = new GroupPanel();
 			nodes.add(group);
 			int l = m.getLower();

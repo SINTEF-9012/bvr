@@ -6,14 +6,14 @@ import javax.swing.JSeparator;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.ui.command.event.DeletePlacementReplacementFragmentEvent;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class SubstitutionFragmentTableDropDown extends
 		SubstitutionFragmentDropDown {
 
 	private static final long serialVersionUID = 4816222671270004432L;
 	
-	public SubstitutionFragmentTableDropDown(BVRView _view) {
+	public SubstitutionFragmentTableDropDown(BVRToolView _view) {
 		super(_view);
 		BVRRealizationView rView = (BVRRealizationView) _view;
 		if(rView.getSubsitutionFragmentTable().getSelectedRows().length != 0){

@@ -3,14 +3,14 @@ package no.sintef.bvr.tool.ui.dropdown;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class ResolutionPanelDropDownListener extends MouseAdapter {
 
-	BVRView view;
+	BVRToolView view;
 	
-	public ResolutionPanelDropDownListener(BVRView _view) {
+	public ResolutionPanelDropDownListener(BVRToolView _view) {
 		view = _view;
 	}
 

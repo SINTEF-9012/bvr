@@ -26,8 +26,8 @@ import javax.swing.event.DocumentListener;
 
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import bvr.NamedElement;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.VClassifier;
@@ -36,12 +36,18 @@ import bvr.Variable;
 
 public class VClassifierPropertyEditor extends ElementPropertyEditor {
 	
-    protected void init() {
+    public VClassifierPropertyEditor(BVRUIKernel _kernel, NamedElement _obj,
+			BVRToolView _view) {
+		super(_kernel, _obj, _view);
+		// TODO Auto-generated constructor stub
+	}
+
+	protected void init() {
     	command = new UpdateVClassifier();
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public VClassifierPropertyEditor(BVRUIKernel kernel, VClassifier elem, BVRView view) {
+	/*public VClassifierPropertyEditor(BVRUIKernel kernel, VClassifier elem, BVRToolView view) {
 		super(kernel, (VSpec) elem, view);
 		
         //Lower bound
@@ -214,5 +220,5 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
             	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
             }
         });
-	}
+	}*/
 }

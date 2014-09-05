@@ -42,8 +42,8 @@ import bvr.NamedElement;
 public class Main {
 	private BVRJFrame jframe;
 	public static NamedElement vSpecCut;
-	private List<BVRView> views = Context.eINSTANCE.getBvrViews();
-	private List<BVRModel> models = Context.eINSTANCE.getBvrModels();
+	private List<BVRToolView> views = Context.eINSTANCE.getBvrViews();
+	private List<BVRToolModel> models = Context.eINSTANCE.getBvrModels();
 
 	public void startVSpecView(){
 		try {

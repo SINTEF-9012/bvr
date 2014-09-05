@@ -8,12 +8,11 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
-import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.BvrFactory;
 import bvr.MultiplicityInterval;
@@ -21,15 +20,15 @@ import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 import bvr.VClassifier;
 import bvr.VSpec;
-import bvr.VSpecRef;
+
 
 public class AddConstraintEvent implements ActionListener {
 
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public AddConstraintEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public AddConstraintEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -39,7 +38,7 @@ public class AddConstraintEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		VSpec v = (VSpec)vmMap.get(p);
+		/*VSpec v = (VSpec)vmMap.get(p);
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		c.setName("Constraint"+x);
 		x++;
@@ -49,11 +48,7 @@ public class AddConstraintEvent implements ActionListener {
 		c.setContext(v);
 		
 		ConfigurableUnit cu = view.getCU();
-		Context.eINSTANCE.getEditorCommands().addBCLConstraint(cu, c);
-		//cu.getOwnedConstraint().add(c);
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
+		Context.eINSTANCE.getEditorCommands().addBCLConstraint(cu, c);*/
 	}
 
 }

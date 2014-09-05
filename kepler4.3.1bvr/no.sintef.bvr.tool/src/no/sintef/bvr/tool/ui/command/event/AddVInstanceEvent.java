@@ -4,21 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
 import bvr.BvrFactory;
 import bvr.VClassifier;
-import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class AddVInstanceEvent implements ActionListener {
 	private VSpecResolution cr;
 	private VClassifier target;
-	private BVRView view;
+	private BVRToolView view;
 	
-	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, BVRView view) {
+	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, BVRToolView view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;
@@ -27,16 +25,13 @@ public class AddVInstanceEvent implements ActionListener {
 	static int count = 0;
 
 	public void actionPerformed(ActionEvent arg0) {
-		VClassifier v = target;
+		/*VClassifier v = target;
 		
 		VInstance vi = BvrFactory.eINSTANCE.createVInstance();
 		vi.setResolvedVSpec(v);
 		count++;
 		vi.setName("vInstance" + count);
 		
-		Context.eINSTANCE.getEditorCommands().addVInstance(cr, vi);
-		//cr.getChild().add(vi);
-		
-		//view.notifyResolutionViewUpdate();
+		Context.eINSTANCE.getEditorCommands().addVInstance(cr, vi);*/
 	}
 }

@@ -15,29 +15,24 @@ import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.Operation;
 import bvr.OperationCallExp;
 import bvr.PrimitiveValueSpecification;
-import bvr.VInstance;
 import bvr.VSpec;
-import bvr.VSpecRef;
 import bvr.VSpecResolution;
 import bvr.ValueSpecification;
-import bvr.VariableValueAssignment;
 import bvr.impl.OperationCallExpImpl;
 
 public class ValidateResolution implements ActionListener {
 	
 	private JTabbedPane filePane;
-	private List<BVRModel> models;
-	private List<BVRView> views;
+	private List<BVRToolModel> models;
+	private List<BVRToolView> views;
 
-	public ValidateResolution(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views) {
+	public ValidateResolution(JTabbedPane filePane, List<BVRToolModel> models, List<BVRToolView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -45,14 +40,11 @@ public class ValidateResolution implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		int mi = filePane.getSelectedIndex();
+		/*int mi = filePane.getSelectedIndex();
 		JTabbedPane x = (JTabbedPane) ((JTabbedPane)filePane.getSelectedComponent()).getSelectedComponent();
 		int i = x.getSelectedIndex();
 		ConfigurableUnit cu = models.get(mi).getBVRM().getCU();
 		VSpecResolution vsr = cu.getOwnedVSpecResolution().get(i);
-		
-		//System.out.println("validating: " + cu.getName());
-		//System.out.println("validating: " + vsr);
 		
 		boolean res = check(cu, vsr);
 		
@@ -60,10 +52,11 @@ public class ValidateResolution implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Valid");
 		}else{
 			
-		}
+		}*/
+		JOptionPane.showMessageDialog(null, "Implement me!");
 	}
 
-	private boolean check(ConfigurableUnit cu, VSpecResolution vsr) {
+	/*private boolean check(ConfigurableUnit cu, VSpecResolution vsr) {
 		boolean res = true;
 		
 		// Check for null
@@ -418,6 +411,6 @@ public class ValidateResolution implements ActionListener {
 				return checkNull(v);
 		}
 		return true;
-	}
+	}*/
 
 }

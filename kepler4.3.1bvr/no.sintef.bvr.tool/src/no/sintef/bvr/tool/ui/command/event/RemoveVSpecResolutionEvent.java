@@ -7,25 +7,23 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import bvr.ConfigurableUnit;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.NamedElement;
 import bvr.VSpecResolution;
 
 public class RemoveVSpecResolutionEvent implements ActionListener  {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public RemoveVSpecResolutionEvent(JComponent p, Map<JComponent, NamedElement> vmMap, BVRView view) {
+	public RemoveVSpecResolutionEvent(JComponent p, Map<JComponent, NamedElement> vmMap, BVRToolView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		NamedElement v = vmMap.get(p);
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
+		/*NamedElement v = vmMap.get(p);
 		
 		// Modify model
 		VSpecResolution parent = null;
@@ -46,9 +44,6 @@ public class RemoveVSpecResolutionEvent implements ActionListener  {
 			ConfigurableUnit cu = view.getCU();
 			//cu.getOwnedVSpecResolution().remove(v);
 			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutionConfigurableUnit(cu, v);
-		}
-		
-		// Regenerate view
-		//view.notifyResolutionViewUpdate();
+		}*/
 	}
 }

@@ -8,16 +8,14 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
-import bvr.ConfigurableUnit;
 import bvr.BvrFactory;
 import bvr.NamedElement;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.VSpec;
-import bvr.VSpecRef;
 import bvr.Variable;
 import bvr.Variabletype;
 
@@ -25,9 +23,9 @@ public class AddVariableEvent implements ActionListener {
 	
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public AddVariableEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public AddVariableEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -47,7 +45,7 @@ public class AddVariableEvent implements ActionListener {
 		vt.setType(PrimitiveTypeEnum.INTEGER);
 		vt.setName("xx");
 		
-		Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
+		//Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
 		//view.getCU().getOwnedVariabletype().add(vt);
 		
 		var.setName("Var" + x);

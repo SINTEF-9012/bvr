@@ -12,23 +12,22 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import bvr.ConfigurableUnit;
 import bvr.BvrFactory;
 import bvr.PlacementFragment;
 
 public class CreatePlacementFragmentEvent implements ActionListener {
 
 	
-	private BVRView view;
+	private BVRToolView view;
 	private boolean withContainment;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public CreatePlacementFragmentEvent(BVRView _view, boolean _withContainment) {
+	public CreatePlacementFragmentEvent(BVRToolView _view, boolean _withContainment) {
 		view = _view;
 		withContainment = _withContainment;
 	}
@@ -37,7 +36,7 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		Context.eINSTANCE.getConfig().setContainmentSelectionMode(withContainment);
+		/*Context.eINSTANCE.getConfig().setContainmentSelectionMode(withContainment);
 		ConfigurableUnit cu = view.getCU();
 		GetSelectionContext selectionContext = new GetSelectionContext();
 		try {
@@ -56,6 +55,6 @@ public class CreatePlacementFragmentEvent implements ActionListener {
 		} catch (Exception e) {
 			logger.error("some failure during placement creation", e);
 			throw new RethrownException("some failure during placement creation", e);
-		}
+		}*/
 	}
 }

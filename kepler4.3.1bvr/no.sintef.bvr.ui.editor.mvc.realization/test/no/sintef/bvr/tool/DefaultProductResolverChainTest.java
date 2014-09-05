@@ -9,9 +9,8 @@ import no.sintef.bvr.tool.chain.impl.ParserExecutionHandler;
 import no.sintef.bvr.tool.chain.impl.ScopeResolverExecutionHandler;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.AbstractError;
-import no.sintef.bvr.tool.primitive.SymbolTable;
 import no.sintef.bvr.tool.primitive.impl.SingleExecutionRequest;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
 
@@ -25,7 +24,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.VSpecResolution;
 
 public class DefaultProductResolverChainTest {
@@ -103,9 +102,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void repetitionsSveralInstances() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -130,9 +129,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void repetitionsSveralInstances1() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -157,9 +156,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void repetitionsSveralInstancesV1() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[4].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -184,9 +183,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void repetitionsSveralInstancesV1_1() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[4].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -211,9 +210,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void printerCartirdgeSveralInstances() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -238,9 +237,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void printerCartirdgeSingleInstance() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -265,9 +264,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void office1() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -292,9 +291,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void office2() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -319,9 +318,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void office3() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(2);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(2);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -346,9 +345,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void office4() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(3);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(3);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -373,9 +372,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -400,9 +399,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void repetitionsScopeless1() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);
@@ -427,9 +426,9 @@ public class DefaultProductResolverChainTest {
 	@Test
 	public void repetitionsScopeless2() throws IOException, CoreException, AbstractError {	
 			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
 			HashMap<String, Object> keywords = new HashMap<String, Object>();
 			keywords.put("cu", cu);

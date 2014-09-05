@@ -7,13 +7,13 @@ import javax.swing.JSeparator;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.ui.command.event.CreateToBindingEvent;
 import no.sintef.bvr.tool.ui.command.event.DeleteBindingAllEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class BindingEditorDropDown extends JPopupMenu {
 
 	private static final long serialVersionUID = 8629958457282670624L;
 	
-	public BindingEditorDropDown(BVRView _view){
+	public BindingEditorDropDown(BVRToolView _view){
 		
 		JMenuItem createToBinding = new JMenuItem(Constants.REALIZATION_GENERATE_TO_BINDING);
 		createToBinding.addActionListener(new CreateToBindingEvent(_view));

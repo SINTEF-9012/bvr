@@ -18,33 +18,30 @@ import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.bvr.tool.exception.BVRModelException;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
-import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddConfigurableUnit;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
-import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
-import bvr.BCLConstraint;
+import bvr.BVRModel;
 import bvr.Choice;
-import bvr.ConfigurableUnit;
-import bvr.Constraint;
+import bvr.CompoundNode;
 import bvr.NamedElement;
-import bvr.OpaqueConstraint;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 
-public class VSpecView extends BVRViewAbstract {
-	private BVRModel m;
+public class VSpecView extends BVRToolViewAbstract {
+	private BVRToolModel m;
 	
 	public JTabbedPane modelPane;
 	
@@ -60,14 +57,14 @@ public class VSpecView extends BVRViewAbstract {
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 	
 	// Realization
-	private ConfigurableUnitSubject configurableUnitSubject;
+	private BVRModelSubject bvrModelSubject;
 
 
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
 	
-	public VSpecView(BVRModel m) {
+	public VSpecView(BVRToolModel m) {
 	
 		// Alloc
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
@@ -78,12 +75,12 @@ public class VSpecView extends BVRViewAbstract {
 		
 		this.m = m;
 		
-    	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
+		bvrModelSubject = new BVRModelSubject(this.getBVRModel());
 	
 		
 		// VSpec pane
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
-		loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
+		loadBVRVSpecView(m.getBVRModel(), vSpecbvruikernel);
         
         autoLayoutVSpec();
 		
@@ -91,17 +88,17 @@ public class VSpecView extends BVRViewAbstract {
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
-	private void loadBVRVSpecView(ConfigurableUnit cu, BVRUIKernel model) throws BVRModelException {
-		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, cu, this));
+	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
+		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, this));
 		
 		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 		
-		for(VSpec v : cu.getOwnedVSpec()){
-			loadBVRVSpecView(v, model, c, cu);
-		}
+		CompoundNode vspec = cu.getVariabilityModel();
+		loadBVRVSpecView(vspec, model, c, cu);
+		
 		
 		// Add context-free constraints
-		for(Constraint cs : cu.getOwnedConstraint()){
+		/*for(Constraint cs : cu.getOwnedConstraint()){
 			if(cs instanceof OpaqueConstraint){
 				OpaqueConstraint oc = (OpaqueConstraint) cs;
 				if(oc.getContext() == null){
@@ -115,19 +112,19 @@ public class VSpecView extends BVRViewAbstract {
 					vspecvmMap.put(comp, bcl);
 				}
 			}
-		}
+		}*/
 	}
 
-	void loadBVRVSpecView(VSpec v, BVRUIKernel model, JComponent parent, ConfigurableUnit cu) throws BVRModelException {
+	void loadBVRVSpecView(CompoundNode v, BVRUIKernel model, JComponent parent, BVRModel cu) throws BVRModelException {
 		JComponent nextParent = null;
 		
 		if(v instanceof VClassifier){
 			JComponent c = new AddVClassifier(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-			vspecvmMap.put(c, v);
+			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}else if(v instanceof Choice){
 			JComponent c = new AddChoice(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-			vspecvmMap.put(c, v);
+			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}
 		
@@ -137,7 +134,7 @@ public class VSpecView extends BVRViewAbstract {
 			}
 		
 		
-			for(Constraint c : cu.getOwnedConstraint()){
+			/*for(Constraint c : cu.getOwnedConstraint()){
 				if(c instanceof OpaqueConstraint){
 					OpaqueConstraint oc = (OpaqueConstraint) c;
 					if(c.getContext() == v){
@@ -152,16 +149,17 @@ public class VSpecView extends BVRViewAbstract {
 						vspecvmMap.put(comp, c);
 					}
 				}
-			}
+			}*/
 		
-			for(VSpec vs : v.getChild()){
-					loadBVRVSpecView(vs, model, nextParent, cu);
+			for(VNode vs : ((CompoundNode) v).getMember()){
+					loadBVRVSpecView((CompoundNode) vs, model, nextParent, cu);
 			}
 		}
 	}
 
-	public ConfigurableUnitSubject getConfigurableUnitSubject(){
-		return configurableUnitSubject;
+	@Override
+	public BVRModelSubject getBVRModelSubject(){
+		return bvrModelSubject;
 	}
 
 	public void notifyVspecViewUpdate() {
@@ -178,7 +176,7 @@ public class VSpecView extends BVRViewAbstract {
 		
 	    // Add stuff
 
-		loadBVRVSpecView(m.getBVRM().getCU(), vSpecbvruikernel);
+		loadBVRVSpecView(m.getBVRModel(), vSpecbvruikernel);
 
 	    
 	    // Automatically Layout Diagram
@@ -193,12 +191,12 @@ public class VSpecView extends BVRViewAbstract {
 	}
 
 	@Override
-	public ConfigurableUnit getCU() {
-		return m.getCU();
+	public BVRModel getBVRModel() {
+		return m.getBVRModel();
 	}
 
 	@Override
-	public BVRModel getModel() {
+	public BVRToolModel getBVRToolModel() {
 		return m;
 	}
 	

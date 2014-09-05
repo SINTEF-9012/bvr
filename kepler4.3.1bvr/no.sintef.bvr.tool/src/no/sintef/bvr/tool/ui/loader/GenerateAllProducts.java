@@ -28,10 +28,10 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
 public class GenerateAllProducts implements ActionListener {
-	private BVRModel m;
-	private BVRView v;
+	private BVRToolModel m;
+	private BVRToolView v;
 	
-	public GenerateAllProducts(BVRModel m, BVRView bvrView) {
+	public GenerateAllProducts(BVRToolModel m, BVRToolView bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}
@@ -47,9 +47,9 @@ public class GenerateAllProducts implements ActionListener {
 					CoveringArray ca = new CoveringArrayComplete(cnf);
 					ca.generate();
 					GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(m.getBVRM().getCU());
+					//Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(m.getBVRM().getRootBVRModel());
 					EList<VSpecResolution> resolutions = m.getBVRM().getChoiceResolutions(gfm);
-					Context.eINSTANCE.getEditorCommands().addOwnedVSpecResolutionsConfigurableUnit(m.getBVRM().getCU(), resolutions);
+					//Context.eINSTANCE.getEditorCommands().addOwnedVSpecResolutionsConfigurableUnit(m.getBVRM().getCU(), resolutions);
 				 } catch(Exception e){
 					 Context.eINSTANCE.logger.error("Generating all possible products failed:", e);
 					 Status status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Generating all possible products failed (see log for more details): " + e.getMessage(), e);

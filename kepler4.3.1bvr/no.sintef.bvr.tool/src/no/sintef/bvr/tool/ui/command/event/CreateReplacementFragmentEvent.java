@@ -9,12 +9,11 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import bvr.ConfigurableUnit;
 import bvr.BvrFactory;
 import bvr.ReplacementFragmentType;
 
@@ -22,17 +21,17 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 	
 	static int count = 0;
 	private boolean withContainment;
-	private BVRView view;
+	private BVRToolView view;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public CreateReplacementFragmentEvent(BVRView _view, boolean _withContainment) {
+	public CreateReplacementFragmentEvent(BVRToolView _view, boolean _withContainment) {
 		view = _view;
 		withContainment = _withContainment;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		Context.eINSTANCE.getConfig().setContainmentSelectionMode(withContainment);
+		/*Context.eINSTANCE.getConfig().setContainmentSelectionMode(withContainment);
 		ConfigurableUnit cu = view.getCU();
 		ReplacementFragmentType replacement = BvrFactory.eINSTANCE.createReplacementFragmentType();
 		GetSelectionContext selectionContext = new GetSelectionContext();
@@ -47,6 +46,6 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 		} catch (Exception e) {
 			logger.error("some failure during replacement creation", e);
 			throw new RethrownException("some failure during replacement creation", e);
-		}
+		}*/
 	}
 }

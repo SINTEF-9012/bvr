@@ -10,7 +10,7 @@ import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 
 import org.eclipse.emf.common.util.EList;
@@ -20,17 +20,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 public class AbstractEnvironment implements Environment {
 	
 	@Override
-	public BVRModel loadModelFromFile(File file) {
+	public BVRToolModel loadModelFromFile(File file) {
 		throw new UnimplementedBVRException("loadModelFromFile is not implemented");
 	}
 
 	@Override
-	public void writeModelToFile(BVRModel model, File file) {
+	public void writeModelToFile(BVRToolModel model, File file) {
 		throw new UnimplementedBVRException("writeModelToFile is not implemented");
 	}
 
 	@Override
-	public void reloadModel(BVRModel model) {
+	public void reloadModel(BVRToolModel model) {
 		throw new UnimplementedBVRException("reloadModel is not implemented");
 	}
 
@@ -88,7 +88,7 @@ public class AbstractEnvironment implements Environment {
 	}
 
 	@Override
-	public void disposeModel(BVRModel model) {
+	public void disposeModel(BVRToolModel model) {
 		throw new UnimplementedBVRException("disposeModel is not implemented for this environment");
 	}
 }

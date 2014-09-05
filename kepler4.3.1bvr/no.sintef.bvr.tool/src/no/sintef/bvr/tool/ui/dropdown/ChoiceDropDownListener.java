@@ -28,7 +28,7 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleOptionalEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -38,9 +38,9 @@ public class ChoiceDropDownListener extends MouseAdapter {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRView view;
+	private BVRToolView view;
 
-	public ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view){
+	public ChoiceDropDownListener(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -65,7 +65,7 @@ public class ChoiceDropDownListener extends MouseAdapter {
 class ChoiceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view){
+    public ChoiceDropdown(ChoicePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");

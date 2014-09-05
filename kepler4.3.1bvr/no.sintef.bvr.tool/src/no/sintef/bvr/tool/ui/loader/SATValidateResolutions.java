@@ -24,10 +24,10 @@ import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CoveringArray;
 
 public class SATValidateResolutions implements ActionListener {
-	private BVRModel m;
-	private BVRView v;
+	private BVRToolModel m;
+	private BVRToolView v;
 
-	public SATValidateResolutions(BVRModel m, BVRView bvrView) {
+	public SATValidateResolutions(BVRToolModel m, BVRToolView bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}

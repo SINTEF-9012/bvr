@@ -33,7 +33,7 @@ import javax.swing.JSplitPane;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -51,8 +51,7 @@ import bvr.BCLConstraint;
 import bvr.Choice;
 import bvr.NamedElement;
 import bvr.VClassifier;
-import bvr.VInstance;
-import bvr.VariableValueAssignment;
+
 
 public class BVREditorPanel extends JPanel {
 
@@ -61,7 +60,7 @@ public class BVREditorPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1055821406124903342L;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 	
     private BVRUIKernel kernel/* = new BVRUIKernel()*/;
 
@@ -78,7 +77,7 @@ public class BVREditorPanel extends JPanel {
     private SelectElement current;
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 
-    public BVREditorPanel(BVRUIKernel _kernel, Map<JComponent, NamedElement> vmMap, BVRView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+    public BVREditorPanel(BVRUIKernel _kernel, Map<JComponent, NamedElement> vmMap, BVRToolView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;
     	this.resolutionvmMaps = resolutionvmMaps;
     	this.kernel = _kernel;
@@ -152,28 +151,28 @@ public class BVREditorPanel extends JPanel {
            // System.out.println("Here!");
         }else if (p instanceof ConfigurableUnitSymbolPanel) {
         	ConfigurableUnitSymbolPanel elem = (ConfigurableUnitSymbolPanel)p;
-        	ConfigurableUnitPropertyEditor prop = new ConfigurableUnitPropertyEditor(kernel, view.getCU(), view);        	
-            editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	/*ConfigurableUnitPropertyEditor prop = new ConfigurableUnitPropertyEditor(kernel, view.getCU(), view);        	
+            editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
             //System.out.println("Here!");
         }else if (p instanceof VInstancePanel) {
-        	VInstancePanel elem = (VInstancePanel)p;
+        	/*VInstancePanel elem = (VInstancePanel)p;
         	VInstance x = null;
         	for(Map<JComponent, NamedElement> z : resolutionvmMaps){
         		if(z.get(elem) != null)
         			x = (VInstance) z.get(elem);
         	}
         	VInstancePropertyEditor prop = new VInstancePropertyEditor(kernel, x, view);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
         	//System.out.println("Here!");
         }else if (p instanceof VariableAssignmentPanel) {
-        	VariableAssignmentPanel elem = (VariableAssignmentPanel)p;
+        	/*VariableAssignmentPanel elem = (VariableAssignmentPanel)p;
         	VariableValueAssignment x = null;
         	for(Map<JComponent, NamedElement> z : resolutionvmMaps){
         		if(z.get(elem) != null)
         			x = (VariableValueAssignment) z.get(elem);
         	}
         	VariableValueAssignmentPropertyEditor prop = new VariableValueAssignmentPropertyEditor(kernel, x, view);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
         	//System.out.println("Here!");
         }else{
         	throw new UnsupportedOperationException("Unsupported: " + p.getClass().getName());

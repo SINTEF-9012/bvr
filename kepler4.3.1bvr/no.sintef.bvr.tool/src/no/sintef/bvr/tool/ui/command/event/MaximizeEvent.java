@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 
@@ -16,9 +16,9 @@ public class MaximizeEvent implements ActionListener {
 
 	private Object cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public MaximizeEvent(Object cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public MaximizeEvent(Object cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;

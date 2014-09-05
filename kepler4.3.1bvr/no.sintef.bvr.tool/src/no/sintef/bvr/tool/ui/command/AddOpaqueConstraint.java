@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
@@ -24,7 +24,7 @@ public class AddOpaqueConstraint implements Command {
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.rootPanel = rootPanel;
 		this.oc = (OpaqueConstraint) p;
 		this.parent = parent;	

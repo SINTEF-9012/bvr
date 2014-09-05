@@ -13,6 +13,7 @@ import javax.swing.JPopupMenu;
 
 import org.eclipse.emf.common.util.EList;
 
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
@@ -27,27 +28,28 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+import bvr.ChoiceResolution;
+import bvr.CompoundNode;
 import bvr.NamedElement;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
+
 
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 	private ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
-	private ChoiceResolutuion c;
+	private BVRToolView view;
+	private ChoiceResolution c;
 
-	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, BVRView view){
+	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolution c, Map<JComponent, NamedElement> vmMap, BVRToolView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -73,12 +75,13 @@ public class ChoiceResolutionDropDownListener extends MouseAdapter {
 class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, BVRView view, Map<JComponent, NamedElement> vmMap){
+    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRToolView view, Map<JComponent, NamedElement> vmMap){
     	// Add
-    	if(c.getResolvedVSpec() != null){
+    	VSpec vSpec = CommonUtility.getResolvedVSpec(c);
+    	if(vSpec != null){
     		JMenu add = new JMenu("add");
-	    	for(VSpec x : c.getResolvedVSpec().getChild()){
-	    		JMenuItem addchild = new JMenuItem(x.getName());
+	    	for(VNode x : ((CompoundNode) vSpec).getMember()){
+	    		JMenuItem addchild = new JMenuItem(((NamedElement) x).getName());
 	    		if(x instanceof Choice){
 	    			addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
 	    		}else if(x instanceof VClassifier){
@@ -90,7 +93,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 	    		}
 	    		add.add(addchild);    		
 	    	}
-	    	if(c.getResolvedVSpec().getChild().size() == 0){
+	    	if(((CompoundNode) vSpec).getMember().size() == 0){
 	    		add.add(new JMenuItem("No further VSpec")); 
 	    	}
 	    	add(add);
@@ -103,7 +106,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		add(removechoice);
 */		
 		// Set group
-		JMenu value = new JMenu("Set Resolution");
+	/*	JMenu value = new JMenu("Set Resolution");
 		JMenuItem vtrue = new JMenuItem("true");
 		vtrue.addActionListener(new SetDecisionEvent(c, view, true));
 		value.add(vtrue);
@@ -146,10 +149,10 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		add(minimize);
 		JMenuItem maximize = new JMenuItem("maximize");
 		maximize.addActionListener(new MaximizeEvent(cp, vmMap, null, null, view));
-		add(maximize);
+		add(maximize);*/
     }
     
-    private VSpec getParent(ConfigurableUnit cu, VSpec child){
+    /*private VSpec getParent(ConfigurableUnit cu, VSpec child){
     	for(VSpec c : cu.getOwnedVSpec())
     		if(c == child)
     			return null;
@@ -169,5 +172,5 @@ class ChoiceResolutionDropdown extends JPopupMenu {
     		if(found != null) return found;
     	}
     	return null;
-    }
+    }*/
 }

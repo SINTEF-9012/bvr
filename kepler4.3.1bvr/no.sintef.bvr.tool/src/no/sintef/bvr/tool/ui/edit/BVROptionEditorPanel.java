@@ -24,14 +24,14 @@ import javax.swing.SpringLayout;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.ui.command.event.SettingsToolEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class BVROptionEditorPanel extends JPanel {
 	
 	private static final long serialVersionUID = -2149521036852534933L;
 
-	protected BVRView view;
+	protected BVRToolView view;
 	
 	protected JPanel top;
 	protected JPanel bottom;

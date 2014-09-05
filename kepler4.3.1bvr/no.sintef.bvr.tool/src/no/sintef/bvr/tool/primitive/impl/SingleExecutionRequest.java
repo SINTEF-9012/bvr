@@ -3,8 +3,6 @@ package no.sintef.bvr.tool.primitive.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import bvr.ConfigurableUnit;
-import bvr.VSpecResolution;
 import no.sintef.bvr.tool.primitive.AbstractExecutionRequest;
 
 public class SingleExecutionRequest extends AbstractExecutionRequest {

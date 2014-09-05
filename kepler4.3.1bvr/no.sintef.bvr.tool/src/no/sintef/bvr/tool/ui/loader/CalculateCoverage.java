@@ -19,9 +19,9 @@ import no.sintef.ict.splcatool.GUIDSL;
 
 public class CalculateCoverage implements ActionListener {
 	private int t;
-	private BVRModel m;
+	private BVRToolModel m;
 
-	public CalculateCoverage(BVRModel m, BVRView bvrView, int t) {
+	public CalculateCoverage(BVRToolModel m, BVRToolView bvrView, int t) {
 		this.m = m;
 		this.t = t;
 	}

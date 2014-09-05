@@ -20,7 +20,7 @@ import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 
@@ -63,18 +63,18 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public BVRModel loadModelFromFile(File file) {
+	public BVRToolModel loadModelFromFile(File file) {
 		String platformPath = Utility.findFileInWorkspace(file);
 		if(platformPath == null){
 			throw new UnsupportedOperationException("can not locate a selected file in the workspace: " + file.getAbsolutePath());
 		}
 		String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
 		configHelper.saveLastLocation(filePath);
-		return new BVRModel(file, platformPath, true);
+		return new BVRToolModel(file, platformPath, true);
 	}
 
 	@Override
-	public void writeModelToFile(BVRModel model, File file) {
+	public void writeModelToFile(BVRToolModel model, File file) {
 		String filepath = file.getAbsolutePath().replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
 			throw new UnsupportedOperationException("can not a VM model to the file, incorrect loacation: use workspace location");
@@ -245,7 +245,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public void reloadModel(BVRModel model) {
+	public void reloadModel(BVRToolModel model) {
 		model.reload();
 	}
 
@@ -297,7 +297,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 	
 	@Override
-	public void disposeModel(BVRModel model) {
+	public void disposeModel(BVRToolModel model) {
 		IFile iFile = Utility.findIFileInWorkspaceFile(model.getFile());
 		try {
 			iFile.delete(true, null);

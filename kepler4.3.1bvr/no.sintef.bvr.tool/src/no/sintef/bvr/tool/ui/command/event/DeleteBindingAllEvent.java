@@ -9,15 +9,15 @@ import bvr.FragmentSubstitution;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 
 
 public class DeleteBindingAllEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 
-	public DeleteBindingAllEvent(BVRView _view){
+	public DeleteBindingAllEvent(BVRToolView _view){
 		view = _view;
 	}
 	

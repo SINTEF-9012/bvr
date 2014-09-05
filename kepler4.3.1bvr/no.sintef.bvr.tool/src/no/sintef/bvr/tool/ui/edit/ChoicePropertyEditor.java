@@ -19,7 +19,7 @@ import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.Choice;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -33,7 +33,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRView view) {
+	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRToolView view) {
 		super(kernel, (VSpec) elem, view);
 		
         // Comment
@@ -50,7 +50,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 
         l.setLabelFor(comment);
         p.add(comment);
-        comment.setText(elem.getComment());
+       // comment.setText(elem.getComment());
 
         top.add(p);
         SpringUtilities.makeCompactGrid(p,
@@ -79,7 +79,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         }); 
 		
         // Vars
-		int count = 2;
+		/*int count = 2;
 		for(VSpec x : elem.getChild()){
 			if(x instanceof Variable){
 				Variable v = (Variable)x;
@@ -88,7 +88,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 			}
 		}
 		
-        pack(count, 1);
+        pack(count, 1);*/
 	}
 
 	private void addEdit(VSpec elem, final Variable v) {

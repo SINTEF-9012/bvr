@@ -16,17 +16,17 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.SXFM;
 
 public class ImportVSpecEvent implements ActionListener {
 	private JTabbedPane filePane;
-	private List<BVRModel> models;
-	private List<BVRView> views;
+	private List<BVRToolModel> models;
+	private List<BVRToolView> views;
 
-	public ImportVSpecEvent(JTabbedPane filePane, List<BVRModel> models, List<BVRView> views) {
+	public ImportVSpecEvent(JTabbedPane filePane, List<BVRToolModel> models, List<BVRToolView> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -34,8 +34,8 @@ public class ImportVSpecEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
-		BVRModel m = models.get(i);
-		BVRView v = views.get(i);
+		BVRToolModel m = models.get(i);
+		BVRToolView v = views.get(i);
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());
@@ -53,8 +53,7 @@ public class ImportVSpecEvent implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		m.addVSpec(bvrm.getCU().getOwnedVSpec().get(0));
+		//m.addVSpec(bvrm.getCU().getOwnedVSpec().get(0));
 		
-		//v.notifyVspecViewUpdate();
 	}
 }

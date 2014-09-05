@@ -10,7 +10,7 @@ import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.bvr.ui.editor.commands.EditorMVCCommands;
 
@@ -24,13 +24,13 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	private EditorCommands commands = EditorMVCCommands.Get();
 	
 	@Override
-	public BVRModel loadModelFromFile(File file) {
+	public BVRToolModel loadModelFromFile(File file) {
 		no.sintef.ict.splcatool.SPLCABVRModel bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(file);
-		return new BVRModel(file, bvrm);
+		return new BVRToolModel(file, bvrm);
 	}
 	
 	@Override
-	public void writeModelToFile(BVRModel model, File file) {
+	public void writeModelToFile(BVRToolModel model, File file) {
 		try {
 			model.getBVRM().writeToFile(file.getAbsolutePath());
 			model.setFile(file);

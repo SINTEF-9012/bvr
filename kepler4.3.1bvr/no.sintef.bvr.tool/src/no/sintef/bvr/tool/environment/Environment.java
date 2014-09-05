@@ -13,20 +13,20 @@ import org.eclipse.emf.ecore.resource.Resource;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 
 public interface Environment {
 	
-	public BVRModel loadModelFromFile(File file);
+	public BVRToolModel loadModelFromFile(File file);
 	
-	public void writeModelToFile(BVRModel model, File file);
+	public void writeModelToFile(BVRToolModel model, File file);
 	
 	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file);
 	
 	public void performSubstitutions(List<Symbol> symbols);
 	
-	public void reloadModel(BVRModel model);
+	public void reloadModel(BVRToolModel model);
 	
 	public EObject getEObject(Object object);
 	
@@ -44,5 +44,5 @@ public interface Environment {
 	
 	public EditorCommands getEditorCommands();
 	
-	public void disposeModel(BVRModel model);
+	public void disposeModel(BVRToolModel model);
 }

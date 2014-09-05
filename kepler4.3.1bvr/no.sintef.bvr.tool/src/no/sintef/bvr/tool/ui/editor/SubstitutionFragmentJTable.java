@@ -10,7 +10,6 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.command.event.SubFragTableEvent;
 import no.sintef.bvr.tool.ui.command.event.SubFragTableRowSelectionEvent;
@@ -55,7 +54,7 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 	
 	@Override
 	public void update(Subject subject) {
-		if(subject instanceof ConfigurableUnitSubject){
+		/*if(subject instanceof ConfigurableUnitSubject){
 			ArrayList<NamedElement> placReplList = new ArrayList<NamedElement>();
 			EList<Variabletype> varTypes = ((ConfigurableUnitSubject) subject).getConfigurableUnit().getOwnedVariabletype();
 			for(Variabletype varType : varTypes){
@@ -80,7 +79,7 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 			}else{
 				tableModel.updateDisplayData(tableModel.getOriginalData());
 			}
-		}
+		}*/
 	}
 
 	private ArrayList<ArrayList<Object>> filterOutFragments(FragmentSubstitution fragmentSubstitution){

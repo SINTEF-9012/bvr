@@ -7,16 +7,18 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.dropdown.ClassifierDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
+import bvr.CompoundNode;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
 
@@ -29,14 +31,14 @@ public class AddVClassifier implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRView view;
+	private BVRToolView view;
 	private boolean minimized;
 	
 	public AddVClassifier(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
 			this.vc = (VClassifier) p;
@@ -67,7 +69,7 @@ public class AddVClassifier implements Command {
         int u = m.getUpper();
         c.setNameAndCardinality((minimized?"(+) ":"") + vc.getName(), l, u);
         
-        for(VSpec vs : vc.getChild()){
+        for(VNode vs : ((CompoundNode) vc).getMember()){
         	if(vs instanceof Variable){
         		Variable v = (Variable) vs;
         		if(v.getType() instanceof PrimitveType)

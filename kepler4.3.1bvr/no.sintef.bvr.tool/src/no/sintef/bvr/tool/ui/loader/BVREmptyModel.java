@@ -2,9 +2,10 @@ package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 
-public class BVREmptyModel extends BVRModel {
+
+public class BVREmptyModel extends BVRToolModel {
 
 		
 	public BVREmptyModel(File sf) {
@@ -20,12 +21,12 @@ public class BVREmptyModel extends BVRModel {
 	}
 
 	@Override
-	public ConfigurableUnit getCU() {
-		return bvrm.getCU();
+	public BVRModel getBVRModel() {
+		return bvrm.getRootBVRModel();
 	}
 	
-	public void setCU(ConfigurableUnit cu){
-		((BVRInnerModel) bvrm).setCU(cu);
+	public void setBVRModel(BVRModel bvrModel){
+		((BVRInnerModel) bvrm).setBVRModel(bvrModel);
 	}
 
 	@Override
@@ -35,8 +36,8 @@ public class BVREmptyModel extends BVRModel {
 	
 	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
 		
-		public void setCU(ConfigurableUnit _cu){
-			cu =_cu;
+		public void setBVRModel(BVRModel _model){
+			model =_model;
 		}
 
 	}

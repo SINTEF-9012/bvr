@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.Choice;
 import bvr.BvrFactory;
@@ -27,24 +27,22 @@ public class UpdateChoice extends UpdateVSpec {
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
 
 	@Override
 	public JComponent execute() {
 		super.execute();
-		for(VSpec c : ((Choice)vc).getChild()){
+		/*for(VSpec c : ((Choice)vc).getChild()){
 			if(c instanceof Variable){
 				Variable v = (Variable)c;
 				
 				// Set name
 				String newName = varNames.get(v);
-				//v.setName(newName);
 				Context.eINSTANCE.getEditorCommands().setName(v, newName);
 				
 				if(newName.equals("")){
-					//((VSpec)vc).getChild().remove(v);
 					Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)vc, v);
 					break;
 				}
@@ -65,17 +63,13 @@ public class UpdateChoice extends UpdateVSpec {
 			        	}
 			        }
 					vt.setType(t);
-					//vt.setName("xx");
 					vt.setName(t.getLiteral());
-					//view.getCU().getOwnedVariabletype().add(vt);
 					Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
 					tvt = vt;
 				}
 				Context.eINSTANCE.getEditorCommands().setTypeForVariable(v, tvt);
-				//v.setType(tvt);
 			}
-		}
-		//view.notifyVspecViewUpdate();
+		}*/
 		return null;
 	}
 

@@ -8,11 +8,10 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VSpec;
 
@@ -20,9 +19,9 @@ public class PasteChildEvent implements ActionListener {
 
 	private Object p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public PasteChildEvent(Object cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public PasteChildEvent(Object cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -41,10 +40,9 @@ public class PasteChildEvent implements ActionListener {
 					Context.eINSTANCE.getEditorCommands().addVSpecToVSpec(vSpec, (VSpec) Main.vSpecCut);
 				}
 			}else{
-				ConfigurableUnit cu = view.getCU();
+				//ConfigurableUnit cu = view.getCU();
 				if(Main.vSpecCut instanceof VSpec){
-					//cu.getOwnedVSpec().add((VSpec)Main.vSpecCut);
-					Context.eINSTANCE.getEditorCommands().addVSpecToConfigurableUnit(cu, (VSpec) Main.vSpecCut);
+					//Context.eINSTANCE.getEditorCommands().addVSpecToConfigurableUnit(cu, (VSpec) Main.vSpecCut);
 				}
 			}
 			Main.vSpecCut = null;

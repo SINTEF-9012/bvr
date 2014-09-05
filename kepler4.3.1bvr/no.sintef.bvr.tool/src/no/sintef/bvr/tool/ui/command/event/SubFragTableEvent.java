@@ -10,7 +10,6 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.DataItem;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
@@ -41,11 +40,6 @@ public class SubFragTableEvent implements TableModelListener {
 						String currentName = vp.getName();
 						if(!newName.equals(currentName)){
 							Context.eINSTANCE.getEditorCommands().setName(vp, label.getText());
-							//vp.setName(label.getText());
-							/*ArrayList<Subject> subjects = Context.eINSTANCE.getViewChangeManager().registeredSubjects(jtable);
-							for(Subject subject : subjects)
-								if(subject instanceof ConfigurableUnitSubject)
-									Context.eINSTANCE.getViewChangeManager().refreshSubject(subject);*/
 						}
 					}
 				}else{

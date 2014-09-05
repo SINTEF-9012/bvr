@@ -5,21 +5,19 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
-import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.tool.ui.loader.Main;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import bvr.Choice;
 import bvr.NamedElement;
+import bvr.Note;
 import bvr.PrimitveType;
-import bvr.VSpec;
+import bvr.VNode;
 import bvr.Variable;
+
 
 public class AddChoice implements Command {
 
@@ -30,14 +28,14 @@ public class AddChoice implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRView view;
+	private BVRToolView view;
 	private boolean minimized;
 	
 	public AddChoice(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		if(p instanceof Choice){
 			this.rootPanel = rootPanel;
 			this.c = (Choice) p;
@@ -65,22 +63,22 @@ public class AddChoice implements Command {
         
         cp.setTitle((minimized?"(+) ":"") + c.getName());
         
-        if(c != null){
-	        if(c.getComment() != null && !c.getComment().equals("")){
-	        	cp.addAttribute("\""+c.getComment()+"\"", "");
-	        }
+        
+        if(c.getNote().size() != 0){
+        	for(Note note : c.getNote()){
+        		if(note.getKind().equals("") && !note.getExpr().equals("")){
+        			cp.addAttribute("\""+note.getExpr()+"\"", "");
+        		}
+        	}
         }
         
-        for(VSpec vs : c.getChild()){
+        for(VNode vs : c.getMember()){
         	if(vs instanceof Variable){
         		Variable v = (Variable) vs;
         		if(v.getType() instanceof PrimitveType)
         			cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
         		else
         			cp.addAttribute(v.getName(), v.getType().getName());
-        		/*String name = v.getName().split(":")[0];
-        		String type = v.getName().split(":")[1];
-        		c.addAttribute(name, type);*/
         	}
         }
 

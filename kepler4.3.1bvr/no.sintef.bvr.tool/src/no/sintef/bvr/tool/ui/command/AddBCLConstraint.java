@@ -7,17 +7,15 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.ui.dropdown.BCLConstraintDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.tool.ui.loader.Main;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
-import no.sintef.bvr.ui.framework.elements.ConstraintPanel;
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 import bvr.NamedElement;
-import bvr.OpaqueConstraint;
-import bvr.VSpec;
+
+
 
 public class AddBCLConstraint implements Command {
 
@@ -26,10 +24,10 @@ public class AddBCLConstraint implements Command {
 	JComponent parent;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRView view;
+	private BVRToolView view;
 	private Map<JComponent, NamedElement> vmMap;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.rootPanel = rootPanel;
 		this.oc = (BCLConstraint) p;
 		this.parent = parent;
@@ -46,7 +44,7 @@ public class AddBCLConstraint implements Command {
 		//ConstraintPanel constraint1 = new ConstraintPanel(rootPanel.getModelPanel());
 		ParallelogramTitledPanel constraint1 = new ParallelogramTitledPanel();
 		nodes.add(constraint1);
-		String s = new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getCU());
+		String s = new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getBVRModel());
 		// Add newlines
 		s = wrap(s, 15);
 		constraint1.setTitle(s);

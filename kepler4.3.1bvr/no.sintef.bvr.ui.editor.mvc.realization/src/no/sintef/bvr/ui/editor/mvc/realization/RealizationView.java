@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.dropdown.BindingEditorDropDownListener;
 import no.sintef.bvr.tool.ui.dropdown.BindingEditorTableDropDownListener;
@@ -23,15 +23,15 @@ import no.sintef.bvr.tool.ui.editor.BindingJTable;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolViewAbstract;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.NamedElement;
 
-public class RealizationView extends BVRViewAbstract implements BVRRealizationView {
-	private BVRModel m;
+public class RealizationView extends BVRToolViewAbstract implements BVRRealizationView {
+	private BVRToolModel m;
 	
 	public JTabbedPane modelPane;
 	
@@ -51,7 +51,7 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 	private BindingJTable bindingEditor;
 	
 	private SelectedFragmentSubstitutionSubject selectedFS;
-	private ConfigurableUnitSubject configurableUnitSubject;
+	private BVRModelSubject bvrModelSubject;
 
 
 	int choiceCount = 1;
@@ -72,34 +72,34 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 		return vSpecbvruikernel;
 	}
 	
-	public RealizationView(BVRModel _m) {
+	public RealizationView(BVRToolModel _m) {
 		m = _m;
-    	configurableUnitSubject = new ConfigurableUnitSubject(getCU());
+		bvrModelSubject = new BVRModelSubject(getBVRModel());
     	selectedFS = new SelectedFragmentSubstitutionSubject(null);
     	
     	vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
         // Realization panel
         realizationPanel = new JTabbedPane();
-        loadBVRRelalizationView(m.getBVRM().getCU());
+        loadBVRRelalizationView(m.getBVRModel());
 	}
 
 	@Override
-	public ConfigurableUnitSubject getConfigurableUnitSubject(){
-		return configurableUnitSubject;
+	public BVRModelSubject getBVRModelSubject(){
+		return bvrModelSubject;
 	}
 
 	@Override
-	public ConfigurableUnit getCU() {
-		return m.getCU();
+	public BVRModel getBVRModel() {
+		return m.getBVRModel();
 	}
 	
 	@Override
-	public BVRModel getModel() {
+	public BVRToolModel getBVRToolModel() {
 		return m;
 	}
 
-	private void loadBVRRelalizationView(ConfigurableUnit cu) {
+	private void loadBVRRelalizationView(BVRModel model) {
 		tableFragmSubst = new FragmentSubstitutionJTable();
 		JScrollPane scrollPanelFragmSubst = new JScrollPane(tableFragmSubst);
 		
@@ -127,19 +127,19 @@ public class RealizationView extends BVRViewAbstract implements BVRRealizationVi
 		scrollPanelBinding.setName(Constants.BINDING_EDITOR_NAME);
 		realizationPanel.add(scrollPanelBinding, realizationPanel.getComponentCount());
 		
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableFragmSubst);
+		Context.eINSTANCE.getViewChangeManager().register(bvrModelSubject, tableFragmSubst);
 		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableFragmSubst);
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, tableSubstFragm);
+		Context.eINSTANCE.getViewChangeManager().register(bvrModelSubject, tableSubstFragm);
 		Context.eINSTANCE.getViewChangeManager().register(selectedFS, tableSubstFragm);
-		Context.eINSTANCE.getViewChangeManager().register(configurableUnitSubject, bindingEditor);
+		Context.eINSTANCE.getViewChangeManager().register(bvrModelSubject, bindingEditor);
 		Context.eINSTANCE.getViewChangeManager().register(selectedFS, bindingEditor);
 		
-		configurableUnitSubject.notifyObserver();
+		bvrModelSubject.notifyObserver();
 		selectedFS.notifyObserver();
 	}
 
 	public void notifyRelalizationViewReset(){
-		configurableUnitSubject.notifyObserver();
+		bvrModelSubject.notifyObserver();
 	}
 	
 	@Override

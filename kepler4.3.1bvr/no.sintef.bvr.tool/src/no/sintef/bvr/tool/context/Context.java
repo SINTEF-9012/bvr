@@ -18,9 +18,9 @@ import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -40,8 +40,8 @@ public final class Context {
 	private Environment environment = ContextFactory.eINSTANCE.createEnvironment();
 	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager();
 	
-	private final List<BVRModel> bvrModels = new ArrayList<BVRModel>();
-	private final List<BVRView> bvrViews = new ArrayList<BVRView>();
+	private final List<BVRToolModel> bvrModels = new ArrayList<BVRToolModel>();
+	private final List<BVRToolView> bvrViews = new ArrayList<BVRToolView>();
 	
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
@@ -67,15 +67,15 @@ public final class Context {
 		logger = environment.getLogger();
 	}
 	
-	public BVRModel loadModelFromFile(File file){
+	public BVRToolModel loadModelFromFile(File file){
 		String extension = LoaderUtility.getExtension(file);
-		BVRModel model = null;
+		BVRToolModel model = null;
 		if(extension.equals(BVRFilter.BVR_EXT) || extension.equals(BVRFilter.XMI_EXT)){
 			model = environment.loadModelFromFile(file);
 		}else if(extension.equals(FMFilter.M_EXT)){
 			try{
 				no.sintef.ict.splcatool.SPLCABVRModel bvrm = new GUIDSL(file).getGraphMLFM().getBVRModel();
-				model = new BVRModel(file, bvrm);
+				model = new BVRToolModel(file, bvrm);
 			}catch(Exception e){
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
 			}
@@ -84,7 +84,7 @@ public final class Context {
 				SXFM sxfm = new SXFM(file.getAbsolutePath());
 				GraphMLFM gml = sxfm.getGUIDSL().getGraphMLFM();
 				no.sintef.ict.splcatool.SPLCABVRModel bvrm = gml.getBVRModel();
-				model = new BVRModel(file, bvrm);
+				model = new BVRToolModel(file, bvrm);
 			} catch (Exception e) {
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
 			}
@@ -94,7 +94,7 @@ public final class Context {
 		return model;
 	}
 	
-	public void writeModelToFile(BVRModel model, File file){
+	public void writeModelToFile(BVRToolModel model, File file){
 		environment.writeModelToFile(model, file);
 	}
 	
@@ -106,7 +106,7 @@ public final class Context {
 		environment.performSubstitutions(symbols);
 	}
 	
-	public void reloadModel(BVRModel model){
+	public void reloadModel(BVRToolModel model){
 		environment.reloadModel(model);
 	}
 	
@@ -126,7 +126,7 @@ public final class Context {
 		environment.clearHighlights();
 	}
 	
-	public void nullSetModel(BVRModel model){
+	public void nullSetModel(BVRToolModel model){
 		environment.disposeModel(model);
 	}
 	
@@ -135,19 +135,19 @@ public final class Context {
 		return fc;
 	}
 	
-	public final List<BVRModel> getBvrModels(){
+	public final List<BVRToolModel> getBvrModels(){
 		return bvrModels;
 	}
 	
-	public final List<BVRView> getBvrViews(){
+	public final List<BVRToolView> getBvrViews(){
 		return bvrViews;
 	}
 	
-	public void addBvrModel(BVRModel model){
+	public void addBvrModel(BVRToolModel model){
 		bvrModels.add(model);
 	}
 	
-	public void addBvrView(BVRView view){
+	public void addBvrView(BVRToolView view){
 		bvrViews.add(view);
 	}
 
@@ -172,11 +172,11 @@ public final class Context {
 		return environment.getEditorCommands();
 	}
 	
-	public BVRModel getModel(File file){
+	public BVRToolModel getModel(File file){
 		return testBVRTransactionalModel(file);
 	}
 	
-	public void disposeModel(BVRModel model){
+	public void disposeModel(BVRToolModel model){
 		File file = model.getFile();
 		loadedModels.remove(file);
 	}

@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 
-public class BVRTransactionalModel extends BVRModel {
+public class BVRTransactionalModel extends BVRToolModel {
 	private Resource resource;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -38,8 +38,8 @@ public class BVRTransactionalModel extends BVRModel {
 	}
 
 	@Override
-	public ConfigurableUnit getCU() {
-		return bvrm.getCU();
+	public BVRModel getBVRModel() {
+		return bvrm.getRootBVRModel();
 	}
 
 	@Override
@@ -54,15 +54,15 @@ public class BVRTransactionalModel extends BVRModel {
 	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
-			cu = loadFromFile(f);
+			model = loadFromFile(f);
 		}
 
 		@Override
-		public ConfigurableUnit getCU() {
-			return cu;
+		public BVRModel getRootBVRModel() {
+			return model;
 		}
 
-		private ConfigurableUnit loadFromFile(File file) {
+		private BVRModel loadFromFile(File file) {
 			TransactionalEditingDomain editingDomain = Context.eINSTANCE.getEditorCommands().testTransactionalEditingDomain();
 
 			URIConverter converter = new ExtensibleURIConverterImpl();
@@ -77,7 +77,7 @@ public class BVRTransactionalModel extends BVRModel {
 					platformURI, true);
 			resource.setTrackingModification(true);
 			
-			return (ConfigurableUnit) resource.getContents().get(0);
+			return (BVRModel) resource.getContents().get(0);
 		}
 
 		public void writeToFile(String filename) throws IOException {

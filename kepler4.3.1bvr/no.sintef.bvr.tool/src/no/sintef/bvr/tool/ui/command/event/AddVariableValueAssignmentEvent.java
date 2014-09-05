@@ -4,10 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
-import bvr.ChoiceResolutuion;
 import bvr.BvrFactory;
 import bvr.IntegerLiteralExp;
 import bvr.NumericLiteralExp;
@@ -18,26 +17,24 @@ import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 import bvr.VClassifier;
-import bvr.VInstance;
 import bvr.VSpecResolution;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 
 public class AddVariableValueAssignmentEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Variable target;
-	private BVRView view;
+	private BVRToolView view;
 	static private int count = 0;
 	
-	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, BVRView view) {
+	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, BVRToolView view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		Variable v = target;
+		/*Variable v = target;
 		
 		VariableValueAssignment vi = BvrFactory.eINSTANCE.createVariableValueAssignment();
 		
@@ -117,12 +114,7 @@ public class AddVariableValueAssignmentEvent implements ActionListener {
 		vi.setValue(value);
 		
 		// Add
-		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(cr, vi);
-		//cr.getChild().add(vi);
-		
-
-		
-		//view.notifyResolutionViewUpdate();
+		Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(cr, vi);*/
 	}
 
 }

@@ -9,13 +9,11 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
-import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
-import bvr.VSpec;
+
 
 public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
 	
@@ -24,7 +22,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, view);
     }
 
-	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRView view) {
+	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRToolView view) {
 		super(kernel, elem, view);
 		
 		// Constraint
@@ -40,7 +38,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
         l2.setLabelFor(textField2);
         p2.add(textField2);
         
-        String s = new BCLPrettyPrinter().prettyPrint(elem.getExpression().get(0), view.getCU());
+        String s = new BCLPrettyPrinter().prettyPrint(elem.getExpression().get(0), view.getBVRModel());
         
         textField2.setText(s);
         

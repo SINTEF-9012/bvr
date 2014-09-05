@@ -7,16 +7,16 @@ import javax.swing.JComponent;
 
 import bvr.NamedElement;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 
 public class BVRUIKernel {
 	
 	private BVREditorPanel editorPanel;
 	private ConfigurableUnitPanel modelPanel;
-	private BVRView view;
+	private BVRToolView view;
 	
-	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRToolView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
 		this.view = view;
 		modelPanel = new ConfigurableUnitPanel();
 		editorPanel = new BVREditorPanel(this, vmMap, view, resolutionvmMaps);

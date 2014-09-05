@@ -28,7 +28,7 @@ import javax.swing.text.BadLocationException;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 import bvr.NamedElement;
@@ -40,7 +40,7 @@ public class ElementPropertyEditor extends JPanel {
 	 */
 	private static final long serialVersionUID = 6151188246017274037L;
 
-	protected BVRView view;
+	protected BVRToolView view;
 	
 	protected JPanel top;
 	protected JPanel bottom;
@@ -67,7 +67,7 @@ public class ElementPropertyEditor extends JPanel {
     	command.init(null, obj, null, null, null, null, view);
     }
     
-    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRView _view) {
+    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRToolView _view) {
 
         this.setOpaque(false);
         this.setBorder(null);

@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
 
-import bvr.ChoiceResolutuion;
+import bvr.ChoiceResolution;
 import bvr.VSpecResolution;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
@@ -17,10 +17,10 @@ import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
 
 public class CalculateCost implements ActionListener {
-	private BVRModel m;
-	private BVRView v;
+	private BVRToolModel m;
+	private BVRToolView v;
 
-	public CalculateCost(BVRModel m, BVRView bvrView) {
+	public CalculateCost(BVRToolModel m, BVRToolView bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}
@@ -35,10 +35,10 @@ public class CalculateCost implements ActionListener {
 					 String cstr = "";
 						
 					 int i = 0;
-					 for(VSpecResolution z : x.getCU().getOwnedVSpecResolution()){
+					 for(VSpecResolution z : x.getRootBVRModel().getResolutionModels()){
 						 double d;
-						 if(z instanceof ChoiceResolutuion){
-							 d = calcCost((ChoiceResolutuion)z);
+						 if(z instanceof ChoiceResolution){
+							 d = calcCost((ChoiceResolution)z);
 						 }else{
 							 d = Double.NaN;
 						 }
@@ -59,10 +59,10 @@ public class CalculateCost implements ActionListener {
 		job.schedule();
 	}
 
-	private double calcCost(ChoiceResolutuion z) {
-		String comment = z.getResolvedVSpec().getComment();
-		double d = 0;
-		try{
+	private double calcCost(ChoiceResolution z) {
+		//String comment = z.getResolvedVSpec().getComment();
+		double d = 111111111;
+		/*try{
 			if(z.isDecision())
 				d += Double.parseDouble(comment);
 		}catch(NumberFormatException n){
@@ -75,7 +75,7 @@ public class CalculateCost implements ActionListener {
 			}else{
 				d = Double.NaN;
 			}
-		}
+		}*/
 		
 		return d;
 	}

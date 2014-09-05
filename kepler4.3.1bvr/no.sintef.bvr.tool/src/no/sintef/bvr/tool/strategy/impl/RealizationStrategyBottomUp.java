@@ -8,9 +8,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 
-import bvr.FragmentSubstitution;
-import bvr.VInstance;
 
+
+
+import bvr.ChoiceResolution;
+import bvr.FragmentSubstitution;
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.primitive.SymbolTable;
@@ -58,7 +61,7 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 		Iterator<Symbol> iterator = symbols.iterator();
 		while(iterator.hasNext()){
 			Symbol symbol = iterator.next();
-			if(symbol.getVSpecResolution() instanceof VInstance){
+			if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution())){
 				prioritizedSymbols.add(prioritizedSymbols.size(), symbol);
 			}else{
 				prioritizedSymbols.add(0, symbol);

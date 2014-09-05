@@ -13,7 +13,7 @@ import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
 import no.sintef.bvr.tool.primitive.impl.DataBoundaryItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.command.event.BindingModelTableEvent;
 import no.sintef.bvr.tool.ui.command.event.BindingRowSelectionEvent;
@@ -55,7 +55,7 @@ public class BindingJTable extends JTable implements Observer {
 			updateBindingEditor();
 
 		}
-		if(subject instanceof ConfigurableUnitSubject){
+		if(subject instanceof BVRModelSubject){
 			updateBindingEditor();
 		}
 		

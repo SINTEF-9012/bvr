@@ -14,7 +14,7 @@ import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
 import bvr.BoundaryElementBinding;
-import bvr.ChoiceResolutuion;
+import bvr.ChoiceResolution;
 import bvr.BvrFactory;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
@@ -28,8 +28,6 @@ import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
-import bvr.VInstance;
-
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.engine.common.BVRElementDeepCopier;
 import no.sintef.bvr.engine.common.EngineUtility;
@@ -79,7 +77,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		Iterator<Symbol> iterator = symbols.iterator();
 		while(iterator.hasNext()){
 			Symbol symbol = iterator.next();
-			if(symbol.getVSpecResolution() instanceof VInstance){
+			if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution())){
 				prioritizedSymbols.add(0, symbol);
 			}else{
 				prioritizedSymbols.add(prioritizedSymbols.size(), symbol);
@@ -115,12 +113,12 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						//2) we proceed to the first 'else if' clause, if a resolved VSpec is VInstance and the copied replacement in another scope
 						// where we simply create a pure copy of the placement
 						//3) we proceed to the 'else' clause, if we do not know how to process VSpecResolution
-						if((symbol.getVSpecResolution() instanceof VInstance && rSymbolMap.get(symbol.getParent().getScope()) != null)
-								|| (symbol.getVSpecResolution() instanceof ChoiceResolutuion)){
+						if((CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution()) && rSymbolMap.get(symbol.getParent().getScope()) != null)
+								|| (symbol.getVSpecResolution() instanceof ChoiceResolution)){
 							ReplacementFragmentType copiedReplacement;							
-							if(symbol.getVSpecResolution() instanceof VInstance){
+							if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution())){
 								copiedReplacement = rSymbolMap.get(symbol.getParent().getScope());
-							}else if(symbol.getVSpecResolution() instanceof ChoiceResolutuion){
+							}else if(symbol.getVSpecResolution() instanceof ChoiceResolution){
 								copiedReplacement = rSymbolMap.get(symbol.getScope());
 							}else{
 								throw new UnsupportedOperationException("Epic fail: the nearest outermost loop should not allow processing symbols other than those which we process inside");
@@ -131,7 +129,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 							if(copyReplacementMap == null)
 								throw new UnsupportedOperationException("replacement that containd a given placement was copied, but can not find map that contains original objects");
 							newPlacement = createPlacementFragmentFromOriginal(copiedReplacement, copyReplacementMap, placement, placementBoundaryMap);
-						}else if(symbol.getVSpecResolution() instanceof VInstance && rSymbolMap.get(symbol.getParent().getScope()) == null){
+						}else if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution()) && rSymbolMap.get(symbol.getParent().getScope()) == null){
 							newPlacement = copyPlacement(placement, placementBoundaryMap);
 						}else{
 							throw new UnsupportedOperationException("unsupported VSpecResolution, can not resolve a scope: " + symbol.getVSpecResolution());
@@ -284,9 +282,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				newFragmentSubstitution.getBoundaryElementBinding().add(fromBindingNew);
 			}
 		}
-		
-		symbol.getScope().getConfigurableUnit().getOwnedVariabletype().add(newReplacement);
-		symbol.getScope().getConfigurableUnit().getOwnedVariationPoint().add(newPlacement);
+		symbol.getScope().getBVRModel().getRealizationModel().add(newPlacement);
+		symbol.getScope().getBVRModel().getPackageElement().add(newReplacement);
 		symbol.setFragmentSubstitutionCopy(oldFrgament, newFragmentSubstitution);
 		return newFragmentSubstitution;
 	}

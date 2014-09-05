@@ -2,36 +2,37 @@ package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
+import bvr.CompoundNode;
 import bvr.VSpec;
 
-public class BVRModel {
+public class BVRToolModel {
 	protected no.sintef.ict.splcatool.SPLCABVRModel bvrm;
 	protected File f;
 	protected boolean platform = false;
 	protected String loadFilename;
 	protected boolean saved = true;
 
-	public BVRModel(File sf) {
+	public BVRToolModel(File sf) {
 		f = sf;
 		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(f);
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public BVRModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
+	public BVRToolModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public BVRModel(File sf, String loadLocation, boolean isPlatform){
+	public BVRToolModel(File sf, String loadLocation, boolean isPlatform){
 		f = sf;
 		platform = isPlatform;
 		loadFilename = loadLocation;
 		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
 	}
 
-	public BVRModel() {
+	public BVRToolModel() {
 		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel();
 	}
 	
@@ -66,11 +67,11 @@ public class BVRModel {
 	}
 
 	public void addVSpec(VSpec vSpec) {
-		bvrm.getCU().getOwnedVSpec().add(vSpec);
+		bvrm.getRootBVRModel().setVariabilityModel((CompoundNode) vSpec);
 	}
 
-	public ConfigurableUnit getCU() {
-		return bvrm.getCU();
+	public BVRModel getBVRModel() {
+		return bvrm.getRootBVRModel();
 	}
 	
 	public void setFile(File f){

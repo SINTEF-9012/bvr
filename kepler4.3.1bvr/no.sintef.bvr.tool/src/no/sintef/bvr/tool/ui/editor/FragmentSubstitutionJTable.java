@@ -9,16 +9,15 @@ import javax.swing.ListSelectionModel;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.VSpec;
 import bvr.Variable;
-
 import no.sintef.bvr.tool.common.NullVSpec;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.primitive.impl.DataVSpecItem;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.command.event.FragSubTableEvent;
 import no.sintef.bvr.tool.ui.command.event.FragSubTableRowSelectionEvent;
@@ -51,9 +50,9 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 
 	@Override
 	public void update(Subject subject) {
-		if(subject instanceof ConfigurableUnitSubject){
-			ConfigurableUnit cu = ((ConfigurableUnitSubject) subject).getConfigurableUnit();
-			EList<VSpec> vSpecs = getAllVSpec(cu.getOwnedVSpec(), new BasicEList<VSpec>());
+		if(subject instanceof BVRModelSubject){
+			BVRModel cu = ((BVRModelSubject) subject).getConfigurableUnit();
+			/*EList<VSpec> vSpecs = getAllVSpec(cu.getOwnedVSpec(), new BasicEList<VSpec>());
 			
 			ArrayList<DataVSpecItem> vSpecMap = new ArrayList<DataVSpecItem>();
 			
@@ -70,7 +69,7 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 			
 			tableModel.setData(cu.getOwnedVariationPoint(), vSpecMap);
 			FragSubVSpecTableCellEditor editor = (FragSubVSpecTableCellEditor) getDefaultEditor(DataVSpecItem.class);
-			editor.setData(vSpecMap);
+			editor.setData(vSpecMap);*/
 		}
 		if(subject instanceof SelectedFragmentSubstitutionSubject){
 			if(((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution() == null){
@@ -79,11 +78,11 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 		}
 	}
 	
-	private EList<VSpec> getAllVSpec(EList<VSpec> vSpecList, EList<VSpec> result){
+	/*private EList<VSpec> getAllVSpec(EList<VSpec> vSpecList, EList<VSpec> result){
 		for(VSpec vSpec : vSpecList){
 			result.add(vSpec);
 			result = getAllVSpec(vSpec.getChild(), result);
 		}
 		return result;
-	}
+	}*/
 }

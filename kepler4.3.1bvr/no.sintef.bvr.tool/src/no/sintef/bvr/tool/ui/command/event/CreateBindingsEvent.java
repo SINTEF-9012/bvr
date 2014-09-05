@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
-import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
 import no.sintef.bvr.tool.common.Constants;
@@ -20,22 +19,22 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 
 public class CreateBindingsEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 
-	public CreateBindingsEvent(BVRView _view){
+	public CreateBindingsEvent(BVRToolView _view){
 		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ConfigurableUnit cu = view.getCU();
+/*		ConfigurableUnit cu = view.getCU();
 		
 		if(((BVRRealizationView) view).getFragmentSubstitutionTable().getSelectedRows().length > 1){
 			JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), Messages.DIALOG_MSG_MORE_THEN_ONE_SELECTION);
@@ -56,6 +55,6 @@ public class CreateBindingsEvent implements ActionListener {
 		FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) vp;
 		BindingCalculatorContext bindingCalculator = new BindingCalculatorContext();
 
-		bindingCalculator.generateBindings(fragmentSubstitution);
+		bindingCalculator.generateBindings(fragmentSubstitution);*/
 	}
 }

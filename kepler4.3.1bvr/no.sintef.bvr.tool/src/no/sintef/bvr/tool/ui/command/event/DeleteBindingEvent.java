@@ -20,14 +20,14 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 
 public class DeleteBindingEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 
-	public DeleteBindingEvent(BVRView _view){
+	public DeleteBindingEvent(BVRToolView _view){
 		view = _view;
 	}
 	

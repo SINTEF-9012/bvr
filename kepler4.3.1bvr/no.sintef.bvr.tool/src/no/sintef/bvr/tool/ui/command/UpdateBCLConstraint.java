@@ -16,7 +16,7 @@ import no.sintef.bvr.constraints.bcl.BCLLexer;
 import no.sintef.bvr.constraints.bcl.BCLParser;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -30,7 +30,7 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.bcl = (BCLConstraint)p;
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
@@ -40,7 +40,7 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 		//System.out.println("Update BCL Constraint!! to " + text);
 		
 		RuleNode root = parseBCL(text);
-		BCLExpression e = new BCLBuilder().recurse(root, 0, view.getCU(), false);
+		BCLExpression e = new BCLBuilder().recurse(root, 0, view.getBVRModel(), false);
 		Context.eINSTANCE.getEditorCommands().clearBCLConstraintExpressions(bcl);
 		Context.eINSTANCE.getEditorCommands().addBCLExpressionConstraint(bcl, e);
 		//bcl.getExpression().clear();

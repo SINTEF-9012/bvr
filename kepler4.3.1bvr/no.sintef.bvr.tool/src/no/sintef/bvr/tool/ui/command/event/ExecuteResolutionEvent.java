@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import bvr.ConfigurableUnit;
+
 import bvr.VSpecResolution;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.common.Constants;
@@ -25,26 +25,26 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.loader.BVREmptyModel;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class ExecuteResolutionEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 	private Logger logger = Context.eINSTANCE.logger;
 	private File destFile;
 
-	public ExecuteResolutionEvent(BVRView _view) {
+	public ExecuteResolutionEvent(BVRToolView _view) {
 		view =_view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
-		final BVRModel m = view.getModel();
+		final BVRToolModel m = view.getBVRToolModel();
 		
-		if(m.getFile() == null){
+/*		if(m.getFile() == null){
 			JOptionPane.showMessageDialog(((BVRResolutionView) view).getResolutionPane(), Messages.DIALOG_MSG_SAVE_MODEL);
 			return;
 		}
@@ -78,12 +78,12 @@ public class ExecuteResolutionEvent implements ActionListener {
 					new RethrownException("can not cretae a tmp model", e);
 				}
 			}
-		});
+		});*/
 		
 	}
 	
-	private void executeProduct(final BVRModel tmpModel){
-		Job job = new Job("Producing products"){
+	private void executeProduct(final BVRToolModel tmpModel){
+		/*Job job = new Job("Producing products"){
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
@@ -112,6 +112,6 @@ public class ExecuteResolutionEvent implements ActionListener {
 			}
 		};
 		
-		job.schedule();
+		job.schedule();*/
 	}
 }

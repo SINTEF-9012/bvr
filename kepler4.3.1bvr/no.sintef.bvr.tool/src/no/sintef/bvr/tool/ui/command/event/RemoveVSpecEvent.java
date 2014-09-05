@@ -9,11 +9,10 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
-import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VSpec;
@@ -21,17 +20,16 @@ import bvr.VSpec;
 public class RemoveVSpecEvent implements ActionListener {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRToolView view;
 
-	public RemoveVSpecEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public RemoveVSpecEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.p = p;
 		this.vmMap = vmMap;
 		this.view = view;
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		NamedElement v = vmMap.get(p);
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
+		/*NamedElement v = vmMap.get(p);
 		
 		// Modify model
 		VSpec parent = null;
@@ -49,14 +47,11 @@ public class RemoveVSpecEvent implements ActionListener {
 			}
 		}
 		if(parent != null){
-			//parent.getChild().remove(v);
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpec(parent, v);
 		}else if(cuParent == null){
 			ConfigurableUnit cu = view.getCU();
-			//cu.getOwnedVSpec().remove(v);
 			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecConfigurableUnit(cu, v);
 		}else{
-			//cuParent.getOwnedConstraint().remove(v);
 			Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);
 		}
 		
@@ -67,11 +62,7 @@ public class RemoveVSpecEvent implements ActionListener {
 				//toremove.add(c);
 				Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);
 			}
-		}
-		//view.getCU().getOwnedConstraint().removeAll(toremove);
-		//Context.eINSTANCE.getEditorCommands().removeAllConstraintConfigurableUnit(cuParent, toremove);
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
+		}*/
+
 	}
 }

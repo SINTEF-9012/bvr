@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
@@ -21,20 +20,20 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
 public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 
-	public DeletePlacementReplacementFragmentEvent(BVRView _view){
+	public DeletePlacementReplacementFragmentEvent(BVRToolView _view){
 		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ConfigurableUnit cu = view.getCU();
+		/*ConfigurableUnit cu = view.getCU();
 		BVRRealizationView rView = (BVRRealizationView) view;
 		
 		ArrayList<NamedElement> placReplcFragmentsUsed = new ArrayList<NamedElement>();
@@ -79,7 +78,7 @@ public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 				name+=element.getName() + "\n";
 			}
 			JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), name);
-		}
+		}*/
 	}
 
 }

@@ -16,14 +16,14 @@ import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 import no.sintef.bvr.tool.strategy.impl.SingleDummyToPlacementBoundaryCalcStrategy;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 
 public class CreateToBindingEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 
-	public CreateToBindingEvent(BVRView _view){
+	public CreateToBindingEvent(BVRToolView _view){
 		view = _view;
 	}
 	

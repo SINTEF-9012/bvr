@@ -20,28 +20,25 @@ import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VClassifier;
-import bvr.VInstance;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstanceDropDownListener  extends MouseAdapter {
 	private VInstancePanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
-	private VInstance c;
+	private BVRToolView view;
+	//private VInstance c;
 	
-    public VInstanceDropDownListener(VInstancePanel cp, VInstance c, BVRView view, Map<JComponent, NamedElement> vmMap) {
+    public VInstanceDropDownListener(VInstancePanel cp, /*VInstance c,*/ BVRToolView view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
-		this.c = c;
+		//this.c = c;
 		this.view = view;
 		this.vmMap = vmMap;
 	}
@@ -57,17 +54,17 @@ public class VInstanceDropDownListener  extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	VInstanceDropdown menu = new VInstanceDropdown(cp, c, view, vmMap);
-        menu.show(e.getComponent(), e.getX(), e.getY());
+    	//VInstanceDropdown menu = new VInstanceDropdown(cp, c, view, vmMap);
+       // menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
 
 class VInstanceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VInstanceDropdown(VInstancePanel cp, VInstance c, BVRView view, Map<JComponent, NamedElement> vmMap){
+    public VInstanceDropdown(VInstancePanel cp, /*VInstance c,*/ BVRToolView view, Map<JComponent, NamedElement> vmMap){
     	// Add
-    	if(c.getResolvedVSpec() != null){
+    	/*if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");
 	    	for(VSpec x : c.getResolvedVSpec().getChild()){
 	    		JMenuItem addchild = new JMenuItem(x.getName());
@@ -87,13 +84,6 @@ class VInstanceDropdown extends JPopupMenu {
 	    	}
 	    	add(add);
     	}
-		
-		
-		// Remove
-/*		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
-		add(removechoice);
-*/		
 		
 		// Change to
 		EList<VSpec> vspecs = null;
@@ -118,10 +108,10 @@ class VInstanceDropdown extends JPopupMenu {
 		add(minimize);
 		JMenuItem maximize = new JMenuItem("maximize");
 		maximize.addActionListener(new MaximizeEvent(cp, vmMap, null, null, view));
-		add(maximize);
+		add(maximize);*/
     }
     
-    private VSpec getParent(ConfigurableUnit cu, VSpec child){
+    /*private VSpec getParent(ConfigurableUnit cu, VSpec child){
     	for(VSpec c : cu.getOwnedVSpec())
     		if(c == child)
     			return null;
@@ -141,5 +131,5 @@ class VInstanceDropdown extends JPopupMenu {
     		if(found != null) return found;
     	}
     	return null;
-    }
+    }*/
 }

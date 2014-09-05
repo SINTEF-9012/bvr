@@ -2,25 +2,19 @@ package no.sintef.bvr.tool.strategy.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
-
 import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.adjacent.AdjacentResolver;
-import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
-import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.Symbol;
 import no.sintef.bvr.tool.primitive.SymbolTable;
@@ -36,8 +30,8 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 	@Override
 	public void deriveProduct(SymbolTable table) {
 		frgamentSusbstitutions = new BasicEList<FragmentSubstitution>();
-		ConfigurableUnit cu = table.getConfigurableUnit();
-		EList<VariationPoint> ownedVariationPoints = cu.getOwnedVariationPoint();
+		BVRModel model = table.getBVRModel();
+		EList<VariationPoint> ownedVariationPoints = model.getRealizationModel();
 		for(VariationPoint vp : ownedVariationPoints){
 			if(vp instanceof FragmentSubstitution){
 				frgamentSusbstitutions.add((FragmentSubstitution) vp);
@@ -77,8 +71,8 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 	}
 	
 	private void resolveSymbol(final Symbol symbol){
-		ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
-		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet());
+		BVRModel model = symbol.getScope().getBVRModel();
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(model.eResource().getResourceSet());
 		EList<FragmentSubstitution> symbolsFragSubs = symbol.getFragmentSubstitutions();
 		for(final FragmentSubstitution fs : symbolsFragSubs){
 			/*final FragmentSubstitutionHolder fsH = fsHMap.get(fs);

@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
-import bvr.ConfigurableUnit;
 import bvr.BvrFactory;
 import bvr.FragmentSubstitution;
 import bvr.NamedElement;
@@ -18,21 +17,21 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
 public class CreateFragmentSubstitutionEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 	static int count = 0;
 
-	public CreateFragmentSubstitutionEvent(BVRView _view){
+	public CreateFragmentSubstitutionEvent(BVRToolView _view){
 		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {		
-		ConfigurableUnit cu = view.getCU();
+/*		ConfigurableUnit cu = view.getCU();
 		BVRRealizationView rView = (BVRRealizationView) view;
 		
 		
@@ -62,7 +61,7 @@ public class CreateFragmentSubstitutionEvent implements ActionListener {
 		fs.setName("FragmentSubstititution-" + placement.getName() + "-" + replacement.getName() + "-" + count);
 		fs.setPlacement(placement);
 		fs.setReplacement(replacement);
-		Context.eINSTANCE.getEditorCommands().addOwnedVariationPoint(cu, fs);
+		Context.eINSTANCE.getEditorCommands().addOwnedVariationPoint(cu, fs);*/
 	}
 	
 	private HashMap<PlacementFragment, ReplacementFragmentType> isSelectionValid(DataNamedElementItem d, DataNamedElementItem d1){

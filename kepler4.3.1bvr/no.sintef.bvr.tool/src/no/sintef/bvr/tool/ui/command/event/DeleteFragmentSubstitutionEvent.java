@@ -9,27 +9,26 @@ import javax.swing.JOptionPane;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import bvr.ConfigurableUnit;
 import bvr.VariationPoint;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 
 public class DeleteFragmentSubstitutionEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRToolView view;
 
-	public DeleteFragmentSubstitutionEvent(BVRView _view){
+	public DeleteFragmentSubstitutionEvent(BVRToolView _view){
 		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ConfigurableUnit cu = view.getCU();
+		/*ConfigurableUnit cu = view.getCU();
 		
 		if(((BVRRealizationView ) view).getFragmentSubstitutionTable().getSelectedRows().length == 0){
 			JOptionPane.showMessageDialog(null, Messages.DIALOG_MSG_NO_SELECTION);
@@ -46,7 +45,7 @@ public class DeleteFragmentSubstitutionEvent implements ActionListener {
 			fslist.add(vp);
 		}
 		
-		Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(cu, fslist);
+		Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(cu, fslist);*/
 	}
 
 }
