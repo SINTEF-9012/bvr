@@ -2,7 +2,6 @@ package no.sintef.bvr.ui.editor.commands;
 
 
 import java.io.File;
-import java.util.List;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
@@ -15,9 +14,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
-import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -49,6 +46,7 @@ import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
+import bvr.VNode;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -70,12 +68,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public TransactionalEditingDomain testTransactionalEditingDomain() {
-		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain(Constants.EDITOR_DOMAIN); //$NON-NLS-1$
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(Constants.EDITOR_DOMAIN);
 		if (editingDomain == null) {
-			editingDomain = DiagramEditingDomainFactory.getInstance()
-					.createEditingDomain();
-			editingDomain.setID(Constants.EDITOR_DOMAIN); //$NON-NLS-1$
+			editingDomain = TransactionalEditingDomainImpl.FactoryImpl.INSTANCE.createEditingDomain();
+			editingDomain.setID(Constants.EDITOR_DOMAIN);
+			TransactionalEditingDomain.Registry.INSTANCE.add(Constants.EDITOR_DOMAIN, editingDomain);
 		}
 		return editingDomain;
 	}
@@ -337,17 +334,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 					TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 					Resource currentResource = editingDomain.getResourceSet().getResource(platformURI, true);
 					
-					if(currentResource instanceof GMFResource){
-						GMFResource gmfResource = (GMFResource) currentResource;
-						if(gmfResource.getContents().get(0) instanceof Diagram){
-							Diagram diagram = (Diagram) gmfResource.getContents().get(0);
-							if(diagram.getElement().eResource().equals(resource)){
-								isResourceUsed = true;
-								break;
-							}
-
-						}						
-					} else if (currentResource.equals(resource)){
+					if (currentResource.equals(resource)){
 						isResourceUsed = true;
 					}
 					
@@ -528,14 +515,17 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public void addChoice(Choice choice, BVRModel bvrModel) {
-		// TODO Auto-generated method stub
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), choice);
+		editingDomain.getCommandStack().execute(cmd);
 		
 	}
 
 	@Override
 	public void addChoice(Choice choice, CompoundNode compoundNode) {
-		// TODO Auto-generated method stub
-		
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode(), (VNode) choice);
+		editingDomain.getCommandStack().execute(cmd);
 	}
 
 	@Override

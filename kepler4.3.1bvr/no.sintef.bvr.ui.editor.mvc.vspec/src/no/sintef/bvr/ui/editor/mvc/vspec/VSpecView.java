@@ -20,7 +20,7 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoice;
-import no.sintef.bvr.tool.ui.command.AddConfigurableUnit;
+import no.sintef.bvr.tool.ui.command.AddBVRModel;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
@@ -91,7 +91,7 @@ public class VSpecView extends BVRToolViewAbstract {
 	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
 		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, this));
 		
-		JComponent c = new AddConfigurableUnit().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+		JComponent c = new AddBVRModel().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 		
 		CompoundNode vspec = cu.getVariabilityModel();
 		loadBVRVSpecView(vspec, model, c, cu);

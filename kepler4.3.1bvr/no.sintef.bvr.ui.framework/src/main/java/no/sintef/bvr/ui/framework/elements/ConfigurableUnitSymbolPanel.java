@@ -83,8 +83,8 @@ public class ConfigurableUnitSymbolPanel extends ThreePartRectanglePanel impleme
     
     @Override
     public void setTitle(String title) {
-    	this.display_name.setText(title + " : Configurable Unit");
-        this.setToolTipText("ConfigurableUnit"+title + " : Configurable Unit");
+    	this.display_name.setText(title + " : BVRModel");
+        this.setToolTipText("ConfigurableUnit"+title + " : BVRModel");
     }
 
     private Boolean selected = false;

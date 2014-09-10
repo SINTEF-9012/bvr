@@ -9,17 +9,11 @@ import no.sintef.bvr.tool.ui.dropdown.ConfigurableUnitDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
-import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
-import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import bvr.BVRModel;
-import bvr.Choice;
 import bvr.NamedElement;
-import bvr.VSpec;
 
-public class AddConfigurableUnit {
+public class AddBVRModel {
 
 	private BVRUIKernel rootPanel;
 	private BVRModel model;
@@ -29,7 +23,7 @@ public class AddConfigurableUnit {
 	private List<Pair<JComponent, JComponent>> bindings;
 	private BVRToolView view;
 
-	public AddConfigurableUnit init(BVRModel model, BVRUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+	public AddBVRModel init(BVRModel model, BVRUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		this.rootPanel = rootPanel;
 		this.model = model;
 		this.vmMap = vmMap;
@@ -56,7 +50,6 @@ public class AddConfigurableUnit {
         if(name == null) name = "(unnamed)";
         cp.setTitle(name);
         rootPanel.getModelPanel().addNode(cp);
-        //Helper.bind(parent, cp, rootPanel.getModelPanel(), (c.isIsImpliedByParent() || parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
 	}
 

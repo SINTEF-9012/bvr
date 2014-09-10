@@ -10,7 +10,9 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import bvr.BVRModel;
 import bvr.Choice;
+import bvr.CompoundNode;
 import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.BvrFactory;
@@ -31,27 +33,21 @@ public class AddChoiceEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		//System.out.println("we are here " + p.getTitle() + ", " + v);
-		VSpec v = (VSpec)vmMap.get(p);
+		VSpec v = (VSpec) vmMap.get(p);
 		
 		// Modify model
 		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setName("Choice"+x);
+		c.setName("Choice "+x);
 		x++;
 		
-		/*if(v != null){
-			v.getChild().add(c);
-		}else{
-			ConfigurableUnit cu = view.getCU();
-			cu.getOwnedVSpec().add(c);
-		}*/
 		if(v != null){
-			//Context.eINSTANCE.getEditorCommands().addChoice(c, v);
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) v);
 		}else{
-			//ConfigurableUnit cu = view.getCU();
-			//Context.eINSTANCE.getEditorCommands().addChoice(c, cu);
+			BVRModel model = view.getBVRModel();
+			if(model.getVariabilityModel() == null){
+				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
+			}
 		}
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
+	
 	}
 }
