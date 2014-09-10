@@ -26,7 +26,7 @@ import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import bvr.NamedElement;
 import bvr.VSpec;
 
-public class ConfigurableUnitDropDownListener extends MouseAdapter {
+public class BVRModelDropDownListener extends MouseAdapter {
 
 	private ConfigurableUnitSymbolPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
@@ -34,7 +34,7 @@ public class ConfigurableUnitDropDownListener extends MouseAdapter {
 	private List<Pair<JComponent, JComponent>> bindings;
 	private BVRToolView view;
 
-	public ConfigurableUnitDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+	public BVRModelDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -70,9 +70,6 @@ class ConfigurableUnitDropdown extends JPopupMenu {
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
     	add.add(addclassifier);
-    	JMenuItem addConstraint = new JMenuItem("constraint");
-    	addConstraint.addActionListener(new AddConstraintEvent(cp, vmMap, nodes, bindings, view));
-    	add.add(addConstraint);
     	
 		add(add);
 		

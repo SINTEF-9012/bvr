@@ -76,9 +76,6 @@ public class AddVClassifier implements Command {
         			c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
         		else
         			c.addAttribute(v.getName(), v.getType().getName());
-        		/*String name = v.getName().split(":")[0];
-        		String type = v.getName().split(":")[1];
-        		c.addAttribute(name, type);*/
         	}
         }
         

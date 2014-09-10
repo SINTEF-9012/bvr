@@ -14,6 +14,7 @@ import bvr.BoundaryElementBinding;
 import bvr.Choice;
 //import bvr.ChoiceResolutuion;
 import bvr.CompoundNode;
+import bvr.Constraint;
 //import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
@@ -30,6 +31,7 @@ import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
+import bvr.VNode;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -392,8 +394,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addVClassifierToBVRModel(VClassifier childCClassifier,
-			BVRModel bvrModel) {
+	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -426,6 +427,26 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeNamedElementVSpecResolution(
 			VSpecResolution vSpecResolution, NamedElement namedElement) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeVNodeCompoundNode(CompoundNode compoundNode, VNode vNode) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeConstraintCompoundNode(CompoundNode compoundNode,
+			Constraint constraint) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeVariabilityModelBVRModel(BVRModel model,
+			CompoundNode variabilityModel) {
 		// TODO Auto-generated method stub
 		
 	}

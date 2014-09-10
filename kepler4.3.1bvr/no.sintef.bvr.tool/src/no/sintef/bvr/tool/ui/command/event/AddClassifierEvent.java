@@ -10,6 +10,8 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import bvr.BVRModel;
+import bvr.CompoundNode;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -32,9 +34,7 @@ public class AddClassifierEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		VSpec v = (VSpec)vmMap.get(p);
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
 		
-		// Modify model
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		c.setName("Classifier"+x);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
@@ -44,16 +44,12 @@ public class AddClassifierEvent implements ActionListener {
 		x++;
 		
 		if(v != null){
-			//v.getChild().add(c);
-			//Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec(v, c);
+			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) v, c);
 		}else{
-			//ConfigurableUnit cu = view.getCU();
-			//cu.getOwnedVSpec().add(c);
-			//Context.eINSTANCE.getEditorCommands().addVClassifierToConfigurableUnit(cu, c);
+			BVRModel model = view.getBVRModel();
+			if(model.getVariabilityModel() == null)
+				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
 		}
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
 	}
 
 }

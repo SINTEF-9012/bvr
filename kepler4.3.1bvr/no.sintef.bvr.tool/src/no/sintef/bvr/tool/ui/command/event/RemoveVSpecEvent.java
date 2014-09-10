@@ -2,20 +2,21 @@ package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
-import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import bvr.BCLConstraint;
+import bvr.BVRModel;
+import bvr.CompoundNode;
 import bvr.Constraint;
 import bvr.NamedElement;
-import bvr.VSpec;
+import bvr.VNode;
+
 
 public class RemoveVSpecEvent implements ActionListener {
 	private JComponent p;
@@ -29,40 +30,40 @@ public class RemoveVSpecEvent implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		/*NamedElement v = vmMap.get(p);
+		NamedElement v = vmMap.get(p);
 		
 		// Modify model
-		VSpec parent = null;
-		ConfigurableUnit cuParent = null;
-		for(NamedElement _c : vmMap.values()){
-			if(_c instanceof VSpec){
-				VSpec c = (VSpec)_c;
-				if(c.getChild().contains(v))
-					parent = c;
-			}else if(_c instanceof BCLConstraint){
-				if(view.getCU().getOwnedConstraint().contains(v))
-					cuParent = view.getCU();
-			}else{
-				throw new UnsupportedOperationException();
-			}
-		}
-		if(parent != null){
-			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpec(parent, v);
-		}else if(cuParent == null){
-			ConfigurableUnit cu = view.getCU();
-			Context.eINSTANCE.getEditorCommands().removeOwnedVSpecConfigurableUnit(cu, v);
+		VNode parent = null;
+		BVRModel cuParent = null;
+		if(view.getBVRModel().getVariabilityModel().equals(v)) {
+			cuParent = view.getBVRModel();
+		
 		}else{
-			Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);
+			for(NamedElement _c : vmMap.values()){
+				if(_c instanceof CompoundNode){
+					CompoundNode c = (CompoundNode)_c;
+					if(c.getMember().contains(v) || c.getOwnedConstraint().contains(v)){
+						parent = c;
+						continue;
+					}
+				}
+			}
 		}
 		
-		// Remove constraints
-		List<Constraint> toremove = new ArrayList<>();
-		for(Constraint c : view.getCU().getOwnedConstraint()){
-			if(c.getContext() == v){
-				//toremove.add(c);
-				Context.eINSTANCE.getEditorCommands().removeConstraintConfigurableUnit(cuParent, v);
+		if(parent != null){
+			if(v instanceof Constraint){
+				Context.eINSTANCE.getEditorCommands().removeConstraintCompoundNode((CompoundNode) parent, (Constraint) v);
+			} else if(v instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().removeVNodeCompoundNode((CompoundNode) parent, (VNode) v);
+			}else {
+				throw new UnsupportedOperationException("can not remove " + v + " with parent " + parent);
 			}
-		}*/
+		}else if(cuParent != null){
+			Context.eINSTANCE.getEditorCommands().removeVariabilityModelBVRModel(cuParent, (CompoundNode) v);
+		}else{
+			throw new UnexpectedException("can not find parent element to remove " + v);
+		}
+		
 
 	}
 }

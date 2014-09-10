@@ -116,6 +116,8 @@ public class VSpecView extends BVRToolViewAbstract {
 	}
 
 	void loadBVRVSpecView(CompoundNode v, BVRUIKernel model, JComponent parent, BVRModel cu) throws BVRModelException {
+		if(v == null) return;
+		
 		JComponent nextParent = null;
 		
 		if(v instanceof VClassifier){

@@ -27,6 +27,7 @@ import bvr.BoundaryElementBinding;
 import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.Constraint;
 //import bvr.ChoiceResolutuion;
 //import bvr.ConfigurableUnit;
 //import bvr.Constraint;
@@ -516,7 +517,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void addChoice(Choice choice, BVRModel bvrModel) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), choice);
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), choice);
 		editingDomain.getCommandStack().execute(cmd);
 		
 	}
@@ -527,6 +528,13 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode(), (VNode) choice);
 		editingDomain.getCommandStack().execute(cmd);
 	}
+	
+	@Override
+	public void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), null);
+		editingDomain.getCommandStack().execute(cmd);
+	}
 
 	@Override
 	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
@@ -535,17 +543,17 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addVClassifierToVSpec(CompoundNode parentCompundNode,
-			VClassifier childCClassifier) {
-		// TODO Auto-generated method stub
-		
+	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentCompundNode, BvrPackage.eINSTANCE.getCompoundNode(), childCClassifier);
+		editingDomain.getCommandStack().execute(cmd);	
 	}
 
 	@Override
-	public void addVClassifierToBVRModel(VClassifier childCClassifier,
-			BVRModel bvrModel) {
-		// TODO Auto-generated method stub
-		
+	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), childClassifier);
+		editingDomain.getCommandStack().execute(cmd);
 	}
 
 	@Override
@@ -591,6 +599,20 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 			VSpecResolution vSpecResolution, NamedElement namedElement) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void removeVNodeCompoundNode(CompoundNode compoundNode, VNode vNode) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode_Member(), vNode);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+	
+	@Override
+	public void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getVNode_OwnedConstraint(), constraint);
+		//editingDomain.getCommandStack().execute(cmd);
 	}
 
 }

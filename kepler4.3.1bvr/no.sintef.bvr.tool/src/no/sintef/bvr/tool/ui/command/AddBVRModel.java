@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.dropdown.ConfigurableUnitDropDownListener;
+import no.sintef.bvr.tool.ui.dropdown.BVRModelDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -39,7 +39,7 @@ public class AddBVRModel {
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
-        cp.addMouseListener(new ConfigurableUnitDropDownListener(cp, vmMap, nodes, bindings, view));
+        cp.addMouseListener(new BVRModelDropDownListener(cp, vmMap, nodes, bindings, view));
         cp.addMouseListener(listener);
         
         SelectInstanceCommand command = new SelectInstanceCommand();

@@ -12,6 +12,7 @@ import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.Constraint;
 //import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
@@ -29,6 +30,7 @@ import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
@@ -56,7 +58,7 @@ public interface EditorCommands {
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	
 	//public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
-	public void addVClassifierToBVRModel(VClassifier childCClassifier, BVRModel bvrModel);
+	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier);
 	
 	//public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
 	
@@ -69,6 +71,8 @@ public interface EditorCommands {
 	//public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance);
 	
 	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement);
+	
+	public void removeVNodeCompoundNode(CompoundNode compoundNode, VNode vNode);
 	
 	//public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
@@ -151,4 +155,8 @@ public interface EditorCommands {
 	public void addInsideBElementToPlacement(ToPlacement boundary, ObjectHandle objectHandle);
 	
 	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle);
+
+	void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint);
+
+	void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel);
 }
