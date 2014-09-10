@@ -79,16 +79,16 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         }); 
 		
         // Vars
-		/*int count = 2;
-		for(VSpec x : elem.getChild()){
+		int count = 2;
+		/*for(VSpec x : elem.getChild()){
 			if(x instanceof Variable){
 				Variable v = (Variable)x;
 				addEdit(elem, v);
 				count++;
 			}
-		}
+		}*/
 		
-        pack(count, 1);*/
+        pack(count, 1);
 	}
 
 	private void addEdit(VSpec elem, final Variable v) {

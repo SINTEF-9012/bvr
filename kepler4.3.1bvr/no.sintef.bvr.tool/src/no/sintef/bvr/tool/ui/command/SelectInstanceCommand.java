@@ -44,8 +44,6 @@ public class SelectInstanceCommand implements Command {
 		
 		kernel = rootPanel;
 		
-		//System.out.println("init " + p);
-		
         if (p instanceof SelectElement) {
         	selectableElement = (SelectElement) p;
         }else{

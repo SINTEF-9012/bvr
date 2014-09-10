@@ -53,16 +53,11 @@ public class UpdateVSpec implements Command {
 	}
 
 	public JComponent execute() {
-		//System.out.println("vc: " + vc);
-		//vc.setName(name);
-		//view.notifyVspecViewUpdate();
 		Context.eINSTANCE.getEditorCommands().setName(vc, name);
-		
 		return null;
 	}
 
 	public void setComment(String text) {
-		//((VSpec)vc).setComment(text);
 		Context.eINSTANCE.getEditorCommands().setVSpecComment((VSpec)vc, text);
 	}
 
