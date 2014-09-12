@@ -7,7 +7,7 @@ import no.sintef.bvr.tool.chain.ExecutionHandler;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.ExecutionRequest;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.TableBuilderStrategy;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 
@@ -36,7 +36,7 @@ public class ParserExecutionHandler implements ExecutionHandler {
 			throw new UnexpectedException("bvr model or root vspec resolution is not set");
 		}
 		
-		SymbolTable table = this.defaultTableBuilder.buildSymbolTable(bvrModel, posResolution);
+		SymbolVSpecResolutionTable table = this.defaultTableBuilder.buildSymbolTable(bvrModel, posResolution);
 		request.setDataField("productSymbolTable", table);
 		
 		if(this.successor != null)

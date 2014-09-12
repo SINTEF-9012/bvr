@@ -10,7 +10,7 @@ import bvr.VSpecResolution;
 public abstract class AbstractExecutionRequest implements ExecutionRequest {
 
 	protected VSpecResolution vSpecResolution;
-	protected SymbolTable table;
+	protected SymbolVSpecResolutionTable table;
 	protected BVRModel model;
 	protected JComponent parentComponent;
 	protected HashMap<String, Object> data;

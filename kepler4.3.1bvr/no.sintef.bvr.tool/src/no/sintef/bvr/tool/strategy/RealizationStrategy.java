@@ -1,8 +1,8 @@
 package no.sintef.bvr.tool.strategy;
 
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 
 public interface RealizationStrategy {
 
-	public void deriveProduct(SymbolTable table);
+	public void deriveProduct(SymbolVSpecResolutionTable table);
 }

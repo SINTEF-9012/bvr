@@ -8,15 +8,15 @@ import bvr.FragmentSubstitution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public abstract class AbstractSymbol implements Symbol {
+public abstract class AbstractSymbol implements SymbolVSpec {
 
 	protected VSpec vSpec;
 	protected VSpecResolution vSpecResolution;
 	protected EList<FragmentSubstitution> fragSubs;
 	protected EList<FragmentSubstitution> fragSubsToExecute;
-	protected Symbol parent;
-	protected EList<Symbol> children;
-	protected SymbolTable scope;
+	protected SymbolVSpec parent;
+	protected EList<SymbolVSpec> children;
+	protected SymbolVSpecResolutionTable scope;
 	protected boolean multi;
 	protected HashMap<FragmentSubstitution, FragmentSubstitution> fragmentSubCopyMap;
 
@@ -51,32 +51,32 @@ public abstract class AbstractSymbol implements Symbol {
 	}
 
 	@Override
-	public void setParent(Symbol parent) {
+	public void setParent(SymbolVSpec parent) {
 		this.parent = parent;
 	}
 
 	@Override
-	public Symbol getParent() {
+	public SymbolVSpec getParent() {
 		return this.parent;
 	}
 
 	@Override
-	public void addChild(Symbol child) {
+	public void addChild(SymbolVSpec child) {
 		this.children.add(child);
 	}
 
 	@Override
-	public EList<Symbol> getChildren() {
+	public EList<SymbolVSpec> getChildren() {
 		return this.children;
 	}
 	
 	@Override
-	public void setScope(SymbolTable table) {
+	public void setScope(SymbolVSpecResolutionTable table) {
 		this.scope = table;
 	}
 	
 	@Override
-	public SymbolTable getScope() {
+	public SymbolVSpecResolutionTable getScope() {
 		return this.scope;
 	}
 	

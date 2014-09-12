@@ -18,7 +18,7 @@ import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.exception.RethrownException;
-import no.sintef.bvr.tool.primitive.Symbol;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
@@ -180,10 +180,10 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 	
 	@Override
-	public void performSubstitutions(List<Symbol> symbols) {
+	public void performSubstitutions(List<SymbolVSpec> symbols) {
 		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
 		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
-		for(final Symbol symbol : symbols){
+		for(final SymbolVSpec symbol : symbols){
 			logger.debug("processing Symbol " + symbol.getVSpec());
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
 			

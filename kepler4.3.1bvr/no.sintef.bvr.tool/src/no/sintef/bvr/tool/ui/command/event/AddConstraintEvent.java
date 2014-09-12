@@ -19,6 +19,7 @@ import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 
 
@@ -49,6 +50,13 @@ public class AddConstraintEvent implements ActionListener {
 		
 		ConfigurableUnit cu = view.getCU();
 		Context.eINSTANCE.getEditorCommands().addBCLConstraint(cu, c);*/
+		
+		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
+		c.setName("Constraint"+x);
+		x++;
+		
+		VSpec v = (VSpec)vmMap.get(p);
+		Context.eINSTANCE.getEditorCommands().addBCLConstraintVNode((VNode) v, c);
 	}
 
 }

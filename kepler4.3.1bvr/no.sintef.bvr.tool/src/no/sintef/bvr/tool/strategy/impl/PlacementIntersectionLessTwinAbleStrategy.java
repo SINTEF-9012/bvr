@@ -13,14 +13,14 @@ import bvr.PlacementFragment;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.PlacementIntersectionResolverStrategy;
 
 public class PlacementIntersectionLessTwinAbleStrategy implements
 		PlacementIntersectionResolverStrategy {
 
 	@Override
-	public void resolveIntersection(SymbolTable table) {
+	public void resolveIntersection(SymbolVSpecResolutionTable table) {
 		HashSet<FragmentSubstitution> fragmentSubstitutions = LoaderUtility.collectFragmentSubstitutionsInTable(table);
 		ArrayList<ArrayList<Object>> intersections = calculatePlacementIntersections(fragmentSubstitutions);
 		if(!intersections.isEmpty()){

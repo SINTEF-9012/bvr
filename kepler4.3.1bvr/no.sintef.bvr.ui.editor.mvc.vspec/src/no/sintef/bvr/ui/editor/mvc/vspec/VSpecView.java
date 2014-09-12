@@ -19,6 +19,7 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
+import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddBVRModel;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
@@ -32,9 +33,11 @@ import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
+import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VNode;
@@ -95,24 +98,6 @@ public class VSpecView extends BVRToolViewAbstract {
 		
 		CompoundNode vspec = cu.getVariabilityModel();
 		loadBVRVSpecView(vspec, model, c, cu);
-		
-		
-		// Add context-free constraints
-		/*for(Constraint cs : cu.getOwnedConstraint()){
-			if(cs instanceof OpaqueConstraint){
-				OpaqueConstraint oc = (OpaqueConstraint) cs;
-				if(oc.getContext() == null){
-					new AddOpaqueConstraint().init(model, oc, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-				}
-			}
-			if(cs instanceof BCLConstraint){
-				BCLConstraint bcl = (BCLConstraint) cs;
-				if(bcl.getContext() == null){
-					JComponent comp = new AddBCLConstraint().init(model, bcl, c, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-					vspecvmMap.put(comp, bcl);
-				}
-			}
-		}*/
 	}
 
 	void loadBVRVSpecView(CompoundNode v, BVRUIKernel model, JComponent parent, BVRModel cu) throws BVRModelException {
@@ -128,7 +113,7 @@ public class VSpecView extends BVRToolViewAbstract {
 			JComponent c = new AddChoice(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
-		}
+		} 
 		
 		if(!minimized.contains(v)){
 			if(v.getGroupMultiplicity() != null){
@@ -136,24 +121,24 @@ public class VSpecView extends BVRToolViewAbstract {
 			}
 		
 		
-			/*for(Constraint c : cu.getOwnedConstraint()){
-				if(c instanceof OpaqueConstraint){
+			for(Constraint c : ((VNode) v).getOwnedConstraint()){
+				/*if(c instanceof OpaqueConstraint){
 					OpaqueConstraint oc = (OpaqueConstraint) c;
 					if(c.getContext() == v){
 						JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 						vspecvmMap.put(comp, c);
 					}
-				}
+				}*/
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
-					if(bcl.getContext() == v){
-						JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-						vspecvmMap.put(comp, c);
-					}
+					
+					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+					vspecvmMap.put(comp, c);
 				}
-			}*/
-		
+			}
+			
 			for(VNode vs : ((CompoundNode) v).getMember()){
+				if(vs instanceof CompoundNode)
 					loadBVRVSpecView((CompoundNode) vs, model, nextParent, cu);
 			}
 		}

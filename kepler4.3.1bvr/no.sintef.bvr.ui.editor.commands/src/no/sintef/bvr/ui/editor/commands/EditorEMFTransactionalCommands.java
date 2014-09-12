@@ -646,4 +646,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		return primitiveType;
 	}
 
+	@Override
+	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vNode, BvrPackage.eINSTANCE.getVNode_OwnedConstraint(), bclConstraint);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
 }

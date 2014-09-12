@@ -16,8 +16,8 @@ import no.sintef.bvr.engine.adjacent.AdjacentResolver;
 import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.RealizationStrategy;
 
 public class StaleSimpleRealizationStrategy implements RealizationStrategy {
@@ -28,7 +28,7 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 	private AdjacentResolver adjacentResolver;
 
 	@Override
-	public void deriveProduct(SymbolTable table) {
+	public void deriveProduct(SymbolVSpecResolutionTable table) {
 		frgamentSusbstitutions = new BasicEList<FragmentSubstitution>();
 		BVRModel model = table.getBVRModel();
 		EList<VariationPoint> ownedVariationPoints = model.getRealizationModel();
@@ -58,19 +58,19 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 		this.resolveScope(table);
 	}
 	
-	private void resolveScope(SymbolTable table){
-		ArrayList<Symbol> symbols = table.getSymbols();
-		for(Symbol symbol : symbols){
+	private void resolveScope(SymbolVSpecResolutionTable table){
+		ArrayList<SymbolVSpec> symbols = table.getSymbols();
+		for(SymbolVSpec symbol : symbols){
 			this.resolveSymbol(symbol);
 		}
 		
-		ArrayList<SymbolTable> underneathScopes = table.getChildren();
-		for(SymbolTable scope : underneathScopes){
+		ArrayList<SymbolVSpecResolutionTable> underneathScopes = table.getChildren();
+		for(SymbolVSpecResolutionTable scope : underneathScopes){
 			this.resolveScope(scope);
 		}
 	}
 	
-	private void resolveSymbol(final Symbol symbol){
+	private void resolveSymbol(final SymbolVSpec symbol){
 		BVRModel model = symbol.getScope().getBVRModel();
 		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(model.eResource().getResourceSet());
 		EList<FragmentSubstitution> symbolsFragSubs = symbol.getFragmentSubstitutions();

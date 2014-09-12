@@ -12,8 +12,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.ui.editor.BindingJTable;
 import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
@@ -245,14 +245,14 @@ public class LoaderUtility {
 		return objectHandle;
 	}
 	
-	public static HashSet<FragmentSubstitution> collectFragmentSubstitutionsInTable(SymbolTable table){
+	public static HashSet<FragmentSubstitution> collectFragmentSubstitutionsInTable(SymbolVSpecResolutionTable table){
 		HashSet<FragmentSubstitution> fss = new HashSet<FragmentSubstitution>();
-		ArrayList<Symbol> symbols = table.getSymbols();
-		for(Symbol symbol : symbols){
+		ArrayList<SymbolVSpec> symbols = table.getSymbols();
+		for(SymbolVSpec symbol : symbols){
 			fss.addAll(symbol.getFragmentSubstitutions());
 		}
-		ArrayList<SymbolTable> tables = table.getChildren();
-		for(SymbolTable symbolTable : tables){
+		ArrayList<SymbolVSpecResolutionTable> tables = table.getChildren();
+		for(SymbolVSpecResolutionTable symbolTable : tables){
 			fss.addAll(collectFragmentSubstitutionsInTable(symbolTable));
 		}
 		return fss;

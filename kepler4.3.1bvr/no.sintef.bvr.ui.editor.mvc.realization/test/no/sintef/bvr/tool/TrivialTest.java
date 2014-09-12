@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
@@ -95,7 +95,7 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -117,7 +117,7 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -139,7 +139,7 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -161,7 +161,7 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -184,11 +184,11 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -212,11 +212,11 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -240,11 +240,11 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -268,11 +268,11 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -296,11 +296,11 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -324,11 +324,11 @@ public class TrivialTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);

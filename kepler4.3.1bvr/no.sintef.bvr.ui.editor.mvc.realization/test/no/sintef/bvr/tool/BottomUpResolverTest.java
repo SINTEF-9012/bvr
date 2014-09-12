@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
@@ -108,7 +108,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -130,7 +130,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -152,7 +152,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -174,7 +174,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -196,7 +196,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -218,7 +218,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -240,7 +240,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -262,7 +262,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -284,7 +284,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(2);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -306,7 +306,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(3);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -328,7 +328,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -350,7 +350,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -372,7 +372,7 @@ public class BottomUpResolverTest {
 			BVRModel cu = model.getBVRModel();
 			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			

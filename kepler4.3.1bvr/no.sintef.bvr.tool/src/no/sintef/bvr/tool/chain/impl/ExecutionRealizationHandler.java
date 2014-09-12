@@ -4,7 +4,7 @@ import no.sintef.bvr.tool.chain.ExecutionHandler;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.ExecutionRequest;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.RealizationStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyDefault;
@@ -29,7 +29,7 @@ public class ExecutionRealizationHandler implements ExecutionHandler {
 
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
-		SymbolTable table = (SymbolTable) request.getDataField("productSymbolTable");
+		SymbolVSpecResolutionTable table = (SymbolVSpecResolutionTable) request.getDataField("productSymbolTable");
 		
 		if(table == null){
 			throw new UnexpectedException("symbol table is not set");

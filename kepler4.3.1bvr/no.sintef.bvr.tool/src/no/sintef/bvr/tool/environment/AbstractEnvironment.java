@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
-import no.sintef.bvr.tool.primitive.Symbol;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 
@@ -68,7 +68,7 @@ public class AbstractEnvironment implements Environment {
 	}
 
 	@Override
-	public void performSubstitutions(List<Symbol> symbols) {
+	public void performSubstitutions(List<SymbolVSpec> symbols) {
 		throw new UnimplementedBVRException("performSubstitutions is not implemented");
 	}
 

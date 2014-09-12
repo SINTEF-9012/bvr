@@ -17,7 +17,7 @@ import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
-import no.sintef.bvr.tool.primitive.Symbol;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
@@ -102,7 +102,7 @@ public final class Context {
 		environment.writeProductsToFiles(baseProductMap, file);
 	}
 	
-	public void performSubstitutions(List<Symbol> symbols){
+	public void performSubstitutions(List<SymbolVSpec> symbols){
 		environment.performSubstitutions(symbols);
 	}
 	

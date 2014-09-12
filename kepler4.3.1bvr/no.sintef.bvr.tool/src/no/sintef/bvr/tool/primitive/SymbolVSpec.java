@@ -7,7 +7,7 @@ import bvr.FragmentSubstitution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public interface Symbol {
+public interface SymbolVSpec {
 
 	public void setVSpec(VSpec vSpec);
 	
@@ -29,17 +29,17 @@ public interface Symbol {
 	
 	public void addFragmentSubstitutionsToExecute(FragmentSubstitution fragment);
 	
-	public void setParent(Symbol parent);
+	public void setParent(SymbolVSpec parent);
 	
-	public Symbol getParent();
+	public SymbolVSpec getParent();
 	
-	public void addChild(Symbol child);
+	public void addChild(SymbolVSpec child);
 	
-	public EList<Symbol> getChildren();
+	public EList<SymbolVSpec> getChildren();
 	
-	public void setScope(SymbolTable table);
+	public void setScope(SymbolVSpecResolutionTable table);
 	
-	public SymbolTable getScope();
+	public SymbolVSpecResolutionTable getScope();
 	
 	public void setMulti(boolean multi);
 	

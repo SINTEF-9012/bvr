@@ -164,4 +164,6 @@ public interface EditorCommands {
 	public void addPackagableElementBVRModel(BVRModel model, VPackageable vPackagable);
 	
 	public VPackageable testPrimitiveTypes(BVRModel model);
+	
+	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint);
 }

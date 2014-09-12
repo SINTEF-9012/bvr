@@ -464,4 +464,10 @@ public class EditorMVCCommands implements EditorCommands {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint) {
+		// TODO Auto-generated method stub
+		
+	}
 }

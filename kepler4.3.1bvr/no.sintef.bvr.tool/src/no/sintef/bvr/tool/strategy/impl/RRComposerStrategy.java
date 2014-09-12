@@ -9,8 +9,8 @@ import bvr.NegResolution;
 import bvr.PosResolution;
 import bvr.VSpecResolution;
 import bvr.VariationPoint;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.primitive.impl.VSpecResolutionSymbol;
 import no.sintef.bvr.tool.primitive.impl.VSpecResolutionSymbolTable;
 import no.sintef.bvr.tool.strategy.TableBuilderStrategy;
@@ -20,7 +20,7 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 	private EList<VariationPoint> vps;
 	private BasicEList<FragmentSubstitution> fss;
 
-	public SymbolTable buildSymbolTable(BVRModel bvrModel, PosResolution posResolution) {
+	public SymbolVSpecResolutionTable buildSymbolTable(BVRModel bvrModel, PosResolution posResolution) {
 		vps = bvrModel.getRealizationModel();
 		fss = new BasicEList<FragmentSubstitution>();
 		for(VariationPoint vp : vps){
@@ -36,7 +36,7 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 		return table;
 	}
 
-	private boolean parse(Symbol symbol, SymbolTable table) {
+	private boolean parse(SymbolVSpec symbol, SymbolVSpecResolutionTable table) {
 		VSpecResolution vSpecResolution = symbol.getVSpecResolution();
 		if(vSpecResolution instanceof NegResolution){
 			return false;

@@ -44,7 +44,7 @@ public class AddBCLConstraint implements Command {
 		//ConstraintPanel constraint1 = new ConstraintPanel(rootPanel.getModelPanel());
 		ParallelogramTitledPanel constraint1 = new ParallelogramTitledPanel();
 		nodes.add(constraint1);
-		String s = new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getBVRModel());
+		String s = (oc.getExpression().size() != 0) ? new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getBVRModel()) : "";
 		// Add newlines
 		s = wrap(s, 15);
 		constraint1.setTitle(s);
