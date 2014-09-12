@@ -6,10 +6,10 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
-public class ConfigurableUnitPropertyEditor extends ElementPropertyEditor{
+public class BVRModelPropertyEditor extends ElementPropertyEditor{
 	
 
-	public ConfigurableUnitPropertyEditor(BVRUIKernel _kernel,
+	public BVRModelPropertyEditor(BVRUIKernel _kernel,
 			NamedElement _obj, BVRToolView _view) {
 		super(_kernel, _obj, _view);
 		// TODO Auto-generated constructor stub

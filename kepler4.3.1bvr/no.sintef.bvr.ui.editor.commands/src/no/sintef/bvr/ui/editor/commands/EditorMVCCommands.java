@@ -32,6 +32,7 @@ import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VNode;
+import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -449,5 +450,18 @@ public class EditorMVCCommands implements EditorCommands {
 			CompoundNode variabilityModel) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void addPackagableElementBVRModel(BVRModel model,
+			VPackageable vPackagable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public VPackageable testPrimitiveTypes(BVRModel model) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

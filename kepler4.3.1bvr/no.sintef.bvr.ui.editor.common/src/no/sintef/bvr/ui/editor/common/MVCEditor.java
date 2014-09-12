@@ -122,6 +122,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 	
 	@Override
 	public void createPartControl(Composite parent) {
+		
 		composite = new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND);
 		FillLayout layout = new FillLayout();
 		composite.setLayout(layout);

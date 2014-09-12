@@ -31,6 +31,7 @@ import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VNode;
+import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
@@ -156,7 +157,11 @@ public interface EditorCommands {
 	
 	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle);
 
-	void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint);
+	public void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint);
 
-	void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel);
+	public void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel);
+	
+	public void addPackagableElementBVRModel(BVRModel model, VPackageable vPackagable);
+	
+	public VPackageable testPrimitiveTypes(BVRModel model);
 }

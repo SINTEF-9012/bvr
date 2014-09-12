@@ -20,10 +20,13 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.part.FileEditorInput;
 
+import com.sun.scenario.effect.Blend.Mode;
+
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
+import bvr.BvrFactory;
 import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.CompoundNode;
@@ -40,6 +43,7 @@ import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
+import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
@@ -48,6 +52,7 @@ import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VNode;
+import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -613,6 +618,32 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getVNode_OwnedConstraint(), constraint);
 		//editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void addPackagableElementBVRModel(BVRModel model, VPackageable vPackagable) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getVPackage_PackageElement(), vPackagable);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public VPackageable testPrimitiveTypes(BVRModel model) {
+		EList<VPackageable> packagableElements = model.getPackageElement();
+		PrimitveType primitiveType = null; 
+		for(VPackageable vPack : packagableElements){
+			if(vPack instanceof PrimitveType) {
+				primitiveType = (PrimitveType) vPack;
+				break;
+			}
+		}
+		
+		if(primitiveType == null){
+			primitiveType = BvrFactory.eINSTANCE.createPrimitveType();
+			addPackagableElementBVRModel(model, primitiveType);
+		}
+		
+		return primitiveType;
 	}
 
 }

@@ -37,7 +37,7 @@ import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -143,17 +143,13 @@ public class BVREditorPanel extends JPanel {
         	ChoicePanel elem = (ChoicePanel)p;
         	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, (Choice) vmMap.get(elem), view);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
-        	//System.out.println("Here!");
         }else if (p instanceof ParallelogramTitledPanel) {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
         	BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, (BCLConstraint) vmMap.get(elem), view);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
-           // System.out.println("Here!");
-        }else if (p instanceof ConfigurableUnitSymbolPanel) {
-        	ConfigurableUnitSymbolPanel elem = (ConfigurableUnitSymbolPanel)p;
-        	/*ConfigurableUnitPropertyEditor prop = new ConfigurableUnitPropertyEditor(kernel, view.getCU(), view);        	
-            editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
-            //System.out.println("Here!");
+        }else if (p instanceof BVRModelSymbolPanel) {
+        	BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, view.getBVRModel(), view);        	
+            editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof VInstancePanel) {
         	/*VInstancePanel elem = (VInstancePanel)p;
         	VInstance x = null;

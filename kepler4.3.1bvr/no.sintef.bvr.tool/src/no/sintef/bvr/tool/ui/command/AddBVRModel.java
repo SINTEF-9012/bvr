@@ -5,13 +5,16 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.dropdown.BVRModelDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import bvr.BVRModel;
 import bvr.NamedElement;
+
 
 public class AddBVRModel {
 
@@ -35,7 +38,7 @@ public class AddBVRModel {
 	}
 
 	public JComponent execute() {
-		ConfigurableUnitSymbolPanel cp = new ConfigurableUnitSymbolPanel(rootPanel.getModelPanel());
+		BVRModelSymbolPanel cp = new BVRModelSymbolPanel(rootPanel.getModelPanel());
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
@@ -50,7 +53,7 @@ public class AddBVRModel {
         if(name == null) name = "(unnamed)";
         cp.setTitle(name);
         rootPanel.getModelPanel().addNode(cp);
+        Context.eINSTANCE.getEditorCommands().testPrimitiveTypes(model);
         return cp;
 	}
-
 }

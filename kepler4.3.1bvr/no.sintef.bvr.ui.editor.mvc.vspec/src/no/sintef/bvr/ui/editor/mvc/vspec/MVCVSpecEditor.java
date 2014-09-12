@@ -27,6 +27,7 @@ public class MVCVSpecEditor extends MVCEditor {
 	void setContents() {
 		jApplet.add(((VSpecView)v).vspecEpanel);
 	}
+	
 
 	@Override
 	public

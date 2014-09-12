@@ -10,7 +10,7 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.Constraint;

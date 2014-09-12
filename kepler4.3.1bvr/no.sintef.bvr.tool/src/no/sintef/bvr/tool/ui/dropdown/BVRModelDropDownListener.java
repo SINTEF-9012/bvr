@@ -22,19 +22,19 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import bvr.NamedElement;
 import bvr.VSpec;
 
 public class BVRModelDropDownListener extends MouseAdapter {
 
-	private ConfigurableUnitSymbolPanel cp;
+	private BVRModelSymbolPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private BVRToolView view;
 
-	public BVRModelDropDownListener(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+	public BVRModelDropDownListener(BVRModelSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -53,15 +53,15 @@ public class BVRModelDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	ConfigurableUnitDropdown menu = new ConfigurableUnitDropdown(cp, vmMap, nodes, bindings, view);
+    	BVRModelDropdown menu = new BVRModelDropdown(cp, vmMap, nodes, bindings, view);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
 
-class ConfigurableUnitDropdown extends JPopupMenu {
+class BVRModelDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ConfigurableUnitDropdown(ConfigurableUnitSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+    public BVRModelDropdown(BVRModelSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
@@ -72,12 +72,7 @@ class ConfigurableUnitDropdown extends JPopupMenu {
     	add.add(addclassifier);
     	
 		add(add);
-		
-		// Remove
-		JMenuItem rename = new JMenuItem("rename");
-		rename.addActionListener(new RemoveVSpecEvent(cp, vmMap, nodes, bindings, view));
-		add(rename);
-		
+				
 		// Paste
 		add(new JSeparator());
 		JMenuItem pastechild = new JMenuItem("paste as child");

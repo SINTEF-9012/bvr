@@ -9,11 +9,14 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 
 import com.google.common.base.Throwables;
 
+import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.ChoiceResolution;
 import bvr.ObjectHandle;
 import bvr.PlacementFragment;
+import bvr.PrimitveType;
 import bvr.ReplacementFragmentType;
+import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -150,21 +153,16 @@ public final class CommonUtility {
 	public static VSpec getResolvedVSpec(VSpecResolution vSpecResolution){
 		if(vSpecResolution instanceof ChoiceResolution){
 			ChoiceResolution choiceResolution = (ChoiceResolution) vSpecResolution;
-			if(choiceResolution.getResolvedChoice() != null){
+			if(choiceResolution.getResolvedChoice() != null)
 				return choiceResolution.getResolvedChoice();
-			}
-			if(choiceResolution.getResolvedVClassifier() != null){
+			if(choiceResolution.getResolvedVClassifier() != null)
 				return choiceResolution.getResolvedVClassifier();
-			}
-			if(choiceResolution.getResolvedChoiceOcc() != null){
+			if(choiceResolution.getResolvedChoiceOcc() != null)
 				return choiceResolution.getResolvedChoiceOcc();
-			}
-			if(choiceResolution.getResolvedVClassOcc() != null){
+			if(choiceResolution.getResolvedVClassOcc() != null)
 				return choiceResolution.getResolvedVClassOcc();
-			}
-			if(choiceResolution.getResolvedVSpec() != null){
+			if(choiceResolution.getResolvedVSpec() != null)
 				return choiceResolution.getResolvedVSpec();
-			}
 		}
 		return null;
 	}

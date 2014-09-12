@@ -15,7 +15,7 @@ import no.sintef.bvr.ui.framework.TitledElement;
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
 
-public class ConfigurableUnitSymbolPanel extends ThreePartRectanglePanel implements VSpecPanel, SelectElement, TitledElement, ErrorHighlightableElement {
+public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpecPanel, SelectElement, TitledElement, ErrorHighlightableElement {
 	private static final long serialVersionUID = -3463243889276205974L;
 	
 	JXLabel display_name = new JXLabel();
@@ -33,7 +33,7 @@ public class ConfigurableUnitSymbolPanel extends ThreePartRectanglePanel impleme
 		setTitle(name);
 	}
     
-    public ConfigurableUnitSymbolPanel(ConfigurableUnitPanel model) {
+    public BVRModelSymbolPanel(ConfigurableUnitPanel model) {
     	this.model = model;
     	
         display_name.setForeground(Color.BLACK);
