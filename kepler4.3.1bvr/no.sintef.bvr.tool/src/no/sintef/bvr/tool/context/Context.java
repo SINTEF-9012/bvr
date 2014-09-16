@@ -17,7 +17,10 @@ import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
+
+
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.strategy.impl.VSpecScopeBuilderContext;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
@@ -49,6 +52,8 @@ public final class Context {
 	
 	private Map<File, BVRTransactionalModel> loadedModels = new HashMap<File, BVRTransactionalModel>();
 	private JApplet focusedJApplet = null;
+	
+	private VSpecScopeBuilderContext scopeBuilder = new VSpecScopeBuilderContext();
 	
 	private static Context getContext(){
 		return new Context();
@@ -187,5 +192,9 @@ public final class Context {
 	
 	public JApplet getActiveJApplet(){
 		return focusedJApplet;
+	}
+	
+	public VSpecScopeBuilderContext getVScopeBuilderContext() {
+		return scopeBuilder;
 	}
 }

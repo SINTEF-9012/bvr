@@ -29,7 +29,7 @@ import no.sintef.bvr.ui.framework.listener.DragDropLayout;
 
 import org.jdesktop.swingx.JXPanel;
 
-public class ConfigurableUnitPanel extends JLayeredPane implements BufferedElement {
+public class BVRModelPanel extends JLayeredPane implements BufferedElement {
 
     // private JLayeredPane layeredPane;
     private BindingPanel bindingPanel;
@@ -44,7 +44,7 @@ public class ConfigurableUnitPanel extends JLayeredPane implements BufferedEleme
     }
 
 
-    public ConfigurableUnitPanel() {
+    public BVRModelPanel() {
     	this.setBackground(Color.WHITE);
         vspecPanel = new JXPanel();
         vspecPanel.setLayout(new DragDropLayout());

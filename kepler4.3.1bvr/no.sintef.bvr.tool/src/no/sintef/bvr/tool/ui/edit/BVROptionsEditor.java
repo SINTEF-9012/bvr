@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 import org.jdesktop.swingx.JXPanel;
@@ -41,10 +41,10 @@ public class BVROptionsEditor extends JPanel {
 
     private EditableModelPanel editableModelPanel = null;
     private JSplitPane splitPane = null;
-	private ConfigurableUnitPanel modelPanel;
+	private BVRModelPanel modelPanel;
 
     public BVROptionsEditor() {
-    	modelPanel = new ConfigurableUnitPanel();
+    	modelPanel = new BVRModelPanel();
     	//this.setBackground(Color.WHITE);
 
 

@@ -17,6 +17,7 @@ public class PluginLogger implements Logger {
 	private ILog logger = Platform.getLog(Platform.getBundle(pluginId));
 	
 	private static final PluginLogger pluginLogger = new PluginLogger();
+	private static final ProblemLoger problemLogger = new ProblemLoger();
 	
 	public static PluginLogger getLogger(){
 		return pluginLogger;
@@ -25,16 +26,19 @@ public class PluginLogger implements Logger {
 	@Override
 	public void error(String message) {
 		logger.log(new Status(Status.ERROR, pluginId, "[PLUGIN ERROR " + calendar.getTime().toString() + "] " + message));
+		problemLogger.error(message);
 	}
 
 	@Override
 	public void warn(String message) {
 		logger.log(new Status(Status.WARNING, pluginId, "[PLUGIN WARNING " + calendar.getTime().toString() + "] " + message));
+		problemLogger.warn(message);
 	}
 
 	@Override
 	public void info(String message) {
 		logger.log(new Status(Status.INFO, pluginId, "[PLUGIN INFO " + calendar.getTime().toString() + "] " + message));
+		problemLogger.info(message);
 	}
 
 	@Override
@@ -46,6 +50,17 @@ public class PluginLogger implements Logger {
 	public void error(String message, Throwable e) {
 		String stackTrace = CommonUtility.getStackTraceAsString(e);
 		error("Failed with the message: '" + message + "' and stack trace:\n" + stackTrace);
+		problemLogger.error(message);
+	}
+
+	@Override
+	public void setSource(Object src) {
+		problemLogger.setSource(src);
+	}
+
+	@Override
+	public void setResource(Object resource) {
+		problemLogger.setResource(resource);
 	}
 
 }

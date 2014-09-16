@@ -17,6 +17,8 @@ import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
 import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -56,6 +58,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 	protected String filename;
 
 	FileEditorInput fileinput;
+	protected IFile iResource;
 	
 	
 	public BVRToolModel getBVRModel(){
@@ -72,6 +75,8 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 		filename = fileinput.getFile().getLocation().toString();
 		setContentDescription("BVREditor:" + filename);
 		setTitle();
+		iResource = fileinput.getFile();
+		Context.eINSTANCE.logger.setResource(iResource);
 	}
 
 	abstract public void setTitle();
@@ -164,6 +169,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 	@Override
 	public void setFocus() {
 		Context.eINSTANCE.setActiveJApplet(jApplet);
+		Context.eINSTANCE.logger.setResource(iResource);
 	}
 	
 	public void update(EditorSubject subject) {
@@ -177,9 +183,16 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 		IEditorReference[] editorReferences = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
 		boolean isCurrentResourceUsed = Context.eINSTANCE.getEditorCommands().testXMIResourceUnload((XMIResource) currentResource, editorReferences);
 		if(!isCurrentResourceUsed){
-			Context.eINSTANCE.logger.info("resource unloaded " + currentResource);
+			Context.eINSTANCE.logger.debug("resource unloaded " + currentResource);
 			Context.eINSTANCE.disposeModel(m);
-			Context.eINSTANCE.logger.info("disposing the model object, because can not find any MVC editors");
+			Context.eINSTANCE.logger.debug("disposing the model object, because can not find any MVC editors");
+			
+			//clear problem view
+			try {
+				iResource.deleteMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
+			} catch (CoreException e) {
+				throw new RuntimeException("Rethrowing exception", e);
+			}
 		}
 	}
 }

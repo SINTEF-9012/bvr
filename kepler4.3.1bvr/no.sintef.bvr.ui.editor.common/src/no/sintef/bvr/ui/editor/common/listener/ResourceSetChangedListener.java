@@ -25,8 +25,9 @@ public class ResourceSetChangedListener implements IResourceChangeListener {
 			if(delta == null)
 				continue;
 			//only interested in changes resources(not added or removed) and content changes in the resource
-			if((delta.getKind() == IResourceDelta.CHANGED) && ((delta.getKind() & IResourceDelta.CONTENT) == 0))
+			if((delta.getKind() == IResourceDelta.ALL_WITH_PHANTOMS) && ((delta.getFlags() != IResourceDelta.MARKERS))){
 				ResourceResourceSavedSubjectMap.eINSTANCE.pokeResourceSubjects(resource);
+			}
 		}
 	}
 

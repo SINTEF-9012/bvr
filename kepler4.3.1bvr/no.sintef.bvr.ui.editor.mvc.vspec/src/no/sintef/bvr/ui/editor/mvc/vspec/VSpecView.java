@@ -17,6 +17,7 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
@@ -30,7 +31,7 @@ import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import bvr.BCLConstraint;
@@ -92,6 +93,7 @@ public class VSpecView extends BVRToolViewAbstract {
 	}
 	
 	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
+		Context.eINSTANCE.getVScopeBuilderContext().init();
 		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, this));
 		
 		JComponent c = new AddBVRModel().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
@@ -113,7 +115,7 @@ public class VSpecView extends BVRToolViewAbstract {
 			JComponent c = new AddChoice(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
-		} 
+		}
 		
 		if(!minimized.contains(v)){
 			if(v.getGroupMultiplicity() != null){
@@ -138,8 +140,10 @@ public class VSpecView extends BVRToolViewAbstract {
 			}
 			
 			for(VNode vs : ((CompoundNode) v).getMember()){
-				if(vs instanceof CompoundNode)
+				if(vs instanceof CompoundNode){
 					loadBVRVSpecView((CompoundNode) vs, model, nextParent, cu);
+					Context.eINSTANCE.getVScopeBuilderContext().testVSpec((NamedElement)v, (CompoundNode) vs);
+				}
 			}
 		}
 	}
@@ -154,7 +158,7 @@ public class VSpecView extends BVRToolViewAbstract {
 		Point vpos = vspecScrollPane.getViewport().getViewPosition();
 				
 		// Clear everything
-		ConfigurableUnitPanel cup = vSpecbvruikernel.getModelPanel();
+		BVRModelPanel cup = vSpecbvruikernel.getModelPanel();
 		cup.clear();
 
 		vspecNodes.clear();

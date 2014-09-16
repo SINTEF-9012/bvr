@@ -44,6 +44,7 @@ public class MVCVSpecEditor extends MVCEditor {
 
 	@Override
 	public void update(EditorSubject subject) {
+		System.out.println("update(EditorSubject subject) " + subject);
 		if(subject instanceof ResourceSetEditorSubject){
 			m.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));

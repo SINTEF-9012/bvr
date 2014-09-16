@@ -22,7 +22,7 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
     JXTitledSeparator separatorbar = new JXTitledSeparator();
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
-    ConfigurableUnitPanel model;
+    BVRModelPanel model;
 
 	public String getName() {
 		return display_name.getName();
@@ -33,7 +33,7 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
 		setTitle(name);
 	}
     
-    public BVRModelSymbolPanel(ConfigurableUnitPanel model) {
+    public BVRModelSymbolPanel(BVRModelPanel model) {
     	this.model = model;
     	
         display_name.setForeground(Color.BLACK);

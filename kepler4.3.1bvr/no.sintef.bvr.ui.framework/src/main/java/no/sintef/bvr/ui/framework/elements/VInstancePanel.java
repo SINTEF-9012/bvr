@@ -37,7 +37,7 @@ public class VInstancePanel extends ThreePartRectanglePanel implements VSpecPane
 	JXLabel separatorbar = new JXLabel();
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
-    ConfigurableUnitPanel model;
+    BVRModelPanel model;
 
 	public String getName() {
 		return display_name.getName();
@@ -48,7 +48,7 @@ public class VInstancePanel extends ThreePartRectanglePanel implements VSpecPane
 		setTitle(name);
 	}
     
-    public VInstancePanel(ConfigurableUnitPanel model) {
+    public VInstancePanel(BVRModelPanel model) {
     	this.model = model;
     	
         display_name.setForeground(Color.BLACK);
