@@ -34,18 +34,6 @@ public class ConsoleLogger implements Logger {
 	public void error(String message, Throwable e) {
 		String stackTrace = CommonUtility.getStackTraceAsString(e);
 		error(message + " with the stack trace:\n" + stackTrace);
-	}
-
-	@Override
-	public void setSource(Object src) {
-		
-	}
-
-	@Override
-	public void setResource(Object resource) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+	}	
 
 }

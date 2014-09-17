@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.observer.ResourceObserver;
-import no.sintef.bvr.tool.observer.ResourceSetEditorSubject;
+import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
@@ -79,7 +80,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 		setContentDescription("BVREditor:" + filename);
 		setTitle();
 		iResource = fileinput.getFile();
-		Context.eINSTANCE.logger.setResource(iResource);
+		Context.eINSTANCE.problemLogger.setResource(iResource);
 	}
 
 	abstract public void setTitle();
@@ -147,7 +148,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 						resourceURI = ((BVRTransactionalModel) m).getResource().getURI();
 						
 						List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-						ResourceSetEditorSubject subject = testResourceSetEditedSubject(subjects);
+						ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 						ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
 
 						if (m != null) {
@@ -176,7 +177,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	@Override
 	public void setFocus() {
 		Context.eINSTANCE.setActiveJApplet(jApplet);
-		Context.eINSTANCE.logger.setResource(iResource);
+		Context.eINSTANCE.problemLogger.setResource(iResource);
 	}
 	
 	public void update(ResourceSubject subject) {
@@ -193,25 +194,18 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 			Context.eINSTANCE.logger.debug("resource unloaded " + currentResource);
 			Context.eINSTANCE.disposeModel(m);
 			Context.eINSTANCE.logger.debug("disposing the model object, because can not find any MVC editors");
-			
-			//clear problem view
-			try {
-				iResource.deleteMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
-			} catch (CoreException e) {
-				throw new RuntimeException("Rethrowing exception", e);
-			}
 		}
 	}
 	
-	protected ResourceSetEditorSubject testResourceSetEditedSubject(List<ResourceSubject> subjects){
+	protected ResourceSetEditedSubject testResourceSetEditedSubject(List<ResourceSubject> subjects){
 		if(subjects != null){
 			for(ResourceSubject s : subjects){
-				if(s instanceof ResourceSetEditorSubject){
-					return (ResourceSetEditorSubject) s;
+				if(s instanceof ResourceSetEditedSubject){
+					return (ResourceSetEditedSubject) s;
 				}
 			}
 		}
-		ResourceSetEditorSubject subject = new ResourceSetEditorSubject(m);
+		ResourceSetEditedSubject subject = new ResourceSetEditedSubject(m);
 		subject.attach((BVRTransactionalModel) m);
 		return subject;
 	}

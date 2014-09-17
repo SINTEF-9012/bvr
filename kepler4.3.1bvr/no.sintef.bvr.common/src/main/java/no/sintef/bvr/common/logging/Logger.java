@@ -11,8 +11,4 @@ public interface Logger {
 	public void info(String message);
 	
 	public void debug(String message);
-	
-	public void setSource(Object src);
-	
-	public void setResource(Object resource);
 }

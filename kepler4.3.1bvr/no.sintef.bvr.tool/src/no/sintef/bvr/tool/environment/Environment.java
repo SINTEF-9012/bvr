@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
@@ -45,4 +46,6 @@ public interface Environment {
 	public EditorCommands getEditorCommands();
 	
 	public void disposeModel(BVRToolModel model);
+
+	public ResetableLogger getProblemLogger();
 }

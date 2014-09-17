@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
@@ -63,6 +64,11 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	@Override
 	public Logger getLogger() {
 		return logger;
+	}
+	
+	@Override
+	public ResetableLogger getProblemLogger() {
+		return (ResetableLogger) logger;
 	}
 	
 	@Override

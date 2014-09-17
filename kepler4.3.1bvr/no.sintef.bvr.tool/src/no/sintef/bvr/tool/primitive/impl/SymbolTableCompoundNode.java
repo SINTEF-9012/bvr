@@ -41,11 +41,11 @@ public class SymbolTableCompoundNode extends HashSet<SymbolNamedElement> impleme
 		for(Target target : targets) {
 			String name = target.getName();
 			if(name == null || name.equals("")){
-				Context.eINSTANCE.logger.warn("target has no name, skipping " + target.toString());
+				Context.eINSTANCE.problemLogger.warn("target has no name, skipping " + target.toString());
 				continue;
 			}
 			if(targetsMap.get(name) != null){
-				Context.eINSTANCE.logger.warn("Two targets have the same name '" + name + "', skipping " + target.toString());
+				Context.eINSTANCE.problemLogger.warn("Two targets have the same name '" + name + "', skipping " + target.toString());
 				continue;
 			}
 			targetsMap.put(name, new SymbolTarget(target));
@@ -69,16 +69,16 @@ public class SymbolTableCompoundNode extends HashSet<SymbolNamedElement> impleme
 		VSpec vSpec = (VSpec) symbolNamed.getSymbol();
 		Target target = vSpec.getTarget();
 		if(target == null){
-			Context.eINSTANCE.logger.warn("Target is not set for " + vSpec.toString());
+			Context.eINSTANCE.problemLogger.warn("Target is not set for " + vSpec.toString());
 			return;
 		}
 		SymbolTarget targetSymbol = targetsMap.get(vSpec.getName());
 		if(targetSymbol == null){
-			Context.eINSTANCE.logger.warn("Can not find target for " + vSpec.toString() + ". The taget is not under the root : " + rootNode.toString() + " (which defines the scope) or there are few targets with the same name: " + target);
+			Context.eINSTANCE.problemLogger.warn("Can not find target for " + vSpec.toString() + ". The taget is not under the root : " + rootNode.toString() + " (which defines the scope) or there are few targets with the same name: " + target);
 			return;
 		}
 		if(!targetSymbol.getSymbol().equals(target)){
-			Context.eINSTANCE.logger.warn("Referenced target and expected target are different: referenced ->" + target + ", expected -> " + targetSymbol.getSymbol());
+			Context.eINSTANCE.problemLogger.warn("Referenced target and expected target are different: referenced ->" + target + ", expected -> " + targetSymbol.getSymbol());
 			return;
 		}
 		targetSymbol.addReferencedSymbols(symbolNamed);

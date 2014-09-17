@@ -10,6 +10,7 @@ import javax.swing.JApplet;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.tool.common.LoaderUtility;
@@ -49,6 +50,7 @@ public final class Context {
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
 	public Logger logger = environment.getLogger();
+	public ResetableLogger problemLogger = environment.getProblemLogger();
 	
 	private Map<File, BVRTransactionalModel> loadedModels = new HashMap<File, BVRTransactionalModel>();
 	private JApplet focusedJApplet = null;
@@ -70,6 +72,7 @@ public final class Context {
 	public void setIWorkbenchWindow(IWorkbenchWindow workbench){
 		environment = ContextFactory.eINSTANCE.createEnvironment(workbench);
 		logger = environment.getLogger();
+		problemLogger = environment.getProblemLogger();
 	}
 	
 	public BVRToolModel loadModelFromFile(File file){

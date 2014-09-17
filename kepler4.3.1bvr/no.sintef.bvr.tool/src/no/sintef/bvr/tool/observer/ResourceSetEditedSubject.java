@@ -8,13 +8,13 @@ import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 
-public class ResourceSetEditorSubject implements ResourceSubject {
+public class ResourceSetEditedSubject implements ResourceSubject {
 
 	protected List<ResourceObserver> observers = new ArrayList<ResourceObserver>();
 	protected ResourceSetChangeEvent event;
 	private BVRToolModel model;
 	
-	public ResourceSetEditorSubject(BVRToolModel model) {
+	public ResourceSetEditedSubject(BVRToolModel model) {
 		this.model = model;
 	}
 	

@@ -9,9 +9,11 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.thirdparty.common.PluginLogger;
+import no.sintef.bvr.thirdparty.common.ProblemLoger;
 import no.sintef.bvr.thirdparty.common.Utility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
@@ -50,6 +52,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	private IWorkbenchWindow iworkbench;
 	private ThirdpartyEditorSelector editorselector;
 	private Logger logger = PluginLogger.getLogger();
+	private ResetableLogger problemLogger = ProblemLoger.getLogger();
+	
 	private ConfigHelper configHelper = EclipseConfigHelper.getConfig();
 	EList<TransactionalEditingDomain> editingDomains;
 	private EditorCommands commands = EditorEMFTransactionalCommands.Get();
@@ -284,6 +288,11 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	@Override
 	public Logger getLogger() {
 		return logger;
+	}
+	
+	@Override
+	public ResetableLogger getProblemLogger() {
+		return problemLogger;
 	}
 	
 	@Override

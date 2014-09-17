@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
@@ -75,6 +76,11 @@ public class AbstractEnvironment implements Environment {
 	@Override
 	public Logger getLogger() {
 		throw new UnimplementedBVRException("getLogger is not implemented");
+	}
+	
+	@Override
+	public ResetableLogger getProblemLogger() {
+		throw new UnimplementedBVRException("getProblemLogger is not implemented");
 	}
 
 	@Override

@@ -5,9 +5,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.observer.ResourceObserver;
+import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
+
+
 
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -107,7 +111,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void update(ResourceSubject subject) {
-		
+		if(subject instanceof ResourceSetEditedSubject){
+			Context.eINSTANCE.problemLogger.resetLogger();
+		}
 	}
 	
 

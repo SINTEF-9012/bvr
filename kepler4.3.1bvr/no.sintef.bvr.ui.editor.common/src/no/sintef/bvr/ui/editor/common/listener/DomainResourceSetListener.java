@@ -3,7 +3,7 @@ package no.sintef.bvr.ui.editor.common.listener;
 
 import java.util.List;
 
-import no.sintef.bvr.tool.observer.ResourceSetEditorSubject;
+import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
@@ -27,8 +27,8 @@ public class DomainResourceSetListener extends ResourceSetListenerImpl {
 					List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 					if(subjects != null){
 						for(ResourceSubject subject : subjects){
-							if(subject instanceof ResourceSetEditorSubject){
-								((ResourceSetEditorSubject) subject).setResourceSetChangeEvent(event);
+							if(subject instanceof ResourceSetEditedSubject){
+								((ResourceSetEditedSubject) subject).setResourceSetChangeEvent(event);
 							}	
 						}
 						ResourceResourceSetSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);

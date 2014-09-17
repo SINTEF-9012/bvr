@@ -5,15 +5,21 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.thirdparty.exception.UnexpectedThirdPartyException;
 
-public class ProblemLoger implements Logger {
+public class ProblemLoger implements ResetableLogger {
 	
 	private IResource iresource;
 	private EObject srcObject;
 
 
+	private static final ProblemLoger problemLogger = new ProblemLoger();
+	
+	public static ProblemLoger getLogger(){
+		return problemLogger;
+	}
+	
 	@Override
 	public void error(String message) {
 		IMarker m;
@@ -82,13 +88,25 @@ public class ProblemLoger implements Logger {
 	}
 
 	@Override
-	public void setSource(Object src) {
+	public void setSource(EObject src) {
 		srcObject = (EObject) src;
+		
 	}
 
 	@Override
-	public void setResource(Object resource) {
+	public void setResource(IResource resource) {
 		iresource = (IResource) resource;
+		
+	}
+
+	@Override
+	public void resetLogger() {
+		try {
+			iresource.deleteMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
+		} catch (CoreException e) {
+			throw new RuntimeException("Rethrowing exception", e);
+		}
+		
 	}
 
 }
