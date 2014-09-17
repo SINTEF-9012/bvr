@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.primitive;
 
 import bvr.NamedElement;
 
-public interface SymbolNamedElement {
+public interface SymbolNamedElement extends Symbol {
 
 		public void setSymbol(NamedElement element);
 		

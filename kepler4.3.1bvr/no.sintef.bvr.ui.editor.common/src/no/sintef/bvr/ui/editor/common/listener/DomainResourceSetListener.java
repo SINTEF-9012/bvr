@@ -3,8 +3,8 @@ package no.sintef.bvr.ui.editor.common.listener;
 
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
-import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
+import no.sintef.bvr.tool.observer.ResourceSetEditorSubject;
+import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,9 +24,9 @@ public class DomainResourceSetListener extends ResourceSetListenerImpl {
 				EObject eObject = (EObject) object;
 				if(eObject.eResource() != null){
 					URI resourceURI = eObject.eResource().getURI();
-					List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+					List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 					if(subjects != null){
-						for(EditorSubject subject : subjects){
+						for(ResourceSubject subject : subjects){
 							if(subject instanceof ResourceSetEditorSubject){
 								((ResourceSetEditorSubject) subject).setResourceSetChangeEvent(event);
 							}	

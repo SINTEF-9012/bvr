@@ -19,11 +19,11 @@ public class BVRModelSubject extends AbstractViewSubject {
 		bvrModel = (value != null) ? (BVRModel) value : null;
 	}
 	
-	public BVRModel getConfigurableUnit(){
+	public BVRModel getBVRModel(){
 		return bvrModel;
 	}
 	
-	public void setConfigurableUnit(BVRModel bvrModel){
+	public void setBVRModel(BVRModel bvrModel){
 		this.bvrModel = bvrModel;
 	}
 	

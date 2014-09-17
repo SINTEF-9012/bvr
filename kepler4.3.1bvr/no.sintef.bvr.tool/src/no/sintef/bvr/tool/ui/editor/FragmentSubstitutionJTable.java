@@ -51,7 +51,7 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 	@Override
 	public void update(Subject subject) {
 		if(subject instanceof BVRModelSubject){
-			BVRModel cu = ((BVRModelSubject) subject).getConfigurableUnit();
+			BVRModel cu = ((BVRModelSubject) subject).getBVRModel();
 			/*EList<VSpec> vSpecs = getAllVSpec(cu.getOwnedVSpec(), new BasicEList<VSpec>());
 			
 			ArrayList<DataVSpecItem> vSpecMap = new ArrayList<DataVSpecItem>();

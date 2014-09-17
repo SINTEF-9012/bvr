@@ -4,33 +4,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import no.sintef.bvr.tool.observer.ResourceSubject;
+
 import org.eclipse.emf.common.util.URI;
 
 public abstract class AbstractResourceSubjectMap implements ResourceSubjectMap {
 
-	protected HashMap<URI, List<EditorSubject>> subjects;
+	protected HashMap<URI, List<ResourceSubject>> subjects;
 
-	public List<EditorSubject> getSubjects(URI resourceURI){
+	public List<ResourceSubject> getSubjects(URI resourceURI){
 		return subjects.get(resourceURI);
 	}
 	
-	public void testResourceSubject(URI resourceURI, EditorSubject subject){
-		List<EditorSubject> list = subjects.get(resourceURI);
+	public void testResourceSubject(URI resourceURI, ResourceSubject subject){
+		List<ResourceSubject> list = subjects.get(resourceURI);
 		if(list != null){
 			if(!list.contains(subject)){
 				list.add(subject);
 			}
 		}else{
-			list = new ArrayList<EditorSubject>();
+			list = new ArrayList<ResourceSubject>();
 			list.add(subject);
 			subjects.put(resourceURI, list);
 		}
 	}
 	
 	public void pokeResourceSubjects(URI resourceURI){
-		List<EditorSubject> list = subjects.get(resourceURI);
+		List<ResourceSubject> list = subjects.get(resourceURI);
 		if(list != null){
-			for(EditorSubject s : list)
+			for(ResourceSubject s : list)
 				s.notifyObservers();
 		}
 	}

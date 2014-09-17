@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.common;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -10,12 +11,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.observer.ResourceObserver;
+import no.sintef.bvr.tool.observer.ResourceSetEditorSubject;
+import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
-import no.sintef.bvr.ui.editor.common.observer.EditorObserver;
-import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
+import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -38,7 +41,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
-public abstract class MVCEditor extends EditorPart implements EditorObserver {
+public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	JTabbedPane pane = new JTabbedPane();
 	protected JLayeredPane x = new JLayeredPane();
@@ -142,6 +145,10 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 
 						m = Context.eINSTANCE.getModel(new File(filename));
 						resourceURI = ((BVRTransactionalModel) m).getResource().getURI();
+						
+						List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+						ResourceSetEditorSubject subject = testResourceSetEditedSubject(subjects);
+						ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
 
 						if (m != null) {
 							jApplet = new CustomJApplet();
@@ -172,7 +179,7 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 		Context.eINSTANCE.logger.setResource(iResource);
 	}
 	
-	public void update(EditorSubject subject) {
+	public void update(ResourceSubject subject) {
 		firePropertyChange(ISaveablePart.PROP_DIRTY);
 	}
 	
@@ -194,5 +201,18 @@ public abstract class MVCEditor extends EditorPart implements EditorObserver {
 				throw new RuntimeException("Rethrowing exception", e);
 			}
 		}
+	}
+	
+	protected ResourceSetEditorSubject testResourceSetEditedSubject(List<ResourceSubject> subjects){
+		if(subjects != null){
+			for(ResourceSubject s : subjects){
+				if(s instanceof ResourceSetEditorSubject){
+					return (ResourceSetEditorSubject) s;
+				}
+			}
+		}
+		ResourceSetEditorSubject subject = new ResourceSetEditorSubject(m);
+		subject.attach((BVRTransactionalModel) m);
+		return subject;
 	}
 }

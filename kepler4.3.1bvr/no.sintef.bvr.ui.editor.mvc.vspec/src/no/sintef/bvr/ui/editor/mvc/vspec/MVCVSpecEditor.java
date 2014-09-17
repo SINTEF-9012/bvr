@@ -4,14 +4,13 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
+import no.sintef.bvr.tool.observer.ResourceSavedSubject;
+import no.sintef.bvr.tool.observer.ResourceSetEditorSubject;
+import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
 import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
-import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
-import no.sintef.bvr.ui.editor.mvc.vspec.observer.VSpecResourseSetSubject;
 
 
 public class MVCVSpecEditor extends MVCEditor {
@@ -33,8 +32,8 @@ public class MVCVSpecEditor extends MVCEditor {
 	public
 	void createView() {
 		v = new VSpecView(m);
-		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-		VSpecResourseSetSubject subject = testVSpecResourseSetSubject(subjects);
+		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResourceSetEditorSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
 		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
 		
@@ -43,8 +42,7 @@ public class MVCVSpecEditor extends MVCEditor {
 	}
 
 	@Override
-	public void update(EditorSubject subject) {
-		System.out.println("update(EditorSubject subject) " + subject);
+	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditorSubject){
 			m.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
@@ -55,21 +53,10 @@ public class MVCVSpecEditor extends MVCEditor {
 		super.update(subject);
 	}
 	
-	private VSpecResourseSetSubject testVSpecResourseSetSubject(List<EditorSubject> subjects){
-		if(subjects != null){
-			for(EditorSubject s : subjects){
-				if(s instanceof VSpecResourseSetSubject){
-					return (VSpecResourseSetSubject) s;
-				}
-			}
-		}
-		return new VSpecResourseSetSubject();
-	}
-	
 	@Override
 	public void dispose() {
-		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-		VSpecResourseSetSubject subject = testVSpecResourseSetSubject(subjects);
+		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResourceSetEditorSubject subject = testResourceSetEditedSubject(subjects);
 		subject.detach(this);
 		
 		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);

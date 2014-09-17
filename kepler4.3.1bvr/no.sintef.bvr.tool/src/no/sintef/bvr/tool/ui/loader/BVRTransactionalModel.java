@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.observer.ResourceObserver;
+import no.sintef.bvr.tool.observer.ResourceSubject;
+
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -17,7 +20,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BVRModel;
 
-public class BVRTransactionalModel extends BVRToolModel {
+public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -101,4 +104,11 @@ public class BVRTransactionalModel extends BVRToolModel {
 		}
 
 	}
+
+	@Override
+	public void update(ResourceSubject subject) {
+		
+	}
+	
+
 }
