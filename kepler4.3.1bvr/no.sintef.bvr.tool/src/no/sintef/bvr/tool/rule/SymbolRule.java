@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.rule;
 
 import no.sintef.bvr.tool.primitive.Symbol;
 
-public interface Rule {
+public interface SymbolRule {
 
 	public void execute(Symbol symbol);
 }

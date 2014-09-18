@@ -1,9 +1,9 @@
 package no.sintef.bvr.tool.visitor;
 
-import no.sintef.bvr.tool.primitive.SymbolNamedElement;
+import no.sintef.bvr.tool.primitive.SymbolEObject;
 
 public interface NodeVisitor {
 	
-	void visitNamedElement(SymbolNamedElement element);
+	void visitNamedElement(SymbolEObject element);
 
 }

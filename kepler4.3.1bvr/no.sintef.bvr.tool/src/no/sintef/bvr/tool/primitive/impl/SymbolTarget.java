@@ -2,26 +2,24 @@ package no.sintef.bvr.tool.primitive.impl;
 
 import java.util.HashSet;
 
+import org.eclipse.emf.ecore.EObject;
+
 import bvr.NamedElement;
 import bvr.Target;
-import no.sintef.bvr.tool.primitive.SymbolNamedElement;
-import no.sintef.bvr.tool.primitive.SymbolTableNamedElement;
+import no.sintef.bvr.tool.primitive.VisitableSymbolEObject;
+import no.sintef.bvr.tool.primitive.SymbolEObject;
+import no.sintef.bvr.tool.primitive.SymbolTableEObject;
+import no.sintef.bvr.tool.visitor.NodeVisitor;
 
-public class SymbolTarget implements SymbolNamedElement {
+public class SymbolTarget extends VisitableSymbolEObject {
 
 	private Target target;
-	private SymbolTableNamedElement table;
-	private HashSet<SymbolNamedElement> refVSpecs;
+	private SymbolTableEObject table;
+	private HashSet<SymbolEObject> refVSpecs;
 	
 	public SymbolTarget(Target trg) {
 		target = trg;
-		refVSpecs = new HashSet<SymbolNamedElement>();
-	}
-	
-	@Override
-	public void setSymbol(NamedElement element) {
-		target = (Target) element;
-
+		refVSpecs = new HashSet<SymbolEObject>();
 	}
 
 	@Override
@@ -30,21 +28,31 @@ public class SymbolTarget implements SymbolNamedElement {
 	}
 
 	@Override
-	public void setSymbolTable(SymbolTableNamedElement stable) {
+	public void setSymbolTable(SymbolTableEObject stable) {
 		table = stable;
 	}
 
 	@Override
-	public SymbolTableNamedElement getSymbolTable() {
+	public SymbolTableEObject getSymbolTable() {
 		return table;
 	}
 	
-	public void addReferencedSymbols(SymbolNamedElement SymbolNamedElement) {
+	public void addReferencedSymbols(SymbolEObject SymbolNamedElement) {
 		refVSpecs.add(SymbolNamedElement);
 	}
 	
-	public HashSet<SymbolNamedElement> getReferencedSymbols() {
+	public HashSet<SymbolEObject> getReferencedSymbols() {
 		return refVSpecs;
+	}
+
+	@Override
+	public void setSymbol(EObject element) {
+		target = (Target) element;
+	}
+
+	@Override
+	public void accept(NodeVisitor visitor) {
+		visitor.visitNamedElement(this);
 	}
 
 }

@@ -1,92 +1,85 @@
 package no.sintef.bvr.tool.primitive.impl;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-import org.eclipse.emf.common.util.EList;
-
-import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.SymbolNamedElement;
-import no.sintef.bvr.tool.primitive.SymbolTableNamedElement;
+import no.sintef.bvr.tool.primitive.SymbolEObject;
+import no.sintef.bvr.tool.primitive.SymbolTableEObject;
 import bvr.CompoundNode;
-import bvr.NamedElement;
-import bvr.Target;
-import bvr.VSpec;
 
-public class SymbolTableCompoundNode extends HashSet<SymbolNamedElement> implements SymbolTableNamedElement {
+
+public class SymbolTableCompoundNode extends HashSet<SymbolEObject> implements SymbolTableEObject {
 	
 
 	private static final long serialVersionUID = -5197571857964725230L;
 	private CompoundNode rootNode;
-	private HashMap<String, SymbolTarget> targetsMap;
+	private HashSet<EObject> list;
+	
+	private SymbolTableEObject parent;
+	private HashSet<SymbolTableEObject> children;
+	
 
 	public SymbolTableCompoundNode(CompoundNode root) {
 		rootNode = root;
-		targetsMap = new HashMap<String, SymbolTarget>();
-		EList<Target> targets = root.getOwnedTargets();
-		for(Target target : targets) {
-			String name = target.getName();
-			if(name == null || name.equals("")){
-				Context.eINSTANCE.problemLogger.warn("target has no name, skipping " + target.toString());
-				continue;
-			}
-			if(targetsMap.get(name) != null){
-				Context.eINSTANCE.problemLogger.warn("Two targets have the same name '" + name + "', skipping " + target.toString());
-				continue;
-			}
-			targetsMap.put(name, new SymbolTarget(target));
-			
-		}
+		children = new HashSet<SymbolTableEObject>();
+		list = new HashSet<EObject>();
+		list.add(rootNode);
 	}
 	
 	@Override
-	public SymbolNamedElement lookup(NamedElement element) {
+	public SymbolEObject lookup(EObject element) {
+		Iterator<SymbolEObject> iter = iterator();
+		while(iter.hasNext()){
+			SymbolEObject symbol = iter.next();
+			if(symbol.equals(element))
+				return symbol;
+		}
 		return null;
 	}
 
 	@Override
-	public SymbolTableNamedElement lookupTable(NamedElement element) {
-		return null;
-	}
-
-	@Override
-	public void insert(SymbolNamedElement symbolNamed) {
+	public void insert(SymbolEObject symbolNamed) {
 		super.add(symbolNamed);
-		VSpec vSpec = (VSpec) symbolNamed.getSymbol();
-		Target target = vSpec.getTarget();
-		if(target == null){
-			Context.eINSTANCE.problemLogger.warn("Target is not set for " + vSpec.toString());
-			return;
-		}
-		SymbolTarget targetSymbol = targetsMap.get(vSpec.getName());
-		if(targetSymbol == null){
-			Context.eINSTANCE.problemLogger.warn("Can not find target for " + vSpec.toString() + ". The taget is not under the root : " + rootNode.toString() + " (which defines the scope) or there are few targets with the same name: " + target);
-			return;
-		}
-		if(!targetSymbol.getSymbol().equals(target)){
-			Context.eINSTANCE.problemLogger.warn("Referenced target and expected target are different: referenced ->" + target + ", expected -> " + targetSymbol.getSymbol());
-			return;
-		}
-		targetSymbol.addReferencedSymbols(symbolNamed);
+		symbolNamed.setSymbolTable(this);
+		list.add(symbolNamed.getSymbol());
 	}
 
 	@Override
-	public void delete(SymbolNamedElement symbolNamed) {
+	public SymbolEObject lookup(SymbolEObject symbol) {
+		return (super.contains(symbol)) ? symbol : null;
+	}
+
+	@Override
+	public SymbolTableEObject lookupTable(EObject eObject) {
+		return (list.contains(eObject)) ? this : null;
+	}
+
+	@Override
+	public void delete(SymbolEObject symbol) {
+		list.remove(symbol.getSymbol());
+		super.remove(symbol);
+	}
+
+	@Override
+	public SymbolTableEObject getParent() {
+		return parent;
 	}
 	
-	
+	@Override
+	public void setParent(SymbolTableEObject parent){
+		this.parent = parent;
+	}
+
+	@Override
+	public HashSet<SymbolTableEObject> getChildren() {
+		return children;
+	}
+
+	@Override
+	public ArrayList<SymbolEObject> getSymbols() {
+		return new ArrayList<SymbolEObject>(this);
+	}	
 }

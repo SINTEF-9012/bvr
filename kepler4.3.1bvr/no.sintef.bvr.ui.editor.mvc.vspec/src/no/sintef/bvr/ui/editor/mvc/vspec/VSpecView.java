@@ -93,7 +93,6 @@ public class VSpecView extends BVRToolViewAbstract {
 	}
 	
 	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
-		Context.eINSTANCE.getVScopeBuilderContext().init();
 		model.getModelPanel().addMouseListener(new VSpecDropDownListener(m, this));
 		
 		JComponent c = new AddBVRModel().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, this).execute();
@@ -142,7 +141,6 @@ public class VSpecView extends BVRToolViewAbstract {
 			for(VNode vs : ((CompoundNode) v).getMember()){
 				if(vs instanceof CompoundNode){
 					loadBVRVSpecView((CompoundNode) vs, model, nextParent, cu);
-					Context.eINSTANCE.getVScopeBuilderContext().testVSpec((NamedElement)v, (CompoundNode) vs);
 				}
 			}
 		}

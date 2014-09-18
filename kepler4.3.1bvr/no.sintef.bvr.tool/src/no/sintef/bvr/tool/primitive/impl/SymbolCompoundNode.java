@@ -1,22 +1,20 @@
 package no.sintef.bvr.tool.primitive.impl;
 
-import no.sintef.bvr.tool.primitive.SymbolNamedElement;
-import no.sintef.bvr.tool.primitive.SymbolTableNamedElement;
+import org.eclipse.emf.ecore.EObject;
+
+import no.sintef.bvr.tool.primitive.VisitableSymbolEObject;
+import no.sintef.bvr.tool.primitive.SymbolTableEObject;
+import no.sintef.bvr.tool.visitor.NodeVisitor;
 import bvr.CompoundNode;
 import bvr.NamedElement;
 
-public class SymbolCompoundNode implements SymbolNamedElement {
+public class SymbolCompoundNode extends VisitableSymbolEObject {
 
 	CompoundNode node;
 	SymbolTableCompoundNode table;
 	
 	public SymbolCompoundNode(CompoundNode element) {
 		node = element;
-	}
-	
-	@Override
-	public void setSymbol(NamedElement element) {
-		node = (CompoundNode) element;
 	}
 
 	@Override
@@ -25,13 +23,23 @@ public class SymbolCompoundNode implements SymbolNamedElement {
 	}
 
 	@Override
-	public void setSymbolTable(SymbolTableNamedElement stable) {
+	public void setSymbolTable(SymbolTableEObject stable) {
 		table = (SymbolTableCompoundNode) stable;
 	}
 
 	@Override
-	public SymbolTableNamedElement getSymbolTable() {
+	public SymbolTableEObject getSymbolTable() {
 		return table;
+	}
+
+	@Override
+	public void setSymbol(EObject element) {
+		node = (CompoundNode) element;
+	}
+
+	@Override
+	public void accept(NodeVisitor visitor) {
+		visitor.visitNamedElement(this);
 	}
 
 }

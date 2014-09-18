@@ -5,16 +5,18 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import no.sintef.bvr.common.logging.ResetableLogger;
+import no.sintef.bvr.tool.checker.ModelChecker;
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 
-
-
-
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -31,12 +33,14 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath();
+		checkModel();
 	}
 
 	public BVRTransactionalModel(File sf) {
 		f = sf;
 		bvrm = new BVRInnerModel(f);
 		loadFilename = sf.getAbsolutePath();
+		checkModel();
 	}
 
 	@Override
@@ -112,9 +116,27 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
-			Context.eINSTANCE.problemLogger.resetLogger();
+			checkModel();
 		}
 	}
 	
+	private void checkModel() {
+		Job job = new Job("Checking model"){
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				Status status = new Status(Status.OK, Constants.PLUGIN_ID, "OK!");
+				try {
+					Context.eINSTANCE.problemLogger.resetLogger();
+					ModelChecker.eINSTANCE.execute(getBVRModel());
+				} catch (Exception error) {
+					Context.eINSTANCE.logger.error("Model check failed", error);
+					status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Model check failed (see log for more details): " + error.getMessage(), error);
+				}
+				return status;
+			}
+		};
+		job.schedule();
+	}
 
 }
