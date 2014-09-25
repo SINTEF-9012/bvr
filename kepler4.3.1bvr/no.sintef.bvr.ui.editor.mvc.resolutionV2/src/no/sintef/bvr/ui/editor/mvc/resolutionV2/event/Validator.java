@@ -2,15 +2,17 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 
 import java.util.List;
 
-import no.sintef.bvr.tool.ui.loader.BVRView;
+
+
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Validate;
 import bvr.Constraint;
 import bvr.VSpecResolution;
 
 public class Validator implements Validate {
-	 BVRView view;
+	 BVRViewV2 view;
 	@Override
-	public void validate(BVRView view, VSpecResolution vsr) {
+	public void validate(BVRViewV2 view, VSpecResolution vsr) {
 		// TODO Auto-generated method stub
 		this.view = view;
 	}
@@ -23,8 +25,8 @@ public class Validator implements Validate {
 
 	@Override
 	public List<Constraint> getInvalidConstraints() {
-		System.out.println(view.getCU().getOwnedConstraint());
-		return view.getCU().getOwnedConstraint();
+		//System.out.println(view.getCU().getOwnedConstraint());
+		return null; //view.getCU().getOwnedConstraint();
 	}
 
 }

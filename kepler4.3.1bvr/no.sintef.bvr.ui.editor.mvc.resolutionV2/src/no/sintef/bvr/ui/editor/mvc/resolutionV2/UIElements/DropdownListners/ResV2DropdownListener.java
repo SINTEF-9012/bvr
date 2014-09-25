@@ -13,7 +13,7 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
@@ -24,20 +24,20 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
-import bvr.ConfigurableUnit;
+//import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 
 public class ResV2DropdownListener extends MouseAdapter {
 	private BVRViewV2 bvrViewV2;
-	private ConfigurableUnit cu;
-	private BVRModel m;
+	//private ConfigurableUnit cu;
+	private BVRToolModel m;
 	private JTabbedPane resPane;
 	Map<JComponent, NamedElement> vmMap;
 
-	public ResV2DropdownListener(BVRViewV2 bvrView, ConfigurableUnit cu, BVRModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownListener(BVRViewV2 bvrView,/* ConfigurableUnit cu,*/ BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 		this.vmMap = vmMap;
 		this.bvrViewV2 = bvrView;
-		this.cu = cu;
+		//this.cu = cu;
 		this.m = m;
 		this.resPane = resPane;
 
@@ -54,15 +54,16 @@ public class ResV2DropdownListener extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, cu, bvrViewV2, resPane, vmMap);
+		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, /*cu,*/ bvrViewV2, resPane, vmMap);
+		
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
 }
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRModel m, ConfigurableUnit cu, BVRViewV2 bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
-
+	public ResV2DropdownMenu(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRViewV2 bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+/*
 		JMenuItem newres = new JMenuItem("New");
 		newres.addActionListener(new NewResolvedResolutionEvent(cu, bvrView));
 		add(newres);
@@ -74,7 +75,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 		JMenuItem importres = new JMenuItem("Import ...");
 		importres.addActionListener(new ImportResolutions(m, bvrView));
 		add(importres);
-
+ */
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
 			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
@@ -124,8 +125,8 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-		saveasImage
-				.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
+	//	saveasImage
+	//			.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
 
 		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
 		add(showGrouping);

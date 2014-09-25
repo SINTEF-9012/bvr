@@ -5,7 +5,7 @@ import java.util.List;
 
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.VClassifier;
-import bvr.VInstance;
+//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -32,7 +32,7 @@ public class AddMissingResolutions implements ResCommand {
 		unresolved = true;
 		int instances = 0;
 		int min = 0;
-		for (VSpecResolution x : parent.getChild()) {
+	/*	for (VSpecResolution x : parent.getChild()) {
 			
 			if (x.getResolvedVSpec().equals(target)) {
 				thisResolution.add(x);
@@ -42,7 +42,7 @@ public class AddMissingResolutions implements ResCommand {
 					instances++;
 				}
 			}			
-		}
+		}*/
 		while(instances < min ){
 			thisResolution.addAll((ArrayList<VSpecResolution>) (new AddResolution().init(view, target, parent, true)).execute());
 			instances++;

@@ -8,8 +8,9 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.NamedElement;
 import bvr.VSpec;
 
@@ -21,7 +22,7 @@ public class UpdateVSpec implements Command {
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
-	protected BVRView view;
+	protected BVRToolView view;
 	
 	protected String name;
 	
@@ -31,7 +32,7 @@ public class UpdateVSpec implements Command {
 	
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		
 		//System.out.println("p: " + p);
 		//System.out.println("p instanceof VSpec: " + (p instanceof VSpec));

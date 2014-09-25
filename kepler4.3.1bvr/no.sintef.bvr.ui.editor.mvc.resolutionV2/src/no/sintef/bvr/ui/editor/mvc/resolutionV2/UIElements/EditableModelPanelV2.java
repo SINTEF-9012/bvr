@@ -38,7 +38,7 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-import no.sintef.bvr.tool.ui.edit.VariableValueAssignmentPropertyEditor;
+//import no.sintef.bvr.tool.ui.edit.VariableValueAssignmentPropertyEditor;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 
@@ -95,6 +95,7 @@ public class EditableModelPanelV2 extends EditableModelPanel {
 
 
     //show dialog relative to element
+/*
 
     public void displayProperties(VariableValueAssignmentPropertyEditor content, Component parent, Dialog.ModalityType mode, VariableAssignmentPanel elem) {
 		
@@ -107,5 +108,5 @@ public class EditableModelPanelV2 extends EditableModelPanel {
     	
     	dialog.setVisible(true);	
 	}
-
+*/
 }

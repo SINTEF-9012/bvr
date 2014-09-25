@@ -25,6 +25,7 @@ public class ValidateEvent implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*
 		String message = "";
 		valid.validate(view, vsr);
 		List<Constraint> invalid = valid.getInvalidConstraints();
@@ -43,6 +44,7 @@ public class ValidateEvent implements ActionListener{
 		JOptionPane.showMessageDialog(
 				Context.eINSTANCE.getActiveJApplet(), message);
 		view.refresh();
+		*/
 	}
 
 }

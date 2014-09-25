@@ -28,14 +28,15 @@ public class AddVariableValueAssignmentV2 extends AddVariableValueAssignment imp
 
 	@Override
 	public JComponent execute() {
+		return null;
 		//System.out.println("adding variable assignment");
-		
+		/*
 		VariableAssignmentPanel cp = new VariableAssignmentPanel();
 		nodes.add(cp);
 		
         listener = new CommandMouseListener();
-        cp.addMouseListener(new VariableValueAssignmentDropDownListenerV2(cp, c, view, vmMap));
-        
+        cp.addMouseListener(new VariableValueAssignmentDropDownListenerV2(cp, /*c,*/// view, vmMap));
+        /*
         SelectInstanceCommandV2 command = new SelectInstanceCommandV2();
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
@@ -66,6 +67,7 @@ public class AddVariableValueAssignmentV2 extends AddVariableValueAssignment imp
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         return cp;
+        */
 	}
 
 }

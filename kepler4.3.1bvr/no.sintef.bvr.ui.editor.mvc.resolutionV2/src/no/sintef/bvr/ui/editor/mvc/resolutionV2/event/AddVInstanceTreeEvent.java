@@ -7,8 +7,8 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
-import bvr.BvrFactory;
-import bvr.VInstance;
+import bvr.BvrFactory; 
+//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -25,13 +25,13 @@ public class AddVInstanceTreeEvent implements ActionListener {
 		this.c = parent;
 	}
 	public void actionPerformed(ActionEvent arg0) {
-
+/*
 		VInstance root = BvrFactory.eINSTANCE.createVInstance();
 		root.setResolvedVSpec(target);
 		root.setName("I" + view.getIncrementedNameCounter());
 		Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		Context.eINSTANCE.getEditorCommands().addVInstance(c, root);
-
+*/
 	}
 
 }

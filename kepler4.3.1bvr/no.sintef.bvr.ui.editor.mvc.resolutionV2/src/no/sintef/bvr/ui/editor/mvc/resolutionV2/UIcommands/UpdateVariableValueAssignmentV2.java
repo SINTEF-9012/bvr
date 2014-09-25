@@ -18,7 +18,7 @@ import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeHandler;
+//import bvr.common.PrimitiveTypeHandler;
 
 public class UpdateVariableValueAssignmentV2 extends UpdateVariableValueAssignment  {
 	@Override

@@ -25,16 +25,17 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.edit.BCLConstraintPropertyEditor;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.tool.ui.edit.ChoicePropertyEditor;
-import no.sintef.bvr.tool.ui.edit.ConfigurableUnitPropertyEditor;
+//import no.sintef.bvr.tool.ui.edit.ConfigurableUnitPropertyEditor;
 import no.sintef.bvr.tool.ui.edit.VClassifierPropertyEditor;
 import no.sintef.bvr.tool.ui.edit.VInstancePropertyEditor;
-import no.sintef.bvr.tool.ui.edit.VariableValueAssignmentPropertyEditor;
+//import no.sintef.bvr.tool.ui.edit.VariableValueAssignmentPropertyEditor;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
+//import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
+//import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -43,13 +44,13 @@ import bvr.BCLConstraint;
 import bvr.Choice;
 import bvr.NamedElement;
 import bvr.VClassifier;
-import bvr.VInstance;
-import bvr.VariableValueAssignment;
+//import bvr.VInstance;
+//import bvr.VariableValueAssignment;
 
 public class BVREditorPanelV2 extends BVREditorPanel {
 	protected EditableModelPanel editableModelPanel = null;
 	public BVREditorPanelV2(BVRUIKernel _kernel,
-			Map<JComponent, NamedElement> vmMap, BVRView view,
+			Map<JComponent, NamedElement> vmMap, BVRToolView view,
 			List<Map<JComponent, NamedElement>> resolutionvmMaps) {
 		super(_kernel, vmMap, view, resolutionvmMaps);
         JScrollPane scrollpane = new JScrollPane();
@@ -70,7 +71,7 @@ public class BVREditorPanelV2 extends BVREditorPanel {
     	}
     	
     	//System.out.println("Here!" + p);
-    	
+    	/*
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel)p;
         	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) vmMap.get(elem), view);
@@ -120,7 +121,7 @@ public class BVREditorPanelV2 extends BVREditorPanel {
         }
         
         this.invalidate();
-
+*/
     }
 
     public void unshowPropertyEditor() {

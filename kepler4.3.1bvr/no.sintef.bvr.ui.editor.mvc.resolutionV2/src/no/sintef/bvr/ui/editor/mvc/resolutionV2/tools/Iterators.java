@@ -31,7 +31,7 @@ public class Iterators {
 	}
 
 	public void iterateEmptyOnChildren(BVRViewV2  view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
-		if (vsParent != null) {
+	/*	if (vsParent != null) {
 			for (VSpec x : vsParent.getChild()) {
 				command.init(view, x, vsrParent, onlyOneInstance);
 				List<VSpecResolution> newResolutions = command.execute();
@@ -39,10 +39,10 @@ public class Iterators {
 					iterateEmptyOnChildren(view, command, x, newResolution, onlyOneInstance);
 				}
 			}
-		}
+		}*/
 	}
 	public void iterateExisting(BVRViewV2  view, ResCommand command,VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance){
-		command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
+		/*command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		vsParent = vsrParent.getResolvedVSpec();
 		for(VSpecResolution vsr : vsrParent.getChild()){//TODO
 			iterateExisting(view, command, vsParent, vsr, onlyOneInstance);			
@@ -59,10 +59,11 @@ public class Iterators {
 				return found;
 		}
 		return null;
+		*/
 	}
 
 	private VSpecResolution getParent(VSpecResolution root, VSpecResolution child) {
-		for (VSpecResolution r : root.getChild())
+		/*for (VSpecResolution r : root.getChild())
 			if (r == child)
 				return root;
 		for (VSpecResolution r : root.getChild()) {
@@ -70,6 +71,6 @@ public class Iterators {
 			if (found != null)
 				return found;
 		}
-		return null;
+		return null;*/
 	}
 }

@@ -8,7 +8,7 @@ import bvr.VSpecResolution;
 
 
 /**
- * @author Martin
+ * @author Martin Holøs
  * ResCOmmands made to work with tools.Iterator
  * 
  */

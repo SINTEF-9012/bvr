@@ -29,10 +29,10 @@ public class UnstrippedEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		Object v = vmMap.get(cp);
-		do{
+	/*	do{
 			System.out.println();
 			Iterators.getInstance().iterateExisting(view, new UnstripCommand(), x, (VSpecResolution) v, true);
-		}while(view.getStripped().contains(v));
+		}while(view.getStripped().contains(v));*/
 		view.refresh();
 		
 	}

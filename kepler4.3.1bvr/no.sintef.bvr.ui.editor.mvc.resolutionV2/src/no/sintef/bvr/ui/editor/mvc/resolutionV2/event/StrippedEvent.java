@@ -28,11 +28,12 @@ public class StrippedEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-
+/*
 		Object v = vmMap.get(cp);
 		if (!view.getStripped().contains(v))
 			Iterators.getInstance().iterateExisting(view, new StripCommand(), x, (VSpecResolution) v, true);
 		view.refresh();
+	*/
 		}
 	
 

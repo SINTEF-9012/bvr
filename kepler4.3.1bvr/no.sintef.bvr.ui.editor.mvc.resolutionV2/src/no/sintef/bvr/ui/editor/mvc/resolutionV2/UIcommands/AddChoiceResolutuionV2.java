@@ -24,8 +24,9 @@ public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Comm
 
 	@Override
 	public JComponent execute() {
+		return null;
 		//System.out.println("adding choice");
-		
+		/*
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		////////////////////////////////////
@@ -48,6 +49,7 @@ public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Comm
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( ((Choice)c.getResolvedVSpec()).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
+        */
 	}
 
 }

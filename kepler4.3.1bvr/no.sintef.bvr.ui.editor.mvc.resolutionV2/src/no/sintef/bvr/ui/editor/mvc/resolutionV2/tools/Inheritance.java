@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 import no.sintef.bvr.tool.context.Context;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
+//import bvr.ChoiceResolutuion;
 import bvr.VSpecResolution;
 
 public class Inheritance {
@@ -19,7 +19,7 @@ public class Inheritance {
 		return instance;
 	}
 
-	public void passInheritance(ChoiceResolutuion c, boolean nBool) {
+/*	public void passInheritance(ChoiceResolutuion c, boolean nBool) {
 		for (VSpecResolution x : c.getChild()) {
 			if (x instanceof ChoiceResolutuion) {
 				if (((Choice) x.getResolvedVSpec()).isIsImpliedByParent()) {
@@ -30,5 +30,5 @@ public class Inheritance {
 				}
 			}
 		}
-	}
+	}*/
 }

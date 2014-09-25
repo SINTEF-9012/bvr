@@ -9,22 +9,22 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.BvrFactory;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+//import bvr.ChoiceResolutuion;
+//import bvr.ConfigurableUnit;
 import bvr.VSpec;
 
 public class NewResolvedResolutionEvent implements ActionListener {
-	private ConfigurableUnit cu;
+	//private ConfigurableUnit cu;
 	private BVRViewV2 view;
 
-	public NewResolvedResolutionEvent(ConfigurableUnit cu, BVRViewV2 bvrView) {
-		this.cu = cu;
+	public NewResolvedResolutionEvent(/*ConfigurableUnit cu,*/ BVRViewV2 bvrView) {
+//		this.cu = cu;
 		this.view = bvrView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-
+/*
 		ChoiceResolutuion root = BvrFactory.eINSTANCE.createChoiceResolutuion();
 
 		VSpec x = cu.getOwnedVSpec().get(0);
@@ -41,6 +41,6 @@ public class NewResolvedResolutionEvent implements ActionListener {
 			Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) x, root, root);
 		} else {
 			throw new UnsupportedOperationException("model must start with a choice");
-		}
+		}*/
 	}
 }

@@ -22,8 +22,9 @@ public class AddVInstanceV2 extends AddVInstance implements Command {
 
 	@Override
 	public JComponent execute() {
+		return null;
 		// System.out.println("adding vinstance");
-
+/*
 		// System.out.println("rootPanel is " + rootPanel);
 		VInstancePanel c = new VInstancePanel(rootPanel.getModelPanel());
 		nodes.add(c);
@@ -44,12 +45,14 @@ public class AddVInstanceV2 extends AddVInstance implements Command {
 		/*
 		 * int l = m.getLower(); int u = m.getUpper(); c.setNameAndCardinality(vc.getName(), l, u);
 		 */
+		
+		/*
 		c.setName((contains ? "(+) " : "") + (stripContains ? "(*) " : "") + vc.getName() + " : " + vc.getResolvedVSpec().getName());
 		rootPanel.getModelPanel().addNode(c);
 
 		Helper.bind(parent, c, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 
-		return c;
+		return c;*/
 	}
 
 }

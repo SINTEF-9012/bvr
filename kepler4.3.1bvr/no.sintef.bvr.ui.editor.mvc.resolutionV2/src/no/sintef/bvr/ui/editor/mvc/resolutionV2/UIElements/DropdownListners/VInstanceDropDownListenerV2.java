@@ -24,19 +24,19 @@ import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import bvr.Choice;
 import bvr.NamedElement;
 import bvr.VClassifier;
-import bvr.VInstance;
+//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstanceDropDownListenerV2  extends MouseAdapter {
-	private VInstancePanel cp;
+/*	private VInstancePanel cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRViewV2 view;
-	private VInstance c;
+//	private VInstance c;
 	
     public VInstanceDropDownListenerV2(VInstancePanel cp, VInstance c, BVRViewV2 view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
-		this.c = c;
+	//	this.c = c;
 		this.view = view;
 		this.vmMap = vmMap;
 	}
@@ -113,10 +113,10 @@ class VInstanceDropdown extends JPopupMenu {
 		}
 		
 		// Remove
-/*		JMenuItem removechoice = new JMenuItem("remove");
+		JMenuItem removechoice = new JMenuItem("remove");
 		removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
 		add(removechoice);
-*/		
+		
 		
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
@@ -136,5 +136,5 @@ class VInstanceDropdown extends JPopupMenu {
 		JMenuItem unstrip = new JMenuItem("unstrip");
 		unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view, c.getResolvedVSpec()));
 		add(unstrip);
-    }
+    }*/
 }

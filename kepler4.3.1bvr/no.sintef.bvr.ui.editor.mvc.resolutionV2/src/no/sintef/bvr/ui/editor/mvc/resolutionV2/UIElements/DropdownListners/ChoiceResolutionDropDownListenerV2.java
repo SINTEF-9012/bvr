@@ -29,14 +29,15 @@ import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import org.eclipse.emf.common.util.EList;
 
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+//import bvr.ChoiceResolutuion;
+//import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class ChoiceResolutionDropDownListenerV2 extends MouseAdapter {
+	/*
 	private ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRViewV2 view;
@@ -126,7 +127,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		/*
 		 * JMenuItem removechoice = new JMenuItem("remove"); removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
 		 * add(removechoice);
-		 */
+		 
 		// Set group
 		JMenu value = new JMenu("Set Resolution");
 		JMenuItem vtrue = new JMenuItem("true");
@@ -217,5 +218,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				return found;
 		}
 		return null;
-	}
+	}*/
+	
 }

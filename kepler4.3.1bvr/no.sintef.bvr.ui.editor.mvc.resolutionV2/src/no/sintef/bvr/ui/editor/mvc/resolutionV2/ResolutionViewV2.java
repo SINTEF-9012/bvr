@@ -12,13 +12,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.exception.BVRModelException;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
+//import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
+import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
@@ -41,17 +43,18 @@ import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import bvr.BCLConstraint;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
+//import bvr.ChoiceResolutuion;
+//import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;
-import bvr.VInstance;
+//import bvr.VInstance;
 import bvr.VSpecResolution;
-import bvr.VariableValueAssignment;
+//import bvr.VariableValueAssignment;
 
-public class ResolutionViewV2 implements BVRResolutionView {
-	private BVRModel m;
+public class ResolutionViewV2 implements BVRViewV2 {
+	private BVRToolModel m;
 	private List<Constraint> invalidConstraints;
 	public void setInvalidConstraints(List<Constraint> invalidConstraints) {
 		this.invalidConstraints = invalidConstraints;
@@ -75,7 +78,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 
-	private ConfigurableUnitSubject configurableUnitSubject;
+//	private ConfigurableUnitSubject configurableUnitSubject;
 
 	// namecounters
 	private int choiceCount = 1;
@@ -87,7 +90,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 
 	// tools
 
-	public ResolutionViewV2(BVRModel m) {
+	public ResolutionViewV2(BVRToolModel m) {
 		super();
 
 		resolutionPanes = new ArrayList<JScrollPane>();
@@ -102,9 +105,9 @@ public class ResolutionViewV2 implements BVRResolutionView {
 		this.showConstraints = false;
 		this.invalidConstraints = new ArrayList<Constraint>();
 
-		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
+//		configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
 
-		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
+		vSpecbvruikernel = new BVRUIKernel(vspecvmMap,  this, resolutionvmMaps);
 
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -113,7 +116,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 		// Resolution panes
 		resPane = new JTabbedPane();
 
-		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
+		loadBVRResolutionView(/*m.getBVRM().getCU(),*/ resolutionkernels, resPane);
 		autoLayoutResolutions();
 	}
 
@@ -121,15 +124,16 @@ public class ResolutionViewV2 implements BVRResolutionView {
 		return vSpecbvruikernel;
 	}
 
-	@Override
+//	@Override
 	public JTabbedPane getResolutionPane() {
 		return resPane;
 	}
 
+	
 	public boolean isDirty() {
 		return m.isNotSaved();
 	}
-
+/*
 	@Override
 	public ConfigurableUnitSubject getConfigurableUnitSubject() {
 		return configurableUnitSubject;
@@ -143,7 +147,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 	@Override
 	public BVRModel getModel() {
 		return m;
-	}
+	}*/
 
 	protected void autoLayoutResolutions() {// TODO
 		for (int i = 0; i < resolutionPanes.size(); i++) {
@@ -203,7 +207,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 	/*
 	 * save Selected index and current position, clean view, load resolutionview and call autoLayout. restore current position.
 	 */
-	public void notifyResolutionViewUpdate() {
+	public void notifyResolutionViewUpdate() {/*
 		// Save
 		boolean isEmpty = resPane.getTabCount() == 0;
 		int resmodels = getCU().getOwnedVSpecResolution().size();
@@ -236,17 +240,17 @@ public class ResolutionViewV2 implements BVRResolutionView {
 		if (!isEmpty && !modelIsEmpty && selected < resmodels) {
 			resPane.setSelectedIndex(selected);
 			resolutionPanes.get(selected).getViewport().setViewPosition(pos);
-		}
+		}*/
 	}
 
 	/*
  * 
  */
 
-	protected void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
-		resPane.addMouseListener(new ResV2DropdownListener((BVRViewV2) this, cu, m, resPane, vspecvmMap));
+	protected void loadBVRResolutionView(/*ConfigurableUnit cu,*/ List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
+		resPane.addMouseListener(new ResV2DropdownListener((BVRViewV2) this, /*cu,*/ m, resPane, vspecvmMap));
 
-		if (cu.getOwnedVSpecResolution().size() == 0)
+/*		if (cu.getOwnedVSpecResolution().size() == 0)
 			return;
 
 		for (VSpecResolution v : cu.getOwnedVSpecResolution()) {
@@ -284,13 +288,14 @@ public class ResolutionViewV2 implements BVRResolutionView {
 
 			resPane.addTab(tabtitle, null, epanel, "");
 		}
-	}
+	*/}
 
 	// printAnyway and secondPrint added for single layer stripped functionality
 	// stripped nodes are not drawn. 
-	protected void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, ConfigurableUnit cu,
+	protected void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent,/* ConfigurableUnit cu,*/
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, boolean printAnyway_,
 			boolean secondPrint_) throws BVRModelException {
+		/*
 		JComponent nextParent = null;
 		boolean printAnyway = printAnyway_;
 		boolean secondPrint = secondPrint_;
@@ -395,6 +400,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 			}
 
 		}
+		*/
 	}
 
 
@@ -438,28 +444,31 @@ public class ResolutionViewV2 implements BVRResolutionView {
 
 	// strips if node is stripped choice node, or secondPrint is set
 	private boolean stripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
-		if (v instanceof ChoiceResolutuion && stripped.contains(v) && !printAnyway) {
+		return secondPrint;
+	/*	if (v instanceof ChoiceResolutuion && stripped.contains(v) && !printAnyway) {
 			if (!getCU().getOwnedVSpecResolution().contains(v))
 				return !((ChoiceResolutuion) v).isDecision();
 		}
 		else if(secondPrint && stripped.contains(v)){
 			return true;
 		}
-		return false;
+		return false;*/
 	}
 
 	// returns if children are stripped
 	private boolean childrenStripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
-		for (VSpecResolution x : v.getChild()) {
+		return false;
+	/*	for (VSpecResolution x : v.getChild()) {
 			if (stripped( x,  false,  false))
 				if(!findGroupError(x)) //remove to show stripped mark on stripped nodes showing all due to group error
 				return true;
 			}
-		return false;
+		return false;*/
 	}
 	
 	private boolean findGroupError(VSpecResolution v) {
-
+		return false;
+/*
 		if (v.getResolvedVSpec().getGroupMultiplicity() == null)
 			return false;
 		int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
@@ -477,6 +486,7 @@ public class ResolutionViewV2 implements BVRResolutionView {
 		if (i < lower)
 			return true;
 		return false;
+		*/
 	}
 	@Override
 	public boolean showGrouping() {
@@ -490,20 +500,40 @@ public class ResolutionViewV2 implements BVRResolutionView {
 
 	}
 
-	@Override
+//	@Override
 	public List<Constraint> getInvalidConstraints() {
 
 		return this.invalidConstraints;
 	}
 
-	@Override
+//	@Override
 	public synchronized int getIncrementedNameCounter() {
 		instanceNameCounter++;
 		return instanceNameCounter;
 	}
 
-	@Override
+//	@Override
 	public List<VSpecResolution> getStripped() {
 		return this.stripped;
 	}
+
+@Override
+public BVRModelSubject getBVRModelSubject() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public BVRModel getBVRModel() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public BVRToolModel getBVRToolModel() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 }

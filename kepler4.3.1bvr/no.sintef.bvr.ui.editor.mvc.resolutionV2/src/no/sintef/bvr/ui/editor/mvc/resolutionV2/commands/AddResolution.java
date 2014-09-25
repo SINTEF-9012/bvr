@@ -6,17 +6,17 @@ import java.util.List;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.BvrFactory;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.PrimitiveTypeEnum;
+//import bvr.ChoiceResolutuion;
+//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 import bvr.VClassifier;
-import bvr.VInstance;
+//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeHandler;
+//import bvr.VariableValueAssignment;
+//import bvr.common.PrimitiveTypeHandler;
 
 public class AddResolution implements ResCommand{
 	private BVRViewV2 view;
@@ -64,28 +64,32 @@ public class AddResolution implements ResCommand{
 	}
 
 	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent) {
-		VInstance thisResolution = BvrFactory.eINSTANCE.createVInstance();
+		return null;
+	/*	VInstance thisResolution = BvrFactory.eINSTANCE.createVInstance();
 		// count++;
 		// vi.setName("vInstance" + count);
 		thisResolution.setName("I" + view.getIncrementedNameCounter());
 		thisResolution.setResolvedVSpec(target);
 		parent.getChild().add(thisResolution);
-		return thisResolution;
+		return thisResolution;*/
 	}
 
 	// resolve Choice
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
-		ChoiceResolutuion thisResolution = BvrFactory.eINSTANCE.createChoiceResolutuion();
+		return null;
+		/*ChoiceResolutuion thisResolution = BvrFactory.eINSTANCE.createChoiceResolutuion();
 		thisResolution.setDecision(false);
 		thisResolution.setName(target.getName());
 		thisResolution.setResolvedVSpec(target);
 		parent.getChild().add(thisResolution);
 
-		return thisResolution;
+		return thisResolution;*/
 	}
 
 	// resolve Variable
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
+		return null;
+	/*
 		VSpecResolution thisResolution = BvrFactory.eINSTANCE.createVariableValueAssignment();
 		thisResolution.setName(target.getName());
 		// Value		
@@ -99,6 +103,6 @@ public class AddResolution implements ResCommand{
 		thisResolution.setResolvedVSpec(vSpecFound);
 		parent.getChild().add(thisResolution);
 		
-		return thisResolution;
+		return thisResolution;*/
 	}
 }

@@ -10,11 +10,11 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Inheritance;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.VInstance;
+//import bvr.ChoiceResolutuion;
+//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
-import bvr.VariableValueAssignment;
+//import bvr.VariableValueAssignment;
 
 public class AddSubTreeEvent implements ActionListener {
 
@@ -31,7 +31,7 @@ public class AddSubTreeEvent implements ActionListener {
 
 
 	public void actionPerformed(ActionEvent e) {
-		VSpecResolution grandParent = Iterators.getInstance().getParent(this.view.getCU(), parent);
+		/*VSpecResolution grandParent = Iterators.getInstance().getParent(this.view.getCU(), parent);
 
 		if (grandParent == null) {
 			for (VSpecResolution c : this.view.getCU().getOwnedVSpecResolution())
@@ -58,9 +58,9 @@ public class AddSubTreeEvent implements ActionListener {
 	}
 
 	VSpecResolution create() {
-		VSpecResolution root = CloneRes.getInstance().cloneItStart(parent, view);
+		VSpecResolution root = CloneRes.getResolution().cloneItStart(parent, view);
 		Iterators.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
-		return root;
+		return root;*/
 	}
 	
 	

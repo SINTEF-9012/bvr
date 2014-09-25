@@ -1,12 +1,8 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.VClassifier;
 import bvr.VSpecResolution;
@@ -22,6 +18,7 @@ public class ShowAddMultipleInstanceDialogAndAddEvent implements ActionListener 
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/*
 		int currentInstances = 0;
 		for (VSpecResolution x : parent.getChild()) {
 			if (x.getResolvedVSpec() == c) {
@@ -47,5 +44,6 @@ public class ShowAddMultipleInstanceDialogAndAddEvent implements ActionListener 
 		if ((requestedInstancesAsString != null) && (requestedInstancesAsString.length() > 0)) {
 		  new AddMultipleInstanceTreesEvent(Integer.parseInt(requestedInstancesAsString), parent, c, view).actionPerformed(e);
 		}
+	*/
 	}
 }

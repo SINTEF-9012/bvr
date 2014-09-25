@@ -1,16 +1,16 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
 import bvr.BvrFactory;
-import bvr.ChoiceResolutuion;
-import bvr.PrimitiveTypeEnum;
+//import bvr.ChoiceResolutuion;
+//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
-import bvr.VInstance;
+//import bvr.VInstance;
 import bvr.VSpecResolution;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeHandler;
+//import bvr.VariableValueAssignment;
+//import bvr.common.PrimitiveTypeHandler;
 
 public class CloneRes {
 	private static CloneRes clone = null;
@@ -19,16 +19,16 @@ public class CloneRes {
 
 	}
 
-	public static synchronized CloneRes getInstance() {
+	public static synchronized CloneRes getResolution() {
 		if (clone == null) {
 			clone = new CloneRes();
 		}
 		return clone;
 	}
 
-	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRView view) {
+	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRViewV2 view) {
 		VSpecResolution copyTo = null;
-		
+		/*
 		if (copyFrom instanceof ChoiceResolutuion) {
 			copyTo = BvrFactory.eINSTANCE.createChoiceResolutuion();
 			((ChoiceResolutuion) copyTo).setDecision(((ChoiceResolutuion) copyFrom).isDecision());
@@ -53,23 +53,24 @@ public class CloneRes {
 		
 		copyTo.setResolvedVSpec(copyFrom.getResolvedVSpec());
 		copyTo.setName(copyFrom.getName());
-		return copyTo;
+		return copyTo;*/
+		return null;
 	}
 
-	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRView view) {
+	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRViewV2 view) {
 		VSpecResolution parentTo = cloneRes(parentFrom, view);
 		cloneIterate(parentTo, parentFrom, view);
 		return parentTo;
 	}
 
-	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRView view) {
-		if (parentFrom != null) {
+	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRViewV2 view) {
+		/*if (parentFrom != null) {
 			VSpecResolution newNode = null;
 			for (VSpecResolution x : parentFrom.getChild()) {
 				newNode = cloneRes(x, view);
 				parentTo.getChild().add(newNode);
 				cloneIterate(newNode, x, view);
 			}
-		}
+		}*/
 	}
 }
