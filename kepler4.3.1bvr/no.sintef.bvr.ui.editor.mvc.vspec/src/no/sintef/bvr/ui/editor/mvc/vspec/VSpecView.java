@@ -43,6 +43,7 @@ import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public class VSpecView extends BVRToolViewAbstract {
 	private BVRToolModel m;
@@ -127,7 +128,7 @@ public class VSpecView extends BVRToolViewAbstract {
 					OpaqueConstraint oc = (OpaqueConstraint) c;
 					if(c.getContext() == v){
 						JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-						vspecvmMap.put(comp, c);
+						vspecvmMap.put(comp, v);
 					}
 				}*/
 				if(c instanceof BCLConstraint){
@@ -135,6 +136,7 @@ public class VSpecView extends BVRToolViewAbstract {
 					
 					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 					vspecvmMap.put(comp, c);
+
 				}
 			}
 			
@@ -276,5 +278,18 @@ public class VSpecView extends BVRToolViewAbstract {
 	@Override
 	public void refresh() {
 		notifyVspecViewUpdate();
+	}
+
+	//implement to use striped functionality, else ignore
+	@Override
+	public void setUnstripped(Object vsr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setStripped(Object vsr) {
+		// TODO Auto-generated method stub
+		
 	}
 }

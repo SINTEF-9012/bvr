@@ -59,10 +59,11 @@ public class BVREditorPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1055821406124903342L;
+
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRToolView view;
-	
-    private BVRUIKernel kernel/* = new BVRUIKernel()*/;
+
+    protected BVRUIKernel kernel/* = new BVRUIKernel()*/;
 
     public BVRUIKernel getKernel() {
         return kernel;
@@ -71,11 +72,11 @@ public class BVREditorPanel extends JPanel {
     private JXPanel leftpanel = new JXPanel();
 
 
-    private EditableModelPanel editableModelPanel = null;
-    private JSplitPane splitPane = null;
+    protected EditableModelPanel editableModelPanel = null;
+    protected JSplitPane splitPane = null;
     
-    private SelectElement current;
-	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
+    protected SelectElement current;
+    protected List<Map<JComponent, NamedElement>> resolutionvmMaps;
 
     public BVREditorPanel(BVRUIKernel _kernel, Map<JComponent, NamedElement> vmMap, BVRToolView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;

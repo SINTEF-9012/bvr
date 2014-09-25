@@ -34,6 +34,7 @@ import bvr.VNode;
 import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
@@ -157,6 +158,7 @@ public interface EditorCommands {
 	
 	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle);
 
+
 	public void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint);
 
 	public void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel);
@@ -166,4 +168,7 @@ public interface EditorCommands {
 	public VPackageable testPrimitiveTypes(BVRModel model);
 	
 	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint);
+/*
+	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value);
+*/
 }

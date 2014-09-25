@@ -20,14 +20,16 @@ import bvr.VSpec;
 
 public class AddVInstance implements Command{
 
-	private BVRUIKernel rootPanel;
-	private JComponent parent;
-	//private VInstance vc;
-	private Map<JComponent, NamedElement> vmMap;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRToolView view;
-	private boolean contains;
+	//AddVInstance command extended by resolutioneditor V2, changed to protected
+	protected BVRUIKernel rootPanel;
+	protected JComponent parent;
+	//protected VInstance vc;
+	protected Map<JComponent, NamedElement> vmMap;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
+	protected BVRToolView view;
+	protected boolean contains;
+
 
 	public AddVInstance(boolean contains) {
 		this.contains = contains;

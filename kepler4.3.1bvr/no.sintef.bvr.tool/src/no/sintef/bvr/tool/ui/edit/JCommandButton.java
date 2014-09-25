@@ -16,9 +16,15 @@ public class JCommandButton extends JButton {
 
 	private static final long serialVersionUID = 6470959770787697161L;
 	protected Command command;
+
 	protected BVRToolView view;
 	
     public JCommandButton(final String title, final Command command, final BVRToolView view){
+
+/*	protected BVREditorPanel view;
+	
+    public JCommandButton(final String title, final Command command, final BVREditorPanel view){
+*/
     	this.command = command;
     	this.view = view;
         this.setText(title);

@@ -17,11 +17,11 @@ import bvr.VNode;
 
 public class AddGroupMultiplicity implements Command {
 
-	BVRUIKernel rootPanel;
-	VSpec v;
-	JComponent parent;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
+	protected BVRUIKernel rootPanel;
+	protected VSpec v;
+	protected JComponent parent;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
 	
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
 		if(p instanceof VSpec){

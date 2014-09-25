@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.commands;
 
 import java.io.File;
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -56,6 +57,7 @@ import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
 import bvr.Variabletype;
@@ -519,6 +521,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		editingDomain.getCommandStack().execute(cmd);
 	}
 
+
 	@Override
 	public void addChoice(Choice choice, BVRModel bvrModel) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
@@ -653,4 +656,14 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		editingDomain.getCommandStack().execute(cmd);
 	}
 
+/*
+	@Override
+	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
+	//TODO replace
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, elem, BvrPackage.eINSTANCE.getVariableValueAssignment_Value(), value);
+		editingDomain.getCommandStack().execute(cmd);
+		
+	}
+*/
 }

@@ -16,7 +16,7 @@ import bvr.BooleanLiteralExp;
 import bvr.BvrFactory;
 import bvr.IntegerLiteralExp;
 import bvr.NamedElement;
-import bvr.PrimitiveTypeEnum;
+//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 import bvr.RealLiteralExp;
@@ -25,15 +25,18 @@ import bvr.UnlimitedLiteralExp;
 
 
 public class AddVariableValueAssignment implements Command {
-	private Map<JComponent, NamedElement> vmMap;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRToolView view;
-	private JComponent parent;
-	private BVRUIKernel rootPanel;
-	//private VariableValueAssignment c;
-	private CommandMouseListener listener;
-	private boolean contains;
+
+//	AddVariableValueAssignment extended by resolution editor V2, changed to protected
+	protected Map<JComponent, NamedElement> vmMap;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
+	protected BVRToolView view;
+	protected JComponent parent;
+	protected BVRUIKernel rootPanel;
+	//protected VariableValueAssignment c;
+	protected CommandMouseListener listener;
+	protected boolean contains;
+
 
 	public AddVariableValueAssignment(boolean contains) {
 		this.contains = contains;

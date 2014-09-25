@@ -36,6 +36,7 @@ import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
 import bvr.Variabletype;
@@ -363,6 +364,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
+
 	public void addChoice(Choice choice, BVRModel bvrModel) {
 		// TODO Auto-generated method stub
 		
@@ -467,7 +469,11 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint) {
+
 		// TODO Auto-generated method stub
-		
 	}
+/*	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
+	//TODO replace
+}
+*/
 }

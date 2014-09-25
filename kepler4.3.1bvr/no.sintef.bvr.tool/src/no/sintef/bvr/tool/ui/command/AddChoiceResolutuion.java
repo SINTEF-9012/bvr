@@ -18,15 +18,17 @@ import bvr.PosResolution;
 import bvr.VSpec;
 
 public class AddChoiceResolutuion implements Command {
-	private Map<JComponent, NamedElement> vmMap;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRToolView view;
-	private JComponent parent;
-	private BVRUIKernel rootPanel;
-	private ChoiceResolution c;
-	private CommandMouseListener listener;
-	private boolean contains;
+
+	//AddChoiceResolutuion command extended by resolutioneditor V2, changed to protected
+	protected Map<JComponent, NamedElement> vmMap;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
+	protected BVRToolView view;
+	protected JComponent parent;
+	protected BVRUIKernel rootPanel;
+	protected ChoiceResolution c;
+	protected CommandMouseListener listener;
+	protected boolean contains;
 
 	public AddChoiceResolutuion(boolean contains) {
 		this.contains = contains;
