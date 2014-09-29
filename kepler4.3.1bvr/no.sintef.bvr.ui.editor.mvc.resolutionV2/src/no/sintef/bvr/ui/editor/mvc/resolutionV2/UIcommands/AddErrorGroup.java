@@ -10,7 +10,7 @@ import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import bvr.MultiplicityInterval;
@@ -24,7 +24,7 @@ public class AddErrorGroup extends AddGroupMultiplicity implements Command {
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRViewV2 view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		if(p instanceof VSpec){
 			this.rootPanel = rootPanel;
 			this.v = (VSpec) p;

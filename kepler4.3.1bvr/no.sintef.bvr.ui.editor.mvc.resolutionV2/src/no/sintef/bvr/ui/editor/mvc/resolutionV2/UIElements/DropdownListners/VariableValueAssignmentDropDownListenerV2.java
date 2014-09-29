@@ -10,7 +10,7 @@ import javax.swing.JPopupMenu;
 
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 import bvr.NamedElement;
 //import bvr.VariableValueAssignment;
@@ -18,10 +18,10 @@ import bvr.NamedElement;
 public class VariableValueAssignmentDropDownListenerV2  extends MouseAdapter {
 	private VariableAssignmentPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRViewV2 view;
+	private BVRResolutionToolView view;
 	//private VariableValueAssignment c;
 	
-    public VariableValueAssignmentDropDownListenerV2(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRViewV2 view, Map<JComponent, NamedElement> vmMap) {
+    public VariableValueAssignmentDropDownListenerV2(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRResolutionToolView view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
 	//	this.c = c;
 		this.view = view;
@@ -47,7 +47,7 @@ public class VariableValueAssignmentDropDownListenerV2  extends MouseAdapter {
 class VariableValueAssignmentDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VariableValueAssignmentDropdown(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRViewV2 view, Map<JComponent, NamedElement> vmMap){
+    public VariableValueAssignmentDropdown(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRResolutionToolView view, Map<JComponent, NamedElement> vmMap){
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));

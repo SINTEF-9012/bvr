@@ -20,7 +20,7 @@ import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
@@ -28,13 +28,13 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
 import bvr.NamedElement;
 
 public class ResV2DropdownListener extends MouseAdapter {
-	private BVRViewV2 bvrViewV2;
+	private BVRResolutionToolView bvrViewV2;
 	//private ConfigurableUnit cu;
 	private BVRToolModel m;
 	private JTabbedPane resPane;
 	Map<JComponent, NamedElement> vmMap;
 
-	public ResV2DropdownListener(BVRViewV2 bvrView,/* ConfigurableUnit cu,*/ BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownListener(BVRResolutionToolView bvrView,/* ConfigurableUnit cu,*/ BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 		this.vmMap = vmMap;
 		this.bvrViewV2 = bvrView;
 		//this.cu = cu;
@@ -62,7 +62,7 @@ public class ResV2DropdownListener extends MouseAdapter {
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRViewV2 bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownMenu(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRResolutionToolView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 /*
 		JMenuItem newres = new JMenuItem("New");
 		newres.addActionListener(new NewResolvedResolutionEvent(cu, bvrView));
@@ -130,11 +130,11 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
 		add(showGrouping);
-		showGrouping.addActionListener(new ToggleShowGroupEvent((BVRViewV2) bvrView));
+		showGrouping.addActionListener(new ToggleShowGroupEvent((BVRResolutionToolView) bvrView));
 
 		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
 		add(showConstraints);
-		showConstraints.addActionListener(new ToggleShowConstraintsEvent((BVRViewV2) bvrView));
+		showConstraints.addActionListener(new ToggleShowConstraintsEvent((BVRResolutionToolView) bvrView));
 	}
 
 	private static final long serialVersionUID = -4129916117036201146L;

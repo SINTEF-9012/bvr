@@ -1,6 +1,6 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 //import bvr.ChoiceResolutuion;
 //import bvr.PrimitiveTypeEnum;
@@ -26,7 +26,7 @@ public class CloneRes {
 		return clone;
 	}
 
-	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRViewV2 view) {
+	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRResolutionToolView view) {
 		VSpecResolution copyTo = null;
 		/*
 		if (copyFrom instanceof ChoiceResolutuion) {
@@ -57,13 +57,13 @@ public class CloneRes {
 		return null;
 	}
 
-	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRViewV2 view) {
+	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRResolutionToolView view) {
 		VSpecResolution parentTo = cloneRes(parentFrom, view);
 		cloneIterate(parentTo, parentFrom, view);
 		return parentTo;
 	}
 
-	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRViewV2 view) {
+	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRResolutionToolView view) {
 		/*if (parentFrom != null) {
 			VSpecResolution newNode = null;
 			for (VSpecResolution x : parentFrom.getChild()) {

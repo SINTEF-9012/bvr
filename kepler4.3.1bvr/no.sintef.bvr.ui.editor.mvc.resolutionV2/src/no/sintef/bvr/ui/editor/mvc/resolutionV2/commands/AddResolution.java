@@ -3,7 +3,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.Choice;
 //import bvr.ChoiceResolutuion;
@@ -19,7 +19,7 @@ import bvr.Variable;
 //import bvr.common.PrimitiveTypeHandler;
 
 public class AddResolution implements ResCommand{
-	private BVRViewV2 view;
+	private BVRResolutionToolView view;
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
@@ -28,7 +28,7 @@ public class AddResolution implements ResCommand{
  * ONLY for use with nodes NOT added to model
  */
 	@Override
-	public ResCommand init(BVRViewV2 view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
+	public ResCommand init(BVRResolutionToolView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = vs;
 		this.parent = vsr;

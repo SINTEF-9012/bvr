@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.BvrFactory;
@@ -15,9 +15,9 @@ import bvr.VSpec;
 
 public class NewResolvedResolutionEvent implements ActionListener {
 	//private ConfigurableUnit cu;
-	private BVRViewV2 view;
+	private BVRResolutionToolView view;
 
-	public NewResolvedResolutionEvent(/*ConfigurableUnit cu,*/ BVRViewV2 bvrView) {
+	public NewResolvedResolutionEvent(/*ConfigurableUnit cu,*/ BVRResolutionToolView bvrView) {
 //		this.cu = cu;
 		this.view = bvrView;
 	}

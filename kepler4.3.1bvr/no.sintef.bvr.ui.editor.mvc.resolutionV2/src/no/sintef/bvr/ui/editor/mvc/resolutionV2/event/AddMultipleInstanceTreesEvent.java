@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
@@ -21,10 +21,10 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	int instancesRequested;
 	VSpecResolution parent;
 	VSpec target;
-	BVRViewV2 view;
+	BVRResolutionToolView view;
 
 	// parent er choice o.l. over
-	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRViewV2 view) {
+	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRResolutionToolView view) {
 		super();
 		this.instancesRequested = instancesRequested;
 		this.parent = parent;

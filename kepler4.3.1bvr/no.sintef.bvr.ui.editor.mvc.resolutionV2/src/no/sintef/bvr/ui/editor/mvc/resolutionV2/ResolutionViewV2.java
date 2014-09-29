@@ -22,7 +22,7 @@ import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV2DropdownListener;
@@ -53,7 +53,7 @@ import bvr.OpaqueConstraint;
 import bvr.VSpecResolution;
 //import bvr.VariableValueAssignment;
 
-public class ResolutionViewV2 implements BVRViewV2 {
+public class ResolutionViewV2 implements BVRResolutionToolView {
 	private BVRToolModel m;
 	private List<Constraint> invalidConstraints;
 	public void setInvalidConstraints(List<Constraint> invalidConstraints) {
@@ -248,7 +248,7 @@ public class ResolutionViewV2 implements BVRViewV2 {
  */
 
 	protected void loadBVRResolutionView(/*ConfigurableUnit cu,*/ List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
-		resPane.addMouseListener(new ResV2DropdownListener((BVRViewV2) this, /*cu,*/ m, resPane, vspecvmMap));
+		resPane.addMouseListener(new ResV2DropdownListener((BVRResolutionToolView) this, /*cu,*/ m, resPane, vspecvmMap));
 
 /*		if (cu.getOwnedVSpecResolution().size() == 0)
 			return;

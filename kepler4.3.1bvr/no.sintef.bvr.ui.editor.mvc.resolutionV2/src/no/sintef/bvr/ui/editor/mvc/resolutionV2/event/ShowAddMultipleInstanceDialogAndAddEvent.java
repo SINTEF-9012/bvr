@@ -3,15 +3,15 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.VClassifier;
 import bvr.VSpecResolution;
 
 public class ShowAddMultipleInstanceDialogAndAddEvent implements ActionListener {
 	VClassifier c;
 	VSpecResolution parent;
-	BVRViewV2  view;
-	public ShowAddMultipleInstanceDialogAndAddEvent(VClassifier c, VSpecResolution parent, BVRViewV2  view) {		
+	BVRResolutionToolView  view;
+	public ShowAddMultipleInstanceDialogAndAddEvent(VClassifier c, VSpecResolution parent, BVRResolutionToolView  view) {		
 		this.c = c;
 		this.parent = parent;
 		this.view = view;

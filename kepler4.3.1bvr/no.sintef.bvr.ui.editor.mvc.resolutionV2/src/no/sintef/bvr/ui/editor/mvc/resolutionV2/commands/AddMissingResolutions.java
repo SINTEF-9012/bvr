@@ -3,20 +3,20 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.VClassifier;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class AddMissingResolutions implements ResCommand {
-	private BVRViewV2 view;
+	private BVRResolutionToolView view;
 	private VSpec target;
 	boolean unresolved;
 	private VSpecResolution parent;
 
 	@Override
-	public ResCommand init(BVRViewV2  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
+	public ResCommand init(BVRResolutionToolView  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = target;
 		this.parent = parent;

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
@@ -20,13 +20,13 @@ import bvr.Variable;
 public class AddVariableValueAssignmentEventV2 implements ActionListener {
 	private VSpecResolution vsr;
 	private Variable target;
-	private BVRViewV2 view;
+	private BVRResolutionToolView view;
 	static private int count = 0;
 //	private VariableValueAssignment vva;
 
 
 
-	public AddVariableValueAssignmentEventV2(VSpecResolution parent, Variable toResolve, BVRViewV2 view) {
+	public AddVariableValueAssignmentEventV2(VSpecResolution parent, Variable toResolve, BVRResolutionToolView view) {
 		vsr = parent;
 		target = toResolve;
 		this.view = view;

@@ -13,7 +13,7 @@ import no.sintef.bvr.tool.ui.dropdown.BCLConstraintDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 //import no.sintef.bvr.ui.framework.ParallelogramTitledErrorPanel;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
@@ -28,10 +28,10 @@ public class AddViolatedBCLConstraint implements Command {
 	JComponent parent;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRViewV2 view;
+	private BVRResolutionToolView view;
 	private Map<JComponent, NamedElement> vmMap;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRViewV2 view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		this.rootPanel = rootPanel;
 		this.oc = (BCLConstraint) p;
 		this.parent = parent;

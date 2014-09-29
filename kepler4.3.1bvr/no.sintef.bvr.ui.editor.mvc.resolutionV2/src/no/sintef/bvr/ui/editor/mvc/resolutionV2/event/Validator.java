@@ -4,15 +4,15 @@ import java.util.List;
 
 
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Validate;
 import bvr.Constraint;
 import bvr.VSpecResolution;
 
 public class Validator implements Validate {
-	 BVRViewV2 view;
+	 BVRResolutionToolView view;
 	@Override
-	public void validate(BVRViewV2 view, VSpecResolution vsr) {
+	public void validate(BVRResolutionToolView view, VSpecResolution vsr) {
 		// TODO Auto-generated method stub
 		this.view = view;
 	}

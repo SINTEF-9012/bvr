@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRViewV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ResCommand;
 import bvr.ConfigurableUnit;
 import bvr.VSpec;
@@ -20,7 +20,7 @@ public class Iterators {
 		return instance;
 	}
 
-	public void iterateEmpty(BVRViewV2  view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
+	public void iterateEmpty(BVRResolutionToolView  view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		List<VSpecResolution> newResolutions = command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		if (newResolutions != null) {
 			for (VSpecResolution newResolution : newResolutions) {
@@ -30,7 +30,7 @@ public class Iterators {
 		//System.out.println("no new resolutions");
 	}
 
-	public void iterateEmptyOnChildren(BVRViewV2  view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
+	public void iterateEmptyOnChildren(BVRResolutionToolView  view, ResCommand command, VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 	/*	if (vsParent != null) {
 			for (VSpec x : vsParent.getChild()) {
 				command.init(view, x, vsrParent, onlyOneInstance);
@@ -41,7 +41,7 @@ public class Iterators {
 			}
 		}*/
 	}
-	public void iterateExisting(BVRViewV2  view, ResCommand command,VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance){
+	public void iterateExisting(BVRResolutionToolView  view, ResCommand command,VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance){
 		/*command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		vsParent = vsrParent.getResolvedVSpec();
 		for(VSpecResolution vsr : vsrParent.getChild()){//TODO
