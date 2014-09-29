@@ -4,7 +4,7 @@ import java.util.List;
 
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ResCommand;
-import bvr.ConfigurableUnit;
+//import bvr.ConfigurableUnit;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -62,7 +62,7 @@ public class Iterators {
 		*/
 	}
 
-	private VSpecResolution getParent(VSpecResolution root, VSpecResolution child) {
+	//private VSpecResolution getParent(VSpecResolution root, VSpecResolution child) {
 		/*for (VSpecResolution r : root.getChild())
 			if (r == child)
 				return root;
@@ -72,5 +72,5 @@ public class Iterators {
 				return found;
 		}
 		return null;*/
-	}
+	//}
 }

@@ -11,7 +11,7 @@ import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 //import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
 //import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.observer.ResolutionV2ResourceSetSubject;
+//import no.sintef.bvr.ui.editor.mvc.resolutionV2.observer.ResolutionV2ResourceSetSubject;
 
 public class MVCResolutionEditorV2 extends MVCEditor{
 
