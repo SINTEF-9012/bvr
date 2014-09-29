@@ -289,16 +289,4 @@ public class ResolutionView extends BVRToolViewAbstract implements BVRResolution
 	public void refresh() {
 		notifyResolutionViewUpdate();
 	}
-	//implement to use striped functionality, else ignore
-	@Override
-	public void setUnstripped(Object vsr) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setStripped(Object vsr) {
-		// TODO Auto-generated method stub
-		
-	}
 }
