@@ -89,7 +89,7 @@ public class ElementPropertyEditor extends JPanel {
         this.addCenter(top);
         this.addCenter(bottom);
         
-        final JCommandButton okButton = new JCommandButton("OK", command, kernel.getEditorPanel());
+        final JCommandButton okButton = new JCommandButton("OK", command, view);
         bottom.add(okButton);
         
         //Name
