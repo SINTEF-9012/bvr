@@ -4,7 +4,6 @@ package bvr.common;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.BvrFactory;
-import bvr.ConfigurableUnit;
 import bvr.IntegerLiteralExp;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
@@ -14,7 +13,6 @@ import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 import bvr.ValueSpecification;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 
 public class PrimitiveTypeHandler {
@@ -28,9 +26,9 @@ public class PrimitiveTypeHandler {
 			instance = new PrimitiveTypeHandler();
 		}
 		return instance;
-	}
+	//}
 	
-	public PrimitveType makeType(ConfigurableUnit cu, PrimitiveTypeEnum type){
+	/*public PrimitveType makeType(ConfigurableUnit cu, PrimitiveTypeEnum type){
 		PrimitveType vt = null;
 	for(Variabletype x : cu.getOwnedVariabletype()){
 		if(x instanceof PrimitveType){
@@ -41,19 +39,19 @@ public class PrimitiveTypeHandler {
 			System.out.println("we should throw here exception COMMENTED OUT");
 			throw new UnsupportedOperationException();
 		}
-	}
+	}*/
 	
 	// Create type
-	if(vt == null){
-		vt = BvrFactory.eINSTANCE.createPrimitveType();
-		vt.setType(type);
-		vt.setName("xx");
+	//if(vt == null){
+		///vt = BvrFactory.eINSTANCE.createPrimitveType();
+		//vt.setType(type);
+		//vt.setName("xx");
 		//view.getCU().getOwnedVariabletype().add(vt);
 		//Context.eINSTANCE.getEditorCommands().addVariableType(cu, vt);
 	}
-	return vt;
+	//return vt;
 	}
-	public PrimitiveValueSpecification makeValueSpecification(Variable v) {
+	/*public PrimitiveValueSpecification makeValueSpecification(Variable v) {
 		PrimitiveValueSpecification value = BvrFactory.eINSTANCE.createPrimitiveValueSpecification();
 		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
 
@@ -150,5 +148,5 @@ public class PrimitiveTypeHandler {
 			throw new UnsupportedOperationException();
 		}
 		return value;
-	}
-}
+	}*/
+//}

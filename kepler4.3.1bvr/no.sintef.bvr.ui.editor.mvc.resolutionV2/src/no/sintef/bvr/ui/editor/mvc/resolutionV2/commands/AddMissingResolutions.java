@@ -14,7 +14,10 @@ public class AddMissingResolutions implements ResCommand {
 	private VSpec target;
 	boolean unresolved;
 	private VSpecResolution parent;
-
+	/**
+	 * NOT TRANSACTIONAL
+	 * ONLY for use with nodes NOT added to model
+	 */
 	@Override
 	public ResCommand init(BVRResolutionToolView  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
 		this.view = view;
