@@ -143,11 +143,11 @@ public class ResolutionToolView implements BVRResolutionToolView {
 	public ConfigurableUnit getCU() {
 		return m.getCU();
 	}
-
-	@Override
-	public BVRModel getModel() {
+*/
+	
+	public BVRToolModel getModel() {
 		return m;
-	}*/
+	}
 
 	protected void autoLayoutResolutions() {// TODO
 		for (int i = 0; i < resolutionPanes.size(); i++) {

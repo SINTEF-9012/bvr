@@ -4,6 +4,9 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
+import no.sintef.bvr.tool.observer.ResourceSavedSubject;
+import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
+import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
 import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
 //import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
@@ -12,6 +15,7 @@ import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 //import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
 //import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.observer.ResolutionV2ResourceSetSubject;
+
 
 public class MVCResolutionEditorV2 extends MVCEditor{
 
@@ -32,20 +36,20 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 	@Override
 	public void createView() {
 		v = new ResolutionToolView(m);
-/*		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI); // get list of subjects
-		ResolutionV2ResourceSetSubject subject = testResolutionV2ResourceSetSubject(subjects); //if this editor is not in the subjects list add
+		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
 		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
-
+		
 		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
 		sbjct.attach(this);
-*/
+
 	}
+	
 	//if a change occurs, check if is is a save, if not mark as not saved and post RefreshViewEvent to eventQueue . if it si a save, mark as saved. then run update.
-//	@Override
-	/*public void update(EditorSubject subject) {
-	//	System.out.println("update for MVCResolutionEditor " + this + " " + subject);
-		if(subject instanceof ResourceSetEditorSubject){
+	@Override
+	public void update(ResourceSubject subject) {
+		if(subject instanceof ResourceSetEditedSubject){
 			m.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
@@ -55,26 +59,15 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 		super.update(subject);
 	}
 
-	private ResolutionV2ResourceSetSubject testResolutionV2ResourceSetSubject(List<EditorSubject> subjects){
-		if(subjects != null){
-			for(EditorSubject s : subjects){
-				if(s instanceof ResolutionV2ResourceSetSubject){
-					return (ResolutionV2ResourceSetSubject) s;
-				}
-			}
-		}
-		return new ResolutionV2ResourceSetSubject();
-	}
 
 	@Override
 	public void dispose() {
-		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-		ResolutionV2ResourceSetSubject subject = testResolutionV2ResourceSetSubject(subjects);
+		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.detach(this);
-
+		
 		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
 		sbjct.detach(this);
 		super.dispose();
 	}
-*/
 }
