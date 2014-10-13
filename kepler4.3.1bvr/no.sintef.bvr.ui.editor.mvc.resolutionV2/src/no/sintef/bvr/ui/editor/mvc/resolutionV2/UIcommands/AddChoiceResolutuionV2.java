@@ -12,6 +12,7 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ToggleChoiceCommand;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import bvr.Choice;
+import bvr.PosResolution;
 
 public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Command {
 
@@ -24,9 +25,9 @@ public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Comm
 
 	@Override
 	public JComponent execute() {
-		return null;
-		//System.out.println("adding choice");
-		/*
+		
+		System.out.println("adding choice");
+		
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		////////////////////////////////////
@@ -35,7 +36,7 @@ public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Comm
 		command.init(null, null, c, true);
 		listener.setLeftClickCommand(command);
 		
-		cp.addMouseListener(new ChoiceResolutionDropDownListenerV2(cp, c, vmMap, (BVRViewV2) view));
+		cp.addMouseListener(new ChoiceResolutionDropDownListenerV2(cp, c, vmMap,  (BVRResolutionToolView) view));
         cp.addMouseListener(listener);
 		
 		String choicename = "null";
@@ -43,13 +44,13 @@ public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Comm
 			choicename = c.getResolvedVSpec().getName();
 		}
 		
-        cp.setTitle((contains?"(+) ":"") + (stripContains?"(*) ":"") + choicename + " = " + c.isDecision());
+        cp.setTitle((contains?"(+) ":"") + (stripContains?"(*) ":"") + choicename + " = " + (c instanceof PosResolution));
        
         
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( ((Choice)c.getResolvedVSpec()).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
-        */
+        
 	}
 
 }

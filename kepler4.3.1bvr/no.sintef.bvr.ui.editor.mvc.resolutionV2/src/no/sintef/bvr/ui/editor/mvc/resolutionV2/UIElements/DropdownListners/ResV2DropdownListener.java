@@ -24,20 +24,21 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
+import bvr.BVRModel;
 //import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 
 public class ResV2DropdownListener extends MouseAdapter {
 	private BVRResolutionToolView bvrViewV2;
-	//private ConfigurableUnit cu;
 	private BVRToolModel m;
+	private BVRModel bvrModel;
 	private JTabbedPane resPane;
 	Map<JComponent, NamedElement> vmMap;
 
-	public ResV2DropdownListener(BVRResolutionToolView bvrView,/* ConfigurableUnit cu,*/ BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownListener(BVRResolutionToolView bvrView,BVRModel bvrModel, BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 		this.vmMap = vmMap;
 		this.bvrViewV2 = bvrView;
-		//this.cu = cu;
+		this.bvrModel= bvrModel;
 		this.m = m;
 		this.resPane = resPane;
 
@@ -54,7 +55,7 @@ public class ResV2DropdownListener extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, /*cu,*/ bvrViewV2, resPane, vmMap);
+		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, bvrModel, bvrViewV2, resPane, vmMap);
 		
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
@@ -62,12 +63,12 @@ public class ResV2DropdownListener extends MouseAdapter {
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRResolutionToolView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
-/*
+	public ResV2DropdownMenu(BVRToolModel m, BVRModel bvrModel, BVRResolutionToolView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+
 		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolvedResolutionEvent(cu, bvrView));
+		newres.addActionListener(new NewResolvedResolutionEvent(bvrModel, bvrView));
 		add(newres);
-		if (!(cu.getOwnedVSpecResolution().size() == 0)) {
+		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");
 			remove.addActionListener(new DeleteResolution(bvrView));
 			add(remove);
@@ -75,7 +76,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 		JMenuItem importres = new JMenuItem("Import ...");
 		importres.addActionListener(new ImportResolutions(m, bvrView));
 		add(importres);
- */
+ 
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
 			JMenuItem satvalres = new JMenuItem("Validate Resolutions");

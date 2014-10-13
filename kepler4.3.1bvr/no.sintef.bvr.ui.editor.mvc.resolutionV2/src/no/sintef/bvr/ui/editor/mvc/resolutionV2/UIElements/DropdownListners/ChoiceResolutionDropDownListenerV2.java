@@ -29,21 +29,24 @@ import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import org.eclipse.emf.common.util.EList;
 
 import bvr.Choice;
+import bvr.ChoiceResolution;
+import bvr.CompoundNode;
 //import bvr.ChoiceResolutuion;
 //import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class ChoiceResolutionDropDownListenerV2 extends MouseAdapter {
-	/*
+	
 	private ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRViewV2 view;
-	private ChoiceResolutuion c;
+	private BVRResolutionToolView view;
+	private ChoiceResolution c;
 
-	public ChoiceResolutionDropDownListenerV2(ChoiceResolutionPanel cp, ChoiceResolutuion c, Map<JComponent, NamedElement> vmMap, BVRViewV2 view) {
+	public ChoiceResolutionDropDownListenerV2(ChoiceResolutionPanel cp, ChoiceResolution c, Map<JComponent, NamedElement> vmMap, BVRResolutionToolView view) {
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -61,7 +64,7 @@ public class ChoiceResolutionDropDownListenerV2 extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ChoiceResolutionDropdown menu = new ChoiceResolutionDropdown(cp, c, (BVRViewV2) view, vmMap);
+		ChoiceResolutionDropdown menu = new ChoiceResolutionDropdown(cp, c, view, vmMap);
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
 }
@@ -70,12 +73,15 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
 
-	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolutuion c, BVRViewV2 view, Map<JComponent, NamedElement> vmMap) {
+	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRResolutionToolView view, Map<JComponent, NamedElement> vmMap) {
 		// Add
 		if (c.getResolvedVSpec() != null) {
 			JMenu add = new JMenu("add");
-			for (VSpec x : c.getResolvedVSpec().getChild()) {
-				JMenuItem addchild = new JMenuItem(x.getName());
+			
+			for (VNode x : ((CompoundNode) c).getMember()) {
+				
+//TODO ADD NAME
+				JMenuItem addchild = new JMenuItem("a name");
 				if (x instanceof Choice) {
 					addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
 				} else if (x instanceof VClassifier) {
@@ -87,7 +93,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				}
 				add.add(addchild);
 			}
-			if (c.getResolvedVSpec().getChild().size() == 0) {
+			if (((CompoundNode) c).getMember().size() == 0) {
 				add.add(new JMenuItem("No further VSpec"));
 			}
 			add(add);
@@ -95,33 +101,33 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		//addInstanceTree
 		if (c.getResolvedVSpec() != null) {
 			JMenu addTree = new JMenu("add realized VInstance subtree");
-			for (VSpec x : c.getResolvedVSpec().getChild()) {
-				JMenuItem addChild = new JMenuItem(x.getName());
+			for (VNode x : ((CompoundNode) c).getMember()) {
+				JMenuItem addChild = new JMenuItem(/*x.getName()*/);
 				if (x instanceof VClassifier) {
 					addChild.addActionListener(new AddVInstanceTreeEvent(c, (VClassifier) x, view));
 					addTree.add(addChild);
 				}
 			}
-			if (c.getResolvedVSpec().getChild().size() == 0) {
+			if (((CompoundNode) c).getMember().size() == 0) {
 				addTree.add(new JMenuItem("No VInstances to add"));
 			}
 			add(addTree);
 		}
 		if (c.getResolvedVSpec() != null) {
 			JMenu addMulTree = new JMenu("add multiple realized VInstance subtrees");
-			for (VSpec x : c.getResolvedVSpec().getChild()) {
-				JMenuItem addChild = new JMenuItem(x.getName());
+			for (VNode x : ((CompoundNode) c).getMember()) {
+				JMenuItem addChild = new JMenuItem(/*x.getName()*/);
 				if (x instanceof VClassifier) {
 					addChild.addActionListener(new ShowAddMultipleInstanceDialogAndAddEvent((VClassifier) x, c, view));
 					addMulTree.add(addChild);
 				}
 			}
-			if (c.getResolvedVSpec().getChild().size() == 0) {
+			if (((CompoundNode) c).getMember().size() == 0) {
 				addMulTree.add(new JMenuItem("No VInstances to add"));
 			}
 			add(addMulTree);
 		}
-
+	}
 		
 		// Remove
 		/*

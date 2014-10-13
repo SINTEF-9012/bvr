@@ -7,40 +7,45 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
+import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
-//import bvr.ChoiceResolutuion;
-//import bvr.ConfigurableUnit;
+import bvr.ChoiceResolution;
+import bvr.PosResolution;
 import bvr.VSpec;
 
 public class NewResolvedResolutionEvent implements ActionListener {
-	//private ConfigurableUnit cu;
+	BVRModel bvrModel;
 	private BVRResolutionToolView view;
 
-	public NewResolvedResolutionEvent(/*ConfigurableUnit cu,*/ BVRResolutionToolView bvrView) {
-//		this.cu = cu;
+	public NewResolvedResolutionEvent(BVRModel bvrModel, BVRResolutionToolView bvrView) {
+		this.bvrModel = bvrModel;
 		this.view = bvrView;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-/*
-		ChoiceResolutuion root = BvrFactory.eINSTANCE.createChoiceResolutuion();
 
-		VSpec x = cu.getOwnedVSpec().get(0);
+		ChoiceResolution root = BvrFactory.eINSTANCE.createPosResolution();
+
+		
+		//TODO possible error
+		VSpec x = (VSpec) bvrModel.getVariabilityModel().getMember().get(0);
 
 		// populate top choice
 		if (x instanceof Choice) {
 			root.setResolvedVSpec(x);
 			root.setName(x.getName() + " resolution");
-			Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
-			root.setDecision(false);
+
+			//Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
+			
 
 			// create resolution model
-			Context.eINSTANCE.getEditorCommands().createNewResolution(root, cu);
-			Context.eINSTANCE.getEditorCommands().addChoiceResolved((Choice) x, root, root);
+			System.out.println("creating new resolution");
+			Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, bvrModel);
+			//TODO Context.eINSTANCE.getEditorCommands().ad
 		} else {
 			throw new UnsupportedOperationException("model must start with a choice");
-		}*/
+		}
 	}
 }
