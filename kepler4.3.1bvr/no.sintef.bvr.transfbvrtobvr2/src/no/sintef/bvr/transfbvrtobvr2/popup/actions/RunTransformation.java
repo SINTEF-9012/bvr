@@ -69,10 +69,9 @@ public class RunTransformation implements IObjectActionDelegate {
 		Object obj = strSelection.getFirstElement();
 		IFile file = (IFile) Platform.getAdapterManager().getAdapter(obj, IFile.class);
 		
-		String fileName = file.getLocation().segment(file.getLocation().segmentCount() -1);
+		final String fileName = file.getLocation().segment(file.getLocation().segmentCount() -1);
 		InputDialog inputDialog = new InputDialog(shell, "Enter new file name", "File name:", fileName, new IInputValidator() {
 			
-			@Override
 			public String isValid(String newText) {
 				if(!newText.endsWith(".bvr")){
 					return "INVALID EXTENSION!";
