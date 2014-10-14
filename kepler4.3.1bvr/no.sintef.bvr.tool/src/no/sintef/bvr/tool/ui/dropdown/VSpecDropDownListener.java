@@ -6,16 +6,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class VSpecDropDownListener extends MouseAdapter {
-	private BVRToolView bvrView;
+	private BVRNotifiableController bvrView;
 	private BVRToolModel m;
 
-	public VSpecDropDownListener(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRToolView bvrView) {
+	public VSpecDropDownListener(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRNotifiableController bvrView) {
 		this.m = m;
 		//this.cu = cu;
 		this.bvrView = bvrView;
@@ -41,7 +41,7 @@ public class VSpecDropDownListener extends MouseAdapter {
 class VSpecDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecDropdown(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRToolView bvrView){
+    public VSpecDropdown(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRNotifiableController bvrView){
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
 		saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, null, null));

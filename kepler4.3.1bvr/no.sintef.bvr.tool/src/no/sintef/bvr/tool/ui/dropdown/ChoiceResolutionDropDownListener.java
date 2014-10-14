@@ -14,6 +14,7 @@ import javax.swing.JPopupMenu;
 import org.eclipse.emf.common.util.EList;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
@@ -28,7 +29,6 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
@@ -46,10 +46,10 @@ import bvr.Variable;
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 	private ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	private ChoiceResolution c;
 
-	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolution c, Map<JComponent, NamedElement> vmMap, BVRToolView view){
+	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolution c, Map<JComponent, NamedElement> vmMap, BVRNotifiableController view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -75,7 +75,7 @@ public class ChoiceResolutionDropDownListener extends MouseAdapter {
 class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRToolView view, Map<JComponent, NamedElement> vmMap){
+    public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRNotifiableController view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	VSpec vSpec = CommonUtility.getResolvedVSpec(c);
     	if(vSpec != null){

@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import bvr.Choice;
 import bvr.BvrFactory;
 import bvr.VClassifier;
@@ -14,9 +14,9 @@ import bvr.VSpecResolution;
 public class AddVInstanceEvent implements ActionListener {
 	private VSpecResolution cr;
 	private VClassifier target;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	
-	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, BVRToolView view) {
+	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, BVRNotifiableController view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;

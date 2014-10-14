@@ -15,6 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.ClearSelectionRelalizationEvent;
 import no.sintef.bvr.tool.ui.command.event.CloseModelEvent;
 import no.sintef.bvr.tool.ui.command.event.CopyModelEvent;
@@ -42,7 +43,7 @@ import bvr.NamedElement;
 public class Main {
 	private BVRJFrame jframe;
 	public static NamedElement vSpecCut;
-	private List<BVRToolView> views = Context.eINSTANCE.getBvrViews();
+	private List<BVRNotifiableController> views = Context.eINSTANCE.getBvrViews();
 	private List<BVRToolModel> models = Context.eINSTANCE.getBvrModels();
 
 	public void startVSpecView(){

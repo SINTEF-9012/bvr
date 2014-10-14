@@ -1,10 +1,17 @@
 package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
+import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.UnexpectedException;
 import bvr.BVRModel;
+import bvr.BvrFactory;
+import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public class BVRToolModel {
 	protected no.sintef.ict.splcatool.SPLCABVRModel bvrm;
@@ -12,6 +19,8 @@ public class BVRToolModel {
 	protected boolean platform = false;
 	protected String loadFilename;
 	protected boolean saved = true;
+	protected List<VSpec> minimizedVSpec;
+	protected List<VSpecResolution> minimizedVSpecResolution;
 
 	public BVRToolModel(File sf) {
 		f = sf;
@@ -100,5 +109,33 @@ public class BVRToolModel {
 
 	public void markSaved() {
 		saved = true;
+	}
+	
+	public void addChoice(VSpec parentVSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	};
+	
+	public void minimaizeVSpec(VSpec vspec){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void maximizeVSpec(VSpec vspec){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public boolean isVSpecMinimized(VSpec vspec){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void minimaizeVSpecResolution(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void maximizeVSpecResolution(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

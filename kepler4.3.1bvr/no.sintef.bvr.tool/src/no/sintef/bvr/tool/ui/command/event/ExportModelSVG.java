@@ -15,11 +15,11 @@ import javax.swing.filechooser.FileFilter;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.filter.SVGFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGeneratorContext;
@@ -32,11 +32,11 @@ import com.google.common.collect.Lists;
 public class ExportModelSVG implements ActionListener {
 
 	JTabbedPane filePane;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	private BVRToolModel model;
 	private static final String SVG_EXT = "." + SVGFilter.SVG_EXT;
 
-	public ExportModelSVG(BVRToolView view, BVRToolModel model) {
+	public ExportModelSVG(BVRNotifiableController view, BVRToolModel model) {
 		this.view = view;
 		this.model = model;
 	}

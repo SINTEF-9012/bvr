@@ -11,19 +11,19 @@ import org.eclipse.emf.ecore.EObject;
 import bvr.FragmentSubstitution;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 import no.sintef.bvr.tool.strategy.impl.SingleDummyToPlacementBoundaryCalcStrategy;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 
 public class CreateToBindingEvent implements ActionListener {
 
-	private BVRToolView view;
+	private BVRNotifiableController view;
 
-	public CreateToBindingEvent(BVRToolView _view){
+	public CreateToBindingEvent(BVRNotifiableController _view){
 		view = _view;
 	}
 	

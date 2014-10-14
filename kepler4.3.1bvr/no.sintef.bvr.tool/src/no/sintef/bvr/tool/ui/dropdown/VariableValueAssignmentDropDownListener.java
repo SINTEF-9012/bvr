@@ -12,6 +12,7 @@ import javax.swing.JPopupMenu;
 
 import org.eclipse.emf.common.util.EList;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
@@ -20,13 +21,11 @@ import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 import bvr.Choice;
-
 import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VSpec;
@@ -36,10 +35,10 @@ import bvr.Variable;
 public class VariableValueAssignmentDropDownListener  extends MouseAdapter {
 	private VariableAssignmentPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 
 	
-    public VariableValueAssignmentDropDownListener(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRToolView view, Map<JComponent, NamedElement> vmMap) {
+    public VariableValueAssignmentDropDownListener(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRNotifiableController view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
 		//this.c = c;
 		this.view = view;
@@ -65,7 +64,7 @@ public class VariableValueAssignmentDropDownListener  extends MouseAdapter {
 class VariableValueAssignmentDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VariableValueAssignmentDropdown(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRToolView view, Map<JComponent, NamedElement> vmMap){
+    public VariableValueAssignmentDropdown(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRNotifiableController view, Map<JComponent, NamedElement> vmMap){
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));

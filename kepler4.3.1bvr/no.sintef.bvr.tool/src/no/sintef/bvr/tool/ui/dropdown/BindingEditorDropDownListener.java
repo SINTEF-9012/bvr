@@ -3,14 +3,14 @@ package no.sintef.bvr.tool.ui.dropdown;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 
 
 public class BindingEditorDropDownListener extends MouseAdapter {
 
-	BVRToolView view;
+	BVRNotifiableController view;
 	
-	public BindingEditorDropDownListener(BVRToolView _view) {
+	public BindingEditorDropDownListener(BVRNotifiableController _view) {
 		view = _view;
 	}
 

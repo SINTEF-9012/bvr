@@ -12,11 +12,11 @@ import javax.swing.UIManager;
 
 import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
@@ -57,7 +57,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
 	}
 
-	protected BVRToolView v;
+	protected BVRNotifiableController v;
 	protected BVRToolModel m;
 	protected String filename;
 

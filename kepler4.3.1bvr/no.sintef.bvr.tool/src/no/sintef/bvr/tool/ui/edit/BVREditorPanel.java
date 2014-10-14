@@ -32,8 +32,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -61,7 +61,7 @@ public class BVREditorPanel extends JPanel {
 	private static final long serialVersionUID = 1055821406124903342L;
 
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 
     protected BVRUIKernel kernel/* = new BVRUIKernel()*/;
 
@@ -76,11 +76,10 @@ public class BVREditorPanel extends JPanel {
     protected JSplitPane splitPane = null;
     
     protected SelectElement current;
-    protected List<Map<JComponent, NamedElement>> resolutionvmMaps;
+    
 
-    public BVREditorPanel(BVRUIKernel _kernel, Map<JComponent, NamedElement> vmMap, BVRToolView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+    public BVREditorPanel(BVRUIKernel _kernel, Map<JComponent, NamedElement> vmMap, BVRNotifiableController view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
     	this.vmMap = vmMap;
-    	this.resolutionvmMaps = resolutionvmMaps;
     	this.kernel = _kernel;
     	this.view = view;
     	this.setBackground(Color.WHITE);

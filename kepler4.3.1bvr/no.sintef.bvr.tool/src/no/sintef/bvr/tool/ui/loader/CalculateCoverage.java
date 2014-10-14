@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.jobs.Job;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CoveringArray;
@@ -21,7 +22,7 @@ public class CalculateCoverage implements ActionListener {
 	private int t;
 	private BVRToolModel m;
 
-	public CalculateCoverage(BVRToolModel m, BVRToolView bvrView, int t) {
+	public CalculateCoverage(BVRToolModel m, BVRNotifiableController bvrView, int t) {
 		this.m = m;
 		this.t = t;
 	}

@@ -15,17 +15,17 @@ import bvr.ReplacementFragmentType;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
 public class CreateFragmentSubstitutionEvent implements ActionListener {
 
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	static int count = 0;
 
-	public CreateFragmentSubstitutionEvent(BVRToolView _view){
+	public CreateFragmentSubstitutionEvent(BVRNotifiableController _view){
 		view = _view;
 	}
 	

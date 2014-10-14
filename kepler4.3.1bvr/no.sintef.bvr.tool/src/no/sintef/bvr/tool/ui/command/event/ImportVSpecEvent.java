@@ -13,20 +13,19 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.SXFM;
 
 public class ImportVSpecEvent implements ActionListener {
 	private JTabbedPane filePane;
 	private List<BVRToolModel> models;
-	private List<BVRToolView> views;
+	private List<BVRNotifiableController> views;
 
-	public ImportVSpecEvent(JTabbedPane filePane, List<BVRToolModel> models, List<BVRToolView> views) {
+	public ImportVSpecEvent(JTabbedPane filePane, List<BVRToolModel> models, List<BVRNotifiableController> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;
@@ -35,7 +34,7 @@ public class ImportVSpecEvent implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		int i = filePane.getSelectedIndex();
 		BVRToolModel m = models.get(i);
-		BVRToolView v = views.get(i);
+		BVRNotifiableController v = views.get(i);
 		
 		final JFileChooser fc = new JFileChooser();
 		fc.addChoosableFileFilter(new FMFilter());

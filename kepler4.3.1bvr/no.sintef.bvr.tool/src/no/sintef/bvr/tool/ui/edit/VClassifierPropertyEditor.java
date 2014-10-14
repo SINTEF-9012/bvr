@@ -24,9 +24,9 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.NamedElement;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -37,7 +37,7 @@ import bvr.Variable;
 public class VClassifierPropertyEditor extends ElementPropertyEditor {
 	
     public VClassifierPropertyEditor(BVRUIKernel _kernel, NamedElement _obj,
-			BVRToolView _view) {
+			BVRNotifiableController _view) {
 		super(_kernel, _obj, _view);
 		// TODO Auto-generated constructor stub
 	}

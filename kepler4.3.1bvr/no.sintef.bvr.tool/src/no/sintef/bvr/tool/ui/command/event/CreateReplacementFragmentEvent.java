@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -21,10 +21,10 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 	
 	static int count = 0;
 	private boolean withContainment;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	private Logger logger = Context.eINSTANCE.logger;
 
-	public CreateReplacementFragmentEvent(BVRToolView _view, boolean _withContainment) {
+	public CreateReplacementFragmentEvent(BVRNotifiableController _view, boolean _withContainment) {
 		view = _view;
 		withContainment = _withContainment;
 	}

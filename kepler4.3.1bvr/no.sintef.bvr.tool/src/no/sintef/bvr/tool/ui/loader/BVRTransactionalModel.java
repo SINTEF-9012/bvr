@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,22 +26,35 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BVRModel;
+import bvr.BvrFactory;
+import bvr.Choice;
+import bvr.CompoundNode;
+import bvr.VSpec;
+import bvr.VSpecResolution;
 
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
+	
+	static private int choicCounter = 0;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath();
-		checkModel();
+		init();
 	}
 
 	public BVRTransactionalModel(File sf) {
 		f = sf;
 		bvrm = new BVRInnerModel(f);
 		loadFilename = sf.getAbsolutePath();
+		init();
+	}
+	
+	private void init(){
 		checkModel();
+		minimizedVSpec = new ArrayList<VSpec>();
+		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
 	}
 
 	@Override
@@ -111,6 +125,32 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			resource.save(options);
 		}
 
+	}
+	
+	@Override
+	public void addChoice(VSpec parentVSpec) {
+		Choice c = BvrFactory.eINSTANCE.createChoice();
+		c.setName("Choice "+choicCounter);
+		choicCounter++;
+		
+		if(parentVSpec != null){
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
+		}else{
+			BVRModel model = bvrm.getRootBVRModel();
+			if(model.getVariabilityModel() == null){
+				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
+			}
+		}
+	}
+	
+	@Override
+	public boolean isVSpecMinimized(VSpec vspec) {
+		return minimizedVSpec.contains(vspec);
+	}
+	
+	@Override
+	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes) {
+		return minimizedVSpecResolution.contains(vspecRes);
 	}
 
 	@Override

@@ -22,6 +22,7 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.edit.BCLConstraintPropertyEditor;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.tool.ui.edit.ChoicePropertyEditor;
@@ -30,7 +31,6 @@ import no.sintef.bvr.tool.ui.edit.VClassifierPropertyEditor;
 import no.sintef.bvr.tool.ui.edit.VInstancePropertyEditor;
 //import no.sintef.bvr.tool.ui.edit.VariableValueAssignmentPropertyEditor;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 //import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
@@ -50,7 +50,7 @@ import bvr.VClassifier;
 public class BVREditorPanelV2 extends BVREditorPanel {
 	protected EditableModelPanel editableModelPanel = null;
 	public BVREditorPanelV2(BVRUIKernel _kernel,
-			Map<JComponent, NamedElement> vmMap, BVRToolView view,
+			Map<JComponent, NamedElement> vmMap, BVRNotifiableController view,
 			List<Map<JComponent, NamedElement>> resolutionvmMaps) {
 		super(_kernel, vmMap, view, resolutionvmMaps);
         JScrollPane scrollpane = new JScrollPane();

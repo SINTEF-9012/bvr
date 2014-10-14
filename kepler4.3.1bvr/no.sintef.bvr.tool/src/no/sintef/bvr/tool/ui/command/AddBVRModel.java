@@ -6,10 +6,11 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 
+
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.dropdown.BVRModelDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import bvr.BVRModel;
@@ -24,9 +25,9 @@ public class AddBVRModel {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 
-	public AddBVRModel init(BVRModel model, BVRUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+	public AddBVRModel init(BVRModel model, BVRUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.rootPanel = rootPanel;
 		this.model = model;
 		this.vmMap = vmMap;

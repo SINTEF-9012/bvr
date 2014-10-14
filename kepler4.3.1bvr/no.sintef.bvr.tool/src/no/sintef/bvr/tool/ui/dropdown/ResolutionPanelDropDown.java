@@ -5,17 +5,17 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExecuteResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class ResolutionPanelDropDown extends JPopupMenu {
 
 	private static final long serialVersionUID = 5430986678350903339L;
 
-	public ResolutionPanelDropDown(BVRToolView _view){
+	public ResolutionPanelDropDown(BVRNotifiableController _view){
 		
 		JMenuItem removeResolution = new JMenuItem(Constants.RESOLUTION_REMOVE);
 		removeResolution.addActionListener(new DeleteResolution(_view));

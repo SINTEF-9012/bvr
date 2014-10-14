@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.BvrFactory;
@@ -24,10 +24,10 @@ import bvr.Variabletype;
 public class AddVariableValueAssignmentEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Variable target;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	static private int count = 0;
 	
-	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, BVRToolView view) {
+	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, BVRNotifiableController view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;

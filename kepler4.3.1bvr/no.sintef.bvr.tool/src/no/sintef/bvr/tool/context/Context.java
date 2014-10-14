@@ -14,6 +14,7 @@ import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.tool.common.LoaderUtility;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
@@ -24,7 +25,6 @@ import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.strategy.impl.ScopeBuilderContext;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -45,7 +45,7 @@ public final class Context {
 	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager();
 	
 	private final List<BVRToolModel> bvrModels = new ArrayList<BVRToolModel>();
-	private final List<BVRToolView> bvrViews = new ArrayList<BVRToolView>();
+	private final List<BVRNotifiableController> bvrViews = new ArrayList<BVRNotifiableController>();
 	
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
@@ -145,7 +145,7 @@ public final class Context {
 		return bvrModels;
 	}
 	
-	public final List<BVRToolView> getBvrViews(){
+	public final List<BVRNotifiableController> getBvrViews(){
 		return bvrViews;
 	}
 	
@@ -153,7 +153,7 @@ public final class Context {
 		bvrModels.add(model);
 	}
 	
-	public void addBvrView(BVRToolView view){
+	public void addBvrView(BVRNotifiableController view){
 		bvrViews.add(view);
 	}
 

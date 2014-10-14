@@ -8,11 +8,14 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 
 
+
+
+import no.sintef.bvr.tool.controller.BVRToolViewAbstract;
+import no.sintef.bvr.tool.controller.SwingVSpecController;
+import no.sintef.bvr.tool.controller.VSpecControllerInterface;
 import no.sintef.bvr.tool.exception.BVRModelException;
-import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddBVRModel;
@@ -21,7 +24,6 @@ import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
@@ -39,9 +41,7 @@ import bvr.VSpec;
 
 public class VSpecView extends BVRToolViewAbstract {
 	private BVRToolModel m;
-	
-	public JTabbedPane modelPane;
-	
+
 	// VSpec
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
@@ -49,13 +49,9 @@ public class VSpecView extends BVRToolViewAbstract {
 	private List<JComponent> vspecNodes;
 	private List<Pair<JComponent, JComponent>> vspecBindings;
 	private BVRUIKernel vSpecbvruikernel;
-	
-	// Resolutions
-	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
-	
-	// Realization
-	private BVRModelSubject bvrModelSubject;
 
+	private VSpecControllerInterface controller;
+	
 
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
@@ -72,11 +68,11 @@ public class VSpecView extends BVRToolViewAbstract {
 		
 		this.m = m;
 		
-		bvrModelSubject = new BVRModelSubject(this.getBVRModel());
+
 	
 		
 		// VSpec pane
-		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
+		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, null);
 		loadBVRVSpecView(m.getBVRModel(), vSpecbvruikernel);
         
         
@@ -85,6 +81,8 @@ public class VSpecView extends BVRToolViewAbstract {
 		
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
+        
+        controller = new SwingVSpecController<JComponent>(m, vspecvmMap, vspecNodes, vspecBindings);
 	}
 	
 	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
@@ -102,11 +100,11 @@ public class VSpecView extends BVRToolViewAbstract {
 		JComponent nextParent = null;
 		
 		if(v instanceof VClassifier){
-			JComponent c = new AddVClassifier(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+			JComponent c = new AddVClassifier(m.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}else if(v instanceof Choice){
-			JComponent c = new AddChoice(minimized.contains(v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
+			JComponent c = new AddChoice(m.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
 			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}
@@ -142,10 +140,7 @@ public class VSpecView extends BVRToolViewAbstract {
 		}
 	}
 
-	@Override
-	public BVRModelSubject getBVRModelSubject(){
-		return bvrModelSubject;
-	}
+
 
 	public void notifyVspecViewUpdate() {
 		// Save scroll coordinates
@@ -204,5 +199,10 @@ public class VSpecView extends BVRToolViewAbstract {
 	@Override
 	public void refresh() {
 		notifyVspecViewUpdate();
+	}
+	
+	@Override
+	public VSpecControllerInterface<?> getVSpecControllerInterface() {
+		return controller;
 	}
 }

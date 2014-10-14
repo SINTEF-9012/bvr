@@ -14,8 +14,8 @@ import org.sat4j.specs.TimeoutException;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
@@ -25,9 +25,9 @@ import no.sintef.ict.splcatool.CoveringArray;
 
 public class SATValidateResolutions implements ActionListener {
 	private BVRToolModel m;
-	private BVRToolView v;
+	private BVRNotifiableController v;
 
-	public SATValidateResolutions(BVRToolModel m, BVRToolView bvrView) {
+	public SATValidateResolutions(BVRToolModel m, BVRNotifiableController bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}

@@ -1,16 +1,16 @@
 package no.sintef.bvr.tool.ui.edit;
 
 import bvr.NamedElement;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class BVRModelPropertyEditor extends ElementPropertyEditor{
 	
 
 	public BVRModelPropertyEditor(BVRUIKernel _kernel,
-			NamedElement _obj, BVRToolView _view) {
+			NamedElement _obj, BVRNotifiableController _view) {
 		super(_kernel, _obj, _view);
 		// TODO Auto-generated constructor stub
 	}

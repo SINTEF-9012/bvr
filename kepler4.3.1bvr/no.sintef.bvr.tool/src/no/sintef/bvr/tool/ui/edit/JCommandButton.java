@@ -8,8 +8,8 @@ import javax.swing.JButton;
 
 import javax.swing.JDialog;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 public class JCommandButton extends JButton {
@@ -17,9 +17,9 @@ public class JCommandButton extends JButton {
 	private static final long serialVersionUID = 6470959770787697161L;
 	protected Command command;
 
-	protected BVRToolView view;
+	protected BVRNotifiableController view;
 	
-    public JCommandButton(final String title, final Command command, final BVRToolView view){
+    public JCommandButton(final String title, final Command command, final BVRNotifiableController view){
 
 /*	protected BVREditorPanel view;
 	

@@ -10,16 +10,17 @@ import javax.swing.event.DocumentListener;
 
 
 
+
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstancePropertyEditor extends ElementPropertyEditor{
     public VInstancePropertyEditor(BVRUIKernel _kernel, NamedElement _obj,
-			BVRToolView _view) {
+			BVRNotifiableController _view) {
 		super(_kernel, _obj, _view);
 		// TODO Auto-generated constructor stub
 	}
