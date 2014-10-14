@@ -32,8 +32,10 @@ public class AddChoiceEvent implements ActionListener {
 	
 	static int x = 1;
 
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent arg0) {
-		VSpecControllerInterface<JComponent> controller = view.getVSpecControllerInterface();
+		@SuppressWarnings("rawtypes")
+		VSpecControllerInterface controller = view.getVSpecControllerInterface();
 		controller.addChoice(p);
 	}
 }

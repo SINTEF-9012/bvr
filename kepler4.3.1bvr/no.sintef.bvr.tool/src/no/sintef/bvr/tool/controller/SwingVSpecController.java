@@ -18,6 +18,7 @@ public class SwingVSpecController<GIU_NODE extends JComponent> implements VSpecC
 	private List<JComponent> vspecNodes;
 	private List<Pair<JComponent, JComponent>> vspecBindings;
 	private BVRToolModel toolModel;
+	private BVRNotifiableController rootController;
 	
 	public SwingVSpecController(BVRToolModel model, Map<JComponent, NamedElement> a, List<JComponent> b, List<Pair<JComponent,JComponent>> c) {
 		toolModel = model;
@@ -26,11 +27,12 @@ public class SwingVSpecController<GIU_NODE extends JComponent> implements VSpecC
 		vspecBindings = c;
 	}
 	
-	public SwingVSpecController(BVRToolModel model) {
+	public SwingVSpecController(BVRToolModel model, BVRNotifiableController notifiableController) {
 		toolModel = model;
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
+		rootController = notifiableController;
 	}
 	
 	@Override
