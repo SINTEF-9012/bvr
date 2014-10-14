@@ -11,8 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 
-
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
@@ -38,7 +36,6 @@ import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
-import bvr.VSpecResolution;
 
 public class VSpecView extends BVRToolViewAbstract {
 	private BVRToolModel m;
@@ -174,9 +171,6 @@ public class VSpecView extends BVRToolViewAbstract {
 	    // Restore scroll coordinates
 	    vspecScrollPane.getViewport().setViewPosition(vpos);
 	    
-	    // Mark dirty
-	    //m.markNotSaved();
-	    //ep.notifyProbeDirty();
 	}
 
 	@Override
