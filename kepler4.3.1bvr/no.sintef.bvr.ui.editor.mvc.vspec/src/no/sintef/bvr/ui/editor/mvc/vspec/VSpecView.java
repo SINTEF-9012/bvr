@@ -1,7 +1,6 @@
 package no.sintef.bvr.ui.editor.mvc.vspec;
 
 import java.awt.Point;
-import java.awt.geom.Rectangle2D.Double;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-import org.abego.treelayout.TreeLayout;
-import org.abego.treelayout.demo.TextInBox;
-import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
-import org.abego.treelayout.util.DefaultConfiguration;
-import org.abego.treelayout.util.DefaultTreeForTreeLayout;
+
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.BVRModelException;
@@ -30,10 +25,10 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import no.sintef.bvr.ui.framework.elements.GroupPanel;
+import no.sintef.bvr.ui.framework.strategy.LayoutStrategy;
+import no.sintef.bvr.tool.ui.strategy.VSpecLayoutStrategy;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
@@ -87,7 +82,9 @@ public class VSpecView extends BVRToolViewAbstract {
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		loadBVRVSpecView(m.getBVRModel(), vSpecbvruikernel);
         
-        autoLayoutVSpec();
+        
+        LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
+        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 		
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
@@ -171,7 +168,8 @@ public class VSpecView extends BVRToolViewAbstract {
 
 	    
 	    // Automatically Layout Diagram
-	    autoLayoutVSpec();
+		LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
+        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	    
 	    // Restore scroll coordinates
 	    vspecScrollPane.getViewport().setViewPosition(vpos);
@@ -195,72 +193,6 @@ public class VSpecView extends BVRToolViewAbstract {
 
 	public void notifyAllViews(){
 		throw new UnsupportedOperationException();
-	}
-
-	void autoLayoutVSpec() {
-		Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
-		Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
-		
-		// Add VSpecs
-		for(JComponent c : vspecNodes){
-			String title = ((TitledElement)c).getTitle();
-			//System.out.println(title);
-			TextInBox t = new TextInBox(title, c.getWidth(), c.getHeight());
-			if(c instanceof GroupPanel){
-				t = new TextInBox(title, 17, 15);
-			}
-			nodemap.put(c, t);
-			nodemapr.put(t, c);
-		}
-		
-		TextInBox root = nodemap.get(vspecNodes.get(0));
-	
-		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(root);
-		
-		for(Pair<JComponent, JComponent> p : vspecBindings){
-			TextInBox a = nodemap.get(p.a);
-			if(p.a instanceof GroupPanel){
-				for(Pair<JComponent, JComponent> pc : vspecBindings){
-					if(pc.b == p.a){
-						a = nodemap.get(pc.a);
-					}
-				}
-			}
-			TextInBox b = nodemap.get(p.b);
-			if(!(p.b instanceof GroupPanel))
-				tree.addChild(a, b);
-		}
-		
-		// setup the tree layout configuration
-		double gapBetweenLevels = 30;
-		double gapBetweenNodes = 10;
-		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(gapBetweenLevels, gapBetweenNodes);
-	
-		// create the NodeExtentProvider for TextInBox nodes
-		TextInBoxNodeExtentProvider nodeExtentProvider = new TextInBoxNodeExtentProvider();
-		TreeLayout<TextInBox> treeLayout = new TreeLayout<TextInBox>(tree, nodeExtentProvider, configuration);
-		
-		// Set positions
-		for(JComponent c : vspecNodes){
-			if(!(c instanceof GroupPanel)){
-				TextInBox t = nodemap.get(c);
-				Map<TextInBox, Double> x = treeLayout.getNodeBounds();
-				Double z = x.get(t);
-				c.setBounds((int)z.getX(), (int)z.getY(), (int)z.getWidth(), (int)z.getHeight());
-			}else{
-				// Find parent
-				JComponent p = null;
-				for(Pair<JComponent, JComponent> x : vspecBindings){
-					if(x.b == c){
-						p = x.a;
-					}
-				}
-				
-				// Set pos
-				c.setBounds(p.getX()-15+(p.getWidth()-20)/2, p.getY()+p.getHeight()-10, c.getWidth(), c.getHeight());
-			}
-		}
-		
 	}
 	
 	List<VSpec> minimized = new ArrayList<VSpec>();

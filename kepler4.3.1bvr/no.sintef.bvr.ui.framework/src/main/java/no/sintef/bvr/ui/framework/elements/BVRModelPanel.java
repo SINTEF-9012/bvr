@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 
 import no.sintef.bvr.ui.framework.BufferedElement;
 import no.sintef.bvr.ui.framework.listener.DragDropLayout;
+import no.sintef.bvr.ui.framework.strategy.LayoutStrategy;
 
 import org.jdesktop.swingx.JXPanel;
 
@@ -146,5 +147,9 @@ public class BVRModelPanel extends JLayeredPane implements BufferedElement {
                 ((BufferedElement)c).clearBuffer();
             }
         }
+    }
+    
+    public void layoutTreeNodes(LayoutStrategy strategy){
+    	strategy.layout();
     }
 }

@@ -5,7 +5,8 @@ Bundle-SymbolicName: no.sintef.bvr.ui.framework
 Bundle-Version: 1.0.0.qualifier
 Export-Package: no.sintef.bvr.ui.framework,
  no.sintef.bvr.ui.framework.elements,
- no.sintef.bvr.ui.framework.listener
+ no.sintef.bvr.ui.framework.listener,
+ no.sintef.bvr.ui.framework.strategy
 Bundle-ClassPath: .,
  lib/org.abego.treelayout.core-1.0.1.jar,
  lib/swingx-all-1.6.5-1.jar,
