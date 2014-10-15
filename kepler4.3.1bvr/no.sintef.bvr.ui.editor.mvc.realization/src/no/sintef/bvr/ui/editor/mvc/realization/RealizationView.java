@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRToolViewAbstract;
+import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.dropdown.BindingEditorDropDownListener;
@@ -31,7 +31,7 @@ import bvr.BVRModel;
 import bvr.NamedElement;
 import bvr.VSpecResolution;
 
-public class RealizationView extends BVRToolViewAbstract implements BVRRealizationView {
+public class RealizationView extends BVRToolAbstractController implements BVRRealizationView {
 	private BVRToolModel m;
 	
 	public JTabbedPane modelPane;

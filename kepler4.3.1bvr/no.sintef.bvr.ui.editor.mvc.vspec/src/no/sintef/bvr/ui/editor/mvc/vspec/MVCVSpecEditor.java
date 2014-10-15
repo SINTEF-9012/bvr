@@ -24,14 +24,14 @@ public class MVCVSpecEditor extends MVCEditor {
 	@Override
 	public
 	void setContents() {
-		jApplet.add(((VSpecView)v).vspecEpanel);
+		jApplet.add(((VSpecRootController)v).getEditorRootPanel());
 	}
 	
 
 	@Override
 	public
 	void createView() {
-		v = new VSpecView(m);
+		v = new VSpecRootController(m);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);

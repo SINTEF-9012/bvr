@@ -18,7 +18,7 @@ import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.controller.BVRToolViewAbstract;
+import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
@@ -41,7 +41,7 @@ import bvr.VNode;
 import bvr.VSpecResolution;
 
 
-public class ResolutionView extends BVRToolViewAbstract implements BVRResolutionView {
+public class ResolutionView extends BVRToolAbstractController implements BVRResolutionView {
 	private BVRToolModel m;
 	
 	public JTabbedPane modelPane;
@@ -269,13 +269,13 @@ public class ResolutionView extends BVRToolViewAbstract implements BVRResolution
 	}
 
 
-	@Override
+	
 	public void setMaximized(Object v) {
 		minimized.remove(v);
 		refresh();
 	}
 
-	@Override
+	
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution)v);
 		refresh();

@@ -1,20 +1,10 @@
 package no.sintef.bvr.tool.controller;
 
 
-abstract public class BVRToolViewAbstract implements BVRNotifiableController{
+abstract public class BVRToolAbstractController implements BVRNotifiableController{
 	
-	public int choiceCount = 1;
 	
-	public void setMaximized(Object v) {
-		throw new UnsupportedOperationException("not supported for this view"); 
-	}
-	public void setMinimized(Object v) {
-		throw new UnsupportedOperationException("not supported for this view");
-	};
-	
-	public void refresh() {
-		throw new UnsupportedOperationException("not supported for this view");
-	};
+	abstract public void refresh();
 	
 	@Override
 	public VSpecControllerInterface<?> getVSpecControllerInterface() {
