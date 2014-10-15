@@ -30,7 +30,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 	
     protected void init() {
     	command = new UpdateChoice();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
 	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRNotifiableController view) {

@@ -19,7 +19,7 @@ public class BVRModelPropertyEditor extends ElementPropertyEditor{
 
 	protected void init() {
     	command = new UpdateVSpec();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
 	/*public ConfigurableUnitPropertyEditor(BVRUIKernel kernel, ConfigurableUnit elem, BVRToolView view) {

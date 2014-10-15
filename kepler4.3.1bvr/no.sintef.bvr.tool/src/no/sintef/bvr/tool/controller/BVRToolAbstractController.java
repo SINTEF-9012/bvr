@@ -7,7 +7,7 @@ abstract public class BVRToolAbstractController implements BVRNotifiableControll
 	abstract public void refresh();
 	
 	@Override
-	public VSpecControllerInterface<?> getVSpecControllerInterface() {
+	public VSpecControllerInterface<?,?> getVSpecControllerInterface() {
 		throw new UnsupportedOperationException("not supported for this view");
 	}
 	

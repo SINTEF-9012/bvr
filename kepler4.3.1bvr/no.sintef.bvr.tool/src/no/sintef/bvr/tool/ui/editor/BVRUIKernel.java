@@ -14,12 +14,10 @@ public class BVRUIKernel {
 	
 	private BVREditorPanel editorPanel;
 	private BVRModelPanel modelPanel;
-	private BVRNotifiableController view;
 	
-	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRNotifiableController view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
-		this.view = view;
+	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRNotifiableController controller, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
 		modelPanel = new BVRModelPanel();
-		editorPanel = new BVREditorPanel(this, vmMap, view, resolutionvmMaps);
+		editorPanel = new BVREditorPanel(this, controller);
 	}
 	
 	public BVREditorPanel getEditorPanel() {

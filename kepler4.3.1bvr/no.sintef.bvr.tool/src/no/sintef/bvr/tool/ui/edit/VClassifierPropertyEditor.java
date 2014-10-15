@@ -44,7 +44,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
 
 	protected void init() {
     	command = new UpdateVClassifier();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
 	/*public VClassifierPropertyEditor(BVRUIKernel kernel, VClassifier elem, BVRToolView view) {

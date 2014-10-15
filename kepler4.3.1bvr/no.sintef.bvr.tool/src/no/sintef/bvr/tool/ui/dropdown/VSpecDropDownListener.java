@@ -8,18 +8,19 @@ import javax.swing.JPopupMenu;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 
 
 public class VSpecDropDownListener extends MouseAdapter {
-	private BVRNotifiableController bvrView;
-	private BVRToolModel m;
+	private BVRNotifiableController controller;
+	private BVRToolModel toolModel;
+	private BVRUIKernel kernel;
 
-	public VSpecDropDownListener(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRNotifiableController bvrView) {
-		this.m = m;
-		//this.cu = cu;
-		this.bvrView = bvrView;
-		this.bvrView = bvrView;
+	public VSpecDropDownListener(BVRUIKernel kernel, BVRToolModel m, BVRNotifiableController controller) {
+		this.kernel = kernel;
+		this.toolModel = m;
+		this.controller = controller;
 	}
 
 	public void mousePressed(MouseEvent e){
@@ -33,17 +34,17 @@ public class VSpecDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	//VSpecDropdown menu = new VSpecDropdown(m, cu, bvrView);
-        //menu.show(e.getComponent(), e.getX(), e.getY());
+    	VSpecDropdown menu = new VSpecDropdown(kernel, toolModel, controller);
+        menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
 
 class VSpecDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecDropdown(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRNotifiableController bvrView){
+    public VSpecDropdown(BVRUIKernel kernel, BVRToolModel toolmodel, BVRNotifiableController bvrView){
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, null, null));
+		saveasImage.addActionListener(new ExportModelImage(kernel.getModelPanel(), toolmodel, null));
     }
 }

@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 
+import org.eclipse.emf.ecore.EObject;
+
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddBVRModel;
@@ -33,7 +35,10 @@ import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 
-public class SwingVSpecController<GIU_NODE extends JComponent> implements VSpecControllerInterface<GIU_NODE> {
+public class SwingVSpecController<
+		GIU_NODE extends JComponent,
+		MODEL_OBJECT extends EObject> 
+	implements VSpecControllerInterface<GIU_NODE, MODEL_OBJECT> {
 
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
@@ -65,7 +70,7 @@ public class SwingVSpecController<GIU_NODE extends JComponent> implements VSpecC
 	}
 	
 	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
-		model.getModelPanel().addMouseListener(new VSpecDropDownListener(toolModel, rootController));
+		model.getModelPanel().addMouseListener(new VSpecDropDownListener(vSpecbvruikernel, toolModel, rootController));
 		
 		JComponent c = new AddBVRModel().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
@@ -168,6 +173,11 @@ public class SwingVSpecController<GIU_NODE extends JComponent> implements VSpecC
 		VSpec vspec = (VSpec) vspecvmMap.get(node);
 		toolModel.maximizeVSpec(vspec);
 		notifyVspecViewUpdate();
+	}
+
+	@Override
+	public MODEL_OBJECT getModelObjectByUINode(GIU_NODE node) {
+		return (MODEL_OBJECT) vspecvmMap.get(node);
 	}
 	
 	

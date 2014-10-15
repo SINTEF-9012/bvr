@@ -5,11 +5,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
-
-import javax.swing.JDialog;
-
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 
 
 public class JCommandButton extends JButton {
@@ -17,30 +15,27 @@ public class JCommandButton extends JButton {
 	private static final long serialVersionUID = 6470959770787697161L;
 	protected Command command;
 
-	protected BVRNotifiableController view;
+	protected BVRNotifiableController controller;
+	protected BVRUIKernel kernel;
 	
-    public JCommandButton(final String title, final Command command, final BVRNotifiableController view){
-
-/*	protected BVREditorPanel view;
-	
-    public JCommandButton(final String title, final Command command, final BVREditorPanel view){
-*/
+    public JCommandButton(final String title, final Command command, final BVRUIKernel kernel, final BVRNotifiableController controller){
     	this.command = command;
-    	this.view = view;
+    	this.controller = controller;
+    	this.kernel = kernel;
         this.setText(title);
         this.setOpaque(false);
         this.addMouseListener(new MouseAdapter() {
         @Override
             public void mouseClicked(MouseEvent e) {
         		command.execute();
-        		if(view != null)
-        			view.getKernel().getEditorPanel().unshowPropertyEditor();
+        		if(controller != null)
+        			kernel.getEditorPanel().unshowPropertyEditor();
             }
         });
 
     }
     
     public JCommandButton(final String title, final Command command){
-    	this(title, command, null);
+    	this(title, command, null, null);
     }
 }

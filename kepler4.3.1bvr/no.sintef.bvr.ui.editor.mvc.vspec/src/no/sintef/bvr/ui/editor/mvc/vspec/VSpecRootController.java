@@ -5,6 +5,9 @@ package no.sintef.bvr.ui.editor.mvc.vspec;
 import javax.swing.JComponent;
 
 
+
+import org.eclipse.emf.ecore.EObject;
+
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.SwingVSpecController;
 import no.sintef.bvr.tool.controller.VSpecControllerInterface;
@@ -17,7 +20,7 @@ import bvr.BVRModel;
 public class VSpecRootController extends BVRToolAbstractController {
 	
 	private BVRToolModel m;
-	private SwingVSpecController<JComponent> controller;
+	private SwingVSpecController<JComponent, EObject> controller;
 
 
 	public BVRUIKernel getKernel() {
@@ -26,7 +29,7 @@ public class VSpecRootController extends BVRToolAbstractController {
 	
 	public VSpecRootController(BVRToolModel m) {
 		this.m = m;
-        controller = new SwingVSpecController<JComponent>(m, this);
+        controller = new SwingVSpecController<JComponent, EObject>(m, this);
 	}
 	
 	
@@ -50,7 +53,7 @@ public class VSpecRootController extends BVRToolAbstractController {
 	}
 	
 	@Override
-	public VSpecControllerInterface<?> getVSpecControllerInterface() {
+	public VSpecControllerInterface<?,?> getVSpecControllerInterface() {
 		return controller;
 	}
 }

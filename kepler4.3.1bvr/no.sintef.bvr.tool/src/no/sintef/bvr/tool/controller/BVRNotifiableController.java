@@ -8,7 +8,7 @@ import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 public interface BVRNotifiableController {
 	
 	//We need to get rid of these three methods!
-	public BVRUIKernel getKernel() ;
+	//public BVRUIKernel getKernel() ;
 	public BVRModel getBVRModel();
 	public BVRToolModel getBVRToolModel();
 	

@@ -40,7 +40,7 @@ public class ElementPropertyEditor extends JPanel {
 	 */
 	private static final long serialVersionUID = 6151188246017274037L;
 
-	protected BVRNotifiableController view;
+	protected BVRNotifiableController controller;
 	
 	protected JPanel top;
 	protected JPanel bottom;
@@ -64,15 +64,15 @@ public class ElementPropertyEditor extends JPanel {
     
     protected void init() {
     	command = new UpdateVSpec();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
     
-    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRNotifiableController _view) {
+    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRNotifiableController _controller) {
 
         this.setOpaque(false);
         this.setBorder(null);
 
-        view = _view;
+        controller = _controller;
         kernel = _kernel;
         obj = _obj;
         
@@ -89,7 +89,7 @@ public class ElementPropertyEditor extends JPanel {
         this.addCenter(top);
         this.addCenter(bottom);
         
-        final JCommandButton okButton = new JCommandButton("OK", command, view);
+        final JCommandButton okButton = new JCommandButton("OK", command, kernel, controller);
         bottom.add(okButton);
         
         //Name

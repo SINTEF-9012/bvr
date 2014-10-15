@@ -52,7 +52,7 @@ public class BVREditorPanelV2 extends BVREditorPanel {
 	public BVREditorPanelV2(BVRUIKernel _kernel,
 			Map<JComponent, NamedElement> vmMap, BVRNotifiableController view,
 			List<Map<JComponent, NamedElement>> resolutionvmMaps) {
-		super(_kernel, vmMap, view, resolutionvmMaps);
+		super(_kernel, view);
         JScrollPane scrollpane = new JScrollPane();
         //IAppWidgetFactory.makeIAppScrollPane(scrollpane);
         editableModelPanel = new EditableModelPanelV2(scrollpane);

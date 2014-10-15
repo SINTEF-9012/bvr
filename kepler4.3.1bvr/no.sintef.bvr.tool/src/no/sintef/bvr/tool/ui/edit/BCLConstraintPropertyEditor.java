@@ -19,7 +19,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
 	
     protected void init() {
     	command = new UpdateBCLConstraint();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
 	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRNotifiableController view) {

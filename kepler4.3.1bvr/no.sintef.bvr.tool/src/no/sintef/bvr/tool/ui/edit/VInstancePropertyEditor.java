@@ -32,7 +32,7 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
 
 	protected void init() {
     	command = new UpdateVInstance();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
 /*	public VInstancePropertyEditor(BVRUIKernel kernel, VInstance vInstance, BVRToolView view) {
