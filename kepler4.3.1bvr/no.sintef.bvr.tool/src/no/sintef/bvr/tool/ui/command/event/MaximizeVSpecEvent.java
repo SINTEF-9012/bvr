@@ -15,12 +15,10 @@ import bvr.NamedElement;
 public class MaximizeVSpecEvent implements ActionListener {
 
 	private Object cp;
-	private Map<JComponent, NamedElement> vmMap;
 	private BVRNotifiableController controller;
 
-	public MaximizeVSpecEvent(Object cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
+	public MaximizeVSpecEvent(Object cp, BVRNotifiableController controller) {
 		this.cp = cp;
-		this.vmMap = vmMap;
 		this.controller = controller;
 	}
 

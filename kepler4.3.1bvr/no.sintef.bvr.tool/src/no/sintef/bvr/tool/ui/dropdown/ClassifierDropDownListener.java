@@ -70,7 +70,7 @@ class ClassifierDropdown extends JPopupMenu {
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
-    	addchoice.addActionListener(new AddChoiceEvent(cp, vmMap, nodes, bindings, view));
+    	addchoice.addActionListener(new AddChoiceEvent(cp, view));
     	add.add(addchoice);
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
@@ -124,10 +124,10 @@ class ClassifierDropdown extends JPopupMenu {
 		
 		// Change to
 		JMenuItem minimize = new JMenuItem("minimize");
-		minimize.addActionListener(new MinimizeVSpecEvent(cp, vmMap, nodes, bindings, view));
+		minimize.addActionListener(new MinimizeVSpecEvent(cp, view));
 		add(minimize);
 		JMenuItem maximize = new JMenuItem("maximize");
-		maximize.addActionListener(new MaximizeVSpecEvent(cp, vmMap, nodes, bindings, view));
+		maximize.addActionListener(new MaximizeVSpecEvent(cp, view));
 		add(maximize);
     }
 }

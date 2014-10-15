@@ -71,11 +71,11 @@ class VariableValueAssignmentDropdown extends JPopupMenu {
 		add(remove);
 		
 		// max/min
-		JMenuItem minimize = new JMenuItem("minimize");
+		/*JMenuItem minimize = new JMenuItem("minimize");
 		minimize.addActionListener(new MinimizeVSpecEvent(cp, vmMap, null, null, view));
 		add(minimize);
 		JMenuItem maximize = new JMenuItem("maximize");
 		maximize.addActionListener(new MaximizeVSpecEvent(cp, vmMap, null, null, view));
-		add(maximize);
+		add(maximize);*/
     }
 }

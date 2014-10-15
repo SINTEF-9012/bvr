@@ -21,12 +21,10 @@ import bvr.BvrFactory;
 
 public class AddChoiceEvent implements ActionListener {
 	private JComponent p;
-	private Map<JComponent, NamedElement> vmMap;
 	private BVRNotifiableController controller;
 
-	public AddChoiceEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
+	public AddChoiceEvent(JComponent p, BVRNotifiableController controller) {
 		this.p = p;
-		this.vmMap = vmMap;
 		this.controller = controller;
 	}
 	

@@ -65,7 +65,7 @@ class BVRModelDropdown extends JPopupMenu {
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
-    	addchoice.addActionListener(new AddChoiceEvent(cp, vmMap, nodes, bindings, view));
+    	addchoice.addActionListener(new AddChoiceEvent(cp, view));
     	add.add(addchoice);
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
