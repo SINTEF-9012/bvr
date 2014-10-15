@@ -22,20 +22,19 @@ import bvr.BvrFactory;
 public class AddChoiceEvent implements ActionListener {
 	private JComponent p;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRNotifiableController view;
+	private BVRNotifiableController controller;
 
-	public AddChoiceEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public AddChoiceEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		this.p = p;
 		this.vmMap = vmMap;
-		this.view = view;
+		this.controller = controller;
 	}
 	
 	static int x = 1;
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		@SuppressWarnings("rawtypes")
-		VSpecControllerInterface controller = view.getVSpecControllerInterface();
-		controller.addChoice(p);
+		controller.getVSpecControllerInterface().addChoice(p);
 	}
 }

@@ -12,28 +12,22 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 
 
-public class MaximizeEvent implements ActionListener {
+public class MinimizeVSpecEvent implements ActionListener {
 
-	private Object cp;
+	private JComponent cp;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRNotifiableController view;
+	private BVRNotifiableController controller;
 
-	public MaximizeEvent(Object cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public MinimizeVSpecEvent(JComponent cp, Map<JComponent, NamedElement> vmMap,List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		this.cp = cp;
 		this.vmMap = vmMap;
-		this.view = view;
+		this.controller = controller;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Object v = vmMap.get(cp);
-		
-		// Modify model
-		view.setMaximized(v);
-		
-		// Regenerate view
-		//view.notifyVspecViewUpdate();
-		//view.notifyResolutionViewUpdate();
+		controller.getVSpecControllerInterface().minimizeNode(cp);
 	}
 
 }

@@ -10,8 +10,6 @@ public interface BVRNotifiableController {
 	public BVRModel getBVRModel();
 	public BVRToolModel getBVRToolModel();
 	
-	public void setMaximized(Object v);
-	public void setMinimized(Object v) ;
 	
 	public void refresh();
 	

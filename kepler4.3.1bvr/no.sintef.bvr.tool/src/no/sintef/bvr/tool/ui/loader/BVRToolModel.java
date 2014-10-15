@@ -1,20 +1,17 @@
 package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BVRModel;
-import bvr.BvrFactory;
-import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public class BVRToolModel {
-	protected no.sintef.ict.splcatool.SPLCABVRModel bvrm;
+abstract public class BVRToolModel {
+	protected SPLCABVRModel bvrm;
 	protected File f;
 	protected boolean platform = false;
 	protected String loadFilename;
@@ -24,11 +21,11 @@ public class BVRToolModel {
 
 	public BVRToolModel(File sf) {
 		f = sf;
-		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(f);
+		bvrm = new SPLCABVRModel(f);
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public BVRToolModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
+	public BVRToolModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath(); 
@@ -38,15 +35,15 @@ public class BVRToolModel {
 		f = sf;
 		platform = isPlatform;
 		loadFilename = loadLocation;
-		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
+		bvrm = new SPLCABVRModel(loadFilename, platform);
 	}
 
 	public BVRToolModel() {
-		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel();
+		bvrm = new SPLCABVRModel();
 	}
 	
 	public void reload(){
-		bvrm = (!platform) ? new no.sintef.ict.splcatool.SPLCABVRModel(f) : new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
+		bvrm = (!platform) ? new SPLCABVRModel(f) : new SPLCABVRModel(loadFilename, platform);
 	}
 	
 	public void dispose() {
@@ -67,11 +64,11 @@ public class BVRToolModel {
 		return f.getAbsolutePath();
 	}
 	
-	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM(){
+	public SPLCABVRModel getBVRM(){
 		return bvrm;
 	}
 	
-	public void setBVRM(no.sintef.ict.splcatool.SPLCABVRModel bvrm){
+	public void setBVRM(SPLCABVRModel bvrm){
 		this.bvrm = bvrm;
 	}
 

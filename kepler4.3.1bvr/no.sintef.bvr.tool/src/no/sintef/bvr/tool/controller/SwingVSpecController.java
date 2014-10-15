@@ -27,18 +27,30 @@ public class SwingVSpecController<GIU_NODE extends JComponent> implements VSpecC
 		vspecBindings = c;
 	}
 	
-	public SwingVSpecController(BVRToolModel model, BVRNotifiableController notifiableController) {
+	public SwingVSpecController(BVRToolModel model, BVRNotifiableController controller) {
 		toolModel = model;
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
-		rootController = notifiableController;
+		rootController = controller;
 	}
 	
 	@Override
 	public void addChoice(GIU_NODE parent) {
 		VSpec parentVSpec = (VSpec) vspecvmMap.get(parent);
 		toolModel.addChoice(parentVSpec);
+	}
+
+	@Override
+	public void minimizeNode(GIU_NODE node) {
+		VSpec vspec = (VSpec) vspecvmMap.get(node);
+		toolModel.minimaizeVSpec(vspec);
+	}
+
+	@Override
+	public void maximizeNode(GIU_NODE node) {
+		VSpec vspec = (VSpec) vspecvmMap.get(node);
+		toolModel.maximizeVSpec(vspec);
 	}
 	
 	

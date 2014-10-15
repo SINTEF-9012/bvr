@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import bvr.NamedElement;

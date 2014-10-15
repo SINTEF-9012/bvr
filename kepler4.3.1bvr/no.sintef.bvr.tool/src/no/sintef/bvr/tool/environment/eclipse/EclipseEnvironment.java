@@ -22,6 +22,7 @@ import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
+import no.sintef.bvr.tool.ui.loader.BVRSimpleToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
@@ -74,7 +75,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		}
 		String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
 		configHelper.saveLastLocation(filePath);
-		return new BVRToolModel(file, platformPath, true);
+		return new BVRSimpleToolModel(file, platformPath, true);
 	}
 
 	@Override

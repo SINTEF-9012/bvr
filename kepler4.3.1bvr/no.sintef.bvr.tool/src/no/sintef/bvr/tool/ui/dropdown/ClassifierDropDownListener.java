@@ -19,8 +19,8 @@ import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
 import no.sintef.bvr.tool.ui.command.event.AddVariableEvent;
 import no.sintef.bvr.tool.ui.command.event.CutEvent;
-import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
-import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
+import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
+import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
@@ -28,7 +28,6 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleOptionalEvent;
-import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
@@ -125,10 +124,10 @@ class ClassifierDropdown extends JPopupMenu {
 		
 		// Change to
 		JMenuItem minimize = new JMenuItem("minimize");
-		minimize.addActionListener(new MinimizeEvent(cp, vmMap, nodes, bindings, view));
+		minimize.addActionListener(new MinimizeVSpecEvent(cp, vmMap, nodes, bindings, view));
 		add(minimize);
 		JMenuItem maximize = new JMenuItem("maximize");
-		maximize.addActionListener(new MaximizeEvent(cp, vmMap, nodes, bindings, view));
+		maximize.addActionListener(new MaximizeVSpecEvent(cp, vmMap, nodes, bindings, view));
 		add(maximize);
     }
 }

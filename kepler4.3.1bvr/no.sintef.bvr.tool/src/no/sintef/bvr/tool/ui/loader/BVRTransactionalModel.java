@@ -143,15 +143,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 	}
 	
-	@Override
-	public boolean isVSpecMinimized(VSpec vspec) {
-		return minimizedVSpec.contains(vspec);
-	}
-	
-	@Override
-	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes) {
-		return minimizedVSpecResolution.contains(vspecRes);
-	}
 
 	@Override
 	public void update(ResourceSubject subject) {
@@ -177,6 +168,40 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			}
 		};
 		job.schedule();
+	}
+
+	@Override
+	public void minimaizeVSpec(VSpec vspec) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void maximizeVSpec(VSpec vspec) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isVSpecMinimized(VSpec vspec) {
+		return minimizedVSpec.contains(vspec);
+	}
+	
+	@Override
+	public void minimaizeVSpecResolution(VSpecResolution vspecRes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void maximizeVSpecResolution(VSpecResolution vspecRes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes) {
+		return minimizedVSpecResolution.contains(vspecRes);
 	}
 
 }
