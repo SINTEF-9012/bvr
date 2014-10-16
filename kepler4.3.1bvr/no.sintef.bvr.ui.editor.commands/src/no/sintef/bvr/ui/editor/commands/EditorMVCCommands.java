@@ -238,12 +238,12 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint){
 		cu.getOwnedVariationPoint().add(variationPoint);
 	}
-	
+	*/
 	@Override
-	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
-		cu.getOwnedVariabletype().add(variationType);
+	public void addOwnedVariationType(BVRModel model, Variabletype variationType) {
+		model.getPackageElement().add(variationType);
 	}
-
+/*
 	@Override
 	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
 		cu.getOwnedVariationPoint().remove(variationPoint);

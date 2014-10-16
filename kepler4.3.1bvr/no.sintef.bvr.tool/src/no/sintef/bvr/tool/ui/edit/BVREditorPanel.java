@@ -33,6 +33,7 @@ import javax.swing.JSplitPane;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
@@ -127,34 +128,32 @@ public class BVREditorPanel extends JPanel {
         }
     }
 
-    public void showPropertyFor(Object p) {
+    @SuppressWarnings("unchecked")
+	public void showPropertyFor(Object p) {
     	if (p instanceof SelectElement) {
     		current = (SelectElement) p;
     	}
     	
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel) p;
-        	@SuppressWarnings("unchecked")
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
-        	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) object, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	//VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) object, controller);
+        	//editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ChoicePanel) {
         	ChoicePanel elem = (ChoicePanel)p;
-        	@SuppressWarnings("unchecked")
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
-        	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, (Choice) object, controller);
+        	Command okCommand = controller.getVSpecControllerInterface().createUpdateChoiceCommand(elem);
+        	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, okCommand, (Choice) object, controller);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ParallelogramTitledPanel) {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
-        	@SuppressWarnings("unchecked")
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
-        	BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, (BCLConstraint) object, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	//BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, (BCLConstraint) object, controller);
+        	//editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof BVRModelSymbolPanel) {
-        	@SuppressWarnings("unchecked")
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(p);
-        	BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, object, controller);        	
-            editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	//BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, object, controller);        	
+            //editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof VInstancePanel) {
         	/*VInstancePanel elem = (VInstancePanel)p;
         	VInstance x = null;

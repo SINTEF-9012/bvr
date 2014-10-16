@@ -9,6 +9,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
@@ -22,8 +23,8 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, controller);
     }
 
-	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRNotifiableController view) {
-		super(kernel, elem, view);
+	public BCLConstraintPropertyEditor(BVRUIKernel kernel, Command _command, BCLConstraint elem, BVRNotifiableController view) {
+		super(kernel, _command, elem, view);
 		
 		// Constraint
         JPanel p2 = new JPanel(new SpringLayout());

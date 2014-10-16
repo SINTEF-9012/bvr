@@ -9,6 +9,7 @@ import bvr.BVRModel;
 import bvr.CompoundNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.Variable;
 
 abstract public class BVRToolModel {
 	protected SPLCABVRModel bvrm;
@@ -133,6 +134,10 @@ abstract public class BVRToolModel {
 	}
 	
 	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void updateVariable(Variable variable, String name, String typeName){
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

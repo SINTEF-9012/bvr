@@ -1,6 +1,7 @@
 package no.sintef.bvr.tool.controller;
 
 import bvr.BVRModel;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 

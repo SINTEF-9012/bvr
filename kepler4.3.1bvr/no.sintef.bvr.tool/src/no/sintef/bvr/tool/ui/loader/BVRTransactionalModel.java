@@ -9,6 +9,7 @@ import java.util.Map;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.model.PrimitiveTypeHandler;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -29,8 +30,11 @@ import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.PrimitiveTypeEnum;
+import bvr.PrimitveType;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.Variable;
 
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
@@ -203,5 +207,30 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes) {
 		return minimizedVSpecResolution.contains(vspecRes);
 	}
+	
+	@Override
+	public void updateVariable(Variable variable, String name, String typeName){
+		PrimitiveTypeHandler.getInstance().testModelsPrimitiveTypes(getBVRModel());
+		
+		if(name.equals("")){
+			Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)variable.eContainer(), variable);
+			return;
+		}
+		
+		Context.eINSTANCE.getEditorCommands().setName(variable, name);
 
+	
+		PrimitiveTypeEnum t = null;
+        for(PrimitiveTypeEnum x : PrimitiveTypeEnum.VALUES){
+        	if(x.getName().equals(typeName)){
+        		t = x;
+        	}
+        }
+        
+        if(t == null)
+        	throw new UnsupportedOperationException("Invalid primitive type name " + typeName);
+        
+        PrimitveType primitivType = PrimitiveTypeHandler.getInstance().testPrimitiveType(getBVRModel(), t);
+        Context.eINSTANCE.getEditorCommands().setTypeForVariable(variable, primitivType);
+	}
 }

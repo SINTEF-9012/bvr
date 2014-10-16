@@ -34,7 +34,7 @@ public final class ModelChecker {
 	private HashSet<NodeVisitor> checkVisitors = new HashSet<NodeVisitor>(Arrays.asList(
 			new PropertyCheckNodeVisitor()));
 	
-	public void execute(BVRModel model){
+	public synchronized void execute(BVRModel model){
 		symbols = new ArrayList<SymbolEObject>();
 		buildScopes = new ScopeBuilderContext();
 		buildScopes.init();

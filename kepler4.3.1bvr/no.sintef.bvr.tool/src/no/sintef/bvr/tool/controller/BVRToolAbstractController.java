@@ -1,5 +1,7 @@
 package no.sintef.bvr.tool.controller;
 
+import no.sintef.bvr.tool.ui.command.Command;
+
 
 abstract public class BVRToolAbstractController implements BVRNotifiableController{
 	

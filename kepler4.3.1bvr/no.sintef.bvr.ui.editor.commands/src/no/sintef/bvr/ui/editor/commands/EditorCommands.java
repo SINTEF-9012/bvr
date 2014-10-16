@@ -23,6 +23,7 @@ import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
+import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
@@ -118,7 +119,7 @@ public interface EditorCommands {
 	
 	//public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	
-	//public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
+	public void addOwnedVariationType(BVRModel model, Variabletype variationType);
 	
 	//public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	
@@ -171,4 +172,5 @@ public interface EditorCommands {
 /*
 	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value);
 */
+
 }

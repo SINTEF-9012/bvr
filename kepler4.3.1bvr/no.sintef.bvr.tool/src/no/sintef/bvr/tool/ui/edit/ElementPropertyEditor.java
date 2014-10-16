@@ -33,7 +33,7 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 
 import bvr.NamedElement;
 
-public class ElementPropertyEditor extends JPanel {
+abstract public class ElementPropertyEditor extends JPanel {
 	
 	/**
 	 * 
@@ -62,21 +62,18 @@ public class ElementPropertyEditor extends JPanel {
     
     protected Command command;
     
-    protected void init() {
-    	command = new UpdateVSpec();
-    	command.init(null, obj, null, null, null, null, controller);
-    }
     
-    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRNotifiableController _controller) {
+    public ElementPropertyEditor(BVRUIKernel _kernel, Command okCommand, NamedElement _obj, BVRNotifiableController _controller) {
 
         this.setOpaque(false);
         this.setBorder(null);
+        command = okCommand;
 
         controller = _controller;
         kernel = _kernel;
         obj = _obj;
         
-    	init();
+ 
         
         top = new JPanel(new SpringLayout());
         top.setBorder(null);

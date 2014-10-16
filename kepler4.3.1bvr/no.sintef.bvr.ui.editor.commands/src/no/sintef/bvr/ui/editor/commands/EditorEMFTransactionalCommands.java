@@ -361,14 +361,14 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoint);
 		editingDomain.getCommandStack().execute(cmd);
 	}
-	
+	*/
 	@Override
-	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
+	public void addOwnedVariationType(BVRModel model, Variabletype variationType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationType);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getVPackage_PackageElement(), variationType);
 		editingDomain.getCommandStack().execute(cmd);
 	}
-
+/*
 	@Override
 	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();

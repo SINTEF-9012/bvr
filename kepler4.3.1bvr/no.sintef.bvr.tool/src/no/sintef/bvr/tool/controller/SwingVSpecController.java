@@ -17,6 +17,8 @@ import no.sintef.bvr.tool.ui.command.AddBVRModel;
 import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
+import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
@@ -34,6 +36,7 @@ import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
+import bvr.Variable;
 
 public class SwingVSpecController<
 		GIU_NODE extends JComponent,
@@ -51,15 +54,15 @@ public class SwingVSpecController<
 	private BVRNotifiableController rootController;
 	
 	
-	public SwingVSpecController(BVRToolModel model, BVRNotifiableController controller) {
-		toolModel = model;
+	public SwingVSpecController(BVRToolModel _model, BVRNotifiableController controller) {
+		toolModel = _model;
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
 		vspecBindings = new ArrayList<Pair<JComponent,JComponent>>();
 		rootController = controller;
 		
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, rootController, null);
-		loadBVRVSpecView(model.getBVRModel(), vSpecbvruikernel);
+		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
         
         
         LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
@@ -69,13 +72,13 @@ public class SwingVSpecController<
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
-	private void loadBVRVSpecView(BVRModel cu, BVRUIKernel model) throws BVRModelException {
-		model.getModelPanel().addMouseListener(new VSpecDropDownListener(vSpecbvruikernel, toolModel, rootController));
+	private void loadBVRVSpecView(BVRModel model, BVRUIKernel uikernel) throws BVRModelException {
+		uikernel.getModelPanel().addMouseListener(new VSpecDropDownListener(vSpecbvruikernel, toolModel, rootController));
 		
-		JComponent c = new AddBVRModel().init(cu, model, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+		JComponent c = new AddBVRModel().init(model, uikernel, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
-		CompoundNode vspec = cu.getVariabilityModel();
-		loadBVRVSpecView(vspec, model, c, cu);
+		CompoundNode vspec = model.getVariabilityModel();
+		loadBVRVSpecView(vspec, uikernel, c, model);
 	}
 
 	private void loadBVRVSpecView(CompoundNode v, BVRUIKernel model, JComponent parent, BVRModel cu) throws BVRModelException {
@@ -175,11 +178,22 @@ public class SwingVSpecController<
 		notifyVspecViewUpdate();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public MODEL_OBJECT getModelObjectByUINode(GIU_NODE node) {
 		return (MODEL_OBJECT) vspecvmMap.get(node);
 	}
-	
-	
 
+	@Override
+	public Command createUpdateChoiceCommand(GIU_NODE node) {
+		UpdateChoice command = new UpdateChoice();
+    	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public void updateVariable(MODEL_OBJECT variable, String name, String typeName) {
+		toolModel.updateVariable((Variable) variable, name, typeName);
+	}
+	
 }

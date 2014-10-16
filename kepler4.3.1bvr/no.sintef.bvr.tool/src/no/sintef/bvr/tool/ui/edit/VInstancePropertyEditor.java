@@ -11,7 +11,9 @@ import javax.swing.event.DocumentListener;
 
 
 
+
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.NamedElement;
@@ -19,9 +21,9 @@ import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstancePropertyEditor extends ElementPropertyEditor{
-    public VInstancePropertyEditor(BVRUIKernel _kernel, NamedElement _obj,
+    public VInstancePropertyEditor(BVRUIKernel _kernel, Command _command, NamedElement _obj,
 			BVRNotifiableController _view) {
-		super(_kernel, _obj, _view);
+		super(_kernel, _command, _obj, _view);
 		// TODO Auto-generated constructor stub
 	}
 

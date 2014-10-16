@@ -1,26 +1,23 @@
 package no.sintef.bvr.tool.ui.edit;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.JTextComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import bvr.Choice;
+import bvr.CompoundNode;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.VSpec;
@@ -28,13 +25,10 @@ import bvr.Variable;
 
 public class ChoicePropertyEditor extends ElementPropertyEditor{
 	
-    protected void init() {
-    	command = new UpdateChoice();
-    	command.init(null, obj, null, null, null, null, controller);
-    }
+	private static final long serialVersionUID = -561022693337041081L;
 
-	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRNotifiableController view) {
-		super(kernel, (VSpec) elem, view);
+	public ChoicePropertyEditor(BVRUIKernel kernel, Command okCommand,  VSpec elem, BVRNotifiableController controller) {
+		super(kernel, okCommand, (VSpec) elem, controller);
 		
         // Comment
         JPanel p = new JPanel(new SpringLayout());
@@ -80,13 +74,10 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 		
         // Vars
 		int count = 2;
-		/*for(VSpec x : elem.getChild()){
-			if(x instanceof Variable){
-				Variable v = (Variable)x;
-				addEdit(elem, v);
-				count++;
-			}
-		}*/
+		for(Variable x : ((CompoundNode) elem).getVariable()){
+			addEdit(elem, x);
+			count++;
+		}
 		
         pack(count, 1);
 	}

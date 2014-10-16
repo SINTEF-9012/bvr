@@ -20,7 +20,7 @@ public class UpdateVSpec implements Command {
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
-	protected BVRNotifiableController view;
+	protected BVRNotifiableController controller;
 	
 	protected String name;
 	
@@ -30,10 +30,7 @@ public class UpdateVSpec implements Command {
 	
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
-		
-		//System.out.println("p: " + p);
-		//System.out.println("p instanceof VSpec: " + (p instanceof VSpec));
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		
 		if(p instanceof NamedElement){
 			this.rootPanel = rootPanel;
@@ -46,7 +43,7 @@ public class UpdateVSpec implements Command {
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
-		this.view = view;
+		this.controller = controller;
 		
 		return this;
 		
@@ -54,7 +51,7 @@ public class UpdateVSpec implements Command {
 
 	public JComponent execute() {
 		Context.eINSTANCE.getEditorCommands().setName(vc, name);
-		return null;
+		return parent;
 	}
 
 	public void setComment(String text) {

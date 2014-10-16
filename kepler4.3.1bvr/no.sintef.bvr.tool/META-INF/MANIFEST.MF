@@ -83,7 +83,6 @@ Export-Package: no.sintef.bvr.tool,
  org.stringtemplate.v4.gui,
  org.stringtemplate.v4.misc
 Import-Package: bvr,
- bvr.common,
  bvr.impl,
  no.sintef.bvr.common,
  no.sintef.bvr.common.logging,
