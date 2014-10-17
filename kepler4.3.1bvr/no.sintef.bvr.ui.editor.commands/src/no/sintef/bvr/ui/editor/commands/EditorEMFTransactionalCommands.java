@@ -6,6 +6,8 @@ import java.io.File;
 
 
 
+
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -16,6 +18,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.ui.IEditorInput;
@@ -534,7 +537,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addChoice(Choice choice, CompoundNode compoundNode) {
+	public void addChoice(Choice choice, final CompoundNode compoundNode) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode(), (VNode) choice);
 		editingDomain.getCommandStack().execute(cmd);
