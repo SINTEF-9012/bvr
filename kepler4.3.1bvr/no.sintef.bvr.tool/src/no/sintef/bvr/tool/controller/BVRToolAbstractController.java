@@ -1,9 +1,8 @@
 package no.sintef.bvr.tool.controller;
 
-import no.sintef.bvr.tool.ui.command.Command;
 
 
-abstract public class BVRToolAbstractController implements BVRNotifiableController{
+abstract public class BVRToolAbstractController implements BVRNotifiableController {
 	
 	
 	abstract public void refresh();
@@ -22,4 +21,5 @@ abstract public class BVRToolAbstractController implements BVRNotifiableControll
 	public RealizationControllerInterface getRealizationControllerInterface() {
 		throw new UnsupportedOperationException("not supported for this view");
 	}
+	
 }

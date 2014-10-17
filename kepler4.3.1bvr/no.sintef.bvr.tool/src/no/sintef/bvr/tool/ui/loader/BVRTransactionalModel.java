@@ -9,7 +9,8 @@ import java.util.Map;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.model.PrimitiveTypeHandler;
+import no.sintef.bvr.tool.model.NoteFactory;
+import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -19,6 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -30,6 +32,8 @@ import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.NamedElement;
+import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.VSpec;
@@ -210,7 +214,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void updateVariable(Variable variable, String name, String typeName){
-		PrimitiveTypeHandler.getInstance().testModelsPrimitiveTypes(getBVRModel());
+		PrimitiveTypeFactory.getInstance().testModelsPrimitiveTypes(getBVRModel());
 		
 		if(name.equals("")){
 			Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)variable.eContainer(), variable);
@@ -230,7 +234,24 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
         if(t == null)
         	throw new UnsupportedOperationException("Invalid primitive type name " + typeName);
         
-        PrimitveType primitivType = PrimitiveTypeHandler.getInstance().testPrimitiveType(getBVRModel(), t);
+        PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), t);
         Context.eINSTANCE.getEditorCommands().setTypeForVariable(variable, primitivType);
+	}
+	
+	@Override
+	public void updateName(NamedElement namedElement, String name) {
+		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+	}
+	
+	@Override
+	public void updateComment(NamedElement namedElement, String text) {
+		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
+		Context.eINSTANCE.getEditorCommands().updateNoteExp(commentNote, text);
+	}
+	
+	@Override
+	public String getNodesCommentText(NamedElement namedElement) {
+		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
+		return commentNote.getExpr();
 	}
 }

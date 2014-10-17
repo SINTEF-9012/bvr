@@ -21,6 +21,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
@@ -476,4 +477,16 @@ public class EditorMVCCommands implements EditorCommands {
 	//TODO replace
 }
 */
+
+	@Override
+	public void createNote(NamedElement parent, Note commentNote) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateNoteExp(Note note, String expr) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -19,6 +19,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
@@ -172,5 +173,9 @@ public interface EditorCommands {
 /*
 	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value);
 */
+
+	public void createNote(NamedElement parent, Note commentNote);
+	
+	public void updateNoteExp(Note note, String expr);
 
 }

@@ -2,11 +2,13 @@ package no.sintef.bvr.tool.ui.edit;
 
 
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 
 
 
@@ -21,9 +23,9 @@ import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstancePropertyEditor extends ElementPropertyEditor{
-    public VInstancePropertyEditor(BVRUIKernel _kernel, Command _command, NamedElement _obj,
+    public VInstancePropertyEditor(BVRUIKernel _kernel, Command _command, NamedElement _obj, JComponent _node,
 			BVRNotifiableController _view) {
-		super(_kernel, _command, _obj, _view);
+		super(_kernel, _command, _obj, _node, _view);
 		// TODO Auto-generated constructor stub
 	}
 

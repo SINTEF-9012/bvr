@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -37,9 +38,9 @@ import bvr.Variable;
 
 public class VClassifierPropertyEditor extends ElementPropertyEditor {
 	
-    public VClassifierPropertyEditor(BVRUIKernel _kernel, Command _command, NamedElement _obj,
+    public VClassifierPropertyEditor(BVRUIKernel _kernel, Command _command, JComponent _node, NamedElement _obj,
 			BVRNotifiableController _view) {
-		super(_kernel, _command, _obj, _view);
+		super(_kernel, _command, _obj, _node, _view);
 		// TODO Auto-generated constructor stub
 	}
 

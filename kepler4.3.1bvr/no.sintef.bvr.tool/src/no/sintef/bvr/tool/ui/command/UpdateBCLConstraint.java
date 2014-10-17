@@ -46,7 +46,7 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 		//bcl.getExpression().clear();
 		//bcl.getExpression().add(e);
 		
-		super.execute();
+		
 		//view.notifyVspecViewUpdate();
 		return null;
 	}

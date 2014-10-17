@@ -4,6 +4,8 @@ package no.sintef.bvr.ui.editor.commands;
 import java.io.File;
 
 
+
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -40,6 +42,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
@@ -598,7 +601,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public void removeVSpecVariable(VSpec vSpec, Variable var) {
-		// TODO Auto-generated method stub
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVNode_Variable(), var);
+		editingDomain.getCommandStack().execute(cmd);
 		
 	}
 
@@ -653,6 +658,20 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vNode, BvrPackage.eINSTANCE.getVNode_OwnedConstraint(), bclConstraint);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void createNote(NamedElement parent, Note note) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getNamedElement_Note(), note);
+		editingDomain.getCommandStack().execute(cmd);
+	}
+
+	@Override
+	public void updateNoteExp(Note note, String expr) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, note, BvrPackage.eINSTANCE.getNote_Expr(), expr);
 		editingDomain.getCommandStack().execute(cmd);
 	}
 

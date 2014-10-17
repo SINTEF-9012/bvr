@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,7 +16,6 @@ import javax.swing.text.BadLocationException;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.CompoundNode;
 import bvr.PrimitiveTypeEnum;
@@ -27,8 +27,8 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 	
 	private static final long serialVersionUID = -561022693337041081L;
 
-	public ChoicePropertyEditor(BVRUIKernel kernel, Command okCommand,  VSpec elem, BVRNotifiableController controller) {
-		super(kernel, okCommand, (VSpec) elem, controller);
+	public ChoicePropertyEditor(BVRUIKernel kernel, Command okCommand,  VSpec elem, JComponent node, BVRNotifiableController controller) {
+		super(kernel, okCommand, (VSpec) elem, node, controller);
 		
         // Comment
         JPanel p = new JPanel(new SpringLayout());
@@ -44,7 +44,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 
         l.setLabelFor(comment);
         p.add(comment);
-       // comment.setText(elem.getComment());
+        comment.setText(controller.getVSpecControllerInterface().getNodesCommentText(node));
 
         top.add(p);
         SpringUtilities.makeCompactGrid(p,
@@ -57,7 +57,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         comment.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    ((UpdateVSpec) command).setComment(e.getDocument().getText(0, e.getDocument().getLength()));
+                    ((UpdateChoice) command).setComment(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 }

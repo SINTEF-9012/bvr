@@ -7,6 +7,7 @@ import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BVRModel;
 import bvr.CompoundNode;
+import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
@@ -138,6 +139,18 @@ abstract public class BVRToolModel {
 	}
 	
 	public void updateVariable(Variable variable, String name, String typeName){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateName(NamedElement namedElement, String name) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateComment(NamedElement namedElement, String text) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public String getNodesCommentText(NamedElement namedElement) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

@@ -43,7 +43,7 @@ public class UpdateVClassifier extends UpdateVSpec {
 	}
 
 	public JComponent execute() {
-		super.execute();
+		//super.execute();
 
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(((VClassifier) vc).getInstanceMultiplicity(), upper);
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(((VClassifier) vc).getInstanceMultiplicity(), lower);

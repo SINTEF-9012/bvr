@@ -143,7 +143,7 @@ public class BVREditorPanel extends JPanel {
         	ChoicePanel elem = (ChoicePanel)p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
         	Command okCommand = controller.getVSpecControllerInterface().createUpdateChoiceCommand(elem);
-        	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, okCommand, (Choice) object, controller);
+        	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, okCommand, (Choice) object, elem, controller);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ParallelogramTitledPanel) {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;

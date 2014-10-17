@@ -47,6 +47,7 @@ abstract public class ElementPropertyEditor extends JPanel {
 	
 	protected BVRUIKernel kernel;
 	protected NamedElement obj;
+	protected JComponent node;
 	
     public void addCenter(JComponent p) {
         this.add(p);
@@ -63,7 +64,7 @@ abstract public class ElementPropertyEditor extends JPanel {
     protected Command command;
     
     
-    public ElementPropertyEditor(BVRUIKernel _kernel, Command okCommand, NamedElement _obj, BVRNotifiableController _controller) {
+    public ElementPropertyEditor(BVRUIKernel _kernel, Command okCommand, NamedElement _obj, JComponent _node, BVRNotifiableController _controller) {
 
         this.setOpaque(false);
         this.setBorder(null);
@@ -72,6 +73,7 @@ abstract public class ElementPropertyEditor extends JPanel {
         controller = _controller;
         kernel = _kernel;
         obj = _obj;
+        node = _node;
         
  
         

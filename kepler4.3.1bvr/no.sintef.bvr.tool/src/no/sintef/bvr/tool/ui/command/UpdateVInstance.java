@@ -21,7 +21,7 @@ public class UpdateVInstance extends UpdateVSpec  {
 
 	@Override
 	public JComponent execute() {
-		super.execute();
+		//super.execute();
 		return null;
 	}
 

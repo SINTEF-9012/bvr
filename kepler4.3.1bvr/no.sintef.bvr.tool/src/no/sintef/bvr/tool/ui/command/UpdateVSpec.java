@@ -5,14 +5,12 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
-import bvr.VSpec;
 
-public class UpdateVSpec implements Command {
+abstract public class UpdateVSpec implements Command {
 
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;
@@ -47,15 +45,6 @@ public class UpdateVSpec implements Command {
 		
 		return this;
 		
-	}
-
-	public JComponent execute() {
-		Context.eINSTANCE.getEditorCommands().setName(vc, name);
-		return parent;
-	}
-
-	public void setComment(String text) {
-		Context.eINSTANCE.getEditorCommands().setVSpecComment((VSpec)vc, text);
 	}
 
 }

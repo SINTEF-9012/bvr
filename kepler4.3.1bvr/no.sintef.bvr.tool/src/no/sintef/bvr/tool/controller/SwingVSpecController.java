@@ -195,5 +195,23 @@ public class SwingVSpecController<
 	public void updateVariable(MODEL_OBJECT variable, String name, String typeName) {
 		toolModel.updateVariable((Variable) variable, name, typeName);
 	}
+
+	@Override
+	public void setNodeComment(GIU_NODE node, String comment) {
+		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
+		toolModel.updateComment(namedElement, comment);
+	}
+
+	@Override
+	public void setNodeName(GIU_NODE node, String name) {
+		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
+		toolModel.updateName(namedElement, name);
+	}
+
+	@Override
+	public String getNodesCommentText(GIU_NODE node) {
+		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
+		return toolModel.getNodesCommentText(namedElement);
+	}
 	
 }

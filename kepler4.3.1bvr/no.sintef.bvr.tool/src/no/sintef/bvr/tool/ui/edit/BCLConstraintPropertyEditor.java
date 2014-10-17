@@ -1,5 +1,6 @@
 package no.sintef.bvr.tool.ui.edit;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -23,8 +24,8 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
     	command.init(null, obj, null, null, null, null, controller);
     }
 
-	public BCLConstraintPropertyEditor(BVRUIKernel kernel, Command _command, BCLConstraint elem, BVRNotifiableController view) {
-		super(kernel, _command, elem, view);
+	public BCLConstraintPropertyEditor(BVRUIKernel kernel, Command _command, BCLConstraint elem, JComponent _node, BVRNotifiableController view) {
+		super(kernel, _command, elem, _node, view);
 		
 		// Constraint
         JPanel p2 = new JPanel(new SpringLayout());
