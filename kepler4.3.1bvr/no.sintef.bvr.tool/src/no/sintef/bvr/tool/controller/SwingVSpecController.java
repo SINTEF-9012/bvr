@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 
 import org.eclipse.emf.ecore.EObject;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
@@ -217,20 +218,17 @@ public class SwingVSpecController<
 
 	@Override
 	public void enableBatchCommandProcessing() {
-		// TODO Auto-generated method stub
-		
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
 	}
 
 	@Override
 	public void disableBatchCommandProcessing() {
-		// TODO Auto-generated method stub
-		
+		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
 	}
 
 	@Override
 	public void executeCommandBatch() {
-		// TODO Auto-generated method stub
-		
+		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
 	
 }

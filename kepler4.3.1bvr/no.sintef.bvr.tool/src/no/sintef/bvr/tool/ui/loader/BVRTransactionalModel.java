@@ -36,6 +36,7 @@ import bvr.NamedElement;
 import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
@@ -44,6 +45,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private Resource resource;
 	
 	static private int choicCounter = 0;
+	static private int variableCount = 0;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -247,13 +249,31 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void updateComment(NamedElement namedElement, String text) {
 		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
 		Context.eINSTANCE.getEditorCommands().updateNoteExp(commentNote, text);
-		
-		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
 	
 	@Override
 	public String getNodesCommentText(NamedElement namedElement) {
 		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
 		return commentNote.getExpr();
+	}
+	
+	@Override
+	public void addVariable(VNode parentNode) {
+		Variable var = BvrFactory.eINSTANCE.createVariable();
+		PrimitveType vt = BvrFactory.eINSTANCE.createPrimitveType();
+		
+		vt.setType(PrimitiveTypeEnum.INTEGER);
+		vt.setName("xx");
+		
+		//Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
+		//view.getCU().getOwnedVariabletype().add(vt);
+		
+		//var.setName("Var" + x);
+		//var.setType(vt);
+		//x++;
+		
+		//Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
+
+		
 	}
 }
