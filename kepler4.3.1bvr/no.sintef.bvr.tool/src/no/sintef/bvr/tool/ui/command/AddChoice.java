@@ -72,14 +72,11 @@ public class AddChoice implements Command {
         	}
         }
         
-        for(VNode vs : c.getMember()){
-        	if(vs instanceof Variable){
-        		Variable v = (Variable) vs;
-        		if(v.getType() instanceof PrimitveType)
-        			cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
-        		else
-        			cp.addAttribute(v.getName(), v.getType().getName());
-        	}
+        for(Variable v : c.getVariable()){
+        	if(v.getType() instanceof PrimitveType)
+        		cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        	else
+        		cp.addAttribute(v.getName(), v.getType().getName());
         }
 
         rootPanel.getModelPanel().addNode(cp);
