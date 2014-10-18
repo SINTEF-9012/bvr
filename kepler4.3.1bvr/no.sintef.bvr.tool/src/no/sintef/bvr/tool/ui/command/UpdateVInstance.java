@@ -9,6 +9,7 @@ import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
+import bvr.Variable;
 
 public class UpdateVInstance extends UpdateVSpec  {
 
@@ -23,6 +24,18 @@ public class UpdateVInstance extends UpdateVSpec  {
 	public JComponent execute() {
 		//super.execute();
 		return null;
+	}
+
+	@Override
+	public void setVar(Variable v, String name, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

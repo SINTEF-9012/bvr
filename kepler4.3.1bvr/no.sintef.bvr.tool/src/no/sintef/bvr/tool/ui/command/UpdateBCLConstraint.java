@@ -21,6 +21,7 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.NamedElement;
+import bvr.Variable;
 
 public class UpdateBCLConstraint extends UpdateVSpec {
 
@@ -62,6 +63,18 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 
 	public void setConstraint(String text) {
 		this.text = text;  
+	}
+
+	@Override
+	public void setVar(Variable v, String name, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

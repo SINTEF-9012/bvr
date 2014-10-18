@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 
 import org.eclipse.emf.ecore.EObject;
 
+import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddBVRModel;
@@ -186,7 +187,7 @@ public class SwingVSpecController<
 
 	@Override
 	public Command createUpdateChoiceCommand(GIU_NODE node) {
-		UpdateChoice command = new UpdateChoice();
+		Command command = new UpdateChoiceBatchCommandDecorator(new UpdateChoice());
     	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
 		return command;
 	}
@@ -212,6 +213,24 @@ public class SwingVSpecController<
 	public String getNodesCommentText(GIU_NODE node) {
 		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
 		return toolModel.getNodesCommentText(namedElement);
+	}
+
+	@Override
+	public void enableBatchCommandProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableBatchCommandProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeCommandBatch() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

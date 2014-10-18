@@ -8,7 +8,10 @@ import java.io.File;
 
 
 
+import java.util.ArrayList;
+
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -72,6 +75,9 @@ import bvr.VariationPoint;
 public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	static private EditorEMFTransactionalCommands eINSTANCE = null;
+	
+	private boolean batchMode = false;
+	private ArrayList<AbstractCommand> queue = new ArrayList<AbstractCommand>();
 	
 	static public EditorEMFTransactionalCommands Get(){
 		if(eINSTANCE == null){
@@ -229,7 +235,8 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void setName(NamedElement namedElement, String name) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, namedElement, BvrPackage.eINSTANCE.getNamedElement_Name(), name);
-		editingDomain.getCommandStack().execute(cmd);
+		//editingDomain.getCommandStack().execute(cmd);
+		queue.add(cmd);
 	}
 	
 	/*@Override
@@ -271,7 +278,8 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void setTypeForVariable(Variable variable, Variabletype variableType){
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variable, BvrPackage.eINSTANCE.getVariable_Type(), variableType);
-		editingDomain.getCommandStack().execute(cmd);
+		//editingDomain.getCommandStack().execute(cmd);
+		queue.add(cmd);
 	}
 	
 	@Override
@@ -675,7 +683,35 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void updateNoteExp(Note note, String expr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, note, BvrPackage.eINSTANCE.getNote_Expr(), expr);
-		editingDomain.getCommandStack().execute(cmd);
+		//editingDomain.getCommandStack().execute(cmd);
+		queue.add(cmd);
+	}
+
+	@Override
+	public void enableBatchProcessing() {
+		batchMode = true;
+	}
+
+	@Override
+	public void executeBatch() {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			
+			@Override
+			protected void doExecute() {
+				for(AbstractCommand command : queue){
+					command.execute();
+				}
+				queue.clear();
+			}
+		});
+		
+	}
+
+	@Override
+	public void disableBatchProcessing() {
+		batchMode = false;
+		queue.clear();
 	}
 
 /*

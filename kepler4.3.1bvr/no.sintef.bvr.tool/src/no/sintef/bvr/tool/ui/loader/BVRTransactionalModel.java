@@ -247,6 +247,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void updateComment(NamedElement namedElement, String text) {
 		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
 		Context.eINSTANCE.getEditorCommands().updateNoteExp(commentNote, text);
+		
+		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
 	
 	@Override

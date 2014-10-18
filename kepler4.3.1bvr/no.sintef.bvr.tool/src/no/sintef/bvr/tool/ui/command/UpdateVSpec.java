@@ -9,6 +9,7 @@ import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
+import bvr.Variable;
 
 abstract public class UpdateVSpec implements Command {
 
@@ -46,5 +47,9 @@ abstract public class UpdateVSpec implements Command {
 		return this;
 		
 	}
+	
+	abstract public void setVar(Variable v, String name, String type);
+	
+	abstract public void setComment(String text);
 
 }

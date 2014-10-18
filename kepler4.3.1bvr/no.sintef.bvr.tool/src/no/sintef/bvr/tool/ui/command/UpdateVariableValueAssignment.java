@@ -22,6 +22,7 @@ import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.common.PrimitiveTypeHandler;
 */
+import bvr.Variable;
 
 public class UpdateVariableValueAssignment extends UpdateVSpec  {
 	@Override
@@ -41,6 +42,18 @@ public class UpdateVariableValueAssignment extends UpdateVSpec  {
 		//System.out.println("whey!");
 		
 		///setValueAsString((VariableValueAssignment)vc, value);
+	}
+
+	@Override
+	public void setVar(Variable v, String name, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 /*	//TODO replace with functionality for new model

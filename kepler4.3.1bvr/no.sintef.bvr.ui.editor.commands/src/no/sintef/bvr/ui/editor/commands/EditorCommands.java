@@ -177,5 +177,11 @@ public interface EditorCommands {
 	public void createNote(NamedElement parent, Note commentNote);
 	
 	public void updateNoteExp(Note note, String expr);
+	
+	public void enableBatchProcessing();
+	
+	public void disableBatchProcessing();
+	
+	public void executeBatch();
 
 }

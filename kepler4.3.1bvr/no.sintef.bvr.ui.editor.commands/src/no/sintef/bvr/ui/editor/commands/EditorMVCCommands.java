@@ -489,4 +489,22 @@ public class EditorMVCCommands implements EditorCommands {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void enableBatchProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableBatchProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeBatch() {
+		// TODO Auto-generated method stub
+		
+	}
 }

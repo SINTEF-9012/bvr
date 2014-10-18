@@ -91,4 +91,10 @@ public class UpdateVClassifier extends UpdateVSpec {
 		varTypes.put(v, type);
 	}
 
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
