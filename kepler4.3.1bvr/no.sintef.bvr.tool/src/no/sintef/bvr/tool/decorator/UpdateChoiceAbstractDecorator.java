@@ -43,8 +43,8 @@ public abstract class UpdateChoiceAbstractDecorator extends UpdateChoice  {
 	}
 	
 	@Override
-	public void setVar(Variable v, String name, String type) {
-		command.setVar(v, name, type);
+	public void setVariable(Variable v, String name, String type) {
+		command.setVariable(v, name, type);
 	}
 	
 	@Override

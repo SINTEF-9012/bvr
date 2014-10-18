@@ -48,7 +48,7 @@ abstract public class UpdateVSpec implements Command {
 		
 	}
 	
-	abstract public void setVar(Variable v, String name, String type);
+	abstract public void setVariable(Variable v, String name, String type);
 	
 	abstract public void setComment(String text);
 

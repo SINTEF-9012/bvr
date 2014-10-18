@@ -86,7 +86,7 @@ public class UpdateVClassifier extends UpdateVSpec {
 		return null;
 	}
 
-	public void setVar(Variable v, String name, String type) {
+	public void setVariable(Variable v, String name, String type) {
 		varNames.put(v, name);
 		varTypes.put(v, type);
 	}

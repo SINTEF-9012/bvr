@@ -27,7 +27,7 @@ public class UpdateVInstance extends UpdateVSpec  {
 	}
 
 	@Override
-	public void setVar(Variable v, String name, String type) {
+	public void setVariable(Variable v, String name, String type) {
 		// TODO Auto-generated method stub
 		
 	}

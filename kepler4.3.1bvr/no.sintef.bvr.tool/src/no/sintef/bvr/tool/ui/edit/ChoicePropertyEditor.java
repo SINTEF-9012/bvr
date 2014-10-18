@@ -117,7 +117,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
                 6, 6);       //xPad, yPad
         
         //Part 2
-        ((UpdateChoice)command).setVar(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        ((UpdateChoice)command).setVariable(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
         
         name.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
         types.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
@@ -125,7 +125,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
     	// Part 3:
         DocumentListener dl = new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
-            	((UpdateChoice)command).setVar(v, name.getText(), types.getSelectedItem().toString());
+            	((UpdateChoice)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
             	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
             }
             public void removeUpdate(DocumentEvent e) {
@@ -138,7 +138,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         name.getDocument().addDocumentListener(dl);
         types.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
-            	((UpdateChoice)command).setVar(v, name.getText(), types.getSelectedItem().toString());
+            	((UpdateChoice)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
             	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
             }
         });
