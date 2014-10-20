@@ -1,25 +1,34 @@
 package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
+import java.util.List;
 
+import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BVRModel;
 import bvr.CompoundNode;
+import bvr.NamedElement;
+import bvr.VNode;
 import bvr.VSpec;
+import bvr.VSpecResolution;
+import bvr.Variable;
 
-public class BVRToolModel {
-	protected no.sintef.ict.splcatool.SPLCABVRModel bvrm;
+abstract public class BVRToolModel {
+	protected SPLCABVRModel bvrm;
 	protected File f;
 	protected boolean platform = false;
 	protected String loadFilename;
 	protected boolean saved = true;
+	protected List<VSpec> minimizedVSpec;
+	protected List<VSpecResolution> minimizedVSpecResolution;
 
 	public BVRToolModel(File sf) {
 		f = sf;
-		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(f);
+		bvrm = new SPLCABVRModel(f);
 		loadFilename = sf.getAbsolutePath(); 
 	}
 	
-	public BVRToolModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
+	public BVRToolModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath(); 
@@ -29,15 +38,15 @@ public class BVRToolModel {
 		f = sf;
 		platform = isPlatform;
 		loadFilename = loadLocation;
-		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
+		bvrm = new SPLCABVRModel(loadFilename, platform);
 	}
 
 	public BVRToolModel() {
-		bvrm = new no.sintef.ict.splcatool.SPLCABVRModel();
+		bvrm = new SPLCABVRModel();
 	}
 	
 	public void reload(){
-		bvrm = (!platform) ? new no.sintef.ict.splcatool.SPLCABVRModel(f) : new no.sintef.ict.splcatool.SPLCABVRModel(loadFilename, platform);
+		bvrm = (!platform) ? new SPLCABVRModel(f) : new SPLCABVRModel(loadFilename, platform);
 	}
 	
 	public void dispose() {
@@ -58,11 +67,11 @@ public class BVRToolModel {
 		return f.getAbsolutePath();
 	}
 	
-	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM(){
+	public SPLCABVRModel getBVRM(){
 		return bvrm;
 	}
 	
-	public void setBVRM(no.sintef.ict.splcatool.SPLCABVRModel bvrm){
+	public void setBVRM(SPLCABVRModel bvrm){
 		this.bvrm = bvrm;
 	}
 
@@ -100,5 +109,53 @@ public class BVRToolModel {
 
 	public void markSaved() {
 		saved = true;
+	}
+	
+	public void addChoice(VSpec parentVSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	};
+	
+	public void minimaizeVSpec(VSpec vspec){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void maximizeVSpec(VSpec vspec){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public boolean isVSpecMinimized(VSpec vspec){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void minimaizeVSpecResolution(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void maximizeVSpecResolution(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void updateVariable(Variable variable, String name, String typeName){
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateName(NamedElement namedElement, String name) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateComment(NamedElement namedElement, String text) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public String getNodesCommentText(NamedElement namedElement) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void addVariable(VNode parentNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

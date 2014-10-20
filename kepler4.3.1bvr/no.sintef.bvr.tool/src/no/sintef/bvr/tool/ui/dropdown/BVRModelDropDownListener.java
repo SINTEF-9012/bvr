@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
@@ -20,7 +21,6 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import bvr.NamedElement;
@@ -32,9 +32,9 @@ public class BVRModelDropDownListener extends MouseAdapter {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 
-	public BVRModelDropDownListener(BVRModelSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+	public BVRModelDropDownListener(BVRModelSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -61,11 +61,11 @@ public class BVRModelDropDownListener extends MouseAdapter {
 class BVRModelDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public BVRModelDropdown(BVRModelSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+    public BVRModelDropdown(BVRModelSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
-    	addchoice.addActionListener(new AddChoiceEvent(cp, vmMap, nodes, bindings, view));
+    	addchoice.addActionListener(new AddChoiceEvent(cp, view));
     	add.add(addchoice);
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));

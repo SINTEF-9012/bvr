@@ -14,6 +14,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.DelAllResEvent;
 import no.sintef.bvr.tool.ui.command.DelResEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
@@ -27,7 +28,6 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
@@ -41,12 +41,12 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class VSpecResDropDownListener extends MouseAdapter {
-	private BVRToolView bvrView;
+	private BVRNotifiableController bvrView;
 	//private ConfigurableUnit cu;
 	private BVRToolModel m;
 	private JTabbedPane resPane;
 
-	public VSpecResDropDownListener(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRToolView bvrView, JTabbedPane resPane) {
+	public VSpecResDropDownListener(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRNotifiableController bvrView, JTabbedPane resPane) {
 		this.m = m;
 		//this.cu = cu;
 		this.resPane = resPane;
@@ -72,7 +72,7 @@ public class VSpecResDropDownListener extends MouseAdapter {
 class VSpecResDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VSpecResDropdown(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRToolView bvrView, JTabbedPane resPane){
+    public VSpecResDropdown(BVRToolModel m, /*ConfigurableUnit cu,*/ BVRNotifiableController bvrView, JTabbedPane resPane){
     	/*JMenuItem del = new JMenuItem("delete");
     	del.addActionListener(new DelResEvent(cu, v, bvrView));
 		add(del);

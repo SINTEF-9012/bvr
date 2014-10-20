@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class DeleteResolution implements ActionListener {
 
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	
-	public DeleteResolution(BVRToolView _view){
+	public DeleteResolution(BVRNotifiableController _view){
 		view = _view;
 	}
 	

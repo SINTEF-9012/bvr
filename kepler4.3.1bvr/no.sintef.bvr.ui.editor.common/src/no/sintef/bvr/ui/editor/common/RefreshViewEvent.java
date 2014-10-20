@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.common;
 
 import java.awt.AWTEvent;
 
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 
 
 
@@ -12,9 +12,9 @@ public class RefreshViewEvent extends AWTEvent {
 	
 	public  static final int EVENT_ID = AWTEvent.RESERVED_ID_MAX + 1;
 	
-	private BVRToolView view;
+	private BVRNotifiableController view;
 	
-	public RefreshViewEvent(Object target, BVRToolView view) {
+	public RefreshViewEvent(Object target, BVRNotifiableController view) {
 		super(target, EVENT_ID);
 		this.view = view;
 	}

@@ -1,6 +1,8 @@
 package no.sintef.bvr.ui.editor.common.listener;
 
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
@@ -15,8 +17,11 @@ import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 
 public class DomainResourceSetListener extends ResourceSetListenerImpl {
 
+	HashSet<URI> changedResources;
+	
 	@Override
 	public void resourceSetChanged(ResourceSetChangeEvent event) {
+		changedResources = new HashSet<URI>();
 		List<Notification> notifications =  event.getNotifications();
 		for(Notification notification : notifications){
 			Object object = notification.getNotifier();
@@ -31,11 +36,15 @@ public class DomainResourceSetListener extends ResourceSetListenerImpl {
 								((ResourceSetEditedSubject) subject).setResourceSetChangeEvent(event);
 							}	
 						}
-						ResourceResourceSetSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
+						changedResources.add(resourceURI);
 					}
 				}
 			}
 		}
 		
+		//if resource has been changed several times we want to notify only once
+		Iterator<URI> iterator = changedResources.iterator();
+		while(iterator.hasNext())
+			ResourceResourceSetSubjectMap.eINSTANCE.pokeResourceSubjects(iterator.next());
 	}
 }

@@ -9,14 +9,14 @@ import javax.swing.JTabbedPane;
 import bvr.BVRModel;
 import bvr.BvrFactory;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class NewResolutionEvent implements ActionListener {
 	private BVRModel cu;
-	private BVRToolView v;
+	private BVRNotifiableController v;
 
-	public NewResolutionEvent(BVRModel cu, BVRToolView bvrView) {
+	public NewResolutionEvent(BVRModel cu, BVRNotifiableController bvrView) {
 		this.cu = cu;
 		this.v = bvrView;
 	}

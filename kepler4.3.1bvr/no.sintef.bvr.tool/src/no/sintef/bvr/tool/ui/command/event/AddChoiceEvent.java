@@ -2,52 +2,25 @@ package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
-import no.sintef.bvr.tool.ui.loader.Pair;
-import bvr.BVRModel;
-import bvr.Choice;
-import bvr.CompoundNode;
-import bvr.NamedElement;
-import bvr.VSpec;
-import bvr.BvrFactory;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+
 
 
 public class AddChoiceEvent implements ActionListener {
 	private JComponent p;
-	private Map<JComponent, NamedElement> vmMap;
-	private BVRToolView view;
+	private BVRNotifiableController controller;
 
-	public AddChoiceEvent(JComponent p, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+	public AddChoiceEvent(JComponent p, BVRNotifiableController controller) {
 		this.p = p;
-		this.vmMap = vmMap;
-		this.view = view;
+		this.controller = controller;
 	}
-	
-	static int x = 1;
 
+	@SuppressWarnings("unchecked")
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		//System.out.println("we are here " + p.getTitle() + ", " + v);
-		VSpec v = (VSpec) vmMap.get(p);
-		
-		// Modify model
-		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setName("Choice "+x);
-		x++;
-		
-		if(v != null){
-			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) v);
-		}else{
-			BVRModel model = view.getBVRModel();
-			if(model.getVariabilityModel() == null){
-				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
-			}
-		}
-	
+		controller.getVSpecControllerInterface().addChoice(p);
 	}
 }

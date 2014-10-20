@@ -7,8 +7,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.Choice;
 import bvr.BvrFactory;
@@ -38,12 +38,12 @@ public class UpdateVClassifier extends UpdateVSpec {
 	
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		return super.init(rootPanel, (VSpec) p, parent, vmMap, nodes, bindings, view);
 	}
 
 	public JComponent execute() {
-		super.execute();
+		//super.execute();
 
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(((VClassifier) vc).getInstanceMultiplicity(), upper);
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(((VClassifier) vc).getInstanceMultiplicity(), lower);
@@ -86,9 +86,15 @@ public class UpdateVClassifier extends UpdateVSpec {
 		return null;
 	}
 
-	public void setVar(Variable v, String name, String type) {
+	public void setVariable(Variable v, String name, String type) {
 		varNames.put(v, name);
 		varTypes.put(v, type);
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

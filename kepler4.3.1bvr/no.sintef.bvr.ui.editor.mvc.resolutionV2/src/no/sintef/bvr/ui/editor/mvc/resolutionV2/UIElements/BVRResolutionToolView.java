@@ -4,13 +4,14 @@ import java.util.List;
 
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
+
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 //import no.sintef.bvr.tool.ui.loader.BVRModel;
 //import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.VSpecResolution;
 
-public interface BVRResolutionToolView extends BVRToolView{
+public interface BVRResolutionToolView extends BVRNotifiableController{
 
 		public void setStripped(Object v);
 		public void setUnstripped(Object v);

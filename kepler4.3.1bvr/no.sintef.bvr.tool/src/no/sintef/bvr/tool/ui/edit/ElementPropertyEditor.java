@@ -25,28 +25,29 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 
 import bvr.NamedElement;
 
-public class ElementPropertyEditor extends JPanel {
+abstract public class ElementPropertyEditor extends JPanel {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6151188246017274037L;
 
-	protected BVRToolView view;
+	protected BVRNotifiableController controller;
 	
 	protected JPanel top;
 	protected JPanel bottom;
 	
 	protected BVRUIKernel kernel;
 	protected NamedElement obj;
+	protected JComponent node;
 	
     public void addCenter(JComponent p) {
         this.add(p);
@@ -62,21 +63,19 @@ public class ElementPropertyEditor extends JPanel {
     
     protected Command command;
     
-    protected void init() {
-    	command = new UpdateVSpec();
-    	command.init(null, obj, null, null, null, null, view);
-    }
     
-    public ElementPropertyEditor(BVRUIKernel _kernel, NamedElement _obj, BVRToolView _view) {
+    public ElementPropertyEditor(BVRUIKernel _kernel, Command okCommand, NamedElement _obj, JComponent _node, BVRNotifiableController _controller) {
 
         this.setOpaque(false);
         this.setBorder(null);
+        command = okCommand;
 
-        view = _view;
+        controller = _controller;
         kernel = _kernel;
         obj = _obj;
+        node = _node;
         
-    	init();
+ 
         
         top = new JPanel(new SpringLayout());
         top.setBorder(null);
@@ -89,7 +88,7 @@ public class ElementPropertyEditor extends JPanel {
         this.addCenter(top);
         this.addCenter(bottom);
         
-        final JCommandButton okButton = new JCommandButton("OK", command, view);
+        final JCommandButton okButton = new JCommandButton("OK", command, kernel, controller);
         bottom.add(okButton);
         
         //Name

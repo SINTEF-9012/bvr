@@ -5,15 +5,15 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.ClearSelectionRelalizationEvent;
 import no.sintef.bvr.tool.ui.command.event.CreateFragmentSubstitutionEvent;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class FragmentSubstitutionDropDown extends JPopupMenu {
 
 	private static final long serialVersionUID = 1L;
 	
-    public FragmentSubstitutionDropDown(BVRToolView _view){
+    public FragmentSubstitutionDropDown(BVRNotifiableController _view){
 		JMenuItem createFragmentSubstitution = new JMenuItem(Constants.REALIZATION_CR_FS_NAME);
 		createFragmentSubstitution.addActionListener(new CreateFragmentSubstitutionEvent(_view));
 		add(createFragmentSubstitution);

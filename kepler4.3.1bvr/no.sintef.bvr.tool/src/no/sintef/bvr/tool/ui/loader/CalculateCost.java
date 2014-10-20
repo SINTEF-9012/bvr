@@ -9,18 +9,20 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
 
+
 import bvr.ChoiceResolution;
 import bvr.VSpecResolution;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
 
 public class CalculateCost implements ActionListener {
 	private BVRToolModel m;
-	private BVRToolView v;
+	private BVRNotifiableController v;
 
-	public CalculateCost(BVRToolModel m, BVRToolView bvrView) {
+	public CalculateCost(BVRToolModel m, BVRNotifiableController bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}

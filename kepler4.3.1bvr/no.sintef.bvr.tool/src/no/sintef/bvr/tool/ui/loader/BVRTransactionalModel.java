@@ -2,12 +2,15 @@ package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.model.NoteFactory;
+import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -17,6 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -25,22 +29,42 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BVRModel;
+import bvr.BvrFactory;
+import bvr.Choice;
+import bvr.CompoundNode;
+import bvr.NamedElement;
+import bvr.Note;
+import bvr.PrimitiveTypeEnum;
+import bvr.PrimitveType;
+import bvr.VNode;
+import bvr.VSpec;
+import bvr.VSpecResolution;
+import bvr.Variable;
 
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
+	
+	static private int choicCounter = 0;
+	static private int variableCount = 0;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath();
-		checkModel();
+		init();
 	}
 
 	public BVRTransactionalModel(File sf) {
 		f = sf;
 		bvrm = new BVRInnerModel(f);
 		loadFilename = sf.getAbsolutePath();
+		init();
+	}
+	
+	private void init(){
 		checkModel();
+		minimizedVSpec = new ArrayList<VSpec>();
+		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
 	}
 
 	@Override
@@ -112,6 +136,23 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 
 	}
+	
+	@Override
+	public void addChoice(VSpec parentVSpec) {
+		Choice c = BvrFactory.eINSTANCE.createChoice();
+		c.setName("Choice "+choicCounter);
+		choicCounter++;
+		
+		if(parentVSpec != null){
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
+		}else{
+			BVRModel model = bvrm.getRootBVRModel();
+			if(model.getVariabilityModel() == null){
+				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
+			}
+		}
+	}
+	
 
 	@Override
 	public void update(ResourceSubject subject) {
@@ -139,4 +180,100 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		job.schedule();
 	}
 
+	@Override
+	public void minimaizeVSpec(VSpec vspec) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void maximizeVSpec(VSpec vspec) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isVSpecMinimized(VSpec vspec) {
+		return minimizedVSpec.contains(vspec);
+	}
+	
+	@Override
+	public void minimaizeVSpecResolution(VSpecResolution vspecRes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void maximizeVSpecResolution(VSpecResolution vspecRes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes) {
+		return minimizedVSpecResolution.contains(vspecRes);
+	}
+	
+	@Override
+	public void updateVariable(Variable variable, String name, String typeName){
+		PrimitiveTypeFactory.getInstance().testModelsPrimitiveTypes(getBVRModel());
+		
+		if(name.equals("")){
+			Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)variable.eContainer(), variable);
+			return;
+		}
+		
+		Context.eINSTANCE.getEditorCommands().setName(variable, name);
+
+	
+		PrimitiveTypeEnum t = null;
+        for(PrimitiveTypeEnum x : PrimitiveTypeEnum.VALUES){
+        	if(x.getName().equals(typeName)){
+        		t = x;
+        	}
+        }
+        
+        if(t == null)
+        	throw new UnsupportedOperationException("Invalid primitive type name " + typeName);
+        
+        PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), t);
+        Context.eINSTANCE.getEditorCommands().setTypeForVariable(variable, primitivType);
+	}
+	
+	@Override
+	public void updateName(NamedElement namedElement, String name) {
+		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+	}
+	
+	@Override
+	public void updateComment(NamedElement namedElement, String text) {
+		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
+		Context.eINSTANCE.getEditorCommands().updateNoteExp(commentNote, text);
+	}
+	
+	@Override
+	public String getNodesCommentText(NamedElement namedElement) {
+		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
+		return commentNote.getExpr();
+	}
+	
+	@Override
+	public void addVariable(VNode parentNode) {
+		Variable var = BvrFactory.eINSTANCE.createVariable();
+		PrimitveType vt = BvrFactory.eINSTANCE.createPrimitveType();
+		
+		vt.setType(PrimitiveTypeEnum.INTEGER);
+		vt.setName("xx");
+		
+		//Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
+		//view.getCU().getOwnedVariabletype().add(vt);
+		
+		//var.setName("Var" + x);
+		//var.setType(vt);
+		//x++;
+		
+		//Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
+
+		
+	}
 }

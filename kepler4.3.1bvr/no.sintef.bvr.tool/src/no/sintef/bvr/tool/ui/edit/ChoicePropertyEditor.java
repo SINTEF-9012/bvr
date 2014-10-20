@@ -1,26 +1,23 @@
 package no.sintef.bvr.tool.ui.edit;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.JTextComponent;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
-import no.sintef.bvr.tool.ui.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
-import bvr.Choice;
+import bvr.CompoundNode;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.VSpec;
@@ -28,13 +25,10 @@ import bvr.Variable;
 
 public class ChoicePropertyEditor extends ElementPropertyEditor{
 	
-    protected void init() {
-    	command = new UpdateChoice();
-    	command.init(null, obj, null, null, null, null, view);
-    }
+	private static final long serialVersionUID = -561022693337041081L;
 
-	public ChoicePropertyEditor(BVRUIKernel kernel, VSpec elem, BVRToolView view) {
-		super(kernel, (VSpec) elem, view);
+	public ChoicePropertyEditor(BVRUIKernel kernel, Command okCommand,  VSpec elem, JComponent node, BVRNotifiableController controller) {
+		super(kernel, okCommand, (VSpec) elem, node, controller);
 		
         // Comment
         JPanel p = new JPanel(new SpringLayout());
@@ -50,7 +44,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 
         l.setLabelFor(comment);
         p.add(comment);
-       // comment.setText(elem.getComment());
+        comment.setText(controller.getVSpecControllerInterface().getNodesCommentText(node));
 
         top.add(p);
         SpringUtilities.makeCompactGrid(p,
@@ -63,7 +57,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         comment.getDocument().addDocumentListener(new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    ((UpdateVSpec) command).setComment(e.getDocument().getText(0, e.getDocument().getLength()));
+                    ((UpdateChoice) command).setComment(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -80,13 +74,10 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 		
         // Vars
 		int count = 2;
-		/*for(VSpec x : elem.getChild()){
-			if(x instanceof Variable){
-				Variable v = (Variable)x;
-				addEdit(elem, v);
-				count++;
-			}
-		}*/
+		for(Variable x : ((CompoundNode) elem).getVariable()){
+			addEdit(elem, x);
+			count++;
+		}
 		
         pack(count, 1);
 	}
@@ -126,7 +117,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
                 6, 6);       //xPad, yPad
         
         //Part 2
-        ((UpdateChoice)command).setVar(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        ((UpdateChoice)command).setVariable(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
         
         name.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
         types.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
@@ -134,7 +125,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
     	// Part 3:
         DocumentListener dl = new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
-            	((UpdateChoice)command).setVar(v, name.getText(), types.getSelectedItem().toString());
+            	((UpdateChoice)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
             	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
             }
             public void removeUpdate(DocumentEvent e) {
@@ -147,7 +138,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         name.getDocument().addDocumentListener(dl);
         types.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
-            	((UpdateChoice)command).setVar(v, name.getText(), types.getSelectedItem().toString());
+            	((UpdateChoice)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
             	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
             }
         });

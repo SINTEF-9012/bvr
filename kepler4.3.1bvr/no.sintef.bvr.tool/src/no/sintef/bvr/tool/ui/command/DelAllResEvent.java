@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 import bvr.BVRModel;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 
 
 public class DelAllResEvent implements ActionListener {
 	private BVRModel model;
-	private BVRToolView bvrView;
+	private BVRNotifiableController bvrView;
 
-	public DelAllResEvent(BVRModel model, BVRToolView bvrView) {
+	public DelAllResEvent(BVRModel model, BVRNotifiableController bvrView) {
 		this.model = model;
 		this.bvrView = bvrView;
 	}

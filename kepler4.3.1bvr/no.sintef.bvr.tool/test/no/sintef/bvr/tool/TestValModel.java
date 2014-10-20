@@ -13,7 +13,7 @@ import org.sat4j.specs.TimeoutException;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-
+import no.sintef.bvr.tool.ui.loader.BVRSimpleToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
@@ -29,7 +29,7 @@ public class TestValModel {
 	}
 
 	private boolean validate(File f) throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException, BVRException {
-		BVRToolModel x = new BVRToolModel(f);
+		BVRToolModel x = new BVRSimpleToolModel(f);
 		no.sintef.ict.splcatool.SPLCABVRModel z = x.getBVRM();
 		CoveringArray ca = z.getCoveringArray();
 		CNF cnf = z.getGUIDSL().getSXFM().getCNF();

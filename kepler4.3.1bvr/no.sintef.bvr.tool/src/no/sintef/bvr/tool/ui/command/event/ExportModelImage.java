@@ -6,10 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -17,36 +15,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.swt.internal.image.PNGFileFormat;
-
-import bvr.VSpecResolution;
-
-import com.google.common.collect.Lists;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
-import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 public class ExportModelImage implements ActionListener {
 
 	JLayeredPane view;
 	BVRToolModel model;
-	private EList<VSpecResolution> resolutions;
 	private JTabbedPane resPane;
 	
 	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
 
-	public ExportModelImage(JLayeredPane cup, BVRToolModel model, EList<VSpecResolution> resolutions, JTabbedPane resPane) {
+	public ExportModelImage(JLayeredPane cup, BVRToolModel model, JTabbedPane resPane) {
 		this.view = cup;
 		this.model = model;
-		this.resolutions = resolutions;
 		this.resPane = resPane;
 	}
 

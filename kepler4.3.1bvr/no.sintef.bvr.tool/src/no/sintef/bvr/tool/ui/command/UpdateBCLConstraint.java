@@ -15,12 +15,13 @@ import no.sintef.bvr.constraints.bcl.BCLBuilder;
 import no.sintef.bvr.constraints.bcl.BCLLexer;
 import no.sintef.bvr.constraints.bcl.BCLParser;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.NamedElement;
+import bvr.Variable;
 
 public class UpdateBCLConstraint extends UpdateVSpec {
 
@@ -30,7 +31,7 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.bcl = (BCLConstraint)p;
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
@@ -39,14 +40,14 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 	public JComponent execute() {
 		//System.out.println("Update BCL Constraint!! to " + text);
 		
-		RuleNode root = parseBCL(text);
-		BCLExpression e = new BCLBuilder().recurse(root, 0, view.getBVRModel(), false);
-		Context.eINSTANCE.getEditorCommands().clearBCLConstraintExpressions(bcl);
-		Context.eINSTANCE.getEditorCommands().addBCLExpressionConstraint(bcl, e);
+		//RuleNode root = parseBCL(text);
+		//BCLExpression e = new BCLBuilder().recurse(root, 0, view.getBVRModel(), false);
+		//Context.eINSTANCE.getEditorCommands().clearBCLConstraintExpressions(bcl);
+		//Context.eINSTANCE.getEditorCommands().addBCLExpressionConstraint(bcl, e);
 		//bcl.getExpression().clear();
 		//bcl.getExpression().add(e);
 		
-		super.execute();
+		
 		//view.notifyVspecViewUpdate();
 		return null;
 	}
@@ -62,6 +63,18 @@ public class UpdateBCLConstraint extends UpdateVSpec {
 
 	public void setConstraint(String text) {
 		this.text = text;  
+	}
+
+	@Override
+	public void setVariable(Variable v, String name, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

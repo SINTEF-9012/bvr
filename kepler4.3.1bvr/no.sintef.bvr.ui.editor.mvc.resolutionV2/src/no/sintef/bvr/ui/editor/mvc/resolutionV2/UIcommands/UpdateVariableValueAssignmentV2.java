@@ -6,11 +6,10 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
-
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 //import bvr.PrimitiveTypeEnum;
@@ -24,7 +23,7 @@ public class UpdateVariableValueAssignmentV2 extends UpdateVariableValueAssignme
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
 

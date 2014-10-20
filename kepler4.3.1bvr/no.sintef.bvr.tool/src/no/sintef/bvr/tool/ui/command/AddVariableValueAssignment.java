@@ -5,9 +5,9 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.dropdown.VariableValueAssignmentDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
@@ -30,7 +30,7 @@ public class AddVariableValueAssignment implements Command {
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
-	protected BVRToolView view;
+	protected BVRNotifiableController view;
 	protected JComponent parent;
 	protected BVRUIKernel rootPanel;
 	//protected VariableValueAssignment c;
@@ -42,7 +42,7 @@ public class AddVariableValueAssignment implements Command {
 		this.contains = contains;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.rootPanel = rootPanel;
 		//this.c = (VariableValueAssignment) p;
 		this.parent = parent;

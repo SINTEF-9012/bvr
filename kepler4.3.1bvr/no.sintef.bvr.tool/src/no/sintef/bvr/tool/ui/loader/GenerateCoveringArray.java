@@ -12,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import bvr.VSpecResolution;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.GUIDSL;
@@ -21,7 +22,7 @@ public class GenerateCoveringArray implements ActionListener {
 	private int t;
 	private BVRToolModel m;
 	
-	public GenerateCoveringArray(BVRToolModel m, BVRToolView bvrView, int t) {
+	public GenerateCoveringArray(BVRToolModel m, BVRNotifiableController bvrView, int t) {
 		this.m = m;
 		this.t = t;
 	}

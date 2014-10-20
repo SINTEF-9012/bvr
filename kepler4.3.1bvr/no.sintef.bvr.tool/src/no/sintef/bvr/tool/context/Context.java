@@ -14,6 +14,7 @@ import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.tool.common.LoaderUtility;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
@@ -21,10 +22,9 @@ import no.sintef.bvr.tool.filter.FMFilter;
 
 
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
-import no.sintef.bvr.tool.strategy.impl.ScopeBuilderContext;
+import no.sintef.bvr.tool.ui.loader.BVRSimpleToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
@@ -45,7 +45,7 @@ public final class Context {
 	private ViewChanageManager viewChnageManager = ContextFactory.eINSTANCE.createViewChanageManager();
 	
 	private final List<BVRToolModel> bvrModels = new ArrayList<BVRToolModel>();
-	private final List<BVRToolView> bvrViews = new ArrayList<BVRToolView>();
+	private final List<BVRNotifiableController> bvrViews = new ArrayList<BVRNotifiableController>();
 	
 	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
 	
@@ -81,7 +81,7 @@ public final class Context {
 		}else if(extension.equals(FMFilter.M_EXT)){
 			try{
 				no.sintef.ict.splcatool.SPLCABVRModel bvrm = new GUIDSL(file).getGraphMLFM().getBVRModel();
-				model = new BVRToolModel(file, bvrm);
+				model = new BVRSimpleToolModel(file, bvrm);
 			}catch(Exception e){
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
 			}
@@ -90,7 +90,7 @@ public final class Context {
 				SXFM sxfm = new SXFM(file.getAbsolutePath());
 				GraphMLFM gml = sxfm.getGUIDSL().getGraphMLFM();
 				no.sintef.ict.splcatool.SPLCABVRModel bvrm = gml.getBVRModel();
-				model = new BVRToolModel(file, bvrm);
+				model = new BVRSimpleToolModel(file, bvrm);
 			} catch (Exception e) {
 				throw new UnsupportedOperationException("Loading model failed: " + e.getMessage());
 			}
@@ -145,7 +145,7 @@ public final class Context {
 		return bvrModels;
 	}
 	
-	public final List<BVRToolView> getBvrViews(){
+	public final List<BVRNotifiableController> getBvrViews(){
 		return bvrViews;
 	}
 	
@@ -153,7 +153,7 @@ public final class Context {
 		bvrModels.add(model);
 	}
 	
-	public void addBvrView(BVRToolView view){
+	public void addBvrView(BVRNotifiableController view){
 		bvrViews.add(view);
 	}
 

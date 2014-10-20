@@ -1,5 +1,6 @@
 package no.sintef.bvr.tool.ui.edit;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -8,9 +9,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 
@@ -19,11 +21,11 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
 	
     protected void init() {
     	command = new UpdateBCLConstraint();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
-	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRToolView view) {
-		super(kernel, elem, view);
+	public BCLConstraintPropertyEditor(BVRUIKernel kernel, Command _command, BCLConstraint elem, JComponent _node, BVRNotifiableController view) {
+		super(kernel, _command, elem, _node, view);
 		
 		// Constraint
         JPanel p2 = new JPanel(new SpringLayout());

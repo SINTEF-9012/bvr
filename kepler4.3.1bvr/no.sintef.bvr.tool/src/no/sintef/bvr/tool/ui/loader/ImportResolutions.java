@@ -7,6 +7,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.SHFilter;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
@@ -17,9 +18,9 @@ import no.sintef.ict.splcatool.GraphMLFM;
 
 public class ImportResolutions implements ActionListener {
 	private BVRToolModel m;
-	private BVRToolView v;
+	private BVRNotifiableController v;
 
-	public ImportResolutions(BVRToolModel m, BVRToolView bvrView) {
+	public ImportResolutions(BVRToolModel m, BVRNotifiableController bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}

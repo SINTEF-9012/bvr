@@ -5,14 +5,13 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
-import bvr.VSpec;
+import bvr.Variable;
 
-public class UpdateVSpec implements Command {
+abstract public class UpdateVSpec implements Command {
 
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;
@@ -20,7 +19,7 @@ public class UpdateVSpec implements Command {
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
-	protected BVRToolView view;
+	protected BVRNotifiableController controller;
 	
 	protected String name;
 	
@@ -30,10 +29,7 @@ public class UpdateVSpec implements Command {
 	
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
-		
-		//System.out.println("p: " + p);
-		//System.out.println("p instanceof VSpec: " + (p instanceof VSpec));
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		
 		if(p instanceof NamedElement){
 			this.rootPanel = rootPanel;
@@ -46,19 +42,14 @@ public class UpdateVSpec implements Command {
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
-		this.view = view;
+		this.controller = controller;
 		
 		return this;
 		
 	}
-
-	public JComponent execute() {
-		Context.eINSTANCE.getEditorCommands().setName(vc, name);
-		return null;
-	}
-
-	public void setComment(String text) {
-		Context.eINSTANCE.getEditorCommands().setVSpecComment((VSpec)vc, text);
-	}
+	
+	abstract public void setVariable(Variable v, String name, String type);
+	
+	abstract public void setComment(String text);
 
 }

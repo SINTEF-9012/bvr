@@ -18,6 +18,7 @@ import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
@@ -28,7 +29,6 @@ import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
@@ -41,7 +41,7 @@ import bvr.VNode;
 import bvr.VSpecResolution;
 
 
-public class ResolutionView extends BVRToolViewAbstract implements BVRResolutionView {
+public class ResolutionView extends BVRToolAbstractController implements BVRResolutionView {
 	private BVRToolModel m;
 	
 	public JTabbedPane modelPane;
@@ -61,7 +61,6 @@ public class ResolutionView extends BVRToolViewAbstract implements BVRResolution
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 	
-	private BVRModelSubject bvrModelSubject;
 
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
@@ -78,7 +77,7 @@ public class ResolutionView extends BVRToolViewAbstract implements BVRResolution
 		
 		this.m = m;
 		
-    	bvrModelSubject = new BVRModelSubject(this.getBVRModel());
+  
 	
     	vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
@@ -102,10 +101,7 @@ public class ResolutionView extends BVRToolViewAbstract implements BVRResolution
 		return m.isNotSaved();
 	}
 
-	@Override
-	public BVRModelSubject getBVRModelSubject() {
-		return bvrModelSubject;
-	}
+
 
 	@Override
 	public BVRModel getBVRModel() {
@@ -273,13 +269,13 @@ public class ResolutionView extends BVRToolViewAbstract implements BVRResolution
 	}
 
 
-	@Override
+	
 	public void setMaximized(Object v) {
 		minimized.remove(v);
 		refresh();
 	}
 
-	@Override
+	
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution)v);
 		refresh();

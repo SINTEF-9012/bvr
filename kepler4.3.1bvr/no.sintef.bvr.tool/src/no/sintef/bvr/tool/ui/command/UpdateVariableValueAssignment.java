@@ -6,13 +6,12 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
-
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
@@ -23,18 +22,19 @@ import bvr.Variable;
 import bvr.VariableValueAssignment;
 import bvr.common.PrimitiveTypeHandler;
 */
+import bvr.Variable;
 
 public class UpdateVariableValueAssignment extends UpdateVSpec  {
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRToolView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
 
 	@Override
 	public JComponent execute() {
-		super.execute();
+		//super.execute();
 		return null;
 	}
 
@@ -42,6 +42,18 @@ public class UpdateVariableValueAssignment extends UpdateVSpec  {
 		//System.out.println("whey!");
 		
 		///setValueAsString((VariableValueAssignment)vc, value);
+	}
+
+	@Override
+	public void setVariable(Variable v, String name, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 /*	//TODO replace with functionality for new model

@@ -13,14 +13,14 @@ import javax.swing.JSeparator;
 
 import bvr.NamedElement;
 import bvr.VSpec;
-
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
 import no.sintef.bvr.tool.ui.command.event.AddVariableEvent;
 import no.sintef.bvr.tool.ui.command.event.CutEvent;
-import no.sintef.bvr.tool.ui.command.event.MaximizeEvent;
-import no.sintef.bvr.tool.ui.command.event.MinimizeEvent;
+import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
+import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
@@ -28,8 +28,6 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleOptionalEvent;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
-import no.sintef.bvr.tool.ui.loader.Main;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
@@ -39,9 +37,9 @@ public class ClassifierDropDownListener extends MouseAdapter {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRToolView view;
+	private BVRNotifiableController view;
 
-	public ClassifierDropDownListener(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+	public ClassifierDropDownListener(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
 		this.cp = cp;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
@@ -68,11 +66,11 @@ public class ClassifierDropDownListener extends MouseAdapter {
 class ClassifierDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRToolView view){
+    public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addchoice = new JMenuItem("choice");
-    	addchoice.addActionListener(new AddChoiceEvent(cp, vmMap, nodes, bindings, view));
+    	addchoice.addActionListener(new AddChoiceEvent(cp, view));
     	add.add(addchoice);
     	JMenuItem addclassifier = new JMenuItem("classifier");
     	addclassifier.addActionListener(new AddClassifierEvent(cp, vmMap, nodes, bindings, view));
@@ -126,10 +124,10 @@ class ClassifierDropdown extends JPopupMenu {
 		
 		// Change to
 		JMenuItem minimize = new JMenuItem("minimize");
-		minimize.addActionListener(new MinimizeEvent(cp, vmMap, nodes, bindings, view));
+		minimize.addActionListener(new MinimizeVSpecEvent(cp, view));
 		add(minimize);
 		JMenuItem maximize = new JMenuItem("maximize");
-		maximize.addActionListener(new MaximizeEvent(cp, vmMap, nodes, bindings, view));
+		maximize.addActionListener(new MaximizeVSpecEvent(cp, view));
 		add(maximize);
     }
 }

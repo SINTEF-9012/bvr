@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 
+
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
@@ -30,9 +32,9 @@ public class ValidateResolution implements ActionListener {
 	
 	private JTabbedPane filePane;
 	private List<BVRToolModel> models;
-	private List<BVRToolView> views;
+	private List<BVRNotifiableController> views;
 
-	public ValidateResolution(JTabbedPane filePane, List<BVRToolModel> models, List<BVRToolView> views) {
+	public ValidateResolution(JTabbedPane filePane, List<BVRToolModel> models, List<BVRNotifiableController> views) {
 		this.filePane = filePane;
 		this.models = models;
 		this.views = views;

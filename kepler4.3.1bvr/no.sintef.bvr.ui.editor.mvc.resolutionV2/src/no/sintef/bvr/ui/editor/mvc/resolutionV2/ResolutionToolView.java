@@ -11,7 +11,12 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+
 import no.sintef.bvr.common.CommonUtility;
+
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.BVRToolAbstractController;
+
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
@@ -21,7 +26,6 @@ import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
@@ -57,7 +61,7 @@ import bvr.OpaqueConstraint;
 import bvr.VSpecResolution;
 //import bvr.VariableValueAssignment;
 
-public class ResolutionToolView implements BVRResolutionToolView {
+public class ResolutionToolView extends BVRToolAbstractController implements BVRResolutionToolView {
 	private BVRToolModel m;
 	private List<Constraint> invalidConstraints;
 
@@ -427,13 +431,13 @@ public class ResolutionToolView implements BVRResolutionToolView {
 		this.showConstraints = showConstraints;
 	}
 
-	@Override
+	
 	public void setMaximized(Object v) {
 		minimized.remove(v);
 		refresh();
 	}
 
-	@Override
+	
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution) v);
 		refresh();
@@ -531,10 +535,11 @@ public class ResolutionToolView implements BVRResolutionToolView {
 		return this.stripped;
 	}
 
-@Override
+
 public BVRModelSubject getBVRModelSubject() {
 	return bvrModelSubject;
 }
+
 
 @Override
 public BVRModel getBVRModel() {

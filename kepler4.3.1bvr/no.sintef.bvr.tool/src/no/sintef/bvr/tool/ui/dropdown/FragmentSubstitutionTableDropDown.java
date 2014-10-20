@@ -4,17 +4,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.CreateBindingsEvent;
 import no.sintef.bvr.tool.ui.command.event.DeleteFragmentSubstitutionEvent;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRToolView;
 
 public class FragmentSubstitutionTableDropDown extends
 		FragmentSubstitutionDropDown {
 
 	private static final long serialVersionUID = 2778779861676603393L;
 	
-	public FragmentSubstitutionTableDropDown(BVRToolView _view) {
+	public FragmentSubstitutionTableDropDown(BVRNotifiableController _view) {
 		super(_view);
 		BVRRealizationView rView = (BVRRealizationView) _view;
 		

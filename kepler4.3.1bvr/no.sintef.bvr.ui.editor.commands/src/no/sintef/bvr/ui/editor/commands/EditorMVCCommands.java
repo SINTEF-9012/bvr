@@ -21,6 +21,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
@@ -238,12 +239,12 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint){
 		cu.getOwnedVariationPoint().add(variationPoint);
 	}
-	
+	*/
 	@Override
-	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
-		cu.getOwnedVariabletype().add(variationType);
+	public void addOwnedVariationType(BVRModel model, Variabletype variationType) {
+		model.getPackageElement().add(variationType);
 	}
-
+/*
 	@Override
 	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
 		cu.getOwnedVariationPoint().remove(variationPoint);
@@ -476,4 +477,34 @@ public class EditorMVCCommands implements EditorCommands {
 	//TODO replace
 }
 */
+
+	@Override
+	public void createNote(NamedElement parent, Note commentNote) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateNoteExp(Note note, String expr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void enableBatchProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableBatchProcessing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void executeBatch() {
+		// TODO Auto-generated method stub
+		
+	}
 }
