@@ -19,6 +19,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
@@ -58,6 +59,9 @@ public interface EditorCommands {
 	//public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
 	
 	//public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
+	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper, PosResolution pr);
+	
+	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper, NegResolution pr);
 	
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	

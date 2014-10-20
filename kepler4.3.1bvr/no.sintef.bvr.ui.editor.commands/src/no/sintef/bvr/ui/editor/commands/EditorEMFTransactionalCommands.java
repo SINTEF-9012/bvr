@@ -48,6 +48,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
@@ -565,8 +566,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
-		// TODO Auto-generated method stub
-		
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), pr);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
@@ -717,6 +719,33 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		batchMode = false;
 		queue.clear();
 	}
+
+	
+	
+	@Override
+	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper,
+			PosResolution pr) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), pr);
+		editingDomain.getCommandStack().execute(cmd);
+		setChoicePosResolvedVSpec(pr, target);
+	}
+
+	private void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, pr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
+		editingDomain.getCommandStack().execute(cmd);
+		
+	}
+
+	@Override
+	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper,
+			NegResolution pr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 /*
 	@Override

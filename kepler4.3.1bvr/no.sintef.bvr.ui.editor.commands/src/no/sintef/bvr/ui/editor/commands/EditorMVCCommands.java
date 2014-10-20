@@ -21,6 +21,7 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
@@ -504,6 +505,20 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void executeBatch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper,
+			PosResolution pr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper,
+			NegResolution pr) {
 		// TODO Auto-generated method stub
 		
 	}

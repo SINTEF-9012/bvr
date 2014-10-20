@@ -26,12 +26,16 @@ public class NewResolvedResolutionEvent implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
-		ChoiceResolution root = BvrFactory.eINSTANCE.createPosResolution();
+		PosResolution root = BvrFactory.eINSTANCE.createPosResolution();
 
-		
+		VSpec x = null;
 		//TODO possible error
-		VSpec x = (VSpec) bvrModel.getVariabilityModel().getMember().get(0);
+		if((bvrModel != null) && bvrModel.getVariabilityModel() != null )
+		x = (VSpec) bvrModel.getVariabilityModel().getMember().get(0);
 
+		if(x == null){
+			throw new UnsupportedOperationException("Variabilitymodel is empty");
+		}
 		// populate top choice
 		if (x instanceof Choice) {
 			root.setResolvedVSpec(x);
@@ -43,7 +47,7 @@ public class NewResolvedResolutionEvent implements ActionListener {
 			// create resolution model
 			System.out.println("creating new resolution");
 			Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, bvrModel);
-			//TODO Context.eINSTANCE.getEditorCommands().ad
+			Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution((Choice)x, root, root);
 		} else {
 			throw new UnsupportedOperationException("model must start with a choice");
 		}
