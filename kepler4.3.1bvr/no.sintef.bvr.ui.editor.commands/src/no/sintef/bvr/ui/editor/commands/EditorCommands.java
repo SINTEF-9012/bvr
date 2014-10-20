@@ -28,6 +28,7 @@ import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
@@ -183,5 +184,9 @@ public interface EditorCommands {
 	public void disableBatchProcessing();
 	
 	public void executeBatch();
+
+	public void addTargetToCompoundNode(CompoundNode namedElement, Target target);
+
+	public void setVSpecTarget(VSpec namedElement, Target target);
 
 }

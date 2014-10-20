@@ -57,6 +57,7 @@ import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
@@ -717,6 +718,20 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void disableBatchProcessing() {
 		batchMode = false;
 		queue.clear();
+	}
+
+	@Override
+	public void addTargetToCompoundNode(CompoundNode compoundNode, Target target) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode_OwnedTargets(), target);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void setVSpecTarget(VSpec vSpec, Target target) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Target(), target);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 /*

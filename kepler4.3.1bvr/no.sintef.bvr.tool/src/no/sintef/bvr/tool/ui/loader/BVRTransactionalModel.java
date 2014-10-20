@@ -176,6 +176,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		Target target = BvrFactory.eINSTANCE.createTarget();
 		target.setName(c.getName());
 		((CompoundNode) c).getOwnedTargets().add(target);
+		c.setTarget(target);
 		
 		if(parentVSpec != null){
 			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
@@ -250,7 +251,28 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void updateName(NamedElement namedElement, String name) {
+		String oldName = namedElement.getName();
 		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+		
+		//update corresponding target accordingly
+		if(namedElement instanceof VClassifier || namedElement instanceof Choice){
+			EList<Target> targets = ((CompoundNode) namedElement).getOwnedTargets();
+			Target target = ((VSpec) namedElement).getTarget();
+			if(target == null) {
+				for(Target t : targets){
+					if(t.getName().equals(oldName)){
+						target = t;
+						Context.eINSTANCE.getEditorCommands().setVSpecTarget((VSpec) namedElement, target);
+						break;
+					}
+				}
+			}
+			if(target == null){
+				target = BvrFactory.eINSTANCE.createTarget();
+				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode((CompoundNode) namedElement, target);
+			}
+			Context.eINSTANCE.getEditorCommands().setName(target, name);
+		}
 	}
 	
 	@Override
@@ -261,8 +283,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public String getNodesCommentText(NamedElement namedElement) {
-		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
-		return commentNote.getExpr();
+		return NoteFactory.eINSTANCE.getCommentText(namedElement);
 	}
 	
 	@Override
@@ -302,6 +323,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		Target target = BvrFactory.eINSTANCE.createTarget();
 		target.setName(c.getName());
 		((CompoundNode) c).getOwnedTargets().add(target);
+		c.setTarget(target);
 		
 		if(parentVSpec != null){
 			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parentVSpec, c);

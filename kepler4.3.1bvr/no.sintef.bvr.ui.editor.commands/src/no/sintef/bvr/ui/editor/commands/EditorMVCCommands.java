@@ -28,6 +28,7 @@ import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
@@ -504,6 +505,18 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void executeBatch() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addTargetToCompoundNode(CompoundNode namedElement, Target target) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVSpecTarget(VSpec namedElement, Target target) {
 		// TODO Auto-generated method stub
 		
 	}
