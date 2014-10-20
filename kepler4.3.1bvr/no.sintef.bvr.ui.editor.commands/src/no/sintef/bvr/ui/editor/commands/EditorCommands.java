@@ -70,7 +70,7 @@ public interface EditorCommands {
 	
 	//public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
 	
-	public void addVariable(VSpec vSpec, Variable variable);
+	public void addVariable(VNode parentVNode, Variable variable);
 	
 	//public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment);
 	

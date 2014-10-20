@@ -26,7 +26,7 @@ public class MVCResolutionEditor extends MVCEditor {
 	}
 
 	public void createView() {
-		v = new ResolutionView(m);
+		v = new ResolutionView(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
@@ -39,11 +39,11 @@ public class MVCResolutionEditor extends MVCEditor {
 	@Override
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
-			m.markNotSaved();
+			toolModel.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
 		if(subject instanceof ResourceSavedSubject){
-			m.markSaved();
+			toolModel.markSaved();
 		}
 		super.update(subject);
 	}

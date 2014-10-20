@@ -137,8 +137,9 @@ public class BVREditorPanel extends JPanel {
         if (p instanceof VClassifierPanel) {
         	VClassifierPanel elem = (VClassifierPanel) p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
-        	//VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, (VClassifier) object, controller);
-        	//editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+			Command okCommand = controller.getVSpecControllerInterface().createUpdateVClassifierCommand(elem);
+        	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, okCommand, (VClassifier) object, elem, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ChoicePanel) {
         	ChoicePanel elem = (ChoicePanel)p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);

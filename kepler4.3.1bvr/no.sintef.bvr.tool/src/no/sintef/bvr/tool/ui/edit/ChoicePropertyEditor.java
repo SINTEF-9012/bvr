@@ -139,7 +139,6 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         types.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
             	((UpdateChoice)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
-            	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
             }
         });
 	}

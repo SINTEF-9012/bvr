@@ -1,18 +1,17 @@
 package no.sintef.bvr.tool.observer;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashSet;
 
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 
 public class ResourceSetEditedSubject implements ResourceSubject {
 
-	protected List<ResourceObserver> observers = new ArrayList<ResourceObserver>();
+	protected HashSet<ResourceObserver> observers = new HashSet<ResourceObserver>();
 	protected ResourceSetChangeEvent event;
-	private BVRToolModel model;
+	protected BVRToolModel model;
 	
 	public ResourceSetEditedSubject(BVRToolModel model) {
 		this.model = model;

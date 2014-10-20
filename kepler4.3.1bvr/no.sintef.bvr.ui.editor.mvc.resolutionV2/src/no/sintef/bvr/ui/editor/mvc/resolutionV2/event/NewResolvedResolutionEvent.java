@@ -31,7 +31,10 @@ public class NewResolvedResolutionEvent implements ActionListener {
 		VSpec x = null;
 		//TODO possible error
 		if((bvrModel != null) && bvrModel.getVariabilityModel() != null )
-		x = (VSpec) bvrModel.getVariabilityModel().getMember().get(0);
+			System.out.println(bvrModel.getVariabilityModel());
+			System.out.println(bvrModel.getVariabilityModel().getMember());
+			
+			x = (VSpec) bvrModel.getVariabilityModel().getMember().get(0);
 
 		if(x == null){
 			throw new UnsupportedOperationException("Variabilitymodel is empty");

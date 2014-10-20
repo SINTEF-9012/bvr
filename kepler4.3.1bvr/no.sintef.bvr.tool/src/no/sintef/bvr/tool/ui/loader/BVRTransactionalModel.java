@@ -32,10 +32,13 @@ import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
+import bvr.Target;
+import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -46,6 +49,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
+	static private int classifierCount = 0;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -62,9 +66,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	private void init(){
-		checkModel();
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
+		checkModel();
 	}
 
 	@Override
@@ -138,23 +142,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void addChoice(VSpec parentVSpec) {
-		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setName("Choice "+choicCounter);
-		choicCounter++;
-		
-		if(parentVSpec != null){
-			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
-		}else{
-			BVRModel model = bvrm.getRootBVRModel();
-			if(model.getVariabilityModel() == null){
-				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
-			}
-		}
-	}
-	
-
-	@Override
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
 			checkModel();
@@ -178,6 +165,27 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			}
 		};
 		job.schedule();
+	}
+	
+	@Override
+	public void addChoice(VSpec parentVSpec) {
+		Choice c = BvrFactory.eINSTANCE.createChoice();
+		c.setName("Choice "+choicCounter);
+		
+		//each vspec has to have target
+		Target target = BvrFactory.eINSTANCE.createTarget();
+		target.setName(c.getName());
+		((CompoundNode) c).getOwnedTargets().add(target);
+		
+		if(parentVSpec != null){
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
+		}else{
+			BVRModel model = bvrm.getRootBVRModel();
+			if(model.getVariabilityModel() == null){
+				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
+			}
+		}
+		choicCounter++;
 	}
 
 	@Override
@@ -260,20 +268,48 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void addVariable(VNode parentNode) {
 		Variable var = BvrFactory.eINSTANCE.createVariable();
-		PrimitveType vt = BvrFactory.eINSTANCE.createPrimitveType();
 		
-		vt.setType(PrimitiveTypeEnum.INTEGER);
-		vt.setName("xx");
+		PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), PrimitiveTypeEnum.INTEGER);
+		var.setName("Var" + variableCount);
+		variableCount++;
+		var.setType(primitivType);
 		
-		//Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
-		//view.getCU().getOwnedVariabletype().add(vt);
+		Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
+	}
+	
+	@Override
+	public void setVClassifierLowerBound(VClassifier vClassifier, int lowerBound) {
+		MultiplicityInterval interval = vClassifier.getInstanceMultiplicity();
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(interval, lowerBound);
+	}
+	
+	@Override
+	public void setVClassifierUpperBound(VClassifier vClassifier, int upperBound) {
+		MultiplicityInterval interval = vClassifier.getInstanceMultiplicity();
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(interval, upperBound);
+	}
+	
+	@Override
+	public void addVClassifier(VSpec parentVSpec) {
+		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
+		c.setName("Classifier"+classifierCount);
+		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
+		mi.setLower(1);
+		mi.setUpper(1);
+		c.setInstanceMultiplicity(mi);
 		
-		//var.setName("Var" + x);
-		//var.setType(vt);
-		//x++;
+		//each vspec has to have target
+		Target target = BvrFactory.eINSTANCE.createTarget();
+		target.setName(c.getName());
+		((CompoundNode) c).getOwnedTargets().add(target);
 		
-		//Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
-
-		
+		if(parentVSpec != null){
+			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parentVSpec, c);
+		}else{
+			BVRModel model = bvrm.getRootBVRModel();
+			if(model.getVariabilityModel() == null)
+				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
+		}
+		classifierCount++;
 	}
 }
