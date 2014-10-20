@@ -31,7 +31,7 @@ public class MVCResolutionEditorV2 extends MVCEditor{
  */
 	@Override
 	public void createView() {
-		v = new ResolutionToolView(m);
+		v = new ResolutionToolView(toolModel);
 /*		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI); // get list of subjects
 		ResolutionV2ResourceSetSubject subject = testResolutionV2ResourceSetSubject(subjects); //if this editor is not in the subjects list add
 		subject.attach(this);

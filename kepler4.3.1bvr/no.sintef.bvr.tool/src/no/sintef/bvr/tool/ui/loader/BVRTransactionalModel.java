@@ -62,9 +62,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	private void init(){
-		checkModel();
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
+		checkModel();
 	}
 
 	@Override
@@ -260,20 +260,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void addVariable(VNode parentNode) {
 		Variable var = BvrFactory.eINSTANCE.createVariable();
-		PrimitveType vt = BvrFactory.eINSTANCE.createPrimitveType();
 		
-		vt.setType(PrimitiveTypeEnum.INTEGER);
-		vt.setName("xx");
+		PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), PrimitiveTypeEnum.INTEGER);
+		var.setName("Var" + variableCount);
+		variableCount++;
+		var.setType(primitivType);
 		
-		//Context.eINSTANCE.getEditorCommands().addVariableType(view.getCU(), vt);
-		//view.getCU().getOwnedVariabletype().add(vt);
-		
-		//var.setName("Var" + x);
-		//var.setType(vt);
-		//x++;
-		
-		//Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
-
-		
+		Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
 	}
 }

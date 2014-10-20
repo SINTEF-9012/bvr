@@ -178,7 +178,7 @@ public final class Context {
 		return environment.getEditorCommands();
 	}
 	
-	public BVRToolModel getModel(File file){
+	public BVRToolModel testBVRToolModel(File file){
 		return testBVRTransactionalModel(file);
 	}
 	

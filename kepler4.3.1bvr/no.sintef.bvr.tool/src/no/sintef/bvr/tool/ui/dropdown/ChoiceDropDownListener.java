@@ -77,7 +77,7 @@ class ChoiceDropdown extends JPopupMenu {
     	add.add(addConstraint);
     	
     	JMenuItem addVariable = new JMenuItem("variable");
-    	addVariable.addActionListener(new AddVariableEvent(cp, vmMap, nodes, bindings, view));
+    	addVariable.addActionListener(new AddVariableEvent(cp, view));
     	add.add(addVariable);
     	
 		add(add);

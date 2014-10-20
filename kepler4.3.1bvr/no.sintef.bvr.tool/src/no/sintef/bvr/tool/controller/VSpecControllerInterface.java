@@ -27,4 +27,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void disableBatchCommandProcessing();
 	
 	public void executeCommandBatch();
+	
+	public void addVariable(GUI_NODE node);
 }

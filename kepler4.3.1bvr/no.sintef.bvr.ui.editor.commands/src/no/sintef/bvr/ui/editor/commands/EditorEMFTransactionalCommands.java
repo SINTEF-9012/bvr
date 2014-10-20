@@ -584,9 +584,10 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addVariable(VSpec vSpec, Variable variable) {
-		// TODO Auto-generated method stub
-		
+	public void addVariable(VNode parentVNode, Variable variable) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentVNode, BvrPackage.eINSTANCE.getVNode_Variable(), variable);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override

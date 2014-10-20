@@ -231,4 +231,10 @@ public class SwingVSpecController<
 		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
 	
+	@Override
+	public void addVariable(GIU_NODE node) {
+		VNode vNode = (VNode) vspecvmMap.get(node);
+		toolModel.addVariable(vNode);
+	}
+	
 }

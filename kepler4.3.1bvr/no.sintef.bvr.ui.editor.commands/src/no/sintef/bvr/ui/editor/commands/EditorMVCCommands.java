@@ -404,7 +404,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addVariable(VSpec vSpec, Variable variable) {
+	public void addVariable(VNode parentVNode, Variable variable) {
 		// TODO Auto-generated method stub
 		
 	}

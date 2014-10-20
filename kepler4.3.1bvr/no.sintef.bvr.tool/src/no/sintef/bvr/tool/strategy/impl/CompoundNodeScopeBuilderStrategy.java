@@ -30,7 +30,7 @@ public class CompoundNodeScopeBuilderStrategy implements ContextBuilderStrategy 
 	@Override
 	public void testEObject(EObject parent, EObject child) {
 		if(!(parent instanceof CompoundNode && child instanceof CompoundNode)){
-			Context.eINSTANCE.logger.debug("VSpecContextBuilderStrategyImpl does not fitt for these model elements" + parent + " " + child);
+			//Context.eINSTANCE.logger.debug("VSpecContextBuilderStrategyImpl does not fitt for these model elements " + parent + " " + child);
 			return;
 		}
 		CompoundNode parentCN = (CompoundNode) parent;

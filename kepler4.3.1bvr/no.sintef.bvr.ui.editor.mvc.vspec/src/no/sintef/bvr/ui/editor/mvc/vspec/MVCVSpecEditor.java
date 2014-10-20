@@ -31,7 +31,7 @@ public class MVCVSpecEditor extends MVCEditor {
 	@Override
 	public
 	void createView() {
-		v = new VSpecRootController(m);
+		v = new VSpecRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
@@ -44,11 +44,11 @@ public class MVCVSpecEditor extends MVCEditor {
 	@Override
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
-			m.markNotSaved();
+			toolModel.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
 		if(subject instanceof ResourceSavedSubject){
-			m.markSaved();
+			toolModel.markSaved();
 		}
 		super.update(subject);
 	}

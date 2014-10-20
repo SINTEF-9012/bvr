@@ -58,7 +58,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	}
 
 	protected BVRNotifiableController v;
-	protected BVRToolModel m;
+	protected BVRToolModel toolModel;
 	protected String filename;
 
 	FileEditorInput fileinput;
@@ -66,7 +66,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	
 	
 	public BVRToolModel getBVRModel(){
-		return m;
+		return toolModel;
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		try {
-			m.getBVRM().writeToFile(filename);
+			toolModel.getBVRM().writeToFile(filename);
 			fileinput.getFile().refreshLocal(IResource.DEPTH_ZERO, null);
 			ResourceResourceSavedSubjectMap.eINSTANCE.pokeResourceSubjects(resourceURI);
 		} catch (final IOException e) {
@@ -121,7 +121,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	@Override
 	public boolean isDirty() {
-		return (m != null) ? m.isNotSaved() : false;
+		return (toolModel != null) ? toolModel.isNotSaved() : false;
 	}
 
 	@Override
@@ -144,27 +144,27 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 						UIManager.setLookAndFeel(UIManager
 								.getSystemLookAndFeelClassName());
 
-						m = Context.eINSTANCE.getModel(new File(filename));
-						resourceURI = ((BVRTransactionalModel) m).getResource().getURI();
+						toolModel = Context.eINSTANCE.testBVRToolModel(new File(filename));
+						resourceURI = ((BVRTransactionalModel) toolModel).getResource().getURI();
 						
+						jApplet = new CustomJApplet();
+						Context.eINSTANCE.setActiveJApplet(jApplet);
+						createView();
+						// "The first child of the embedded frame must be a heavyweight component."
+						frame.add(jApplet);
+						setContents();
+						int w = (int) frame.getBounds().getWidth();
+						int h = (int) frame.getBounds().getHeight();
+						jApplet.setSize(w, h);
+						frame.revalidate();
+						frame.repaint();
+						firePropertyChange(ISaveablePart.PROP_DIRTY);
+							
+						//attach model as listener to any changes in the resource
 						List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 						ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 						ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
-
-						if (m != null) {
-							jApplet = new CustomJApplet();
-							Context.eINSTANCE.setActiveJApplet(jApplet);
-							createView();
-							// "The first child of the embedded frame must be a heavyweight component."
-							frame.add(jApplet);
-							setContents();
-							int w = (int) frame.getBounds().getWidth();
-							int h = (int) frame.getBounds().getHeight();
-							jApplet.setSize(w, h);
-							frame.revalidate();
-							frame.repaint();
-							firePropertyChange(ISaveablePart.PROP_DIRTY);
-						}
+						subject.attach((BVRTransactionalModel) toolModel);
 					} catch (Exception e) {
 						Context.eINSTANCE.logger.error("Cannot open file " + e.getMessage() , e);
 						throw new RuntimeException("Rethrowing exception", e);
@@ -187,13 +187,18 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	@Override
 	public void dispose() {
 		super.dispose();		
-		Resource currentResource = ((BVRTransactionalModel) m).getResource();
+		Resource currentResource = ((BVRTransactionalModel) toolModel).getResource();
 		IEditorReference[] editorReferences = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
 		boolean isCurrentResourceUsed = Context.eINSTANCE.getEditorCommands().testXMIResourceUnload((XMIResource) currentResource, editorReferences);
 		if(!isCurrentResourceUsed){
 			Context.eINSTANCE.logger.debug("resource unloaded " + currentResource);
-			Context.eINSTANCE.disposeModel(m);
+			Context.eINSTANCE.disposeModel(toolModel);
 			Context.eINSTANCE.logger.debug("disposing the model object, because can not find any MVC editors");
+			
+			//detach model since there are no any editors which operate this model
+			List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+			ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
+			subject.detach((BVRTransactionalModel) toolModel);
 		}
 	}
 	
@@ -205,8 +210,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 				}
 			}
 		}
-		ResourceSetEditedSubject subject = new ResourceSetEditedSubject(m);
-		subject.attach((BVRTransactionalModel) m);
+		ResourceSetEditedSubject subject = new ResourceSetEditedSubject(toolModel);
 		return subject;
 	}
 }
