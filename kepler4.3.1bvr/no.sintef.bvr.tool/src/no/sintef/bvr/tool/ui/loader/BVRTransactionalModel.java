@@ -37,6 +37,7 @@ import bvr.NamedElement;
 import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
+import bvr.Target;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -170,7 +171,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void addChoice(VSpec parentVSpec) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setName("Choice "+choicCounter);
-		choicCounter++;
+		
+		//each vspec has to have target
+		Target target = BvrFactory.eINSTANCE.createTarget();
+		target.setName(c.getName());
+		((CompoundNode) c).getOwnedTargets().add(target);
 		
 		if(parentVSpec != null){
 			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
@@ -180,6 +185,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
 			}
 		}
+		choicCounter++;
 	}
 
 	@Override
@@ -291,7 +297,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		mi.setLower(1);
 		mi.setUpper(1);
 		c.setInstanceMultiplicity(mi);
-		classifierCount++;
+		
+		//each vspec has to have target
+		Target target = BvrFactory.eINSTANCE.createTarget();
+		target.setName(c.getName());
+		((CompoundNode) c).getOwnedTargets().add(target);
 		
 		if(parentVSpec != null){
 			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parentVSpec, c);
@@ -300,5 +310,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			if(model.getVariabilityModel() == null)
 				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
 		}
+		classifierCount++;
 	}
 }
