@@ -12,13 +12,11 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
-import bvr.CompoundNode;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PrimitveType;
 import bvr.VClassifier;
 import bvr.VNode;
-import bvr.VSpec;
 import bvr.Variable;
 
 public class AddVClassifier implements Command {
@@ -68,14 +66,11 @@ public class AddVClassifier implements Command {
         int u = m.getUpper();
         c.setNameAndCardinality((minimized?"(+) ":"") + vc.getName(), l, u);
         
-        for(VNode vs : ((CompoundNode) vc).getMember()){
-        	if(vs instanceof Variable){
-        		Variable v = (Variable) vs;
-        		if(v.getType() instanceof PrimitveType)
-        			c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
-        		else
-        			c.addAttribute(v.getName(), v.getType().getName());
-        	}
+        for(Variable v : ((VNode) vc).getVariable()){
+        	if(v.getType() instanceof PrimitveType)
+        		c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        	else
+        		c.addAttribute(v.getName(), v.getType().getName());
         }
         
         rootPanel.getModelPanel().addNode(c);

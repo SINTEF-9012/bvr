@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
+import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddBVRModel;
@@ -21,6 +22,7 @@ import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
+import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
@@ -236,5 +238,25 @@ public class SwingVSpecController<
 		VNode vNode = (VNode) vspecvmMap.get(node);
 		toolModel.addVariable(vNode);
 	}
-	
+
+	@Override
+	public Command createUpdateVClassifierCommand(GIU_NODE node) {
+		Command command = new UpdateVClassifierBatchCommandDecorator(new UpdateVClassifier());
+    	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public void setVClassifierGroupMultiplicityUpperBound(GIU_NODE node,
+			int upperBound) {
+		VClassifier vClassifier = (VClassifier) vspecvmMap.get(node);
+		toolModel.setVClassifierUpperBound(vClassifier, upperBound);
+	}
+
+	@Override
+	public void setVClassifierGroupMultiplicityLowerBound(GIU_NODE node,
+			int lowerBound) {
+		VClassifier vClassifier = (VClassifier) vspecvmMap.get(node);
+		toolModel.setVClassifierLowerBound(vClassifier, lowerBound);
+	}	
 }

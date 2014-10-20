@@ -32,10 +32,12 @@ import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
+import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -267,5 +269,17 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		var.setType(primitivType);
 		
 		Context.eINSTANCE.getEditorCommands().addVariable(parentNode, var);
+	}
+	
+	@Override
+	public void setVClassifierLowerBound(VClassifier vClassifier, int lowerBound) {
+		MultiplicityInterval interval = vClassifier.getInstanceMultiplicity();
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(interval, lowerBound);
+	}
+	
+	@Override
+	public void setVClassifierUpperBound(VClassifier vClassifier, int upperBound) {
+		MultiplicityInterval interval = vClassifier.getInstanceMultiplicity();
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(interval, upperBound);
 	}
 }

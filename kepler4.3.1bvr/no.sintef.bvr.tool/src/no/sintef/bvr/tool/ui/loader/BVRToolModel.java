@@ -8,6 +8,7 @@ import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BVRModel;
 import bvr.CompoundNode;
 import bvr.NamedElement;
+import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -156,6 +157,14 @@ abstract public class BVRToolModel {
 	}
 	
 	public void addVariable(VNode parentNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setVClassifierUpperBound(VClassifier vClassifier, int upperBound) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setVClassifierLowerBound(VClassifier vClassifier, int lowerBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

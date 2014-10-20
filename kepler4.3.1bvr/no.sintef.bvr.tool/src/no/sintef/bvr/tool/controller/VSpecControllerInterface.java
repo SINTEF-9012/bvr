@@ -1,6 +1,7 @@
 package no.sintef.bvr.tool.controller;
 
 import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 
 public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	
@@ -29,4 +30,10 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void executeCommandBatch();
 	
 	public void addVariable(GUI_NODE node);
+
+	public Command createUpdateVClassifierCommand(GUI_NODE node);
+	
+	public void setVClassifierGroupMultiplicityUpperBound(GUI_NODE node, int upperBound);
+	
+	public void setVClassifierGroupMultiplicityLowerBound(GUI_NODE node, int lowerBound);
 }
