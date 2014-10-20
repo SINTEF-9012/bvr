@@ -167,4 +167,8 @@ abstract public class BVRToolModel {
 	public void setVClassifierLowerBound(VClassifier vClassifier, int lowerBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void addVClassifier(VSpec parentVSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

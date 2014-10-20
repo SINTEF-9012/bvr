@@ -572,7 +572,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentCompundNode, BvrPackage.eINSTANCE.getCompoundNode(), childCClassifier);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentCompundNode, BvrPackage.eINSTANCE.getCompoundNode_Member(), childCClassifier);
 		testCommandExecution(editingDomain, cmd);
 	}
 

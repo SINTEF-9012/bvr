@@ -43,9 +43,9 @@ import bvr.VSpec;
 import bvr.Variable;
 
 public class SwingVSpecController<
-		GIU_NODE extends JComponent,
+		GUI_NODE extends JComponent,
 		MODEL_OBJECT extends EObject> 
-	implements VSpecControllerInterface<GIU_NODE, MODEL_OBJECT> {
+	implements VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
@@ -163,20 +163,20 @@ public class SwingVSpecController<
 
 
 	@Override
-	public void addChoice(GIU_NODE parent) {
+	public void addChoice(GUI_NODE parent) {
 		VSpec parentVSpec = (VSpec) vspecvmMap.get(parent);
 		toolModel.addChoice(parentVSpec);
 	}
 
 	@Override
-	public void minimizeNode(GIU_NODE node) {
+	public void minimizeNode(GUI_NODE node) {
 		VSpec vspec = (VSpec) vspecvmMap.get(node);
 		toolModel.minimaizeVSpec(vspec);
 		notifyVspecViewUpdate();
 	}
 
 	@Override
-	public void maximizeNode(GIU_NODE node) {
+	public void maximizeNode(GUI_NODE node) {
 		VSpec vspec = (VSpec) vspecvmMap.get(node);
 		toolModel.maximizeVSpec(vspec);
 		notifyVspecViewUpdate();
@@ -184,12 +184,12 @@ public class SwingVSpecController<
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public MODEL_OBJECT getModelObjectByUINode(GIU_NODE node) {
+	public MODEL_OBJECT getModelObjectByUINode(GUI_NODE node) {
 		return (MODEL_OBJECT) vspecvmMap.get(node);
 	}
 
 	@Override
-	public Command createUpdateChoiceCommand(GIU_NODE node) {
+	public Command createUpdateChoiceCommand(GUI_NODE node) {
 		Command command = new UpdateChoiceBatchCommandDecorator(new UpdateChoice());
     	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
 		return command;
@@ -201,19 +201,19 @@ public class SwingVSpecController<
 	}
 
 	@Override
-	public void setNodeComment(GIU_NODE node, String comment) {
+	public void setNodeComment(GUI_NODE node, String comment) {
 		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
 		toolModel.updateComment(namedElement, comment);
 	}
 
 	@Override
-	public void setNodeName(GIU_NODE node, String name) {
+	public void setNodeName(GUI_NODE node, String name) {
 		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
 		toolModel.updateName(namedElement, name);
 	}
 
 	@Override
-	public String getNodesCommentText(GIU_NODE node) {
+	public String getNodesCommentText(GUI_NODE node) {
 		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
 		return toolModel.getNodesCommentText(namedElement);
 	}
@@ -234,29 +234,35 @@ public class SwingVSpecController<
 	}
 	
 	@Override
-	public void addVariable(GIU_NODE node) {
+	public void addVariable(GUI_NODE node) {
 		VNode vNode = (VNode) vspecvmMap.get(node);
 		toolModel.addVariable(vNode);
 	}
 
 	@Override
-	public Command createUpdateVClassifierCommand(GIU_NODE node) {
+	public Command createUpdateVClassifierCommand(GUI_NODE node) {
 		Command command = new UpdateVClassifierBatchCommandDecorator(new UpdateVClassifier());
     	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
 		return command;
 	}
 
 	@Override
-	public void setVClassifierGroupMultiplicityUpperBound(GIU_NODE node,
+	public void setVClassifierGroupMultiplicityUpperBound(GUI_NODE node,
 			int upperBound) {
 		VClassifier vClassifier = (VClassifier) vspecvmMap.get(node);
 		toolModel.setVClassifierUpperBound(vClassifier, upperBound);
 	}
 
 	@Override
-	public void setVClassifierGroupMultiplicityLowerBound(GIU_NODE node,
+	public void setVClassifierGroupMultiplicityLowerBound(GUI_NODE node,
 			int lowerBound) {
 		VClassifier vClassifier = (VClassifier) vspecvmMap.get(node);
 		toolModel.setVClassifierLowerBound(vClassifier, lowerBound);
+	}
+
+	@Override
+	public void addVClassifier(GUI_NODE node) {
+		VSpec parentVSpec = (VSpec) vspecvmMap.get(node);
+		toolModel.addVClassifier(parentVSpec);
 	}	
 }

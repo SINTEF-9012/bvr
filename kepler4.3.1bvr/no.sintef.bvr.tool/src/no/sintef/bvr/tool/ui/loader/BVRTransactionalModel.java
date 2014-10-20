@@ -48,6 +48,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
+	static private int classifierCount = 0;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -140,23 +141,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void addChoice(VSpec parentVSpec) {
-		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setName("Choice "+choicCounter);
-		choicCounter++;
-		
-		if(parentVSpec != null){
-			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
-		}else{
-			BVRModel model = bvrm.getRootBVRModel();
-			if(model.getVariabilityModel() == null){
-				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
-			}
-		}
-	}
-	
-
-	@Override
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
 			checkModel();
@@ -180,6 +164,22 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			}
 		};
 		job.schedule();
+	}
+	
+	@Override
+	public void addChoice(VSpec parentVSpec) {
+		Choice c = BvrFactory.eINSTANCE.createChoice();
+		c.setName("Choice "+choicCounter);
+		choicCounter++;
+		
+		if(parentVSpec != null){
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
+		}else{
+			BVRModel model = bvrm.getRootBVRModel();
+			if(model.getVariabilityModel() == null){
+				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
+			}
+		}
 	}
 
 	@Override
@@ -281,5 +281,24 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void setVClassifierUpperBound(VClassifier vClassifier, int upperBound) {
 		MultiplicityInterval interval = vClassifier.getInstanceMultiplicity();
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(interval, upperBound);
+	}
+	
+	@Override
+	public void addVClassifier(VSpec parentVSpec) {
+		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
+		c.setName("Classifier"+classifierCount);
+		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
+		mi.setLower(1);
+		mi.setUpper(1);
+		c.setInstanceMultiplicity(mi);
+		classifierCount++;
+		
+		if(parentVSpec != null){
+			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parentVSpec, c);
+		}else{
+			BVRModel model = bvrm.getRootBVRModel();
+			if(model.getVariabilityModel() == null)
+				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
+		}
 	}
 }
