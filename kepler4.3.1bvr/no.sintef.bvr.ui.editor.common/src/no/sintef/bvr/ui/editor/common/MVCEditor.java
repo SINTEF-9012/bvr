@@ -161,10 +161,12 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 						firePropertyChange(ISaveablePart.PROP_DIRTY);
 							
 						//attach model as listener to any changes in the resource
-						List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-						ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
-						ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
-						subject.attach((BVRTransactionalModel) toolModel);
+						synchronized (this) {
+							List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+							ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
+							ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
+							subject.attach((BVRTransactionalModel) toolModel);
+						}
 					} catch (Exception e) {
 						Context.eINSTANCE.logger.error("Cannot open file " + e.getMessage() , e);
 						throw new RuntimeException("Rethrowing exception", e);
