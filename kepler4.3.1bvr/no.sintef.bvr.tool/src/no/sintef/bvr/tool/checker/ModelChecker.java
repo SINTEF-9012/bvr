@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.SymbolEObject;
 import no.sintef.bvr.tool.primitive.SymbolTableEObject;
 import no.sintef.bvr.tool.primitive.VisitableSymbolEObject;
@@ -40,6 +41,10 @@ public final class ModelChecker {
 		buildScopes.init();
 		traverse(model);
 		globalScope = buildScopes.getRootScope();
+		if(globalScope == null) {
+			Context.eINSTANCE.logger.error("Scope is not build, there must a be an error in scope builder startegy");
+			return;
+		}
 		collectSymbols(globalScope);
 		for(NodeVisitor visitor : checkVisitors){
 			for(SymbolEObject symbol : symbols){
