@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
-//import bvr.ChoiceResolutuion;
+//import bvr.ChoiceResolution;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
@@ -29,9 +29,9 @@ public class CloneRes {
 	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRResolutionToolView view) {
 		VSpecResolution copyTo = null;
 		/*
-		if (copyFrom instanceof ChoiceResolutuion) {
-			copyTo = BvrFactory.eINSTANCE.createChoiceResolutuion();
-			((ChoiceResolutuion) copyTo).setDecision(((ChoiceResolutuion) copyFrom).isDecision());
+		if (copyFrom instanceof ChoiceResolution) {
+			copyTo = BvrFactory.eINSTANCE.createChoiceResolution();
+			((ChoiceResolution) copyTo).setDecision(((ChoiceResolution) copyFrom).isDecision());
 		} else if (copyFrom instanceof VariableValueAssignment) {
 			copyTo = BvrFactory.eINSTANCE.createVariableValueAssignment();
 			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();

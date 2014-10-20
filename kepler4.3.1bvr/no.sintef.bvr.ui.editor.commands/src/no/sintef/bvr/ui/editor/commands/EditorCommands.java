@@ -188,4 +188,6 @@ public interface EditorCommands {
 	
 	public void executeBatch();
 
+	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent);
+
 }

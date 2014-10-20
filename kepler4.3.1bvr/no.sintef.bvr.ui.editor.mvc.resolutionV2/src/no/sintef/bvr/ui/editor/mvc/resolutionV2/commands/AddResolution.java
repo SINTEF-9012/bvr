@@ -6,7 +6,11 @@ import java.util.List;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.Choice;
-//import bvr.ChoiceResolutuion;
+import bvr.ChoiceResolution;
+import bvr.CompoundNode;
+import bvr.CompoundResolution;
+import bvr.PosResolution;
+//import bvr.ChoiceResolution;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
@@ -64,36 +68,36 @@ public class AddResolution implements ResCommand{
 	}
 
 	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent) {
-		return null;
-	/*	VInstance thisResolution = BvrFactory.eINSTANCE.createVInstance();
-		// count++;
+	
+		PosResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
+		 //count++;
 		// vi.setName("vInstance" + count);
 		thisResolution.setName("I" + view.getIncrementedNameCounter());
 		thisResolution.setResolvedVSpec(target);
-		parent.getChild().add(thisResolution);
-		return thisResolution;*/
+		
+		((CompoundResolution) parent).getMembers().add(thisResolution);
+		return thisResolution;
 	}
 
 	// resolve Choice
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
-		return null;
-		/*ChoiceResolutuion thisResolution = BvrFactory.eINSTANCE.createChoiceResolutuion();
-		thisResolution.setDecision(false);
+		
+		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createNegResolution();
 		thisResolution.setName(target.getName());
 		thisResolution.setResolvedVSpec(target);
-		parent.getChild().add(thisResolution);
-
-		return thisResolution;*/
+		((CompoundResolution)parent).getMembers().add(thisResolution);
+		return thisResolution;
 	}
 
 	// resolve Variable
 	private VSpecResolution addResolution(Variable vSpecFound, VSpecResolution parent) {
 		return null;
-	/*
-		VSpecResolution thisResolution = BvrFactory.eINSTANCE.createVariableValueAssignment();
-		thisResolution.setName(target.getName());
+	
+		//VSpecResolution thisResolution = BvrFactory.eINSTANCE.createValueResolution();
+		//thisResolution.setName(target.getName());
 		// Value		
-		PrimitiveValueSpecification value = (PrimitiveTypeHandler.getInstance().makeValueSpecification((Variable) vSpecFound));
+		/*
+		PrimitiveValueSpecification value = (Primi.getInstance().makeValueSpecification((Variable) vSpecFound));
 		PrimitiveTypeEnum type = ((PrimitveType) ((Variable)vSpecFound).getType()).getType();
 		// Try searching for a type
 		PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
@@ -102,7 +106,7 @@ public class AddResolution implements ResCommand{
 		((VariableValueAssignment)thisResolution).setValue(value);
 		thisResolution.setResolvedVSpec(vSpecFound);
 		parent.getChild().add(thisResolution);
-		
-		return thisResolution;*/
+*/		
+		//return thisResolution;
 	}
 }

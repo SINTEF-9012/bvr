@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
-//import bvr.ChoiceResolutuion;
+//import bvr.ChoiceResolution;
 //import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 import bvr.VClassifier;

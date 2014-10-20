@@ -745,6 +745,12 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		
 	}
 
+	@Override
+	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), parent);
+		editingDomain.getCommandStack().execute(cmd);
+	}
 
 
 /*

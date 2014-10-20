@@ -31,7 +31,7 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV2DropdownListener;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutuionV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutionV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddErrorGroup;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVInstanceV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVariableValueAssignmentV2;
@@ -52,7 +52,7 @@ import bvr.BVRModel;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
-//import bvr.ChoiceResolutuion;
+//import bvr.ChoiceResolution;
 //import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.NamedElement;
@@ -322,7 +322,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 
 			} else if (v instanceof ChoiceResolution) {
 				// System.out.println(v);
-				nextParent = new AddChoiceResolutuionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v,
+				nextParent = new AddChoiceResolutionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v,
 						parent, vmMap, nodes, bindings, this).execute();
 
 				vmMap.put(nextParent, v);
@@ -463,9 +463,9 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	// strips if node is stripped choice node, or secondPrint is set
 	private boolean stripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
 		return secondPrint;
-	/*	if (v instanceof ChoiceResolutuion && stripped.contains(v) && !printAnyway) {
+	/*	if (v instanceof ChoiceResolution && stripped.contains(v) && !printAnyway) {
 			if (!getCU().getOwnedVSpecResolution().contains(v))
-				return !((ChoiceResolutuion) v).isDecision();
+				return !((ChoiceResolution) v).isDecision();
 		}
 		else if(secondPrint && stripped.contains(v)){
 			return true;
@@ -493,8 +493,8 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 		int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
 		int i = 0;
 		for (VSpecResolution x : v.getChild()) {
-			if (x instanceof ChoiceResolutuion) {
-				if (((ChoiceResolutuion) x).isDecision())
+			if (x instanceof ChoiceResolution) {
+				if (((ChoiceResolution) x).isDecision())
 					i++;
 				if ((i > upper) && (upper != -1)){
 					return true;

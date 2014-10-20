@@ -2,6 +2,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands;
 
 import javax.swing.JComponent;
 
+
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.Helper;
@@ -14,11 +15,11 @@ import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import bvr.Choice;
 import bvr.PosResolution;
 
-public class AddChoiceResolutuionV2 extends AddChoiceResolutuion implements Command {
+public class AddChoiceResolutionV2 extends AddChoiceResolutuion implements Command {
 
 	private boolean stripContains;
 
-	public AddChoiceResolutuionV2(boolean minContains, boolean stripContains) {
+	public AddChoiceResolutionV2(boolean minContains, boolean stripContains) {
 		super(minContains);
 		this.stripContains = stripContains;
 	}

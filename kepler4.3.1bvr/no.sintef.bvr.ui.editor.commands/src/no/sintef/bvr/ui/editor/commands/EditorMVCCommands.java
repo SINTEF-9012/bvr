@@ -522,4 +522,10 @@ public class EditorMVCCommands implements EditorCommands {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
+		// TODO Auto-generated method stub
+		
+	}
 }
