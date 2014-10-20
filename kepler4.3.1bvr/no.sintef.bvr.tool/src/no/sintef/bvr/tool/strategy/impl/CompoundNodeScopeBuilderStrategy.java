@@ -29,17 +29,19 @@ public class CompoundNodeScopeBuilderStrategy implements ContextBuilderStrategy 
 
 	@Override
 	public void testEObject(EObject parent, EObject child) {
+		if(parent instanceof BVRModel && child instanceof CompoundNode && globalScope == null){
+			globalScope = new SymbolTableCompoundNode((CompoundNode) child);
+			globalScope.insert(new SymbolCompoundNode((CompoundNode) child));
+			return;
+		}
+		
 		if(!(parent instanceof CompoundNode && child instanceof CompoundNode)){
 			//Context.eINSTANCE.logger.debug("VSpecContextBuilderStrategyImpl does not fitt for these model elements " + parent + " " + child);
 			return;
 		}
-		CompoundNode parentCN = (CompoundNode) parent;
+		
 		CompoundNode childCN = (CompoundNode) child;
 		
-		if((parentCN.eContainer() instanceof BVRModel) && (globalScope == null) && (parent instanceof CompoundNode)){
-			globalScope = new SymbolTableCompoundNode(parentCN);
-			globalScope.insert(new SymbolCompoundNode(parentCN));
-		}
 		if(globalScope == null)
 			return;
 		
