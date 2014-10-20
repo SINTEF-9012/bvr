@@ -1,13 +1,19 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
+import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
+import bvr.CompoundResolution;
+import bvr.NegResolution;
+import bvr.PosResolution;
+import bvr.PrimitiveTypeEnum;
 //import bvr.ChoiceResolution;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 //import bvr.VInstance;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
 //import bvr.common.PrimitiveTypeHandler;
@@ -28,33 +34,33 @@ public class CloneRes {
 
 	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRResolutionToolView view) {
 		VSpecResolution copyTo = null;
-		/*
-		if (copyFrom instanceof ChoiceResolution) {
-			copyTo = BvrFactory.eINSTANCE.createChoiceResolution();
-			((ChoiceResolution) copyTo).setDecision(((ChoiceResolution) copyFrom).isDecision());
-		} else if (copyFrom instanceof VariableValueAssignment) {
-			copyTo = BvrFactory.eINSTANCE.createVariableValueAssignment();
-			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();
-			String vString = PrimitiveTypeHandler.getInstance().getValueAsString(((VariableValueAssignment) copyFrom));
-			PrimitiveValueSpecification value = PrimitiveTypeHandler.getInstance().makeValueSpecification(vSpecFound, vString);
-			PrimitiveTypeEnum type = ((PrimitveType) ((Variable) vSpecFound).getType()).getType();
-			// Try searching for a type
-			System.out.println("copyFrom: " + copyFrom);
-			System.out.println("copyTo: " + copyTo);
-			System.out.println("type: " + type);
-			System.out.println("view: " + view);
-			PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
-			value.setType(vt);
+		
+		if (copyFrom instanceof PosResolution) {
+			copyTo = BvrFactory.eINSTANCE.createPosResolution();
+		} else if(copyFrom instanceof NegResolution){
+			copyTo = BvrFactory.eINSTANCE.createNegResolution();
 
-			((VariableValueAssignment) copyTo).setValue(value);
-		} else if (copyFrom instanceof VInstance) {
-			copyTo = BvrFactory.eINSTANCE.createVInstance();
+		} else if (copyFrom instanceof ValueResolution) {
+			copyTo = BvrFactory.eINSTANCE.createValueResolution();
+			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();
+			String vString = PrimitiveTypeFactory.getInstance().getValueAsString(((ValueResolution) copyFrom));
+			PrimitiveValueSpecification value = PrimitiveTypeFactory.getInstance().makeValueSpecification(vSpecFound, vString);
+			//PrimitiveTypeEnum type = ((PrimitveType) ((Variable) vSpecFound).getType()).getType();
+			// Try searching for a type
+			//System.out.println("copyFrom: " + copyFrom);
+			//System.out.println("copyTo: " + copyTo);
+			//System.out.println("type: " + type);
+			//System.out.println("view: " + view);
+		//	PrimitveType vt = PrimitiveTypeFactory.getInstance().makeValueSpecification(type);
+		//	value.setType(vt);
+
+			((ValueResolution) copyTo).setValue(value);
 		}
 		
 		copyTo.setResolvedVSpec(copyFrom.getResolvedVSpec());
 		copyTo.setName(copyFrom.getName());
-		return copyTo;*/
-		return null;
+		return copyTo;
+		
 	}
 
 	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRResolutionToolView view) {
@@ -64,13 +70,14 @@ public class CloneRes {
 	}
 
 	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRResolutionToolView view) {
-		/*if (parentFrom != null) {
+		if ((parentFrom != null) &&(parentFrom instanceof CompoundResolution)) {
 			VSpecResolution newNode = null;
-			for (VSpecResolution x : parentFrom.getChild()) {
+			
+			for (VSpecResolution x : ((CompoundResolution)parentFrom).getMembers()) {
 				newNode = cloneRes(x, view);
-				parentTo.getChild().add(newNode);
+				((CompoundResolution)parentTo).getMembers().add(newNode);
 				cloneIterate(newNode, x, view);
 			}
-		}*/
+		}
 	}
 }

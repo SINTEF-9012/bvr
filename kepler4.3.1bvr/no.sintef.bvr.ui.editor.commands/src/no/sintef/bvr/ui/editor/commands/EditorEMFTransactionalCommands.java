@@ -728,10 +728,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), pr);
 		editingDomain.getCommandStack().execute(cmd);
-		setChoicePosResolvedVSpec(pr, target);
+		//setChoicePosResolvedVSpec(pr, target);
 	}
-
-	private void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
+	
+	@Override
+	public void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, pr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
 		editingDomain.getCommandStack().execute(cmd);
@@ -740,8 +741,10 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper,
-			NegResolution pr) {
-		// TODO Auto-generated method stub
+			NegResolution nr) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), nr);
+		editingDomain.getCommandStack().execute(cmd);
 		
 	}
 

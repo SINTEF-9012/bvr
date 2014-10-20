@@ -385,11 +385,6 @@ public class EditorMVCCommands implements EditorCommands {
 		return false;
 	}
 
-	@Override
-	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode,
@@ -525,6 +520,18 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
 		// TODO Auto-generated method stub
 		
 	}

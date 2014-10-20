@@ -52,8 +52,6 @@ public interface EditorCommands {
 	
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences);
 	
-	public void createNewResolution(PosResolution pr, BVRModel bvrModel);
-	
 	//public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
 	
 	//public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
@@ -189,5 +187,10 @@ public interface EditorCommands {
 	public void executeBatch();
 
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent);
+
+
+	void createNewResolution(PosResolution pr, BVRModel bvrModel);
+
+	void setChoicePosResolvedVSpec(PosResolution pr, Choice target);
 
 }
