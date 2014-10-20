@@ -23,7 +23,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	VSpec target;
 	BVRResolutionToolView view;
 
-	// parent er choice o.l. over
+	
 	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRResolutionToolView view) {
 		super();
 		this.instancesRequested = instancesRequested;
