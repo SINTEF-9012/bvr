@@ -11,6 +11,7 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.model.NoteFactory;
 import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
+import no.sintef.bvr.tool.model.TargetFactory;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -250,29 +251,14 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void updateName(NamedElement namedElement, String name) {
-		String oldName = namedElement.getName();
-		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
-		
-		//update corresponding target accordingly
+	public void updateName(NamedElement namedElement, String name) {	
+		//update corresponding target accordingly if namedElement is VClassifier or Choice
 		if(namedElement instanceof VClassifier || namedElement instanceof Choice){
-			EList<Target> targets = ((CompoundNode) namedElement).getOwnedTargets();
-			Target target = ((VSpec) namedElement).getTarget();
-			if(target == null) {
-				for(Target t : targets){
-					if(t.getName().equals(oldName)){
-						target = t;
-						Context.eINSTANCE.getEditorCommands().setVSpecTarget((VSpec) namedElement, target);
-						break;
-					}
-				}
-			}
-			if(target == null){
-				target = BvrFactory.eINSTANCE.createTarget();
-				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode((CompoundNode) namedElement, target);
-			}
+			Target target = TargetFactory.eINSTANCE.testVSpecTarget((VSpec) namedElement);
 			Context.eINSTANCE.getEditorCommands().setName(target, name);
 		}
+		
+		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 	}
 	
 	@Override
