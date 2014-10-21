@@ -66,14 +66,6 @@ public class SwingVSpecController<
 		rootController = controller;
 		
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, rootController, null);
-		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
-        
-        
-        LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
-        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
-		
-		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
 	private void loadBVRVSpecView(BVRModel model, BVRUIKernel uikernel) throws BVRModelException {
@@ -92,11 +84,9 @@ public class SwingVSpecController<
 		
 		if(v instanceof VClassifier){
 			JComponent c = new AddVClassifier(toolModel.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}else if(v instanceof Choice){
 			JComponent c = new AddChoice(toolModel.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}
 		
@@ -117,8 +107,7 @@ public class SwingVSpecController<
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
 					
-					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-					vspecvmMap.put(comp, c);
+					new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 
 				}
 			}
@@ -129,6 +118,16 @@ public class SwingVSpecController<
 				}
 			}
 		}
+	}
+	
+	public void render() {
+		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
+        
+        LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
+        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
+		
+		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
 	public void notifyVspecViewUpdate() {

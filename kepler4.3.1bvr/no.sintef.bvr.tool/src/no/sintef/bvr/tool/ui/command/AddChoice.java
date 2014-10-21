@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.VSpecControllerInterface;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -16,6 +17,7 @@ import bvr.NamedElement;
 import bvr.Note;
 import bvr.PrimitveType;
 import bvr.VNode;
+import bvr.VSpec;
 import bvr.Variable;
 
 
@@ -28,14 +30,14 @@ public class AddChoice implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRNotifiableController view;
+	private BVRNotifiableController controller;
 	private boolean minimized;
 	
 	public AddChoice(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		if(p instanceof Choice){
 			this.rootPanel = rootPanel;
 			this.c = (Choice) p;
@@ -45,31 +47,30 @@ public class AddChoice implements Command {
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
-		this.view = view;
+		this.controller = controller;
 		
 		return this;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JComponent execute() {
 		ChoicePanel cp = new ChoicePanel();
 		nodes.add(cp);
+        vmMap.put(cp, c);
+        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!c.isIsImpliedByParent()) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
 		
 		CommandMouseListener listener = new CommandMouseListener();
-        cp.addMouseListener(new ChoiceDropDownListener(cp, vmMap, nodes, bindings, view));
+        cp.addMouseListener(new ChoiceDropDownListener(cp, vmMap, nodes, bindings, controller));
         cp.addMouseListener(listener);
         SelectInstanceCommand command = new SelectInstanceCommand();
-        command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);
+        command.init(rootPanel, cp, parent, vmMap, nodes, bindings, controller);
         listener.setLeftClickCommand(command);
         
         cp.setTitle((minimized?"(+) ":"") + c.getName());
         
-        
-        if(c.getNote().size() != 0){
-        	for(Note note : c.getNote()){
-        		if(note.getKind().equals("") && !note.getExpr().equals("")){
-        			cp.addAttribute("\""+note.getExpr()+"\"", "");
-        		}
-        	}
+        String comment  = controller.getVSpecControllerInterface().getNodesCommentText(cp);
+        if(!comment.equals("")){
+        	cp.addAttribute("\""+comment+"\"", "");
         }
         
         for(Variable v : c.getVariable()){
@@ -78,9 +79,8 @@ public class AddChoice implements Command {
         	else
         		cp.addAttribute(v.getName(), v.getType().getName());
         }
-
-        rootPanel.getModelPanel().addNode(cp);
-        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!c.isIsImpliedByParent()) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
+        
+		rootPanel.getModelPanel().addNode(cp);
         return cp;
 	}
 

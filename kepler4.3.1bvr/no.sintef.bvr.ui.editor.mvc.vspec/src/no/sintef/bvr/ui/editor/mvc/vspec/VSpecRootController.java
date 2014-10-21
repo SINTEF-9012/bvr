@@ -31,6 +31,7 @@ public class VSpecRootController extends BVRToolAbstractController {
 	public VSpecRootController(BVRToolModel m) {
 		this.m = m;
         controller = new SwingVSpecController<JComponent, EObject>(m, this);
+        controller.render();
 	}
 	
 	
