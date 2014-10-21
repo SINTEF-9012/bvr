@@ -56,6 +56,7 @@ public class SwingVSpecController<
 	private List<Pair<JComponent, JComponent>> vspecBindings;
 	private BVRToolModel toolModel;
 	private BVRNotifiableController rootController;
+	private VSpecLayoutStrategy strategy;
 	
 	
 	public SwingVSpecController(BVRToolModel _model, BVRNotifiableController controller) {
@@ -66,6 +67,10 @@ public class SwingVSpecController<
 		rootController = controller;
 		
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, rootController, null);
+		
+        strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
+		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
 	private void loadBVRVSpecView(BVRModel model, BVRUIKernel uikernel) throws BVRModelException {
@@ -75,6 +80,8 @@ public class SwingVSpecController<
 		
 		CompoundNode vspec = model.getVariabilityModel();
 		loadBVRVSpecView(vspec, uikernel, c, model);
+		
+		vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	}
 
 	private void loadBVRVSpecView(CompoundNode v, BVRUIKernel model, JComponent parent, BVRModel cu) throws BVRModelException {
@@ -122,12 +129,6 @@ public class SwingVSpecController<
 	
 	public void render() {
 		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
-        
-        LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
-        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
-		
-		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
 	public void notifyVspecViewUpdate() {
@@ -144,13 +145,8 @@ public class SwingVSpecController<
 		
 	    // Add stuff
 
-		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
+		render();
 
-	    
-	    // Automatically Layout Diagram
-		LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
-        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
-	    
 	    // Restore scroll coordinates
 	    vspecScrollPane.getViewport().setViewPosition(vpos);
 	    
@@ -263,5 +259,11 @@ public class SwingVSpecController<
 	public void addVClassifier(GUI_NODE node) {
 		VSpec parentVSpec = (VSpec) vspecvmMap.get(node);
 		toolModel.addVClassifier(parentVSpec);
+	}
+
+	@Override
+	public void addBCLConstraint(GUI_NODE node) {
+		// TODO Auto-generated method stub
+		
 	}	
 }

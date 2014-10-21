@@ -41,7 +41,6 @@ public class AddBCLConstraint implements Command {
 	}
 
 	public JComponent execute() {
-		//ConstraintPanel constraint1 = new ConstraintPanel(rootPanel.getModelPanel());
 		ParallelogramTitledPanel constraint1 = new ParallelogramTitledPanel();
 		nodes.add(constraint1);
 		vmMap.put(constraint1, oc);
@@ -51,7 +50,6 @@ public class AddBCLConstraint implements Command {
 		// Add newlines
 		s = wrap(s, 15);
 		constraint1.setTitle(s);
-		//constraint1.setConstraint(oc.getConstraint());
 		rootPanel.getModelPanel().addNode(constraint1);
 		
 		// Editor

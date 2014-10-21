@@ -38,4 +38,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void setVClassifierGroupMultiplicityLowerBound(GUI_NODE node, int lowerBound);
 	
 	public void addVClassifier(GUI_NODE node);
+	
+	public void addBCLConstraint(GUI_NODE node);
 }
