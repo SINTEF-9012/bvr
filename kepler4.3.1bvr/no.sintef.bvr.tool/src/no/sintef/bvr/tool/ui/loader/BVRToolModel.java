@@ -171,4 +171,8 @@ abstract public class BVRToolModel {
 	public void addVClassifier(VSpec parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void addBCLConstraint(VNode parentVNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

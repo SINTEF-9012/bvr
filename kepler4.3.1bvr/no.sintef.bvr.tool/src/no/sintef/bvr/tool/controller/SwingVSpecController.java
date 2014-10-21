@@ -263,7 +263,7 @@ public class SwingVSpecController<
 
 	@Override
 	public void addBCLConstraint(GUI_NODE node) {
-		// TODO Auto-generated method stub
-		
+		VNode parentVSpec = (VNode) vspecvmMap.get(node);
+		toolModel.addBCLConstraint(parentVSpec);
 	}	
 }

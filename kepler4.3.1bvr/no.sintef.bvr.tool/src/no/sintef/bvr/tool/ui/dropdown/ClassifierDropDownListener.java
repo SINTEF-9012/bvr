@@ -76,7 +76,7 @@ class ClassifierDropdown extends JPopupMenu {
     	addclassifier.addActionListener(new AddClassifierEvent(cp, view));
     	add.add(addclassifier);
     	JMenuItem addConstraint = new JMenuItem("constraint");
-    	addConstraint.addActionListener(new AddConstraintEvent(cp, vmMap, nodes, bindings, view));
+    	addConstraint.addActionListener(new AddConstraintEvent(cp, view));
     	add.add(addConstraint);
     	
     	JMenuItem addVariable = new JMenuItem("variable");

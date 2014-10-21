@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -39,6 +40,7 @@ import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.Target;
+import bvr.TargetRef;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -51,6 +53,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
+	static private int constraintCount = 0;
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -319,5 +322,18 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
 		}
 		classifierCount++;
+	}
+	
+	@Override
+	public void addBCLConstraint(VNode parentVNode) {
+		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
+		c.setName("Constraint"+constraintCount);
+		constraintCount++;
+		
+		TargetRef ref = BvrFactory.eINSTANCE.createTargetRef();
+		ref.setTarget(null);		
+		c.getExpression().add(ref);
+		
+		Context.eINSTANCE.getEditorCommands().addBCLConstraintVNode(parentVNode, c);
 	}
 }
