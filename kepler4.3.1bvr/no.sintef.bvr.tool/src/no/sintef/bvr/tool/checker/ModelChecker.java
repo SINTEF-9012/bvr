@@ -42,7 +42,7 @@ public final class ModelChecker {
 		traverse(model);
 		globalScope = buildScopes.getRootScope();
 		if(globalScope == null) {
-			Context.eINSTANCE.logger.error("Scope is not build, there must a be an error in scope builder startegy");
+			Context.eINSTANCE.problemLogger.warn("scope is not build, model is not checked");
 			return;
 		}
 		collectSymbols(globalScope);
