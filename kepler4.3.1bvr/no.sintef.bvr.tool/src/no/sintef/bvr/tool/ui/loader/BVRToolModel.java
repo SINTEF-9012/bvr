@@ -5,6 +5,7 @@ import java.util.List;
 
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
+import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.CompoundNode;
 import bvr.NamedElement;
@@ -173,6 +174,10 @@ abstract public class BVRToolModel {
 	}
 
 	public void addBCLConstraint(VNode parentVNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

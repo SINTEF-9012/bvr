@@ -149,8 +149,9 @@ public class BVREditorPanel extends JPanel {
         }else if (p instanceof ParallelogramTitledPanel) {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
-        	//BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, (BCLConstraint) object, controller);
-        	//editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+			Command okCommand = controller.getVSpecControllerInterface().createUpdateBCLConstraintCommand(elem);
+        	BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, okCommand, (BCLConstraint) object, elem, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof BVRModelSymbolPanel) {
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(p);
         	//BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, object, controller);        	

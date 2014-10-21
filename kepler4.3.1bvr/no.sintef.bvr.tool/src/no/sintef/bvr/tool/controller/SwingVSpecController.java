@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
+import no.sintef.bvr.tool.decorator.UpdateConstraintBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
@@ -21,6 +22,7 @@ import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
@@ -203,7 +205,7 @@ public class SwingVSpecController<
 
 	@Override
 	public void setNodeName(GUI_NODE node, String name) {
-		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
+		NamedElement namedElement = (NamedElement) vspecvmMap.get(node);
 		toolModel.updateName(namedElement, name);
 	}
 
@@ -265,5 +267,18 @@ public class SwingVSpecController<
 	public void addBCLConstraint(GUI_NODE node) {
 		VNode parentVSpec = (VNode) vspecvmMap.get(node);
 		toolModel.addBCLConstraint(parentVSpec);
+	}
+
+	@Override
+	public Command createUpdateBCLConstraintCommand(GUI_NODE node) {
+		Command command = new UpdateConstraintBatchCommandDecorator(new UpdateBCLConstraint());
+    	command.init(vSpecbvruikernel, vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public void updateBCLConstraint(GUI_NODE node, String strConstr) {
+		BCLConstraint constraint = (BCLConstraint) vspecvmMap.get(node);
+		toolModel.updateBCLConstraint(constraint, strConstr);
 	}	
 }

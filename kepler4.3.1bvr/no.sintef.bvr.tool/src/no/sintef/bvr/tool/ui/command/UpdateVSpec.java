@@ -11,7 +11,7 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 import bvr.Variable;
 
-abstract public class UpdateVSpec implements Command {
+abstract public class UpdateVSpec implements Command, UpdateNamedElement {
 
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;

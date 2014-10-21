@@ -9,6 +9,7 @@ import java.util.Map;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.model.ConstraintFactory;
 import no.sintef.bvr.tool.model.NoteFactory;
 import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
 import no.sintef.bvr.tool.model.TargetFactory;
@@ -326,14 +327,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void addBCLConstraint(VNode parentVNode) {
-		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
-		c.setName("Constraint"+constraintCount);
-		constraintCount++;
-		
-		TargetRef ref = BvrFactory.eINSTANCE.createTargetRef();
-		ref.setTarget(null);		
-		c.getExpression().add(ref);
-		
-		Context.eINSTANCE.getEditorCommands().addBCLConstraintVNode(parentVNode, c);
+		ConstraintFactory.eINSTANCE.createBCLConstraint(parentVNode);
+	}
+	
+	@Override
+	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
+		ConstraintFactory.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
 	}
 }

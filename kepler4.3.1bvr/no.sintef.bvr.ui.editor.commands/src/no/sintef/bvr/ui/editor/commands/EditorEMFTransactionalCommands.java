@@ -734,6 +734,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		testCommandExecution(editingDomain, cmd);
 	}
 
+	@Override
+	public void reset() {
+		disableBatchProcessing();
+	}
+
 /*
 	@Override
 	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {

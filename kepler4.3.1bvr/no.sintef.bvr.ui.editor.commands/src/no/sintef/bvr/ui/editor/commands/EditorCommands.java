@@ -189,4 +189,6 @@ public interface EditorCommands {
 
 	public void setVSpecTarget(VSpec namedElement, Target target);
 
+	public void reset();
+
 }

@@ -34,7 +34,8 @@ public class Activator extends AbstractUIPlugin {
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 		      public void uncaughtException(Thread t, Throwable e) {
 		    	  Context.eINSTANCE.logger.error("Unhandled Error in Thread: " + t, e);
-		    	  StaticUICommands.showMessageErrorDialog(Context.eINSTANCE.getActiveJApplet(), e, "Unhandled Error in Thread: " + t);
+		    	  Context.eINSTANCE.getEditorCommands().reset();
+		    	  StaticUICommands.showMessageErrorDialog(Context.eINSTANCE.getActiveJApplet(), e, "Error : " + e.getMessage());
 		      }
 		 });
 	}

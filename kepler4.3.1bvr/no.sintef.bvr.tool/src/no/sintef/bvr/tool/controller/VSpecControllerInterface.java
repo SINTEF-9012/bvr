@@ -40,4 +40,8 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void addVClassifier(GUI_NODE node);
 	
 	public void addBCLConstraint(GUI_NODE node);
+	
+	public Command createUpdateBCLConstraintCommand(GUI_NODE node);
+	
+	public void updateBCLConstraint(GUI_NODE node, String strConstr);
 }
