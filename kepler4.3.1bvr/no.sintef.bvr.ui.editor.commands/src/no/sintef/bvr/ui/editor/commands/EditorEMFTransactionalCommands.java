@@ -728,7 +728,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 			PosResolution pr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), pr);
-		editingDomain.getCommandStack().execute(cmd);
+		testCommandExecution(editingDomain,cmd);
 		//setChoicePosResolvedVSpec(pr, target);
 	}
 	
@@ -736,7 +736,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, pr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
-		editingDomain.getCommandStack().execute(cmd);
+		testCommandExecution(editingDomain,cmd);
 		
 	}
 
@@ -745,7 +745,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 			NegResolution nr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), nr);
-		editingDomain.getCommandStack().execute(cmd);
+		testCommandExecution(editingDomain,cmd);
 		
 	}
 
@@ -753,7 +753,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), parent);
-		editingDomain.getCommandStack().execute(cmd);
+		testCommandExecution(editingDomain,cmd);
 	}
 
 

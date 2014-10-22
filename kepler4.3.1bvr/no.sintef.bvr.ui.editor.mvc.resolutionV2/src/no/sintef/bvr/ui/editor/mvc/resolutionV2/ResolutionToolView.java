@@ -11,7 +11,6 @@ import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-
 import no.sintef.bvr.common.CommonUtility;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
@@ -59,6 +58,7 @@ import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 //import bvr.VInstance;
 import bvr.VSpecResolution;
+
 //import bvr.VariableValueAssignment;
 
 public class ResolutionToolView extends BVRToolAbstractController implements BVRResolutionToolView {
@@ -83,7 +83,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 	private BVRModelSubject bvrModelSubject;
-//	private ConfigurableUnitSubject configurableUnitSubject;
+	// private ConfigurableUnitSubject configurableUnitSubject;
 
 	// namecounters
 	private int choiceCount = 1;
@@ -111,7 +111,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 
 		bvrModelSubject = new BVRModelSubject(this.getBVRModel());
 
-		vSpecbvruikernel = new BVRUIKernel(vspecvmMap,  this, resolutionvmMaps);
+		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -128,27 +128,21 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 		return vSpecbvruikernel;
 	}
 
-//	@Override
+	// @Override
 	public JTabbedPane getResolutionPane() {
 		return resPane;
 	}
 
-	
 	public boolean isDirty() {
 		return m.isNotSaved();
 	}
-/*
-	@Override
-	public ConfigurableUnitSubject getConfigurableUnitSubject() {
-		return configurableUnitSubject;
-	}
 
-	@Override
-	public ConfigurableUnit getCU() {
-		return m.getCU();
-	}
-*/
-	
+	/*
+	 * @Override public ConfigurableUnitSubject getConfigurableUnitSubject() { return configurableUnitSubject; }
+	 * 
+	 * @Override public ConfigurableUnit getCU() { return m.getCU(); }
+	 */
+
 	public BVRToolModel getModel() {
 		return m;
 	}
@@ -253,177 +247,155 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 
 	protected void loadBVRResolutionView(BVRModel bvrModel, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
 		resPane.addMouseListener(new ResV2DropdownListener((BVRResolutionToolView) this, bvrModel, m, resPane, vspecvmMap));
+		
+		if (bvrModel.getResolutionModels().size() == 0) return;
+			
+			for (VSpecResolution v : bvrModel.getResolutionModels()) {
+				
+				BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
+				resolutionkernels.add(resKernel);
+				JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+						JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+				scrollPane.addMouseListener(new ResV2DropdownListener(this, bvrModel, m, resPane, vspecvmMap));
+				EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 
-		if (bvrModel.getResolutionModels().size() == 0){
-			System.out.println("model is empty");
-			return;
-		}
-		System.out.println("SIZE OF RESMODEL: " + bvrModel.getResolutionModels().size());
-		for (VSpecResolution v : bvrModel.getResolutionModels()) {
-			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
-			resolutionkernels.add(resKernel);
-			JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-					JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-			scrollPane.addMouseListener(new ResV2DropdownListener(this, bvrModel, m, resPane, vspecvmMap));
-			EditableModelPanel epanel = new EditableModelPanel(scrollPane);
+				resolutionPanes.add(scrollPane);
+				resolutionEpanels.add(epanel);
+				Map<JComponent, NamedElement> vmMap = new HashMap<JComponent, NamedElement>();
+				resolutionvmMaps.add(vmMap);
+				List<JComponent> nodes = new ArrayList<JComponent>();
+				resolutionNodes.add(nodes);
+				List<Pair<JComponent, JComponent>> bindings = new ArrayList<Pair<JComponent, JComponent>>();
+				resolutionBindings.add(bindings);
 
-			resolutionPanes.add(scrollPane);
-			resolutionEpanels.add(epanel);
-			Map<JComponent, NamedElement> vmMap = new HashMap<JComponent, NamedElement>();
-			resolutionvmMaps.add(vmMap);
-			List<JComponent> nodes = new ArrayList<JComponent>();
-			resolutionNodes.add(nodes);
-			List<Pair<JComponent, JComponent>> bindings = new ArrayList<Pair<JComponent, JComponent>>();
-			resolutionBindings.add(bindings);
+				loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings, false, false);
 
-			loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings, false, false);
-
-			String tabtitle = "";
-			if (v instanceof ChoiceResolution) {
-				ChoiceResolution cr = (ChoiceResolution) v;
-				String choicename = "null";
-				if (cr.getResolvedVSpec() != null) {
-					choicename = cr.getResolvedVSpec().getName();
-				}
-				tabtitle = choicename + choiceCount;
-				choiceCount++;
-			}else if(CommonUtility.isVSpecResolutionVClassifier(v)){
+				String tabtitle = "";
+				if (v instanceof ChoiceResolution) {
+					ChoiceResolution cr = (ChoiceResolution) v;
+					String choicename = "null";
+					if (cr.getResolvedVSpec() != null) {
+						choicename = cr.getResolvedVSpec().getName();
+					}
+					tabtitle = choicename + choiceCount;
+					choiceCount++;
+				} else if (CommonUtility.isVSpecResolutionVClassifier(v)) {
 					tabtitle = v.getName() + ":" + ((ChoiceResolution) v).getResolvedVClassifier().getName();
 				}
 
-			resPane.addTab(tabtitle, null, epanel, "");
-		}
+				resPane.addTab(tabtitle, null, epanel, "");
+			}
 	}
 
 	// printAnyway and secondPrint added for single layer stripped functionality
-	// stripped nodes are not drawn. 
-	protected void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent,BVRModel bvrModel,
+	// stripped nodes are not drawn.
+	protected void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, BVRModel bvrModel,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, boolean printAnyway_,
 			boolean secondPrint_) throws BVRModelException {
-		
+
 		JComponent nextParent = null;
 		boolean printAnyway = printAnyway_;
 		boolean secondPrint = secondPrint_;
 
-		if (!stripped(v, printAnyway, secondPrint)) {
-			if (printAnyway) {
-				secondPrint = true;
-			}
-			printAnyway = false;
-			if (v.getResolvedVSpec() == null)
-				return;
-			// Add view
-			// System.out.println(v.getClass().getSimpleName());
-			if (CommonUtility.isVSpecResolutionVClassifier(v)) {
-				// System.out.println(v + ", " + bvruikernel);
+		// if (!stripped(v, printAnyway, secondPrint)) {
+		// if (printAnyway) {
+		// secondPrint = true;
+		// }
+		// printAnyway = false;
+		if (v.getResolvedVSpec() == null)
+			return;
+		// Add view
+		// System.out.println(v.getClass().getSimpleName());
+		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
+			// System.out.println(v + ", " + bvruikernel);
 
-				nextParent = new AddVInstanceV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
-						vmMap, nodes, bindings, this).execute();
+			nextParent = new AddVInstanceV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent, vmMap,
+					nodes, bindings, this).execute();
 
-				vmMap.put(nextParent, v);
+			vmMap.put(nextParent, v);
 
-			} else if (v instanceof ChoiceResolution) {
-				// System.out.println(v);
-				nextParent = new AddChoiceResolutionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v,
-						parent, vmMap, nodes, bindings, this).execute();
+		} else if (v instanceof ChoiceResolution) {
+			// System.out.println(v);
+			nextParent = new AddChoiceResolutionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
+					vmMap, nodes, bindings, this).execute();
 
-				vmMap.put(nextParent, v);
-				
-				
-			} /*
-			
-			
-			//TODO deal with Variables
-			
-			
-			else if (v instanceof VariableValueAssignment) {
-				// System.out.println(v);
+			vmMap.put(nextParent, v);
 
-				nextParent = new AddVariableValueAssignmentV2(minimized.contains(v), false)
-						.init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+		} /*
+		 * 
+		 * 
+		 * //TODO deal with Variables
+		 * 
+		 * 
+		 * else if (v instanceof VariableValueAssignment) { // System.out.println(v);
+		 * 
+		 * nextParent = new AddVariableValueAssignmentV2(minimized.contains(v), false) .init(bvruikernel, v, parent, vmMap, nodes, bindings,
+		 * this).execute();
+		 * 
+		 * vmMap.put(nextParent, v);
+		 * 
+		 * }
+		 */else {
+			throw new BVRModelException("Unknown element: " + v.getClass());
+		}
+		if (!minimized.contains(v)) {// TODO add show/hide visuals
+			/*
+			 * if (showConstraints) { for (Constraint c : bvrModel.getVariabilityModel().getOwnedConstraint()) { /* if (c instanceof OpaqueConstraint)
+			 * { if (((OpaqueConstraint) c).getConstraint() == v.getResolvedVSpec()) { if (invalidConstraints.contains(c)) { JComponent con = new
+			 * AddViolatedOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this) .execute(); vmMap.put(con, v); } else {
+			 * JComponent con = new AddOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this) .execute(); vmMap.put(con,
+			 * v); } }
+			 * 
+			 * }
+			 */// TODO check if this is correct
+			/*
+			 * if (c instanceof BCLConstraint) { if (((OpaqueConstraint) c).getName().equals(v.getResolvedVSpec().getName())) { if
+			 * (invalidConstraints.contains(c)) { JComponent con = new AddViolatedBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes,
+			 * bindings, this) .execute(); vmMap.put(con, v); } else { JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap,
+			 * nodes, bindings, this).execute(); vmMap.put(con, v); } } } } }
+			 */
+			// for debug
+			// if(v.getResolvedVSpec()==null)System.err.println(v +
+			// "does not contain resolved VSpec");
+			// else{
+			// System.out.println(v.getResolvedVSpec().getName()
+			// +" is beeng drawn");
+			// }
 
-				vmMap.put(nextParent, v);
+			// TODO
 
-			} 
-			
-			
-			
-			
-			*/else {
-				throw new BVRModelException("Unknown element: " + v.getClass());
-			}
-			if (!minimized.contains(v)) {// TODO add show/hide visuals
-				if (showConstraints) {
-					for (Constraint c : bvrModel.getVariabilityModel().getOwnedConstraint()) {
-						/*if (c instanceof OpaqueConstraint) {
-							if (((OpaqueConstraint) c).getConstraint() == v.getResolvedVSpec()) {
-								if (invalidConstraints.contains(c)) {
-									JComponent con = new AddViolatedOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this)
-											.execute();
-									vmMap.put(con, v);
-								} else {
-									JComponent con = new AddOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this)
-											.execute();
-									vmMap.put(con, v);
-								}
-							}
+/*			if (showGroups) {
 
-						}*/ //TODO check if this is correct 
-						if (c instanceof BCLConstraint) {
-							if (((OpaqueConstraint) c).getName().equals(v.getResolvedVSpec().getName())) {
-								if (invalidConstraints.contains(c)) {
-									JComponent con = new AddViolatedBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this)
-											.execute();
-									vmMap.put(con, v);
-								} else {
-									JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this).execute();
-									vmMap.put(con, v);
-								}
-							}
-						}
+				if (((CompoundResolution) v).getGroupMultiplicity() != null) {
+					boolean error = findGroupError(v);
+
+					if (error) {
+						nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this).execute();
+						if (!secondPrint)
+							printAnyway = true;
+					} else {
+						nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
+								.execute();
+
 					}
 				}
-				// for debug
-				// if(v.getResolvedVSpec()==null)System.err.println(v + "does not contain resolved VSpec");
-				// else{
-				// System.out.println(v.getResolvedVSpec().getName() +" is beeng drawn");
-				// }
-				
-				//TODO
-				/*if (showGroups) {
-					
-					if (((CompoundNode)v).getGroupMultiplicity() != null) {
-						boolean error = findGroupError(v);
-
-						if (error) {
-							nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
-									.execute();
-							if (!secondPrint)
-								printAnyway = true;
-						} else {
-							nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
-									.execute();
-
-						}
-					}
-				}*/
-			}
-
-			// Recursive step
-			// System.out.println();
-
-			for (VSpecResolution vs : ((CompoundResolution) v).getMembers()) {
-				if (!minimized.contains(v)) {
-					loadBVRResolutionView(vs, bvruikernel, nextParent, bvrModel, vmMap, nodes, bindings, printAnyway, secondPrint);
-
-				}
-			}
+			}*/
 
 		}
-		
+
+		// Recursive step
+		// System.out.println();
+
+		for (VSpecResolution vs : ((CompoundResolution) v).getMembers()) {
+			if (!minimized.contains(v)) {
+				loadBVRResolutionView(vs, bvruikernel, nextParent, bvrModel, vmMap, nodes, bindings, printAnyway, secondPrint);
+
+			}
+		}
+
+		// }
+
 	}
-
-
 
 	public boolean isShowConstraints() {
 		return showConstraints;
@@ -433,13 +405,11 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 		this.showConstraints = showConstraints;
 	}
 
-	
 	public void setMaximized(Object v) {
 		minimized.remove(v);
 		refresh();
 	}
 
-	
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution) v);
 		refresh();
@@ -451,8 +421,8 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	}
 
 	public void setUnstripped(Object v) {
-		if(v != null && stripped.contains(v))
-		stripped.remove(v);
+		if (v != null && stripped.contains(v))
+			stripped.remove(v);
 		// refresh();
 	}
 
@@ -465,49 +435,31 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	// strips if node is stripped choice node, or secondPrint is set
 	private boolean stripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
 		return secondPrint;
-	/*	if (v instanceof ChoiceResolution && stripped.contains(v) && !printAnyway) {
-			if (!getCU().getOwnedVSpecResolution().contains(v))
-				return !((ChoiceResolution) v).isDecision();
-		}
-		else if(secondPrint && stripped.contains(v)){
-			return true;
-		}
-		return false;*/
+		/*
+		 * if (v instanceof ChoiceResolution && stripped.contains(v) && !printAnyway) { if (!getCU().getOwnedVSpecResolution().contains(v)) return
+		 * !((ChoiceResolution) v).isDecision(); } else if(secondPrint && stripped.contains(v)){ return true; } return false;
+		 */
 	}
 
 	// returns if children are stripped
 	private boolean childrenStripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
 		return false;
-	/*	for (VSpecResolution x : v.getChild()) {
-			if (stripped( x,  false,  false))
-				if(!findGroupError(x)) //remove to show stripped mark on stripped nodes showing all due to group error
-				return true;
-			}
-		return false;*/
+		/*
+		 * for (VSpecResolution x : v.getChild()) { if (stripped( x, false, false)) if(!findGroupError(x)) //remove to show stripped mark on stripped
+		 * nodes showing all due to group error return true; } return false;
+		 */
 	}
-	
+
 	private boolean findGroupError(VSpecResolution v) {
 		return false;
-/*
-		if (v.getResolvedVSpec().getGroupMultiplicity() == null)
-			return false;
-		int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
-		int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper();
-		int i = 0;
-		for (VSpecResolution x : v.getChild()) {
-			if (x instanceof ChoiceResolution) {
-				if (((ChoiceResolution) x).isDecision())
-					i++;
-				if ((i > upper) && (upper != -1)){
-					return true;
-				}
-			}
-		}
-		if (i < lower)
-			return true;
-		return false;
-		*/
+		/*
+		 * if (v.getResolvedVSpec().getGroupMultiplicity() == null) return false; int lower = v.getResolvedVSpec().getGroupMultiplicity().getLower();
+		 * int upper = v.getResolvedVSpec().getGroupMultiplicity().getUpper(); int i = 0; for (VSpecResolution x : v.getChild()) { if (x instanceof
+		 * ChoiceResolution) { if (((ChoiceResolution) x).isDecision()) i++; if ((i > upper) && (upper != -1)){ return true; } } } if (i < lower)
+		 * return true; return false;
+		 */
 	}
+
 	@Override
 	public boolean showGrouping() {
 
@@ -520,41 +472,39 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 
 	}
 
-//	@Override
+	// @Override
 	public List<Constraint> getInvalidConstraints() {
 
 		return this.invalidConstraints;
 	}
 
-//	@Override
+	// @Override
 	public synchronized int getIncrementedNameCounter() {
 		instanceNameCounter++;
 		return instanceNameCounter;
 	}
 
-//	@Override
+	// @Override
 	public List<VSpecResolution> getStripped() {
 		return this.stripped;
 	}
 
+	public BVRModelSubject getBVRModelSubject() {
+		return bvrModelSubject;
+	}
 
-public BVRModelSubject getBVRModelSubject() {
-	return bvrModelSubject;
-}
+	@Override
+	public BVRModel getBVRModel() {
+		return m.getBVRModel();
+	}
 
+	@Override
+	public BVRToolModel getBVRToolModel() {
+		return m;
+	}
 
-@Override
-public BVRModel getBVRModel() {
-	return m.getBVRModel();
-}
-
-@Override
-public BVRToolModel getBVRToolModel() {
-	return m;
-}
-
-public void setInvalidConstraints(List<Constraint> invalidConstraints) {
-	this.invalidConstraints = invalidConstraints;
-}
+	public void setInvalidConstraints(List<Constraint> invalidConstraints) {
+		this.invalidConstraints = invalidConstraints;
+	}
 
 }
