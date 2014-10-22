@@ -157,7 +157,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 		for (int i = 0; i < resolutionPanes.size(); i++) {
 			Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
 			Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
-
+			System.out.println(resolutionNodes);
 			for (JComponent c : resolutionNodes.get(i)) {
 				String title = ((TitledElement) c).getTitle();
 				// System.out.println(title);
@@ -254,9 +254,11 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	protected void loadBVRResolutionView(BVRModel bvrModel, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException {
 		resPane.addMouseListener(new ResV2DropdownListener((BVRResolutionToolView) this, bvrModel, m, resPane, vspecvmMap));
 
-		if (bvrModel.getResolutionModels().size() == 0)
+		if (bvrModel.getResolutionModels().size() == 0){
+			System.out.println("model is empty");
 			return;
-
+		}
+		System.out.println("SIZE OF RESMODEL: " + bvrModel.getResolutionModels().size());
 		for (VSpecResolution v : bvrModel.getResolutionModels()) {
 			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
