@@ -48,7 +48,7 @@ public class ConstraintFactory {
 	}
 	
 	public void updateBCLConstraint(BVRModel model, BCLConstraint constraint, String rawConstraint){
-		if(rawConstraint.equals(defaultText))
+		if(rawConstraint.equals(defaultText) || rawConstraint.equals(""))
 			return;
 		
 		try {
