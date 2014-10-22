@@ -99,7 +99,7 @@ public interface EditorCommands {
 	
 	public void setIsImpliedByParent(Choice choice, boolean isImplied);
 	
-	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject);
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject);
 	
 	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound);
 	

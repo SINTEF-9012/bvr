@@ -197,4 +197,12 @@ abstract public class BVRToolModel {
 	public void pastNamedElementAsSibling(NamedElement sibling) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void setGroupMultiplicity(VNode parent, int lowerBound, int upperBound) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void removeGroupMultiplicity(VNode parent) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

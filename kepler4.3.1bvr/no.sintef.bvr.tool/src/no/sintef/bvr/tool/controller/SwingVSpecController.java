@@ -304,5 +304,30 @@ public class SwingVSpecController<
 	public void pastNamedElementAsSibling(GUI_NODE node) {
 		NamedElement sibling = (NamedElement) vspecvmMap.get(node);
 		toolModel.pastNamedElementAsSibling(sibling);
+	}
+
+	@Override
+	public void setGroupMultiplicityAlternative(GUI_NODE node) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.setGroupMultiplicity(parent, 1, 1);	
+	}
+
+	@Override
+	public void setGroupMultiplicityNone(GUI_NODE node) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.removeGroupMultiplicity(parent);
+		
+	}
+
+	@Override
+	public void setGroupMultiplicityOr(GUI_NODE node) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.setGroupMultiplicity(parent, 1, -1);
+	}
+
+	@Override
+	public void setGroupMultiplicityCustom(GUI_NODE node, int lowerBound, int upperBound) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.setGroupMultiplicity(parent, lowerBound, upperBound);
 	}	
 }

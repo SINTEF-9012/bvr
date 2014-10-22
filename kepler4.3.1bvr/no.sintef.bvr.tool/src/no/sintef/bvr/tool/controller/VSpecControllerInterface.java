@@ -52,4 +52,12 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void pastNamedElementAsChild(GUI_NODE node);
 	
 	public void pastNamedElementAsSibling(GUI_NODE node);
+	
+	public void setGroupMultiplicityAlternative(GUI_NODE node);
+	
+	public void setGroupMultiplicityNone(GUI_NODE node);
+	
+	public void setGroupMultiplicityOr(GUI_NODE node);
+	
+	public void setGroupMultiplicityCustom(GUI_NODE node, int lowerBound, int upperBound);
 }

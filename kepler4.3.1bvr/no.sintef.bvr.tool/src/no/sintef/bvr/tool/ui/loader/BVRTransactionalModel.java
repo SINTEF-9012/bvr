@@ -383,4 +383,17 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			cutNamedElement = null;
 		}		
 	}
+	
+	@Override
+	public void setGroupMultiplicity(VNode parent, int lowerBound, int upperBound) {
+		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
+		mi.setLower(lowerBound);
+		mi.setUpper(upperBound);
+		Context.eINSTANCE.getEditorCommands().setVNodeGroupMultiplicity(parent, mi);
+	}
+	
+	@Override
+	public void removeGroupMultiplicity(VNode parent) {
+		Context.eINSTANCE.getEditorCommands().setVNodeGroupMultiplicity(parent, null);
+	}
 }

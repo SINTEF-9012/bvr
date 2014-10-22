@@ -611,10 +611,10 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void setVSpecGroupMultiplicity(VSpec vSpec,
-			MultiplicityInterval eObject) {
-		// TODO Auto-generated method stub
-		
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vNode, BvrPackage.eINSTANCE.getVNode_GroupMultiplicity(), eObject);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override

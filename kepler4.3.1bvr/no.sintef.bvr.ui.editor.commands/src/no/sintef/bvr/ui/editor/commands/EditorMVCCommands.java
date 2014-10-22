@@ -172,7 +172,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 	
 	@Override
-	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject){
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject){
 		//vSpec.setGroupMultiplicity(eObject);
 	}
 	

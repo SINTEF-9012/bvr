@@ -106,13 +106,13 @@ class ClassifierDropdown extends JPopupMenu {
 		// Set group
 		JMenu group = new JMenu("set group");
 		JMenuItem none = new JMenuItem("none (0..*)");
-		none.addActionListener(new SetGroupToNoneEvent(cp, vmMap, nodes, bindings, view));
+		none.addActionListener(new SetGroupToNoneEvent(cp, view));
 		group.add(none);
 		JMenuItem alt = new JMenuItem("alternative/xor (1..1)");
-		alt.addActionListener(new SetGroupToAltEvent(cp, vmMap, nodes, bindings, view));
+		alt.addActionListener(new SetGroupToAltEvent(cp, view));
 		group.add(alt);
 		JMenuItem or = new JMenuItem("or (1..*)");
-		or.addActionListener(new SetGroupToOrEvent(cp, vmMap, nodes, bindings, view));
+		or.addActionListener(new SetGroupToOrEvent(cp, view));
 		group.add(or);
 		group.add(new JMenuItem("custom..."));
 		add(group);
