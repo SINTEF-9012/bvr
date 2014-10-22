@@ -341,5 +341,11 @@ public class SwingVSpecController<
 	public String getBCLConstraintString(GUI_NODE node) {
 		BCLConstraint constraint = (BCLConstraint) vspecvmMap.get(node);
 		return toolModel.getBCLConstraintString(constraint);
+	}
+
+	@Override
+	public void removeNamedElement(GUI_NODE node) {
+		NamedElement element = (NamedElement) vspecvmMap.get(node);
+		toolModel.removeNamedElement(element);
 	}	
 }

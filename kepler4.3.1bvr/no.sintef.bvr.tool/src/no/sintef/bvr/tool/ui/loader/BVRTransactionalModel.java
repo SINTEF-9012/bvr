@@ -38,6 +38,7 @@ import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.Constraint;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.Note;
@@ -400,5 +401,27 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public String getBCLConstraintString(BCLConstraint constraint) {
 		return ConstraintFactory.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+	}
+	
+	@Override
+	public void removeNamedElement(NamedElement element) {
+		EObject parent = element.eContainer();
+		if(parent != null){
+			if(parent instanceof CompoundNode){
+				if(element instanceof Constraint){
+					Context.eINSTANCE.getEditorCommands().removeConstraintCompoundNode((CompoundNode) parent, (Constraint) element);
+				} else if(element instanceof VNode){
+					Context.eINSTANCE.getEditorCommands().removeVNodeCompoundNode((CompoundNode) parent, (VNode) element);
+				}else {
+					throw new UnexpectedException("can not remove " + element + " with parent " + parent);
+				}
+			}else if(parent instanceof BVRModel){
+				Context.eINSTANCE.getEditorCommands().removeVariabilityModelBVRModel((BVRModel) parent, (CompoundNode) element);
+			}else {
+				throw new UnexpectedException("can not remove " + element + " with parent " + parent);
+			}
+		}else{
+			throw new UnexpectedException("can not find parent element to remove " + element);
+		}
 	}
 }

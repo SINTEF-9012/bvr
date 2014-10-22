@@ -209,4 +209,8 @@ abstract public class BVRToolModel {
 	public String getBCLConstraintString(BCLConstraint constraint) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void removeNamedElement(NamedElement element) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

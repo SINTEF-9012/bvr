@@ -64,4 +64,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public Command createUpdateBVRModelCommand(GUI_NODE node);
 	
 	public String getBCLConstraintString(GUI_NODE node);
+	
+	public void removeNamedElement(GUI_NODE node);
 }

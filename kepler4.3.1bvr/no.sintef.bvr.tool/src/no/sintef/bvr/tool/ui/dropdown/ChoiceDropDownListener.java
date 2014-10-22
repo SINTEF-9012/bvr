@@ -84,7 +84,7 @@ class ChoiceDropdown extends JPopupMenu {
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveVSpecEvent(cp, vmMap, nodes, bindings, view));
+		removechoice.addActionListener(new RemoveVSpecEvent(cp, view));
 		add(removechoice);
 		
 		// Cut Paste
