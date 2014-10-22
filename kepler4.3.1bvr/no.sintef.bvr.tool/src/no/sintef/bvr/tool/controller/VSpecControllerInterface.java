@@ -46,4 +46,10 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void updateBCLConstraint(GUI_NODE node, String strConstr);
 	
 	public void toggleChoiceOptionalMandotary(GUI_NODE node);
+	
+	public void cutNamedElement(GUI_NODE node);
+	
+	public void pastNamedElementAsChild(GUI_NODE node);
+	
+	public void pastNamedElementAsSibling(GUI_NODE node);
 }

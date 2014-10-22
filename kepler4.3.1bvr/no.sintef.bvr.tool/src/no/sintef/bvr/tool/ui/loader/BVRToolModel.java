@@ -185,4 +185,16 @@ abstract public class BVRToolModel {
 	public void toggleChoiceOptionalMandotary(Choice choice) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void cutNamedElement(NamedElement namedElement) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void pastNamedElementAsChild(NamedElement parent) {
+		throw new UnexpectedException("Are you using default implementation?!");	
+	}
+
+	public void pastNamedElementAsSibling(NamedElement sibling) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

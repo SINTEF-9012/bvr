@@ -526,4 +526,17 @@ public class EditorMVCCommands implements EditorCommands {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVariabilityModelToBVRModel(BVRModel model,
+			CompoundNode compoundNode) {
+		// TODO Auto-generated method stub
+		
+	}
 }

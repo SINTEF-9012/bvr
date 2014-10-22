@@ -65,6 +65,10 @@ public interface EditorCommands {
 	//public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
 	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier);
 	
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child);
+	
+	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode);
+	
 	//public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
 	
 	//public void addVariableType(ConfigurableUnit cu, PrimitveType primType);

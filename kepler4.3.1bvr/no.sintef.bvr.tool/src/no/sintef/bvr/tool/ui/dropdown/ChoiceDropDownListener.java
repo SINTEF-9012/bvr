@@ -90,13 +90,13 @@ class ChoiceDropdown extends JPopupMenu {
 		// Cut Paste
 		add(new JSeparator());
 		JMenuItem cut = new JMenuItem("cut");
-		cut.addActionListener(new CutEvent(cp, vmMap, nodes, bindings, view));
+		cut.addActionListener(new CutEvent(cp, view));
 		add(cut);
 		JMenuItem pastechild = new JMenuItem("paste as child");
-		pastechild.addActionListener(new PasteChildEvent(cp, vmMap, nodes, bindings, view));
+		pastechild.addActionListener(new PasteChildEvent(cp, view));
 		add(pastechild);
 		JMenuItem pastesibling = new JMenuItem("paste as sibling");
-		pastesibling.addActionListener(new PasteSiblingEvent(cp, vmMap, nodes, bindings, view));
+		pastesibling.addActionListener(new PasteSiblingEvent(cp, view));
 		add(pastesibling);
 		add(new JSeparator());
 		

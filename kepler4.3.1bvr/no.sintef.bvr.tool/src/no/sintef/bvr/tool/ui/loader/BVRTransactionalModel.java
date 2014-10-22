@@ -9,6 +9,8 @@ import java.util.Map;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.model.ConstraintFactory;
 import no.sintef.bvr.tool.model.NoteFactory;
 import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
@@ -24,6 +26,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
@@ -54,6 +57,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
+	private NamedElement cutNamedElement = null;
 	
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -334,5 +338,49 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void toggleChoiceOptionalMandotary(Choice choice) {
 		Context.eINSTANCE.getEditorCommands().setIsImpliedByParent(choice, !choice.isIsImpliedByParent());
+	}
+	
+	@Override
+	public void cutNamedElement(NamedElement namedElement) {
+		EObject parent = namedElement.eContainer();
+		if(namedElement instanceof VNode){
+			if(parent instanceof CompoundNode && namedElement instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().removeVNodeCompoundNode((CompoundNode) parent, (VNode) namedElement);
+			}else if (parent instanceof BVRModel && namedElement instanceof CompoundNode) {
+				Context.eINSTANCE.getEditorCommands().removeVariabilityModelBVRModel((BVRModel) parent, (CompoundNode) namedElement);
+			}else{
+				throw new UnexpectedException("not supported operation");
+			}
+		}else {
+			throw new UnsupportedOperationException("Cut is not implemented for anything other than VNode " + namedElement);
+		}		
+		cutNamedElement = namedElement;
+	}
+	
+	@Override
+	public void pastNamedElementAsChild(NamedElement parent) {
+		if(cutNamedElement != null){
+			if(parent instanceof CompoundNode && cutNamedElement instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().addVNodeToCompoundNode((CompoundNode) parent, (VNode) cutNamedElement);
+			} else if (parent instanceof BVRModel && cutNamedElement instanceof CompoundNode) {
+				Context.eINSTANCE.getEditorCommands().addVariabilityModelToBVRModel((BVRModel) parent, (CompoundNode) cutNamedElement);
+			}else{
+				throw new UnexpectedException("not supported operation");
+			}
+			cutNamedElement = null;
+		}
+	}
+	
+	@Override
+	public void pastNamedElementAsSibling(NamedElement sibling) {
+		if(cutNamedElement != null){
+			EObject parent = sibling.eContainer();
+			if(parent instanceof CompoundNode && cutNamedElement instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().addVNodeToCompoundNode((CompoundNode) parent, (VNode) cutNamedElement);
+			} else{
+				throw new UnexpectedException("not supported operation");
+			}
+			cutNamedElement = null;
+		}		
 	}
 }

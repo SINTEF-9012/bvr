@@ -286,5 +286,23 @@ public class SwingVSpecController<
 	public void toggleChoiceOptionalMandotary(GUI_NODE node) {
 		Choice choice = (Choice) vspecvmMap.get(node);
 		toolModel.toggleChoiceOptionalMandotary(choice);
+	}
+
+	@Override
+	public void cutNamedElement(GUI_NODE node) {
+		NamedElement namedElement = (NamedElement) vspecvmMap.get(node);
+		toolModel.cutNamedElement(namedElement);
+	}
+
+	@Override
+	public void pastNamedElementAsChild(GUI_NODE node) {
+		NamedElement parent = (NamedElement) vspecvmMap.get(node);
+		toolModel.pastNamedElementAsChild(parent);
+	}
+
+	@Override
+	public void pastNamedElementAsSibling(GUI_NODE node) {
+		NamedElement sibling = (NamedElement) vspecvmMap.get(node);
+		toolModel.pastNamedElementAsSibling(sibling);
 	}	
 }

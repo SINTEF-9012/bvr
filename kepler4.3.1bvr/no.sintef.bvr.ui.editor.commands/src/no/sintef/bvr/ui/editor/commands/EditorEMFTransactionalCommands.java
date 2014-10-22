@@ -739,6 +739,20 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		disableBatchProcessing();
 	}
 
+	@Override
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getCompoundNode_Member(), child);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), compoundNode);
+		testCommandExecution(editingDomain, cmd);
+	}
+
 /*
 	@Override
 	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
