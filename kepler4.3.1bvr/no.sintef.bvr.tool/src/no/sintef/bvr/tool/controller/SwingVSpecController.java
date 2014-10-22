@@ -280,5 +280,11 @@ public class SwingVSpecController<
 	public void updateBCLConstraint(GUI_NODE node, String strConstr) {
 		BCLConstraint constraint = (BCLConstraint) vspecvmMap.get(node);
 		toolModel.updateBCLConstraint(constraint, strConstr);
+	}
+
+	@Override
+	public void toggleChoiceOptionalMandotary(GUI_NODE node) {
+		Choice choice = (Choice) vspecvmMap.get(node);
+		toolModel.toggleChoiceOptionalMandotary(choice);
 	}	
 }

@@ -54,7 +54,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
-	static private int constraintCount = 0;
+	
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -196,14 +196,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void minimaizeVSpec(VSpec vspec) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpec.add(vspec);
 	}
 
 	@Override
 	public void maximizeVSpec(VSpec vspec) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpec.remove(vspec);
 	}
 
 	@Override
@@ -213,14 +211,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void minimaizeVSpecResolution(VSpecResolution vspecRes) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpecResolution.add(vspecRes);
 	}
 
 	@Override
 	public void maximizeVSpecResolution(VSpecResolution vspecRes) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpecResolution.remove(vspecRes);
 	}
 
 	@Override
@@ -333,5 +329,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
 		ConstraintFactory.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
+	}
+	
+	@Override
+	public void toggleChoiceOptionalMandotary(Choice choice) {
+		Context.eINSTANCE.getEditorCommands().setIsImpliedByParent(choice, !choice.isIsImpliedByParent());
 	}
 }

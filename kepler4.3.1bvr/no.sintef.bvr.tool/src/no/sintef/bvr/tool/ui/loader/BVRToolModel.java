@@ -7,6 +7,7 @@ import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -178,6 +179,10 @@ abstract public class BVRToolModel {
 	}
 
 	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void toggleChoiceOptionalMandotary(Choice choice) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

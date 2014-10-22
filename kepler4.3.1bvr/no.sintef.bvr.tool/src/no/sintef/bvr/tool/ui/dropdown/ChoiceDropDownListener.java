@@ -101,8 +101,8 @@ class ChoiceDropdown extends JPopupMenu {
 		add(new JSeparator());
 		
 		// Toggle optional
-		JMenuItem toggleOptional = new JMenuItem("toggle optional");
-		toggleOptional.addActionListener(new ToggleOptionalEvent(cp, vmMap, nodes, bindings, view));
+		JMenuItem toggleOptional = new JMenuItem("un-/toggle optional");
+		toggleOptional.addActionListener(new ToggleOptionalEvent(cp, view));
 		add(toggleOptional);
 		
 		// Set group
