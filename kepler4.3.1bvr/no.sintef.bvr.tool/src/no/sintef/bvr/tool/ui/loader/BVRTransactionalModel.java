@@ -396,4 +396,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void removeGroupMultiplicity(VNode parent) {
 		Context.eINSTANCE.getEditorCommands().setVNodeGroupMultiplicity(parent, null);
 	}
+	
+	@Override
+	public String getBCLConstraintString(BCLConstraint constraint) {
+		return ConstraintFactory.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+	}
 }

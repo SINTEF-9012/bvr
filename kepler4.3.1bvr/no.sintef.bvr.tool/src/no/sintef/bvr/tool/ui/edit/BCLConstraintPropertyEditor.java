@@ -13,7 +13,6 @@ import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 
 
@@ -38,7 +37,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
         l2.setLabelFor(textField2);
         p2.add(textField2);
         
-        String s = new BCLPrettyPrinter().prettyPrint(elem.getExpression().get(0), view.getBVRModel());
+        String s = view.getVSpecControllerInterface().getBCLConstraintString(node);
         
         textField2.setText(s);
         

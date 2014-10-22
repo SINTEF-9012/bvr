@@ -12,6 +12,7 @@ import no.sintef.bvr.constraints.bcl.BCLParser;
 import no.sintef.bvr.constraints.strategy.BVRToolBCLBuilderStrategy;
 import no.sintef.bvr.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BVRModel;
@@ -22,7 +23,8 @@ import bvr.VNode;
 
 public class ConstraintFactory {
 	private static int constraintCount = 0;
-	private static String defaultName = "Constraint";
+	private static final String defaultName = "Constraint";
+	private static final String defaultText = "[null]";
 	
 	public static ConstraintFactory eINSTANCE = getInstance();
 	
@@ -46,6 +48,9 @@ public class ConstraintFactory {
 	}
 	
 	public void updateBCLConstraint(BVRModel model, BCLConstraint constraint, String rawConstraint){
+		if(rawConstraint.equals(defaultText))
+			return;
+		
 		try {
 			RuleNode root = parseBCL(rawConstraint);
 			BCLExpression expression = new BCLBuilder(new BVRToolBCLBuilderStrategy()).recurse(root, 0, model, false);
@@ -63,5 +68,12 @@ public class ConstraintFactory {
 		BCLParser parser = new BCLParser(tokens);
 		RuleNode root = parser.constraint().getRuleContext();
 		return root;
+	}
+
+	public String getBCLConstraintString(BVRModel rootBVRModel, BCLConstraint constraint) {
+		String text = defaultText;
+		if(constraint != null && constraint.getExpression().size() != 0)
+			text = new BCLPrettyPrinter().prettyPrint(constraint.getExpression().get(0), rootBVRModel);
+		return text;
 	}
 }

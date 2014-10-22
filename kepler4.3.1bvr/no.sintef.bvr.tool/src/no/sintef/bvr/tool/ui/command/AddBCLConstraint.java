@@ -40,13 +40,14 @@ public class AddBCLConstraint implements Command {
 		return this;
 	}
 
+	@SuppressWarnings("unchecked")
 	public JComponent execute() {
 		ParallelogramTitledPanel constraint1 = new ParallelogramTitledPanel();
 		nodes.add(constraint1);
 		vmMap.put(constraint1, oc);
 		Helper.bind(parent, constraint1, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 		
-		String s = new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getBVRModel());
+		String s = view.getVSpecControllerInterface().getBCLConstraintString(constraint1);
 		// Add newlines
 		s = wrap(s, 15);
 		constraint1.setTitle(s);

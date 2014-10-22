@@ -62,4 +62,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void setGroupMultiplicityCustom(GUI_NODE node, int lowerBound, int upperBound);
 	
 	public Command createUpdateBVRModelCommand(GUI_NODE node);
+	
+	public String getBCLConstraintString(GUI_NODE node);
 }

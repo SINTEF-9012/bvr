@@ -205,4 +205,8 @@ abstract public class BVRToolModel {
 	public void removeGroupMultiplicity(VNode parent) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public String getBCLConstraintString(BCLConstraint constraint) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

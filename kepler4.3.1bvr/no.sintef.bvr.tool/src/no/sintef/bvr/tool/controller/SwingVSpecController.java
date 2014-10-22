@@ -335,5 +335,11 @@ public class SwingVSpecController<
 		Command command = new UpdateBVRModel();
     	command.init(vSpecbvruikernel, vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
 		return command;
+	}
+
+	@Override
+	public String getBCLConstraintString(GUI_NODE node) {
+		BCLConstraint constraint = (BCLConstraint) vspecvmMap.get(node);
+		return toolModel.getBCLConstraintString(constraint);
 	}	
 }
