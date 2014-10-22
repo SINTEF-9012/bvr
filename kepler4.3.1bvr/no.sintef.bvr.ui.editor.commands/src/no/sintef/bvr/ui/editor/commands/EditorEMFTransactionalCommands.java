@@ -749,7 +749,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), compoundNode);
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), compoundNode);
 		testCommandExecution(editingDomain, cmd);
 	}
 

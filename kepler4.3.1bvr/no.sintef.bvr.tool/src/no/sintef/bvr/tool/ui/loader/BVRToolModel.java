@@ -114,7 +114,7 @@ abstract public class BVRToolModel {
 		saved = true;
 	}
 	
-	public void addChoice(VSpec parentVSpec) {
+	public void addChoice(NamedElement parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	};
 	
@@ -170,7 +170,7 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void addVClassifier(VSpec parentVSpec) {
+	public void addVClassifier(NamedElement parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 

@@ -177,7 +177,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void addChoice(VSpec parentVSpec) {
+	public void addChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setName("Choice "+choicCounter);
 		
@@ -187,10 +187,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		((CompoundNode) c).getOwnedTargets().add(target);
 		c.setTarget(target);
 		
-		if(parentVSpec != null){
-			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
-		}else{
-			BVRModel model = bvrm.getRootBVRModel();
+		if(parent instanceof CompoundNode){
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parent);
+		}else if (parent instanceof BVRModel){
+			BVRModel model = (BVRModel) parent;
 			if(model.getVariabilityModel() == null){
 				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
 			}
@@ -301,7 +301,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void addVClassifier(VSpec parentVSpec) {
+	public void addVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		c.setName("Classifier"+classifierCount);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
@@ -315,10 +315,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		((CompoundNode) c).getOwnedTargets().add(target);
 		c.setTarget(target);
 		
-		if(parentVSpec != null){
-			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parentVSpec, c);
-		}else{
-			BVRModel model = bvrm.getRootBVRModel();
+		if(parent instanceof CompoundNode){
+			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parent, c);
+		}else if(parent instanceof BVRModel) {
+			BVRModel model = (BVRModel) parent;
 			if(model.getVariabilityModel() == null)
 				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
 		}

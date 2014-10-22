@@ -33,7 +33,6 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.VSpecLayoutStrategy;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import no.sintef.bvr.ui.framework.strategy.LayoutStrategy;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
@@ -116,7 +115,6 @@ public class SwingVSpecController<
 				}*/
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
-					
 					new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 
 				}
@@ -162,8 +160,8 @@ public class SwingVSpecController<
 
 	@Override
 	public void addChoice(GUI_NODE parent) {
-		VSpec parentVSpec = (VSpec) vspecvmMap.get(parent);
-		toolModel.addChoice(parentVSpec);
+		NamedElement parentNamedElement = (NamedElement) vspecvmMap.get(parent);
+		toolModel.addChoice(parentNamedElement);
 	}
 
 	@Override
@@ -260,8 +258,8 @@ public class SwingVSpecController<
 
 	@Override
 	public void addVClassifier(GUI_NODE node) {
-		VSpec parentVSpec = (VSpec) vspecvmMap.get(node);
-		toolModel.addVClassifier(parentVSpec);
+		NamedElement parentNamedElement = (NamedElement) vspecvmMap.get(node);
+		toolModel.addVClassifier(parentNamedElement);
 	}
 
 	@Override
