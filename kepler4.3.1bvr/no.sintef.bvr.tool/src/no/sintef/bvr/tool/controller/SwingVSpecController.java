@@ -23,6 +23,7 @@ import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
+import no.sintef.bvr.tool.ui.command.UpdateBVRModel;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
@@ -329,5 +330,12 @@ public class SwingVSpecController<
 	public void setGroupMultiplicityCustom(GUI_NODE node, int lowerBound, int upperBound) {
 		VNode parent = (VNode) vspecvmMap.get(node);
 		toolModel.setGroupMultiplicity(parent, lowerBound, upperBound);
+	}
+
+	@Override
+	public Command createUpdateBVRModelCommand(GUI_NODE node) {
+		Command command = new UpdateBVRModel();
+    	command.init(vSpecbvruikernel, vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
 	}	
 }

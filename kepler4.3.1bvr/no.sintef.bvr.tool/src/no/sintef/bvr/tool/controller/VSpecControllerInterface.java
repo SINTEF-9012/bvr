@@ -60,4 +60,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
 	public void setGroupMultiplicityOr(GUI_NODE node);
 	
 	public void setGroupMultiplicityCustom(GUI_NODE node, int lowerBound, int upperBound);
+	
+	public Command createUpdateBVRModelCommand(GUI_NODE node);
 }

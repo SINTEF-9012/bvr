@@ -120,9 +120,9 @@ class ChoiceDropdown extends JPopupMenu {
 		add(group);
 		
 		// Change to
-		JMenu change = new JMenu("change to");
-		change.add(new JMenuItem("classifier"));
-		add(change);
+		//JMenu change = new JMenu("change to");
+		//change.add(new JMenuItem("classifier"));
+		//add(change);
 		
 		// max/min
 		JMenuItem minimize = new JMenuItem("minimize");
