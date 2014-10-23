@@ -17,7 +17,6 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
 public class CreateFragmentSubstitutionEvent implements ActionListener {

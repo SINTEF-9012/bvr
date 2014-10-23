@@ -9,7 +9,7 @@ import bvr.FragmentSubstitution;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
+import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 
 
@@ -22,8 +22,9 @@ public class DeleteBindingAllEvent implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) {		
-		BindingTableModel model = (BindingTableModel) ((BVRRealizationView) view).getBindingTable().getModel();
+	public void actionPerformed(ActionEvent e) {
+		BVRRealizationUIKernelInterface kernel = view.getRealizationControllerInterface().getUIKernel();
+		BindingTableModel model = (BindingTableModel) kernel.getBindingTable().getModel();
 		FragmentSubstitution fragmentSubstitution = model.getFragmentSubstitution();
 		if(fragmentSubstitution == null){
 			JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), Messages.DIALOG_MSG_NO_FRAG_SUB_DETECTED);

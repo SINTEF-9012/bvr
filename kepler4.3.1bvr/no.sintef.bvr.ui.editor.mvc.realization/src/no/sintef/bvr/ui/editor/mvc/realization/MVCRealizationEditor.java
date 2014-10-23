@@ -20,11 +20,11 @@ public class MVCRealizationEditor extends MVCEditor{
 	}
 	
 	public void setContents() {
-		jApplet.add(((RealizationView)v).realizationPanel);
+		jApplet.add(((RealizationRootController)v).getEditorRootPanel());
 	}
 
 	public void createView() {
-		v = new RealizationView(toolModel);
+		v = new RealizationRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);

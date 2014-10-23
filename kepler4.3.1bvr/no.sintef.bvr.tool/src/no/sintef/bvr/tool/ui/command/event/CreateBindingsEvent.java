@@ -21,7 +21,6 @@ import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
 import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 
 public class CreateBindingsEvent implements ActionListener {
