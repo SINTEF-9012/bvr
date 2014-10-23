@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -70,9 +71,9 @@ public class AddResolution implements ResCommand{
 	
 		PosResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		 //count++;
-		// vi.setName("vInstance" + count);
-		thisResolution.setName("I" + view.getIncrementedNameCounter());
-		thisResolution.setResolvedVSpec(target);
+		
+		thisResolution.setName(target.getName()+"Nr. " + view.getIncrementedNameCounter());
+		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 		
 		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
@@ -81,9 +82,9 @@ public class AddResolution implements ResCommand{
 	// resolve Choice
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
 		
-		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createNegResolution();
+		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName(target.getName());
-		thisResolution.setResolvedVSpec(target);
+		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 		((CompoundResolution)parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}

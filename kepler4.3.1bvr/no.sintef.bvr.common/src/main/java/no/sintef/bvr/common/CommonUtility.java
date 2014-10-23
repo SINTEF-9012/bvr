@@ -182,7 +182,7 @@ public final class CommonUtility {
  * @param toResolve
  * @return
  */
-	public VSpecResolution setResolved(VSpecResolution target, VSpec toResolve) {
+	public static VSpecResolution setResolved(VSpecResolution target, VSpec toResolve) {
 
 		target.setResolvedVSpec(toResolve);
 		if (target instanceof ChoiceResolution) {

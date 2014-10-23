@@ -43,7 +43,7 @@ public class NewResolvedResolutionEvent implements ActionListener {
 			root.setResolvedVSpec(x);
 			root.setName(x.getName() + " resolution");
 
-			//Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
+			Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
 			
 			
 			// create resolution model

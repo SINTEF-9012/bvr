@@ -39,7 +39,7 @@ public class AddVInstance implements Command{
 
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.rootPanel = rootPanel;
-		//this.vc = (VInstance) p;
+		this.cr = (ChoiceResolution) p;
 		this.parent = parent;
 		
 		this.vmMap = vmMap;
