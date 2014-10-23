@@ -11,57 +11,66 @@ import com.google.common.base.Throwables;
 
 import bvr.BVRModel;
 import bvr.BvrFactory;
+import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.ObjectHandle;
 import bvr.PlacementFragment;
 import bvr.PrimitveType;
 import bvr.ReplacementFragmentType;
+import bvr.VClassifier;
 import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
+import bvr.Variable;
 
 public final class CommonUtility {
-	
-	public static String getStackTraceAsString(Throwable throwable){
+
+	public static String getStackTraceAsString(Throwable throwable) {
 		return Throwables.getStackTraceAsString(throwable);
 	}
-	
+
 	public static final int DERIVED = 0x1;
 	public static final int TRANSIENT = 0x2;
-	public static final int MASK = 0x1FF; //9 bits are required to encode all properties
-	/* 000000000 - ok, 000000001-derived, 000000010 - transient, 000000011 -derived and transient etc*/
-	public static int isDerived(EStructuralFeature property){
+	public static final int MASK = 0x1FF; // 9 bits are required to encode all properties
+
+	/* 000000000 - ok, 000000001-derived, 000000010 - transient, 000000011 -derived and transient etc */
+	public static int isDerived(EStructuralFeature property) {
 		int value = 0x0 & MASK;
-		/*The value of a derived feature is computed from other
-		features, so it doesn't represent any additional object
-		state. Framework classes, such as EcoreUtil.Copier,
-		that copy model objects will not attempt to copy such
-		features. The generated code is unaffected by the value
-		of the derived flag. Derived features are typically also
-		marked volatile and transient.*/
+		/*
+		 * The value of a derived feature is computed from other
+		 * features, so it doesn't represent any additional object
+		 * state. Framework classes, such as EcoreUtil.Copier,
+		 * that copy model objects will not attempt to copy such
+		 * features. The generated code is unaffected by the value
+		 * of the derived flag. Derived features are typically also
+		 * marked volatile and transient.
+		 */
 		int drvd = (property.isDerived()) ? MASK & DERIVED : value;
-	
-		/*Transient features are used to declare (modeled) data
-		whose lifetime never spans application invocations and
-		therefore doesn't need to be persisted. The (default XMI)
-		serializer will not save features that are declared to be
-		transient.*/
+
+		/*
+		 * Transient features are used to declare (modeled) data
+		 * whose lifetime never spans application invocations and
+		 * therefore doesn't need to be persisted. The (default XMI)
+		 * serializer will not save features that are declared to be
+		 * transient.
+		 */
 		int trnsnt = (property.isTransient()) ? MASK & TRANSIENT : value;
-		
+
 		value = drvd | trnsnt;
 		return value;
 	}
-	
-	public static int unMask(int value, int umaskValue){
+
+	public static int unMask(int value, int umaskValue) {
 		return value & umaskValue;
 	}
-	
-	public static ObjectHandle testObjectHandle(PlacementFragment placement, EObject eObject){
+
+	public static ObjectHandle testObjectHandle(PlacementFragment placement, EObject eObject) {
 		EList<ObjectHandle> objectHandles = placement.getSourceObject();
-		for(ObjectHandle oh : objectHandles){
-			if(eObject != null && eObject.equals(oh.getMOFRef())){
+		for (ObjectHandle oh : objectHandles) {
+			if (eObject != null && eObject.equals(oh.getMOFRef())) {
 				return oh;
-			}else if(oh.getMOFRef() == null && eObject == null){
+			} else if (oh.getMOFRef() == null && eObject == null) {
 				return oh;
 			}
 		}
@@ -70,13 +79,13 @@ public final class CommonUtility {
 		placement.getSourceObject().add(objectHandle);
 		return objectHandle;
 	}
-	
-	public static ObjectHandle testObjectHandle(ReplacementFragmentType replacement, EObject eObject){
+
+	public static ObjectHandle testObjectHandle(ReplacementFragmentType replacement, EObject eObject) {
 		EList<ObjectHandle> objectHandles = replacement.getSourceObject();
-		for(ObjectHandle oh : objectHandles){
-			if(eObject != null && eObject.equals(oh.getMOFRef())){
+		for (ObjectHandle oh : objectHandles) {
+			if (eObject != null && eObject.equals(oh.getMOFRef())) {
 				return oh;
-			}else if(oh.getMOFRef() == null && eObject == null){
+			} else if (oh.getMOFRef() == null && eObject == null) {
 				return oh;
 			}
 		}
@@ -85,85 +94,115 @@ public final class CommonUtility {
 		replacement.getSourceObject().add(objectHandle);
 		return objectHandle;
 	}
-	
+
 	public static String removeExtension(String s) {
 
-	    String separator = System.getProperty("file.separator");
-	    String filename;
+		String separator = System.getProperty("file.separator");
+		String filename;
 
-	    // Remove the path upto the filename.
-	    int lastSeparatorIndex = s.lastIndexOf(separator);
-	    if (lastSeparatorIndex == -1) {
-	        filename = s;
-	    } else {
-	        filename = s.substring(lastSeparatorIndex + 1);
-	    }
+		// Remove the path upto the filename.
+		int lastSeparatorIndex = s.lastIndexOf(separator);
+		if (lastSeparatorIndex == -1) {
+			filename = s;
+		} else {
+			filename = s.substring(lastSeparatorIndex + 1);
+		}
 
-	    // Remove the extension.
-	    int extensionIndex = filename.lastIndexOf(".");
-	    if (extensionIndex == -1)
-	        return filename;
+		// Remove the extension.
+		int extensionIndex = filename.lastIndexOf(".");
+		if (extensionIndex == -1)
+			return filename;
 
-	    return filename.substring(0, extensionIndex);
+		return filename.substring(0, extensionIndex);
 	}
-	
-	public static EList<EObject> getReferencedEObjects(EObject eObject){
+
+	public static EList<EObject> getReferencedEObjects(EObject eObject) {
 		EList<EObject> eObjects = new BasicEList<EObject>();
 		EList<EReference> references = eObject.eClass().getEAllReferences();
-		for(EReference reference : references){
-			if(isDerived(reference) != 0)
+		for (EReference reference : references) {
+			if (isDerived(reference) != 0)
 				continue;
 			Object targetObject = eObject.eGet(reference);
-			if(targetObject instanceof EObject){
+			if (targetObject instanceof EObject) {
 				EObject targetEObject = (EObject) targetObject;
 				eObjects.add(targetEObject);
-			}else if(targetObject instanceof BasicEList){
-				EList<EObject> eEObjects =  (BasicEList<EObject>) targetObject;
+			} else if (targetObject instanceof BasicEList) {
+				EList<EObject> eEObjects = (BasicEList<EObject>) targetObject;
 				eObjects.addAll(eEObjects);
-			}else if(targetObject != null){
-				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: " + targetObject);
+			} else if (targetObject != null) {
+				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: "
+						+ targetObject);
 			}
 		}
 		return eObjects;
 	}
-	
-	public static EList<EObject> getReferencedEObjects(EObject source, EList<EReference> references){
+
+	public static EList<EObject> getReferencedEObjects(EObject source, EList<EReference> references) {
 		EList<EObject> eObjects = new BasicEList<EObject>();
-		for(EReference reference : references){
-			if(isDerived(reference) == 0){
+		for (EReference reference : references) {
+			if (isDerived(reference) == 0) {
 				Object value = source.eGet(reference);
-				if(value instanceof EObject){
+				if (value instanceof EObject) {
 					eObjects.add((EObject) value);
-				}else if (value instanceof EObjectEList){
+				} else if (value instanceof EObjectEList) {
 					eObjects.addAll((EList<? extends EObject>) value);
-				}else if(value != null){
+				} else if (value != null) {
 					throw new UnsupportedOperationException("reference " + reference + " does not point to EObject nor EObjectList :" + value);
 				}
 			}
 		}
 		return eObjects;
 	}
-	
-	public static boolean isVSpecResolutionVClassifier(VSpecResolution vSpecResolution){
-		if((vSpecResolution instanceof ChoiceResolution) && (((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null))
+
+	public static boolean isVSpecResolutionVClassifier(VSpecResolution vSpecResolution) {
+		if ((vSpecResolution instanceof ChoiceResolution) && (((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null))
 			return true;
 		return false;
 	}
-	
-	public static VSpec getResolvedVSpec(VSpecResolution vSpecResolution){
-		if(vSpecResolution instanceof ChoiceResolution){
+
+	public static VSpec getResolvedVSpec(VSpecResolution vSpecResolution) {
+		if (vSpecResolution instanceof ChoiceResolution) {
 			ChoiceResolution choiceResolution = (ChoiceResolution) vSpecResolution;
-			if(choiceResolution.getResolvedChoice() != null)
+			if (choiceResolution.getResolvedChoice() != null)
 				return choiceResolution.getResolvedChoice();
-			if(choiceResolution.getResolvedVClassifier() != null)
+			if (choiceResolution.getResolvedVClassifier() != null)
 				return choiceResolution.getResolvedVClassifier();
-			if(choiceResolution.getResolvedChoiceOcc() != null)
+			if (choiceResolution.getResolvedChoiceOcc() != null)
 				return choiceResolution.getResolvedChoiceOcc();
-			if(choiceResolution.getResolvedVClassOcc() != null)
+			if (choiceResolution.getResolvedVClassOcc() != null)
 				return choiceResolution.getResolvedVClassOcc();
-			if(choiceResolution.getResolvedVSpec() != null)
+			if (choiceResolution.getResolvedVSpec() != null)
 				return choiceResolution.getResolvedVSpec();
 		}
 		return null;
+	}
+/**
+ * use to set setResolvedVspec and setResolved_TYPE_
+ * @param target
+ * @param toResolve
+ * @return
+ */
+	public VSpecResolution setResolved(VSpecResolution target, VSpec toResolve) {
+
+		target.setResolvedVSpec(toResolve);
+		if (target instanceof ChoiceResolution) {
+			if (toResolve instanceof Choice) {
+				((ChoiceResolution) target).setResolvedChoice((Choice) toResolve);
+			} else if (toResolve instanceof VClassifier) {
+				((ChoiceResolution) target).setResolvedVClassifier((VClassifier) toResolve);
+			} else {
+				throw new UnsupportedOperationException("target/toResolve type mismach");
+			}
+		}
+		if (target instanceof ValueResolution) {
+			if (toResolve instanceof Variable) {
+				((ValueResolution) target).setResolvedVariable((Variable) toResolve);
+			} else {
+				throw new UnsupportedOperationException("target/toResolve type mismach");
+			}
+		}
+		
+
+		return target;
 	}
 }
