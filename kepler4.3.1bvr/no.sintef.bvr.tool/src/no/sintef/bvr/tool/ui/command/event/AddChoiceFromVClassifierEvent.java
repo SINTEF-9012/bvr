@@ -11,12 +11,12 @@ import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public class AddVInstanceEvent implements ActionListener {
+public class AddChoiceFromVClassifierEvent implements ActionListener {
 	private VSpecResolution cr;
 	private VClassifier target;
 	private BVRNotifiableController view;
 	
-	public AddVInstanceEvent(VSpecResolution parent, VClassifier toResolve, BVRNotifiableController view) {
+	public AddChoiceFromVClassifierEvent(VSpecResolution parent, VClassifier toResolve, BVRNotifiableController view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;
@@ -25,6 +25,7 @@ public class AddVInstanceEvent implements ActionListener {
 	static int count = 0;
 
 	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("AddChoiceFromVClassifierEvent running but unimplemented");
 		/*VClassifier v = target;
 		
 		VInstance vi = BvrFactory.eINSTANCE.createVInstance();

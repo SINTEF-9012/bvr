@@ -21,19 +21,21 @@ import bvr.VSpecResolution;
 import bvr.Variable;
 import bvr.Variabletype;
 
-public class AddVariableValueAssignmentEvent implements ActionListener {
+public class AddValueResolutionEvent implements ActionListener {
 	private VSpecResolution cr;
 	private Variable target;
 	private BVRNotifiableController view;
 	static private int count = 0;
 	
-	public AddVariableValueAssignmentEvent(VSpecResolution parent, Variable toResolve, BVRNotifiableController view) {
+	public AddValueResolutionEvent(VSpecResolution parent, Variable toResolve, BVRNotifiableController view) {
 		cr = parent;
 		target = toResolve;
 		this.view = view;
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
+		
+		System.out.println("AddValueResolutionEvent running but unimplemented");
 		/*Variable v = target;
 		
 		VariableValueAssignment vi = BvrFactory.eINSTANCE.createVariableValueAssignment();

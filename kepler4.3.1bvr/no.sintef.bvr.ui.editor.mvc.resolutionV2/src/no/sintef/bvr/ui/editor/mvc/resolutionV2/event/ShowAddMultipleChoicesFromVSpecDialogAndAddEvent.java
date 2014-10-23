@@ -7,17 +7,18 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView
 import bvr.VClassifier;
 import bvr.VSpecResolution;
 
-public class ShowAddMultipleInstanceDialogAndAddEvent implements ActionListener {
+public class ShowAddMultipleChoicesFromVSpecDialogAndAddEvent implements ActionListener {
 	VClassifier c;
 	VSpecResolution parent;
 	BVRResolutionToolView  view;
-	public ShowAddMultipleInstanceDialogAndAddEvent(VClassifier c, VSpecResolution parent, BVRResolutionToolView  view) {		
+	public ShowAddMultipleChoicesFromVSpecDialogAndAddEvent(VClassifier c, VSpecResolution parent, BVRResolutionToolView  view) {		
 		this.c = c;
 		this.parent = parent;
 		this.view = view;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("ShowAddMultipleChoicesFromVSpecDialogAndAddEvent running but not implemented");
 		/*
 		int currentInstances = 0;
 		for (VSpecResolution x : parent.getChild()) {

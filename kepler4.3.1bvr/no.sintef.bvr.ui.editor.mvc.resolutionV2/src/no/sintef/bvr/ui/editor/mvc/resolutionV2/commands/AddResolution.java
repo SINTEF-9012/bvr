@@ -7,7 +7,6 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
-import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
 //import bvr.ChoiceResolution;

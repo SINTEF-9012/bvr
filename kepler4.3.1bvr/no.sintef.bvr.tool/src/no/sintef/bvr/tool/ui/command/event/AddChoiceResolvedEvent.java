@@ -22,6 +22,7 @@ public class AddChoiceResolvedEvent implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		Choice c = target;
+		System.out.println("AddChoiceResolvedEvent runing but not implemented");
 		//ChoiceResolutuion ncr = BvrFactory.eINSTANCE.createChoiceResolutuion();
 		
 		//Context.eINSTANCE.getEditorCommands().addChoiceResolved(target, cr, ncr);

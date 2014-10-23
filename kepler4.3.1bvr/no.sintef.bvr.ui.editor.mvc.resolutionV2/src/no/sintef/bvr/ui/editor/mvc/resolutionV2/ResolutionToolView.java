@@ -49,7 +49,6 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.ChoiceResolution;
-import bvr.CompoundNode;
 import bvr.CompoundResolution;
 //import bvr.ChoiceResolution;
 //import bvr.ConfigurableUnit;

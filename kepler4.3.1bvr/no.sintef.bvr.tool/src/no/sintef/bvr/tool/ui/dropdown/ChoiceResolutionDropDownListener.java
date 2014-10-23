@@ -20,8 +20,8 @@ import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
-import no.sintef.bvr.tool.ui.command.event.AddVInstanceEvent;
-import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
+import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
+import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
@@ -85,9 +85,9 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 	    		if(x instanceof Choice){
 	    			addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
 	    		}else if(x instanceof VClassifier){
-	    			addchild.addActionListener(new AddVInstanceEvent(c, (VClassifier) x, view));
+	    			addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, view));
 	    		}else if(x instanceof Variable){
-	    			addchild.addActionListener(new AddVariableValueAssignmentEvent(c, (Variable) x, view));
+	    			addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, view));
 	    		}else{
 	    			throw new UnsupportedOperationException("Unsupported: " + x.getClass().getName());
 	    		}

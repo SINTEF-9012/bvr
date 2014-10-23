@@ -10,14 +10,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
-import no.sintef.bvr.tool.ui.command.event.AddVInstanceEvent;
-import no.sintef.bvr.tool.ui.command.event.AddVariableValueAssignmentEvent;
+import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
+import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddVInstanceTreeEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleInstanceDialogAndAddEvent;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.UnstrippedEvent;
 import no.sintef.bvr.ui.framework.elements.VInstancePanel;
