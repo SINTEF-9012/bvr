@@ -2,17 +2,14 @@ package no.sintef.bvr.tool.ui.command;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.JComponent;
 
-
-
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.dropdown.BVRModelDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
+
 import bvr.BVRModel;
 import bvr.NamedElement;
 
@@ -41,6 +38,7 @@ public class AddBVRModel {
 	public JComponent execute() {
 		BVRModelSymbolPanel cp = new BVRModelSymbolPanel(rootPanel.getModelPanel());
 		nodes.add(cp);
+		vmMap.put(cp, model);
 		
         listener = new CommandMouseListener();
         cp.addMouseListener(new BVRModelDropDownListener(cp, vmMap, nodes, bindings, view));
@@ -54,7 +52,6 @@ public class AddBVRModel {
         if(name == null) name = "(unnamed)";
         cp.setTitle(name);
         rootPanel.getModelPanel().addNode(cp);
-        Context.eINSTANCE.getEditorCommands().testPrimitiveTypes(model);
         return cp;
 	}
 }

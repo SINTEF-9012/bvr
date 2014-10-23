@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
+
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
@@ -98,17 +98,19 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 		} catch (final IOException e) {
 			new Thread() {
 				public void run() {
-					JOptionPane.showMessageDialog(frame,
+					throw new RuntimeException("Error Saving: " + e.getMessage(), e);
+					/*JOptionPane.showMessageDialog(frame,
 							"Error Saving: " + e.getMessage(), "Saving Failed",
-							JOptionPane.ERROR_MESSAGE);
+							JOptionPane.ERROR_MESSAGE);*/
 				}
 			}.start();
 		} catch (final CoreException e) {
 			new Thread() {
 				public void run() {
-					JOptionPane.showMessageDialog(frame,
+					throw new RuntimeException("Error Saving: " + e.getMessage(), e);
+					/*JOptionPane.showMessageDialog(frame,
 							"Error Saving: " + e.getMessage(), "Saving Failed",
-							JOptionPane.ERROR_MESSAGE);
+							JOptionPane.ERROR_MESSAGE);*/
 				}
 			}.start();
 		}

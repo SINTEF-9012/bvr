@@ -76,7 +76,7 @@ class BVRModelDropdown extends JPopupMenu {
 		// Paste
 		add(new JSeparator());
 		JMenuItem pastechild = new JMenuItem("paste as child");
-		pastechild.addActionListener(new PasteChildEvent(cp, vmMap, nodes, bindings, view));
+		pastechild.addActionListener(new PasteChildEvent(cp, view));
 		add(pastechild);
     }
 

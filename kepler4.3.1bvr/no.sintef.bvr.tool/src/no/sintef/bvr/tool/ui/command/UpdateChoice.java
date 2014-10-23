@@ -17,9 +17,8 @@ public class UpdateChoice extends UpdateVSpec {
 	
 	Map<Variable, String> varNames = new HashMap<Variable, String>();
 	Map<Variable, String> varTypes = new HashMap<Variable, String>();
-	String comment = new String();
+	String comment;
 	
-
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
@@ -34,10 +33,9 @@ public class UpdateChoice extends UpdateVSpec {
 		controller.getVSpecControllerInterface().setNodeComment(parent, comment);
 		
 		for(Variable v : ((CompoundNode) vc).getVariable()){
-				String newName = varNames.get(v);
-				String newType = varTypes.get(v);
-				controller.getVSpecControllerInterface().updateVariable(v, newName, newType);
-		
+			String newName = varNames.get(v);
+			String newType = varTypes.get(v);
+			controller.getVSpecControllerInterface().updateVariable(v, newName, newType);
 		}
 		return parent;
 	}

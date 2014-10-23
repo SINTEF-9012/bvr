@@ -58,6 +58,7 @@ import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
@@ -612,10 +613,10 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void setVSpecGroupMultiplicity(VSpec vSpec,
-			MultiplicityInterval eObject) {
-		// TODO Auto-generated method stub
-		
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vNode, BvrPackage.eINSTANCE.getVNode_GroupMultiplicity(), eObject);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
@@ -721,7 +722,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		queue.clear();
 	}
 
-	
+
 	
 	@Override
 	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper,
@@ -756,6 +757,38 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		testCommandExecution(editingDomain,cmd);
 	}
 
+	@Override
+	public void addTargetToCompoundNode(CompoundNode compoundNode, Target target) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode_OwnedTargets(), target);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void setVSpecTarget(VSpec vSpec, Target target) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Target(), target);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void reset() {
+		disableBatchProcessing();
+	}
+
+	@Override
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getCompoundNode_Member(), child);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), compoundNode);
+		testCommandExecution(editingDomain, cmd);
+	}
 
 /*
 	@Override

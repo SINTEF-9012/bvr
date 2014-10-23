@@ -5,7 +5,9 @@ import java.util.List;
 
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
+import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -112,7 +114,7 @@ abstract public class BVRToolModel {
 		saved = true;
 	}
 	
-	public void addChoice(VSpec parentVSpec) {
+	public void addChoice(NamedElement parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	};
 	
@@ -168,7 +170,47 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void addVClassifier(VSpec parentVSpec) {
+	public void addVClassifier(NamedElement parentVSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void addBCLConstraint(VNode parentVNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void toggleChoiceOptionalMandotary(Choice choice) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void cutNamedElement(NamedElement namedElement) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void pastNamedElementAsChild(NamedElement parent) {
+		throw new UnexpectedException("Are you using default implementation?!");	
+	}
+
+	public void pastNamedElementAsSibling(NamedElement sibling) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setGroupMultiplicity(VNode parent, int lowerBound, int upperBound) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+	
+	public void removeGroupMultiplicity(VNode parent) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public String getBCLConstraintString(BCLConstraint constraint) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void removeNamedElement(NamedElement element) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

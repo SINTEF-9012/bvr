@@ -27,6 +27,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
 	
 	private static final long serialVersionUID = -561022693337041081L;
 
+	@SuppressWarnings("unchecked")
 	public ChoicePropertyEditor(BVRUIKernel kernel, Command okCommand,  VSpec elem, JComponent node, BVRNotifiableController controller) {
 		super(kernel, okCommand, (VSpec) elem, node, controller);
 		
@@ -36,15 +37,15 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         p.setOpaque(false);
         
         JLabel l = new JLabel("Comment", JLabel.TRAILING);
-        //l.setUI(new HudLabelUI());
 
         p.add(l);
         JTextField comment = new JTextField(15);
-        //textField.setUI(new HudTextFieldUI());
 
         l.setLabelFor(comment);
         p.add(comment);
-        comment.setText(controller.getVSpecControllerInterface().getNodesCommentText(node));
+        String setComment = controller.getVSpecControllerInterface().getNodesCommentText(node);
+        comment.setText(setComment);
+        ((UpdateChoice) command).setComment(setComment);
 
         top.add(p);
         SpringUtilities.makeCompactGrid(p,

@@ -40,15 +40,17 @@ public class AddBCLConstraint implements Command {
 		return this;
 	}
 
+	@SuppressWarnings("unchecked")
 	public JComponent execute() {
-		//ConstraintPanel constraint1 = new ConstraintPanel(rootPanel.getModelPanel());
 		ParallelogramTitledPanel constraint1 = new ParallelogramTitledPanel();
 		nodes.add(constraint1);
-		String s = (oc.getExpression().size() != 0) ? new BCLPrettyPrinter().prettyPrint(oc.getExpression().get(0), view.getBVRModel()) : "";
+		vmMap.put(constraint1, oc);
+		Helper.bind(parent, constraint1, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
+		
+		String s = view.getVSpecControllerInterface().getBCLConstraintString(constraint1);
 		// Add newlines
 		s = wrap(s, 15);
 		constraint1.setTitle(s);
-		//constraint1.setConstraint(oc.getConstraint());
 		rootPanel.getModelPanel().addNode(constraint1);
 		
 		// Editor
@@ -63,7 +65,6 @@ public class AddBCLConstraint implements Command {
         command.init(rootPanel, constraint1, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
 
-		Helper.bind(parent, constraint1, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 		
 		return constraint1;
 	}

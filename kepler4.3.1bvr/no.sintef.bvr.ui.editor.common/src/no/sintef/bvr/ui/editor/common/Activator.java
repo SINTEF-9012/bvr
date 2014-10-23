@@ -1,5 +1,7 @@
 package no.sintef.bvr.ui.editor.common;
 
+import javax.swing.JOptionPane;
+
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
@@ -34,7 +36,11 @@ public class Activator extends AbstractUIPlugin {
 		Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
 		      public void uncaughtException(Thread t, Throwable e) {
 		    	  Context.eINSTANCE.logger.error("Unhandled Error in Thread: " + t, e);
-		    	  StaticUICommands.showMessageErrorDialog(Context.eINSTANCE.getActiveJApplet(), e, "Unhandled Error in Thread: " + t);
+		    	  Context.eINSTANCE.getEditorCommands().reset();
+		    	  //StaticUICommands.showMessageErrorDialog(Context.eINSTANCE.getActiveJApplet(), e, "Error : " + e.getMessage());
+		    	  JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(),
+		    			  "Failed with message : " + e.getMessage(), "Error : see error log for more details!",
+							JOptionPane.ERROR_MESSAGE);
 		      }
 		 });
 	}

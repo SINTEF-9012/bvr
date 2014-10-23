@@ -9,8 +9,12 @@ import java.util.Map;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.exception.UnimplementedBVRException;
+import no.sintef.bvr.tool.model.ConstraintFactory;
 import no.sintef.bvr.tool.model.NoteFactory;
 import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
+import no.sintef.bvr.tool.model.TargetFactory;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -22,22 +26,26 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.Constraint;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.Note;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.Target;
+import bvr.TargetRef;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -50,6 +58,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
+	private NamedElement cutNamedElement = null;
+	
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -168,7 +178,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void addChoice(VSpec parentVSpec) {
+	public void addChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setName("Choice "+choicCounter);
 		
@@ -176,11 +186,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		Target target = BvrFactory.eINSTANCE.createTarget();
 		target.setName(c.getName());
 		((CompoundNode) c).getOwnedTargets().add(target);
+		c.setTarget(target);
 		
-		if(parentVSpec != null){
-			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parentVSpec);
-		}else{
-			BVRModel model = bvrm.getRootBVRModel();
+		if(parent instanceof CompoundNode){
+			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parent);
+		}else if (parent instanceof BVRModel){
+			BVRModel model = (BVRModel) parent;
 			if(model.getVariabilityModel() == null){
 				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
 			}
@@ -190,14 +201,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void minimaizeVSpec(VSpec vspec) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpec.add(vspec);
 	}
 
 	@Override
 	public void maximizeVSpec(VSpec vspec) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpec.remove(vspec);
 	}
 
 	@Override
@@ -207,14 +216,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void minimaizeVSpecResolution(VSpecResolution vspecRes) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpecResolution.add(vspecRes);
 	}
 
 	@Override
 	public void maximizeVSpecResolution(VSpecResolution vspecRes) {
-		// TODO Auto-generated method stub
-		
+		minimizedVSpecResolution.remove(vspecRes);
 	}
 
 	@Override
@@ -249,7 +256,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void updateName(NamedElement namedElement, String name) {
+	public void updateName(NamedElement namedElement, String name) {	
+		//update corresponding target accordingly if namedElement is VClassifier or Choice
+		if(namedElement instanceof VClassifier || namedElement instanceof Choice){
+			Target target = TargetFactory.eINSTANCE.testVSpecTarget((VSpec) namedElement);
+			Context.eINSTANCE.getEditorCommands().setName(target, name);
+		}
+		
 		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 	}
 	
@@ -261,8 +274,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public String getNodesCommentText(NamedElement namedElement) {
-		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
-		return commentNote.getExpr();
+		return NoteFactory.eINSTANCE.getCommentText(namedElement);
 	}
 	
 	@Override
@@ -290,7 +302,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void addVClassifier(VSpec parentVSpec) {
+	public void addVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		c.setName("Classifier"+classifierCount);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
@@ -302,14 +314,114 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		Target target = BvrFactory.eINSTANCE.createTarget();
 		target.setName(c.getName());
 		((CompoundNode) c).getOwnedTargets().add(target);
+		c.setTarget(target);
 		
-		if(parentVSpec != null){
-			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parentVSpec, c);
-		}else{
-			BVRModel model = bvrm.getRootBVRModel();
+		if(parent instanceof CompoundNode){
+			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parent, c);
+		}else if(parent instanceof BVRModel) {
+			BVRModel model = (BVRModel) parent;
 			if(model.getVariabilityModel() == null)
 				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
 		}
 		classifierCount++;
+	}
+	
+	@Override
+	public void addBCLConstraint(VNode parentVNode) {
+		ConstraintFactory.eINSTANCE.createBCLConstraint(parentVNode);
+	}
+	
+	@Override
+	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
+		ConstraintFactory.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
+	}
+	
+	@Override
+	public void toggleChoiceOptionalMandotary(Choice choice) {
+		Context.eINSTANCE.getEditorCommands().setIsImpliedByParent(choice, !choice.isIsImpliedByParent());
+	}
+	
+	@Override
+	public void cutNamedElement(NamedElement namedElement) {
+		EObject parent = namedElement.eContainer();
+		if(namedElement instanceof VNode){
+			if(parent instanceof CompoundNode && namedElement instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().removeVNodeCompoundNode((CompoundNode) parent, (VNode) namedElement);
+			}else if (parent instanceof BVRModel && namedElement instanceof CompoundNode) {
+				Context.eINSTANCE.getEditorCommands().removeVariabilityModelBVRModel((BVRModel) parent, (CompoundNode) namedElement);
+			}else{
+				throw new UnexpectedException("not supported operation");
+			}
+		}else {
+			throw new UnsupportedOperationException("Cut is not implemented for anything other than VNode " + namedElement);
+		}		
+		cutNamedElement = namedElement;
+	}
+	
+	@Override
+	public void pastNamedElementAsChild(NamedElement parent) {
+		if(cutNamedElement != null){
+			if(parent instanceof CompoundNode && cutNamedElement instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().addVNodeToCompoundNode((CompoundNode) parent, (VNode) cutNamedElement);
+			} else if (parent instanceof BVRModel && cutNamedElement instanceof CompoundNode) {
+				Context.eINSTANCE.getEditorCommands().addVariabilityModelToBVRModel((BVRModel) parent, (CompoundNode) cutNamedElement);
+			}else{
+				throw new UnexpectedException("not supported operation");
+			}
+			cutNamedElement = null;
+		}
+	}
+	
+	@Override
+	public void pastNamedElementAsSibling(NamedElement sibling) {
+		if(cutNamedElement != null){
+			EObject parent = sibling.eContainer();
+			if(parent instanceof CompoundNode && cutNamedElement instanceof VNode){
+				Context.eINSTANCE.getEditorCommands().addVNodeToCompoundNode((CompoundNode) parent, (VNode) cutNamedElement);
+			} else{
+				throw new UnexpectedException("not supported operation");
+			}
+			cutNamedElement = null;
+		}		
+	}
+	
+	@Override
+	public void setGroupMultiplicity(VNode parent, int lowerBound, int upperBound) {
+		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
+		mi.setLower(lowerBound);
+		mi.setUpper(upperBound);
+		Context.eINSTANCE.getEditorCommands().setVNodeGroupMultiplicity(parent, mi);
+	}
+	
+	@Override
+	public void removeGroupMultiplicity(VNode parent) {
+		Context.eINSTANCE.getEditorCommands().setVNodeGroupMultiplicity(parent, null);
+	}
+	
+	@Override
+	public String getBCLConstraintString(BCLConstraint constraint) {
+		return ConstraintFactory.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+	}
+	
+	@Override
+	public void removeNamedElement(NamedElement element) {
+		EObject parent = element.eContainer();
+		if(parent != null){
+			if(parent instanceof CompoundNode){
+				if(element instanceof Constraint){
+					Context.eINSTANCE.getEditorCommands().removeConstraintCompoundNode((CompoundNode) parent, (Constraint) element);
+				} else if(element instanceof VNode){
+					Context.eINSTANCE.getEditorCommands().removeVNodeCompoundNode((CompoundNode) parent, (VNode) element);
+				}else {
+					throw new UnexpectedException("can not remove " + element + " with parent " + parent);
+				}
+			}else if(parent instanceof BVRModel){
+				Context.eINSTANCE.getEditorCommands().removeVariabilityModelBVRModel((BVRModel) parent, (CompoundNode) element);
+			}else {
+				throw new UnexpectedException("can not remove " + element + " with parent " + parent);
+			}
+		}else{
+			throw new UnexpectedException("can not find parent element to remove " + element);
+		}
 	}
 }

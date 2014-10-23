@@ -29,6 +29,7 @@ import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
@@ -66,6 +67,10 @@ public interface EditorCommands {
 	//public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
 	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier);
 	
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child);
+	
+	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode);
+	
 	//public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
 	
 	//public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
@@ -96,7 +101,7 @@ public interface EditorCommands {
 	
 	public void setIsImpliedByParent(Choice choice, boolean isImplied);
 	
-	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject);
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject);
 	
 	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound);
 	
@@ -186,11 +191,19 @@ public interface EditorCommands {
 	
 	public void executeBatch();
 
+
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent);
 
 
 	void createNewResolution(PosResolution pr, BVRModel bvrModel);
 
 	void setChoicePosResolvedVSpec(PosResolution pr, Choice target);
+
+	public void addTargetToCompoundNode(CompoundNode namedElement, Target target);
+
+	public void setVSpecTarget(VSpec namedElement, Target target);
+
+	public void reset();
+
 
 }

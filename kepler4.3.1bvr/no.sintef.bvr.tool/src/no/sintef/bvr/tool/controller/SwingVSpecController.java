@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
+import no.sintef.bvr.tool.decorator.UpdateConstraintBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
@@ -21,6 +22,8 @@ import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddVClassifier;
 import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
+import no.sintef.bvr.tool.ui.command.UpdateBVRModel;
 import no.sintef.bvr.tool.ui.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
@@ -30,7 +33,6 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.VSpecLayoutStrategy;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import no.sintef.bvr.ui.framework.strategy.LayoutStrategy;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
@@ -56,6 +58,7 @@ public class SwingVSpecController<
 	private List<Pair<JComponent, JComponent>> vspecBindings;
 	private BVRToolModel toolModel;
 	private BVRNotifiableController rootController;
+	private VSpecLayoutStrategy strategy;
 	
 	
 	public SwingVSpecController(BVRToolModel _model, BVRNotifiableController controller) {
@@ -66,12 +69,8 @@ public class SwingVSpecController<
 		rootController = controller;
 		
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, rootController, null);
-		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
-        
-        
-        LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
-        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 		
+        strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
@@ -83,6 +82,8 @@ public class SwingVSpecController<
 		
 		CompoundNode vspec = model.getVariabilityModel();
 		loadBVRVSpecView(vspec, uikernel, c, model);
+		
+		vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	}
 
 	private void loadBVRVSpecView(CompoundNode v, BVRUIKernel model, JComponent parent, BVRModel cu) throws BVRModelException {
@@ -92,11 +93,9 @@ public class SwingVSpecController<
 		
 		if(v instanceof VClassifier){
 			JComponent c = new AddVClassifier(toolModel.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}else if(v instanceof Choice){
 			JComponent c = new AddChoice(toolModel.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-			vspecvmMap.put(c, (VSpec)v);
 			nextParent = c;
 		}
 		
@@ -116,9 +115,7 @@ public class SwingVSpecController<
 				}*/
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
-					
-					JComponent comp = new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-					vspecvmMap.put(comp, c);
+					new AddBCLConstraint().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 
 				}
 			}
@@ -129,6 +126,10 @@ public class SwingVSpecController<
 				}
 			}
 		}
+	}
+	
+	public void render() {
+		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
 	}
 	
 	public void notifyVspecViewUpdate() {
@@ -145,13 +146,8 @@ public class SwingVSpecController<
 		
 	    // Add stuff
 
-		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
+		render();
 
-	    
-	    // Automatically Layout Diagram
-		LayoutStrategy strategy = new VSpecLayoutStrategy(vspecNodes, vspecBindings);
-        vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
-	    
 	    // Restore scroll coordinates
 	    vspecScrollPane.getViewport().setViewPosition(vpos);
 	    
@@ -164,8 +160,8 @@ public class SwingVSpecController<
 
 	@Override
 	public void addChoice(GUI_NODE parent) {
-		VSpec parentVSpec = (VSpec) vspecvmMap.get(parent);
-		toolModel.addChoice(parentVSpec);
+		NamedElement parentNamedElement = (NamedElement) vspecvmMap.get(parent);
+		toolModel.addChoice(parentNamedElement);
 	}
 
 	@Override
@@ -208,7 +204,7 @@ public class SwingVSpecController<
 
 	@Override
 	public void setNodeName(GUI_NODE node, String name) {
-		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
+		NamedElement namedElement = (NamedElement) vspecvmMap.get(node);
 		toolModel.updateName(namedElement, name);
 	}
 
@@ -262,7 +258,94 @@ public class SwingVSpecController<
 
 	@Override
 	public void addVClassifier(GUI_NODE node) {
-		VSpec parentVSpec = (VSpec) vspecvmMap.get(node);
-		toolModel.addVClassifier(parentVSpec);
+		NamedElement parentNamedElement = (NamedElement) vspecvmMap.get(node);
+		toolModel.addVClassifier(parentNamedElement);
+	}
+
+	@Override
+	public void addBCLConstraint(GUI_NODE node) {
+		VNode parentVSpec = (VNode) vspecvmMap.get(node);
+		toolModel.addBCLConstraint(parentVSpec);
+	}
+
+	@Override
+	public Command createUpdateBCLConstraintCommand(GUI_NODE node) {
+		Command command = new UpdateConstraintBatchCommandDecorator(new UpdateBCLConstraint());
+    	command.init(vSpecbvruikernel, vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public void updateBCLConstraint(GUI_NODE node, String strConstr) {
+		BCLConstraint constraint = (BCLConstraint) vspecvmMap.get(node);
+		toolModel.updateBCLConstraint(constraint, strConstr);
+	}
+
+	@Override
+	public void toggleChoiceOptionalMandotary(GUI_NODE node) {
+		Choice choice = (Choice) vspecvmMap.get(node);
+		toolModel.toggleChoiceOptionalMandotary(choice);
+	}
+
+	@Override
+	public void cutNamedElement(GUI_NODE node) {
+		NamedElement namedElement = (NamedElement) vspecvmMap.get(node);
+		toolModel.cutNamedElement(namedElement);
+	}
+
+	@Override
+	public void pastNamedElementAsChild(GUI_NODE node) {
+		NamedElement parent = (NamedElement) vspecvmMap.get(node);
+		toolModel.pastNamedElementAsChild(parent);
+	}
+
+	@Override
+	public void pastNamedElementAsSibling(GUI_NODE node) {
+		NamedElement sibling = (NamedElement) vspecvmMap.get(node);
+		toolModel.pastNamedElementAsSibling(sibling);
+	}
+
+	@Override
+	public void setGroupMultiplicityAlternative(GUI_NODE node) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.setGroupMultiplicity(parent, 1, 1);	
+	}
+
+	@Override
+	public void setGroupMultiplicityNone(GUI_NODE node) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.removeGroupMultiplicity(parent);
+		
+	}
+
+	@Override
+	public void setGroupMultiplicityOr(GUI_NODE node) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.setGroupMultiplicity(parent, 1, -1);
+	}
+
+	@Override
+	public void setGroupMultiplicityCustom(GUI_NODE node, int lowerBound, int upperBound) {
+		VNode parent = (VNode) vspecvmMap.get(node);
+		toolModel.setGroupMultiplicity(parent, lowerBound, upperBound);
+	}
+
+	@Override
+	public Command createUpdateBVRModelCommand(GUI_NODE node) {
+		Command command = new UpdateBVRModel();
+    	command.init(vSpecbvruikernel, vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public String getBCLConstraintString(GUI_NODE node) {
+		BCLConstraint constraint = (BCLConstraint) vspecvmMap.get(node);
+		return toolModel.getBCLConstraintString(constraint);
+	}
+
+	@Override
+	public void removeNamedElement(GUI_NODE node) {
+		NamedElement element = (NamedElement) vspecvmMap.get(node);
+		toolModel.removeNamedElement(element);
 	}	
 }

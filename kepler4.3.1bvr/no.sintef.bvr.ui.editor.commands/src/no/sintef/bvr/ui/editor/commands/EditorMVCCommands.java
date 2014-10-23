@@ -29,6 +29,7 @@ import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
@@ -172,7 +173,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 	
 	@Override
-	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject){
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject){
 		//vSpec.setGroupMultiplicity(eObject);
 	}
 	
@@ -508,6 +509,10 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper,
 			PosResolution pr) {
 		// TODO Auto-generated method stub
+	
+	}
+		public void addTargetToCompoundNode(CompoundNode namedElement, Target target) {
+//TODO Auto-generated method stub
 		
 	}
 
@@ -515,11 +520,16 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper,
 			NegResolution pr) {
 		// TODO Auto-generated method stub
-		
+	}
+	public void setVSpecTarget(VSpec namedElement, Target target) {
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
+		// TODO Auto-generated method stub
+		}
+		public void reset() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -527,11 +537,18 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
 		// TODO Auto-generated method stub
+	}
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
+		// TODO Auto-generated method stub
+	}
+		public void addVariabilityModelToBVRModel(BVRModel model,
+			CompoundNode compoundNode) {
 		// TODO Auto-generated method stub
 		
 	}

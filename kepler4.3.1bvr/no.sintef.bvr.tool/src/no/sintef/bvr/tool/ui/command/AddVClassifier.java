@@ -53,6 +53,8 @@ public class AddVClassifier implements Command {
 	public JComponent execute() {
 		VClassifierPanel c = new VClassifierPanel();
 		nodes.add(c);
+		vmMap.put(c, vc);
+		Helper.bind(parent, c, rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
 		
 		CommandMouseListener listener = new CommandMouseListener();
         c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
@@ -74,7 +76,6 @@ public class AddVClassifier implements Command {
         }
         
         rootPanel.getModelPanel().addNode(c);
-        Helper.bind(parent, c, rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return c;
 	}
 

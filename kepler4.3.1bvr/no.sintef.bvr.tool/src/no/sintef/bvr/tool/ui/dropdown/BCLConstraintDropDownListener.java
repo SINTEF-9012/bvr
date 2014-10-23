@@ -73,7 +73,7 @@ class BCLConstraintDropdown extends JPopupMenu {
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveVSpecEvent(constraint1, vmMap, nodes, bindings, view));
+		removechoice.addActionListener(new RemoveVSpecEvent(constraint1, view));
 		add(removechoice);
     }
 }

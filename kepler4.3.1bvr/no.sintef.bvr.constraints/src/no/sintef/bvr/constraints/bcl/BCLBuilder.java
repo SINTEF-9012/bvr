@@ -5,6 +5,8 @@ import java.util.List;
 
 import no.sintef.bvr.constraints.bcl.BCLParser.LiteralexpContext;
 import no.sintef.bvr.constraints.bcl.BCLParser.VspecContext;
+import no.sintef.bvr.constraints.strategy.AbstractBCLBuilderStrategy;
+import no.sintef.bvr.constraints.strategy.DefaultTestBCLBuilderStartegy;
 
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.eclipse.emf.common.util.EList;
@@ -24,9 +26,19 @@ import bvr.TargetRef;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.BvrFactory;
-import bvr.Variable;
 
-public class BCLBuilder{
+
+public class BCLBuilder {
+	
+	private AbstractBCLBuilderStrategy strategy;
+	
+	public BCLBuilder(){
+		strategy = new DefaultTestBCLBuilderStartegy();
+	}
+	
+	public BCLBuilder(AbstractBCLBuilderStrategy _strategy){
+		strategy = _strategy;
+	}
 	
 	public BCLExpression recurse(RuleNode root, int depth, BVRModel cu, boolean verbose) {
 		String name;
@@ -86,13 +98,12 @@ public class BCLBuilder{
 			}
 			if(verbose)
 				System.out.println(" " +  fcname);
-			Target vspecTarget = BvrFactory.eINSTANCE.createTarget();
-			vspecTarget.setName(cur.getName());
-			cur.setTarget(vspecTarget);
-			r.setTarget(vspecTarget);
 			
-			//((CompoundNode) cur).getOwnedTargets().add(vspecTarget);
-
+			if(cur == null)
+				throw new UnsupportedOperationException("can not find vspec with the given name -> " + fcname);
+			
+			Target vspecTarget = strategy.getVSpecTarget(cur);
+			r.setTarget(vspecTarget);
 			e = r;
 		}else if(root instanceof LiteralexpContext){
 			String s = root.getChild(0).toString();

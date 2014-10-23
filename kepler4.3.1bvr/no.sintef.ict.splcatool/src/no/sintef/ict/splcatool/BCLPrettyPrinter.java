@@ -17,8 +17,11 @@ public class BCLPrettyPrinter{
 	
 	private String prettyPrint(BCLExpression e, BVRModel bvrModel, int depth) {
 		if(e instanceof TargetRef){
-			String name = (((TargetRef) e).getTarget().getName() == null || ((TargetRef) e).getTarget().getName().equals("")) ? "[null]" : ((TargetRef) e).getTarget().getName();
-			return name;
+			if(((TargetRef) e).getTarget() == null){
+				return "[null]";
+			}else{
+				return ((TargetRef) e).getTarget().getName();
+			}
 		} else if(e instanceof StringLiteralExp){
 			return "\"" + ((StringLiteralExp)e).getString() + "\"";
 		}else if(e instanceof IntegerLiteralExp){

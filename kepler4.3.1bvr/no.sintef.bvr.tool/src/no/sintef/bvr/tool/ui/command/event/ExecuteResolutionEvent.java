@@ -43,7 +43,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
-		final BVRToolModel m = view.getBVRToolModel();
+		//final BVRToolModel m = view.getBVRToolModel();
 		
 /*		if(m.getFile() == null){
 			JOptionPane.showMessageDialog(((BVRResolutionView) view).getResolutionPane(), Messages.DIALOG_MSG_SAVE_MODEL);

@@ -39,4 +39,17 @@ public final class NoteFactory {
 		}
 		return commentNote;
 	}
+	
+	public String getCommentText(NamedElement parent) {
+		Note commentNote = null;
+		EList<Note> notes = parent.getNote();
+		for(Note note : notes){
+			if(note.getKind().equals(COMMENT_KIND)){
+				commentNote = note;
+				break;
+			}
+		}
+		
+		return (commentNote != null) ? commentNote.getExpr() : "";
+	}
 }

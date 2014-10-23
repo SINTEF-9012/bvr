@@ -73,7 +73,7 @@ class ChoiceDropdown extends JPopupMenu {
     	addclassifier.addActionListener(new AddClassifierEvent(cp, view));
     	add.add(addclassifier);
     	JMenuItem addConstraint = new JMenuItem("constraint");
-    	addConstraint.addActionListener(new AddConstraintEvent(cp, vmMap, nodes, bindings, view));
+    	addConstraint.addActionListener(new AddConstraintEvent(cp, view));
     	add.add(addConstraint);
     	
     	JMenuItem addVariable = new JMenuItem("variable");
@@ -84,45 +84,45 @@ class ChoiceDropdown extends JPopupMenu {
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveVSpecEvent(cp, vmMap, nodes, bindings, view));
+		removechoice.addActionListener(new RemoveVSpecEvent(cp, view));
 		add(removechoice);
 		
 		// Cut Paste
 		add(new JSeparator());
 		JMenuItem cut = new JMenuItem("cut");
-		cut.addActionListener(new CutEvent(cp, vmMap, nodes, bindings, view));
+		cut.addActionListener(new CutEvent(cp, view));
 		add(cut);
 		JMenuItem pastechild = new JMenuItem("paste as child");
-		pastechild.addActionListener(new PasteChildEvent(cp, vmMap, nodes, bindings, view));
+		pastechild.addActionListener(new PasteChildEvent(cp, view));
 		add(pastechild);
 		JMenuItem pastesibling = new JMenuItem("paste as sibling");
-		pastesibling.addActionListener(new PasteSiblingEvent(cp, vmMap, nodes, bindings, view));
+		pastesibling.addActionListener(new PasteSiblingEvent(cp, view));
 		add(pastesibling);
 		add(new JSeparator());
 		
 		// Toggle optional
-		JMenuItem toggleOptional = new JMenuItem("toggle optional");
-		toggleOptional.addActionListener(new ToggleOptionalEvent(cp, vmMap, nodes, bindings, view));
+		JMenuItem toggleOptional = new JMenuItem("un-/toggle optional");
+		toggleOptional.addActionListener(new ToggleOptionalEvent(cp, view));
 		add(toggleOptional);
 		
 		// Set group
 		JMenu group = new JMenu("set group");
 		JMenuItem none = new JMenuItem("none (0..*)");
-		none.addActionListener(new SetGroupToNoneEvent(cp, vmMap, nodes, bindings, view));
+		none.addActionListener(new SetGroupToNoneEvent(cp, view));
 		group.add(none);
 		JMenuItem alt = new JMenuItem("alternative/xor (1..1)");
-		alt.addActionListener(new SetGroupToAltEvent(cp, vmMap, nodes, bindings, view));
+		alt.addActionListener(new SetGroupToAltEvent(cp, view));
 		group.add(alt);
 		JMenuItem or = new JMenuItem("or (1..*)");
-		or.addActionListener(new SetGroupToOrEvent(cp, vmMap, nodes, bindings, view));
+		or.addActionListener(new SetGroupToOrEvent(cp, view));
 		group.add(or);
 		group.add(new JMenuItem("custom..."));
 		add(group);
 		
 		// Change to
-		JMenu change = new JMenu("change to");
-		change.add(new JMenuItem("classifier"));
-		add(change);
+		//JMenu change = new JMenu("change to");
+		//change.add(new JMenuItem("classifier"));
+		//add(change);
 		
 		// max/min
 		JMenuItem minimize = new JMenuItem("minimize");
