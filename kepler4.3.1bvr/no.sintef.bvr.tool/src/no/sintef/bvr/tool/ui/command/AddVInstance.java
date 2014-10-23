@@ -10,8 +10,10 @@ import no.sintef.bvr.tool.ui.dropdown.VInstanceDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
+import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
-import no.sintef.bvr.ui.framework.elements.VInstancePanel;
+import bvr.ChoiceResolution;
+//import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -23,7 +25,7 @@ public class AddVInstance implements Command{
 	//AddVInstance command extended by resolutioneditor V2, changed to protected
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;
-	//protected VInstance vc;
+	protected ChoiceResolution cr;
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
@@ -48,22 +50,23 @@ public class AddVInstance implements Command{
 		return this;
 	}
 
-	public JComponent execute() {
+	public JComponent execute() {//TODO check for errors
 		
-		VInstancePanel c = new VInstancePanel(rootPanel.getModelPanel());
+		
+		ChoiceResolutionPanel c = new ChoiceResolutionPanel();
 		nodes.add(c);
 		
-		/*CommandMouseListener listener = new CommandMouseListener();
+		CommandMouseListener listener = new CommandMouseListener();
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
         listener.setLeftClickCommand(command);
-        c.addMouseListener(new VInstanceDropDownListener(c, vc, view, vmMap));
+        c.addMouseListener(new VInstanceDropDownListener(c, view, vmMap));
         c.addMouseListener(listener);
           
-		c.setName((contains?"(+) ":"") + vc.getName() + " : " + vc.getResolvedVSpec().getName());
+		c.setName((contains?"(+) ":"") + cr.getName() + " : " + cr.getResolvedVSpec().getName());
         rootPanel.getModelPanel().addNode(c);
         
-        Helper.bind(parent, c, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);*/
+        Helper.bind(parent, c, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         
         return c;
 	}

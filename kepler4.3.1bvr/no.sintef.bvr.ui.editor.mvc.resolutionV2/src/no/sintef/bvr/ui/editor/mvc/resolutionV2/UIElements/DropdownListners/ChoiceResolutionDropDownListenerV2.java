@@ -28,6 +28,7 @@ import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 import org.eclipse.emf.common.util.EList;
 
+import bvr.BVRModel;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
@@ -86,7 +87,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {// TODO add Variables
 
 					// TODO ADD NAME
-					JMenuItem addchild = new JMenuItem((((VSpec)x).getName()));
+					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
 					if (x instanceof Choice) {
 						addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
 					} else if (x instanceof VClassifier) {
@@ -112,7 +113,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 			JMenu addTree = new JMenu("add realized VInstance subtree");
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
-					JMenuItem addChild = new JMenuItem(((VSpec)x).getName());
+					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 					if (x instanceof VClassifier) {
 						addChild.addActionListener(new AddChoicesFromVClassifierTreeEvent(c, (VClassifier) x, view));
 						addTree.add(addChild);
@@ -133,7 +134,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 			JMenu addMulTree = new JMenu("add multiple realized VInstance subtrees");
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
-					JMenuItem addChild = new JMenuItem(((VSpec)x).getName());
+					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 					if (x instanceof VClassifier) {
 						addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent((VClassifier) x, c, view));
 						addMulTree.add(addChild);
@@ -149,46 +150,67 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 
 			add(addMulTree);
 		}
+
+		/*
+		 * TODO fix change resolution // Set group JMenu value = new JMenu("Set Resolution"); JMenuItem vtrue = new JMenuItem("true");
+		 * vtrue.addActionListener(new SetDecisionEvent(c, view, true)); value.add(vtrue); JMenuItem vfalse = new JMenuItem("false");
+		 * vfalse.addActionListener(new SetDecisionEvent(c,view, false)); value.add(vfalse); add(value);
+		 */
+		// Change to
+		/*
+		 * EList<VSpec> vspecs = null; if (c.getResolvedVSpec() == null) { vspecs =view.getBVRModel().getVariabilityModel(); } else { VSpec parent =
+		 * getParent(view.getBVRModel(), c.getResolvedVSpec()); if (parent == null) vspecs = view.getBVRModel().getVariabilityModel(); else { if ()
+		 * vspecs = getParent(view.getBVRModel(), (()c.getResolvedVSpec()).getChild(); } // -Add menus JMenu change = new JMenu("Resolve"); for (VSpec
+		 * x : vspecs) { if (x instanceof Choice) { JMenuItem i = new JMenuItem(x.getName()); i.addActionListener(new ChangeVSpecResolvedEvent(c,
+		 * (Choice) x, view)); change.add(i); } else { // Can only change to another of the same type } } add(change);
+		 */
+		// -delete menus
+		JMenuItem remove = new JMenuItem("Remove");
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
+		add(remove);
+		// Resolve subtree
+		JMenuItem resTree = new JMenuItem("resolve subtree");
+		resTree.addActionListener(new AddSubTreeEvent(c, view));
+		add(resTree);
+
+		/*
+		 * // max/min TODO Create new events JMenuItem minimize = new JMenuItem("minimize"); minimize.addActionListener(new MinimizeEvent(cp, vmMap,
+		 * null, null, view)); add(minimize); JMenuItem maximize = new JMenuItem("maximize"); maximize.addActionListener(new MaximizeEvent(cp, vmMap,
+		 * null, null, view)); add(maximize);
+		 * 
+		 * // strip JMenuItem strip = new JMenuItem("strip"); strip.addActionListener(new StrippedEvent(cp, vmMap, view, c.getResolvedVSpec()));
+		 * add(strip); JMenuItem unstrip = new JMenuItem("unstrip"); unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view,
+		 * c.getResolvedVSpec())); add(unstrip);
+		 */
+		JMenuItem validate = new JMenuItem("Validate");
+		validate.addActionListener(new ValidateEvent(view, c));
+		add(validate);
 	}
 
-	// Remove
-	/*
-	 * JMenuItem removechoice = new JMenuItem("remove"); removechoice.addActionListener(new RemoveChoiceEvent(cp, vmMap, nodes, bindings, view));
-	 * add(removechoice);
-	 * 
-	 * // Set group JMenu value = new JMenu("Set Resolution"); JMenuItem vtrue = new JMenuItem("true"); vtrue.addActionListener(new
-	 * SetDecisionEvent(c, view, true)); value.add(vtrue); JMenuItem vfalse = new JMenuItem("false"); vfalse.addActionListener(new SetDecisionEvent(c,
-	 * view, false)); value.add(vfalse); add(value);
-	 * 
-	 * // Change to EList<VSpec> vspecs = null; if (c.getResolvedVSpec() == null) { vspecs = view.getCU().getOwnedVSpec(); } else { VSpec parent =
-	 * getParent(view.getCU(), c.getResolvedVSpec()); if (parent == null) vspecs = view.getCU().getOwnedVSpec(); else vspecs = getParent(view.getCU(),
-	 * c.getResolvedVSpec()).getChild(); } // -Add menus JMenu change = new JMenu("Resolve"); for (VSpec x : vspecs) { if (x instanceof Choice) {
-	 * JMenuItem i = new JMenuItem(x.getName()); i.addActionListener(new ChangeVSpecResolvedEvent(c, (Choice) x, view)); change.add(i); } else { //
-	 * Can only change to another of the same type } } add(change); // -delete menus JMenuItem remove = new JMenuItem("Remove");
-	 * remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view)); add(remove); //Resolve subtree JMenuItem resTree = new
-	 * JMenuItem("resolve subtree"); resTree.addActionListener(new AddSubTreeEvent(c, view)); add(resTree);
-	 * 
-	 * // max/min JMenuItem minimize = new JMenuItem("minimize"); minimize.addActionListener(new MinimizeEvent(cp, vmMap, null, null, view));
-	 * add(minimize); JMenuItem maximize = new JMenuItem("maximize"); maximize.addActionListener(new MaximizeEvent(cp, vmMap, null, null, view));
-	 * add(maximize);
-	 * 
-	 * // strip JMenuItem strip = new JMenuItem("strip"); strip.addActionListener(new StrippedEvent(cp, vmMap, view, c.getResolvedVSpec()));
-	 * add(strip); JMenuItem unstrip = new JMenuItem("unstrip"); unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view,
-	 * c.getResolvedVSpec())); add(unstrip);
-	 * 
-	 * JMenuItem validate = new JMenuItem("Validate"); validate.addActionListener(new ValidateEvent((BVRViewV2) view, c)); add(validate);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 * 
-	 * private VSpec getParent(ConfigurableUnit cu, VSpec child) { for (VSpec c : cu.getOwnedVSpec()) if (c == child) return null; for (VSpec r :
-	 * cu.getOwnedVSpec()) { VSpec found = getParent(r, child); if (found != null) return found; } return null; }
-	 * 
-	 * private VSpec getParent(VSpec root, VSpec child) { for (VSpec r : root.getChild()) if (r == child) return root; for (VSpec r : root.getChild())
-	 * { VSpec found = getParent(r, child); if (found != null) return found; } return null; }
-	 */
+	private VSpec getParent(BVRModel cu, VSpec child) {
+		VSpec c = (VSpec) cu.getVariabilityModel();
+		if (c == child)
+			return null;
+		VSpec found = getParent(c, child);
+		if (found != null)
+			return found;
+		return null;
+
+	}
+
+	private VSpec getParent(VSpec root, VSpec child) {
+
+		if (root instanceof CompoundNode) {
+			for (VNode r : ((CompoundNode) root).getMember())
+				if ((VSpec) r == child)
+					return root;
+			for (VNode r : ((CompoundNode) root).getMember()) {
+				VSpec found = getParent((VSpec) r, child);
+				if (found != null)
+					return found;
+			}
+		}
+		return null;
+	}
 
 }

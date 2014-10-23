@@ -38,7 +38,7 @@ import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 //import no.sintef.bvr.ui.framework.elements.ConfigurableUnitSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
-import no.sintef.bvr.ui.framework.elements.VInstancePanel;
+//import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 import bvr.BCLConstraint;
 import bvr.Choice;

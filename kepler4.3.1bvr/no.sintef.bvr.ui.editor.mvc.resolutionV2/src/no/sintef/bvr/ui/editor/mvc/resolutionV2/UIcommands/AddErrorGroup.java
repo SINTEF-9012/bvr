@@ -15,6 +15,7 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.VNode;
 import bvr.VSpec;
 public class AddErrorGroup extends AddGroupMultiplicity implements Command {
 
@@ -38,9 +39,9 @@ public class AddErrorGroup extends AddGroupMultiplicity implements Command {
 	}
 
 	public JComponent execute() {
-		/*
-		if(v.getGroupMultiplicity() != null){
-			MultiplicityInterval m = v.getGroupMultiplicity();
+		if (!(v instanceof VNode)) return null;
+		if(((VNode)v).getGroupMultiplicity() != null){
+			MultiplicityInterval m = ((VNode)v).getGroupMultiplicity();
 			GroupPanelWithError group = new GroupPanelWithError();
 			nodes.add(group);
 			int l = m.getLower();
@@ -52,7 +53,7 @@ public class AddErrorGroup extends AddGroupMultiplicity implements Command {
 			
 			return group;
 		}
-		*/
+		
 		return null;
 	}
 

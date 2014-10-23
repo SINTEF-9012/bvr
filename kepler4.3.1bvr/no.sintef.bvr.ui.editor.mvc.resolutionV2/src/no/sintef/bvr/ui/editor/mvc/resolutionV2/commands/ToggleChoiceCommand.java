@@ -21,6 +21,7 @@ public class ToggleChoiceCommand implements ResCommand {
 
 	@Override
 	public List<VSpecResolution> execute() {
+		System.out.println("ToggleChoiceCommand running, not implemented");
 		return null;
 	/*	if (vsr instanceof ChoiceResolution) {
 			Context.eINSTANCE.getEditorCommands().setResolutionDecision((ChoiceResolution) vsr, !((ChoiceResolution) vsr).isDecision());

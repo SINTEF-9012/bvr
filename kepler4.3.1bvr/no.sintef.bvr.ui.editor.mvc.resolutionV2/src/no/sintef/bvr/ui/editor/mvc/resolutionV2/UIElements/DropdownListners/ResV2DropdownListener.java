@@ -70,7 +70,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 		add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");
-			remove.addActionListener(new DeleteResolution(bvrView));
+			//remove.addActionListener(new DeleteResolution(bvrView)); TODO add new DeleteResolution, or merge new and old editors
 			add(remove);
 		}
 		JMenuItem importres = new JMenuItem("Import ...");

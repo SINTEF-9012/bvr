@@ -25,7 +25,7 @@ public class AddChoiceFromVClassifierEvent implements ActionListener {
 	static int count = 0;
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("AddChoiceFromVClassifierEvent running but unimplemented");
+		System.out.println("AddMultipleChoicesFromVClassifier running but unimplemented");
 		/*VClassifier v = target;
 		
 		VInstance vi = BvrFactory.eINSTANCE.createVInstance();

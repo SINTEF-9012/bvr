@@ -23,7 +23,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
-import no.sintef.bvr.ui.framework.elements.VInstancePanel;
+//import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 import bvr.Choice;
 import bvr.NamedElement;

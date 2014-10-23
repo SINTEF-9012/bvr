@@ -41,7 +41,7 @@ import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
-import no.sintef.bvr.ui.framework.elements.VInstancePanel;
+//import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 
 import org.jdesktop.swingx.JXPanel;
@@ -159,7 +159,7 @@ public class BVREditorPanel extends JPanel {
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateBVRModelCommand(elem);
         	BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, okCommand, (BVRModel) object, elem, controller);        	
             editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
-        }else if (p instanceof VInstancePanel) {
+        //}else if (p instanceof VInstancePanel) {
         	/*VInstancePanel elem = (VInstancePanel)p;
         	VInstance x = null;
         	for(Map<JComponent, NamedElement> z : resolutionvmMaps){

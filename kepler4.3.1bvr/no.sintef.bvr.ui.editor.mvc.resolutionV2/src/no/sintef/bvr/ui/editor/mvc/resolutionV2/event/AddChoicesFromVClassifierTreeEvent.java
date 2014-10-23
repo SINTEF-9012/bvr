@@ -28,8 +28,10 @@ public class AddChoicesFromVClassifierTreeEvent implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		System.out.println("AddChoicesFromVClassifierTreeEvent running but not implemented");
 		/*
-		 * VInstance root = BvrFactory.eINSTANCE.createVInstance(); root.setResolvedVSpec(target); root.setName("I" +
-		 * view.getIncrementedNameCounter()); Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
+		 * VInstance root = BvrFactory.eINSTANCE.createVInstance();
+		 * root.setResolvedVSpec(target);
+		 * root.setName("I" + view.getIncrementedNameCounter());
+		 * Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		 * Context.eINSTANCE.getEditorCommands().addVInstance(c, root);
 		 */
 	}

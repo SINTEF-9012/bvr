@@ -314,7 +314,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 			vmMap.put(nextParent, v);
 
 		} else if (v instanceof ChoiceResolution) {
-			// System.out.println(v);
+			 System.out.println(v);
 			nextParent = new AddChoiceResolutionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, this).execute();
 

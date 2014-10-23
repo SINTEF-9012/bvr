@@ -23,6 +23,7 @@ public class RemoveVSpecResolutionEvent implements ActionListener  {
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("RemoveVSpecResolutionEvent running, not implemented");
 		/*NamedElement v = vmMap.get(p);
 		
 		// Modify model

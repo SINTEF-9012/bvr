@@ -23,7 +23,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
-import no.sintef.bvr.ui.framework.elements.VInstancePanel;
+//import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import bvr.Choice;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -31,12 +31,12 @@ import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstanceDropDownListener  extends MouseAdapter {
-	private VInstancePanel cp;
+	private /*VInstancePanel*/ChoiceResolutionPanel cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private BVRNotifiableController view;
 	//private VInstance c;
 	
-    public VInstanceDropDownListener(VInstancePanel cp, /*VInstance c,*/ BVRNotifiableController view, Map<JComponent, NamedElement> vmMap) {
+    public VInstanceDropDownListener(/*VInstancePanel*/ChoiceResolutionPanel cp, /*VInstance c,*/ BVRNotifiableController view, Map<JComponent, NamedElement> vmMap) {
 		this.cp = cp;
 		//this.c = c;
 		this.view = view;
@@ -62,7 +62,7 @@ public class VInstanceDropDownListener  extends MouseAdapter {
 class VInstanceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public VInstanceDropdown(VInstancePanel cp, /*VInstance c,*/ BVRNotifiableController view, Map<JComponent, NamedElement> vmMap){
+    public VInstanceDropdown(/*VInstancePanel*/ ChoiceResolutionPanel cp, /*VInstance c,*/ BVRNotifiableController view, Map<JComponent, NamedElement> vmMap){
     	// Add
     	/*if(c.getResolvedVSpec() != null){
     		JMenu add = new JMenu("add");
