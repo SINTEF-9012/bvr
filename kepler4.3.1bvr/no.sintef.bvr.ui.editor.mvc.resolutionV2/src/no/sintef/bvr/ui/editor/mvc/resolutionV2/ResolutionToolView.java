@@ -32,7 +32,7 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV2DropdownListener;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutionV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddErrorGroup;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVInstanceV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutionFromVClassifier;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVariableValueAssignmentV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedBCLConstraint;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedOpaqueConstraint;
@@ -308,7 +308,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
 			// System.out.println(v + ", " + bvruikernel);
 
-			nextParent = new AddVInstanceV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent, vmMap,
+			nextParent = new AddChoiceResolutionFromVClassifier(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent, vmMap,
 					nodes, bindings, this).execute();
 
 			vmMap.put(nextParent, v);

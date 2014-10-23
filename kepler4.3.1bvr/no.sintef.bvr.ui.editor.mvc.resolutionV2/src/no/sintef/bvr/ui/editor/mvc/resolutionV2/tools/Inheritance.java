@@ -6,6 +6,7 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
+import bvr.NegResolution;
 //import bvr.ChoiceResolution;
 import bvr.VSpecResolution;
 
@@ -24,18 +25,22 @@ public class Inheritance {
 	}
 
 	public void passInheritance(ChoiceResolution c, boolean nBool, BVRResolutionToolView view) {
+		if(c instanceof NegResolution)return;
 		for (VSpecResolution x : ((CompoundResolution) c).getMembers()) {
 			if (x instanceof ChoiceResolution) {
-				if (((Choice) x.getResolvedVSpec()).isIsImpliedByParent()) {
-					ChangeChoice.setType(c, nBool, view);
+				if (((ChoiceResolution) x).getResolvedVSpec() instanceof Choice) {
+					if (((Choice) x.getResolvedVSpec()).isIsImpliedByParent()) {
+						ChangeChoice.setChoiceResolution(c, nBool, view);
+						passInheritance((ChoiceResolution) x, nBool, view);
+					}
+				}
+				else{//VClassifier
 					passInheritance((ChoiceResolution) x, nBool, view);
 				}
 			}
 		}
 	}
 
-	
-		// TODO Auto-generated method stub
-		
-	
+	// TODO Auto-generated method stub
+
 }
