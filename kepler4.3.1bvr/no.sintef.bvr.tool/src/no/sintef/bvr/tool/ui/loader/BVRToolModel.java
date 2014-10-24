@@ -225,4 +225,8 @@ abstract public class BVRToolModel {
 	public void deletePlacements(EList<VariationPoint> placements) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void deleteFragments(EList<VariationPoint> fslist) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

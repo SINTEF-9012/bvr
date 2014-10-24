@@ -18,11 +18,13 @@ import bvr.ReplacementFragmentType;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.BatchCommandExecutor;
 import no.sintef.bvr.tool.controller.command.CreatePlacement;
 import no.sintef.bvr.tool.controller.command.CreateReplacement;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
@@ -39,6 +41,7 @@ import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
 public class SwingRealizationController implements
@@ -170,11 +173,40 @@ public class SwingRealizationController implements
 	}
 
 	@Override
-	public SimpleExeCommandInterface createDeleteSubstitutionFragments() {
+	public SimpleExeCommandInterface createDeleteSubstitutionFragmentsCommand() {
 		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
 				deleteSubstitutionFragments();
+			}
+		});
+		return command;
+	}
+	
+	@Override
+	public void deleteFragmentSubstitutions(){
+		if(tableFragmSubst.getSelectedRows().length == 0)
+			throw new UserInputError(Messages.DIALOG_MSG_NO_SELECTION);
+
+		int[] rowIndexes = tableFragmSubst.getSelectedRows();
+		FragSubTableModel model = (FragSubTableModel) tableFragmSubst.getModel();
+		ArrayList<ArrayList<DataItem>> data = model.getData();
+		EList<VariationPoint> fslist = new BasicEList<VariationPoint>();
+		for(int index : rowIndexes){
+			DataItem element = data.get(index).get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
+			VariationPoint vp = (VariationPoint) element.getNamedElement();
+			fslist.add(vp);
+		}
+		
+		toolModel.deleteFragments(fslist);
+	}
+
+	@Override
+	public SimpleExeCommandInterface createDeleteFragmentSubstitutionsCommand() {
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				deleteFragmentSubstitutions();
 			}
 		});
 		return command;

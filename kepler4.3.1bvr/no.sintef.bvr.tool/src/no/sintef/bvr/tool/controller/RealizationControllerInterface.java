@@ -13,5 +13,9 @@ public interface RealizationControllerInterface {
 	
 	public void deleteSubstitutionFragments();
 	
-	public SimpleExeCommandInterface createDeleteSubstitutionFragments();
+	public SimpleExeCommandInterface createDeleteSubstitutionFragmentsCommand();
+
+	public void deleteFragmentSubstitutions();
+	
+	public SimpleExeCommandInterface createDeleteFragmentSubstitutionsCommand();
 }

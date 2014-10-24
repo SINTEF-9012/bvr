@@ -17,7 +17,7 @@ public class DeletePlacementReplacementFragmentEvent implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		SimpleExeCommandInterface command = controller.getRealizationControllerInterface().createDeleteSubstitutionFragments();
+		SimpleExeCommandInterface command = controller.getRealizationControllerInterface().createDeleteSubstitutionFragmentsCommand();
 		command.execute();
 	}
 

@@ -438,4 +438,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		if(replacements.size() > 0)
 			Context.eINSTANCE.getEditorCommands().removeOwnedVariationTypes(getBVRModel(), replacements);
 	}
+	
+	@Override
+	public void deleteFragments(EList<VariationPoint> fslist) {
+		if(fslist.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(getBVRModel(), fslist);
+	}
 }
