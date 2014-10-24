@@ -12,6 +12,8 @@ import bvr.BVRModel;
 import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.NamedElement;
+import bvr.PlacementFragment;
+import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -227,6 +229,11 @@ abstract public class BVRToolModel {
 	}
 
 	public void deleteFragments(EList<VariationPoint> fslist) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void createFragmentSubstitution(PlacementFragment placement,
+			ReplacementFragmentType replacement) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

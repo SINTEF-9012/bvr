@@ -14,6 +14,7 @@ import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.model.ConstraintFacade;
 import no.sintef.bvr.tool.model.NoteFacade;
 import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
+import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.model.TargetFacade;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
@@ -39,11 +40,14 @@ import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.Constraint;
+import bvr.FragmentSubstitution;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.Note;
+import bvr.PlacementFragment;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
+import bvr.ReplacementFragmentType;
 import bvr.Target;
 import bvr.TargetRef;
 import bvr.VClassifier;
@@ -443,5 +447,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void deleteFragments(EList<VariationPoint> fslist) {
 		if(fslist.size() > 0)
 			Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(getBVRModel(), fslist);
+	}
+	
+	@Override
+	public void createFragmentSubstitution(PlacementFragment placement, ReplacementFragmentType replacement) {
+		FragmentSubstitution fs = SubstitutionFragmentFacade.eINSTANCE.createFragmentSubstitution();
+		fs.setPlacement(placement);
+		fs.setReplacement(replacement);
+		Context.eINSTANCE.getEditorCommands().addRealizationVariationPoint(getBVRModel(), fs);
 	}
 }

@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.controller;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,6 +28,7 @@ import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.primitive.DataItem;
+import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.dropdown.BindingEditorDropDownListener;
@@ -210,5 +212,42 @@ public class SwingRealizationController implements
 			}
 		});
 		return command;
+	}
+	
+	@Override
+	public void createFragmentSubstitution(){
+		if(tableSubstFragm.getSelectedRows().length != 2)
+			throw new UserInputError(Messages.DIALOG_MSG_TWO_ROWS_SELECTED);
+		
+		int[] rowIndexes = tableSubstFragm.getSelectedRows();
+		SubFragTableModel model = (SubFragTableModel) tableSubstFragm.getModel();
+		ArrayList<ArrayList<Object>> data = model.getData();
+		
+		DataNamedElementItem firstRowDataElement = (DataNamedElementItem) data.get(rowIndexes[0]).get(Constants.SUB_FRAG_FRAG_CLMN);
+		DataNamedElementItem secondRowDataElement = (DataNamedElementItem) data.get(rowIndexes[1]).get(Constants.SUB_FRAG_FRAG_CLMN);
+		
+		HashMap<PlacementFragment, ReplacementFragmentType> tuple = isSelectionValid(firstRowDataElement, secondRowDataElement);
+		if(tuple == null)
+			throw new UserInputError(Messages.DIALOG_MSG_PLCM_REPL_SELECTED);
+
+		PlacementFragment placement = tuple.keySet().iterator().next();
+		ReplacementFragmentType replacement = tuple.values().iterator().next();
+		
+		toolModel.createFragmentSubstitution(placement, replacement);
+	}
+	
+	private HashMap<PlacementFragment, ReplacementFragmentType> isSelectionValid(DataNamedElementItem d, DataNamedElementItem d1){
+		NamedElement fragment = d.getNamedElement();
+		NamedElement fragment1 = d1.getNamedElement();
+		HashMap<PlacementFragment, ReplacementFragmentType> tuple = new HashMap<PlacementFragment, ReplacementFragmentType>();
+		if((fragment instanceof PlacementFragment) && (fragment1 instanceof ReplacementFragmentType)){
+			tuple.put((PlacementFragment) fragment, (ReplacementFragmentType) fragment1);
+			return tuple;
+		}
+		if((fragment1 instanceof PlacementFragment) && (fragment instanceof ReplacementFragmentType)){
+			tuple.put((PlacementFragment) fragment1, (ReplacementFragmentType) fragment);
+			return tuple;
+		}
+		return null;
 	}
 }
