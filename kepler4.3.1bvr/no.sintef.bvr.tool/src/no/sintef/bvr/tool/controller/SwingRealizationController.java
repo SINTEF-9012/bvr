@@ -19,6 +19,7 @@ import bvr.Variabletype;
 import bvr.VariationPoint;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.command.BatchCommandExecutor;
 import no.sintef.bvr.tool.controller.command.CreatePlacement;
 import no.sintef.bvr.tool.controller.command.CreateReplacement;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
@@ -166,5 +167,16 @@ public class SwingRealizationController implements
 		}
 		toolModel.deleteReplacements(replacements);
 		toolModel.deletePlacements(placements);
+	}
+
+	@Override
+	public SimpleExeCommandInterface createDeleteSubstitutionFragments() {
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				deleteSubstitutionFragments();
+			}
+		});
+		return command;
 	}
 }

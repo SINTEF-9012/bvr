@@ -12,4 +12,6 @@ public interface RealizationControllerInterface {
 	public SimpleExeCommandInterface createReplacementFragmentCommand(boolean conatinment);
 	
 	public void deleteSubstitutionFragments();
+	
+	public SimpleExeCommandInterface createDeleteSubstitutionFragments();
 }
