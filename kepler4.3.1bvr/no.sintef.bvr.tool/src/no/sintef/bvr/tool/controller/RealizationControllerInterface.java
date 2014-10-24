@@ -8,4 +8,6 @@ public interface RealizationControllerInterface {
 	BVRRealizationUIKernelInterface getUIKernel();
 	
 	SimpleExeCommand createPlacementFragmentCommand(boolean conatinment);
+	
+	SimpleExeCommand createReplacementFragmentCommand(boolean conatinment);
 }

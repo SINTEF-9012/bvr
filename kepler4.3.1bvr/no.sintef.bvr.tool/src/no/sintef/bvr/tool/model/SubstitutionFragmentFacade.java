@@ -2,12 +2,15 @@ package no.sintef.bvr.tool.model;
 
 import bvr.BvrFactory;
 import bvr.PlacementFragment;
+import bvr.ReplacementFragmentType;
 
 public class SubstitutionFragmentFacade {
 
 	public static SubstitutionFragmentFacade eINSTANCE = getInstance();
-	private static final String defaultName = "Placement";
-	private static int count = 0;
+	private static final String defaultPlacementName = "Placement";
+	private static final String defaultReplacementName = "Replacement";
+	private static int countReplacement = 0;
+	private static int countPlacement = 0;
 	
 	private static SubstitutionFragmentFacade getInstance() {
 		if(eINSTANCE == null)
@@ -17,8 +20,15 @@ public class SubstitutionFragmentFacade {
 	
 	public PlacementFragment createPlacementFragment() {
 		PlacementFragment placement = BvrFactory.eINSTANCE.createPlacementFragment();
-		placement.setName(defaultName + count);
-		count++;
+		placement.setName(defaultPlacementName + countPlacement);
+		countPlacement++;
 		return placement;
+	}
+
+	public ReplacementFragmentType createReplacementFragment() {
+		ReplacementFragmentType replacement = BvrFactory.eINSTANCE.createReplacementFragmentType();
+		replacement.setName(defaultReplacementName + countReplacement);
+		countReplacement++;
+		return replacement;
 	}
 }

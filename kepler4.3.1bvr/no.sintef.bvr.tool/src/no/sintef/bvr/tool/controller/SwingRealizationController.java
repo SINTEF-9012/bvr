@@ -8,9 +8,11 @@ import javax.swing.JTabbedPane;
 
 import bvr.BVRModel;
 import bvr.PlacementFragment;
+import bvr.ReplacementFragmentType;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.CreatePlacement;
+import no.sintef.bvr.tool.controller.command.CreateReplacement;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommand;
 import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
@@ -110,9 +112,16 @@ public class SwingRealizationController implements
 	}
 	
 	@Override
-	public SimpleExeCommand createPlacementFragmentCommand(boolean conatinment) {
+	public SimpleExeCommand createPlacementFragmentCommand(boolean containment) {
 		PlacementFragment placement = SubstitutionFragmentFacade.eINSTANCE.createPlacementFragment();
-		CreatePlacement command = new CreatePlacement(conatinment, model.getBVRModel(), placement);
+		CreatePlacement command = new CreatePlacement(containment, model.getBVRModel(), placement);
+		return command;
+	}
+
+	@Override
+	public SimpleExeCommand createReplacementFragmentCommand(boolean containment) {
+		ReplacementFragmentType replacement = SubstitutionFragmentFacade.eINSTANCE.createReplacementFragment();
+		CreateReplacement command = new CreateReplacement(containment, model.getBVRModel(), replacement);
 		return command;
 	}
 	
