@@ -1,13 +1,13 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
-
 import bvr.NamedElement;
 
 public class UpdateBCLConstraint extends UpdateConstraint {

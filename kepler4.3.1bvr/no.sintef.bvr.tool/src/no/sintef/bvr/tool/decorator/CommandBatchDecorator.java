@@ -1,6 +1,6 @@
 package no.sintef.bvr.tool.decorator;
 
-import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.tool.controller.command.Command;
 
 
 

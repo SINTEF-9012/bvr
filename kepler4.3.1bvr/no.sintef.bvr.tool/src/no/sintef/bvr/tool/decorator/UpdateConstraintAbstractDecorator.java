@@ -7,8 +7,8 @@ import javax.swing.JComponent;
 
 import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.command.UpdateConstraint;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 

@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;

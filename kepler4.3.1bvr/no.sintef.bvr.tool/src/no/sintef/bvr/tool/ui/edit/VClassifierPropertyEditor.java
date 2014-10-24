@@ -26,8 +26,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.CompoundNode;
 import bvr.PrimitiveTypeEnum;

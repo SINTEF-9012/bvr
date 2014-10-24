@@ -2,8 +2,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.command.AddVInstance;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;

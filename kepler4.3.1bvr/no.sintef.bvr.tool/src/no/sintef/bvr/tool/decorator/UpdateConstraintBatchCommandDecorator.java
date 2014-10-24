@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.decorator;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.command.UpdateConstraint;
+import no.sintef.bvr.tool.controller.command.UpdateConstraint;
 
 public class UpdateConstraintBatchCommandDecorator extends
 		UpdateConstraintAbstractDecorator implements CommandBatchDecorator {

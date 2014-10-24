@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.command.UpdateChoice;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateChoice;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;

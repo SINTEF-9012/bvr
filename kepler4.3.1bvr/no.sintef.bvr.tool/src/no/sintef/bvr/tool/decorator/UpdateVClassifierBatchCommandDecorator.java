@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.decorator;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
+import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 
 
 public class UpdateVClassifierBatchCommandDecorator extends

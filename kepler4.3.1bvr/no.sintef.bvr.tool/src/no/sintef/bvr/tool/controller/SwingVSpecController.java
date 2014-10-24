@@ -12,20 +12,20 @@ import javax.swing.JScrollPane;
 import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.command.AddBCLConstraint;
+import no.sintef.bvr.tool.controller.command.AddBVRModel;
+import no.sintef.bvr.tool.controller.command.AddChoice;
+import no.sintef.bvr.tool.controller.command.AddVClassifier;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateBCLConstraint;
+import no.sintef.bvr.tool.controller.command.UpdateBVRModel;
+import no.sintef.bvr.tool.controller.command.UpdateChoice;
+import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateConstraintBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
-import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
-import no.sintef.bvr.tool.ui.command.AddBVRModel;
-import no.sintef.bvr.tool.ui.command.AddChoice;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
-import no.sintef.bvr.tool.ui.command.AddVClassifier;
-import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
-import no.sintef.bvr.tool.ui.command.UpdateBVRModel;
-import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
@@ -78,10 +78,10 @@ public class SwingVSpecController<
 	private void loadBVRVSpecView(BVRModel model, BVRUIKernel uikernel) throws BVRModelException {
 		uikernel.getModelPanel().addMouseListener(new VSpecDropDownListener(vSpecbvruikernel, toolModel, rootController));
 		
-		JComponent c = new AddBVRModel().init(model, uikernel, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+		JComponent rootComponent = new AddBVRModel().init(uikernel, model, null, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
 		CompoundNode vspec = model.getVariabilityModel();
-		loadBVRVSpecView(vspec, uikernel, c, model);
+		loadBVRVSpecView(vspec, uikernel, rootComponent, model);
 		
 		vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	}

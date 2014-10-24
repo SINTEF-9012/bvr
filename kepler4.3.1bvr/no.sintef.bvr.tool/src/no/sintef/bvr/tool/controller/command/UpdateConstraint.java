@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,8 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 
-public class UpdateBVRModel implements UpdateNamedElement {
-	
+abstract public class UpdateConstraint implements Command, UpdateNamedElement {
+
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;
 	protected NamedElement vc;
@@ -21,11 +21,14 @@ public class UpdateBVRModel implements UpdateNamedElement {
 	protected BVRNotifiableController controller;
 	
 	protected String name;
-	@Override
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings,
-			BVRNotifiableController controller) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		
 		if(p instanceof NamedElement){
 			this.rootPanel = rootPanel;
@@ -39,19 +42,9 @@ public class UpdateBVRModel implements UpdateNamedElement {
 		this.nodes = nodes;
 		this.bindings = bindings;
 		this.controller = controller;
+		
 		return this;	
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public JComponent execute() {
-		controller.getVSpecControllerInterface().setNodeName(parent, name);
-		return parent;
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
+	abstract public void setConstraint(String text);
 }

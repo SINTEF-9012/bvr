@@ -13,10 +13,10 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.controller.command.AddBCLConstraint;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
-import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;

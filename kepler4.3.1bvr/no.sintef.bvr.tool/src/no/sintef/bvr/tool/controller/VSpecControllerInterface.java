@@ -1,6 +1,6 @@
 package no.sintef.bvr.tool.controller;
 
-import no.sintef.bvr.tool.ui.command.Command;
+import no.sintef.bvr.tool.controller.command.Command;
 
 
 public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {

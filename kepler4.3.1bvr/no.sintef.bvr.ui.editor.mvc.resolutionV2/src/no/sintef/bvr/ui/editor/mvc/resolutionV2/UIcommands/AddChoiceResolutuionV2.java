@@ -2,8 +2,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ChoiceResolutionDropDownListenerV2;
