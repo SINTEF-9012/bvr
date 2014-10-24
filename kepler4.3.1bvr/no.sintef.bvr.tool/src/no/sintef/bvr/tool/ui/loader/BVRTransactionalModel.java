@@ -9,8 +9,8 @@ import java.util.Map;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.UnexpectedException;
-import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.model.ConstraintFacade;
 import no.sintef.bvr.tool.model.NoteFacade;
 import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
@@ -49,7 +49,6 @@ import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.ReplacementFragmentType;
 import bvr.Target;
-import bvr.TargetRef;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -455,5 +454,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		fs.setPlacement(placement);
 		fs.setReplacement(replacement);
 		Context.eINSTANCE.getEditorCommands().addRealizationVariationPoint(getBVRModel(), fs);
+	}
+	
+	@Override
+	public void generateBindings(FragmentSubstitution fragmentSubstitution) {
+		BindingCalculatorContext bindingCalculator = new BindingCalculatorContext();
+		bindingCalculator.generateBindings(fragmentSubstitution);
 	}
 }

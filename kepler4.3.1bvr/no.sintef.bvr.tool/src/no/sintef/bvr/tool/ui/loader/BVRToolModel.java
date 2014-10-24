@@ -11,6 +11,7 @@ import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.FragmentSubstitution;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.ReplacementFragmentType;
@@ -234,6 +235,10 @@ abstract public class BVRToolModel {
 
 	public void createFragmentSubstitution(PlacementFragment placement,
 			ReplacementFragmentType replacement) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void generateBindings(FragmentSubstitution fragmentSubstitution) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

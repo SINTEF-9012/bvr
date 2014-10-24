@@ -20,4 +20,6 @@ public interface RealizationControllerInterface {
 	public SimpleExeCommandInterface createDeleteFragmentSubstitutionsCommand();
 
 	public void createFragmentSubstitution();
+
+	public SimpleExeCommandInterface createGenerateBindingsCommand();
 }

@@ -250,4 +250,28 @@ public class SwingRealizationController implements
 		}
 		return null;
 	}
+	
+	@Override
+	public SimpleExeCommandInterface createGenerateBindingsCommand(){
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				if(tableFragmSubst.getSelectedRows().length > 1)
+					throw new UserInputError(Messages.DIALOG_MSG_MORE_THEN_ONE_SELECTION);
+				
+				int rowIndex = tableFragmSubst.getSelectedRows()[0];
+				FragSubTableModel model = (FragSubTableModel) tableFragmSubst.getModel();
+				ArrayList<ArrayList<DataItem>> data = model.getData();
+				DataItem element = data.get(rowIndex).get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
+				VariationPoint vp = (VariationPoint) element.getNamedElement();
+				
+				if(!(vp instanceof FragmentSubstitution))
+					throw new UserInputError(Messages.DIALOG_MSG_NOT_FRAG_SUB_SELECTION);
+				
+				FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) vp;
+				toolModel.generateBindings(fragmentSubstitution);
+			}
+		});
+		return command;
+	}
 }
