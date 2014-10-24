@@ -22,15 +22,15 @@ import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.Variabletype;
 
-public class PrimitiveTypeFactory {
+public class PrimitiveTypeFacade {
 	
-	private static PrimitiveTypeFactory instance = null;
-	private PrimitiveTypeFactory(){
+	private static PrimitiveTypeFacade instance = null;
+	private PrimitiveTypeFacade(){
 		
 	}
-	public static synchronized PrimitiveTypeFactory getInstance(){
+	public static synchronized PrimitiveTypeFacade getInstance(){
 		if(instance == null){
-			instance = new PrimitiveTypeFactory();
+			instance = new PrimitiveTypeFacade();
 		}
 		return instance;
 	}

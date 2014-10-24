@@ -539,4 +539,11 @@ public class EditorMVCCommands implements EditorCommands {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addRealizationVariationPoint(BVRModel model,
+			VariationPoint variationPoint) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -7,8 +7,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import bvr.BVRModel;
+import bvr.PlacementFragment;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.command.CreatePlacement;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommand;
+import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.dropdown.BindingEditorDropDownListener;
@@ -103,6 +107,13 @@ public class SwingRealizationController implements
 	
 	public JTabbedPane getRealizationPanel(){
 		return realizationPanel;
+	}
+	
+	@Override
+	public SimpleExeCommand createPlacementFragmentCommand(boolean conatinment) {
+		PlacementFragment placement = SubstitutionFragmentFacade.eINSTANCE.createPlacementFragment();
+		CreatePlacement command = new CreatePlacement(conatinment, model.getBVRModel(), placement);
+		return command;
 	}
 	
 	

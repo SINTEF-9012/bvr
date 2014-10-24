@@ -123,7 +123,7 @@ public interface EditorCommands {
 	
 	//public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
 	
-	//public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	public void addRealizationVariationPoint(BVRModel model, VariationPoint variationPoint);
 	
 	public void addOwnedVariationType(BVRModel model, Variabletype variationType);
 	

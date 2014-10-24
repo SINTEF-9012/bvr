@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import no.sintef.bvr.thirdparty.common.Utility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.command.TrivialCommand;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommand;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
-public class CopyModelEvent implements TrivialCommand {
+public class CopyModelEvent implements SimpleExeCommand {
 
 	@Override
 	public void execute () {

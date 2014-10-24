@@ -11,10 +11,10 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
-import no.sintef.bvr.tool.model.ConstraintFactory;
-import no.sintef.bvr.tool.model.NoteFactory;
-import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
-import no.sintef.bvr.tool.model.TargetFactory;
+import no.sintef.bvr.tool.model.ConstraintFacade;
+import no.sintef.bvr.tool.model.NoteFacade;
+import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
+import no.sintef.bvr.tool.model.TargetFacade;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -231,7 +231,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void updateVariable(Variable variable, String name, String typeName){
-		PrimitiveTypeFactory.getInstance().testModelsPrimitiveTypes(getBVRModel());
+		PrimitiveTypeFacade.getInstance().testModelsPrimitiveTypes(getBVRModel());
 		
 		if(name.equals("")){
 			Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)variable.eContainer(), variable);
@@ -251,7 +251,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
         if(t == null)
         	throw new UnsupportedOperationException("Invalid primitive type name " + typeName);
         
-        PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), t);
+        PrimitveType primitivType = PrimitiveTypeFacade.getInstance().testPrimitiveType(getBVRModel(), t);
         Context.eINSTANCE.getEditorCommands().setTypeForVariable(variable, primitivType);
 	}
 	
@@ -259,7 +259,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void updateName(NamedElement namedElement, String name) {	
 		//update corresponding target accordingly if namedElement is VClassifier or Choice
 		if(namedElement instanceof VClassifier || namedElement instanceof Choice){
-			Target target = TargetFactory.eINSTANCE.testVSpecTarget((VSpec) namedElement);
+			Target target = TargetFacade.eINSTANCE.testVSpecTarget((VSpec) namedElement);
 			Context.eINSTANCE.getEditorCommands().setName(target, name);
 		}
 		
@@ -268,20 +268,20 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void updateComment(NamedElement namedElement, String text) {
-		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
+		Note commentNote = NoteFacade.eINSTANCE.testCommentNote(namedElement);
 		Context.eINSTANCE.getEditorCommands().updateNoteExp(commentNote, text);
 	}
 	
 	@Override
 	public String getNodesCommentText(NamedElement namedElement) {
-		return NoteFactory.eINSTANCE.getCommentText(namedElement);
+		return NoteFacade.eINSTANCE.getCommentText(namedElement);
 	}
 	
 	@Override
 	public void addVariable(VNode parentNode) {
 		Variable var = BvrFactory.eINSTANCE.createVariable();
 		
-		PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), PrimitiveTypeEnum.INTEGER);
+		PrimitveType primitivType = PrimitiveTypeFacade.getInstance().testPrimitiveType(getBVRModel(), PrimitiveTypeEnum.INTEGER);
 		var.setName("Var" + variableCount);
 		variableCount++;
 		var.setType(primitivType);
@@ -328,12 +328,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void addBCLConstraint(VNode parentVNode) {
-		ConstraintFactory.eINSTANCE.createBCLConstraint(parentVNode);
+		ConstraintFacade.eINSTANCE.createBCLConstraint(parentVNode);
 	}
 	
 	@Override
 	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
-		ConstraintFactory.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
+		ConstraintFacade.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
 	}
 	
 	@Override
@@ -400,7 +400,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public String getBCLConstraintString(BCLConstraint constraint) {
-		return ConstraintFactory.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+		return ConstraintFacade.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
 	}
 	
 	@Override
