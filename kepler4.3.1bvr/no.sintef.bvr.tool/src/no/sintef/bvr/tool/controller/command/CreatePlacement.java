@@ -12,7 +12,7 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 
-public class CreatePlacement implements SimpleExeCommand {
+public class CreatePlacement implements SimpleExeCommandInterface {
 
 	private boolean withContainment;
 	private BVRModel model;

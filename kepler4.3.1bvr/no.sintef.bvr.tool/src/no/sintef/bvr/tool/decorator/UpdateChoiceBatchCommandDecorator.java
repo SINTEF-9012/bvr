@@ -2,10 +2,11 @@ package no.sintef.bvr.tool.decorator;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateChoice;
 
 public class UpdateChoiceBatchCommandDecorator extends
-		UpdateChoiceAbstractDecorator implements CommandBatchDecorator {
+		UpdateChoiceAbstractDecorator implements CommandBatchInterface {
 
 	public UpdateChoiceBatchCommandDecorator(UpdateChoice _command) {
 		super(_command);

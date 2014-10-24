@@ -2,11 +2,12 @@ package no.sintef.bvr.tool.decorator;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 
 
 public class UpdateVClassifierBatchCommandDecorator extends
-	UpdateVClassifierAbstractDecorator implements CommandBatchDecorator {
+	UpdateVClassifierAbstractDecorator implements CommandBatchInterface {
 
 	public UpdateVClassifierBatchCommandDecorator(UpdateVClassifier _command) {
 		super(_command);

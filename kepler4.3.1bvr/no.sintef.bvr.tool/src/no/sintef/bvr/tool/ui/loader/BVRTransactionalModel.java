@@ -51,6 +51,8 @@ import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
+import bvr.Variabletype;
+import bvr.VariationPoint;
 
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
@@ -423,5 +425,17 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}else{
 			throw new UnexpectedException("can not find parent element to remove " + element);
 		}
+	}
+	
+	@Override
+	public void deletePlacements(EList<VariationPoint> placements) {
+		if(placements.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(getBVRModel(), placements);
+	}
+	
+	@Override
+	public void deleteReplacements(EList<Variabletype> replacements) {
+		if(replacements.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwnedVariationTypes(getBVRModel(), replacements);
 	}
 }

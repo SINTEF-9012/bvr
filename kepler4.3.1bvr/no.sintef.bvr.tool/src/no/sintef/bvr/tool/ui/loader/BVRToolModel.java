@@ -3,6 +3,8 @@ package no.sintef.bvr.tool.ui.loader;
 import java.io.File;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
@@ -15,6 +17,8 @@ import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
+import bvr.Variabletype;
+import bvr.VariationPoint;
 
 abstract public class BVRToolModel {
 	protected SPLCABVRModel bvrm;
@@ -211,6 +215,14 @@ abstract public class BVRToolModel {
 	}
 
 	public void removeNamedElement(NamedElement element) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void deleteReplacements(EList<Variabletype> replacements) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void deletePlacements(EList<VariationPoint> placements) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

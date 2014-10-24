@@ -10,7 +10,7 @@ import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 import bvr.BVRModel;
 import bvr.ReplacementFragmentType;
 
-public class CreateReplacement implements SimpleExeCommand {
+public class CreateReplacement implements SimpleExeCommandInterface {
 
 	private boolean withContainment;
 	private BVRModel model;

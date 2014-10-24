@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.SimpleExeCommand;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
 
 public class CreateReplacementFragmentEvent implements ActionListener {
@@ -20,7 +20,7 @@ public class CreateReplacementFragmentEvent implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		SimpleExeCommand command = controller.getRealizationControllerInterface().createReplacementFragmentCommand(withContainment);
+		SimpleExeCommandInterface command = controller.getRealizationControllerInterface().createReplacementFragmentCommand(withContainment);
 		command.execute();
 	}
 }

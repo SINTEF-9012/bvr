@@ -1,13 +1,15 @@
 package no.sintef.bvr.tool.controller;
 
-import no.sintef.bvr.tool.controller.command.SimpleExeCommand;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 
 public interface RealizationControllerInterface {
 
-	BVRRealizationUIKernelInterface getUIKernel();
+	public BVRRealizationUIKernelInterface getUIKernel();
 	
-	SimpleExeCommand createPlacementFragmentCommand(boolean conatinment);
+	public SimpleExeCommandInterface createPlacementFragmentCommand(boolean conatinment);
 	
-	SimpleExeCommand createReplacementFragmentCommand(boolean conatinment);
+	public SimpleExeCommandInterface createReplacementFragmentCommand(boolean conatinment);
+	
+	public void deleteSubstitutionFragments();
 }

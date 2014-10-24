@@ -131,9 +131,9 @@ public interface EditorCommands {
 	
 	//public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
-	//public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
+	public void removeOwenedVariationPoints(BVRModel model, EList<VariationPoint> variationPoints);
 	
-	//public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
+	public void removeOwnedVariationTypes(BVRModel model, EList<Variabletype> variationTypes);
 	
 	public void addBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding);
 	
