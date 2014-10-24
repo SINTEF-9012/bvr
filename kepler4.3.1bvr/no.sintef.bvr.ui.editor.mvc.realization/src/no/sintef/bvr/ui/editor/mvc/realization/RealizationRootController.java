@@ -7,7 +7,6 @@ import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.RealizationControllerInterface;
 import no.sintef.bvr.tool.controller.SwingRealizationController;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import bvr.BVRModel;
 
 
 public class RealizationRootController extends BVRToolAbstractController {
@@ -18,16 +17,6 @@ public class RealizationRootController extends BVRToolAbstractController {
 	public RealizationRootController(BVRToolModel _model) {
 		model = _model;
 		controller = new SwingRealizationController(model, this);
-	}
-
-	@Override
-	public BVRModel getBVRModel() {
-		return model.getBVRModel();
-	}
-	
-	@Override
-	public BVRToolModel getBVRToolModel() {
-		return model;
 	}
 
 	@Override

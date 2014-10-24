@@ -519,17 +519,4 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	}
 
 
-@Override
-public BVRModel getBVRModel() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public BVRToolModel getBVRToolModel() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-
 }
