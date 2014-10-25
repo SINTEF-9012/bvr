@@ -1,6 +1,7 @@
 package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -248,11 +249,15 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public EList<HashMap<EObject, Integer>> findElementsToHighlight(NamedElement fragment) {
+	public EList<HashMap<EObject, Integer>> findFragmentElementsToHighlight(NamedElement fragment) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public void highlightElements(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public EList<HashMap<EObject, Integer>> findBoundaryElementsToHighlight(NamedElement binding) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

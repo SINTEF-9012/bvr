@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
@@ -28,8 +29,10 @@ public class BindingJTable extends JTable implements Observer {
 	private static final long serialVersionUID = 8644097588893969285L;
 	private FragmentSubstitution selectedFragmentSubstitution;
 	private BindingTableModel tableModel;
+	private BVRNotifiableController controller;
 
-	public BindingJTable() throws AbstractError{
+	public BindingJTable(BVRNotifiableController _controller) throws AbstractError{
+		controller = _controller;
 		tableModel = new BindingTableModel(selectedFragmentSubstitution);
 		setModel(tableModel);
 		
@@ -44,7 +47,7 @@ public class BindingJTable extends JTable implements Observer {
 		getTableHeader().setReorderingAllowed(false);
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		getSelectionModel().addListSelectionListener(new BindingRowSelectionEvent(this));
+		getSelectionModel().addListSelectionListener(new BindingRowSelectionEvent(controller));
 		tableModel.addTableModelListener(new BindingModelTableEvent(this));	
 	}
 	

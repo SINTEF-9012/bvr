@@ -32,6 +32,7 @@ import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.primitive.DataItem;
+import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.primitive.impl.ObserverDataBulk;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
@@ -48,6 +49,7 @@ import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 import no.sintef.bvr.tool.ui.editor.SubstitutionFragmentJTable;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.ui.model.BindingTableModel;
 import no.sintef.bvr.tool.ui.model.FragSubTableModel;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 
@@ -85,7 +87,7 @@ public class SwingRealizationController implements
 	private void loadBVRRelalizationView(BVRModel model) {
 		tableFragmSubst = new FragmentSubstitutionJTable(controller);
 		tableSubstFragm = new SubstitutionFragmentJTable(controller);
-		bindingEditor = new BindingJTable();
+		bindingEditor = new BindingJTable(controller);
 		kernel.setFragmentSubstitutionTable(tableFragmSubst);
 		kernel.setSubsitutionFragmentTable(tableSubstFragm);
 		kernel.setBindingTable(bindingEditor);
@@ -339,7 +341,7 @@ public class SwingRealizationController implements
 				for(Integer index : selectedRows){
 	            	DataNamedElementItem subFragDataElement = (DataNamedElementItem) data.get(index).get(Constants.SUB_FRAG_FRAG_CLMN);
 	            	NamedElement fragment = subFragDataElement.getNamedElement();
-	            	objectsToHighlightList.addAll(toolModel.findElementsToHighlight(fragment));
+	            	objectsToHighlightList.addAll(toolModel.findFragmentElementsToHighlight(fragment));
 				}
 				toolModel.highlightElements(objectsToHighlightList);
 			}
@@ -362,5 +364,16 @@ public class SwingRealizationController implements
 		}else{
 			throw new UnsupportedOperationException("FragmentSubstitution should be passed when you select a row, but we have " + variationPoint);
 		}
+	}
+
+	@Override
+	public void highlightBoundaryElements(int _selectedIndex) {
+		EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+		BindingTableModel model = (BindingTableModel) bindingEditor.getModel();
+		ArrayList<ArrayList<Object>> data = model.getData();
+		DataBindingItem bindingCell = (DataBindingItem) data.get(_selectedIndex).get(Constants.BINDING_TYPE_CLMN);
+		NamedElement binding = bindingCell.getNamedElement();
+		objectsToHighlightList.addAll(toolModel.findBoundaryElementsToHighlight(binding));
+		toolModel.highlightElements(objectsToHighlightList);
 	}
 }

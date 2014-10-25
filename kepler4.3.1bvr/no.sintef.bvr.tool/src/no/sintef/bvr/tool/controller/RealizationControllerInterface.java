@@ -32,4 +32,6 @@ public interface RealizationControllerInterface {
 	public SimpleExeCommandInterface createHighlightFragmentElementsCommand(ArrayList<Integer> _selectedRows);
 	
 	public void fragmentSubstitutionRowSelected(int _selectedIndex);
+	
+	public void highlightBoundaryElements(int _selectedIndex);
 }

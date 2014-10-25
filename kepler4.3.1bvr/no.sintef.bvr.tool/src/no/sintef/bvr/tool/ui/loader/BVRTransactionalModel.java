@@ -13,6 +13,7 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
+import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.model.ConstraintFacade;
 import no.sintef.bvr.tool.model.NoteFacade;
@@ -47,6 +48,7 @@ import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.Constraint;
 import bvr.FragmentSubstitution;
+import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.FromReplacement;
 import bvr.MultiplicityInterval;
@@ -60,6 +62,7 @@ import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.Target;
+import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
@@ -246,6 +249,62 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			objectsToHL.add(objectsToH);
 		}
 		return objectsToHL;
+	}
+	
+	private EList<HashMap<EObject, Integer>> getBoundaryObjectsToHighlight(NamedElement boundary) throws IllegalOperationException{
+		EList<HashMap<EObject, Integer>> list = new BasicEList<HashMap<EObject, Integer>>();
+		if(boundary instanceof ToPlacement || boundary instanceof ToReplacement){
+			boolean isToPlacement = (boundary instanceof ToPlacement) ? true : false;
+			if(!isToPlacement && LoaderUtility.isNullBoundary(boundary))
+				return list;
+			
+			EObject eObject = (isToPlacement) ? ((ToPlacement) boundary).getOutsideBoundaryElement().getMOFRef() : ((ToReplacement) boundary).getOutsideBoundaryElement().getMOFRef();
+			if(eObject != null){
+				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+				map.put(eObject, (isToPlacement) ? IBVREnabledEditor.HL_PLACEMENT_IN : IBVREnabledEditor.HL_REPLACEMENT_IN);
+				list.add(map);
+			}else{
+				Context.eINSTANCE.logger.error("outside boundary element reference is null for toBoundary" + boundary);
+			}
+			
+			EList<ObjectHandle> objectHandles = (isToPlacement) ? ((ToPlacement) boundary).getInsideBoundaryElement() : ((ToReplacement) boundary).getInsideBoundaryElement();
+			for(ObjectHandle oh : objectHandles){
+				eObject = oh.getMOFRef();
+				if(eObject != null){
+					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+					map.put(eObject, (isToPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT);
+					list.add(map);
+				}else{
+					Context.eINSTANCE.logger.error("inside boundary element reference is null for toBoundary" + boundary);
+				}
+			}
+		}else if(boundary instanceof FromPlacement || boundary instanceof FromReplacement){
+			boolean isFromPlacement = (boundary instanceof FromPlacement) ? true : false;
+			if(isFromPlacement && LoaderUtility.isNullBoundary(boundary))
+				return list;
+			
+			EObject eObject = (isFromPlacement) ? ((FromPlacement) boundary).getInsideBoundaryElement().getMOFRef() : ((FromReplacement) boundary).getInsideBoundaryElement().getMOFRef();
+			if(eObject != null){
+				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+				map.put(eObject, (isFromPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT);
+				list.add(map);
+			}else{
+				Context.eINSTANCE.logger.error("inside boundary element reference is null for fromBoundary" + boundary);
+			}
+			
+			EList<ObjectHandle> objectHandles = (isFromPlacement) ? ((FromPlacement) boundary).getOutsideBoundaryElement() : ((FromReplacement) boundary).getOutsideBoundaryElement();
+			for(ObjectHandle oh : objectHandles){
+				eObject = oh.getMOFRef();
+				if(eObject != null){
+					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+					map.put(eObject, (isFromPlacement) ? IBVREnabledEditor.HL_PLACEMENT_OUT : IBVREnabledEditor.HL_REPLACEMENT_OUT);
+					list.add(map);
+				}else{
+					Context.eINSTANCE.logger.error("outside boundary element reference is null for fromBoundary" + boundary);
+				}
+			}
+		}
+		return list;
 	}
 	
 	@Override
@@ -535,8 +594,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public EList<HashMap<EObject, Integer>> findElementsToHighlight(NamedElement fragment) {
+	public EList<HashMap<EObject, Integer>> findFragmentElementsToHighlight(NamedElement fragment) {
 		EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return objectsToHighlightList;
+		
     	if(fragment instanceof PlacementFragment){
     		PlacementFragment placement = (PlacementFragment) fragment;            		
     		EList<PlacementBoundaryElement> boundaries = placement.getPlacementBoundaryElement();
@@ -549,7 +611,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
     				if(!LoaderUtility.isNullBoundary(toPlacement)){
     					EObject eObject = toPlacement.getOutsideBoundaryElement().getMOFRef();
     					if(eObject == null){
-    						Context.eINSTANCE.logger.debug("outside boundary element refrence is null for toPlacement" + toPlacement);
+    						Context.eINSTANCE.logger.error("outside boundary element refrence is null for toPlacement" + toPlacement);
     					}else{
     						outsideInsideElements.add(eObject);
     					}
@@ -557,13 +619,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
     					for(ObjectHandle objectHandle : objectHandles){
     						eObject = objectHandle.getMOFRef();
     						if(eObject == null){
-    							Context.eINSTANCE.logger.debug("inside boundary element refrence is null for toPlacement" + toPlacement);
+    							Context.eINSTANCE.logger.error("inside boundary element refrence is null for toPlacement" + toPlacement);
     						}else{
     							insideElements.add(eObject);
     						}
     					}
     				}else{
-    					Context.eINSTANCE.logger.debug("toPlacement can not be null boundary, placement " + placement);
+    					Context.eINSTANCE.logger.error("toPlacement can not be null boundary, placement " + placement);
     				}
     			}
     			if(boundary instanceof FromPlacement){
@@ -579,7 +641,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
     					for(ObjectHandle objectHandle : objectHandles){
     						eObject = objectHandle.getMOFRef();
     						if(eObject == null){
-    							Context.eINSTANCE.logger.debug("outside boundary element refrence is null for fromPlacement" + fromPlacement);
+    							Context.eINSTANCE.logger.error("outside boundary element refrence is null for fromPlacement" + fromPlacement);
     						}else{
     							outsideOutsideElements.add(eObject);
     						}
@@ -648,7 +710,31 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void highlightElements(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return;
 		 Context.eINSTANCE.highlightObjects(objectsToHighlightList);
+	}
+	
+	@Override
+	public EList<HashMap<EObject, Integer>> findBoundaryElementsToHighlight(NamedElement binding) {
+		EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return objectsToHighlightList;
+		
+		if(binding instanceof ToBinding){
+			ToBinding toBinding = (ToBinding) binding;
+			ToPlacement toPlacement = toBinding.getToPlacement();
+			ToReplacement toReplacement = toBinding.getToReplacement();
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(toPlacement));
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(toReplacement));
+		}else{
+			FromBinding fromBinding = (FromBinding) binding;
+			FromPlacement fromPlacement = fromBinding.getFromPlacement();
+			FromReplacement fromReplacement = fromBinding.getFromReplacement();
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(fromPlacement));
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(fromReplacement));
+		}
+		return objectsToHighlightList;
 	}
 	
 }

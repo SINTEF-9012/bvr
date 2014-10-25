@@ -6,7 +6,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
@@ -20,10 +19,7 @@ public class SubFragTableRowSelectionEvent implements ListSelectionListener {
 	}
 	
 	@Override
-	public void valueChanged(ListSelectionEvent event) {
-		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
-			return;
-		
+	public void valueChanged(ListSelectionEvent event) {		
 		if(!event.getValueIsAdjusting()){
             ArrayList<Integer> selectedIndexes = new ArrayList<Integer>();
 			ListSelectionModel listSelectionModel = (ListSelectionModel) event.getSource();
