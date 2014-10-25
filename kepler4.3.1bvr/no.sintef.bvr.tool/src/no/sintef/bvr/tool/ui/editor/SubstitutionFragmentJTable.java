@@ -42,7 +42,7 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 		setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
 		
 		tableModel.addTableModelListener(new SubFragTableEvent(controller));
-		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(this));
+		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(controller));
 		
 		getTableHeader().setReorderingAllowed(false);
 	}

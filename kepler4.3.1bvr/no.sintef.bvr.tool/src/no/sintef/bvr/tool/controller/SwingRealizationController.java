@@ -11,6 +11,7 @@ import javax.swing.JTabbedPane;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import bvr.BVRModel;
 import bvr.FragmentSubstitution;
@@ -320,6 +321,26 @@ public class SwingRealizationController implements
 					JLabel label = (JLabel) modifiedCell.getLabel();
 					toolModel.updateName(vp, label.getText());
 				}
+			}
+		});
+		return command;		
+	}
+
+	@Override
+	public SimpleExeCommandInterface createHighlightFragmentElementsCommand(ArrayList<Integer> _selectedRows) {
+		final ArrayList<Integer> selectedRows = _selectedRows;
+		final EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+	            SubFragTableModel model =  (SubFragTableModel) tableSubstFragm.getModel();
+	            ArrayList<ArrayList<Object>> data = model.getData();
+				for(Integer index : selectedRows){
+	            	DataNamedElementItem subFragDataElement = (DataNamedElementItem) data.get(index).get(Constants.SUB_FRAG_FRAG_CLMN);
+	            	NamedElement fragment = subFragDataElement.getNamedElement();
+	            	objectsToHighlightList.addAll(toolModel.findElementsToHighlight(fragment));
+				}
+				toolModel.highlightElements(objectsToHighlightList);
 			}
 		});
 		return command;		

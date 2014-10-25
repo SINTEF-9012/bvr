@@ -1,9 +1,11 @@
 package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
@@ -243,6 +245,14 @@ abstract public class BVRToolModel {
 	}
 
 	public void updateFragmentSubstitutionBinding(VariationPoint vp, VSpec vSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public EList<HashMap<EObject, Integer>> findElementsToHighlight(NamedElement fragment) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void highlightElements(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }
