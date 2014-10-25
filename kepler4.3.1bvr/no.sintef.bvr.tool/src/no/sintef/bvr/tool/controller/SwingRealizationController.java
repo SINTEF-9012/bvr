@@ -33,6 +33,7 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
+import no.sintef.bvr.tool.primitive.impl.ObserverDataBulk;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.dropdown.BindingEditorDropDownListener;
@@ -344,5 +345,22 @@ public class SwingRealizationController implements
 			}
 		});
 		return command;		
+	}
+
+	@Override
+	public void fragmentSubstitutionRowSelected(int _selectedIndex) {
+		FragSubTableModel sourceModel = (FragSubTableModel) tableFragmSubst.getModel();
+		ArrayList<ArrayList<DataItem>> sourceData = sourceModel.getData();
+		ArrayList<DataItem> selectedRow = sourceData.get(_selectedIndex);
+		DataNamedElementItem selectedFragSubData = (DataNamedElementItem) selectedRow.get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
+		NamedElement variationPoint = selectedFragSubData.getNamedElement();
+		if(variationPoint instanceof FragmentSubstitution){
+			ObserverDataBulk data = new ObserverDataBulk();
+			FragmentSubstitution fragmentSubstitution = (FragmentSubstitution) variationPoint;
+			data.setDataField("selectedFragmentSubstitution", fragmentSubstitution);
+			Context.eINSTANCE.getViewChangeManager().updateSubjects(data, tableFragmSubst);
+		}else{
+			throw new UnsupportedOperationException("FragmentSubstitution should be passed when you select a row, but we have " + variationPoint);
+		}
 	}
 }

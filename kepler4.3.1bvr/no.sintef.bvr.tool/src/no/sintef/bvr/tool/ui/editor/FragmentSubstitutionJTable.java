@@ -48,7 +48,7 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 		setDefaultEditor(DataVSpecItem.class, new FragSubVSpecTableCellEditor());
 		
 		tableModel.addTableModelListener(new FragSubTableEvent(controller));
-		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(this));
+		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(controller));
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getTableHeader().setReorderingAllowed(false);
 	}

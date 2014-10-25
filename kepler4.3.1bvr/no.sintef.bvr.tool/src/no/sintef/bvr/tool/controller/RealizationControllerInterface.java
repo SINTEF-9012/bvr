@@ -29,5 +29,7 @@ public interface RealizationControllerInterface {
 
 	public SimpleExeCommandInterface createUpdateSubstitutionFragmentCommand(int _rowIndex, int _columnIndex);
 	
-	public SimpleExeCommandInterface createHighlightFragmentElementsCommand(ArrayList<Integer> selectedRows);
+	public SimpleExeCommandInterface createHighlightFragmentElementsCommand(ArrayList<Integer> _selectedRows);
+	
+	public void fragmentSubstitutionRowSelected(int _selectedIndex);
 }
