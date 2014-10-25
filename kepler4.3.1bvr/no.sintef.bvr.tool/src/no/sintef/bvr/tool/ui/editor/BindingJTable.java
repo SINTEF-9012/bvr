@@ -48,7 +48,7 @@ public class BindingJTable extends JTable implements Observer {
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		getSelectionModel().addListSelectionListener(new BindingRowSelectionEvent(controller));
-		tableModel.addTableModelListener(new BindingModelTableEvent(this));	
+		tableModel.addTableModelListener(new BindingModelTableEvent(controller));	
 	}
 	
 	@Override

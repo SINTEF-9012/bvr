@@ -14,10 +14,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import bvr.BVRModel;
+import bvr.BoundaryElementBinding;
 import bvr.FragmentSubstitution;
+import bvr.FromBinding;
+import bvr.FromPlacement;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.ReplacementFragmentType;
+import bvr.ToBinding;
+import bvr.ToReplacement;
 import bvr.VSpec;
 import bvr.Variabletype;
 import bvr.VariationPoint;
@@ -29,10 +34,12 @@ import no.sintef.bvr.tool.controller.command.BatchCommandExecutor;
 import no.sintef.bvr.tool.controller.command.CreatePlacement;
 import no.sintef.bvr.tool.controller.command.CreateReplacement;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
+import no.sintef.bvr.tool.primitive.impl.DataBoundaryItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.primitive.impl.ObserverDataBulk;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
@@ -375,5 +382,28 @@ public class SwingRealizationController implements
 		NamedElement binding = bindingCell.getNamedElement();
 		objectsToHighlightList.addAll(toolModel.findBoundaryElementsToHighlight(binding));
 		toolModel.highlightElements(objectsToHighlightList);
+	}
+
+	@Override
+	public SimpleExeCommandInterface createUpdateBindingCommand(int _rowIndex, int _columnIndex) {
+		final int columnIndex = _columnIndex;
+		final int rowIndex = _rowIndex;
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				BindingTableModel model = (BindingTableModel) bindingEditor.getModel();
+				ArrayList<ArrayList<Object>> data = model.getData();
+				DataBindingItem bindingCell = (DataBindingItem) data.get(rowIndex).get(Constants.BINDING_TYPE_CLMN);
+				BoundaryElementBinding binding = (BoundaryElementBinding) bindingCell.getNamedElement();
+				if(columnIndex == Constants.BINDING_VALUE_CLMN){
+					DataBoundaryItem valueCell = (DataBoundaryItem) data.get(rowIndex).get(Constants.BINDING_VALUE_CLMN);
+					NamedElement boundary = valueCell.getNamedElement();
+					toolModel.updateBindingBoundary(binding, boundary);
+				}else{
+					throw new UnsupportedOperationException("edition operaton for this celll is not implemented");
+				}	
+			}
+		});
+		return command;
 	}
 }

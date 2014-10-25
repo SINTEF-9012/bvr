@@ -43,6 +43,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
@@ -735,6 +736,19 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(fromReplacement));
 		}
 		return objectsToHighlightList;
+	}
+	
+	@Override
+	public void updateBindingBoundary(BoundaryElementBinding binding, NamedElement boundary) {
+		if(binding instanceof ToBinding && boundary instanceof ToReplacement){
+			ToBinding toBinding = (ToBinding) binding;
+			Context.eINSTANCE.getEditorCommands().setToBindingToReplacement(toBinding, (ToReplacement) boundary);
+		}else if(binding instanceof FromBinding && boundary instanceof FromPlacement) {
+			FromBinding fromBinding = (FromBinding) binding;
+			Context.eINSTANCE.getEditorCommands().setFromBindingFromPlacement(fromBinding, (FromPlacement) boundary);
+		}else{
+			throw new UnexpectedException("binding or boundary is not of the right type");
+		}
 	}
 	
 }

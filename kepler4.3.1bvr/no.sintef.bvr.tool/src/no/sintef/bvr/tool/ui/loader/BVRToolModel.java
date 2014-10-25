@@ -12,6 +12,7 @@ import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.FragmentSubstitution;
@@ -258,6 +259,10 @@ abstract public class BVRToolModel {
 	}
 
 	public EList<HashMap<EObject, Integer>> findBoundaryElementsToHighlight(NamedElement binding) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateBindingBoundary(BoundaryElementBinding binding, NamedElement boundary) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

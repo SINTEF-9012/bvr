@@ -34,4 +34,6 @@ public interface RealizationControllerInterface {
 	public void fragmentSubstitutionRowSelected(int _selectedIndex);
 	
 	public void highlightBoundaryElements(int _selectedIndex);
+	
+	public SimpleExeCommandInterface createUpdateBindingCommand(int rowIndex, int columnIndex);
 }
