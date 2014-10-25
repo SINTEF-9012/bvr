@@ -8,6 +8,7 @@ import javax.swing.ListSelectionModel;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.exception.AbstractError;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.DataItem;
@@ -56,7 +57,6 @@ public class BindingJTable extends JTable implements Observer {
 		if(subject instanceof SelectedFragmentSubstitutionSubject){
 			selectedFragmentSubstitution = ((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution();
 			updateBindingEditor();
-
 		}
 		if(subject instanceof BVRModelSubject){
 			updateBindingEditor();
@@ -64,16 +64,12 @@ public class BindingJTable extends JTable implements Observer {
 		
 	}
 
-	private void updateBindingEditor(){
-		try {
-			((BindingTableModel) getModel()).updateBindingEditor(selectedFragmentSubstitution);
-			BindingBoundariesComboBoxTableCellEditor editor = (BindingBoundariesComboBoxTableCellEditor) getDefaultEditor(DataBoundaryItem.class);
-			HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
-			if(selectedFragmentSubstitution != null)
-				boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(selectedFragmentSubstitution);
-			editor.setData(boundariesMap);
-		} catch (AbstractError e) {
-			throw new UnsupportedOperationException(e);
-		}
+	private void updateBindingEditor() {
+		((BindingTableModel) getModel()).updateBindingEditor(selectedFragmentSubstitution);
+		BindingBoundariesComboBoxTableCellEditor editor = (BindingBoundariesComboBoxTableCellEditor) getDefaultEditor(DataBoundaryItem.class);
+		HashMap<DataItem, ArrayList<DataItem>> boundariesMap = null;
+		if(selectedFragmentSubstitution != null)
+			boundariesMap = BoundariesDropDownCalculator.calulateAllowedBoundaries(selectedFragmentSubstitution);
+		editor.setData(boundariesMap);
 	}
 }
