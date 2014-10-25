@@ -241,4 +241,8 @@ abstract public class BVRToolModel {
 	public void generateBindings(FragmentSubstitution fragmentSubstitution) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void updateFragmentSubstitutionBinding(VariationPoint vp, VSpec vSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

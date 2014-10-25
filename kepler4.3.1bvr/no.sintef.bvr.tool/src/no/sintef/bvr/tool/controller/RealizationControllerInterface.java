@@ -22,4 +22,8 @@ public interface RealizationControllerInterface {
 	public void createFragmentSubstitution();
 
 	public SimpleExeCommandInterface createGenerateBindingsCommand();
+	
+	public SimpleExeCommandInterface createUpdateFragmentSubstitutionCommand(int rowIndex, int columnIndex);
+
+	public SimpleExeCommandInterface createUpdateSubstitutionFragmentCommand(int _rowIndex, int _columnIndex);
 }

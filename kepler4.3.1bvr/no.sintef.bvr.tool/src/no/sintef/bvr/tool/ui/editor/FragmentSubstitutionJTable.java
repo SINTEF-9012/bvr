@@ -15,6 +15,7 @@ import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
 import no.sintef.bvr.tool.common.NullVSpec;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
@@ -33,8 +34,10 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 	 */
 	private static final long serialVersionUID = 6490422017472288712L;
 	private FragSubTableModel tableModel;
+	private BVRNotifiableController controller;
 	
-	public FragmentSubstitutionJTable() {
+	public FragmentSubstitutionJTable(BVRNotifiableController _controller) {
+		controller = _controller;
 		tableModel = new FragSubTableModel();
 		setModel(tableModel);
 		
@@ -44,7 +47,7 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 		setDefaultRenderer(DataNamedElementItem.class, new FragSubTableCellRenderer());
 		setDefaultEditor(DataVSpecItem.class, new FragSubVSpecTableCellEditor());
 		
-		tableModel.addTableModelListener(new FragSubTableEvent(this));
+		tableModel.addTableModelListener(new FragSubTableEvent(controller));
 		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(this));
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getTableHeader().setReorderingAllowed(false);

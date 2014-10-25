@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -16,10 +17,12 @@ import bvr.FragmentSubstitution;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.ReplacementFragmentType;
+import bvr.VSpec;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.Messages;
+import no.sintef.bvr.tool.common.NullVSpec;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.BatchCommandExecutor;
 import no.sintef.bvr.tool.controller.command.CreatePlacement;
@@ -78,8 +81,8 @@ public class SwingRealizationController implements
 	}
 	
 	private void loadBVRRelalizationView(BVRModel model) {
-		tableFragmSubst = new FragmentSubstitutionJTable();
-		tableSubstFragm = new SubstitutionFragmentJTable();
+		tableFragmSubst = new FragmentSubstitutionJTable(controller);
+		tableSubstFragm = new SubstitutionFragmentJTable(controller);
 		bindingEditor = new BindingJTable();
 		kernel.setFragmentSubstitutionTable(tableFragmSubst);
 		kernel.setSubsitutionFragmentTable(tableSubstFragm);
@@ -273,5 +276,52 @@ public class SwingRealizationController implements
 			}
 		});
 		return command;
+	}
+
+	@Override
+	public SimpleExeCommandInterface createUpdateFragmentSubstitutionCommand(int _rowIndex, int _columnIndex) {
+		final int columnIndex = _columnIndex;
+		final int rowIndex = _rowIndex;
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				FragSubTableModel model = (FragSubTableModel) tableFragmSubst.getModel();
+				DataItem fragSubCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VARIATION_POINT_CLMN);
+				VariationPoint vp = (VariationPoint) fragSubCell.getNamedElement();
+				if(columnIndex == Constants.FRAG_SUBS_VARIATION_POINT_CLMN){
+					JLabel label = (JLabel) fragSubCell.getLabel();
+					toolModel.updateName(vp, label.getText());
+				}
+				if(columnIndex == Constants.FRAG_SUBS_VSPEC_CLMN){
+					DataItem vspeCell = model.getData().get(rowIndex).get(Constants.FRAG_SUBS_VSPEC_CLMN);
+					VSpec vSpec = (VSpec) vspeCell.getNamedElement();
+					if(vSpec instanceof NullVSpec){
+						toolModel.updateFragmentSubstitutionBinding(vp, null);
+					}else{
+						toolModel.updateFragmentSubstitutionBinding(vp, vSpec);
+					}
+				}
+			}
+		});
+		return command;
+	}
+	
+	@Override
+	public SimpleExeCommandInterface createUpdateSubstitutionFragmentCommand(int _rowIndex, int _columnIndex) {
+		final int columnIndex = _columnIndex;
+		final int rowIndex = _rowIndex;
+		BatchCommandExecutor command = new BatchCommandExecutor(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				if(columnIndex == Constants.SUB_FRAG_FRAG_CLMN){
+					SubFragTableModel tableModel = (SubFragTableModel) tableSubstFragm.getModel();
+					DataItem modifiedCell = (DataItem) tableModel.getData().get(rowIndex).get(columnIndex);
+					NamedElement vp = (NamedElement) modifiedCell.getNamedElement();
+					JLabel label = (JLabel) modifiedCell.getLabel();
+					toolModel.updateName(vp, label.getText());
+				}
+			}
+		});
+		return command;		
 	}
 }

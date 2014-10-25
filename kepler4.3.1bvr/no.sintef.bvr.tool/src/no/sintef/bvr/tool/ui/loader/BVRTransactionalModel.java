@@ -267,8 +267,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			Target target = TargetFacade.eINSTANCE.testVSpecTarget((VSpec) namedElement);
 			Context.eINSTANCE.getEditorCommands().setName(target, name);
 		}
-		
-		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+		if(!namedElement.getName().equals(name)){
+			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+		}
 	}
 	
 	@Override
@@ -460,5 +461,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void generateBindings(FragmentSubstitution fragmentSubstitution) {
 		BindingCalculatorContext bindingCalculator = new BindingCalculatorContext();
 		bindingCalculator.generateBindings(fragmentSubstitution);
+	}
+	
+	@Override
+	public void updateFragmentSubstitutionBinding(VariationPoint vp, VSpec vSpec) {
+		Context.eINSTANCE.getEditorCommands().setBindingVariationPoint(vp, vSpec);
 	}
 }

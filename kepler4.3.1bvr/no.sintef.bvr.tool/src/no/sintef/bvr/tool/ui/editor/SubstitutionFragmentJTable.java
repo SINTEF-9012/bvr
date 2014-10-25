@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import org.eclipse.emf.common.util.EList;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
@@ -30,15 +31,17 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 	private SubFragTableModel tableModel;
 	private FragmentSubstitutionJTable fragSubJTable;
 	private FragmentSubstitution selectedFragmentSubstitution;
+	BVRNotifiableController controller;
 
-	public SubstitutionFragmentJTable(){
+	public SubstitutionFragmentJTable(BVRNotifiableController _controller){
+		controller = _controller;
 		tableModel = new SubFragTableModel(new ArrayList<NamedElement>());
 		setModel(tableModel);
 		
 		setDefaultEditor(DataNamedElementItem.class, new SubFragTextTabelCellEditor());
 		setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
 		
-		tableModel.addTableModelListener(new SubFragTableEvent(this));
+		tableModel.addTableModelListener(new SubFragTableEvent(controller));
 		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(this));
 		
 		getTableHeader().setReorderingAllowed(false);
