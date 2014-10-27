@@ -6,16 +6,16 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 
-public class AddViolatedOpaqueConstraint implements Command {
+public class AddViolatedOpaqueConstraint implements UICommand {
 
 	BVRUIKernel rootPanel;
 	OpaqueConstraint oc;
@@ -23,7 +23,7 @@ public class AddViolatedOpaqueConstraint implements Command {
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		this.rootPanel = rootPanel;
 		this.oc = (OpaqueConstraint) p;
 		this.parent = parent;	

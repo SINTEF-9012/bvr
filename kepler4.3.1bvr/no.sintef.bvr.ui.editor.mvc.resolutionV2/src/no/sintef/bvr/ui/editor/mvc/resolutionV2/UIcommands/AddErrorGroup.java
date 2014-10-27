@@ -5,8 +5,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
-import no.sintef.bvr.tool.ui.command.Command;
+
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -17,7 +16,7 @@ import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.VNode;
 import bvr.VSpec;
-public class AddErrorGroup extends AddGroupMultiplicity implements Command {
+public class AddErrorGroup implements UICommand {
 
 	protected BVRUIKernel rootPanel;
 	protected VSpec v;
@@ -25,7 +24,7 @@ public class AddErrorGroup extends AddGroupMultiplicity implements Command {
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		if(p instanceof VSpec){
 			this.rootPanel = rootPanel;
 			this.v = (VSpec) p;

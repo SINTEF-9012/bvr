@@ -1,20 +1,31 @@
 package no.sintef.bvr.tool.ui.loader;
 
 import java.io.File;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.FragmentSubstitution;
 import bvr.NamedElement;
+import bvr.PlacementFragment;
+import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
+import bvr.Variabletype;
+import bvr.VariationPoint;
 
 abstract public class BVRToolModel {
 	protected SPLCABVRModel bvrm;
@@ -211,6 +222,47 @@ abstract public class BVRToolModel {
 	}
 
 	public void removeNamedElement(NamedElement element) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void deleteReplacements(EList<Variabletype> replacements) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void deletePlacements(EList<VariationPoint> placements) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void deleteFragments(EList<VariationPoint> fslist) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void createFragmentSubstitution(PlacementFragment placement,
+			ReplacementFragmentType replacement) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void generateBindings(FragmentSubstitution fragmentSubstitution) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateFragmentSubstitutionBinding(VariationPoint vp, VSpec vSpec) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public EList<HashMap<EObject, Integer>> findFragmentElementsToHighlight(NamedElement fragment) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void highlightElements(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public EList<HashMap<EObject, Integer>> findBoundaryElementsToHighlight(NamedElement binding) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void updateBindingBoundary(BoundaryElementBinding binding, NamedElement boundary) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

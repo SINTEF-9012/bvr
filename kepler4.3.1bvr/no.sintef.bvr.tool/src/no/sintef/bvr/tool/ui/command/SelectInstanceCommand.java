@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import bvr.NamedElement;
 import bvr.VSpec;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.SelectElement;

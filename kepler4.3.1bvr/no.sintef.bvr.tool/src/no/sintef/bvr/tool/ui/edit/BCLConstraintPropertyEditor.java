@@ -10,8 +10,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
-import no.sintef.bvr.tool.ui.command.UpdateConstraint;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.BCLConstraint;
 

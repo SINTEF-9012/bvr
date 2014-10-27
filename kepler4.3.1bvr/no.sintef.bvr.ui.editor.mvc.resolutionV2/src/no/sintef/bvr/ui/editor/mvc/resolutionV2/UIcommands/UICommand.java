@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands;
 
 import java.util.List;
 import java.util.Map;
@@ -23,10 +23,12 @@ import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionToolView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 
-public interface Command {
+public interface UICommand {
 
-    Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view);
+    UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view);
     
     JComponent execute();
 

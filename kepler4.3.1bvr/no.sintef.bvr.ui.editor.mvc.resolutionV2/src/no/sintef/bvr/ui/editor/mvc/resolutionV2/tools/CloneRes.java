@@ -1,6 +1,7 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
-import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
+
+import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.CompoundResolution;
@@ -43,8 +44,8 @@ public class CloneRes {
 		} else if (copyFrom instanceof ValueResolution) {
 			copyTo = BvrFactory.eINSTANCE.createValueResolution();
 			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();
-			String vString = PrimitiveTypeFactory.getInstance().getValueAsString(((ValueResolution) copyFrom));
-			PrimitiveValueSpecification value = PrimitiveTypeFactory.getInstance().makeValueSpecification(vSpecFound, vString);
+			String vString = PrimitiveTypeFacade.getInstance().getValueAsString(((ValueResolution) copyFrom));
+			PrimitiveValueSpecification value = PrimitiveTypeFacade.getInstance().makeValueSpecification(vSpecFound, vString);
 			//PrimitiveTypeEnum type = ((PrimitveType) ((Variable) vSpecFound).getType()).getType();
 			// Try searching for a type
 			//System.out.println("copyFrom: " + copyFrom);

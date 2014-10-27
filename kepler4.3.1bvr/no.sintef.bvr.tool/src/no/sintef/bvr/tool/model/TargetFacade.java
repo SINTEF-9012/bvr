@@ -12,13 +12,13 @@ import bvr.Target;
 import bvr.VClassifier;
 import bvr.VSpec;
 
-public class TargetFactory {
+public class TargetFacade {
 	
-	public static TargetFactory eINSTANCE = getInstance();
+	public static TargetFacade eINSTANCE = getInstance();
 	
-	private static TargetFactory getInstance() {
+	private static TargetFacade getInstance() {
 		if(eINSTANCE == null)
-			eINSTANCE = new TargetFactory();
+			eINSTANCE = new TargetFacade();
 		return eINSTANCE;
 	}
 	

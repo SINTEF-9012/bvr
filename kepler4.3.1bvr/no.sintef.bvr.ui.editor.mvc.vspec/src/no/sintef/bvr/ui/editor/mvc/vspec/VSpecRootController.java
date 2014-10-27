@@ -15,7 +15,6 @@ import no.sintef.bvr.tool.controller.VSpecControllerInterface;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import bvr.BVRModel;
 
 
 public class VSpecRootController extends BVRToolAbstractController {
@@ -37,16 +36,6 @@ public class VSpecRootController extends BVRToolAbstractController {
 	
 	public EditableModelPanel getEditorRootPanel(){
 		return controller.getEditorRoolPanel();
-	}
-	
-	@Override
-	public BVRModel getBVRModel() {
-		return m.getBVRModel();
-	}
-
-	@Override
-	public BVRToolModel getBVRToolModel() {
-		return m;
 	}
 	
 	@Override

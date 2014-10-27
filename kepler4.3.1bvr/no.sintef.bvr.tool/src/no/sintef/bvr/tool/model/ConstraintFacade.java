@@ -21,16 +21,16 @@ import bvr.TargetRef;
 import bvr.VNode;
 
 
-public class ConstraintFactory {
+public class ConstraintFacade {
 	private static int constraintCount = 0;
 	private static final String defaultName = "Constraint";
 	private static final String defaultText = "[null]";
 	
-	public static ConstraintFactory eINSTANCE = getInstance();
+	public static ConstraintFacade eINSTANCE = getInstance();
 	
-	private static ConstraintFactory getInstance() {
+	private static ConstraintFacade getInstance() {
 		if(eINSTANCE == null)
-			eINSTANCE = new ConstraintFactory();
+			eINSTANCE = new ConstraintFacade();
 		return eINSTANCE;
 	}
 

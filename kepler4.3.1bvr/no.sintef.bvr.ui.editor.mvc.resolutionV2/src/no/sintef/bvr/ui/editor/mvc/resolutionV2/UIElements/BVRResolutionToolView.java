@@ -5,7 +5,9 @@ import java.util.List;
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 
 
+
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import bvr.BVRModel;
 //import no.sintef.bvr.tool.ui.loader.BVRModel;
 //import bvr.ConfigurableUnit;
 import bvr.Constraint;
@@ -25,5 +27,6 @@ public interface BVRResolutionToolView extends BVRNotifiableController{
 		
 		public int getIncrementedNameCounter();
 		public List<Constraint> getInvalidConstraints();
+		public BVRModel getBVRModel();
 
 }

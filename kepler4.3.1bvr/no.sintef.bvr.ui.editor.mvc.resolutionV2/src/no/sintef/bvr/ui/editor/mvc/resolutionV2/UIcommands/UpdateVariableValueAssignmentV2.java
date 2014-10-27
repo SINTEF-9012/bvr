@@ -7,10 +7,10 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.NamedElement;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
@@ -19,17 +19,40 @@ import bvr.Variable;
 //import bvr.VariableValueAssignment;
 //import bvr.common.PrimitiveTypeHandler;
 
-public class UpdateVariableValueAssignmentV2 extends UpdateVariableValueAssignment  {
+public class UpdateVariableValueAssignmentV2 implements UICommand  {
+	protected BVRUIKernel rootPanel;
+	protected JComponent parent;
+	protected NamedElement vc;
+	protected Map<JComponent, NamedElement> vmMap;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
+	protected BVRNotifiableController view;
+	
+	protected String name;
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
-		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
+			List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
+		if(p instanceof NamedElement){
+			this.rootPanel = rootPanel;
+			this.vc = (NamedElement) p;
+			this.parent = parent;
+			
+			this.name = vc.getName();
+		}
+		
+		this.vmMap = vmMap;
+		this.nodes = nodes;
+		this.bindings = bindings;
+		this.view = view;
+		
+		return this;
+		
 	}
 
 	@Override
 	public JComponent execute() {
-		super.execute();
+
 		return null;
 	}
 

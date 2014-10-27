@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
@@ -7,6 +7,9 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.VSpecControllerInterface;
+import no.sintef.bvr.tool.ui.command.CommandMouseListener;
+import no.sintef.bvr.tool.ui.command.Helper;
+import no.sintef.bvr.tool.ui.command.SelectInstanceCommand;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;

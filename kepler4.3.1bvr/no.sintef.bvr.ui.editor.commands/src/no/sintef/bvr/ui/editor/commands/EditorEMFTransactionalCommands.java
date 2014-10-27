@@ -403,21 +403,21 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationType);
 		editingDomain.getCommandStack().execute(cmd);
+	} */
+
+	@Override
+	public void removeOwenedVariationPoints(BVRModel model, EList<VariationPoint> variationPoints) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_RealizationModel(), variationPoints);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints) {
+	public void removeOwnedVariationTypes(BVRModel model, EList<Variabletype> variationTypes) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoints);
-		editingDomain.getCommandStack().execute(cmd);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getVPackage_PackageElement(), variationTypes);
+		testCommandExecution(editingDomain, cmd);
 	}
-
-	@Override
-	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationTypes);
-		editingDomain.getCommandStack().execute(cmd);
-	}*/
 
 	@Override
 	public void addBoudaryElementBinding(
@@ -624,7 +624,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVNode_Variable(), var);
 		testCommandExecution(editingDomain, cmd);
-		
 	}
 
 	@Override
@@ -789,6 +788,13 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_VariabilityModel(), compoundNode);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void addRealizationVariationPoint(BVRModel model, VariationPoint variationPoint) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_RealizationModel(), variationPoint);
 		testCommandExecution(editingDomain, cmd);
 	}
 

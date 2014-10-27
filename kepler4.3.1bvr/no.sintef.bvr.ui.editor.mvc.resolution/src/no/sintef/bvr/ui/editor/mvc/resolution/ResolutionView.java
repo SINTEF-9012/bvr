@@ -103,12 +103,12 @@ public class ResolutionView extends BVRToolAbstractController implements BVRReso
 
 
 
-	@Override
+	//@Override
 	public BVRModel getBVRModel() {
 		return m.getBVRModel();
 	}
 	
-	@Override
+	//@Override
 	public BVRToolModel getBVRToolModel() {
 		return m;
 	}

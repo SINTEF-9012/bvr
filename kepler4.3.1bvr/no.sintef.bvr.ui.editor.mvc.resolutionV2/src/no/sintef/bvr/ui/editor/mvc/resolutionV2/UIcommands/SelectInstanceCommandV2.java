@@ -20,13 +20,13 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.framework.SelectElement;
 import bvr.NamedElement;
 
-public class SelectInstanceCommandV2 implements Command {
+public class SelectInstanceCommandV2 implements UICommand {
 
     private BVRUIKernel kernel;
     private static SelectElement currentlySelected = null;//only one element can be selected
@@ -39,7 +39,7 @@ public class SelectInstanceCommandV2 implements Command {
 			currentlySelected.setSelected(false);
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		
 		kernel = rootPanel;
 		

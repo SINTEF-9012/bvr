@@ -15,10 +15,7 @@
 package no.sintef.bvr.tool.ui.edit;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dialog;
-import java.awt.GradientPaint;
-import java.awt.Point;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -30,7 +27,7 @@ import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 import org.jdesktop.swingx.JXPanel;
 
-import com.explodingpixels.macwidgets.IAppWidgetFactory;
+
 
 
 public class BVROptionsEditor extends JPanel {
@@ -45,21 +42,12 @@ public class BVROptionsEditor extends JPanel {
 
     public BVROptionsEditor() {
     	modelPanel = new BVRModelPanel();
-    	//this.setBackground(Color.WHITE);
-
 
         leftpanel.setOpaque(false);
         
-        /*leftpanel.setLayout(new BorderLayout());
-        GradientPaint grad = new GradientPaint(new Point(0, 0), new Color(60, 60, 60), new Point(0, getHeight()), new Color(51, 51, 51));
-        MattePainter matte = new MattePainter(grad);
-        CompoundPainter p = new CompoundPainter(matte);
-        leftpanel.setBackgroundPainter(p);*/
-
         this.setLayout(new BorderLayout());
 
         JScrollPane scrollpane = new JScrollPane();
-        IAppWidgetFactory.makeIAppScrollPane(scrollpane);
         editableModelPanel = new EditableModelPanel(scrollpane);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                 leftpanel, editableModelPanel);
@@ -70,8 +58,6 @@ public class BVROptionsEditor extends JPanel {
         splitPane.setDividerLocation(180);
         splitPane.setResizeWeight(0.0);
         splitPane.setBorder(null);
-       // splitPane.setBackground(Color.WHITE);
-
 
         scrollpane.setOpaque(false);
         scrollpane.getViewport().add(modelPanel);

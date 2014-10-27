@@ -10,9 +10,12 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import bvr.BVRModel;
+import bvr.CompoundNode;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
 import no.sintef.bvr.tool.common.NullVSpec;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
@@ -31,8 +34,10 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 	 */
 	private static final long serialVersionUID = 6490422017472288712L;
 	private FragSubTableModel tableModel;
+	private BVRNotifiableController controller;
 	
-	public FragmentSubstitutionJTable() {
+	public FragmentSubstitutionJTable(BVRNotifiableController _controller) {
+		controller = _controller;
 		tableModel = new FragSubTableModel();
 		setModel(tableModel);
 		
@@ -42,8 +47,8 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 		setDefaultRenderer(DataNamedElementItem.class, new FragSubTableCellRenderer());
 		setDefaultEditor(DataVSpecItem.class, new FragSubVSpecTableCellEditor());
 		
-		tableModel.addTableModelListener(new FragSubTableEvent(this));
-		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(this));
+		tableModel.addTableModelListener(new FragSubTableEvent(controller));
+		getSelectionModel().addListSelectionListener(new FragSubTableRowSelectionEvent(controller));
 		getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		getTableHeader().setReorderingAllowed(false);
 	}
@@ -51,8 +56,10 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 	@Override
 	public void update(Subject subject) {
 		if(subject instanceof BVRModelSubject){
-			BVRModel cu = ((BVRModelSubject) subject).getBVRModel();
-			/*EList<VSpec> vSpecs = getAllVSpec(cu.getOwnedVSpec(), new BasicEList<VSpec>());
+			BVRModel model = ((BVRModelSubject) subject).getBVRModel();
+			CompoundNode root = model.getVariabilityModel();
+			EList<VSpec> vSpecs = getAllVSpec(root.getMember(), new BasicEList<VSpec>());
+			vSpecs.add((VSpec) root);
 			
 			ArrayList<DataVSpecItem> vSpecMap = new ArrayList<DataVSpecItem>();
 			
@@ -67,9 +74,9 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 				}
 			}
 			
-			tableModel.setData(cu.getOwnedVariationPoint(), vSpecMap);
+			tableModel.setData(model.getRealizationModel(), vSpecMap);
 			FragSubVSpecTableCellEditor editor = (FragSubVSpecTableCellEditor) getDefaultEditor(DataVSpecItem.class);
-			editor.setData(vSpecMap);*/
+			editor.setData(vSpecMap);
 		}
 		if(subject instanceof SelectedFragmentSubstitutionSubject){
 			if(((SelectedFragmentSubstitutionSubject) subject).getSelectedFragmentSubstitution() == null){
@@ -78,11 +85,13 @@ public class FragmentSubstitutionJTable extends JTable implements Observer {
 		}
 	}
 	
-	/*private EList<VSpec> getAllVSpec(EList<VSpec> vSpecList, EList<VSpec> result){
-		for(VSpec vSpec : vSpecList){
-			result.add(vSpec);
-			result = getAllVSpec(vSpec.getChild(), result);
+	private EList<VSpec> getAllVSpec(EList<VNode> vNodeList, EList<VSpec> result){
+		for(VNode vNode : vNodeList){
+			if(vNode instanceof VSpec && vNode instanceof CompoundNode){
+				result.add((VSpec) vNode);
+				result = getAllVSpec(((CompoundNode) vNode).getMember(), result);
+			}
 		}
 		return result;
-	}*/
+	}
 }

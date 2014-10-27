@@ -7,14 +7,13 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.NamedElement;
 import bvr.VSpec;
 
-public class UpdateVSpec implements Command {
+public class UpdateVSpec implements UICommand {
 
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;
@@ -30,9 +29,9 @@ public class UpdateVSpec implements Command {
 		this.name = name;
 	}
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		
 		//System.out.println("p: " + p);
 		//System.out.println("p instanceof VSpec: " + (p instanceof VSpec));

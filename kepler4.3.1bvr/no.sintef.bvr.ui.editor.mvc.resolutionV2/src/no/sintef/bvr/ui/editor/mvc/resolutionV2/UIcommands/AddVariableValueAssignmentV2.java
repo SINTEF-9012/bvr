@@ -1,31 +1,58 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
+import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.VariableValueAssignmentDropDownListenerV2;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;
 import bvr.IntegerLiteralExp;
+import bvr.NamedElement;
 import bvr.PrimitiveValueSpecification;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 
-public class AddVariableValueAssignmentV2 extends AddVariableValueAssignment implements Command {
-
+public class AddVariableValueAssignmentV2 implements UICommand {
+	protected Map<JComponent, NamedElement> vmMap;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
+	protected BVRNotifiableController view;
+	protected JComponent parent;
+	protected BVRUIKernel rootPanel;
+	//protected VariableValueAssignment c;
+	protected CommandMouseListener listener;
+	protected boolean contains;
 	private boolean stripContains;
 
 	public AddVariableValueAssignmentV2(boolean minContains, boolean stripContains) {
-		super(minContains);
+		this.contains = minContains;
 		this.stripContains = stripContains;
 	}
-
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
+		this.rootPanel = rootPanel;
+		//this.c = (VariableValueAssignment) p;
+		this.parent = parent;
+		
+		this.vmMap = vmMap;
+		this.nodes = nodes;
+		this.bindings = bindings;
+		this.view = view;
+		this.parent = parent;
+		
+		return this;  
+	}
 	@Override
 	public JComponent execute() {
 		return null;

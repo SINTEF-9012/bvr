@@ -19,7 +19,7 @@ import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
-import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
+//import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -50,15 +50,11 @@ import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
-//import bvr.ChoiceResolution;
-//import bvr.ConfigurableUnit;
 import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;
-//import bvr.VInstance;
 import bvr.VSpecResolution;
 
-//import bvr.VariableValueAssignment;
 
 public class ResolutionToolView extends BVRToolAbstractController implements BVRResolutionToolView {
 	private BVRToolModel m;
@@ -492,12 +488,12 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 		return bvrModelSubject;
 	}
 
-	@Override
+	
 	public BVRModel getBVRModel() {
 		return m.getBVRModel();
 	}
 
-	@Override
+	
 	public BVRToolModel getBVRToolModel() {
 		return m;
 	}
@@ -507,3 +503,4 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 	}
 
 }
+

@@ -1,20 +1,22 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.CommandMouseListener;
+import no.sintef.bvr.tool.ui.command.SelectInstanceCommand;
 import no.sintef.bvr.tool.ui.dropdown.BVRModelDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
-
 import bvr.BVRModel;
 import bvr.NamedElement;
 
 
-public class AddBVRModel {
+public class AddBVRModel implements Command {
 
 	private BVRUIKernel rootPanel;
 	private BVRModel model;
@@ -24,17 +26,18 @@ public class AddBVRModel {
 	private List<Pair<JComponent, JComponent>> bindings;
 	private BVRNotifiableController view;
 
-	public AddBVRModel init(BVRModel model, BVRUIKernel rootPanel, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	@Override
+	public Command init(BVRUIKernel rootPanel, Object model, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.rootPanel = rootPanel;
-		this.model = model;
+		this.model = (BVRModel) model;
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
 		this.view = view;
-		
 		return this;
 	}
 
+	@Override
 	public JComponent execute() {
 		BVRModelSymbolPanel cp = new BVRModelSymbolPanel(rootPanel.getModelPanel());
 		nodes.add(cp);

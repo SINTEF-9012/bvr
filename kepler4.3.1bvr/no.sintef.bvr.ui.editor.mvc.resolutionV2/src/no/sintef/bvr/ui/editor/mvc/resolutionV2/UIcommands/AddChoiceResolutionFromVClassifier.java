@@ -10,7 +10,7 @@ import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.AddVInstance;
-import no.sintef.bvr.tool.ui.command.Command;
+
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -24,7 +24,7 @@ import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 //import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 
-public class AddChoiceResolutionFromVClassifier implements Command {
+public class AddChoiceResolutionFromVClassifier implements UICommand {
 	protected BVRUIKernel rootPanel;
 	protected JComponent parent;
 	protected ChoiceResolution cr;
@@ -75,7 +75,7 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 		return cp;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		this.rootPanel = rootPanel;
 		this.cr = (ChoiceResolution) p;
 		this.parent = parent;
@@ -88,14 +88,5 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 		return this;
 	}
 
-	@Override
-	/**
-	 * Deprecated
-	 */
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

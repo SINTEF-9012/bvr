@@ -7,20 +7,21 @@ import javax.swing.JTable;
 import org.eclipse.emf.common.util.EList;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.subject.SelectedFragmentSubstitutionSubject;
 import no.sintef.bvr.tool.ui.command.event.SubFragTableEvent;
 import no.sintef.bvr.tool.ui.command.event.SubFragTableRowSelectionEvent;
 import no.sintef.bvr.tool.ui.model.SubFragTableModel;
 import no.sintef.bvr.tool.ui.renderer.SubFragTableCellRenderer;
-
 import bvr.FragmentSubstitution;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.ReplacementFragmentType;
-import bvr.Variabletype;
+import bvr.VPackageable;
 import bvr.VariationPoint;
 
 public class SubstitutionFragmentJTable extends JTable implements Observer {
@@ -30,16 +31,18 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 	private SubFragTableModel tableModel;
 	private FragmentSubstitutionJTable fragSubJTable;
 	private FragmentSubstitution selectedFragmentSubstitution;
+	BVRNotifiableController controller;
 
-	public SubstitutionFragmentJTable(){
+	public SubstitutionFragmentJTable(BVRNotifiableController _controller){
+		controller = _controller;
 		tableModel = new SubFragTableModel(new ArrayList<NamedElement>());
 		setModel(tableModel);
 		
 		setDefaultEditor(DataNamedElementItem.class, new SubFragTextTabelCellEditor());
 		setDefaultRenderer(DataNamedElementItem.class, new SubFragTableCellRenderer());
 		
-		tableModel.addTableModelListener(new SubFragTableEvent(this));
-		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(this));
+		tableModel.addTableModelListener(new SubFragTableEvent(controller));
+		getSelectionModel().addListSelectionListener(new SubFragTableRowSelectionEvent(controller));
 		
 		getTableHeader().setReorderingAllowed(false);
 	}
@@ -54,15 +57,15 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 	
 	@Override
 	public void update(Subject subject) {
-		/*if(subject instanceof ConfigurableUnitSubject){
+		if(subject instanceof BVRModelSubject){
 			ArrayList<NamedElement> placReplList = new ArrayList<NamedElement>();
-			EList<Variabletype> varTypes = ((ConfigurableUnitSubject) subject).getConfigurableUnit().getOwnedVariabletype();
-			for(Variabletype varType : varTypes){
-				if(varType instanceof ReplacementFragmentType){
-					placReplList.add((ReplacementFragmentType) varType);
+			EList<VPackageable> packageables = ((BVRModelSubject) subject).getBVRModel().getPackageElement();
+			for(VPackageable packagable : packageables){
+				if(packagable instanceof ReplacementFragmentType){
+					placReplList.add((ReplacementFragmentType) packagable);
 				}
 			}
-			EList<VariationPoint> varPoints = ((ConfigurableUnitSubject) subject).getConfigurableUnit().getOwnedVariationPoint();
+			EList<VariationPoint> varPoints = ((BVRModelSubject) subject).getBVRModel().getRealizationModel();
 			for(VariationPoint varPoint : varPoints){
 				if(varPoint instanceof PlacementFragment){
 					placReplList.add((PlacementFragment) varPoint);
@@ -79,7 +82,7 @@ public class SubstitutionFragmentJTable extends JTable implements Observer {
 			}else{
 				tableModel.updateDisplayData(tableModel.getOriginalData());
 			}
-		}*/
+		}
 	}
 
 	private ArrayList<ArrayList<Object>> filterOutFragments(FragmentSubstitution fragmentSubstitution){

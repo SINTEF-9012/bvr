@@ -125,7 +125,7 @@ public interface EditorCommands {
 	
 	//public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
 	
-	//public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	public void addRealizationVariationPoint(BVRModel model, VariationPoint variationPoint);
 	
 	public void addOwnedVariationType(BVRModel model, Variabletype variationType);
 	
@@ -133,9 +133,9 @@ public interface EditorCommands {
 	
 	//public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
-	//public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
+	public void removeOwenedVariationPoints(BVRModel model, EList<VariationPoint> variationPoints);
 	
-	//public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
+	public void removeOwnedVariationTypes(BVRModel model, EList<Variabletype> variationTypes);
 	
 	public void addBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding);
 	

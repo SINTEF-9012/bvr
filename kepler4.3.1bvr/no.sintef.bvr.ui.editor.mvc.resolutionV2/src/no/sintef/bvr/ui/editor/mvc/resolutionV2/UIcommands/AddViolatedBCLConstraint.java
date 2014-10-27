@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.command.SelectInstanceCommand;
@@ -21,7 +20,7 @@ import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 import bvr.NamedElement;
 
-public class AddViolatedBCLConstraint implements Command {
+public class AddViolatedBCLConstraint implements UICommand {
 
 	BVRUIKernel rootPanel;
 	BCLConstraint oc;
@@ -31,7 +30,7 @@ public class AddViolatedBCLConstraint implements Command {
 	private BVRResolutionToolView view;
 	private Map<JComponent, NamedElement> vmMap;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		this.rootPanel = rootPanel;
 		this.oc = (BCLConstraint) p;
 		this.parent = parent;
@@ -98,17 +97,4 @@ public class AddViolatedBCLConstraint implements Command {
 		return n;
 */
 	}
-
-	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
-			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
-		// TODO Auto-generated method stub
-		return null;
-	
-	}
-
-
-	
-
 }

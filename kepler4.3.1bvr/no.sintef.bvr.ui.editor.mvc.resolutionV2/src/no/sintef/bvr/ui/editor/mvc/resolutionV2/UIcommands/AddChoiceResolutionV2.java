@@ -11,7 +11,6 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
-import no.sintef.bvr.tool.ui.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -27,7 +26,7 @@ import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.PosResolution;
 
-public class AddChoiceResolutionV2 implements Command {
+public class AddChoiceResolutionV2 implements UICommand {
 
 	private boolean stripContains;
 	//AddChoiceResolutuion command extended by resolutioneditor V2, changed to protected
@@ -45,7 +44,7 @@ public class AddChoiceResolutionV2 implements Command {
 		this.minContains = minContains;
 		this.stripContains = stripContains;
 	}
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
+	public UICommand init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRResolutionToolView view) {
 		if(p instanceof ChoiceResolution){
 			this.rootPanel = rootPanel;
 			this.c = (ChoiceResolution) p;
@@ -88,15 +87,6 @@ public class AddChoiceResolutionV2 implements Command {
         Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( ((Choice)c.getResolvedVSpec()).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
         
-	}
-	/**
-	 * Deprecated
-	 * 	@Override
-	 */
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

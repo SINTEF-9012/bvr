@@ -2,10 +2,10 @@ package no.sintef.bvr.tool.ui.command.event;
 
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.command.TrivialCommand;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.ui.edit.BVROptionsEditor;
 
-public class SettingsToolEvent implements TrivialCommand {
+public class SettingsToolEvent implements SimpleExeCommandInterface {
 	
 	private BVROptionsEditor settingsEditor;
 

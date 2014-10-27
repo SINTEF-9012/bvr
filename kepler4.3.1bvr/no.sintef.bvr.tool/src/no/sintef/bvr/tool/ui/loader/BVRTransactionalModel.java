@@ -6,15 +6,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
+import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
-import no.sintef.bvr.tool.exception.UnimplementedBVRException;
-import no.sintef.bvr.tool.model.ConstraintFactory;
-import no.sintef.bvr.tool.model.NoteFactory;
-import no.sintef.bvr.tool.model.PrimitiveTypeFactory;
-import no.sintef.bvr.tool.model.TargetFactory;
+import no.sintef.bvr.tool.model.ConstraintFacade;
+import no.sintef.bvr.tool.model.NoteFacade;
+import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
+import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
+import no.sintef.bvr.tool.model.TargetFacade;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
@@ -24,33 +29,50 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.CompoundNode;
 import bvr.Constraint;
+import bvr.FragmentSubstitution;
+import bvr.FromBinding;
+import bvr.FromPlacement;
+import bvr.FromReplacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.Note;
+import bvr.ObjectHandle;
+import bvr.PlacementBoundaryElement;
+import bvr.PlacementFragment;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
+import bvr.ReplacementBoundaryElement;
+import bvr.ReplacementFragmentType;
 import bvr.Target;
-import bvr.TargetRef;
+import bvr.ToBinding;
+import bvr.ToPlacement;
+import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.Variable;
+import bvr.Variabletype;
+import bvr.VariationPoint;
 
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
@@ -177,6 +199,115 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		job.schedule();
 	}
 	
+	private EList<EObject> calculateInnerFragmentElements(EList<EObject> outsideInside, EList<EObject> outsideOutside, EList<EObject> inside, EList<EObject> visited){
+		for(EObject eObject : inside){
+			EList<EReference> links = new BasicEList<EReference>(eObject.eClass().getEAllReferences());
+			EList<EObject> refobjects = getReferencedEObjects(eObject, links);
+			refobjects.addAll(eObject.eContents());
+			if(!outsideInside.contains(eObject) && !outsideOutside.contains(eObject) && !visited.contains(eObject)){
+				visited.add(eObject);
+				visited = calculateInnerFragmentElements(outsideInside, outsideOutside, refobjects, visited);
+			}
+		}
+		return visited;
+	}
+	
+	private EList<EObject> getReferencedEObjects(EObject source, EList<EReference> links){
+		EList<EObject> eObjects = new BasicEList<EObject>();
+		for(EReference link : links){
+			if(CommonUtility.isDerived(link) == 0){
+				Object value = source.eGet(link);
+				if(value instanceof EObject){
+					eObjects.add((EObject) value);
+				}else if (value instanceof EObjectEList){
+					eObjects.addAll((EList<? extends EObject>) value);
+				}else if(value != null){
+					Context.eINSTANCE.logger.debug("reference " + link + " does not point to EObject nor EObjectList :" + value);
+				}
+			}
+		}
+		return eObjects;
+	}
+	
+	private EList<HashMap<EObject, Integer>> markObjects(EList<EObject> outsideInsideElements, EList<EObject> outsideOutsideElements, EList<EObject> insideElements, boolean isPlacement){
+		EList<HashMap<EObject, Integer>> objectsToHL = new BasicEList<HashMap<EObject,Integer>>();
+		int fragment = (isPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT;
+		int fragment_in = (isPlacement) ? IBVREnabledEditor.HL_PLACEMENT_IN : IBVREnabledEditor.HL_REPLACEMENT_IN;
+		int fragment_out = (isPlacement) ? IBVREnabledEditor.HL_PLACEMENT_OUT : IBVREnabledEditor.HL_REPLACEMENT_OUT;
+		for(EObject eObject : outsideInsideElements){
+			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
+			objectsToH.put(eObject, fragment_in);
+			objectsToHL.add(objectsToH);
+		}
+		for(EObject eObject : insideElements){
+			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
+			objectsToH.put(eObject, fragment);
+			objectsToHL.add(objectsToH);
+		}
+		for(EObject eObject : outsideOutsideElements){
+			HashMap<EObject, Integer> objectsToH = new HashMap<EObject, Integer>();
+			objectsToH.put(eObject, fragment_out);
+			objectsToHL.add(objectsToH);
+		}
+		return objectsToHL;
+	}
+	
+	private EList<HashMap<EObject, Integer>> getBoundaryObjectsToHighlight(NamedElement boundary) throws IllegalOperationException{
+		EList<HashMap<EObject, Integer>> list = new BasicEList<HashMap<EObject, Integer>>();
+		if(boundary instanceof ToPlacement || boundary instanceof ToReplacement){
+			boolean isToPlacement = (boundary instanceof ToPlacement) ? true : false;
+			if(!isToPlacement && LoaderUtility.isNullBoundary(boundary))
+				return list;
+			
+			EObject eObject = (isToPlacement) ? ((ToPlacement) boundary).getOutsideBoundaryElement().getMOFRef() : ((ToReplacement) boundary).getOutsideBoundaryElement().getMOFRef();
+			if(eObject != null){
+				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+				map.put(eObject, (isToPlacement) ? IBVREnabledEditor.HL_PLACEMENT_IN : IBVREnabledEditor.HL_REPLACEMENT_IN);
+				list.add(map);
+			}else{
+				Context.eINSTANCE.logger.error("outside boundary element reference is null for toBoundary" + boundary);
+			}
+			
+			EList<ObjectHandle> objectHandles = (isToPlacement) ? ((ToPlacement) boundary).getInsideBoundaryElement() : ((ToReplacement) boundary).getInsideBoundaryElement();
+			for(ObjectHandle oh : objectHandles){
+				eObject = oh.getMOFRef();
+				if(eObject != null){
+					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+					map.put(eObject, (isToPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT);
+					list.add(map);
+				}else{
+					Context.eINSTANCE.logger.error("inside boundary element reference is null for toBoundary" + boundary);
+				}
+			}
+		}else if(boundary instanceof FromPlacement || boundary instanceof FromReplacement){
+			boolean isFromPlacement = (boundary instanceof FromPlacement) ? true : false;
+			if(isFromPlacement && LoaderUtility.isNullBoundary(boundary))
+				return list;
+			
+			EObject eObject = (isFromPlacement) ? ((FromPlacement) boundary).getInsideBoundaryElement().getMOFRef() : ((FromReplacement) boundary).getInsideBoundaryElement().getMOFRef();
+			if(eObject != null){
+				HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+				map.put(eObject, (isFromPlacement) ? IBVREnabledEditor.HL_PLACEMENT : IBVREnabledEditor.HL_REPLACEMENT);
+				list.add(map);
+			}else{
+				Context.eINSTANCE.logger.error("inside boundary element reference is null for fromBoundary" + boundary);
+			}
+			
+			EList<ObjectHandle> objectHandles = (isFromPlacement) ? ((FromPlacement) boundary).getOutsideBoundaryElement() : ((FromReplacement) boundary).getOutsideBoundaryElement();
+			for(ObjectHandle oh : objectHandles){
+				eObject = oh.getMOFRef();
+				if(eObject != null){
+					HashMap<EObject, Integer> map = new HashMap<EObject, Integer>();
+					map.put(eObject, (isFromPlacement) ? IBVREnabledEditor.HL_PLACEMENT_OUT : IBVREnabledEditor.HL_REPLACEMENT_OUT);
+					list.add(map);
+				}else{
+					Context.eINSTANCE.logger.error("outside boundary element reference is null for fromBoundary" + boundary);
+				}
+			}
+		}
+		return list;
+	}
+	
 	@Override
 	public void addChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
@@ -231,7 +362,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void updateVariable(Variable variable, String name, String typeName){
-		PrimitiveTypeFactory.getInstance().testModelsPrimitiveTypes(getBVRModel());
+		PrimitiveTypeFacade.getInstance().testModelsPrimitiveTypes(getBVRModel());
 		
 		if(name.equals("")){
 			Context.eINSTANCE.getEditorCommands().removeVSpecVariable((VSpec)variable.eContainer(), variable);
@@ -251,7 +382,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
         if(t == null)
         	throw new UnsupportedOperationException("Invalid primitive type name " + typeName);
         
-        PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), t);
+        PrimitveType primitivType = PrimitiveTypeFacade.getInstance().testPrimitiveType(getBVRModel(), t);
         Context.eINSTANCE.getEditorCommands().setTypeForVariable(variable, primitivType);
 	}
 	
@@ -259,29 +390,30 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void updateName(NamedElement namedElement, String name) {	
 		//update corresponding target accordingly if namedElement is VClassifier or Choice
 		if(namedElement instanceof VClassifier || namedElement instanceof Choice){
-			Target target = TargetFactory.eINSTANCE.testVSpecTarget((VSpec) namedElement);
+			Target target = TargetFacade.eINSTANCE.testVSpecTarget((VSpec) namedElement);
 			Context.eINSTANCE.getEditorCommands().setName(target, name);
 		}
-		
-		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+		if(!namedElement.getName().equals(name)){
+			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+		}
 	}
 	
 	@Override
 	public void updateComment(NamedElement namedElement, String text) {
-		Note commentNote = NoteFactory.eINSTANCE.testCommentNote(namedElement);
+		Note commentNote = NoteFacade.eINSTANCE.testCommentNote(namedElement);
 		Context.eINSTANCE.getEditorCommands().updateNoteExp(commentNote, text);
 	}
 	
 	@Override
 	public String getNodesCommentText(NamedElement namedElement) {
-		return NoteFactory.eINSTANCE.getCommentText(namedElement);
+		return NoteFacade.eINSTANCE.getCommentText(namedElement);
 	}
 	
 	@Override
 	public void addVariable(VNode parentNode) {
 		Variable var = BvrFactory.eINSTANCE.createVariable();
 		
-		PrimitveType primitivType = PrimitiveTypeFactory.getInstance().testPrimitiveType(getBVRModel(), PrimitiveTypeEnum.INTEGER);
+		PrimitveType primitivType = PrimitiveTypeFacade.getInstance().testPrimitiveType(getBVRModel(), PrimitiveTypeEnum.INTEGER);
 		var.setName("Var" + variableCount);
 		variableCount++;
 		var.setType(primitivType);
@@ -328,12 +460,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public void addBCLConstraint(VNode parentVNode) {
-		ConstraintFactory.eINSTANCE.createBCLConstraint(parentVNode);
+		ConstraintFacade.eINSTANCE.createBCLConstraint(parentVNode);
 	}
 	
 	@Override
 	public void updateBCLConstraint(BCLConstraint constraint, String strConstr) {
-		ConstraintFactory.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
+		ConstraintFacade.eINSTANCE.updateBCLConstraint(bvrm.getRootBVRModel(), constraint, strConstr);
 	}
 	
 	@Override
@@ -400,7 +532,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	
 	@Override
 	public String getBCLConstraintString(BCLConstraint constraint) {
-		return ConstraintFactory.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+		return ConstraintFacade.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
 	}
 	
 	@Override
@@ -424,4 +556,199 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			throw new UnexpectedException("can not find parent element to remove " + element);
 		}
 	}
+	
+	@Override
+	public void deletePlacements(EList<VariationPoint> placements) {
+		if(placements.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(getBVRModel(), placements);
+	}
+	
+	@Override
+	public void deleteReplacements(EList<Variabletype> replacements) {
+		if(replacements.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwnedVariationTypes(getBVRModel(), replacements);
+	}
+	
+	@Override
+	public void deleteFragments(EList<VariationPoint> fslist) {
+		if(fslist.size() > 0)
+			Context.eINSTANCE.getEditorCommands().removeOwenedVariationPoints(getBVRModel(), fslist);
+	}
+	
+	@Override
+	public void createFragmentSubstitution(PlacementFragment placement, ReplacementFragmentType replacement) {
+		FragmentSubstitution fs = SubstitutionFragmentFacade.eINSTANCE.createFragmentSubstitution();
+		fs.setPlacement(placement);
+		fs.setReplacement(replacement);
+		Context.eINSTANCE.getEditorCommands().addRealizationVariationPoint(getBVRModel(), fs);
+	}
+	
+	@Override
+	public void generateBindings(FragmentSubstitution fragmentSubstitution) {
+		BindingCalculatorContext bindingCalculator = new BindingCalculatorContext();
+		bindingCalculator.generateBindings(fragmentSubstitution);
+	}
+	
+	@Override
+	public void updateFragmentSubstitutionBinding(VariationPoint vp, VSpec vSpec) {
+		Context.eINSTANCE.getEditorCommands().setBindingVariationPoint(vp, vSpec);
+	}
+	
+	@Override
+	public EList<HashMap<EObject, Integer>> findFragmentElementsToHighlight(NamedElement fragment) {
+		EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return objectsToHighlightList;
+		
+    	if(fragment instanceof PlacementFragment){
+    		PlacementFragment placement = (PlacementFragment) fragment;            		
+    		EList<PlacementBoundaryElement> boundaries = placement.getPlacementBoundaryElement();
+    		EList<EObject> outsideInsideElements = new BasicEList<EObject>();
+    		EList<EObject> outsideOutsideElements = new BasicEList<EObject>();
+    		EList<EObject> insideElements = new BasicEList<EObject>();
+    		for(PlacementBoundaryElement boundary : boundaries){
+    			if(boundary instanceof ToPlacement){
+    				ToPlacement toPlacement = (ToPlacement) boundary;
+    				if(!LoaderUtility.isNullBoundary(toPlacement)){
+    					EObject eObject = toPlacement.getOutsideBoundaryElement().getMOFRef();
+    					if(eObject == null){
+    						Context.eINSTANCE.logger.error("outside boundary element refrence is null for toPlacement" + toPlacement);
+    					}else{
+    						outsideInsideElements.add(eObject);
+    					}
+    					EList<ObjectHandle> objectHandles = toPlacement.getInsideBoundaryElement();
+    					for(ObjectHandle objectHandle : objectHandles){
+    						eObject = objectHandle.getMOFRef();
+    						if(eObject == null){
+    							Context.eINSTANCE.logger.error("inside boundary element refrence is null for toPlacement" + toPlacement);
+    						}else{
+    							insideElements.add(eObject);
+    						}
+    					}
+    				}else{
+    					Context.eINSTANCE.logger.error("toPlacement can not be null boundary, placement " + placement);
+    				}
+    			}
+    			if(boundary instanceof FromPlacement){
+    				FromPlacement fromPlacement = (FromPlacement) boundary;
+    				if(!LoaderUtility.isNullBoundary(fromPlacement)){
+    					EObject eObject = fromPlacement.getInsideBoundaryElement().getMOFRef();
+    					if(eObject == null){
+    						Context.eINSTANCE.logger.error("inside boundary element refrence is null for fromPlacement" + fromPlacement);
+    					}else{
+    						insideElements.add(eObject);
+    					}
+    					EList<ObjectHandle> objectHandles = fromPlacement.getOutsideBoundaryElement();
+    					for(ObjectHandle objectHandle : objectHandles){
+    						eObject = objectHandle.getMOFRef();
+    						if(eObject == null){
+    							Context.eINSTANCE.logger.error("outside boundary element refrence is null for fromPlacement" + fromPlacement);
+    						}else{
+    							outsideOutsideElements.add(eObject);
+    						}
+    					}
+    				}
+    			}
+    		}
+    		insideElements = calculateInnerFragmentElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
+    		objectsToHighlightList.addAll(markObjects(outsideInsideElements, outsideOutsideElements, insideElements, true));
+    	}
+    	if(fragment instanceof ReplacementFragmentType){
+    		ReplacementFragmentType replacement = (ReplacementFragmentType) fragment;
+    		EList<ReplacementBoundaryElement> boundaries = replacement.getReplacementBoundaryElement();
+    		EList<EObject> outsideInsideElements = new BasicEList<EObject>();
+    		EList<EObject> outsideOutsideElements = new BasicEList<EObject>();
+    		EList<EObject> insideElements = new BasicEList<EObject>();
+    		for(ReplacementBoundaryElement boundary : boundaries){
+    			if(boundary instanceof ToReplacement){
+    				ToReplacement toReplacement = (ToReplacement) boundary;
+    				if(!LoaderUtility.isNullBoundary(toReplacement)){
+    					EObject eObject = toReplacement.getOutsideBoundaryElement().getMOFRef();
+    					if(eObject == null){
+    						Context.eINSTANCE.logger.debug("outside boundary element refrence is null for toReplacement" + toReplacement);
+    					}else{
+    						outsideInsideElements.add(eObject);
+    					}
+    					EList<ObjectHandle> objectHandles = toReplacement.getInsideBoundaryElement();
+    					for(ObjectHandle objectHandle : objectHandles){
+    						eObject = objectHandle.getMOFRef();
+    						if(eObject == null){
+    							Context.eINSTANCE.logger.debug("inside boundary element refrence is null for toReplacement" + toReplacement);
+    						}else{
+    							insideElements.add(eObject);
+    						}
+    					}
+    				}
+    			}
+    			if(boundary instanceof FromReplacement){
+    				FromReplacement fromReplacement = (FromReplacement) boundary;
+    				if(!LoaderUtility.isNullBoundary(fromReplacement)){
+    					EObject eObject = fromReplacement.getInsideBoundaryElement().getMOFRef();
+    					if(eObject == null){
+    						Context.eINSTANCE.logger.debug("inside boundary element refrence is null for fromReplacement" + fromReplacement);
+    					}else{
+    						insideElements.add(eObject);
+    					}
+    					EList<ObjectHandle> objectHandles = fromReplacement.getOutsideBoundaryElement();
+    					for(ObjectHandle objectHandle : objectHandles){
+    						eObject = objectHandle.getMOFRef();
+    						if(eObject == null){
+    							Context.eINSTANCE.logger.debug("outside boundary element refrence is null for fromReplacement" + fromReplacement);
+    						}else{
+    							outsideOutsideElements.add(eObject);
+    						}
+    					}
+    				}else{
+    					Context.eINSTANCE.logger.debug("fromPlacement can not be null boundary, replacement " + replacement);
+    				}
+    			}
+    		}
+    		insideElements = calculateInnerFragmentElements(outsideInsideElements, outsideOutsideElements, insideElements, new BasicEList<EObject>());
+    		objectsToHighlightList.addAll(this.markObjects(outsideInsideElements, outsideOutsideElements, insideElements, false));
+    	}
+		return objectsToHighlightList;
+	}
+	
+	@Override
+	public void highlightElements(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return;
+		 Context.eINSTANCE.highlightObjects(objectsToHighlightList);
+	}
+	
+	@Override
+	public EList<HashMap<EObject, Integer>> findBoundaryElementsToHighlight(NamedElement binding) {
+		EList<HashMap<EObject, Integer>> objectsToHighlightList = new BasicEList<HashMap<EObject, Integer>>();
+		if(!Context.eINSTANCE.getConfig().isHighlightingMode())
+			return objectsToHighlightList;
+		
+		if(binding instanceof ToBinding){
+			ToBinding toBinding = (ToBinding) binding;
+			ToPlacement toPlacement = toBinding.getToPlacement();
+			ToReplacement toReplacement = toBinding.getToReplacement();
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(toPlacement));
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(toReplacement));
+		}else{
+			FromBinding fromBinding = (FromBinding) binding;
+			FromPlacement fromPlacement = fromBinding.getFromPlacement();
+			FromReplacement fromReplacement = fromBinding.getFromReplacement();
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(fromPlacement));
+			objectsToHighlightList.addAll(getBoundaryObjectsToHighlight(fromReplacement));
+		}
+		return objectsToHighlightList;
+	}
+	
+	@Override
+	public void updateBindingBoundary(BoundaryElementBinding binding, NamedElement boundary) {
+		if(binding instanceof ToBinding && boundary instanceof ToReplacement){
+			ToBinding toBinding = (ToBinding) binding;
+			Context.eINSTANCE.getEditorCommands().setToBindingToReplacement(toBinding, (ToReplacement) boundary);
+		}else if(binding instanceof FromBinding && boundary instanceof FromPlacement) {
+			FromBinding fromBinding = (FromBinding) binding;
+			Context.eINSTANCE.getEditorCommands().setFromBindingFromPlacement(fromBinding, (FromPlacement) boundary);
+		}else{
+			throw new UnexpectedException("binding or boundary is not of the right type");
+		}
+	}
+	
 }

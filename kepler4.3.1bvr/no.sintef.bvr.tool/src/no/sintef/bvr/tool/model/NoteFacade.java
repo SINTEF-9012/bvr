@@ -8,15 +8,15 @@ import bvr.BvrPackage;
 import bvr.NamedElement;
 import bvr.Note;
 
-public final class NoteFactory {
+public final class NoteFacade {
 	
 	final private String COMMENT_KIND = "comment"; 
 	
-	public static NoteFactory eINSTANCE = getInstance();
+	public static NoteFacade eINSTANCE = getInstance();
 	
-	private static NoteFactory getInstance() {
+	private static NoteFacade getInstance() {
 		if(eINSTANCE == null)
-			eINSTANCE = new NoteFactory();
+			eINSTANCE = new NoteFacade();
 		return eINSTANCE;
 	}
 
