@@ -13,8 +13,8 @@ import org.sat4j.specs.TimeoutException;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-import no.sintef.bvr.tool.ui.loader.BVRSimpleToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRSimpleToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;

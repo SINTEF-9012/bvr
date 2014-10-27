@@ -11,7 +11,6 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.CompoundNode;
 import bvr.NamedElement;
-import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.Variable;
 

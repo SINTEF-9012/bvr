@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.VSpec;

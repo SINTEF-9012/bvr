@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
 

@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.observer;
 
 import java.util.HashSet;
 
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 

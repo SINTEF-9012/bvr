@@ -1,3 +1,4 @@
+
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
-import no.sintef.bvr.tool.ui.command.SelectInstanceCommand;
+//import no.sintef.bvr.tool.ui.command.SelectInstanceCommand;
 import no.sintef.bvr.tool.ui.dropdown.BCLConstraintDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -98,3 +99,4 @@ public class AddViolatedBCLConstraint implements UICommand {
 */
 	}
 }
+

@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.loader;
+package no.sintef.bvr.tool.model;
 
 import java.io.File;
 

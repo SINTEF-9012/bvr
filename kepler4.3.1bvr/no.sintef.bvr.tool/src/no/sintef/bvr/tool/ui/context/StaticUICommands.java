@@ -3,6 +3,7 @@ package no.sintef.bvr.tool.ui.context;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.io.File;
+
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 
 public class StaticUICommands {
 

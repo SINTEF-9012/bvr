@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
-import no.sintef.bvr.tool.ui.loader.BVRSimpleToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRSimpleToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 
 import org.junit.Test;
 

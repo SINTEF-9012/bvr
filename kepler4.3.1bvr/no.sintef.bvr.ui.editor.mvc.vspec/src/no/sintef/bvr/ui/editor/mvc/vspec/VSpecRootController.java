@@ -7,13 +7,15 @@ import javax.swing.JComponent;
 
 
 
+
+
 import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.SwingVSpecController;
 import no.sintef.bvr.tool.controller.VSpecControllerInterface;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 

@@ -9,8 +9,8 @@ import no.sintef.bvr.tool.chain.impl.ParserExecutionHandler;
 import no.sintef.bvr.tool.chain.impl.ScopeResolverExecutionHandler;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.AbstractError;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.impl.SingleExecutionRequest;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
 
