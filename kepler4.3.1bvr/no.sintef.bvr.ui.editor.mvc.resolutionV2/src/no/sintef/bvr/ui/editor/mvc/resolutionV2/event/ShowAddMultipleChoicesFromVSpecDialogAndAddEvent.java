@@ -1,9 +1,14 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import bvr.CompoundResolution;
 import bvr.VClassifier;
 import bvr.VSpecResolution;
 
@@ -19,9 +24,9 @@ public class ShowAddMultipleChoicesFromVSpecDialogAndAddEvent implements ActionL
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("ShowAddMultipleChoicesFromVSpecDialogAndAddEvent running but not implemented");
-		/*
 		int currentInstances = 0;
-		for (VSpecResolution x : parent.getChild()) {
+		if (parent instanceof CompoundResolution)
+		for (VSpecResolution x : ((CompoundResolution)parent).getMembers()) {
 			if (x.getResolvedVSpec() == c) {
 				if (x.getResolvedVSpec() == c) {
 					currentInstances++;
@@ -45,6 +50,5 @@ public class ShowAddMultipleChoicesFromVSpecDialogAndAddEvent implements ActionL
 		if ((requestedInstancesAsString != null) && (requestedInstancesAsString.length() > 0)) {
 		  new AddMultipleInstanceTreesEvent(Integer.parseInt(requestedInstancesAsString), parent, c, view).actionPerformed(e);
 		}
-	*/
 	}
 }

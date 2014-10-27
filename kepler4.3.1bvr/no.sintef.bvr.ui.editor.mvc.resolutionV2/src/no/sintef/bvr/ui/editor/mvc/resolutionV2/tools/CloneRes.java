@@ -1,6 +1,7 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
@@ -58,7 +59,7 @@ public class CloneRes {
 			((ValueResolution) copyTo).setValue(value);
 		}
 		
-		copyTo.setResolvedVSpec(copyFrom.getResolvedVSpec());
+		CommonUtility.setResolved(copyTo, copyFrom.getResolvedVSpec());
 		copyTo.setName(copyFrom.getName());
 		return copyTo;
 		

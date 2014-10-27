@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
@@ -54,7 +55,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 			VSpecResolution root = create();
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof ChoiceResolution) {
-				Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution(grandParent, (NegResolution) root);
+				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(grandParent, (PosResolution) root);
 
 			} /*
 			 * else if (parent instanceof VariableValueAssignment) { Context.eINSTANCE .getEditorCommands().addVariableValueAssignment(grandParent,
@@ -76,7 +77,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 
 		for (int i = 0; i < instancesRequested; i++) {
 			PosResolution newInstance = BvrFactory.eINSTANCE.createPosResolution();
-			newInstance.setResolvedVSpec(target);
+			CommonUtility.setResolved(newInstance, target);
 			newInstance.setName("I" + view.getIncrementedNameCounter());
 			Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 			((CompoundResolution) root).getMembers().add(newInstance);
