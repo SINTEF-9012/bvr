@@ -67,9 +67,8 @@ public class AddChoiceResolutionFromVClassifier implements UICommand {
 
 		// int l = m.getLower();
 		// int u = m.getUpper();
-		cp.setName((minContains ? "(+) " : "") + (stripContains ? "(*) " : "") + cr.getName() + " : " + cr.getResolvedVSpec().getName());
+		cp.setTitle((minContains ? "(+) " : "") + (stripContains ? "(*) " : "") + cr.getName() + " : " + cr.getResolvedVSpec().getName());
 		rootPanel.getModelPanel().addNode(cp);
-		System.out.println("name of added Choice added From VClassifier: " +cp.getName());
 		Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 
 		return cp;

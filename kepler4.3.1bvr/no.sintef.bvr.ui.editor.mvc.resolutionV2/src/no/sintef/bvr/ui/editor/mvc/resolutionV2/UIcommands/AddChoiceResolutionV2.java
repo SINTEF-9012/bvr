@@ -29,16 +29,15 @@ import bvr.PosResolution;
 public class AddChoiceResolutionV2 implements UICommand {
 
 	private boolean stripContains;
-	//AddChoiceResolutuion command extended by resolutioneditor V2, changed to protected
-	protected Map<JComponent, NamedElement> vmMap;
-	protected List<JComponent> nodes;
-	protected List<Pair<JComponent, JComponent>> bindings;
-	protected BVRResolutionToolView view;
-	protected JComponent parent;
-	protected BVRUIKernel rootPanel;
-	protected ChoiceResolution c;
-	protected CommandMouseListener listener;
-	protected boolean minContains;
+	private Map<JComponent, NamedElement> vmMap;
+	private List<JComponent> nodes;
+	private List<Pair<JComponent, JComponent>> bindings;
+	private BVRResolutionToolView view;
+	private JComponent parent;
+	private BVRUIKernel rootPanel;
+	private ChoiceResolution c;
+	private CommandMouseListener listener;
+	private boolean minContains;
 	
 	public AddChoiceResolutionV2(boolean minContains, boolean stripContains) {
 		this.minContains = minContains;

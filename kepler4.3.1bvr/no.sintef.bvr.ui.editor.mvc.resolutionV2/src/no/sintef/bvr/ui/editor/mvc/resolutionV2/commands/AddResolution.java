@@ -72,7 +72,7 @@ public class AddResolution implements ResCommand{
 		PosResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		 //count++;
 		
-		thisResolution.setName(target.getName()+"Nr. " + view.getIncrementedNameCounter());
+		thisResolution.setName("I " + view.getIncrementedNameCounter());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 		
 		((CompoundResolution) parent).getMembers().add(thisResolution);
