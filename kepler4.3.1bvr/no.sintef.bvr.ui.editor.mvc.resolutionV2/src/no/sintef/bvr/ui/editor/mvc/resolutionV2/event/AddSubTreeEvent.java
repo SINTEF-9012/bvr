@@ -42,18 +42,18 @@ public class AddSubTreeEvent implements ActionListener {
 					VSpecResolution root = create();
 					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(view.getBVRModel(), parent);
 					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, view.getBVRModel());
-					Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution((Choice) root.getResolvedVSpec(), root, (PosResolution) root);
+					Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(root, (PosResolution) root);
 				}
 		}
 		else{
 			VSpecResolution root = create();
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof PosResolution) {
-				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution((Choice) root.getResolvedVSpec(), grandParent, (PosResolution) root);
+				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution( grandParent, (PosResolution) root);
 				Inheritance.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
 			}
 			else if(parent instanceof NegResolution){
-				Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution((Choice) root.getResolvedVSpec(), grandParent, (NegResolution) root);
+				Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution(grandParent, (NegResolution) root);
 				Inheritance.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
 			}/* else if (parent instanceof VariableValueAssignment) {
 			}

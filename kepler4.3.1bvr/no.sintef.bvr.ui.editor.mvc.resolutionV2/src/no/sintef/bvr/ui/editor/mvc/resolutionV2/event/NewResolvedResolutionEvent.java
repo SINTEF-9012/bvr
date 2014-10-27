@@ -49,7 +49,7 @@ public class NewResolvedResolutionEvent implements ActionListener {
 			// create resolution model
 			System.out.println("creating new resolution");
 			Context.eINSTANCE.getEditorCommands().createNewResolution(root, bvrModel);
-			Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution((Choice)x, root, root);
+			Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(root, root);
 		} else {
 			throw new UnsupportedOperationException("model must start with a choice");
 		}

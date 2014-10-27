@@ -11,6 +11,7 @@ import bvr.BCLExpression;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
+import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.Constraint;
 //import bvr.Constraint;
@@ -55,12 +56,21 @@ public interface EditorCommands {
 	
 	//public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
 	
-	//public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
+	public void setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
 	
 	//public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
-	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper, PosResolution pr);
-	
-	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper, NegResolution pr);
+	/**
+	 * setting the resolved VSpec is a separate action, sett before add or call setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
+	 * @param parentVSpecResolution
+	 * @param PositiveResolution
+	 */
+	public void addPosChoiceResoulution(VSpecResolution vsper, PosResolution pr);
+	/**
+	 * setting the resolved VSpec is a separate action, sett before add or call setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
+	 * @param parentVSpecResolution
+	 * @param NegativeResolution
+	 */
+	public void addNegChoiceResoulution(VSpecResolution vsper, NegResolution nr);
 	
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	
@@ -194,10 +204,7 @@ public interface EditorCommands {
 
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent);
 
-
 	void createNewResolution(PosResolution pr, BVRModel bvrModel);
-
-	void setChoicePosResolvedVSpec(PosResolution pr, Choice target);
 
 	public void addTargetToCompoundNode(CompoundNode namedElement, Target target);
 

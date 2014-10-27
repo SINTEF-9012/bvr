@@ -12,6 +12,7 @@ import bvr.BCLExpression;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
+import bvr.ChoiceResolution;
 //import bvr.ChoiceResolutuion;
 import bvr.CompoundNode;
 import bvr.Constraint;
@@ -505,22 +506,13 @@ public class EditorMVCCommands implements EditorCommands {
 		
 	}
 
-	@Override
-	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper,
-			PosResolution pr) {
-		// TODO Auto-generated method stub
 	
-	}
 		public void addTargetToCompoundNode(CompoundNode namedElement, Target target) {
 //TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper,
-			NegResolution pr) {
-		// TODO Auto-generated method stub
-	}
+	
 	public void setVSpecTarget(VSpec namedElement, Target target) {
 		// TODO Auto-generated method stub		
 	}
@@ -543,10 +535,7 @@ public class EditorMVCCommands implements EditorCommands {
 		
 	}
 
-	@Override
-	public void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
-		// TODO Auto-generated method stub
-	}
+	
 		public void addVariabilityModelToBVRModel(BVRModel model,
 			CompoundNode compoundNode) {
 		// TODO Auto-generated method stub
@@ -570,6 +559,24 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeOwnedVariationTypes(BVRModel model,
 			EList<Variabletype> variationTypes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addPosChoiceResoulution(VSpecResolution vsper, PosResolution pr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addNegChoiceResoulution(VSpecResolution vsper, NegResolution nr) {
 		// TODO Auto-generated method stub
 		
 	}

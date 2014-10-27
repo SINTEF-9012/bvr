@@ -38,6 +38,7 @@ import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.BvrPackage;
 import bvr.Choice;
+import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.Constraint;
 //import bvr.ChoiceResolutuion;
@@ -630,7 +631,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void removeNamedElementVSpecResolution(
 			VSpecResolution vSpecResolution, NamedElement namedElement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecResolution, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), namedElement);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecResolution, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
 		testCommandExecution(editingDomain, cmd);
 		
 	}
@@ -726,8 +727,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	
 	@Override
-	public void addPosChoiceResoulution(Choice target, VSpecResolution vsper,
-			PosResolution pr) {
+	public void addPosChoiceResoulution(VSpecResolution vsper,	PosResolution pr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), pr);
 		testCommandExecution(editingDomain,cmd);
@@ -735,15 +735,15 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 	
 	@Override
-	public void setChoicePosResolvedVSpec(PosResolution pr, Choice target) {
+	public void setChoiceResolvedVSpec(ChoiceResolution cr, Choice target) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, pr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, cr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
 		testCommandExecution(editingDomain,cmd);
 		
 	}
 
 	@Override
-	public void addNegChoiceResoulution(Choice target, VSpecResolution vsper,
+	public void addNegChoiceResoulution(VSpecResolution vsper,
 			NegResolution nr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), nr);
