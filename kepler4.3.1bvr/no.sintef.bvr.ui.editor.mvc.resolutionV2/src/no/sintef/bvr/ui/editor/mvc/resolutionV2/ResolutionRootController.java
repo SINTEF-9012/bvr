@@ -1,6 +1,11 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2;
 
+
+
+import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
+
+import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.ResolutionControllerInterface;
@@ -10,8 +15,9 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 
 
 public class ResolutionRootController extends BVRToolAbstractController {
+	
 	private BVRToolModel model;
-	private SwingResolutionController controller;
+	private SwingResolutionController<JComponent, EObject> controller;
 	
 	public ResolutionRootController(BVRToolModel m) {
 		
@@ -31,6 +37,7 @@ public class ResolutionRootController extends BVRToolAbstractController {
 
 	@Override
 	public void refresh() {
+		System.out.println("refreshing");
 		controller.notifyResolutionViewUpdate();
 	}
 	

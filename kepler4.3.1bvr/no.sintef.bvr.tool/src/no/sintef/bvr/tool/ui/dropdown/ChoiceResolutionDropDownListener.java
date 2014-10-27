@@ -28,6 +28,7 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import bvr.BVRModel;
 import bvr.Choice;
@@ -77,7 +78,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
 
-	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRNotifiableController view, Map<JComponent, NamedElement> vmMap) {
+	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRNotifiableController controller, Map<JComponent, NamedElement> vmMap) {
 		// Add
 		if (c.getResolvedVSpec() != null) {
 			JMenu add = new JMenu("add");
@@ -90,11 +91,11 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					// TODO ADD NAME
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
 					if (x instanceof Choice) {
-						addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
+						addchild.addActionListener(new AddChoiceResolvedEvent(cp, (EObject)x, controller));
 					} else if (x instanceof VClassifier) {
-						addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, view));
+						addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, controller));
 					} else if (x instanceof Variable) {
-						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, view));// TODO namechange
+						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, controller));// TODO namechange
 					} else {
 						throw new UnsupportedOperationException("Unsupported: " + x.getClass().getName());
 					}
@@ -111,7 +112,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		}
 		// addInstanceTree
 		if (c.getResolvedVSpec() != null) {
-			JMenu addTree = new JMenu("add realized VInstance subtree");
+			JMenu addTree = new JMenu("add realized VClassifier subtree");
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
 					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
@@ -167,7 +168,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		 */
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
-		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, controller));
 		add(remove);
 		// Resolve subtree
 		JMenuItem resTree = new JMenuItem("resolve subtree");

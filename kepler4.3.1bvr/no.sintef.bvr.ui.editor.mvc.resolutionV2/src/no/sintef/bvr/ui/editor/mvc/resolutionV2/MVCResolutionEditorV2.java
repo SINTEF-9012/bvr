@@ -50,7 +50,7 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 		sbjct.attach(this);
 
 	}
-	//if a change occurs, check if is is a save, if not mark as not saved and post RefreshViewEvent to eventQueue . if it si a save, mark as saved. then run update.
+	//if a change occurs, check if is is a save, if not mark as not saved and post RefreshViewEvent to eventQueue . if it is a save, mark as saved. then run update.
 
 	@Override
 	public void update(ResourceSubject subject) {

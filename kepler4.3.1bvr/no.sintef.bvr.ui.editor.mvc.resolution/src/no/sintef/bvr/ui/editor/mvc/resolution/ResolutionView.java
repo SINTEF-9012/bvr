@@ -22,11 +22,7 @@ import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
-import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
-import no.sintef.bvr.tool.ui.command.AddVInstance;
 import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
-import no.sintef.bvr.tool.ui.dropdown.ResolutionPanelDropDownListener;
-import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -199,7 +195,7 @@ public class ResolutionView extends BVRToolAbstractController implements BVRReso
 	}
 
 	private void loadBVRResolutionView(BVRModel cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException{
-		resPane.addMouseListener(new VSpecResDropDownListener(m, this, resPane));
+		//resPane.addMouseListener(new VSpecResDropDownListener(m, this, resPane));
 		
 		if(cu.getResolutionModels().size() == 0) return;
 		
@@ -207,7 +203,7 @@ public class ResolutionView extends BVRToolAbstractController implements BVRReso
 			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	        scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));
+	      //  scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));
 	        EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 	        
 	        resolutionPanes.add(scrollPane);
@@ -245,12 +241,12 @@ public class ResolutionView extends BVRToolAbstractController implements BVRReso
 		if(CommonUtility.isVSpecResolutionVClassifier(v)){
 			//System.out.println(v + ", " + bvruikernel);
 			
-			nextParent = new AddVInstance(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			//nextParent = new AddVInstance(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
 			vmMap.put(nextParent, v);
 			
 		}else if(v instanceof ChoiceResolution){
-			nextParent = new AddChoiceResolutuion(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			//nextParent = new AddChoiceResolutuion(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			vmMap.put(nextParent, v);
 		}/*else if(v instanceof VariableValueAssignment){
 			nextParent = new AddVariableValueAssignment(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();

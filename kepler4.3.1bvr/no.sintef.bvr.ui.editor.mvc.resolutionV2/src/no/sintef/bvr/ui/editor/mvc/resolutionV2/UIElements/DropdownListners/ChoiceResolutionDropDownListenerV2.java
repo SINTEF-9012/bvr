@@ -89,7 +89,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					// TODO ADD NAME
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
 					if (x instanceof Choice) {
-						addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
+						//addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
 					} else if (x instanceof VClassifier) {
 						addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, view));
 					} else if (x instanceof Variable) {

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
@@ -12,6 +13,7 @@ import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -41,7 +43,9 @@ import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.Choice;
+import bvr.ChoiceResolution;
 import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
@@ -49,10 +53,12 @@ import bvr.FromPlacement;
 import bvr.FromReplacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
+import bvr.PosResolution;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
@@ -76,6 +82,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
 	private NamedElement cutNamedElement = null;
+	static private int instanceCount = 0;
 	
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -324,6 +331,16 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 		choicCounter++;
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public void addChoiceResolution(VSpec resolvedVspec, VSpecResolution parent){
+		
+		NegResolution ncr = BvrFactory.eINSTANCE.createNegResolution();
+		CommonUtility.setResolved(ncr, resolvedVspec);
+		 Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution(parent, ncr);
+	}
+		
+	
 
 	@Override
 	public void minimaizeVSpec(VSpec vspec) {

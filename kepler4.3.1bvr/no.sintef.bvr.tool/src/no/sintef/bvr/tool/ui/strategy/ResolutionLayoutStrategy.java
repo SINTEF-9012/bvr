@@ -37,9 +37,10 @@ public class ResolutionLayoutStrategy implements LayoutStrategy {
 		this.resolutionNodes = resolutionNodes;
 		this.resolutionBindings = bindings;
 	}
-
+	
 	public void layout() {// TODO
 		for (int i = 0; i < resolutionPanes.size(); i++) {
+			
 			Map<JComponent, TextInBox> nodemap = new HashMap<JComponent, TextInBox>();
 			Map<TextInBox, JComponent> nodemapr = new HashMap<TextInBox, JComponent>();
 			// System.out.println(resolutionNodes);

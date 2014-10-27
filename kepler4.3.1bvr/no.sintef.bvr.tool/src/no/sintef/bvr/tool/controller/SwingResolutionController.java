@@ -58,11 +58,12 @@ import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.NegResolution;
 import bvr.OpaqueConstraint;
+import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject> implements
 		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT> {
-	private BVRToolModel m;
+	private BVRToolModel toolModel;
 	private List<Constraint> invalidConstraints;
 
 	public JTabbedPane modelPane;
@@ -92,7 +93,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	// draw variables
 	private List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
 	private List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
-	
+
 	private ResolutionLayoutStrategy strategy;
 
 	BVRNotifiableController rootController;
@@ -104,14 +105,14 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		resolutionvmMaps = new ArrayList<Map<JComponent, NamedElement>>();
 		resolutionNodes = new ArrayList<List<JComponent>>();
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
-		strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings,(ArrayList<JScrollPane>) resolutionPanes); 
-		this.m = model;
+		strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings, (ArrayList<JScrollPane>) resolutionPanes);
+		this.toolModel = model;
 		this.rootController = controller;
 		this.showGroups = true;
 		this.showConstraints = false;
 		this.invalidConstraints = new ArrayList<Constraint>();
 
-		bvrModelSubject = new BVRModelSubject(m.getBVRModel());
+		bvrModelSubject = new BVRModelSubject(toolModel.getBVRModel());
 
 		vSpecbvruikernel = new BVRUIKernel(vspecvmMap, rootController, resolutionvmMaps);
 
@@ -124,7 +125,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	private void loadBVRResolutionView(BVRModel bvrModel, List<BVRUIKernel> resolutionkernels) throws BVRModelException {
-		resPane.addMouseListener(new ResolutionDropdownListener(rootController, bvrModel, m, resPane, vspecvmMap));
+		resPane.addMouseListener(new ResolutionDropdownListener(rootController, bvrModel, toolModel, resPane, vspecvmMap));
 
 		if (bvrModel.getResolutionModels().size() == 0)
 			return;
@@ -135,7 +136,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			resolutionkernels.add(resKernel);
 			JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 					JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-			scrollPane.addMouseListener(new ResolutionDropdownListener(rootController, bvrModel, m, resPane, vspecvmMap));
+			scrollPane.addMouseListener(new ResolutionDropdownListener(rootController, bvrModel, toolModel, resPane, vspecvmMap));
 			EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 
 			resolutionPanes.add(scrollPane);
@@ -149,6 +150,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 			loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings, false, false);
 			resKernel.getModelPanel().layoutTreeNodes(strategy);
+			
 			String tabtitle = "";
 			if (v instanceof ChoiceResolution) {
 				ChoiceResolution cr = (ChoiceResolution) v;
@@ -161,7 +163,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			} else if (CommonUtility.isVSpecResolutionVClassifier(v)) {
 				tabtitle = v.getName() + ":" + ((ChoiceResolution) v).getResolvedVClassifier().getName();
 			}
-
+			
+		
 			resPane.addTab(tabtitle, null, epanel, "");
 		}
 	}
@@ -281,14 +284,17 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	public void render() {
-		loadBVRResolutionView(m.getBVRModel(), resolutionkernels);
+		loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
+		for(BVRUIKernel resKernel : resolutionkernels){
+			strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings, (ArrayList<JScrollPane>) resolutionPanes);
+		resKernel.getModelPanel().layoutTreeNodes(strategy);}
 	}
 
 	public void notifyResolutionViewUpdate() {
 		// Save
 		boolean isEmpty = resPane.getTabCount() == 0;
-		int resmodels = m.getBVRModel().getResolutionModels().size();
-		boolean modelIsEmpty = m.getBVRModel().getResolutionModels().size() == 0;
+		int resmodels = toolModel.getBVRModel().getResolutionModels().size();
+		boolean modelIsEmpty = toolModel.getBVRModel().getResolutionModels().size() == 0;
 
 		int selected = 0;
 		Point pos = null;
@@ -308,14 +314,16 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
 
 		choiceCount = 1;
-
-		loadBVRResolutionView(m.getBVRModel(), resolutionkernels);
+		render();
+		
+		// loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
 
 		// Restore positions
 		if (!isEmpty && !modelIsEmpty && selected < resmodels) {
 			resPane.setSelectedIndex(selected);
 			resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 		}
+
 	}
 
 	private boolean stripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
@@ -347,6 +355,20 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	public JTabbedPane getResolutionPane() {
 		return resPane;
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void addChoiceResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
+		VSpecResolution parentNamedElement = null;
+		for (Map x : resolutionvmMaps) {
+			parentNamedElement = (VSpecResolution) x.get(parent);
+			if (parentNamedElement != null) {
+				VSpec vSpecToResolve = (VSpec) resolvedVSpec;
+				toolModel.addChoiceResolution(vSpecToResolve, parentNamedElement);
+				return;
+			}
+		}
 	}
 
 }

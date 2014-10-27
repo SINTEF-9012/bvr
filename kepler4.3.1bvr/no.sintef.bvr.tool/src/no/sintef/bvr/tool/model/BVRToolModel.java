@@ -264,4 +264,12 @@ abstract public class BVRToolModel {
 	public void updateBindingBoundary(BoundaryElementBinding binding, NamedElement boundary) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+
+	public void addChoiceResolution(VSpec resolvedVSpec, VSpecResolution parentNamedElement) {
+		throw new UnexpectedException("Are you using default implementation?!");
+		
+	}
+
+
 }
