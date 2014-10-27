@@ -16,11 +16,13 @@ import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
 
+
+
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.filter.PNGFilter;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 public class ExportModelImage implements ActionListener {

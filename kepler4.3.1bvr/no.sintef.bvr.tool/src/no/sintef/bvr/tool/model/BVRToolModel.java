@@ -1,7 +1,6 @@
-package no.sintef.bvr.tool.ui.loader;
+package no.sintef.bvr.tool.model;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 

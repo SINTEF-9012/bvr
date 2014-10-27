@@ -10,15 +10,15 @@ import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 
 public class ToggleOptionalEvent implements ActionListener {
 	private ChoicePanel p;
-	private BVRNotifiableController view;
+	private BVRNotifiableController controller;
 
 	public ToggleOptionalEvent(ChoicePanel p, BVRNotifiableController controller) {
 		this.p = p;
-		this.view = controller;
+		this.controller = controller;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent arg0) {
-		view.getVSpecControllerInterface().toggleChoiceOptionalMandotary(p);
+		controller.getVSpecControllerInterface().toggleChoiceOptionalMandotary(p);
 	}
 }

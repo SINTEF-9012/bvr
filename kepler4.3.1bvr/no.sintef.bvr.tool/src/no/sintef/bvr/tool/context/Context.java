@@ -21,10 +21,10 @@ import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 
 
+import no.sintef.bvr.tool.model.BVRSimpleToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRTransactionalModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
-import no.sintef.bvr.tool.ui.loader.BVRSimpleToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
-import no.sintef.bvr.tool.ui.loader.BVRTransactionalModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;

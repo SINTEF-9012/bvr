@@ -17,6 +17,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 
 
+
+
 import bvr.VSpecResolution;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.tool.common.Constants;
@@ -25,9 +27,9 @@ import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.exception.RethrownException;
+import no.sintef.bvr.tool.model.BVREmptyModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVREmptyModel;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 
 

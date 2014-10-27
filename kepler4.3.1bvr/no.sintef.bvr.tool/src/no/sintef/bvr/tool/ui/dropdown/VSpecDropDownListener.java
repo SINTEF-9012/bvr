@@ -7,9 +7,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
 
 
 public class VSpecDropDownListener extends MouseAdapter {

@@ -6,7 +6,7 @@ import javax.swing.JTabbedPane;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.RealizationControllerInterface;
 import no.sintef.bvr.tool.controller.SwingRealizationController;
-import no.sintef.bvr.tool.ui.loader.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
 
 
 public class RealizationRootController extends BVRToolAbstractController {

@@ -12,7 +12,10 @@ import javax.swing.JTabbedPane;
 
 
 
+
+
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BooleanLiteralExp;

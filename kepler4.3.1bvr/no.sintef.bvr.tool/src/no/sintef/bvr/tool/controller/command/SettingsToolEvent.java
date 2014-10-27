@@ -1,8 +1,7 @@
-package no.sintef.bvr.tool.ui.command.event;
+package no.sintef.bvr.tool.controller.command;
 
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.ui.edit.BVROptionsEditor;
 
 public class SettingsToolEvent implements SimpleExeCommandInterface {

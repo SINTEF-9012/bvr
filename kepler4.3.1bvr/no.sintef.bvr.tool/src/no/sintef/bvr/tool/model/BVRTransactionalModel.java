@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.loader;
+package no.sintef.bvr.tool.model;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,11 +15,6 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
-import no.sintef.bvr.tool.model.ConstraintFacade;
-import no.sintef.bvr.tool.model.NoteFacade;
-import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
-import no.sintef.bvr.tool.model.SubstitutionFragmentFacade;
-import no.sintef.bvr.tool.model.TargetFacade;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
