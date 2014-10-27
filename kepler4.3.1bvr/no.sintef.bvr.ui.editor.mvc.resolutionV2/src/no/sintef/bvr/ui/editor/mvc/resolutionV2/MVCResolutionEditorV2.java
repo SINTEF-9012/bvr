@@ -32,7 +32,7 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 
 	@Override
 	public void setContents() {
-		jApplet.add(((ResolutionToolView)v).resPane);
+		jApplet.add(((ResolutionRootController)v).getResolutionPane());
 		// TODO Auto-generated method stub
 	}
 /*
@@ -40,7 +40,7 @@ public class MVCResolutionEditorV2 extends MVCEditor{
  */
 	@Override
 	public void createView() {
-		v = new ResolutionToolView(toolModel);
+		v = new ResolutionRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);

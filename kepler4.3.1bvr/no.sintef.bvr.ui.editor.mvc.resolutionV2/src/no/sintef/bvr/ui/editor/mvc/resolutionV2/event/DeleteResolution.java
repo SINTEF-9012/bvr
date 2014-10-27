@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionToolView;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionRootController;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 
 public class DeleteResolution implements ActionListener {
@@ -19,7 +19,7 @@ public class DeleteResolution implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int tab = ((ResolutionToolView) view).getResolutionPane().getSelectedIndex();
+		int tab = ((ResolutionRootController) view).getResolutionPane().getSelectedIndex();
 		Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(view.getBVRModel(), view.getBVRModel().getResolutionModels().get(tab));
 	}
 
