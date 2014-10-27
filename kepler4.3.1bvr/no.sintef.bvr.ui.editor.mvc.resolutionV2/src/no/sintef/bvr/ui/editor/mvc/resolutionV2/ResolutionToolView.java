@@ -28,10 +28,10 @@ import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV2DropdownListener;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutionV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddErrorGroup;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutionFromVClassifier;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddVariableValueAssignmentV2;
+import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddValueResolution;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedBCLConstraint;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedOpaqueConstraint;
 import no.sintef.bvr.ui.framework.TitledElement;
@@ -312,7 +312,7 @@ public class ResolutionToolView extends BVRToolAbstractController implements BVR
 
 		} else if (v instanceof ChoiceResolution) {
 			// System.out.println(v);
-			nextParent = new AddChoiceResolutionV2(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
+			nextParent = new AddChoiceResolution(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, this).execute();
 
 			vmMap.put(nextParent, v);

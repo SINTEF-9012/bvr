@@ -26,7 +26,7 @@ import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.PosResolution;
 
-public class AddChoiceResolutionV2 implements UICommand {
+public class AddChoiceResolution implements UICommand {
 
 	private boolean stripContains;
 	private Map<JComponent, NamedElement> vmMap;
@@ -39,7 +39,7 @@ public class AddChoiceResolutionV2 implements UICommand {
 	private CommandMouseListener listener;
 	private boolean minContains;
 	
-	public AddChoiceResolutionV2(boolean minContains, boolean stripContains) {
+	public AddChoiceResolution(boolean minContains, boolean stripContains) {
 		this.minContains = minContains;
 		this.stripContains = stripContains;
 	}

@@ -24,7 +24,7 @@ import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 
-public class AddVariableValueAssignmentV2 implements UICommand {
+public class AddValueResolution implements UICommand {
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
@@ -36,7 +36,7 @@ public class AddVariableValueAssignmentV2 implements UICommand {
 	protected boolean contains;
 	private boolean stripContains;
 
-	public AddVariableValueAssignmentV2(boolean minContains, boolean stripContains) {
+	public AddValueResolution(boolean minContains, boolean stripContains) {
 		this.contains = minContains;
 		this.stripContains = stripContains;
 	}
