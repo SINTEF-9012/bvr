@@ -15,6 +15,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.command.AddChoiceResolutionFromVClassifier;
+import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
@@ -29,6 +30,7 @@ import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
 import no.sintef.bvr.tool.ui.strategy.VSpecLayoutStrategy;
@@ -371,7 +373,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
-				toolModel.createResolutionModel();
+				CompoundResolution compoundResolution = toolModel.createResolution();
+				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(rootController, new AddResolution(), (VSpec) compoundResolution.getResolvedChoice(), compoundResolution, false);
+				toolModel.addResolutionModel(compoundResolution);
 			}
 		});
 		return command;

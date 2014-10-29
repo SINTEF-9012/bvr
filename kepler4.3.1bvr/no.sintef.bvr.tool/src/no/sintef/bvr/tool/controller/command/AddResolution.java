@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -23,7 +24,7 @@ import bvr.Variable;
 //import bvr.common.PrimitiveTypeHandler;
 
 public class AddResolution implements ResCommand{
-	private BVRResolutionToolView view;
+	private BVRNotifiableController view;
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
@@ -32,7 +33,7 @@ public class AddResolution implements ResCommand{
  * ONLY for use with nodes NOT added to model
  */
 	@Override
-	public ResCommand init(BVRResolutionToolView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
+	public ResCommand init(BVRNotifiableController view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = vs;
 		this.parent = vsr;
@@ -72,7 +73,8 @@ public class AddResolution implements ResCommand{
 		PosResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		 //count++;
 		
-		thisResolution.setName("I " + view.getIncrementedNameCounter());
+		//thisResolution.setName("I " + view.getIncrementedNameCounter());
+		thisResolution.setName("I ");
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 		
 		((CompoundResolution) parent).getMembers().add(thisResolution);

@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.model;
 
 import java.util.List;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.ResCommand;
 import bvr.BVRModel;
@@ -26,7 +27,7 @@ public class ResolutionModelIterator {
 		return instance;
 	}
 
-	public void iterateEmpty(BVRResolutionToolView view, ResCommand command,
+	public void iterateEmpty(BVRNotifiableController view, ResCommand command,
 			VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		List<VSpecResolution> newResolutions = command.init(view, vsParent,
 				vsrParent, onlyOneInstance).execute();
@@ -39,7 +40,7 @@ public class ResolutionModelIterator {
 		// System.out.println("no new resolutions");
 	}
 
-	public void iterateEmptyOnChildren(BVRResolutionToolView view,
+	public void iterateEmptyOnChildren(BVRNotifiableController view,
 			ResCommand command, VSpec vsParent, VSpecResolution vsrParent,
 			boolean onlyOneInstance) {
 
@@ -62,7 +63,7 @@ public class ResolutionModelIterator {
 		}
 	}
 
-	public void iterateExisting(BVRResolutionToolView view, ResCommand command,
+	public void iterateExisting(BVRNotifiableController view, ResCommand command,
 			VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		vsParent = vsrParent.getResolvedVSpec();

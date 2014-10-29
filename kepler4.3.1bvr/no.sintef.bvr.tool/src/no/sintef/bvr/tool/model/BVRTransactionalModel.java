@@ -12,7 +12,6 @@ import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
-
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -20,6 +19,8 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
+
+
 
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -765,7 +766,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public void createResolutionModel() {
+	public CompoundResolution createResolution(){
 		BVRModel model = getBVRModel();
 		if(model.getVariabilityModel() == null)
 			throw new UserInputError("there is not variability model yet, nothing to resolve");
@@ -774,16 +775,18 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 		CompoundNode variablityModel = model.getVariabilityModel();
 		
-		// populate top choice
 		if (variablityModel instanceof Choice) {
 			root.setResolvedChoice((Choice) variablityModel);
 			root.setName(((NamedElement) variablityModel).getName());
-
-			//Iterators.getInstance().iterateEmptyOnChildren(this.view, new AddResolution(), x, root, false);
-			
-			Context.eINSTANCE.getEditorCommands().createNewResolution(root, model);
 		} else {
 			throw new UserInputError("model must start with a choice");
 		}
+		return root;
+	}
+	
+	@Override
+	public void addResolutionModel(CompoundResolution root) {
+		BVRModel model = getBVRModel();
+		Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, model);
 	}
 }

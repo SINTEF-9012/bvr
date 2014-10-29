@@ -14,6 +14,7 @@ import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.FragmentSubstitution;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
@@ -271,8 +272,12 @@ abstract public class BVRToolModel {
 		
 	}
 
-	public void createResolutionModel() {
-		throw new UnexpectedException("Are you using default implementation?!");	
+	public CompoundResolution createResolution() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void addResolutionModel(CompoundResolution root) {
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 

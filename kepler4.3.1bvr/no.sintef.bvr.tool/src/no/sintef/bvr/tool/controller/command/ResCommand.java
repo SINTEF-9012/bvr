@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -13,6 +14,6 @@ import bvr.VSpecResolution;
  * 
  */
 public interface ResCommand {
-	public ResCommand init(BVRResolutionToolView view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance);
+	public ResCommand init(BVRNotifiableController controller, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance);
 	public List <VSpecResolution> execute();
 }
