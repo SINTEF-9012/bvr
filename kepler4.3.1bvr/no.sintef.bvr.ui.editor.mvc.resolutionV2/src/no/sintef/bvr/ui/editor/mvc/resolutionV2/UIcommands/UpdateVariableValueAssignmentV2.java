@@ -7,10 +7,10 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.ui.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.NamedElement;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;

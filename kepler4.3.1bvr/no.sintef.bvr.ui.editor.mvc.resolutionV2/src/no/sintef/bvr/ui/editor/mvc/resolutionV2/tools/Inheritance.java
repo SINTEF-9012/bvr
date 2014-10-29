@@ -1,8 +1,8 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionRootController;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;

@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddMissingResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Inheritance;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.NegResolution;
@@ -34,7 +34,7 @@ public class AddSubTreeEvent implements ActionListener {
 
 
 	public void actionPerformed(ActionEvent e) {
-		VSpecResolution grandParent = Iterators.getInstance().getParent(this.view.getBVRModel(), parent);
+		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(this.view.getBVRModel(), parent);
 
 		if (grandParent == null) {
 			for (VSpecResolution c : this.view.getBVRModel().getResolutionModels())
@@ -67,7 +67,7 @@ public class AddSubTreeEvent implements ActionListener {
 
 	VSpecResolution create() {
 		VSpecResolution root = CloneRes.getResolution().cloneItStart(parent, view);
-		Iterators.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
+		ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
 		return root;
 	}
 	

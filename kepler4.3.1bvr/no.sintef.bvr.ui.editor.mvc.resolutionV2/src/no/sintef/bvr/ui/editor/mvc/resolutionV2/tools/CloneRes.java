@@ -2,8 +2,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
 
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.CompoundResolution;
 import bvr.NegResolution;

@@ -1,29 +1,27 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
+package no.sintef.bvr.tool.model;
 
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ResCommand;
-
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.command.ResCommand;
 import bvr.BVRModel;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.VNode;
-
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
 
-public class Iterators {
-	private static Iterators instance = null;
+public class ResolutionModelIterator {
+	private static ResolutionModelIterator instance = null;
 
-	private Iterators() {
+	private ResolutionModelIterator() {
 
 	}
 
-	public static synchronized Iterators getInstance() {
+	public static synchronized ResolutionModelIterator getInstance() {
 		if (instance == null) {
-			instance = new Iterators();
+			instance = new ResolutionModelIterator();
 		}
 		return instance;
 	}

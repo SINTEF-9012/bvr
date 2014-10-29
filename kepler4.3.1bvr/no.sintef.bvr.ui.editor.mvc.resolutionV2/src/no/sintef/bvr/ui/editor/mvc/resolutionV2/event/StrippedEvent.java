@@ -6,9 +6,9 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.StripCommand;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
 import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.VSpecResolution;

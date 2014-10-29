@@ -20,8 +20,8 @@ public class ResolutionRootController extends BVRToolAbstractController {
 	private SwingResolutionController<JComponent, EObject> controller;
 	
 	public ResolutionRootController(BVRToolModel m) {
-		this.model = m;
-		this.controller = new SwingResolutionController<JComponent, EObject>(model, this);
+		model = m;
+		controller = new SwingResolutionController<JComponent, EObject>(model, this);
 		controller.render();
 	}
 
@@ -36,7 +36,6 @@ public class ResolutionRootController extends BVRToolAbstractController {
 
 	@Override
 	public void refresh() {
-		System.out.println("refreshing");
 		controller.notifyResolutionViewUpdate();
 	}
 	

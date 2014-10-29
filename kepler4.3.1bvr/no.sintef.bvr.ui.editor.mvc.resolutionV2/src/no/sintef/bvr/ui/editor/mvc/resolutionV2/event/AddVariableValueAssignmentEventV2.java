@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import bvr.BvrFactory;
 //import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;

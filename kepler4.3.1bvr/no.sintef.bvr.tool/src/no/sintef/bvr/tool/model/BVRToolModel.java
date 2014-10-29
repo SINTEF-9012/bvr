@@ -271,5 +271,9 @@ abstract public class BVRToolModel {
 		
 	}
 
+	public void createResolutionModel() {
+		throw new UnexpectedException("Are you using default implementation?!");	
+	}
+
 
 }

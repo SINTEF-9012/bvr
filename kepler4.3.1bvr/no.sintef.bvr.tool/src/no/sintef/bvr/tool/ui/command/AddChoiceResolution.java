@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
@@ -17,6 +19,7 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.PosResolution;
+import bvr.VSpec;
 
 public class AddChoiceResolution implements Command {
 
@@ -66,16 +69,14 @@ public class AddChoiceResolution implements Command {
 		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, vmMap,  (BVRNotifiableController) view));
         cp.addMouseListener(listener);
 		
-		String choicename = "null";
-		if(c.getResolvedVSpec() != null){
-			choicename = c.getResolvedVSpec().getName();
-		}
+        Choice resolvedChoice = (Choice) CommonUtility.getResolvedVSpec(c);
+        
+		String choicename = resolvedChoice.getName();
 		
         cp.setTitle((minContains?"(+) ":"") + (stripContains?"(*) ":"") + choicename + " = " + (c instanceof PosResolution));
        
-        
 		rootPanel.getModelPanel().addNode(cp);
-        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( ((Choice)c.getResolvedVSpec()).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
+        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( (resolvedChoice).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
         
 	}

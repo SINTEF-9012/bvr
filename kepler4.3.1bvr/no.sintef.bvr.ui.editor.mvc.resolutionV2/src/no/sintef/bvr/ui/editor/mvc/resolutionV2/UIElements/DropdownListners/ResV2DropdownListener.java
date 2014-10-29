@@ -14,7 +14,11 @@ import javax.swing.JTabbedPane;
 
 
 
+
+
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
+import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
@@ -22,9 +26,7 @@ import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.DeleteResolution;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
 import bvr.BVRModel;
@@ -69,7 +71,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 	public ResV2DropdownMenu(BVRToolModel m, BVRModel bvrModel, BVRResolutionToolView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
 		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolvedResolutionEvent(bvrModel, bvrView));
+		newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
 		add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");

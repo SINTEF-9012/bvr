@@ -3,7 +3,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.command.ResCommand;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 

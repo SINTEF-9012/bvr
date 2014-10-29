@@ -6,12 +6,12 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.VariableValueAssignmentDropDownListenerV2;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;

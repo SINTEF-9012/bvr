@@ -1,4 +1,4 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements;
+package no.sintef.bvr.tool.controller;
 import java.util.List;
 
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+
 import bvr.BVRModel;
 //import no.sintef.bvr.tool.ui.loader.BVRModel;
 //import bvr.ConfigurableUnit;

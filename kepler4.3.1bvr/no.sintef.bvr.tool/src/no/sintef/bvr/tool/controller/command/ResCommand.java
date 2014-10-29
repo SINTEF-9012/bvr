@@ -1,8 +1,8 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 

@@ -4,7 +4,8 @@ import java.util.List;
 
 
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Validate;
 import bvr.Constraint;
 import bvr.VSpecResolution;

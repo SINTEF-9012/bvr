@@ -14,7 +14,9 @@ import javax.swing.JTabbedPane;
 
 
 
+
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
+import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
@@ -33,15 +35,15 @@ import bvr.BVRModel;
 import bvr.NamedElement;
 
 public class ResolutionDropdownListener extends MouseAdapter {
-	private BVRNotifiableController bvrViewV2;
+	private BVRNotifiableController controller;
 	private BVRToolModel m;
 	private BVRModel bvrModel;
 	private JTabbedPane resPane;
 	Map<JComponent, NamedElement> vmMap;
 
-	public ResolutionDropdownListener(BVRNotifiableController bvrView,BVRModel bvrModel, BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResolutionDropdownListener(BVRNotifiableController controller, BVRModel bvrModel, BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 		this.vmMap = vmMap;
-		this.bvrViewV2 = bvrView;
+		this.controller = controller;
 		this.bvrModel= bvrModel;
 		this.m = m;
 		this.resPane = resPane;
@@ -59,7 +61,7 @@ public class ResolutionDropdownListener extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, bvrModel, bvrViewV2, resPane, vmMap);
+		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, bvrModel, controller, resPane, vmMap);
 		
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
@@ -70,7 +72,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 	public ResV2DropdownMenu(BVRToolModel m, BVRModel bvrModel, BVRNotifiableController bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
 		JMenuItem newres = new JMenuItem("New");
-		//TODO newres.addActionListener(new NewResolvedResolutionEvent(bvrModel, bvrView));
+		newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
 		add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");

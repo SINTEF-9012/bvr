@@ -21,10 +21,10 @@ import javax.swing.JComponent;
 
 import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.ResolutionRootController;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 
 public interface UICommand {
 
