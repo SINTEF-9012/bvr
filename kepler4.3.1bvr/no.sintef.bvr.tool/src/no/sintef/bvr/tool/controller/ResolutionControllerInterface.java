@@ -7,4 +7,6 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 	public void addChoiceResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec);
 	
 	public SimpleExeCommandInterface createResolutionModel();
+
+	public SimpleExeCommandInterface removeRootResolution();
 }

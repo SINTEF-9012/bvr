@@ -15,6 +15,8 @@ import javax.swing.JTabbedPane;
 
 
 
+
+import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
@@ -76,7 +78,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 		add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			JMenuItem remove = new JMenuItem("Remove");
-		//TODO	remove.addActionListener(new DeleteResolution(bvrView)); //TODO add new DeleteResolution, or merge new and old editors
+			remove.addActionListener(new DeleteResolution(bvrView));
 			add(remove);
 		}
 		JMenuItem importres = new JMenuItem("Import ...");

@@ -280,5 +280,9 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+	public void removeRootResolution(int resolutionIndex) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
 
 }

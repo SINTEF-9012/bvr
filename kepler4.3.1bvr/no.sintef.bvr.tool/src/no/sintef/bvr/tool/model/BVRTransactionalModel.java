@@ -789,4 +789,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		BVRModel model = getBVRModel();
 		Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, model);
 	}
+	
+	@Override
+	public void removeRootResolution(int resolutionIndex) {
+		BVRModel model = getBVRModel();
+		CompoundResolution resolution = model.getResolutionModels().get(resolutionIndex);
+		Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(model, resolution);
+	}
 }

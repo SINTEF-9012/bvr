@@ -382,4 +382,16 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
+	@Override
+	public SimpleExeCommandInterface removeRootResolution() {
+		final int resolutionIndex = resPane.getSelectedIndex();
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.removeRootResolution(resolutionIndex);
+			}
+		});
+		return command;
+	}
+
 }
