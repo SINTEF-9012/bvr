@@ -8,6 +8,7 @@ import javax.swing.JComponent;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.ToggleChoiceCommand;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceResolutionDropDownListener;
@@ -62,8 +63,8 @@ public class AddChoiceResolution implements Command {
 		nodes.add(cp);
 		////////////////////////////////////
 		CommandMouseListener listener = new CommandMouseListener();
-//		TODO ToggleChoiceCommand command = new ToggleChoiceCommand();
-//		command.init(view, null, c, true);
+		ToggleChoiceCommand command = new ToggleChoiceCommand();
+		//command.init(view, null, c, true);
 //		listener.setLeftClickCommand(command);
 		
 		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, vmMap,  (BVRNotifiableController) view));

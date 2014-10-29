@@ -1,9 +1,8 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
+package no.sintef.bvr.tool.model;
 
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
-import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
 import bvr.BvrFactory;
 import bvr.CompoundResolution;
 import bvr.NegResolution;
@@ -20,16 +19,16 @@ import bvr.Variable;
 //import bvr.VariableValueAssignment;
 //import bvr.common.PrimitiveTypeHandler;
 
-public class CloneRes {
-	private static CloneRes clone = null;
+public class CloneResFacade {
+	private static CloneResFacade clone = null;
 
-	private CloneRes() {
+	private CloneResFacade() {
 
 	}
 
-	public static synchronized CloneRes getResolution() {
+	public static synchronized CloneResFacade getResolution() {
 		if (clone == null) {
-			clone = new CloneRes();
+			clone = new CloneResFacade();
 		}
 		return clone;
 	}

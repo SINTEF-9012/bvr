@@ -1,13 +1,12 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
-import no.sintef.bvr.tool.controller.command.ResCommand;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.ChangeChoice;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Inheritance;
+import no.sintef.bvr.tool.model.ChangeChoiceFacade;
+import no.sintef.bvr.tool.model.InheritanceFacade;
 import bvr.ChoiceResolution;
 import bvr.PosResolution;
 //import bvr.ChoiceResolution;
@@ -29,8 +28,8 @@ public class ToggleChoiceCommand implements ResCommand {
 	public List<VSpecResolution> execute() {
 
 		if (vsr instanceof ChoiceResolution) {
-			ChangeChoice.setChoiceResolution((ChoiceResolution)vsr,!(vsr instanceof PosResolution), view);
-			Inheritance.getInstance().passInheritance((ChoiceResolution) vsr, true, view);
+			ChangeChoiceFacade.setChoiceResolution((ChoiceResolution)vsr,!(vsr instanceof PosResolution), view);
+			InheritanceFacade.getInstance().passInheritance((ChoiceResolution) vsr, true, view);
 		}
 		ArrayList<VSpecResolution> a = new ArrayList<VSpecResolution>();
 		a.add(vsr);

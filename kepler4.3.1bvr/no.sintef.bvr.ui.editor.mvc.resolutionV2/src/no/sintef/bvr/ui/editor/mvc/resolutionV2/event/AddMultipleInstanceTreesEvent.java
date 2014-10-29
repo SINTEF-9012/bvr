@@ -7,8 +7,8 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.model.CloneResFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
@@ -73,7 +73,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	}
 
 	VSpecResolution create() {
-		VSpecResolution root = CloneRes.getResolution().cloneItStart(parent, view);
+		VSpecResolution root = CloneResFacade.getResolution().cloneItStart(parent, view);
 
 		for (int i = 0; i < instancesRequested; i++) {
 			PosResolution newInstance = BvrFactory.eINSTANCE.createPosResolution();

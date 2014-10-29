@@ -1,11 +1,10 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.tools;
+package no.sintef.bvr.tool.model;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.AddResolution;
-import no.sintef.bvr.tool.model.ResolutionModelIterator;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
+//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
@@ -14,16 +13,16 @@ import bvr.PosResolution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public class ChangeChoice {
-	private static ChangeChoice instance = null;
+public class ChangeChoiceFacade {
+	private static ChangeChoiceFacade instance = null;
 
-	private ChangeChoice() {
+	private ChangeChoiceFacade() {
 
 	}
 
-	public static synchronized ChangeChoice getInstance() {
+	public static synchronized ChangeChoiceFacade getInstance() {
 		if (instance == null) {
-			instance = new ChangeChoice();
+			instance = new ChangeChoiceFacade();
 		}
 		return instance;
 	}

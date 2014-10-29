@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.CloneResFacade;
+import no.sintef.bvr.tool.model.InheritanceFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddMissingResolutions;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Inheritance;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.NegResolution;
@@ -50,11 +50,11 @@ public class AddSubTreeEvent implements ActionListener {
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof PosResolution) {
 				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution( grandParent, (PosResolution) root);
-				Inheritance.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
 			}
 			else if(parent instanceof NegResolution){
 				Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution(grandParent, (NegResolution) root);
-				Inheritance.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
 			}/* else if (parent instanceof VariableValueAssignment) {
 			}
 				Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(grandParent, (VariableValueAssignment) root);
@@ -66,7 +66,7 @@ public class AddSubTreeEvent implements ActionListener {
 	}
 
 	VSpecResolution create() {
-		VSpecResolution root = CloneRes.getResolution().cloneItStart(parent, view);
+		VSpecResolution root = CloneResFacade.getResolution().cloneItStart(parent, view);
 		ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
 		return root;
 	}
