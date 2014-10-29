@@ -796,4 +796,16 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		CompoundResolution resolution = model.getResolutionModels().get(resolutionIndex);
 		Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(model, resolution);
 	}
+	
+	@Override
+	public void removeAllResolutions() {
+		BVRModel model = getBVRModel();
+		EList<CompoundResolution> resolutions = new BasicEList<CompoundResolution>();
+		//Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(m.getBVRM().getRootBVRModel());
+	}
+	
+	@Override
+	public void generatAllProducts() {
+	
+	}
 }

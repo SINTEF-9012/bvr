@@ -40,6 +40,7 @@ import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.Constraint;
 //import bvr.ChoiceResolutuion;
 //import bvr.ConfigurableUnit;
@@ -795,6 +796,13 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addRealizationVariationPoint(BVRModel model, VariationPoint variationPoint) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_RealizationModel(), variationPoint);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void removeBVRModelCompoundResolutions(BVRModel model, EList<CompoundResolution> resolutions) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), resolutions);
 		testCommandExecution(editingDomain, cmd);
 	}
 

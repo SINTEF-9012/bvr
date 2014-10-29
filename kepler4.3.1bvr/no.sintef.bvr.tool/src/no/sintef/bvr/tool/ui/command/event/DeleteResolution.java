@@ -17,7 +17,7 @@ public class DeleteResolution implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().removeRootResolution();
+		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createRemoveRootResolutionCommand();
 		command.execute();
 	}
 

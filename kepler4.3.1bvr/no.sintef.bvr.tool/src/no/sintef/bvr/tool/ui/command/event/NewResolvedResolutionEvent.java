@@ -16,7 +16,7 @@ public class NewResolvedResolutionEvent implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createResolutionModel();
+		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createResolutionModelCommand();
 		command.execute();
 	}
 }

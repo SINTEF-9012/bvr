@@ -370,7 +370,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public SimpleExeCommandInterface createResolutionModel() {
+	public SimpleExeCommandInterface createResolutionModelCommand() {
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -383,7 +383,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public SimpleExeCommandInterface removeRootResolution() {
+	public SimpleExeCommandInterface createRemoveRootResolutionCommand() {
 		final int resolutionIndex = resPane.getSelectedIndex();
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
@@ -393,5 +393,19 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		});
 		return command;
 	}
+
+	@Override
+	public SimpleExeCommandInterface createGenerateAllProductsCommand() {
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.removeAllResolutions();
+				toolModel.generatAllProducts();
+			}
+		});
+		return command;
+	}
+
+
 
 }

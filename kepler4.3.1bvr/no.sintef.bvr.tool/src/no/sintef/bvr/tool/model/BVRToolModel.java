@@ -284,5 +284,13 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+	public void removeAllResolutions() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void generatAllProducts() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
 
 }
