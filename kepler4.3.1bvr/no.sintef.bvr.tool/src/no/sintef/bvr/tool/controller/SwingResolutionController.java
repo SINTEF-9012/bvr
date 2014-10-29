@@ -146,7 +146,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			resolutionBindings.add(bindings);
 
 			loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings, false, false);
-			resKernel.getModelPanel().layoutTreeNodes(strategy);
+			//resKernel.getModelPanel().layoutTreeNodes(strategy);
 			
 			String tabtitle = "";
 			if (v instanceof ChoiceResolution) {
@@ -284,7 +284,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
 		for(BVRUIKernel resKernel : resolutionkernels){
 			strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings, (ArrayList<JScrollPane>) resolutionPanes);
-		resKernel.getModelPanel().layoutTreeNodes(strategy);}
+			resKernel.getModelPanel().layoutTreeNodes(strategy);
+		}
 	}
 
 	public void notifyResolutionViewUpdate() {
