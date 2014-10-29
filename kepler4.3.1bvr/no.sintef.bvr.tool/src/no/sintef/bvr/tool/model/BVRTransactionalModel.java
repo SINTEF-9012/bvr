@@ -315,7 +315,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void addChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setName("Choice "+choicCounter);
+		c.setName("Choice"+choicCounter);
 		
 		//each vspec has to have target
 		Target target = BvrFactory.eINSTANCE.createTarget();
