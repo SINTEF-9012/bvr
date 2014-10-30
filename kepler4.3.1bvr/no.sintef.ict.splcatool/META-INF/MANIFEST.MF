@@ -8,6 +8,7 @@ Require-Bundle: org.junit,
  de.ovgu.featureide.fm.core,
  no.sintef.bvr.model
 Import-Package: bvr,
+ no.sintef.bvr.common,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore.resource,
  org.eclipse.emf.ecore.resource.impl,
