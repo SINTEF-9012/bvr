@@ -14,6 +14,7 @@ import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
@@ -22,6 +23,12 @@ import no.sintef.bvr.tool.observer.ResourceSubject;
 
 
 
+
+import no.sintef.ict.splcatool.CNF;
+import no.sintef.ict.splcatool.CoveringArray;
+import no.sintef.ict.splcatool.CoveringArrayComplete;
+import no.sintef.ict.splcatool.GUIDSL;
+import no.sintef.ict.splcatool.GraphMLFM;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -801,11 +808,26 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void removeAllResolutions() {
 		BVRModel model = getBVRModel();
 		EList<CompoundResolution> resolutions = new BasicEList<CompoundResolution>();
-		//Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(m.getBVRM().getRootBVRModel());
+		for(CompoundResolution cr : model.getResolutionModels()){
+			if(cr instanceof PosResolution)
+				resolutions.add(cr);
+		}
+		Context.eINSTANCE.getEditorCommands().removeBVRModelCompoundResolutions(model, resolutions);
 	}
 	
 	@Override
 	public void generatAllProducts() {
-	
+		try {
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			CoveringArray ca = new CoveringArrayComplete(cnf);
+			ca.generate();
+			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			for(VSpecResolution resolution : resolutions)
+				addResolutionModel((CompoundResolution) resolution);
+		} catch (Exception e) {
+			throw new RethrownException("failed to generate products", e); 
+		}	
 	}
 }

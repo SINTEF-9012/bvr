@@ -73,9 +73,9 @@ class ResV2DropdownMenu extends JPopupMenu {
 		newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
 		add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
-			JMenuItem remove = new JMenuItem("Remove");
+			//JMenuItem remove = new JMenuItem("Remove");
 			//remove.addActionListener(new DeleteResolution(bvrView)); //TODO add new DeleteResolution, or merge new and old editors
-			add(remove);
+			//add(remove);
 		}
 		JMenuItem importres = new JMenuItem("Import ...");
 		importres.addActionListener(new ImportResolutions(m, bvrView));
@@ -99,7 +99,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			camenu.add(cc1);
 
 			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
-			calcall.addActionListener(new GenerateAllProducts(m, bvrView));
+			calcall.addActionListener(new GenerateAllProducts(bvrView));
 			camenu.add(calcall);
 
 			camenu.add(new JSeparator());

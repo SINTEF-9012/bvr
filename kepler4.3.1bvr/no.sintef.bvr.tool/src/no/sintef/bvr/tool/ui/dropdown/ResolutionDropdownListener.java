@@ -103,7 +103,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			camenu.add(cc1);
 
 			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
-			calcall.addActionListener(new GenerateAllProducts(m, bvrView));
+			calcall.addActionListener(new GenerateAllProducts(bvrView));
 			camenu.add(calcall);
 
 			camenu.add(new JSeparator());
