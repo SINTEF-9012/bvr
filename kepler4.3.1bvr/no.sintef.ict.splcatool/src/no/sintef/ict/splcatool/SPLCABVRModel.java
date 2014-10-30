@@ -343,6 +343,7 @@ public class SPLCABVRModel {
 		as.put(x.getResolvedVSpec().getName(), x instanceof PosResolution);
 		
 		if(x instanceof PosResolution){
+			
 			for(VSpecResolution c : ((PosResolution) x).getMembers()){
 				if(!(c instanceof ChoiceResolution) || ((c instanceof ChoiceResolution) && (((ChoiceResolution) c).getResolvedVClassifier() != null))){
 					throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
