@@ -104,7 +104,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 			camenu.add(new JSeparator());
 
-			JMenu genca = new JMenu("Generate Covering Array");
+			/*JMenu genca = new JMenu("Generate Covering Array");
 			JMenuItem genca1 = new JMenuItem("1-wise");
 			genca1.addActionListener(new GenerateCoveringArray(m, bvrView, 1));
 			genca.add(genca1);
@@ -114,7 +114,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			JMenuItem genca3 = new JMenuItem("3-wise");
 			genca3.addActionListener(new GenerateCoveringArray(m, bvrView, 3));
 			genca.add(genca3);
-			camenu.add(genca);
+			camenu.add(genca);*/
 
 			camenu.add(new JSeparator());
 			add(new JSeparator());

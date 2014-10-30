@@ -19,4 +19,6 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 	public List<String> getSATValidationMessage();
 
 	public Integer calculateCoverage(int t);
+
+	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t);
 }

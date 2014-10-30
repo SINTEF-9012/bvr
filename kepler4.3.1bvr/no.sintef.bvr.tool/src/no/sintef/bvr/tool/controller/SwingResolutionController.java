@@ -421,6 +421,18 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return toolModel.calculateCoverage(t);
 	}
 
+	@Override
+	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t) {
+		final int xWise = t;
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.generateCoveringArray(xWise);
+			}
+		});
+		return command;
+	}
+
 
 
 }

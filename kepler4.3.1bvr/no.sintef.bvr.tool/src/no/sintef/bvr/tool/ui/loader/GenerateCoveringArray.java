@@ -7,25 +7,21 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.common.util.EList;
 
-import bvr.VSpecResolution;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.model.BVRToolModel;
-import no.sintef.ict.splcatool.CNF;
-import no.sintef.ict.splcatool.CoveringArray;
-import no.sintef.ict.splcatool.GUIDSL;
-import no.sintef.ict.splcatool.GraphMLFM;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+
 
 public class GenerateCoveringArray implements ActionListener {
 	private int t;
-	private BVRToolModel m;
+
+	private BVRNotifiableController controller;
 	
-	public GenerateCoveringArray(BVRToolModel m, BVRNotifiableController bvrView, int t) {
-		this.m = m;
+	public GenerateCoveringArray(BVRNotifiableController _controller, int t) {
 		this.t = t;
+		controller = _controller;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
@@ -34,18 +30,8 @@ public class GenerateCoveringArray implements ActionListener {
 			 @Override
 			 protected IStatus run(IProgressMonitor monitor) {
 				 try {
-					 GUIDSL gdsl = m.getBVRM().getGUIDSL();
-					 CNF cnf = gdsl.getSXFM().getCNF();
-					 CoveringArray ca = cnf.getCoveringArrayGenerator("J11", t, 1);
-					 /*if(m.getBVRM().getCU().getOwnedVSpecResolution().size() > 0){
-						 CoveringArray startFrom = m.getBVRM().getCoveringArray();
-						 ca.startFrom(startFrom);
-					 }*/
-					 ca.generate();
-					 GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-					 //Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolutions(m.getBVRM().getCU());
-					 EList<VSpecResolution> resolutions = m.getBVRM().getChoiceResolutions(gfm);
-					// Context.eINSTANCE.getEditorCommands().addOwnedVSpecResolutionsConfigurableUnit(m.getBVRM().getCU(), resolutions);
+					 SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createGenerateCoveringArrayCommand(t);
+					 command.execute();
 				 } catch (Exception e) {
 					 Context.eINSTANCE.logger.error("Generating covering array failed:", e);
 					 Status status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Generating covering array failed (see log for more details): " + e.getMessage(), e);

@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import javax.swing.JOptionPane;
+import javax.xml.parsers.ParserConfigurationException;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
@@ -34,6 +36,7 @@ import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayComplete;
+import no.sintef.ict.splcatool.CoveringArrayGenerationException;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
@@ -53,6 +56,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.xml.sax.SAXException;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
@@ -883,5 +887,36 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			throw new RethrownException("Failed to calculate coverage", e);
 		}
 		return cov;
+	}
+
+	@Override
+	public void generateCoveringArray(int xWise) {
+		try {
+			removeAllResolutions();
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
+			
+			/*EList<CompoundResolution> compoundResolutions = getBVRModel().getResolutionModels();
+			EList<PosResolution> rootResolutions = new BasicEList<PosResolution>();
+			for(CompoundResolution compoundResolution : compoundResolutions) {
+				if(compoundResolution instanceof PosResolution)
+					rootResolutions.add((PosResolution) compoundResolution);
+			}
+			
+			 if(rootResolutions.size() > 0){
+				 CoveringArray startFrom = getBVRM().getCoveringArray();
+				 ca.startFrom(startFrom);
+			 }*/
+			 
+			 ca.generate();
+			 GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			 EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			 for(VSpecResolution resolution : resolutions)
+				addResolutionModel((CompoundResolution) resolution);
+		} catch (Exception e) {
+			throw new RethrownException("Failed to generate covering array", e);
+		}
+
 	}
 }

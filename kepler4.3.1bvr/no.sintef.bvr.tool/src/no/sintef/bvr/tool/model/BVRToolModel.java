@@ -304,5 +304,9 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+	public void generateCoveringArray(int xWise) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
 
 }
