@@ -351,18 +351,16 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
 		NamedElement parentNamedElement = getElementInCurrentPane(parent);
-		
-			if (parentNamedElement != null) {
-				VSpec vSpecToResolve = (VSpec) resolvedVSpec;
-				toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
-				return;	
-		}
-			else{
-				System.out.println("parent node not found");
-				return;
-			}
-	}
 
+		if (parentNamedElement != null) {
+			VSpec vSpecToResolve = (VSpec) resolvedVSpec;
+			toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
+			return;
+		} else {
+			System.out.println("parent node not found");
+			return;
+		}
+	}
 
 	@Override
 	public SimpleExeCommandInterface createResolutionModelCommand() {
@@ -403,16 +401,16 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-
 	public SimpleExeCommandInterface RemoveVsSpecResoluton(final GUI_NODE _toDelete) {
 		final int resolutionIndex = resPane.getSelectedIndex();
 		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
 			NamedElement toDelete = null;
 			NamedElement parentNamedElement = null;
+
 			@Override
 			public void execute() {
 				toDelete = resolutionvmMaps.get(resolutionIndex).get(_toDelete);
-				 
+
 				if (toDelete != null) {
 					parentNamedElement = ResolutionModelIterator.getInstance().getParent(toolModel.getBVRModel(), (VSpecResolution) toDelete);
 					Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution((VSpecResolution) parentNamedElement, toDelete);
@@ -420,14 +418,10 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 					System.out.println("could not find node to remove");
 				}
 			}
-			
 
 		};
 		return command;
 	}
-
-
-	
 
 	public boolean performSATValidation() {
 		return toolModel.performSATValidation();
@@ -446,7 +440,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t) {
 		final int xWise = t;
-		
+
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -459,23 +453,15 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public void toggleChoice(GUI_NODE _toToggle) {
 		final NamedElement toToggle = getElementInCurrentPane(_toToggle);
-		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
-			
-			@Override
-			public void execute() {
-				if(toToggle instanceof ChoiceResolution){
-				ChangeChoiceFacade.setChoiceResolution((ChoiceResolution)toToggle,!(toToggle instanceof PosResolution), toolModel);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, toolModel);
-				}
-				else{
-					System.out.println("toggle resolution form VClassifier attempted");
-				}
-			}
-		};
-		
+		if (toToggle instanceof ChoiceResolution) {
+			ChangeChoiceFacade.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), toolModel);
+			InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, toolModel);
+		} else {
+			System.out.println("toggle resolution form VClassifier attempted");
+		}
 	}
-	
-	private NamedElement getElementInCurrentPane(JComponent toFind){
+
+	private NamedElement getElementInCurrentPane(JComponent toFind) {
 		return resolutionvmMaps.get(resPane.getSelectedIndex()).get(toFind);
 	}
 }

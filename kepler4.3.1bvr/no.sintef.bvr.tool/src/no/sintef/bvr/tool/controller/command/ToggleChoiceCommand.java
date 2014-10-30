@@ -33,8 +33,10 @@ public class ToggleChoiceCommand implements Command {
 		return this;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public JComponent execute() {
+		System.out.println("running toggle");
 		view.getResolutionControllerInterface().toggleChoice(toToggle);
 
 		return null;
