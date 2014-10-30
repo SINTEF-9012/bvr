@@ -41,7 +41,7 @@ public class ChangeChoiceFacade {
 				newRes.setName(c.getName());
 				//System.out.println("created newRes:" +newRes);
 				//System.out.println("Parent is " + parentResolution);
-				Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution(parentResolution,	(NegResolution) newRes);
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parentResolution,	(NegResolution) newRes);
 				//System.out.println("added newRes");
 				Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(parentResolution, c);// TODO Check
 				//System.out.println("removed c");
@@ -62,7 +62,7 @@ public class ChangeChoiceFacade {
 				//System.out.println("created newRes:" +newRes);
 				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), c.getResolvedVSpec(), newRes, false);
 				//System.out.println("newRes After iteration");
-				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(parentResolution, (PosResolution) newRes);
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parentResolution, (PosResolution) newRes);
 				//System.out.println("added newRes");
 				Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(parentResolution, c);
 				//System.out.println("removed c");

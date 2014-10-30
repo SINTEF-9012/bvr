@@ -33,7 +33,7 @@ public class AddChoicesFromVClassifierTreeEvent implements ActionListener {
 		  CommonUtility.setResolved(root, target);
 		  root.setName("I" + view.getIncrementedNameCounter());
 		  ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
-		  Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(c, root);
+		//  Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(c, root);
 		 
 	}
 

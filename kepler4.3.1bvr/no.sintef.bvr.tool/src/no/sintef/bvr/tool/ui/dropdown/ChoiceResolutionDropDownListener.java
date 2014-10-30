@@ -90,11 +90,10 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 
 					// TODO ADD NAME
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
-					if (x instanceof Choice) {
+					if( (x instanceof Choice) ||  (x instanceof VClassifier)){
 						addchild.addActionListener(new AddChoiceResolvedEvent(cp, (EObject)x, controller));
-					} else if (x instanceof VClassifier) {
-						addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, controller));
-					} else if (x instanceof Variable) {
+					} 
+					 else if (x instanceof Variable) {
 						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, controller));// TODO namechange
 					} else {
 						throw new UnsupportedOperationException("Unsupported: " + x.getClass().getName());

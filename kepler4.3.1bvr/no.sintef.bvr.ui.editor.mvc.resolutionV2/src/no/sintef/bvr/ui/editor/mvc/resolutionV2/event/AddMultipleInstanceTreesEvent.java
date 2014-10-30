@@ -48,14 +48,14 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 					VSpecResolution root = create();
 					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(view.getBVRModel(), parent);
 					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, view.getBVRModel());
-					Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(root, (PosResolution) root);
+					Context.eINSTANCE.getEditorCommands().addChoiceResoulution(root, (PosResolution) root);
 				}
 		} else {
 
 			VSpecResolution root = create();
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof ChoiceResolution) {
-				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(grandParent, (PosResolution) root);
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(grandParent, (PosResolution) root);
 
 			} /*
 			 * else if (parent instanceof VariableValueAssignment) { Context.eINSTANCE .getEditorCommands().addVariableValueAssignment(grandParent,

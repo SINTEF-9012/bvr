@@ -267,7 +267,7 @@ abstract public class BVRToolModel {
 	}
 
 
-	public void addChoiceResolution(VSpec resolvedVSpec, VSpecResolution parentNamedElement) {
+	public void addChoiceOrVClassifierResolution(VSpec resolvedVSpec, VSpecResolution parentNamedElement) {
 		throw new UnexpectedException("Are you using default implementation?!");
 		
 	}

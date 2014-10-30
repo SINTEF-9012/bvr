@@ -346,17 +346,21 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void addChoiceResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
-		VSpecResolution parentNamedElement = null;
-		for (Map x : resolutionvmMaps) {
-			parentNamedElement = (VSpecResolution) x.get(parent);
+	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
+		NamedElement parentNamedElement = null;
+		
+			parentNamedElement = resolutionvmMaps.get(resPane.getSelectedIndex()).get(parent);
 			if (parentNamedElement != null) {
 				VSpec vSpecToResolve = (VSpec) resolvedVSpec;
-				toolModel.addChoiceResolution(vSpecToResolve, parentNamedElement);
+				toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
+				return;	
+		}
+			else{
+				System.out.println("parent node not found");
 				return;
 			}
-		}
 	}
+
 
 	@Override
 	public SimpleExeCommandInterface createResolutionModelCommand() {
@@ -418,6 +422,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		};
 		return command;
 	}
+
+
 	
 
 	 

@@ -3,6 +3,10 @@ package no.sintef.bvr.tool.ui.command.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComponent;
+
+import org.eclipse.emf.ecore.EObject;
+
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import bvr.Choice;
@@ -12,27 +16,20 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class AddChoiceFromVClassifierEvent implements ActionListener {
-	private VSpecResolution cr;
-	private VClassifier target;
-	private BVRNotifiableController view;
+	private JComponent cr;
+	private EObject target;
+	private BVRNotifiableController controller;
 	
-	public AddChoiceFromVClassifierEvent(VSpecResolution parent, VClassifier toResolve, BVRNotifiableController view) {
+	public AddChoiceFromVClassifierEvent(JComponent parent, EObject toResolve, BVRNotifiableController controller) {
 		cr = parent;
 		target = toResolve;
-		this.view = view;
+		this.controller = controller;
 	}
 	
 	static int count = 0;
 
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("AddMultipleChoicesFromVClassifier running but unimplemented");
-		/*VClassifier v = target;
-		
-		VInstance vi = BvrFactory.eINSTANCE.createVInstance();
-		vi.setResolvedVSpec(v);
-		count++;
-		vi.setName("vInstance" + count);
-		
-		Context.eINSTANCE.getEditorCommands().addVInstance(cr, vi);*/
+		controller.getResolutionControllerInterface().addChoiceOrVClassifierResolution(cr, target);
 	}
 }

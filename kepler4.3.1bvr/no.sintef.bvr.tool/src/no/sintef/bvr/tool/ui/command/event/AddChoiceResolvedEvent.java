@@ -23,7 +23,7 @@ public class AddChoiceResolvedEvent implements ActionListener {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent arg0) {
-		controller.getResolutionControllerInterface().addChoiceResolution(p, x);
+		controller.getResolutionControllerInterface().addChoiceOrVClassifierResolution(p, x);
 		
 		// ChoiceResolutuion ncr = BvrFactory.eINSTANCE.createChoiceResolutuion();
 
