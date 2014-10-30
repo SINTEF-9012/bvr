@@ -444,6 +444,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t) {
 		final int xWise = t;
+		
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -453,6 +454,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
-	 
+	public BVRToolModel getBVRToolModel(){
+		return toolModel;
+	}
 
 }
