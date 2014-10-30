@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import no.sintef.bvr.common.CommonUtility;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -28,9 +29,11 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
 import bvr.MultiplicityInterval;
+import bvr.NegResolution;
 import bvr.OpaqueConstraint;
 import bvr.PosResolution;
 import bvr.VNode;
+import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.BvrFactory;
 import bvr.BvrPackage;
@@ -339,17 +342,19 @@ public class SPLCABVRModel {
 
 	private Map<String, Boolean> recurse(ChoiceResolution x) throws BVRException {
 		Map<String, Boolean> as = new HashMap<String, Boolean>();
+		VSpec resolvedVSPec = CommonUtility.getResolvedVSpec(x);
+		if(!(resolvedVSPec instanceof Choice))
+			throw new BVRException(resolvedVSPec.getName() + " is not a choice resolution. Only choices supported in this mode.");
 		
-		as.put(x.getResolvedVSpec().getName(), x instanceof PosResolution);
+		if(!(x instanceof PosResolution || x instanceof NegResolution))
+			throw new BVRException(x.getName() + "choice resolution is neither PosResolution nor NegResolution");
 		
-		if(x instanceof PosResolution){
-			for(VSpecResolution c : ((PosResolution) x).getMembers()){
-				if(!(c instanceof ChoiceResolution) || ((c instanceof ChoiceResolution) && (((ChoiceResolution) c).getResolvedVClassifier() != null))){
-					throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
-				}
+		as.put(CommonUtility.getResolvedVSpec(x).getName(), (x instanceof PosResolution) ? true : false);
+		if(x instanceof CompoundResolution){
+			for(VSpecResolution c : ((CompoundResolution) x).getMembers()){	
 				as.putAll(recurse((ChoiceResolution)c));
 			}
-		}		
+		}
 		return as;
 	}
 }
