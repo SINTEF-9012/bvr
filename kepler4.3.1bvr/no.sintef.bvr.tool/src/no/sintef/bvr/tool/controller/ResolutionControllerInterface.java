@@ -17,4 +17,6 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 	public boolean performSATValidation();
 
 	public List<String> getSATValidationMessage();
+
+	public Integer calculateCoverage(int t);
 }

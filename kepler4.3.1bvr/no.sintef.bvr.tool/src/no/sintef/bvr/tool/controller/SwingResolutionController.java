@@ -416,6 +416,11 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return toolModel.getSATValidationMessage();
 	}
 
+	@Override
+	public Integer calculateCoverage(int t) {
+		return toolModel.calculateCoverage(t);
+	}
+
 
 
 }

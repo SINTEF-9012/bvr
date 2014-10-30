@@ -86,7 +86,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			//JMenuItem satvalres = new JMenuItem("Validate Resolutions");
 			//satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
 			//camenu.add(satvalres);
-			JMenu cc1 = new JMenu("Calculate Coverage");
+			/*JMenu cc1 = new JMenu("Calculate Coverage");
 			JMenuItem calccov1 = new JMenuItem("1-wise");
 			calccov1.addActionListener(new CalculateCoverage(m, bvrView, 1));
 			cc1.add(calccov1);
@@ -96,11 +96,11 @@ class ResV2DropdownMenu extends JPopupMenu {
 			JMenuItem calccov3 = new JMenuItem("3-wise");
 			calccov3.addActionListener(new CalculateCoverage(m, bvrView, 3));
 			cc1.add(calccov3);
-			camenu.add(cc1);
+			camenu.add(cc1);*/
 
-			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
+			/*JMenuItem calcall = new JMenuItem("Generate All Possible Products");
 			calcall.addActionListener(new GenerateAllProducts(bvrView));
-			camenu.add(calcall);
+			camenu.add(calcall);*/
 
 			camenu.add(new JSeparator());
 

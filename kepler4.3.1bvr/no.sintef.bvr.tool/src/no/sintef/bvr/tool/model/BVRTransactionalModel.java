@@ -54,6 +54,8 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
+import splar.core.fm.FeatureModelException;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
@@ -864,5 +866,22 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public List<String> getSATValidationMessage() {
 		return satValidationMessage;
+	}
+
+	@Override
+	public Integer calculateCoverage(int t) {
+		int cov;
+		try {
+			// Get FM:
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			// Get Covering Array
+			CoveringArray ca = getBVRM().getCoveringArray();
+			// Calculate
+			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
+		} catch (FeatureModelException | IOException | UnsupportedModelException | BVRException | CSVException e) {
+			throw new RethrownException("Failed to calculate coverage", e);
+		}
+		return cov;
 	}
 }

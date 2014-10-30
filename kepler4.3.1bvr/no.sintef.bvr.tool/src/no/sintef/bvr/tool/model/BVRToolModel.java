@@ -300,5 +300,9 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+	public Integer calculateCoverage(int t) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
 
 }
