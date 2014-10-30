@@ -7,8 +7,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import java.util.List;
 
-
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.model.BVRToolModel;
 
 public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 

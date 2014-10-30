@@ -454,8 +454,4 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
-	public BVRToolModel getBVRToolModel(){
-		return toolModel;
-	}
-
 }
