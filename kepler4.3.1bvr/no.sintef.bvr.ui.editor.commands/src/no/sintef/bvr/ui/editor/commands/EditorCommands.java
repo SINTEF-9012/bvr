@@ -126,7 +126,7 @@ public interface EditorCommands {
 	
 	public void removeVSpecVariable(VSpec vSpec, Variable var);
 	
-	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement);
+	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolutionParent, NamedElement namedElement);
 	
 	//public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	

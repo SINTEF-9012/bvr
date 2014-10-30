@@ -168,7 +168,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		 */
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
-		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, controller));
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, controller));
 		add(remove);
 		// Resolve subtree
 		JMenuItem resTree = new JMenuItem("resolve subtree");

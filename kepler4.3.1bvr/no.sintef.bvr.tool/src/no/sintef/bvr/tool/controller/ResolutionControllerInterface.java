@@ -1,5 +1,7 @@
 package no.sintef.bvr.tool.controller;
 
+import javax.swing.JComponent;
+
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
 public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
@@ -11,4 +13,6 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 	public SimpleExeCommandInterface createRemoveRootResolutionCommand();
 
 	public SimpleExeCommandInterface createGenerateAllProductsCommand();
+
+	public SimpleExeCommandInterface RemoveVsSpecResoluton(GUI_NODE toDelete);
 }

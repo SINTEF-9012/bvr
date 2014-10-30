@@ -630,9 +630,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public void removeNamedElementVSpecResolution(
-			VSpecResolution vSpecResolution, NamedElement namedElement) {
+			VSpecResolution vSpecParent, NamedElement namedElement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecResolution, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecParent, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
 		testCommandExecution(editingDomain, cmd);
 		
 	}
