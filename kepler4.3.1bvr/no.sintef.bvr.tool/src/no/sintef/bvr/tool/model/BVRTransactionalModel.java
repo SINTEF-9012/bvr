@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.swing.JOptionPane;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
@@ -13,6 +16,7 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
+import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -24,7 +28,10 @@ import no.sintef.bvr.tool.observer.ResourceSubject;
 
 
 
+import no.sintef.ict.splcatool.BVRException;
+import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
+import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayComplete;
 import no.sintef.ict.splcatool.GUIDSL;
@@ -92,6 +99,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int classifierCount = 0;
 	private NamedElement cutNamedElement = null;
 	static private int instanceCount = 0;
+	List<String> satValidationMessage;
 	
 	
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -829,5 +837,32 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		} catch (Exception e) {
 			throw new RethrownException("failed to generate products", e); 
 		}	
+	}
+	
+	@Override
+	public boolean performSATValidation() {
+		boolean valid = false;
+		CoveringArray ca;
+		satValidationMessage = new ArrayList<String>();
+		try {
+			ca = getBVRM().getCoveringArray();
+		} catch (CSVException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		} catch (BVRException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		}
+		CNF cnf;
+		try {
+			cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
+		} catch (Exception e) {
+			throw new RethrownException("Validation failed:", e);
+		}
+		return valid;
+	}
+	
+	@Override
+	public List<String> getSATValidationMessage() {
+		return satValidationMessage;
 	}
 }

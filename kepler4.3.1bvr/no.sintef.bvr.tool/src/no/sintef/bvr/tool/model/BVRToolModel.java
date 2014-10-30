@@ -292,5 +292,13 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+	public boolean performSATValidation() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public List<String> getSATValidationMessage() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
 
 }

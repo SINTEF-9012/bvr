@@ -88,7 +88,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
 			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
-			satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
+			satvalres.addActionListener(new SATValidateResolutions(bvrView));
 			camenu.add(satvalres);
 			JMenu cc1 = new JMenu("Calculate Coverage");
 			JMenuItem calccov1 = new JMenuItem("1-wise");

@@ -406,6 +406,16 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
+	@Override
+	public boolean performSATValidation() {
+		return toolModel.performSATValidation();
+	}
+
+	@Override
+	public List<String> getSATValidationMessage() {
+		return toolModel.getSATValidationMessage();
+	}
+
 
 
 }

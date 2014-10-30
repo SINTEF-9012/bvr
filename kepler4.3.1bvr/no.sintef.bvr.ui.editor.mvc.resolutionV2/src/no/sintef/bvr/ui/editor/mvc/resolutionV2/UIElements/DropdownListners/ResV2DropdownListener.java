@@ -69,9 +69,9 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 	public ResV2DropdownMenu(BVRToolModel m, BVRModel bvrModel, BVRResolutionToolView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
-		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
-		add(newres);
+		///JMenuItem newres = new JMenuItem("New");
+		//newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
+		//add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			//JMenuItem remove = new JMenuItem("Remove");
 			//remove.addActionListener(new DeleteResolution(bvrView)); //TODO add new DeleteResolution, or merge new and old editors
@@ -83,9 +83,9 @@ class ResV2DropdownMenu extends JPopupMenu {
  
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
-			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
-			satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
-			camenu.add(satvalres);
+			//JMenuItem satvalres = new JMenuItem("Validate Resolutions");
+			//satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
+			//camenu.add(satvalres);
 			JMenu cc1 = new JMenu("Calculate Coverage");
 			JMenuItem calccov1 = new JMenuItem("1-wise");
 			calccov1.addActionListener(new CalculateCoverage(m, bvrView, 1));
