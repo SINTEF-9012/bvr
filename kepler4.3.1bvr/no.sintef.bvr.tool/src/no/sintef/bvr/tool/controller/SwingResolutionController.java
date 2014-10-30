@@ -15,6 +15,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
@@ -32,6 +33,7 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.ChangeChoiceFacade;
+import no.sintef.bvr.tool.model.CloneResFacade;
 import no.sintef.bvr.tool.model.InheritanceFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -464,4 +466,49 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private NamedElement getElementInCurrentPane(JComponent toFind) {
 		return resolutionvmMaps.get(resPane.getSelectedIndex()).get(toFind);
 	}
+
+	@Override
+	public void resolveSubtree(GUI_NODE _parent) {
+		final VSpecResolution parent = (VSpecResolution) getElementInCurrentPane(_parent);
+		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(toolModel.getBVRModel(), (VSpecResolution) parent);
+
+		if (grandParent == null) {
+			for (VSpecResolution c : toolModel.getBVRModel().getResolutionModels())
+				if (c == parent) {
+					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, toolModel);
+					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(toolModel, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
+					
+					
+					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(toolModel.getBVRModel(), (VSpecResolution) parent);
+					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, toolModel.getBVRModel());
+					Context.eINSTANCE.getEditorCommands().addChoiceResoulution(root, (PosResolution) root);
+				}
+		}
+		else{
+			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, toolModel);
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(toolModel, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
+			
+			
+			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
+			if (parent instanceof PosResolution) {
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution( grandParent, (PosResolution) root);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), toolModel);
+			}
+			else if(parent instanceof NegResolution){
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(grandParent, (NegResolution) root);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), toolModel);
+			}/* else if (parent instanceof VariableValueAssignment) {
+			}
+				Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(grandParent, (VariableValueAssignment) root);
+
+			} else if (parent instanceof VInstance) {
+				Context.eINSTANCE.getEditorCommands().addVInstance(grandParent, (VInstance) root);
+				
+				
+
+			}*/
+		}
+			
+	}
+	
 }

@@ -34,4 +34,6 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 
 	void toggleChoice(GUI_NODE _toToggle);
 
+	public void resolveSubtree(GUI_NODE parent);
+
 }
