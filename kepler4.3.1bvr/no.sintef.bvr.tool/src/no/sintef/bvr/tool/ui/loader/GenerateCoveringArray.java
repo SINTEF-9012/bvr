@@ -18,15 +18,15 @@ public class GenerateCoveringArray implements ActionListener {
 	private int t;
 
 	private BVRNotifiableController controller;
-	
+
 	public GenerateCoveringArray(BVRNotifiableController _controller, int t) {
 		this.t = t;
 		controller = _controller;
 	}
 
 	public void actionPerformed(ActionEvent ae) {
-		
-		Job job = new Job("Generating Coverege Array") {	
+
+		Job job = new Job("Generating Coverege Array") {
 			 @Override
 			 protected IStatus run(IProgressMonitor monitor) {
 				 try {
@@ -40,6 +40,6 @@ public class GenerateCoveringArray implements ActionListener {
 				 return Status.OK_STATUS;
 			 }
 		};
-		job.schedule(); 
+		job.schedule();
 	}
 }

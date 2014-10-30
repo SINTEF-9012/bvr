@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
-
-import javax.swing.JOptionPane;
-import javax.xml.parsers.ParserConfigurationException;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
@@ -18,7 +14,6 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
-import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -27,16 +22,12 @@ import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 
-
-
-
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.CoveringArrayComplete;
-import no.sintef.ict.splcatool.CoveringArrayGenerationException;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 
@@ -56,7 +47,6 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.xml.sax.SAXException;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
@@ -65,7 +55,6 @@ import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.Choice;
-import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
@@ -797,7 +786,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		CompoundNode variablityModel = model.getVariabilityModel();
 		
 		if (variablityModel instanceof Choice) {
-			root.setResolvedChoice((Choice) variablityModel);
+			CommonUtility.setResolved(root, (VSpec) variablityModel);
 			root.setName(((NamedElement) variablityModel).getName());
 		} else {
 			throw new UserInputError("model must start with a choice");
