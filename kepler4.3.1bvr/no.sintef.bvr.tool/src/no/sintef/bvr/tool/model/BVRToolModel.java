@@ -35,7 +35,12 @@ abstract public class BVRToolModel {
 	protected boolean saved = true;
 	protected List<VSpec> minimizedVSpec;
 	protected List<VSpecResolution> minimizedVSpecResolution;
+	static private int instanceCount = 0;
 
+	public int getIncrementedInstanceCount() {
+		return instanceCount++;
+	}
+	
 	public BVRToolModel(File sf) {
 		f = sf;
 		bvrm = new SPLCABVRModel(f);

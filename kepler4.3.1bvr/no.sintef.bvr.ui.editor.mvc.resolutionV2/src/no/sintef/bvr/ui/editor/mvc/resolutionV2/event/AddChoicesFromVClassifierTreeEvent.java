@@ -7,6 +7,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import bvr.BvrFactory;
 import bvr.PosResolution;
@@ -16,11 +17,11 @@ import bvr.VSpecResolution;
 
 public class AddChoicesFromVClassifierTreeEvent implements ActionListener {
 
-	private BVRResolutionToolView view;
+	private BVRToolModel view;
 	private VSpec target;
 	VSpecResolution c;
 
-	public AddChoicesFromVClassifierTreeEvent(VSpecResolution parent, VSpec target, BVRResolutionToolView view) {
+	public AddChoicesFromVClassifierTreeEvent(VSpecResolution parent, VSpec target, BVRToolModel view) {
 
 		this.view = view;
 		this.target = target;
@@ -31,7 +32,7 @@ public class AddChoicesFromVClassifierTreeEvent implements ActionListener {
 
 		  PosResolution root = BvrFactory.eINSTANCE.createPosResolution();
 		  CommonUtility.setResolved(root, target);
-		  root.setName("I" + view.getIncrementedNameCounter());
+		  root.setName("I" + view.getIncrementedInstanceCount());
 		  ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		//  Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(c, root);
 		 

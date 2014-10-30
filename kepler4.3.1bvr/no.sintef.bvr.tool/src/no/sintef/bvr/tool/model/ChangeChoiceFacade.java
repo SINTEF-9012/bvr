@@ -4,6 +4,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.AddResolution;
+import bvr.BVRModel;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -27,13 +28,13 @@ public class ChangeChoiceFacade {
 		return instance;
 	}
 
-	public static void setChoiceResolution(ChoiceResolution c, boolean bool, BVRResolutionToolView view) {
+	public static void setChoiceResolution(ChoiceResolution c, boolean bool, BVRToolModel bvrModel) {
 		if (c instanceof PosResolution) {
 			if (bool) {
 				return;
 			} else {
 				//System.out.println(">>>>>>>>>>>>>>>>>>STARTING POSTONEG CHANGE<<<<<<<<<<<<<<<<<<<<<<<");
-				VSpecResolution parentResolution = ResolutionModelIterator.getInstance().getParent(view.getBVRModel(), c);
+				VSpecResolution parentResolution = ResolutionModelIterator.getInstance().getParent(bvrModel.getBVRModel(), c);
 					if(parentResolution == null)return; //is root or c is not in model
 				
 				ChoiceResolution newRes = BvrFactory.eINSTANCE.createNegResolution();
@@ -53,14 +54,14 @@ public class ChangeChoiceFacade {
 			} else {
 				
 				//System.out.println(">>>>>>>>>>>>>>>>>>STARTING NEGTOPOS CHANGE<<<<<<<<<<<<<<<<<<<<<<<");
-				VSpecResolution parentResolution = ResolutionModelIterator.getInstance().getParent(view.getBVRModel(), c);
+				VSpecResolution parentResolution = ResolutionModelIterator.getInstance().getParent(bvrModel.getBVRModel(), c);
 				if(parentResolution == null)return; //is root
 				//System.out.println("Parent is " + parentResolution);
 				ChoiceResolution newRes = BvrFactory.eINSTANCE.createPosResolution();
 				CommonUtility.setResolved(newRes, c.getResolvedChoice());
 				newRes.setName(c.getName());
 				//System.out.println("created newRes:" +newRes);
-				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), c.getResolvedVSpec(), newRes, false);
+				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(bvrModel, new AddResolution(), c.getResolvedVSpec(), newRes, false);
 				//System.out.println("newRes After iteration");
 				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parentResolution, (PosResolution) newRes);
 				//System.out.println("added newRes");

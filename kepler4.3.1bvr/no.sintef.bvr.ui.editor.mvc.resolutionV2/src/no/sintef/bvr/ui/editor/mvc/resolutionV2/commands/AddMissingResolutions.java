@@ -8,6 +8,7 @@ import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.ResCommand;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.CompoundResolution;
 import bvr.VClassifier;
 //import bvr.VInstance;
@@ -15,7 +16,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class AddMissingResolutions implements ResCommand {
-	private BVRNotifiableController view;
+	private BVRToolModel view;
 	private VSpec target;
 	boolean unresolved;
 	private VSpecResolution parent;
@@ -24,7 +25,7 @@ public class AddMissingResolutions implements ResCommand {
 	 * ONLY for use with nodes NOT added to model
 	 */
 	@Override
-	public ResCommand init(BVRNotifiableController  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
+	public ResCommand init(BVRToolModel  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = target;
 		this.parent = parent;

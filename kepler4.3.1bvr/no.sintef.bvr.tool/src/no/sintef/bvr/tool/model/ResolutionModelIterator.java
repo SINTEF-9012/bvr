@@ -27,7 +27,7 @@ public class ResolutionModelIterator {
 		return instance;
 	}
 
-	public void iterateEmpty(BVRNotifiableController view, ResCommand command,
+	public void iterateEmpty(BVRToolModel view, ResCommand command,
 			VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		List<VSpecResolution> newResolutions = command.init(view, vsParent,
 				vsrParent, onlyOneInstance).execute();
@@ -40,7 +40,7 @@ public class ResolutionModelIterator {
 		// System.out.println("no new resolutions");
 	}
 
-	public void iterateEmptyOnChildren(BVRNotifiableController view,
+	public void iterateEmptyOnChildren(BVRToolModel view,
 			ResCommand command, VSpec vsParent, VSpecResolution vsrParent,
 			boolean onlyOneInstance) {
 
@@ -63,7 +63,7 @@ public class ResolutionModelIterator {
 		}
 	}
 
-	public void iterateExisting(BVRNotifiableController view, ResCommand command,
+	public void iterateExisting(BVRToolModel view, ResCommand command,
 			VSpec vsParent, VSpecResolution vsrParent, boolean onlyOneInstance) {
 		command.init(view, vsParent, vsrParent, onlyOneInstance).execute();
 		vsParent = vsrParent.getResolvedVSpec();

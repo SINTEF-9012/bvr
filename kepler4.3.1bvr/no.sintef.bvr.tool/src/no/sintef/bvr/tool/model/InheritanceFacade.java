@@ -24,7 +24,7 @@ public class InheritanceFacade {
 		return instance;
 	}
 
-	public void passInheritance(ChoiceResolution c, boolean nBool, BVRResolutionToolView view) {
+	public void passInheritance(ChoiceResolution c, boolean nBool, BVRToolModel view) {
 		if(c instanceof NegResolution)return;
 		for (VSpecResolution x : ((CompoundResolution) c).getMembers()) {
 			if (x instanceof ChoiceResolution) {

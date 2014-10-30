@@ -98,10 +98,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private NamedElement cutNamedElement = null;
 	static private int instanceCount = 0;
 
-	public int getIncrementedInstanceCount() {
-		return instanceCount++;
-	}
-
 	List<String> satValidationMessage;
 	
 

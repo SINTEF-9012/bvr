@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.CloneResFacade;
 import no.sintef.bvr.tool.model.InheritanceFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
@@ -23,9 +24,9 @@ public class AddSubTreeEvent implements ActionListener {
 
 	private VSpecResolution parent;
 	private VSpec target;
-	private BVRResolutionToolView  view;
+	private BVRToolModel view;
 
-	public AddSubTreeEvent(VSpecResolution parent, BVRResolutionToolView  view) {
+	public AddSubTreeEvent(VSpecResolution parent, BVRToolModel view) {
 		super();
 		this.parent = parent;
 		this.target = parent.getResolvedVSpec();

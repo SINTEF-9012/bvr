@@ -32,4 +32,6 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT>{
 
 	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t);
 
+	void toggleChoice(GUI_NODE _toToggle);
+
 }

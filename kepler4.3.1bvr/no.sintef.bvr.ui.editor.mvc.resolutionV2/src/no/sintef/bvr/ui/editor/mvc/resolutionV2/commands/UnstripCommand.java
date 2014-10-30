@@ -6,15 +6,16 @@ import java.util.List;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.ResCommand;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class UnstripCommand implements ResCommand {
-	private BVRNotifiableController  view;
+	private BVRToolModel  view;
 	private VSpecResolution vsr;
 	
 	@Override
-	public ResCommand init(BVRNotifiableController  view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
+	public ResCommand init(BVRToolModel  view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
 		this.vsr = vsr;
 		return this;

@@ -7,6 +7,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.CloneResFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import bvr.BvrFactory;
@@ -27,9 +28,9 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	int instancesRequested;
 	VSpecResolution parent;
 	VSpec target;
-	BVRResolutionToolView view;
+	BVRToolModel view;
 
-	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRResolutionToolView view) {
+	public AddMultipleInstanceTreesEvent(int instancesRequested, VSpecResolution parent, VSpec target, BVRToolModel view) {
 		super();
 		this.instancesRequested = instancesRequested;
 		this.parent = parent;
@@ -78,7 +79,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 		for (int i = 0; i < instancesRequested; i++) {
 			PosResolution newInstance = BvrFactory.eINSTANCE.createPosResolution();
 			CommonUtility.setResolved(newInstance, target);
-			newInstance.setName("I" + view.getIncrementedNameCounter());
+			newInstance.setName("I" + view.getIncrementedInstanceCount());
 			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 			((CompoundResolution) root).getMembers().add(newInstance);
 

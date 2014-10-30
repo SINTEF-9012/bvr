@@ -31,6 +31,8 @@ import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.ChangeChoiceFacade;
+import no.sintef.bvr.tool.model.InheritanceFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
@@ -64,6 +66,7 @@ import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.NegResolution;
 import bvr.OpaqueConstraint;
+import bvr.PosResolution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -347,9 +350,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
-		NamedElement parentNamedElement = null;
+		NamedElement parentNamedElement = getElementInCurrentPane(parent);
 		
-			parentNamedElement = resolutionvmMaps.get(resPane.getSelectedIndex()).get(parent);
 			if (parentNamedElement != null) {
 				VSpec vSpecToResolve = (VSpec) resolvedVSpec;
 				toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
@@ -368,7 +370,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			@Override
 			public void execute() {
 				CompoundResolution compoundResolution = toolModel.createResolution();
-				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(rootController, new AddResolution(),
+				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(toolModel, new AddResolution(),
 						(VSpec) compoundResolution.getResolvedChoice(), compoundResolution, false);
 				toolModel.addResolutionModel(compoundResolution);
 			}
@@ -454,4 +456,26 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
+	@Override
+	public void toggleChoice(GUI_NODE _toToggle) {
+		final NamedElement toToggle = getElementInCurrentPane(_toToggle);
+		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
+			
+			@Override
+			public void execute() {
+				if(toToggle instanceof ChoiceResolution){
+				ChangeChoiceFacade.setChoiceResolution((ChoiceResolution)toToggle,!(toToggle instanceof PosResolution), toolModel);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, toolModel);
+				}
+				else{
+					System.out.println("toggle resolution form VClassifier attempted");
+				}
+			}
+		};
+		
+	}
+	
+	private NamedElement getElementInCurrentPane(JComponent toFind){
+		return resolutionvmMaps.get(resPane.getSelectedIndex()).get(toFind);
+	}
 }
