@@ -13,37 +13,26 @@ import org.eclipse.core.runtime.jobs.Job;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.model.BVRToolModel;
-import no.sintef.ict.splcatool.CALib;
-import no.sintef.ict.splcatool.CNF;
-import no.sintef.ict.splcatool.CoveringArray;
-import no.sintef.ict.splcatool.GUIDSL;
+
 
 public class CalculateCoverage implements ActionListener {
 	private int t;
-	private BVRToolModel m;
+	private BVRNotifiableController controller;
 
-	public CalculateCoverage(BVRToolModel m, BVRNotifiableController bvrView, int t) {
-		this.m = m;
+	public CalculateCoverage(BVRNotifiableController _controller, int t) {
 		this.t = t;
+		controller = _controller;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
-		Job job = new Job("Calculating Coverage Array") {	
+
+		Job job = new Job("Calculating Coverage Array") {
 			 @Override
 			 protected IStatus run(IProgressMonitor monitor) {
 				Integer cov = null;
 				try {
-					// Get FM:
-					GUIDSL gdsl = m.getBVRM().getGUIDSL();
-					CNF cnf = gdsl.getSXFM().getCNF();
-						// Get Covering Array
-					CoveringArray ca = m.getBVRM().getCoveringArray();
-						
-					// Calculate
-					cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
+					cov = controller.getResolutionControllerInterface().calculateCoverage(t);
 				} catch (Exception e) {
 					Context.eINSTANCE.logger.error("Calculating coverage failed:", e);
 					Status status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Calculating coverage failed (see log for more details): " + e.getMessage(), e);
@@ -53,8 +42,8 @@ public class CalculateCoverage implements ActionListener {
 				return Status.OK_STATUS;
 			 }
 		};
-		
-		job.schedule(); 
+
+		job.schedule();
 	}
 
 }

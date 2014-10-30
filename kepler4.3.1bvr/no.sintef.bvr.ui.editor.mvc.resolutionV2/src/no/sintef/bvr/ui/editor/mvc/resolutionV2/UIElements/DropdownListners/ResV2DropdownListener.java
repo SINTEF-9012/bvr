@@ -69,9 +69,9 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 	public ResV2DropdownMenu(BVRToolModel m, BVRModel bvrModel, BVRResolutionToolView bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
 
-		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
-		add(newres);
+		///JMenuItem newres = new JMenuItem("New");
+		//newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
+		//add(newres);
 		if (!(bvrModel.getResolutionModels().size() == 0)) {
 			//JMenuItem remove = new JMenuItem("Remove");
 			//remove.addActionListener(new DeleteResolution(bvrView)); //TODO add new DeleteResolution, or merge new and old editors
@@ -83,10 +83,10 @@ class ResV2DropdownMenu extends JPopupMenu {
  
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
-			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
-			satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
-			camenu.add(satvalres);
-			JMenu cc1 = new JMenu("Calculate Coverage");
+			//JMenuItem satvalres = new JMenuItem("Validate Resolutions");
+			//satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
+			//camenu.add(satvalres);
+			/*JMenu cc1 = new JMenu("Calculate Coverage");
 			JMenuItem calccov1 = new JMenuItem("1-wise");
 			calccov1.addActionListener(new CalculateCoverage(m, bvrView, 1));
 			cc1.add(calccov1);
@@ -96,15 +96,15 @@ class ResV2DropdownMenu extends JPopupMenu {
 			JMenuItem calccov3 = new JMenuItem("3-wise");
 			calccov3.addActionListener(new CalculateCoverage(m, bvrView, 3));
 			cc1.add(calccov3);
-			camenu.add(cc1);
+			camenu.add(cc1);*/
 
-			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
+			/*JMenuItem calcall = new JMenuItem("Generate All Possible Products");
 			calcall.addActionListener(new GenerateAllProducts(bvrView));
-			camenu.add(calcall);
+			camenu.add(calcall);*/
 
 			camenu.add(new JSeparator());
 
-			JMenu genca = new JMenu("Generate Covering Array");
+			/*JMenu genca = new JMenu("Generate Covering Array");
 			JMenuItem genca1 = new JMenuItem("1-wise");
 			genca1.addActionListener(new GenerateCoveringArray(m, bvrView, 1));
 			genca.add(genca1);
@@ -114,7 +114,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			JMenuItem genca3 = new JMenuItem("3-wise");
 			genca3.addActionListener(new GenerateCoveringArray(m, bvrView, 3));
 			genca.add(genca3);
-			camenu.add(genca);
+			camenu.add(genca);*/
 
 			camenu.add(new JSeparator());
 			add(new JSeparator());

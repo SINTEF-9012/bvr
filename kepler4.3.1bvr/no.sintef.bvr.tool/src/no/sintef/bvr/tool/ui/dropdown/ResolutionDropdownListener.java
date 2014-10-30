@@ -88,17 +88,17 @@ class ResV2DropdownMenu extends JPopupMenu {
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
 			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
-			satvalres.addActionListener(new SATValidateResolutions(m, bvrView));
+			satvalres.addActionListener(new SATValidateResolutions(bvrView));
 			camenu.add(satvalres);
 			JMenu cc1 = new JMenu("Calculate Coverage");
 			JMenuItem calccov1 = new JMenuItem("1-wise");
-			calccov1.addActionListener(new CalculateCoverage(m, bvrView, 1));
+			calccov1.addActionListener(new CalculateCoverage(bvrView, 1));
 			cc1.add(calccov1);
 			JMenuItem calccov2 = new JMenuItem("2-wise");
-			calccov2.addActionListener(new CalculateCoverage(m, bvrView, 2));
+			calccov2.addActionListener(new CalculateCoverage(bvrView, 2));
 			cc1.add(calccov2);
 			JMenuItem calccov3 = new JMenuItem("3-wise");
-			calccov3.addActionListener(new CalculateCoverage(m, bvrView, 3));
+			calccov3.addActionListener(new CalculateCoverage(bvrView, 3));
 			cc1.add(calccov3);
 			camenu.add(cc1);
 
@@ -110,13 +110,13 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 			JMenu genca = new JMenu("Generate Covering Array");
 			JMenuItem genca1 = new JMenuItem("1-wise");
-			genca1.addActionListener(new GenerateCoveringArray(m, bvrView, 1));
+			genca1.addActionListener(new GenerateCoveringArray(bvrView, 1));
 			genca.add(genca1);
 			JMenuItem genca2 = new JMenuItem("2-wise");
-			genca2.addActionListener(new GenerateCoveringArray(m, bvrView, 2));
+			genca2.addActionListener(new GenerateCoveringArray(bvrView, 2));
 			genca.add(genca2);
 			JMenuItem genca3 = new JMenuItem("3-wise");
-			genca3.addActionListener(new GenerateCoveringArray(m, bvrView, 3));
+			genca3.addActionListener(new GenerateCoveringArray(bvrView, 3));
 			genca.add(genca3);
 			camenu.add(genca);
 

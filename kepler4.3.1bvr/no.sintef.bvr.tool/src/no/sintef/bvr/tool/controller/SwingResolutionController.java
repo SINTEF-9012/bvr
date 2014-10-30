@@ -401,6 +401,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
+
 	public SimpleExeCommandInterface RemoveVsSpecResoluton(final GUI_NODE _toDelete) {
 		final int resolutionIndex = resPane.getSelectedIndex();
 		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
@@ -425,6 +426,32 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 
 	
+
+	public boolean performSATValidation() {
+		return toolModel.performSATValidation();
+	}
+
+	@Override
+	public List<String> getSATValidationMessage() {
+		return toolModel.getSATValidationMessage();
+	}
+
+	@Override
+	public Integer calculateCoverage(int t) {
+		return toolModel.calculateCoverage(t);
+	}
+
+	@Override
+	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t) {
+		final int xWise = t;
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.generateCoveringArray(xWise);
+			}
+		});
+		return command;
+	}
 
 	 
 

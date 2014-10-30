@@ -2,62 +2,27 @@ package no.sintef.bvr.tool.ui.loader;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
 
-import org.sat4j.specs.ContradictionException;
-import org.sat4j.specs.TimeoutException;
-
-import splar.core.fm.FeatureModelException;
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.model.BVRToolModel;
-import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.ict.splcatool.CALib;
-import no.sintef.ict.splcatool.CNF;
-import no.sintef.ict.splcatool.CSVException;
-import no.sintef.ict.splcatool.BVRException;
-import no.sintef.ict.splcatool.CoveringArray;
+
 
 public class SATValidateResolutions implements ActionListener {
-	private BVRToolModel m;
-	private BVRNotifiableController v;
+	private BVRNotifiableController controller;
 
-	public SATValidateResolutions(BVRToolModel m, BVRNotifiableController bvrView) {
-		this.m = m;
-		this.v = bvrView;
+	public SATValidateResolutions(BVRNotifiableController _controller) {
+		this.controller = _controller;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		no.sintef.ict.splcatool.SPLCABVRModel x = m.getBVRM();
-		
-		CoveringArray ca;
-		try {
-			ca = x.getCoveringArray();
-		} catch (CSVException e) {
-			Context.eINSTANCE.logger.error("Getting CA failed: ", e);
-			StaticUICommands.showMessageErrorDialog(null, e, "Getting CA failed: ");
-			return;
-		} catch (BVRException e) {
-			Context.eINSTANCE.logger.error("Getting CA failed: ", e);
-			StaticUICommands.showMessageErrorDialog(null, e, "Getting CA failed: ");
-			return;
-		}
-		CNF cnf;
-		try {
-			cnf = x.getGUIDSL().getSXFM().getCNF();
-			List<String> output = new ArrayList<String>();
-			boolean valid = CALib.verifyCA(cnf, ca, true, output);
-			JOptionPane.showMessageDialog(null, "Valid: " + valid + " " + output);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		boolean result = controller.getResolutionControllerInterface().performSATValidation();
+		List<String> message = controller.getResolutionControllerInterface().getSATValidationMessage();
+		JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), "Valid: " + result + " " + message);
 	}
 }
