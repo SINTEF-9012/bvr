@@ -24,6 +24,7 @@ public class GenerateAllProducts implements ActionListener {
 	private BVRToolModel m;
 	private BVRNotifiableController v;
 	
+	
 	public GenerateAllProducts(BVRToolModel m, BVRNotifiableController bvrView) {
 		this.m = m;
 		this.v = bvrView;
