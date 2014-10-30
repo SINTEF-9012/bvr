@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/no.sintef.bvr.usite.feature.emf.table_1.0.0.201406261018.jar" id="no.sintef.bvr.usite.feature.emf.table" version="1.0.0.201406261018">
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.resolutionV2_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.mvc.resolutionV2" version="1.0.0.201409291425">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.gmf.vspec_1.0.0.201406261018.jar" id="no.sintef.bvr.usite.feature.gmf.vspec" version="1.0.0.201406261018" nl="" arch="">
+   <feature url="features/no.sintef.bvr.usite.feature.emf.table_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.emf.table" version="1.0.0.201409291425">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.mvc.realization_1.0.0.201406261018.jar" id="no.sintef.bvr.usite.feature.mvc.realization" version="1.0.0.201406261018">
+   <feature url="features/no.sintef.bvr.usite.feature.gmf.vspec_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.gmf.vspec" version="1.0.0.201409291425">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.mvc.resolution_1.0.0.201406261018.jar" id="no.sintef.bvr.usite.feature.mvc.resolution" version="1.0.0.201406261018">
+   <feature url="features/no.sintef.bvr.usite.feature.model_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.model" version="1.0.0.201409291425">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.mvc.vspec_1.0.0.201406261018.jar" id="no.sintef.bvr.usite.feature.mvc.vspec" version="1.0.0.201406261018">
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.realization_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.mvc.realization" version="1.0.0.201409291425">
+      <category name="BVREditors"/>
+   </feature>
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.resolution_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.mvc.resolution" version="1.0.0.201409291425">
+      <category name="BVREditors"/>
+   </feature>
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.vspec_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.mvc.vspec" version="1.0.0.201409291425">
+      <category name="BVREditors"/>
+   </feature>
+   <feature url="features/no.sintef.bvr.usite.feature.splcatool_1.0.0.201409291425.jar" id="no.sintef.bvr.usite.feature.splcatool" version="1.0.0.201409291425">
       <category name="BVREditors"/>
    </feature>
    <category-def name="BVREditors" label="BVR Editors">

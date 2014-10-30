@@ -15,7 +15,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
 
@@ -23,17 +23,17 @@ public class FragmentSubstitutionCardinalityInvalidTest {
 
 	private File file;
 	private HashMap<String, Object> map;
-	private ConfigurableUnit cu;
+	private BVRModel cu;
 	private FragmentSubstitution fragSub;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder;
 
 	@Before
 	public void setUp() throws Exception {
-		file = new File("src/test/resources/nodeCardinalityInvalid/node.new.bvr");
+		file = new File("src/test/resources/nodeCardinalityInvalid/node.newbvr2.bvr");
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSub = (FragmentSubstitution) vp;

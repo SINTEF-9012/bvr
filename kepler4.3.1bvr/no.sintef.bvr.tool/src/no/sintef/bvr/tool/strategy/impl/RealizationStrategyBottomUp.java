@@ -8,28 +8,31 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 
-import bvr.FragmentSubstitution;
-import bvr.VInstance;
 
+
+
+import bvr.ChoiceResolution;
+import bvr.FragmentSubstitution;
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.RealizationStrategy;
 
 public class RealizationStrategyBottomUp implements RealizationStrategy {
 	
 
 	@Override
-	public void deriveProduct(SymbolTable table) {
+	public void deriveProduct(SymbolVSpecResolutionTable table) {
 		EList<FragmentSubstitution> fragmentSubstitutions = new BasicEList<FragmentSubstitution>(getFragmentSubstitutionsToResolve(table));
 		Context.eINSTANCE.initSubEngine(fragmentSubstitutions);
 		resolve(table);
 	}
 	
-	private HashSet<FragmentSubstitution> getFragmentSubstitutionsToResolve(SymbolTable table){
+	private HashSet<FragmentSubstitution> getFragmentSubstitutionsToResolve(SymbolVSpecResolutionTable table){
 		HashSet<FragmentSubstitution> fss = new HashSet<FragmentSubstitution>();
-		ArrayList<Symbol> symbols = table.getSymbols();
-		for(Symbol symbol : symbols){
+		ArrayList<SymbolVSpec> symbols = table.getSymbols();
+		for(SymbolVSpec symbol : symbols){
 			EList<FragmentSubstitution> fragmentSubstitutions = symbol.getFragmentSubstitutions();
 			for(FragmentSubstitution fragment : fragmentSubstitutions){
 				FragmentSubstitution fragmentCopy = symbol.getFragmentSubstitutionCopy(fragment);
@@ -38,27 +41,27 @@ public class RealizationStrategyBottomUp implements RealizationStrategy {
 				fss.add(fragmentToExecute);
 			}
 		}
-		ArrayList<SymbolTable> tables = table.getChildren();
-		for(SymbolTable symbolTable : tables){
+		ArrayList<SymbolVSpecResolutionTable> tables = table.getChildren();
+		for(SymbolVSpecResolutionTable symbolTable : tables){
 			fss.addAll(getFragmentSubstitutionsToResolve(symbolTable));
 		}
 		return fss;
 	}
 	
-	private void resolve(SymbolTable table){
-		ArrayList<SymbolTable> children = table.getChildren();
-		for(SymbolTable child : children){
+	private void resolve(SymbolVSpecResolutionTable table){
+		ArrayList<SymbolVSpecResolutionTable> children = table.getChildren();
+		for(SymbolVSpecResolutionTable child : children){
 			resolve(child);
 		}
 		Context.eINSTANCE.performSubstitutions(prioritizeSymbols(table.getSymbols()));
 	}
 	
-	private ArrayList<Symbol> prioritizeSymbols(ArrayList<Symbol> symbols){
-		ArrayList<Symbol> prioritizedSymbols = new ArrayList<Symbol>();
-		Iterator<Symbol> iterator = symbols.iterator();
+	private ArrayList<SymbolVSpec> prioritizeSymbols(ArrayList<SymbolVSpec> symbols){
+		ArrayList<SymbolVSpec> prioritizedSymbols = new ArrayList<SymbolVSpec>();
+		Iterator<SymbolVSpec> iterator = symbols.iterator();
 		while(iterator.hasNext()){
-			Symbol symbol = iterator.next();
-			if(symbol.getVSpecResolution() instanceof VInstance){
+			SymbolVSpec symbol = iterator.next();
+			if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution())){
 				prioritizedSymbols.add(prioritizedSymbols.size(), symbol);
 			}else{
 				prioritizedSymbols.add(0, symbol);

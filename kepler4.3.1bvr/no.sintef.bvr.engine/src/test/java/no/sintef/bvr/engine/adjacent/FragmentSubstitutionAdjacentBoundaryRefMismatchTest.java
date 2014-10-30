@@ -4,11 +4,13 @@ import java.io.File;
 import java.util.HashMap;
 
 
+
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -19,7 +21,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
 
@@ -27,7 +29,7 @@ public class FragmentSubstitutionAdjacentBoundaryRefMismatchTest {
 
 	private File file;
 	private HashMap<String, Object> map;
-	private ConfigurableUnit cu;
+	private BVRModel cu;
 	private EList<FragmentSubstitution> fragSubs;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder1;
@@ -37,11 +39,12 @@ public class FragmentSubstitutionAdjacentBoundaryRefMismatchTest {
 	@Before
 	public void setUp() throws Exception {
 		fragSubs = new BasicEList<FragmentSubstitution>();
-		file = new File("src/test/resources/adjacentBoundaryRefMismatch/boundaryRefMismatch.bvr");
+		file = new File("src/test/resources/adjacentBoundaryRefMismatch/boundaryRefMismatchbvr2.bvr");
 		UMLPackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSubs.add((FragmentSubstitution) vp);

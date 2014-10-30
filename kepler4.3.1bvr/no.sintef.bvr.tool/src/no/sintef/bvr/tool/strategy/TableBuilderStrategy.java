@@ -1,10 +1,10 @@
 package no.sintef.bvr.tool.strategy;
 
-import no.sintef.bvr.tool.primitive.SymbolTable;
-import bvr.ConfigurableUnit;
-import bvr.VSpecResolution;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
+import bvr.BVRModel;
+import bvr.PosResolution;
 
 public interface TableBuilderStrategy {
 
-	public SymbolTable buildSymbolTable(ConfigurableUnit cu, VSpecResolution vSpecResolution);
+	public SymbolVSpecResolutionTable buildSymbolTable(BVRModel bvrModel, PosResolution posResolution);
 }

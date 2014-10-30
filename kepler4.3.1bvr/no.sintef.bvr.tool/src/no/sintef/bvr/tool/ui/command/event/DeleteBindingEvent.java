@@ -18,23 +18,24 @@ import bvr.ToPlacement;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.primitive.impl.DataBindingItem;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 import no.sintef.bvr.tool.ui.model.BindingTableModel;
 
 public class DeleteBindingEvent implements ActionListener {
 
-	private BVRView view;
+	private BVRNotifiableController view;
 
-	public DeleteBindingEvent(BVRView _view){
+	public DeleteBindingEvent(BVRNotifiableController _view){
 		view = _view;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int[] rowIndexes = ((BVRRealizationView) view).getBindingTable().getSelectedRows();
-		BindingTableModel model = (BindingTableModel) ((BVRRealizationView) view).getBindingTable().getModel();
+		BVRRealizationUIKernelInterface kernel = view.getRealizationControllerInterface().getUIKernel();
+		int[] rowIndexes = kernel.getBindingTable().getSelectedRows();
+		BindingTableModel model = (BindingTableModel) kernel.getBindingTable().getModel();
 		FragmentSubstitution fragmentSubstitution = model.getFragmentSubstitution();
 		if(fragmentSubstitution == null)
 			return;

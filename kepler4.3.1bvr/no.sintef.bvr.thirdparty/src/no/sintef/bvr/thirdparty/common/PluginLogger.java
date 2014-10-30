@@ -47,5 +47,4 @@ public class PluginLogger implements Logger {
 		String stackTrace = CommonUtility.getStackTraceAsString(e);
 		error("Failed with the message: '" + message + "' and stack trace:\n" + stackTrace);
 	}
-
 }

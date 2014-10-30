@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" xsi:schemaLocation="http:///bvr.ecore/2.0.0 BVRMetamodel5.ecore" name="Configurable Unit 1">
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="rCB">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Property) rCB).&lt;Type>type[1]={rCB}" insideBoundaryElement="//@packageElement.0/@sourceObject.2" outsideBoundaryElement="//@packageElement.0/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) PackLibA).&lt;PackageableElement>packagedElement[1]={rCB}" insideBoundaryElement="//@packageElement.0/@sourceObject.2" outsideBoundaryElement="//@packageElement.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.0/@sourceObject.3" outsideBoundaryElement="//@packageElement.0/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLckwFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bAHCMFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bwSFcFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+  </packageElement>
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="rCA">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.1/@sourceObject.0" outsideBoundaryElement="//@packageElement.1/@sourceObject.0"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Package) PackLibA).&lt;PackageableElement>packagedElement[1]={rCA}" insideBoundaryElement="//@packageElement.1/@sourceObject.1" outsideBoundaryElement="//@packageElement.1/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Association) rCA_rCB_1).&lt;Property>memberEnd[1]={rCB}" insideBoundaryElement="//@packageElement.1/@sourceObject.4" outsideBoundaryElement="//@packageElement.1/@sourceObject.6"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Property) rCA).&lt;Type>type[1]={rCA}" insideBoundaryElement="//@packageElement.1/@sourceObject.1" outsideBoundaryElement="//@packageElement.1/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) rCB).&lt;Association>association" propertyName="association" insideBoundaryElement="//@packageElement.1/@sourceObject.4" outsideBoundaryElement="//@packageElement.1/@sourceObject.6"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Property) rCB).&lt;Type>type" propertyName="type" insideBoundaryElement="//@packageElement.1/@sourceObject.4" outsideBoundaryElement="//@packageElement.1/@sourceObject.5"/>
+    <sourceObject/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_YfRnsFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bAHCMFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLiEUVWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLckwFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bwSFcFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLiEUFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+  </packageElement>
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="rPackA">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Model) model).&lt;PackageableElement>packagedElement[1]={PackLibA}" insideBoundaryElement="//@packageElement.2/@sourceObject.5" outsideBoundaryElement="//@packageElement.2/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.2/@sourceObject.3" outsideBoundaryElement="//@packageElement.2/@sourceObject.3"/>
+    <replacementBoundaryElement xsi:type="bvr:FromReplacement" name="((Package) PackLibA).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@packageElement.2/@sourceObject.5" outsideBoundaryElement="//@packageElement.2/@sourceObject.4 //@packageElement.2/@sourceObject.1 //@packageElement.2/@sourceObject.0"/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_fLiEUFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bwSFcFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_Z8C9IFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_YfRnsFWsEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesLib.uml#_bAHCMFWrEeOxqYzTXOWfBA"/>
+    </sourceObject>
+  </packageElement>
+  <variabilityModel xsi:type="bvr:Choice" name="Choice1"/>
+  <resolutionModels xsi:type="bvr:PosResolution" resolvedChoice="//@variabilityModel"/>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="pPackA">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Model) model).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@realizationModel.0/@sourceObject.1" outsideBoundaryElement="//@realizationModel.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@realizationModel.0/@sourceObject.3" insideBoundaryElement="//@realizationModel.0/@sourceObject.3"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Package) PackA).&lt;PackageableElement>packagedElement[3]={CA,CB,cA_cB_1}" outsideBoundaryElement="//@realizationModel.0/@sourceObject.0 //@realizationModel.0/@sourceObject.4 //@realizationModel.0/@sourceObject.5" insideBoundaryElement="//@realizationModel.0/@sourceObject.1"/>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_WImLkFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_N6wAYFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_KraWkFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsnwFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_Xnl5IFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="pCA">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Property) cA).&lt;Type>type" propertyName="type" insideBoundaryElement="//@realizationModel.1/@sourceObject.2" outsideBoundaryElement="//@realizationModel.1/@sourceObject.5"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Association) cA_cB_1).&lt;Property>memberEnd" propertyName="memberEnd" insideBoundaryElement="//@realizationModel.1/@sourceObject.0" outsideBoundaryElement="//@realizationModel.1/@sourceObject.6"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Package) PackA).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@realizationModel.1/@sourceObject.2" outsideBoundaryElement="//@realizationModel.1/@sourceObject.3"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Property) cB).&lt;Association>association[1]={cA_cB_1}" outsideBoundaryElement="//@realizationModel.1/@sourceObject.6" insideBoundaryElement="//@realizationModel.1/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@realizationModel.1/@sourceObject.4" insideBoundaryElement="//@realizationModel.1/@sourceObject.4"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="((Property) cB).&lt;Type>type[1]={CB}" outsideBoundaryElement="//@realizationModel.1/@sourceObject.1" insideBoundaryElement="//@realizationModel.1/@sourceObject.0"/>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsAsFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_Xnl5IFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_WImLkFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_N6wAYFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsnwVWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsnwFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="pCB">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Property) cB).&lt;Type>type" propertyName="type" insideBoundaryElement="//@realizationModel.2/@sourceObject.1" outsideBoundaryElement="//@realizationModel.2/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Package) PackA).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@realizationModel.2/@sourceObject.1" outsideBoundaryElement="//@realizationModel.2/@sourceObject.0"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@realizationModel.2/@sourceObject.3" insideBoundaryElement="//@realizationModel.2/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_N6wAYFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_Xnl5IFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="packagesBase.uml#_brsAsFWpEeOxqYzTXOWfBA"/>
+    </sourceObject>
+    <sourceObject/>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-pCA-rCA-3" bindingVSpec="//@variabilityModel" placement="//@realizationModel.1" replacement="//@packageElement.1">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.1/@placementBoundaryElement.1" toReplacement="//@packageElement.1/@replacementBoundaryElement.2"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.1/@placementBoundaryElement.2" toReplacement="//@packageElement.1/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.1/@placementBoundaryElement.0" toReplacement="//@packageElement.1/@replacementBoundaryElement.3"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.1/@placementBoundaryElement.5" fromReplacement="//@packageElement.1/@replacementBoundaryElement.5"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.1/@placementBoundaryElement.3" fromReplacement="//@packageElement.1/@replacementBoundaryElement.4"/>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-pCB-rCB-2" bindingVSpec="//@variabilityModel" placement="//@realizationModel.2" replacement="//@packageElement.0">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.2/@placementBoundaryElement.0" toReplacement="//@packageElement.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.2/@placementBoundaryElement.1" toReplacement="//@packageElement.0/@replacementBoundaryElement.1"/>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution-pPackA-rPackA-1" bindingVSpec="//@variabilityModel" placement="//@realizationModel.0" replacement="//@packageElement.2">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.0" toReplacement="//@packageElement.2/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:FromBinding" fromPlacement="//@realizationModel.0/@placementBoundaryElement.2" fromReplacement="//@packageElement.2/@replacementBoundaryElement.2"/>
+  </realizationModel>
+</bvr:BVRModel>

@@ -2,11 +2,13 @@ package no.sintef.bvr.tool.ui.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.DataItem;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;
 import no.sintef.bvr.tool.primitive.impl.DataVSpecItem;
@@ -126,7 +128,10 @@ public class FragSubTableModel extends AbstractTableModel
 					data.add(row);
 				}else{
 					DataNamedElementItem cellFSN = new DataNamedElementItem(new JLabel(fragmentSubstitution.getName()), fragmentSubstitution);
-					DataVSpecItem cellVSN = this.getVSpecItem(referenceVSpec, vSpecMap);
+					DataVSpecItem cellVSN = getVSpecItem(referenceVSpec, vSpecMap);
+					
+					if(cellVSN == null)
+						throw new UnexpectedException("can not fined referenced VSpec : " + referenceVSpec + " in the map " + vSpecMap);
 
 					ArrayList<DataItem> row = new ArrayList<DataItem>(Arrays.asList(cellFSN, cellVSN));
 					data.add(row);

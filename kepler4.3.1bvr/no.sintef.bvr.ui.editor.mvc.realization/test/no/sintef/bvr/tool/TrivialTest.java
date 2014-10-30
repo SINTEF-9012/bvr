@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
 
@@ -27,8 +27,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
+import bvr.PosResolution;
 import bvr.VSpecResolution;
 
 public class TrivialTest {
@@ -90,11 +91,11 @@ public class TrivialTest {
 	@Test
 	public void outsideBoundaryElementsInDifferentPackages() throws IOException, CoreException {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -112,11 +113,11 @@ public class TrivialTest {
 	@Test
 	public void containmentLessPlacements() throws IOException, CoreException {	
 			File fileVarModel = testResources[3].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -134,11 +135,11 @@ public class TrivialTest {
 	@Test
 	public void additiveAdjacentContLessPlacements() throws IOException, CoreException {	
 			File fileVarModel = testResources[6].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -156,11 +157,11 @@ public class TrivialTest {
 	@Test
 	public void additiveAdjacentContLessPlacements1() throws IOException, CoreException {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -179,15 +180,15 @@ public class TrivialTest {
 	public void additiveAdjacentContLessPlacementsDifferentOrder() throws IOException, CoreException {
 			String [] vspecOrder = {"Installation", "AutroPrime", "Main", "Sub"};
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -207,15 +208,15 @@ public class TrivialTest {
 	public void additiveAdjacentContLessPlacementsDifferentOrder1() throws IOException, CoreException {
 		String [] vspecOrder = {"Installation", "AutroPrime", "Sub", "Main"};
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -235,15 +236,15 @@ public class TrivialTest {
 	public void additiveAdjacentContLessPlacementsDifferentOrder2() throws IOException, CoreException {
 		String [] vspecOrder = {"Installation", "Sub", "AutroPrime", "Main"};
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -263,15 +264,15 @@ public class TrivialTest {
 	public void additiveAdjacentContLessPlacementsDifferentOrder3() throws IOException, CoreException {
 		String [] vspecOrder = {"Installation", "Sub", "Main", "AutroPrime"};
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -291,15 +292,15 @@ public class TrivialTest {
 	public void additiveAdjacentContLessPlacementsDifferentOrder4() throws IOException, CoreException {
 		String [] vspecOrder = {"Installation", "Main", "Sub", "AutroPrime"};
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);
@@ -319,15 +320,15 @@ public class TrivialTest {
 	public void additiveAdjacentContLessPlacementsDifferentOrder5() throws IOException, CoreException {
 		String [] vspecOrder = {"Installation", "Main", "AutroPrime", "Sub"};
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			
 			EList<FragmentSubstitution> fragmentSusbstitutions = TestProject.collectFragmentSuubstitutions(symbolTable.getSymbols());
-			EList<Symbol> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
+			EList<SymbolVSpec> symbols = TestProject.sortSymbolByNames(symbolTable.getSymbols(), vspecOrder);
 			
 			Context.eINSTANCE.initSubEngine(fragmentSusbstitutions);
 			Context.eINSTANCE.performSubstitutions(symbols);

@@ -12,7 +12,7 @@ import java.io.PipedOutputStream;
 import java.io.PrintStream;
 
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
-import no.sintef.ict.splcatool.BVRModel;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -24,7 +24,7 @@ import org.junit.Test;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.BvrFactory;
 
 public class testBCL {
@@ -48,9 +48,13 @@ public class testBCL {
 		PrintStream oldOut = System.out;
 		System.setOut(new PrintStream(pipeOutOut));
 */	
+		//WARNING!
+		//the test case fail due to test18.bcl which just contains "true". It seems like there is a problem in the BCL grammar(see BCL.g4) or parser since "true" is valid BCL expression in general,
+		//but we get the following error line 1:4 -> mismatched input '<EOF>' expecting {'<', '<=', '=', '>', '>='}
+		//should be fixed at some point
 		int i = 0;
 		for(File f : new File("TestData").listFiles(ff)){
-			System.out.println(f.getName() + ":");
+			//System.out.println(f.getName() + ":" + f.getAbsolutePath());
 			
 			TestRig.main(new String [] {"BCL", "constraint", "-tree", f.getAbsolutePath()});
 			
@@ -63,6 +67,7 @@ public class testBCL {
 		while(pipeInErr.available() != 0){
 			s += "" + (char)pipeInErr.read();
 		}
+		System.out.println(s);
 		
 		System.setErr(oldErr);
 //		System.setOut(oldOut);		
@@ -80,18 +85,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("fax implies printer", s);
 	}
@@ -104,18 +110,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("(fax implies printer) and (copier implies (scan and printer))", s);
 	}
@@ -128,18 +135,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("Speed = (minSpeed + 300)", s);
 	}
@@ -152,18 +160,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("fax implies printer", s);
 	}
@@ -176,18 +185,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("printer", s);
 	}
@@ -200,18 +210,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("Speed > 1.2", s);
 	}
@@ -224,18 +235,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("(HighSpeed and (threshold > 100)) implies EmergencyPower", s);
 	}
@@ -248,18 +260,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test1.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("printer = \"Konika Minolta\"", s);
 	}
@@ -272,18 +285,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("A or (not A)", s);
 	}
@@ -296,18 +310,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("not ((not A) or (not A))", s);
 	}
@@ -320,18 +335,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("(not A) or (isUndefined A)", s);
 	}
@@ -344,18 +360,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("A implies (B or C)", s);
 	}
@@ -368,18 +385,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("A or (B and C)", s);
 	}
@@ -392,18 +410,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("((C + (A * B)) + C) < 3", s);
 	}
@@ -416,18 +435,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("((C + (A * B)) + (- C)) < 3", s);
 	}
@@ -440,18 +460,19 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("A < (B + 5)", s);
 	}
@@ -464,18 +485,20 @@ public class testBCL {
 		BCLParser parser = new BCLParser(tokens);
 		
 		// Build BVR
-		BVRModel cm = new BVRModel("TestData/test2.xmi");
-		ConfigurableUnit cu = cm.getCU();
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test2.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
 		
 		// Build model
 		RuleNode root = parser.constraint().getRuleContext();
 		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
 		
-		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, cu, false);
+		RuleNode ruleNode = (RuleNode)root.getChild(0);
+		BCLExpression e = new BCLBuilder().recurse(ruleNode, 0, model, false);
 		c.getExpression().add(e);
 		
 		// Pretty Print
-		String s = new BCLPrettyPrinter().prettyPrint(e, cu);
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
 		
 		assertEquals("true", s);
 	}

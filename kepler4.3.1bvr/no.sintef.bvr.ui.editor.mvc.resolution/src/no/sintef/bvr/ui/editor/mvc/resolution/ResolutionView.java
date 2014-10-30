@@ -17,29 +17,28 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
+import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.exception.BVRModelException;
-import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
-import no.sintef.bvr.tool.ui.command.AddChoiceResolutuion;
-import no.sintef.bvr.tool.ui.command.AddVInstance;
+import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
-import no.sintef.bvr.tool.ui.dropdown.ResolutionPanelDropDownListener;
-import no.sintef.bvr.tool.ui.dropdown.VSpecResDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
-import no.sintef.bvr.tool.ui.loader.BVRViewAbstract;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
+import bvr.ChoiceResolution;
+import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.NamedElement;
-import bvr.VInstance;
+import bvr.VNode;
 import bvr.VSpecResolution;
-import bvr.VariableValueAssignment;
 
-public class ResolutionView extends BVRViewAbstract implements BVRResolutionView {
-	private BVRModel m;
+
+public class ResolutionView extends BVRToolAbstractController implements BVRResolutionView {
+	private BVRToolModel m;
 	
 	public JTabbedPane modelPane;
 	
@@ -58,13 +57,12 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 	
-	private ConfigurableUnitSubject configurableUnitSubject;
 
 	public BVRUIKernel getKernel() {
 		return vSpecbvruikernel;
 	}
 	
-	public ResolutionView(BVRModel m) {
+	public ResolutionView(BVRToolModel m) {
 		super();
         resolutionPanes = new ArrayList<JScrollPane>();
         resolutionEpanels = new ArrayList<EditableModelPanel>();
@@ -75,7 +73,7 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 		
 		this.m = m;
 		
-    	configurableUnitSubject = new ConfigurableUnitSubject(this.getCU());
+  
 	
     	vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
@@ -86,7 +84,7 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
         // Resolution panes
         resPane = new JTabbedPane();
         
-		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
+		loadBVRResolutionView(m.getBVRModel(), resolutionkernels, resPane);
         autoLayoutResolutions();
 	}
 	
@@ -99,18 +97,15 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 		return m.isNotSaved();
 	}
 
-	@Override
-	public ConfigurableUnitSubject getConfigurableUnitSubject(){
-		return configurableUnitSubject;
-	}
 
-	@Override
-	public ConfigurableUnit getCU() {
-		return m.getCU();
+
+	//@Override
+	public BVRModel getBVRModel() {
+		return m.getBVRModel();
 	}
 	
-	@Override
-	public BVRModel getModel() {
+	//@Override
+	public BVRToolModel getBVRToolModel() {
 		return m;
 	}
 
@@ -164,8 +159,8 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 	public void notifyResolutionViewUpdate() {
 		// Save
 		boolean isEmpty = resPane.getTabCount() == 0;
-		int resmodels = getCU().getOwnedVSpecResolution().size();
-		boolean modelIsEmpty = getCU().getOwnedVSpecResolution().size() == 0;
+		int resmodels = getBVRModel().getResolutionModels().size();
+		boolean modelIsEmpty = getBVRModel().getResolutionModels().size() == 0;
 		
 		int selected = 0;
 		Point pos = null;
@@ -187,7 +182,7 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 		choiceCount = 1;
 	    
 
-		loadBVRResolutionView(m.getBVRM().getCU(), resolutionkernels, resPane);
+		loadBVRResolutionView(m.getBVRModel(), resolutionkernels, resPane);
 
 	    
 	    autoLayoutResolutions();
@@ -199,16 +194,16 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 	    }
 	}
 
-	private void loadBVRResolutionView(ConfigurableUnit cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException{
-		resPane.addMouseListener(new VSpecResDropDownListener(m, cu, this, resPane));
+	private void loadBVRResolutionView(BVRModel cu, List<BVRUIKernel> resolutionkernels, JTabbedPane resPane) throws BVRModelException{
+		//resPane.addMouseListener(new VSpecResDropDownListener(m, this, resPane));
 		
-		if(cu.getOwnedVSpecResolution().size() == 0) return;
+		if(cu.getResolutionModels().size() == 0) return;
 		
-		for(VSpecResolution v : cu.getOwnedVSpecResolution()){
+		for(VSpecResolution v : cu.getResolutionModels()){
 			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	        scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));
+	      //  scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));
 	        EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 	        
 	        resolutionPanes.add(scrollPane);
@@ -222,56 +217,47 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 			
 			loadBVRResolutionView(v, resKernel, null, cu, vmMap, nodes, bindings);
 			String tabtitle = "";
-			if(v instanceof ChoiceResolutuion){
-				ChoiceResolutuion cr = (ChoiceResolutuion) v;
+			if(v instanceof ChoiceResolution){
+				ChoiceResolution cr = (ChoiceResolution) v;
 				String choicename = "null";
-				if(cr.getResolvedVSpec() != null){
-					choicename = cr.getResolvedVSpec().getName();
+				if(cr.getResolvedChoice() != null){
+					choicename = cr.getResolvedChoice().getName();
 				}
 				tabtitle = choicename + " " + choiceCount;
 				choiceCount++;
-			}else if(v instanceof VInstance){
-				VInstance vi = (VInstance) v;
-				tabtitle = vi.getName() + ":" + vi.getResolvedVSpec().getName();
+			}else if(CommonUtility.isVSpecResolutionVClassifier(v)){
+				tabtitle = v.getName() + ":" + ((ChoiceResolution) v).getResolvedVClassifier().getName();
 			}
 
 			resPane.addTab(tabtitle, null, epanel, "");
 		}
 	}
 
-	private void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, ConfigurableUnit cu, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws BVRModelException {
+	private void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, BVRModel cu, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws BVRModelException {
 		JComponent nextParent = null;
 		
 		// Add view
 		//System.out.println(v.getClass().getSimpleName());
-		if(v instanceof VInstance){
+		if(CommonUtility.isVSpecResolutionVClassifier(v)){
 			//System.out.println(v + ", " + bvruikernel);
 			
-			nextParent = new AddVInstance(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
+			//nextParent = new AddVInstance(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			
 			vmMap.put(nextParent, v);
 			
-		}else if(v instanceof ChoiceResolutuion){
-			//System.out.println(v);
-			
-			nextParent = new AddChoiceResolutuion(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
-			
+		}else if(v instanceof ChoiceResolution){
+			//nextParent = new AddChoiceResolutuion(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
 			vmMap.put(nextParent, v);
-			
-		}else if(v instanceof VariableValueAssignment){
-			//System.out.println(v);
-			
+		}/*else if(v instanceof VariableValueAssignment){
 			nextParent = new AddVariableValueAssignment(minimized.contains(v)).init(bvruikernel, v, parent, vmMap, nodes, bindings, this).execute();
-			
 			vmMap.put(nextParent, v);
-			
-		}else{
+		}*/else{
 			throw new BVRModelException("Unknown element: " + v.getClass());
 		}
 		
 		// Recursive step
 		//System.out.println();
-		for(VSpecResolution vs : v.getChild()){
+		for(VSpecResolution vs : ((CompoundResolution) v).getMembers()){
 			//System.out.println("Treating " + vs.getResolvedVSpec().getName());
 			if(!minimized.contains(v))
 				loadBVRResolutionView(vs, bvruikernel, nextParent, cu, vmMap, nodes, bindings);
@@ -279,13 +265,13 @@ public class ResolutionView extends BVRViewAbstract implements BVRResolutionView
 	}
 
 
-	@Override
+	
 	public void setMaximized(Object v) {
 		minimized.remove(v);
 		refresh();
 	}
 
-	@Override
+	
 	public void setMinimized(Object v) {
 		minimized.add((VSpecResolution)v);
 		refresh();

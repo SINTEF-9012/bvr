@@ -12,8 +12,8 @@ import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 public class BVRJFrame extends JFrame {
 	
@@ -41,7 +41,7 @@ public class BVRJFrame extends JFrame {
 						if(result == JOptionPane.YES_OPTION){
 							int componentCount = tabbedPane.getComponentCount();
 							for(int index = 0; index<componentCount; index++){
-								BVRModel model = Context.eINSTANCE.getBvrModels().get(index);
+								BVRToolModel model = Context.eINSTANCE.getBvrModels().get(index);
 								StaticUICommands.saveModelToFile((JComponent) tabbedPane.getComponent(index), model, true);
 							}
 						}

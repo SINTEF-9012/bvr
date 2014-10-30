@@ -1,8 +1,8 @@
 package no.sintef.bvr.tool.strategy;
 
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 
 public interface ScopeResolverStrategy {
 
-	public void resolveScopes(SymbolTable table);
+	public void resolveScopes(SymbolVSpecResolutionTable table);
 }

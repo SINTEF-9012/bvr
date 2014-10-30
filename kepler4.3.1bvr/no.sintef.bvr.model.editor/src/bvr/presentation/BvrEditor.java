@@ -530,7 +530,7 @@ public class BvrEditor
 					}
 				}
 				catch (CoreException exception) {
-					BVRMetamodelEditorPlugin.INSTANCE.log(exception);
+					BVRMetamodel5EditorPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -646,7 +646,7 @@ public class BvrEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					BVRMetamodelEditorPlugin.INSTANCE.log(exception);
+					BVRMetamodel5EditorPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -657,7 +657,7 @@ public class BvrEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						BVRMetamodelEditorPlugin.INSTANCE.log(exception);
+						BVRMetamodel5EditorPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -1522,7 +1522,7 @@ public class BvrEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			BVRMetamodelEditorPlugin.INSTANCE.log(exception);
+			BVRMetamodel5EditorPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1726,7 +1726,7 @@ public class BvrEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return BVRMetamodelEditorPlugin.INSTANCE.getString(key);
+		return BVRMetamodel5EditorPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1736,7 +1736,7 @@ public class BvrEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return BVRMetamodelEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return BVRMetamodel5EditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

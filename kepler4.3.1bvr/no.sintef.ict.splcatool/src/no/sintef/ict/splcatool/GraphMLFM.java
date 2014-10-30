@@ -29,11 +29,12 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import bvr.Choice;
-import bvr.ConfigurableUnit;
+import bvr.CompoundNode;
 import bvr.MultiplicityInterval;
 import bvr.OpaqueConstraint;
 import bvr.VClassifier;
 import bvr.VSpec;
+import bvr.VNode;
 import bvr.BvrFactory;
 import bvr.impl.BvrPackageImpl;
 import de.ovgu.featureide.fm.core.Feature;
@@ -426,14 +427,14 @@ public class GraphMLFM {
 		shapenode.appendChild(nodelabel);
 	}
 	
-	BVRModel bvr;
+	SPLCABVRModel bvr;
 	Map<String, Boolean> mandatories = new HashMap<String, Boolean>();
 
-	public BVRModel getBVRModel() {
+	public SPLCABVRModel getBVRModel() {
 		// Make empty BVR model
 		BvrPackageImpl.init();
-		ConfigurableUnit cu = BvrFactory.eINSTANCE.createConfigurableUnit();
-		bvr = new BVRModel(cu);
+		bvr.BVRModel bvrModel = BvrFactory.eINSTANCE.createBVRModel();
+		bvr = new SPLCABVRModel(bvrModel);
 		
 		// Make graph
 		DirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
@@ -491,9 +492,11 @@ public class GraphMLFM {
 		// Iterate
 		TopologicalOrderIterator<String, DefaultEdge> ti = new TopologicalOrderIterator<String, DefaultEdge>(g);
 		String root = ti.next();
-		cu.setName(root);
-		VSpec vs = traverse(g, root);
-		cu.getOwnedVSpec().add(vs);
+		bvrModel.setName(root);
+		
+		CompoundNode vs = traverse(g, root);
+		//cu.getOwnedVSpec().add(vs);
+		bvrModel.setVariabilityModel(vs);
 		
 		// Do global constraints
 		Set<String> done = mandatories.keySet();
@@ -511,7 +514,8 @@ public class GraphMLFM {
 				
 				OpaqueConstraint e = BvrFactory.eINSTANCE.createOpaqueConstraint();
 				e.setConstraint(getLabel(id));
-				cu.getOwnedConstraint().add(e);
+				//cu.getOwnedConstraint().add(e);
+				vs.getOwnedConstraint().add(e);
 			}
 		}
 		
@@ -519,13 +523,13 @@ public class GraphMLFM {
 		return bvr;
 	}
 	
-	VSpec traverse(DirectedGraph<String, DefaultEdge> g, String root){
+	CompoundNode traverse(DirectedGraph<String, DefaultEdge> g, String root){
 		return traverse(g, root, 0);
 	}
 	
-	Map<String, VSpec> idmap = new HashMap<String, VSpec>();
+	Map<String, CompoundNode> idmap = new HashMap<String, CompoundNode>();
 	
-	VSpec traverse(DirectedGraph<String, DefaultEdge> g, String root, int level){
+	CompoundNode traverse(DirectedGraph<String, DefaultEdge> g, String root, int level){
 		// Print
 /*		for(int i = 0; i < level; i++)
 			System.out.print("\t");
@@ -534,7 +538,7 @@ public class GraphMLFM {
 		String tag = getTag(root);
 		
 		// Create
-		VSpec v = null;
+		CompoundNode v = null;
 		//System.out.println(tag);
 		if(tag.equals("roundrectangle")){
 			Choice c = BvrFactory.eINSTANCE.createChoice();
@@ -555,15 +559,18 @@ public class GraphMLFM {
 			for(DefaultEdge e : g.edgesOf(root)){
 				if(!g.getEdgeTarget(e).equals(root)) continue;
 				//System.out.println("Constrain of " + g.getEdgeSource(e));
-				c.setContext(idmap.get(g.getEdgeSource(e)));
+				//c.setContext(idmap.get(g.getEdgeSource(e)));
+				CompoundNode vSpec = idmap.get(g.getEdgeSource(e));
+				((VNode) vSpec).getOwnedConstraint().add(c);
+				
 			}
 
-			bvr.getCU().getOwnedConstraint().add(c);
+			//bvr.getCU().getOwnedConstraint().add(c);
 		}else if(tag.equals("UMLClassNode")){
-			v = (VSpec) BvrFactory.eINSTANCE.createVClassifier();
+			v = (CompoundNode) BvrFactory.eINSTANCE.createVClassifier();
 			idmap.put(root, v);
 			String mstr = getMultiplicity(root);
-			v.setName(getLabel(root).replace("[" + mstr + "]", ""));
+			((VSpec) v).setName(getLabel(root).replace("[" + mstr + "]", ""));
 		}else{
 			throw new UnsupportedOperationException("Unsupported type: " + tag);
 		}
@@ -584,9 +591,10 @@ public class GraphMLFM {
 						root = g.getEdgeTarget(e);
 						continue restartloop;
 					}else{
-						VSpec child = traverse(g, g.getEdgeTarget(e), level+1);
+						CompoundNode child = traverse(g, g.getEdgeTarget(e), level+1);
 						if(child != null) // TODO fix, should not be necessary
-							c.getChild().add(child);
+							//c.getChild().add(child);
+							c.getMember().add(child);
 					}
 				}
 				break;
@@ -608,9 +616,9 @@ public class GraphMLFM {
 						root = g.getEdgeTarget(e);
 						continue restartloop;
 					}else{
-						VSpec child = traverse(g, g.getEdgeTarget(e), level+1);
+						CompoundNode child = traverse(g, g.getEdgeTarget(e), level+1);
 						if(child != null) // TODO fix, should not be necessary
-							c.getChild().add(child);
+							c.getMember().add(child);
 					}
 				}
 				break;
@@ -634,9 +642,9 @@ public class GraphMLFM {
 						root = g.getEdgeTarget(e);
 						continue restartloop;
 					}else{
-						VSpec child = traverse(g, g.getEdgeTarget(e), level+1);
+						CompoundNode child = traverse(g, g.getEdgeTarget(e), level+1);
 						if(child != null) // TODO fix, should not be necessary
-							c.getChild().add(child);
+							c.getMember().add(child);
 					}
 				}
 				break;
@@ -672,7 +680,7 @@ public class GraphMLFM {
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(li);
 		mi.setUpper(ui);
-		c.setGroupMultiplicity(mi);
+		((VNode) c).setGroupMultiplicity(mi);
 	}
 
 	private String getLabel(String id) {

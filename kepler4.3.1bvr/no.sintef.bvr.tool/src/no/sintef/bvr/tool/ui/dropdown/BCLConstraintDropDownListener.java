@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
@@ -24,7 +25,6 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleOptionalEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
@@ -34,13 +34,13 @@ public class BCLConstraintDropDownListener extends MouseAdapter {
 
 	private ParallelogramTitledPanel constraint1;
 	private Map<JComponent, NamedElement> vmMap;
-	private BVRView view;
+	private BVRNotifiableController view;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 
 	public BCLConstraintDropDownListener(ParallelogramTitledPanel constraint1,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.constraint1 = constraint1;
 		this.vmMap = vmMap;
 		this.view = view;
@@ -69,11 +69,11 @@ public class BCLConstraintDropDownListener extends MouseAdapter {
 class BCLConstraintDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public BCLConstraintDropdown(ParallelogramTitledPanel constraint1, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view){
+    public BCLConstraintDropdown(ParallelogramTitledPanel constraint1, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
 		
 		// Remove
 		JMenuItem removechoice = new JMenuItem("remove");
-		removechoice.addActionListener(new RemoveVSpecEvent(constraint1, vmMap, nodes, bindings, view));
+		removechoice.addActionListener(new RemoveVSpecEvent(constraint1, view));
 		add(removechoice);
     }
 }

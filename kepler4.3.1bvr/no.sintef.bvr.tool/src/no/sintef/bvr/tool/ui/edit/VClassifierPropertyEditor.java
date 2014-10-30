@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,10 +25,11 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-
+import bvr.CompoundNode;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
 import bvr.VClassifier;
@@ -36,13 +38,12 @@ import bvr.Variable;
 
 public class VClassifierPropertyEditor extends ElementPropertyEditor {
 	
-    protected void init() {
-    	command = new UpdateVClassifier();
-    	command.init(null, obj, null, null, null, null, view);
-    }
+	private static final long serialVersionUID = 32837078208251642L;
 
-	public VClassifierPropertyEditor(BVRUIKernel kernel, VClassifier elem, BVRView view) {
-		super(kernel, (VSpec) elem, view);
+
+	public VClassifierPropertyEditor(BVRUIKernel _kernel, Command _okcommand, VSpec elem, JComponent _node,
+			BVRNotifiableController _controller) {
+		super(_kernel, _okcommand, elem, _node, _controller);
 		
         //Lower bound
         JPanel p2 = new JPanel(new SpringLayout());
@@ -50,11 +51,9 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         p2.setOpaque(false);
 		
         JLabel l2 = new JLabel("Lower", JLabel.TRAILING);
-        //l2.setUI(new HudLabelUI());
-
         p2.add(l2);
+        
         final JTextField textField2 = new JTextField(15);
-        //textField2.setUI(new HudTextFieldUI());
 
         l2.setLabelFor(textField2);
         p2.add(textField2);
@@ -95,18 +94,17 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         
         // Add Variable edits
 		int count = 0;
-		for(VSpec x : elem.getChild()){
-			if(x instanceof Variable){
-				Variable v = (Variable)x;
-				addEdit(elem, v);
-				count++;
-			}
+		for(Variable x : ((CompoundNode) elem).getVariable()){
+			addEdit(elem, x);
+			count++;
 		}
 		
         pack(3+count, 1);
         
-        ((UpdateVClassifier)command).setLower(elem.getInstanceMultiplicity().getLower());
-    	((UpdateVClassifier)command).setUpper(elem.getInstanceMultiplicity().getUpper());
+       
+        
+        ((UpdateVClassifier) command).setLower(((VClassifier)elem).getInstanceMultiplicity().getLower());
+    	((UpdateVClassifier) command).setUpper(((VClassifier)elem).getInstanceMultiplicity().getUpper());
     	
     	textField2.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
     	textField3.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
@@ -189,7 +187,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
                 6, 6);       //xPad, yPad
         
         //Part 2
-        ((UpdateVClassifier)command).setVar(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
+        ((UpdateVClassifier)command).setVariable(v, v.getName(), ((PrimitveType)v.getType()).getType().getName());
         
         name.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
         types.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
@@ -197,8 +195,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
     	// Part 3:
         DocumentListener dl = new DocumentListener() {
             public void insertUpdate(DocumentEvent e) {
-            	((UpdateVClassifier)command).setVar(v, name.getText(), types.getSelectedItem().toString());
-            	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
+            	((UpdateVClassifier)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
             }
             public void removeUpdate(DocumentEvent e) {
             	insertUpdate(e);
@@ -210,8 +207,7 @@ public class VClassifierPropertyEditor extends ElementPropertyEditor {
         name.getDocument().addDocumentListener(dl);
         types.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
-            	((UpdateVClassifier)command).setVar(v, name.getText(), types.getSelectedItem().toString());
-            	//System.out.println("Set " + v.getName() + " to " + name.getText() + "," + types.getSelectedItem());
+            	((UpdateVClassifier)command).setVariable(v, name.getText(), types.getSelectedItem().toString());
             }
         });
 	}

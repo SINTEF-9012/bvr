@@ -8,10 +8,11 @@ import bvr.ObjectHandle;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ObjectHandleImpl extends BaseModelHandleImpl implements ObjectHandle {
+public class ObjectHandleImpl extends MinimalEObjectImpl.Container implements ObjectHandle {
 	/**
 	 * The cached value of the '{@link #getMOFRef() <em>MOF Ref</em>}' reference.
 	 * <!-- begin-user-doc -->

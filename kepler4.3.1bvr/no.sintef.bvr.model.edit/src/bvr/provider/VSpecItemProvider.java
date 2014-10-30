@@ -3,7 +3,6 @@
 package bvr.provider;
 
 
-import bvr.BvrFactory;
 import bvr.BvrPackage;
 import bvr.VSpec;
 
@@ -12,8 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -32,7 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class VSpecItemProvider
-	extends VPackageableItemProvider
+	extends NamedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -61,7 +58,7 @@ public class VSpecItemProvider
 			super.getPropertyDescriptors(object);
 
 			addResolutionTimePropertyDescriptor(object);
-			addCommentPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,57 +86,25 @@ public class VSpecItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Comment feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCommentPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_VSpec_comment_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_comment_feature", "_UI_VSpec_type"),
-				 BvrPackage.Literals.VSPEC__COMMENT,
+				 getString("_UI_VSpec_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_target_feature", "_UI_VSpec_type"),
+				 BvrPackage.Literals.VSPEC__TARGET,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(BvrPackage.Literals.VSPEC__GROUP_MULTIPLICITY);
-			childrenFeatures.add(BvrPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION);
-			childrenFeatures.add(BvrPackage.Literals.VSPEC__CHILD);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -169,13 +134,7 @@ public class VSpecItemProvider
 
 		switch (notification.getFeatureID(VSpec.class)) {
 			case BvrPackage.VSPEC__RESOLUTION_TIME:
-			case BvrPackage.VSPEC__COMMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
-			case BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-			case BvrPackage.VSPEC__CHILD:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -191,51 +150,6 @@ public class VSpecItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__GROUP_MULTIPLICITY,
-				 BvrFactory.eINSTANCE.createMultiplicityInterval()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 BvrFactory.eINSTANCE.createVSpecDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 BvrFactory.eINSTANCE.createChoiceDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 BvrFactory.eINSTANCE.createVariableDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__OWNED_VSPEC_DERIVATION,
-				 BvrFactory.eINSTANCE.createCVSpecDerivation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__CHILD,
-				 BvrFactory.eINSTANCE.createChoice()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__CHILD,
-				 BvrFactory.eINSTANCE.createVClassifier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__CHILD,
-				 BvrFactory.eINSTANCE.createVariable()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VSPEC__CHILD,
-				 BvrFactory.eINSTANCE.createCVSpec()));
 	}
 
 }

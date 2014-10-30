@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
 import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.test.common.TestProject;
 import no.sintef.test.common.TestResourceHolder;
 
@@ -22,7 +22,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
+import bvr.PosResolution;
 import bvr.VSpecResolution;
 
 public class BottomUpResolverTest {
@@ -103,11 +104,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstances() throws IOException, CoreException {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -125,11 +126,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstances1() throws IOException, CoreException {	
 			File fileVarModel = testResources[0].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -147,11 +148,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstancesV1() throws IOException, CoreException {	
 			File fileVarModel = testResources[4].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -169,11 +170,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsSveralInstancesV1_1() throws IOException, CoreException {	
 			File fileVarModel = testResources[4].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -191,11 +192,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void printerCartirdgeSveralInstances() throws IOException, CoreException {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -213,11 +214,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void printerCartirdgeSingleInstance() throws IOException, CoreException {	
 			File fileVarModel = testResources[8].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -235,11 +236,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void office1() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -257,11 +258,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void office2() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -279,11 +280,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void office3() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(2);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(2);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -301,11 +302,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void office4() throws IOException, CoreException {	
 			File fileVarModel = testResources[15].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(3);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(3);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -323,11 +324,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void printerPrinterPoolCartirdgeMoreVClassifiers() throws IOException, CoreException {	
 			File fileVarModel = testResources[22].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -345,11 +346,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsScopeless1() throws IOException, CoreException {	
 			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(0);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(0);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			
@@ -367,11 +368,11 @@ public class BottomUpResolverTest {
 	@Test
 	public void repetitionsScopeless2() throws IOException, CoreException {	
 			File fileVarModel = testResources[24].getiFile().getLocation().toFile();
-			BVRModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
-			ConfigurableUnit cu = model.getCU();
-			VSpecResolution vSpecResolution = cu.getOwnedVSpecResolution().get(1);
+			BVRToolModel model = Context.eINSTANCE.loadModelFromFile(fileVarModel);
+			BVRModel cu = model.getBVRModel();
+			VSpecResolution vSpecResolution = cu.getResolutionModels().get(1);
 			
-			SymbolTable symbolTable = composer.buildSymbolTable(cu, vSpecResolution);
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(cu, (PosResolution) vSpecResolution);
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 			

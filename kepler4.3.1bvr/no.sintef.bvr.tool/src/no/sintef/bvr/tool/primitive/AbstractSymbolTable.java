@@ -3,44 +3,44 @@ package no.sintef.bvr.tool.primitive;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.VSpecResolution;
 
-public abstract class AbstractSymbolTable implements SymbolTable {
+public abstract class AbstractSymbolTable implements SymbolVSpecResolutionTable {
 	
 	protected VSpecResolution tableId;
-	protected HashMap<VSpecResolution, Symbol> table;
-	protected SymbolTable parent;
-	protected HashMap<VSpecResolution, SymbolTable> children;
-	protected ConfigurableUnit cu;
+	protected HashMap<VSpecResolution, SymbolVSpec> table;
+	protected SymbolVSpecResolutionTable parent;
+	protected HashMap<VSpecResolution, SymbolVSpecResolutionTable> children;
+	protected BVRModel bvrModel;
 
 	@Override
-	public Symbol lookup(VSpecResolution vSpecResolution) {
+	public SymbolVSpec lookup(VSpecResolution vSpecResolution) {
 		return table.get(vSpecResolution);
 	}
 	
 	@Override
-	public SymbolTable lookupTable(VSpecResolution vSpecResolution) {
+	public SymbolVSpecResolutionTable lookupTable(VSpecResolution vSpecResolution) {
 		return children.get(vSpecResolution);
 	}
 
 	@Override
-	public void insert(Symbol vSpecResolutionSymbol) {
+	public void insert(SymbolVSpec vSpecResolutionSymbol) {
 		table.put(vSpecResolutionSymbol.getVSpecResolution(), vSpecResolutionSymbol);
 	}
 
 	@Override
-	public void delete(Symbol vSpecResolutionSymbol) {
+	public void delete(SymbolVSpec vSpecResolutionSymbol) {
 		table.remove(vSpecResolutionSymbol.getVSpecResolution());
 	}
 
 	@Override
-	public void setParent(SymbolTable table) {
+	public void setParent(SymbolVSpecResolutionTable table) {
 		parent = table;
 	}
 	
 	@Override
-	public void setChild(SymbolTable table) {
+	public void setChild(SymbolVSpecResolutionTable table) {
 		children.put(table.getTableId(), table);
 	}
 	
@@ -50,27 +50,27 @@ public abstract class AbstractSymbolTable implements SymbolTable {
 	}
 	
 	@Override
-	public ArrayList<SymbolTable> getChildren() {
-		return new ArrayList<SymbolTable>(children.values());
+	public ArrayList<SymbolVSpecResolutionTable> getChildren() {
+		return new ArrayList<SymbolVSpecResolutionTable>(children.values());
 	}
 	
 	@Override
-	public SymbolTable getParent() {
+	public SymbolVSpecResolutionTable getParent() {
 		return parent;
 	}
 	
 	@Override
-	public ArrayList<Symbol> getSymbols() {
-		return new ArrayList<Symbol>(table.values());
+	public ArrayList<SymbolVSpec> getSymbols() {
+		return new ArrayList<SymbolVSpec>(table.values());
 	}
 	
 	@Override
-	public void setConfigurableUnit(ConfigurableUnit cu) {
-		this.cu = cu;
+	public void setBVRModel(BVRModel bvrModel) {
+		this.bvrModel = bvrModel;
 	}
 	
 	@Override
-	public ConfigurableUnit getConfigurableUnit() {
-		return this.cu;
+	public BVRModel getBVRModel() {
+		return this.bvrModel;
 	}
 }

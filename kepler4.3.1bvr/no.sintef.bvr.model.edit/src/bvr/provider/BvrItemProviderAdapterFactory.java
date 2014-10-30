@@ -95,6 +95,52 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link bvr.Note} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NoteItemProvider noteItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.Note}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNoteAdapter() {
+		if (noteItemProvider == null) {
+			noteItemProvider = new NoteItemProvider(this);
+		}
+
+		return noteItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.Target} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TargetItemProvider targetItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.Target}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTargetAdapter() {
+		if (targetItemProvider == null) {
+			targetItemProvider = new TargetItemProvider(this);
+		}
+
+		return targetItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link bvr.MultiplicityInterval} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,26 +164,49 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VSpecDerivation} instances.
+	 * This keeps track of the one adapter used for all {@link bvr.Constraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VSpecDerivationItemProvider vSpecDerivationItemProvider;
+	protected ConstraintItemProvider constraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bvr.VSpecDerivation}.
+	 * This creates an adapter for a {@link bvr.Constraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVSpecDerivationAdapter() {
-		if (vSpecDerivationItemProvider == null) {
-			vSpecDerivationItemProvider = new VSpecDerivationItemProvider(this);
+	public Adapter createConstraintAdapter() {
+		if (constraintItemProvider == null) {
+			constraintItemProvider = new ConstraintItemProvider(this);
 		}
 
-		return vSpecDerivationItemProvider;
+		return constraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.Variable} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VariableItemProvider variableItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.Variable}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVariableAdapter() {
+		if (variableItemProvider == null) {
+			variableItemProvider = new VariableItemProvider(this);
+		}
+
+		return variableItemProvider;
 	}
 
 	/**
@@ -164,49 +233,95 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ChoiceResolutuion} instances.
+	 * This keeps track of the one adapter used for all {@link bvr.ChoiceOccurrence} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ChoiceResolutuionItemProvider choiceResolutuionItemProvider;
+	protected ChoiceOccurrenceItemProvider choiceOccurrenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bvr.ChoiceResolutuion}.
+	 * This creates an adapter for a {@link bvr.ChoiceOccurrence}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createChoiceResolutuionAdapter() {
-		if (choiceResolutuionItemProvider == null) {
-			choiceResolutuionItemProvider = new ChoiceResolutuionItemProvider(this);
+	public Adapter createChoiceOccurrenceAdapter() {
+		if (choiceOccurrenceItemProvider == null) {
+			choiceOccurrenceItemProvider = new ChoiceOccurrenceItemProvider(this);
 		}
 
-		return choiceResolutuionItemProvider;
+		return choiceOccurrenceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VInstance} instances.
+	 * This keeps track of the one adapter used for all {@link bvr.VType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VInstanceItemProvider vInstanceItemProvider;
+	protected VTypeItemProvider vTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bvr.VInstance}.
+	 * This creates an adapter for a {@link bvr.VType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVInstanceAdapter() {
-		if (vInstanceItemProvider == null) {
-			vInstanceItemProvider = new VInstanceItemProvider(this);
+	public Adapter createVTypeAdapter() {
+		if (vTypeItemProvider == null) {
+			vTypeItemProvider = new VTypeItemProvider(this);
 		}
 
-		return vInstanceItemProvider;
+		return vTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.VClassOccurrence} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VClassOccurrenceItemProvider vClassOccurrenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.VClassOccurrence}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVClassOccurrenceAdapter() {
+		if (vClassOccurrenceItemProvider == null) {
+			vClassOccurrenceItemProvider = new VClassOccurrenceItemProvider(this);
+		}
+
+		return vClassOccurrenceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.StagedVariationPoint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StagedVariationPointItemProvider stagedVariationPointItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.StagedVariationPoint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStagedVariationPointAdapter() {
+		if (stagedVariationPointItemProvider == null) {
+			stagedVariationPointItemProvider = new StagedVariationPointItemProvider(this);
+		}
+
+		return stagedVariationPointItemProvider;
 	}
 
 	/**
@@ -279,29 +394,6 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.BaseModelHandle} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BaseModelHandleItemProvider baseModelHandleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.BaseModelHandle}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBaseModelHandleAdapter() {
-		if (baseModelHandleItemProvider == null) {
-			baseModelHandleItemProvider = new BaseModelHandleItemProvider(this);
-		}
-
-		return baseModelHandleItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link bvr.ReplacementFragmentType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -325,95 +417,26 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.Variabletype} instances.
+	 * This keeps track of the one adapter used for all {@link bvr.ValueResolution} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VariabletypeItemProvider variabletypeItemProvider;
+	protected ValueResolutionItemProvider valueResolutionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bvr.Variabletype}.
+	 * This creates an adapter for a {@link bvr.ValueResolution}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVariabletypeAdapter() {
-		if (variabletypeItemProvider == null) {
-			variabletypeItemProvider = new VariabletypeItemProvider(this);
+	public Adapter createValueResolutionAdapter() {
+		if (valueResolutionItemProvider == null) {
+			valueResolutionItemProvider = new ValueResolutionItemProvider(this);
 		}
 
-		return variabletypeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ObjectSubstitution} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ObjectSubstitutionItemProvider objectSubstitutionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ObjectSubstitution}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createObjectSubstitutionAdapter() {
-		if (objectSubstitutionItemProvider == null) {
-			objectSubstitutionItemProvider = new ObjectSubstitutionItemProvider(this);
-		}
-
-		return objectSubstitutionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.Variable} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VariableItemProvider variableItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.Variable}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVariableAdapter() {
-		if (variableItemProvider == null) {
-			variableItemProvider = new VariableItemProvider(this);
-		}
-
-		return variableItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VariableValueAssignment} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VariableValueAssignmentItemProvider variableValueAssignmentItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.VariableValueAssignment}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVariableValueAssignmentAdapter() {
-		if (variableValueAssignmentItemProvider == null) {
-			variableValueAssignmentItemProvider = new VariableValueAssignmentItemProvider(this);
-		}
-
-		return variableValueAssignmentItemProvider;
+		return valueResolutionItemProvider;
 	}
 
 	/**
@@ -463,52 +486,6 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VInterface} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VInterfaceItemProvider vInterfaceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.VInterface}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVInterfaceAdapter() {
-		if (vInterfaceItemProvider == null) {
-			vInterfaceItemProvider = new VInterfaceItemProvider(this);
-		}
-
-		return vInterfaceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.Constraint} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConstraintItemProvider constraintItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.Constraint}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConstraintAdapter() {
-		if (constraintItemProvider == null) {
-			constraintItemProvider = new ConstraintItemProvider(this);
-		}
-
-		return constraintItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link bvr.SlotAssignment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -529,167 +506,6 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 		}
 
 		return slotAssignmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ObjectExistence} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ObjectExistenceItemProvider objectExistenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ObjectExistence}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createObjectExistenceAdapter() {
-		if (objectExistenceItemProvider == null) {
-			objectExistenceItemProvider = new ObjectExistenceItemProvider(this);
-		}
-
-		return objectExistenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.LinkEndSubstitution} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LinkEndSubstitutionItemProvider linkEndSubstitutionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.LinkEndSubstitution}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLinkEndSubstitutionAdapter() {
-		if (linkEndSubstitutionItemProvider == null) {
-			linkEndSubstitutionItemProvider = new LinkEndSubstitutionItemProvider(this);
-		}
-
-		return linkEndSubstitutionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.LinkHandle} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LinkHandleItemProvider linkHandleItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.LinkHandle}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLinkHandleAdapter() {
-		if (linkHandleItemProvider == null) {
-			linkHandleItemProvider = new LinkHandleItemProvider(this);
-		}
-
-		return linkHandleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ConfigurableUnit} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConfigurableUnitItemProvider configurableUnitItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ConfigurableUnit}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConfigurableUnitAdapter() {
-		if (configurableUnitItemProvider == null) {
-			configurableUnitItemProvider = new ConfigurableUnitItemProvider(this);
-		}
-
-		return configurableUnitItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.CVSpec} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CVSpecItemProvider cvSpecItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.CVSpec}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCVSpecAdapter() {
-		if (cvSpecItemProvider == null) {
-			cvSpecItemProvider = new CVSpecItemProvider(this);
-		}
-
-		return cvSpecItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VConfigurationItemProvider vConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.VConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVConfigurationAdapter() {
-		if (vConfigurationItemProvider == null) {
-			vConfigurationItemProvider = new VConfigurationItemProvider(this);
-		}
-
-		return vConfigurationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.LinkExistence} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LinkExistenceItemProvider linkExistenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.LinkExistence}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createLinkExistenceAdapter() {
-		if (linkExistenceItemProvider == null) {
-			linkExistenceItemProvider = new LinkExistenceItemProvider(this);
-		}
-
-		return linkExistenceItemProvider;
 	}
 
 	/**
@@ -969,26 +785,26 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VSpecRef} instances.
+	 * This keeps track of the one adapter used for all {@link bvr.TargetRef} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected VSpecRefItemProvider vSpecRefItemProvider;
+	protected TargetRefItemProvider targetRefItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bvr.VSpecRef}.
+	 * This creates an adapter for a {@link bvr.TargetRef}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createVSpecRefAdapter() {
-		if (vSpecRefItemProvider == null) {
-			vSpecRefItemProvider = new VSpecRefItemProvider(this);
+	public Adapter createTargetRefAdapter() {
+		if (targetRefItemProvider == null) {
+			targetRefItemProvider = new TargetRefItemProvider(this);
 		}
 
-		return vSpecRefItemProvider;
+		return targetRefItemProvider;
 	}
 
 	/**
@@ -1038,187 +854,26 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link bvr.SlotValueExistence} instances.
+	 * This keeps track of the one adapter used for all {@link bvr.ParametricSlotAssignment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SlotValueExistenceItemProvider slotValueExistenceItemProvider;
+	protected ParametricSlotAssignmentItemProvider parametricSlotAssignmentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link bvr.SlotValueExistence}.
+	 * This creates an adapter for a {@link bvr.ParametricSlotAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSlotValueExistenceAdapter() {
-		if (slotValueExistenceItemProvider == null) {
-			slotValueExistenceItemProvider = new SlotValueExistenceItemProvider(this);
+	public Adapter createParametricSlotAssignmentAdapter() {
+		if (parametricSlotAssignmentItemProvider == null) {
+			parametricSlotAssignmentItemProvider = new ParametricSlotAssignmentItemProvider(this);
 		}
 
-		return slotValueExistenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ParametricLinkEndSubstitution} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ParametricLinkEndSubstitutionItemProvider parametricLinkEndSubstitutionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ParametricLinkEndSubstitution}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createParametricLinkEndSubstitutionAdapter() {
-		if (parametricLinkEndSubstitutionItemProvider == null) {
-			parametricLinkEndSubstitutionItemProvider = new ParametricLinkEndSubstitutionItemProvider(this);
-		}
-
-		return parametricLinkEndSubstitutionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ParametricObjectSubstitution} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ParametricObjectSubstitutionItemProvider parametricObjectSubstitutionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ParametricObjectSubstitution}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createParametricObjectSubstitutionAdapter() {
-		if (parametricObjectSubstitutionItemProvider == null) {
-			parametricObjectSubstitutionItemProvider = new ParametricObjectSubstitutionItemProvider(this);
-		}
-
-		return parametricObjectSubstitutionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ParametricSlotAssignmet} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ParametricSlotAssignmetItemProvider parametricSlotAssignmetItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ParametricSlotAssignmet}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createParametricSlotAssignmetAdapter() {
-		if (parametricSlotAssignmetItemProvider == null) {
-			parametricSlotAssignmetItemProvider = new ParametricSlotAssignmetItemProvider(this);
-		}
-
-		return parametricSlotAssignmetItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ChoiceDerivation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ChoiceDerivationItemProvider choiceDerivationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ChoiceDerivation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createChoiceDerivationAdapter() {
-		if (choiceDerivationItemProvider == null) {
-			choiceDerivationItemProvider = new ChoiceDerivationItemProvider(this);
-		}
-
-		return choiceDerivationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.VariableDerivation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected VariableDerivationItemProvider variableDerivationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.VariableDerivation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createVariableDerivationAdapter() {
-		if (variableDerivationItemProvider == null) {
-			variableDerivationItemProvider = new VariableDerivationItemProvider(this);
-		}
-
-		return variableDerivationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.CVSpecDerivation} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CVSpecDerivationItemProvider cvSpecDerivationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.CVSpecDerivation}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCVSpecDerivationAdapter() {
-		if (cvSpecDerivationItemProvider == null) {
-			cvSpecDerivationItemProvider = new CVSpecDerivationItemProvider(this);
-		}
-
-		return cvSpecDerivationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link bvr.ConfigurableUnitUsage} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConfigurableUnitUsageItemProvider configurableUnitUsageItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link bvr.ConfigurableUnitUsage}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConfigurableUnitUsageAdapter() {
-		if (configurableUnitUsageItemProvider == null) {
-			configurableUnitUsageItemProvider = new ConfigurableUnitUsageItemProvider(this);
-		}
-
-		return configurableUnitUsageItemProvider;
+		return parametricSlotAssignmentItemProvider;
 	}
 
 	/**
@@ -1429,6 +1084,167 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link bvr.NegResolution} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NegResolutionItemProvider negResolutionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.NegResolution}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNegResolutionAdapter() {
+		if (negResolutionItemProvider == null) {
+			negResolutionItemProvider = new NegResolutionItemProvider(this);
+		}
+
+		return negResolutionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.PosResolution} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PosResolutionItemProvider posResolutionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.PosResolution}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPosResolutionAdapter() {
+		if (posResolutionItemProvider == null) {
+			posResolutionItemProvider = new PosResolutionItemProvider(this);
+		}
+
+		return posResolutionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.VRef} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VRefItemProvider vRefItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.VRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVRefAdapter() {
+		if (vRefItemProvider == null) {
+			vRefItemProvider = new VRefItemProvider(this);
+		}
+
+		return vRefItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.VRefValueSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VRefValueSpecificationItemProvider vRefValueSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.VRefValueSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVRefValueSpecificationAdapter() {
+		if (vRefValueSpecificationItemProvider == null) {
+			vRefValueSpecificationItemProvider = new VRefValueSpecificationItemProvider(this);
+		}
+
+		return vRefValueSpecificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.ResolutionLiteralDefinition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResolutionLiteralDefinitionItemProvider resolutionLiteralDefinitionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.ResolutionLiteralDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResolutionLiteralDefinitionAdapter() {
+		if (resolutionLiteralDefinitionItemProvider == null) {
+			resolutionLiteralDefinitionItemProvider = new ResolutionLiteralDefinitionItemProvider(this);
+		}
+
+		return resolutionLiteralDefinitionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.ResolutionLiteralUse} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResolutionLiteralUseItemProvider resolutionLiteralUseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.ResolutionLiteralUse}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResolutionLiteralUseAdapter() {
+		if (resolutionLiteralUseItemProvider == null) {
+			resolutionLiteralUseItemProvider = new ResolutionLiteralUseItemProvider(this);
+		}
+
+		return resolutionLiteralUseItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link bvr.BVRModel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected BVRModelItemProvider bvrModelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link bvr.BVRModel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createBVRModelAdapter() {
+		if (bvrModelItemProvider == null) {
+			bvrModelItemProvider = new BVRModelItemProvider(this);
+		}
+
+		return bvrModelItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1528,32 +1344,24 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 	 */
 	public void dispose() {
 		if (choiceItemProvider != null) choiceItemProvider.dispose();
+		if (noteItemProvider != null) noteItemProvider.dispose();
+		if (targetItemProvider != null) targetItemProvider.dispose();
 		if (multiplicityIntervalItemProvider != null) multiplicityIntervalItemProvider.dispose();
-		if (vSpecDerivationItemProvider != null) vSpecDerivationItemProvider.dispose();
+		if (constraintItemProvider != null) constraintItemProvider.dispose();
+		if (variableItemProvider != null) variableItemProvider.dispose();
 		if (vClassifierItemProvider != null) vClassifierItemProvider.dispose();
-		if (choiceResolutuionItemProvider != null) choiceResolutuionItemProvider.dispose();
-		if (vInstanceItemProvider != null) vInstanceItemProvider.dispose();
+		if (choiceOccurrenceItemProvider != null) choiceOccurrenceItemProvider.dispose();
+		if (vTypeItemProvider != null) vTypeItemProvider.dispose();
+		if (vClassOccurrenceItemProvider != null) vClassOccurrenceItemProvider.dispose();
+		if (stagedVariationPointItemProvider != null) stagedVariationPointItemProvider.dispose();
 		if (fragmentSubstitutionItemProvider != null) fragmentSubstitutionItemProvider.dispose();
 		if (placementFragmentItemProvider != null) placementFragmentItemProvider.dispose();
 		if (objectHandleItemProvider != null) objectHandleItemProvider.dispose();
-		if (baseModelHandleItemProvider != null) baseModelHandleItemProvider.dispose();
 		if (replacementFragmentTypeItemProvider != null) replacementFragmentTypeItemProvider.dispose();
-		if (variabletypeItemProvider != null) variabletypeItemProvider.dispose();
-		if (objectSubstitutionItemProvider != null) objectSubstitutionItemProvider.dispose();
-		if (variableItemProvider != null) variableItemProvider.dispose();
-		if (variableValueAssignmentItemProvider != null) variableValueAssignmentItemProvider.dispose();
+		if (valueResolutionItemProvider != null) valueResolutionItemProvider.dispose();
 		if (primitveTypeItemProvider != null) primitveTypeItemProvider.dispose();
 		if (objectTypeItemProvider != null) objectTypeItemProvider.dispose();
-		if (vInterfaceItemProvider != null) vInterfaceItemProvider.dispose();
-		if (constraintItemProvider != null) constraintItemProvider.dispose();
 		if (slotAssignmentItemProvider != null) slotAssignmentItemProvider.dispose();
-		if (objectExistenceItemProvider != null) objectExistenceItemProvider.dispose();
-		if (linkEndSubstitutionItemProvider != null) linkEndSubstitutionItemProvider.dispose();
-		if (linkHandleItemProvider != null) linkHandleItemProvider.dispose();
-		if (configurableUnitItemProvider != null) configurableUnitItemProvider.dispose();
-		if (cvSpecItemProvider != null) cvSpecItemProvider.dispose();
-		if (vConfigurationItemProvider != null) vConfigurationItemProvider.dispose();
-		if (linkExistenceItemProvider != null) linkExistenceItemProvider.dispose();
 		if (opaqueVariationPointItemProvider != null) opaqueVariationPointItemProvider.dispose();
 		if (ovpTypeItemProvider != null) ovpTypeItemProvider.dispose();
 		if (ovpSemanticSpecItemProvider != null) ovpSemanticSpecItemProvider.dispose();
@@ -1566,17 +1374,10 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 		if (fromBindingItemProvider != null) fromBindingItemProvider.dispose();
 		if (fromPlacementItemProvider != null) fromPlacementItemProvider.dispose();
 		if (fromReplacementItemProvider != null) fromReplacementItemProvider.dispose();
-		if (vSpecRefItemProvider != null) vSpecRefItemProvider.dispose();
+		if (targetRefItemProvider != null) targetRefItemProvider.dispose();
 		if (bclExpressionItemProvider != null) bclExpressionItemProvider.dispose();
 		if (opaqueConstraintItemProvider != null) opaqueConstraintItemProvider.dispose();
-		if (slotValueExistenceItemProvider != null) slotValueExistenceItemProvider.dispose();
-		if (parametricLinkEndSubstitutionItemProvider != null) parametricLinkEndSubstitutionItemProvider.dispose();
-		if (parametricObjectSubstitutionItemProvider != null) parametricObjectSubstitutionItemProvider.dispose();
-		if (parametricSlotAssignmetItemProvider != null) parametricSlotAssignmetItemProvider.dispose();
-		if (choiceDerivationItemProvider != null) choiceDerivationItemProvider.dispose();
-		if (variableDerivationItemProvider != null) variableDerivationItemProvider.dispose();
-		if (cvSpecDerivationItemProvider != null) cvSpecDerivationItemProvider.dispose();
-		if (configurableUnitUsageItemProvider != null) configurableUnitUsageItemProvider.dispose();
+		if (parametricSlotAssignmentItemProvider != null) parametricSlotAssignmentItemProvider.dispose();
 		if (primitiveValueSpecificationItemProvider != null) primitiveValueSpecificationItemProvider.dispose();
 		if (bclConstraintItemProvider != null) bclConstraintItemProvider.dispose();
 		if (operationCallExpItemProvider != null) operationCallExpItemProvider.dispose();
@@ -1586,6 +1387,13 @@ public class BvrItemProviderAdapterFactory extends BvrAdapterFactory implements 
 		if (integerLiteralExpItemProvider != null) integerLiteralExpItemProvider.dispose();
 		if (unlimitedLiteralExpItemProvider != null) unlimitedLiteralExpItemProvider.dispose();
 		if (realLiteralExpItemProvider != null) realLiteralExpItemProvider.dispose();
+		if (negResolutionItemProvider != null) negResolutionItemProvider.dispose();
+		if (posResolutionItemProvider != null) posResolutionItemProvider.dispose();
+		if (vRefItemProvider != null) vRefItemProvider.dispose();
+		if (vRefValueSpecificationItemProvider != null) vRefValueSpecificationItemProvider.dispose();
+		if (resolutionLiteralDefinitionItemProvider != null) resolutionLiteralDefinitionItemProvider.dispose();
+		if (resolutionLiteralUseItemProvider != null) resolutionLiteralUseItemProvider.dispose();
+		if (bvrModelItemProvider != null) bvrModelItemProvider.dispose();
 	}
 
 }

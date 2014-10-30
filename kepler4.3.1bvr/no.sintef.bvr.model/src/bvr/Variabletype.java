@@ -14,7 +14,7 @@ package bvr;
  *
  *
  * @see bvr.BvrPackage#getVariabletype()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Variabletype extends VPackageable {

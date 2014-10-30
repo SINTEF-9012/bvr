@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import com.google.common.collect.Sets;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
 
@@ -27,7 +27,7 @@ public class ReplacementElementHolderTest {
 
 	private static File file;
 	private static HashMap<String, Object> map;
-	private static ConfigurableUnit cu;
+	private static BVRModel cu;
 	private static FragmentSubstitution fragSub;
 	private static final String[] BEEXT = new String[] {"r17", "r16", "r5"};
 	private static final String[] BEINT = new String[] {"r17", "r6", "r16", "r15", "r7", "r8", "r14", "r9", "r13", "r4", "r5", "r41"};
@@ -37,10 +37,10 @@ public class ReplacementElementHolderTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		file = new File("src/test/resources/node6/node.new.bvr");
+		file = new File("src/test/resources/node6/node.newbvr2.bvr");
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSub = (FragmentSubstitution) vp;

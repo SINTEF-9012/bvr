@@ -7,11 +7,11 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated BVRMetamodel -->
+      <!-- @generated BVRMetamodel5 -->
       <package
-            uri="http:///bvr.ecore"
+            uri="http:///bvr.ecore/2.0.0"
             class="bvr.BvrPackage"
-            genModel="model/BVRMetamodel.genmodel"/>
+            genModel="model/BVRMetamodel5.genmodel"/>
    </extension>
 
 </plugin>

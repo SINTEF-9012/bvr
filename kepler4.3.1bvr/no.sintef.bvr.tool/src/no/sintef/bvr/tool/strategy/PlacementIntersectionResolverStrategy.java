@@ -1,8 +1,8 @@
 package no.sintef.bvr.tool.strategy;
 
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 
 public interface PlacementIntersectionResolverStrategy {
 
-	public void resolveIntersection(SymbolTable table);
+	public void resolveIntersection(SymbolVSpecResolutionTable table);
 }

@@ -9,44 +9,13 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A constraint specifies restrictions on permissible resolution models.</p>
+ * <p>A constraint specifies restrictions on permissible resolution models.</p><p>A constraint can refer to any entity in the closest namespace in which it is contained. Entities in other namespaces may be referred through remote notation. Any entity referred by a constraint must be uniquely determined.</p>
  * <!-- end-model-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link bvr.Constraint#getContext <em>Context</em>}</li>
- * </ul>
- * </p>
  *
  * @see bvr.BvrPackage#getConstraint()
  * @model
  * @generated
  */
-public interface Constraint extends VPackageable {
-	/**
-	 * Returns the value of the '<em><b>Context</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The context of the constraint.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Context</em>' reference.
-	 * @see #setContext(VSpec)
-	 * @see bvr.BvrPackage#getConstraint_Context()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	VSpec getContext();
-
-	/**
-	 * Sets the value of the '{@link bvr.Constraint#getContext <em>Context</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' reference.
-	 * @see #getContext()
-	 * @generated
-	 */
-	void setContext(VSpec value);
-
+public interface Constraint extends NamedElement {
 } // Constraint

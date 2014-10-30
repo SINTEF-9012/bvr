@@ -194,6 +194,11 @@ public class SlotAssignmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(BvrPackage.Literals.SLOT_ASSIGNMENT__VALUE,
+				 BvrFactory.eINSTANCE.createVRefValueSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(BvrPackage.Literals.SLOT_ASSIGNMENT__SLOT_OWNER,
 				 BvrFactory.eINSTANCE.createObjectHandle()));
 	}

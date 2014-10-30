@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.ui.edit;
 
 
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -9,26 +10,37 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
+
+
+
+
+
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.command.UpdateVInstance;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-
-import bvr.VInstance;
+import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.Variable;
 
 public class VInstancePropertyEditor extends ElementPropertyEditor{
-    /**
+    public VInstancePropertyEditor(BVRUIKernel _kernel, Command _command, NamedElement _obj, JComponent _node,
+			BVRNotifiableController _view) {
+		super(_kernel, _command, _obj, _node, _view);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 47770113151580106L;
 
 	protected void init() {
     	command = new UpdateVInstance();
-    	command.init(null, obj, null, null, null, null, view);
+    	command.init(null, obj, null, null, null, null, controller);
     }
 
-	public VInstancePropertyEditor(BVRUIKernel kernel, VInstance vInstance, BVRView view) {
+/*	public VInstancePropertyEditor(BVRUIKernel kernel, VInstance vInstance, BVRToolView view) {
 		super(kernel, vInstance, view);
 	}
 
@@ -71,5 +83,5 @@ public class VInstancePropertyEditor extends ElementPropertyEditor{
             }
         };
         name.getDocument().addDocumentListener(dl);
-	}
+	}*/
 }

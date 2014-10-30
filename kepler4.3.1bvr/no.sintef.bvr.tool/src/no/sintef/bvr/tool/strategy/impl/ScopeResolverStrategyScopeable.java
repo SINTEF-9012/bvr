@@ -14,7 +14,7 @@ import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
 import bvr.BoundaryElementBinding;
-import bvr.ChoiceResolutuion;
+import bvr.ChoiceResolution;
 import bvr.BvrFactory;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
@@ -28,8 +28,6 @@ import bvr.ReplacementFragmentType;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
-import bvr.VInstance;
-
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.engine.common.BVRElementDeepCopier;
 import no.sintef.bvr.engine.common.EngineUtility;
@@ -39,23 +37,23 @@ import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.ScopeResolverStrategy;
 
 
 public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	
-	private HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>> replcmntSymbolMap;
+	private HashMap<ReplacementFragmentType, HashMap<SymbolVSpecResolutionTable, ReplacementFragmentType>> replcmntSymbolMap;
 	private HashMap<ReplacementFragmentType, BVRElementDeepCopier> replacementCopyMap;
 	private HashMap<ReplacementFragmentType, HashSet<PlacementFragment>> replcmntPlcmntMap;
 	private HashMap<PlacementFragment, HashSet<ReplacementFragmentType>> plcmntReplcmntMap;
 	private HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>> replacementNewReplBoundaryMap;
 
 	@Override
-	public void resolveScopes(SymbolTable table) {
+	public void resolveScopes(SymbolVSpecResolutionTable table) {
 		replacementCopyMap = new HashMap<ReplacementFragmentType, BVRElementDeepCopier>();
-		replcmntSymbolMap = new HashMap<ReplacementFragmentType, HashMap<SymbolTable, ReplacementFragmentType>>();
+		replcmntSymbolMap = new HashMap<ReplacementFragmentType, HashMap<SymbolVSpecResolutionTable, ReplacementFragmentType>>();
 		replacementNewReplBoundaryMap = new HashMap<ReplacementFragmentType, HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement>>();
 		replcmntPlcmntMap = new HashMap<ReplacementFragmentType, HashSet<PlacementFragment>>();
 		plcmntReplcmntMap = new HashMap<PlacementFragment, HashSet<ReplacementFragmentType>>();
@@ -64,22 +62,22 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		symbolTableResolver(table);
 	}
 		
-	private void symbolTableResolver(SymbolTable table){
-		ArrayList<Symbol> symbols = prioritizeSymbols(table.getSymbols());
-		for(Symbol symbol : symbols)
+	private void symbolTableResolver(SymbolVSpecResolutionTable table){
+		ArrayList<SymbolVSpec> symbols = prioritizeSymbols(table.getSymbols());
+		for(SymbolVSpec symbol : symbols)
 			resolverSymbol(symbol);
-		ArrayList<SymbolTable> childScopes = table.getChildren();
-		for(SymbolTable scope : childScopes){
+		ArrayList<SymbolVSpecResolutionTable> childScopes = table.getChildren();
+		for(SymbolVSpecResolutionTable scope : childScopes){
 			symbolTableResolver(scope);
 		}
 	}
 	
-	private ArrayList<Symbol> prioritizeSymbols(ArrayList<Symbol> symbols){
-		ArrayList<Symbol> prioritizedSymbols = new ArrayList<Symbol>();
-		Iterator<Symbol> iterator = symbols.iterator();
+	private ArrayList<SymbolVSpec> prioritizeSymbols(ArrayList<SymbolVSpec> symbols){
+		ArrayList<SymbolVSpec> prioritizedSymbols = new ArrayList<SymbolVSpec>();
+		Iterator<SymbolVSpec> iterator = symbols.iterator();
 		while(iterator.hasNext()){
-			Symbol symbol = iterator.next();
-			if(symbol.getVSpecResolution() instanceof VInstance){
+			SymbolVSpec symbol = iterator.next();
+			if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution())){
 				prioritizedSymbols.add(0, symbol);
 			}else{
 				prioritizedSymbols.add(prioritizedSymbols.size(), symbol);
@@ -88,7 +86,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 		return prioritizedSymbols;
 	}
 	
-	private void resolverSymbol(Symbol symbol){
+	private void resolverSymbol(SymbolVSpec symbol){
 		EList<FragmentSubstitution> fragSubs = symbol.getFragmentSubstitutions();
 		for(FragmentSubstitution fragSub : fragSubs){
 			Context.eINSTANCE.logger.debug("ScopeResolverStrategyScopeable::resolverSymbol: processing " + fragSub + " of " + symbol.getVSpec().getName());
@@ -102,7 +100,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				for(ReplacementFragmentType containingReplacement : containingReplacements){
 					PlacementFragment newPlacement;
 					HashMap<PlacementBoundaryElement, PlacementBoundaryElement> placementBoundaryMap = new HashMap<PlacementBoundaryElement, PlacementBoundaryElement>();
-					HashMap<SymbolTable, ReplacementFragmentType> rSymbolMap = replcmntSymbolMap.get(containingReplacement);
+					HashMap<SymbolVSpecResolutionTable, ReplacementFragmentType> rSymbolMap = replcmntSymbolMap.get(containingReplacement);
 					if(rSymbolMap == null){
 						//if a containing replacement has not been copied yet,
 						//than we just create a pure copy of the placement
@@ -115,12 +113,12 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 						//2) we proceed to the first 'else if' clause, if a resolved VSpec is VInstance and the copied replacement in another scope
 						// where we simply create a pure copy of the placement
 						//3) we proceed to the 'else' clause, if we do not know how to process VSpecResolution
-						if((symbol.getVSpecResolution() instanceof VInstance && rSymbolMap.get(symbol.getParent().getScope()) != null)
-								|| (symbol.getVSpecResolution() instanceof ChoiceResolutuion)){
+						if((CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution()) && rSymbolMap.get(symbol.getParent().getScope()) != null)
+								|| (symbol.getVSpecResolution() instanceof ChoiceResolution)){
 							ReplacementFragmentType copiedReplacement;							
-							if(symbol.getVSpecResolution() instanceof VInstance){
+							if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution())){
 								copiedReplacement = rSymbolMap.get(symbol.getParent().getScope());
-							}else if(symbol.getVSpecResolution() instanceof ChoiceResolutuion){
+							}else if(symbol.getVSpecResolution() instanceof ChoiceResolution){
 								copiedReplacement = rSymbolMap.get(symbol.getScope());
 							}else{
 								throw new UnsupportedOperationException("Epic fail: the nearest outermost loop should not allow processing symbols other than those which we process inside");
@@ -131,7 +129,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 							if(copyReplacementMap == null)
 								throw new UnsupportedOperationException("replacement that containd a given placement was copied, but can not find map that contains original objects");
 							newPlacement = createPlacementFragmentFromOriginal(copiedReplacement, copyReplacementMap, placement, placementBoundaryMap);
-						}else if(symbol.getVSpecResolution() instanceof VInstance && rSymbolMap.get(symbol.getParent().getScope()) == null){
+						}else if(CommonUtility.isVSpecResolutionVClassifier(symbol.getVSpecResolution()) && rSymbolMap.get(symbol.getParent().getScope()) == null){
 							newPlacement = copyPlacement(placement, placementBoundaryMap);
 						}else{
 							throw new UnsupportedOperationException("unsupported VSpecResolution, can not resolve a scope: " + symbol.getVSpecResolution());
@@ -157,18 +155,18 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	}
 	
 	private ReplacementFragmentType testNewReplacementFragment(
-			Symbol symbol,
+			SymbolVSpec symbol,
 			ReplacementFragmentType replacement,
 			HashMap<ReplacementBoundaryElement,
 			ReplacementBoundaryElement> replacementBoundaryMap)
 	{
 		//create a copy of a replacement fragment in any case for a given fragment substitution
 		ReplacementFragmentType newReplacement;
-		HashMap<SymbolTable, ReplacementFragmentType> rSymbolTableReplcMap = replcmntSymbolMap.get(replacement);
+		HashMap<SymbolVSpecResolutionTable, ReplacementFragmentType> rSymbolTableReplcMap = replcmntSymbolMap.get(replacement);
 		
 		if(rSymbolTableReplcMap == null){
 			//we here if we are sure that the given replacement has not been copied yet
-			rSymbolTableReplcMap = new HashMap<SymbolTable, ReplacementFragmentType>();
+			rSymbolTableReplcMap = new HashMap<SymbolVSpecResolutionTable, ReplacementFragmentType>();
 			
 			ReplacementElementHolder replacementHolder;
 			try {
@@ -234,7 +232,7 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 	}
 	
 	private FragmentSubstitution createNewFragmentSubstitution(
-			Symbol symbol,
+			SymbolVSpec symbol,
 			HashMap<PlacementBoundaryElement, PlacementBoundaryElement> placementBoundaryMap,
 			HashMap<ReplacementBoundaryElement, ReplacementBoundaryElement> replacementBoundaryMap,
 			PlacementFragment newPlacement,
@@ -284,9 +282,8 @@ public class ScopeResolverStrategyScopeable implements ScopeResolverStrategy {
 				newFragmentSubstitution.getBoundaryElementBinding().add(fromBindingNew);
 			}
 		}
-		
-		symbol.getScope().getConfigurableUnit().getOwnedVariabletype().add(newReplacement);
-		symbol.getScope().getConfigurableUnit().getOwnedVariationPoint().add(newPlacement);
+		symbol.getScope().getBVRModel().getRealizationModel().add(newPlacement);
+		symbol.getScope().getBVRModel().getPackageElement().add(newReplacement);
 		symbol.setFragmentSubstitutionCopy(oldFrgament, newFragmentSubstitution);
 		return newFragmentSubstitution;
 	}

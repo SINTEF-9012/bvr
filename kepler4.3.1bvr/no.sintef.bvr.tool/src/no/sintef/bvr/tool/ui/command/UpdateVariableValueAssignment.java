@@ -2,67 +2,72 @@ package no.sintef.bvr.tool.ui.command;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
-import bvr.BCLExpression;
-import bvr.BooleanLiteralExp;
-import bvr.IntegerLiteralExp;
 import bvr.NamedElement;
+//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 import bvr.ValueSpecification;
+/*
+import bvr.PrimitveType;
+import bvr.Variable;
 import bvr.VariableValueAssignment;
+import bvr.common.PrimitiveTypeHandler;
+*/
+import bvr.Variable;
 
 public class UpdateVariableValueAssignment extends UpdateVSpec  {
 	@Override
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
-			List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, view);
 	}
 
 	@Override
 	public JComponent execute() {
-		super.execute();
+		//super.execute();
 		return null;
 	}
 
 	public void setValue(String value) {
 		//System.out.println("whey!");
 		
-		setValueAsString((VariableValueAssignment)vc, value);
+		///setValueAsString((VariableValueAssignment)vc, value);
+	}
+
+	@Override
+	public void setVariable(Variable v, String name, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComment(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 	
-	private void setValueAsString(VariableValueAssignment elem, String value) {
-		ValueSpecification vs = elem.getValue();
-		if(vs instanceof PrimitiveValueSpecification){
-			PrimitiveValueSpecification pvs = (PrimitiveValueSpecification) vs;
-			BCLExpression e = pvs.getExpression();
-			if(e instanceof StringLiteralExp){
-				StringLiteralExp sle = (StringLiteralExp) e;
-				sle.setString(value);
-			}else if(e instanceof IntegerLiteralExp){
-				IntegerLiteralExp sle = (IntegerLiteralExp) e;
-				sle.setInteger(Integer.parseInt(value));
-			}else if(e instanceof RealLiteralExp){
-				RealLiteralExp sle = (RealLiteralExp) e;
-				sle.setReal(""+Double.parseDouble(value));
-			}else if(e instanceof BooleanLiteralExp){
-				BooleanLiteralExp sle = (BooleanLiteralExp) e;
-				sle.setBool(Boolean.parseBoolean(value));
-			}else if(e instanceof UnlimitedLiteralExp){
-				UnlimitedLiteralExp sle = (UnlimitedLiteralExp) e;
-				sle.setUnlimited(Integer.parseInt(value));
-			}else{
-				throw new UnsupportedOperationException();
-			}
-		}else{
-			throw new UnsupportedOperationException();
-		}
+/*	//TODO replace with functionality for new model
+	//this was not transactional, logic for creating primitivs moved to bvr.common for reusability, 
+	private void setValueAsString(VariableValueAssignment elem, String strValue) {
+		PrimitiveValueSpecification value = (PrimitiveTypeHandler.getInstance().makeValueSpecification((Variable) elem.getResolvedVSpec(), strValue));
+		PrimitiveTypeEnum type = ((PrimitveType)((Variable)elem.getResolvedVSpec()).getType()).getType();
+		PrimitveType vt = PrimitiveTypeHandler.getInstance().makeType(view.getCU(), type);
+		value.setType(vt);
+
+		Context.eINSTANCE.getEditorCommands().SetValueForVariableValueAssignment(elem, value);
+
 	}
+*/
 }

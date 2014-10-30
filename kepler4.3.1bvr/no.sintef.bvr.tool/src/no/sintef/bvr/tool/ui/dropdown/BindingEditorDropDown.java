@@ -5,15 +5,15 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.CreateToBindingEvent;
 import no.sintef.bvr.tool.ui.command.event.DeleteBindingAllEvent;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 
 public class BindingEditorDropDown extends JPopupMenu {
 
 	private static final long serialVersionUID = 8629958457282670624L;
 	
-	public BindingEditorDropDown(BVRView _view){
+	public BindingEditorDropDown(BVRNotifiableController _view){
 		
 		JMenuItem createToBinding = new JMenuItem(Constants.REALIZATION_GENERATE_TO_BINDING);
 		createToBinding.addActionListener(new CreateToBindingEvent(_view));

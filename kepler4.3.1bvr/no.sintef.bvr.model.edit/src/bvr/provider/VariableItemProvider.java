@@ -59,32 +59,9 @@ public class VariableItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addReplacementFragmentTypesubsetstypePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Replacement Fragment Typesubsetstype feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReplacementFragmentTypesubsetstypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Variable_replacementFragmentTypesubsetstype_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Variable_replacementFragmentTypesubsetstype_feature", "_UI_Variable_type"),
-				 BvrPackage.Literals.VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -208,6 +185,11 @@ public class VariableItemProvider
 			(createChildParameter
 				(BvrPackage.Literals.VARIABLE__DEFAUL_VALUE,
 				 BvrFactory.eINSTANCE.createPrimitiveValueSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BvrPackage.Literals.VARIABLE__DEFAUL_VALUE,
+				 BvrFactory.eINSTANCE.createVRefValueSpecification()));
 	}
 
 }

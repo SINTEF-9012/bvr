@@ -4,14 +4,14 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
+import no.sintef.bvr.tool.observer.ResourceSavedSubject;
+import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
+import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
-import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
-import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
-import no.sintef.bvr.ui.editor.mvc.resolution.observer.ResolutionResourceSetSubject;
+
 
 
 public class MVCResolutionEditor extends MVCEditor {
@@ -26,9 +26,9 @@ public class MVCResolutionEditor extends MVCEditor {
 	}
 
 	public void createView() {
-		v = new ResolutionView(m);
-		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-		ResolutionResourceSetSubject subject = testResolutionResourceSetSubject(subjects);
+		v = new ResolutionView(toolModel);
+		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
 		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(resourceURI, subject);
 		
@@ -37,33 +37,21 @@ public class MVCResolutionEditor extends MVCEditor {
 	}
 
 	@Override
-	public void update(EditorSubject subject) {
-		System.out.println("update for MVCResolutionEditor " + this + " " + subject);
-		if(subject instanceof ResourceSetEditorSubject){
-			m.markNotSaved();
+	public void update(ResourceSubject subject) {
+		if(subject instanceof ResourceSetEditedSubject){
+			toolModel.markNotSaved();
 			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
 		}
 		if(subject instanceof ResourceSavedSubject){
-			m.markSaved();
+			toolModel.markSaved();
 		}
 		super.update(subject);
 	}
 	
-	private ResolutionResourceSetSubject testResolutionResourceSetSubject(List<EditorSubject> subjects){
-		if(subjects != null){
-			for(EditorSubject s : subjects){
-				if(s instanceof ResolutionResourceSetSubject){
-					return (ResolutionResourceSetSubject) s;
-				}
-			}
-		}
-		return new ResolutionResourceSetSubject();
-	}
-	
 	@Override
 	public void dispose() {
-		List<EditorSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
-		ResolutionResourceSetSubject subject = testResolutionResourceSetSubject(subjects);
+		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
+		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.detach(this);
 		
 		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);

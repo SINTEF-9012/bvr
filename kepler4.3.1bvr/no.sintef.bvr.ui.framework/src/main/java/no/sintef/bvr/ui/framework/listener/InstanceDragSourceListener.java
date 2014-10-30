@@ -23,7 +23,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 
 public class InstanceDragSourceListener extends DragSourceAdapter implements DragSourceMotionListener, DragGestureListener {
 
@@ -115,7 +115,7 @@ public class InstanceDragSourceListener extends DragSourceAdapter implements Dra
             if(newY < 0){newY = 0;}
 
                 flightComponent.setBounds(newX, newY, flightComponent.getWidth(), flightComponent.getHeight());
-                ((ConfigurableUnitPanel) this.flightComponent.getParent().getParent()).update();
+                ((BVRModelPanel) this.flightComponent.getParent().getParent()).update();
 
 
 

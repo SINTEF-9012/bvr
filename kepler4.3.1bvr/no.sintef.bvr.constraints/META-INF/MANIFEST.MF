@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
  lib/antlr-4.0-complete.jar
 Export-Package: no.sintef.bvr.constraints.bcl,
+ no.sintef.bvr.constraints.strategy,
  org.abego.treelayout,
  org.abego.treelayout.internal.util,
  org.abego.treelayout.internal.util.java.lang.string,

@@ -3,14 +3,14 @@ package no.sintef.bvr.tool.strategy.impl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
-import bvr.VInstance;
+import bvr.NegResolution;
+import bvr.PosResolution;
 import bvr.VSpecResolution;
 import bvr.VariationPoint;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.primitive.impl.VSpecResolutionSymbol;
 import no.sintef.bvr.tool.primitive.impl.VSpecResolutionSymbolTable;
 import no.sintef.bvr.tool.strategy.TableBuilderStrategy;
@@ -20,8 +20,8 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 	private EList<VariationPoint> vps;
 	private BasicEList<FragmentSubstitution> fss;
 
-	public SymbolTable buildSymbolTable(ConfigurableUnit cu, VSpecResolution vSpecResolution) {
-		vps = cu.getOwnedVariationPoint();
+	public SymbolVSpecResolutionTable buildSymbolTable(BVRModel bvrModel, PosResolution posResolution) {
+		vps = bvrModel.getRealizationModel();
 		fss = new BasicEList<FragmentSubstitution>();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
@@ -29,23 +29,21 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 			}
 		}
 		
-		VSpecResolutionSymbolTable table = new VSpecResolutionSymbolTable(vSpecResolution);
-		table.setConfigurableUnit(cu);
-		VSpecResolutionSymbol symbol = new VSpecResolutionSymbol(vSpecResolution);
+		VSpecResolutionSymbolTable table = new VSpecResolutionSymbolTable((VSpecResolution) posResolution);
+		table.setBVRModel(bvrModel);
+		VSpecResolutionSymbol symbol = new VSpecResolutionSymbol((VSpecResolution) posResolution);
 		parse(symbol, table);
 		return table;
 	}
 
-	private boolean parse(Symbol symbol, SymbolTable table) {
+	private boolean parse(SymbolVSpec symbol, SymbolVSpecResolutionTable table) {
 		VSpecResolution vSpecResolution = symbol.getVSpecResolution();
-		if(vSpecResolution instanceof ChoiceResolutuion){
-			if(!((ChoiceResolutuion) vSpecResolution).isDecision()){
-				return false;
-			}
-		}else if(vSpecResolution instanceof VInstance){
+		if(vSpecResolution instanceof NegResolution){
+			return false;
+		}else if((vSpecResolution instanceof PosResolution) && (((PosResolution) vSpecResolution).getResolvedVClassifier() != null) ){
 			VSpecResolutionSymbolTable subTable = new VSpecResolutionSymbolTable(vSpecResolution);
 			subTable.setParent(table);
-			subTable.setConfigurableUnit(table.getConfigurableUnit());
+			subTable.setBVRModel(table.getBVRModel());
 			table.setChild(subTable);
 			table = subTable;
 		}else{
@@ -61,7 +59,7 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 		symbol.setScope(table);
 		table.insert(symbol);
 		
-		EList<VSpecResolution> children = vSpecResolution.getChild();
+		EList<VSpecResolution> children = ((PosResolution) vSpecResolution).getMembers();
 		for(VSpecResolution child : children){
 			VSpecResolutionSymbol childSymbol = new VSpecResolutionSymbol(child);
 			childSymbol.setParent(symbol);

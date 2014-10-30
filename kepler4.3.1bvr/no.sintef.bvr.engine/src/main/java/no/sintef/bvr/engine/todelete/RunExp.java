@@ -9,12 +9,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 
+
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import node.NodePackage;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -22,7 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.BvrPackage;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
@@ -56,8 +58,8 @@ public class RunExp {
 			BasicEList<FragmentSubstitution> fragSubs = new BasicEList<FragmentSubstitution>();
 			File file = new File(bvr_file_name);
 			HashMap<String, Object> map = loadSimple(file);
-			ConfigurableUnit cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-			EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+			BVRModel cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+			EList<VariationPoint> vps = cu.getRealizationModel();
 			int i = 0;
 			int max = 512;
 			for(VariationPoint vp : vps){

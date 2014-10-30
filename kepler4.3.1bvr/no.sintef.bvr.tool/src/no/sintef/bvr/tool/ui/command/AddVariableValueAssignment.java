@@ -5,9 +5,10 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.dropdown.VariableValueAssignmentDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
@@ -16,32 +17,35 @@ import bvr.BooleanLiteralExp;
 import bvr.BvrFactory;
 import bvr.IntegerLiteralExp;
 import bvr.NamedElement;
-import bvr.PrimitiveTypeEnum;
+//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
-import bvr.VariableValueAssignment;
+
 
 public class AddVariableValueAssignment implements Command {
-	private Map<JComponent, NamedElement> vmMap;
-	private List<JComponent> nodes;
-	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRView view;
-	private JComponent parent;
-	private BVRUIKernel rootPanel;
-	private VariableValueAssignment c;
-	private CommandMouseListener listener;
-	private boolean contains;
+
+//	AddVariableValueAssignment extended by resolution editor V2, changed to protected
+	protected Map<JComponent, NamedElement> vmMap;
+	protected List<JComponent> nodes;
+	protected List<Pair<JComponent, JComponent>> bindings;
+	protected BVRNotifiableController view;
+	protected JComponent parent;
+	protected BVRUIKernel rootPanel;
+	//protected VariableValueAssignment c;
+	protected CommandMouseListener listener;
+	protected boolean contains;
+
 
 	public AddVariableValueAssignment(boolean contains) {
 		this.contains = contains;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRView view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.rootPanel = rootPanel;
-		this.c = (VariableValueAssignment) p;
+		//this.c = (VariableValueAssignment) p;
 		this.parent = parent;
 		
 		this.vmMap = vmMap;
@@ -59,7 +63,7 @@ public class AddVariableValueAssignment implements Command {
 		VariableAssignmentPanel cp = new VariableAssignmentPanel();
 		nodes.add(cp);
 		
-        listener = new CommandMouseListener();
+  /*      listener = new CommandMouseListener();
         cp.addMouseListener(new VariableValueAssignmentDropDownListener(cp, c, view, vmMap));
         
         SelectInstanceCommand command = new SelectInstanceCommand();
@@ -90,7 +94,7 @@ public class AddVariableValueAssignment implements Command {
 				throw new UnsupportedOperationException();
 		}
 
-        cp.setTitle((contains?"(+) ":"") + name + " = " + value);
+        cp.setTitle((contains?"(+) ":"") + name + " = " + value);*/
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         return cp;

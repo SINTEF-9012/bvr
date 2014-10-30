@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import no.sintef.bvr.thirdparty.common.Constants;
-import no.sintef.bvr.tool.primitive.Symbol;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -134,9 +134,9 @@ public class TestProject {
 		return true;
 	}
 	
-	public static EList<FragmentSubstitution> collectFragmentSuubstitutions(ArrayList<Symbol> symbols){
+	public static EList<FragmentSubstitution> collectFragmentSuubstitutions(ArrayList<SymbolVSpec> symbols){
 		HashSet<FragmentSubstitution> fragments = new HashSet<FragmentSubstitution>();
-		for(Symbol symbol : symbols){
+		for(SymbolVSpec symbol : symbols){
 			EList<FragmentSubstitution> fragmentSubstitutions = symbol.getFragmentSubstitutions();
 			for(FragmentSubstitution fragment : fragmentSubstitutions){
 				FragmentSubstitution frgamentCopy = symbol.getFragmentSubstitutionCopy(fragment);
@@ -148,15 +148,15 @@ public class TestProject {
 		return new BasicEList<FragmentSubstitution>(fragments);
 	}
 	
-	public static EList<Symbol> sortSymbolByNames(ArrayList<Symbol> symbols, String[] names){
-		ArrayList<Symbol> arrayList = new ArrayList<Symbol>();
+	public static EList<SymbolVSpec> sortSymbolByNames(ArrayList<SymbolVSpec> symbols, String[] names){
+		ArrayList<SymbolVSpec> arrayList = new ArrayList<SymbolVSpec>();
 		for(int i=0; i<names.length; i++){
-			for(Symbol symbol : symbols){
+			for(SymbolVSpec symbol : symbols){
 				if(symbol.getVSpec().getName().equals(names[i])){
 					arrayList.add(i, symbol);
 				}
 			}
 		}
-		return new BasicEList<Symbol>(arrayList);
+		return new BasicEList<SymbolVSpec>(arrayList);
 	}
 }

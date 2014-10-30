@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="ASCII"?>
-<bvr:ConfigurableUnit
+<bvr:BVRModel
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:bvr="http:///bvr.ecore"
-    xsi:schemaLocation="http:///bvr.ecore BVRMetamodel.ecore">
-  <ownedVSpec
+    xmlns:bvr="http:///bvr.ecore/2.0.0">
+  <packageElement
+      xsi:type="bvr:PrimitveType"
+      name="int"
+      type="Integer"/>
+  <variabilityModel
       xsi:type="bvr:Choice"
-      name="copier"/>
-  <ownedVSpec
-      xsi:type="bvr:VClassifier"
-      name="PrinterPool">
-    <child xsi:type="bvr:Choice"
-        name="printer">
-      <child
-          xsi:type="bvr:Variable"
-          name="Speed"/>
-      <child
-          xsi:type="bvr:Variable"
-          name="minSpeed"/>
-      <child
+      name="office">
+    <member
+        xsi:type="bvr:Choice"
+        name="copier"/>
+    <member
+        xsi:type="bvr:VClassifier"
+        name="PrinterPool">
+      <member
           xsi:type="bvr:Choice"
-          name="HighSpeed"/>
-      <child
+          name="scan"/>
+      <member
           xsi:type="bvr:Choice"
-          name="EmergencyPower">
-        <child
-            xsi:type="bvr:Variable"
-            name="threshold"
-            resolutionTime=""
-            type="//@ownedVariabletype.0"/>
-      </child>
-    </child>
-    <child xsi:type="bvr:Choice"
-        name="fax"/>
-    <child xsi:type="bvr:Choice"
-        name="scan"/>
-  </ownedVSpec>
-  <ownedVariabletype
-      name="Int"/>
-</bvr:ConfigurableUnit>
+          name="printer">
+        <variable
+            name="Speed"
+            type="//@packageElement.0"/>
+        <variable
+            name="minSpeed"
+            type="//@packageElement.0"/>
+        <member
+            xsi:type="bvr:Choice"
+            name="HighSpeed"/>
+        <member
+            xsi:type="bvr:Choice"
+            name="EmergencyPower">
+          <variable
+              name="threshold"
+              type="//@packageElement.0"/>
+        </member>
+      </member>
+      <member
+          xsi:type="bvr:Choice"
+          name="fax"/>
+    </member>
+  </variabilityModel>
+</bvr:BVRModel>

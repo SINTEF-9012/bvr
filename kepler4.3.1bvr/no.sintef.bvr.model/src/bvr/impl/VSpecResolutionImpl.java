@@ -6,20 +6,12 @@ import bvr.BvrPackage;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,13 +21,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link bvr.impl.VSpecResolutionImpl#getResolvedVSpec <em>Resolved VSpec</em>}</li>
- *   <li>{@link bvr.impl.VSpecResolutionImpl#getChild <em>Child</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class VSpecResolutionImpl extends VPackageableImpl implements VSpecResolution {
+public abstract class VSpecResolutionImpl extends NamedElementImpl implements VSpecResolution {
 	/**
 	 * The cached value of the '{@link #getResolvedVSpec() <em>Resolved VSpec</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -45,16 +36,6 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	 * @ordered
 	 */
 	protected VSpec resolvedVSpec;
-
-	/**
-	 * The cached value of the '{@link #getChild() <em>Child</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getChild()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<VSpecResolution> child;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,40 +99,12 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VSpecResolution> getChild() {
-		if (child == null) {
-			child = new EObjectContainmentEList<VSpecResolution>(VSpecResolution.class, this, BvrPackage.VSPEC_RESOLUTION__CHILD);
-		}
-		return child;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BvrPackage.VSPEC_RESOLUTION__CHILD:
-				return ((InternalEList<?>)getChild()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case BvrPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				if (resolve) return getResolvedVSpec();
 				return basicGetResolvedVSpec();
-			case BvrPackage.VSPEC_RESOLUTION__CHILD:
-				return getChild();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -161,16 +114,11 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case BvrPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				setResolvedVSpec((VSpec)newValue);
-				return;
-			case BvrPackage.VSPEC_RESOLUTION__CHILD:
-				getChild().clear();
-				getChild().addAll((Collection<? extends VSpecResolution>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,9 +135,6 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 			case BvrPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				setResolvedVSpec((VSpec)null);
 				return;
-			case BvrPackage.VSPEC_RESOLUTION__CHILD:
-				getChild().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -204,8 +149,6 @@ public abstract class VSpecResolutionImpl extends VPackageableImpl implements VS
 		switch (featureID) {
 			case BvrPackage.VSPEC_RESOLUTION__RESOLVED_VSPEC:
 				return resolvedVSpec != null;
-			case BvrPackage.VSPEC_RESOLUTION__CHILD:
-				return child != null && !child.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

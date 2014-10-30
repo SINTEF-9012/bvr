@@ -15,11 +15,11 @@ import javax.swing.filechooser.FileFilter;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.filter.SVGFilter;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
 
 import org.apache.batik.dom.GenericDOMImplementation;
 import org.apache.batik.svggen.SVGGeneratorContext;
@@ -32,12 +32,12 @@ import com.google.common.collect.Lists;
 public class ExportModelSVG implements ActionListener {
 
 	JTabbedPane filePane;
-	private BVRView view;
-	private BVRModel model;
+	private BVRNotifiableController controller;
+	private BVRToolModel model;
 	private static final String SVG_EXT = "." + SVGFilter.SVG_EXT;
 
-	public ExportModelSVG(BVRView view, BVRModel model) {
-		this.view = view;
+	public ExportModelSVG(BVRNotifiableController controller, BVRToolModel model) {
+		this.controller = controller;
 		this.model = model;
 	}
 
@@ -69,15 +69,15 @@ public class ExportModelSVG implements ActionListener {
 		}
 		
 		try {
-			view.getKernel().getModelPanel().clearBuffer();
+			//view.getKernel().getModelPanel().clearBuffer();
 			DOMImplementation impl = GenericDOMImplementation.getDOMImplementation();
 			String svgNS = "http://www.w3.org/2000/svg";
 			Document myFactory = impl.createDocument(svgNS, "svg", null);
 			SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
 			ctx.setEmbeddedFontsOn(true);
 			SVGGraphics2D g2 = new SVGGraphics2D(ctx,true);
-			view.getKernel().getModelPanel().paintComponents(g2);
-			view.getKernel().getModelPanel().paint(g2);
+			//view.getKernel().getModelPanel().paintComponents(g2);
+			//view.getKernel().getModelPanel().paint(g2);
 			FileOutputStream fout = new FileOutputStream(sf);
 			Writer out = new OutputStreamWriter(fout, "UTF-8");
 			g2.stream(out, true);

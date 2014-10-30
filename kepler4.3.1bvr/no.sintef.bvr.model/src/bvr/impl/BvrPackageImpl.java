@@ -4,49 +4,42 @@ package bvr.impl;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
-import bvr.BaseModelHandle;
+import bvr.BVRModel;
 import bvr.BooleanLiteralExp;
 import bvr.BoundaryElementBinding;
-import bvr.CVSpec;
-import bvr.CVSpecDerivation;
-import bvr.Choice;
-import bvr.ChoiceDerivation;
-import bvr.ChoiceResolutuion;
-import bvr.ChoiceVariationPoint;
-import bvr.CompositeVariationPoint;
-import bvr.ConfigurableUnit;
-import bvr.ConfigurableUnitUsage;
-import bvr.Constraint;
 import bvr.BvrFactory;
 import bvr.BvrPackage;
+import bvr.Choice;
+import bvr.ChoiceOccurrence;
+import bvr.ChoiceResolution;
+import bvr.ChoiceVariationPoint;
+import bvr.CompoundNode;
+import bvr.CompoundResolution;
+import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.FromReplacement;
 import bvr.IntegerLiteralExp;
-import bvr.LinkEndSubstitution;
-import bvr.LinkExistence;
-import bvr.LinkHandle;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.NegResolution;
+import bvr.Note;
 import bvr.NumericLiteralExp;
 import bvr.OVPSemanticSpec;
 import bvr.OVPType;
-import bvr.ObjectExistence;
 import bvr.ObjectHandle;
 import bvr.ObjectSpecification;
-import bvr.ObjectSubstitution;
 import bvr.ObjectType;
 import bvr.OpaqueConstraint;
 import bvr.OpaqueVariationPoint;
 import bvr.Operation;
 import bvr.OperationCallExp;
-import bvr.ParametricLinkEndSubstitution;
-import bvr.ParametricObjectSubstitution;
-import bvr.ParametricSlotAssignmet;
+import bvr.ParametricSlotAssignment;
 import bvr.ParametricVariationPoint;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
+import bvr.PosResolution;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
@@ -55,27 +48,30 @@ import bvr.RepeatableVariationPoint;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentSpecification;
 import bvr.ReplacementFragmentType;
+import bvr.ResolutionLiteralDefinition;
+import bvr.ResolutionLiteralUse;
 import bvr.SlotAssignment;
-import bvr.SlotValueExistence;
+import bvr.StagedVariationPoint;
 import bvr.StringLiteralExp;
+import bvr.Target;
+import bvr.TargetRef;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.UnlimitedLiteralExp;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
-import bvr.VConfiguration;
-import bvr.VInstance;
-import bvr.VInterface;
+import bvr.VNode;
 import bvr.VPackage;
 import bvr.VPackageable;
+import bvr.VRef;
+import bvr.VRefValueSpecification;
 import bvr.VSpec;
-import bvr.VSpecDerivation;
-import bvr.VSpecRef;
 import bvr.VSpecResolution;
+import bvr.VType;
+import bvr.ValueResolution;
 import bvr.ValueSpecification;
 import bvr.Variable;
-import bvr.VariableDerivation;
-import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
@@ -113,14 +109,35 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vPackageableEClass = null;
+	private EClass namedElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass namedElementEClass = null;
+	private EClass noteEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass targetEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -134,7 +151,35 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vSpecDerivationEClass = null;
+	private EClass constraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variabletypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vPackageableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,14 +200,28 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass choiceResolutuionEClass = null;
+	private EClass choiceResolutionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vInstanceEClass = null;
+	private EClass choiceOccurrenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vClassOccurrenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +229,13 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * @generated
 	 */
 	private EClass variationPointEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stagedVariationPointEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -225,21 +291,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass baseModelHandleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass replacementFragmentTypeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass variabletypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -253,28 +305,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass objectSubstitutionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass variableEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass valueSpecificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass variableValueAssignmentEClass = null;
+	private EClass valueResolutionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -295,77 +326,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vInterfaceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass constraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass slotAssignmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass objectExistenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass linkEndSubstitutionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass linkHandleEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass configurableUnitEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compositeVariationPointEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cvSpecEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass vConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass linkExistenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -456,7 +417,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass vSpecRefEClass = null;
+	private EClass targetRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -484,56 +445,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass slotValueExistenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass parametricLinkEndSubstitutionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass parametricObjectSubstitutionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass parametricSlotAssignmetEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass choiceDerivationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass variableDerivationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass cvSpecDerivationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass configurableUnitUsageEClass = null;
+	private EClass parametricSlotAssignmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -597,6 +509,62 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * @generated
 	 */
 	private EClass realLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundResolutionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass negResolutionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass posResolutionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vRefValueSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass resolutionLiteralDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass resolutionLiteralUseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bvrModelEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -714,17 +682,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVSpec_GroupMultiplicity() {
-		return (EReference)vSpecEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getVSpec_ResolutionTime() {
-		return (EAttribute)vSpecEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)vSpecEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -732,35 +691,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVSpec_OwnedVSpecDerivation() {
-		return (EReference)vSpecEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVSpec_Child() {
-		return (EReference)vSpecEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVSpec_Comment() {
-		return (EAttribute)vSpecEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVPackageable() {
-		return vPackageableEClass;
+	public EReference getVSpec_Target() {
+		return (EReference)vSpecEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -779,6 +711,114 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 */
 	public EAttribute getNamedElement_Name() {
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNamedElement_Note() {
+		return (EReference)namedElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNote() {
+		return noteEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNote_Kind() {
+		return (EAttribute)noteEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNote_Expr() {
+		return (EAttribute)noteEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTarget() {
+		return targetEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompoundNode() {
+		return compoundNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompoundNode_Member() {
+		return (EReference)compoundNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompoundNode_OwnedTargets() {
+		return (EReference)compoundNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVNode() {
+		return vNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVNode_GroupMultiplicity() {
+		return (EReference)vNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVNode_OwnedConstraint() {
+		return (EReference)vNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVNode_Variable() {
+		return (EReference)vNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -813,8 +853,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVSpecDerivation() {
-		return vSpecDerivationEClass;
+	public EClass getConstraint() {
+		return constraintEClass;
 	}
 
 	/**
@@ -822,8 +862,62 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVSpecDerivation_DerivedVSpec() {
-		return (EReference)vSpecDerivationEClass.getEStructuralFeatures().get(0);
+	public EClass getVariable() {
+		return variableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVariable_DefaulValue() {
+		return (EReference)variableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVariable_Type() {
+		return (EReference)variableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getValueSpecification() {
+		return valueSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getValueSpecification_Type() {
+		return (EReference)valueSpecificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVariabletype() {
+		return variabletypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVPackageable() {
+		return vPackageableEClass;
 	}
 
 	/**
@@ -867,8 +961,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVSpecResolution_Child() {
-		return (EReference)vSpecResolutionEClass.getEStructuralFeatures().get(1);
+	public EClass getChoiceResolution() {
+		return choiceResolutionEClass;
 	}
 
 	/**
@@ -876,8 +970,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getChoiceResolutuion() {
-		return choiceResolutuionEClass;
+	public EReference getChoiceResolution_ResolvedChoice() {
+		return (EReference)choiceResolutionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -885,8 +979,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getChoiceResolutuion_ResolvedChoice() {
-		return (EReference)choiceResolutuionEClass.getEStructuralFeatures().get(0);
+	public EReference getChoiceResolution_ResolvedChoiceOcc() {
+		return (EReference)choiceResolutionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -894,8 +988,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getChoiceResolutuion_Decision() {
-		return (EAttribute)choiceResolutuionEClass.getEStructuralFeatures().get(1);
+	public EReference getChoiceResolution_ResolvedVClassOcc() {
+		return (EReference)choiceResolutionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -903,8 +997,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVInstance() {
-		return vInstanceEClass;
+	public EReference getChoiceResolution_ResolvedVClassifier() {
+		return (EReference)choiceResolutionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -912,8 +1006,53 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVInstance_Type() {
-		return (EReference)vInstanceEClass.getEStructuralFeatures().get(0);
+	public EClass getChoiceOccurrence() {
+		return choiceOccurrenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChoiceOccurrence_VType() {
+		return (EReference)choiceOccurrenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVType() {
+		return vTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVClassOccurrence() {
+		return vClassOccurrenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVClassOccurrence_VType() {
+		return (EReference)vClassOccurrenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVClassOccurrence_InstanceMultiplicity() {
+		return (EReference)vClassOccurrenceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -932,6 +1071,42 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 */
 	public EReference getVariationPoint_BindingVSpec() {
 		return (EReference)variationPointEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVariationPoint_StagedVariationPoint() {
+		return (EReference)variationPointEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStagedVariationPoint() {
+		return stagedVariationPointEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStagedVariationPoint_BindingStagedVP() {
+		return (EReference)stagedVariationPointEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStagedVariationPoint_Member() {
+		return (EReference)stagedVariationPointEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1002,6 +1177,24 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getChoiceVariationPoint_BindingChoiceOcc() {
+		return (EReference)choiceVariationPointEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getChoiceVariationPoint_Resolution_kind() {
+		return (EAttribute)choiceVariationPointEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRepeatableVariationPoint() {
 		return repeatableVariationPointEClass;
 	}
@@ -1013,6 +1206,15 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 */
 	public EReference getRepeatableVariationPoint_BindingClassifier() {
 		return (EReference)repeatableVariationPointEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRepeatableVariationPoint_BindingVClassOcc() {
+		return (EReference)repeatableVariationPointEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1083,15 +1285,6 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBaseModelHandle() {
-		return baseModelHandleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getReplacementFragmentType() {
 		return replacementFragmentTypeEClass;
 	}
@@ -1128,15 +1321,6 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariabletype() {
-		return variabletypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getReplacementBoundaryElement() {
 		return replacementBoundaryElementEClass;
 	}
@@ -1146,8 +1330,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getObjectSubstitution() {
-		return objectSubstitutionEClass;
+	public EClass getValueResolution() {
+		return valueResolutionEClass;
 	}
 
 	/**
@@ -1155,8 +1339,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectSubstitution_PlacementObject() {
-		return (EReference)objectSubstitutionEClass.getEStructuralFeatures().get(0);
+	public EReference getValueResolution_ResolvedVariable() {
+		return (EReference)valueResolutionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1164,89 +1348,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getObjectSubstitution_ReplacementObject() {
-		return (EReference)objectSubstitutionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVariable() {
-		return variableEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariable_ReplacementFragmentTypesubsetstype() {
-		return (EReference)variableEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariable_DefaulValue() {
-		return (EReference)variableEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariable_Type() {
-		return (EReference)variableEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getValueSpecification() {
-		return valueSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getValueSpecification_Type() {
-		return (EReference)valueSpecificationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVariableValueAssignment() {
-		return variableValueAssignmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariableValueAssignment_ResolvedVariable() {
-		return (EReference)variableValueAssignmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariableValueAssignment_Value() {
-		return (EReference)variableValueAssignmentEClass.getEStructuralFeatures().get(1);
+	public EReference getValueResolution_Value() {
+		return (EReference)valueResolutionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1290,51 +1393,6 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVInterface() {
-		return vInterfaceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVInterface_Member() {
-		return (EReference)vInterfaceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVInterface_OwnedConstraint() {
-		return (EReference)vInterfaceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConstraint() {
-		return constraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConstraint_Context() {
-		return (EReference)constraintEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSlotAssignment() {
 		return slotAssignmentEClass;
 	}
@@ -1364,249 +1422,6 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 */
 	public EReference getSlotAssignment_SlotOwner() {
 		return (EReference)slotAssignmentEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getObjectExistence() {
-		return objectExistenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getObjectExistence_OptionalObject() {
-		return (EReference)objectExistenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLinkEndSubstitution() {
-		return linkEndSubstitutionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLinkEndSubstitution_Link() {
-		return (EReference)linkEndSubstitutionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLinkEndSubstitution_LinkEndIdentifier() {
-		return (EAttribute)linkEndSubstitutionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLinkEndSubstitution_ReplacementObject() {
-		return (EReference)linkEndSubstitutionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLinkHandle() {
-		return linkHandleEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLinkHandle_MOFRef() {
-		return (EAttribute)linkHandleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConfigurableUnit() {
-		return configurableUnitEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_OwnedVSpec() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_OwnedVariationPoint() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_OwnedConstraint() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_ConfigurableContainerObject() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_OwnedVSpecResolution() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_UnitInterface() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_OwnedVSpecDerivation() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnit_OwnedVariabletype() {
-		return (EReference)configurableUnitEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompositeVariationPoint() {
-		return compositeVariationPointEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompositeVariationPoint_BindingCVSpec() {
-		return (EReference)compositeVariationPointEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCVSpec() {
-		return cvSpecEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCVSpec_Type() {
-		return (EReference)cvSpecEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVConfiguration() {
-		return vConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVConfiguration_Member() {
-		return (EReference)vConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVConfiguration_IsPartial() {
-		return (EAttribute)vConfigurationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVConfiguration_ResolvedCVSpec() {
-		return (EReference)vConfigurationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLinkExistence() {
-		return linkExistenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLinkExistence_OptionalLink() {
-		return (EReference)linkExistenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1947,8 +1762,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVSpecRef() {
-		return vSpecRefEClass;
+	public EClass getTargetRef() {
+		return targetRefEClass;
 	}
 
 	/**
@@ -1956,8 +1771,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVSpecRef_VSpec() {
-		return (EReference)vSpecRefEClass.getEStructuralFeatures().get(0);
+	public EReference getTargetRef_Target() {
+		return (EReference)targetRefEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2019,8 +1834,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSlotValueExistence() {
-		return slotValueExistenceEClass;
+	public EClass getParametricSlotAssignment() {
+		return parametricSlotAssignmentEClass;
 	}
 
 	/**
@@ -2028,8 +1843,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSlotValueExistence_SlotIdentifier() {
-		return (EAttribute)slotValueExistenceEClass.getEStructuralFeatures().get(0);
+	public EAttribute getParametricSlotAssignment_SlotIdentifier() {
+		return (EAttribute)parametricSlotAssignmentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2037,215 +1852,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSlotValueExistence_SlotOwner() {
-		return (EReference)slotValueExistenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getParametricLinkEndSubstitution() {
-		return parametricLinkEndSubstitutionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getParametricLinkEndSubstitution_LinkEndIdentifier() {
-		return (EAttribute)parametricLinkEndSubstitutionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getParametricLinkEndSubstitution_Link() {
-		return (EReference)parametricLinkEndSubstitutionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getParametricObjectSubstitution() {
-		return parametricObjectSubstitutionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getParametricObjectSubstitution_PlacementObject() {
-		return (EReference)parametricObjectSubstitutionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getParametricSlotAssignmet() {
-		return parametricSlotAssignmetEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getParametricSlotAssignmet_SlotIdentifier() {
-		return (EAttribute)parametricSlotAssignmetEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getParametricSlotAssignmet_SlotOwner() {
-		return (EReference)parametricSlotAssignmetEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getChoiceDerivation() {
-		return choiceDerivationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getChoiceDerivation_DerivingConstraint() {
-		return (EReference)choiceDerivationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getChoiceDerivation_DerivedChoice() {
-		return (EReference)choiceDerivationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVariableDerivation() {
-		return variableDerivationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariableDerivation_DerivingExpression() {
-		return (EReference)variableDerivationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariableDerivation_DerivedVariable() {
-		return (EReference)variableDerivationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCVSpecDerivation() {
-		return cvSpecDerivationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCVSpecDerivation_MemberDerivation() {
-		return (EReference)cvSpecDerivationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCVSpecDerivation_DerivingCVspec() {
-		return (EReference)cvSpecDerivationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCVSpecDerivation_DerivedCVSpec() {
-		return (EReference)cvSpecDerivationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getConfigurableUnitUsage() {
-		return configurableUnitUsageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnitUsage_UsedUnit() {
-		return (EReference)configurableUnitUsageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnitUsage_UsageReference() {
-		return (EReference)configurableUnitUsageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getConfigurableUnitUsage_LinkEndIdentifier() {
-		return (EAttribute)configurableUnitUsageEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConfigurableUnitUsage_UnitUsageInterface() {
-		return (EReference)configurableUnitUsageEClass.getEStructuralFeatures().get(3);
+	public EReference getParametricSlotAssignment_SlotOwner() {
+		return (EReference)parametricSlotAssignmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2415,6 +2023,168 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompoundResolution() {
+		return compoundResolutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompoundResolution_Members() {
+		return (EReference)compoundResolutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNegResolution() {
+		return negResolutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPosResolution() {
+		return posResolutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVRef() {
+		return vRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVRef_RefVSpec() {
+		return (EReference)vRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVRefValueSpecification() {
+		return vRefValueSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVRefValueSpecification_VSpecResolution() {
+		return (EReference)vRefValueSpecificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getResolutionLiteralDefinition() {
+		return resolutionLiteralDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getResolutionLiteralDefinition_LiteralType() {
+		return (EReference)resolutionLiteralDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getResolutionLiteralUse() {
+		return resolutionLiteralUseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getResolutionLiteralUse_DefLiteral() {
+		return (EReference)resolutionLiteralUseEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBVRModel() {
+		return bvrModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBVRModel_VariabilityModel() {
+		return (EReference)bvrModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBVRModel_ResolutionModels() {
+		return (EReference)bvrModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBVRModel_BaseModelBase() {
+		return (EReference)bvrModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBVRModel_BaseModelLibraries() {
+		return (EReference)bvrModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBVRModel_RealizationModel() {
+		return (EReference)bvrModelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPrimitiveTypeEnum() {
 		return primitiveTypeEnumEEnum;
 	}
@@ -2461,40 +2231,73 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		createEAttribute(choiceEClass, CHOICE__IS_IMPLIED_BY_PARENT);
 
 		vSpecEClass = createEClass(VSPEC);
-		createEReference(vSpecEClass, VSPEC__GROUP_MULTIPLICITY);
 		createEAttribute(vSpecEClass, VSPEC__RESOLUTION_TIME);
-		createEReference(vSpecEClass, VSPEC__OWNED_VSPEC_DERIVATION);
-		createEReference(vSpecEClass, VSPEC__CHILD);
-		createEAttribute(vSpecEClass, VSPEC__COMMENT);
-
-		vPackageableEClass = createEClass(VPACKAGEABLE);
+		createEReference(vSpecEClass, VSPEC__TARGET);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+		createEReference(namedElementEClass, NAMED_ELEMENT__NOTE);
+
+		noteEClass = createEClass(NOTE);
+		createEAttribute(noteEClass, NOTE__KIND);
+		createEAttribute(noteEClass, NOTE__EXPR);
+
+		targetEClass = createEClass(TARGET);
+
+		compoundNodeEClass = createEClass(COMPOUND_NODE);
+		createEReference(compoundNodeEClass, COMPOUND_NODE__MEMBER);
+		createEReference(compoundNodeEClass, COMPOUND_NODE__OWNED_TARGETS);
+
+		vNodeEClass = createEClass(VNODE);
+		createEReference(vNodeEClass, VNODE__GROUP_MULTIPLICITY);
+		createEReference(vNodeEClass, VNODE__OWNED_CONSTRAINT);
+		createEReference(vNodeEClass, VNODE__VARIABLE);
 
 		multiplicityIntervalEClass = createEClass(MULTIPLICITY_INTERVAL);
 		createEAttribute(multiplicityIntervalEClass, MULTIPLICITY_INTERVAL__UPPER);
 		createEAttribute(multiplicityIntervalEClass, MULTIPLICITY_INTERVAL__LOWER);
 
-		vSpecDerivationEClass = createEClass(VSPEC_DERIVATION);
-		createEReference(vSpecDerivationEClass, VSPEC_DERIVATION__DERIVED_VSPEC);
+		constraintEClass = createEClass(CONSTRAINT);
+
+		variableEClass = createEClass(VARIABLE);
+		createEReference(variableEClass, VARIABLE__DEFAUL_VALUE);
+		createEReference(variableEClass, VARIABLE__TYPE);
+
+		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
+		createEReference(valueSpecificationEClass, VALUE_SPECIFICATION__TYPE);
+
+		variabletypeEClass = createEClass(VARIABLETYPE);
+
+		vPackageableEClass = createEClass(VPACKAGEABLE);
 
 		vClassifierEClass = createEClass(VCLASSIFIER);
 		createEReference(vClassifierEClass, VCLASSIFIER__INSTANCE_MULTIPLICITY);
 
 		vSpecResolutionEClass = createEClass(VSPEC_RESOLUTION);
 		createEReference(vSpecResolutionEClass, VSPEC_RESOLUTION__RESOLVED_VSPEC);
-		createEReference(vSpecResolutionEClass, VSPEC_RESOLUTION__CHILD);
 
-		choiceResolutuionEClass = createEClass(CHOICE_RESOLUTUION);
-		createEReference(choiceResolutuionEClass, CHOICE_RESOLUTUION__RESOLVED_CHOICE);
-		createEAttribute(choiceResolutuionEClass, CHOICE_RESOLUTUION__DECISION);
+		choiceResolutionEClass = createEClass(CHOICE_RESOLUTION);
+		createEReference(choiceResolutionEClass, CHOICE_RESOLUTION__RESOLVED_CHOICE);
+		createEReference(choiceResolutionEClass, CHOICE_RESOLUTION__RESOLVED_CHOICE_OCC);
+		createEReference(choiceResolutionEClass, CHOICE_RESOLUTION__RESOLVED_VCLASS_OCC);
+		createEReference(choiceResolutionEClass, CHOICE_RESOLUTION__RESOLVED_VCLASSIFIER);
 
-		vInstanceEClass = createEClass(VINSTANCE);
-		createEReference(vInstanceEClass, VINSTANCE__TYPE);
+		choiceOccurrenceEClass = createEClass(CHOICE_OCCURRENCE);
+		createEReference(choiceOccurrenceEClass, CHOICE_OCCURRENCE__VTYPE);
+
+		vTypeEClass = createEClass(VTYPE);
+
+		vClassOccurrenceEClass = createEClass(VCLASS_OCCURRENCE);
+		createEReference(vClassOccurrenceEClass, VCLASS_OCCURRENCE__VTYPE);
+		createEReference(vClassOccurrenceEClass, VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY);
 
 		variationPointEClass = createEClass(VARIATION_POINT);
 		createEReference(variationPointEClass, VARIATION_POINT__BINDING_VSPEC);
+		createEReference(variationPointEClass, VARIATION_POINT__STAGED_VARIATION_POINT);
+
+		stagedVariationPointEClass = createEClass(STAGED_VARIATION_POINT);
+		createEReference(stagedVariationPointEClass, STAGED_VARIATION_POINT__BINDING_STAGED_VP);
+		createEReference(stagedVariationPointEClass, STAGED_VARIATION_POINT__MEMBER);
 
 		fragmentSubstitutionEClass = createEClass(FRAGMENT_SUBSTITUTION);
 		createEReference(fragmentSubstitutionEClass, FRAGMENT_SUBSTITUTION__BOUNDARY_ELEMENT_BINDING);
@@ -2504,9 +2307,12 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		choiceVariationPointEClass = createEClass(CHOICE_VARIATION_POINT);
 		createEReference(choiceVariationPointEClass, CHOICE_VARIATION_POINT__BINDING_CHOICE);
+		createEReference(choiceVariationPointEClass, CHOICE_VARIATION_POINT__BINDING_CHOICE_OCC);
+		createEAttribute(choiceVariationPointEClass, CHOICE_VARIATION_POINT__RESOLUTION_KIND);
 
 		repeatableVariationPointEClass = createEClass(REPEATABLE_VARIATION_POINT);
 		createEReference(repeatableVariationPointEClass, REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER);
+		createEReference(repeatableVariationPointEClass, REPEATABLE_VARIATION_POINT__BINDING_VCLASS_OCC);
 
 		boundaryElementBindingEClass = createEClass(BOUNDARY_ELEMENT_BINDING);
 
@@ -2519,32 +2325,16 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		objectHandleEClass = createEClass(OBJECT_HANDLE);
 		createEReference(objectHandleEClass, OBJECT_HANDLE__MOF_REF);
 
-		baseModelHandleEClass = createEClass(BASE_MODEL_HANDLE);
-
 		replacementFragmentTypeEClass = createEClass(REPLACEMENT_FRAGMENT_TYPE);
 		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__REPLACEMENT_BOUNDARY_ELEMENT);
 		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__PLACEMENT_FRAGMENT);
 		createEReference(replacementFragmentTypeEClass, REPLACEMENT_FRAGMENT_TYPE__SOURCE_OBJECT);
 
-		variabletypeEClass = createEClass(VARIABLETYPE);
-
 		replacementBoundaryElementEClass = createEClass(REPLACEMENT_BOUNDARY_ELEMENT);
 
-		objectSubstitutionEClass = createEClass(OBJECT_SUBSTITUTION);
-		createEReference(objectSubstitutionEClass, OBJECT_SUBSTITUTION__PLACEMENT_OBJECT);
-		createEReference(objectSubstitutionEClass, OBJECT_SUBSTITUTION__REPLACEMENT_OBJECT);
-
-		variableEClass = createEClass(VARIABLE);
-		createEReference(variableEClass, VARIABLE__REPLACEMENT_FRAGMENT_TYPESUBSETSTYPE);
-		createEReference(variableEClass, VARIABLE__DEFAUL_VALUE);
-		createEReference(variableEClass, VARIABLE__TYPE);
-
-		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
-		createEReference(valueSpecificationEClass, VALUE_SPECIFICATION__TYPE);
-
-		variableValueAssignmentEClass = createEClass(VARIABLE_VALUE_ASSIGNMENT);
-		createEReference(variableValueAssignmentEClass, VARIABLE_VALUE_ASSIGNMENT__RESOLVED_VARIABLE);
-		createEReference(variableValueAssignmentEClass, VARIABLE_VALUE_ASSIGNMENT__VALUE);
+		valueResolutionEClass = createEClass(VALUE_RESOLUTION);
+		createEReference(valueResolutionEClass, VALUE_RESOLUTION__RESOLVED_VARIABLE);
+		createEReference(valueResolutionEClass, VALUE_RESOLUTION__VALUE);
 
 		primitveTypeEClass = createEClass(PRIMITVE_TYPE);
 		createEAttribute(primitveTypeEClass, PRIMITVE_TYPE__TYPE);
@@ -2552,52 +2342,10 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		objectTypeEClass = createEClass(OBJECT_TYPE);
 		createEAttribute(objectTypeEClass, OBJECT_TYPE__META_CLASS);
 
-		vInterfaceEClass = createEClass(VINTERFACE);
-		createEReference(vInterfaceEClass, VINTERFACE__MEMBER);
-		createEReference(vInterfaceEClass, VINTERFACE__OWNED_CONSTRAINT);
-
-		constraintEClass = createEClass(CONSTRAINT);
-		createEReference(constraintEClass, CONSTRAINT__CONTEXT);
-
 		slotAssignmentEClass = createEClass(SLOT_ASSIGNMENT);
 		createEAttribute(slotAssignmentEClass, SLOT_ASSIGNMENT__SLOT_IDENTIFIER);
 		createEReference(slotAssignmentEClass, SLOT_ASSIGNMENT__VALUE);
 		createEReference(slotAssignmentEClass, SLOT_ASSIGNMENT__SLOT_OWNER);
-
-		objectExistenceEClass = createEClass(OBJECT_EXISTENCE);
-		createEReference(objectExistenceEClass, OBJECT_EXISTENCE__OPTIONAL_OBJECT);
-
-		linkEndSubstitutionEClass = createEClass(LINK_END_SUBSTITUTION);
-		createEReference(linkEndSubstitutionEClass, LINK_END_SUBSTITUTION__LINK);
-		createEAttribute(linkEndSubstitutionEClass, LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER);
-		createEReference(linkEndSubstitutionEClass, LINK_END_SUBSTITUTION__REPLACEMENT_OBJECT);
-
-		linkHandleEClass = createEClass(LINK_HANDLE);
-		createEAttribute(linkHandleEClass, LINK_HANDLE__MOF_REF);
-
-		configurableUnitEClass = createEClass(CONFIGURABLE_UNIT);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__OWNED_VSPEC);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__OWNED_VARIATION_POINT);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__OWNED_CONSTRAINT);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__CONFIGURABLE_CONTAINER_OBJECT);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__OWNED_VSPEC_RESOLUTION);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__UNIT_INTERFACE);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__OWNED_VSPEC_DERIVATION);
-		createEReference(configurableUnitEClass, CONFIGURABLE_UNIT__OWNED_VARIABLETYPE);
-
-		compositeVariationPointEClass = createEClass(COMPOSITE_VARIATION_POINT);
-		createEReference(compositeVariationPointEClass, COMPOSITE_VARIATION_POINT__BINDING_CV_SPEC);
-
-		cvSpecEClass = createEClass(CV_SPEC);
-		createEReference(cvSpecEClass, CV_SPEC__TYPE);
-
-		vConfigurationEClass = createEClass(VCONFIGURATION);
-		createEReference(vConfigurationEClass, VCONFIGURATION__MEMBER);
-		createEAttribute(vConfigurationEClass, VCONFIGURATION__IS_PARTIAL);
-		createEReference(vConfigurationEClass, VCONFIGURATION__RESOLVED_CV_SPEC);
-
-		linkExistenceEClass = createEClass(LINK_EXISTENCE);
-		createEReference(linkExistenceEClass, LINK_EXISTENCE__OPTIONAL_LINK);
 
 		opaqueVariationPointEClass = createEClass(OPAQUE_VARIATION_POINT);
 		createEReference(opaqueVariationPointEClass, OPAQUE_VARIATION_POINT__PLACE_HOLDER);
@@ -2648,8 +2396,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		createEReference(fromReplacementEClass, FROM_REPLACEMENT__OUTSIDE_BOUNDARY_ELEMENT);
 		createEReference(fromReplacementEClass, FROM_REPLACEMENT__FROM_PLACEMENT);
 
-		vSpecRefEClass = createEClass(VSPEC_REF);
-		createEReference(vSpecRefEClass, VSPEC_REF__VSPEC);
+		targetRefEClass = createEClass(TARGET_REF);
+		createEReference(targetRefEClass, TARGET_REF__TARGET);
 
 		bclExpressionEClass = createEClass(BCL_EXPRESSION);
 
@@ -2660,39 +2408,9 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		parametricVariationPointEClass = createEClass(PARAMETRIC_VARIATION_POINT);
 		createEReference(parametricVariationPointEClass, PARAMETRIC_VARIATION_POINT__BINDING_VARIABLE);
 
-		slotValueExistenceEClass = createEClass(SLOT_VALUE_EXISTENCE);
-		createEAttribute(slotValueExistenceEClass, SLOT_VALUE_EXISTENCE__SLOT_IDENTIFIER);
-		createEReference(slotValueExistenceEClass, SLOT_VALUE_EXISTENCE__SLOT_OWNER);
-
-		parametricLinkEndSubstitutionEClass = createEClass(PARAMETRIC_LINK_END_SUBSTITUTION);
-		createEAttribute(parametricLinkEndSubstitutionEClass, PARAMETRIC_LINK_END_SUBSTITUTION__LINK_END_IDENTIFIER);
-		createEReference(parametricLinkEndSubstitutionEClass, PARAMETRIC_LINK_END_SUBSTITUTION__LINK);
-
-		parametricObjectSubstitutionEClass = createEClass(PARAMETRIC_OBJECT_SUBSTITUTION);
-		createEReference(parametricObjectSubstitutionEClass, PARAMETRIC_OBJECT_SUBSTITUTION__PLACEMENT_OBJECT);
-
-		parametricSlotAssignmetEClass = createEClass(PARAMETRIC_SLOT_ASSIGNMET);
-		createEAttribute(parametricSlotAssignmetEClass, PARAMETRIC_SLOT_ASSIGNMET__SLOT_IDENTIFIER);
-		createEReference(parametricSlotAssignmetEClass, PARAMETRIC_SLOT_ASSIGNMET__SLOT_OWNER);
-
-		choiceDerivationEClass = createEClass(CHOICE_DERIVATION);
-		createEReference(choiceDerivationEClass, CHOICE_DERIVATION__DERIVING_CONSTRAINT);
-		createEReference(choiceDerivationEClass, CHOICE_DERIVATION__DERIVED_CHOICE);
-
-		variableDerivationEClass = createEClass(VARIABLE_DERIVATION);
-		createEReference(variableDerivationEClass, VARIABLE_DERIVATION__DERIVING_EXPRESSION);
-		createEReference(variableDerivationEClass, VARIABLE_DERIVATION__DERIVED_VARIABLE);
-
-		cvSpecDerivationEClass = createEClass(CV_SPEC_DERIVATION);
-		createEReference(cvSpecDerivationEClass, CV_SPEC_DERIVATION__MEMBER_DERIVATION);
-		createEReference(cvSpecDerivationEClass, CV_SPEC_DERIVATION__DERIVING_CVSPEC);
-		createEReference(cvSpecDerivationEClass, CV_SPEC_DERIVATION__DERIVED_CV_SPEC);
-
-		configurableUnitUsageEClass = createEClass(CONFIGURABLE_UNIT_USAGE);
-		createEReference(configurableUnitUsageEClass, CONFIGURABLE_UNIT_USAGE__USED_UNIT);
-		createEReference(configurableUnitUsageEClass, CONFIGURABLE_UNIT_USAGE__USAGE_REFERENCE);
-		createEAttribute(configurableUnitUsageEClass, CONFIGURABLE_UNIT_USAGE__LINK_END_IDENTIFIER);
-		createEReference(configurableUnitUsageEClass, CONFIGURABLE_UNIT_USAGE__UNIT_USAGE_INTERFACE);
+		parametricSlotAssignmentEClass = createEClass(PARAMETRIC_SLOT_ASSIGNMENT);
+		createEAttribute(parametricSlotAssignmentEClass, PARAMETRIC_SLOT_ASSIGNMENT__SLOT_IDENTIFIER);
+		createEReference(parametricSlotAssignmentEClass, PARAMETRIC_SLOT_ASSIGNMENT__SLOT_OWNER);
 
 		primitiveValueSpecificationEClass = createEClass(PRIMITIVE_VALUE_SPECIFICATION);
 		createEReference(primitiveValueSpecificationEClass, PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION);
@@ -2720,6 +2438,32 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		realLiteralExpEClass = createEClass(REAL_LITERAL_EXP);
 		createEAttribute(realLiteralExpEClass, REAL_LITERAL_EXP__REAL);
+
+		compoundResolutionEClass = createEClass(COMPOUND_RESOLUTION);
+		createEReference(compoundResolutionEClass, COMPOUND_RESOLUTION__MEMBERS);
+
+		negResolutionEClass = createEClass(NEG_RESOLUTION);
+
+		posResolutionEClass = createEClass(POS_RESOLUTION);
+
+		vRefEClass = createEClass(VREF);
+		createEReference(vRefEClass, VREF__REF_VSPEC);
+
+		vRefValueSpecificationEClass = createEClass(VREF_VALUE_SPECIFICATION);
+		createEReference(vRefValueSpecificationEClass, VREF_VALUE_SPECIFICATION__VSPEC_RESOLUTION);
+
+		resolutionLiteralDefinitionEClass = createEClass(RESOLUTION_LITERAL_DEFINITION);
+		createEReference(resolutionLiteralDefinitionEClass, RESOLUTION_LITERAL_DEFINITION__LITERAL_TYPE);
+
+		resolutionLiteralUseEClass = createEClass(RESOLUTION_LITERAL_USE);
+		createEReference(resolutionLiteralUseEClass, RESOLUTION_LITERAL_USE__DEF_LITERAL);
+
+		bvrModelEClass = createEClass(BVR_MODEL);
+		createEReference(bvrModelEClass, BVR_MODEL__VARIABILITY_MODEL);
+		createEReference(bvrModelEClass, BVR_MODEL__RESOLUTION_MODELS);
+		createEReference(bvrModelEClass, BVR_MODEL__BASE_MODEL_BASE);
+		createEReference(bvrModelEClass, BVR_MODEL__BASE_MODEL_LIBRARIES);
+		createEReference(bvrModelEClass, BVR_MODEL__REALIZATION_MODEL);
 
 		// Create enums
 		primitiveTypeEnumEEnum = createEEnum(PRIMITIVE_TYPE_ENUM);
@@ -2755,14 +2499,27 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		// Add supertypes to classes
 		choiceEClass.getESuperTypes().add(this.getVSpec());
-		vSpecEClass.getESuperTypes().add(this.getVPackageable());
+		choiceEClass.getESuperTypes().add(this.getCompoundNode());
+		vSpecEClass.getESuperTypes().add(this.getNamedElement());
+		noteEClass.getESuperTypes().add(this.getNamedElement());
+		targetEClass.getESuperTypes().add(this.getNamedElement());
+		compoundNodeEClass.getESuperTypes().add(this.getVNode());
+		constraintEClass.getESuperTypes().add(this.getNamedElement());
+		variableEClass.getESuperTypes().add(this.getVSpec());
+		variabletypeEClass.getESuperTypes().add(this.getVPackageable());
 		vPackageableEClass.getESuperTypes().add(this.getNamedElement());
-		vSpecDerivationEClass.getESuperTypes().add(this.getVPackageable());
 		vClassifierEClass.getESuperTypes().add(this.getVSpec());
-		vSpecResolutionEClass.getESuperTypes().add(this.getVPackageable());
-		choiceResolutuionEClass.getESuperTypes().add(this.getVSpecResolution());
-		vInstanceEClass.getESuperTypes().add(this.getVSpecResolution());
-		variationPointEClass.getESuperTypes().add(this.getVPackageable());
+		vClassifierEClass.getESuperTypes().add(this.getCompoundNode());
+		vSpecResolutionEClass.getESuperTypes().add(this.getNamedElement());
+		choiceResolutionEClass.getESuperTypes().add(this.getVSpecResolution());
+		choiceOccurrenceEClass.getESuperTypes().add(this.getVSpec());
+		choiceOccurrenceEClass.getESuperTypes().add(this.getVNode());
+		vTypeEClass.getESuperTypes().add(this.getCompoundNode());
+		vTypeEClass.getESuperTypes().add(this.getVPackageable());
+		vClassOccurrenceEClass.getESuperTypes().add(this.getVSpec());
+		vClassOccurrenceEClass.getESuperTypes().add(this.getVNode());
+		variationPointEClass.getESuperTypes().add(this.getNamedElement());
+		stagedVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
 		fragmentSubstitutionEClass.getESuperTypes().add(this.getChoiceVariationPoint());
 		fragmentSubstitutionEClass.getESuperTypes().add(this.getRepeatableVariationPoint());
 		choiceVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
@@ -2770,27 +2527,12 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		boundaryElementBindingEClass.getESuperTypes().add(this.getNamedElement());
 		placementFragmentEClass.getESuperTypes().add(this.getVariationPoint());
 		placementBoundaryElementEClass.getESuperTypes().add(this.getNamedElement());
-		objectHandleEClass.getESuperTypes().add(this.getBaseModelHandle());
 		replacementFragmentTypeEClass.getESuperTypes().add(this.getVariabletype());
-		variabletypeEClass.getESuperTypes().add(this.getVPackageable());
 		replacementBoundaryElementEClass.getESuperTypes().add(this.getNamedElement());
-		objectSubstitutionEClass.getESuperTypes().add(this.getChoiceVariationPoint());
-		variableEClass.getESuperTypes().add(this.getVSpec());
-		variableValueAssignmentEClass.getESuperTypes().add(this.getVSpecResolution());
+		valueResolutionEClass.getESuperTypes().add(this.getVSpecResolution());
 		primitveTypeEClass.getESuperTypes().add(this.getVariabletype());
 		objectTypeEClass.getESuperTypes().add(this.getVariabletype());
-		vInterfaceEClass.getESuperTypes().add(this.getVPackageable());
-		constraintEClass.getESuperTypes().add(this.getVPackageable());
 		slotAssignmentEClass.getESuperTypes().add(this.getChoiceVariationPoint());
-		objectExistenceEClass.getESuperTypes().add(this.getChoiceVariationPoint());
-		linkEndSubstitutionEClass.getESuperTypes().add(this.getChoiceVariationPoint());
-		linkHandleEClass.getESuperTypes().add(this.getBaseModelHandle());
-		configurableUnitEClass.getESuperTypes().add(this.getCompositeVariationPoint());
-		compositeVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
-		cvSpecEClass.getESuperTypes().add(this.getVSpec());
-		vConfigurationEClass.getESuperTypes().add(this.getVSpecResolution());
-		vConfigurationEClass.getESuperTypes().add(this.getVPackageable());
-		linkExistenceEClass.getESuperTypes().add(this.getChoiceVariationPoint());
 		opaqueVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
 		ovpTypeEClass.getESuperTypes().add(this.getVPackageable());
 		objectSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
@@ -2802,17 +2544,10 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		fromBindingEClass.getESuperTypes().add(this.getBoundaryElementBinding());
 		fromPlacementEClass.getESuperTypes().add(this.getPlacementBoundaryElement());
 		fromReplacementEClass.getESuperTypes().add(this.getReplacementBoundaryElement());
-		vSpecRefEClass.getESuperTypes().add(this.getBCLExpression());
+		targetRefEClass.getESuperTypes().add(this.getBCLExpression());
 		opaqueConstraintEClass.getESuperTypes().add(this.getConstraint());
 		parametricVariationPointEClass.getESuperTypes().add(this.getVariationPoint());
-		slotValueExistenceEClass.getESuperTypes().add(this.getChoiceVariationPoint());
-		parametricLinkEndSubstitutionEClass.getESuperTypes().add(this.getParametricVariationPoint());
-		parametricObjectSubstitutionEClass.getESuperTypes().add(this.getParametricVariationPoint());
-		parametricSlotAssignmetEClass.getESuperTypes().add(this.getParametricVariationPoint());
-		choiceDerivationEClass.getESuperTypes().add(this.getVSpecDerivation());
-		variableDerivationEClass.getESuperTypes().add(this.getVSpecDerivation());
-		cvSpecDerivationEClass.getESuperTypes().add(this.getVSpecDerivation());
-		configurableUnitUsageEClass.getESuperTypes().add(this.getCompositeVariationPoint());
+		parametricSlotAssignmentEClass.getESuperTypes().add(this.getParametricVariationPoint());
 		primitiveValueSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
 		bclConstraintEClass.getESuperTypes().add(this.getConstraint());
 		operationCallExpEClass.getESuperTypes().add(this.getBCLExpression());
@@ -2822,6 +2557,14 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		integerLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		unlimitedLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
 		realLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
+		compoundResolutionEClass.getESuperTypes().add(this.getChoiceResolution());
+		negResolutionEClass.getESuperTypes().add(this.getChoiceResolution());
+		posResolutionEClass.getESuperTypes().add(this.getCompoundResolution());
+		vRefEClass.getESuperTypes().add(this.getVariabletype());
+		vRefValueSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
+		resolutionLiteralDefinitionEClass.getESuperTypes().add(this.getCompoundResolution());
+		resolutionLiteralUseEClass.getESuperTypes().add(this.getChoiceResolution());
+		bvrModelEClass.getESuperTypes().add(this.getVPackage());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(choiceEClass, Choice.class, "Choice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2829,40 +2572,73 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEAttribute(getChoice_IsImpliedByParent(), ecorePackage.getEBoolean(), "isImpliedByParent", null, 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(vSpecEClass, VSpec.class, "VSpec", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVSpec_GroupMultiplicity(), this.getMultiplicityInterval(), null, "groupMultiplicity", null, 0, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getVSpec_ResolutionTime(), ecorePackage.getEString(), "resolutionTime", null, 1, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVSpec_OwnedVSpecDerivation(), this.getVSpecDerivation(), null, "ownedVSpecDerivation", null, 0, -1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVSpec_Child(), this.getVSpec(), null, "child", null, 0, -1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getVSpec_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(vPackageableEClass, VPackageable.class, "VPackageable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVSpec_Target(), this.getTarget(), null, "target", null, 1, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNamedElement_Note(), this.getNote(), null, "note", null, 0, -1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(noteEClass, Note.class, "Note", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNote_Kind(), ecorePackage.getEString(), "kind", "Comment", 1, 1, Note.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getNote_Expr(), ecorePackage.getEString(), "expr", null, 1, 1, Note.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(targetEClass, Target.class, "Target", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompoundNode_Member(), this.getVNode(), null, "member", null, 0, -1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCompoundNode_OwnedTargets(), this.getTarget(), null, "ownedTargets", null, 0, -1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(vNodeEClass, VNode.class, "VNode", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVNode_GroupMultiplicity(), this.getMultiplicityInterval(), null, "groupMultiplicity", null, 0, 1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVNode_OwnedConstraint(), this.getConstraint(), null, "ownedConstraint", null, 0, -1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVNode_Variable(), this.getVariable(), null, "variable", null, 0, -1, VNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(multiplicityIntervalEClass, MultiplicityInterval.class, "MultiplicityInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMultiplicityInterval_Upper(), ecorePackage.getEInt(), "upper", null, 1, 1, MultiplicityInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMultiplicityInterval_Lower(), ecorePackage.getEInt(), "lower", null, 1, 1, MultiplicityInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(vSpecDerivationEClass, VSpecDerivation.class, "VSpecDerivation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVSpecDerivation_DerivedVSpec(), this.getVSpec(), null, "derivedVSpec", null, 0, 1, VSpecDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariable_DefaulValue(), this.getValueSpecification(), null, "defaulValue", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVariable_Type(), this.getVariabletype(), null, "type", null, 1, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(valueSpecificationEClass, ValueSpecification.class, "ValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getValueSpecification_Type(), this.getVariabletype(), null, "type", null, 1, 1, ValueSpecification.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(variabletypeEClass, Variabletype.class, "Variabletype", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(vPackageableEClass, VPackageable.class, "VPackageable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(vClassifierEClass, VClassifier.class, "VClassifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVClassifier_InstanceMultiplicity(), this.getMultiplicityInterval(), null, "instanceMultiplicity", null, 1, 1, VClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(vSpecResolutionEClass, VSpecResolution.class, "VSpecResolution", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVSpecResolution_ResolvedVSpec(), this.getVSpec(), null, "resolvedVSpec", null, 1, 1, VSpecResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVSpecResolution_Child(), this.getVSpecResolution(), null, "child", null, 0, -1, VSpecResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(choiceResolutuionEClass, ChoiceResolutuion.class, "ChoiceResolutuion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChoiceResolutuion_ResolvedChoice(), this.getChoice(), null, "resolvedChoice", null, 1, 1, ChoiceResolutuion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getChoiceResolutuion_Decision(), ecorePackage.getEBoolean(), "decision", null, 1, 1, ChoiceResolutuion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(choiceResolutionEClass, ChoiceResolution.class, "ChoiceResolution", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getChoiceResolution_ResolvedChoice(), this.getChoice(), null, "resolvedChoice", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedChoiceOcc(), this.getChoiceOccurrence(), null, "resolvedChoiceOcc", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedVClassOcc(), this.getVClassOccurrence(), null, "resolvedVClassOcc", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceResolution_ResolvedVClassifier(), this.getVClassifier(), null, "resolvedVClassifier", null, 0, 1, ChoiceResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(vInstanceEClass, VInstance.class, "VInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVInstance_Type(), this.getVClassifier(), null, "type", null, 1, 1, VInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(choiceOccurrenceEClass, ChoiceOccurrence.class, "ChoiceOccurrence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getChoiceOccurrence_VType(), this.getVType(), null, "vType", null, 0, 1, ChoiceOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(vTypeEClass, VType.class, "VType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(vClassOccurrenceEClass, VClassOccurrence.class, "VClassOccurrence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVClassOccurrence_VType(), this.getVType(), null, "vType", null, 0, 1, VClassOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVClassOccurrence_InstanceMultiplicity(), this.getMultiplicityInterval(), null, "instanceMultiplicity", null, 0, -1, VClassOccurrence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(variationPointEClass, VariationPoint.class, "VariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariationPoint_BindingVSpec(), this.getVSpec(), null, "bindingVSpec", null, 1, 1, VariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getVariationPoint_StagedVariationPoint(), this.getStagedVariationPoint(), this.getStagedVariationPoint_Member(), "stagedVariationPoint", null, 0, 1, VariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(stagedVariationPointEClass, StagedVariationPoint.class, "StagedVariationPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStagedVariationPoint_BindingStagedVP(), this.getVSpec(), null, "bindingStagedVP", null, 1, 1, StagedVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getStagedVariationPoint_Member(), this.getVariationPoint(), this.getVariationPoint_StagedVariationPoint(), "member", null, 0, -1, StagedVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(fragmentSubstitutionEClass, FragmentSubstitution.class, "FragmentSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFragmentSubstitution_BoundaryElementBinding(), this.getBoundaryElementBinding(), null, "boundaryElementBinding", null, 0, -1, FragmentSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2872,9 +2648,12 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		initEClass(choiceVariationPointEClass, ChoiceVariationPoint.class, "ChoiceVariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChoiceVariationPoint_BindingChoice(), this.getChoice(), null, "bindingChoice", null, 0, 1, ChoiceVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getChoiceVariationPoint_BindingChoiceOcc(), this.getChoiceOccurrence(), null, "bindingChoiceOcc", null, 0, 1, ChoiceVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getChoiceVariationPoint_Resolution_kind(), ecorePackage.getEBoolean(), "resolution_kind", "True", 1, 1, ChoiceVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(repeatableVariationPointEClass, RepeatableVariationPoint.class, "RepeatableVariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRepeatableVariationPoint_BindingClassifier(), this.getVClassifier(), null, "bindingClassifier", null, 0, 1, RepeatableVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getRepeatableVariationPoint_BindingVClassOcc(), this.getVClassOccurrence(), null, "bindingVClassOcc", null, 0, 1, RepeatableVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(boundaryElementBindingEClass, BoundaryElementBinding.class, "BoundaryElementBinding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2887,32 +2666,16 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEClass(objectHandleEClass, ObjectHandle.class, "ObjectHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getObjectHandle_MOFRef(), ecorePackage.getEObject(), null, "MOFRef", null, 1, 1, ObjectHandle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(baseModelHandleEClass, BaseModelHandle.class, "BaseModelHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(replacementFragmentTypeEClass, ReplacementFragmentType.class, "ReplacementFragmentType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReplacementFragmentType_ReplacementBoundaryElement(), this.getReplacementBoundaryElement(), null, "replacementBoundaryElement", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getReplacementFragmentType_PlacementFragment(), this.getPlacementFragment(), null, "placementFragment", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getReplacementFragmentType_SourceObject(), this.getObjectHandle(), null, "sourceObject", null, 0, -1, ReplacementFragmentType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(variabletypeEClass, Variabletype.class, "Variabletype", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(replacementBoundaryElementEClass, ReplacementBoundaryElement.class, "ReplacementBoundaryElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(objectSubstitutionEClass, ObjectSubstitution.class, "ObjectSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getObjectSubstitution_PlacementObject(), this.getObjectHandle(), null, "placementObject", null, 1, 1, ObjectSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getObjectSubstitution_ReplacementObject(), this.getObjectHandle(), null, "replacementObject", null, 1, 1, ObjectSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariable_ReplacementFragmentTypesubsetstype(), this.getReplacementFragmentType(), null, "replacementFragmentTypesubsetstype", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVariable_DefaulValue(), this.getValueSpecification(), null, "defaulValue", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVariable_Type(), this.getVariabletype(), null, "type", null, 1, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(valueSpecificationEClass, ValueSpecification.class, "ValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getValueSpecification_Type(), this.getVariabletype(), null, "type", null, 1, 1, ValueSpecification.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-
-		initEClass(variableValueAssignmentEClass, VariableValueAssignment.class, "VariableValueAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableValueAssignment_ResolvedVariable(), this.getVariable(), null, "resolvedVariable", null, 1, 1, VariableValueAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVariableValueAssignment_Value(), this.getValueSpecification(), null, "value", null, 1, 1, VariableValueAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(valueResolutionEClass, ValueResolution.class, "ValueResolution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getValueResolution_ResolvedVariable(), this.getVariable(), null, "resolvedVariable", null, 1, 1, ValueResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getValueResolution_Value(), this.getValueSpecification(), null, "value", null, 1, 1, ValueResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(primitveTypeEClass, PrimitveType.class, "PrimitveType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPrimitveType_Type(), this.getPrimitiveTypeEnum(), "type", null, 1, 1, PrimitveType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2920,55 +2683,13 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEClass(objectTypeEClass, ObjectType.class, "ObjectType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getObjectType_MetaClass(), ecorePackage.getEString(), "metaClass", null, 1, 1, ObjectType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(vInterfaceEClass, VInterface.class, "VInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVInterface_Member(), this.getVSpec(), null, "member", null, 0, -1, VInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVInterface_OwnedConstraint(), this.getConstraint(), null, "ownedConstraint", null, 0, -1, VInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstraint_Context(), this.getVSpec(), null, "context", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(slotAssignmentEClass, SlotAssignment.class, "SlotAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSlotAssignment_SlotIdentifier(), ecorePackage.getEString(), "slotIdentifier", null, 1, 1, SlotAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSlotAssignment_Value(), this.getValueSpecification(), null, "value", null, 0, 1, SlotAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSlotAssignment_SlotOwner(), this.getObjectHandle(), null, "slotOwner", null, 1, 1, SlotAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(objectExistenceEClass, ObjectExistence.class, "ObjectExistence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getObjectExistence_OptionalObject(), this.getObjectHandle(), null, "optionalObject", null, 1, 1, ObjectExistence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(linkEndSubstitutionEClass, LinkEndSubstitution.class, "LinkEndSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLinkEndSubstitution_Link(), this.getLinkHandle(), null, "link", null, 1, 1, LinkEndSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getLinkEndSubstitution_LinkEndIdentifier(), ecorePackage.getEString(), "linkEndIdentifier", null, 1, 1, LinkEndSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getLinkEndSubstitution_ReplacementObject(), this.getObjectHandle(), null, "replacementObject", null, 1, 1, LinkEndSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(linkHandleEClass, LinkHandle.class, "LinkHandle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLinkHandle_MOFRef(), ecorePackage.getEString(), "MOFRef", null, 1, 1, LinkHandle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(configurableUnitEClass, ConfigurableUnit.class, "ConfigurableUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurableUnit_OwnedVSpec(), this.getVSpec(), null, "ownedVSpec", null, 0, -1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_OwnedVariationPoint(), this.getVariationPoint(), null, "ownedVariationPoint", null, 0, -1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_OwnedConstraint(), this.getConstraint(), null, "ownedConstraint", null, 0, -1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_ConfigurableContainerObject(), this.getObjectHandle(), null, "configurableContainerObject", null, 1, 1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_OwnedVSpecResolution(), this.getVSpecResolution(), null, "ownedVSpecResolution", null, 0, -1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_UnitInterface(), this.getVInterface(), null, "unitInterface", null, 1, 1, ConfigurableUnit.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_OwnedVSpecDerivation(), this.getVSpecDerivation(), null, "ownedVSpecDerivation", null, 0, -1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnit_OwnedVariabletype(), this.getVariabletype(), null, "ownedVariabletype", null, 0, -1, ConfigurableUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(compositeVariationPointEClass, CompositeVariationPoint.class, "CompositeVariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositeVariationPoint_BindingCVSpec(), this.getCVSpec(), null, "bindingCVSpec", null, 1, 1, CompositeVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(cvSpecEClass, CVSpec.class, "CVSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCVSpec_Type(), this.getVInterface(), null, "type", null, 1, 1, CVSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(vConfigurationEClass, VConfiguration.class, "VConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVConfiguration_Member(), this.getVSpecResolution(), null, "member", null, 0, -1, VConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getVConfiguration_IsPartial(), ecorePackage.getEBoolean(), "isPartial", null, 1, 1, VConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVConfiguration_ResolvedCVSpec(), this.getCVSpec(), null, "resolvedCVSpec", null, 1, 1, VConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(linkExistenceEClass, LinkExistence.class, "LinkExistence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLinkExistence_OptionalLink(), this.getLinkHandle(), null, "optionalLink", null, 1, 1, LinkExistence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(opaqueVariationPointEClass, OpaqueVariationPoint.class, "OpaqueVariationPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOpaqueVariationPoint_PlaceHolder(), this.getBaseModelHandle(), null, "placeHolder", null, 1, 1, OpaqueVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOpaqueVariationPoint_PlaceHolder(), this.getObjectHandle(), null, "placeHolder", null, 1, 1, OpaqueVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getOpaqueVariationPoint_Type(), this.getOVPType(), null, "type", null, 1, 1, OpaqueVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(ovpTypeEClass, OVPType.class, "OVPType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3016,8 +2737,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEReference(getFromReplacement_OutsideBoundaryElement(), this.getObjectHandle(), null, "outsideBoundaryElement", null, 0, -1, FromReplacement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFromReplacement_FromPlacement(), this.getFromPlacement(), this.getFromPlacement_FromReplacement(), "fromPlacement", null, 0, 1, FromReplacement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(vSpecRefEClass, VSpecRef.class, "VSpecRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVSpecRef_VSpec(), this.getVSpec(), null, "vSpec", null, 1, 1, VSpecRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(targetRefEClass, TargetRef.class, "TargetRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTargetRef_Target(), this.getTarget(), null, "target", null, 1, 1, TargetRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(bclExpressionEClass, BCLExpression.class, "BCLExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3028,39 +2749,9 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEClass(parametricVariationPointEClass, ParametricVariationPoint.class, "ParametricVariationPoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParametricVariationPoint_BindingVariable(), this.getVariable(), null, "bindingVariable", null, 1, 1, ParametricVariationPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(slotValueExistenceEClass, SlotValueExistence.class, "SlotValueExistence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSlotValueExistence_SlotIdentifier(), ecorePackage.getEString(), "slotIdentifier", null, 1, 1, SlotValueExistence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSlotValueExistence_SlotOwner(), this.getObjectHandle(), null, "slotOwner", null, 1, 1, SlotValueExistence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(parametricLinkEndSubstitutionEClass, ParametricLinkEndSubstitution.class, "ParametricLinkEndSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParametricLinkEndSubstitution_LinkEndIdentifier(), ecorePackage.getEString(), "linkEndIdentifier", null, 1, 1, ParametricLinkEndSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getParametricLinkEndSubstitution_Link(), this.getLinkHandle(), null, "link", null, 1, 1, ParametricLinkEndSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(parametricObjectSubstitutionEClass, ParametricObjectSubstitution.class, "ParametricObjectSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParametricObjectSubstitution_PlacementObject(), this.getObjectHandle(), null, "placementObject", null, 1, 1, ParametricObjectSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(parametricSlotAssignmetEClass, ParametricSlotAssignmet.class, "ParametricSlotAssignmet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParametricSlotAssignmet_SlotIdentifier(), ecorePackage.getEString(), "slotIdentifier", null, 1, 1, ParametricSlotAssignmet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getParametricSlotAssignmet_SlotOwner(), this.getObjectHandle(), null, "slotOwner", null, 1, 1, ParametricSlotAssignmet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(choiceDerivationEClass, ChoiceDerivation.class, "ChoiceDerivation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChoiceDerivation_DerivingConstraint(), this.getConstraint(), null, "derivingConstraint", null, 1, 1, ChoiceDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getChoiceDerivation_DerivedChoice(), this.getChoice(), null, "derivedChoice", null, 1, 1, ChoiceDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(variableDerivationEClass, VariableDerivation.class, "VariableDerivation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableDerivation_DerivingExpression(), this.getBCLExpression(), null, "derivingExpression", null, 1, 1, VariableDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getVariableDerivation_DerivedVariable(), this.getVariable(), null, "derivedVariable", null, 1, 1, VariableDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(cvSpecDerivationEClass, CVSpecDerivation.class, "CVSpecDerivation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCVSpecDerivation_MemberDerivation(), this.getVSpecDerivation(), null, "memberDerivation", null, 0, -1, CVSpecDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getCVSpecDerivation_DerivingCVspec(), this.getCVSpec(), null, "derivingCVspec", null, 1, 1, CVSpecDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getCVSpecDerivation_DerivedCVSpec(), this.getCVSpec(), null, "derivedCVSpec", null, 1, 1, CVSpecDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(configurableUnitUsageEClass, ConfigurableUnitUsage.class, "ConfigurableUnitUsage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfigurableUnitUsage_UsedUnit(), this.getConfigurableUnit(), null, "usedUnit", null, 1, 1, ConfigurableUnitUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnitUsage_UsageReference(), this.getLinkHandle(), null, "usageReference", null, 1, 1, ConfigurableUnitUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConfigurableUnitUsage_LinkEndIdentifier(), ecorePackage.getEString(), "linkEndIdentifier", null, 1, 1, ConfigurableUnitUsage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConfigurableUnitUsage_UnitUsageInterface(), this.getVInterface(), null, "unitUsageInterface", null, 1, 1, ConfigurableUnitUsage.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEClass(parametricSlotAssignmentEClass, ParametricSlotAssignment.class, "ParametricSlotAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParametricSlotAssignment_SlotIdentifier(), ecorePackage.getEString(), "slotIdentifier", null, 1, 1, ParametricSlotAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getParametricSlotAssignment_SlotOwner(), this.getObjectHandle(), null, "slotOwner", null, 1, 1, ParametricSlotAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(primitiveValueSpecificationEClass, PrimitiveValueSpecification.class, "PrimitiveValueSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPrimitiveValueSpecification_Expression(), this.getBCLExpression(), null, "expression", null, 1, 1, PrimitiveValueSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3088,6 +2779,32 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		initEClass(realLiteralExpEClass, RealLiteralExp.class, "RealLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRealLiteralExp_Real(), ecorePackage.getEString(), "real", null, 1, 1, RealLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(compoundResolutionEClass, CompoundResolution.class, "CompoundResolution", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompoundResolution_Members(), this.getVSpecResolution(), null, "members", null, 0, -1, CompoundResolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(negResolutionEClass, NegResolution.class, "NegResolution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(posResolutionEClass, PosResolution.class, "PosResolution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(vRefEClass, VRef.class, "VRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVRef_RefVSpec(), this.getVSpec(), null, "refVSpec", null, 0, -1, VRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(vRefValueSpecificationEClass, VRefValueSpecification.class, "VRefValueSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVRefValueSpecification_VSpecResolution(), this.getVSpecResolution(), null, "vSpecResolution", null, 0, -1, VRefValueSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(resolutionLiteralDefinitionEClass, ResolutionLiteralDefinition.class, "ResolutionLiteralDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getResolutionLiteralDefinition_LiteralType(), this.getVType(), null, "literalType", null, 0, 1, ResolutionLiteralDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(resolutionLiteralUseEClass, ResolutionLiteralUse.class, "ResolutionLiteralUse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getResolutionLiteralUse_DefLiteral(), this.getResolutionLiteralDefinition(), null, "defLiteral", null, 0, 1, ResolutionLiteralUse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(bvrModelEClass, BVRModel.class, "BVRModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBVRModel_VariabilityModel(), this.getCompoundNode(), null, "variabilityModel", null, 1, 1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getBVRModel_ResolutionModels(), this.getCompoundResolution(), null, "resolutionModels", null, 0, -1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getBVRModel_BaseModelBase(), this.getObjectHandle(), null, "baseModelBase", null, 1, 1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getBVRModel_BaseModelLibraries(), this.getObjectHandle(), null, "baseModelLibraries", null, 0, -1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getBVRModel_RealizationModel(), this.getVariationPoint(), null, "realizationModel", null, 0, -1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(primitiveTypeEnumEEnum, PrimitiveTypeEnum.class, "PrimitiveTypeEnum");
@@ -3175,7 +2892,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 			 "com.ibm.xtools.activities.umlBBRealization", "1",
 			 "com.ibm.xtools.activities.umlBBComponent", "1",
 			 "com.ibm.xtools.activities.umlBBSequenceDiagram", "1"
-		   });																																																																																																																																																																																																																				
+		   });																																																																																																																																																																																														
 	}
 
 } //BvrPackageImpl

@@ -2,33 +2,32 @@ package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JComponent;
+import org.eclipse.emf.ecore.EObject;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 
-import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.BvrFactory;
-import bvr.VSpecResolution;
 
 public class AddChoiceResolvedEvent implements ActionListener {
-	private VSpecResolution cr;
-	private Choice target;
-	private BVRView view;
-	
-	public AddChoiceResolvedEvent(VSpecResolution a, Choice b, BVRView view) {
-		cr = a;
-		target = b;
-		this.view = view;
-	}
+	JComponent p;
+	BVRNotifiableController controller;
+	EObject x;
 
+	public AddChoiceResolvedEvent(JComponent p, EObject x, BVRNotifiableController controller) {
+		this.p = p;
+		this.controller = controller;
+		this.x = x;
+		// cr = a;
+		// target = b;
+		// this.view = view;
+	}
+	@Override
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent arg0) {
-		Choice c = target;
-		ChoiceResolutuion ncr = BvrFactory.eINSTANCE.createChoiceResolutuion();
+		controller.getResolutionControllerInterface().addChoiceResolution(p, x);
 		
-		Context.eINSTANCE.getEditorCommands().addChoiceResolved(target, cr, ncr);
-		//ncr.setResolvedVSpec(c);
-		//cr.getChild().add(ncr);
-		//view.notifyResolutionViewUpdate();
+		// ChoiceResolutuion ncr = BvrFactory.eINSTANCE.createChoiceResolutuion();
+
+		// Context.eINSTANCE.getEditorCommands().addChoiceResolved(target, cr, ncr);
 	}
 
 }

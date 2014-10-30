@@ -62,7 +62,7 @@ public interface FromPlacement extends PlacementBoundaryElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Outside Model Element that are referred by the model elements inside the placement fragment.
+	 * <p>Outside Model Elements are element that are referred by the model elements inside the placement fragment (but which are themselves not inside the placement fragment).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Outside Boundary Element</em>' reference list.
 	 * @see bvr.BvrPackage#getFromPlacement_OutsideBoundaryElement()
@@ -74,11 +74,10 @@ public interface FromPlacement extends PlacementBoundaryElement {
 	/**
 	 * Returns the value of the '<em><b>Inside Boundary Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Inside Boundary Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Insiude boundary elements refer to elements inside the fragment.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inside Boundary Element</em>' reference.
 	 * @see #setInsideBoundaryElement(ObjectHandle)
 	 * @see bvr.BvrPackage#getFromPlacement_InsideBoundaryElement()

@@ -174,17 +174,7 @@ public class OpaqueVariationPointItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
-				 BvrFactory.eINSTANCE.createBaseModelHandle()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
 				 BvrFactory.eINSTANCE.createObjectHandle()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.OPAQUE_VARIATION_POINT__PLACE_HOLDER,
-				 BvrFactory.eINSTANCE.createLinkHandle()));
 	}
 
 }

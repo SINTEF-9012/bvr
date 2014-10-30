@@ -36,9 +36,9 @@ public class ConstraintPanel extends ThreePartRectanglePanel implements SelectEl
 	JXTitledSeparator separatorbar = new JXTitledSeparator();
 	JXLabel constraint = new JXLabel();
 
-	ConfigurableUnitPanel model;
+	BVRModelPanel model;
 
-	public ConstraintPanel(ConfigurableUnitPanel model) {
+	public ConstraintPanel(BVRModelPanel model) {
 		this.model = model;
 
 		backgroundColor = Color.WHITE;

@@ -1,12 +1,13 @@
 package no.sintef.bvr.tool.chain.impl;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
+import bvr.PosResolution;
 import bvr.VSpecResolution;
 import no.sintef.bvr.tool.chain.ExecutionHandler;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.primitive.ExecutionRequest;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.TableBuilderStrategy;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 
@@ -28,14 +29,14 @@ public class ParserExecutionHandler implements ExecutionHandler {
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
 		
-		ConfigurableUnit cu = (ConfigurableUnit) request.getDataField("cu");
-		VSpecResolution vSpecResoulution = (VSpecResolution) request.getDataField("vSpecResolution");
+		BVRModel bvrModel = (BVRModel) request.getDataField("model");
+		PosResolution posResolution = (PosResolution) request.getDataField("PosResolution");
 		
-		if(cu == null || vSpecResoulution == null){
-			throw new UnexpectedException("configuration unit or root  vspec rezolution is not set");
+		if(bvrModel == null || posResolution == null){
+			throw new UnexpectedException("bvr model or root vspec resolution is not set");
 		}
 		
-		SymbolTable table = this.defaultTableBuilder.buildSymbolTable(cu, vSpecResoulution);
+		SymbolVSpecResolutionTable table = this.defaultTableBuilder.buildSymbolTable(bvrModel, posResolution);
 		request.setDataField("productSymbolTable", table);
 		
 		if(this.successor != null)

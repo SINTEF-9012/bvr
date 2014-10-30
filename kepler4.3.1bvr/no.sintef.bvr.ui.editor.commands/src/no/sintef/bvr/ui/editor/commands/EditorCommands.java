@@ -1,6 +1,5 @@
 package no.sintef.bvr.ui.editor.commands;
 
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -9,77 +8,103 @@ import org.eclipse.ui.IEditorReference;
 
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
+import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
-import bvr.ChoiceResolutuion;
-import bvr.ConfigurableUnit;
+import bvr.ChoiceResolution;
+import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.Constraint;
+//import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
+import bvr.NegResolution;
+import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
+import bvr.PosResolution;
 import bvr.PrimitveType;
+//import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
 import bvr.VClassifier;
-import bvr.VInstance;
+import bvr.VNode;
+import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueSpecification;
 import bvr.Variable;
-import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
 public interface EditorCommands {
 	
-	public void addChoice(Choice choice, ConfigurableUnit cu);
+	public void addChoice(Choice choice, BVRModel bvrModel);
 	
-	public void addChoice(Choice choice, VSpec vs);
+	public void addChoice(Choice choice, CompoundNode compoundNode);
 	
 	public TransactionalEditingDomain testTransactionalEditingDomain();
 	
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences);
 	
-	public void createNewResolution(ChoiceResolutuion cr, ConfigurableUnit cu);
+	//public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
 	
-	public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
+	public void setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
 	
-	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice);
+	//public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
+	/**
+	 * setting the resolved VSpec is a separate action, sett before add or call setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
+	 * @param parentVSpecResolution
+	 * @param PositiveResolution
+	 */
+	public void addPosChoiceResoulution(VSpecResolution vsper, PosResolution pr);
+	/**
+	 * setting the resolved VSpec is a separate action, sett before add or call setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
+	 * @param parentVSpecResolution
+	 * @param NegativeResolution
+	 */
+	public void addNegChoiceResoulution(VSpecResolution vsper, NegResolution nr);
 	
-	public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
+	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	
-	public void addVClassifierToVSpec(VSpec parentVSpec, VClassifier childCClassifier);
+	//public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
+	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier);
 	
-	public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
+	public void addVNodeToCompoundNode(CompoundNode parent, VNode child);
 	
-	public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
+	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode);
 	
-	public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
+	//public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
 	
-	public void addVariable(VSpec vSpec, Variable variable);
+	//public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
 	
-	public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment);
+	public void addVariable(VNode parentVNode, Variable variable);
 	
-	public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance);
+	//public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment);
+	
+	//public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance);
 	
 	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement);
 	
-	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	public void removeVNodeCompoundNode(CompoundNode compoundNode, VNode vNode);
+	
+	//public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
 	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec);
 
-	public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec);
+	//public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec);
 	
-	public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	//public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
-	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints);
+	//public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints);
 	
 	public void setName(NamedElement namedElement, String name);
 	
@@ -87,7 +112,7 @@ public interface EditorCommands {
 	
 	public void setIsImpliedByParent(Choice choice, boolean isImplied);
 	
-	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject);
+	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject);
 	
 	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound);
 	
@@ -103,25 +128,25 @@ public interface EditorCommands {
 	
 	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement);
 	
-	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
+	//public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	
-	public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
+	//public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
 	
-	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
+	//public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
 	
-	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
+	//public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
 	
-	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	public void addRealizationVariationPoint(BVRModel model, VariationPoint variationPoint);
 	
-	public void addOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
+	public void addOwnedVariationType(BVRModel model, Variabletype variationType);
 	
-	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
+	//public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
 	
-	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
+	//public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
-	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints);
+	public void removeOwenedVariationPoints(BVRModel model, EList<VariationPoint> variationPoints);
 	
-	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes);
+	public void removeOwnedVariationTypes(BVRModel model, EList<Variabletype> variationTypes);
 	
 	public void addBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding);
 	
@@ -152,4 +177,43 @@ public interface EditorCommands {
 	public void addInsideBElementToPlacement(ToPlacement boundary, ObjectHandle objectHandle);
 	
 	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle);
+
+
+	public void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint);
+
+	public void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel);
+	
+	public void addPackagableElementBVRModel(BVRModel model, VPackageable vPackagable);
+	
+	public VPackageable testPrimitiveTypes(BVRModel model);
+	
+	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint);
+/*
+	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value);
+*/
+
+	public void createNote(NamedElement parent, Note commentNote);
+	
+	public void updateNoteExp(Note note, String expr);
+	
+	public void enableBatchProcessing();
+	
+	public void disableBatchProcessing();
+	
+	public void executeBatch();
+
+
+	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent);
+
+	void createNewResolution(PosResolution pr, BVRModel bvrModel);
+
+	public void addTargetToCompoundNode(CompoundNode namedElement, Target target);
+
+	public void setVSpecTarget(VSpec namedElement, Target target);
+
+	public void reset();
+	
+	public void removeBVRModelCompoundResolutions(BVRModel model, EList<CompoundResolution> resolutions);
+
+
 }

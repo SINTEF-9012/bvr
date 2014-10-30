@@ -2,28 +2,22 @@ package no.sintef.bvr.tool.strategy.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.VariationPoint;
-
 import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.adjacent.AdjacentResolver;
-import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
-import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.primitive.Symbol;
-import no.sintef.bvr.tool.primitive.SymbolTable;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
+import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.RealizationStrategy;
 
 public class StaleSimpleRealizationStrategy implements RealizationStrategy {
@@ -34,10 +28,10 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 	private AdjacentResolver adjacentResolver;
 
 	@Override
-	public void deriveProduct(SymbolTable table) {
+	public void deriveProduct(SymbolVSpecResolutionTable table) {
 		frgamentSusbstitutions = new BasicEList<FragmentSubstitution>();
-		ConfigurableUnit cu = table.getConfigurableUnit();
-		EList<VariationPoint> ownedVariationPoints = cu.getOwnedVariationPoint();
+		BVRModel model = table.getBVRModel();
+		EList<VariationPoint> ownedVariationPoints = model.getRealizationModel();
 		for(VariationPoint vp : ownedVariationPoints){
 			if(vp instanceof FragmentSubstitution){
 				frgamentSusbstitutions.add((FragmentSubstitution) vp);
@@ -64,21 +58,21 @@ public class StaleSimpleRealizationStrategy implements RealizationStrategy {
 		this.resolveScope(table);
 	}
 	
-	private void resolveScope(SymbolTable table){
-		ArrayList<Symbol> symbols = table.getSymbols();
-		for(Symbol symbol : symbols){
+	private void resolveScope(SymbolVSpecResolutionTable table){
+		ArrayList<SymbolVSpec> symbols = table.getSymbols();
+		for(SymbolVSpec symbol : symbols){
 			this.resolveSymbol(symbol);
 		}
 		
-		ArrayList<SymbolTable> underneathScopes = table.getChildren();
-		for(SymbolTable scope : underneathScopes){
+		ArrayList<SymbolVSpecResolutionTable> underneathScopes = table.getChildren();
+		for(SymbolVSpecResolutionTable scope : underneathScopes){
 			this.resolveScope(scope);
 		}
 	}
 	
-	private void resolveSymbol(final Symbol symbol){
-		ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
-		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(cu.eResource().getResourceSet());
+	private void resolveSymbol(final SymbolVSpec symbol){
+		BVRModel model = symbol.getScope().getBVRModel();
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(model.eResource().getResourceSet());
 		EList<FragmentSubstitution> symbolsFragSubs = symbol.getFragmentSubstitutions();
 		for(final FragmentSubstitution fs : symbolsFragSubs){
 			/*final FragmentSubstitutionHolder fsH = fsHMap.get(fs);

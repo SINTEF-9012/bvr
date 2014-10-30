@@ -1,11 +1,12 @@
 package no.sintef.bvr.constraints.bcl;
 
-import java.nio.channels.UnsupportedAddressTypeException;
 import java.util.ArrayList;
 import java.util.List;
 
 import no.sintef.bvr.constraints.bcl.BCLParser.LiteralexpContext;
 import no.sintef.bvr.constraints.bcl.BCLParser.VspecContext;
+import no.sintef.bvr.constraints.strategy.AbstractBCLBuilderStrategy;
+import no.sintef.bvr.constraints.strategy.DefaultTestBCLBuilderStartegy;
 
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.eclipse.emf.common.util.EList;
@@ -13,18 +14,33 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 
 import bvr.BCLExpression;
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
+import bvr.BooleanLiteralExp;
+import bvr.CompoundNode;
 import bvr.IntegerLiteralExp;
 import bvr.OperationCallExp;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
+import bvr.Target;
+import bvr.TargetRef;
+import bvr.VNode;
 import bvr.VSpec;
-import bvr.VSpecRef;
 import bvr.BvrFactory;
 
-public class BCLBuilder{
+
+public class BCLBuilder {
 	
-	public BCLExpression recurse(RuleNode root, int depth, ConfigurableUnit cu, boolean verbose) {
+	private AbstractBCLBuilderStrategy strategy;
+	
+	public BCLBuilder(){
+		strategy = new DefaultTestBCLBuilderStartegy();
+	}
+	
+	public BCLBuilder(AbstractBCLBuilderStrategy _strategy){
+		strategy = _strategy;
+	}
+	
+	public BCLExpression recurse(RuleNode root, int depth, BVRModel cu, boolean verbose) {
 		String name;
 		
 		// Collapse place holder nodes
@@ -70,7 +86,7 @@ public class BCLBuilder{
 				rt = (VspecContext) rt.getChild(2);
 				fcname.add(rt.getChild(0).toString());
 			}
-			VSpecRef r = BvrFactory.eINSTANCE.createVSpecRef();
+			TargetRef r = BvrFactory.eINSTANCE.createTargetRef();
 			VSpec prev = null, cur = null;
 			for(String s : fcname){
 				if(prev == null){
@@ -82,7 +98,12 @@ public class BCLBuilder{
 			}
 			if(verbose)
 				System.out.println(" " +  fcname);
-			r.setVSpec(cur);
+			
+			if(cur == null)
+				throw new UnsupportedOperationException("can not find vspec with the given name -> " + fcname);
+			
+			Target vspecTarget = strategy.getVSpecTarget(cur);
+			r.setTarget(vspecTarget);
 			e = r;
 		}else if(root instanceof LiteralexpContext){
 			String s = root.getChild(0).toString();
@@ -95,7 +116,11 @@ public class BCLBuilder{
 				RealLiteralExp r = BvrFactory.eINSTANCE.createRealLiteralExp();
 				r.setReal(s);
 				e = r;
-			}else{
+			}else if(s.equals("true") || s.equals("false")){
+				BooleanLiteralExp r = BvrFactory.eINSTANCE.createBooleanLiteralExp();
+				r.setBool(Boolean.parseBoolean(s));
+				e = r;
+			}else {
 				IntegerLiteralExp r = BvrFactory.eINSTANCE.createIntegerLiteralExp();
 				r.setInteger(new Integer(s));
 				e = r;
@@ -178,8 +203,8 @@ public class BCLBuilder{
 		return e;
 	}
 
-	private VSpec findVspec(String id, ConfigurableUnit cu) {
-		TreeIterator<EObject> ti = cu.eAllContents();
+	private VSpec findVspec(String id, BVRModel model) {
+		TreeIterator<EObject> ti = model.eAllContents();
 		while(ti.hasNext()){
 			EObject eo = ti.next();
 			if(eo instanceof VSpec){
@@ -192,7 +217,7 @@ public class BCLBuilder{
 	}
 	
 	private VSpec findVspec(String id, VSpec parent) {
-		EList<VSpec> ti = parent.getChild();
+		EList<VNode> ti = ((CompoundNode) parent).getMember();
 		for(EObject eo : ti){
 			if(eo instanceof VSpec){
 				VSpec vs = (VSpec) eo;

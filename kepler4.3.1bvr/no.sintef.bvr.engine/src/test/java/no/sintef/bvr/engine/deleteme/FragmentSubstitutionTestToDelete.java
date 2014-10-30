@@ -1,26 +1,18 @@
 package no.sintef.bvr.engine.deleteme;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
+
 
 import no.sintef.bvr.engine.adjacent.AdjacentFragment;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
-import no.sintef.bvr.engine.adjacent.impl.AdjacentFragmentImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.common.SubstitutionContext;
-import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.bvr.engine.logging.Logger;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
-import node.NodePackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -30,44 +22,25 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
-import bvr.ConfigurableUnit;
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
-import bvr.FromBinding;
 import bvr.ObjectHandle;
-import bvr.ToBinding;
-import bvr.ToPlacement;
 import bvr.VariationPoint;
 
 public class FragmentSubstitutionTestToDelete {
 
 	private File file;
 	private HashMap<String, Object> map;
-	private ConfigurableUnit cu;
+	private BVRModel cu;
 	private EList<FragmentSubstitution> fragSubs;
 	private Resource baseModel;
 	private FragmentSubstitutionHolder fragmentSubHolder1;
 	private FragmentSubstitutionHolder fragmentSubHolder2;
-	private FragmentSubstitutionHolder fragmentSubHolder3;
 	private Resource libModel;
-	private static final String[] o = new String[] {"0", "00"};
-	private static final String[] o1 = new String[] {"14"};
-	private static final String[] p1 = new String[] {"r1", "r2", "r3", "r4", "r5"};
-	private static final String[] p2 = new String[] {"r6", "r7", "r8", "r9", "r10"};
-	private static final String[] p3 = new String[] {"r11", "r12", "r13"};
-	private static final String[] p1orig = new String[] {"1", "2", "3", "4", "5"};
-	private static final String[] p2orig = new String[] {"6", "7", "8", "9", "10"};
-	private static final String[] p3orig = new String[] {"11", "12", "13"};
 	private EList<EObject> visited = new BasicEList<EObject>();
 	private EObject toRemove;
 
@@ -77,8 +50,8 @@ public class FragmentSubstitutionTestToDelete {
 		file = new File("src/test/resources/nodeWorkingCopy/realistic/modelSafetyModule0/SafetyDrive.cor.new.bvr");
 		UMLPackage.eINSTANCE.eClass();
 		map = SetUpUtils.load(file);
-		cu = (ConfigurableUnit) ((Resource) map.get("resource")).getContents().get(0);
-		EList<VariationPoint> vps = cu.getOwnedVariationPoint();
+		cu = (BVRModel) ((Resource) map.get("resource")).getContents().get(0);
+		EList<VariationPoint> vps = cu.getRealizationModel();
 		for(VariationPoint vp : vps){
 			if(vp instanceof FragmentSubstitution){
 				fragSubs.add((FragmentSubstitution) vp);

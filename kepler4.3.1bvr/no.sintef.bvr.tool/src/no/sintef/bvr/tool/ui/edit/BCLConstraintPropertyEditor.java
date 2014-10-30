@@ -1,5 +1,6 @@
 package no.sintef.bvr.tool.ui.edit;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -8,24 +9,20 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-import no.sintef.bvr.tool.ui.command.UpdateBCLConstraint;
-import no.sintef.bvr.tool.ui.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.command.UpdateVClassifier;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.UpdateConstraint;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
-import bvr.VSpec;
+
 
 public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
 	
-    protected void init() {
-    	command = new UpdateBCLConstraint();
-    	command.init(null, obj, null, null, null, null, view);
-    }
 
-	public BCLConstraintPropertyEditor(BVRUIKernel kernel, BCLConstraint elem, BVRView view) {
-		super(kernel, elem, view);
+	private static final long serialVersionUID = -4875391301993248898L;
+
+	public BCLConstraintPropertyEditor(BVRUIKernel kernel, Command _command, BCLConstraint elem, JComponent _node, BVRNotifiableController view) {
+		super(kernel, _command, elem, _node, view);
 		
 		// Constraint
         JPanel p2 = new JPanel(new SpringLayout());
@@ -40,7 +37,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
         l2.setLabelFor(textField2);
         p2.add(textField2);
         
-        String s = new BCLPrettyPrinter().prettyPrint(elem.getExpression().get(0), view.getCU());
+        String s = view.getVSpecControllerInterface().getBCLConstraintString(node);
         
         textField2.setText(s);
         
@@ -52,7 +49,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
         
         pack(2,1);
         
-        ((UpdateBCLConstraint) command).setConstraint(s);
+        ((UpdateConstraint) command).setConstraint(s);
         
         textField2.addKeyListener(new EnterAccepter(command, kernel.getEditorPanel()));
         
@@ -60,7 +57,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
 
             public void insertUpdate(DocumentEvent e) {
                 try {
-                    ((UpdateBCLConstraint) command).setConstraint(e.getDocument().getText(0, e.getDocument().getLength()));
+                    ((UpdateConstraint) command).setConstraint(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
                     //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (java.lang.NumberFormatException nfe) {

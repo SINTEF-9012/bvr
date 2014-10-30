@@ -9,7 +9,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p class="MsoNormal"><span style="font-size:8pt;font-family:Tahoma;">A choice is VSpec whose resolution requires a yes/no decision (True/False). When a variation point is bound to a choice, the decision resolving that choice determines whether or not the variation point will be applied during materialization.</span></p><p>####BVRSemanticStart####</p><p>Invariant : If a choice is implied by parent, it must have a parent.</p><p>OCL :</p><p>-- Choice</p><p>-- If a choice is implied by parent, it must have a parent.</p><p>context Choice :</p><p>inv isImpliedByParentsImpliesAParent :</p><p>self.isImpliedByParent implies VSpec.allInstances()->exists(vSpec | vSpec.childVSpec->includes(self))</p><p>####BVRSemanticEnd####</p>
+ * <p class="MsoNormal"><span style="font-size:8pt;font-family:Tahoma;">A Choice is a VSpec and a VNode that represents a yes/no decision. When a VariationPoint is bound to a choice it is dependent upon whether the resolution is a PosResolution or a NegResolution to determine what VariationPoint to execute.</span></p><p><span style="font-size:8pt;font-family:Tahoma;"></span>####CVLSemanticStart####</p><p>Invariant : If a choice is implied by parent, it must have a parent.</p><p>OCL :</p><p>-- Choice</p><p>-- If a choice is implied by parent, it must have a parent.</p><p>context Choice :</p><p>inv isImpliedByParentsImpliesAParent :</p><p>self.isImpliedByParent implies VSpec.allInstances()-&gt;exists(vSpec | vSpec.childVSpec-&gt;includes(self))</p><p>####CVLSemanticEnd####</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -24,13 +24,13 @@ package bvr;
  * @model
  * @generated
  */
-public interface Choice extends VSpec {
+public interface Choice extends VSpec, CompoundNode {
 	/**
 	 * Returns the value of the '<em><b>Default Resolution</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The default resolution of this choice.</p>
+	 * <p>The default resolution of this choice. (If True then the default is a PosResolution, if False then the default is a NegResolution)</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Default Resolution</em>' attribute.
 	 * @see #setDefaultResolution(boolean)

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:node="http:///node" xsi:schemaLocation="http:///node node.ecore">
-  <contains links="//@contains.2" name="1"/>
-  <contains name="5"/>
-  <contains links="//@contains.1" name="r2"/>
-</node:Node>

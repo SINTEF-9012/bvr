@@ -9,18 +9,21 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
+import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.thirdparty.common.PluginLogger;
+import no.sintef.bvr.thirdparty.common.ProblemLoger;
 import no.sintef.bvr.thirdparty.common.Utility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.exception.RethrownException;
-import no.sintef.bvr.tool.primitive.Symbol;
+import no.sintef.bvr.tool.model.BVRSimpleToolModel;
+import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.ui.editor.RestrictedJFileChooser;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
 import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 
@@ -43,7 +46,6 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IWorkbenchWindow;
 
-import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
 
 public class EclipseEnvironment extends AbstractEnvironment {
@@ -51,6 +53,8 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	private IWorkbenchWindow iworkbench;
 	private ThirdpartyEditorSelector editorselector;
 	private Logger logger = PluginLogger.getLogger();
+	private ResetableLogger problemLogger = ProblemLoger.getLogger();
+	
 	private ConfigHelper configHelper = EclipseConfigHelper.getConfig();
 	EList<TransactionalEditingDomain> editingDomains;
 	private EditorCommands commands = EditorEMFTransactionalCommands.Get();
@@ -64,18 +68,18 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public BVRModel loadModelFromFile(File file) {
+	public BVRToolModel loadModelFromFile(File file) {
 		String platformPath = Utility.findFileInWorkspace(file);
 		if(platformPath == null){
 			throw new UnsupportedOperationException("can not locate a selected file in the workspace: " + file.getAbsolutePath());
 		}
 		String filePath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
 		configHelper.saveLastLocation(filePath);
-		return new BVRModel(file, platformPath, true);
+		return new BVRSimpleToolModel(file, platformPath, true);
 	}
 
 	@Override
-	public void writeModelToFile(BVRModel model, File file) {
+	public void writeModelToFile(BVRToolModel model, File file) {
 		String filepath = file.getAbsolutePath().replaceAll("\\\\", "/");
 		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
 			throw new UnsupportedOperationException("can not a VM model to the file, incorrect loacation: use workspace location");
@@ -181,15 +185,15 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 	
 	@Override
-	public void performSubstitutions(List<Symbol> symbols) {
+	public void performSubstitutions(List<SymbolVSpec> symbols) {
 		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
 		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
-		for(final Symbol symbol : symbols){
+		for(final SymbolVSpec symbol : symbols){
 			logger.debug("processing Symbol " + symbol.getVSpec());
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
 			
-			ConfigurableUnit cu = symbol.getScope().getConfigurableUnit();
-			ResourceSet resSet = cu.eResource().getResourceSet();
+			bvr.BVRModel bvrModel = symbol.getScope().getBVRModel();
+			ResourceSet resSet = bvrModel.eResource().getResourceSet();
 			TransactionalEditingDomain editingDomain = getEdititingDomain(editingDomains, resSet);
 			if(editingDomain == null){
 				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
@@ -246,7 +250,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 
 	@Override
-	public void reloadModel(BVRModel model) {
+	public void reloadModel(BVRToolModel model) {
 		model.reload();
 	}
 
@@ -288,6 +292,11 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 	
 	@Override
+	public ResetableLogger getProblemLogger() {
+		return problemLogger;
+	}
+	
+	@Override
 	public ConfigHelper getConfig() {
 		return configHelper;
 	}
@@ -298,7 +307,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 	
 	@Override
-	public void disposeModel(BVRModel model) {
+	public void disposeModel(BVRToolModel model) {
 		IFile iFile = Utility.findIFileInWorkspaceFile(model.getFile());
 		try {
 			iFile.delete(true, null);

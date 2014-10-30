@@ -9,13 +9,14 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p><span><span style="font-size:8pt;">A repeatable variation point is a variation point that may be applied several times during materialization. It may be bound to a VClassifier and is applied once for each instance of it. </span></span></p>
+ * <p><span><span style="font-size:8pt;">A repeatable variation point is a variation point that may be applied several times during materialization. It may only be bound to a VClassifier (or VClassOccurrence) and is applied once for each resolution referring to it. </span></span></p>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
  *   <li>{@link bvr.RepeatableVariationPoint#getBindingClassifier <em>Binding Classifier</em>}</li>
+ *   <li>{@link bvr.RepeatableVariationPoint#getBindingVClassOcc <em>Binding VClass Occ</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,5 +49,30 @@ public interface RepeatableVariationPoint extends VariationPoint {
 	 * @generated
 	 */
 	void setBindingClassifier(VClassifier value);
+
+	/**
+	 * Returns the value of the '<em><b>Binding VClass Occ</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>binding VClassifier occurrence</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Binding VClass Occ</em>' reference.
+	 * @see #setBindingVClassOcc(VClassOccurrence)
+	 * @see bvr.BvrPackage#getRepeatableVariationPoint_BindingVClassOcc()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	VClassOccurrence getBindingVClassOcc();
+
+	/**
+	 * Sets the value of the '{@link bvr.RepeatableVariationPoint#getBindingVClassOcc <em>Binding VClass Occ</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Binding VClass Occ</em>' reference.
+	 * @see #getBindingVClassOcc()
+	 * @generated
+	 */
+	void setBindingVClassOcc(VClassOccurrence value);
 
 } // RepeatableVariationPoint

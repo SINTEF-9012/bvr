@@ -4,23 +4,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.primitive.impl.ObserverDataBulk;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationView;
-import no.sintef.bvr.tool.ui.loader.BVRView;
+import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
+
 
 public class ClearSelectionRelalizationEvent implements ActionListener {
 
 	
-	private BVRView view;
+	private BVRNotifiableController view;
 	
-	public ClearSelectionRelalizationEvent(BVRView _view){
+	public ClearSelectionRelalizationEvent(BVRNotifiableController _view){
 		view = _view;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ObserverDataBulk data = new ObserverDataBulk();
 		data.setDataField("selectedFragmentSubstitution", null);
-		Context.eINSTANCE.getViewChangeManager().updateSubjects(data, ((BVRRealizationView) view).getFragmentSubstitutionTable());
+		BVRRealizationUIKernelInterface kernel = view.getRealizationControllerInterface().getUIKernel();
+		Context.eINSTANCE.getViewChangeManager().updateSubjects(data, kernel.getFragmentSubstitutionTable());
 		Context.eINSTANCE.clearHighlights();
 	}
 

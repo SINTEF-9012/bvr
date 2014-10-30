@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Top class of a constraint. Contains basic constraint language expressions. A constraint can have local context, which is a VSpec (we refer to it as the context VSpec), or it can have a global context (i.e., the constraint is global within its enclosing package or configurable unit, and it has no context VSpec). The context determines the VSpec(s) for which the constraint must hold.</p>
+ * <p>Top class of a constraint. Contains basic constraint language expressions. </p>
  * <!-- end-model-doc -->
  *
  * <p>

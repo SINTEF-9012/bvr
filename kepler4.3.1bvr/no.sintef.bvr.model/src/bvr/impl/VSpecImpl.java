@@ -3,24 +3,15 @@
 package bvr.impl;
 
 import bvr.BvrPackage;
-import bvr.MultiplicityInterval;
+import bvr.Target;
 import bvr.VSpec;
-import bvr.VSpecDerivation;
-
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,27 +20,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link bvr.impl.VSpecImpl#getGroupMultiplicity <em>Group Multiplicity</em>}</li>
  *   <li>{@link bvr.impl.VSpecImpl#getResolutionTime <em>Resolution Time</em>}</li>
- *   <li>{@link bvr.impl.VSpecImpl#getOwnedVSpecDerivation <em>Owned VSpec Derivation</em>}</li>
- *   <li>{@link bvr.impl.VSpecImpl#getChild <em>Child</em>}</li>
- *   <li>{@link bvr.impl.VSpecImpl#getComment <em>Comment</em>}</li>
+ *   <li>{@link bvr.impl.VSpecImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
-	/**
-	 * The cached value of the '{@link #getGroupMultiplicity() <em>Group Multiplicity</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGroupMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
-	protected MultiplicityInterval groupMultiplicity;
-
+public abstract class VSpecImpl extends NamedElementImpl implements VSpec {
 	/**
 	 * The default value of the '{@link #getResolutionTime() <em>Resolution Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -71,44 +49,14 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	protected String resolutionTime = RESOLUTION_TIME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOwnedVSpecDerivation() <em>Owned VSpec Derivation</em>}' containment reference list.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedVSpecDerivation()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<VSpecDerivation> ownedVSpecDerivation;
-
-	/**
-	 * The cached value of the '{@link #getChild() <em>Child</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getChild()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<VSpec> child;
-
-	/**
-	 * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComment()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COMMENT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComment()
-	 * @generated
-	 * @ordered
-	 */
-	protected String comment = COMMENT_EDEFAULT;
+	protected Target target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,49 +75,6 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	protected EClass eStaticClass() {
 		return BvrPackage.Literals.VSPEC;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MultiplicityInterval getGroupMultiplicity() {
-		return groupMultiplicity;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetGroupMultiplicity(MultiplicityInterval newGroupMultiplicity, NotificationChain msgs) {
-		MultiplicityInterval oldGroupMultiplicity = groupMultiplicity;
-		groupMultiplicity = newGroupMultiplicity;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BvrPackage.VSPEC__GROUP_MULTIPLICITY, oldGroupMultiplicity, newGroupMultiplicity);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGroupMultiplicity(MultiplicityInterval newGroupMultiplicity) {
-		if (newGroupMultiplicity != groupMultiplicity) {
-			NotificationChain msgs = null;
-			if (groupMultiplicity != null)
-				msgs = ((InternalEObject)groupMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BvrPackage.VSPEC__GROUP_MULTIPLICITY, null, msgs);
-			if (newGroupMultiplicity != null)
-				msgs = ((InternalEObject)newGroupMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BvrPackage.VSPEC__GROUP_MULTIPLICITY, null, msgs);
-			msgs = basicSetGroupMultiplicity(newGroupMultiplicity, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.VSPEC__GROUP_MULTIPLICITY, newGroupMultiplicity, newGroupMultiplicity));
 	}
 
 	/**
@@ -198,11 +103,16 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VSpecDerivation> getOwnedVSpecDerivation() {
-		if (ownedVSpecDerivation == null) {
-			ownedVSpecDerivation = new EObjectContainmentEList<VSpecDerivation>(VSpecDerivation.class, this, BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION);
+	public Target getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Target)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BvrPackage.VSPEC__TARGET, oldTarget, target));
+			}
 		}
-		return ownedVSpecDerivation;
+		return target;
 	}
 
 	/**
@@ -210,11 +120,8 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<VSpec> getChild() {
-		if (child == null) {
-			child = new EObjectContainmentEList<VSpec>(VSpec.class, this, BvrPackage.VSPEC__CHILD);
-		}
-		return child;
+	public Target basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -222,38 +129,11 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getComment() {
-		return comment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setComment(String newComment) {
-		String oldComment = comment;
-		comment = newComment;
+	public void setTarget(Target newTarget) {
+		Target oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.VSPEC__COMMENT, oldComment, comment));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
-				return basicSetGroupMultiplicity(null, msgs);
-			case BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-				return ((InternalEList<?>)getOwnedVSpecDerivation()).basicRemove(otherEnd, msgs);
-			case BvrPackage.VSPEC__CHILD:
-				return ((InternalEList<?>)getChild()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.VSPEC__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -264,16 +144,11 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
-				return getGroupMultiplicity();
 			case BvrPackage.VSPEC__RESOLUTION_TIME:
 				return getResolutionTime();
-			case BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-				return getOwnedVSpecDerivation();
-			case BvrPackage.VSPEC__CHILD:
-				return getChild();
-			case BvrPackage.VSPEC__COMMENT:
-				return getComment();
+			case BvrPackage.VSPEC__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -283,26 +158,14 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
-				setGroupMultiplicity((MultiplicityInterval)newValue);
-				return;
 			case BvrPackage.VSPEC__RESOLUTION_TIME:
 				setResolutionTime((String)newValue);
 				return;
-			case BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-				getOwnedVSpecDerivation().clear();
-				getOwnedVSpecDerivation().addAll((Collection<? extends VSpecDerivation>)newValue);
-				return;
-			case BvrPackage.VSPEC__CHILD:
-				getChild().clear();
-				getChild().addAll((Collection<? extends VSpec>)newValue);
-				return;
-			case BvrPackage.VSPEC__COMMENT:
-				setComment((String)newValue);
+			case BvrPackage.VSPEC__TARGET:
+				setTarget((Target)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -316,20 +179,11 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
-				setGroupMultiplicity((MultiplicityInterval)null);
-				return;
 			case BvrPackage.VSPEC__RESOLUTION_TIME:
 				setResolutionTime(RESOLUTION_TIME_EDEFAULT);
 				return;
-			case BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-				getOwnedVSpecDerivation().clear();
-				return;
-			case BvrPackage.VSPEC__CHILD:
-				getChild().clear();
-				return;
-			case BvrPackage.VSPEC__COMMENT:
-				setComment(COMMENT_EDEFAULT);
+			case BvrPackage.VSPEC__TARGET:
+				setTarget((Target)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -343,16 +197,10 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BvrPackage.VSPEC__GROUP_MULTIPLICITY:
-				return groupMultiplicity != null;
 			case BvrPackage.VSPEC__RESOLUTION_TIME:
 				return RESOLUTION_TIME_EDEFAULT == null ? resolutionTime != null : !RESOLUTION_TIME_EDEFAULT.equals(resolutionTime);
-			case BvrPackage.VSPEC__OWNED_VSPEC_DERIVATION:
-				return ownedVSpecDerivation != null && !ownedVSpecDerivation.isEmpty();
-			case BvrPackage.VSPEC__CHILD:
-				return child != null && !child.isEmpty();
-			case BvrPackage.VSPEC__COMMENT:
-				return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
+			case BvrPackage.VSPEC__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -369,8 +217,6 @@ public abstract class VSpecImpl extends VPackageableImpl implements VSpec {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (resolutionTime: ");
 		result.append(resolutionTime);
-		result.append(", comment: ");
-		result.append(comment);
 		result.append(')');
 		return result.toString();
 	}

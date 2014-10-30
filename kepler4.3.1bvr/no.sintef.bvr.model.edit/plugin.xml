@@ -7,9 +7,9 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated BVRMetamodel -->
+      <!-- @generated BVRMetamodel5 -->
       <factory
-            uri="http:///bvr.ecore"
+            uri="http:///bvr.ecore/2.0.0"
             class="bvr.provider.BvrItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

@@ -56,6 +56,7 @@ public class RepeatableVariationPointItemProvider
 			super.getPropertyDescriptors(object);
 
 			addBindingClassifierPropertyDescriptor(object);
+			addBindingVClassOccPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -74,6 +75,28 @@ public class RepeatableVariationPointItemProvider
 				 getString("_UI_RepeatableVariationPoint_bindingClassifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_RepeatableVariationPoint_bindingClassifier_feature", "_UI_RepeatableVariationPoint_type"),
 				 BvrPackage.Literals.REPEATABLE_VARIATION_POINT__BINDING_CLASSIFIER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Binding VClass Occ feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBindingVClassOccPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RepeatableVariationPoint_bindingVClassOcc_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RepeatableVariationPoint_bindingVClassOcc_feature", "_UI_RepeatableVariationPoint_type"),
+				 BvrPackage.Literals.REPEATABLE_VARIATION_POINT__BINDING_VCLASS_OCC,
 				 true,
 				 false,
 				 true,

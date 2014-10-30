@@ -6,31 +6,29 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import bvr.NamedElement;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
-import no.sintef.bvr.tool.ui.loader.BVRView;
-import no.sintef.bvr.ui.framework.elements.ConfigurableUnitPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 
 public class BVRUIKernel {
 	
 	private BVREditorPanel editorPanel;
-	private ConfigurableUnitPanel modelPanel;
-	private BVRView view;
+	private BVRModelPanel modelPanel;
 	
-	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRView view, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
-		this.view = view;
-		modelPanel = new ConfigurableUnitPanel();
-		editorPanel = new BVREditorPanel(this, vmMap, view, resolutionvmMaps);
+	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRNotifiableController controller, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+		modelPanel = new BVRModelPanel();
+		editorPanel = new BVREditorPanel(this, controller);
 	}
 	
 	public BVREditorPanel getEditorPanel() {
 		return editorPanel;
 	}
+	
 	public void setEditorPanel(BVREditorPanel editorPanel) {
 		this.editorPanel = editorPanel;
 	}
-	public ConfigurableUnitPanel getModelPanel() {
+	
+	public BVRModelPanel getModelPanel() {
 		return modelPanel;
 	}
-
-
 }

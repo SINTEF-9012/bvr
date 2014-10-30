@@ -34,7 +34,6 @@ public class ConsoleLogger implements Logger {
 	public void error(String message, Throwable e) {
 		String stackTrace = CommonUtility.getStackTraceAsString(e);
 		error(message + " with the stack trace:\n" + stackTrace);
-	}
-	
+	}	
 
 }

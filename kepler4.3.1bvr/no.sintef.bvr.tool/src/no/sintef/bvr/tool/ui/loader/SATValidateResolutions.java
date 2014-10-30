@@ -14,8 +14,9 @@ import org.sat4j.specs.TimeoutException;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
@@ -24,10 +25,10 @@ import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CoveringArray;
 
 public class SATValidateResolutions implements ActionListener {
-	private BVRModel m;
-	private BVRView v;
+	private BVRToolModel m;
+	private BVRNotifiableController v;
 
-	public SATValidateResolutions(BVRModel m, BVRView bvrView) {
+	public SATValidateResolutions(BVRToolModel m, BVRNotifiableController bvrView) {
 		this.m = m;
 		this.v = bvrView;
 	}
@@ -35,7 +36,7 @@ public class SATValidateResolutions implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		no.sintef.ict.splcatool.BVRModel x = m.getBVRM();
+		no.sintef.ict.splcatool.SPLCABVRModel x = m.getBVRM();
 		
 		CoveringArray ca;
 		try {

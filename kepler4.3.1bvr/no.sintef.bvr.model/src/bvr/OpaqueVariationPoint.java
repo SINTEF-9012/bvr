@@ -9,7 +9,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An OpaqueVariationPoint is an executable, domain-specific variation point whose semantics is not defined by BVR. It is the responsibility of the specific domain to execute this kind of variation point.<br><br>If bound to a choice then an OpaqueVariation point will be executed upon a positive decision. If bound to a VClassifier then it will be executed once for each instance created from it. If bound to a variable then it will be executed when a value is assigned to it, also providing the value as parameter for the execution.<br></p><p>####BVRSemanticStart####</p><p></p><p>Dynamic semantics</p><p>The OpaqueVariationPoint allows user to make use of variations that are not directly defined by BVR. So, its semantics is not detailed here, and we do not have pre and post conditions</p><p>Pre and post condition</p><p>Pre-condition :</p><p>None</p><p>Post-condition:</p><p>None</p><p>OCL :</p><p>-- OpaqueVariationPoint</p><p>context OpaqueVariationPoint::eval(ctx : BVRExecutionContext)</p><p>pre : true</p><p>post : true</p><p>####BVRSemanticEnd####</p>
+ * <p>An OpaqueVariationPoint is an executable, domain-specific variation point whose semantics is not defined by BVR. It is the responsibility of the specific domain to execute this kind of variation point.<br><br>If bound to a choice then an OpaqueVariation point will be executed upon a positive decision. If bound to a VClassifier then it will be executed once for each instance created from it. If bound to a variable then it will be executed when a value is assigned to it, also providing the value as parameter for the execution.<br></p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -33,12 +33,12 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * <p>The place holder of the OpaqueVariationPoint.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Place Holder</em>' containment reference.
-	 * @see #setPlaceHolder(BaseModelHandle)
+	 * @see #setPlaceHolder(ObjectHandle)
 	 * @see bvr.BvrPackage#getOpaqueVariationPoint_PlaceHolder()
 	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
-	BaseModelHandle getPlaceHolder();
+	ObjectHandle getPlaceHolder();
 
 	/**
 	 * Sets the value of the '{@link bvr.OpaqueVariationPoint#getPlaceHolder <em>Place Holder</em>}' containment reference.
@@ -48,7 +48,7 @@ public interface OpaqueVariationPoint extends VariationPoint {
 	 * @see #getPlaceHolder()
 	 * @generated
 	 */
-	void setPlaceHolder(BaseModelHandle value);
+	void setPlaceHolder(ObjectHandle value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.

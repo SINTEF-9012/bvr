@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.tool.ui.loader.BVRModel;
 
 
 public class SaveModelAsEvent implements ActionListener {
@@ -24,7 +24,7 @@ public class SaveModelAsEvent implements ActionListener {
 	public void actionPerformed(ActionEvent event) {		
 		try{
 			int i = filePane.getSelectedIndex();
-			BVRModel model = Context.eINSTANCE.getBvrModels().get(i);
+			BVRToolModel model = Context.eINSTANCE.getBvrModels().get(i);
 			
 			File file = StaticUICommands.saveModelToFile(filePane, model, trydirectsave);
 			if(file != null){

@@ -15,7 +15,6 @@ package bvr;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link bvr.Variable#getReplacementFragmentTypesubsetstype <em>Replacement Fragment Typesubsetstype</em>}</li>
  *   <li>{@link bvr.Variable#getDefaulValue <em>Defaul Value</em>}</li>
  *   <li>{@link bvr.Variable#getType <em>Type</em>}</li>
  * </ul>
@@ -26,31 +25,6 @@ package bvr;
  * @generated
  */
 public interface Variable extends VSpec {
-	/**
-	 * Returns the value of the '<em><b>Replacement Fragment Typesubsetstype</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The optional ReplacementFragmentType.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Replacement Fragment Typesubsetstype</em>' reference.
-	 * @see #setReplacementFragmentTypesubsetstype(ReplacementFragmentType)
-	 * @see bvr.BvrPackage#getVariable_ReplacementFragmentTypesubsetstype()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	ReplacementFragmentType getReplacementFragmentTypesubsetstype();
-
-	/**
-	 * Sets the value of the '{@link bvr.Variable#getReplacementFragmentTypesubsetstype <em>Replacement Fragment Typesubsetstype</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Replacement Fragment Typesubsetstype</em>' reference.
-	 * @see #getReplacementFragmentTypesubsetstype()
-	 * @generated
-	 */
-	void setReplacementFragmentTypesubsetstype(ReplacementFragmentType value);
-
 	/**
 	 * Returns the value of the '<em><b>Defaul Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

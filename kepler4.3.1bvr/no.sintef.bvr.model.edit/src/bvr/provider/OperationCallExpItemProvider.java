@@ -185,7 +185,7 @@ public class OperationCallExpItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.OPERATION_CALL_EXP__ARGUMENT,
-				 BvrFactory.eINSTANCE.createVSpecRef()));
+				 BvrFactory.eINSTANCE.createTargetRef()));
 
 		newChildDescriptors.add
 			(createChildParameter

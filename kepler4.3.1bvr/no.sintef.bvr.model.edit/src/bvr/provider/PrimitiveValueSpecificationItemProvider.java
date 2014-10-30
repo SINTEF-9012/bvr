@@ -152,7 +152,7 @@ public class PrimitiveValueSpecificationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(BvrPackage.Literals.PRIMITIVE_VALUE_SPECIFICATION__EXPRESSION,
-				 BvrFactory.eINSTANCE.createVSpecRef()));
+				 BvrFactory.eINSTANCE.createTargetRef()));
 
 		newChildDescriptors.add
 			(createChildParameter

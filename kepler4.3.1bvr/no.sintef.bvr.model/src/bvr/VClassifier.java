@@ -9,7 +9,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A VClassifier (variability classifier) is a VSpec whose resolution requires instantiating it zero or more times and then resolving its sub-tree for each instance. When a repeatable variation point is bound to a VClassifier it will be applied once for each instance of the VClassifier during materialization.</p><p>Each variability classifier has an instance multiplicity which specifies lower and upper limits for the number of instances created from it.</p>
+ * <p>VClassifier is a set concept. The instanceMultiplicity defines the range of how many ChoiceResolutions that can be referring this particular VClassifier.</p><p>A VClassifier can also have a subtree as it is a CompoundNode which defines subordinate variability specifications (VNodes).</p><p>When a repeatable variation point is bound to a VClassifier it will be applied once for each resolution of the VClassifier during materialization.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -23,7 +23,7 @@ package bvr;
  * @model
  * @generated
  */
-public interface VClassifier extends VSpec {
+public interface VClassifier extends VSpec, CompoundNode {
 	/**
 	 * Returns the value of the '<em><b>Instance Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
