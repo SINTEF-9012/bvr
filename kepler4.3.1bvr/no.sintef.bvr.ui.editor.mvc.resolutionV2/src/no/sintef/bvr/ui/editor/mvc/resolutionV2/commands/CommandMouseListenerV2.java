@@ -17,6 +17,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import no.sintef.bvr.tool.controller.command.ResCommand;
+
 
 public class CommandMouseListenerV2 extends MouseAdapter {
 

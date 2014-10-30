@@ -8,9 +8,8 @@ import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
-
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 import bvr.NamedElement;
 //import bvr.VariableValueAssignment;

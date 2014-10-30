@@ -13,6 +13,7 @@ import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.Constraint;
 //import bvr.Constraint;
 import bvr.FragmentSubstitution;
@@ -211,6 +212,8 @@ public interface EditorCommands {
 	public void setVSpecTarget(VSpec namedElement, Target target);
 
 	public void reset();
+	
+	public void removeBVRModelCompoundResolutions(BVRModel model, EList<CompoundResolution> resolutions);
 
 
 }

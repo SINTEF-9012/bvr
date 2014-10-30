@@ -15,6 +15,7 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 //import bvr.ChoiceResolutuion;
 import bvr.CompoundNode;
+import bvr.CompoundResolution;
 import bvr.Constraint;
 //import bvr.ConfigurableUnit;
 import bvr.FragmentSubstitution;
@@ -577,6 +578,13 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void addNegChoiceResoulution(VSpecResolution vsper, NegResolution nr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeBVRModelCompoundResolutions(BVRModel model,
+			EList<CompoundResolution> resolutions) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -7,18 +7,16 @@ import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
 
-public class DeleteResolution implements ActionListener {
-
+public class NewResolvedResolutionEvent implements ActionListener {
 	private BVRNotifiableController controller;
 
-	public DeleteResolution(BVRNotifiableController _controller){
+	public NewResolvedResolutionEvent(BVRNotifiableController _controller) {
 		controller = _controller;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createRemoveRootResolutionCommand();
+	public void actionPerformed(ActionEvent arg0) {
+		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createResolutionModelCommand();
 		command.execute();
 	}
-
 }

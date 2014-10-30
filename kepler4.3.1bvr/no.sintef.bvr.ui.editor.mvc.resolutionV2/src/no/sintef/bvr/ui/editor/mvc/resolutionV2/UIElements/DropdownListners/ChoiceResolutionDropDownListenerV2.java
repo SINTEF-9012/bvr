@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
@@ -17,7 +18,6 @@ import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;

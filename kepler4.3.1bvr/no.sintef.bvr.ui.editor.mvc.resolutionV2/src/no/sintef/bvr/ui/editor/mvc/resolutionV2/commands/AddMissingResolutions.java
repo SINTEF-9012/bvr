@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.controller.command.ResCommand;
 import bvr.CompoundResolution;
 import bvr.VClassifier;
 //import bvr.VInstance;
@@ -12,7 +15,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 
 public class AddMissingResolutions implements ResCommand {
-	private BVRResolutionToolView view;
+	private BVRNotifiableController view;
 	private VSpec target;
 	boolean unresolved;
 	private VSpecResolution parent;
@@ -21,7 +24,7 @@ public class AddMissingResolutions implements ResCommand {
 	 * ONLY for use with nodes NOT added to model
 	 */
 	@Override
-	public ResCommand init(BVRResolutionToolView  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
+	public ResCommand init(BVRNotifiableController  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = target;
 		this.parent = parent;

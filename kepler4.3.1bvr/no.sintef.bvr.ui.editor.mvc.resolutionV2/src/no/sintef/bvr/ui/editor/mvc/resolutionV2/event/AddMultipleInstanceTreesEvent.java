@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.CloneRes;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.model.CloneResFacade;
+import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
@@ -40,7 +40,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		// System.out.println(parent);
-		VSpecResolution grandParent = Iterators.getInstance().getParent(this.view.getBVRModel(), parent);
+		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(this.view.getBVRModel(), parent);
 
 		if (grandParent == null) {
 			for (VSpecResolution c : this.view.getBVRModel().getResolutionModels())
@@ -73,13 +73,13 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 	}
 
 	VSpecResolution create() {
-		VSpecResolution root = CloneRes.getResolution().cloneItStart(parent, view);
+		VSpecResolution root = CloneResFacade.getResolution().cloneItStart(parent, view);
 
 		for (int i = 0; i < instancesRequested; i++) {
 			PosResolution newInstance = BvrFactory.eINSTANCE.createPosResolution();
 			CommonUtility.setResolved(newInstance, target);
 			newInstance.setName("I" + view.getIncrementedNameCounter());
-			Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 			((CompoundResolution) root).getMembers().add(newInstance);
 
 		}

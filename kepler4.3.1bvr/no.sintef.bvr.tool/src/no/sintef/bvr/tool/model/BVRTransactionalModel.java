@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
@@ -13,13 +12,23 @@ import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
+
+
+
+
+import no.sintef.ict.splcatool.CNF;
+import no.sintef.ict.splcatool.CoveringArray;
+import no.sintef.ict.splcatool.CoveringArrayComplete;
+import no.sintef.ict.splcatool.GUIDSL;
+import no.sintef.ict.splcatool.GraphMLFM;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -313,7 +322,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void addChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setName("Choice "+choicCounter);
+		c.setName("Choice"+choicCounter);
 		
 		//each vspec has to have target
 		Target target = BvrFactory.eINSTANCE.createTarget();
@@ -763,4 +772,62 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 	}
 	
+	@Override
+	public CompoundResolution createResolution(){
+		BVRModel model = getBVRModel();
+		if(model.getVariabilityModel() == null)
+			throw new UserInputError("there is not variability model yet, nothing to resolve");
+		
+		PosResolution root = BvrFactory.eINSTANCE.createPosResolution();
+
+		CompoundNode variablityModel = model.getVariabilityModel();
+		
+		if (variablityModel instanceof Choice) {
+			root.setResolvedChoice((Choice) variablityModel);
+			root.setName(((NamedElement) variablityModel).getName());
+		} else {
+			throw new UserInputError("model must start with a choice");
+		}
+		return root;
+	}
+	
+	@Override
+	public void addResolutionModel(CompoundResolution root) {
+		BVRModel model = getBVRModel();
+		Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, model);
+	}
+	
+	@Override
+	public void removeRootResolution(int resolutionIndex) {
+		BVRModel model = getBVRModel();
+		CompoundResolution resolution = model.getResolutionModels().get(resolutionIndex);
+		Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(model, resolution);
+	}
+	
+	@Override
+	public void removeAllResolutions() {
+		BVRModel model = getBVRModel();
+		EList<CompoundResolution> resolutions = new BasicEList<CompoundResolution>();
+		for(CompoundResolution cr : model.getResolutionModels()){
+			if(cr instanceof PosResolution)
+				resolutions.add(cr);
+		}
+		Context.eINSTANCE.getEditorCommands().removeBVRModelCompoundResolutions(model, resolutions);
+	}
+	
+	@Override
+	public void generatAllProducts() {
+		try {
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			CoveringArray ca = new CoveringArrayComplete(cnf);
+			ca.generate();
+			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			for(VSpecResolution resolution : resolutions)
+				addResolutionModel((CompoundResolution) resolution);
+		} catch (Exception e) {
+			throw new RethrownException("failed to generate products", e); 
+		}	
+	}
 }

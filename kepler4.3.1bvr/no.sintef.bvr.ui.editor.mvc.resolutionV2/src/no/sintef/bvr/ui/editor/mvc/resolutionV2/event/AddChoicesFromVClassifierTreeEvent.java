@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.AddResolution;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.tools.Iterators;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import bvr.BvrFactory;
 import bvr.PosResolution;
 //import bvr.VInstance;
@@ -32,7 +32,7 @@ public class AddChoicesFromVClassifierTreeEvent implements ActionListener {
 		  PosResolution root = BvrFactory.eINSTANCE.createPosResolution();
 		  CommonUtility.setResolved(root, target);
 		  root.setName("I" + view.getIncrementedNameCounter());
-		  Iterators.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
+		  ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		  Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(c, root);
 		 
 	}

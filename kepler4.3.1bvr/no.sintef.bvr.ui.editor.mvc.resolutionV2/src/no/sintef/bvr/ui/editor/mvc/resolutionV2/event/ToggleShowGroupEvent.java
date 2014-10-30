@@ -3,7 +3,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2.event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
+import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 
 public class ToggleShowGroupEvent implements ActionListener {
 
