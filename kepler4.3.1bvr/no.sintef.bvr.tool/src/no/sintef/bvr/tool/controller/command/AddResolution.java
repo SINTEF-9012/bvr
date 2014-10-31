@@ -75,7 +75,7 @@ public class AddResolution implements ResCommand{
 		 //count++;
 		
 		//thisResolution.setName("I " + view.getIncrementedNameCounter());
-		thisResolution.setName("I ");
+		thisResolution.setName("I " + view.getIncrementedInstanceCount());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 		
 		((CompoundResolution) parent).getMembers().add(thisResolution);

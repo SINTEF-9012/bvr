@@ -52,7 +52,9 @@ public class AddChoiceResolutionFromVClassifier implements UICommand {
 		// listener.setLeftClickCommand(command);
 		ToggleChoiceCommand command = new ToggleChoiceCommand();
 		//command.init(view, null, cr, true);
-		listener.setLeftClickCommand(command);
+
+		//listener.setLeftClickCommand(command);
+
 
 		cp.addMouseListener(new ChoiceResolutionDropDownListenerV2(cp, cr, vmMap, view));
 		cp.addMouseListener(listener);

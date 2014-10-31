@@ -64,8 +64,8 @@ public class AddChoiceResolution implements Command {
 		////////////////////////////////////
 		CommandMouseListener listener = new CommandMouseListener();
 		ToggleChoiceCommand command = new ToggleChoiceCommand();
-		//command.init(view, null, c, true);
-//		listener.setLeftClickCommand(command);
+		command.init(rootPanel, null, cp, vmMap, nodes, bindings, view);
+		listener.setLeftClickCommand(command);
 		
 		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, vmMap,  (BVRNotifiableController) view));
         cp.addMouseListener(listener);

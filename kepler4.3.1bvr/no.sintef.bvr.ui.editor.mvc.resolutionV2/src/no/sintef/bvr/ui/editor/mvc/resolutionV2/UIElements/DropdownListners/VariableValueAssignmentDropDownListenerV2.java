@@ -49,7 +49,7 @@ class VariableValueAssignmentDropdown extends JPopupMenu {
     public VariableValueAssignmentDropdown(VariableAssignmentPanel cp, /*VariableValueAssignment c,*/ BVRResolutionToolView view, Map<JComponent, NamedElement> vmMap){
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
-		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, view));
 		add(remove);
 		
     }

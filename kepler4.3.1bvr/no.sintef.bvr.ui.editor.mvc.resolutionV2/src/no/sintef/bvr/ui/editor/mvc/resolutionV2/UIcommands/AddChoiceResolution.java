@@ -72,7 +72,8 @@ public class AddChoiceResolution implements UICommand {
 		CommandMouseListenerV2 listener = new CommandMouseListenerV2();
 		ToggleChoiceCommand command = new ToggleChoiceCommand();
 		//command.init(view, null, c, true);
-		listener.setLeftClickCommand(command);
+
+		//listener.setLeftClickCommand(command);
 		
 		cp.addMouseListener(new ChoiceResolutionDropDownListenerV2(cp, c, vmMap,  (BVRResolutionToolView) view));
         cp.addMouseListener(listener);

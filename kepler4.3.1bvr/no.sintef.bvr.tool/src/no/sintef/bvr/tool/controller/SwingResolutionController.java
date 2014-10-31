@@ -12,9 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
-import no.sintef.bvr.tool.controller.command.AddChoiceResolutionFromVClassifier;
+import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
@@ -22,6 +23,7 @@ import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolution;
+import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 //import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 //import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
@@ -30,6 +32,9 @@ import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.ChangeChoiceFacade;
+import no.sintef.bvr.tool.model.CloneResFacade;
+import no.sintef.bvr.tool.model.InheritanceFacade;
 import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
@@ -63,6 +68,7 @@ import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.NegResolution;
 import bvr.OpaqueConstraint;
+import bvr.PosResolution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -74,7 +80,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public JTabbedPane modelPane;
 	private boolean showGroups;
 	private boolean showConstraints;
-
 
 	// Resolutions
 	public JTabbedPane resPane;
@@ -115,8 +120,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 		bvrModelSubject = new BVRModelSubject(toolModel.getBVRModel());
 
-
-
 		// Resolution panes
 		resPane = new JTabbedPane();
 	}
@@ -146,8 +149,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			resolutionBindings.add(bindings);
 
 			loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings, false, false);
-			//resKernel.getModelPanel().layoutTreeNodes(strategy);
-			
+			// resKernel.getModelPanel().layoutTreeNodes(strategy);
+
 			String tabtitle = "";
 			if (v instanceof ChoiceResolution) {
 				ChoiceResolution cr = (ChoiceResolution) v;
@@ -160,8 +163,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			} else if (CommonUtility.isVSpecResolutionVClassifier(v)) {
 				tabtitle = v.getName() + ":" + ((ChoiceResolution) v).getResolvedVClassifier().getName();
 			}
-			
-		
+
 			resPane.addTab(tabtitle, null, epanel, "");
 		}
 	}
@@ -181,10 +183,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		// secondPrint = true;
 		// }
 		// printAnyway = false;
-		/*if (v.getResolvedVSpec() == null) {
-			System.out.println("resolvedVSpec is not set for: " + v);
-			return;
-		}*/
+		/*
+		 * if (v.getResolvedVSpec() == null) { System.out.println("resolvedVSpec is not set for: " + v); return; }
+		 */
 		// Add view
 		// System.out.println(v.getClass().getSimpleName());
 		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
@@ -248,20 +249,13 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			/*
 			 * if (showGroups) {
 			 * 
-			 * if (((CompoundResolution) v).getGroupMultiplicity() != null) {
-			 * boolean error = findGroupError(v);
+			 * if (((CompoundResolution) v).getGroupMultiplicity() != null) { boolean error = findGroupError(v);
 			 * 
-			 * if (error) {
-			 * nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this).execute();
-			 * if (!secondPrint)
-			 * printAnyway = true;
-			 * } else {
-			 * nextParent = new AddGroupMultiplicity().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this)
-			 * .execute();
+			 * if (error) { nextParent = new AddErrorGroup().init(bvruikernel, v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings,
+			 * this).execute(); if (!secondPrint) printAnyway = true; } else { nextParent = new AddGroupMultiplicity().init(bvruikernel,
+			 * v.getResolvedVSpec(), nextParent, vmMap, nodes, bindings, this) .execute();
 			 * 
-			 * }
-			 * }
-			 * }
+			 * } } }
 			 */
 
 		}
@@ -282,7 +276,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	public void render() {
 		loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
-		for(BVRUIKernel resKernel : resolutionkernels){
+		for (BVRUIKernel resKernel : resolutionkernels) {
 			strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings, (ArrayList<JScrollPane>) resolutionPanes);
 			resKernel.getModelPanel().layoutTreeNodes(strategy);
 		}
@@ -313,8 +307,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 		choiceCount = 1;
 		render();
-		
-		//loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
+
+		// loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
 
 		// Restore positions
 		if (!isEmpty && !modelIsEmpty && selected < resmodels) {
@@ -357,15 +351,13 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void addChoiceResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
-		VSpecResolution parentNamedElement = null;
-		for (Map x : resolutionvmMaps) {
-			parentNamedElement = (VSpecResolution) x.get(parent);
-			if (parentNamedElement != null) {
-				VSpec vSpecToResolve = (VSpec) resolvedVSpec;
-				toolModel.addChoiceResolution(vSpecToResolve, parentNamedElement);
-				return;
-			}
+	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
+		NamedElement parentNamedElement = getElementInCurrentPane(parent);
+
+		if (parentNamedElement != null) {
+			VSpec vSpecToResolve = (VSpec) resolvedVSpec;
+			toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
+			return;
 		}
 	}
 
@@ -406,6 +398,22 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
+	public SimpleExeCommandInterface RemoveVsSpecResoluton(final GUI_NODE _toDelete) {
+		final int resolutionIndex = resPane.getSelectedIndex();
+		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
+			NamedElement toDelete = null;
+
+			@Override
+			public void execute() {
+				toDelete = resolutionvmMaps.get(resolutionIndex).get(_toDelete);
+				toolModel.removeVSpecResolution(toDelete);
+
+			}
+
+		};
+		return command;
+	}
+
 	public boolean performSATValidation() {
 		return toolModel.performSATValidation();
 	}
@@ -423,6 +431,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t) {
 		final int xWise = t;
+
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -432,6 +441,22 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
+	@Override
+	public void toggleChoice(GUI_NODE _toToggle) {
+		NamedElement toToggle = getElementInCurrentPane(_toToggle);
+		toolModel.toggleChoice(toToggle);
+	}
 
+	private NamedElement getElementInCurrentPane(JComponent toFind) {
+		return resolutionvmMaps.get(resPane.getSelectedIndex()).get(toFind);
+	}
+
+	@Override
+	public void resolveSubtree(GUI_NODE _parent) {
+		final VSpecResolution parent = (VSpecResolution) getElementInCurrentPane(_parent);
+
+		toolModel.resolveSubtree(parent);
+
+	}
 
 }

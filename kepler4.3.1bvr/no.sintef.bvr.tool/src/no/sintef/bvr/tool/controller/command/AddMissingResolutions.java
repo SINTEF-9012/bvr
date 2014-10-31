@@ -1,4 +1,4 @@
-package no.sintef.bvr.ui.editor.mvc.resolutionV2.commands;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.ArrayList;
 import java.util.List;

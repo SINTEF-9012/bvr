@@ -33,7 +33,7 @@ public class CloneResFacade {
 		return clone;
 	}
 
-	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRResolutionToolView view) {
+	public VSpecResolution cloneRes(VSpecResolution copyFrom, BVRToolModel view) {
 		VSpecResolution copyTo = null;
 		
 		if (copyFrom instanceof PosResolution) {
@@ -64,13 +64,13 @@ public class CloneResFacade {
 		
 	}
 
-	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRResolutionToolView view) {
+	public VSpecResolution cloneItStart(VSpecResolution parentFrom, BVRToolModel view) {
 		VSpecResolution parentTo = cloneRes(parentFrom, view);
 		cloneIterate(parentTo, parentFrom, view);
 		return parentTo;
 	}
 
-	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRResolutionToolView view) {
+	public void cloneIterate(VSpecResolution parentTo, VSpecResolution parentFrom, BVRToolModel view) {
 		if ((parentFrom != null) &&(parentFrom instanceof CompoundResolution)) {
 			VSpecResolution newNode = null;
 			

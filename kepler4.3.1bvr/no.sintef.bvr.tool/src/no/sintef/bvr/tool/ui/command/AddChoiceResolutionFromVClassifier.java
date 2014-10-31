@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.controller.command;
+package no.sintef.bvr.tool.ui.command;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,7 @@ import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 //TODO import no.sintef.bvr.tool.ui.command.AddVInstance;
-import no.sintef.bvr.tool.ui.command.CommandMouseListener;
-import no.sintef.bvr.tool.ui.command.Helper;
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.Pair;

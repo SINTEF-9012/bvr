@@ -65,13 +65,7 @@ public interface EditorCommands {
 	 * @param parentVSpecResolution
 	 * @param PositiveResolution
 	 */
-	public void addPosChoiceResoulution(VSpecResolution vsper, PosResolution pr);
-	/**
-	 * setting the resolved VSpec is a separate action, sett before add or call setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
-	 * @param parentVSpecResolution
-	 * @param NegativeResolution
-	 */
-	public void addNegChoiceResoulution(VSpecResolution vsper, NegResolution nr);
+	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution pr);
 	
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	
@@ -126,7 +120,7 @@ public interface EditorCommands {
 	
 	public void removeVSpecVariable(VSpec vSpec, Variable var);
 	
-	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement);
+	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolutionParent, NamedElement namedElement);
 	
 	//public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
 	

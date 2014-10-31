@@ -630,9 +630,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	@Override
 	public void removeNamedElementVSpecResolution(
-			VSpecResolution vSpecResolution, NamedElement namedElement) {
+			VSpecResolution vSpecParent, NamedElement namedElement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecResolution, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecParent, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
 		testCommandExecution(editingDomain, cmd);
 		
 	}
@@ -728,9 +728,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	
 	@Override
-	public void addPosChoiceResoulution(VSpecResolution vsper,	PosResolution pr) {
+	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), pr);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), cr);
 		testCommandExecution(editingDomain,cmd);
 		//setChoicePosResolvedVSpec(pr, target);
 	}
@@ -743,14 +743,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		
 	}
 
-	@Override
-	public void addNegChoiceResoulution(VSpecResolution vsper,
-			NegResolution nr) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), nr);
-		testCommandExecution(editingDomain,cmd);
-		
-	}
 
 	@Override
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {

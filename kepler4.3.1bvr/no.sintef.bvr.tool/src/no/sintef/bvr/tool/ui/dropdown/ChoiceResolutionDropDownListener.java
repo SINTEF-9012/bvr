@@ -14,6 +14,7 @@ import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
+import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
@@ -90,11 +91,10 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 
 					// TODO ADD NAME
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
-					if (x instanceof Choice) {
+					if( (x instanceof Choice) ||  (x instanceof VClassifier)){
 						addchild.addActionListener(new AddChoiceResolvedEvent(cp, (EObject)x, controller));
-					} else if (x instanceof VClassifier) {
-						addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, controller));
-					} else if (x instanceof Variable) {
+					} 
+					 else if (x instanceof Variable) {
 						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, controller));// TODO namechange
 					} else {
 						throw new UnsupportedOperationException("Unsupported: " + x.getClass().getName());
@@ -168,11 +168,11 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		 */
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
-		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, controller));
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, controller));
 		add(remove);
 		// Resolve subtree
 		JMenuItem resTree = new JMenuItem("resolve subtree");
-		//TODO resTree.addActionListener(new AddSubTreeEvent(c, view));
+		resTree.addActionListener(new AddSubTreeEvent(cp, controller));
 		add(resTree);
 
 		/*

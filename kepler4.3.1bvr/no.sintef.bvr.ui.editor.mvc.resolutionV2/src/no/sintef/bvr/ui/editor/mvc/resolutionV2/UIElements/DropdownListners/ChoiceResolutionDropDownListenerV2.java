@@ -14,11 +14,11 @@ import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
+import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
@@ -91,7 +91,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					if (x instanceof Choice) {
 						//addchild.addActionListener(new AddChoiceResolvedEvent(c, (Choice) x, view));
 					} else if (x instanceof VClassifier) {
-						addchild.addActionListener(new AddChoiceFromVClassifierEvent(c, (VClassifier) x, view));
+						addchild.addActionListener(new AddChoiceFromVClassifierEvent(cp, x, view));
 					} else if (x instanceof Variable) {
 						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, view));// TODO namechange
 					} else {
@@ -115,7 +115,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
 					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 					if (x instanceof VClassifier) {
-						addChild.addActionListener(new AddChoicesFromVClassifierTreeEvent(c, (VClassifier) x, view));
+						//addChild.addActionListener(new AddChoicesFromVClassifierTreeEvent(c, (VClassifier) x, view));
 						addTree.add(addChild);
 					}
 				}
@@ -136,7 +136,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
 					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 					if (x instanceof VClassifier) {
-						addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent((VClassifier) x, c, view));
+						//addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent((VClassifier) x, c, view));
 						addMulTree.add(addChild);
 					}
 				}
@@ -166,11 +166,11 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		 */
 		// -delete menus
 		JMenuItem remove = new JMenuItem("Remove");
-		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, vmMap, view));
+		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, view));
 		add(remove);
 		// Resolve subtree
 		JMenuItem resTree = new JMenuItem("resolve subtree");
-		resTree.addActionListener(new AddSubTreeEvent(c, view));
+		//resTree.addActionListener(new AddSubTreeEvent(c, view));
 		add(resTree);
 
 		/*

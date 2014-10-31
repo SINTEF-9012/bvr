@@ -191,7 +191,7 @@ public final class CommonUtility {
 			} else if (toResolve instanceof VClassifier) {
 				((ChoiceResolution) target).setResolvedVClassifier((VClassifier) toResolve);
 			} else {
-				throw new UnsupportedOperationException("target/toResolve type mismach");
+				throw new UnsupportedOperationException("target/toResolve type mismach " + toResolve);
 			}
 		}
 		if (target instanceof ValueResolution) {

@@ -571,20 +571,14 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addPosChoiceResoulution(VSpecResolution vsper, PosResolution pr) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addNegChoiceResoulution(VSpecResolution vsper, NegResolution nr) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void removeBVRModelCompoundResolutions(BVRModel model,
 			EList<CompoundResolution> resolutions) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution pr) {
 		// TODO Auto-generated method stub
 		
 	}
