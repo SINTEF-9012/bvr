@@ -32,7 +32,7 @@ public class AddChoicesFromVClassifierTreeEvent implements ActionListener {
 		  PosResolution root = BvrFactory.eINSTANCE.createPosResolution();
 		  CommonUtility.setResolved(root, target);
 		  root.setName("I" + view.getIncrementedNameCounter());
-		  ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
+		  //ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, root, false);
 		  Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution(c, root);
 		 
 	}

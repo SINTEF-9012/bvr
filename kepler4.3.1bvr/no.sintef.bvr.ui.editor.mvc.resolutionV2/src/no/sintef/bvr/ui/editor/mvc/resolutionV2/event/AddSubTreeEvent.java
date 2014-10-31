@@ -50,11 +50,11 @@ public class AddSubTreeEvent implements ActionListener {
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
 			if (parent instanceof PosResolution) {
 				Context.eINSTANCE.getEditorCommands().addPosChoiceResoulution( grandParent, (PosResolution) root);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
+				//InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
 			}
 			else if(parent instanceof NegResolution){
 				Context.eINSTANCE.getEditorCommands().addNegChoiceResoulution(grandParent, (NegResolution) root);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
+				//InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), view);
 			}/* else if (parent instanceof VariableValueAssignment) {
 			}
 				Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(grandParent, (VariableValueAssignment) root);
@@ -67,7 +67,7 @@ public class AddSubTreeEvent implements ActionListener {
 
 	VSpecResolution create() {
 		VSpecResolution root = CloneResFacade.getResolution().cloneItStart(parent, view);
-		ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
+		//ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), target, root, false);
 		return root;
 	}
 	

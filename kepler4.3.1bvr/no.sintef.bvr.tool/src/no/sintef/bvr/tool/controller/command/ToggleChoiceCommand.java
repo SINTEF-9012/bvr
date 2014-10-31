@@ -6,6 +6,7 @@ import java.util.List;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.ChangeChoiceFacade;
 import no.sintef.bvr.tool.model.InheritanceFacade;
 import bvr.ChoiceResolution;
@@ -16,10 +17,10 @@ import bvr.VSpecResolution;
 
 public class ToggleChoiceCommand implements ResCommand {
 	VSpecResolution vsr;
-	BVRNotifiableController view;
+	BVRToolModel view;
 
 	@Override
-	public ResCommand init(BVRNotifiableController view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
+	public ResCommand init(BVRToolModel view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.vsr = vsr;
 		this.view = view;
 		return this;

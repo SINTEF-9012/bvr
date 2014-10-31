@@ -6,6 +6,7 @@ import java.util.List;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
@@ -24,7 +25,7 @@ import bvr.Variable;
 //import bvr.common.PrimitiveTypeHandler;
 
 public class AddResolution implements ResCommand{
-	private BVRNotifiableController view;
+	private BVRToolModel view;
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
@@ -33,7 +34,7 @@ public class AddResolution implements ResCommand{
  * ONLY for use with nodes NOT added to model
  */
 	@Override
-	public ResCommand init(BVRNotifiableController view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
+	public ResCommand init(BVRToolModel view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = vs;
 		this.parent = vsr;

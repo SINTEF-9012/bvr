@@ -79,7 +79,7 @@ public class AddMultipleInstanceTreesEvent implements ActionListener {
 			PosResolution newInstance = BvrFactory.eINSTANCE.createPosResolution();
 			CommonUtility.setResolved(newInstance, target);
 			newInstance.setName("I" + view.getIncrementedNameCounter());
-			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
+			//ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddResolution(), target, newInstance, false);
 			((CompoundResolution) root).getMembers().add(newInstance);
 
 		}
