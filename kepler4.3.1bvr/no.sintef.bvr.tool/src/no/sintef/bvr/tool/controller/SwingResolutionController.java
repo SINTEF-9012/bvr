@@ -358,9 +358,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			VSpec vSpecToResolve = (VSpec) resolvedVSpec;
 			toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
 			return;
-		} else {
-			System.out.println("parent node not found");
-			return;
 		}
 	}
 
@@ -405,18 +402,12 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		final int resolutionIndex = resPane.getSelectedIndex();
 		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
 			NamedElement toDelete = null;
-			NamedElement parentNamedElement = null;
 
 			@Override
 			public void execute() {
 				toDelete = resolutionvmMaps.get(resolutionIndex).get(_toDelete);
+				toolModel.removeVSpecResolution(toDelete);
 
-				if (toDelete != null) {
-					parentNamedElement = ResolutionModelIterator.getInstance().getParent(toolModel.getBVRModel(), (VSpecResolution) toDelete);
-					Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution((VSpecResolution) parentNamedElement, toDelete);
-				} else {
-					System.out.println("could not find node to remove");
-				}
 			}
 
 		};
@@ -452,13 +443,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public void toggleChoice(GUI_NODE _toToggle) {
-		final NamedElement toToggle = getElementInCurrentPane(_toToggle);
-		if (toToggle instanceof ChoiceResolution) {
-			ChangeChoiceFacade.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), toolModel);
-			InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, toolModel);
-		} else {
-			System.out.println("toggle resolution form VClassifier attempted");
-		}
+		NamedElement toToggle = getElementInCurrentPane(_toToggle);
+		toolModel.toggleChoice(toToggle);
 	}
 
 	private NamedElement getElementInCurrentPane(JComponent toFind) {
@@ -468,45 +454,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public void resolveSubtree(GUI_NODE _parent) {
 		final VSpecResolution parent = (VSpecResolution) getElementInCurrentPane(_parent);
-		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(toolModel.getBVRModel(), (VSpecResolution) parent);
 
-		if (grandParent == null) {
-			for (VSpecResolution c : toolModel.getBVRModel().getResolutionModels())
-				if (c == parent) {
-					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, toolModel);
-					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(toolModel, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
-					
-					
-					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(toolModel.getBVRModel(), (VSpecResolution) parent);
-					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, toolModel.getBVRModel());
-					Context.eINSTANCE.getEditorCommands().addChoiceResoulution(root, (PosResolution) root);
-				}
-		}
-		else{
-			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, toolModel);
-			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(toolModel, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
-			
-			
-			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
-			if (parent instanceof PosResolution) {
-				Context.eINSTANCE.getEditorCommands().addChoiceResoulution( grandParent, (PosResolution) root);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), toolModel);
-			}
-			else if(parent instanceof NegResolution){
-				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(grandParent, (NegResolution) root);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), toolModel);
-			}/* else if (parent instanceof VariableValueAssignment) {
-			}
-				Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(grandParent, (VariableValueAssignment) root);
+		toolModel.resolveSubtree(parent);
 
-			} else if (parent instanceof VInstance) {
-				Context.eINSTANCE.getEditorCommands().addVInstance(grandParent, (VInstance) root);
-				
-				
-
-			}*/
-		}
-			
 	}
-	
+
 }

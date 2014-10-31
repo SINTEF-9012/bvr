@@ -7,17 +7,22 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
+import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.FragmentSubstitution;
 import bvr.NamedElement;
+import bvr.NegResolution;
 import bvr.PlacementFragment;
+import bvr.PosResolution;
 import bvr.ReplacementFragmentType;
 import bvr.VClassifier;
 import bvr.VNode;
@@ -312,6 +317,23 @@ abstract public class BVRToolModel {
 	public void generateCoveringArray(int xWise) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void resolveSubtree(VSpecResolution parent) {
+		throw new UnexpectedException("Are you using default implementation?!");
+		
+	}
+
+	public void toggleChoice(NamedElement toToggle) {
+		throw new UnexpectedException("Are you using default implementation?!");
+		
+	}
+
+	public void removeVSpecResolution(NamedElement toDelete) {
+		throw new UnexpectedException("Are you using default implementation?!");
+		
+	}
+
+	
 
 
 }

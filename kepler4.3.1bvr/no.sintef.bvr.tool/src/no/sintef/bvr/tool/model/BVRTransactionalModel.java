@@ -13,6 +13,7 @@ import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
@@ -22,10 +23,8 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
-
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
-
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
@@ -919,5 +918,59 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			throw new RethrownException("Failed to generate covering array", e);
 		}
 
+	}
+	public void resolveSubtree(VSpecResolution parent) {
+		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) parent);
+		if (grandParent == null) {
+			for (VSpecResolution c : getBVRModel().getResolutionModels())
+				if (c == parent) {
+					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
+					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
+					
+					
+					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(getBVRModel(), (VSpecResolution) parent);
+					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, getBVRModel());
+					Context.eINSTANCE.getEditorCommands().addChoiceResoulution(root, (PosResolution) root);
+				}
+		}
+		else{
+			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
+			
+			
+			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
+			if (parent instanceof PosResolution) {
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution( grandParent, (PosResolution) root);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), this);
+			}
+			else if(parent instanceof NegResolution){
+				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(grandParent, (NegResolution) root);
+				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), this);
+			}/* else if (parent instanceof VariableValueAssignment) {
+			}
+				Context.eINSTANCE.getEditorCommands().addVariableValueAssignment(grandParent, (VariableValueAssignment) root);
+
+			} else if (parent instanceof VInstance) {
+				Context.eINSTANCE.getEditorCommands().addVInstance(grandParent, (VInstance) root);
+				
+				
+
+			}*/
+		}
+		
+	}
+
+	public void removeVSpecResolution(NamedElement toDelete) {
+		NamedElement parentNamedElement = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) toDelete);
+			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution((VSpecResolution) parentNamedElement, toDelete);
+		
+	}
+
+	public void toggleChoice(NamedElement toToggle) {
+		if (toToggle instanceof ChoiceResolution) {
+			ChangeChoiceFacade.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
+			InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, this);
+		}
+		
 	}
 }
