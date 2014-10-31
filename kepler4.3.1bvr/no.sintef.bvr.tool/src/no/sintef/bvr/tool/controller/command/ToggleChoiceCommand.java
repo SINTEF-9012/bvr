@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
+import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.ChangeChoiceFacade;
 import no.sintef.bvr.tool.model.InheritanceFacade;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;

@@ -29,6 +29,7 @@ public class ChangeChoiceFacade {
 	}
 
 	public static void setChoiceResolution(ChoiceResolution c, boolean bool, BVRToolModel bvrModel) {
+
 		if (c instanceof PosResolution) {
 			if (bool) {
 				return;

@@ -370,8 +370,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			@Override
 			public void execute() {
 				CompoundResolution compoundResolution = toolModel.createResolution();
-				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(toolModel, new AddResolution(),
-						(VSpec) compoundResolution.getResolvedChoice(), compoundResolution, false);
 				toolModel.addResolutionModel(compoundResolution);
 			}
 		});

@@ -13,6 +13,7 @@ import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.RethrownException;
@@ -21,7 +22,6 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
-
 
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
@@ -799,6 +799,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		if (variablityModel instanceof Choice) {
 			CommonUtility.setResolved(root, (VSpec) variablityModel);
 			root.setName(((NamedElement) variablityModel).getName());
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddResolution(), (VSpec) root.getResolvedChoice(), root, false);
 		} else {
 			throw new UserInputError("model must start with a choice");
 		}
