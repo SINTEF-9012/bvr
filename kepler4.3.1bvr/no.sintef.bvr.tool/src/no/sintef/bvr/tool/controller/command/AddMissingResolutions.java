@@ -10,7 +10,6 @@ import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
 import bvr.VClassifier;
-//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
