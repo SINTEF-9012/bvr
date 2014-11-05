@@ -111,7 +111,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private int instanceNameCounter;
 
 	// draw variables
-	private List<VSpecResolution> minimized = new ArrayList<VSpecResolution>();
+	
 	private List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
 
 	private ResolutionLayoutStrategy strategy;
@@ -207,14 +207,14 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
 			// System.out.println(v + ", " + bvruikernel);
 
-			nextParent = new AddChoiceResolutionFromVClassifier(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(
+			nextParent = new AddChoiceResolutionFromVClassifier(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(
 					bvruikernel, v, parent, vmMap, nodes, bindings, rootController).execute();
 
 			vmMap.put(nextParent, v);
 
 		} else if (v instanceof ChoiceResolution) {
 			// System.out.println(v);
-			nextParent = new AddChoiceResolution(minimized.contains(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
+			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 
 			vmMap.put(nextParent, v);
@@ -236,7 +236,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		 */else {
 			throw new BVRModelException("Unknown element: " + v.getClass());
 		}
-		if (!minimized.contains(v)) {// TODO add show/hide visuals
+		if (!toolModel.isVSpecResolutionMinimized(v)) {// TODO add show/hide visuals
 			/*
 			 * if (showConstraints) { for (Constraint c : bvrModel.getVariabilityModel().getOwnedConstraint()) { /* if (c instanceof OpaqueConstraint)
 			 * { if (((OpaqueConstraint) c).getConstraint() == v.getResolvedVSpec()) { if (invalidConstraints.contains(c)) { JComponent con = new
@@ -280,9 +280,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		// System.out.println();
 		if (v instanceof CompoundResolution)
 			for (VSpecResolution vs : ((CompoundResolution) v).getMembers()) {
-				if (!minimized.contains(v)) {
+				if (!toolModel.isVSpecResolutionMinimized(v)) {
 					loadBVRResolutionView(vs, bvruikernel, nextParent, bvrModel, vmMap, nodes, bindings, printAnyway, secondPrint);
-
 				}
 			}
 
@@ -517,6 +516,20 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public boolean isResolutionModelSet() {
 		return toolModel.isResolutionModelSet();
+	}
+
+	@Override
+	public void minimizeNode(GUI_NODE node) {
+		NamedElement element = getElementInCurrentPane(node);
+		toolModel.minimaizeVSpecResolution((VSpecResolution) element);
+		notifyResolutionViewUpdate();
+	}
+
+	@Override
+	public void maximizeNode(GUI_NODE node) {
+		NamedElement element = getElementInCurrentPane(node);
+		toolModel.maximizeVSpecResolution((VSpecResolution) element);
+		notifyResolutionViewUpdate();
 	}
 	
 }

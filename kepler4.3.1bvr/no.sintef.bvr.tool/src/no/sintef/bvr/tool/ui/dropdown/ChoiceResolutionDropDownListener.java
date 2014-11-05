@@ -8,6 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
@@ -17,7 +18,9 @@ import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
+import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
+import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
@@ -105,7 +108,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					add.add(new JMenuItem("No further VSpec"));
 				}
 			} else {
-				System.err.println("the Resolved VSpec is not a VNode");
 				add.add(new JMenuItem("the Resolved VSpec is not a VNode"));
 			}
 			add(add);
@@ -175,6 +177,18 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		resTree.addActionListener(new AddSubTreeEvent(cp, controller));
 		add(resTree);
 
+		JSeparator separator = new JSeparator();
+		add(separator);
+		JMenuItem minimize = new JMenuItem("minimize"); 
+		minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));
+		add(minimize);
+		
+		JMenuItem maximize = new JMenuItem("maximize"); 
+		maximize.addActionListener(new MaximizeVSpecResolutionEvent(cp, controller));
+		add(maximize);
+		JSeparator separator1 = new JSeparator();
+		add(separator1);
+		
 		/*
 		 * // max/min TODO Create new events JMenuItem minimize = new JMenuItem("minimize"); minimize.addActionListener(new MinimizeEvent(cp, vmMap,
 		 * null, null, view)); add(minimize); JMenuItem maximize = new JMenuItem("maximize"); maximize.addActionListener(new MaximizeEvent(cp, vmMap,

@@ -2,6 +2,8 @@ package no.sintef.bvr.tool.controller;
 
 import java.util.List;
 
+import javax.swing.JComponent;
+
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
 public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE> {
@@ -36,4 +38,8 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void toggleShowConstraints();
 	
 	public boolean isResolutionModelSet();
+
+	public void minimizeNode(GUI_NODE node);
+	
+	public void maximizeNode(GUI_NODE node);
 }
