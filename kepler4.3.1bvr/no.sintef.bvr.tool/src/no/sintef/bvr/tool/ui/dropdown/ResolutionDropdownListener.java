@@ -11,14 +11,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 
-
-
-
-
-
 import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
+import no.sintef.bvr.tool.ui.command.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
@@ -27,29 +23,18 @@ import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.DeleteResolution;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.NewResolvedResolutionEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
+
 import bvr.BVRModel;
-//import bvr.ConfigurableUnit;
 import bvr.NamedElement;
 
 public class ResolutionDropdownListener extends MouseAdapter {
+	private static final long serialVersionUID = -4129916117036201146L;
+	
 	private BVRNotifiableController controller;
-	private BVRToolModel m;
-	private BVRModel bvrModel;
-	private JTabbedPane resPane;
-	Map<JComponent, NamedElement> vmMap;
 
-	public ResolutionDropdownListener(BVRNotifiableController controller, BVRModel bvrModel, BVRToolModel m, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
-		this.vmMap = vmMap;
+
+	public ResolutionDropdownListener(BVRNotifiableController controller) {
 		this.controller = controller;
-		this.bvrModel= bvrModel;
-		this.m = m;
-		this.resPane = resPane;
-
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -63,7 +48,7 @@ public class ResolutionDropdownListener extends MouseAdapter {
 	}
 
 	private void doPop(MouseEvent e) {
-		ResV2DropdownMenu menu = new ResV2DropdownMenu(m, bvrModel, controller, resPane, vmMap);
+		ResV2DropdownMenu menu = new ResV2DropdownMenu(controller);
 		
 		menu.show(e.getComponent(), e.getX(), e.getY());
 	}
@@ -71,52 +56,52 @@ public class ResolutionDropdownListener extends MouseAdapter {
 
 class ResV2DropdownMenu extends JPopupMenu {
 
-	public ResV2DropdownMenu(BVRToolModel m, BVRModel bvrModel, BVRNotifiableController bvrView, JTabbedPane resPane, Map<JComponent, NamedElement> vmMap) {
+	public ResV2DropdownMenu(BVRNotifiableController controller) {
 
 		JMenuItem newres = new JMenuItem("New");
-		newres.addActionListener(new NewResolvedResolutionEvent(bvrView));
+		newres.addActionListener(new NewResolvedResolutionEvent(controller));
 		add(newres);
-		if (!(bvrModel.getResolutionModels().size() == 0)) {
+		if (controller.getResolutionControllerInterface().isResolutionModelSet()) {
 			JMenuItem remove = new JMenuItem("Remove");
-			remove.addActionListener(new DeleteResolution(bvrView));
+			remove.addActionListener(new DeleteResolution(controller));
 			add(remove);
 		}
 		JMenuItem importres = new JMenuItem("Import ...");
-		importres.addActionListener(new ImportResolutions(bvrView));
+		importres.addActionListener(new ImportResolutions(controller));
 		add(importres);
  
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
 			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
-			satvalres.addActionListener(new SATValidateResolutions(bvrView));
+			satvalres.addActionListener(new SATValidateResolutions(controller));
 			camenu.add(satvalres);
 			JMenu cc1 = new JMenu("Calculate Coverage");
 			JMenuItem calccov1 = new JMenuItem("1-wise");
-			calccov1.addActionListener(new CalculateCoverage(bvrView, 1));
+			calccov1.addActionListener(new CalculateCoverage(controller, 1));
 			cc1.add(calccov1);
 			JMenuItem calccov2 = new JMenuItem("2-wise");
-			calccov2.addActionListener(new CalculateCoverage(bvrView, 2));
+			calccov2.addActionListener(new CalculateCoverage(controller, 2));
 			cc1.add(calccov2);
 			JMenuItem calccov3 = new JMenuItem("3-wise");
-			calccov3.addActionListener(new CalculateCoverage(bvrView, 3));
+			calccov3.addActionListener(new CalculateCoverage(controller, 3));
 			cc1.add(calccov3);
 			camenu.add(cc1);
 
 			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
-			calcall.addActionListener(new GenerateAllProducts(bvrView));
+			calcall.addActionListener(new GenerateAllProducts(controller));
 			camenu.add(calcall);
 
 			camenu.add(new JSeparator());
 
 			JMenu genca = new JMenu("Generate Covering Array");
 			JMenuItem genca1 = new JMenuItem("1-wise");
-			genca1.addActionListener(new GenerateCoveringArray(bvrView, 1));
+			genca1.addActionListener(new GenerateCoveringArray(controller, 1));
 			genca.add(genca1);
 			JMenuItem genca2 = new JMenuItem("2-wise");
-			genca2.addActionListener(new GenerateCoveringArray(bvrView, 2));
+			genca2.addActionListener(new GenerateCoveringArray(controller, 2));
 			genca.add(genca2);
 			JMenuItem genca3 = new JMenuItem("3-wise");
-			genca3.addActionListener(new GenerateCoveringArray(bvrView, 3));
+			genca3.addActionListener(new GenerateCoveringArray(controller, 3));
 			genca.add(genca3);
 			camenu.add(genca);
 
@@ -124,7 +109,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			add(new JSeparator());
 
 			JMenuItem calcost = new JMenuItem("Calculate Costs");
-			calcost.addActionListener(new CalculateCost(bvrView));
+			calcost.addActionListener(new CalculateCost(controller));
 			camenu.add(calcost);
 
 			add(camenu);
@@ -134,7 +119,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(bvrView));
+		saveasImage.addActionListener(new ExportModelImage(controller));
 
 		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
 		add(showGrouping);
@@ -142,9 +127,6 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
 		add(showConstraints);
-	//TODO	showConstraints.addActionListener(new ToggleShowConstraintsEvent((BVRResolutionToolView) bvrView));
+		showConstraints.addActionListener(new ToggleShowConstraintsEvent(controller));
 	}
-
-	private static final long serialVersionUID = -4129916117036201146L;
-
 }

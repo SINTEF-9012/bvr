@@ -141,7 +141,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	private void loadBVRResolutionView(BVRModel bvrModel, List<BVRUIKernel> resolutionkernels) throws BVRModelException {
-		resPane.addMouseListener(new ResolutionDropdownListener(rootController, bvrModel, toolModel, resPane, null));
+		resPane.addMouseListener(new ResolutionDropdownListener(rootController));
 
 		if (bvrModel.getResolutionModels().size() == 0)
 			return;
@@ -152,7 +152,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			resolutionkernels.add(resKernel);
 			JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 					JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-			scrollPane.addMouseListener(new ResolutionDropdownListener(rootController, bvrModel, toolModel, resPane, null));
+			scrollPane.addMouseListener(new ResolutionDropdownListener(rootController));
 			EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 
 			resolutionPanes.add(scrollPane);
@@ -502,6 +502,17 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public String getModelFileLocation() {
 		return (toolModel.getFile() != null) ? toolModel.getFile().getName() : null;
+	}
+
+	@Override
+	public void toggleShowConstraints() {
+		toolModel.toggleShowConstraints();
+		notifyResolutionViewUpdate();
+	}
+
+	@Override
+	public boolean isResolutionModelSet() {
+		return toolModel.isResolutionModelSet();
 	}
 	
 }

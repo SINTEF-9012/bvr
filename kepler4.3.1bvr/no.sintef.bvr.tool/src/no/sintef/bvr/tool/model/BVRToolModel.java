@@ -55,6 +55,7 @@ abstract public class BVRToolModel {
 	protected List<VSpecResolution> minimizedVSpecResolution;
 	protected ArrayList<String> satValidationMessage;
 	static protected int instanceCount = 0;
+	protected boolean showConstraints = true;
 
 	public int getIncrementedInstanceCount() {
 		return instanceCount++;
@@ -459,5 +460,17 @@ abstract public class BVRToolModel {
 
 	public void saveLastSavedLocation(String absolutePath) {
 		Context.eINSTANCE.getConfig().saveLastLocation(absolutePath);
+	}
+
+	public void toggleShowConstraints() {
+		showConstraints = !showConstraints;
+	}
+	
+	public boolean isShowConstraints(){
+		return showConstraints;
+	}
+
+	public boolean isResolutionModelSet() {
+		return (getBVRModel().getResolutionModels().size() > 0) ? true : false;
 	}
 }

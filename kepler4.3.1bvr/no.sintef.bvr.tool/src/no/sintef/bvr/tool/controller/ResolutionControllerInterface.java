@@ -32,4 +32,8 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void importResolution(SERIALIZABLE file);
 
 	public String calculateCosts();
+	
+	public void toggleShowConstraints();
+	
+	public boolean isResolutionModelSet();
 }
