@@ -31,5 +31,7 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT, SERIALIZ
 	public void resolveSubtree(GUI_NODE parent);
 	
 	public void importResolution(SERIALIZABLE file);
+	
+	public String calculateCosts();
 
 }

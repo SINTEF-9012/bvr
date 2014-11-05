@@ -470,4 +470,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		toolModel.importResolutionFromFile(file);
 	}
 
+	@Override
+	public String calculateCosts() {
+		return toolModel.calculateCosts();
+	}
+	
 }

@@ -124,7 +124,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			add(new JSeparator());
 
 			JMenuItem calcost = new JMenuItem("Calculate Costs");
-			calcost.addActionListener(new CalculateCost(m, bvrView));
+			calcost.addActionListener(new CalculateCost(bvrView));
 			camenu.add(calcost);
 
 			add(camenu);

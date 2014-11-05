@@ -6,20 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.JFileChooser;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
-import no.sintef.bvr.tool.filter.BVRFilter;
-import no.sintef.bvr.tool.filter.SHFilter;
-import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
@@ -39,7 +33,6 @@ import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.FragmentSubstitution;
 import bvr.NamedElement;
-import bvr.NegResolution;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.ReplacementFragmentType;
@@ -432,5 +425,34 @@ abstract public class BVRToolModel {
 		} catch (Exception e) {
 			throw new RethrownException("Importing resolutions failed: ", e);
 		}
+	}
+
+	public String calculateCosts() {
+		int i = 0;
+		String cstr = "";
+		for(CompoundResolution resolution : getBVRModel().getResolutionModels()) {
+			double d = (resolution instanceof PosResolution) ? calcCost(resolution) : Double.NaN;
+			i++;
+			cstr += i + " : " + d + "\n";
+		}
+		return cstr;
+	}
+
+	private double calcCost(ChoiceResolution resolution) {
+		String comment = NoteFacade.eINSTANCE.getCommentText(CommonUtility.getResolvedVSpec(resolution));
+		double d = 0;
+		try{
+			if(resolution instanceof PosResolution)
+				d += Double.parseDouble(comment);
+		}catch(NumberFormatException n){
+			d = Double.NaN;
+		}
+
+		if(resolution instanceof CompoundResolution) {
+			for(VSpecResolution c : ((CompoundResolution) resolution).getMembers()){
+				d += (c instanceof ChoiceResolution) ? calcCost((ChoiceResolution) c) : Double.NaN;
+			}
+		}
+		return d;
 	}
 }
