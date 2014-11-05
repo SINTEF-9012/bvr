@@ -457,9 +457,15 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public void toggleChoice(GUI_NODE _toToggle) {
+	public SimpleExeCommandInterface createToggleChoiceCommand(GUI_NODE _toToggle) {
 		NamedElement toToggle = getElementInCurrentPane(_toToggle);
-		toolModel.toggleChoice(toToggle);
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.toggleChoice(toToggle);
+			}
+		});
+		return command;
 	}
 
 	private NamedElement getElementInCurrentPane(JComponent toFind) {

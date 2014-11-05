@@ -54,7 +54,6 @@ public class AddResolution implements ResCommand{
 			if (((VClassifier) target).getInstanceMultiplicity() != null && !onlyOneInstance) {
 				min = ((VClassifier) target).getInstanceMultiplicity().getLower();
 			} else {
-				System.err.println("instance error");
 				min = 1;
 			}
 			for (int i = 0; i < min; i++) {

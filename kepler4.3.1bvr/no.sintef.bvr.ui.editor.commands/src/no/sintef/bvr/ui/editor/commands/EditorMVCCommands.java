@@ -582,4 +582,10 @@ public class EditorMVCCommands implements EditorCommands {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addChoiceResoulution(VSpecResolution vsper,
+			ChoiceResolution cr, int index) {
+		// TODO Auto-generated method stub
+	}
 }

@@ -20,7 +20,7 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.PosResolution;
-import bvr.VSpec;
+
 
 public class AddChoiceResolution implements Command {
 
@@ -56,9 +56,6 @@ public class AddChoiceResolution implements Command {
 	}
 	@Override
 	public JComponent execute() {
-		
-	//	System.out.println("adding choice");
-		
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		////////////////////////////////////

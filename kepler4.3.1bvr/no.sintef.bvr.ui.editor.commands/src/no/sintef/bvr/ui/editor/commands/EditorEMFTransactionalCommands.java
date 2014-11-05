@@ -725,14 +725,18 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		queue.clear();
 	}
 
-
-	
 	@Override
 	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), cr);
 		testCommandExecution(editingDomain,cmd);
-		//setChoicePosResolvedVSpec(pr, target);
+	}
+	
+	@Override
+	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr, int index) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), cr, index);
+		testCommandExecution(editingDomain,cmd);
 	}
 	
 	@Override
@@ -740,9 +744,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, cr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
 		testCommandExecution(editingDomain,cmd);
-		
 	}
-
 
 	@Override
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {

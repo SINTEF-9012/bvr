@@ -196,7 +196,6 @@ public interface EditorCommands {
 	
 	public void executeBatch();
 
-
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent);
 
 	void createNewResolution(PosResolution pr, BVRModel bvrModel);
@@ -209,5 +208,5 @@ public interface EditorCommands {
 	
 	public void removeBVRModelCompoundResolutions(BVRModel model, EList<CompoundResolution> resolutions);
 
-
+	void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr, int index);
 }

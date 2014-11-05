@@ -27,7 +27,7 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 
 	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t);
 
-	void toggleChoice(GUI_NODE _toToggle);
+	public SimpleExeCommandInterface createToggleChoiceCommand(GUI_NODE _toToggle);
 
 	public SimpleExeCommandInterface createResolveSubtreeCommand(GUI_NODE parent);
 
