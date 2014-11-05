@@ -1,15 +1,14 @@
 package no.sintef.bvr.tool.controller;
 
-
 import java.util.List;
 
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
+public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE> {
 
-public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT, SERIALIZABLE>{
+	public void addChoiceOrVClassifierResolution(GUI_NODE parent,
+			MODEL_OBJECT resolvedVSpec);
 
-	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec);
-	
 	public SimpleExeCommandInterface createResolutionModelCommand();
 
 	public SimpleExeCommandInterface createRemoveRootResolutionCommand();
@@ -29,9 +28,8 @@ public interface ResolutionControllerInterface <GUI_NODE, MODEL_OBJECT, SERIALIZ
 	void toggleChoice(GUI_NODE _toToggle);
 
 	public void resolveSubtree(GUI_NODE parent);
-	
-	public void importResolution(SERIALIZABLE file);
-	
-	public String calculateCosts();
 
+	public void importResolution(SERIALIZABLE file);
+
+	public String calculateCosts();
 }

@@ -1,12 +1,15 @@
 package no.sintef.bvr.tool.controller;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JLayeredPane;
 import javax.swing.JScrollPane;
 
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +29,9 @@ import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateConstraintBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
+import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.VSpecDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -46,8 +51,9 @@ import bvr.Variable;
 
 public class SwingVSpecController<
 		GUI_NODE extends JComponent,
-		MODEL_OBJECT extends EObject> 
-	implements VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
+		MODEL_OBJECT extends EObject,
+		SERIALIZABLE extends Serializable> 
+	implements VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> {
 
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
@@ -62,6 +68,7 @@ public class SwingVSpecController<
 	
 	
 	public SwingVSpecController(BVRToolModel _model, BVRNotifiableController controller) {
+		controller.setCommonControllerInterface(this);
 		toolModel = _model;
 		vspecvmMap = new HashMap<JComponent, NamedElement>();
 		vspecNodes = new ArrayList<JComponent>();
@@ -347,5 +354,19 @@ public class SwingVSpecController<
 	public void removeNamedElement(GUI_NODE node) {
 		NamedElement element = (NamedElement) vspecvmMap.get(node);
 		toolModel.removeNamedElement(element);
-	}	
+	}
+	
+	@Override
+	public void exportAsPNGImage(SERIALIZABLE _file) {
+		if(!(_file instanceof File))
+			throw new UserInputError("Expect file to import");
+		File file = (File) _file;
+		JLayeredPane layeredPanel = (JLayeredPane) vSpecbvruikernel.getModelPanel();
+		StaticUICommands.saveLayeredPaneAsPNGImage(layeredPanel, file);
+	}
+	
+	@Override
+	public String getModelFileLocation() {
+		return (toolModel.getFile() != null) ? toolModel.getFile().getName() : null;
+	}
 }

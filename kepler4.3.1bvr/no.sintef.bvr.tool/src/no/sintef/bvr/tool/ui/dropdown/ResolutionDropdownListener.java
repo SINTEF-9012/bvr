@@ -134,8 +134,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-	//	saveasImage
-	//			.addActionListener(new ExportModelImage(bvrView.getKernel().getModelPanel(), m, bvrView.getCU().getOwnedVSpecResolution(), resPane));
+		saveasImage.addActionListener(new ExportModelImage(bvrView));
 
 		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
 		add(showGrouping);

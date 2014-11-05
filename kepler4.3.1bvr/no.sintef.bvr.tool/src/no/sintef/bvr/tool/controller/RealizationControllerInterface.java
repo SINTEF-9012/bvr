@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 
-public interface RealizationControllerInterface {
+public interface RealizationControllerInterface extends EditorsCommonControllerInterface {
 
 	public BVRRealizationUIKernelInterface getUIKernel();
 	

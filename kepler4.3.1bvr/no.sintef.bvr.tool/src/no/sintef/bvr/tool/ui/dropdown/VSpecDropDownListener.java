@@ -45,6 +45,6 @@ class VSpecDropdown extends JPopupMenu {
     public VSpecDropdown(BVRUIKernel kernel, BVRToolModel toolmodel, BVRNotifiableController bvrView){
 		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
 		add(saveasImage);
-		saveasImage.addActionListener(new ExportModelImage(kernel.getModelPanel(), toolmodel, null));
+		saveasImage.addActionListener(new ExportModelImage(bvrView));
     }
 }

@@ -2,10 +2,14 @@ package no.sintef.bvr.tool.ui.context;
 
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -16,6 +20,7 @@ import com.google.common.collect.Lists;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 import no.sintef.bvr.tool.model.BVRToolModel;
@@ -102,5 +107,19 @@ public class StaticUICommands {
 			};
 		};
 		JOptionPane.showMessageDialog(parent, scrollPane, Messages.DIALOG_MSG_GENERAL_INFO, JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public static void saveLayeredPaneAsPNGImage(JLayeredPane draw, File sf) {		
+		try {			
+			Dimension size = draw.getSize();
+			BufferedImage bi = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+			final Graphics2D g2 = bi.createGraphics();
+			draw.paintComponents(g2);
+			draw.paint(g2);
+			ImageIO.write(bi, "PNG", sf);
+			Context.eINSTANCE.getConfig().saveLastLocation(sf.getAbsolutePath());
+		} catch (Exception ex) {
+			throw new RethrownException("can not export a model as PNG image", ex);
+		}
 	}
 }

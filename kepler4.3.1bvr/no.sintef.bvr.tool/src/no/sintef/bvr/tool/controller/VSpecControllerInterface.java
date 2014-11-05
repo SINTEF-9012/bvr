@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.controller;
 import no.sintef.bvr.tool.controller.command.Command;
 
 
-public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT> {
+public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE> {
 	
 	public void addChoice(GUI_NODE parent);
 	

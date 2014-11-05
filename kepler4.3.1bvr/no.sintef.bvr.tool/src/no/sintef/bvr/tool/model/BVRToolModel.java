@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.BVRException;
@@ -454,5 +455,9 @@ abstract public class BVRToolModel {
 			}
 		}
 		return d;
+	}
+
+	public void saveLastSavedLocation(String absolutePath) {
+		Context.eINSTANCE.getConfig().saveLastLocation(absolutePath);
 	}
 }

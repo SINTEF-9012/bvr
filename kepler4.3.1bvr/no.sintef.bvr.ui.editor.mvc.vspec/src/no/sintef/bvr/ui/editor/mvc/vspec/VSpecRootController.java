@@ -2,7 +2,10 @@ package no.sintef.bvr.ui.editor.mvc.vspec;
 
 
 
+import java.io.Serializable;
+
 import javax.swing.JComponent;
+
 
 
 
@@ -22,7 +25,7 @@ import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 public class VSpecRootController extends BVRToolAbstractController {
 	
 	private BVRToolModel m;
-	private SwingVSpecController<JComponent, EObject> controller;
+	private SwingVSpecController<JComponent, EObject, Serializable> controller;
 
 
 	public BVRUIKernel getKernel() {
@@ -31,7 +34,7 @@ public class VSpecRootController extends BVRToolAbstractController {
 	
 	public VSpecRootController(BVRToolModel m) {
 		this.m = m;
-        controller = new SwingVSpecController<JComponent, EObject>(m, this);
+        controller = new SwingVSpecController<JComponent, EObject, Serializable>(m, this);
         controller.render();
 	}
 	
@@ -46,7 +49,7 @@ public class VSpecRootController extends BVRToolAbstractController {
 	}
 	
 	@Override
-	public VSpecControllerInterface<?,?> getVSpecControllerInterface() {
+	public VSpecControllerInterface<?,?, ?> getVSpecControllerInterface() {
 		return controller;
 	}
 }

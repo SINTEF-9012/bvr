@@ -1,7 +1,10 @@
 package no.sintef.bvr.tool.controller;
 
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D.Double;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,9 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.filechooser.FileFilter;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
@@ -23,7 +31,9 @@ import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UserInputError;
+import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolution;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
@@ -31,6 +41,7 @@ import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
 //import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 //import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
+import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
@@ -106,8 +117,10 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private ResolutionLayoutStrategy strategy;
 
 	BVRNotifiableController rootController;
+	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
 
 	public SwingResolutionController(BVRToolModel model, BVRNotifiableController controller) {
+		controller.setCommonControllerInterface(this);
 		resolutionPanes = new ArrayList<JScrollPane>();
 		resolutionEpanels = new ArrayList<EditableModelPanel>();
 		resolutionkernels = new ArrayList<BVRUIKernel>();
@@ -473,6 +486,22 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public String calculateCosts() {
 		return toolModel.calculateCosts();
+	}
+
+	@Override
+	public void exportAsPNGImage(SERIALIZABLE _file) {
+		if(!(_file instanceof File))
+			throw new UserInputError("Expect file to import");
+		File file = (File) _file;
+		EditableModelPanel draw = (EditableModelPanel) resPane.getSelectedComponent();
+		JScrollPane draw2 = (JScrollPane) draw.modelPanel;
+		JLayeredPane layeredPanel = (JLayeredPane) draw2.getViewport().getView();
+		StaticUICommands.saveLayeredPaneAsPNGImage(layeredPanel, file);
+	}
+
+	@Override
+	public String getModelFileLocation() {
+		return (toolModel.getFile() != null) ? toolModel.getFile().getName() : null;
 	}
 	
 }

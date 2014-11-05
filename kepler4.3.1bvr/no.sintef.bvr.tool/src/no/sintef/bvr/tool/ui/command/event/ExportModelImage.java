@@ -1,64 +1,38 @@
 package no.sintef.bvr.tool.ui.command.event;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.filechooser.FileFilter;
 
-
-
-
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.PNGFilter;
-import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
-import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
+
 
 public class ExportModelImage implements ActionListener {
 
-	JLayeredPane view;
-	BVRToolModel model;
-	private JTabbedPane resPane;
+	private BVRNotifiableController controller;
 	
 	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
 
-	public ExportModelImage(JLayeredPane cup, BVRToolModel model, JTabbedPane resPane) {
-		this.view = cup;
-		this.model = model;
-		this.resPane = resPane;
+	public ExportModelImage(BVRNotifiableController _controller) {
+		this.controller = _controller;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent e) {
-		JLayeredPane x;
-		
-		if(resPane == null){
-			x = view;
-		}else{
-			EditableModelPanel draw = (EditableModelPanel) resPane.getSelectedComponent();
-			JScrollPane draw2 = (JScrollPane) draw.modelPanel;
-			x = (JLayeredPane) draw2.getViewport().getView();
-		}
-				
-		saveImg(x);
-	}
-
-	private void saveImg(JLayeredPane draw) {
 		FileFilter[] filters = {new PNGFilter()};
 		JFileChooser filechooser = StaticUICommands.getFileChooser(filters, filters[0]);
 		
-		if(model.getFile() != null){
-			String defualtName = CommonUtility.removeExtension(model.getFile().getName());
+		String defualtName = controller.getCommonControllerInterface().getModelFileLocation();
+		if(defualtName != null) {
+			defualtName = CommonUtility.removeExtension(defualtName);
 			filechooser.setSelectedFile(new File(defualtName));
 		}
 		
@@ -78,20 +52,7 @@ public class ExportModelImage implements ActionListener {
 				return;
 		}
 		
-		try {			
-			Dimension size = draw.getSize();
-			BufferedImage bi = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
-			
-			final Graphics2D g2 = bi.createGraphics();
-
-			draw.paintComponents(g2);
-			draw.paint(g2);
-			ImageIO.write(bi, "PNG", sf);
-			
-			Context.eINSTANCE.getConfig().saveLastLocation(sf.getAbsolutePath());
-		} catch (Exception ex) {
-			Context.eINSTANCE.logger.error("", ex);
-			StaticUICommands.showMessageErrorDialog(null, ex, "can not export a model");
-		}
+		controller.getCommonControllerInterface().exportAsPNGImage(sf);
 	}
+
 }
