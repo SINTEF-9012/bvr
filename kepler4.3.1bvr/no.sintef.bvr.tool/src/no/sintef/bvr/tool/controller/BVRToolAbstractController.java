@@ -13,7 +13,7 @@ abstract public class BVRToolAbstractController implements BVRNotifiableControll
 	}
 	
 	@Override
-	public ResolutionControllerInterface<?, ?> getResolutionControllerInterface() {
+	public ResolutionControllerInterface<?, ?, ?> getResolutionControllerInterface() {
 		throw new UnsupportedOperationException("not supported for this view");
 	}
 	

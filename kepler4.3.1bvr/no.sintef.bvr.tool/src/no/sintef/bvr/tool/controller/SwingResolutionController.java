@@ -2,6 +2,8 @@ package no.sintef.bvr.tool.controller;
 
 import java.awt.Point;
 import java.awt.geom.Rectangle2D.Double;
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,7 @@ import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
+import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolution;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
@@ -72,8 +75,8 @@ import bvr.PosResolution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject> implements
-		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT> {
+public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject, SERIALIZABLE extends Serializable> implements
+		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> {
 	private BVRToolModel toolModel;
 	private List<Constraint> invalidConstraints;
 
@@ -457,6 +460,14 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 		toolModel.resolveSubtree(parent);
 
+	}
+
+	@Override
+	public void importResolution(SERIALIZABLE _file) {
+		if(!(_file instanceof File))
+			throw new UserInputError("Expect file to import");
+		File file = (File) _file;
+		toolModel.importResolutionFromFile(file);
 	}
 
 }

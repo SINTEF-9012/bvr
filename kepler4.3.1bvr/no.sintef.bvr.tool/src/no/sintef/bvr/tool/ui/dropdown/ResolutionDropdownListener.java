@@ -82,7 +82,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			add(remove);
 		}
 		JMenuItem importres = new JMenuItem("Import ...");
-		importres.addActionListener(new ImportResolutions(m, bvrView));
+		importres.addActionListener(new ImportResolutions(bvrView));
 		add(importres);
  
 		/* Choice-only options */{

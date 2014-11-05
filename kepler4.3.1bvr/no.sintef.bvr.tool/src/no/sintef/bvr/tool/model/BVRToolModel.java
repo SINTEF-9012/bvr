@@ -1,15 +1,34 @@
 package no.sintef.bvr.tool.model;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.swing.JFileChooser;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import splar.core.fm.FeatureModelException;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.filter.BVRFilter;
+import no.sintef.bvr.tool.filter.SHFilter;
+import no.sintef.bvr.tool.ui.context.StaticUICommands;
+import no.sintef.ict.splcatool.BVRException;
+import no.sintef.ict.splcatool.CALib;
+import no.sintef.ict.splcatool.CNF;
+import no.sintef.ict.splcatool.CSVException;
+import no.sintef.ict.splcatool.CoveringArray;
+import no.sintef.ict.splcatool.CoveringArrayComplete;
+import no.sintef.ict.splcatool.CoveringArrayFile;
+import no.sintef.ict.splcatool.GUIDSL;
+import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
@@ -40,7 +59,8 @@ abstract public class BVRToolModel {
 	protected boolean saved = true;
 	protected List<VSpec> minimizedVSpec;
 	protected List<VSpecResolution> minimizedVSpecResolution;
-	static private int instanceCount = 0;
+	protected ArrayList<String> satValidationMessage;
+	static protected int instanceCount = 0;
 
 	public int getIncrementedInstanceCount() {
 		return instanceCount++;
@@ -298,24 +318,94 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+
 	public void generatAllProducts() {
-		throw new UnexpectedException("Are you using default implementation?!");
+		try {
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			CoveringArray ca = new CoveringArrayComplete(cnf);
+			ca.generate();
+			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			for (VSpecResolution resolution : resolutions)
+				addResolutionModel((CompoundResolution) resolution);
+		} catch (Exception e) {
+			throw new RethrownException("failed to generate products", e);
+		}
 	}
+	
 
 	public boolean performSATValidation() {
-		throw new UnexpectedException("Are you using default implementation?!");
+		boolean valid = false;
+		CoveringArray ca;
+		satValidationMessage = new ArrayList<String>();
+		try {
+			ca = getBVRM().getCoveringArray();
+		} catch (CSVException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		} catch (BVRException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		}
+		CNF cnf;
+		try {
+			cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
+		} catch (Exception e) {
+			throw new RethrownException("Validation failed:", e);
+		}
+		return valid;
 	}
+	
 
 	public List<String> getSATValidationMessage() {
-		throw new UnexpectedException("Are you using default implementation?!");
+		return satValidationMessage;
 	}
+
 
 	public Integer calculateCoverage(int t) {
-		throw new UnexpectedException("Are you using default implementation?!");
+		int cov;
+		try {
+			// Get FM:
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			// Get Covering Array
+			CoveringArray ca = getBVRM().getCoveringArray();
+			// Calculate
+			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
+		} catch (FeatureModelException | IOException | UnsupportedModelException | BVRException | CSVException e) {
+			throw new RethrownException("Failed to calculate coverage", e);
+		}
+		return cov;
 	}
 
+
 	public void generateCoveringArray(int xWise) {
-		throw new UnexpectedException("Are you using default implementation?!");
+		try {
+			removeAllResolutions();
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			CNF cnf = gdsl.getSXFM().getCNF();
+			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
+			
+			/*EList<CompoundResolution> compoundResolutions = getBVRModel().getResolutionModels();
+			EList<PosResolution> rootResolutions = new BasicEList<PosResolution>();
+			for(CompoundResolution compoundResolution : compoundResolutions) {
+				if(compoundResolution instanceof PosResolution)
+					rootResolutions.add((PosResolution) compoundResolution);
+			}
+			
+			 if(rootResolutions.size() > 0){
+				 CoveringArray startFrom = getBVRM().getCoveringArray();
+				 ca.startFrom(startFrom);
+			 }*/
+			 
+			 ca.generate();
+			 GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			 EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			 for(VSpecResolution resolution : resolutions)
+				addResolutionModel((CompoundResolution) resolution);
+		} catch (Exception e) {
+			throw new RethrownException("Failed to generate covering array", e);
+		}
 	}
 
 	public void resolveSubtree(VSpecResolution parent) {
@@ -330,10 +420,17 @@ abstract public class BVRToolModel {
 
 	public void removeVSpecResolution(NamedElement toDelete) {
 		throw new UnexpectedException("Are you using default implementation?!");
-		
 	}
 
-	
-
-
+	public void importResolutionFromFile(File file) {
+		GraphMLFM gfm;
+		try {
+			CoveringArray ca = new CoveringArrayFile(file);
+			GUIDSL gdsl = getBVRM().getGUIDSL();
+			gfm = gdsl.getGraphMLFMConf(ca);
+			getBVRM().getChoiceResolutions(gfm);
+		} catch (Exception e) {
+			throw new RethrownException("Importing resolutions failed: ", e);
+		}
+	}
 }

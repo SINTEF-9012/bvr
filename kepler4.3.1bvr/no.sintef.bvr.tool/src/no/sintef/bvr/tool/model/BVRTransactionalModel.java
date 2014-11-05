@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
@@ -17,20 +16,12 @@ import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
-import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
-import no.sintef.ict.splcatool.BVRException;
-import no.sintef.ict.splcatool.CALib;
-import no.sintef.ict.splcatool.CNF;
-import no.sintef.ict.splcatool.CSVException;
-import no.sintef.ict.splcatool.CoveringArray;
-import no.sintef.ict.splcatool.CoveringArrayComplete;
-import no.sintef.ict.splcatool.GUIDSL;
-import no.sintef.ict.splcatool.GraphMLFM;
+
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -49,8 +40,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
-import splar.core.fm.FeatureModelException;
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
@@ -88,6 +78,7 @@ import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
+
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
 	private Resource resource;
 
@@ -95,9 +86,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
 	private NamedElement cutNamedElement = null;
-	static private int instanceCount = 0;
-
-	List<String> satValidationMessage;
 	
 
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -828,97 +816,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 		Context.eINSTANCE.getEditorCommands().removeBVRModelCompoundResolutions(model, resolutions);
 	}
-
-	@Override
-	public void generatAllProducts() {
-		try {
-			GUIDSL gdsl = getBVRM().getGUIDSL();
-			CNF cnf = gdsl.getSXFM().getCNF();
-			CoveringArray ca = new CoveringArrayComplete(cnf);
-			ca.generate();
-			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
-			for (VSpecResolution resolution : resolutions)
-				addResolutionModel((CompoundResolution) resolution);
-		} catch (Exception e) {
-			throw new RethrownException("failed to generate products", e);
-		}
-	}
 	
-	@Override
-	public boolean performSATValidation() {
-		boolean valid = false;
-		CoveringArray ca;
-		satValidationMessage = new ArrayList<String>();
-		try {
-			ca = getBVRM().getCoveringArray();
-		} catch (CSVException e) {
-			throw new RethrownException("Getting CA failed:", e);
-		} catch (BVRException e) {
-			throw new RethrownException("Getting CA failed:", e);
-		}
-		CNF cnf;
-		try {
-			cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
-			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
-		} catch (Exception e) {
-			throw new RethrownException("Validation failed:", e);
-		}
-		return valid;
-	}
-	
-	@Override
-	public List<String> getSATValidationMessage() {
-		return satValidationMessage;
-	}
-
-	@Override
-	public Integer calculateCoverage(int t) {
-		int cov;
-		try {
-			// Get FM:
-			GUIDSL gdsl = getBVRM().getGUIDSL();
-			CNF cnf = gdsl.getSXFM().getCNF();
-			// Get Covering Array
-			CoveringArray ca = getBVRM().getCoveringArray();
-			// Calculate
-			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
-		} catch (FeatureModelException | IOException | UnsupportedModelException | BVRException | CSVException e) {
-			throw new RethrownException("Failed to calculate coverage", e);
-		}
-		return cov;
-	}
-
-	@Override
-	public void generateCoveringArray(int xWise) {
-		try {
-			removeAllResolutions();
-			GUIDSL gdsl = getBVRM().getGUIDSL();
-			CNF cnf = gdsl.getSXFM().getCNF();
-			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
-			
-			/*EList<CompoundResolution> compoundResolutions = getBVRModel().getResolutionModels();
-			EList<PosResolution> rootResolutions = new BasicEList<PosResolution>();
-			for(CompoundResolution compoundResolution : compoundResolutions) {
-				if(compoundResolution instanceof PosResolution)
-					rootResolutions.add((PosResolution) compoundResolution);
-			}
-			
-			 if(rootResolutions.size() > 0){
-				 CoveringArray startFrom = getBVRM().getCoveringArray();
-				 ca.startFrom(startFrom);
-			 }*/
-			 
-			 ca.generate();
-			 GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			 EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
-			 for(VSpecResolution resolution : resolutions)
-				addResolutionModel((CompoundResolution) resolution);
-		} catch (Exception e) {
-			throw new RethrownException("Failed to generate covering array", e);
-		}
-
-	}
 	public void resolveSubtree(VSpecResolution parent) {
 		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) parent);
 		if (grandParent == null) {
@@ -962,8 +860,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	public void removeVSpecResolution(NamedElement toDelete) {
 		NamedElement parentNamedElement = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) toDelete);
-			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution((VSpecResolution) parentNamedElement, toDelete);
-		
+		Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution((VSpecResolution) parentNamedElement, toDelete);
 	}
 
 	public void toggleChoice(NamedElement toToggle) {

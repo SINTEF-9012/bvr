@@ -2,6 +2,8 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2;
 
 
 
+import java.io.Serializable;
+
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 
@@ -17,11 +19,11 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 public class ResolutionRootController extends BVRToolAbstractController {
 	
 	private BVRToolModel model;
-	private SwingResolutionController<JComponent, EObject> controller;
+	private SwingResolutionController<JComponent, EObject, Serializable> controller;
 	
 	public ResolutionRootController(BVRToolModel m) {
 		model = m;
-		controller = new SwingResolutionController<JComponent, EObject>(model, this);
+		controller = new SwingResolutionController<JComponent, EObject, Serializable>(model, this);
 		controller.render();
 	}
 
@@ -40,7 +42,7 @@ public class ResolutionRootController extends BVRToolAbstractController {
 	}
 	
 	@Override
-	public ResolutionControllerInterface<?,?> getResolutionControllerInterface() {
+	public ResolutionControllerInterface<?,?,?> getResolutionControllerInterface() {
 		return controller;
 	}
 	

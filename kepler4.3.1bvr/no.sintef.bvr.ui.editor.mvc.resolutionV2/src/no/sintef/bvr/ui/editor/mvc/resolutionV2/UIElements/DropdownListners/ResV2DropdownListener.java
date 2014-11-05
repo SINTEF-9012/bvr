@@ -27,7 +27,7 @@ import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowConstraintsEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
+//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ToggleShowGroupEvent;
 import bvr.BVRModel;
 //import bvr.ConfigurableUnit;
 import bvr.NamedElement;
@@ -77,9 +77,9 @@ class ResV2DropdownMenu extends JPopupMenu {
 			//remove.addActionListener(new DeleteResolution(bvrView)); //TODO add new DeleteResolution, or merge new and old editors
 			//add(remove);
 		}
-		JMenuItem importres = new JMenuItem("Import ...");
-		importres.addActionListener(new ImportResolutions(m, bvrView));
-		add(importres);
+		//JMenuItem importres = new JMenuItem("Import ...");
+		//importres.addActionListener(new ImportResolutions(m, bvrView));
+		//add(importres);
  
 		/* Choice-only options */{
 			JMenu camenu = new JMenu("Models with Choices Only");
@@ -135,7 +135,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
 		add(showGrouping);
-		showGrouping.addActionListener(new ToggleShowGroupEvent((BVRResolutionToolView) bvrView));
+		//showGrouping.addActionListener(new ToggleShowGroupEvent((BVRResolutionToolView) bvrView));
 
 		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
 		add(showConstraints);
