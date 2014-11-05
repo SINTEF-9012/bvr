@@ -27,7 +27,7 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 
 	void toggleChoice(GUI_NODE _toToggle);
 
-	public void resolveSubtree(GUI_NODE parent);
+	public SimpleExeCommandInterface createResolveSubtreeCommand(GUI_NODE parent);
 
 	public void importResolution(SERIALIZABLE file);
 

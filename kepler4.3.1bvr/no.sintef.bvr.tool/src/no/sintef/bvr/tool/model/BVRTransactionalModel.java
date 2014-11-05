@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
@@ -23,6 +24,7 @@ import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -39,6 +41,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 
 
 import bvr.BCLConstraint;
@@ -820,7 +823,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void resolveSubtree(VSpecResolution parent) {
 		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) parent);
 		if (grandParent == null) {
-			for (VSpecResolution c : getBVRModel().getResolutionModels())
+			for(Iterator<CompoundResolution> it = getBVRModel().getResolutionModels().iterator(); it.hasNext(); ){
+				CompoundResolution c = it.next();
 				if (c == parent) {
 					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
 					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
@@ -828,8 +832,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 					
 					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(getBVRModel(), (VSpecResolution) parent);
 					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, getBVRModel());
-					Context.eINSTANCE.getEditorCommands().addChoiceResoulution(root, (PosResolution) root);
 				}
+			}
 		}
 		else{
 			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);

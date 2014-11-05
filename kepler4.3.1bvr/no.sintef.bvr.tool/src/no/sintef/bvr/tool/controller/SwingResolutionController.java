@@ -468,11 +468,15 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public void resolveSubtree(GUI_NODE _parent) {
+	public SimpleExeCommandInterface createResolveSubtreeCommand(GUI_NODE _parent) {
 		final VSpecResolution parent = (VSpecResolution) getElementInCurrentPane(_parent);
-
-		toolModel.resolveSubtree(parent);
-
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.resolveSubtree(parent);
+			}
+		});
+		return command;
 	}
 
 	@Override

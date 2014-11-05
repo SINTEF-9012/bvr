@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
 public class AddSubTreeEvent implements ActionListener {
 
@@ -18,10 +19,10 @@ public class AddSubTreeEvent implements ActionListener {
 		this.controller = controller;
 	}
 
-
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent e) {
-		controller.getResolutionControllerInterface().resolveSubtree(parent);
-
+		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createResolveSubtreeCommand(parent);
+		command.execute();
 	}
 
 

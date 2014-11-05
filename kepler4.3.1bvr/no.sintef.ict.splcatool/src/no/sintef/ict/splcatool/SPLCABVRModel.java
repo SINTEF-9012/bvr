@@ -235,7 +235,7 @@ public class SPLCABVRModel {
 		}else {
 			cr = BvrFactory.eINSTANCE.createNegResolution();
 		}
-		cr.setResolvedChoice(choice);
+		CommonUtility.setResolved(cr, choice);
 		
 		// Add children
 		for(VNode x : choice.getMember()){
