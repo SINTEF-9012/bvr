@@ -359,11 +359,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
 		NamedElement parentNamedElement = getElementInCurrentPane(parent);
-
 		if (parentNamedElement != null) {
 			VSpec vSpecToResolve = (VSpec) resolvedVSpec;
 			toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
-			return;
 		}
 	}
 

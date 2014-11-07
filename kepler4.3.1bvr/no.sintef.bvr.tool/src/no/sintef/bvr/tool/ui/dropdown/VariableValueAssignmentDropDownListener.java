@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
-import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
+import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;

@@ -88,8 +88,9 @@ public class Constants {
 	public static final Color PINK = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element
 	*/
 	
-	public static final String RESOLUTION_DROPDOWN_ADD_ITEM = "Add";
-	public static final String RESOLUTION_DROPDOWN_VCLASS_SUBTREE_ITEM = "Add Realized VClassifier Subtree";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM = "Resolve Choice";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM = "Resolve VClassifier";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM = "Resolve Varibale";
 	public static final String RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM = "Add Multiple Realized VInstance Subtrees";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM = "Resolve Subtree";
 	public static final String RESOLUTION_DROPDOWN_MININIZE_ITEM = "Minimize";

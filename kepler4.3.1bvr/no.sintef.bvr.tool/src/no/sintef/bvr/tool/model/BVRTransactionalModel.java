@@ -350,7 +350,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		} else if (resolvedVspec instanceof VClassifier) {
 			cr = BvrFactory.eINSTANCE.createPosResolution();
 			cr.setName("I: " + getIncrementedInstanceCount());
-
 		}
 		CommonUtility.setResolved(cr, resolvedVspec);
 		Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parent, cr);

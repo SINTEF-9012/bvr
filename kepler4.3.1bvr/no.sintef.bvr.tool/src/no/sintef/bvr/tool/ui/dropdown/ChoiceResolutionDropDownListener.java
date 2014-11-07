@@ -14,7 +14,7 @@ import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
-import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
+import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
@@ -86,41 +86,53 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		// Add
 		if(c instanceof PosResolution){
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
-				JMenu add = new JMenu(Constants.RESOLUTION_DROPDOWN_ADD_ITEM);
+				JMenu resolve_choice = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM);
+				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
+				JMenu resolve_vclass = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM);
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {// TODO add Variables
-					// TODO ADD NAME
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
-					if( (x instanceof Choice) ||  (x instanceof VClassifier)){
-						addchild.addActionListener(new AddChoiceResolvedEvent(cp, (EObject)x, controller));
+					if(x instanceof Choice) {
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
+						resolve_choice.add(addchild);
 					} else if (x instanceof Variable) {
-						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, controller));// TODO namechange
+						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, controller));
+						resolve_variable.add(addchild);
+					} else if (x instanceof VClassifier){
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
+						resolve_vclass.add(addchild);
 					}
-						add.add(addchild);
 				}
-				if (((CompoundNode) (c.getResolvedVSpec())).getMember().size() == 0) {
-					add.setEnabled(false);
-				}
-				add(add);
-			}
-			
-			// addInstanceTree
+				if (resolve_choice.getMenuComponents().length == 0)
+					resolve_choice.setEnabled(false);
 
-			if (c.getResolvedVSpec() instanceof CompoundNode) {
-				JMenu addTree = new JMenu(Constants.RESOLUTION_DROPDOWN_VCLASS_SUBTREE_ITEM);
-				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
-					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
-					if (x instanceof VClassifier) {
-						//TODO addChild.addActionListener(new AddChoicesFromVClassifierTreeEvent(c, (VClassifier) x, view));
-						addTree.add(addChild);
-					}
-				}
-	
-				if (addTree.getMenuComponents().length == 0) {
-					addTree.setEnabled(false);
-				}
-				add(addTree);
-			}
+				if (resolve_variable.getMenuComponents().length == 0)
+					resolve_variable.setEnabled(false);
+
+				if (resolve_vclass.getMenuComponents().length == 0)
+					resolve_vclass.setEnabled(false);
+
+				add(resolve_choice);
+				add(resolve_variable);
+				add(resolve_vclass);
+				
+				if(resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled()){
+					// Resolve subtree
+					JMenuItem resTree = new JMenuItem(Constants.RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM);
+					resTree.addActionListener(new AddSubTreeEvent(cp, controller));
+					add(resTree);
 		
+					add( new JSeparator());
+					JMenuItem minimize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
+					minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));
+					add(minimize);
+					
+					JMenuItem maximize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
+					maximize.addActionListener(new MaximizeVSpecResolutionEvent(cp, controller));
+					add(maximize);
+					add(new JSeparator());
+				}
+			}
+						
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
 				JMenu addMulTree = new JMenu(Constants.RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM);
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
@@ -136,22 +148,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				add(addMulTree);
 			}
 			
-			if(c.getResolvedVSpec() instanceof CompoundNode && ((CompoundNode) (c.getResolvedVSpec())).getMember().size() > 0){
-				// Resolve subtree
-				JMenuItem resTree = new JMenuItem(Constants.RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM);
-				resTree.addActionListener(new AddSubTreeEvent(cp, controller));
-				add(resTree);
-	
-				add( new JSeparator());
-				JMenuItem minimize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
-				minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));
-				add(minimize);
-				
-				JMenuItem maximize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
-				maximize.addActionListener(new MaximizeVSpecResolutionEvent(cp, controller));
-				add(maximize);
-				add(new JSeparator());
-			}
 		}
 
 		/*

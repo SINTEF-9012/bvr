@@ -12,7 +12,7 @@ import javax.swing.JPopupMenu;
 import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
 import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
-import no.sintef.bvr.tool.ui.command.event.AddChoiceResolvedEvent;
+import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
