@@ -473,4 +473,8 @@ abstract public class BVRToolModel {
 	public boolean isResolutionModelSet() {
 		return (getBVRModel().getResolutionModels().size() > 0) ? true : false;
 	}
+
+	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

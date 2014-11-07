@@ -87,27 +87,28 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		if(c instanceof PosResolution){
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
 				JMenu resolve_choice = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM);
-				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
 				JMenu resolve_vclass = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM);
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {// TODO add Variables
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
 					if(x instanceof Choice) {
 						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
 						resolve_choice.add(addchild);
-					} else if (x instanceof Variable) {
-						addchild.addActionListener(new AddValueResolutionEvent(c, (Variable) x, controller));
-						resolve_variable.add(addchild);
 					} else if (x instanceof VClassifier){
 						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
 						resolve_vclass.add(addchild);
 					}
 				}
+				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
+				for(Variable var : ((VNode) c.getResolvedVSpec()).getVariable()){
+					JMenuItem addchild = new JMenuItem(var.getName());
+					addchild.addActionListener(new AddValueResolutionEvent(cp, (Variable) var, controller));
+					resolve_variable.add(addchild);
+				}
+				
 				if (resolve_choice.getMenuComponents().length == 0)
 					resolve_choice.setEnabled(false);
-
 				if (resolve_variable.getMenuComponents().length == 0)
 					resolve_variable.setEnabled(false);
-
 				if (resolve_vclass.getMenuComponents().length == 0)
 					resolve_vclass.setEnabled(false);
 
@@ -115,12 +116,13 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				add(resolve_variable);
 				add(resolve_vclass);
 				
-				if(resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled()){
-					// Resolve subtree
+				if(resolve_choice.isEnabled() || resolve_vclass.isEnabled()){
 					JMenuItem resTree = new JMenuItem(Constants.RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM);
 					resTree.addActionListener(new AddSubTreeEvent(cp, controller));
 					add(resTree);
-		
+				}
+				
+				if(resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled()){
 					add( new JSeparator());
 					JMenuItem minimize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
 					minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));

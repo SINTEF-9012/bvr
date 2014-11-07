@@ -42,4 +42,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void minimizeNode(GUI_NODE node);
 	
 	public void maximizeNode(GUI_NODE node);
+	
+	public SimpleExeCommandInterface createVariableResolutionCommand(GUI_NODE parent, MODEL_OBJECT variable);
 }

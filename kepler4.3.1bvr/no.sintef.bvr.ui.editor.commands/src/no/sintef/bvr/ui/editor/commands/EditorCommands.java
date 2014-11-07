@@ -40,6 +40,7 @@ import bvr.VNode;
 import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
 import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.Variabletype;
@@ -208,5 +209,7 @@ public interface EditorCommands {
 	
 	public void removeBVRModelCompoundResolutions(BVRModel model, EList<CompoundResolution> resolutions);
 
-	void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr, int index);
+	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr, int index);
+
+	public void addValueResolution(CompoundResolution compountResolution, ValueResolution valueResolution);
 }

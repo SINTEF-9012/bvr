@@ -70,6 +70,7 @@ import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
 import bvr.ValueSpecification;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
@@ -797,6 +798,13 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void removeBVRModelCompoundResolutions(BVRModel model, EList<CompoundResolution> resolutions) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), resolutions);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void addValueResolution(CompoundResolution compountResolution, ValueResolution valueResolution) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compountResolution, BvrPackage.eINSTANCE.getCompoundResolution_Members(), valueResolution);
 		testCommandExecution(editingDomain, cmd);
 	}
 

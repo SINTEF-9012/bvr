@@ -25,6 +25,7 @@ import no.sintef.bvr.tool.observer.ResourceSubject;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 
 
 
@@ -77,6 +79,7 @@ import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
@@ -871,6 +874,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			ChangeChoiceFacade.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
 			InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, this);
 		}
-		
+	}
+	
+	@Override
+	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
+		ValueResolution valueResolution = PrimitiveTypeFacade.getInstance().createDefaultValueResolution(variable);
+		Context.eINSTANCE.getEditorCommands().addValueResolution(compountResolution, valueResolution);
 	}
 }

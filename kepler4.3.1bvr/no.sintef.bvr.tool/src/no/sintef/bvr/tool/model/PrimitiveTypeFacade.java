@@ -24,6 +24,10 @@ import bvr.Variabletype;
 
 public class PrimitiveTypeFacade {
 	
+	private static int valueResolutionCount = 0;
+	private final static String valueResolutionName = "ValueRes";
+	private final static String defaultValue = "0";
+	
 	private static PrimitiveTypeFacade instance = null;
 	private PrimitiveTypeFacade(){
 		
@@ -50,8 +54,6 @@ public class PrimitiveTypeFacade {
 					PrimitveType pt = (PrimitveType)x;
 					if(pt.getType() == type)
 						vt = pt;
-				}else{
-					//throw new UnsupportedOperationException("Unsupported variable type, only primitive types are supported " + x);
 				}
 			}
 		}
@@ -133,6 +135,7 @@ public class PrimitiveTypeFacade {
 		} else {
 			throw new UnsupportedOperationException("Unsupported: " + type);
 		}
+		value.setType((PrimitveType) v.getType());
 		return value;
 	}
 	
@@ -164,6 +167,17 @@ public class PrimitiveTypeFacade {
 			throw new UnsupportedOperationException("not PrimitiveValueSpecification is not suppoerted yet " + vs);
 		}
 		return value;
+	}
+	
+	public ValueResolution createDefaultValueResolution(Variable variable){
+		ValueResolution valueResolution = BvrFactory.eINSTANCE.createValueResolution();
+		valueResolution.setName(valueResolutionName+valueResolutionCount+"_"+variable.getName());
+		valueResolution.setResolvedVariable(variable);
+		valueResolution.setResolvedVSpec(variable);
+		
+		PrimitiveValueSpecification valueSpecification = makeValueSpecification(variable, defaultValue);
+		valueResolution.setValue(valueSpecification);
+		return valueResolution;
 	}
 }
 

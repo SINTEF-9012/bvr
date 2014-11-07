@@ -41,6 +41,7 @@ import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
 import bvr.ValueSpecification;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
@@ -587,5 +588,12 @@ public class EditorMVCCommands implements EditorCommands {
 	public void addChoiceResoulution(VSpecResolution vsper,
 			ChoiceResolution cr, int index) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void addValueResolution(CompoundResolution compountResolution,
+			ValueResolution valueResolution) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -85,6 +85,8 @@ import bvr.OpaqueConstraint;
 import bvr.PosResolution;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
+import bvr.Variable;
 
 public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject, SERIALIZABLE extends Serializable> implements
 		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> {
@@ -211,7 +213,10 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 
-		} /*
+		} else if (v instanceof ValueResolution) {
+			
+		}
+		/*
 		 * 
 		 * 
 		 * //TODO deal with Variables
@@ -525,6 +530,20 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		NamedElement element = getElementInCurrentPane(node);
 		toolModel.maximizeVSpecResolution((VSpecResolution) element);
 		notifyResolutionViewUpdate();
+	}
+
+	@Override
+	public SimpleExeCommandInterface createVariableResolutionCommand(GUI_NODE parent,
+			MODEL_OBJECT _variable) {
+		CompoundResolution compountResolution = (CompoundResolution) getElementInCurrentPane(parent);
+		Variable variable = (Variable) _variable;
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.resolveVariable(compountResolution, variable);
+			}
+		});
+		return command;
 	}
 	
 }
