@@ -17,7 +17,7 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 
 	public SimpleExeCommandInterface createGenerateAllProductsCommand();
 
-	public SimpleExeCommandInterface RemoveVsSpecResoluton(GUI_NODE toDelete);
+	public SimpleExeCommandInterface createRemoveVSpecResolutionCommand(GUI_NODE toDelete);
 
 	public boolean performSATValidation();
 

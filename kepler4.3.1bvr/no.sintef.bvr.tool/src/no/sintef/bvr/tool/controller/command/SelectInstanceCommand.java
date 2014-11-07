@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import bvr.NamedElement;
-import bvr.VSpec;
+
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -17,7 +17,7 @@ import no.sintef.bvr.ui.framework.SelectElement;
 public class SelectInstanceCommand implements Command {
 
     private BVRUIKernel kernel;
-    private static SelectElement currentlySelected = null;//only one element can be selected
+    private static SelectElement currentlySelected = null;
     
     private SelectElement selectableElement;
     

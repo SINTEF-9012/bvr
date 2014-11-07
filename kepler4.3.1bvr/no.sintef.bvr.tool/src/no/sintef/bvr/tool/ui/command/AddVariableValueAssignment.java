@@ -9,11 +9,11 @@ import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SelectInstanceCommand;
 import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
+import no.sintef.bvr.tool.ui.dropdown.VariableValueAssignmentDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
-
 import bvr.NamedElement;
 import bvr.ValueResolution;
 
@@ -27,7 +27,6 @@ public class AddVariableValueAssignment implements Command {
 	protected JComponent parent;
 	protected BVRUIKernel rootPanel;
 	protected ValueResolution c;
-	protected CommandMouseListener listener;
 	protected boolean contains;
 
 
@@ -35,13 +34,11 @@ public class AddVariableValueAssignment implements Command {
 		this.rootPanel = rootPanel;
 		this.c = (ValueResolution) p;
 		this.parent = parent;
-		
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
 		this.view = view;
 		this.parent = parent;
-		
 		return this;  
 	}
 
@@ -50,8 +47,8 @@ public class AddVariableValueAssignment implements Command {
 		nodes.add(cp);
 		vmMap.put(cp, c);
 		
-        listener = new CommandMouseListener();
-       // cp.addMouseListener(new VariableValueAssignmentDropDownListener(cp, c, view, vmMap));
+		CommandMouseListener listener = new CommandMouseListener();
+		cp.addMouseListener(new VariableValueAssignmentDropDownListener(cp, view));
         
         SelectInstanceCommand command = new SelectInstanceCommand();
         command.init(rootPanel, cp, parent, vmMap, nodes, bindings, view);

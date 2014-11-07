@@ -408,7 +408,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public SimpleExeCommandInterface RemoveVsSpecResoluton(final GUI_NODE _toDelete) {
+	public SimpleExeCommandInterface createRemoveVSpecResolutionCommand(final GUI_NODE _toDelete) {
 		final int resolutionIndex = resPane.getSelectedIndex();
 		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
 			NamedElement toDelete = null;

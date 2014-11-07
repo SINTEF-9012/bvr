@@ -32,7 +32,6 @@ public class AddChoiceResolution implements Command {
 	private JComponent parent;
 	private BVRUIKernel rootPanel;
 	private ChoiceResolution c;
-	private CommandMouseListener listener;
 	private boolean minContains;
 	
 	public AddChoiceResolution(boolean minContains, boolean stripContains) {
@@ -59,7 +58,7 @@ public class AddChoiceResolution implements Command {
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		vmMap.put(cp, c);
-		////////////////////////////////////
+
 		CommandMouseListener listener = new CommandMouseListener();
 		ToggleChoiceCommand command = new ToggleChoiceCommand();
 		command.init(rootPanel, null, cp, vmMap, nodes, bindings, controller);
