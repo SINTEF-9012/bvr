@@ -41,6 +41,7 @@ import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
 //import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 //import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
+import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -212,9 +213,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		} else if (v instanceof ChoiceResolution) {
 			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
-
 		} else if (v instanceof ValueResolution) {
-			
+			new AddVariableValueAssignment().init(bvruikernel, v, parent,
+					vmMap, nodes, bindings, rootController).execute();
 		}
 		/*
 		 * 

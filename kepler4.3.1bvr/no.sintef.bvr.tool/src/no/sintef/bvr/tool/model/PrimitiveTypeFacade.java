@@ -25,7 +25,6 @@ import bvr.Variabletype;
 public class PrimitiveTypeFacade {
 	
 	private static int valueResolutionCount = 0;
-	private final static String valueResolutionName = "ValueRes";
 	private final static String defaultValue = "0";
 	
 	private static PrimitiveTypeFacade instance = null;
@@ -171,12 +170,13 @@ public class PrimitiveTypeFacade {
 	
 	public ValueResolution createDefaultValueResolution(Variable variable){
 		ValueResolution valueResolution = BvrFactory.eINSTANCE.createValueResolution();
-		valueResolution.setName(valueResolutionName+valueResolutionCount+"_"+variable.getName());
+		valueResolution.setName(variable.getName() + "_" + valueResolutionCount);
 		valueResolution.setResolvedVariable(variable);
 		valueResolution.setResolvedVSpec(variable);
 		
 		PrimitiveValueSpecification valueSpecification = makeValueSpecification(variable, defaultValue);
 		valueResolution.setValue(valueSpecification);
+		valueResolutionCount++;
 		return valueResolution;
 	}
 }
