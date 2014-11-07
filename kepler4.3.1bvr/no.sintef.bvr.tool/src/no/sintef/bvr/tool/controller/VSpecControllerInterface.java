@@ -3,15 +3,13 @@ package no.sintef.bvr.tool.controller;
 import no.sintef.bvr.tool.controller.command.Command;
 
 
-public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE> {
+public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {
 	
 	public void addChoice(GUI_NODE parent);
 	
 	public void minimizeNode(GUI_NODE node);
 	
 	public void maximizeNode(GUI_NODE node);
-	
-	public MODEL_OBJECT getModelObjectByUINode(GUI_NODE node);
 	
 	public Command createUpdateChoiceCommand(GUI_NODE node);
 	

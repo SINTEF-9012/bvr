@@ -53,6 +53,7 @@ import bvr.BVRModel;
 import bvr.Choice;
 import bvr.NamedElement;
 import bvr.VClassifier;
+import bvr.ValueResolution;
 
 
 public class BVREditorPanel extends JPanel {
@@ -170,15 +171,11 @@ public class BVREditorPanel extends JPanel {
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
         	//System.out.println("Here!");
         }else if (p instanceof VariableAssignmentPanel) {
-        	/*VariableAssignmentPanel elem = (VariableAssignmentPanel)p;
-        	VariableValueAssignment x = null;
-        	for(Map<JComponent, NamedElement> z : resolutionvmMaps){
-        		if(z.get(elem) != null)
-        			x = (VariableValueAssignment) z.get(elem);
-        	}
-        	VariableValueAssignmentPropertyEditor prop = new VariableValueAssignmentPropertyEditor(kernel, x, view);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
-        	//System.out.println("Here!");
+        	VariableAssignmentPanel elem = (VariableAssignmentPanel) p;
+        	NamedElement object = (NamedElement) controller.getResolutionControllerInterface().getModelObjectByUINode(p);
+        	Command okCommand = controller.getResolutionControllerInterface().createUpdateVariableResolutionCommand(elem);
+        	VariableValueAssignmentPropertyEditor prop = new VariableValueAssignmentPropertyEditor(kernel, okCommand, (ValueResolution) object, elem, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else{
         	throw new UnsupportedOperationException("Unsupported: " + p.getClass().getName());
         }

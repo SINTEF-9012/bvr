@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.Command;
-import no.sintef.bvr.tool.controller.command.SelectInstanceCommand;
 import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
+import no.sintef.bvr.tool.ui.command.CommandMouseListener;
+import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.dropdown.VariableValueAssignmentDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -18,7 +18,7 @@ import bvr.NamedElement;
 import bvr.ValueResolution;
 
 
-public class AddVariableValueAssignment implements Command {
+public class AddVariableResolution implements Command {
 
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;

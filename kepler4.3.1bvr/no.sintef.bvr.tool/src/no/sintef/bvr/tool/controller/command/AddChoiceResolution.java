@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,6 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.Command;
-import no.sintef.bvr.tool.controller.command.ToggleChoiceCommand;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceResolutionDropDownListener;
@@ -38,6 +36,7 @@ public class AddChoiceResolution implements Command {
 		this.minContains = minContains;
 		this.stripContains = stripContains;
 	}
+
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		if(p instanceof ChoiceResolution){
 			this.rootPanel = rootPanel;
@@ -53,6 +52,7 @@ public class AddChoiceResolution implements Command {
 		
 		return this;  
 	}
+
 	@Override
 	public JComponent execute() {
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
@@ -76,7 +76,5 @@ public class AddChoiceResolution implements Command {
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( (resolvedChoice).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
         return cp;
-        
 	}
-
 }

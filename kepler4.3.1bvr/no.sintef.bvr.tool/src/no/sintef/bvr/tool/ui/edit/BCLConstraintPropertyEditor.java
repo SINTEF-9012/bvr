@@ -16,7 +16,7 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.BCLConstraint;
 
 
-public class BCLConstraintPropertyEditor extends ElementPropertyEditor{
+public class BCLConstraintPropertyEditor extends ElementPropertyEditor {
 	
 
 	private static final long serialVersionUID = -4875391301993248898L;

@@ -5,25 +5,17 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.UpdateVSpec;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
-//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
 import bvr.RealLiteralExp;
 import bvr.StringLiteralExp;
 import bvr.UnlimitedLiteralExp;
 import bvr.ValueSpecification;
-/*
-import bvr.PrimitveType;
-import bvr.Variable;
-import bvr.VariableValueAssignment;
-import bvr.common.PrimitiveTypeHandler;
-*/
 import bvr.Variable;
 
 public class UpdateVariableValueAssignment extends UpdateVSpec  {

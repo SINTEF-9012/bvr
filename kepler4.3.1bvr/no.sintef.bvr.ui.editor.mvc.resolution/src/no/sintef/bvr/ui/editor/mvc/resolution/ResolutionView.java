@@ -19,10 +19,10 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
-import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.Pair;

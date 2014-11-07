@@ -25,8 +25,10 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.controller.command.AddChoiceResolution;
 import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
@@ -35,13 +37,11 @@ import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.subject.BVRModelSubject;
-import no.sintef.bvr.tool.ui.command.AddChoiceResolution;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
 //import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
 //import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
 //import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
-import no.sintef.bvr.tool.ui.command.AddVariableValueAssignment;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -214,7 +214,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ValueResolution) {
-			new AddVariableValueAssignment().init(bvruikernel, v, parent,
+			new AddVariableResolution().init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 		}
 		/*
@@ -547,4 +547,17 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public MODEL_OBJECT getModelObjectByUINode(GUI_NODE node) {
+		int resolutionIndex = resPane.getSelectedIndex();
+		return (MODEL_OBJECT) resolutionvmMaps.get(resolutionIndex).get(node);
+	}
+
+	@Override
+	public Command createUpdateVariableResolutionCommand(GUI_NODE elem) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -2,11 +2,11 @@ package no.sintef.bvr.tool.controller;
 
 import java.util.List;
 
-import javax.swing.JComponent;
-
+import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
-public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE> {
+
+public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {
 
 	public void addChoiceOrVClassifierResolution(GUI_NODE parent,
 			MODEL_OBJECT resolvedVSpec);
@@ -44,4 +44,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void maximizeNode(GUI_NODE node);
 	
 	public SimpleExeCommandInterface createVariableResolutionCommand(GUI_NODE parent, MODEL_OBJECT variable);
+
+	public Command createUpdateVariableResolutionCommand(GUI_NODE elem);
 }

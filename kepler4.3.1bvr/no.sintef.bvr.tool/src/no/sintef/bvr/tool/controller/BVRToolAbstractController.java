@@ -25,7 +25,7 @@ abstract public class BVRToolAbstractController implements BVRNotifiableControll
 	}
 	
 	@Override
-	public EditorsCommonControllerInterface<?> getCommonControllerInterface() {
+	public EditorsCommonControllerInterface<?, ?, ?> getCommonControllerInterface() {
 		return commonInterface;
 	}
 	
