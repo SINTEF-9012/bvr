@@ -205,19 +205,11 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		// Add view
 		// System.out.println(v.getClass().getSimpleName());
 		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
-			// System.out.println(v + ", " + bvruikernel);
-
 			nextParent = new AddChoiceResolutionFromVClassifier(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(
 					bvruikernel, v, parent, vmMap, nodes, bindings, rootController).execute();
-
-			vmMap.put(nextParent, v);
-
 		} else if (v instanceof ChoiceResolution) {
-			// System.out.println(v);
 			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
-
-			vmMap.put(nextParent, v);
 
 		} /*
 		 * 
@@ -364,7 +356,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return resPane;
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
 		NamedElement parentNamedElement = getElementInCurrentPane(parent);

@@ -45,6 +45,7 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 		// System.out.println("rootPanel is " + rootPanel);
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
+		vmMap.put(cp, cr);
 
 		CommandMouseListener listener = new CommandMouseListener();
 		// SelectInstanceCommandV2 command = new SelectInstanceCommandV2();

@@ -28,7 +28,7 @@ public class AddChoiceResolution implements Command {
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRNotifiableController view;
+	private BVRNotifiableController controller;
 	private JComponent parent;
 	private BVRUIKernel rootPanel;
 	private ChoiceResolution c;
@@ -49,7 +49,7 @@ public class AddChoiceResolution implements Command {
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
-		this.view = view;
+		this.controller = view;
 		this.parent = parent;
 		
 		return this;  
@@ -58,13 +58,14 @@ public class AddChoiceResolution implements Command {
 	public JComponent execute() {
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
+		vmMap.put(cp, c);
 		////////////////////////////////////
 		CommandMouseListener listener = new CommandMouseListener();
 		ToggleChoiceCommand command = new ToggleChoiceCommand();
-		command.init(rootPanel, null, cp, vmMap, nodes, bindings, view);
+		command.init(rootPanel, null, cp, vmMap, nodes, bindings, controller);
 		listener.setLeftClickCommand(command);
 		
-		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, vmMap,  (BVRNotifiableController) view));
+		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, controller));
         cp.addMouseListener(listener);
 		
         Choice resolvedChoice = (Choice) CommonUtility.getResolvedVSpec(c);

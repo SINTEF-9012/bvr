@@ -87,4 +87,13 @@ public class Constants {
 	public static final Color GREEN = new Color(Display.getDefault(), 80, 210, 70); //fromReplacement outside element
 	public static final Color PINK = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element
 	*/
+	
+	public static final String RESOLUTION_DROPDOWN_ADD_ITEM = "Add";
+	public static final String RESOLUTION_DROPDOWN_VCLASS_SUBTREE_ITEM = "Add Realized VClassifier Subtree";
+	public static final String RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM = "Add Multiple Realized VInstance Subtrees";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM = "Resolve Subtree";
+	public static final String RESOLUTION_DROPDOWN_MININIZE_ITEM = "Minimize";
+	public static final String RESOLUTION_DROPDOWN_MAXIMIZE_ITEM = "Maximize";
+	public static final String RESOLUTION_DROPDOWN_REMOVE_ITEM = "Remove";
+	public static final String RESOLUTION_DROPDOWN_VALIDATE_ITEM = "Validate";
 }
