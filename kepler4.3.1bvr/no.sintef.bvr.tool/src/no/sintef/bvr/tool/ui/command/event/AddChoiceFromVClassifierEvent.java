@@ -7,13 +7,8 @@ import javax.swing.JComponent;
 
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import bvr.Choice;
-import bvr.BvrFactory;
-import bvr.VClassifier;
-import bvr.VSpec;
-import bvr.VSpecResolution;
+
 
 public class AddChoiceFromVClassifierEvent implements ActionListener {
 	private JComponent cr;

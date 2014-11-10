@@ -94,6 +94,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
 	private NamedElement cutNamedElement = null;
+	private HashMap<NegResolution, PosResolution> buffer;
 	
 
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -113,6 +114,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private void init() {
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
+		buffer = new HashMap<NegResolution, PosResolution>();
 		checkModel();
 	}
 
@@ -871,9 +873,23 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	public void toggleChoice(NamedElement toToggle) {
+		EObject parent = toToggle.eContainer();
+		if(!(parent instanceof ChoiceResolution))
+			return;
+
 		if (toToggle instanceof ChoiceResolution) {
-			ChangeChoiceFacade.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
-			InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, this);
+			if(toToggle instanceof PosResolution) {
+				ChoiceResolution negResolution = ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
+				buffer.put((NegResolution) negResolution, (PosResolution) toToggle);
+			} else {
+				PosResolution buffered = buffer.remove((NegResolution) toToggle);
+				if(buffered != null) {
+					ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) parent, (ChoiceResolution) toToggle, (ChoiceResolution) buffered);
+				} else {
+					ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
+					InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, this);
+				}
+			}
 		}
 	}
 	
