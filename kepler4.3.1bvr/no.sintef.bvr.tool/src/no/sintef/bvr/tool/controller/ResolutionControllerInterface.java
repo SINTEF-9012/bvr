@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
+import bvr.VClassifier;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 
 public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {
@@ -54,4 +56,9 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void setValueResolutionName(GUI_NODE parent, String name);
 
 	public String getValueReolutionStringValue(GUI_NODE node);
+
+	public int getReslovedVClassifierCount(GUI_NODE panel, MODEL_OBJECT vclassifier);
+
+	public SimpleExeCommandInterface createResolveNVSpecCommand(
+			GUI_NODE panel, MODEL_OBJECT vspec, int instancesToResolve);
 }

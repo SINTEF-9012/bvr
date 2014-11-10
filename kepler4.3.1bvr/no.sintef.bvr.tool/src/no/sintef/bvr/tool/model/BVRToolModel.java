@@ -28,6 +28,7 @@ import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
+import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
@@ -153,7 +154,7 @@ abstract public class BVRToolModel {
 	
 	public void addChoice(NamedElement parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
-	};
+	}
 	
 	public void minimaizeVSpec(VSpec vspec){
 		throw new UnexpectedException("Are you using default implementation?!");
@@ -290,12 +291,6 @@ abstract public class BVRToolModel {
 
 	public void updateBindingBoundary(BoundaryElementBinding binding, NamedElement boundary) {
 		throw new UnexpectedException("Are you using default implementation?!");
-	}
-
-
-	public void addChoiceOrVClassifierResolution(VSpec resolvedVSpec, VSpecResolution parentNamedElement) {
-		throw new UnexpectedException("Are you using default implementation?!");
-		
 	}
 
 	public CompoundResolution createResolution() {
@@ -463,33 +458,48 @@ abstract public class BVRToolModel {
 		Context.eINSTANCE.getConfig().saveLastLocation(absolutePath);
 	}
 
-	public void toggleShowConstraints() {
-		showConstraints = !showConstraints;
+	public void addChoiceOrVClassifierResolution(VSpec resolvedVspec,
+			VSpecResolution parent) {
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public boolean isShowConstraints(){
-		return showConstraints;
+
+	public void resolveVariable(CompoundResolution compountResolution,
+			Variable variable) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void toggleShowConstraints() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public boolean isShowConstraints() {
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public boolean isResolutionModelSet() {
-		return (getBVRModel().getResolutionModels().size() > 0) ? true : false;
-	}
-
-	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public void setValueResolution(ValueResolution valueResoultion, String value) {
-		PrimitiveTypeFacade.getInstance().testPrimitiveValSpecValueResolution(valueResoultion, value);
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public String getValueResolutionAsString(ValueResolution namedElement) {
-		return PrimitiveTypeFacade.getInstance().getValueAsString(namedElement);
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public void setValueResolutionName(ValueResolution namedElement, String name) {
-		if(namedElement.getName().equals(name))
-			return;
-		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public int getResolvedVClassifierCount(
+			CompoundResolution compoundResolution, VClassifier vclassifier) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void addChoiceOrVClassifierResolution(VSpec vSpecToResolve,
+			VSpecResolution parentNamedElement, int instancesToResolve) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
 }

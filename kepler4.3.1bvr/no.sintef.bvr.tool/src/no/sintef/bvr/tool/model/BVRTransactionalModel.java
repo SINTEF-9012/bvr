@@ -26,6 +26,7 @@ import no.sintef.bvr.tool.observer.ResourceSubject;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 
 
 
@@ -342,8 +344,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 		choicCounter++;
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void addChoiceOrVClassifierResolution(VSpec resolvedVspec, VSpecResolution parent) {
 		ChoiceResolution cr = null;
@@ -880,5 +881,57 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
 		ValueResolution valueResolution = PrimitiveTypeFacade.getInstance().createDefaultValueResolution(variable);
 		Context.eINSTANCE.getEditorCommands().addValueResolution(compountResolution, valueResolution);
+	}
+	
+	@Override
+	public void toggleShowConstraints() {
+		showConstraints = !showConstraints;
+	}
+	
+	@Override
+	public boolean isShowConstraints(){
+		return showConstraints;
+	}
+
+	@Override
+	public boolean isResolutionModelSet() {
+		return (getBVRModel().getResolutionModels().size() > 0) ? true : false;
+	}
+
+	@Override
+	public void setValueResolution(ValueResolution valueResoultion, String value) {
+		PrimitiveTypeFacade.getInstance().testPrimitiveValSpecValueResolution(valueResoultion, value);
+	}
+
+	@Override
+	public String getValueResolutionAsString(ValueResolution namedElement) {
+		return PrimitiveTypeFacade.getInstance().getValueAsString(namedElement);
+	}
+
+	@Override
+	public void setValueResolutionName(ValueResolution namedElement, String name) {
+		if(namedElement.getName().equals(name))
+			return;
+		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
+	}
+
+	@Override
+	public int getResolvedVClassifierCount(CompoundResolution compoundResolution, VClassifier vclassifier) {
+		int currentInstances = 0;
+		for (VSpecResolution x : compoundResolution.getMembers()) {
+			if (x.getResolvedVSpec() == vclassifier) {
+				if (x.getResolvedVSpec() == vclassifier) {
+					currentInstances++;
+				}
+			}
+		}
+		return currentInstances;
+	}
+
+	@Override
+	public void addChoiceOrVClassifierResolution(VSpec vSpecToResolve,
+			VSpecResolution parentNamedElement, int instancesToResolve) {
+		for(int i = 0; i < instancesToResolve; i++)
+			addChoiceOrVClassifierResolution(vSpecToResolve, parentNamedElement);
 	}
 }

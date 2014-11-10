@@ -86,6 +86,7 @@ import bvr.NamedElement;
 import bvr.NegResolution;
 import bvr.OpaqueConstraint;
 import bvr.PosResolution;
+import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
@@ -583,6 +584,26 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public String getValueReolutionStringValue(GUI_NODE node) {
 		NamedElement namedElement = getElementInCurrentPane(node);
 		return toolModel.getValueResolutionAsString((ValueResolution) namedElement);
+	}
+	
+	@Override
+	public int getReslovedVClassifierCount(GUI_NODE node, MODEL_OBJECT vclassifier) {
+		NamedElement namedElement = getElementInCurrentPane(node);
+		return toolModel.getResolvedVClassifierCount((CompoundResolution) namedElement, (VClassifier) vclassifier);
+	}
+
+	@Override
+	public SimpleExeCommandInterface createResolveNVSpecCommand(GUI_NODE panel,
+			MODEL_OBJECT vspec, int instancesToResolve) {
+		NamedElement parentNamedElement = getElementInCurrentPane(panel);
+		VSpec vSpecToResolve = (VSpec) vspec;
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement, instancesToResolve);
+			}
+		});
+		return command;
 	}
 
 }

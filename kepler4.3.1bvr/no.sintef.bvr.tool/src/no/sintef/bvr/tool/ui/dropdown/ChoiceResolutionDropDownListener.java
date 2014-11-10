@@ -23,6 +23,7 @@ import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
+import no.sintef.bvr.tool.ui.command.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
@@ -88,7 +89,8 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 			if (c.getResolvedVSpec() instanceof CompoundNode) {
 				JMenu resolve_choice = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM);
 				JMenu resolve_vclass = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM);
-				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {// TODO add Variables
+				JMenu addMulTree = new JMenu(Constants.RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM);
+				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
 					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
 					if(x instanceof Choice) {
 						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
@@ -96,6 +98,10 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					} else if (x instanceof VClassifier){
 						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
 						resolve_vclass.add(addchild);
+						
+						JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
+						addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent(cp, (VClassifier) x, controller));
+						addMulTree.add(addChild);
 					}
 				}
 				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
@@ -111,10 +117,13 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					resolve_variable.setEnabled(false);
 				if (resolve_vclass.getMenuComponents().length == 0)
 					resolve_vclass.setEnabled(false);
-
+				if (addMulTree.getMenuComponents().length == 0)
+					addMulTree.setEnabled(false);
+	
 				add(resolve_choice);
 				add(resolve_variable);
 				add(resolve_vclass);
+				add(addMulTree);
 				
 				if(resolve_choice.isEnabled() || resolve_vclass.isEnabled()){
 					JMenuItem resTree = new JMenuItem(Constants.RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM);
@@ -134,22 +143,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					add(new JSeparator());
 				}
 			}
-						
-			if (c.getResolvedVSpec() instanceof CompoundNode) {
-				JMenu addMulTree = new JMenu(Constants.RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM);
-				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
-					JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
-					if (x instanceof VClassifier) {
-						//TODO addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent((VClassifier) x, c, view));
-						addMulTree.add(addChild);
-					}
-				}
-				if (addMulTree.getMenuComponents().length == 0) {
-					addMulTree.setEnabled(false);
-				}
-				add(addMulTree);
-			}
-			
 		}
 
 		/*
@@ -171,9 +164,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		add(remove);
 		
 		/*
-		 * // max/min TODO Create new events JMenuItem minimize = new JMenuItem("minimize"); minimize.addActionListener(new MinimizeEvent(cp, vmMap,
-		 * null, null, view)); add(minimize); JMenuItem maximize = new JMenuItem("maximize"); maximize.addActionListener(new MaximizeEvent(cp, vmMap,
-		 * null, null, view)); add(maximize);
 		 * 
 		 * // strip JMenuItem strip = new JMenuItem("strip"); strip.addActionListener(new StrippedEvent(cp, vmMap, view, c.getResolvedVSpec()));
 		 * add(strip); JMenuItem unstrip = new JMenuItem("unstrip"); unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view,
