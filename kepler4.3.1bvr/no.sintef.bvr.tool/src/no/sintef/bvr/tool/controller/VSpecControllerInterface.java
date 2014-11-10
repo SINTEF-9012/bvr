@@ -21,12 +21,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 	
 	public String getNodesCommentText(GUI_NODE node);
 	
-	public void enableBatchCommandProcessing();
-	
-	public void disableBatchCommandProcessing();
-	
-	public void executeCommandBatch();
-	
 	public void addVariable(GUI_NODE node);
 
 	public Command createUpdateVClassifierCommand(GUI_NODE node);

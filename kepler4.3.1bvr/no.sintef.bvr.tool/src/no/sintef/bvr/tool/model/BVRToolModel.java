@@ -41,6 +41,7 @@ import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
@@ -476,5 +477,19 @@ abstract public class BVRToolModel {
 
 	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
 		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setValueResolution(ValueResolution valueResoultion, String value) {
+		PrimitiveTypeFacade.getInstance().testPrimitiveValSpecValueResolution(valueResoultion, value);
+	}
+
+	public String getValueResolutionAsString(ValueResolution namedElement) {
+		return PrimitiveTypeFacade.getInstance().getValueAsString(namedElement);
+	}
+
+	public void setValueResolutionName(ValueResolution namedElement, String name) {
+		if(namedElement.getName().equals(name))
+			return;
+		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 	}
 }

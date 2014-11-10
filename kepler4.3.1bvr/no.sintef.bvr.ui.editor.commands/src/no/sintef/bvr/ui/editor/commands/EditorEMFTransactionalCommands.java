@@ -48,6 +48,7 @@ import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
+import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.NegResolution;
@@ -56,6 +57,7 @@ import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
+import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
@@ -808,14 +810,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		testCommandExecution(editingDomain, cmd);
 	}
 
-/*
 	@Override
-	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
-	//TODO replace
+	public void setPrimitiveValueBCLExpression(
+			PrimitiveValueSpecification primitiveValue, BCLExpression expression) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, elem, BvrPackage.eINSTANCE.getVariableValueAssignment_Value(), value);
-		editingDomain.getCommandStack().execute(cmd);
-		
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, primitiveValue, BvrPackage.eINSTANCE.getPrimitiveValueSpecification_Expression(), expression);
+		testCommandExecution(editingDomain, cmd);
 	}
-*/
 }

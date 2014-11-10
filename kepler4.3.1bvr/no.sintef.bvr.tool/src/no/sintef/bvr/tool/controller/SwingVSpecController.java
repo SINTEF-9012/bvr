@@ -220,21 +220,6 @@ public class SwingVSpecController<
 		NamedElement namedElement = (VSpec) vspecvmMap.get(node);
 		return toolModel.getNodesCommentText(namedElement);
 	}
-
-	@Override
-	public void enableBatchCommandProcessing() {
-		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
-	}
-
-	@Override
-	public void disableBatchCommandProcessing() {
-		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
-	}
-
-	@Override
-	public void executeCommandBatch() {
-		Context.eINSTANCE.getEditorCommands().executeBatch();
-	}
 	
 	@Override
 	public void addVariable(GUI_NODE node) {

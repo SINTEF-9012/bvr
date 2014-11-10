@@ -19,6 +19,7 @@ import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
+import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.NegResolution;
@@ -27,6 +28,7 @@ import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
+import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
 //import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
@@ -183,9 +185,6 @@ public interface EditorCommands {
 	public VPackageable testPrimitiveTypes(BVRModel model);
 	
 	public void addBCLConstraintVNode(VNode vNode, BCLConstraint bclConstraint);
-/*
-	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value);
-*/
 
 	public void createNote(NamedElement parent, Note commentNote);
 	
@@ -212,4 +211,7 @@ public interface EditorCommands {
 	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr, int index);
 
 	public void addValueResolution(CompoundResolution compountResolution, ValueResolution valueResolution);
+
+	public void setPrimitiveValueBCLExpression(
+			PrimitiveValueSpecification primitiveValue, BCLExpression expression);
 }

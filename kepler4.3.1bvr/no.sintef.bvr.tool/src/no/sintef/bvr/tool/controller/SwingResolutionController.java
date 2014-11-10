@@ -31,7 +31,9 @@ import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.controller.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
+import no.sintef.bvr.tool.decorator.UpdateVarValAssigBatchCmdDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UserInputError;
@@ -466,7 +468,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private NamedElement getElementInCurrentPane(JComponent toFind) {
 		return resolutionvmMaps.get(resPane.getSelectedIndex()).get(toFind);
 	}
-
+	
 	@Override
 	public SimpleExeCommandInterface createResolveSubtreeCommand(GUI_NODE _parent) {
 		final VSpecResolution parent = (VSpecResolution) getElementInCurrentPane(_parent);
@@ -556,8 +558,31 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public Command createUpdateVariableResolutionCommand(GUI_NODE elem) {
-		// TODO Auto-generated method stub
-		return null;
+		Command command = new UpdateVarValAssigBatchCmdDecorator(new UpdateVariableValueAssignment());
+		command.init(resolutionkernels.get(resPane.getSelectedIndex()),
+				getElementInCurrentPane(elem), elem,
+				resolutionvmMaps.get(resPane.getSelectedIndex()),
+				resolutionNodes.get(resPane.getSelectedIndex()),
+				resolutionBindings.get(resPane.getSelectedIndex()), rootController);
+		return command;
+	}
+
+	@Override
+	public void setValueResolutionValue(GUI_NODE parent, String value) {
+		NamedElement namedElement = getElementInCurrentPane(parent);
+		toolModel.setValueResolution((ValueResolution) namedElement, value);
+	}
+
+	@Override
+	public void setValueResolutionName(GUI_NODE parent, String name) {
+		NamedElement namedElement = getElementInCurrentPane(parent);
+		toolModel.setValueResolutionName((ValueResolution) namedElement, name);
+	}
+
+	@Override
+	public String getValueReolutionStringValue(GUI_NODE node) {
+		NamedElement namedElement = getElementInCurrentPane(node);
+		return toolModel.getValueResolutionAsString((ValueResolution) namedElement);
 	}
 
 }

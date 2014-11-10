@@ -28,6 +28,7 @@ import javax.swing.text.BadLocationException;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.UpdateNamedElement;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 
 
@@ -123,7 +124,7 @@ abstract public class ElementPropertyEditor extends JPanel {
                 try {
                     ((UpdateNamedElement) command).setName(e.getDocument().getText(0, e.getDocument().getLength()));
                 } catch (BadLocationException ex) {
-                    //Logger.getLogger(NamedElementPropertyEditor.class.getName()).log(Level.SEVERE, null, ex);
+                	throw new RethrownException("failed to get a value", ex);
                 }
             }
 

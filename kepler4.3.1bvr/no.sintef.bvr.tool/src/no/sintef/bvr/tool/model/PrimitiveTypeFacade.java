@@ -1,6 +1,8 @@
 package no.sintef.bvr.tool.model;
 
 
+import guidsl.variable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,9 +69,11 @@ public class PrimitiveTypeFacade {
 		return vt;
 	}
 	
-	public PrimitiveValueSpecification makeValueSpecification(Variable v) {
+	
+	
+	public PrimitiveValueSpecification makeValueSpecification(Variable variable) {
 		PrimitiveValueSpecification value = BvrFactory.eINSTANCE.createPrimitiveValueSpecification();
-		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
+		PrimitiveTypeEnum type = ((PrimitveType) variable.getType()).getType();
 
 		if (type == PrimitiveTypeEnum.INTEGER) {
 			IntegerLiteralExp ie = BvrFactory.eINSTANCE.createIntegerLiteralExp();
@@ -99,12 +103,13 @@ public class PrimitiveTypeFacade {
 		} else {
 			throw new UnsupportedOperationException("Unsupported: " + type);
 		}
+		value.setType((PrimitveType) variable.getType());
 		return value;
 	}
 	
-	public PrimitiveValueSpecification makeValueSpecification(Variable v, String valueStr) {
+	public PrimitiveValueSpecification makeValueSpecification(Variable variable, String valueStr) {
 		PrimitiveValueSpecification value = BvrFactory.eINSTANCE.createPrimitiveValueSpecification();
-		PrimitiveTypeEnum type = ((PrimitveType) v.getType()).getType();
+		PrimitiveTypeEnum type = ((PrimitveType) variable.getType()).getType();
 		
 		if (type == PrimitiveTypeEnum.INTEGER) {
 			IntegerLiteralExp ie = BvrFactory.eINSTANCE.createIntegerLiteralExp();
@@ -134,7 +139,7 @@ public class PrimitiveTypeFacade {
 		} else {
 			throw new UnsupportedOperationException("Unsupported: " + type);
 		}
-		value.setType((PrimitveType) v.getType());
+		value.setType((PrimitveType) variable.getType());
 		return value;
 	}
 	
@@ -174,10 +179,55 @@ public class PrimitiveTypeFacade {
 		valueResolution.setResolvedVariable(variable);
 		valueResolution.setResolvedVSpec(variable);
 		
-		PrimitiveValueSpecification valueSpecification = makeValueSpecification(variable, defaultValue);
+		PrimitiveValueSpecification valueSpecification = makeValueSpecification(variable);
 		valueResolution.setValue(valueSpecification);
 		valueResolutionCount++;
 		return valueResolution;
+	}
+	
+	public void setPrimitiveValueSpecification(PrimitiveValueSpecification primitiveValue, String value){
+		PrimitiveTypeEnum type = ((PrimitveType) primitiveValue.getType()).getType();
+		try {
+			if (type == PrimitiveTypeEnum.INTEGER) {
+				IntegerLiteralExp ie = BvrFactory.eINSTANCE.createIntegerLiteralExp();
+				ie.setInteger(Integer.parseInt(value));
+				Context.eINSTANCE.getEditorCommands().setPrimitiveValueBCLExpression(primitiveValue, ie);
+				
+			} else if (type == PrimitiveTypeEnum.REAL) {
+				RealLiteralExp ie = BvrFactory.eINSTANCE.createRealLiteralExp();
+				ie.setReal(value);
+				Context.eINSTANCE.getEditorCommands().setPrimitiveValueBCLExpression(primitiveValue, ie);
+				
+			} else if (type == PrimitiveTypeEnum.BOOLEAN) {
+				BooleanLiteralExp ie = BvrFactory.eINSTANCE.createBooleanLiteralExp();
+				ie.setBool(Boolean.parseBoolean(value));
+				Context.eINSTANCE.getEditorCommands().setPrimitiveValueBCLExpression(primitiveValue, ie);
+				
+			} else if (type == PrimitiveTypeEnum.STRING) {
+				StringLiteralExp ie = BvrFactory.eINSTANCE.createStringLiteralExp();
+				ie.setString(value);
+				Context.eINSTANCE.getEditorCommands().setPrimitiveValueBCLExpression(primitiveValue, ie);
+				
+			} else if (type == PrimitiveTypeEnum.UNLIMITED_NATURAL) {
+				UnlimitedLiteralExp ie = BvrFactory.eINSTANCE.createUnlimitedLiteralExp();
+				ie.setUnlimited(Integer.parseInt(value));
+				Context.eINSTANCE.getEditorCommands().setPrimitiveValueBCLExpression(primitiveValue, ie);
+				
+			} else {
+				throw new UnsupportedOperationException("unknown primitive type: " + type);
+			}
+		} catch (IllegalArgumentException ex){
+			throw new UnsupportedOperationException("bad input the variable type : " + type);
+		}
+	}
+	
+	public void testPrimitiveValSpecValueResolution(ValueResolution valueResoultion, String value) {
+		ValueSpecification curvalue = valueResoultion.getValue();
+		if(curvalue == null){
+			curvalue = makeValueSpecification(valueResoultion.getResolvedVariable());
+			valueResoultion.setValue(curvalue);
+		}
+		setPrimitiveValueSpecification((PrimitiveValueSpecification) curvalue, value);
 	}
 }
 

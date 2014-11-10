@@ -21,6 +21,7 @@ import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
+import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.NegResolution;
@@ -29,6 +30,7 @@ import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
+import bvr.PrimitiveValueSpecification;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.Target;
@@ -593,6 +595,13 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void addValueResolution(CompoundResolution compountResolution,
 			ValueResolution valueResolution) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPrimitiveValueBCLExpression(
+			PrimitiveValueSpecification primitiveValue, BCLExpression expression) {
 		// TODO Auto-generated method stub
 		
 	}
