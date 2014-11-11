@@ -5,20 +5,18 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.CompoundResolution;
-import bvr.MultiplicityInterval;
+import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VNode;
-import bvr.VSpec;
 import bvr.VSpecResolution;
 
-public class AddMultiplicityTriangleResolution implements Command {
+public class ShowInValidConstraintsResolution implements Command {
 
 	private BVRUIKernel rootPanel;
 	private Object v;
@@ -47,20 +45,19 @@ public class AddMultiplicityTriangleResolution implements Command {
 	@SuppressWarnings("unchecked")
 	@Override
 	public JComponent execute() {
-		JComponent nextParent = parent;
 		if(v instanceof CompoundResolution) {
-			 VSpec vspec = ((CompoundResolution) v).getResolvedVSpec();
-			 MultiplicityInterval multiplicity = ((VNode) vspec).getGroupMultiplicity();
-			 if ( multiplicity != null) {
-				 boolean error = controller.getResolutionControllerInterface().findGroupError((EObject) v);
-				 if (error) {
-					 nextParent = new AddErrorGroup().init(rootPanel, CommonUtility.getResolvedVSpec((VSpecResolution) v), parent, vmMap, nodes, bindings, controller).execute();
-				 } else {
-					 nextParent = new AddGroupMultiplicity().init(rootPanel, CommonUtility.getResolvedVSpec((VSpecResolution) v), parent, vmMap, nodes, bindings, controller) .execute(); 
-				 } 
+			VNode vNode = (VNode) CommonUtility.getResolvedVSpec((VSpecResolution) v);
+			List<Constraint> constraints = vNode.getOwnedConstraint();
+			List<Constraint> invalidConstraints = controller.getResolutionControllerInterface().getInvalidConstraints();
+			for(Constraint constraint : constraints) {
+				if(invalidConstraints.contains(constraint)){
+					new ShowViolatedBCLConstraint().init(rootPanel, constraint, parent, vmMap, nodes, bindings, controller).execute();
+				} else {
+					new ShowBCLConstraintResolution().init(rootPanel, constraint, parent, vmMap, nodes, bindings, controller).execute();
+				}
 			}			
 		}
-		return nextParent;
+		return parent;
 	}
 
 }

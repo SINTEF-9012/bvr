@@ -35,16 +35,16 @@ public class ConstraintFacade {
 	}
 
 	public BCLConstraint createBCLConstraint(VNode node){
-		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
-		c.setName(defaultName+constraintCount);
+		BCLConstraint constraint = BvrFactory.eINSTANCE.createBCLConstraint();
+		constraint.setName(defaultName+constraintCount);
 		constraintCount++;
 		
 		TargetRef ref = BvrFactory.eINSTANCE.createTargetRef();
 		ref.setTarget(null);		
-		c.getExpression().add(ref);
+		constraint.getExpression().add(ref);
 		
-		Context.eINSTANCE.getEditorCommands().addBCLConstraintVNode(node, c);
-		return c;
+		Context.eINSTANCE.getEditorCommands().addBCLConstraintVNode(node, constraint);
+		return constraint;
 	}
 	
 	public void updateBCLConstraint(BVRModel model, BCLConstraint constraint, String rawConstraint){
@@ -75,5 +75,26 @@ public class ConstraintFacade {
 		if(constraint != null && constraint.getExpression().size() != 0)
 			text = new BCLPrettyPrinter().prettyPrint(constraint.getExpression().get(0), rootBVRModel);
 		return text;
+	}
+
+	public String formatConstraintString(String s, int length) {
+		String n = "";
+
+		for(;;){
+			if(s.length() < length){
+				n += s;
+				break;
+			}
+			int ws = s.substring(length).indexOf(" ");
+			if(ws == -1){
+				n += s;
+				break;
+			}else{
+				ws += length;
+				n += s.substring(0, ws).trim() + "\n";
+				s = s.substring(ws).trim();
+			}
+		}
+		return n;
 	}
 }

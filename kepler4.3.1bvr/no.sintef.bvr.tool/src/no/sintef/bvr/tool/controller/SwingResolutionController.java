@@ -26,10 +26,11 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.command.AddChoiceResolution;
-import no.sintef.bvr.tool.controller.command.AddErrorGroup;
+import no.sintef.bvr.tool.controller.command.ShowErrorGroup;
 import no.sintef.bvr.tool.controller.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
-import no.sintef.bvr.tool.controller.command.AddMultiplicityTriangleResolution;
+import no.sintef.bvr.tool.controller.command.ShowInValidConstraintsResolution;
+import no.sintef.bvr.tool.controller.command.ShowMultiplicityTriangleResolution;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.controller.command.Command;
@@ -102,11 +103,9 @@ import bvr.Variable;
 public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject, SERIALIZABLE extends Serializable> implements
 		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> {
 	private BVRToolModel toolModel;
-	private List<Constraint> invalidConstraints;
 
 	public JTabbedPane modelPane;
-	private boolean showGroups;
-	private boolean showConstraints;
+
 
 	// Resolutions
 	public JTabbedPane resPane;
@@ -117,19 +116,14 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 	private BVRModelSubject bvrModelSubject;
-	// private ConfigurableUnitSubject configurableUnitSubject;
 
 	// namecounters
 	private int choiceCount = 1;
-	private int instanceNameCounter;
-
-	// draw variables
-	
 
 	private ResolutionLayoutStrategy strategy;
 
 	BVRNotifiableController rootController;
-	private static final String PNG_EXT = "." + PNGFilter.PNG_EXT;
+
 
 	public SwingResolutionController(BVRToolModel model, BVRNotifiableController controller) {
 		controller.setCommonControllerInterface(this);
@@ -140,11 +134,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		resolutionNodes = new ArrayList<List<JComponent>>();
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
 		strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings, (ArrayList<JScrollPane>) resolutionPanes);
-		this.toolModel = model;
-		this.rootController = controller;
-		this.showGroups = true;
-		this.showConstraints = false;
-		this.invalidConstraints = new ArrayList<Constraint>();
+		toolModel = model;
+		rootController = controller;
 
 		bvrModelSubject = new BVRModelSubject(toolModel.getBVRModel());
 
@@ -211,38 +202,16 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 			if(toolModel.showGrouping())
-				nextParent = new AddMultiplicityTriangleResolution().init(bvruikernel, v, nextParent,
+				nextParent = new ShowMultiplicityTriangleResolution().init(bvruikernel, v, nextParent,
 					vmMap, nodes, bindings, rootController).execute();
+			if(toolModel.showConstraints())
+				new ShowInValidConstraintsResolution().init(bvruikernel, v, nextParent,
+						vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ValueResolution) {
 			new AddVariableResolution().init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 		} else {
 			throw new BVRModelException("Unknown element: " + v.getClass());
-		}
-		if (!toolModel.isVSpecResolutionMinimized(v)) {// TODO add show/hide visuals
-			/*
-			 * if (showConstraints) { for (Constraint c : bvrModel.getVariabilityModel().getOwnedConstraint()) { /* if (c instanceof OpaqueConstraint)
-			 * { if (((OpaqueConstraint) c).getConstraint() == v.getResolvedVSpec()) { if (invalidConstraints.contains(c)) { JComponent con = new
-			 * AddViolatedOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this) .execute(); vmMap.put(con, v); } else {
-			 * JComponent con = new AddOpaqueConstraint().init(bvruikernel, c, nextParent, vmMap, nodes, bindings, this) .execute(); vmMap.put(con,
-			 * v); } }
-			 * 
-			 * }
-			 */// TODO check if this is correct
-			/*
-			 * if (c instanceof BCLConstraint) { if (((OpaqueConstraint) c).getName().equals(v.getResolvedVSpec().getName())) { if
-			 * (invalidConstraints.contains(c)) { JComponent con = new AddViolatedBCLConstraint().init(bvruikernel, c, nextParent, vmMap, nodes,
-			 * bindings, this) .execute(); vmMap.put(con, v); } else { JComponent con = new AddBCLConstraint().init(bvruikernel, c, nextParent, vmMap,
-			 * nodes, bindings, this).execute(); vmMap.put(con, v); } } } } }
-			 */
-			// for debug
-			// if(v.getResolvedVSpec()==null)System.err.println(v +
-			// "does not contain resolved VSpec");
-			// else{
-			// System.out.println(v.getResolvedVSpec().getName()
-			// +" is beeng drawn");
-			// }
-
 		}
 
 		if (v instanceof CompoundResolution)
@@ -408,7 +377,18 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	private NamedElement getElementInCurrentPane(JComponent toFind) {
-		return resolutionvmMaps.get(resPane.getSelectedIndex()).get(toFind);
+		NamedElement foundNamedElement  = null;
+		int index = resPane.getSelectedIndex();
+		if(resPane.getSelectedIndex() >= 0){
+			foundNamedElement = resolutionvmMaps.get(index).get(toFind);
+		} else {
+			for(Map<JComponent, NamedElement> map : resolutionvmMaps){
+				foundNamedElement = map.get(toFind);
+				if(foundNamedElement != null)
+					break;
+			}
+		}
+		return foundNamedElement;
 	}
 	
 	@Override
@@ -569,6 +549,17 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public void toggleShowGrouping() {
 		toolModel.showGrouping(!toolModel.showGrouping());
 		notifyResolutionViewUpdate();
+	}
+
+	@Override
+	public List<Constraint> getInvalidConstraints() {
+		return toolModel.getInvalidConstraints();
+	}
+
+	@Override
+	public String getBCLConstraintString(GUI_NODE node) {
+		BCLConstraint constraint = (BCLConstraint) getElementInCurrentPane(node);
+		return toolModel.getBCLConstraintString(constraint);
 	}
 
 }

@@ -2,8 +2,10 @@ package no.sintef.bvr.tool.controller;
 
 import java.util.List;
 
+import bvr.Constraint;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 
 
 public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {
@@ -64,4 +66,8 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public boolean findGroupError(MODEL_OBJECT compoundResolution);
 
 	public void toggleShowGrouping();
+
+	public List<Constraint> getInvalidConstraints();
+
+	public String getBCLConstraintString(GUI_NODE constraint);
 }

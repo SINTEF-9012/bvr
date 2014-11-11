@@ -16,7 +16,7 @@ import bvr.NamedElement;
 import bvr.VNode;
 import bvr.VSpec;
 
-public class AddErrorGroup implements Command {
+public class ShowErrorGroup implements Command {
 
 	protected BVRUIKernel rootPanel;
 	protected VSpec v;

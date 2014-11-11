@@ -28,11 +28,11 @@ import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
-import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
+import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
@@ -48,6 +48,7 @@ import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
+
 abstract public class BVRToolModel {
 	protected SPLCABVRModel bvrm;
 	protected File f;
@@ -58,8 +59,9 @@ abstract public class BVRToolModel {
 	protected List<VSpecResolution> minimizedVSpecResolution;
 	protected ArrayList<String> satValidationMessage;
 	static protected int instanceCount = 0;
-	protected boolean showConstraints = true;
+	protected boolean showConstraints = false;
 	protected boolean showGroupsResoultion = false;
+	protected List<Constraint> invalidConstraints = new ArrayList<Constraint>();
 
 	public int getIncrementedInstanceCount() {
 		return instanceCount++;
@@ -533,5 +535,9 @@ abstract public class BVRToolModel {
 	
 	public void showGrouping(boolean grouping) {
 		showGroupsResoultion = grouping;
+	}
+
+	public List<Constraint> getInvalidConstraints() {
+		return invalidConstraints;
 	}
 }

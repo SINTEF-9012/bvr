@@ -115,6 +115,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
 		buffer = new HashMap<NegResolution, PosResolution>();
+		invalidConstraints = new ArrayList<Constraint>();
 		checkModel();
 	}
 
@@ -562,7 +563,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public String getBCLConstraintString(BCLConstraint constraint) {
-		return ConstraintFacade.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+		String str = ConstraintFacade.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+		return ConstraintFacade.eINSTANCE.formatConstraintString(str, 15);
 	}
 
 	@Override

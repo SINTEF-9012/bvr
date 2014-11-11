@@ -13,7 +13,6 @@ import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
-import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 import bvr.NamedElement;
 
@@ -50,8 +49,6 @@ public class AddBCLConstraint implements Command {
 		Helper.bind(parent, constraint1, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 		
 		String s = view.getVSpecControllerInterface().getBCLConstraintString(constraint1);
-		// Add newlines
-		s = wrap(s, 15);
 		constraint1.setTitle(s);
 		rootPanel.getModelPanel().addNode(constraint1);
 		
@@ -70,29 +67,4 @@ public class AddBCLConstraint implements Command {
 		
 		return constraint1;
 	}
-
-	private String wrap(String s, int i) {
-		String n = "";
-		
-		for(;;){
-			//System.out.println("s \"" + s + "\"");
-			if(s.length() < i){
-				n += s;
-				break;
-			}
-			int ws = s.substring(i).indexOf(" ");
-			if(ws == -1){
-				n += s;
-				break;
-			}else{
-				ws += i;
-				n += s.substring(0, ws).trim() + "\n";
-				s = s.substring(ws).trim();
-				//System.out.println("s \"" + s + "\"" + ws);
-			}
-		}
-		
-		return n;
-	}
-
 }
