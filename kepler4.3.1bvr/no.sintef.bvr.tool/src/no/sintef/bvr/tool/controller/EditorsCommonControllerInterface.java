@@ -6,25 +6,29 @@ public interface EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_
 
 	default public void exportAsPNGImage(SERIALIZABLE file) {
 		throw new UnsupportedOperationException("not implemented");
-	};
+	}
 
 	default public String getModelFileLocation() {
 		throw new UnsupportedOperationException("not implemented");
-	};
+	}
 
 	default public MODEL_OBJECT getModelObjectByUINode(GUI_NODE node) {
 		throw new UnsupportedOperationException("not implemented");
-	};
+	}
 	
 	default public void enableBatchCommandProcessing() {
 		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
-	};
+	}
 	
 	default public void disableBatchCommandProcessing() {
 		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
-	};
+	}
 	
 	default public void executeCommandBatch() {
 		Context.eINSTANCE.getEditorCommands().executeBatch();
-	};	
+	}
+	
+	default public void setNodeName(GUI_NODE node, String name) {
+		throw new UnsupportedOperationException("not implemented");
+	}
 }

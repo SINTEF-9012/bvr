@@ -31,8 +31,10 @@ import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.controller.command.UpdateVInstance;
 import no.sintef.bvr.tool.controller.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
+import no.sintef.bvr.tool.decorator.UpdateVInstanceBatchCmdDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVarValAssigBatchCmdDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.exception.RethrownException;
@@ -604,6 +606,24 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			}
 		});
 		return command;
+	}
+
+	@Override
+	public Command createUpdateInstanceChoiceResolutionCommand(
+			GUI_NODE vInstance) {
+		Command command = new UpdateVInstanceBatchCmdDecorator(new UpdateVInstance());
+		command.init(resolutionkernels.get(resPane.getSelectedIndex()),
+				getElementInCurrentPane(vInstance), vInstance,
+				resolutionvmMaps.get(resPane.getSelectedIndex()),
+				resolutionNodes.get(resPane.getSelectedIndex()),
+				resolutionBindings.get(resPane.getSelectedIndex()), rootController);
+		return command;
+	}
+	
+	@Override
+	public void setNodeName(GUI_NODE node, String name) {
+		NamedElement namedElement = getElementInCurrentPane(node);
+		toolModel.updateName(namedElement, name);
 	}
 
 }

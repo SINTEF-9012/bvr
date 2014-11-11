@@ -39,6 +39,7 @@ import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
+import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 //import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -51,6 +52,7 @@ import org.jdesktop.swingx.painter.MattePainter;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
+import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.ValueResolution;
@@ -160,16 +162,12 @@ public class BVREditorPanel extends JPanel {
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateBVRModelCommand(elem);
         	BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, okCommand, (BVRModel) object, elem, controller);        	
             editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
-        //}else if (p instanceof VInstancePanel) {
-        	/*VInstancePanel elem = (VInstancePanel)p;
-        	VInstance x = null;
-        	for(Map<JComponent, NamedElement> z : resolutionvmMaps){
-        		if(z.get(elem) != null)
-        			x = (VInstance) z.get(elem);
-        	}
-        	VInstancePropertyEditor prop = new VInstancePropertyEditor(kernel, x, view);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);*/
-        	//System.out.println("Here!");
+        }else if (p instanceof ChoiceResolutionPanel) {
+        	ChoiceResolutionPanel vInstance = (ChoiceResolutionPanel) p;
+        	NamedElement object = (NamedElement) controller.getResolutionControllerInterface().getModelObjectByUINode(vInstance);
+        	Command okCommand = controller.getResolutionControllerInterface().createUpdateInstanceChoiceResolutionCommand(vInstance);
+        	VInstancePropertyEditor prop = new VInstancePropertyEditor(kernel, okCommand, (ChoiceResolution) object, vInstance, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof VariableAssignmentPanel) {
         	VariableAssignmentPanel elem = (VariableAssignmentPanel) p;
         	NamedElement object = (NamedElement) controller.getResolutionControllerInterface().getModelObjectByUINode(p);

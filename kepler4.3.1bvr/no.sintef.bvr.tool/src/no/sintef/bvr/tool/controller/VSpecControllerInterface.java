@@ -17,8 +17,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 	
 	public void setNodeComment(GUI_NODE node, String comment);
 	
-	public void setNodeName(GUI_NODE node, String name);
-	
 	public String getNodesCommentText(GUI_NODE node);
 	
 	public void addVariable(GUI_NODE node);

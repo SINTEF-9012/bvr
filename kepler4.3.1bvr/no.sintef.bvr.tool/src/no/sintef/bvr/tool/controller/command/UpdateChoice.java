@@ -32,7 +32,7 @@ public class UpdateChoice extends UpdateVSpec {
 		controller.getVSpecControllerInterface().setNodeName(parent, name);
 		controller.getVSpecControllerInterface().setNodeComment(parent, comment);
 		
-		for(Variable v : ((CompoundNode) vc).getVariable()){
+		for(Variable v : ((CompoundNode) namedElement).getVariable()){
 			String newName = varNames.get(v);
 			String newType = varTypes.get(v);
 			controller.getVSpecControllerInterface().updateVariable(v, newName, newType);

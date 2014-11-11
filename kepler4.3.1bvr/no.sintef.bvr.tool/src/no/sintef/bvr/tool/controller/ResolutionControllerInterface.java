@@ -2,12 +2,8 @@ package no.sintef.bvr.tool.controller;
 
 import java.util.List;
 
-import javax.swing.JComponent;
-
-import bvr.VClassifier;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
-import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 
 public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {
@@ -61,4 +57,7 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 
 	public SimpleExeCommandInterface createResolveNVSpecCommand(
 			GUI_NODE panel, MODEL_OBJECT vspec, int instancesToResolve);
+
+	public Command createUpdateInstanceChoiceResolutionCommand(
+			GUI_NODE vInstance);
 }

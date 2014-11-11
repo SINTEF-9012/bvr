@@ -11,6 +11,8 @@ import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 //TODO import no.sintef.bvr.tool.ui.command.AddVInstance;
 import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.controller.command.SelectInstanceCommand;
+import no.sintef.bvr.tool.ui.dropdown.ChoiceResolutionDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.ui.loader.Pair;
@@ -30,7 +32,7 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 	protected Map<JComponent, NamedElement> vmMap;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
-	protected BVRNotifiableController view;
+	protected BVRNotifiableController controller;
 	private boolean stripContains;
 	private boolean minContains;
 
@@ -41,32 +43,18 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 
 	@Override
 	public JComponent execute() {
-		// System.out.println("adding vinstance");
-		// System.out.println("rootPanel is " + rootPanel);
 		ChoiceResolutionPanel cp = new ChoiceResolutionPanel();
 		nodes.add(cp);
 		vmMap.put(cp, cr);
 
 		CommandMouseListener listener = new CommandMouseListener();
-		// SelectInstanceCommandV2 command = new SelectInstanceCommandV2();
-		// command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
-		// listener.setLeftClickCommand(command);
-	//TODO	ToggleChoiceCommand command = new ToggleChoiceCommand();
-	//	command.init(view, null, cr, true);
-	//	listener.setLeftClickCommand(command);
+		SelectInstanceCommand command = new SelectInstanceCommand();
+		command.init(rootPanel, cp, parent, vmMap, nodes, bindings, controller);
+		listener.setLeftClickCommand(command);
 
-		//TODO cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, cr, vmMap, view));
-		cp.addMouseListener(listener);
+		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, cr, controller));
+        cp.addMouseListener(listener);
 
-		// MultiplicityInterval m = cr.getResolvedVClassifier().getInstanceMultiplicity();
-
-		// I would prefer not to mix concerns (here validation. We should assume a valid BVR model as input).
-		/*
-		 * if(m == null){ throw new BVRModelException("VClassifier instance must have InstanceMultiplicity"); }
-		 */
-
-		// int l = m.getLower();
-		// int u = m.getUpper();
 		cp.setTitle((minContains ? "(+) " : "") + (stripContains ? "(*) " : "") + cr.getName() + " : " + cr.getResolvedVSpec().getName());
 		rootPanel.getModelPanel().addNode(cp);
 		Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
@@ -74,7 +62,7 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 		return cp;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		this.rootPanel = rootPanel;
 		this.cr = (ChoiceResolution) p;
 		this.parent = parent;
@@ -82,8 +70,7 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
-		this.view = view;
-		
+		this.controller = controller;
 		return this;
 	}
 
