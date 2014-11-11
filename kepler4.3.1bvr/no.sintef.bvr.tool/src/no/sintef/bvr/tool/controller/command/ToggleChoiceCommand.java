@@ -29,6 +29,6 @@ public class ToggleChoiceCommand implements Command {
 	public JComponent execute() {
 		SimpleExeCommandInterface command = controller.getResolutionControllerInterface().createToggleChoiceCommand(toToggle);
 		command.execute();
-		return null;
+		return toToggle;
 	}
 }
