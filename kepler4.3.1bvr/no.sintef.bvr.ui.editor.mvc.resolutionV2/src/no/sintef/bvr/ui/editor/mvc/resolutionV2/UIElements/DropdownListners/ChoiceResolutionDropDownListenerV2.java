@@ -21,8 +21,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.UnstrippedEvent;
+
 import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ValidateEvent;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 

@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import bvr.ChoiceResolution;
-import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 //TODO import no.sintef.bvr.tool.ui.command.AddVInstance;
@@ -14,16 +13,13 @@ import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SelectInstanceCommand;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceResolutionDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
+
 import no.sintef.bvr.tool.ui.loader.Pair;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ChoiceResolutionDropDownListenerV2;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.CommandMouseListenerV2;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.commands.ToggleChoiceCommand;
+
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
-//import no.sintef.bvr.ui.framework.elements.VInstancePanel;
+
 
 public class AddChoiceResolutionFromVClassifier implements Command {
 	protected BVRUIKernel rootPanel;
@@ -33,12 +29,10 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
 	protected BVRNotifiableController controller;
-	private boolean stripContains;
 	private boolean minContains;
 
-	public AddChoiceResolutionFromVClassifier(boolean minContains, boolean stripContains) {
+	public AddChoiceResolutionFromVClassifier(boolean minContains) {
 		this.minContains = minContains;
-		this.stripContains = stripContains;
 	}
 
 	@Override
@@ -55,7 +49,7 @@ public class AddChoiceResolutionFromVClassifier implements Command {
 		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, cr, controller));
         cp.addMouseListener(listener);
 
-		cp.setTitle((minContains ? "(+) " : "") + (stripContains ? "(*) " : "") + cr.getName() + " : " + cr.getResolvedVSpec().getName());
+		cp.setTitle((minContains ? "(+) " : "") + cr.getName() + " : " + cr.getResolvedVSpec().getName());
 		rootPanel.getModelPanel().addNode(cp);
 		Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 

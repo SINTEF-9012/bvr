@@ -120,7 +120,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	// draw variables
 	
-	private List<VSpecResolution> stripped = new ArrayList<VSpecResolution>();
 
 	private ResolutionLayoutStrategy strategy;
 
@@ -202,21 +201,12 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		boolean printAnyway = printAnyway_;
 		boolean secondPrint = secondPrint_;
 
-		// if (!stripped(v, printAnyway, secondPrint)) {
-		// if (printAnyway) {
-		// secondPrint = true;
-		// }
-		// printAnyway = false;
-		/*
-		 * if (v.getResolvedVSpec() == null) { System.out.println("resolvedVSpec is not set for: " + v); return; }
-		 */
-		// Add view
-		// System.out.println(v.getClass().getSimpleName());
+
 		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
-			nextParent = new AddChoiceResolutionFromVClassifier(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(
+			nextParent = new AddChoiceResolutionFromVClassifier(toolModel.isVSpecResolutionMinimized(v)).init(
 					bvruikernel, v, parent, vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ChoiceResolution) {
-			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v), childrenStripped(v, printAnyway, secondPrint)).init(bvruikernel, v, parent,
+			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ValueResolution) {
 			new AddVariableResolution().init(bvruikernel, v, parent,
@@ -334,23 +324,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			resolutionPanes.get(selected).getViewport().setViewPosition(pos);
 		}
 
-	}
-
-	private boolean stripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
-		return secondPrint;
-		/*
-		 * if (v instanceof ChoiceResolution && stripped.contains(v) && !printAnyway) { if (!getCU().getOwnedVSpecResolution().contains(v)) return
-		 * !((ChoiceResolution) v).isDecision(); } else if(secondPrint && stripped.contains(v)){ return true; } return false;
-		 */
-	}
-
-	// returns if children are stripped
-	private boolean childrenStripped(VSpecResolution v, boolean printAnyway, boolean secondPrint) {
-		return false;
-		/*
-		 * for (VSpecResolution x : v.getChild()) { if (stripped( x, false, false)) if(!findGroupError(x)) //remove to show stripped mark on stripped
-		 * nodes showing all due to group error return true; } return false;
-		 */
 	}
 
 	private boolean findGroupError(VSpecResolution v) {

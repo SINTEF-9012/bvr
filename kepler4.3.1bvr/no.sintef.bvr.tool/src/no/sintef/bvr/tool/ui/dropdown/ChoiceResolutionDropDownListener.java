@@ -163,12 +163,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, controller));
 		add(remove);
 		
-		/*
-		 * 
-		 * // strip JMenuItem strip = new JMenuItem("strip"); strip.addActionListener(new StrippedEvent(cp, vmMap, view, c.getResolvedVSpec()));
-		 * add(strip); JMenuItem unstrip = new JMenuItem("unstrip"); unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view,
-		 * c.getResolvedVSpec())); add(unstrip);
-		 */
 		add(new JSeparator());
 		JMenuItem validate = new JMenuItem(Constants.RESOLUTION_DROPDOWN_VALIDATE_ITEM);
 		//TODO validate.addActionListener(new ValidateEvent(view, c));

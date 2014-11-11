@@ -22,7 +22,6 @@ import bvr.PosResolution;
 
 public class AddChoiceResolution implements Command {
 
-	private boolean stripContains;
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
@@ -32,9 +31,8 @@ public class AddChoiceResolution implements Command {
 	private ChoiceResolution c;
 	private boolean minContains;
 	
-	public AddChoiceResolution(boolean minContains, boolean stripContains) {
+	public AddChoiceResolution(boolean minContains) {
 		this.minContains = minContains;
-		this.stripContains = stripContains;
 	}
 
 	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
@@ -71,7 +69,7 @@ public class AddChoiceResolution implements Command {
         
 		String choicename = resolvedChoice.getName();
 		
-        cp.setTitle((minContains?"(+) ":"") + (stripContains?"(*) ":"") + choicename + " = " + (c instanceof PosResolution));
+        cp.setTitle((minContains?"(+) ":"") + choicename + " = " + (c instanceof PosResolution));
        
 		rootPanel.getModelPanel().addNode(cp);
         Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
