@@ -74,7 +74,7 @@ public class AddChoiceResolution implements Command {
         cp.setTitle((minContains?"(+) ":"") + (stripContains?"(*) ":"") + choicename + " = " + (c instanceof PosResolution));
        
 		rootPanel.getModelPanel().addNode(cp);
-        Helper.bind(parent, cp, rootPanel.getModelPanel(), (!( (resolvedChoice).isIsImpliedByParent())) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
+        Helper.bind(parent, cp, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
         return cp;
 	}
 }

@@ -137,7 +137,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));
 					add(minimize);
 					
-					JMenuItem maximize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
+					JMenuItem maximize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MAXIMIZE_ITEM); 
 					maximize.addActionListener(new MaximizeVSpecResolutionEvent(cp, controller));
 					add(maximize);
 					add(new JSeparator());
