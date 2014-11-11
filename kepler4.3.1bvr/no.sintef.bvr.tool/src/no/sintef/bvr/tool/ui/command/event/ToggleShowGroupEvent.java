@@ -6,16 +6,16 @@ import java.awt.event.ActionListener;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 
 
-public class ToggleShowConstraintsEvent implements ActionListener {
+public class ToggleShowGroupEvent implements ActionListener {
 
 	private BVRNotifiableController controller;
 
-	public ToggleShowConstraintsEvent(BVRNotifiableController _controller) {
-		controller = _controller;
+	public ToggleShowGroupEvent(BVRNotifiableController controller) {
+		this.controller = controller;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		controller.getResolutionControllerInterface().toggleShowConstraints();
+		controller.getResolutionControllerInterface().toggleShowGrouping();
 	}
 }

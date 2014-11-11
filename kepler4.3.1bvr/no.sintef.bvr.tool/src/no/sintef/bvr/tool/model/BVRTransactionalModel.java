@@ -905,7 +905,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 	
 	@Override
-	public boolean isShowConstraints(){
+	public boolean showConstraints(){
 		return showConstraints;
 	}
 

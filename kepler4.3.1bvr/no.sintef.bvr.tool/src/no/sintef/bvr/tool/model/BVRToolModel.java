@@ -59,6 +59,7 @@ abstract public class BVRToolModel {
 	protected ArrayList<String> satValidationMessage;
 	static protected int instanceCount = 0;
 	protected boolean showConstraints = true;
+	protected boolean showGroupsResoultion = false;
 
 	public int getIncrementedInstanceCount() {
 		return instanceCount++;
@@ -473,7 +474,7 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public boolean isShowConstraints() {
+	public boolean showConstraints() {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
@@ -524,5 +525,13 @@ abstract public class BVRToolModel {
 			return true;
 
 		return false;
+	}
+
+	public boolean showGrouping() {
+		return showGroupsResoultion;
+	}
+	
+	public void showGrouping(boolean grouping) {
+		showGroupsResoultion = grouping;
 	}
 }

@@ -3,6 +3,7 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
@@ -14,6 +15,7 @@ import no.sintef.bvr.tool.controller.ResolutionControllerInterface;
 import no.sintef.bvr.tool.controller.SwingResolutionController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import bvr.Constraint;
 
 
 public class ResolutionRootController extends BVRToolAbstractController {
@@ -420,8 +422,8 @@ public class ResolutionRootController extends BVRToolAbstractController {
 //		return m;
 //	}
 //
-//	public void setInvalidConstraints(List<Constraint> invalidConstraints) {
-//		this.invalidConstraints = invalidConstraints;
-//	}
+	public void setInvalidConstraints(List<Constraint> invalidConstraints) {
+		//this.invalidConstraints = invalidConstraints;
+	}
 
 }

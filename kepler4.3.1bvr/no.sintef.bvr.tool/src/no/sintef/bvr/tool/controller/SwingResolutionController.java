@@ -210,7 +210,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		} else if (v instanceof ChoiceResolution) {
 			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
-			nextParent = new AddMultiplicityTriangleResolution().init(bvruikernel, v, nextParent,
+			if(toolModel.showGrouping())
+				nextParent = new AddMultiplicityTriangleResolution().init(bvruikernel, v, nextParent,
 					vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ValueResolution) {
 			new AddVariableResolution().init(bvruikernel, v, parent,
@@ -241,8 +242,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			// System.out.println(v.getResolvedVSpec().getName()
 			// +" is beeng drawn");
 			// }
-
-			// TODO
 
 		}
 
@@ -564,6 +563,12 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public void setNodeName(GUI_NODE node, String name) {
 		NamedElement namedElement = getElementInCurrentPane(node);
 		toolModel.updateName(namedElement, name);
+	}
+
+	@Override
+	public void toggleShowGrouping() {
+		toolModel.showGrouping(!toolModel.showGrouping());
+		notifyResolutionViewUpdate();
 	}
 
 }

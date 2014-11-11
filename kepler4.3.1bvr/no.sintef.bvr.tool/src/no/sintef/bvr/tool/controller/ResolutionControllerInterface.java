@@ -62,4 +62,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 			GUI_NODE vInstance);
 
 	public boolean findGroupError(MODEL_OBJECT compoundResolution);
+
+	public void toggleShowGrouping();
 }

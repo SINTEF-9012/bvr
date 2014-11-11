@@ -15,6 +15,7 @@ import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowConstraintsEvent;
+import no.sintef.bvr.tool.ui.command.event.ToggleShowGroupEvent;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
@@ -23,7 +24,6 @@ import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
-
 import bvr.BVRModel;
 import bvr.NamedElement;
 
@@ -123,7 +123,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
 		add(showGrouping);
-	//TODO	showGrouping.addActionListener(new ToggleShowGroupEvent((BVRResolutionToolView) bvrView));
+		showGrouping.addActionListener(new ToggleShowGroupEvent(controller));
 
 		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
 		add(showConstraints);
