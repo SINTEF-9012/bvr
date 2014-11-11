@@ -12,8 +12,7 @@ import no.sintef.bvr.tool.ui.loader.Pair;
 
 public interface Command {
 
-    Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view);
-    
-    JComponent execute();
+    Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller);
 
+    JComponent execute();
 }

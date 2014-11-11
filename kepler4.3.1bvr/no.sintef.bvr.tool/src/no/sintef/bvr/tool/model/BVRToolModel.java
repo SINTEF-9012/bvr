@@ -34,6 +34,7 @@ import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.FragmentSubstitution;
+import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
@@ -502,4 +503,26 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
+	public boolean checkGroupError(CompoundResolution compoundResolution) {
+		VSpec vSpec = CommonUtility.getResolvedVSpec((VSpecResolution) compoundResolution);
+		if(vSpec == null)
+			throw new UnexpectedException("Resolution does not resolve any VSpec " + compoundResolution);
+
+		MultiplicityInterval multiplicity = ((VNode) vSpec).getGroupMultiplicity();
+		if (multiplicity == null)
+			return false;
+
+		int lower = multiplicity.getLower();
+		int upper = multiplicity.getUpper();
+		int i = 0;
+		for (VSpecResolution x : compoundResolution.getMembers()) {
+			if (x instanceof ChoiceResolution) {
+				if (x instanceof PosResolution) i++;
+			}
+		}
+		if (i < upper || i > upper || i < lower)
+			return true;
+
+		return false;
+	}
 }

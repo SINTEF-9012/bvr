@@ -60,4 +60,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 
 	public Command createUpdateInstanceChoiceResolutionCommand(
 			GUI_NODE vInstance);
+
+	public boolean findGroupError(MODEL_OBJECT compoundResolution);
 }
