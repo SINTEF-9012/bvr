@@ -1,10 +1,6 @@
 package no.sintef.bvr.tool.controller;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.geom.Rectangle2D.Double;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,26 +8,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.filechooser.FileFilter;
+
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.BVRToolAbstractController;
 import no.sintef.bvr.tool.controller.command.AddChoiceResolution;
-import no.sintef.bvr.tool.controller.command.ShowErrorGroup;
-import no.sintef.bvr.tool.controller.command.AddGroupMultiplicity;
-import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.ShowInValidConstraintsResolution;
 import no.sintef.bvr.tool.controller.command.ShowMultiplicityTriangleResolution;
-import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
@@ -41,46 +28,20 @@ import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVInstanceBatchCmdDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVarValAssigBatchCmdDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
-import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UserInputError;
-import no.sintef.bvr.tool.filter.PNGFilter;
-import no.sintef.bvr.tool.subject.BVRModelSubject;
 import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
-//import no.sintef.bvr.tool.subject.ConfigurableUnitSubject;
-//import no.sintef.bvr.tool.ui.command.AddBCLConstraint;
-//import no.sintef.bvr.tool.ui.command.AddGroupMultiplicity;
-import no.sintef.bvr.tool.ui.command.AddOpaqueConstraint;
+
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.BVRResolutionView;
 import no.sintef.bvr.tool.model.BVRToolModel;
-import no.sintef.bvr.tool.model.ChangeChoiceFacade;
-import no.sintef.bvr.tool.model.CloneResFacade;
-import no.sintef.bvr.tool.model.InheritanceFacade;
-import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
-import no.sintef.bvr.tool.ui.strategy.VSpecLayoutStrategy;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.EditableModelPanelV2;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.GroupPanelWithError;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.DropdownListners.ResV2DropdownListener;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolution;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddErrorGroup;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddChoiceResolutionFromVClassifier;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddValueResolution;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedBCLConstraint;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIcommands.AddViolatedOpaqueConstraint;
-import no.sintef.bvr.ui.framework.TitledElement;
-import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-import no.sintef.bvr.ui.framework.elements.GroupPanel;
 
-import org.abego.treelayout.TreeLayout;
-import org.abego.treelayout.demo.TextInBox;
-import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
-import org.abego.treelayout.util.DefaultConfiguration;
-import org.abego.treelayout.util.DefaultTreeForTreeLayout;
+
+import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
+
+
 import org.eclipse.emf.ecore.EObject;
 
 import bvr.BCLConstraint;
@@ -88,13 +49,8 @@ import bvr.BVRModel;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
 import bvr.Constraint;
-import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.NegResolution;
-import bvr.OpaqueConstraint;
-import bvr.PosResolution;
 import bvr.VClassifier;
-import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
@@ -115,7 +71,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private List<Map<JComponent, NamedElement>> resolutionvmMaps;
 	private List<List<JComponent>> resolutionNodes;
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
-	private BVRModelSubject bvrModelSubject;
 
 	// namecounters
 	private int choiceCount = 1;
@@ -137,7 +92,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		toolModel = model;
 		rootController = controller;
 
-		bvrModelSubject = new BVRModelSubject(toolModel.getBVRModel());
+		
 
 		// Resolution panes
 		resPane = new JTabbedPane();
