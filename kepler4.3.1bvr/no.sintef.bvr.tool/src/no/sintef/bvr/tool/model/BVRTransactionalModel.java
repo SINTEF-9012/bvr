@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
@@ -27,6 +28,8 @@ import no.sintef.bvr.tool.observer.ResourceSubject;
 
 
 
+
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -43,6 +46,8 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
+
 
 
 
@@ -951,5 +956,22 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			VSpecResolution parentNamedElement, int instancesToResolve) {
 		for(int i = 0; i < instancesToResolve; i++)
 			addChoiceOrVClassifierResolution(vSpecToResolve, parentNamedElement);
+	}
+	
+	@Override
+	public List<String> validateChoiceResolution(VSpecResolution vSpecResolution) {
+		Validate validator = new Validator();
+		validator.validate(this, vSpecResolution);
+		List<Constraint> invalidConstaraints = validator.getInvalidConstraints();
+		List<String> messages = new ArrayList<String>(); 
+		if(invalidConstaraints.size() == 0)
+			return messages;
+		
+		for(Constraint constraint : invalidConstaraints) {
+			List<String> errors = validator.getConstraintValidationResultMessage(constraint);
+			messages.addAll(errors);
+		}
+		
+		return messages;
 	}
 }

@@ -540,4 +540,8 @@ abstract public class BVRToolModel {
 	public List<Constraint> getInvalidConstraints() {
 		return invalidConstraints;
 	}
+
+	public List<String> validateChoiceResolution(VSpecResolution vSpecResolution) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

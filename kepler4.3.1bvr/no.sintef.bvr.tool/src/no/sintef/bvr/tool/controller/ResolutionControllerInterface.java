@@ -2,6 +2,8 @@ package no.sintef.bvr.tool.controller;
 
 import java.util.List;
 
+import javax.swing.JComponent;
+
 import bvr.Constraint;
 import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
@@ -70,4 +72,7 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public List<Constraint> getInvalidConstraints();
 
 	public String getBCLConstraintString(GUI_NODE constraint);
+
+	public List<String> validateResolutionNode(
+			GUI_NODE component);
 }

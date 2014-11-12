@@ -24,6 +24,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
+import no.sintef.bvr.tool.ui.command.event.ValidateEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
@@ -165,7 +166,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		
 		add(new JSeparator());
 		JMenuItem validate = new JMenuItem(Constants.RESOLUTION_DROPDOWN_VALIDATE_ITEM);
-		//TODO validate.addActionListener(new ValidateEvent(view, c));
+		validate.addActionListener(new ValidateEvent(cp, controller));
 		add(validate);
 	}
 

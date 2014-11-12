@@ -22,7 +22,7 @@ import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
 //import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 
-import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ValidateEvent;
+import no.sintef.bvr.tool.ui.command.event.ValidateEvent;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 import org.eclipse.emf.common.util.EList;
@@ -164,13 +164,13 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		 * (Choice) x, view)); change.add(i); } else { // Can only change to another of the same type } } add(change);
 		 */
 		// -delete menus
-		JMenuItem remove = new JMenuItem("Remove");
-		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, view));
-		add(remove);
+		//JMenuItem remove = new JMenuItem("Remove");
+		//remove.addActionListener(new RemoveVSpecResolutionEvent(cp, view));
+		//add(remove);
 		// Resolve subtree
-		JMenuItem resTree = new JMenuItem("resolve subtree");
+		//JMenuItem resTree = new JMenuItem("resolve subtree");
 		//resTree.addActionListener(new AddSubTreeEvent(c, view));
-		add(resTree);
+		//add(resTree);
 
 		/*
 		 * // max/min TODO Create new events JMenuItem minimize = new JMenuItem("minimize"); minimize.addActionListener(new MinimizeEvent(cp, vmMap,
@@ -181,9 +181,9 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		 * add(strip); JMenuItem unstrip = new JMenuItem("unstrip"); unstrip.addActionListener(new UnstrippedEvent(cp, vmMap, view,
 		 * c.getResolvedVSpec())); add(unstrip);
 		 */
-		JMenuItem validate = new JMenuItem("Validate");
-		validate.addActionListener(new ValidateEvent(view, c));
-		add(validate);
+		//JMenuItem validate = new JMenuItem("Validate");
+		//validate.addActionListener(new ValidateEvent(cp, view));
+		//add(validate);
 	}
 
 	private VSpec getParent(BVRModel cu, VSpec child) {

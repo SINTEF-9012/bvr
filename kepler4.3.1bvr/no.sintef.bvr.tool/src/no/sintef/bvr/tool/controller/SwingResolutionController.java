@@ -562,4 +562,10 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return toolModel.getBCLConstraintString(constraint);
 	}
 
+	@Override
+	public List<String> validateResolutionNode(GUI_NODE component) {
+		VSpecResolution vSpecResolution = (VSpecResolution)  getElementInCurrentPane(component);
+		return toolModel.validateChoiceResolution(vSpecResolution);
+	}
+
 }
