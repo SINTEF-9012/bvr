@@ -7,8 +7,10 @@ import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 import bvr.NegResolution;
 import bvr.PosResolution;
+import bvr.VClassifier;
 import bvr.VSpecResolution;
 import bvr.VariationPoint;
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.primitive.impl.VSpecResolutionSymbol;
@@ -40,14 +42,14 @@ public class RRComposerStrategy implements TableBuilderStrategy {
 		VSpecResolution vSpecResolution = symbol.getVSpecResolution();
 		if(vSpecResolution instanceof NegResolution){
 			return false;
-		}else if((vSpecResolution instanceof PosResolution) && (((PosResolution) vSpecResolution).getResolvedVClassifier() != null) ){
+		}else if((vSpecResolution instanceof PosResolution) && (CommonUtility.getResolvedVSpec(vSpecResolution) instanceof VClassifier)){
 			VSpecResolutionSymbolTable subTable = new VSpecResolutionSymbolTable(vSpecResolution);
 			subTable.setParent(table);
 			subTable.setBVRModel(table.getBVRModel());
 			table.setChild(subTable);
 			table = subTable;
-		}else{
-			throw new UnsupportedOperationException("we can not handle VSpecResolution of this kind");
+		}else if (!(vSpecResolution instanceof PosResolution || vSpecResolution instanceof NegResolution)) {
+			throw new UnsupportedOperationException("we can not handle VSpecResolution of this kind =>" + vSpecResolution);
 		}
 		
 		for(FragmentSubstitution fs : fss){

@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.controller.command;
+package no.sintef.bvr.common.command;
 
 public interface SimpleExeCommandInterface {
 

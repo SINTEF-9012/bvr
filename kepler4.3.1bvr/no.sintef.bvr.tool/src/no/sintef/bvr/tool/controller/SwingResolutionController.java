@@ -14,14 +14,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 
+
+
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.AddChoiceResolution;
+import no.sintef.bvr.tool.controller.command.AddChoiceResolutionFromVClassifier;
 import no.sintef.bvr.tool.controller.command.ShowInValidConstraintsResolution;
 import no.sintef.bvr.tool.controller.command.ShowMultiplicityTriangleResolution;
 import no.sintef.bvr.tool.controller.command.AddVariableResolution;
 import no.sintef.bvr.tool.controller.command.Command;
-import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.controller.command.UpdateVInstance;
 import no.sintef.bvr.tool.controller.command.UpdateVariableValueAssignment;
 import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
@@ -29,8 +32,6 @@ import no.sintef.bvr.tool.decorator.UpdateVInstanceBatchCmdDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVarValAssigBatchCmdDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.exception.UserInputError;
-import no.sintef.bvr.tool.ui.command.AddChoiceResolutionFromVClassifier;
-
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -40,6 +41,8 @@ import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
 
 
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
+
+
 
 
 import org.eclipse.emf.ecore.EObject;
@@ -521,6 +524,12 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public List<String> validateResolutionNode(GUI_NODE component) {
 		VSpecResolution vSpecResolution = (VSpecResolution)  getElementInCurrentPane(component);
 		return toolModel.validateChoiceResolution(vSpecResolution);
+	}
+
+	@Override
+	public void executeProduct(SERIALIZABLE destFile) {
+		int index = resPane.getSelectedIndex();
+		toolModel.executeResolution((File) destFile, index);
 	}
 
 }

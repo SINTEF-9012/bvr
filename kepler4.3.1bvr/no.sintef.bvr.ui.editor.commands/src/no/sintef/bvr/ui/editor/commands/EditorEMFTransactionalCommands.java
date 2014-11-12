@@ -2,13 +2,14 @@ package no.sintef.bvr.ui.editor.commands;
 
 
 import java.io.File;
-
-
-
-
-
-
 import java.util.ArrayList;
+import java.util.List;
+
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
+
+
+
+
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.command.AbstractCommand;
@@ -29,8 +30,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.part.FileEditorInput;
 
-import com.sun.scenario.effect.Blend.Mode;
-
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BVRModel;
@@ -42,16 +41,11 @@ import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
-//import bvr.ChoiceResolutuion;
-//import bvr.ConfigurableUnit;
-//import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
-import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
@@ -59,7 +53,6 @@ import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.PrimitiveValueSpecification;
 import bvr.PrimitveType;
-//import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.Target;
@@ -69,13 +62,10 @@ import bvr.ToReplacement;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VPackageable;
-//import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
-import bvr.ValueSpecification;
 import bvr.Variable;
-//import bvr.VariableValueAssignment;
 import bvr.Variabletype;
 import bvr.VariationPoint;
 
@@ -111,140 +101,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		}
 		return editingDomain;
 	}
-	
-	/*@Override
-	public void addChoice(Choice choice, ConfigurableUnit cu) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpec(), choice);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addChoice(Choice choice, VSpec vs) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vs, BvrPackage.eINSTANCE.getVSpec_Child(), choice);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void createNewResolution(ChoiceResolutuion cr, ConfigurableUnit cu) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), cr);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void setResolutionDecision(ChoiceResolutuion cr, boolean decision) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, cr, BvrPackage.eINSTANCE.getChoiceResolutuion_Decision(), decision);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, cr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), choice);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addChoiceResolved(Choice refrencedVSpec, VSpecResolution parentVSpecResolution, ChoiceResolutuion childChoiceResolution) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentVSpecResolution, BvrPackage.eINSTANCE.getVSpecResolution_Child(), childChoiceResolution);
-		editingDomain.getCommandStack().execute(cmd);
-		setChoiceResolvedVSpec(childChoiceResolution, refrencedVSpec);
-	}
-
-	@Override
-	public void addVClassifierToVSpec(VSpec parentVSpec, VClassifier childCClassifier) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentVSpec, BvrPackage.eINSTANCE.getVSpec_Child(), childCClassifier);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpec(), childCClassifier);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedConstraint(), constraint);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVariableType(ConfigurableUnit cu, PrimitveType primType) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), primType);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVariable(VSpec vSpec, Variable variable) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Child(), variable);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentVSpecResolution, BvrPackage.eINSTANCE.getVSpecResolution_Child(), varValueAssignment);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentVSpecResolution, BvrPackage.eINSTANCE.getVSpecResolution_Child(), vInstance);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, parentVSpec, BvrPackage.eINSTANCE.getVSpec_Child(), namedElement);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpec(), namedElement);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parentVSpec, BvrPackage.eINSTANCE.getVSpec_Child(), childVSpec);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpec(), childVSpec);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedConstraint(), namedElement);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedConstraint(), constraints);
-		editingDomain.getCommandStack().execute(cmd);
-	}*/
 
 	@Override
 	public void setName(NamedElement namedElement, String name) {
@@ -252,13 +108,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, namedElement, BvrPackage.eINSTANCE.getNamedElement_Name(), name);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
-	/*@Override
-	public void setVSpecComment(VSpec vSpec, String comment) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Comment(), comment);
-		editingDomain.getCommandStack().execute(cmd);
-	}*/
 
 	@Override
 	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
@@ -266,13 +115,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choice, BvrPackage.eINSTANCE.getChoice_IsImpliedByParent(), isImplied);
 		testCommandExecution(editingDomain, cmd);
 	}
-
-	/*@Override
-	public void setVSpecGroupMultiplicity(VSpec vSpec, MultiplicityInterval eObject) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_GroupMultiplicity(), eObject);
-		editingDomain.getCommandStack().execute(cmd);
-	}*/
 	
 	@Override
 	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound){
@@ -309,48 +151,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		testCommandExecution(editingDomain, cmd);
 	}
 
-	/*@Override
-	public void removeVSpecVariable(VSpec vSpec, Variable var) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpec, BvrPackage.eINSTANCE.getVSpec_Child(), var);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-	
-	@Override
-	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecResolution, BvrPackage.eINSTANCE.getVSpecResolution_Child(), namedElement);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-	
-	@Override
-	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), namedElement);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-	
-	@Override
-	public void removeOwnedVSpecResolutions(ConfigurableUnit cu) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), cu.getOwnedVSpecResolution());
-		editingDomain.getCommandStack().execute(cmd);
-	}
-	
-	@Override
-	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution){
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), vSpecResolution);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVSpecResolution(), vSpecResolutions);
-		editingDomain.getCommandStack().execute(cmd);
-	}*/
-
 	@Override
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences) {
 		boolean isResourceUsed = false;
@@ -382,33 +182,12 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		return isResourceUsed;
 	}
 	
-	/*@Override
-	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint){
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoint);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-	*/
 	@Override
 	public void addOwnedVariationType(BVRModel model, Variabletype variationType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, model, BvrPackage.eINSTANCE.getVPackage_PackageElement(), variationType);
 		testCommandExecution(editingDomain, cmd);
 	}
-/*
-	@Override
-	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariationPoint(), variationPoint);
-		editingDomain.getCommandStack().execute(cmd);
-	}
-
-	@Override
-	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, cu, BvrPackage.eINSTANCE.getConfigurableUnit_OwnedVariabletype(), variationType);
-		editingDomain.getCommandStack().execute(cmd);
-	} */
 
 	@Override
 	public void removeOwenedVariationPoints(BVRModel model, EList<VariationPoint> variationPoints) {
@@ -816,5 +595,24 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, primitiveValue, BvrPackage.eINSTANCE.getPrimitiveValueSpecification_Expression(), expression);
 		testCommandExecution(editingDomain, cmd);
+	}
+	
+	@Override
+	public void executeSimpleExeCommand(final SimpleExeCommandInterface command) {
+		final List<Exception> exceptions = new ArrayList<Exception>();
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();   
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				try {
+					command.execute();
+				} catch (Exception e) {
+					exceptions.add(e);
+				}
+			}
+		});
+		if(exceptions.size() != 0)
+			throw new RuntimeException(exceptions.get(0));
+			
 	}
 }

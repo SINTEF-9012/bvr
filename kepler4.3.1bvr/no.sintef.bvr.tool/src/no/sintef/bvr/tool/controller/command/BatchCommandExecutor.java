@@ -1,5 +1,6 @@
 package no.sintef.bvr.tool.controller.command;
 
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.context.Context;
 
 

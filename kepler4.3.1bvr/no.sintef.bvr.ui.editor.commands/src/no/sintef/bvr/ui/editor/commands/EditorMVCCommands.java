@@ -2,6 +2,8 @@ package no.sintef.bvr.ui.editor.commands;
 
 
 
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -61,106 +63,10 @@ public class EditorMVCCommands implements EditorCommands {
 		return eINSTANCE;
 	}
 
-	/*@Override
-	public void addChoice(Choice choice, ConfigurableUnit cu) {
-		cu.getOwnedVSpec().add(choice);
-	}*/
-
-	/*@Override
-	public void addChoice(Choice choice, VSpec vs) {
-		vs.getChild().add(choice);
-	}*/
-
 	@Override
 	public TransactionalEditingDomain testTransactionalEditingDomain() {
 		throw new UnsupportedOperationException("Pure MVC does not support transactional model");
 	}
-
-	/*@Override
-	public void createNewResolution(ChoiceResolutuion cr, ConfigurableUnit cu) {
-		cu.getOwnedVSpecResolution().add(cr);
-	}
-
-	@Override
-	public void setResolutionDecision(ChoiceResolutuion cr, boolean decision) {
-		cr.setDecision(decision);	
-	}
-
-	@Override
-	public void setChoiceResolvedVSpec(ChoiceResolutuion cr, Choice choice) {
-		cr.setResolvedVSpec(choice);	
-	}
-
-	@Override
-	public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr) {
-		cr.setResolvedVSpec(target);
-		vsper.getChild().add(cr);	
-	}
-
-	@Override
-	public void addVClassifierToVSpec(VSpec parentVSpec, VClassifier childCClassifier) {
-		parentVSpec.getChild().add(childCClassifier);
-	}
-
-	@Override
-	public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier) {
-		cu.getOwnedVSpec().add(childCClassifier);
-	}
-
-	@Override
-	public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint) {
-		cu.getOwnedConstraint().add(constraint);
-	}
-
-	@Override
-	public void addVariableType(ConfigurableUnit cu, PrimitveType primType) {
-		cu.getOwnedVariabletype().add(primType);
-	}
-
-	@Override
-	public void addVariable(VSpec vSpec, Variable variable) {
-		vSpec.getChild().add(variable);
-	}
-
-	@Override
-	public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment) {
-		parentVSpecResolution.getChild().add(varValueAssignment);
-	}
-
-	@Override
-	public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance) {
-		parentVSpecResolution.getChild().add(vInstance);
-	}
-
-	@Override
-	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement) {
-		parentVSpec.getChild().remove(namedElement);
-	}
-
-	@Override
-	public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
-		cu.getOwnedVSpec().remove(namedElement);
-	}
-
-	@Override
-	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec) {
-		parentVSpec.getChild().add(childVSpec);
-	}
-
-	@Override
-	public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec) {
-		cu.getOwnedVSpec().add(childVSpec);
-	}
-
-	@Override
-	public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
-		cu.getOwnedConstraint().remove(namedElement);
-	}
-
-	@Override
-	public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints) {
-		cu.getOwnedConstraint().removeAll(constraints);
-	}*/
 
 	@Override
 	public void setName(NamedElement namedElement, String name) {
@@ -207,70 +113,10 @@ public class EditorMVCCommands implements EditorCommands {
 		constraint.getExpression().add(expression);
 	}
 
-/*	@Override
-	public void removeVSpecVariable(VSpec vSpec, Variable var) {
-		vSpec.getChild().remove(var);	
-	}
-	
-	@Override
-	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolution, NamedElement namedElement) {
-		vSpecResolution.getChild().remove(namedElement);
-	}
-
-	@Override
-	public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement) {
-		cu.getOwnedVSpecResolution().remove(namedElement);
-	}
-	
-	@Override
-	public void removeOwnedVSpecResolutions(ConfigurableUnit cu) {
-		cu.getOwnedVSpecResolution().clear();
-	}
-	
-	@Override
-	public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution){
-		cu.getOwnedVSpecResolution().add(vSpecResolution);
-	}
-
-	@Override
-	public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions) {
-		cu.getOwnedVSpecResolution().addAll(vSpecResolutions);
-	}
-
-	@Override
-	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences) {
-		throw new UnsupportedOperationException("not implemented for MVC editor");
-	}
-	
-	@Override
-	public void addOwnedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint){
-		cu.getOwnedVariationPoint().add(variationPoint);
-	}
-	*/
 	@Override
 	public void addOwnedVariationType(BVRModel model, Variabletype variationType) {
 		model.getPackageElement().add(variationType);
 	}
-/*
-	@Override
-	public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint) {
-		cu.getOwnedVariationPoint().remove(variationPoint);
-	}
-
-	@Override
-	public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType) {
-		cu.getOwnedVariabletype().remove(variationType);
-	}
-
-	@Override
-	public void removeOwenedVariationPoints(ConfigurableUnit cu, EList<VariationPoint> variationPoints) {
-		cu.getOwnedVariationPoint().removeAll(variationPoints);
-	}
-
-	@Override
-	public void removeOwnedVariationTypes(ConfigurableUnit cu, EList<Variabletype> variationTypes) {
-		cu.getOwnedVariabletype().removeAll(variationTypes);
-	}*/
 
 	@Override
 	public void addBoudaryElementBinding(
@@ -475,10 +321,6 @@ public class EditorMVCCommands implements EditorCommands {
 
 		// TODO Auto-generated method stub
 	}
-/*	public void SetValueForVariableValueAssignment(VariableValueAssignment elem, ValueSpecification value) {
-	//TODO replace
-}
-*/
 
 	@Override
 	public void createNote(NamedElement parent, Note commentNote) {
@@ -511,8 +353,8 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	
-		public void addTargetToCompoundNode(CompoundNode namedElement, Target target) {
-//TODO Auto-generated method stub
+	public void addTargetToCompoundNode(CompoundNode namedElement, Target target) {
+		//TODO Auto-generated method stub
 		
 	}
 
@@ -524,8 +366,9 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
 		// TODO Auto-generated method stub
-		}
-		public void reset() {
+	}
+	
+	public void reset() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -534,16 +377,16 @@ public class EditorMVCCommands implements EditorCommands {
 	public void createNewResolution(PosResolution pr, BVRModel bvrModel) {
 		// TODO Auto-generated method stub
 	}
+	
 	public void addVNodeToCompoundNode(CompoundNode parent, VNode child) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	
-		public void addVariabilityModelToBVRModel(BVRModel model,
-			CompoundNode compoundNode) {
+	public void addVariabilityModelToBVRModel(BVRModel model,
+		CompoundNode compoundNode) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -602,6 +445,12 @@ public class EditorMVCCommands implements EditorCommands {
 	@Override
 	public void setPrimitiveValueBCLExpression(
 			PrimitiveValueSpecification primitiveValue, BCLExpression expression) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void executeSimpleExeCommand(SimpleExeCommandInterface command) {
 		// TODO Auto-generated method stub
 		
 	}

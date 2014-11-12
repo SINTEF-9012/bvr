@@ -1,6 +1,8 @@
 package no.sintef.bvr.ui.editor.commands;
 
 
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -58,50 +60,25 @@ public interface EditorCommands {
 	
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences);
 	
-	//public void setResolutionDecision(ChoiceResolutuion cr, boolean decision);
-	
 	public void setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
 	
-	//public void addChoiceResolved(Choice target, VSpecResolution vsper, ChoiceResolutuion cr);
-	/**
-	 * setting the resolved VSpec is a separate action, sett before add or call setChoiceResolvedVSpec(ChoiceResolution cr, Choice choice);
-	 * @param parentVSpecResolution
-	 * @param PositiveResolution
-	 */
 	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution pr);
 	
 	public void addVClassifierToVSpec(CompoundNode parentCompundNode, VClassifier childCClassifier);
 	
-	//public void addVClassifierToConfigurableUnit(ConfigurableUnit cu, VClassifier childCClassifier);
 	public void addVClassifierToBVRModel(BVRModel bvrModel, VClassifier childClassifier);
 	
 	public void addVNodeToCompoundNode(CompoundNode parent, VNode child);
 	
 	public void addVariabilityModelToBVRModel(BVRModel model, CompoundNode compoundNode);
 	
-	//public void addBCLConstraint(ConfigurableUnit cu, BCLConstraint constraint);
-	
-	//public void addVariableType(ConfigurableUnit cu, PrimitveType primType);
-	
 	public void addVariable(VNode parentVNode, Variable variable);
-	
-	//public void addVariableValueAssignment(VSpecResolution parentVSpecResolution, VariableValueAssignment varValueAssignment);
-	
-	//public void addVInstance(VSpecResolution parentVSpecResolution, VInstance vInstance);
 	
 	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement);
 	
 	public void removeVNodeCompoundNode(CompoundNode compoundNode, VNode vNode);
 	
-	//public void removeOwnedVSpecConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
-	
 	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec);
-
-	//public void addVSpecToConfigurableUnit(ConfigurableUnit cu, VSpec childVSpec);
-	
-	//public void removeConstraintConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
-	
-	//public void removeAllConstraintConfigurableUnit(ConfigurableUnit cu, List<Constraint> constraints);
 	
 	public void setName(NamedElement namedElement, String name);
 	
@@ -125,21 +102,9 @@ public interface EditorCommands {
 	
 	public void removeNamedElementVSpecResolution(VSpecResolution vSpecResolutionParent, NamedElement namedElement);
 	
-	//public void removeOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, NamedElement namedElement);
-	
-	//public void removeOwnedVSpecResolutions(ConfigurableUnit cu);
-	
-	//public void addOwnedVSpecResolutionConfigurableUnit(ConfigurableUnit cu, VSpecResolution vSpecResolution);
-	
-	//public void addOwnedVSpecResolutionsConfigurableUnit(ConfigurableUnit cu, EList<VSpecResolution> vSpecResolutions);
-	
 	public void addRealizationVariationPoint(BVRModel model, VariationPoint variationPoint);
 	
 	public void addOwnedVariationType(BVRModel model, Variabletype variationType);
-	
-	//public void removeOwenedVariationPoint(ConfigurableUnit cu, VariationPoint variationPoint);
-	
-	//public void removeOwnedVariationType(ConfigurableUnit cu, Variabletype variationType);
 	
 	public void removeOwenedVariationPoints(BVRModel model, EList<VariationPoint> variationPoints);
 	
@@ -214,4 +179,6 @@ public interface EditorCommands {
 
 	public void setPrimitiveValueBCLExpression(
 			PrimitiveValueSpecification primitiveValue, BCLExpression expression);
+	
+	public void executeSimpleExeCommand(SimpleExeCommandInterface command);
 }

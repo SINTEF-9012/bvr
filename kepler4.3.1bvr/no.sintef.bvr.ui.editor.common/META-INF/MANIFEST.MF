@@ -20,6 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.common,
+ no.sintef.bvr.common.command,
  no.sintef.bvr.common.logging,
  no.sintef.bvr.tool.ui.loader,
  no.sintef.bvr.ui.editor.commands,

@@ -9,20 +9,30 @@ import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
+import no.sintef.bvr.tool.common.DeriveProduct;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
+import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
+
+
+
+
+
+
+
 
 
 
@@ -44,8 +54,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
+
+
+
+
+
+
 
 
 
@@ -973,5 +992,46 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 		
 		return messages;
+	}
+	
+	@Override
+	public void executeResolution(File destFile, int index) {
+		if(index < 0 || getBVRModel().getResolutionModels().size() < index)
+			throw new UnexpectedException("can not find resolution to execute " + index);
+		
+		if(destFile == null)
+			throw new UnexpectedException("destinition file is not defined for a product" + destFile);
+		
+		Context.eINSTANCE.getEditorCommands().executeSimpleExeCommand(new SimpleExeCommandInterface() {
+			
+			@Override
+			public void execute() {
+				File newFile = new File(getFile().getAbsolutePath() + "_tmp");
+				BVREmptyModel tmpModel = new BVREmptyModel(newFile);
+				tmpModel.setBVRModel(EcoreUtil.copy(getBVRModel()));
+				try {
+					Context.eINSTANCE.writeModelToFile(tmpModel, tmpModel.getFile());
+					Context.eINSTANCE.reloadModel(tmpModel);
+					executeProduct(tmpModel, (PosResolution) tmpModel.getBVRModel().getResolutionModels().get(index), destFile);
+				} catch (Exception error) {
+					Context.eINSTANCE.logger.error("Failed to execute product, resason : " + error.getMessage(), error);
+					throw new RethrownException("Failed to execute product, resason : " + error.getMessage(), error);
+				} finally {
+					Context.eINSTANCE.nullSetModel(tmpModel);
+				}
+			}
+
+		});
+	}
+	
+	private void executeProduct(BVRToolModel tmpModel, PosResolution resolutionToExecute, File destFile){
+		HashMap<String, Object> keywords = new HashMap<String, Object>();
+		keywords.put("model", tmpModel.getBVRModel());
+		keywords.put("PosResolution", resolutionToExecute);
+		keywords.put("bvrModel", tmpModel);
+		keywords.put("destFile", destFile);
+				
+		DeriveProduct deriviator = new DeriveProduct(keywords);
+		deriviator.run();
 	}
 }

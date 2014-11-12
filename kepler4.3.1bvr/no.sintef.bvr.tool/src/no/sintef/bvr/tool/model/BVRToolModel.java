@@ -544,4 +544,8 @@ abstract public class BVRToolModel {
 	public List<String> validateChoiceResolution(VSpecResolution vSpecResolution) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void executeResolution(File destFile, int index) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

@@ -18,7 +18,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit;bundle-version="4.11.0",
  no.sintef.bvr.engine;bundle-version="1.0.0",
  no.sintef.bvr.thirdparty;bundle-version="1.0.0",
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction,
+ no.sintef.bvr.common;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.thirdparty.common,

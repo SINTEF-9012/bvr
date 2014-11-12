@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.ui.command;
+package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
 import java.util.Map;
@@ -9,13 +9,11 @@ import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
 //TODO import no.sintef.bvr.tool.ui.command.AddVInstance;
-import no.sintef.bvr.tool.controller.command.Command;
-import no.sintef.bvr.tool.controller.command.SelectInstanceCommand;
+import no.sintef.bvr.tool.ui.command.CommandMouseListener;
+import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.dropdown.ChoiceResolutionDropDownListener;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-
 import no.sintef.bvr.tool.ui.loader.Pair;
-
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 

@@ -1,12 +1,13 @@
 package no.sintef.bvr.tool.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.swing.JComponent;
 
 import bvr.Constraint;
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.controller.command.Command;
-import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 
 
@@ -75,4 +76,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 
 	public List<String> validateResolutionNode(
 			GUI_NODE component);
+
+	public void executeProduct(SERIALIZABLE destFile);
 }

@@ -2,33 +2,28 @@ package no.sintef.bvr.tool.ui.dropdown;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Map;
 
-import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
-import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
+import no.sintef.bvr.tool.ui.command.event.ExecuteResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowGroupEvent;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;
 import no.sintef.bvr.tool.ui.loader.GenerateCoveringArray;
 import no.sintef.bvr.tool.ui.loader.ImportResolutions;
 import no.sintef.bvr.tool.ui.loader.SATValidateResolutions;
-import bvr.BVRModel;
-import bvr.NamedElement;
+
 
 public class ResolutionDropdownListener extends MouseAdapter {
-	private static final long serialVersionUID = -4129916117036201146L;
 	
 	private BVRNotifiableController controller;
 
@@ -55,6 +50,8 @@ public class ResolutionDropdownListener extends MouseAdapter {
 }
 
 class ResV2DropdownMenu extends JPopupMenu {
+
+	private static final long serialVersionUID = -3566954918415719879L;
 
 	public ResV2DropdownMenu(BVRNotifiableController controller) {
 
@@ -128,5 +125,11 @@ class ResV2DropdownMenu extends JPopupMenu {
 		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
 		add(showConstraints);
 		showConstraints.addActionListener(new ToggleShowConstraintsEvent(controller));
+		
+		add(new JSeparator());
+		
+		JMenuItem execute = new JMenuItem("Execute");
+		execute.addActionListener(new ExecuteResolutionEvent(controller));
+		add(execute);
 	}
 }

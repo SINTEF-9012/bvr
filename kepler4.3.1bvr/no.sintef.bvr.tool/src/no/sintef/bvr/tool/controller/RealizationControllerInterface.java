@@ -2,7 +2,7 @@ package no.sintef.bvr.tool.controller;
 
 import java.util.ArrayList;
 
-import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
 
 public interface RealizationControllerInterface extends EditorsCommonControllerInterface {

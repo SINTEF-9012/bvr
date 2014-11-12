@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 
 import bvr.Variable;
+import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.SimpleExeCommandInterface;
 
 
 public class AddValueResolutionEvent implements ActionListener {
