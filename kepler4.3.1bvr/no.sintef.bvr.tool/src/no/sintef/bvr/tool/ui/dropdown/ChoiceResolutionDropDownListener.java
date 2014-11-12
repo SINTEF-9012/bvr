@@ -2,9 +2,6 @@ package no.sintef.bvr.tool.ui.dropdown;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Map;
-
-import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -12,44 +9,29 @@ import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.ChangeVSpecResolvedEvent;
-import no.sintef.bvr.tool.ui.command.SetDecisionEvent;
 import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
-import no.sintef.bvr.tool.ui.command.event.AddChoiceFromVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
-import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecResolutionEvent;
-import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 import no.sintef.bvr.tool.ui.command.event.ValidateEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.UIElements.BVRResolutionToolView;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddSubTreeEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.AddChoicesFromVClassifierTreeEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.StrippedEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.UnstrippedEvent;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.event.ValidateEvent;
+
+
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import bvr.BVRModel;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
-//import bvr.ChoiceResolution;
-//import bvr.ConfigurableUnit;
-import bvr.NamedElement;
-import bvr.NegResolution;
 import bvr.PosResolution;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
+
 
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 
@@ -146,20 +128,6 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 			}
 		}
 
-		/*
-		 * TODO fix change resolution // Set group JMenu value = new JMenu("Set Resolution"); JMenuItem vtrue = new JMenuItem("true");
-		 * vtrue.addActionListener(new SetDecisionEvent(c, view, true)); value.add(vtrue); JMenuItem vfalse = new JMenuItem("false");
-		 * vfalse.addActionListener(new SetDecisionEvent(c,view, false)); value.add(vfalse); add(value);
-		 */
-		// Change to
-		/*
-		 * EList<VSpec> vspecs = null; if (c.getResolvedVSpec() == null) { vspecs =view.getBVRModel().getVariabilityModel(); } else { VSpec parent =
-		 * getParent(view.getBVRModel(), c.getResolvedVSpec()); if (parent == null) vspecs = view.getBVRModel().getVariabilityModel(); else { if ()
-		 * vspecs = getParent(view.getBVRModel(), (()c.getResolvedVSpec()).getChild(); } // -Add menus JMenu change = new JMenu("Resolve"); for (VSpec
-		 * x : vspecs) { if (x instanceof Choice) { JMenuItem i = new JMenuItem(x.getName()); i.addActionListener(new ChangeVSpecResolvedEvent(c,
-		 * (Choice) x, view)); change.add(i); } else { // Can only change to another of the same type } } add(change);
-		 */
-		// -delete menus
 		JMenuItem remove = new JMenuItem(Constants.RESOLUTION_DROPDOWN_REMOVE_ITEM);
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, controller));
 		add(remove);
@@ -169,31 +137,4 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		validate.addActionListener(new ValidateEvent(cp, controller));
 		add(validate);
 	}
-
-	private VSpec getParent(BVRModel cu, VSpec child) {
-		VSpec c = (VSpec) cu.getVariabilityModel();
-		if (c == child)
-			return null;
-		VSpec found = getParent(c, child);
-		if (found != null)
-			return found;
-		return null;
-
-	}
-
-	private VSpec getParent(VSpec root, VSpec child) {
-
-		if (root instanceof CompoundNode) {
-			for (VNode r : ((CompoundNode) root).getMember())
-				if ((VSpec) r == child)
-					return root;
-			for (VNode r : ((CompoundNode) root).getMember()) {
-				VSpec found = getParent((VSpec) r, child);
-				if (found != null)
-					return found;
-			}
-		}
-		return null;
-	}
-
 }
