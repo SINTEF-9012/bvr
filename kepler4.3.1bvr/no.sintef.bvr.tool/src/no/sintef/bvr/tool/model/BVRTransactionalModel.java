@@ -117,6 +117,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int choicCounter = 0;
 	static private int variableCount = 0;
 	static private int classifierCount = 0;
+	static private int resolutionCount = 0;
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;
 	
@@ -819,7 +820,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 		if (variablityModel instanceof Choice) {
 			CommonUtility.setResolved(root, (VSpec) variablityModel);
-			root.setName(((NamedElement) variablityModel).getName());
+			root.setName(((NamedElement) variablityModel).getName() + "[" + resolutionCount +"]");
+			resolutionCount++;
 			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddResolution(), (VSpec) root.getResolvedChoice(), root, false);
 		} else {
 			throw new UserInputError("model must start with a choice");

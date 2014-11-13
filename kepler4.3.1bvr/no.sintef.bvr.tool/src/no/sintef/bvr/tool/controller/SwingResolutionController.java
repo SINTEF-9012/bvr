@@ -59,6 +59,9 @@ import bvr.Variable;
 
 public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject, SERIALIZABLE extends Serializable> implements
 		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> {
+	
+	private BVRNotifiableController rootController;
+	
 	private BVRToolModel toolModel;
 
 	// Resolutions
@@ -70,11 +73,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private Map<JComponent, List<JComponent>> resolutionNodesMap;
 	private Map<JComponent, List<Pair<JComponent, JComponent>>> resolutionBindingsMap;
 	private HashMap<VSpecResolution, JComponent> resolutionSubTabMap;
-
-	// namecounters
-	private int resolutionsCount = 0;
-
-	BVRNotifiableController rootController;
 
 
 	public SwingResolutionController(BVRToolModel model, BVRNotifiableController controller) {
@@ -113,9 +111,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 				
 				loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings);
 	
-				VSpec resolvedVSpec = CommonUtility.getResolvedVSpec(v);
-				String tabtitle = (resolvedVSpec != null) ? resolvedVSpec.getName() + "[" + resolutionsCount +"]" : "null";
-				resolutionsCount++;
+				String tabtitle = (v.getName() != null) ? v.getName() : "null";
 	
 				resPane.addTab(tabtitle, null, epanel, "");
 				resolutionEpanels.add(epanel);			
