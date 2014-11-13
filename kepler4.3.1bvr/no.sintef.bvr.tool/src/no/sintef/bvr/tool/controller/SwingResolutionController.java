@@ -13,9 +13,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-
-
-
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
@@ -39,11 +36,7 @@ import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
 
-
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
-
-
-
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -58,6 +51,7 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
 import bvr.Variable;
+
 
 public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT extends EObject, SERIALIZABLE extends Serializable> implements
 		ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> {
@@ -76,10 +70,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	private List<List<Pair<JComponent, JComponent>>> resolutionBindings;
 
 	// namecounters
-	private int choiceCount = 1;
+	private int resolutionsCount = 0;
 
 	private ResolutionLayoutStrategy strategy;
-
 	BVRNotifiableController rootController;
 
 
@@ -94,10 +87,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		strategy = new ResolutionLayoutStrategy(resolutionNodes, resolutionBindings, (ArrayList<JScrollPane>) resolutionPanes);
 		toolModel = model;
 		rootController = controller;
-
-		
-
-		// Resolution panes
 		resPane = new JTabbedPane();
 	}
 
@@ -126,20 +115,10 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			resolutionBindings.add(bindings);
 
 			loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings);
-			// resKernel.getModelPanel().layoutTreeNodes(strategy);
 
-			String tabtitle = "";
-			if (v instanceof ChoiceResolution) {
-				ChoiceResolution cr = (ChoiceResolution) v;
-				String choicename = "null";
-				if (cr.getResolvedVSpec() != null) {
-					choicename = cr.getResolvedVSpec().getName();
-				}
-				tabtitle = choicename + choiceCount;
-				choiceCount++;
-			} else if (CommonUtility.isVSpecResolutionVClassifier(v)) {
-				tabtitle = v.getName() + ":" + ((ChoiceResolution) v).getResolvedVClassifier().getName();
-			}
+			VSpec resolvedVSpec = CommonUtility.getResolvedVSpec(v);
+			String tabtitle = (resolvedVSpec != null) ? resolvedVSpec.getName() + "[" + resolutionsCount +"]" : "null";
+			resolutionsCount++;
 
 			resPane.addTab(tabtitle, null, epanel, "");
 		}
@@ -203,7 +182,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 		// Clean up
 		resPane.removeAll();
-
+		
 		resolutionPanes = new ArrayList<JScrollPane>();
 		resolutionEpanels = new ArrayList<EditableModelPanel>();
 		resolutionkernels = new ArrayList<BVRUIKernel>();
@@ -211,10 +190,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		resolutionNodes = new ArrayList<List<JComponent>>();
 		resolutionBindings = new ArrayList<List<Pair<JComponent, JComponent>>>();
 
-		choiceCount = 1;
+		resolutionsCount = 0;
 		render();
-
-		// loadBVRResolutionView(toolModel.getBVRModel(), resolutionkernels);
 
 		// Restore positions
 		if (!isEmpty && !modelIsEmpty && selected < resmodels) {
