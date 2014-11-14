@@ -227,7 +227,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public void addChoiceOrVClassifierResolution(GUI_NODE parent, MODEL_OBJECT resolvedVSpec) {
-		NamedElement parentNamedElement = getElementInCurrentPane(parent);
+		NamedElement parentNamedElement = getNamedElementByJComponent(parent);
 		if (parentNamedElement != null) {
 			VSpec vSpecToResolve = (VSpec) resolvedVSpec;
 			toolModel.addChoiceOrVClassifierResolution(vSpecToResolve, (VSpecResolution) parentNamedElement);
@@ -316,7 +316,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public SimpleExeCommandInterface createToggleChoiceCommand(GUI_NODE _toToggle) {
-		NamedElement toToggle = getElementInCurrentPane(_toToggle);
+		NamedElement toToggle = getNamedElementByJComponent(_toToggle);
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -326,7 +326,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		return command;
 	}
 
-	private NamedElement getElementInCurrentPane(JComponent toFind) {
+	private NamedElement getNamedElementByJComponent(JComponent toFind) {
 		NamedElement foundNamedElement  = null;
 		if(resPane.getSelectedIndex() >= 0){
 			foundNamedElement = resolutionvmMapsMap.get(resPane.getSelectedComponent()).get(toFind);
@@ -342,7 +342,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	
 	@Override
 	public SimpleExeCommandInterface createResolveSubtreeCommand(GUI_NODE _parent) {
-		final VSpecResolution parent = (VSpecResolution) getElementInCurrentPane(_parent);
+		final VSpecResolution parent = (VSpecResolution) getNamedElementByJComponent(_parent);
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -394,14 +394,14 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public void minimizeNode(GUI_NODE node) {
-		NamedElement element = getElementInCurrentPane(node);
+		NamedElement element = getNamedElementByJComponent(node);
 		toolModel.minimaizeVSpecResolution((VSpecResolution) element);
 		notifyResolutionViewUpdate();
 	}
 
 	@Override
 	public void maximizeNode(GUI_NODE node) {
-		NamedElement element = getElementInCurrentPane(node);
+		NamedElement element = getNamedElementByJComponent(node);
 		toolModel.maximizeVSpecResolution((VSpecResolution) element);
 		notifyResolutionViewUpdate();
 	}
@@ -409,7 +409,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createVariableResolutionCommand(GUI_NODE parent,
 			MODEL_OBJECT _variable) {
-		CompoundResolution compountResolution = (CompoundResolution) getElementInCurrentPane(parent);
+		CompoundResolution compountResolution = (CompoundResolution) getNamedElementByJComponent(parent);
 		Variable variable = (Variable) _variable;
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
@@ -423,15 +423,14 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@SuppressWarnings("unchecked")
 	@Override
 	public MODEL_OBJECT getModelObjectByUINode(GUI_NODE node) {
-		//int resolutionIndex = resPane.getSelectedIndex();
-		return (MODEL_OBJECT) getElementInCurrentPane(node);
+		return (MODEL_OBJECT) getNamedElementByJComponent(node);
 	}
 
 	@Override
 	public Command createUpdateVariableResolutionCommand(GUI_NODE elem) {
 		Command command = new UpdateVarValAssigBatchCmdDecorator(new UpdateVariableValueAssignment());
 		command.init(resolutionkernelsMap.get(resPane.getSelectedComponent()),
-				getElementInCurrentPane(elem), elem,
+				getNamedElementByJComponent(elem), elem,
 				resolutionvmMapsMap.get(resPane.getSelectedComponent()),
 				resolutionNodesMap.get(resPane.getSelectedComponent()),
 				resolutionBindingsMap.get(resPane.getSelectedComponent()), rootController);
@@ -440,32 +439,32 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public void setValueResolutionValue(GUI_NODE parent, String value) {
-		NamedElement namedElement = getElementInCurrentPane(parent);
+		NamedElement namedElement = getNamedElementByJComponent(parent);
 		toolModel.setValueResolution((ValueResolution) namedElement, value);
 	}
 
 	@Override
 	public void setValueResolutionName(GUI_NODE parent, String name) {
-		NamedElement namedElement = getElementInCurrentPane(parent);
+		NamedElement namedElement = getNamedElementByJComponent(parent);
 		toolModel.setValueResolutionName((ValueResolution) namedElement, name);
 	}
 
 	@Override
 	public String getValueReolutionStringValue(GUI_NODE node) {
-		NamedElement namedElement = getElementInCurrentPane(node);
+		NamedElement namedElement = getNamedElementByJComponent(node);
 		return toolModel.getValueResolutionAsString((ValueResolution) namedElement);
 	}
 	
 	@Override
 	public int getReslovedVClassifierCount(GUI_NODE node, MODEL_OBJECT vclassifier) {
-		NamedElement namedElement = getElementInCurrentPane(node);
+		NamedElement namedElement = getNamedElementByJComponent(node);
 		return toolModel.getResolvedVClassifierCount((CompoundResolution) namedElement, (VClassifier) vclassifier);
 	}
 
 	@Override
 	public SimpleExeCommandInterface createResolveNVSpecCommand(GUI_NODE panel,
 			MODEL_OBJECT vspec, int instancesToResolve) {
-		NamedElement parentNamedElement = getElementInCurrentPane(panel);
+		NamedElement parentNamedElement = getNamedElementByJComponent(panel);
 		VSpec vSpecToResolve = (VSpec) vspec;
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
@@ -481,7 +480,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			GUI_NODE vInstance) {
 		Command command = new UpdateVInstanceBatchCmdDecorator(new UpdateVInstance());
 		command.init(resolutionkernelsMap.get(resPane.getSelectedComponent()),
-				getElementInCurrentPane(vInstance), vInstance,
+				getNamedElementByJComponent(vInstance), vInstance,
 				resolutionvmMapsMap.get(resPane.getSelectedComponent()),
 				resolutionNodesMap.get(resPane.getSelectedComponent()),
 				resolutionBindingsMap.get(resPane.getSelectedComponent()), rootController);
@@ -490,7 +489,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	
 	@Override
 	public void setNodeName(GUI_NODE node, String name) {
-		NamedElement namedElement = getElementInCurrentPane(node);
+		NamedElement namedElement = getNamedElementByJComponent(node);
 		toolModel.updateName(namedElement, name);
 	}
 
@@ -507,13 +506,13 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public String getBCLConstraintString(GUI_NODE node) {
-		BCLConstraint constraint = (BCLConstraint) getElementInCurrentPane(node);
+		BCLConstraint constraint = (BCLConstraint) getNamedElementByJComponent(node);
 		return toolModel.getBCLConstraintString(constraint);
 	}
 
 	@Override
 	public List<String> validateResolutionNode(GUI_NODE component) {
-		VSpecResolution vSpecResolution = (VSpecResolution)  getElementInCurrentPane(component);
+		VSpecResolution vSpecResolution = (VSpecResolution)  getNamedElementByJComponent(component);
 		return toolModel.validateChoiceResolution(vSpecResolution);
 	}
 
@@ -522,5 +521,4 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		int index = resPane.getSelectedIndex();
 		toolModel.executeResolution((File) destFile, index);
 	}
-
 }
