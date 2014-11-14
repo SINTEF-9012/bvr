@@ -100,13 +100,15 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	
 	@Override
 	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file) {
+		logger.debug("file absolute path to save product " + file.getAbsolutePath());
 		String prefix = file.getName();
 		String filepath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
 		filepath = (filepath.endsWith(File.separator)) ? filepath : filepath + File.separator;
 		filepath = filepath.replaceAll("\\\\", "/");
-		if(!filepath.startsWith(Utility.getWorkspaceRowLocation())){
+		logger.debug("workspace location " + Utility.getWorkspaceRowLocation());
+		if(!filepath.startsWith(Utility.getWorkspaceRowLocation()))
 			throw new UnsupportedOperationException("can not save a product to the file, incorrect loacation: use workspace location");
-		}
+
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		final HashMap<ResourceSet, String> messages = new HashMap<ResourceSet, String>();
 		
@@ -120,8 +122,9 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		    final ResourceSet resSet = new ResourceSetImpl();
+		    logger.debug("product project uri " + productFullName);
 		    URI uri = URI.createPlatformResourceURI(productFullName, true);
-		    logger.debug("saving a product to the file file " + uri);
+		    logger.debug("saving the product to file with platform uri " + uri);
 		    final Resource productResource = resSet.createResource(uri);
 		    
 		    TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
