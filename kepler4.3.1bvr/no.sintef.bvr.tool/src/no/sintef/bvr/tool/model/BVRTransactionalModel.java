@@ -1004,6 +1004,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		if(destFile == null)
 			throw new UnexpectedException("destinition file is not defined for a product" + destFile);
 		
+		final File destinationFile = destFile;
+		final int resolutionIndex = index;
 		Context.eINSTANCE.getEditorCommands().executeSimpleExeCommand(new SimpleExeCommandInterface() {
 			
 			@Override
@@ -1014,7 +1016,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				try {
 					Context.eINSTANCE.writeModelToFile(tmpModel, tmpModel.getFile());
 					Context.eINSTANCE.reloadModel(tmpModel);
-					executeProduct(tmpModel, (PosResolution) tmpModel.getBVRModel().getResolutionModels().get(index), destFile);
+					executeProduct(tmpModel, (PosResolution) tmpModel.getBVRModel().getResolutionModels().get(resolutionIndex), destinationFile);
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Failed to execute product, resason : " + error.getMessage(), error);
 					throw new RethrownException("Failed to execute product, resason : " + error.getMessage(), error);
