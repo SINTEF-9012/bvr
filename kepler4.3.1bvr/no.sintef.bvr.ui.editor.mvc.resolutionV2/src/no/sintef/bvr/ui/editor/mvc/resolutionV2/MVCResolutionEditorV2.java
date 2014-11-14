@@ -1,9 +1,7 @@
 package no.sintef.bvr.ui.editor.mvc.resolutionV2;
 
-//import java.awt.Toolkit;
 import java.awt.Toolkit;
 import java.io.File;
-//import java.util.List;
 
 import java.util.List;
 
@@ -12,13 +10,6 @@ import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
 import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
-//import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
-//import no.sintef.bvr.ui.editor.common.observer.EditorSubject;
-//import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
-//import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
-//import no.sintef.bvr.ui.editor.common.observer.ResourceSavedSubject;
-//import no.sintef.bvr.ui.editor.common.observer.ResourceSetEditorSubject;
-//import no.sintef.bvr.ui.editor.mvc.resolutionV2.observer.ResolutionV2ResourceSetSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
@@ -27,13 +18,11 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 	@Override
 	public void setTitle() {
 		setPartName(new File(filename).getName() + " (Resolution)");
-		//TODO
 	}
 
 	@Override
 	public void setContents() {
 		jApplet.add(((ResolutionRootController)v).getResolutionPane());
-		// TODO Auto-generated method stub
 	}
 /*
  *create view object and add to subject list
