@@ -75,7 +75,7 @@ public class ResolutionView extends BVRToolAbstractController implements BVRReso
 		
   
 	
-    	vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
+    	//vSpecbvruikernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
 		
 
 		vspecScrollPane = new JScrollPane(vSpecbvruikernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -200,7 +200,8 @@ public class ResolutionView extends BVRToolAbstractController implements BVRReso
 		if(cu.getResolutionModels().size() == 0) return;
 		
 		for(VSpecResolution v : cu.getResolutionModels()){
-			BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
+			//BVRUIKernel resKernel = new BVRUIKernel(vspecvmMap, this, resolutionvmMaps);
+			BVRUIKernel resKernel = null;
 			resolutionkernels.add(resKernel);
 	        JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	      //  scrollPane.addMouseListener(new ResolutionPanelDropDownListener(this));

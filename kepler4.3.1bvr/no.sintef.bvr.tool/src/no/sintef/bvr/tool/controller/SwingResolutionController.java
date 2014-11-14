@@ -100,7 +100,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		for (VSpecResolution v : bvrModel.getResolutionModels()) {
 			JComponent subtab = resolutionSubTabMap.get(v);
 			if(subtab == null) {
-				BVRUIKernel resKernel = new BVRUIKernel(null, rootController, null);
+				BVRUIKernel resKernel = new BVRUIKernel(rootController);
 				JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 						JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 				scrollPane.addMouseListener(new ResolutionDropdownListener(rootController));

@@ -15,7 +15,7 @@ public class BVRUIKernel {
 	private BVREditorPanel editorPanel;
 	private BVRModelPanel modelPanel;
 	
-	public BVRUIKernel(Map<JComponent, NamedElement> vmMap, BVRNotifiableController controller, List<Map<JComponent, NamedElement>> resolutionvmMaps) {
+	public BVRUIKernel(BVRNotifiableController controller) {
 		modelPanel = new BVRModelPanel();
 		editorPanel = new BVREditorPanel(this, controller);
 	}
