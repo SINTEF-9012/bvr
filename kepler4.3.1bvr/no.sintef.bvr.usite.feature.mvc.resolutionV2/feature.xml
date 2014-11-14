@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="no.sintef.bvr.usite.feature.mvc.resolutionV2"
-      label="ResolutionV2"
+      label="BVR MVC Resolution V2 Editor"
       version="1.0.0.qualifier"
       provider-name="SINTEF">
 

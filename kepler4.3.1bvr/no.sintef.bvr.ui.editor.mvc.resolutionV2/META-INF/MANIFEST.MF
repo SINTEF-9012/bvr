@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: ResolutionV2
+Bundle-Name: BVR :: Eclipse Editor (MVC) Resolution V2
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.mvc.resolutionV2;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.bvr.ui.editor.mvc.resolutionV2.Activator
