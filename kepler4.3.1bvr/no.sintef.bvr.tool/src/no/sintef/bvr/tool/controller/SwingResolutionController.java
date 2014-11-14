@@ -272,14 +272,11 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public SimpleExeCommandInterface createRemoveVSpecResolutionCommand(final GUI_NODE _toDelete) {
+		final NamedElement toDelete = getNamedElementByJComponent(_toDelete);
 		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
-			NamedElement toDelete = null;
-
 			@Override
 			public void execute() {
-				toDelete = resolutionvmMapsMap.get(resPane.getSelectedComponent()).get(_toDelete);
 				toolModel.removeVSpecResolution(toDelete);
-
 			}
 
 		};
@@ -303,7 +300,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createGenerateCoveringArrayCommand(int t) {
 		final int xWise = t;
-
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -315,7 +311,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public SimpleExeCommandInterface createToggleChoiceCommand(GUI_NODE _toToggle) {
-		NamedElement toToggle = getNamedElementByJComponent(_toToggle);
+		final NamedElement toToggle = getNamedElementByJComponent(_toToggle);
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -408,8 +404,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createVariableResolutionCommand(GUI_NODE parent,
 			MODEL_OBJECT _variable) {
-		CompoundResolution compountResolution = (CompoundResolution) getNamedElementByJComponent(parent);
-		Variable variable = (Variable) _variable;
+		final CompoundResolution compountResolution = (CompoundResolution) getNamedElementByJComponent(parent);
+		final Variable variable = (Variable) _variable;
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {
@@ -464,8 +460,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public SimpleExeCommandInterface createResolveNVSpecCommand(GUI_NODE panel,
 			MODEL_OBJECT vspec, int instancesToResolve) {
-		NamedElement parentNamedElement = getNamedElementByJComponent(panel);
-		VSpec vSpecToResolve = (VSpec) vspec;
+		final NamedElement parentNamedElement = getNamedElementByJComponent(panel);
+		final VSpec vSpecToResolve = (VSpec) vspec;
 		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
 			@Override
 			public void execute() {

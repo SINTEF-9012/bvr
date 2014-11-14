@@ -14,7 +14,6 @@ import javax.swing.JScrollPane;
 
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddBCLConstraint;
 import no.sintef.bvr.tool.controller.command.AddBVRModel;
 import no.sintef.bvr.tool.controller.command.AddChoice;
