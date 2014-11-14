@@ -11,6 +11,7 @@ import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 
 
 
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
@@ -378,25 +379,6 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void removeNamedElementVSpec(VSpec parentVSpec,
-			NamedElement namedElement) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setVSpecComment(VSpec vSpec, String comment) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vNode, BvrPackage.eINSTANCE.getVNode_GroupMultiplicity(), eObject);
@@ -613,6 +595,5 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		});
 		if(exceptions.size() != 0)
 			throw new RuntimeException(exceptions.get(0));
-			
 	}
 }

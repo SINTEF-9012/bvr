@@ -74,11 +74,6 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void setVSpecComment(VSpec vSpec, String comment) {
-		//vSpec.setComment(comment);
-	}
-
-	@Override
 	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
 		choice.setIsImpliedByParent(isImplied);
 	}
@@ -253,19 +248,6 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void addVariable(VNode parentVNode, Variable variable) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeNamedElementVSpec(VSpec parentVSpec,
-			NamedElement namedElement) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec) {
 		// TODO Auto-generated method stub
 		
 	}

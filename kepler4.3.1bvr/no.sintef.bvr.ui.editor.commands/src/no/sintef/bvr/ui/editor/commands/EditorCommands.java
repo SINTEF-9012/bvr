@@ -17,22 +17,17 @@ import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
-//import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
-import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.PrimitiveValueSpecification;
-import bvr.PrimitveType;
-//import bvr.PrimitveType;
 import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.Target;
@@ -45,7 +40,6 @@ import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
-import bvr.ValueSpecification;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
@@ -74,15 +68,9 @@ public interface EditorCommands {
 	
 	public void addVariable(VNode parentVNode, Variable variable);
 	
-	public void removeNamedElementVSpec(VSpec parentVSpec, NamedElement namedElement);
-	
 	public void removeVNodeCompoundNode(CompoundNode compoundNode, VNode vNode);
 	
-	public void addVSpecToVSpec(VSpec parentVSpec, VSpec childVSpec);
-	
 	public void setName(NamedElement namedElement, String name);
-	
-	public void setVSpecComment(VSpec vSpec, String comment);
 	
 	public void setIsImpliedByParent(Choice choice, boolean isImplied);
 	
