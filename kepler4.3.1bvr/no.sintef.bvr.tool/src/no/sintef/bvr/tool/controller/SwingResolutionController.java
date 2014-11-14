@@ -272,7 +272,6 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public SimpleExeCommandInterface createRemoveVSpecResolutionCommand(final GUI_NODE _toDelete) {
-		//final int resolutionIndex = resPane.getSelectedIndex();
 		SimpleExeCommandInterface command = new SimpleExeCommandInterface() {
 			NamedElement toDelete = null;
 
@@ -428,12 +427,13 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public Command createUpdateVariableResolutionCommand(GUI_NODE elem) {
+		Component resolutionTab = resPane.getSelectedComponent();
 		Command command = new UpdateVarValAssigBatchCmdDecorator(new UpdateVariableValueAssignment());
-		command.init(resolutionkernelsMap.get(resPane.getSelectedComponent()),
+		command.init(resolutionkernelsMap.get(resolutionTab),
 				getNamedElementByJComponent(elem), elem,
-				resolutionvmMapsMap.get(resPane.getSelectedComponent()),
-				resolutionNodesMap.get(resPane.getSelectedComponent()),
-				resolutionBindingsMap.get(resPane.getSelectedComponent()), rootController);
+				resolutionvmMapsMap.get(resolutionTab),
+				resolutionNodesMap.get(resolutionTab),
+				resolutionBindingsMap.get(resolutionTab), rootController);
 		return command;
 	}
 
@@ -478,12 +478,13 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	@Override
 	public Command createUpdateInstanceChoiceResolutionCommand(
 			GUI_NODE vInstance) {
+		Component resolutionTab = resPane.getSelectedComponent();
 		Command command = new UpdateVInstanceBatchCmdDecorator(new UpdateVInstance());
-		command.init(resolutionkernelsMap.get(resPane.getSelectedComponent()),
+		command.init(resolutionkernelsMap.get(resolutionTab),
 				getNamedElementByJComponent(vInstance), vInstance,
-				resolutionvmMapsMap.get(resPane.getSelectedComponent()),
-				resolutionNodesMap.get(resPane.getSelectedComponent()),
-				resolutionBindingsMap.get(resPane.getSelectedComponent()), rootController);
+				resolutionvmMapsMap.get(resolutionTab),
+				resolutionNodesMap.get(resolutionTab),
+				resolutionBindingsMap.get(resolutionTab), rootController);
 		return command;
 	}
 	
