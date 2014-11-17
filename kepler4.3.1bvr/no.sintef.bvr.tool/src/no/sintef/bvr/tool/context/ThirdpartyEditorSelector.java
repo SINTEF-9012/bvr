@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.part.EditorPart;
 import org.eclipse.swt.widgets.Display;
 
 public final class ThirdpartyEditorSelector implements ModelSelector {
@@ -109,7 +110,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    		IEditorPart editorPart = ref.getEditor(false);
 		    		if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
 		    			try {
-		    				ProxyThirdPartyTreeEditor bvrEnabledEditor = new ProxyThirdPartyTreeEditor(editorPart);
+		    				ProxyThirdPartyTreeEditor bvrEnabledEditor = new ProxyThirdPartyTreeEditor((EditorPart) editorPart);
 		    				bvrEnabledEditor.clearHighlighting();
 		    				highlightObjects(bvrEnabledEditor, objects);
 		    				bvrEnabledEditor.expandHiglightedObjects();
@@ -149,7 +150,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    		IEditorPart editorPart = ref.getEditor(false);
 		    		if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
 		    			try {
-		    				IBVREnabledEditor editor = new ProxyThirdPartyTreeEditor(editorPart);
+		    				IBVREnabledEditor editor = new ProxyThirdPartyTreeEditor((EditorPart) editorPart);
 		    				editor.clearHighlighting();
 						} catch (Exception e) {
 							Context.eINSTANCE.logger.warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());

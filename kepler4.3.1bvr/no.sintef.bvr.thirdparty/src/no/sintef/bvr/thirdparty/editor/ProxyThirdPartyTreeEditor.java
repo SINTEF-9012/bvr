@@ -1,20 +1,18 @@
 package no.sintef.bvr.thirdparty.editor;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 import no.sintef.bvr.thirdparty.exception.NotSupportedThirdPartyEditor;
 
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.ide.IGotoMarker;
-import org.eclipse.ui.part.MultiPageEditorPart;
-
-import org.eclipse.core.resources.IMarker;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.part.EditorPart;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
@@ -25,54 +23,36 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.action.IMenuListener;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 
 
-/*in fact not really a full proxy since we do not redirect all calls to the proxied object (editor), i think we should use something described here
- * http://docs.oracle.com/javase/6/docs/technotes/guides/reflection/proxy.html */
 
-public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
-	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker, IBVREnabledEditor {
+public class ProxyThirdPartyTreeEditor extends EditorPart
+	implements IViewerProvider, IBVREnabledEditor {
 	
-	private MultiPageEditorPart editor;
+	private EditorPart editor;
+	private BVRLabelProvider labelProvider;
 	private TreeViewer treeViewer;
-	private BVRLabelProvider labelProvider = null;
 
-	public ProxyThirdPartyTreeEditor(Object multiPageEditor) throws NotSupportedThirdPartyEditor {
+	public ProxyThirdPartyTreeEditor(EditorPart editorPart) throws NotSupportedThirdPartyEditor {
 		if(Display.getDefault() == null)
-			throw new UnsupportedOperationException("Display is null, can not do any operation which reflects UI, wrapp this call in the Display thread");
-		if(!(multiPageEditor instanceof MultiPageEditorPart))
-			throw new NotSupportedThirdPartyEditor("active editor should extend MultiPageEditorPart, can not highlight anything");
-		if(!(multiPageEditor instanceof IEditingDomainProvider))
-			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart editor does not implement IEditingDomainProvider interface, can not highlight anything");
-		if(!(multiPageEditor instanceof ISelectionProvider))
-			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart editor does not implement ISelectionProvider interface, can not highlight anything");
-		if(!(multiPageEditor instanceof IMenuListener))
-			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart editor does not implement IMenuListener interface, can not highlight anything");
-		if(!(multiPageEditor instanceof IGotoMarker))
-			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart editor does not implement IGotoMarker interface, can not highlight anything");
-		if(!(multiPageEditor instanceof IViewerProvider))
-			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart editor does not implement IViewerProvider interface, can not highlight anything");
+			throw new UnsupportedOperationException("Display is null, can not do any operation which reflects UI, wrap this call in the Display thread");
 		
-		editor = (MultiPageEditorPart) multiPageEditor;
+		if(!(editorPart instanceof IViewerProvider))
+			throw new NotSupportedThirdPartyEditor("editorPart editor does not implement IViewerProvider interface, can not highlight anything");
+		
+		editor = (EditorPart) editorPart;
 		Viewer viewer = getViewer();
 		if(!(viewer instanceof TreeViewer))
 			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart should represent tree view editor, can not highlight anything");
 		treeViewer = (TreeViewer) viewer;
-		
-		
+			
 		// Extend the label provider to support colors and fonts
 		if(!(treeViewer.getLabelProvider() instanceof BVRLabelProvider)){
-			AdapterFactoryLabelProvider old = (AdapterFactoryLabelProvider) treeViewer.getLabelProvider();
+			ILabelProvider old = (ILabelProvider) treeViewer.getLabelProvider();
 			labelProvider = new BVRLabelProvider(old);
 			treeViewer.setLabelProvider(labelProvider);
 		}else{
@@ -115,93 +95,8 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 	}
 
 	@Override
-	public void gotoMarker(IMarker marker) {
-		((IGotoMarker) editor).gotoMarker(marker);
-		
-	}
-
-	@Override
 	public Viewer getViewer() {
 		return ((IViewerProvider) editor).getViewer();
-	}
-
-	@Override
-	public void menuAboutToShow(IMenuManager manager) {
-		((IMenuListener) editor).menuAboutToShow(manager);
-	}
-
-	@Override
-	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		((ISelectionProvider) editor).addSelectionChangedListener(listener);
-	}
-
-	@Override
-	public ISelection getSelection() {
-		return ((ISelectionProvider) editor).getSelection();
-	}
-
-	@Override
-	public void removeSelectionChangedListener(
-			ISelectionChangedListener listener) {
-		((ISelectionProvider) editor).removeSelectionChangedListener(listener);
-	}
-
-	@Override
-	public void setSelection(ISelection selection) {
-		((ISelectionProvider) editor).setSelection(selection);
-	}
-
-	@Override
-	public EditingDomain getEditingDomain() {
-		return ((IEditingDomainProvider) editor).getEditingDomain();
-	}
-
-	@Override
-	protected void createPages() {
-		Method method;
-		try {
-			method = editor.getClass().getMethod("createPages");
-			method.invoke(editor, new Object[0]);
-		} catch (IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new UnsupportedOperationException(e.getStackTrace().toString());
-		}
-	}
-
-	@Override
-	public void doSave(IProgressMonitor monitor) {
-		Method method;
-		try {
-			method = editor.getClass().getMethod("doSave", new Class[] {IProgressMonitor.class});
-			method.invoke(editor, new Object[] {monitor});
-		} catch (IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new UnsupportedOperationException(e.getStackTrace().toString());
-		}
-	}
-
-	@Override
-	public void doSaveAs() {
-		Method method;
-		try {
-			method = editor.getClass().getMethod("doSaveAs");
-			method.invoke(editor, new Object[0]);
-		} catch (IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new UnsupportedOperationException(e.getStackTrace().toString());
-		}
-	}
-
-	@Override
-	public boolean isSaveAsAllowed() {
-		Method method;
-		try {
-			method = editor.getClass().getMethod("isSaveAsAllowed");
-			return (boolean) method.invoke(editor, new Object[0]);
-		} catch (IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new UnsupportedOperationException(e.getStackTrace().toString());
-		}
 	}
 	
 	public void expandHiglightedObjects(){
@@ -218,5 +113,42 @@ public class ProxyThirdPartyTreeEditor extends MultiPageEditorPart
 				treeViewer.expandToLevel(eObject, ((type == IBVREnabledEditor.HL_PLACEMENT) || (type == IBVREnabledEditor.HL_REPLACEMENT)) ? treeViewer.ALL_LEVELS : 0);
 			}
 		}
+	}
+
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		editor.doSave(monitor);
+		
+	}
+
+	@Override
+	public void doSaveAs() {
+		editor.doSaveAs();
+	}
+
+	@Override
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
+		editor.init(site, input);
+	}
+
+	@Override
+	public boolean isDirty() {
+		return editor.isDirty();
+	}
+
+	@Override
+	public boolean isSaveAsAllowed() {
+		return editor.isSaveAsAllowed();
+	}
+
+	@Override
+	public void createPartControl(Composite parent) {
+		editor.createPartControl(parent);
+	}
+
+	@Override
+	public void setFocus() {
+		editor.setFocus();
 	}
 }
