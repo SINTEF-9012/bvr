@@ -44,13 +44,8 @@ public class BindingBoundariesComboBoxTableCellEditor extends AbstractCellEditor
 	@Override
 	public Object getCellEditorValue() {
 		JComboBox<DataItem> editor = editedBoundaryPropertyComboBoxMap.get(editedBoundaryProperty);
-		if(editor == null){
-			try {
-				throw new UnexpectedException("editor should not ever be null here, or at least we assume that. We should set an editor on a getTableCellEditorComponent call");
-			} catch (UnexpectedException e) {
-				e.printStackTrace();
-			}
-		}
+		if(editor == null)
+			throw new UnexpectedException("editor should not be ever null here, or at least we assume that. We should set an editor on a getTableCellEditorComponent call");
 		return editor.getSelectedItem();
 	}
 		

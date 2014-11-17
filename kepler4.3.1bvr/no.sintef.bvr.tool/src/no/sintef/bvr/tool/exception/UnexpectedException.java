@@ -7,6 +7,4 @@ public class UnexpectedException extends AbstractError {
 	public UnexpectedException(String msg) {
 		super(msg);
 	}
-
-
 }
