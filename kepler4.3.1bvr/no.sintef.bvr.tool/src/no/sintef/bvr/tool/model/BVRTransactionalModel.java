@@ -1038,4 +1038,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		DeriveProduct deriviator = new DeriveProduct(keywords);
 		deriviator.run();
 	}
+	
+	@Override
+	public void clearHighlightedObjects() {
+		Context.eINSTANCE.clearHighlights();
+	}
 }

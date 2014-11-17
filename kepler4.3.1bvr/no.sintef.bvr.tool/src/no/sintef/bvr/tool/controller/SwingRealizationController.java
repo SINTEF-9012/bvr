@@ -138,6 +138,7 @@ public class SwingRealizationController implements
 	
 	@Override
 	public SimpleExeCommandInterface createPlacementFragmentCommand(boolean containment) {
+		clearSelection();
 		PlacementFragment placement = SubstitutionFragmentFacade.eINSTANCE.createPlacementFragment();
 		CreatePlacement command = new CreatePlacement(containment, toolModel.getBVRModel(), placement);
 		return command;
@@ -145,6 +146,7 @@ public class SwingRealizationController implements
 
 	@Override
 	public SimpleExeCommandInterface createReplacementFragmentCommand(boolean containment) {
+		clearSelection();
 		ReplacementFragmentType replacement = SubstitutionFragmentFacade.eINSTANCE.createReplacementFragment();
 		CreateReplacement command = new CreateReplacement(containment, toolModel.getBVRModel(), replacement);
 		return command;
@@ -400,5 +402,14 @@ public class SwingRealizationController implements
 			}
 		});
 		return command;
+	}
+
+	@Override
+	public void clearSelection() {
+		ObserverDataBulk data = new ObserverDataBulk();
+		data.setDataField("selectedFragmentSubstitution", null);
+		selectedFS.setState(data);
+		Context.eINSTANCE.getViewChangeManager().updateSubjects(data, tableFragmSubst);
+		toolModel.clearHighlightedObjects();
 	}
 }

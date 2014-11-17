@@ -36,4 +36,6 @@ public interface RealizationControllerInterface extends EditorsCommonControllerI
 	public void highlightBoundaryElements(int _selectedIndex);
 	
 	public SimpleExeCommandInterface createUpdateBindingCommand(int rowIndex, int columnIndex);
+
+	public void clearSelection();
 }
