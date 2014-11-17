@@ -211,6 +211,7 @@ public class SwingRealizationController implements
 			fslist.add(vp);
 		}
 		
+		clearSelection();
 		toolModel.deleteFragments(fslist);
 	}
 
