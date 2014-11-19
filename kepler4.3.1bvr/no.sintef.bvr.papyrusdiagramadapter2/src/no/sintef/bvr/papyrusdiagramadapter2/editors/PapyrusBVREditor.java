@@ -1,6 +1,5 @@
 package no.sintef.bvr.papyrusdiagramadapter2.editors;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.ui.IEditorPart;
 
@@ -47,9 +47,10 @@ public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVRE
 	}
 
 	@Override
-	public ArrayList<Object> getSelectedObjects() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Object> getSelectedObjects() {
+		ISelection selection = getSite().getSelectionProvider().getSelection();
+		StructuredSelection structuredSelection = (StructuredSelection) selection;
+		return structuredSelection.toList();
 	}
 
 	@Override
@@ -84,8 +85,8 @@ public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVRE
 	}
 
 	@Override
-	public void selectObjects(ArrayList<Object> objects) {
-		// TODO Auto-generated method stub
+	public void selectObjects(List<Object> objects) {
+		throw new UnsupportedOperationException("not implemented");
 	}
 		
 	public void setColor(EObject obj, Color fg, IEditorPart editor) {

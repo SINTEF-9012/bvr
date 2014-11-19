@@ -7,11 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.thirdparty.editor.ProxyThirdPartyTreeEditor;
 import no.sintef.bvr.tool.common.ModelSelector;
-import no.sintef.bvr.tool.exception.NoEclipseDetectedException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +29,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	
 	public static ThirdpartyEditorSelector getEditorSelector(){
 		if(singletone.workbenchWindow == null)
-			Context.eINSTANCE.logger.warn("workbenchWindow is not set you may run into some problems when it involves some external operations");
+			Context.eINSTANCE.logger.debug("workbenchWindow is not set you may run into some problems when it involves some external operations");
 		return singletone;
 	}
 	
@@ -57,6 +55,10 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 
 	@Override
 	public List<Object> getSelections() {
+		IEditorPart activeEditor = workbenchWindow.getActivePage().getActiveEditor();
+		if(activeEditor instanceof IBVREnabledEditor)
+			return ((IBVREnabledEditor) activeEditor).getSelectedObjects();
+
 		if(workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider() == null)
 			return new ArrayList<Object>();
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
@@ -69,7 +71,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		final HashMap<EObject, Integer> objectsToHiglight = new HashMap<EObject, Integer>();
 		for(HashMap<EObject, Integer> pair : objectsToHighlightList){
 			if(pair.size() != 1){
-				Context.eINSTANCE.logger.warn("a hash map has more than one object to highlight or is empty, that is weird, skip it" + pair);
+				Context.eINSTANCE.logger.debug("a hash map has more than one object to highlight or is empty, that is weird, skip it" + pair);
 				continue;
 			}
 			EObject key = pair.keySet().iterator().next();
@@ -90,7 +92,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 						|| (type == IBVREnabledEditor.HL_REPLACEMENT_IN_OUT && (pair.get(key) == IBVREnabledEditor.HL_REPLACEMENT_OUT || pair.get(key) == IBVREnabledEditor.HL_REPLACEMENT_IN))){
 					pair.put(key, IBVREnabledEditor.HL_REPLACEMENT_IN_OUT);
 				}else if(type != pair.get(key)){
-					Context.eINSTANCE.logger.warn("have no idea how to highlight element (highlighting will be partially correct): " + key);
+					Context.eINSTANCE.logger.debug("have no idea how to highlight element (highlighting will be partially correct): " + key);
 				}
 			}
 			objectsToHiglight.put(key, pair.get(key));
@@ -115,7 +117,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				highlightObjects(bvrEnabledEditor, objects);
 		    				bvrEnabledEditor.expandHiglightedObjects();
 						} catch (Exception e) {
-							Context.eINSTANCE.logger.warn("unsupported editor: -->"+ editorPart.getClass().toString() + "<--, can not highlight due to : " + e.getMessage());
+							Context.eINSTANCE.logger.debug("unsupported editor: -->"+ editorPart.getClass().toString() + "<--, can not highlight due to : " + e.getMessage());
 						}
 		    		}else if (editorPart != null && (editorPart instanceof IBVREnabledEditor)){
 		    			IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) editorPart;
@@ -123,7 +125,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    			highlightObjects(bvrEnabledEditor, objects);
 		    		}else{
 		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass().toString() : "null");
-		    			Context.eINSTANCE.logger.warn("unsupported editor: -->" + editorName + "<--, can not highlight anything");
+		    			Context.eINSTANCE.logger.debug("unsupported editor: -->" + editorName + "<--, can not highlight anything");
 		    		}
 		    	}
 		    }
@@ -153,14 +155,14 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    				IBVREnabledEditor editor = new ProxyThirdPartyTreeEditor((EditorPart) editorPart);
 		    				editor.clearHighlighting();
 						} catch (Exception e) {
-							Context.eINSTANCE.logger.warn("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());
+							Context.eINSTANCE.logger.debug("unsupported editor: -->"+ editorPart.getClass() + "<--, can not clear highlighting (if any) due to: " + e.getMessage());
 						}
 		    		}if (editorPart != null && (editorPart instanceof IBVREnabledEditor)){
 		    			IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) editorPart;
 		    			bvrEnabledEditor.clearHighlighting();
 		    		}else{
 		    			String editorName = (String) ((editorPart != null) ? editorPart.getClass().toString() : "null");
-		    			Context.eINSTANCE.logger.warn("unsupported editor: -->" + editorName + "<--, can not clear highlighting (if any)");
+		    			Context.eINSTANCE.logger.debug("unsupported editor: -->" + editorName + "<--, can not clear highlighting (if any)");
 		    		}
 		    	}				
 			}

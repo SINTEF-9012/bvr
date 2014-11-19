@@ -3,6 +3,7 @@ package no.sintef.bvr.thirdparty.editor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import no.sintef.bvr.thirdparty.exception.NotSupportedThirdPartyEditor;
 
@@ -90,7 +91,7 @@ public class ProxyThirdPartyTreeEditor extends EditorPart
 	}
 
 	@Override
-	public void selectObjects(ArrayList<Object> objects) {
+	public void selectObjects(List<Object> objects) {
 		throw new UnsupportedOperationException("not implemented");
 	}
 

@@ -1,6 +1,7 @@
 package no.sintef.bvr.thirdparty.editor;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -61,13 +62,13 @@ public interface IBVREnabledEditor {
 	 * @return The set of domain objects (instances of the DSL meta-model) 
 	 * selected in the editor
 	 */
-	public ArrayList<Object> getSelectedObjects();
+	public List<Object> getSelectedObjects();
 	
 	/**
 	 * Set the selection of the editor
 	 * @param objects The IDs of the set of domain object which should be selected
 	 */
-	public void selectObjects(ArrayList<Object> objects);
+	public void selectObjects(List<Object> objects);
 	
 	public static class IDProvider {
 		
