@@ -10,7 +10,7 @@ import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.common.command.SimpleExeCommandInterface;
-import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.DeriveProduct;
@@ -26,6 +26,7 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
+
 
 
 
@@ -58,6 +59,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 
 
 

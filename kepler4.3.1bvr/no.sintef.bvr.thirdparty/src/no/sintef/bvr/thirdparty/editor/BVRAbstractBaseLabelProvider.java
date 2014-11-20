@@ -3,6 +3,8 @@ package no.sintef.bvr.thirdparty.editor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
+
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;

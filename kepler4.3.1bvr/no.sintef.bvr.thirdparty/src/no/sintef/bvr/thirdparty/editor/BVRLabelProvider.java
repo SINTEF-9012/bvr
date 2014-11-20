@@ -1,7 +1,10 @@
 package no.sintef.bvr.thirdparty.editor;
 
-import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor.IDProvider;
 import no.sintef.bvr.thirdparty.exception.NotSupportedLabelProvider;
+
+
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor.IDProvider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;

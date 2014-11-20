@@ -20,7 +20,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 
-import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 
 
 public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVREnabledEditor {

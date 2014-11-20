@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.sintef.bvr.thirdparty.editor.IBVREnabledEditor;
 import no.sintef.bvr.thirdparty.editor.ProxyThirdPartyTreeEditor;
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.common.ModelSelector;
 
 import org.eclipse.emf.common.util.EList;

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import no.sintef.bvr.thirdparty.exception.NotSupportedThirdPartyEditor;
+import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;

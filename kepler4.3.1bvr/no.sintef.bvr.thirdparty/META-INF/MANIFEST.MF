@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.9.0",
  org.eclipse.emf.edit.ui;bundle-version="2.9.0",
  org.eclipse.ui.ide;bundle-version="3.9.1",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.7.0",
- org.eclipse.core.filesystem;bundle-version="1.4.0"
+ org.eclipse.core.filesystem;bundle-version="1.4.0",
+ no.sintef.bvr.thirdparty.interfaces;bundle-version="1.0.0"
 Import-Package: no.sintef.bvr.common,
  no.sintef.bvr.common.logging,
  org.eclipse.core.resources,
