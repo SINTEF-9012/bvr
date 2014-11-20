@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * This interface should be implemented by the the DSL EditorPart. An example
- * editor is provided in package bvr.emfEditor.
+ * editor is provided in plugin no.sintef.bvr.papyrusdiagramadapter2 (works with Papyrus v0.10.1) of the BVR Tool Bundle .
  */
 public interface IBVREnabledEditor {
 
@@ -60,7 +60,7 @@ public interface IBVREnabledEditor {
 	public void clearHighlighting();
 
 	/**
-	 * Get the editor selection
+	 * Get the object set from the editor selection
 	 * 
 	 * @return The set of domain objects (instances of the DSL meta-model)
 	 *         selected in the editor

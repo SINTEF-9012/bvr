@@ -23,11 +23,22 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PapyrusBVREditor implements IBVREnabledEditor. The plugins adopts standard PapyrusMultiDiagramEditor
+ * editor to interact with BVR Tool Bundle.
+ */
 public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVREnabledEditor {
 	
+	/** The foreground color. */
 	private Map<IFigure,Color> foregroundColor = new HashMap<IFigure,Color>();
+	
+	/** The background color. */
 	private Map<IFigure,Color> backgroundColor = new HashMap<IFigure,Color>();
 	
+	/* (non-Javadoc)
+	 * @see no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor#clearHighlighting()
+	 */
 	@Override
 	public void clearHighlighting() {
 		for (Iterator<IFigure> it = foregroundColor.keySet().iterator(); it.hasNext();) {
@@ -46,6 +57,9 @@ public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVRE
 		backgroundColor.clear();
 	}
 
+	/* (non-Javadoc)
+	 * @see no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor#getSelectedObjects()
+	 */
 	@Override
 	public List<Object> getSelectedObjects() {
 		ISelection selection = getSite().getSelectionProvider().getSelection();
@@ -53,6 +67,9 @@ public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVRE
 		return structuredSelection.toList();
 	}
 
+	/* (non-Javadoc)
+	 * @see no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor#highlightObject(java.lang.Object, int)
+	 */
 	@Override
 	public void highlightObject(Object object, int type) {
 		if(!(object instanceof EObject))
@@ -84,11 +101,21 @@ public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVRE
 		setColor(eObject, c, getActiveEditor());
 	}
 
+	/* (non-Javadoc)
+	 * @see no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor#selectObjects(java.util.List)
+	 */
 	@Override
 	public void selectObjects(List<Object> objects) {
 		throw new UnsupportedOperationException("not implemented");
 	}
 		
+	/**
+	 * Sets the color.
+	 *
+	 * @param obj the obj
+	 * @param fg the fg
+	 * @param editor the editor
+	 */
 	public void setColor(EObject obj, Color fg, IEditorPart editor) {
 		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart)editor).getDiagramGraphicalViewer();
 		
