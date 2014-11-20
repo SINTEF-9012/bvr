@@ -29,13 +29,8 @@ public interface IBVREnabledEditor {
 	public static final Color PLACEMENT_OUT = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element = orange
 	public static final Color PLACEMENT_IN = new Color(Display.getDefault(), 126, 0, 123); //toPlacement outside element = violet
 	public static final Color PLACEMENT_IN_OUT = new Color(Display.getDefault(), 0, 238, 250); // frotoPlacement outside element = light blue
-	//public static final Color PLACEMENT_IN = PLACEMENT;
 	
 	public static final Color REPLACEMENT = new Color(Display.getDefault(), 50, 80, 250); //replacement elements = blue
-	//public static final Color REPLACEMENT_OUT = new Color(Display.getDefault(), 80, 210, 70); //fromReplacement outside element = green
-	//public static final Color REPLACEMENT_IN = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element = pink
-	//public static final Color REPLACEMENT_IN_OUT = new Color(Display.getDefault(), 253, 247, 2); //fromtoReplacement outside element = yellow
-	//public static final Color REPLACEMENT_IN = REPLACEMENT;
 	
 	public static final Color REPLACEMENT_OUT = PLACEMENT_OUT;
 	public static final Color REPLACEMENT_IN = PLACEMENT_IN;
