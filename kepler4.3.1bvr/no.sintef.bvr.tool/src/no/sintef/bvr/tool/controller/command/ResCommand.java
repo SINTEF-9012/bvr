@@ -1,8 +1,6 @@
 package no.sintef.bvr.tool.controller.command;
 
 import java.util.List;
-
-import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.VSpec;
 import bvr.VSpecResolution;

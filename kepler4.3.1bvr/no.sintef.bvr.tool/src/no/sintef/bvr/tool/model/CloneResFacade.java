@@ -2,22 +2,15 @@ package no.sintef.bvr.tool.model;
 
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import bvr.BvrFactory;
 import bvr.CompoundResolution;
 import bvr.NegResolution;
 import bvr.PosResolution;
-import bvr.PrimitiveTypeEnum;
-//import bvr.ChoiceResolution;
-//import bvr.PrimitiveTypeEnum;
 import bvr.PrimitiveValueSpecification;
-import bvr.PrimitveType;
-//import bvr.VInstance;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
 import bvr.Variable;
-//import bvr.VariableValueAssignment;
-//import bvr.common.PrimitiveTypeHandler;
+
 
 public class CloneResFacade {
 	private static CloneResFacade clone = null;
@@ -46,15 +39,6 @@ public class CloneResFacade {
 			Variable vSpecFound = (Variable) copyFrom.getResolvedVSpec();
 			String vString = PrimitiveTypeFacade.getInstance().getValueAsString(((ValueResolution) copyFrom));
 			PrimitiveValueSpecification value = PrimitiveTypeFacade.getInstance().makeValueSpecification(vSpecFound, vString);
-			//PrimitiveTypeEnum type = ((PrimitveType) ((Variable) vSpecFound).getType()).getType();
-			// Try searching for a type
-			//System.out.println("copyFrom: " + copyFrom);
-			//System.out.println("copyTo: " + copyTo);
-			//System.out.println("type: " + type);
-			//System.out.println("view: " + view);
-		//	PrimitveType vt = PrimitiveTypeFactory.getInstance().makeValueSpecification(type);
-		//	value.setType(vt);
-
 			((ValueResolution) copyTo).setValue(value);
 		}
 		

@@ -3,7 +3,6 @@ package no.sintef.bvr.tool.model;
 import java.util.List;
 
 import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.BVRResolutionToolView;
 import no.sintef.bvr.tool.controller.command.ResCommand;
 import bvr.BVRModel;
 import bvr.CompoundNode;
@@ -37,7 +36,6 @@ public class ResolutionModelIterator {
 						onlyOneInstance);
 			}
 		}
-		// System.out.println("no new resolutions");
 	}
 
 	public void iterateEmptyOnChildren(BVRToolModel view,
