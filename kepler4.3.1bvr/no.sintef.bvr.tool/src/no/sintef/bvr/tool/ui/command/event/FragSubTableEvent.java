@@ -4,8 +4,8 @@ package no.sintef.bvr.tool.ui.command.event;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 
 public class FragSubTableEvent implements TableModelListener {

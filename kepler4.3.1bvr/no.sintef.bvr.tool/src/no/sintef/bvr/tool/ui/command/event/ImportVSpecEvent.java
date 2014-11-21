@@ -13,9 +13,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.SXFM;

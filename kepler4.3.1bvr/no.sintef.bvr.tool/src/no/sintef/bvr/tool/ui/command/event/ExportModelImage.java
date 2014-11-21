@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.PNGFilter;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
 

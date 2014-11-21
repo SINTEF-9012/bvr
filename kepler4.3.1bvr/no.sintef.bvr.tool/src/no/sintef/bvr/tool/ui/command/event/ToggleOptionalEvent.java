@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 
 

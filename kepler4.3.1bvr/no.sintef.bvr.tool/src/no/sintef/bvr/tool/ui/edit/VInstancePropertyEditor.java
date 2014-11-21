@@ -3,8 +3,9 @@ package no.sintef.bvr.tool.ui.edit;
 
 
 import javax.swing.JComponent;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.Command;
+
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.NamedElement;
 

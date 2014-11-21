@@ -32,8 +32,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;

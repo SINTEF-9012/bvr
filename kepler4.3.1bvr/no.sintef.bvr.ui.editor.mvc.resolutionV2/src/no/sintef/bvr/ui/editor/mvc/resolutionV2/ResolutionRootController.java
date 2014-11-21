@@ -9,9 +9,9 @@ import javax.swing.JTabbedPane;
 
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.tool.controller.BVRToolAbstractController;
-import no.sintef.bvr.tool.controller.ResolutionControllerInterface;
 import no.sintef.bvr.tool.controller.SwingResolutionController;
+import no.sintef.bvr.tool.interfaces.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.interfaces.controller.ResolutionControllerInterface;
 import no.sintef.bvr.tool.model.BVRToolModel;
 
 

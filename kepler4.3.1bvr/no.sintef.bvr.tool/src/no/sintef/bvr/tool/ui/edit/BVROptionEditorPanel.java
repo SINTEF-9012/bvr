@@ -23,8 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.controller.command.SettingsToolEvent;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
 public class BVROptionEditorPanel extends JPanel {

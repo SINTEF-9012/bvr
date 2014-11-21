@@ -4,10 +4,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRRealizationUIKernelInterface;
 import no.sintef.bvr.tool.ui.command.event.CreateBindingsEvent;
 import no.sintef.bvr.tool.ui.command.event.DeleteFragmentSubstitutionEvent;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
+import no.sintef.bvr.tool.ui.editor.FragmentSubstitutionJTable;
 
 
 public class FragmentSubstitutionTableDropDown extends
@@ -17,9 +18,9 @@ public class FragmentSubstitutionTableDropDown extends
 	
 	public FragmentSubstitutionTableDropDown(BVRNotifiableController _controller) {
 		super(_controller);
-		
 		BVRRealizationUIKernelInterface kenrel = controller.getRealizationControllerInterface().getUIKernel();
-		if(kenrel.getFragmentSubstitutionTable().getSelectedRows().length != 0){
+		FragmentSubstitutionJTable jtable = (FragmentSubstitutionJTable) kenrel.getFragmentSubstitutionTable();
+		if(jtable.getSelectedRows().length != 0){
 			add(new JSeparator());
 			JMenuItem generateBindings = new JMenuItem(Constants.REALIZATION_GENERATE_BINDINGS);
 			generateBindings.addActionListener(new CreateBindingsEvent(controller));

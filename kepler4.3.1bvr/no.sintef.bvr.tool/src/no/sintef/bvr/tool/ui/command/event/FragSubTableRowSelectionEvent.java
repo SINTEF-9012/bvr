@@ -6,7 +6,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
 public class FragSubTableRowSelectionEvent implements ListSelectionListener {

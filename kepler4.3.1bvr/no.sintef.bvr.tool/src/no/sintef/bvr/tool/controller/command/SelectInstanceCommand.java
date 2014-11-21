@@ -8,15 +8,18 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import bvr.NamedElement;
-
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
+import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 
-public class SelectInstanceCommand implements Command {
+public class SelectInstanceCommand<EDITOR_PANEL extends BVREditorPanel, MODEL_PANEL extends BVRModelPanel>
+		implements Command<EDITOR_PANEL, MODEL_PANEL> {
 
-    private BVRUIKernel kernel;
+    private BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> kernel;
     private static SelectElement currentlySelected = null;
     
     private SelectElement selectableElement;
@@ -27,7 +30,7 @@ public class SelectInstanceCommand implements Command {
 			currentlySelected.setSelected(false);
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		
 		kernel = rootPanel;
 		
@@ -47,7 +50,7 @@ public class SelectInstanceCommand implements Command {
 		
 		currentlySelected.setSelected(!currentlySelected.isSelected());
 
-        kernel.getEditorPanel().showPropertyFor((JPanel) currentlySelected);
+		((BVREditorPanel) kernel.getEditorPanel()).showPropertyFor((JPanel) currentlySelected);
 
 
         ((JPanel)currentlySelected).repaint();

@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanelWithError;

@@ -15,7 +15,7 @@ import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
 import no.sintef.bvr.tool.common.NullVSpec;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;

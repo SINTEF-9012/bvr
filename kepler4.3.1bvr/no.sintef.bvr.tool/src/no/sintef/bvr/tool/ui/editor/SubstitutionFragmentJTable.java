@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import org.eclipse.emf.common.util.EList;
 
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.impl.DataNamedElementItem;

@@ -6,21 +6,22 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import bvr.CompoundNode;
 import bvr.NamedElement;
 import bvr.Variable;
 
-public class UpdateChoice extends UpdateVSpec {
+public class UpdateChoice<EDITOR_PANEL, MODEL_PANEL> extends UpdateVSpec<EDITOR_PANEL, MODEL_PANEL> {
 	
 	Map<Variable, String> varNames = new HashMap<Variable, String>();
 	Map<Variable, String> varTypes = new HashMap<Variable, String>();
 	String comment;
 	
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, controller);

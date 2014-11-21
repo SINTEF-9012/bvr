@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.ui.dropdown;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
 public class SubstitutionFragmentTableDropDownListener extends MouseAdapter {

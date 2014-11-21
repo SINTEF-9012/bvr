@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
@@ -23,23 +22,10 @@ import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
 import no.sintef.bvr.tool.observer.ResourceSubject;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -57,22 +43,7 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import bvr.BCLConstraint;
 import bvr.BVRModel;

@@ -13,7 +13,7 @@ import org.abego.treelayout.demo.TextInBoxNodeExtentProvider;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.ui.framework.TitledElement;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import no.sintef.bvr.ui.framework.strategy.LayoutStrategy;

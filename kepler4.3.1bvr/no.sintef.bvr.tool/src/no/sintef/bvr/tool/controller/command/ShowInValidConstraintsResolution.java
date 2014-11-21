@@ -6,19 +6,24 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 
+
+
+
+
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import bvr.CompoundResolution;
 import bvr.Constraint;
 import bvr.NamedElement;
 import bvr.VNode;
 import bvr.VSpecResolution;
 
-public class ShowInValidConstraintsResolution implements Command {
+public class ShowInValidConstraintsResolution<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANEL, MODEL_PANEL> {
 
-	private BVRUIKernel rootPanel;
+	private BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel;
 	private Object v;
 	private JComponent parent;
 	private BVRNotifiableController controller;
@@ -27,7 +32,7 @@ public class ShowInValidConstraintsResolution implements Command {
 	private List<Pair<JComponent, JComponent>> bindings;
 
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings,
 			BVRNotifiableController controller) {

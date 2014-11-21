@@ -6,9 +6,9 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.SHFilter;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 public class ImportResolutions implements ActionListener {
 	private BVRNotifiableController controller;

@@ -5,11 +5,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import bvr.BVRModel;
 import bvr.PlacementFragment;
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UserInputError;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 

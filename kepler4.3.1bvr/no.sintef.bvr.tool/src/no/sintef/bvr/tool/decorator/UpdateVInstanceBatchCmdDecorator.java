@@ -6,11 +6,11 @@ import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateVInstance;
 
 
-public class UpdateVInstanceBatchCmdDecorator extends
-	UpdateVInstanceDecorator implements CommandBatchInterface {
+public class UpdateVInstanceBatchCmdDecorator<EDITOR_PANEL, MODEL_PANEL> extends
+	UpdateVInstanceDecorator<EDITOR_PANEL, MODEL_PANEL> implements CommandBatchInterface {
 
 	public UpdateVInstanceBatchCmdDecorator(
-			UpdateVInstance _wrapped) {
+			UpdateVInstance<EDITOR_PANEL, MODEL_PANEL> _wrapped) {
 		super(_wrapped);
 	}
 

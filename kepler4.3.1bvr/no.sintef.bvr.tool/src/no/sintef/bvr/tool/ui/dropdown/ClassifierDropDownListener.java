@@ -13,7 +13,8 @@ import javax.swing.JSeparator;
 
 import bvr.NamedElement;
 import bvr.VSpec;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
@@ -28,7 +29,6 @@ import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleOptionalEvent;
-import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 

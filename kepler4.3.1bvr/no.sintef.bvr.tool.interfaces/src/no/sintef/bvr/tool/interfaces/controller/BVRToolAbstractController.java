@@ -1,4 +1,8 @@
-package no.sintef.bvr.tool.controller;
+package no.sintef.bvr.tool.interfaces.controller;
+
+import no.sintef.bvr.tool.interfaces.controller.RealizationControllerInterface;
+import no.sintef.bvr.tool.interfaces.controller.ResolutionControllerInterface;
+import no.sintef.bvr.tool.interfaces.controller.VSpecControllerInterface;
 
 
 

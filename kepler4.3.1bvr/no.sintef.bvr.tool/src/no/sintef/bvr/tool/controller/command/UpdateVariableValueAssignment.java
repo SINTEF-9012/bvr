@@ -4,7 +4,7 @@ package no.sintef.bvr.tool.controller.command;
 import javax.swing.JComponent;
 
 
-public class UpdateVariableValueAssignment extends UpdateAbstractNamedElement {
+public class UpdateVariableValueAssignment<EDITOR_PANEL, MODEL_PANEL> extends UpdateAbstractNamedElement<EDITOR_PANEL, MODEL_PANEL> {
 
 
 	@SuppressWarnings("unchecked")

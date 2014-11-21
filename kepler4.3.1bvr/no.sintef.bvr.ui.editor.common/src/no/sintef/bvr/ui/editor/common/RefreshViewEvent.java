@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.common;
 
 import java.awt.AWTEvent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
 

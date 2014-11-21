@@ -5,26 +5,28 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.ConstraintPanel;
 import bvr.NamedElement;
 import bvr.OpaqueConstraint;
 import bvr.VSpec;
 
-public class AddOpaqueConstraint implements Command {
+public class AddOpaqueConstraint<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANEL, MODEL_PANEL> {
 
-	BVRUIKernel rootPanel;
+	BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel;
 	OpaqueConstraint oc;
 	JComponent parent;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		this.rootPanel = rootPanel;
 		this.oc = (OpaqueConstraint) p;
 		this.parent = parent;	
@@ -41,9 +43,9 @@ public class AddOpaqueConstraint implements Command {
 		nodes.add(constraint1);
 		constraint1.setTitle("OpaqueConstraint(\""+ oc.getConstraintLanguage() + "\", \"" + oc.getConstraint() + "\")");
 		//constraint1.setConstraint(oc.getConstraint());
-		rootPanel.getModelPanel().addNode(constraint1);
+		((BVRModelPanel) rootPanel.getModelPanel()).addNode(constraint1);
 
-		Helper.bind(parent, constraint1, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
+		Helper.bind(parent, constraint1, (BVRModelPanel) rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 		
 		return constraint1;
 	}

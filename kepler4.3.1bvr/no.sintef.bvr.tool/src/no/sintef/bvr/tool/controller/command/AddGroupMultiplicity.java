@@ -5,26 +5,28 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.Helper;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.VNode;
 
-public class AddGroupMultiplicity implements Command {
+public class AddGroupMultiplicity<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANEL, MODEL_PANEL> {
 
-	protected BVRUIKernel rootPanel;
+	protected BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel;
 	protected VSpec v;
 	protected JComponent parent;
 	protected List<JComponent> nodes;
 	protected List<Pair<JComponent, JComponent>> bindings;
 	
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		if(p instanceof VSpec){
 			this.rootPanel = rootPanel;
 			this.v = (VSpec) p;
@@ -44,9 +46,9 @@ public class AddGroupMultiplicity implements Command {
 			int l = m.getLower();
 			int u = m.getUpper();
 			group.setCardinality(l, u);
-			rootPanel.getModelPanel().addNode(group);
+			((BVRModelPanel) rootPanel.getModelPanel()).addNode(group);
 
-			Helper.bind(parent, group, rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
+			Helper.bind(parent, group, (BVRModelPanel) rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
 			
 			return group;
 		}

@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
 public class AddChoiceFromVClassifierEvent implements ActionListener {

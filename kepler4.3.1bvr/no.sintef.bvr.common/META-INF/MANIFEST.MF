@@ -4,7 +4,6 @@ Bundle-Name: BVR :: Common
 Bundle-SymbolicName: no.sintef.bvr.common
 Bundle-Version: 1.0.0.qualifier
 Export-Package: no.sintef.bvr.common,
- no.sintef.bvr.common.command,
  no.sintef.bvr.common.logging
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: bvr,

@@ -15,9 +15,9 @@ import javax.swing.filechooser.FileFilter;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.filter.PNGFilter;
 import no.sintef.bvr.tool.filter.SVGFilter;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 

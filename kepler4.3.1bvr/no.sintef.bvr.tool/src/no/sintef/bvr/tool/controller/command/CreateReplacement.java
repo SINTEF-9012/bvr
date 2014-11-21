@@ -3,9 +3,9 @@ package no.sintef.bvr.tool.controller.command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.strategy.impl.CreateBoundaryContext;
 import no.sintef.bvr.tool.strategy.impl.GetSelectionContext;
 import bvr.BVRModel;

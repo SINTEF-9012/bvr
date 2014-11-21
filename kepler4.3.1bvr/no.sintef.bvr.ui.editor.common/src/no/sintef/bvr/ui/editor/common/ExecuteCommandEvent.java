@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.common;
 
 import java.awt.AWTEvent;
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 public class ExecuteCommandEvent extends AWTEvent {
 

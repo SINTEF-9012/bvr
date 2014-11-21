@@ -14,13 +14,11 @@ import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.common.ResourceContentCopier;
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.tool.common.LoaderUtility;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
-
-
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.BVRTransactionalModel;

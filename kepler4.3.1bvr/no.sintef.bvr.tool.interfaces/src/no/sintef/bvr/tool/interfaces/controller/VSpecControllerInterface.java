@@ -1,6 +1,6 @@
-package no.sintef.bvr.tool.controller;
+package no.sintef.bvr.tool.interfaces.controller;
 
-import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
 
 
 public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> extends EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {

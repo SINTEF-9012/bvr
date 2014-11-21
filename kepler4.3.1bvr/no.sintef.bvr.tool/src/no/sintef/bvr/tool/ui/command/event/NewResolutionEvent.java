@@ -9,7 +9,7 @@ import javax.swing.JTabbedPane;
 import bvr.BVRModel;
 import bvr.BvrFactory;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 
 public class NewResolutionEvent implements ActionListener {

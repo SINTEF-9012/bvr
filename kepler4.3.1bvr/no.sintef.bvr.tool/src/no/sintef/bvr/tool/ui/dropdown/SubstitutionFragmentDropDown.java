@@ -5,7 +5,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.ClearSelectionRelalizationEvent;
 import no.sintef.bvr.tool.ui.command.event.CreatePlacementFragmentEvent;
 import no.sintef.bvr.tool.ui.command.event.CreateReplacementFragmentEvent;

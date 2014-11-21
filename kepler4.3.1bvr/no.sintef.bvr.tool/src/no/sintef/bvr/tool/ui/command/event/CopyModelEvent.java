@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 import no.sintef.bvr.thirdparty.common.Utility;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
 public class CopyModelEvent implements SimpleExeCommandInterface {

@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 
 import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.BVRTransactionalModel;
 import no.sintef.bvr.tool.observer.ResourceObserver;

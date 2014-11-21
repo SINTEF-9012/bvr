@@ -5,17 +5,18 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import bvr.NamedElement;
 
-public class UpdateBCLConstraint extends UpdateConstraint {
+public class UpdateBCLConstraint<EDITOR_PANEL, MODEL_PANEL> extends UpdateConstraint<EDITOR_PANEL, MODEL_PANEL> {
 
 	private String text;
 
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, controller);

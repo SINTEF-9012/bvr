@@ -1,7 +1,7 @@
 package no.sintef.bvr.ui.editor.commands;
 
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.xmi.XMIResource;

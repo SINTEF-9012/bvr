@@ -5,13 +5,15 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.command.Helper;
 import no.sintef.bvr.tool.ui.dropdown.ClassifierDropDownListener;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.GroupPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 import bvr.MultiplicityInterval;
@@ -21,9 +23,9 @@ import bvr.VClassifier;
 import bvr.VNode;
 import bvr.Variable;
 
-public class AddVClassifier implements Command {
+public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANEL, MODEL_PANEL> {
 	
-	BVRUIKernel rootPanel;
+	BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel;
 	VClassifier vc;
 	JComponent parent;
 	
@@ -37,7 +39,7 @@ public class AddVClassifier implements Command {
 		this.minimized = minimized;
 	}
 
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
 			this.vc = (VClassifier) p;
@@ -56,7 +58,7 @@ public class AddVClassifier implements Command {
 		VClassifierPanel c = new VClassifierPanel();
 		nodes.add(c);
 		vmMap.put(c, vc);
-		Helper.bind(parent, c, rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
+		Helper.bind(parent, c, (BVRModelPanel) rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
 		
 		CommandMouseListener listener = new CommandMouseListener();
         c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
@@ -77,7 +79,7 @@ public class AddVClassifier implements Command {
         		c.addAttribute(v.getName(), v.getType().getName());
         }
         
-        rootPanel.getModelPanel().addNode(c);
+        ((BVRModelPanel) rootPanel.getModelPanel()).addNode(c);
         return c;
 	}
 

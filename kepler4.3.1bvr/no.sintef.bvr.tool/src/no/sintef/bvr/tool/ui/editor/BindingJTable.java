@@ -6,8 +6,8 @@ import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.exception.AbstractError;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.observer.Observer;
 import no.sintef.bvr.tool.observer.Subject;
 import no.sintef.bvr.tool.primitive.DataItem;

@@ -7,7 +7,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import no.sintef.bvr.tool.common.Constants;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 

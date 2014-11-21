@@ -1,9 +1,9 @@
-package no.sintef.bvr.tool.controller;
+package no.sintef.bvr.tool.interfaces.controller;
 
 import java.util.ArrayList;
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
-import no.sintef.bvr.tool.ui.loader.BVRRealizationUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRRealizationUIKernelInterface;
 
 public interface RealizationControllerInterface extends EditorsCommonControllerInterface {
 

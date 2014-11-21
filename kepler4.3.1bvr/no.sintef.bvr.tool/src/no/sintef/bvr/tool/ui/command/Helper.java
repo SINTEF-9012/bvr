@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 import no.sintef.bvr.ui.framework.elements.Binding;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;

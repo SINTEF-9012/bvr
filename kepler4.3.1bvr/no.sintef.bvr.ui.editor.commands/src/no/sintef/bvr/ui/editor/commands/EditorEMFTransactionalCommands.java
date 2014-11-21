@@ -5,12 +5,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import no.sintef.bvr.common.command.SimpleExeCommandInterface;
 
 
 
 
 
+
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.command.AbstractCommand;

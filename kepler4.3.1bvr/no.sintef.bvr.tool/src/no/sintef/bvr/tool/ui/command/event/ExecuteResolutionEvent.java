@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.common.Messages;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 
 

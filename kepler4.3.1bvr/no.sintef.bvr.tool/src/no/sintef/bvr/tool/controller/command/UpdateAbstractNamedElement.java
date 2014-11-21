@@ -5,16 +5,18 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
 import bvr.NamedElement;
 
 
-abstract public class UpdateAbstractNamedElement implements UpdateNamedElement  {
+abstract public class UpdateAbstractNamedElement<EDITOR_PANEL, MODEL_PANEL> implements UpdateNamedElement<EDITOR_PANEL, MODEL_PANEL>  {
 
 
-	protected BVRUIKernel rootPanel;
+	protected BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel;
 	protected NamedElement namedElement;
 	protected JComponent parent;
 	protected String name;
@@ -25,7 +27,7 @@ abstract public class UpdateAbstractNamedElement implements UpdateNamedElement  
 	protected String value;
 
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings,
 			BVRNotifiableController controller) {

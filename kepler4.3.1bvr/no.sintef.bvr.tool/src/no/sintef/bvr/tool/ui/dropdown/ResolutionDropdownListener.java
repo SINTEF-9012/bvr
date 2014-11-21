@@ -14,7 +14,7 @@ import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowGroupEvent;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
 import no.sintef.bvr.tool.ui.loader.GenerateAllProducts;

@@ -3,9 +3,9 @@ package no.sintef.bvr.ui.editor.mvc.realization;
 
 import javax.swing.JTabbedPane;
 
-import no.sintef.bvr.tool.controller.BVRToolAbstractController;
-import no.sintef.bvr.tool.controller.RealizationControllerInterface;
 import no.sintef.bvr.tool.controller.SwingRealizationController;
+import no.sintef.bvr.tool.interfaces.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.interfaces.controller.RealizationControllerInterface;
 import no.sintef.bvr.tool.model.BVRToolModel;
 
 

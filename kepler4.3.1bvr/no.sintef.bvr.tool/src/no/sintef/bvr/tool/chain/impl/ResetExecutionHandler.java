@@ -2,9 +2,9 @@ package no.sintef.bvr.tool.chain.impl;
 
 import no.sintef.bvr.tool.chain.ExecutionHandler;
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.exception.AbstractError;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.ExecutionRequest;
 

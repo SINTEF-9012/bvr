@@ -5,25 +5,25 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.controller.command.Command;
 import no.sintef.bvr.tool.controller.command.UpdateChoice;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-import no.sintef.bvr.tool.ui.loader.Pair;
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
+import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import bvr.NamedElement;
 import bvr.Variable;
 
-public abstract class UpdateChoiceAbstractDecorator extends UpdateChoice  {
+public abstract class UpdateChoiceAbstractDecorator<EDITOR_PANEL, MODEL_PANEL> extends UpdateChoice<EDITOR_PANEL, MODEL_PANEL>  {
 
-	protected UpdateChoice command;
+	protected UpdateChoice<EDITOR_PANEL, MODEL_PANEL> command;
 	
-	public UpdateChoiceAbstractDecorator(UpdateChoice _command) {
+	public UpdateChoiceAbstractDecorator(UpdateChoice<EDITOR_PANEL, MODEL_PANEL> _command) {
 		super();
 		command = _command;
 	}
 
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings,
 			BVRNotifiableController controller) {

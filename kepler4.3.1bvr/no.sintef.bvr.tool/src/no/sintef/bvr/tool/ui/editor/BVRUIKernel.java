@@ -1,11 +1,14 @@
 package no.sintef.bvr.tool.ui.editor;
 
-import no.sintef.bvr.tool.controller.BVRNotifiableController;
+
+import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 
 
-public class BVRUIKernel {
+public class BVRUIKernel<EDITOR_PANEL extends BVREditorPanel, MODEL_PANEL extends BVRModelPanel>
+		implements BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> {
 	
 	private BVREditorPanel editorPanel;
 	private BVRModelPanel modelPanel;
@@ -15,15 +18,18 @@ public class BVRUIKernel {
 		editorPanel = new BVREditorPanel(this, controller);
 	}
 	
-	public BVREditorPanel getEditorPanel() {
-		return editorPanel;
+	@Override
+	public EDITOR_PANEL getEditorPanel() {
+		return (EDITOR_PANEL) editorPanel;
 	}
 	
-	public void setEditorPanel(BVREditorPanel editorPanel) {
-		this.editorPanel = editorPanel;
+	@Override
+	public MODEL_PANEL getModelPanel() {
+		return (MODEL_PANEL) modelPanel;
 	}
-	
-	public BVRModelPanel getModelPanel() {
-		return modelPanel;
+
+	@Override
+	public void setEditorPanel(EDITOR_PANEL editorPanel) {
+		editorPanel = (EDITOR_PANEL) editorPanel;
 	}
 }

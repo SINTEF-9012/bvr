@@ -5,7 +5,7 @@ package no.sintef.bvr.tool.ui.command;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import no.sintef.bvr.tool.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.controller.command.Command;
 
 
 public class CommandMouseListener extends MouseAdapter {
