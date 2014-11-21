@@ -1,6 +1,5 @@
 package no.sintef.bvr.tool.interfaces.controller;
 
-//import no.sintef.bvr.tool.context.Context;
 
 public interface EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_OBJECT> {
 
@@ -17,15 +16,15 @@ public interface EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_
 	}
 	
 	default public void enableBatchCommandProcessing() {
-		//Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		throw new UnsupportedOperationException("not implemented");
 	}
 	
 	default public void disableBatchCommandProcessing() {
-		//Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
+		throw new UnsupportedOperationException("not implemented");
 	}
 	
 	default public void executeCommandBatch() {
-		//Context.eINSTANCE.getEditorCommands().executeBatch();
+		throw new UnsupportedOperationException("not implemented");
 	}
 	
 	default public void setNodeName(GUI_NODE node, String name) {

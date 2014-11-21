@@ -5,10 +5,10 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateConstraint;
 
-public class UpdateConstraintBatchCommandDecorator extends
-		UpdateConstraintAbstractDecorator implements CommandBatchInterface {
+public class UpdateConstraintBatchCommandDecorator<EDITOR_PANEL, MODEL_PANEL> extends
+		UpdateConstraintAbstractDecorator<EDITOR_PANEL, MODEL_PANEL> implements CommandBatchInterface {
 
-	public UpdateConstraintBatchCommandDecorator(UpdateConstraint command) {
+	public UpdateConstraintBatchCommandDecorator(UpdateConstraint<EDITOR_PANEL, MODEL_PANEL> command) {
 		super(command);
 	}
 	

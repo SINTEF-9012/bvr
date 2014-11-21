@@ -8,22 +8,22 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.NamedElement;
 import bvr.Variable;
 
-public abstract class UpdateVClassifierAbstractDecorator extends UpdateVClassifier  {
+public abstract class UpdateVClassifierAbstractDecorator<EDITOR_PANEL, MODEL_PANEL> extends UpdateVClassifier<EDITOR_PANEL, MODEL_PANEL>  {
 
-	protected UpdateVClassifier command;
+	protected UpdateVClassifier<EDITOR_PANEL, MODEL_PANEL> command;
 	
-	public UpdateVClassifierAbstractDecorator(UpdateVClassifier _command) {
+	public UpdateVClassifierAbstractDecorator(UpdateVClassifier<EDITOR_PANEL, MODEL_PANEL> _command) {
 		super();
 		command = _command;
 	}
 
 	@Override
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings,
 			BVRNotifiableController controller) {

@@ -6,10 +6,10 @@ import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 
 
-public class UpdateVClassifierBatchCommandDecorator extends
-	UpdateVClassifierAbstractDecorator implements CommandBatchInterface {
+public class UpdateVClassifierBatchCommandDecorator<EDITOR_PANEL, MODEL_PANEL> extends
+	UpdateVClassifierAbstractDecorator<EDITOR_PANEL, MODEL_PANEL> implements CommandBatchInterface {
 
-	public UpdateVClassifierBatchCommandDecorator(UpdateVClassifier _command) {
+	public UpdateVClassifierBatchCommandDecorator(UpdateVClassifier<EDITOR_PANEL, MODEL_PANEL> _command) {
 		super(_command);
 	}
 	

@@ -70,21 +70,21 @@ public class SwingRealizationController implements
 	private SelectedFragmentSubstitutionSubject selectedFS;
 	private BVRModelSubject bvrModelSubject;
 	
-	private BVRRealizationUIKernel kernel;
+	private BVRRealizationUIKernel<FragmentSubstitutionJTable, SubstitutionFragmentJTable, BindingJTable> kernel;
 
 	public SwingRealizationController(BVRToolModel _model, BVRNotifiableController _controller) {
 		toolModel = _model;
 		controller = _controller;
 		bvrModelSubject = new BVRModelSubject(toolModel.getBVRModel());
     	selectedFS = new SelectedFragmentSubstitutionSubject(null);
-    	kernel = new BVRRealizationUIKernel();
+    	kernel = new BVRRealizationUIKernel<FragmentSubstitutionJTable, SubstitutionFragmentJTable, BindingJTable>();
 
         realizationPanel = new JTabbedPane();
         loadBVRRelalizationView(toolModel.getBVRModel());
 	}
 	
 	@Override
-	public BVRRealizationUIKernelInterface getUIKernel() {
+	public BVRRealizationUIKernelInterface<?,?,?> getUIKernel() {
 		return kernel;
 	}
 	
@@ -414,5 +414,19 @@ public class SwingRealizationController implements
 		selectedFS.setState(data);
 		Context.eINSTANCE.getViewChangeManager().updateSubjects(data, tableFragmSubst);
 		toolModel.clearHighlightedObjects();
+	}
+	
+	@Override
+	public void enableBatchCommandProcessing() {
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+	}
+	
+	@Override
+	public void disableBatchCommandProcessing() {
+		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
+	}
+	
+	public void executeCommandBatch() {
+		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
 }

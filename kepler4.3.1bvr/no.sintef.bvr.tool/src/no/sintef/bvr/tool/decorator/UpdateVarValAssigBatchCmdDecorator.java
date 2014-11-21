@@ -5,11 +5,11 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateVariableValueAssignment;
 
-public class UpdateVarValAssigBatchCmdDecorator extends
-		UpdateVariableValueAssignmentDecorator implements CommandBatchInterface {
+public class UpdateVarValAssigBatchCmdDecorator<EDITOR_PANEL, MODEL_PANEL> extends
+		UpdateVariableValueAssignmentDecorator<EDITOR_PANEL, MODEL_PANEL> implements CommandBatchInterface {
 
 	public UpdateVarValAssigBatchCmdDecorator(
-			UpdateVariableValueAssignment _wrapped) {
+			UpdateVariableValueAssignment<EDITOR_PANEL, MODEL_PANEL> _wrapped) {
 		super(_wrapped);
 	}
 

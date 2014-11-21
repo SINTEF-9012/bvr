@@ -5,10 +5,10 @@ import javax.swing.JComponent;
 import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
 import no.sintef.bvr.tool.controller.command.UpdateChoice;
 
-public class UpdateChoiceBatchCommandDecorator extends
-		UpdateChoiceAbstractDecorator implements CommandBatchInterface {
+public class UpdateChoiceBatchCommandDecorator<EDITOR_PANEL, MODEL_PANEL> extends
+		UpdateChoiceAbstractDecorator<EDITOR_PANEL, MODEL_PANEL> implements CommandBatchInterface {
 
-	public UpdateChoiceBatchCommandDecorator(UpdateChoice _command) {
+	public UpdateChoiceBatchCommandDecorator(UpdateChoice<EDITOR_PANEL, MODEL_PANEL> _command) {
 		super(_command);
 	}
 	

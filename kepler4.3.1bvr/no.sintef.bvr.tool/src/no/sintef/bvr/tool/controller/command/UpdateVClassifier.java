@@ -8,15 +8,15 @@ import javax.swing.JComponent;
 
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.CompoundNode;
 import bvr.NamedElement;
 import bvr.VSpec;
 import bvr.Variable;
 
 
-public class UpdateVClassifier extends UpdateVSpec {
+public class UpdateVClassifier<EDITOR_PANEL, MODEL_PANEL> extends UpdateVSpec<EDITOR_PANEL, MODEL_PANEL> {
 	
 	protected int lower;
 	protected int upper;
@@ -25,7 +25,7 @@ public class UpdateVClassifier extends UpdateVSpec {
 	Map<Variable, String> varTypes = new HashMap<Variable, String>();
 	private String comment;
 		
-	public Command init(BVRUIKernel rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		return super.init(rootPanel, (VSpec) p, parent, vmMap, nodes, bindings, controller);

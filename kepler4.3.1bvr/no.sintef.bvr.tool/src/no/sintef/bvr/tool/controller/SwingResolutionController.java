@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddChoiceResolution;
 import no.sintef.bvr.tool.controller.command.AddChoiceResolutionFromVClassifier;
 import no.sintef.bvr.tool.controller.command.ShowInValidConstraintsResolution;
@@ -37,9 +38,11 @@ import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterfac
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
+import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.strategy.ResolutionLayoutStrategy;
+import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
 import org.eclipse.emf.common.util.EList;
@@ -69,7 +72,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public JTabbedPane resPane;
 	private List<EditableModelPanel> resolutionEpanels;
 	private Map<JComponent, JScrollPane> resolutionPanesMap;
-	private Map<JComponent, BVRUIKernel> resolutionkernelsMap;
+	private Map<JComponent, BVRUIKernel<BVREditorPanel, BVRModelPanel>> resolutionkernelsMap;
 	private Map<JComponent, Map<JComponent, NamedElement>> resolutionvmMapsMap;
 	private Map<JComponent, List<JComponent>> resolutionNodesMap;
 	private Map<JComponent, List<Pair<JComponent, JComponent>>> resolutionBindingsMap;
@@ -80,7 +83,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		controller.setCommonControllerInterface(this);
 		
 		resolutionPanesMap = new HashMap<JComponent, JScrollPane>();
-		resolutionkernelsMap = new HashMap<JComponent, BVRUIKernel>();
+		resolutionkernelsMap = new HashMap<JComponent, BVRUIKernel<BVREditorPanel, BVRModelPanel>>();
 		resolutionvmMapsMap = new HashMap<JComponent, Map<JComponent, NamedElement>>();
 		resolutionNodesMap = new HashMap<JComponent, List<JComponent>>();
 		resolutionBindingsMap = new HashMap<JComponent, List<Pair<JComponent, JComponent>>>();
@@ -101,7 +104,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		for (VSpecResolution v : bvrModel.getResolutionModels()) {
 			JComponent subtab = resolutionSubTabMap.get(v);
 			if(subtab == null) {
-				BVRUIKernel resKernel = new BVRUIKernel(rootController);
+				BVRUIKernel<BVREditorPanel, BVRModelPanel> resKernel = new BVRUIKernel<BVREditorPanel, BVRModelPanel>(rootController);
 				JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 						JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 				scrollPane.addMouseListener(new ResolutionDropdownListener(rootController));
@@ -124,7 +127,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 				resolutionBindingsMap.put(epanel, bindings);
 				resolutionSubTabMap.put(v, epanel);
 			} else {
-				BVRUIKernel resKernel = resolutionkernelsMap.get(subtab);
+				BVRUIKernel<BVREditorPanel, BVRModelPanel> resKernel = resolutionkernelsMap.get(subtab);
 				Map<JComponent, NamedElement> vmMap = resolutionvmMapsMap.get(subtab);
 				List<JComponent> nodes = resolutionNodesMap.get(subtab);
 				List<Pair<JComponent, JComponent>> bindings = resolutionBindingsMap.get(subtab);
@@ -134,25 +137,25 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	
-	private void loadBVRResolutionView(VSpecResolution v, BVRUIKernel bvruikernel, JComponent parent, BVRModel bvrModel,
+	private void loadBVRResolutionView(VSpecResolution v, BVRUIKernel<BVREditorPanel, BVRModelPanel> bvruikernel, JComponent parent, BVRModel bvrModel,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings) throws BVRModelException {
 
 		JComponent nextParent = null;
 
 		if (CommonUtility.isVSpecResolutionVClassifier(v)) {
-			nextParent = new AddChoiceResolutionFromVClassifier(toolModel.isVSpecResolutionMinimized(v)).init(
+			nextParent = new AddChoiceResolutionFromVClassifier<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecResolutionMinimized(v)).init(
 					bvruikernel, v, parent, vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ChoiceResolution) {
-			nextParent = new AddChoiceResolution(toolModel.isVSpecResolutionMinimized(v)).init(bvruikernel, v, parent,
+			nextParent = new AddChoiceResolution<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecResolutionMinimized(v)).init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 			if(toolModel.showGrouping())
-				nextParent = new ShowMultiplicityTriangleResolution().init(bvruikernel, v, nextParent,
+				nextParent = new ShowMultiplicityTriangleResolution<BVREditorPanel, BVRModelPanel>().init(bvruikernel, v, nextParent,
 					vmMap, nodes, bindings, rootController).execute();
 			if(toolModel.showConstraints())
-				new ShowInValidConstraintsResolution().init(bvruikernel, v, nextParent,
+				new ShowInValidConstraintsResolution<BVREditorPanel, BVRModelPanel>().init(bvruikernel, v, nextParent,
 						vmMap, nodes, bindings, rootController).execute();
 		} else if (v instanceof ValueResolution) {
-			new AddVariableResolution().init(bvruikernel, v, parent,
+			new AddVariableResolution<BVREditorPanel, BVRModelPanel>().init(bvruikernel, v, parent,
 					vmMap, nodes, bindings, rootController).execute();
 		} else {
 			throw new BVRModelException("Unknown element: " + v.getClass());
@@ -423,9 +426,10 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public Command createUpdateVariableResolutionCommand(GUI_NODE elem) {
+	public Command<?,?> createUpdateVariableResolutionCommand(GUI_NODE elem) {
 		Component resolutionTab = resPane.getSelectedComponent();
-		Command command = new UpdateVarValAssigBatchCmdDecorator(new UpdateVariableValueAssignment());
+		Command<BVREditorPanel, BVRModelPanel> command = new UpdateVarValAssigBatchCmdDecorator<BVREditorPanel, BVRModelPanel>(
+				new UpdateVariableValueAssignment<BVREditorPanel, BVRModelPanel>());
 		command.init(resolutionkernelsMap.get(resolutionTab),
 				getNamedElementByJComponent(elem), elem,
 				resolutionvmMapsMap.get(resolutionTab),
@@ -473,10 +477,12 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	}
 
 	@Override
-	public Command createUpdateInstanceChoiceResolutionCommand(
+	public Command<?,?> createUpdateInstanceChoiceResolutionCommand(
 			GUI_NODE vInstance) {
 		Component resolutionTab = resPane.getSelectedComponent();
-		Command command = new UpdateVInstanceBatchCmdDecorator(new UpdateVInstance());
+		Command<BVREditorPanel, BVRModelPanel> command =
+				new UpdateVInstanceBatchCmdDecorator<BVREditorPanel, BVRModelPanel>(
+						new UpdateVInstance<BVREditorPanel, BVRModelPanel>());
 		command.init(resolutionkernelsMap.get(resolutionTab),
 				getNamedElementByJComponent(vInstance), vInstance,
 				resolutionvmMapsMap.get(resolutionTab),
@@ -518,5 +524,19 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public void executeProduct(SERIALIZABLE destFile) {
 		int index = resPane.getSelectedIndex();
 		toolModel.executeResolution((File) destFile, index);
+	}
+	
+	@Override
+	public void enableBatchCommandProcessing() {
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+	}
+	
+	@Override
+	public void disableBatchCommandProcessing() {
+		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
+	}
+	
+	public void executeCommandBatch() {
+		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
 }
