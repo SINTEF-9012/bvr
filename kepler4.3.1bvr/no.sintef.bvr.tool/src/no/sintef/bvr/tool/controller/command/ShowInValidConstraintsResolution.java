@@ -32,7 +32,7 @@ public class ShowInValidConstraintsResolution<EDITOR_PANEL, MODEL_PANEL> impleme
 	private List<Pair<JComponent, JComponent>> bindings;
 
 	@Override
-	public Command init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings,
 			BVRNotifiableController controller) {
@@ -56,9 +56,9 @@ public class ShowInValidConstraintsResolution<EDITOR_PANEL, MODEL_PANEL> impleme
 			List<Constraint> invalidConstraints = controller.getResolutionControllerInterface().getInvalidConstraints();
 			for(Constraint constraint : constraints) {
 				if(invalidConstraints.contains(constraint)){
-					new ShowViolatedBCLConstraint().init(rootPanel, constraint, parent, vmMap, nodes, bindings, controller).execute();
+					new ShowViolatedBCLConstraint<EDITOR_PANEL, MODEL_PANEL>().init(rootPanel, constraint, parent, vmMap, nodes, bindings, controller).execute();
 				} else {
-					new ShowBCLConstraintResolution().init(rootPanel, constraint, parent, vmMap, nodes, bindings, controller).execute();
+					new ShowBCLConstraintResolution<EDITOR_PANEL, MODEL_PANEL>().init(rootPanel, constraint, parent, vmMap, nodes, bindings, controller).execute();
 				}
 			}			
 		}

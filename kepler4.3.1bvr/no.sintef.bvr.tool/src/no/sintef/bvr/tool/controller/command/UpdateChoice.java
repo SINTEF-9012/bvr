@@ -21,7 +21,7 @@ public class UpdateChoice<EDITOR_PANEL, MODEL_PANEL> extends UpdateVSpec<EDITOR_
 	String comment;
 	
 	@Override
-	public Command init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		return super.init(rootPanel, p, parent, vmMap, nodes, bindings, controller);

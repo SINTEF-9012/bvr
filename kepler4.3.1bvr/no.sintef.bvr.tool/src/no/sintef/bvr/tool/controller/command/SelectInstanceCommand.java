@@ -16,6 +16,7 @@ import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 
+
 public class SelectInstanceCommand<EDITOR_PANEL extends BVREditorPanel, MODEL_PANEL extends BVRModelPanel>
 		implements Command<EDITOR_PANEL, MODEL_PANEL> {
 

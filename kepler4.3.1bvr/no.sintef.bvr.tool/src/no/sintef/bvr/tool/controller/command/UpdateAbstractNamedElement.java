@@ -9,7 +9,6 @@ import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import bvr.NamedElement;
 
 

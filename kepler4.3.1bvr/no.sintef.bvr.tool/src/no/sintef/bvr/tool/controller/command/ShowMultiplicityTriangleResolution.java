@@ -30,7 +30,7 @@ public class ShowMultiplicityTriangleResolution<EDITOR_PANEL, MODEL_PANEL> imple
 	private List<Pair<JComponent, JComponent>> bindings;
 
 	@Override
-	public Command init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent,
 			Map<JComponent, NamedElement> vmMap, List<JComponent> nodes,
 			List<Pair<JComponent, JComponent>> bindings,
 			BVRNotifiableController controller) {
@@ -55,9 +55,9 @@ public class ShowMultiplicityTriangleResolution<EDITOR_PANEL, MODEL_PANEL> imple
 			if (multiplicity != null) {
 				boolean error = controller.getResolutionControllerInterface().findGroupError((EObject) v);
 				if (error) {
-					nextParent = new ShowErrorGroup().init(rootPanel, CommonUtility.getResolvedVSpec((VSpecResolution) v), parent, vmMap, nodes, bindings, controller).execute();
+					nextParent = new ShowErrorGroup<EDITOR_PANEL, MODEL_PANEL>().init(rootPanel, CommonUtility.getResolvedVSpec((VSpecResolution) v), parent, vmMap, nodes, bindings, controller).execute();
 				} else {
-					nextParent = new AddGroupMultiplicity().init(rootPanel, CommonUtility.getResolvedVSpec((VSpecResolution) v), parent, vmMap, nodes, bindings, controller) .execute(); 
+					nextParent = new AddGroupMultiplicity<EDITOR_PANEL, MODEL_PANEL>().init(rootPanel, CommonUtility.getResolvedVSpec((VSpecResolution) v), parent, vmMap, nodes, bindings, controller) .execute(); 
 				}
 			}
 		}

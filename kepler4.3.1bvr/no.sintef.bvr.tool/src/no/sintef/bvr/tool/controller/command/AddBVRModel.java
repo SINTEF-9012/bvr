@@ -12,7 +12,6 @@ import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.CommandMouseListener;
 import no.sintef.bvr.tool.ui.dropdown.BVRModelDropDownListener;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
-import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.ui.framework.elements.BVRModelPanel;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import bvr.BVRModel;
