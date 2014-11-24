@@ -24,14 +24,14 @@ public class MVCVSpecEditor extends MVCEditor {
 	@Override
 	public
 	void setContents() {
-		jApplet.add(((VSpecRootController)v).getEditorRootPanel());
+		jApplet.add(((VSpecRootController)controllerNotifiable).getEditorRootPanel());
 	}
 	
 
 	@Override
 	public
 	void createView() {
-		v = new VSpecRootController(toolModel);
+		controllerNotifiable = new VSpecRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
@@ -45,7 +45,7 @@ public class MVCVSpecEditor extends MVCEditor {
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
 			toolModel.markNotSaved();
-			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
+			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,controllerNotifiable));
 		}
 		if(subject instanceof ResourceSavedSubject){
 			toolModel.markSaved();

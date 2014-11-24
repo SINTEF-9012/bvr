@@ -20,11 +20,11 @@ public class MVCRealizationEditor extends MVCEditor{
 	}
 	
 	public void setContents() {
-		jApplet.add(((RealizationRootController)v).getEditorRootPanel());
+		jApplet.add(((RealizationRootController)controllerNotifiable).getEditorRootPanel());
 	}
 
 	public void createView() {
-		v = new RealizationRootController(toolModel);
+		controllerNotifiable = new RealizationRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
@@ -38,7 +38,7 @@ public class MVCRealizationEditor extends MVCEditor{
 	public void update(ResourceSubject subject) {	
 		if(subject instanceof ResourceSetEditedSubject){
 			toolModel.markNotSaved();
-			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
+			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,controllerNotifiable));
 		}
 		if(subject instanceof ResourceSavedSubject){
 			toolModel.markSaved();

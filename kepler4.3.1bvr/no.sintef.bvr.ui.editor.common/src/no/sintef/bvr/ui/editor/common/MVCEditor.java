@@ -9,7 +9,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
-import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.model.BVRToolModel;
@@ -21,7 +20,6 @@ import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -41,6 +39,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
+
+
 public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	JTabbedPane pane = new JTabbedPane();
@@ -56,7 +56,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
 	}
 
-	protected BVRNotifiableController v;
+	protected BVRNotifiableController controllerNotifiable;
 	protected BVRToolModel toolModel;
 	protected String filename;
 

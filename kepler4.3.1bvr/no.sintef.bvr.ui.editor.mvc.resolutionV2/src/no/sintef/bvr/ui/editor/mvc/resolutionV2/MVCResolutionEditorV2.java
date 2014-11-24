@@ -22,14 +22,14 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 
 	@Override
 	public void setContents() {
-		jApplet.add(((ResolutionRootController)v).getResolutionPane());
+		jApplet.add(((ResolutionRootController)controllerNotifiable).getResolutionPane());
 	}
 /*
  *create view object and add to subject list
  */
 	@Override
 	public void createView() {
-		v = new ResolutionRootController(toolModel);
+		controllerNotifiable = new ResolutionRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
@@ -45,7 +45,7 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 	public void update(ResourceSubject subject) {
 		if(subject instanceof ResourceSetEditedSubject){
 			toolModel.markNotSaved();
-			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,v));
+			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new RefreshViewEvent(jApplet,controllerNotifiable));
 		}
 		if(subject instanceof ResourceSavedSubject){
 			toolModel.markSaved();
