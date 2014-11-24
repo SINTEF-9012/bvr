@@ -1,8 +1,6 @@
 package no.sintef.bvr.tool.model;
 
 
-import guidsl.variable;
-
 import java.util.ArrayList;
 import java.util.List;
 
