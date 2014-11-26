@@ -8,6 +8,7 @@ import no.sintef.bvr.ui.editor.mvc.multipagetype.abstraction.ISashFormContainer;
 
 import org.eclipse.swt.widgets.Composite;
 
+
 public class SashFormWindow implements ISashFormContainer {
 
 	private Composite container;
@@ -33,5 +34,4 @@ public class SashFormWindow implements ISashFormContainer {
 		// TODO Auto-generated method stub
 
 	}
-
 }
