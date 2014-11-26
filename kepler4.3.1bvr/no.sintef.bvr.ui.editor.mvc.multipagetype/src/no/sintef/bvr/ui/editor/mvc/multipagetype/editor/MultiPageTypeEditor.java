@@ -1,4 +1,4 @@
-package no.sintef.bvr.ui.editor.mvc.multipagetype.editors;
+package no.sintef.bvr.ui.editor.mvc.multipagetype.editor;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -17,8 +17,8 @@ import no.sintef.bvr.ui.editor.common.MVCEditor;
 
 public class MultiPageTypeEditor extends MVCEditor {
 
-	private CTabFolder container;
 	private int index = 0; 
+	private RootPanel rootPanel;
 	
 	@Override
 	public void setTitle() {
@@ -41,13 +41,15 @@ public class MultiPageTypeEditor extends MVCEditor {
 
 	@Override
 	public void createPartControl(Composite parent) {
-		CTabFolder continer = createContainer(parent);
-		createPage(continer);
+		rootPanel = new RootPanel(parent);
+		createPage();
 	}
 	
-	void createPage(Composite parent) {
-
-		Composite composite = new Composite(container, SWT.NONE);
+	void createPage() {
+		DragableCTabFolder dragableFolder = ((DragableCTabFolder) rootPanel.getSashFormContainer().getFolderList().get(0));
+		CTabFolder cTabFolder = dragableFolder.getCTabFolder();
+		
+		Composite composite = new Composite(cTabFolder, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		composite.setLayout(layout);
 		layout.numColumns = 2;
@@ -60,27 +62,12 @@ public class MultiPageTypeEditor extends MVCEditor {
 		
 		fontButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
-				createPage(parent);
+				createPage();
 			}
 		});
 		
-		CTabItem item = createItem(index, composite);
-		item.setText("Tab " + index);
+		DragableCTabItemFolder item = dragableFolder.creatTabItem(composite);
+		item.getCTabItem().setText("Tab " + index);
 		index ++;
 	}
-	
-	private CTabFolder createContainer(Composite parent){
-		parent.setLayout(new FillLayout());
-		container = new CTabFolder(parent, SWT.BOTTOM | SWT.FLAT | SWT.CLOSE);
-		return container;
-	}
-	
-	private CTabItem createItem(int index, Control control) {
-		CTabItem item = new CTabItem(container, SWT.NONE, index);
-		item.setControl(control);
-		return item;
-	}
-
-
-
 }

@@ -8,7 +8,7 @@
             name="BVR Type Editor (MVC)"
             extensions="bvr"
             icon="icons/sample.gif"
-            class="no.sintef.bvr.ui.editor.mvc.multipagetype.editors.MultiPageTypeEditor"
+            class="no.sintef.bvr.ui.editor.mvc.multipagetype.editor.MultiPageTypeEditor"
             id="no.sintef.bvr.ui.editor.mvc.multipagetype.editors.MultiPageTypeEditor">
       </editor>
    </extension>
