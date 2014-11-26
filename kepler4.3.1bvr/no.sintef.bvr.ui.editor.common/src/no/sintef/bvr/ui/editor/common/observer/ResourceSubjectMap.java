@@ -2,7 +2,7 @@ package no.sintef.bvr.ui.editor.common.observer;
 
 import java.util.List;
 
-import no.sintef.bvr.tool.observer.ResourceSubject;
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 
 import org.eclipse.emf.common.util.URI;
 

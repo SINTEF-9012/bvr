@@ -1,4 +1,4 @@
-package no.sintef.bvr.tool.observer;
+package no.sintef.bvr.tool.interfaces.observer;
 
 public interface ResourceSubject {
 

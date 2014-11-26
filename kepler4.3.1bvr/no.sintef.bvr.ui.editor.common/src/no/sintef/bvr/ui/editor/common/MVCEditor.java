@@ -6,16 +6,15 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JLayeredPane;
-import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.BVRTransactionalModel;
-import no.sintef.bvr.tool.observer.ResourceObserver;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
-import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
@@ -43,7 +42,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
-	JTabbedPane pane = new JTabbedPane();
+	
 	protected JLayeredPane x = new JLayeredPane();
 	protected URI resourceURI;
 	protected CustomJApplet jApplet;

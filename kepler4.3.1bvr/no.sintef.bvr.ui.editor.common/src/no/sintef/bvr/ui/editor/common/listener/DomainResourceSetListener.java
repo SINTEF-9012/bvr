@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
-import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 import org.eclipse.emf.common.notify.Notification;

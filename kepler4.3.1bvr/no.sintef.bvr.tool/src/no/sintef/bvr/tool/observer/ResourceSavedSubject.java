@@ -3,6 +3,9 @@ package no.sintef.bvr.tool.observer;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
+
 public class ResourceSavedSubject implements ResourceSubject {
 
 	List<ResourceObserver> observers = new ArrayList<ResourceObserver>();

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import no.sintef.bvr.tool.observer.ResourceSubject;
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 
 import org.eclipse.emf.common.util.URI;
 

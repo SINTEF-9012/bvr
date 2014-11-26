@@ -2,12 +2,11 @@ package no.sintef.bvr.ui.editor.mvc.resolutionV2;
 
 import java.awt.Toolkit;
 import java.io.File;
-
 import java.util.List;
 
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.observer.ResourceSavedSubject;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
-import no.sintef.bvr.tool.observer.ResourceSubject;
 import no.sintef.bvr.ui.editor.common.MVCEditor;
 import no.sintef.bvr.ui.editor.common.RefreshViewEvent;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;

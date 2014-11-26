@@ -23,9 +23,9 @@ import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
-import no.sintef.bvr.tool.observer.ResourceObserver;
+import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
-import no.sintef.bvr.tool.observer.ResourceSubject;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
