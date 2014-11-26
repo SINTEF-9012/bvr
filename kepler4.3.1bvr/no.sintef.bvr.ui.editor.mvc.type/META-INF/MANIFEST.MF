@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR Type Editor (MVC)
+Bundle-SymbolicName: no.sintef.bvr.ui.editor.mvc.type;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: no.sintef.bvr.ui.editor.mvc.type.Activator
+Bundle-Vendor: SINTEF
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ no.sintef.bvr.ui.editor.common;bundle-version="1.0.0",
+ no.sintef.bvr.tool.interfaces;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

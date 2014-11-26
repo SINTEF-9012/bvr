@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: BVR Type Editor (MVC)
+Bundle-Name: BVR Type MultiPage Editor (MVC)
 Bundle-SymbolicName: no.sintef.bvr.ui.editor.mvc.multipagetype;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: no.sintef.bvr.ui.editor.mvc.multipagetype.Activator
