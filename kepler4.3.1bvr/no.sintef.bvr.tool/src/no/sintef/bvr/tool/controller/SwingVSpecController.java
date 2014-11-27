@@ -32,6 +32,7 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.VSpecControllerInterface;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
+import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
@@ -50,6 +51,7 @@ import bvr.NamedElement;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
+import bvr.VType;
 import bvr.Variable;
 
 public class SwingVSpecController<
@@ -109,24 +111,15 @@ public class SwingVSpecController<
 			nextParent = c;
 		}
 		
-		if(!toolModel.isVSpecMinimized((VSpec) v)){
+		if((v instanceof VSpec) && !toolModel.isVSpecMinimized((VSpec) v)){
 			if(v.getGroupMultiplicity() != null){
 				nextParent = new AddGroupMultiplicity<BVREditorPanel, BVRModelPanel>().init(model, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 			}
 		
-		
 			for(Constraint c : ((VNode) v).getOwnedConstraint()){
-				/*if(c instanceof OpaqueConstraint){
-					OpaqueConstraint oc = (OpaqueConstraint) c;
-					if(c.getContext() == v){
-						JComponent comp = new AddOpaqueConstraint().init(model, oc, nextParent, vspecvmMap, vspecNodes, vspecBindings, this).execute();
-						vspecvmMap.put(comp, v);
-					}
-				}*/
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
 					new AddBCLConstraint<BVREditorPanel, BVRModelPanel>().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-
 				}
 			}
 			
@@ -370,5 +363,10 @@ public class SwingVSpecController<
 	
 	public void executeCommandBatch() {
 		Context.eINSTANCE.getEditorCommands().executeBatch();
+	}
+
+	@Override
+	public void editVType(MODEL_OBJECT vNode, MODEL_OBJECT vType) {
+		toolModel.modifyVType((VNode) vNode, (VType) vType);
 	}
 }

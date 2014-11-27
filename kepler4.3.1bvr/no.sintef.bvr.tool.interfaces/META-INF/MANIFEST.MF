@@ -7,6 +7,7 @@ Bundle-Vendor: SINTEF
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: no.sintef.bvr.tool.interfaces.controller,
  no.sintef.bvr.tool.interfaces.controller.command,
+ no.sintef.bvr.tool.interfaces.model,
  no.sintef.bvr.tool.interfaces.observer,
  no.sintef.bvr.tool.interfaces.ui.editor
 Require-Bundle: no.sintef.bvr.model;bundle-version="2.0.0"

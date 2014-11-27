@@ -1,5 +1,7 @@
 package no.sintef.bvr.tool.interfaces.controller;
 
+import bvr.VNode;
+import bvr.VType;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 
 
@@ -56,4 +58,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 	public String getBCLConstraintString(GUI_NODE node);
 	
 	public void removeNamedElement(GUI_NODE node);
+
+	public void editVType(MODEL_OBJECT vNode, MODEL_OBJECT vType);
 }

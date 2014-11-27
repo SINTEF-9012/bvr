@@ -1,9 +1,12 @@
 package no.sintef.bvr.tool.controller.command;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
@@ -18,6 +21,8 @@ import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import bvr.Choice;
 import bvr.NamedElement;
 import bvr.PrimitveType;
+import bvr.VNode;
+import bvr.VType;
 import bvr.Variable;
 
 
@@ -69,15 +74,27 @@ public class AddChoice<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANE
         cp.setTitle((minimized?"(+) ":"") + c.getName());
         
         String comment  = controller.getVSpecControllerInterface().getNodesCommentText(cp);
-        if(!comment.equals("")){
+        if(!comment.equals(""))
         	cp.addAttribute("\""+comment+"\"", "");
-        }
         
         for(Variable v : c.getVariable()){
         	if(v.getType() instanceof PrimitveType)
         		cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
         	else
         		cp.addAttribute(v.getName(), v.getType().getName());
+        }
+        
+        for(VNode vNode : c.getMember()) {
+        	if(vNode instanceof VType) {
+        		VType vType = (VType) vNode;
+        		JLabel label = cp.addAttribute(vType.getName() + " : VType");
+        		label.addMouseListener(new MouseAdapter() {
+        			@Override
+        			public void mouseClicked(MouseEvent e) {
+        				controller.getVSpecControllerInterface().editVType(vNode, vType);
+        			}
+				});
+        	}
         }
         
 		((BVRModelPanel) rootPanel.getModelPanel()).addNode(cp);

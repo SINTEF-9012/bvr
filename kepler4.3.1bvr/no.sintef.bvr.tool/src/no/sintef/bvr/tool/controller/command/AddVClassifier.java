@@ -1,9 +1,12 @@
 package no.sintef.bvr.tool.controller.command;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
@@ -21,6 +24,7 @@ import bvr.NamedElement;
 import bvr.PrimitveType;
 import bvr.VClassifier;
 import bvr.VNode;
+import bvr.VType;
 import bvr.Variable;
 
 public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANEL, MODEL_PANEL> {
@@ -32,14 +36,14 @@ public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
-	private BVRNotifiableController view;
+	private BVRNotifiableController controller;
 	private boolean minimized;
 	
 	public AddVClassifier(boolean minimized) {
 		this.minimized = minimized;
 	}
 
-	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller) {
 		if(p instanceof VClassifier){
 			this.rootPanel = rootPanel;
 			this.vc = (VClassifier) p;
@@ -49,7 +53,7 @@ public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR
 		this.vmMap = vmMap;
 		this.nodes = nodes;
 		this.bindings = bindings;
-		this.view = view;
+		this.controller = controller;
 		
 		return this;
 	}
@@ -61,10 +65,10 @@ public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR
 		Helper.bind(parent, c, (BVRModelPanel) rootPanel.getModelPanel(), (parent instanceof GroupPanel) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
 		
 		CommandMouseListener listener = new CommandMouseListener();
-        c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, view));
+        c.addMouseListener(new ClassifierDropDownListener(c, vmMap, nodes, bindings, controller));
         c.addMouseListener(listener);
         SelectInstanceCommand command = new SelectInstanceCommand();
-        command.init(rootPanel, c, parent, vmMap, nodes, bindings, view);
+        command.init(rootPanel, c, parent, vmMap, nodes, bindings, controller);
         listener.setLeftClickCommand(command);
 		
         MultiplicityInterval m = vc.getInstanceMultiplicity();
@@ -77,6 +81,19 @@ public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR
         		c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
         	else
         		c.addAttribute(v.getName(), v.getType().getName());
+        }
+
+        for(VNode vNode : vc.getMember()) {
+        	if(vNode instanceof VType) {
+        		VType vType = (VType) vNode;
+        		JLabel label = c.addAttribute(vType.getName() + " : VType");
+        		label.addMouseListener(new MouseAdapter() {
+        			@Override
+        			public void mouseClicked(MouseEvent e) {
+        				controller.getVSpecControllerInterface().editVType(vNode, vType);
+        			}
+				});
+        	}
         }
         
         ((BVRModelPanel) rootPanel.getModelPanel()).addNode(c);

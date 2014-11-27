@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import no.sintef.bvr.ui.framework.ErrorHighlightableElement;
@@ -35,6 +36,7 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
 	
 	JXLabel display_name = new JXLabel();
     JXTitledSeparator separatorbar = null;
+    JXTitledSeparator separatorbartype = null;
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
 
 	public String getName() {
@@ -65,21 +67,16 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
 	    separatorbar.setVisible(true);
 	    addCenter(separatorbar);
 	}
+	
+    private void addSepBarVType() {
+    	separatorbartype = new JXTitledSeparator();
+    	separatorbartype.setForeground(Color.BLACK);
+    	separatorbartype.setTitle("");
+    	separatorbartype.setHorizontalAlignment(SwingConstants.LEFT);
+    	separatorbartype.setVisible(true);
+	    addCenter(separatorbartype);   	
+    }
     
-    /*public void addVSpec(VSpecPanel vspec) {
-        Binding b = new Binding(OPTION_STATE.MANDATORY);
-        b.setSelected(false);
-        b.setFrom(this);
-        b.setTo((JComponent)vspec);
-        model.addBinding(b);
-        
-        System.out.println(((JComponent)vspec).getX() + ", " + ((JComponent)vspec).getX()); 
-        
-        ((JComponent)vspec).move(getX(), getY()+getHeight()+50);
-        
-        System.out.println(((JComponent)vspec).getX() + ", " + ((JComponent)vspec).getX());
-    }*/
-
     public void addAttribute(String name, String type) {
     	if(separatorbar == null)
     		addSepBar();
@@ -96,8 +93,20 @@ public class VClassifierPanel extends ThreePartRectanglePanel implements VSpecPa
         addCenter(att);
     }
     
-    public void removeAttribute(String name) {
+    public JLabel addAttribute(String name) {
+    	if(separatorbartype == null)
+    		addSepBarVType();
     	
+    	JXLabel att = new JXLabel();
+    	att.setForeground(Color.BLACK);
+    	att.setText(name);
+        att.setHorizontalAlignment(SwingConstants.LEFT);
+        att.setVisible(true);
+        att.setFont(new Font(null, Font.PLAIN, 11));
+
+        attributesbar.put(name, att);
+        addCenter(att);
+        return att;
     }
     
     public void setNameAndCardinality(String name, int lower, int upper) {

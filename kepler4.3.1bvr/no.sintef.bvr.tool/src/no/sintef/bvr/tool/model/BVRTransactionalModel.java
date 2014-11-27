@@ -23,6 +23,7 @@ import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
+import no.sintef.bvr.tool.interfaces.model.IBVRTransactionalVTypeState;
 import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
@@ -82,9 +83,10 @@ import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
+import bvr.VType;
 
 
-public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver {
+public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver, ResourceSubject {
 	private Resource resource;
 
 	static private int choicCounter = 0;
@@ -93,6 +95,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	static private int resolutionCount = 0;
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;
+	private List<ResourceObserver> observers;
 	
 
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
@@ -110,6 +113,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	private void init() {
+		observers = new ArrayList<ResourceObserver>();
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
 		buffer = new HashMap<NegResolution, PosResolution>();
@@ -1015,5 +1019,68 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void clearHighlightedObjects() {
 		Context.eINSTANCE.clearHighlights();
+	}
+
+	@Override
+	public void attach(ResourceObserver observer) {
+		observers.add(observer);
+		
+	}
+
+	@Override
+	public void detach(ResourceObserver observer) {
+		observers.remove(observer);
+	}
+
+	@Override
+	public void notifyObservers() {
+		for(ResourceObserver observer : observers)
+			observer.update(this);
+	}
+	
+	@Override
+	public void modifyVType(VNode vNode, VType vType){
+		IBVRTransactionalVTypeState<VNode, VType> state = new VTypeState<VNode, VType>(vNode, vType, this);
+		for(ResourceObserver observer : observers)
+			observer.update(state);
+	}
+	
+	class VTypeState<VNODE extends VNode, VTYPE extends VType> implements IBVRTransactionalVTypeState<VNODE, VTYPE> {
+		
+		private VTYPE vType;
+		private VNODE vNode;
+		private ResourceSubject subject;
+		
+		public VTypeState(VNODE vNode, VTYPE vType, ResourceSubject subject) {
+			this.vNode = vNode;
+			this.vType = vType;
+		}
+
+		@Override
+		public VNODE getParentVNode() {
+			return vNode;
+		}
+
+		@Override
+		public VTYPE getVType() {
+			return vType;
+		}
+
+		@Override
+		public void attach(ResourceObserver observer) {
+			subject.attach(observer);
+			
+		}
+
+		@Override
+		public void detach(ResourceObserver observer) {
+			subject.detach(observer);
+		}
+
+		@Override
+		public void notifyObservers() {
+			subject.notifyObservers();
+		}
+		
 	}
 }

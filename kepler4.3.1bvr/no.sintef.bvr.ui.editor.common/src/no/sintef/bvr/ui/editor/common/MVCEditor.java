@@ -29,7 +29,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.ISaveablePart;
@@ -53,6 +55,31 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	public MVCEditor() {
 		super();
 		Context.eINSTANCE.setIWorkbenchWindow(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+		
+		//close BVR Type editors since they do not hold any refs to VType any more when we reload eclipse 
+		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
+		for(IEditorReference ref : editorRefs){
+			final IEditorPart editor = ref.getEditor(true);
+			if(editor instanceof IMVCTypeEditor) {
+				try {
+					IEditorInput input = ref.getEditorInput();
+					if(!(input instanceof IBVRTypeEditorInput) ||
+							(input instanceof IBVRTypeEditorInput &&
+									((IBVRTypeEditorInput<?>)input).getVType() == null)) {
+						Display.getDefault().asyncExec(new Runnable() {
+	
+							@Override
+							public void run() {
+								getSite().getPage().closeEditor(editor, false);
+							}
+							
+						});	
+					}
+				} catch (PartInitException e) {
+					Context.eINSTANCE.logger.error("can not close some editors ", e);
+				}
+			}
+		}
 	}
 
 	protected BVRNotifiableController controllerNotifiable;

@@ -43,6 +43,7 @@ import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.VType;
 import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
@@ -550,6 +551,10 @@ abstract public class BVRToolModel {
 	}
 
 	public void clearHighlightedObjects() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void modifyVType(VNode vNode, VType vType) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }
