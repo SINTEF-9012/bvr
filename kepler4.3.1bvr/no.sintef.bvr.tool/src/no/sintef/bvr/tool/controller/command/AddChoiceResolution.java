@@ -69,7 +69,7 @@ public class AddChoiceResolution<EDITOR_PANEL, MODEL_PANEL> implements Command<E
 		
         Choice resolvedChoice = (Choice) CommonUtility.getResolvedVSpec(c);
         
-		String choicename = resolvedChoice.getName();
+		String choicename = (resolvedChoice != null) ? resolvedChoice.getName() : "NULL !!!";
 		
         cp.setTitle((minContains?"(+) ":"") + choicename + " = " + (c instanceof PosResolution));
        
