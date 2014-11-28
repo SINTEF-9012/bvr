@@ -45,6 +45,7 @@ import bvr.VPackageable;
 //import bvr.VInstance;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.VType;
 import bvr.ValueResolution;
 import bvr.ValueSpecification;
 import bvr.Variable;
@@ -433,6 +434,12 @@ public class EditorMVCCommands implements EditorCommands {
 	
 	@Override
 	public void executeSimpleExeCommand(SimpleExeCommandInterface command) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addVTypeCompoundNode(CompoundNode parent, VType vType) {
 		// TODO Auto-generated method stub
 		
 	}

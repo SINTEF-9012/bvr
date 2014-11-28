@@ -1081,7 +1081,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		@Override
 		public void notifyObservers() {
 			subject.notifyObservers();
-		}
-		
+		}	
+	}
+	
+	@Override
+	public void addVType(CompoundNode parent) {
+		VTypeFacade.eINSTANCE.appendVTypeCopoundNode(parent);
 	}
 }

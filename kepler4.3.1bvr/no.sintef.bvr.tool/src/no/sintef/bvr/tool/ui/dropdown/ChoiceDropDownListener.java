@@ -18,6 +18,7 @@ import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
+import no.sintef.bvr.tool.ui.command.event.AddVTypeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddVariableEvent;
 import no.sintef.bvr.tool.ui.command.event.CutEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecEvent;
@@ -79,6 +80,10 @@ class ChoiceDropdown extends JPopupMenu {
     	JMenuItem addVariable = new JMenuItem("variable");
     	addVariable.addActionListener(new AddVariableEvent(cp, view));
     	add.add(addVariable);
+    	
+    	JMenuItem addType = new JMenuItem("type");
+    	addType.addActionListener(new AddVTypeEvent(cp, view));
+    	add.add(addType);
     	
 		add(add);
 		

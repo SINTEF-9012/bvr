@@ -1,5 +1,7 @@
 package no.sintef.bvr.tool.interfaces.controller;
 
+import javax.swing.JComponent;
+
 import bvr.VNode;
 import bvr.VType;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
@@ -60,4 +62,6 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 	public void removeNamedElement(GUI_NODE node);
 
 	public void editVType(MODEL_OBJECT vNode, MODEL_OBJECT vType);
+
+	public void addVType(GUI_NODE node);
 }

@@ -557,4 +557,8 @@ abstract public class BVRToolModel {
 	public void modifyVType(VNode vNode, VType vType) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void addVType(CompoundNode parent) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

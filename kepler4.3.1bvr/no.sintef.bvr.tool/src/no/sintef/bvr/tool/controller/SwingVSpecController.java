@@ -369,4 +369,10 @@ public class SwingVSpecController<
 	public void editVType(MODEL_OBJECT vNode, MODEL_OBJECT vType) {
 		toolModel.modifyVType((VNode) vNode, (VType) vType);
 	}
+
+	@Override
+	public void addVType(GUI_NODE node) {
+		CompoundNode parent = (CompoundNode) vspecvmMap.get(node);
+		toolModel.addVType(parent);
+	}
 }

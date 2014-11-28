@@ -39,6 +39,7 @@ import bvr.VNode;
 import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.VType;
 import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
@@ -169,4 +170,6 @@ public interface EditorCommands {
 			PrimitiveValueSpecification primitiveValue, BCLExpression expression);
 	
 	public void executeSimpleExeCommand(SimpleExeCommandInterface command);
+
+	public void addVTypeCompoundNode(CompoundNode parent, VType vType);
 }
