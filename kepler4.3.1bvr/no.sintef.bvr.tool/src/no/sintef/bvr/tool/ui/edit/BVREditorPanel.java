@@ -42,6 +42,7 @@ import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
+import no.sintef.bvr.ui.framework.elements.VTypeRootSymbolPanel;
 //import no.sintef.bvr.ui.framework.elements.VInstancePanel;
 import no.sintef.bvr.ui.framework.elements.VariableAssignmentPanel;
 
@@ -55,6 +56,7 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.VClassifier;
+import bvr.VType;
 import bvr.ValueResolution;
 
 
@@ -174,7 +176,14 @@ public class BVREditorPanel extends JPanel {
         	Command okCommand = controller.getResolutionControllerInterface().createUpdateVariableResolutionCommand(elem);
         	VariableValueAssignmentPropertyEditor prop = new VariableValueAssignmentPropertyEditor(kernel, okCommand, (ValueResolution) object, elem, controller);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
-        }else{
+        } else if (p instanceof VTypeRootSymbolPanel) {
+        	VTypeRootSymbolPanel elem = (VTypeRootSymbolPanel) p;
+        	NamedElement object = (NamedElement) controller.getVTypeControllerInterface().getModelObjectByUINode(p);
+        	Command okCommand = controller.getVTypeControllerInterface().createUpdateVTypeCommand(elem);
+        	BVRVTypePropertyEditor prop = new BVRVTypePropertyEditor(kernel, okCommand, (VType) object, elem, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        }
+        else{
         	throw new UnsupportedOperationException("Unsupported: " + p.getClass().getName());
         }
         
