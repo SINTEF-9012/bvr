@@ -8,6 +8,12 @@ Bundle-Vendor: SINTEF
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  no.sintef.bvr.ui.editor.common;bundle-version="1.0.0",
- no.sintef.bvr.tool.interfaces;bundle-version="1.0.0"
+ no.sintef.bvr.tool.interfaces;bundle-version="1.0.0",
+ no.sintef.bvr.tool,
+ org.eclipse.emf.common,
+ no.sintef.bvr.model,
+ org.eclipse.emf.ecore
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Import-Package: no.sintef.bvr.ui.framework,
+ no.sintef.bvr.ui.framework.elements
