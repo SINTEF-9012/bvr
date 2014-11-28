@@ -19,4 +19,7 @@ public interface BVRCommonControllerInterface {
 	
 	@SuppressWarnings("rawtypes")
 	public void setCommonControllerInterface(EditorsCommonControllerInterface commonController);
+
+	@SuppressWarnings("rawtypes")
+	public VTypeControllerInterface getVTypeControllerInterface();
 }

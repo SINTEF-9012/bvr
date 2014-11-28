@@ -29,6 +29,11 @@ abstract public class BVRToolAbstractController implements BVRNotifiableControll
 	}
 	
 	@Override
+	public VTypeControllerInterface<?, ?, ?> getVTypeControllerInterface() {
+		throw new UnsupportedOperationException("not supported for this view");
+	}
+	
+	@Override
 	public EditorsCommonControllerInterface<?, ?, ?> getCommonControllerInterface() {
 		return commonInterface;
 	}

@@ -29,7 +29,7 @@ public class VSpecRootController extends BVRToolAbstractController {
 	
 	@Override
 	public void refresh() {
-		controller.notifyVspecViewUpdate();
+		controller.notifyViewUpdate();
 	}
 	
 	@Override

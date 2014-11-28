@@ -32,7 +32,6 @@ import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.VSpecControllerInterface;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
-import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
@@ -54,6 +53,7 @@ import bvr.VSpec;
 import bvr.VType;
 import bvr.Variable;
 
+
 public class SwingVSpecController<
 		GUI_NODE extends JComponent,
 		MODEL_OBJECT extends EObject,
@@ -62,14 +62,14 @@ public class SwingVSpecController<
 
 	public JScrollPane vspecScrollPane;
 	public EditableModelPanel vspecEpanel;
-	private BVRUIKernel<BVREditorPanel, BVRModelPanel> vSpecbvruikernel;
+	protected BVRUIKernel<BVREditorPanel, BVRModelPanel> vSpecbvruikernel;
 	
-	private Map<JComponent, NamedElement> vspecvmMap;
-	private List<JComponent> vspecNodes;
-	private List<Pair<JComponent, JComponent>> vspecBindings;
-	private BVRToolModel toolModel;
-	private BVRNotifiableController rootController;
-	private VSpecLayoutStrategy strategy;
+	protected Map<JComponent, NamedElement> vspecvmMap;
+	protected List<JComponent> vspecNodes;
+	protected List<Pair<JComponent, JComponent>> vspecBindings;
+	protected BVRToolModel toolModel;
+	protected BVRNotifiableController rootController;
+	protected VSpecLayoutStrategy strategy;
 	
 	
 	public SwingVSpecController(BVRToolModel _model, BVRNotifiableController controller) {
@@ -87,55 +87,55 @@ public class SwingVSpecController<
         vspecEpanel = new EditableModelPanel(vspecScrollPane);
 	}
 	
-	private void loadBVRVSpecView(BVRModel model, BVRUIKernel<BVREditorPanel, BVRModelPanel> uikernel) throws BVRModelException {
+	protected void loadBVRView(BVRModel model, BVRUIKernel<BVREditorPanel, BVRModelPanel> uikernel) throws BVRModelException {
 		uikernel.getModelPanel().addMouseListener(new VSpecDropDownListener(vSpecbvruikernel, toolModel, rootController));
 		
 		JComponent rootComponent = new AddBVRModel<BVREditorPanel, BVRModelPanel>().init(uikernel, model, null, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
 		CompoundNode vspec = model.getVariabilityModel();
-		loadBVRVSpecView(vspec, uikernel, rootComponent, model);
+		loadBVRView(vspec, uikernel, rootComponent, model);
 		
 		vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	}
 
-	private void loadBVRVSpecView(CompoundNode v, BVRUIKernel<BVREditorPanel, BVRModelPanel> model, JComponent parent, BVRModel cu) throws BVRModelException {
+	protected void loadBVRView(CompoundNode v, BVRUIKernel<BVREditorPanel, BVRModelPanel> kernel, JComponent parent, BVRModel model) throws BVRModelException {
 		if(v == null) return;
 		
 		JComponent nextParent = null;
 		
 		if(v instanceof VClassifier){
-			JComponent c = new AddVClassifier<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+			JComponent c = new AddVClassifier<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(kernel, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 			nextParent = c;
 		}else if(v instanceof Choice){
-			JComponent c = new AddChoice<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(model, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+			JComponent c = new AddChoice<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(kernel, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 			nextParent = c;
 		}
 		
 		if((v instanceof VSpec) && !toolModel.isVSpecMinimized((VSpec) v)){
 			if(v.getGroupMultiplicity() != null){
-				nextParent = new AddGroupMultiplicity<BVREditorPanel, BVRModelPanel>().init(model, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+				nextParent = new AddGroupMultiplicity<BVREditorPanel, BVRModelPanel>().init(kernel, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 			}
 		
 			for(Constraint c : ((VNode) v).getOwnedConstraint()){
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
-					new AddBCLConstraint<BVREditorPanel, BVRModelPanel>().init(model, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+					new AddBCLConstraint<BVREditorPanel, BVRModelPanel>().init(kernel, bcl, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 				}
 			}
 			
 			for(VNode vs : ((CompoundNode) v).getMember()){
 				if(vs instanceof CompoundNode){
-					loadBVRVSpecView((CompoundNode) vs, model, nextParent, cu);
+					loadBVRView((CompoundNode) vs, kernel, nextParent, model);
 				}
 			}
 		}
 	}
 	
 	public void render() {
-		loadBVRVSpecView(toolModel.getBVRModel(), vSpecbvruikernel);
+		loadBVRView(toolModel.getBVRModel(), vSpecbvruikernel);
 	}
 	
-	public void notifyVspecViewUpdate() {
+	public void notifyViewUpdate() {
 		// Save scroll coordinates
 		Point vpos = vspecScrollPane.getViewport().getViewPosition();
 				
@@ -171,14 +171,14 @@ public class SwingVSpecController<
 	public void minimizeNode(GUI_NODE node) {
 		VSpec vspec = (VSpec) vspecvmMap.get(node);
 		toolModel.minimaizeVSpec(vspec);
-		notifyVspecViewUpdate();
+		notifyViewUpdate();
 	}
 
 	@Override
 	public void maximizeNode(GUI_NODE node) {
 		VSpec vspec = (VSpec) vspecvmMap.get(node);
 		toolModel.maximizeVSpec(vspec);
-		notifyVspecViewUpdate();
+		notifyViewUpdate();
 	}
 
 	@SuppressWarnings("unchecked")

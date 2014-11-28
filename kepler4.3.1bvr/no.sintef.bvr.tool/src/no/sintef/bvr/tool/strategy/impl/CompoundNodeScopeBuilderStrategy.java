@@ -47,7 +47,8 @@ public class CompoundNodeScopeBuilderStrategy implements ContextBuilderStrategy 
 		
 		SymbolTableEObject table = findParentScope(child, globalScope);
 		if(table == null)
-			throw new UnexpectedException("can not find scope for the element : " + child);
+			return;
+			//throw new UnexpectedException("can not find scope for the element : " + child);
 		
 		if(childCN instanceof VType){
 			SymbolTableCompoundNode tableChild = new SymbolTableCompoundNode(childCN);

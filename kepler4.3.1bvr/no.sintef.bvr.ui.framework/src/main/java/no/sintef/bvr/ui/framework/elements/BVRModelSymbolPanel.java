@@ -46,20 +46,6 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
         setBackground(Color.WHITE);
     }
     
-    /*public void addVSpec(VSpecPanel vspec) {
-        Binding b = new Binding(OPTION_STATE.MANDATORY);
-        b.setSelected(false);
-        b.setFrom(this);
-        b.setTo((JComponent)vspec);
-        model.addBinding(b);
-        
-        System.out.println(((JComponent)vspec).getX() + ", " + ((JComponent)vspec).getX()); 
-        
-        ((JComponent)vspec).move(getX(), getY()+getHeight()+50);
-        
-        System.out.println(((JComponent)vspec).getX() + ", " + ((JComponent)vspec).getX());
-    }*/
-
     public void addAttribute(String name, String type) {
     	JXLabel att = new JXLabel();
     	
@@ -84,7 +70,7 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
     @Override
     public void setTitle(String title) {
     	this.display_name.setText(title + " : BVRModel");
-        this.setToolTipText("ConfigurableUnit"+title + " : BVRModel");
+        this.setToolTipText("bvrModel" + title + " : BVRModel");
     }
 
     private Boolean selected = false;

@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.EObject;
 import bvr.VType;
 import no.sintef.bvr.tool.controller.SwingVTypeController;
 import no.sintef.bvr.tool.interfaces.controller.BVRToolAbstractController;
+import no.sintef.bvr.tool.interfaces.controller.VSpecControllerInterface;
+import no.sintef.bvr.tool.interfaces.controller.VTypeControllerInterface;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 
@@ -24,11 +26,20 @@ public class VTypeRootController extends BVRToolAbstractController {
 
 	@Override
 	public void refresh() {
-		controller.render();
+		controller.notifyViewUpdate();
 	}
 
 	public EditableModelPanel getEditorRootPanel() {
 		return controller.getEditorRoolPanel();
 	}
 
+	@Override
+	public VSpecControllerInterface<?,?, ?> getVSpecControllerInterface() {
+		return controller;
+	}
+	
+	@Override
+	public VTypeControllerInterface<?, ?, ?> getVTypeControllerInterface() {
+		return controller;
+	}
 }
