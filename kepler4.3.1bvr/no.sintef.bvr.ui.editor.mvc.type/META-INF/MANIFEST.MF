@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui,
  no.sintef.bvr.tool,
  org.eclipse.emf.common,
  no.sintef.bvr.model,
- org.eclipse.emf.ecore
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.transaction,
+ org.eclipse.ui.workbench
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.ui.framework,

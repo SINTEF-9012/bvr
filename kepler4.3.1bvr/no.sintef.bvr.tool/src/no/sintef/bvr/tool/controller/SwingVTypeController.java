@@ -11,7 +11,6 @@ import bvr.CompoundNode;
 import bvr.VType;
 import bvr.VNode;
 import no.sintef.bvr.tool.controller.command.AddVTypeRoot;
-import no.sintef.bvr.tool.controller.command.UpdateBVRModel;
 import no.sintef.bvr.tool.controller.command.UpdateVType;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
@@ -39,6 +38,9 @@ public class SwingVTypeController<GUI_NODE extends JComponent, MODEL_OBJECT exte
 	
 	@Override
 	protected void loadBVRView(BVRModel model, BVRUIKernel<BVREditorPanel, BVRModelPanel> uikernel) throws BVRModelException {
+		if(vType == null)
+			return;
+
 		JComponent rootComponent = new AddVTypeRoot<BVREditorPanel, BVRModelPanel>().init(uikernel, vType, null, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
 		for(VNode vNode : vType.getMember())
@@ -58,6 +60,12 @@ public class SwingVTypeController<GUI_NODE extends JComponent, MODEL_OBJECT exte
 		Command<BVREditorPanel, BVRModelPanel> command = new UpdateVType<BVREditorPanel, BVRModelPanel>();
     	command.init(vSpecbvruikernel, vspecvmMap.get(elem), elem, vspecvmMap, vspecNodes, vspecBindings, rootController);
 		return command;
+	}
+
+	@Override
+	public void removeVType(GUI_NODE parent) {
+		VType type = (VType) vspecvmMap.get(parent);
+		toolModel.removeVType(type);
 	}
 
 }

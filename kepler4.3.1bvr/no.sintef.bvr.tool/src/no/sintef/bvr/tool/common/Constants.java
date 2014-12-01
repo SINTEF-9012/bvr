@@ -1,6 +1,11 @@
 package no.sintef.bvr.tool.common;
 
 public class Constants {
+	public static final String GENERAL_REMOVE_MENU_ITEM = "Remove";
+	public static final String GENERAL_ADD_MENU_ITEM = "Add";
+	public static final String GENERAL_CHOICE_MENU_ITEM = "Choice";
+	public static final String GENERAL_VCLASSIFIER_MENU_ITEM = "VClassifier";
+	public static final String GENERAL_PAST_AS_CHILD_MENU_ITEM = "Paste As Child";
 	
 	//relaization
 	public static final int FRAG_SUBS_VARIATION_POINT_CLMN = 0;
@@ -88,13 +93,14 @@ public class Constants {
 	public static final Color PINK = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element
 	*/
 	
-	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM = "Resolve Choice";
-	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM = "Resolve VClassifier";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM = "Resolve " + GENERAL_CHOICE_MENU_ITEM;
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM = "Resolve " + GENERAL_VCLASSIFIER_MENU_ITEM;
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM = "Resolve Varibale";
 	public static final String RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM = "Resolve Multiple VClassifier";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM = "Resolve Subtree";
 	public static final String RESOLUTION_DROPDOWN_MININIZE_ITEM = "Minimize";
 	public static final String RESOLUTION_DROPDOWN_MAXIMIZE_ITEM = "Maximize";
-	public static final String RESOLUTION_DROPDOWN_REMOVE_ITEM = "Remove";
+	public static final String RESOLUTION_DROPDOWN_REMOVE_ITEM = GENERAL_REMOVE_MENU_ITEM;
 	public static final String RESOLUTION_DROPDOWN_VALIDATE_ITEM = "Validate";
+
 }

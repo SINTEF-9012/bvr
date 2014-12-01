@@ -1088,4 +1088,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void addVType(CompoundNode parent) {
 		VTypeFacade.eINSTANCE.appendVTypeCopoundNode(parent);
 	}
+	
+	@Override
+	public void removeVType(VType type) {
+		removeNamedElement(type);
+	}
 }

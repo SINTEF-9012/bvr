@@ -11,11 +11,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
 import no.sintef.bvr.tool.ui.command.event.AddClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveVTypeEvent;
 import no.sintef.bvr.ui.framework.elements.VTypeRootSymbolPanel;
 import bvr.NamedElement;
 
@@ -57,19 +59,24 @@ class VTypeDropdown extends JPopupMenu {
 	JMenuItem anItem;
     public VTypeDropdown(VTypeRootSymbolPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController controller){
     	// Add
-    	JMenu add = new JMenu("add");
-    	JMenuItem addchoice = new JMenuItem("choice");
+    	JMenu add = new JMenu(Constants.GENERAL_ADD_MENU_ITEM);
+    	JMenuItem addchoice = new JMenuItem(Constants.GENERAL_CHOICE_MENU_ITEM);
     	addchoice.addActionListener(new AddChoiceEvent(cp, controller));
     	add.add(addchoice);
-    	JMenuItem addclassifier = new JMenuItem("classifier");
+    	JMenuItem addclassifier = new JMenuItem(Constants.GENERAL_VCLASSIFIER_MENU_ITEM);
     	addclassifier.addActionListener(new AddClassifierEvent(cp, controller));
     	add.add(addclassifier);
-    	
 		add(add);
+		
+		// Remove
+		add(new JSeparator());
+		JMenuItem remove = new JMenuItem(Constants.GENERAL_REMOVE_MENU_ITEM);
+    	remove.addActionListener(new RemoveVTypeEvent(cp, controller));
+		add(remove);
 				
 		// Paste
 		add(new JSeparator());
-		JMenuItem pastechild = new JMenuItem("paste as child");
+		JMenuItem pastechild = new JMenuItem(Constants.GENERAL_PAST_AS_CHILD_MENU_ITEM);
 		pastechild.addActionListener(new PasteChildEvent(cp, controller));
 		add(pastechild);
     }
