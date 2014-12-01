@@ -46,10 +46,11 @@ public class MVCVSpecEditor extends MVCEditor {
 	
 
 	@Override
-	public void createView() {
+	public synchronized void createView() {
 		((ResourceSubject) toolModel).attach(this);
 		
 		controllerNotifiable = new VSpecRootController(toolModel);
+		
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
@@ -94,10 +95,11 @@ public class MVCVSpecEditor extends MVCEditor {
 		
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
-		subject.detach(this);
+		subject.markObseleteObsever(this);
 		
-		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
-		sbjct.detach(this);
+		ResourceSavedSubject subjectSaved = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		subjectSaved.markObseleteObsever(this);
+		
 		super.dispose();
 	}
 	

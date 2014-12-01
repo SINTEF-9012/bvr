@@ -1,6 +1,8 @@
 package no.sintef.bvr.tool.observer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
@@ -8,7 +10,8 @@ import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 
 public class ResourceSavedSubject implements ResourceSubject {
 
-	List<ResourceObserver> observers = new ArrayList<ResourceObserver>();
+	protected List<ResourceObserver> observers = new ArrayList<ResourceObserver>();
+	protected HashSet<ResourceObserver> obsolete = new HashSet<ResourceObserver>();
 	
 	@Override
 	public void attach(ResourceObserver observer) {
@@ -22,8 +25,19 @@ public class ResourceSavedSubject implements ResourceSubject {
 
 	@Override
 	public void notifyObservers() {
-		for(ResourceObserver o : observers){
-			o.update(this);
+		Iterator<ResourceObserver> iter = observers.iterator();
+		while(iter.hasNext()) {
+			ResourceObserver o = iter.next();
+			if(!obsolete.contains(o)) {
+				o.update(this);
+			} else {
+				iter.remove();
+			}
 		}
+	}
+	
+	public void markObseleteObsever(ResourceObserver observer) {
+		if(observers.contains(observer))
+			obsolete.add(observer);
 	}
 }

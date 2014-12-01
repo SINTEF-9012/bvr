@@ -2,6 +2,7 @@ package no.sintef.bvr.tool.observer;
 
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
@@ -12,6 +13,7 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 public class ResourceSetEditedSubject implements ResourceSubject {
 
 	protected HashSet<ResourceObserver> observers = new HashSet<ResourceObserver>();
+	protected HashSet<ResourceObserver> obsolete = new HashSet<ResourceObserver>();
 	protected ResourceSetChangeEvent event;
 	protected BVRToolModel model;
 	
@@ -31,8 +33,14 @@ public class ResourceSetEditedSubject implements ResourceSubject {
 
 	@Override
 	public void notifyObservers() {
-		for(ResourceObserver o : observers){
-			o.update(this);
+		Iterator<ResourceObserver> iter = observers.iterator();
+		while(iter.hasNext()) {
+			ResourceObserver o = iter.next();
+			if(!obsolete.contains(o)) {
+				o.update(this);
+			} else {
+				iter.remove();
+			}
 		}
 	}
 
@@ -42,6 +50,11 @@ public class ResourceSetEditedSubject implements ResourceSubject {
 	
 	public ResourceSetChangeEvent getResourceSetChangeEvent(){
 		return event;
+	}
+	
+	public void markObseleteObsever(ResourceObserver observer) {
+		if(observers.contains(observer))
+			obsolete.add(observer);
 	}
 
 }

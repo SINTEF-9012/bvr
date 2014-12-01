@@ -27,7 +27,7 @@ public class MVCResolutionEditorV2 extends MVCEditor{
  *create view object and add to subject list
  */
 	@Override
-	public void createView() {
+	public synchronized void createView() {
 		controllerNotifiable = new ResolutionRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
@@ -56,10 +56,11 @@ public class MVCResolutionEditorV2 extends MVCEditor{
 	public void dispose() {
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
-		subject.detach(this);
+		subject.markObseleteObsever(this);
 		
-		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
-		sbjct.detach(this);
+		ResourceSavedSubject subjectSaved = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		subjectSaved.markObseleteObsever(this);
+		
 		super.dispose();
 	}
 

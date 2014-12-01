@@ -2,6 +2,7 @@ package no.sintef.bvr.ui.editor.common.observer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
@@ -32,8 +33,11 @@ public abstract class AbstractResourceSubjectMap implements ResourceSubjectMap {
 	public void pokeResourceSubjects(URI resourceURI){
 		List<ResourceSubject> list = subjects.get(resourceURI);
 		if(list != null){
-			for(ResourceSubject s : list)
-				s.notifyObservers();
+			Iterator<ResourceSubject> iter = list.iterator();
+			while(iter.hasNext()) {
+				ResourceSubject subject = iter.next();
+				subject.notifyObservers();
+			}
 		}
 	}
 }

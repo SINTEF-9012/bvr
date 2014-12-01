@@ -71,17 +71,20 @@ public class MVCTypeEditor extends MVCEditor implements IMVCTypeEditor {
 	}
 
 	@Override
-	public void createView() {
+	public synchronized void createView() {
 		if (typeInput == null)
 			return;
 
 		((ResourceSubject) toolModel).attach(this);
+		
 		controllerNotifiable = new VTypeRootController(toolModel,
 				(VType) typeInput.getVType());
+		
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE
 				.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
 		subject.attach(this);
+		
 		ResourceResourceSetSubjectMap.eINSTANCE.testResourceSubject(
 				resourceURI, subject);
 
@@ -115,11 +118,12 @@ public class MVCTypeEditor extends MVCEditor implements IMVCTypeEditor {
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE
 				.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
-		subject.detach(this);
+		subject.markObseleteObsever(this);
 
-		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE
+		ResourceSavedSubject subjectSaved = ResourceResourceSavedSubjectMap.eINSTANCE
 				.testResourceSavedSubject(resourceURI);
-		sbjct.detach(this);
+		subjectSaved.markObseleteObsever(this);
+		
 		super.dispose();
 	}
 	
@@ -146,7 +150,7 @@ public class MVCTypeEditor extends MVCEditor implements IMVCTypeEditor {
 				}
 				break;
 			}
-		}		
+		}
 		return result;
 	}
 }

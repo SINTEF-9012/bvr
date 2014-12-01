@@ -56,6 +56,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	private Frame frame;
 	private Composite composite;
+	
 
 	public MVCEditor() {
 		super();
@@ -113,7 +114,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	abstract public void setContents();
 
-	abstract public void createView();
+	public abstract void createView();
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {

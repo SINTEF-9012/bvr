@@ -13,7 +13,7 @@ import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSavedSubjectMap;
 import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 
-public class MVCRealizationEditor extends MVCEditor{
+public class MVCRealizationEditor extends MVCEditor {
 	
 	public void setTitle() {
 		setPartName(new File(filename).getName() + " (Realization)");
@@ -23,7 +23,7 @@ public class MVCRealizationEditor extends MVCEditor{
 		jApplet.add(((RealizationRootController)controllerNotifiable).getEditorRootPanel());
 	}
 
-	public void createView() {
+	public synchronized void createView() {
 		controllerNotifiable = new RealizationRootController(toolModel);
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
@@ -50,10 +50,11 @@ public class MVCRealizationEditor extends MVCEditor{
 	public void dispose() {
 		List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE.getSubjects(resourceURI);
 		ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
-		subject.detach(this);
+		subject.markObseleteObsever(this);
 		
-		ResourceSavedSubject sbjct = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
-		sbjct.detach(this);
+		ResourceSavedSubject subjectSaved = ResourceResourceSavedSubjectMap.eINSTANCE.testResourceSavedSubject(resourceURI);
+		subjectSaved.markObseleteObsever(this);
+		
 		super.dispose();
 	}
 }
