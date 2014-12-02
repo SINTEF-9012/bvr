@@ -12,11 +12,13 @@ import com.google.common.base.Throwables;
 import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.ObjectHandle;
 import bvr.PlacementFragment;
 import bvr.PrimitveType;
 import bvr.ReplacementFragmentType;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VPackageable;
 import bvr.VSpec;
@@ -190,6 +192,10 @@ public final class CommonUtility {
 				((ChoiceResolution) target).setResolvedChoice((Choice) toResolve);
 			} else if (toResolve instanceof VClassifier) {
 				((ChoiceResolution) target).setResolvedVClassifier((VClassifier) toResolve);
+			} else if (toResolve instanceof ChoiceOccurrence) {
+				((ChoiceResolution) target).setResolvedChoiceOcc((ChoiceOccurrence) toResolve);
+			} else if (toResolve instanceof VClassOccurrence) {
+				((ChoiceResolution) target).setResolvedVClassOcc((VClassOccurrence) toResolve);
 			} else {
 				throw new UnsupportedOperationException("target/toResolve type mismach " + toResolve);
 			}

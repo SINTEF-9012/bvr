@@ -43,19 +43,17 @@ public class ResolutionModelIterator {
 			boolean onlyOneInstance) {
 
 		if (vsParent != null) {
-			for (VNode y : ((CompoundNode) vsParent).getMember()) {
-
-				if (y instanceof VSpec) {
-					VSpec x = (VSpec) y;
-					command.init(view, x, vsrParent, onlyOneInstance);
-					List<VSpecResolution> newResolutions = command.execute();
-					for (VSpecResolution newResolution : newResolutions) {
-						iterateEmptyOnChildren(view, command, x, newResolution,
-								onlyOneInstance);
+			if (vsParent instanceof CompoundNode) {
+				for (VNode y : ((CompoundNode) vsParent).getMember()) {
+					if (y instanceof VSpec) {
+						VSpec x = (VSpec) y;
+						command.init(view, x, vsrParent, onlyOneInstance);
+						List<VSpecResolution> newResolutions = command.execute();
+						for (VSpecResolution newResolution : newResolutions) {
+							iterateEmptyOnChildren(view, command, x, newResolution,
+									onlyOneInstance);
+						}
 					}
-				} else {
-					throw new UnsupportedOperationException(
-							"Error in Iterators.java iterateEptyOnChildren vspec not compoundNode ");
 				}
 			}
 		}

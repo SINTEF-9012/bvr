@@ -20,6 +20,7 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.PosResolution;
+import bvr.VSpec;
 
 
 public class AddChoiceResolution<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANEL, MODEL_PANEL> {
@@ -67,9 +68,9 @@ public class AddChoiceResolution<EDITOR_PANEL, MODEL_PANEL> implements Command<E
 		cp.addMouseListener(new ChoiceResolutionDropDownListener(cp, c, controller));
         cp.addMouseListener(listener);
 		
-        Choice resolvedChoice = (Choice) CommonUtility.getResolvedVSpec(c);
+        VSpec resolvedVSpec = CommonUtility.getResolvedVSpec(c);
         
-		String choicename = (resolvedChoice != null) ? resolvedChoice.getName() : "NULL !!!";
+		String choicename = (resolvedVSpec != null) ? resolvedVSpec.getName() : "NULL !!!";
 		
         cp.setTitle((minContains?"(+) ":"") + choicename + " = " + (c instanceof PosResolution));
        

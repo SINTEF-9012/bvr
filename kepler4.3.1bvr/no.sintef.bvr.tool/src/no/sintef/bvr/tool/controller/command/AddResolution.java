@@ -7,6 +7,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import bvr.BvrFactory;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
@@ -36,9 +37,12 @@ public class AddResolution implements ResCommand{
 	@Override
 	public List<VSpecResolution> execute() {
 		List<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();
-		if (target instanceof Choice) {
+		if (target instanceof Choice)
 			thisResolution.add(addResolution((Choice) target, parent));
-		}
+
+		if(target instanceof ChoiceOccurrence) 
+			thisResolution.add(addResolution((ChoiceOccurrence) target, parent));
+		
 		if (target instanceof VClassifier) {
 			int min;
 			if (((VClassifier) target).getInstanceMultiplicity() != null && !onlyOneInstance) {
@@ -67,6 +71,16 @@ public class AddResolution implements ResCommand{
 
 	// resolve Choice
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
+		
+		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
+		thisResolution.setName(target.getName());
+		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
+		((CompoundResolution)parent).getMembers().add(thisResolution);
+		return thisResolution;
+	}
+	
+	// resolve ChoiceOccurence
+	private VSpecResolution addResolution(ChoiceOccurrence target, VSpecResolution parent) {
 		
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName(target.getName());
