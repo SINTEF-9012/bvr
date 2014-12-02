@@ -13,6 +13,7 @@ import java.util.List;
 
 
 
+
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -64,6 +65,7 @@ import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VPackageable;
@@ -614,6 +616,14 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 			VType vType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choiceOccurence, BvrPackage.eINSTANCE.getChoiceOccurrence_VType(), vType);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence,
+			VType vType) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vclassOccurence, BvrPackage.eINSTANCE.getVClassOccurrence_VType(), vType);
 		testCommandExecution(editingDomain, cmd);
 	}
 }

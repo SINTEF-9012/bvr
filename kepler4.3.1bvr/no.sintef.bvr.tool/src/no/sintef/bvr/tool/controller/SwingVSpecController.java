@@ -20,15 +20,18 @@ import no.sintef.bvr.tool.controller.command.AddBVRModel;
 import no.sintef.bvr.tool.controller.command.AddChoice;
 import no.sintef.bvr.tool.controller.command.AddChoiceOccurence;
 import no.sintef.bvr.tool.controller.command.AddGroupMultiplicity;
+import no.sintef.bvr.tool.controller.command.AddVClassOccurence;
 import no.sintef.bvr.tool.controller.command.AddVClassifier;
 import no.sintef.bvr.tool.controller.command.UpdateBCLConstraint;
 import no.sintef.bvr.tool.controller.command.UpdateBVRModel;
 import no.sintef.bvr.tool.controller.command.UpdateChoice;
 import no.sintef.bvr.tool.controller.command.UpdateChoiceOccurence;
+import no.sintef.bvr.tool.controller.command.UpdateVClassOccurence;
 import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateChoiceOccurenceBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateConstraintBatchCommandDecorator;
+import no.sintef.bvr.tool.decorator.UpdateVClassOccurenceBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
 import no.sintef.bvr.tool.exception.UserInputError;
@@ -51,6 +54,7 @@ import bvr.ChoiceOccurrence;
 import bvr.CompoundNode;
 import bvr.Constraint;
 import bvr.NamedElement;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -116,6 +120,9 @@ public class SwingVSpecController<
 		}else if(v instanceof ChoiceOccurrence) {
 			JComponent c = new AddChoiceOccurence<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(kernel, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 			nextParent = c;
+		} else if(v instanceof VClassOccurrence) {
+			JComponent c = new AddVClassOccurence<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(kernel, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+			nextParent = c;			
 		}
 		
 		if((v instanceof VSpec) && !toolModel.isVSpecMinimized((VSpec) v)){
@@ -395,5 +402,32 @@ public class SwingVSpecController<
 	public void setChoiceOccurenceType(GUI_NODE node, String strType) {
 		ChoiceOccurrence choiceOccurence = (ChoiceOccurrence) vspecvmMap.get(node);
 		toolModel.setChoiceOccurenceType(choiceOccurence, strType);
+	}
+
+	@Override
+	public Command createUpdateVClassOccurenceCommand(GUI_NODE elem) {
+		Command<BVREditorPanel, BVRModelPanel> command = new UpdateVClassOccurenceBatchCommandDecorator<BVREditorPanel, BVRModelPanel>(new UpdateVClassOccurence<BVREditorPanel, BVRModelPanel>());
+    	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(elem), elem, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public void setVClassOccurenceType(GUI_NODE elem, String typeName) {
+		VClassOccurrence vclassOccurence = (VClassOccurrence) vspecvmMap.get(elem);
+		toolModel.setVClassOccurenceType(vclassOccurence, typeName);
+	}
+	
+	@Override
+	public void setVClassOccurenceGroupMultiplicityUpperBound(GUI_NODE node,
+			int upperBound) {
+		VClassOccurrence vClassOccur = (VClassOccurrence) vspecvmMap.get(node);
+		toolModel.setVClassOccurenceUpperBound(vClassOccur, upperBound);
+	}
+
+	@Override
+	public void setVClassOccurenceGroupMultiplicityLowerBound(GUI_NODE node,
+			int lowerBound) {
+		VClassOccurrence vClassOccur = (VClassOccurrence) vspecvmMap.get(node);
+		toolModel.setVClassOccurenceLowerBound(vClassOccur, lowerBound);
 	}
 }

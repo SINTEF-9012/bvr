@@ -13,6 +13,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.controller.command.UpdateChoiceOccurence;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
@@ -47,7 +48,7 @@ public class ChoiceOccurencePropertyEditor extends ElementPropertyEditor {
         lt.setLabelFor(type);
         pt.add(type);
         
-        String setType = (((ChoiceOccurrence) elem).getVType() != null) ? ((ChoiceOccurrence) elem).getVType().getName() : "Undefined";
+        String setType = (((ChoiceOccurrence) elem).getVType() != null) ? ((ChoiceOccurrence) elem).getVType().getName() : Constants.DEFAULT_VTYPE_TITLE;
         type.setText(setType);
         ((UpdateChoiceOccurence) command).setChoiceType(setType);
 

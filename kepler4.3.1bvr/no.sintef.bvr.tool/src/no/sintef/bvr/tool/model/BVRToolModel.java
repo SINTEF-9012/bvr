@@ -40,6 +40,7 @@ import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.ReplacementFragmentType;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -569,6 +570,21 @@ abstract public class BVRToolModel {
 
 	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence,
 			String strType) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setVClassOccurenceType(VClassOccurrence vclassOccurence,
+			String typeName) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setVClassOccurenceUpperBound(VClassOccurrence vClassOccur,
+			int upperBound) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setVClassOccurenceLowerBound(VClassOccurrence vClassOccur,
+			int lowerBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

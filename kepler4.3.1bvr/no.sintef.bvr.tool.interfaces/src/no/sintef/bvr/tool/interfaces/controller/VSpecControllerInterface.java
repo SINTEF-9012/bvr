@@ -1,6 +1,7 @@
 package no.sintef.bvr.tool.interfaces.controller;
 
 
+
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 
 
@@ -65,4 +66,14 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 	public Command createUpdateChoiceOccurenceCommand(GUI_NODE elem);
 
 	public void setChoiceOccurenceType(GUI_NODE node, String strType);
+
+	public Command createUpdateVClassOccurenceCommand(GUI_NODE elem);
+
+	public void setVClassOccurenceType(GUI_NODE parent, String typeName);
+
+	void setVClassOccurenceGroupMultiplicityUpperBound(GUI_NODE node,
+			int upperBound);
+
+	void setVClassOccurenceGroupMultiplicityLowerBound(GUI_NODE node,
+			int lowerBound);
 }

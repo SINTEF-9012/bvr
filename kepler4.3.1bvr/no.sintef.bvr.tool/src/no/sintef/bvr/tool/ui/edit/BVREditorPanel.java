@@ -24,6 +24,8 @@ import java.awt.Window;
 
 
 
+
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -40,6 +42,7 @@ import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
+import no.sintef.bvr.ui.framework.elements.VClassOccurencePanel;
 import no.sintef.bvr.ui.framework.elements.VClassifierPanel;
 import no.sintef.bvr.ui.framework.elements.VTypeRootSymbolPanel;
 //import no.sintef.bvr.ui.framework.elements.VInstancePanel;
@@ -55,6 +58,7 @@ import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.NamedElement;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VType;
 import bvr.ValueResolution;
@@ -145,6 +149,12 @@ public class BVREditorPanel extends JPanel {
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateVClassifierCommand(elem);
         	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, okCommand, (VClassifier) object, elem, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        }else if (p instanceof VClassOccurencePanel) {
+        	VClassOccurencePanel elem = (VClassOccurencePanel) p;
+			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
+			Command okCommand = controller.getVSpecControllerInterface().createUpdateVClassOccurenceCommand(elem);
+			VClassOccurencePropertyEditor prop = new VClassOccurencePropertyEditor(kernel, okCommand, (VClassOccurrence) object, elem, controller);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ChoicePanel) {
         	ChoicePanel elem = (ChoicePanel)p;

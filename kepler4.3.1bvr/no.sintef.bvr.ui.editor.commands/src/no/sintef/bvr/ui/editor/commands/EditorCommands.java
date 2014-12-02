@@ -35,6 +35,7 @@ import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VPackageable;
@@ -174,5 +175,8 @@ public interface EditorCommands {
 	public void addVTypeCompoundNode(CompoundNode parent, VType vType);
 
 	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence,
+			VType vType);
+
+	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence,
 			VType vType);
 }

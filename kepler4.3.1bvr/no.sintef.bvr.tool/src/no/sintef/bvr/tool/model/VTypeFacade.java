@@ -4,6 +4,7 @@ import no.sintef.bvr.tool.context.Context;
 import bvr.BvrFactory;
 import bvr.ChoiceOccurrence;
 import bvr.CompoundNode;
+import bvr.VClassOccurrence;
 import bvr.VType;
 
 
@@ -31,5 +32,10 @@ public final class VTypeFacade {
 	
 	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence, VType vType) {
 		Context.eINSTANCE.getEditorCommands().setChoiceOccurenceVType(choiceOccurence, vType);
+	}
+
+
+	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence, VType vType) {
+		Context.eINSTANCE.getEditorCommands().setVClassOccurenceVType(vclassOccurence, vType);
 	}
 }

@@ -1116,7 +1116,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		VType vType = findTypeByName(strType);
 		
 		if (vType == null && !strType.equals(Constants.DEFAULT_VTYPE_TITLE))
-			throw new UserInputError("cannot fint VType : " + strType);
+			throw new UserInputError("cannot find VType : " + strType);
 		
 		VTypeFacade.eINSTANCE.setChoiceOccurenceVType(choiceOccurence, vType);
 	}
@@ -1130,5 +1130,36 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				return (VType) eObject;
 		}
 		return null;
+	}
+	
+	@Override
+	public void setVClassOccurenceType(VClassOccurrence vclassOccurence,
+			String typeName) {
+		if(vclassOccurence.getVType() == null && typeName.equals(Constants.DEFAULT_VTYPE_TITLE))
+			return;
+		
+		if(vclassOccurence.getVType() != null && vclassOccurence.getVType().getName().equals(typeName))
+			return;
+		
+		VType vType = findTypeByName(typeName);
+		
+		if (vType == null && !typeName.equals(Constants.DEFAULT_VTYPE_TITLE))
+			throw new UserInputError("cannot find VType : " + typeName);
+		
+		VTypeFacade.eINSTANCE.setVClassOccurenceVType(vclassOccurence, vType);
+	}
+	
+	@Override
+	public void setVClassOccurenceLowerBound(VClassOccurrence vClassOccur,
+			int lowerBound) {
+		MultiplicityInterval interval = vClassOccur.getInstanceMultiplicity();
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(interval, lowerBound);
+	}
+	
+	@Override
+	public void setVClassOccurenceUpperBound(VClassOccurrence vClassOccur,
+			int upperBound) {
+		MultiplicityInterval interval = vClassOccur.getInstanceMultiplicity();
+		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(interval, upperBound);
 	}
 }

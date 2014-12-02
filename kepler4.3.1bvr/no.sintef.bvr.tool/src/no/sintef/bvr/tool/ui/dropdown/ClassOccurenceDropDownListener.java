@@ -22,19 +22,21 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
-import no.sintef.bvr.ui.framework.elements.ChoiceOccurencePanel;
+import no.sintef.bvr.ui.framework.elements.VClassOccurencePanel;
 
 
-public class ChoiceOccurenceDropDownListener extends MouseAdapter {
-	private ChoiceOccurencePanel cp;
+public class ClassOccurenceDropDownListener extends MouseAdapter {
+	private VClassOccurencePanel cp;
 	private Map<JComponent, NamedElement> vmMap;
 	private List<JComponent> nodes;
 	private List<Pair<JComponent, JComponent>> bindings;
 	private BVRNotifiableController view;
 
-	public ChoiceOccurenceDropDownListener(ChoiceOccurencePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
+	public ClassOccurenceDropDownListener(VClassOccurencePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
 		this.cp = cp;
 		this.vmMap = vmMap;
+		this.nodes = nodes;
+		this.bindings = bindings;
 		this.view = view;
 	}
 	
@@ -49,15 +51,15 @@ public class ChoiceOccurenceDropDownListener extends MouseAdapter {
     }
 
     private void doPop(MouseEvent e){
-    	ChoiceOccurenceDropDown menu = new ChoiceOccurenceDropDown(cp, vmMap, nodes, bindings, view);
+    	ClassOccurenceDropdown menu = new ClassOccurenceDropdown(cp, vmMap, nodes, bindings, view);
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 }
 
-class ChoiceOccurenceDropDown extends JPopupMenu {
+class ClassOccurenceDropdown extends JPopupMenu {
 	private static final long serialVersionUID = 1L;
 	JMenuItem anItem;
-    public ChoiceOccurenceDropDown(ChoiceOccurencePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
+    public ClassOccurenceDropdown(VClassOccurencePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
     	// Add
     	JMenu add = new JMenu("add");
     	JMenuItem addConstraint = new JMenuItem("constraint");

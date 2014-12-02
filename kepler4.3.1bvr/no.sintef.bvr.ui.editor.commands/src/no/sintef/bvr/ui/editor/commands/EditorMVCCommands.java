@@ -40,6 +40,7 @@ import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VPackageable;
@@ -450,5 +451,11 @@ public class EditorMVCCommands implements EditorCommands {
 			VType vType) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence,
+			VType vType) {
+		// TODO Auto-generated method stub
 	}
 }
