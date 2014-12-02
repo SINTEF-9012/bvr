@@ -25,14 +25,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public abstract class ValueSpecificationImpl extends MinimalEObjectImpl.Container implements ValueSpecification {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	
-	protected Variabletype variableType;
-	
+	private Variabletype variableType;
+
 	protected ValueSpecificationImpl() {
 		super();
 	}

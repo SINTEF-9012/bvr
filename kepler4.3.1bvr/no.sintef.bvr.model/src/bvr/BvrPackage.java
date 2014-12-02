@@ -1374,7 +1374,7 @@ public interface BvrPackage extends EPackage {
 	int VCLASS_OCCURRENCE__VTYPE = VSPEC_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Instance Multiplicity</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5106,10 +5106,10 @@ public interface BvrPackage extends EPackage {
 	EReference getVClassOccurrence_VType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link bvr.VClassOccurrence#getInstanceMultiplicity <em>Instance Multiplicity</em>}'.
+	 * Returns the meta object for the containment reference '{@link bvr.VClassOccurrence#getInstanceMultiplicity <em>Instance Multiplicity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Instance Multiplicity</em>'.
+	 * @return the meta object for the containment reference '<em>Instance Multiplicity</em>'.
 	 * @see bvr.VClassOccurrence#getInstanceMultiplicity()
 	 * @see #getVClassOccurrence()
 	 * @generated
@@ -6884,7 +6884,7 @@ public interface BvrPackage extends EPackage {
 		EReference VCLASS_OCCURRENCE__VTYPE = eINSTANCE.getVClassOccurrence_VType();
 
 		/**
-		 * The meta object literal for the '<em><b>Instance Multiplicity</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Instance Multiplicity</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

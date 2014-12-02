@@ -31,7 +31,7 @@ public class ChangeChoiceFacade {
 				
 			int index = ((CompoundResolution) parentResolution).getMembers().indexOf(c);
 			ChoiceResolution newRes = BvrFactory.eINSTANCE.createNegResolution();
-			CommonUtility.setResolved(newRes, c.getResolvedChoice());
+			CommonUtility.setResolved(newRes, CommonUtility.getResolvedVSpec(c));
 			newRes.setName(c.getName());
 			Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parentResolution, (NegResolution) newRes, index);
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(parentResolution, c);
@@ -42,9 +42,9 @@ public class ChangeChoiceFacade {
 				return null; //is root
 			int index = ((CompoundResolution) parentResolution).getMembers().indexOf(c);
 			ChoiceResolution newRes = BvrFactory.eINSTANCE.createPosResolution();
-			CommonUtility.setResolved(newRes, c.getResolvedChoice());
+			CommonUtility.setResolved(newRes, CommonUtility.getResolvedVSpec(c));
 			newRes.setName(c.getName());
-			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(bvrModel, new AddResolution(), c.getResolvedVSpec(), newRes, false);
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(bvrModel, new AddResolution(), CommonUtility.getResolvedVSpec(c), newRes, false);
 			Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parentResolution, (PosResolution) newRes, index);
 			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(parentResolution, c);
 			created = newRes;

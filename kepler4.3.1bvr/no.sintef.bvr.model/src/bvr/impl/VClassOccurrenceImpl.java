@@ -84,14 +84,14 @@ public class VClassOccurrenceImpl extends VSpecImpl implements VClassOccurrence 
 	protected VType vType;
 
 	/**
-	 * The cached value of the '{@link #getInstanceMultiplicity() <em>Instance Multiplicity</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceMultiplicity() <em>Instance Multiplicity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInstanceMultiplicity()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MultiplicityInterval> instanceMultiplicity;
+	protected MultiplicityInterval instanceMultiplicity;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -222,11 +222,42 @@ public class VClassOccurrenceImpl extends VSpecImpl implements VClassOccurrence 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MultiplicityInterval> getInstanceMultiplicity() {
-		if (instanceMultiplicity == null) {
-			instanceMultiplicity = new EObjectContainmentEList<MultiplicityInterval>(MultiplicityInterval.class, this, BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY);
-		}
+	public MultiplicityInterval getInstanceMultiplicity() {
 		return instanceMultiplicity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInstanceMultiplicity(MultiplicityInterval newInstanceMultiplicity, NotificationChain msgs) {
+		MultiplicityInterval oldInstanceMultiplicity = instanceMultiplicity;
+		instanceMultiplicity = newInstanceMultiplicity;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY, oldInstanceMultiplicity, newInstanceMultiplicity);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInstanceMultiplicity(MultiplicityInterval newInstanceMultiplicity) {
+		if (newInstanceMultiplicity != instanceMultiplicity) {
+			NotificationChain msgs = null;
+			if (instanceMultiplicity != null)
+				msgs = ((InternalEObject)instanceMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY, null, msgs);
+			if (newInstanceMultiplicity != null)
+				msgs = ((InternalEObject)newInstanceMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY, null, msgs);
+			msgs = basicSetInstanceMultiplicity(newInstanceMultiplicity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY, newInstanceMultiplicity, newInstanceMultiplicity));
 	}
 
 	/**
@@ -244,7 +275,7 @@ public class VClassOccurrenceImpl extends VSpecImpl implements VClassOccurrence 
 			case BvrPackage.VCLASS_OCCURRENCE__VARIABLE:
 				return ((InternalEList<?>)getVariable()).basicRemove(otherEnd, msgs);
 			case BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY:
-				return ((InternalEList<?>)getInstanceMultiplicity()).basicRemove(otherEnd, msgs);
+				return basicSetInstanceMultiplicity(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -296,8 +327,7 @@ public class VClassOccurrenceImpl extends VSpecImpl implements VClassOccurrence 
 				setVType((VType)newValue);
 				return;
 			case BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY:
-				getInstanceMultiplicity().clear();
-				getInstanceMultiplicity().addAll((Collection<? extends MultiplicityInterval>)newValue);
+				setInstanceMultiplicity((MultiplicityInterval)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,7 +354,7 @@ public class VClassOccurrenceImpl extends VSpecImpl implements VClassOccurrence 
 				setVType((VType)null);
 				return;
 			case BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY:
-				getInstanceMultiplicity().clear();
+				setInstanceMultiplicity((MultiplicityInterval)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -347,7 +377,7 @@ public class VClassOccurrenceImpl extends VSpecImpl implements VClassOccurrence 
 			case BvrPackage.VCLASS_OCCURRENCE__VTYPE:
 				return vType != null;
 			case BvrPackage.VCLASS_OCCURRENCE__INSTANCE_MULTIPLICITY:
-				return instanceMultiplicity != null && !instanceMultiplicity.isEmpty();
+				return instanceMultiplicity != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -11,6 +11,7 @@ import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -55,6 +56,13 @@ public class AddResolution implements ResCommand{
 			}
 			min = 0;
 		}
+		
+		if(target instanceof VClassOccurrence) {
+			VClassOccurrence vClassOccurence = (VClassOccurrence) target;
+			int min = (vClassOccurence.getInstanceMultiplicity() != null && !onlyOneInstance) ? vClassOccurence.getInstanceMultiplicity().getLower() : 1;
+			for (int i = 0; i < min; i++)
+				thisResolution.add(addResolution((VClassOccurrence) target, parent));
+		}
 
 		return thisResolution;
 	}
@@ -84,6 +92,16 @@ public class AddResolution implements ResCommand{
 		
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName(target.getName());
+		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
+		((CompoundResolution)parent).getMembers().add(thisResolution);
+		return thisResolution;
+	}
+	
+	// resolve VClassOccurrence
+	private VSpecResolution addResolution(VClassOccurrence target, VSpecResolution parent) {
+		
+		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
+		thisResolution.setName("I " + view.getIncrementedInstanceCount());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 		((CompoundResolution)parent).getMembers().add(thisResolution);
 		return thisResolution;

@@ -157,7 +157,8 @@ public final class CommonUtility {
 	}
 
 	public static boolean isVSpecResolutionVClassifier(VSpecResolution vSpecResolution) {
-		if ((vSpecResolution instanceof ChoiceResolution) && (((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null))
+		if ((vSpecResolution instanceof ChoiceResolution) && ((((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null)
+				|| ((ChoiceResolution) vSpecResolution).getResolvedVClassOcc() != null))
 			return true;
 		return false;
 	}

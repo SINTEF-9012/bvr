@@ -2,7 +2,6 @@
  */
 package bvr;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,19 +52,29 @@ public interface VClassOccurrence extends VSpec, VNode {
 	void setVType(VType value);
 
 	/**
-	 * Returns the value of the '<em><b>Instance Multiplicity</b></em>' containment reference list.
-	 * The list contents are of type {@link bvr.MultiplicityInterval}.
+	 * Returns the value of the '<em><b>Instance Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Instance Multiplicity</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Multiplicity</em>' containment reference list.
+	 * @return the value of the '<em>Instance Multiplicity</em>' containment reference.
+	 * @see #setInstanceMultiplicity(MultiplicityInterval)
 	 * @see bvr.BvrPackage#getVClassOccurrence_InstanceMultiplicity()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<MultiplicityInterval> getInstanceMultiplicity();
+	MultiplicityInterval getInstanceMultiplicity();
+
+	/**
+	 * Sets the value of the '{@link bvr.VClassOccurrence#getInstanceMultiplicity <em>Instance Multiplicity</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Instance Multiplicity</em>' containment reference.
+	 * @see #getInstanceMultiplicity()
+	 * @generated
+	 */
+	void setInstanceMultiplicity(MultiplicityInterval value);
 
 } // VClassOccurrence
