@@ -25,9 +25,12 @@ import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 import org.eclipse.emf.ecore.EObject;
 
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
+import bvr.NamedElement;
 import bvr.PosResolution;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -74,18 +77,26 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				JMenu resolve_choice = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM);
 				JMenu resolve_vclass = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM);
 				JMenu addMulTree = new JMenu(Constants.RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM);
+				JMenu resolve_choice_occ = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM);
+				JMenu resolve_vclass_occ = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM);
 				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
-					JMenuItem addchild = new JMenuItem((((VSpec) x).getName()));
+					JMenuItem addchild = new JMenuItem((((NamedElement) x).getName()));
 					if(x instanceof Choice) {
-						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
 						resolve_choice.add(addchild);
 					} else if (x instanceof VClassifier){
-						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject)x, controller));
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
 						resolve_vclass.add(addchild);
 						
 						JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 						addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent(cp, (VClassifier) x, controller));
 						addMulTree.add(addChild);
+					} else if (x instanceof ChoiceOccurrence) {
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
+						resolve_choice_occ.add(addchild);
+					} else if (x instanceof VClassOccurrence) {
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
+						resolve_vclass_occ.add(addchild);
 					}
 				}
 				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
@@ -103,19 +114,27 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					resolve_vclass.setEnabled(false);
 				if (addMulTree.getMenuComponents().length == 0)
 					addMulTree.setEnabled(false);
+				if (resolve_choice_occ.getMenuComponents().length == 0)
+					resolve_choice_occ.setEnabled(false);
+				if (resolve_vclass_occ.getMenuComponents().length == 0)
+					resolve_vclass_occ.setEnabled(false);
 	
 				add(resolve_choice);
 				add(resolve_variable);
 				add(resolve_vclass);
 				add(addMulTree);
+				add(resolve_choice_occ);
+				add(resolve_vclass_occ);
 				
-				if(resolve_choice.isEnabled() || resolve_vclass.isEnabled()){
+				if(resolve_choice.isEnabled() || resolve_vclass.isEnabled() ||
+						resolve_choice_occ.isEnabled() || resolve_vclass_occ.isEnabled()){
 					JMenuItem resTree = new JMenuItem(Constants.RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM);
 					resTree.addActionListener(new AddSubTreeEvent(cp, controller));
 					add(resTree);
 				}
 				
-				if(resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled()){
+				if(resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled()
+						|| resolve_choice_occ.isEnabled() || resolve_vclass_occ.isEnabled()){
 					add( new JSeparator());
 					JMenuItem minimize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
 					minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));

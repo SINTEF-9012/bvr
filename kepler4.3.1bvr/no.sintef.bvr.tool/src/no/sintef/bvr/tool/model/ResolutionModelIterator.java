@@ -3,7 +3,7 @@ package no.sintef.bvr.tool.model;
 import java.util.List;
 
 import no.sintef.bvr.tool.controller.command.ResCommand;
-import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+
 import bvr.BVRModel;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;

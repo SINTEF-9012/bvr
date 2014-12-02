@@ -207,7 +207,6 @@ public final class CommonUtility {
 				throw new UnsupportedOperationException("target/toResolve type mismach");
 			}
 		}
-		
 
 		return target;
 	}

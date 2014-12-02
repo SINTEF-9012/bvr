@@ -78,6 +78,7 @@ import bvr.Target;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
@@ -363,6 +364,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		} else if (resolvedVspec instanceof VClassifier) {
 			cr = BvrFactory.eINSTANCE.createPosResolution();
 			cr.setName("I: " + getIncrementedInstanceCount());
+		} else if (resolvedVspec instanceof ChoiceOccurrence) {
+			cr = BvrFactory.eINSTANCE.createPosResolution();
+			cr.setName(resolvedVspec.getName());
+		} else if (resolvedVspec instanceof VClassOccurrence) {
+			cr = BvrFactory.eINSTANCE.createPosResolution();
+			cr.setName(resolvedVspec.getName());
 		}
 		CommonUtility.setResolved(cr, resolvedVspec);
 		Context.eINSTANCE.getEditorCommands().addChoiceResoulution(parent, cr);

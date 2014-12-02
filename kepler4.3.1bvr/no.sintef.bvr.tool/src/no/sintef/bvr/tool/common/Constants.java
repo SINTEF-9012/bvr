@@ -103,5 +103,7 @@ public class Constants {
 	public static final String RESOLUTION_DROPDOWN_REMOVE_ITEM = GENERAL_REMOVE_MENU_ITEM;
 	public static final String RESOLUTION_DROPDOWN_VALIDATE_ITEM = "Validate";
 	public static final String DEFAULT_VTYPE_TITLE = "Undefined";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM = "Resolve ChoiceOccurence";
+	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM = "Resolve VClassOccurence";
 
 }
