@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;
@@ -35,6 +36,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -51,6 +53,7 @@ import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
@@ -1092,5 +1095,33 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void removeVType(VType type) {
 		removeNamedElement(type);
+	}
+	
+	@Override
+	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence,
+			String strType) {
+		if(choiceOccurence.getVType() == null && strType.equals(Constants.DEFAULT_VTYPE_TITLE))
+			return;
+		
+		if(choiceOccurence.getVType() != null && choiceOccurence.getVType().getName().equals(strType))
+			return;
+		
+		VType vType = findTypeByName(strType);
+		
+		if (vType == null && !strType.equals(Constants.DEFAULT_VTYPE_TITLE))
+			throw new UserInputError("cannot fint VType : " + strType);
+		
+		VTypeFacade.eINSTANCE.setChoiceOccurenceVType(choiceOccurence, vType);
+	}
+	
+	private VType findTypeByName(String typeName) {
+		BVRModel model = getBVRModel();
+		TreeIterator<EObject> iterator = model.eAllContents();
+		while(iterator.hasNext()) {
+			EObject eObject = iterator.next();
+			if(eObject instanceof VType && ((VType) eObject).getName().equals(typeName))
+				return (VType) eObject;
+		}
+		return null;
 	}
 }

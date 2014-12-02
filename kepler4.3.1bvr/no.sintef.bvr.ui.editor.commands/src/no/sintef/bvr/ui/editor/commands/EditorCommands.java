@@ -13,6 +13,7 @@ import bvr.BCLExpression;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
@@ -172,4 +173,7 @@ public interface EditorCommands {
 	public void executeSimpleExeCommand(SimpleExeCommandInterface command);
 
 	public void addVTypeCompoundNode(CompoundNode parent, VType vType);
+
+	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence,
+			VType vType);
 }

@@ -21,11 +21,9 @@ import java.awt.Dialog;
 import java.awt.GradientPaint;
 import java.awt.Point;
 import java.awt.Window;
-import java.util.List;
-import java.util.Map;
 
-import javax.swing.JComponent;
-import javax.swing.JDialog;
+
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -37,6 +35,7 @@ import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.ui.framework.ParallelogramTitledPanel;
 import no.sintef.bvr.ui.framework.SelectElement;
+import no.sintef.bvr.ui.framework.elements.ChoiceOccurencePanel;
 import no.sintef.bvr.ui.framework.elements.ChoicePanel;
 import no.sintef.bvr.ui.framework.elements.BVRModelSymbolPanel;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
@@ -53,6 +52,7 @@ import org.jdesktop.swingx.painter.MattePainter;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.NamedElement;
 import bvr.VClassifier;
@@ -152,7 +152,13 @@ public class BVREditorPanel extends JPanel {
         	Command okCommand = controller.getVSpecControllerInterface().createUpdateChoiceCommand(elem);
         	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, okCommand, (Choice) object, elem, controller);
         	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
-        }else if (p instanceof ParallelogramTitledPanel) {
+        }else if (p instanceof ChoiceOccurencePanel) {
+        	ChoiceOccurencePanel elem = (ChoiceOccurencePanel)p;
+        	NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
+        	Command okCommand = controller.getVSpecControllerInterface().createUpdateChoiceOccurenceCommand(elem);
+        	ChoiceOccurencePropertyEditor prop = new ChoiceOccurencePropertyEditor(kernel, okCommand, (ChoiceOccurrence) object, elem, controller);
+        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        } else if (p instanceof ParallelogramTitledPanel) {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateBCLConstraintCommand(elem);

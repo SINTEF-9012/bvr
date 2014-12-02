@@ -14,6 +14,7 @@ import bvr.BCLExpression;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 //import bvr.ChoiceResolutuion;
 import bvr.CompoundNode;
@@ -440,6 +441,13 @@ public class EditorMVCCommands implements EditorCommands {
 
 	@Override
 	public void addVTypeCompoundNode(CompoundNode parent, VType vType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence,
+			VType vType) {
 		// TODO Auto-generated method stub
 		
 	}

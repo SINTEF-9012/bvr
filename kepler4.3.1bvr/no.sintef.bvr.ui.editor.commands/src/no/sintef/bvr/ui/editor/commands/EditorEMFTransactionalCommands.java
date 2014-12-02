@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -40,6 +41,7 @@ import bvr.BoundaryElementBinding;
 import bvr.BvrFactory;
 import bvr.BvrPackage;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
@@ -604,6 +606,14 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addVTypeCompoundNode(CompoundNode parent, VType vType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getCompoundNode_Member(), vType);
+		testCommandExecution(editingDomain, cmd);
+	}
+
+	@Override
+	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence,
+			VType vType) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choiceOccurence, BvrPackage.eINSTANCE.getChoiceOccurrence_VType(), vType);
 		testCommandExecution(editingDomain, cmd);
 	}
 }

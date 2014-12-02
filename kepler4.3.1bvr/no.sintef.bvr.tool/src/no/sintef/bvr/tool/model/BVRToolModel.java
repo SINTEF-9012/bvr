@@ -29,6 +29,7 @@ import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
@@ -563,6 +564,11 @@ abstract public class BVRToolModel {
 	}
 
 	public void removeVType(VType type) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence,
+			String strType) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 }

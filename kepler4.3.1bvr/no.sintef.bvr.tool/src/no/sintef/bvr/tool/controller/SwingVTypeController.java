@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import bvr.BVRModel;
 import bvr.CompoundNode;
+import bvr.VSpec;
 import bvr.VType;
 import bvr.VNode;
 import no.sintef.bvr.tool.controller.command.AddVTypeRoot;
@@ -44,8 +45,8 @@ public class SwingVTypeController<GUI_NODE extends JComponent, MODEL_OBJECT exte
 		JComponent rootComponent = new AddVTypeRoot<BVREditorPanel, BVRModelPanel>().init(uikernel, vType, null, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
 		for(VNode vNode : vType.getMember())
-			if(vNode instanceof CompoundNode)
-				loadBVRView((CompoundNode) vNode, uikernel, rootComponent, model);
+			if(vNode instanceof VSpec)
+				loadBVRView((VSpec) vNode, uikernel, rootComponent, model);
 		
 		vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	}

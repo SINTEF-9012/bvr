@@ -18,13 +18,16 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddBCLConstraint;
 import no.sintef.bvr.tool.controller.command.AddBVRModel;
 import no.sintef.bvr.tool.controller.command.AddChoice;
+import no.sintef.bvr.tool.controller.command.AddChoiceOccurence;
 import no.sintef.bvr.tool.controller.command.AddGroupMultiplicity;
 import no.sintef.bvr.tool.controller.command.AddVClassifier;
 import no.sintef.bvr.tool.controller.command.UpdateBCLConstraint;
 import no.sintef.bvr.tool.controller.command.UpdateBVRModel;
 import no.sintef.bvr.tool.controller.command.UpdateChoice;
+import no.sintef.bvr.tool.controller.command.UpdateChoiceOccurence;
 import no.sintef.bvr.tool.controller.command.UpdateVClassifier;
 import no.sintef.bvr.tool.decorator.UpdateChoiceBatchCommandDecorator;
+import no.sintef.bvr.tool.decorator.UpdateChoiceOccurenceBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateConstraintBatchCommandDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVClassifierBatchCommandDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
@@ -44,6 +47,7 @@ import no.sintef.bvr.ui.framework.elements.EditableModelPanel;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
+import bvr.ChoiceOccurrence;
 import bvr.CompoundNode;
 import bvr.Constraint;
 import bvr.NamedElement;
@@ -93,12 +97,12 @@ public class SwingVSpecController<
 		JComponent rootComponent = new AddBVRModel<BVREditorPanel, BVRModelPanel>().init(uikernel, model, null, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 		
 		CompoundNode vspec = model.getVariabilityModel();
-		loadBVRView(vspec, uikernel, rootComponent, model);
+		loadBVRView((VSpec) vspec, uikernel, rootComponent, model);
 		
 		vSpecbvruikernel.getModelPanel().layoutTreeNodes(strategy);
 	}
 
-	protected void loadBVRView(CompoundNode v, BVRUIKernel<BVREditorPanel, BVRModelPanel> kernel, JComponent parent, BVRModel model) throws BVRModelException {
+	protected void loadBVRView(VSpec v, BVRUIKernel<BVREditorPanel, BVRModelPanel> kernel, JComponent parent, BVRModel model) throws BVRModelException {
 		if(v == null) return;
 		
 		JComponent nextParent = null;
@@ -109,13 +113,12 @@ public class SwingVSpecController<
 		}else if(v instanceof Choice){
 			JComponent c = new AddChoice<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(kernel, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
 			nextParent = c;
+		}else if(v instanceof ChoiceOccurrence) {
+			JComponent c = new AddChoiceOccurence<BVREditorPanel, BVRModelPanel>(toolModel.isVSpecMinimized((VSpec) v)).init(kernel, v, parent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+			nextParent = c;
 		}
 		
 		if((v instanceof VSpec) && !toolModel.isVSpecMinimized((VSpec) v)){
-			if(v.getGroupMultiplicity() != null){
-				nextParent = new AddGroupMultiplicity<BVREditorPanel, BVRModelPanel>().init(kernel, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
-			}
-		
 			for(Constraint c : ((VNode) v).getOwnedConstraint()){
 				if(c instanceof BCLConstraint){
 					BCLConstraint bcl = (BCLConstraint) c;
@@ -123,9 +126,14 @@ public class SwingVSpecController<
 				}
 			}
 			
-			for(VNode vs : ((CompoundNode) v).getMember()){
-				if(vs instanceof CompoundNode){
-					loadBVRView((CompoundNode) vs, kernel, nextParent, model);
+			if(v instanceof CompoundNode) {
+				if(((CompoundNode) v).getGroupMultiplicity() != null)
+					nextParent = new AddGroupMultiplicity<BVREditorPanel, BVRModelPanel>().init(kernel, v, nextParent, vspecvmMap, vspecNodes, vspecBindings, rootController).execute();
+
+				for(VNode vs : ((CompoundNode) v).getMember()){
+					if(vs instanceof VSpec){
+						loadBVRView((VSpec) vs, kernel, nextParent, model);
+					}
 				}
 			}
 		}
@@ -374,5 +382,18 @@ public class SwingVSpecController<
 	public void addVType(GUI_NODE node) {
 		CompoundNode parent = (CompoundNode) vspecvmMap.get(node);
 		toolModel.addVType(parent);
+	}
+
+	@Override
+	public Command createUpdateChoiceOccurenceCommand(GUI_NODE node) {
+		Command<BVREditorPanel, BVRModelPanel> command = new UpdateChoiceOccurenceBatchCommandDecorator<BVREditorPanel, BVRModelPanel>(new UpdateChoiceOccurence<BVREditorPanel, BVRModelPanel>());
+    	command.init(vSpecbvruikernel, (VSpec) vspecvmMap.get(node), node, vspecvmMap, vspecNodes, vspecBindings, rootController);
+		return command;
+	}
+
+	@Override
+	public void setChoiceOccurenceType(GUI_NODE node, String strType) {
+		ChoiceOccurrence choiceOccurence = (ChoiceOccurrence) vspecvmMap.get(node);
+		toolModel.setChoiceOccurenceType(choiceOccurence, strType);
 	}
 }
