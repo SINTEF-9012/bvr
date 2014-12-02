@@ -274,7 +274,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void removeConstraintCompoundNode(CompoundNode compoundNode,
+	public void removeConstraintVNode(VNode vNode,
 			Constraint constraint) {
 		// TODO Auto-generated method stub
 		

@@ -130,8 +130,7 @@ public interface EditorCommands {
 	
 	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle);
 
-
-	public void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint);
+	public void removeConstraintVNode(VNode vNode, Constraint constraint);
 
 	public void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel);
 	

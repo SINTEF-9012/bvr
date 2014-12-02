@@ -414,9 +414,9 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 	
 	@Override
-	public void removeConstraintCompoundNode(CompoundNode compoundNode, Constraint constraint) {
+	public void removeConstraintVNode(VNode vNode, Constraint constraint) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getVNode_OwnedConstraint(), constraint);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vNode, BvrPackage.eINSTANCE.getVNode_OwnedConstraint(), constraint);
 		testCommandExecution(editingDomain, cmd);
 	}
 

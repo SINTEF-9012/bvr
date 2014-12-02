@@ -577,10 +577,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void removeNamedElement(NamedElement element) {
 		EObject parent = element.eContainer();
 		if (parent != null) {
-			if (parent instanceof CompoundNode) {
+			if (parent instanceof VNode) {
 				if (element instanceof Constraint) {
-					Context.eINSTANCE.getEditorCommands().removeConstraintCompoundNode((CompoundNode) parent, (Constraint) element);
-				} else if (element instanceof VNode) {
+					Context.eINSTANCE.getEditorCommands().removeConstraintVNode((VNode) parent, (Constraint) element);
+				} else if (element instanceof VNode && parent instanceof CompoundNode) {
 					Context.eINSTANCE.getEditorCommands().removeVNodeCompoundNode((CompoundNode) parent, (VNode) element);
 				} else {
 					throw new UnexpectedException("can not remove " + element + " with parent " + parent);
