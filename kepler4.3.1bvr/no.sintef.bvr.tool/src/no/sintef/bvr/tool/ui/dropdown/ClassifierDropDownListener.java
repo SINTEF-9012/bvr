@@ -13,6 +13,7 @@ import javax.swing.JSeparator;
 
 import bvr.NamedElement;
 import bvr.VSpec;
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.event.AddChoiceEvent;
@@ -69,69 +70,64 @@ class ClassifierDropdown extends JPopupMenu {
 	JMenuItem anItem;
     public ClassifierDropdown(VClassifierPanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
     	// Add
-    	JMenu add = new JMenu("add");
-    	JMenuItem addchoice = new JMenuItem("choice");
+    	JMenu add = new JMenu(Constants.VSPEC_DROPDOWN_ADD);
+    	JMenuItem addchoice = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_CHOICE);
     	addchoice.addActionListener(new AddChoiceEvent(cp, view));
     	add.add(addchoice);
-    	JMenuItem addclassifier = new JMenuItem("classifier");
+    	JMenuItem addclassifier = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_VCLASSIFIER);
     	addclassifier.addActionListener(new AddClassifierEvent(cp, view));
     	add.add(addclassifier);
-    	JMenuItem addConstraint = new JMenuItem("constraint");
+    	JMenuItem addConstraint = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_CONSTRAINT);
     	addConstraint.addActionListener(new AddConstraintEvent(cp, view));
     	add.add(addConstraint);
     	
-    	JMenuItem addVariable = new JMenuItem("variable");
+    	JMenuItem addVariable = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_VARIABLE);
     	addVariable.addActionListener(new AddVariableEvent(cp, view));
     	add.add(addVariable);
     	
-    	JMenuItem addType = new JMenuItem("type");
+    	JMenuItem addType = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_VTYPE);
     	addType.addActionListener(new AddVTypeEvent(cp, view));
     	add.add(addType);
     	
 		add(add);
 		
 		// Remove
-		JMenuItem removechoice = new JMenuItem("remove");
+		JMenuItem removechoice = new JMenuItem(Constants.VSPEC_DROPDOWN_REMOVE);
 		removechoice.addActionListener(new RemoveVSpecEvent(cp, view));
 		add(removechoice);
 		
 		// Cut Paste
 		add(new JSeparator());
-		JMenuItem cut = new JMenuItem("cut");
+		JMenuItem cut = new JMenuItem(Constants.VSPEC_DROPDOWN_CUT);
 		cut.addActionListener(new CutEvent(cp, view));
 		add(cut);
-		JMenuItem pastechild = new JMenuItem("paste as child");
+		JMenuItem pastechild = new JMenuItem(Constants.VSPEC_DROPDOWN_PAST_CHILD);
 		pastechild.addActionListener(new PasteChildEvent(cp, view));
 		add(pastechild);
-		JMenuItem pastesibling = new JMenuItem("paste as sibling");
+		JMenuItem pastesibling = new JMenuItem(Constants.VSPEC_DROPDOWN_PAST_SIBLING);
 		pastesibling.addActionListener(new PasteSiblingEvent(cp, view));
 		add(pastesibling);
 		add(new JSeparator());
-		
+				
 		// Set group
-		JMenu group = new JMenu("set group");
-		JMenuItem none = new JMenuItem("none (0..*)");
+		JMenu group = new JMenu(Constants.VSPEC_DROPDOWN_SET_GROUP);
+		JMenuItem none = new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_NONE);
 		none.addActionListener(new SetGroupToNoneEvent(cp, view));
 		group.add(none);
-		JMenuItem alt = new JMenuItem("alternative/xor (1..1)");
+		JMenuItem alt = new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_XOR);
 		alt.addActionListener(new SetGroupToAltEvent(cp, view));
 		group.add(alt);
-		JMenuItem or = new JMenuItem("or (1..*)");
+		JMenuItem or = new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_OR);
 		or.addActionListener(new SetGroupToOrEvent(cp, view));
 		group.add(or);
-		group.add(new JMenuItem("custom..."));
+		group.add(new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_CUSTOM));
 		add(group);
-		
-		// Change to
-		//JMenu change = new JMenu("change to");
-		//change.add(new JMenuItem("classifier"));
-		//add(change);
-		
-		// Change to
-		JMenuItem minimize = new JMenuItem("minimize");
+				
+		// max/min
+		JMenuItem minimize = new JMenuItem(Constants.VSPEC_DROPDOWN_MINIMIZE);
 		minimize.addActionListener(new MinimizeVSpecEvent(cp, view));
 		add(minimize);
-		JMenuItem maximize = new JMenuItem("maximize");
+		JMenuItem maximize = new JMenuItem(Constants.VSPEC_DROPDOWN_MAXIMIZE);
 		maximize.addActionListener(new MaximizeVSpecEvent(cp, view));
 		add(maximize);
     }

@@ -105,5 +105,26 @@ public class Constants {
 	public static final String DEFAULT_VTYPE_TITLE = "Undefined";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM = "Resolve ChoiceOccurence";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM = "Resolve VClassOccurence";
-
+	
+	public static final String VSPEC_DROPDOWN_ADD = "Add";
+	public static final String VSPEC_DROPDOWN_ADD_CHOICE = "Choice";
+	public static final String VSPEC_DROPDOWN_ADD_VCLASSIFIER = "VClassifier";
+	public static final String VSPEC_DROPDOWN_ADD_CONSTRAINT = "Constraint";
+	public static final String VSPEC_DROPDOWN_ADD_VARIABLE = "Variable";
+	public static final String VSPEC_DROPDOWN_ADD_VTYPE = "VType";
+	public static final String VSPEC_DROPDOWN_ADD_CHOICEOCC = "ChoiceOccurence";
+	public static final String VSPEC_DROPDOWN_ADD_VCLASS = "VClassOccurence";
+	public static final String VSPEC_DROPDOWN_REMOVE = "Remove";
+	public static final String VSPEC_DROPDOWN_CUT = "Cut";
+	public static final String VSPEC_DROPDOWN_PAST_CHILD = "Past As Child";
+	public static final String VSPEC_DROPDOWN_PAST_SIBLING = "Past As Sibling";
+	public static final String VSPEC_DROPDOWN_TOGGLE = "Un-/Toggle Optional";
+	public static final String VSPEC_DROPDOWN_SET_GROUP = "Set Group";
+	public static final String VSPEC_DROPDOWN_SET_GROUP_NONE = "None (0..*)";
+	public static final String VSPEC_DROPDOWN_SET_GROUP_XOR = "Xor (1..1)";
+	public static final String VSPEC_DROPDOWN_SET_GROUP_OR = "Or (1..*)";
+	public static final String VSPEC_DROPDOWN_SET_GROUP_CUSTOM = "Custom...";
+	public static final String VSPEC_DROPDOWN_MINIMIZE = RESOLUTION_DROPDOWN_MININIZE_ITEM;
+	public static final String VSPEC_DROPDOWN_MAXIMIZE = RESOLUTION_DROPDOWN_MAXIMIZE_ITEM;
+	
 }

@@ -12,6 +12,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
 import bvr.NamedElement;
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.command.event.AddConstraintEvent;
@@ -59,39 +60,39 @@ class ChoiceOccurenceDropDown extends JPopupMenu {
 	JMenuItem anItem;
     public ChoiceOccurenceDropDown(ChoiceOccurencePanel cp, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view){
     	// Add
-    	JMenu add = new JMenu("add");
-    	JMenuItem addConstraint = new JMenuItem("constraint");
+    	JMenu add = new JMenu(Constants.VSPEC_DROPDOWN_ADD);
+    	JMenuItem addConstraint = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_CONSTRAINT);
     	addConstraint.addActionListener(new AddConstraintEvent(cp, view));
     	add.add(addConstraint);
     	
-    	JMenuItem addVariable = new JMenuItem("variable");
+    	JMenuItem addVariable = new JMenuItem(Constants.VSPEC_DROPDOWN_ADD_VARIABLE);
     	addVariable.addActionListener(new AddVariableEvent(cp, view));
     	add.add(addVariable);
 		add(add);
 		
 		// Remove
-		JMenuItem removechoice = new JMenuItem("remove");
+		JMenuItem removechoice = new JMenuItem(Constants.VSPEC_DROPDOWN_REMOVE);
 		removechoice.addActionListener(new RemoveVSpecEvent(cp, view));
 		add(removechoice);
 		
 		// Cut Paste
 		add(new JSeparator());
-		JMenuItem cut = new JMenuItem("cut");
+		JMenuItem cut = new JMenuItem(Constants.VSPEC_DROPDOWN_CUT);
 		cut.addActionListener(new CutEvent(cp, view));
 		add(cut);
-		JMenuItem pastechild = new JMenuItem("paste as child");
+		JMenuItem pastechild = new JMenuItem(Constants.VSPEC_DROPDOWN_PAST_CHILD);
 		pastechild.addActionListener(new PasteChildEvent(cp, view));
 		add(pastechild);
-		JMenuItem pastesibling = new JMenuItem("paste as sibling");
+		JMenuItem pastesibling = new JMenuItem(Constants.VSPEC_DROPDOWN_PAST_SIBLING);
 		pastesibling.addActionListener(new PasteSiblingEvent(cp, view));
 		add(pastesibling);
 		add(new JSeparator());
 		
 		// max/min
-		JMenuItem minimize = new JMenuItem("minimize");
+		JMenuItem minimize = new JMenuItem(Constants.VSPEC_DROPDOWN_MINIMIZE);
 		minimize.addActionListener(new MinimizeVSpecEvent(cp, view));
 		add(minimize);
-		JMenuItem maximize = new JMenuItem("maximize");
+		JMenuItem maximize = new JMenuItem(Constants.VSPEC_DROPDOWN_MAXIMIZE);
 		maximize.addActionListener(new MaximizeVSpecEvent(cp, view));
 		add(maximize);
     }
