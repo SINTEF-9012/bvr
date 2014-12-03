@@ -1,6 +1,6 @@
 package no.sintef.bvr.engine.operation;
 
-import no.sintef.bvr.engine.error.BasicBVREngineException;
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 
 public interface Substitution extends Operation{
 

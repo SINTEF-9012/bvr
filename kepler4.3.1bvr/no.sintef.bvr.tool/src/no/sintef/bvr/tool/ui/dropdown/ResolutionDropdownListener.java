@@ -130,6 +130,8 @@ class ResV2DropdownMenu extends JPopupMenu {
 		
 		JMenuItem execute = new JMenuItem("Execute");
 		execute.addActionListener(new ExecuteResolutionEvent(controller));
+		execute.setEnabled(controller.getCommonControllerInterface().isSubstitutionEngineInitialized());
+		
 		add(execute);
 	}
 }

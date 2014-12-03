@@ -30,4 +30,8 @@ public interface EditorsCommonControllerInterface<SERIALIZABLE, GUI_NODE, MODEL_
 	default public void setNodeName(GUI_NODE node, String name) {
 		throw new UnsupportedOperationException("not implemented");
 	}
+
+	default boolean isSubstitutionEngineInitialized() {
+		throw new UnsupportedOperationException("not implemented");
+	};
 }

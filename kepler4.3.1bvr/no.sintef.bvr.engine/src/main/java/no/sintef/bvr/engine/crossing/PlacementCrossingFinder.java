@@ -10,9 +10,8 @@ import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
 import bvr.PlacementFragment;
-
+import no.sintef.bvr.common.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.common.SubstitutionContext;
-import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 

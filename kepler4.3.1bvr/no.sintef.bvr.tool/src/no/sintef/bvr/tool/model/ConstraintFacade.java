@@ -10,8 +10,8 @@ import no.sintef.bvr.constraints.bcl.BCLBuilder;
 import no.sintef.bvr.constraints.bcl.BCLLexer;
 import no.sintef.bvr.constraints.bcl.BCLParser;
 import no.sintef.bvr.constraints.strategy.BVRToolBCLBuilderStrategy;
-import no.sintef.bvr.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
@@ -57,7 +57,7 @@ public class ConstraintFacade {
 			Context.eINSTANCE.getEditorCommands().clearBCLConstraintExpressions(constraint);
 			Context.eINSTANCE.getEditorCommands().addBCLExpressionConstraint(constraint, expression);
 		} catch (UnsupportedOperationException e) {
-			throw new UnexpectedOperationFailure("Failed to parse the constraint: '" + rawConstraint + "' reason: " + e.getMessage());
+			throw new UserInputError("Failed to parse the constraint: '" + rawConstraint + "' reason: " + e.getMessage());
 		}
 	}
 	

@@ -1,16 +1,19 @@
 package no.sintef.bvr.engine.common;
 
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
-public class ResourceContentCopier extends Copier{
+public class ResourceContentCopier extends Copier implements IResourceContentCopier {
 
 	private static final long serialVersionUID = -6292277081092094075L;
 	
 	private Resource originalResource;
 	
+	@Override
 	public void copyResource(Resource resource){
 		clear();
 		setOriginalResource(resource);
@@ -19,6 +22,7 @@ public class ResourceContentCopier extends Copier{
 		copyReferences();
 	}
 
+	@Override
 	public Resource getOriginalResource() {
 		return originalResource;
 	}

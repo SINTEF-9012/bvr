@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.common.logging.ResetableLogger;
-import no.sintef.bvr.engine.common.ResourceContentCopier;
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
@@ -64,7 +64,7 @@ public class AbstractEnvironment implements Environment {
 
 	@Override
 	public void writeProductsToFiles(
-			HashMap<Resource, ResourceContentCopier> baseProductMap, File file) {
+			HashMap<Resource, IResourceContentCopier> baseProductMap, File file) {
 		throw new UnimplementedBVRException("writeProductsToFiles is not implemented");
 	}
 

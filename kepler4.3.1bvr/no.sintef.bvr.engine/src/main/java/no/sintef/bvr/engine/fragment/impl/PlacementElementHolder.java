@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.fragment.ElementHolderOIF;
 import no.sintef.bvr.engine.fragment.PlacementElementFinderStrategy;
+import no.sintef.bvr.engine.interfaces.fragment.IPlacementElementHolder;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +20,7 @@ import bvr.PlacementFragment;
 import bvr.ToPlacement;
 
 
-public class PlacementElementHolder extends BasicElementHolder implements ElementHolderOIF {
+public class PlacementElementHolder extends BasicElementHolder implements IPlacementElementHolder {
 
 	protected HashSet<EObject> innerElements;
 	protected HashSet<EObject> outerElements;
@@ -50,8 +50,9 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		}
 		this.locate();
 	}
-		
-	public void update() throws BasicBVREngineException{
+	
+	@Override
+	public void update() throws BasicBVREngineException {
 		this.locate();
 	}
 	
@@ -104,18 +105,22 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		return outerElements;
 	}
 	
+	@Override
 	public PlacementFragment getPlacementFragment() {
 		return placement;
 	}
 	
+	@Override
 	public HashMap<FromPlacement, HashSet<EObject>> getFromPlacementInsBoundaryMap(){
 		return this.fromPlacementInsBoundaryMap;
 	}
 	
+	@Override
 	public HashMap<ToPlacement,HashSet<EObject>> getToPlacementOutBoundaryMap(){
 		return this.toPlacementOutBoundaryMap;
 	}
 	
+	@Override
 	public void setFromPlacementInsBoundaryMap(HashMap<FromPlacement, HashSet<ObjectHandle>> fromPlacementInsBoundaryMap){
 		HashMap<FromPlacement, HashSet<EObject>> map = new HashMap<FromPlacement, HashSet<EObject>>();
 		for(Map.Entry<FromPlacement, HashSet<ObjectHandle>> entry : fromPlacementInsBoundaryMap.entrySet()){
@@ -126,6 +131,7 @@ public class PlacementElementHolder extends BasicElementHolder implements Elemen
 		this.fromPlacementInsBoundaryMap = map;
 	}
 
+	@Override
 	public void setToPlacementOutBoundaryMap(HashMap<ToPlacement, HashSet<ObjectHandle>> toPlacementOHOutsideBoundaryMap) {
 		HashMap<ToPlacement, HashSet<EObject>> map = new HashMap<ToPlacement, HashSet<EObject>>();
 		for(Map.Entry<ToPlacement, HashSet<ObjectHandle>> entry : toPlacementOHOutsideBoundaryMap.entrySet()){

@@ -9,7 +9,6 @@ import bvr.FromBinding;
 import bvr.FromPlacement;
 import bvr.ToBinding;
 import bvr.ToPlacement;
-
 import no.sintef.bvr.engine.fragment.FragSubHolder;
 
 public interface AdjacentFragment {

@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.core.runtime,
  no.sintef.bvr.tool.interfaces;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Import-Package: no.sintef.bvr.thirdparty.common,
+Import-Package: no.sintef.bvr.engine.interfaces.common,
+ no.sintef.bvr.thirdparty.common,
  no.sintef.bvr.thirdparty.editor,
  no.sintef.bvr.thirdparty.exception,
  no.sintef.bvr.ui.editor.common,

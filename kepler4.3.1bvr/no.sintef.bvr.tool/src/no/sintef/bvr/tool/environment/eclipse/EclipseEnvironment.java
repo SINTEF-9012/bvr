@@ -8,10 +8,10 @@ import java.util.Map;
 
 import javax.swing.JFileChooser;
 
+import no.sintef.bvr.common.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.common.logging.ResetableLogger;
-import no.sintef.bvr.engine.common.ResourceContentCopier;
-import no.sintef.bvr.engine.error.ContainmentBVRModelException;
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.thirdparty.common.PluginLogger;
 import no.sintef.bvr.thirdparty.common.ProblemLoger;
 import no.sintef.bvr.thirdparty.common.Utility;
@@ -99,7 +99,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	}
 	
 	@Override
-	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file) {
+	public void writeProductsToFiles(HashMap<Resource, IResourceContentCopier> baseProductMap, File file) {
 		logger.debug("file absolute path to save product " + file.getAbsolutePath());
 		String prefix = file.getName();
 		String filepath = file.getAbsolutePath().substring(0, file.getAbsolutePath().lastIndexOf(File.separator));
@@ -112,7 +112,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		final HashMap<ResourceSet, String> messages = new HashMap<ResourceSet, String>();
 		
-		for(Map.Entry<Resource, ResourceContentCopier> entry : baseProductMap.entrySet()){
+		for(Map.Entry<Resource, IResourceContentCopier> entry : baseProductMap.entrySet()){
 			final Resource resource = entry.getKey();
 			
 			URI resourceURI = resource.getURI();

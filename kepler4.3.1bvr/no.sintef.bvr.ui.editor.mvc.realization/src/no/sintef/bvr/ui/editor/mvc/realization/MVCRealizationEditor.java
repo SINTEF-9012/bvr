@@ -4,6 +4,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.util.List;
 
+import no.sintef.bvr.engine.common.SubstitutionEngine;
+import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.observer.ResourceSavedSubject;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
@@ -14,6 +16,11 @@ import no.sintef.bvr.ui.editor.common.observer.ResourceResourceSetSubjectMap;
 
 
 public class MVCRealizationEditor extends MVCEditor {
+	
+	public MVCRealizationEditor() {
+		super();
+		Context.eINSTANCE.testSubEngine(SubstitutionEngine.eINSTANCE);
+	}
 	
 	public void setTitle() {
 		setPartName(new File(filename).getName() + " (Realization)");

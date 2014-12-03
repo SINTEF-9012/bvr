@@ -18,16 +18,15 @@ import bvr.FromPlacement;
 import bvr.ObjectHandle;
 import bvr.ToBinding;
 import bvr.ToPlacement;
-
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
+import no.sintef.bvr.common.engine.error.GeneralBVREngineException;
+import no.sintef.bvr.common.engine.error.IllegalBVROperation;
+import no.sintef.bvr.common.engine.error.IncorrectBVRModel;
+import no.sintef.bvr.common.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.adjacent.AdjacentFragment;
 import no.sintef.bvr.engine.adjacent.AdjacentResolver;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.error.GeneralBVREngineException;
-import no.sintef.bvr.engine.error.IllegalBVROperation;
-import no.sintef.bvr.engine.error.IncorrectBVRModel;
-import no.sintef.bvr.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 

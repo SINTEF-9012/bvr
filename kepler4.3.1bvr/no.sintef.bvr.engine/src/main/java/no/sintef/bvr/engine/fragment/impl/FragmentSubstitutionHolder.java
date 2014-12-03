@@ -8,20 +8,22 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+
+
+
 
 import bvr.BoundaryElementBinding;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
-import bvr.FromReplacement;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.ToBinding;
 import bvr.ToPlacement;
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.FragSubHolder;
+
 
 public class FragmentSubstitutionHolder implements FragSubHolder {
 

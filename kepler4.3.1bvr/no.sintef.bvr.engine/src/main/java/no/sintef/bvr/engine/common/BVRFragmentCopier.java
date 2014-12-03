@@ -1,10 +1,13 @@
 package no.sintef.bvr.engine.common;
 
 import java.util.Collection;
+
+import no.sintef.bvr.engine.interfaces.common.IBVRFragmentCopier;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
-public class BVRFragmentCopier extends Copier {
+public class BVRFragmentCopier extends Copier implements IBVRFragmentCopier {
 	
 	// do not copy an object if it has been already copied, useful for the way we represent a fragment as a simple
 	// list of all object
@@ -24,6 +27,7 @@ public class BVRFragmentCopier extends Copier {
 		return (copyEObject != null) ? copyEObject : super.copy(eObject);
 	}
 	
+	@Override
 	public void copyFragment(Collection<EObject> eObjects){
 		fragElements = eObjects;
 		this.copyAll(eObjects);

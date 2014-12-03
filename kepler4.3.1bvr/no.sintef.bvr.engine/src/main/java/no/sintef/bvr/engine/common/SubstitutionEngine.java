@@ -2,6 +2,8 @@ package no.sintef.bvr.engine.common;
 
 import java.util.HashMap;
 
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
+import no.sintef.bvr.common.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.adjacent.AdjacentResolver;
@@ -10,9 +12,15 @@ import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.containment.ReplacPlacCotainmentFinder;
 import no.sintef.bvr.engine.containment.ReplacPlacCotainmentResolver;
 import no.sintef.bvr.engine.crossing.PlacementCrossingFinder;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
+import no.sintef.bvr.engine.fragment.impl.ReplacementElementHolder;
+import no.sintef.bvr.engine.interfaces.common.IBVRElementDeepCopier;
+import no.sintef.bvr.engine.interfaces.common.IEngineUtility;
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
+import no.sintef.bvr.engine.interfaces.common.ISubstitutionEngine;
+import no.sintef.bvr.engine.interfaces.fragment.IPlacementElementHolder;
+import no.sintef.bvr.engine.interfaces.fragment.IReplacementElementHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -22,9 +30,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import bvr.FragmentSubstitution;
 import bvr.ObjectHandle;
+import bvr.PlacementFragment;
+import bvr.ReplacementFragmentType;
 
 
-public final class SubstitutionEngine {
+public final class SubstitutionEngine implements ISubstitutionEngine {
 
 	public static final SubstitutionEngine eINSTANCE = getEngine();
 	
@@ -42,10 +52,12 @@ public final class SubstitutionEngine {
 		return new SubstitutionEngine();
 	}
 	
+	@Override
 	public void setLogger(Logger logger){
 		context.setLogger(logger);
 	}
 	
+	@Override
 	public void init(EList<FragmentSubstitution> fragmentSubstitutions){
 		fsMap = new HashMap<FragmentSubstitution, FragmentSubstitutionHolder>();
 		try{
@@ -69,6 +81,7 @@ public final class SubstitutionEngine {
 		}
 	}
 	
+	@Override
 	public void subsitute(FragmentSubstitution fragmentSubstitution, boolean replace) throws ContainmentBVRModelException{
 		FragmentSubstitutionHolder fragmentHolder = fsMap.get(fragmentSubstitution);
 		if(fragmentHolder == null){
@@ -88,8 +101,8 @@ public final class SubstitutionEngine {
 		//subsOperation.checkConsistence();
 	}
 	
-	
-	public HashMap<Resource, ResourceContentCopier> getCopiedBaseModels(){
+	@Override
+	public HashMap<Resource, IResourceContentCopier> getCopiedBaseModels(){
 		return context.getCopyBaseModelMap();
 	}
 	
@@ -107,12 +120,34 @@ public final class SubstitutionEngine {
 		}
 		context.setBaseModel(baseResources);
 		
-		HashMap<Resource, ResourceContentCopier> copyMap = new HashMap<Resource, ResourceContentCopier>();
+		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
 		for(Resource resource : baseResources){
 			ResourceContentCopier copier = new ResourceContentCopier();
 			copier.copyResource(resource);
 			copyMap.put(resource, copier);
 		}
 		context.setCopyBaseModelMap(copyMap);
+	}
+
+	@Override
+	public IBVRElementDeepCopier createBVRElementDeepCopier() {
+		return new BVRElementDeepCopier();
+	}
+
+	@Override
+	public IEngineUtility getUtility() {
+		return EngineUtilityFacade.eINSTANCE;
+	}
+
+	@Override
+	public IReplacementElementHolder createReplacementElementHolder(
+			ReplacementFragmentType replacement) {
+		return new ReplacementElementHolder(replacement);
+	}
+
+	@Override
+	public IPlacementElementHolder createPlacementElementHolder(
+			PlacementFragment placement) {
+		return new PlacementElementHolder(placement);
 	}
 }

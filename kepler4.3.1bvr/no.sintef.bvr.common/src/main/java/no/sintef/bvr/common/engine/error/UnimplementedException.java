@@ -1,4 +1,4 @@
-package no.sintef.bvr.engine.error;
+package no.sintef.bvr.common.engine.error;
 
 public class UnimplementedException extends BasicBVREngineException {
 
@@ -6,6 +6,5 @@ public class UnimplementedException extends BasicBVREngineException {
 	
 	public UnimplementedException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 }

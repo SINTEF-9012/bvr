@@ -10,9 +10,11 @@ import java.util.HashMap;
 
 
 
+
+
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import node.NodePackage;

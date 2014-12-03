@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import no.sintef.bvr.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.error.GeneralBVREngineException;
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
+import no.sintef.bvr.common.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.bvr.engine.fragment.impl.ReplacementElementHolder;
 
@@ -25,6 +25,7 @@ import bvr.ReplacementFragmentType;
 import bvr.ToReplacement;
 
 public class EngineUtility {
+	
 	private static BvrFactory factory = BvrFactory.eINSTANCE;
 
 	public static EList<EObject> resolveProxies(EList<? extends EObject> proxyList){

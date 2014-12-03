@@ -1,4 +1,4 @@
-package no.sintef.bvr.engine.fragment;
+package no.sintef.bvr.engine.interfaces.fragment;
 
 import java.util.HashSet;
 

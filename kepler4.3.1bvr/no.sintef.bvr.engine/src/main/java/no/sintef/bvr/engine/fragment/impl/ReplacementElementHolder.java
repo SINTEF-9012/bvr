@@ -2,21 +2,28 @@ package no.sintef.bvr.engine.fragment.impl;
 
 import java.util.HashSet;
 
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.common.HolderDataElement;
-import no.sintef.bvr.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.fragment.ElementHolderOIF;
 import no.sintef.bvr.engine.fragment.ReplacementElementFinderStrategy;
+import no.sintef.bvr.engine.interfaces.fragment.ElementHolderOIF;
+import no.sintef.bvr.engine.interfaces.fragment.IReplacementElementHolder;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 
+
+
+
+
+
+
 import bvr.FromReplacement;
 import bvr.ReplacementFragmentType;
 import bvr.ToReplacement;
 
-public class ReplacementElementHolder extends BasicElementHolder implements ElementHolderOIF {
+public class ReplacementElementHolder extends BasicElementHolder implements IReplacementElementHolder {
 	
 	protected EList<ToReplacement> tbe;
 	protected EList<FromReplacement> fbe;
@@ -31,6 +38,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		this.locate();
 	}
 	
+	@Override
 	public void update() throws BasicBVREngineException{
 		this.locate();
 	}
@@ -68,7 +76,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements Elem
 		return outerElements;
 	}
 	
-	
+	@Override
 	public ReplacementFragmentType getReplacementFragment(){
 		return replacement;
 	}

@@ -10,7 +10,7 @@ import com.google.common.collect.Sets.SetView;
 
 import bvr.FragmentSubstitution;
 import bvr.PlacementFragment;
-import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
+import no.sintef.bvr.engine.interfaces.fragment.IPlacementElementHolder;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
@@ -46,8 +46,8 @@ public class PlacementIntersectionLessTwinAbleStrategy implements
 		ArrayList<PlacementFragment> arrayPlacements = new ArrayList<PlacementFragment>(placements);
 		for(int i=0; i<arrayPlacements.size()-1; i++){
 			for(int j=i+1; j<=arrayPlacements.size()-1; j++){
-				PlacementElementHolder placement0 = new PlacementElementHolder(arrayPlacements.get(i));
-				PlacementElementHolder placement1 = new PlacementElementHolder(arrayPlacements.get(j));
+				IPlacementElementHolder placement0 = Context.eINSTANCE.getSubEngine().createPlacementElementHolder(arrayPlacements.get(i));
+				IPlacementElementHolder placement1 = Context.eINSTANCE.getSubEngine().createPlacementElementHolder(arrayPlacements.get(j));
 				SetView<EObject> intersection = Sets.intersection(placement0.getElements(), placement1.getElements());
 				if(!intersection.isEmpty()){
 					SetView<EObject> symetricDifference = Sets.symmetricDifference(placement0.getElements(), placement1.getElements());

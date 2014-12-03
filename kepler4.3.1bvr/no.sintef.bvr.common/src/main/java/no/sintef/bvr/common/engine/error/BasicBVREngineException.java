@@ -1,4 +1,4 @@
-package no.sintef.bvr.engine.error;
+package no.sintef.bvr.common.engine.error;
 
 /**
  * Basic BVR Engine exception

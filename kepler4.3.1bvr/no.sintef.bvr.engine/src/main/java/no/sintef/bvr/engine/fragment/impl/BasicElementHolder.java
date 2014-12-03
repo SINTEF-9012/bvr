@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.fragment.ElementHolder;
+import no.sintef.bvr.common.engine.error.BasicBVREngineException;
+import no.sintef.bvr.engine.interfaces.fragment.ElementHolder;
 
 public abstract class BasicElementHolder implements ElementHolder {
 

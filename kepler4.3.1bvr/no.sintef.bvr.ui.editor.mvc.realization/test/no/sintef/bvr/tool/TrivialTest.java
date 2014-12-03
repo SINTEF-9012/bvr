@@ -2,8 +2,6 @@ package no.sintef.bvr.tool;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.model.BVRToolModel;
@@ -17,7 +15,6 @@ import no.sintef.test.common.TestResourceHolder;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;

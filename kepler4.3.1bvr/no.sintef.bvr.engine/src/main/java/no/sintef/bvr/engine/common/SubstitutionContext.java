@@ -6,6 +6,8 @@ import no.sintef.bvr.common.logging.Logger;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.engine.logging.impl.ConsoleEngineLogger;
 //import org.springframework.context.ApplicationContext;
 //import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,7 +18,7 @@ public enum SubstitutionContext {
 	private static final String configLocation = "META-INF/beans.xml";
 	//public ApplicationContext context;
 	private EList<Resource> baseModel;
-	private HashMap<Resource, ResourceContentCopier> copyBaseModelMap;
+	private HashMap<Resource, IResourceContentCopier> copyBaseModelMap;
 	private Logger logger;
 	
 	SubstitutionContext () {
@@ -44,11 +46,11 @@ public enum SubstitutionContext {
 		this.baseModel = baseModel;
 	}
 
-	public HashMap<Resource, ResourceContentCopier> getCopyBaseModelMap() {
+	public HashMap<Resource, IResourceContentCopier> getCopyBaseModelMap() {
 		return copyBaseModelMap;
 	}
 
-	public void setCopyBaseModelMap(HashMap<Resource, ResourceContentCopier> copyBaseModelMap) {
+	public void setCopyBaseModelMap(HashMap<Resource, IResourceContentCopier> copyBaseModelMap) {
 		this.copyBaseModelMap = copyBaseModelMap;
 	}
 }

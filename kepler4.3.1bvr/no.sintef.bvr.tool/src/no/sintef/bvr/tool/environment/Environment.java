@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.common.logging.ResetableLogger;
-import no.sintef.bvr.engine.common.ResourceContentCopier;
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
@@ -23,7 +23,7 @@ public interface Environment {
 	
 	public void writeModelToFile(BVRToolModel model, File file);
 	
-	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file);
+	public void writeProductsToFiles(HashMap<Resource, IResourceContentCopier> baseProductMap, File file);
 	
 	public void performSubstitutions(List<SymbolVSpec> symbols);
 	

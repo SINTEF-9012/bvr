@@ -20,9 +20,8 @@ import bvr.ReplacementBoundaryElement;
 import bvr.ReplacementFragmentType;
 import bvr.ToPlacement;
 import bvr.ToReplacement;
-
+import no.sintef.bvr.common.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 
 public class ReplacPlacCotainmentFinder {

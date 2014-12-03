@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+
 import com.google.common.collect.Sets;
 import com.google.common.collect.Sets.SetView;
 
@@ -16,11 +18,10 @@ import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
 import bvr.ToBinding;
 import bvr.ToPlacement;
-
+import no.sintef.bvr.common.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.engine.adjacent.AdjacentFragment;
 import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.UnexpectedOperationFailure;
 import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;

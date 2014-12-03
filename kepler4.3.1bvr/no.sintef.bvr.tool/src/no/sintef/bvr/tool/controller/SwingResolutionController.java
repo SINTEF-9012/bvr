@@ -539,4 +539,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public void executeCommandBatch() {
 		Context.eINSTANCE.getEditorCommands().executeBatch();
 	}
+	
+	@Override
+	public boolean isSubstitutionEngineInitialized() {
+		return (Context.eINSTANCE.getSubEngine() == null) ? false : true;
+	}
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import no.sintef.bvr.common.CommonUtility;
-import no.sintef.bvr.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.checker.ModelChecker;
 import no.sintef.bvr.tool.common.Constants;

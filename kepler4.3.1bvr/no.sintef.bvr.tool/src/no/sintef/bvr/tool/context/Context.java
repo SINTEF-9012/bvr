@@ -11,8 +11,8 @@ import javax.swing.JFileChooser;
 
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.common.logging.ResetableLogger;
-import no.sintef.bvr.engine.common.ResourceContentCopier;
-import no.sintef.bvr.engine.common.SubstitutionEngine;
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
+import no.sintef.bvr.engine.interfaces.common.ISubstitutionEngine;
 import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.environment.Environment;
@@ -45,7 +45,7 @@ public final class Context {
 	private final List<BVRToolModel> bvrModels = new ArrayList<BVRToolModel>();
 	private final List<BVRNotifiableController> bvrViews = new ArrayList<BVRNotifiableController>();
 	
-	private final SubstitutionEngine subEngine = SubstitutionEngine.eINSTANCE;
+	private ISubstitutionEngine subEngine;
 	
 	public Logger logger = environment.getLogger();
 	public ResetableLogger problemLogger = environment.getProblemLogger();
@@ -102,7 +102,7 @@ public final class Context {
 		environment.writeModelToFile(model, file);
 	}
 	
-	public void writeProductsToFiles(HashMap<Resource, ResourceContentCopier> baseProductMap, File file){
+	public void writeProductsToFiles(HashMap<Resource, IResourceContentCopier> baseProductMap, File file){
 		environment.writeProductsToFiles(baseProductMap, file);
 	}
 	
@@ -164,7 +164,13 @@ public final class Context {
 		subEngine.init(frgamentSusbstitutions);
 	}
 	
-	public SubstitutionEngine getSubEngine(){
+	public synchronized ISubstitutionEngine testSubEngine(ISubstitutionEngine engine) {
+		if(subEngine == null)
+			subEngine = engine;
+		return subEngine;
+	}
+	
+	public ISubstitutionEngine getSubEngine(){
 		return subEngine;
 	}
 	

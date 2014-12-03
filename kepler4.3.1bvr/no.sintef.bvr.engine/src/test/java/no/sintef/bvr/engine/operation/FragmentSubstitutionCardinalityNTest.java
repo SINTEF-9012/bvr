@@ -3,10 +3,11 @@ package no.sintef.bvr.engine.operation;
 import java.io.File;
 import java.util.HashMap;
 
-import no.sintef.bvr.engine.error.IllegalBVROperation;
+import no.sintef.bvr.common.engine.error.IllegalBVROperation;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;

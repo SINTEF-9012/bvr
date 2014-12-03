@@ -13,9 +13,9 @@ import com.google.common.collect.Sets.SetView;
 import bvr.FromPlacement;
 import bvr.PlacementBoundaryElement;
 import bvr.ToPlacement;
+import no.sintef.bvr.common.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.engine.fragment.AbstractElementFinder;
 import no.sintef.bvr.engine.fragment.PlacementElementFinderStrategy;
 
