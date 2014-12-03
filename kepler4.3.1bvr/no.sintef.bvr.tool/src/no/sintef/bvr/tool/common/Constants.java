@@ -113,7 +113,7 @@ public class Constants {
 	public static final String VSPEC_DROPDOWN_ADD_VARIABLE = "Variable";
 	public static final String VSPEC_DROPDOWN_ADD_VTYPE = "VType";
 	public static final String VSPEC_DROPDOWN_ADD_CHOICEOCC = "ChoiceOccurence";
-	public static final String VSPEC_DROPDOWN_ADD_VCLASS = "VClassOccurence";
+	public static final String VSPEC_DROPDOWN_ADD_VCLASSOCC = "VClassOccurence";
 	public static final String VSPEC_DROPDOWN_REMOVE = "Remove";
 	public static final String VSPEC_DROPDOWN_CUT = "Cut";
 	public static final String VSPEC_DROPDOWN_PAST_CHILD = "Past As Child";

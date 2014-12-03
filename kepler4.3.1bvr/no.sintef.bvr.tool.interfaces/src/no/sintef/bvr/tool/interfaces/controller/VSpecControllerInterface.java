@@ -2,6 +2,8 @@ package no.sintef.bvr.tool.interfaces.controller;
 
 
 
+import javax.swing.JComponent;
+
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 
 
@@ -76,4 +78,8 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 
 	void setVClassOccurenceGroupMultiplicityLowerBound(GUI_NODE node,
 			int lowerBound);
+
+	public void addChoiceOccurence(GUI_NODE parent);
+
+	void addVClassOccurence(GUI_NODE parent);
 }

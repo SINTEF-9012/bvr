@@ -179,4 +179,7 @@ public interface EditorCommands {
 
 	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence,
 			VType vType);
+
+	public void addChoiceVClassOccurence(CompoundNode parent,
+			VNode occurence);
 }

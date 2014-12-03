@@ -334,25 +334,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void addChoice(NamedElement parent) {
-		Choice c = BvrFactory.eINSTANCE.createChoice();
-		c.setIsImpliedByParent(true);
-		c.setName("Choice" + choicCounter);
-
-		// each vspec has to have target
-		Target target = BvrFactory.eINSTANCE.createTarget();
-		target.setName(c.getName());
-		((CompoundNode) c).getOwnedTargets().add(target);
-		c.setTarget(target);
-
-		if (parent instanceof CompoundNode) {
-			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parent);
-		} else if (parent instanceof BVRModel) {
-			BVRModel model = (BVRModel) parent;
-			if (model.getVariabilityModel() == null) {
-				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
-			}
-		}
-		choicCounter++;
+		VSpecFacade.eINSTANCE.appendChoice(parent);
 	}
 	
 	@Override
@@ -479,27 +461,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void addVClassifier(NamedElement parent) {
-		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
-		c.setName("Classifier" + classifierCount);
-		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
-		mi.setLower(1);
-		mi.setUpper(1);
-		c.setInstanceMultiplicity(mi);
-
-		// each vspec has to have target
-		Target target = BvrFactory.eINSTANCE.createTarget();
-		target.setName(c.getName());
-		((CompoundNode) c).getOwnedTargets().add(target);
-		c.setTarget(target);
-
-		if (parent instanceof CompoundNode) {
-			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parent, c);
-		} else if (parent instanceof BVRModel) {
-			BVRModel model = (BVRModel) parent;
-			if (model.getVariabilityModel() == null)
-				Context.eINSTANCE.getEditorCommands().addVClassifierToBVRModel(model, c);
-		}
-		classifierCount++;
+		VSpecFacade.eINSTANCE.appendVClassifier(parent);
 	}
 
 	@Override
@@ -1161,5 +1123,15 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			int upperBound) {
 		MultiplicityInterval interval = vClassOccur.getInstanceMultiplicity();
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(interval, upperBound);
+	}
+	
+	@Override
+	public void addChoiceOccurence(CompoundNode compoundNode) {
+		VSpecFacade.eINSTANCE.appendChoiceOccurence(compoundNode);
+	}
+	
+	@Override
+	public void addVClassOccurence(CompoundNode compoundNode) {
+		VSpecFacade.eINSTANCE.appendVClassOccurence(compoundNode);
 	}
 }

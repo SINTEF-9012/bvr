@@ -587,4 +587,12 @@ abstract public class BVRToolModel {
 			int lowerBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void addChoiceOccurence(CompoundNode compoundNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public void addVClassOccurence(CompoundNode compoundNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
 }

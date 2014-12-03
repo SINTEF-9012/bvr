@@ -430,4 +430,16 @@ public class SwingVSpecController<
 		VClassOccurrence vClassOccur = (VClassOccurrence) vspecvmMap.get(node);
 		toolModel.setVClassOccurenceLowerBound(vClassOccur, lowerBound);
 	}
+
+	@Override
+	public void addChoiceOccurence(GUI_NODE parent) {
+		CompoundNode compoundNode = (CompoundNode) vspecvmMap .get(parent);
+		toolModel.addChoiceOccurence(compoundNode);	
+	}
+	
+	@Override
+	public void addVClassOccurence(GUI_NODE parent) {
+		CompoundNode compoundNode = (CompoundNode) vspecvmMap .get(parent);
+		toolModel.addVClassOccurence(compoundNode);	
+	}
 }

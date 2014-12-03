@@ -626,4 +626,11 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vclassOccurence, BvrPackage.eINSTANCE.getVClassOccurrence_VType(), vType);
 		testCommandExecution(editingDomain, cmd);
 	}
+
+	@Override
+	public void addChoiceVClassOccurence(CompoundNode parent, VNode occurence) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getCompoundNode_Member(), occurence);
+		testCommandExecution(editingDomain, cmd);
+	}
 }

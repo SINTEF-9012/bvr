@@ -458,4 +458,10 @@ public class EditorMVCCommands implements EditorCommands {
 			VType vType) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public void addChoiceVClassOccurence(CompoundNode parent, VNode occurence) {
+		// TODO Auto-generated method stub
+		
+	}
 }
