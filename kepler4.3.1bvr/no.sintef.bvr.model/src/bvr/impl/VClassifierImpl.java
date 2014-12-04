@@ -8,18 +8,21 @@ import bvr.Constraint;
 import bvr.MultiplicityInterval;
 import bvr.Target;
 import bvr.VClassifier;
-
 import bvr.VNode;
 import bvr.Variable;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -51,6 +54,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	 * @ordered
 	 */
 	protected MultiplicityInterval groupMultiplicity;
+
 	/**
 	 * The cached value of the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -60,6 +64,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	 * @ordered
 	 */
 	protected EList<Constraint> ownedConstraint;
+
 	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -69,6 +74,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	 * @ordered
 	 */
 	protected EList<Variable> variable;
+
 	/**
 	 * The cached value of the '{@link #getMember() <em>Member</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -78,6 +84,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	 * @ordered
 	 */
 	protected EList<VNode> member;
+
 	/**
 	 * The cached value of the '{@link #getOwnedTargets() <em>Owned Targets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -87,6 +94,7 @@ public class VClassifierImpl extends VSpecImpl implements VClassifier {
 	 * @ordered
 	 */
 	protected EList<Target> ownedTargets;
+
 	/**
 	 * The cached value of the '{@link #getInstanceMultiplicity() <em>Instance Multiplicity</em>}' containment reference.
 	 * <!-- begin-user-doc -->

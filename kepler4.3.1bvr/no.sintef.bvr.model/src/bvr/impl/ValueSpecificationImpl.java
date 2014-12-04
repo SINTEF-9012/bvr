@@ -28,6 +28,11 @@ public abstract class ValueSpecificationImpl extends MinimalEObjectImpl.Containe
 	
 	private Variabletype variableType;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	protected ValueSpecificationImpl() {
 		super();
 	}
@@ -55,23 +60,18 @@ public abstract class ValueSpecificationImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @generated
 	 */
 	public Variabletype basicGetType() {
-		// TODO: implement this method to return the 'Type' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
 		return variableType;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @generated
 	 */
 	public void setType(Variabletype newType) {
-		// TODO: implement this method to set the 'Type' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		variableType = newType;
 	}
 
