@@ -17,10 +17,10 @@ import no.sintef.bvr.common.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
 import no.sintef.bvr.engine.fragment.AbstractElementFinder;
-import no.sintef.bvr.engine.fragment.PlacementElementFinderStrategy;
+import no.sintef.bvr.engine.interfaces.strategy.IPlacementElementFinderStrategy;
 
 public class StrategyPlacementElemenetFinder extends AbstractElementFinder
-		implements PlacementElementFinderStrategy {
+		implements IPlacementElementFinderStrategy {
 
 	private HolderDataElement elementsHolder;
 	

@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 
-public interface ElementHolder {
+public interface IElementHolder {
 
 	public HashSet<EObject> getElements();
 	

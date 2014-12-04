@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 
-public interface ElementHolderOIF {
+public interface IElementHolderOIF {
 
 	public HashSet<EObject> getInnerNeighboringElements();
 	

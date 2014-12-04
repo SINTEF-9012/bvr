@@ -5,8 +5,6 @@ import java.util.HashMap;
 import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 import no.sintef.bvr.common.engine.error.ContainmentBVRModelException;
 import no.sintef.bvr.common.logging.Logger;
-import no.sintef.bvr.engine.adjacent.AdjacentFinder;
-import no.sintef.bvr.engine.adjacent.AdjacentResolver;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.containment.ReplacPlacCotainmentFinder;
@@ -15,6 +13,8 @@ import no.sintef.bvr.engine.crossing.PlacementCrossingFinder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.bvr.engine.fragment.impl.ReplacementElementHolder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFinder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentResolver;
 import no.sintef.bvr.engine.interfaces.common.IBVRElementDeepCopier;
 import no.sintef.bvr.engine.interfaces.common.IEngineUtility;
 import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
@@ -41,8 +41,8 @@ public final class SubstitutionEngine implements ISubstitutionEngine {
 	private final SubstitutionContext context = SubstitutionContext.ME;
 	
 	private HashMap<FragmentSubstitution, FragmentSubstitutionHolder> fsMap;
-	private AdjacentFinder adjacentFinder;
-	private AdjacentResolver adjacentResolver;
+	private IAdjacentFinder adjacentFinder;
+	private IAdjacentResolver adjacentResolver;
 	private ReplacPlacCotainmentFinder placementInReplacementFinder;
 	private ReplacPlacCotainmentResolver placementInReplacementResolver;
 	private PlacementCrossingFinder placementCrossingFinder;

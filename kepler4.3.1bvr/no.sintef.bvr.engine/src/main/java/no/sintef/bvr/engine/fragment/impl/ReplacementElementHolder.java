@@ -3,25 +3,18 @@ package no.sintef.bvr.engine.fragment.impl;
 import java.util.HashSet;
 
 import no.sintef.bvr.common.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.common.HolderDataElement;
-import no.sintef.bvr.engine.fragment.ReplacementElementFinderStrategy;
-import no.sintef.bvr.engine.interfaces.fragment.ElementHolderOIF;
+import no.sintef.bvr.engine.interfaces.common.IHolderDataElement;
 import no.sintef.bvr.engine.interfaces.fragment.IReplacementElementHolder;
+import no.sintef.bvr.engine.interfaces.strategy.IReplacementElementFinderStrategy;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-
-
-
-
-
-
-
 import bvr.FromReplacement;
 import bvr.ReplacementFragmentType;
 import bvr.ToReplacement;
+
 
 public class ReplacementElementHolder extends BasicElementHolder implements IReplacementElementHolder {
 	
@@ -30,7 +23,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements IRep
 	protected HashSet<EObject> outerElements;
 	protected HashSet<EObject> innerElements;
 	private ReplacementFragmentType replacement;
-	private ReplacementElementFinderStrategy elementFinder;
+	private IReplacementElementFinderStrategy elementFinder;
 
 	public ReplacementElementHolder(ReplacementFragmentType rft) throws BasicBVREngineException {
 		elementFinder = new StrategyReplacementElementFinder();
@@ -51,7 +44,7 @@ public class ReplacementElementHolder extends BasicElementHolder implements IRep
 		tbe = new BasicEList<ToReplacement>();
 		fbe = new BasicEList<FromReplacement>();
 		
-		HolderDataElement data = elementFinder.locateReplacementElements(replacement.getReplacementBoundaryElement());
+		IHolderDataElement data = elementFinder.locateReplacementElements(replacement.getReplacementBoundaryElement());
 		frBElementsInternal.addAll(data.getBoundaryElementsInternal());
 		frBElementsExternal.addAll(data.getBoundaryElementsExternal());
 		frNeighboringInsideElements.addAll(data.getOuterInsideReferenceElements());

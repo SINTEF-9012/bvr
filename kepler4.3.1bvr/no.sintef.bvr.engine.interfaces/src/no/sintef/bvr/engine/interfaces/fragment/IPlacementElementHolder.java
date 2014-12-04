@@ -12,7 +12,7 @@ import bvr.ToPlacement;
 import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 
 
-public interface IPlacementElementHolder extends ElementHolderOIF, ElementHolder {
+public interface IPlacementElementHolder extends IElementHolderOIF, IElementHolder {
 
 	public void update() throws BasicBVREngineException;
 	

@@ -1,7 +1,6 @@
 package no.sintef.bvr.engine.adjacent.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -19,43 +18,43 @@ import bvr.PlacementBoundaryElement;
 import bvr.ToBinding;
 import bvr.ToPlacement;
 import no.sintef.bvr.common.engine.error.UnexpectedOperationFailure;
-import no.sintef.bvr.engine.adjacent.AdjacentFragment;
-import no.sintef.bvr.engine.adjacent.AdjacentFinder;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
-import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFinder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFragment;
+import no.sintef.bvr.engine.interfaces.fragment.IFragSubHolder;
+import no.sintef.bvr.engine.interfaces.fragment.IPlacementElementHolder;
 
-public class AdjacentFinderImpl implements AdjacentFinder {
+public class AdjacentFinderImpl implements IAdjacentFinder {
 
 	private EList<FragmentSubstitutionHolder> fragmentList;
-	private HashMap<FragSubHolder, AdjacentFragment> adjacentMap;
+	private HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap;
 
 	public AdjacentFinderImpl(EList<FragmentSubstitutionHolder> fragmentsList){
 		this.fragmentList = new BasicEList<FragmentSubstitutionHolder>(fragmentsList);
-		this.adjacentMap = new HashMap<FragSubHolder, AdjacentFragment>();
+		this.adjacentMap = new HashMap<IFragSubHolder, IAdjacentFragment>();
 		this.findAdjacentness();
 		this.findTwinAdjacentFragments();
 	}
 	
 	@Override
-	public HashMap<FragSubHolder, AdjacentFragment> getAdjacentMap() {
+	public HashMap<IFragSubHolder, IAdjacentFragment> getAdjacentMap() {
 		return this.adjacentMap;
 	}
 	
 	private void findAdjacentness(){
-		for(FragSubHolder fragmentHolder : this.fragmentList){
-			EList<FragSubHolder> viewedFragments = new BasicEList<FragSubHolder>();
+		for(IFragSubHolder fragmentHolder : this.fragmentList){
+			EList<IFragSubHolder> viewedFragments = new BasicEList<IFragSubHolder>();
 			viewedFragments.add(fragmentHolder);
-			PlacementElementHolder placementHolder = fragmentHolder.getPlacement();
-			SetView<FragSubHolder> toViewFragments = Sets.symmetricDifference(new HashSet<FragSubHolder>(this.fragmentList), new HashSet<FragSubHolder>(viewedFragments));
-			for(FragSubHolder fragmentHolder1 : toViewFragments){
-				PlacementElementHolder placementHolder1 = fragmentHolder1.getPlacement();
+			IPlacementElementHolder placementHolder = fragmentHolder.getPlacement();
+			SetView<IFragSubHolder> toViewFragments = Sets.symmetricDifference(new HashSet<IFragSubHolder>(this.fragmentList), new HashSet<IFragSubHolder>(viewedFragments));
+			for(IFragSubHolder fragmentHolder1 : toViewFragments){
+				IPlacementElementHolder placementHolder1 = fragmentHolder1.getPlacement();
 				if(this.isAdjacent(placementHolder, placementHolder1)){
 					HashMap<FromBinding, ToBinding> adjacentBindings = this.getAdjacentBindings(fragmentHolder, fragmentHolder1);
 					if(!adjacentBindings.isEmpty()){
-						AdjacentFragment adjacentFragment = this.testAdjacentFragment(fragmentHolder);
-						AdjacentFragment adjacentFragment1 = this.testAdjacentFragment((fragmentHolder1));
+						IAdjacentFragment adjacentFragment = this.testAdjacentFragment(fragmentHolder);
+						IAdjacentFragment adjacentFragment1 = this.testAdjacentFragment((fragmentHolder1));
 						adjacentFragment.setAdjacentFragment(adjacentFragment1);
 						adjacentFragment1.setAdjacentFragment(adjacentFragment);
 						
@@ -68,7 +67,7 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 		}
 	}
 	
-	private boolean isAdjacent(PlacementElementHolder placement, PlacementElementHolder placement1){
+	private boolean isAdjacent(IPlacementElementHolder placement, IPlacementElementHolder placement1){
 		HashSet<EObject> iP = placement.getInnerNeighboringElements();
 		HashSet<EObject> iP1 = placement1.getInnerNeighboringElements();
 		if(Sets.intersection(iP, iP1).isEmpty()){
@@ -81,8 +80,8 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 		return false;
 	}
 	
-	private AdjacentFragment testAdjacentFragment(FragSubHolder fragmentHolder){
-		AdjacentFragment adjacentFragment = this.adjacentMap.get(fragmentHolder);
+	private IAdjacentFragment testAdjacentFragment(IFragSubHolder fragmentHolder){
+		IAdjacentFragment adjacentFragment = this.adjacentMap.get(fragmentHolder);
 		if(adjacentFragment == null){
 			adjacentFragment = new AdjacentFragmentImpl(fragmentHolder);
 			this.adjacentMap.put(fragmentHolder, adjacentFragment);
@@ -90,7 +89,7 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 		return adjacentFragment;
 	}
 	
-	private HashMap<FromBinding, ToBinding> getAdjacentBindings(FragSubHolder fragmentHolder, FragSubHolder fragmentHolder1){
+	private HashMap<FromBinding, ToBinding> getAdjacentBindings(IFragSubHolder fragmentHolder, IFragSubHolder fragmentHolder1){
 		HashMap<FromBinding, ToBinding> boundariesMap = new HashMap<FromBinding, ToBinding>();
 		EList<FromBinding> fromBindings = fragmentHolder.getFromBinding();
 		for(FromBinding fromBinding : fromBindings){
@@ -119,19 +118,19 @@ public class AdjacentFinderImpl implements AdjacentFinder {
 	}
 	
 	private void findTwinAdjacentFragments(){
-		ArrayList<AdjacentFragment> fragments = new ArrayList<AdjacentFragment>(adjacentMap.values());
+		ArrayList<IAdjacentFragment> fragments = new ArrayList<IAdjacentFragment>(adjacentMap.values());
 		if(fragments.size() == 0)
 			return;
 		if(fragments.size() < 2)
 			throw new UnexpectedOperationFailure("it is not possible that we just have one adjacent fragment " + fragments);
 		
 		for(int i=0; i<fragments.size()-1; i++){
-			AdjacentFragment fragment_i = fragments.get(i);
-			PlacementElementHolder pHolder_i = fragment_i.getFragmentHolder().getPlacement();
+			IAdjacentFragment fragment_i = fragments.get(i);
+			IPlacementElementHolder pHolder_i = fragment_i.getFragmentHolder().getPlacement();
 			HashSet<EObject> placementElements_i = pHolder_i.getElements();
 			for(int j=i+1; j<fragments.size(); j++){
-				AdjacentFragment fragment_j = fragments.get(j);
-				PlacementElementHolder pHolder_j = fragment_j.getFragmentHolder().getPlacement();
+				IAdjacentFragment fragment_j = fragments.get(j);
+				IPlacementElementHolder pHolder_j = fragment_j.getFragmentHolder().getPlacement();
 				HashSet<EObject> placementElements_j = pHolder_j.getElements();
 				if(Sets.symmetricDifference(placementElements_i, placementElements_j).isEmpty()){
 					fragment_i.addTwinFragment(fragment_j);

@@ -7,10 +7,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 
-import no.sintef.bvr.engine.adjacent.AdjacentFragment;
+
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFragment;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
 
@@ -85,8 +86,8 @@ public class FragmentSubstitutionTestToDelete {
 		//this.fecthContent1();
 		//fecthContent();
 		
-		AdjacentFragment adj1 = adjacenFinder.getAdjacentMap().get(fragmentSubHolder1);
-		AdjacentFragment adj2 = adjacenFinder.getAdjacentMap().get(fragmentSubHolder2);
+		IAdjacentFragment adj1 = adjacenFinder.getAdjacentMap().get(fragmentSubHolder1);
+		IAdjacentFragment adj2 = adjacenFinder.getAdjacentMap().get(fragmentSubHolder2);
 		
 		FragmentSubOperation fso1 = new FragmentSubOperation(fragmentSubHolder1);
 		fso1.execute(true);

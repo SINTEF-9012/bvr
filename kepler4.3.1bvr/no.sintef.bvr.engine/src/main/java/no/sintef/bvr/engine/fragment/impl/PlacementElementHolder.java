@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.Map;
 
 import no.sintef.bvr.common.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.fragment.PlacementElementFinderStrategy;
+import no.sintef.bvr.engine.interfaces.common.IHolderDataElement;
 import no.sintef.bvr.engine.interfaces.fragment.IPlacementElementHolder;
+import no.sintef.bvr.engine.interfaces.strategy.IPlacementElementFinderStrategy;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +27,7 @@ public class PlacementElementHolder extends BasicElementHolder implements IPlace
 	private PlacementFragment placement;
 	private HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap;
 	private HashMap<ToPlacement, HashSet<EObject>> toPlacementOutBoundaryMap;
-	private PlacementElementFinderStrategy elementFinder;
+	private IPlacementElementFinderStrategy elementFinder;
 
 	public PlacementElementHolder(PlacementFragment pf) throws BasicBVREngineException {
 		elementFinder = new StrategyPlacementElemenetFinder();
@@ -62,7 +62,7 @@ public class PlacementElementHolder extends BasicElementHolder implements IPlace
 		outerElements = new HashSet<EObject>();
 		innerElements = new HashSet<EObject>();
 		
-		HolderDataElement data = elementFinder.locatePlacementElements(placement.getPlacementBoundaryElement(), fromPlacementInsBoundaryMap, toPlacementOutBoundaryMap);
+		IHolderDataElement data = elementFinder.locatePlacementElements(placement.getPlacementBoundaryElement(), fromPlacementInsBoundaryMap, toPlacementOutBoundaryMap);
 		frBElementsInternal.addAll(data.getBoundaryElementsInternal());
 		frBElementsExternal.addAll(data.getBoundaryElementsExternal());
 		frNeighboringInsideElements.addAll(data.getOuterInsideReferenceElements());

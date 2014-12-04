@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
-import no.sintef.bvr.engine.adjacent.AdjacentFragment;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentFinderImpl;
 import no.sintef.bvr.engine.adjacent.impl.AdjacentResolverImpl;
-import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFragment;
+import no.sintef.bvr.engine.interfaces.fragment.IFragSubHolder;
 import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 import no.sintef.bvr.engine.testutils.SetUpUtils;
 
@@ -294,11 +294,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		fragmentSubHolderList.add(fragmentSubHolder3);
 		
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
-		AdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
-		AdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
-		AdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent1.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent1.getAdjacentFragmentsList().get(0).equals(adjacent2));
 		Assert.assertTrue("the fragment should be adjacent", adjacent2.getAdjacentFragmentsList().size() == 2);
@@ -334,11 +334,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 	@Test
 	public void testAdjacentSimple2() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
-		AdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
-		AdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
-		AdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent1.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent1.getAdjacentFragmentsList().get(0).equals(adjacent2));
 		Assert.assertTrue("the fragment should be adjacent", adjacent2.getAdjacentFragmentsList().size() == 2);
@@ -376,11 +376,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		fragmentSubHolderList1.add(fragmentSubHolder3);
 		fragmentSubHolderList1.add(fragmentSubHolder2);
 		AdjacentFinderImpl adjacenFinder1 = new AdjacentFinderImpl(fragmentSubHolderList1);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
 		
-		AdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
-		AdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
-		AdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent11.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).equals(adjacent12));
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).getFragmentHolder().equals(adjacent2.getFragmentHolder()));
@@ -422,11 +422,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 	@Test
 	public void testAdjacentSimple3() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
-		AdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
-		AdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
-		AdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent1.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent1.getAdjacentFragmentsList().get(0).equals(adjacent2));
 		Assert.assertTrue("the fragment should be adjacent", adjacent2.getAdjacentFragmentsList().size() == 2);
@@ -464,11 +464,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		fragmentSubHolderList1.add(fragmentSubHolder1);
 		fragmentSubHolderList1.add(fragmentSubHolder3);
 		AdjacentFinderImpl adjacenFinder1 = new AdjacentFinderImpl(fragmentSubHolderList1);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
 		
-		AdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
-		AdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
-		AdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent11.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).equals(adjacent12));
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).getFragmentHolder().equals(adjacent2.getFragmentHolder()));
@@ -510,11 +510,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 	@Test
 	public void testAdjacentSimple4() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
-		AdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
-		AdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
-		AdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent1.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent1.getAdjacentFragmentsList().get(0).equals(adjacent2));
 		Assert.assertTrue("the fragment should be adjacent", adjacent2.getAdjacentFragmentsList().size() == 2);
@@ -552,11 +552,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		fragmentSubHolderList1.add(fragmentSubHolder3);
 		fragmentSubHolderList1.add(fragmentSubHolder1);
 		AdjacentFinderImpl adjacenFinder1 = new AdjacentFinderImpl(fragmentSubHolderList1);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
 		
-		AdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
-		AdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
-		AdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent11.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).equals(adjacent12));
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).getFragmentHolder().equals(adjacent2.getFragmentHolder()));
@@ -598,11 +598,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 	@Test
 	public void testAdjacentSimple5() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
-		AdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
-		AdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
-		AdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent1.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent1.getAdjacentFragmentsList().get(0).equals(adjacent2));
 		Assert.assertTrue("the fragment should be adjacent", adjacent2.getAdjacentFragmentsList().size() == 2);
@@ -640,11 +640,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		fragmentSubHolderList1.add(fragmentSubHolder1);
 		fragmentSubHolderList1.add(fragmentSubHolder2);
 		AdjacentFinderImpl adjacenFinder1 = new AdjacentFinderImpl(fragmentSubHolderList1);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
 		
-		AdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
-		AdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
-		AdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent11.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).equals(adjacent12));
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).getFragmentHolder().equals(adjacent2.getFragmentHolder()));
@@ -686,11 +686,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 	@Test
 	public void testAdjacentSimple6() throws Exception {
 		AdjacentFinderImpl adjacenFinder = new AdjacentFinderImpl(fragmentSubHolderList);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap = adjacenFinder.getAdjacentMap();
 		
-		AdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
-		AdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
-		AdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent1 = adjacentMap.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent2 = adjacentMap.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent3 = adjacentMap.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent1.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent1.getAdjacentFragmentsList().get(0).equals(adjacent2));
 		Assert.assertTrue("the fragment should be adjacent", adjacent2.getAdjacentFragmentsList().size() == 2);
@@ -728,11 +728,11 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		fragmentSubHolderList1.add(fragmentSubHolder2);
 		fragmentSubHolderList1.add(fragmentSubHolder1);
 		AdjacentFinderImpl adjacenFinder1 = new AdjacentFinderImpl(fragmentSubHolderList1);
-		HashMap<FragSubHolder, AdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
+		HashMap<IFragSubHolder, IAdjacentFragment> adjacentMap1 = adjacenFinder1.getAdjacentMap();
 		
-		AdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
-		AdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
-		AdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
+		IAdjacentFragment adjacent11 = adjacentMap1.get(fragmentSubHolder1);
+		IAdjacentFragment adjacent12 = adjacentMap1.get(fragmentSubHolder2);
+		IAdjacentFragment adjacent13 = adjacentMap1.get(fragmentSubHolder3);
 		Assert.assertTrue("the fragment should be adjacent", adjacent11.getAdjacentFragmentsList().size() == 1);
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).equals(adjacent12));
 		Assert.assertTrue("the fragment is adjacent to the wrong fragment", adjacent11.getAdjacentFragmentsList().get(0).getFragmentHolder().equals(adjacent2.getFragmentHolder()));
@@ -823,9 +823,9 @@ public class FragmentSubstitutionAdjacentNtoMNullTest {
 		Assert.assertTrue("Expected transformation is different", SetUpUtils.isIdentical("prod6.node", "base_new.node"));
 	}
 	
-	private EList<FragmentSubstitutionHolder> getFragmentSubstitutionHolders(EList<AdjacentFragment> adjacentFragmants){
+	private EList<FragmentSubstitutionHolder> getFragmentSubstitutionHolders(EList<IAdjacentFragment> adjacentFragmants){
 		EList<FragmentSubstitutionHolder> fragSubHolders = new BasicEList<FragmentSubstitutionHolder>();
-		for(AdjacentFragment adjacentFragment : adjacentFragmants){
+		for(IAdjacentFragment adjacentFragment : adjacentFragmants){
 			fragSubHolders.add((FragmentSubstitutionHolder) adjacentFragment.getFragmentHolder());
 		}
 		return fragSubHolders;

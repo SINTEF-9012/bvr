@@ -23,34 +23,34 @@ import no.sintef.bvr.common.engine.error.GeneralBVREngineException;
 import no.sintef.bvr.common.engine.error.IllegalBVROperation;
 import no.sintef.bvr.common.engine.error.IncorrectBVRModel;
 import no.sintef.bvr.common.engine.error.UnexpectedOperationFailure;
-import no.sintef.bvr.engine.adjacent.AdjacentFinder;
-import no.sintef.bvr.engine.adjacent.AdjacentFragment;
-import no.sintef.bvr.engine.adjacent.AdjacentResolver;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.fragment.FragSubHolder;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFinder;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentFragment;
+import no.sintef.bvr.engine.interfaces.adjacent.IAdjacentResolver;
+import no.sintef.bvr.engine.interfaces.fragment.IFragSubHolder;
 
-public class AdjacentResolverImpl implements AdjacentResolver {
+public class AdjacentResolverImpl implements IAdjacentResolver {
 
-	private AdjacentFinder adjacentFinder;
+	private IAdjacentFinder adjacentFinder;
 
-	public AdjacentResolverImpl(AdjacentFinder finder){
+	public AdjacentResolverImpl(IAdjacentFinder finder){
 		this.adjacentFinder = finder;
 	}
 	
 	@Override
-	public void resolve(FragSubHolder fragmentHolderCurrent) throws BasicBVREngineException {
-		AdjacentFragment aFrag = this.adjacentFinder.getAdjacentMap().get(fragmentHolderCurrent);
+	public void resolve(IFragSubHolder fragmentHolderCurrent) throws BasicBVREngineException {
+		IAdjacentFragment aFrag = this.adjacentFinder.getAdjacentMap().get(fragmentHolderCurrent);
 		if(aFrag == null)
 			return;
 		
-		HashSet<AdjacentFragment> adjacentFragments = aFrag.getAdjacentFragments();
+		HashSet<IAdjacentFragment> adjacentFragments = aFrag.getAdjacentFragments();
 		if(adjacentFragments.isEmpty())
 			throw new GeneralBVREngineException("can not find any adjacent fragments to the fragment that seems to be adjacent" + fragmentHolderCurrent);
 
-		HashSet<AdjacentFragment> twinAFrag = aFrag.getTwinFragments();		
-		for(AdjacentFragment adjacentFragment : adjacentFragments){
-			FragSubHolder fragHolderAdjacent = adjacentFragment.getFragmentHolder();
+		HashSet<IAdjacentFragment> twinAFrag = aFrag.getTwinFragments();		
+		for(IAdjacentFragment adjacentFragment : adjacentFragments){
+			IFragSubHolder fragHolderAdjacent = adjacentFragment.getFragmentHolder();
 			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent = EngineUtility.reverseMap(aFrag.getAdjacentToBindings(adjacentFragment));
 			adjacentBindingsToCurrent = (adjacentBindingsToCurrent != null) ? adjacentBindingsToCurrent : new HashMap<FromBinding, ToBinding>();
 			for(Map.Entry<FromBinding, ToBinding> entry : adjacentBindingsToCurrent.entrySet()){
@@ -160,19 +160,19 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 	}
 	
 	private HashSet<ObjectHandle> calculateOutsideBoundaryElementsToPlacementAdjacentToCurrent(
-			AdjacentFragment adjacentCurrent,
+			IAdjacentFragment adjacentCurrent,
 			FromPlacement fromPlacementAdjacentCurrent)
 	{
 		HashSet<ObjectHandle> insideBoundaryElements = new HashSet<ObjectHandle>();
 		FragmentSubstitutionHolder fragmentHolderCurrent = (FragmentSubstitutionHolder) adjacentCurrent.getFragmentHolder();
 		HashMap<FromPlacement, HashSet<ObjectHandle>> insideBoundaryElementsFromPlacementMap = fragmentHolderCurrent.getFromPlacementInsideBoundaryElementMap();
-		HashSet<AdjacentFragment> twins = adjacentCurrent.getTwinFragments();
+		HashSet<IAdjacentFragment> twins = adjacentCurrent.getTwinFragments();
 		if(twins.isEmpty()){
 			insideBoundaryElements.addAll(insideBoundaryElementsFromPlacementMap.get(fromPlacementAdjacentCurrent));
 		}else{
-			Iterator<AdjacentFragment> iterator = twins.iterator();
+			Iterator<IAdjacentFragment> iterator = twins.iterator();
 			while(iterator.hasNext()){
-				AdjacentFragment twin = iterator.next();				
+				IAdjacentFragment twin = iterator.next();				
 				HashMap<FromPlacement, FromPlacement> fromPlacementMap = adjacentCurrent.getTwinFromPlacement(twin);
 				if(fromPlacementMap == null){
 					throw new UnexpectedOperationFailure("twin fromPlacement boundary map is null");
@@ -193,14 +193,14 @@ public class AdjacentResolverImpl implements AdjacentResolver {
 	}
 	
 	private EList<ObjectHandle> calculateInsideBoundaryElements(
-			HashSet<AdjacentFragment> twins,
-			AdjacentFragment adjacentFragment,
+			HashSet<IAdjacentFragment> twins,
+			IAdjacentFragment adjacentFragment,
 			FromBinding fromBindingAdjacent,
 			ToBinding toBindingCurrent)
 	{
 		HashSet<ObjectHandle> insideBEObjectHandles = new HashSet<ObjectHandle>();
 		insideBEObjectHandles.addAll(toBindingCurrent.getToPlacement().getInsideBoundaryElement());
-		for(AdjacentFragment twin : twins){
+		for(IAdjacentFragment twin : twins){
 			HashMap<FromBinding, ToBinding> adjacentBindingsToCurrent =
 					EngineUtility.reverseMap(twin.getAdjacentToBindings(adjacentFragment));
 			if(adjacentBindingsToCurrent == null)

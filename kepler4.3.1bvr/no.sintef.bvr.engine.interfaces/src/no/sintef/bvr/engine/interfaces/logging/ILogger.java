@@ -1,6 +1,6 @@
-package no.sintef.bvr.engine.logging;
+package no.sintef.bvr.engine.interfaces.logging;
 
-public interface Logger {
+public interface ILogger {
 
 	public void error(String message);
 	

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 
 
 
+
 import bvr.BoundaryElementBinding;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
@@ -22,10 +23,10 @@ import bvr.ToBinding;
 import bvr.ToPlacement;
 import no.sintef.bvr.common.engine.error.BasicBVREngineException;
 import no.sintef.bvr.engine.common.EngineUtility;
-import no.sintef.bvr.engine.fragment.FragSubHolder;
+import no.sintef.bvr.engine.interfaces.fragment.IFragSubHolder;
 
 
-public class FragmentSubstitutionHolder implements FragSubHolder {
+public class FragmentSubstitutionHolder implements IFragSubHolder {
 
 	private FragmentSubstitution fragment;
 	private PlacementElementHolder placement;

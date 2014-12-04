@@ -15,10 +15,10 @@ import bvr.ToReplacement;
 import no.sintef.bvr.engine.common.HolderDataElement;
 import no.sintef.bvr.engine.common.EngineUtility;
 import no.sintef.bvr.engine.fragment.AbstractElementFinder;
-import no.sintef.bvr.engine.fragment.ReplacementElementFinderStrategy;
+import no.sintef.bvr.engine.interfaces.strategy.IReplacementElementFinderStrategy;
 
 public class StrategyReplacementElementFinder extends
-			AbstractElementFinder implements ReplacementElementFinderStrategy {
+			AbstractElementFinder implements IReplacementElementFinderStrategy {
 
 	private HolderDataElement elementsHolder;
 	

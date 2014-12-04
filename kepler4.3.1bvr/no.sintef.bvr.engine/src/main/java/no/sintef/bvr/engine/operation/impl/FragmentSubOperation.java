@@ -30,9 +30,10 @@ import no.sintef.bvr.engine.common.EngineUtility;
 import no.sintef.bvr.engine.fragment.impl.FragmentSubstitutionHolder;
 import no.sintef.bvr.engine.fragment.impl.PlacementElementHolder;
 import no.sintef.bvr.engine.fragment.impl.ReplacementElementHolder;
-import no.sintef.bvr.engine.operation.Substitution;
+import no.sintef.bvr.engine.interfaces.operation.ISubstitution;
 
-public class FragmentSubOperation implements Substitution {
+
+public class FragmentSubOperation implements ISubstitution {
 
 	private PlacementElementHolder placement;
 	private ReplacementElementHolder replacement;

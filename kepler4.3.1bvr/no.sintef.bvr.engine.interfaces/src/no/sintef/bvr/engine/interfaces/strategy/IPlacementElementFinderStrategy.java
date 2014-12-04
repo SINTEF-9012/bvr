@@ -1,4 +1,4 @@
-package no.sintef.bvr.engine.fragment;
+package no.sintef.bvr.engine.interfaces.strategy;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -6,14 +6,14 @@ import java.util.HashSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import no.sintef.bvr.engine.common.HolderDataElement;
+import no.sintef.bvr.engine.interfaces.common.IHolderDataElement;
 import bvr.FromPlacement;
 import bvr.PlacementBoundaryElement;
 import bvr.ToPlacement;
 
-public interface PlacementElementFinderStrategy {
+public interface IPlacementElementFinderStrategy {
 	
-	public HolderDataElement locatePlacementElements(EList<PlacementBoundaryElement> pbes,
+	public IHolderDataElement locatePlacementElements(EList<PlacementBoundaryElement> pbes,
 			HashMap<FromPlacement, HashSet<EObject>> fromPlacementInsBoundaryMap,
 			HashMap<ToPlacement, HashSet<EObject>> toPlacementOutBoundaryMap);
 	

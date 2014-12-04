@@ -3,9 +3,11 @@ package no.sintef.bvr.engine.common;
 import java.util.Collection;
 import java.util.HashSet;
 
+import no.sintef.bvr.engine.interfaces.common.IHolderDataElement;
+
 import org.eclipse.emf.ecore.EObject;
 
-public class HolderDataElement {
+public class HolderDataElement implements IHolderDataElement {
 	
 	private HashSet<EObject> innerNeighboringElements;
 	private HashSet<EObject> outerNeighboringElements; 

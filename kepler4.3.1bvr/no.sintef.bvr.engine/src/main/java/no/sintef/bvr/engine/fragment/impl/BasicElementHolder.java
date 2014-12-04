@@ -5,9 +5,9 @@ import java.util.HashSet;
 import org.eclipse.emf.ecore.EObject;
 
 import no.sintef.bvr.common.engine.error.BasicBVREngineException;
-import no.sintef.bvr.engine.interfaces.fragment.ElementHolder;
+import no.sintef.bvr.engine.interfaces.fragment.IElementHolder;
 
-public abstract class BasicElementHolder implements ElementHolder {
+public abstract class BasicElementHolder implements IElementHolder {
 
 	protected HashSet<EObject> frElementsOriginal;
 	protected HashSet<EObject> frBElementsInternal; 
