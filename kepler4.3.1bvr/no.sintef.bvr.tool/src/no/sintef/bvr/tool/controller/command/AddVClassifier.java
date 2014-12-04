@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
@@ -89,10 +90,14 @@ public class AddVClassifier<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR
         c.setNameAndCardinality((minimized?"(+) ":"") + vc.getName(), l, u);
         
         for(Variable v : ((VNode) vc).getVariable()){
-        	if(v.getType() instanceof PrimitveType)
-        		c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
-        	else
-        		c.addAttribute(v.getName(), v.getType().getName());
+        	if(v.getType() != null) {
+	        	if(v.getType() instanceof PrimitveType)
+	        		c.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+	        	else
+	        		c.addAttribute(v.getName(), v.getType().getName());
+        	} else {
+        		c.addAttribute(v.getName(), Constants.DEFAULT_TYPE_TITLE);
+        	}
         }
 
         for(VNode vNode : vc.getMember()) {

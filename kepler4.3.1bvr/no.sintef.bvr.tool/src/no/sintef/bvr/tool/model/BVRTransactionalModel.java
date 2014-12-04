@@ -1081,7 +1081,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence,
 			String strType) {
-		if(choiceOccurence.getVType() == null && strType.equals(Constants.DEFAULT_VTYPE_TITLE))
+		if(choiceOccurence.getVType() == null && strType.equals(Constants.DEFAULT_TYPE_TITLE))
 			return;
 		
 		if(choiceOccurence.getVType() != null && choiceOccurence.getVType().getName().equals(strType))
@@ -1089,7 +1089,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		
 		VType vType = findTypeByName(strType);
 		
-		if (vType == null && !strType.equals(Constants.DEFAULT_VTYPE_TITLE))
+		if (vType == null && !strType.equals(Constants.DEFAULT_TYPE_TITLE))
 			throw new UserInputError("cannot find VType : " + strType);
 		
 		VTypeFacade.eINSTANCE.setChoiceOccurenceVType(choiceOccurence, vType);
@@ -1109,7 +1109,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void setVClassOccurenceType(VClassOccurrence vclassOccurence,
 			String typeName) {
-		if(vclassOccurence.getVType() == null && typeName.equals(Constants.DEFAULT_VTYPE_TITLE))
+		if(vclassOccurence.getVType() == null && typeName.equals(Constants.DEFAULT_TYPE_TITLE))
 			return;
 		
 		if(vclassOccurence.getVType() != null && vclassOccurence.getVType().getName().equals(typeName))
@@ -1117,7 +1117,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		
 		VType vType = findTypeByName(typeName);
 		
-		if (vType == null && !typeName.equals(Constants.DEFAULT_VTYPE_TITLE))
+		if (vType == null && !typeName.equals(Constants.DEFAULT_TYPE_TITLE))
 			throw new UserInputError("cannot find VType : " + typeName);
 		
 		VTypeFacade.eINSTANCE.setVClassOccurenceVType(vclassOccurence, vType);

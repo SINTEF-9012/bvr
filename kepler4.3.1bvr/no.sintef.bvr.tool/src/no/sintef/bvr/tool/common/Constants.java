@@ -115,7 +115,7 @@ public class Constants {
 	public static final String RESOLUTION_DROPDOWN_MAXIMIZE_ITEM = "Maximize";
 	public static final String RESOLUTION_DROPDOWN_REMOVE_ITEM = GENERAL_REMOVE_MENU_ITEM;
 	public static final String RESOLUTION_DROPDOWN_VALIDATE_ITEM = "Validate";
-	public static final String DEFAULT_VTYPE_TITLE = "Undefined";
+	public static final String DEFAULT_TYPE_TITLE = "Undefined";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM = "Resolve ChoiceOccurence";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM = "Resolve VClassOccurence";
 	
@@ -139,5 +139,6 @@ public class Constants {
 	public static final String VSPEC_DROPDOWN_SET_GROUP_CUSTOM = "Custom...";
 	public static final String VSPEC_DROPDOWN_MINIMIZE = RESOLUTION_DROPDOWN_MININIZE_ITEM;
 	public static final String VSPEC_DROPDOWN_MAXIMIZE = RESOLUTION_DROPDOWN_MAXIMIZE_ITEM;
+	public static final String VSPEC_VTYPE_TITLE = "VType";
 	
 }

@@ -61,7 +61,7 @@ public class VClassOccurencePropertyEditor extends ElementPropertyEditor {
         lt.setLabelFor(type);
         pt.add(type);
         
-        String setType = (((VClassOccurrence) elem).getVType() != null) ? ((VClassOccurrence) elem).getVType().getName() : Constants.DEFAULT_VTYPE_TITLE;
+        String setType = (((VClassOccurrence) elem).getVType() != null) ? ((VClassOccurrence) elem).getVType().getName() : Constants.DEFAULT_TYPE_TITLE;
         type.setText(setType);
         ((UpdateVClassOccurence) command).setType(setType);
 

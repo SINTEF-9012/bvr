@@ -86,7 +86,7 @@ public class AddVClassOccurence<EDITOR_PANEL, MODEL_PANEL> implements Command<ED
         int l = m.getLower();
         int u = m.getUpper();
         
-        String typeName = (vc.getVType() != null) ? vc.getVType().getName() : Constants.DEFAULT_VTYPE_TITLE;
+        String typeName = (vc.getVType() != null) ? vc.getVType().getName() : Constants.DEFAULT_TYPE_TITLE;
 
         c.setNameTypeCardinality((minimized?"(+) ":"") + vc.getName(), typeName, l, u);
         

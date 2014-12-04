@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.interfaces.ui.editor.BVRUIKernelInterface;
@@ -90,17 +91,21 @@ public class AddChoice<EDITOR_PANEL, MODEL_PANEL> implements Command<EDITOR_PANE
         if(!comment.equals(""))
         	cp.addAttribute("\""+comment+"\"", "");
         
-        for(Variable v : c.getVariable()){
-        	if(v.getType() instanceof PrimitveType)
-        		cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
-        	else
-        		cp.addAttribute(v.getName(), v.getType().getName());
+        for(Variable v : c.getVariable()) {
+        	if(v.getType() != null) {
+	        	if(v.getType() instanceof PrimitveType)
+	        		cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+	        	else
+	        		cp.addAttribute(v.getName(), v.getType().getName());
+        	} else {
+        		cp.addAttribute(v.getName(), Constants.DEFAULT_TYPE_TITLE);
+        	}
         }
         
         for(VNode vNode : c.getMember()) {
         	if(vNode instanceof VType) {
         		VType vType = (VType) vNode;
-        		JLabel label = cp.addAttribute(vType.getName() + " : VType");
+        		JLabel label = cp.addAttribute(vType.getName() + " : " + Constants.VSPEC_VTYPE_TITLE);
         		label.addMouseListener(new MouseAdapter() {
         			@Override
         			public void mouseClicked(MouseEvent e) {

@@ -82,7 +82,7 @@ public class AddChoiceOccurence<EDITOR_PANEL, MODEL_PANEL> implements Command<ED
         listener.setLeftClickCommand(command);
         
         VType vType = c.getVType();
-        String typeName = (vType != null) ? vType.getName() : Constants.DEFAULT_VTYPE_TITLE;
+        String typeName = (vType != null) ? vType.getName() : Constants.DEFAULT_TYPE_TITLE;
         
         cp.setTitle((minimized ? "(+) " : "") + c.getName() + " : " + typeName);
         
@@ -91,10 +91,14 @@ public class AddChoiceOccurence<EDITOR_PANEL, MODEL_PANEL> implements Command<ED
         	cp.addAttribute("\""+comment+"\"", "");
         
         for(Variable v : c.getVariable()){
-        	if(v.getType() instanceof PrimitveType)
-        		cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
-        	else
-        		cp.addAttribute(v.getName(), v.getType().getName());
+        	if(v.getType() != null) {
+	        	if(v.getType() instanceof PrimitveType)
+	        		cp.addAttribute(v.getName(), ((PrimitveType)v.getType()).getType().getName());
+	        	else
+	        		cp.addAttribute(v.getName(), v.getType().getName());
+        	} else {
+        		cp.addAttribute(v.getName(), Constants.DEFAULT_TYPE_TITLE);
+        	}
         }
         
 		((BVRModelPanel) rootPanel.getModelPanel()).addNode(cp);

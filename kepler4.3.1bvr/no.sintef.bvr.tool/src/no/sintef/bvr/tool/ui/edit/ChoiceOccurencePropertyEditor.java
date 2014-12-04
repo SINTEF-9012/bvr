@@ -61,7 +61,7 @@ public class ChoiceOccurencePropertyEditor extends ElementPropertyEditor {
         lt.setLabelFor(type);
         pt.add(type);
         
-        String setType = (((ChoiceOccurrence) elem).getVType() != null) ? ((ChoiceOccurrence) elem).getVType().getName() : Constants.DEFAULT_VTYPE_TITLE;
+        String setType = (((ChoiceOccurrence) elem).getVType() != null) ? ((ChoiceOccurrence) elem).getVType().getName() : Constants.DEFAULT_TYPE_TITLE;
         type.setText(setType);
         ((UpdateChoiceOccurence) command).setChoiceType(setType);
 

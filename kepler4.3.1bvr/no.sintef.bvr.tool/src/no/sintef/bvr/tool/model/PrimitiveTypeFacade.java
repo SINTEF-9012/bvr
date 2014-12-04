@@ -38,7 +38,7 @@ import bvr.Variabletype;
 public class PrimitiveTypeFacade {
 	
 	private static int valueResolutionCount = 0;
-	private final static String defaultValue = "0";
+	
 	
 	private static PrimitiveTypeFacade instance = null;
 	private PrimitiveTypeFacade(){
