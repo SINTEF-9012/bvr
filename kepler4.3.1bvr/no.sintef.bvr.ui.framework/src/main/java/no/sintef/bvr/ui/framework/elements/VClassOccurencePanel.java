@@ -19,7 +19,6 @@ import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -27,7 +26,6 @@ import no.sintef.bvr.ui.framework.ErrorHighlightableElement;
 import no.sintef.bvr.ui.framework.SelectElement;
 import no.sintef.bvr.ui.framework.ThreePartRectanglePanel;
 import no.sintef.bvr.ui.framework.TitledElement;
-import no.sintef.bvr.ui.framework.OptionalElement.OPTION_STATE;
 
 import org.jdesktop.swingx.JXLabel;
 import org.jdesktop.swingx.JXTitledSeparator;
@@ -38,15 +36,6 @@ public class VClassOccurencePanel extends ThreePartRectanglePanel implements VSp
     JXTitledSeparator separatorbar = null;
     JXTitledSeparator separatorbartype = null;
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
-
-	public String getName() {
-		return display_name.getName();
-	}
-	
-
-	public void setName(String name) {
-		setTitle(name);
-	}
     
     public VClassOccurencePanel() {
         display_name.setForeground(Color.BLACK);
@@ -117,6 +106,11 @@ public class VClassOccurencePanel extends ThreePartRectanglePanel implements VSp
     public void setTitle(String title) {
     	this.display_name.setText(title);
         this.setToolTipText("VClassifier "+title);
+    }
+    
+    @Override
+    public String getTitle() {
+    	return display_name.getText();
     }
 
     private Boolean selected = false;

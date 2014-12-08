@@ -36,15 +36,6 @@ public class VTypeRootSymbolPanel extends ThreePartRectanglePanel implements VSp
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
     BVRModelPanel model;
-
-	public String getName() {
-		return display_name.getName();
-	}
-	
-
-	public void setName(String name) {
-		setTitle(name);
-	}
     
     public VTypeRootSymbolPanel(BVRModelPanel model) {
     	this.model = model;
@@ -76,6 +67,11 @@ public class VTypeRootSymbolPanel extends ThreePartRectanglePanel implements VSp
     public void setTitle(String title) {
     	this.display_name.setText(title + " : VType");
         this.setToolTipText("vType" + title + " : VType");
+    }
+    
+    @Override
+    public String getTitle() {
+    	return display_name.getText();
     }
 
     private Boolean selected = false;

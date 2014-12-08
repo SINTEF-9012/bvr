@@ -25,14 +25,11 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Line2D;
-//import java.awt.geom.QuadCurve2D;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+
 
 public class BindingPanel extends JPanel {
 

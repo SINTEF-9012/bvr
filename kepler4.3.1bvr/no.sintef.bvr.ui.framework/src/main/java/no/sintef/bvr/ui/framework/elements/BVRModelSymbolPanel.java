@@ -36,15 +36,6 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
     Map<String, JXLabel> attributesbar = new HashMap<String, JXLabel>();
     
     BVRModelPanel model;
-
-	public String getName() {
-		return display_name.getName();
-	}
-	
-
-	public void setName(String name) {
-		setTitle(name);
-	}
     
     public BVRModelSymbolPanel(BVRModelPanel model) {
     	this.model = model;
@@ -71,11 +62,7 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
         attributesbar.put(name, att);
         addCenter(att);
     }
-    
-    public void removeAttribute(String name) {
-    	
-    }
-    
+        
     public void setNameAndCardinality(String name, int lower, int upper) {
     	setTitle(name + " : [" + lower + ", " + ((upper==-1)?"*":upper) + "]");
     }
@@ -84,6 +71,11 @@ public class BVRModelSymbolPanel extends ThreePartRectanglePanel implements VSpe
     public void setTitle(String title) {
     	this.display_name.setText(title + " : BVRModel");
         this.setToolTipText("bvrModel" + title + " : BVRModel");
+    }
+    
+    @Override
+    public String getTitle() {
+    	return display_name.getText();
     }
 
     private Boolean selected = false;
