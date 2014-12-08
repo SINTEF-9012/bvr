@@ -134,30 +134,12 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 			fileinput.getFile().refreshLocal(IResource.DEPTH_ZERO, null);
 			ResourceResourceSavedSubjectMap.eINSTANCE
 					.pokeResourceSubjects(resourceURI);
-		} catch (final IOException e) {
-			new Thread() {
-				public void run() {
-					throw new RuntimeException("Error Saving: "
-							+ e.getMessage(), e);
-					/*
-					 * JOptionPane.showMessageDialog(frame, "Error Saving: " +
-					 * e.getMessage(), "Saving Failed",
-					 * JOptionPane.ERROR_MESSAGE);
-					 */
-				}
-			}.start();
-		} catch (final CoreException e) {
-			new Thread() {
-				public void run() {
-					throw new RuntimeException("Error Saving: "
-							+ e.getMessage(), e);
-					/*
-					 * JOptionPane.showMessageDialog(frame, "Error Saving: " +
-					 * e.getMessage(), "Saving Failed",
-					 * JOptionPane.ERROR_MESSAGE);
-					 */
-				}
-			}.start();
+		} catch (IOException e) {
+			Context.eINSTANCE.logger.error("Error Saving:", e);
+			throw new RuntimeException("Error Saving: " + e.getMessage(), e);
+		} catch (CoreException e) {
+			Context.eINSTANCE.logger.error("Error Saving:", e);
+			throw new RuntimeException("Error Saving: " + e.getMessage(), e);
 		}
 	}
 
