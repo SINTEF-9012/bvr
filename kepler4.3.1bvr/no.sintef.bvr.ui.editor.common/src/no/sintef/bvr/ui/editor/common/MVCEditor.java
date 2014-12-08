@@ -53,7 +53,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
-
 public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	protected JLayeredPane x = new JLayeredPane();
@@ -69,7 +68,6 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	private Frame frame;
 	private Composite composite;
-	
 
 	public MVCEditor() {
 		super();
@@ -185,49 +183,44 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 		composite.setLayout(layout);
 		frame = SWT_AWT.new_Frame(composite);
 
-		new Thread() {
-			public void run() {
-				if (fileinput != null) {
-					try {
-						UIManager.setLookAndFeel(UIManager
-								.getSystemLookAndFeelClassName());
-
-						toolModel = Context.eINSTANCE
-								.testBVRToolModel(new File(filename));
-						resourceURI = ((BVRTransactionalModel) toolModel)
-								.getResource().getURI();
-
-						jApplet = new CustomJApplet();
-						Context.eINSTANCE.setActiveJApplet(jApplet);
-						createView();
-						// "The first child of the embedded frame must be a heavyweight component."
-						frame.add(jApplet);
-						setContents();
-						int w = (int) frame.getBounds().getWidth();
-						int h = (int) frame.getBounds().getHeight();
-						jApplet.setSize(w, h);
-						frame.revalidate();
-						frame.repaint();
-						firePropertyChange(ISaveablePart.PROP_DIRTY);
-
-						// attach model as listener to any changes in the
-						// resource
-						synchronized (this) {
-							List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE
-									.getSubjects(resourceURI);
-							ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
-							ResourceResourceSetSubjectMap.eINSTANCE
-									.testResourceSubject(resourceURI, subject);
-							subject.attach((BVRTransactionalModel) toolModel);
-						}
-					} catch (Exception e) {
-						Context.eINSTANCE.logger.error(
-								"Cannot open file " + e.getMessage(), e);
-						throw new RuntimeException("Rethrowing exception", e);
-					}
+		if (fileinput != null) {
+				try {
+					UIManager.setLookAndFeel(UIManager
+							.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					Context.eINSTANCE.logger.error("failed to set  system look and feel", e);
 				}
-			}
-		}.start();
+
+				toolModel = Context.eINSTANCE.testBVRToolModel(new File(
+						filename));
+				resourceURI = ((BVRTransactionalModel) toolModel).getResource()
+						.getURI();
+
+				jApplet = new CustomJApplet();
+				Context.eINSTANCE.setActiveJApplet(jApplet);
+				createView();
+				// "The first child of the embedded frame must be a heavyweight component."
+				frame.add(jApplet);
+				setContents();
+				int w = (int) frame.getBounds().getWidth();
+				int h = (int) frame.getBounds().getHeight();
+				jApplet.setSize(w, h);
+				frame.revalidate();
+				frame.repaint();
+				firePropertyChange(ISaveablePart.PROP_DIRTY);
+
+				// attach model as listener to any changes in the
+				// resource
+				synchronized (this) {
+					List<ResourceSubject> subjects = ResourceResourceSetSubjectMap.eINSTANCE
+							.getSubjects(resourceURI);
+					ResourceSetEditedSubject subject = testResourceSetEditedSubject(subjects);
+					ResourceResourceSetSubjectMap.eINSTANCE
+							.testResourceSubject(resourceURI, subject);
+					subject.attach((BVRTransactionalModel) toolModel);
+				}
+
+		}
 	}
 
 	@Override
