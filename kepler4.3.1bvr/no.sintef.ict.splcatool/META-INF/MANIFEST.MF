@@ -6,7 +6,8 @@ Bundle-Version: 0.1.0.qualifier
 Require-Bundle: org.junit,
  org.sat4j.core,
  de.ovgu.featureide.fm.core,
- no.sintef.bvr.model
+ no.sintef.bvr.model,
+ no.sintef.bvr.constraints.interfaces;bundle-version="1.0.0"
 Import-Package: bvr,
  no.sintef.bvr.common,
  org.eclipse.emf.common.util,

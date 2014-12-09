@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.constraints.strategy.DefaultConstraintFinderStrategy;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -332,7 +333,7 @@ abstract public class BVRToolModel {
 
 	public void generatAllProducts() {
 		try {
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getBVRM().getGUIDSL(new DefaultConstraintFinderStrategy());
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = new CoveringArrayComplete(cnf);
 			ca.generate();
@@ -359,7 +360,7 @@ abstract public class BVRToolModel {
 		}
 		CNF cnf;
 		try {
-			cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			cnf = getBVRM().getGUIDSL(new DefaultConstraintFinderStrategy()).getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (Exception e) {
 			throw new RethrownException("Validation failed:", e);
@@ -377,7 +378,7 @@ abstract public class BVRToolModel {
 		int cov;
 		try {
 			// Get FM:
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getBVRM().getGUIDSL(new DefaultConstraintFinderStrategy());
 			CNF cnf = gdsl.getSXFM().getCNF();
 			// Get Covering Array
 			CoveringArray ca = getBVRM().getCoveringArray();
@@ -393,7 +394,7 @@ abstract public class BVRToolModel {
 	public void generateCoveringArray(int xWise) {
 		try {
 			removeAllResolutions();
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getBVRM().getGUIDSL(new DefaultConstraintFinderStrategy());
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
 			
@@ -437,7 +438,7 @@ abstract public class BVRToolModel {
 		GraphMLFM gfm;
 		try {
 			CoveringArray ca = new CoveringArrayFile(file);
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getBVRM().getGUIDSL(new DefaultConstraintFinderStrategy());
 			gfm = gdsl.getGraphMLFMConf(ca);
 			getBVRM().getChoiceResolutions(gfm);
 		} catch (Exception e) {

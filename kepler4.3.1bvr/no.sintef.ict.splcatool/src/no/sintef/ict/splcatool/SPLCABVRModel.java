@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -25,6 +26,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import bvr.BCLConstraint;
+import bvr.BVRModel;
 import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
@@ -43,9 +45,11 @@ import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 public class SPLCABVRModel {
-	protected bvr.BVRModel model;
+	protected BVRModel model;
 	
 	protected final static String utf8Encoding = "UTF-8"; 
+	
+	protected IConstraintFinderStrategy constFinder;
 
 	public SPLCABVRModel(){
 		BvrPackage.eINSTANCE.eClass();
@@ -62,7 +66,7 @@ public class SPLCABVRModel {
 		model = (!isPlatform) ?  loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
 	}
 
-	public SPLCABVRModel(bvr.BVRModel model) {
+	public SPLCABVRModel(BVRModel model) {
 		this.model = model;
 	}
 
@@ -70,21 +74,25 @@ public class SPLCABVRModel {
 		this(new File(bvrfile));
 	}
 	
-	private bvr.BVRModel loadFromFile(File file){
+	public void setConstrtaintFindStrategy(IConstraintFinderStrategy strategy) {
+		constFinder = strategy;
+	}
+	
+	private BVRModel loadFromFile(File file){
 		BvrPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
-		return (bvr.BVRModel) resource.getContents().get(0);
+		return (BVRModel) resource.getContents().get(0);
 	}
 	
-	private bvr.BVRModel loadFromPlatformFile(String bvrFileName){
+	private BVRModel loadFromPlatformFile(String bvrFileName){
 		BvrPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
 		URI uri = URI.createPlatformResourceURI(bvrFileName, true);
 		Resource resource = resSet.getResource(uri, true);
-		return (bvr.BVRModel) resource.getContents().get(0);
+		return (BVRModel) resource.getContents().get(0);
 	}
 	
 	public void writeToPlatformFile(String filename) throws IOException {
@@ -112,10 +120,15 @@ public class SPLCABVRModel {
 	    resource.save(options);
 	}
 
-	public bvr.BVRModel getRootBVRModel() {
+	public BVRModel getRootBVRModel() {
 		return model;
 	}
 
+	public GUIDSL getGUIDSL(IConstraintFinderStrategy strategy) throws IOException, UnsupportedModelException {
+		setConstrtaintFindStrategy(strategy);
+		return getGUIDSL();
+	}
+	
 	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException {
 		FeatureModel fm = new FeatureModel();
 		Feature root = recursiveConvert(fm, (Choice) model.getVariabilityModel()); // This is an assumption
@@ -123,7 +136,11 @@ public class SPLCABVRModel {
 		
 		// Add constraints
 		//System.out.println(fm.getFeatureNames());
-		for(Constraint c : model.getVariabilityModel().getOwnedConstraint()){
+		List<Constraint> constraints = (constFinder == null) ?
+					model.getVariabilityModel().getOwnedConstraint() :
+						constFinder.getConstraints(model.getVariabilityModel());
+					
+		for(Constraint c : constraints){
 			if(c instanceof OpaqueConstraint){
 				OpaqueConstraint oc = (OpaqueConstraint)c;
 				NodeReader nr = new NodeReader();

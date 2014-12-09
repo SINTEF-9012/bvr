@@ -18,7 +18,7 @@ import java.util.List;
 
 import no.sintef.bvr.constraints.bcl.BCLParser.LiteralexpContext;
 import no.sintef.bvr.constraints.bcl.BCLParser.VspecContext;
-import no.sintef.bvr.constraints.strategy.AbstractBCLBuilderStrategy;
+import no.sintef.bvr.constraints.interfaces.strategy.IBCLBuilderStrategy;
 import no.sintef.bvr.constraints.strategy.DefaultTestBCLBuilderStartegy;
 
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -43,13 +43,13 @@ import bvr.BvrFactory;
 
 public class BCLBuilder {
 	
-	private AbstractBCLBuilderStrategy strategy;
+	private IBCLBuilderStrategy strategy;
 	
 	public BCLBuilder(){
 		strategy = new DefaultTestBCLBuilderStartegy();
 	}
 	
-	public BCLBuilder(AbstractBCLBuilderStrategy _strategy){
+	public BCLBuilder(IBCLBuilderStrategy _strategy){
 		strategy = _strategy;
 	}
 	

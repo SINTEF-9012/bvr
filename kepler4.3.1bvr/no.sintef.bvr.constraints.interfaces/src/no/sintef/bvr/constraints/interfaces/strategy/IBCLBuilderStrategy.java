@@ -11,13 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package no.sintef.bvr.constraints.strategy;
+package no.sintef.bvr.constraints.interfaces.strategy;
 
 
 import bvr.Target;
 import bvr.VSpec;
 
-public abstract class AbstractBCLBuilderStrategy {
+public interface IBCLBuilderStrategy {
 
-	abstract public Target getVSpecTarget(VSpec node);
+	public Target getVSpecTarget(VSpec node);
 }

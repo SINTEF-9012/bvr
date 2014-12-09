@@ -13,10 +13,11 @@
  ******************************************************************************/
 package no.sintef.bvr.constraints.strategy;
 
+import no.sintef.bvr.constraints.interfaces.strategy.IBCLBuilderStrategy;
 import bvr.Target;
 import bvr.VSpec;
 
-public class BVRToolBCLBuilderStrategy extends AbstractBCLBuilderStrategy {
+public class BVRToolBCLBuilderStrategy implements IBCLBuilderStrategy {
 
 	@Override
 	public Target getVSpecTarget(VSpec node) {

@@ -118,5 +118,6 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.9.1",
  no.sintef.bvr.thirdparty.interfaces;bundle-version="1.0.0",
  no.sintef.bvr.tool.interfaces;bundle-version="1.0.0",
  no.sintef.bvr.engine.interfaces,
- no.sintef.bvr.constraints;bundle-version="1.0.0"
+ no.sintef.bvr.constraints;bundle-version="1.0.0",
+ no.sintef.bvr.constraints.interfaces;bundle-version="1.0.0"
 Bundle-Vendor: SINTEF

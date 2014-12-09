@@ -49,3 +49,4 @@ Import-Package: bvr,
  org.eclipse.emf.ecore
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: SINTEF
+Require-Bundle: no.sintef.bvr.constraints.interfaces;bundle-version="1.0.0"
