@@ -36,10 +36,6 @@ public class Constants {
 	public static final int BINDING_PROP_CLMN = 1;
 	public static final int BINDING_VALUE_CLMN = 2;
 	
-	public static final String RESOLUTION_EXECUTE_PRODUCT = "Derive Product";
-	public static final String RESOLUTION_EXPORT_PNG = "Export Diagram as PNG ...";
-	public static final String RESOLUTION_REMOVE = "Remove";
-	
 	public static final String REALIZATION_TAB_NAME = "Realization";
 	public static final String REALIZATION_VP_SUBTAB_NAME = "Variation points";
 	public static final String REALIZATION_MAIN_MENU_NAME = "Realization";
@@ -118,6 +114,24 @@ public class Constants {
 	public static final String DEFAULT_TYPE_TITLE = "Undefined";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM = "Resolve ChoiceOccurence";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM = "Resolve VClassOccurence";
+	
+	public static final String RESOLUTION_NEW = "New";
+	public static final String RESOLUTION_REMOVE = "Remove";
+	public static final String RESOLUTION_REMOVE_ALL = "Remove All";
+	public static final String RESOLUTION_IMPORT = "Import...";
+	public static final String RESOLUTION_MODELS_CHOICES_ONLY = "Models With Choices";
+	public static final String RESOLUTION_MODELS_CHOICES_ONLY_VALIDATE = "Validate Resolutions";
+	public static final String RESOLUTION_MODELS_CHOICES_CALC_COV = "Calculate Covarege";
+	public static final String RESOLUTION_MODELS_CHOICES_1_WISE = "1-Wise";
+	public static final String RESOLUTION_MODELS_CHOICES_2_WISE = "2-Wise";
+	public static final String RESOLUTION_MODELS_CHOICES_3_WISE = "3-Wise";
+	public static final String RESOLUTION_MODELS_CHOICES_ALL_PROD = "Generate All Products";
+	public static final String RESOLUTION_MODELS_CHOICES_GEN_COV_ARRAY = "Generate Covering Array";
+	public static final String RESOLUTION_MODELS_CHOICES_CALC_COSTS = "Calculate Costs";
+	public static final String RESOLUTION_MODELS_EXPORT_AS_PNG = "Export As PNG";
+	public static final String RESOLUTION_MODELS_SHOWHIDE_GRP = "Show/Hide Grouping";
+	public static final String RESOLUTION_MODELS_SHOWHIDE_CNSTR = "Show/Hide Constraints";
+	public static final String RESOLUTION_MODELS_EXECUTE = "Execute";
 	
 	public static final String VSPEC_DROPDOWN_ADD = "Add";
 	public static final String VSPEC_DROPDOWN_ADD_CHOICE = "Choice";

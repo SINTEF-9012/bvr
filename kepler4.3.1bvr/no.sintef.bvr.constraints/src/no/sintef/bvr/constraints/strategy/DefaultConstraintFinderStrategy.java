@@ -13,7 +13,7 @@ import bvr.VNode;
 
 public class DefaultConstraintFinderStrategy implements IConstraintFinderStrategy {
 
-	private List<Constraint> constraints;
+	protected List<Constraint> constraints;
 	
 	@Override
 	public List<Constraint> getConstraints(VNode node) {

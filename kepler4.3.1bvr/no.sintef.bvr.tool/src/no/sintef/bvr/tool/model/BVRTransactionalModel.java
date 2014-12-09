@@ -105,9 +105,7 @@ import bvr.VType;
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver, ResourceSubject {
 	private Resource resource;
 
-	static private int choicCounter = 0;
 	static private int variableCount = 0;
-	static private int classifierCount = 0;
 	static private int resolutionCount = 0;
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;

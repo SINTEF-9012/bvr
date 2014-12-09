@@ -557,4 +557,15 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public boolean isSubstitutionEngineInitialized() {
 		return (Context.eINSTANCE.getSubEngine() == null) ? false : true;
 	}
+
+	@Override
+	public SimpleExeCommandInterface createRemoveAllResolutionsCommand() {
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.removeAllResolutions();
+			}
+		});
+		return command;
+	}
 }

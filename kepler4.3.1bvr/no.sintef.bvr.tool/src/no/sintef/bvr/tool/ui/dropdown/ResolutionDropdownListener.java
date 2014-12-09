@@ -21,12 +21,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
+import no.sintef.bvr.tool.ui.command.event.DeleteAllResolutions;
 import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExecuteResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowGroupEvent;
+import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.loader.CalculateCost;
 import no.sintef.bvr.tool.ui.loader.CalculateCoverage;
@@ -68,49 +70,54 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 	public ResV2DropdownMenu(BVRNotifiableController controller) {
 
-		JMenuItem newres = new JMenuItem("New");
+		JMenuItem newres = new JMenuItem(Constants.RESOLUTION_NEW);
 		newres.addActionListener(new NewResolvedResolutionEvent(controller));
 		add(newres);
 		if (controller.getResolutionControllerInterface().isResolutionModelSet()) {
-			JMenuItem remove = new JMenuItem("Remove");
+			JMenuItem remove = new JMenuItem(Constants.RESOLUTION_REMOVE);
 			remove.addActionListener(new DeleteResolution(controller));
 			add(remove);
 		}
-		JMenuItem importres = new JMenuItem("Import ...");
+		if (controller.getResolutionControllerInterface().isResolutionModelSet()) {
+			JMenuItem remove = new JMenuItem(Constants.RESOLUTION_REMOVE_ALL);
+			remove.addActionListener(new DeleteAllResolutions(controller));
+			add(remove);
+		}
+		JMenuItem importres = new JMenuItem(Constants.RESOLUTION_IMPORT);
 		importres.addActionListener(new ImportResolutions(controller));
 		add(importres);
  
 		/* Choice-only options */{
-			JMenu camenu = new JMenu("Models with Choices Only");
-			JMenuItem satvalres = new JMenuItem("Validate Resolutions");
+			JMenu camenu = new JMenu(Constants.RESOLUTION_MODELS_CHOICES_ONLY);
+			JMenuItem satvalres = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_ONLY_VALIDATE);
 			satvalres.addActionListener(new SATValidateResolutions(controller));
 			camenu.add(satvalres);
-			JMenu cc1 = new JMenu("Calculate Coverage");
-			JMenuItem calccov1 = new JMenuItem("1-wise");
+			JMenu cc1 = new JMenu(Constants.RESOLUTION_MODELS_CHOICES_CALC_COV);
+			JMenuItem calccov1 = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_1_WISE);
 			calccov1.addActionListener(new CalculateCoverage(controller, 1));
 			cc1.add(calccov1);
-			JMenuItem calccov2 = new JMenuItem("2-wise");
+			JMenuItem calccov2 = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_2_WISE);
 			calccov2.addActionListener(new CalculateCoverage(controller, 2));
 			cc1.add(calccov2);
-			JMenuItem calccov3 = new JMenuItem("3-wise");
+			JMenuItem calccov3 = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_3_WISE);
 			calccov3.addActionListener(new CalculateCoverage(controller, 3));
 			cc1.add(calccov3);
 			camenu.add(cc1);
 
-			JMenuItem calcall = new JMenuItem("Generate All Possible Products");
+			JMenuItem calcall = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_ALL_PROD);
 			calcall.addActionListener(new GenerateAllProducts(controller));
 			camenu.add(calcall);
 
 			camenu.add(new JSeparator());
 
-			JMenu genca = new JMenu("Generate Covering Array");
-			JMenuItem genca1 = new JMenuItem("1-wise");
+			JMenu genca = new JMenu(Constants.RESOLUTION_MODELS_CHOICES_GEN_COV_ARRAY);
+			JMenuItem genca1 = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_1_WISE);
 			genca1.addActionListener(new GenerateCoveringArray(controller, 1));
 			genca.add(genca1);
-			JMenuItem genca2 = new JMenuItem("2-wise");
+			JMenuItem genca2 = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_2_WISE);
 			genca2.addActionListener(new GenerateCoveringArray(controller, 2));
 			genca.add(genca2);
-			JMenuItem genca3 = new JMenuItem("3-wise");
+			JMenuItem genca3 = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_3_WISE);
 			genca3.addActionListener(new GenerateCoveringArray(controller, 3));
 			genca.add(genca3);
 			camenu.add(genca);
@@ -118,7 +125,7 @@ class ResV2DropdownMenu extends JPopupMenu {
 			camenu.add(new JSeparator());
 			add(new JSeparator());
 
-			JMenuItem calcost = new JMenuItem("Calculate Costs");
+			JMenuItem calcost = new JMenuItem(Constants.RESOLUTION_MODELS_CHOICES_CALC_COSTS);
 			calcost.addActionListener(new CalculateCost(controller));
 			camenu.add(calcost);
 
@@ -127,21 +134,21 @@ class ResV2DropdownMenu extends JPopupMenu {
 
 		add(new JSeparator());
 
-		JMenuItem saveasImage = new JMenuItem("Export Diagram as PNG ...");
+		JMenuItem saveasImage = new JMenuItem(Constants.RESOLUTION_MODELS_EXPORT_AS_PNG);
 		add(saveasImage);
 		saveasImage.addActionListener(new ExportModelImage(controller));
 
-		JMenuItem showGrouping = new JMenuItem("Show/hide grouping");
+		JMenuItem showGrouping = new JMenuItem(Constants.RESOLUTION_MODELS_SHOWHIDE_GRP);
 		add(showGrouping);
 		showGrouping.addActionListener(new ToggleShowGroupEvent(controller));
 
-		JMenuItem showConstraints = new JMenuItem("Show/hide constraints");
+		JMenuItem showConstraints = new JMenuItem(Constants.RESOLUTION_MODELS_SHOWHIDE_CNSTR);
 		add(showConstraints);
 		showConstraints.addActionListener(new ToggleShowConstraintsEvent(controller));
 		
 		add(new JSeparator());
 		
-		JMenuItem execute = new JMenuItem("Execute");
+		JMenuItem execute = new JMenuItem(Constants.RESOLUTION_MODELS_EXECUTE);
 		execute.addActionListener(new ExecuteResolutionEvent(controller));
 		execute.setEnabled(controller.getCommonControllerInterface().isSubstitutionEngineInitialized());
 		
