@@ -21,7 +21,9 @@ import java.util.Map;
 
 import javax.swing.JApplet;
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 
+import no.sintef.bvr.common.OSDetector;
 import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
@@ -210,6 +212,19 @@ public final class Context {
 	
 	public JApplet getActiveJApplet(){
 		return focusedJApplet;
+	}
+
+	public void setNativeLookAndFeel() {
+		if(OSDetector.getOSType() == OSDetector.OSType.Windows) {
+			try {
+				UIManager.setLookAndFeel(UIManager
+						.getSystemLookAndFeelClassName());
+			} catch (Exception e) {
+				logger.error("failed to set systems look and feel", e);
+			}
+		}else {
+			logger.debug("do not know how to set systems look and fell for " + OSDetector.getOSType());
+		}
 	}
 	
 }

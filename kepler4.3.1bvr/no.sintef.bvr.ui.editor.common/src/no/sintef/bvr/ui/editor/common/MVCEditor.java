@@ -160,19 +160,14 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 
 	@Override
 	public void createPartControl(Composite parent) {
+		Context.eINSTANCE.setNativeLookAndFeel();
+
 		composite = new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND);
 		FillLayout layout = new FillLayout();
 		composite.setLayout(layout);
 		frame = SWT_AWT.new_Frame(composite);
 
 		if (fileinput != null) {
-				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					Context.eINSTANCE.logger.error("failed to set  system look and feel", e);
-				}
-
 				toolModel = Context.eINSTANCE.testBVRToolModel(new File(
 						filename));
 				resourceURI = ((BVRTransactionalModel) toolModel).getResource()
@@ -201,7 +196,6 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 							.testResourceSubject(resourceURI, subject);
 					subject.attach((BVRTransactionalModel) toolModel);
 				}
-
 		}
 	}
 
