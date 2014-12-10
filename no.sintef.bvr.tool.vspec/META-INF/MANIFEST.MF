@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: BVR :: VSpec Tool
-Bundle-SymbolicName: no.sintef.bvr.tool.vspec
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: SINTEF
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
