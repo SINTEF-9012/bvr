@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_ihX5wBGHEeOnxtFUCqR4oA" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX5wRGHEeOnxtFUCqR4oA" name="Office">
+    <ownedAttribute xmi:id="_ihX5whGHEeOnxtFUCqR4oA" name="rPrinterPool" type="_ihX5yRGHEeOnxtFUCqR4oA" aggregation="composite" association="_ihX5xRGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX5wxGHEeOnxtFUCqR4oA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX5xBGHEeOnxtFUCqR4oA" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ihX5xRGHEeOnxtFUCqR4oA" name="office_printerPool_1" memberEnd="_ihX5xhGHEeOnxtFUCqR4oA _ihX5whGHEeOnxtFUCqR4oA">
+    <ownedEnd xmi:id="_ihX5xhGHEeOnxtFUCqR4oA" name="office" type="_ihX5wRGHEeOnxtFUCqR4oA" association="_ihX5xRGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX5xxGHEeOnxtFUCqR4oA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX5yBGHEeOnxtFUCqR4oA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX5yRGHEeOnxtFUCqR4oA" name="rPrinterPool">
+    <ownedAttribute xmi:id="_ihX5yhGHEeOnxtFUCqR4oA" name="r2Printer" type="_ihX50BGHEeOnxtFUCqR4oA" aggregation="composite" association="_ihX51xGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX5yxGHEeOnxtFUCqR4oA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX5zBGHEeOnxtFUCqR4oA" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_ihX5zRGHEeOnxtFUCqR4oA" name="r2Printer" type="_ihX55RGHEeOnxtFUCqR4oA" aggregation="composite" association="_ihX56RGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX5zhGHEeOnxtFUCqR4oA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX5zxGHEeOnxtFUCqR4oA" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX50BGHEeOnxtFUCqR4oA" name="r2Printer">
+    <ownedAttribute xmi:id="_ihX50RGHEeOnxtFUCqR4oA" name="r3Cartridge" type="_ihX52xGHEeOnxtFUCqR4oA" aggregation="composite" association="_ihX53BGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX50hGHEeOnxtFUCqR4oA" name="a" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX50xGHEeOnxtFUCqR4oA" name="b" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_ihX51BGHEeOnxtFUCqR4oA" name="r3Cartridge" type="_ihX54BGHEeOnxtFUCqR4oA" aggregation="composite" association="_ihX54RGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX51RGHEeOnxtFUCqR4oA" name="a" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX51hGHEeOnxtFUCqR4oA" name="b" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ihX51xGHEeOnxtFUCqR4oA" name="r2PrinterPool_r2Printer_1" memberEnd="_ihX52BGHEeOnxtFUCqR4oA _ihX5yhGHEeOnxtFUCqR4oA">
+    <ownedEnd xmi:id="_ihX52BGHEeOnxtFUCqR4oA" name="r2PrinterPool" type="_ihX5yRGHEeOnxtFUCqR4oA" association="_ihX51xGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX52RGHEeOnxtFUCqR4oA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX52hGHEeOnxtFUCqR4oA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX52xGHEeOnxtFUCqR4oA" name="r3Cartridge"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ihX53BGHEeOnxtFUCqR4oA" name="r3Printer_r3Cartridge_1" memberEnd="_ihX53RGHEeOnxtFUCqR4oA _ihX50RGHEeOnxtFUCqR4oA">
+    <ownedEnd xmi:id="_ihX53RGHEeOnxtFUCqR4oA" name="r3Printer" type="_ihX50BGHEeOnxtFUCqR4oA" association="_ihX53BGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX53hGHEeOnxtFUCqR4oA" name="c" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX53xGHEeOnxtFUCqR4oA" name="d" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX54BGHEeOnxtFUCqR4oA" name="r3Cartridge"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ihX54RGHEeOnxtFUCqR4oA" name="r3Printer_r3Cartridge_1" memberEnd="_ihX54hGHEeOnxtFUCqR4oA _ihX51BGHEeOnxtFUCqR4oA">
+    <ownedEnd xmi:id="_ihX54hGHEeOnxtFUCqR4oA" name="r3Printer" type="_ihX50BGHEeOnxtFUCqR4oA" association="_ihX54RGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX54xGHEeOnxtFUCqR4oA" name="c" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX55BGHEeOnxtFUCqR4oA" name="d" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX55RGHEeOnxtFUCqR4oA" name="r2Printer">
+    <ownedAttribute xmi:id="_ihX55hGHEeOnxtFUCqR4oA" name="r3Cartridge" type="_ihX57RGHEeOnxtFUCqR4oA" aggregation="composite" association="_ihX57hGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX55xGHEeOnxtFUCqR4oA" name="a" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX56BGHEeOnxtFUCqR4oA" name="b" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ihX56RGHEeOnxtFUCqR4oA" name="r2PrinterPool_r2Printer_1" memberEnd="_ihX56hGHEeOnxtFUCqR4oA _ihX5zRGHEeOnxtFUCqR4oA">
+    <ownedEnd xmi:id="_ihX56hGHEeOnxtFUCqR4oA" name="r2PrinterPool" type="_ihX5yRGHEeOnxtFUCqR4oA" association="_ihX56RGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX56xGHEeOnxtFUCqR4oA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX57BGHEeOnxtFUCqR4oA" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ihX57RGHEeOnxtFUCqR4oA" name="r3Cartridge"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ihX57hGHEeOnxtFUCqR4oA" name="r3Printer_r3Cartridge_1" memberEnd="_ihX57xGHEeOnxtFUCqR4oA _ihX55hGHEeOnxtFUCqR4oA">
+    <ownedEnd xmi:id="_ihX57xGHEeOnxtFUCqR4oA" name="r3Printer" type="_ihX55RGHEeOnxtFUCqR4oA" association="_ihX57hGHEeOnxtFUCqR4oA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ihX58BGHEeOnxtFUCqR4oA" name="c" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ihX58RGHEeOnxtFUCqR4oA" name="d" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

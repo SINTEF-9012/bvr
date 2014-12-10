@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_kD3HAAdREeOElaU68s6npA" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_vlKnAAdREeOElaU68s6npA" name="r3Cartridge"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zdaD4AdREeOElaU68s6npA" name="r3Printer">
+    <ownedAttribute xmi:id="_1VBs0AdREeOElaU68s6npA" name="r3Cartridge" type="_vlKnAAdREeOElaU68s6npA" aggregation="composite" association="_1VBs0wdREeOElaU68s6npA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1VBs0QdREeOElaU68s6npA" name="a" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1VBs0gdREeOElaU68s6npA" name="b" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_1VBs0wdREeOElaU68s6npA" name="r3Printer_r3Cartridge_1" memberEnd="_1VBs1AdREeOElaU68s6npA _1VBs0AdREeOElaU68s6npA">
+    <ownedEnd xmi:id="_1VBs1AdREeOElaU68s6npA" name="r3Printer" type="_zdaD4AdREeOElaU68s6npA" association="_1VBs0wdREeOElaU68s6npA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1VBs1QdREeOElaU68s6npA" name="c" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1VBs1gdREeOElaU68s6npA" name="d" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

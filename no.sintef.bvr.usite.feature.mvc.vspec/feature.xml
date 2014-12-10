@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="no.sintef.bvr.usite.feature.mvc.vspec"
+      label="BVR MVC VSpec Editor"
+      version="1.0.0.qualifier"
+      provider-name="SINTEF"
+      license-feature="no.sintef.bvr.usite.feature.splcatool"
+      license-feature-version="1.0.0.qualifier">
+
+   <description url="http://modelbased.net/tools/bvr/">
+      BVR VSpec MVC Editor
+   </description>
+
+   <copyright url="http://modelbased.net/tools/bvr/copyright/">
+      Copyright (c) 2014 SINTEF
+   </copyright>
+
+   <license url="http://modelbased.net/tools/bvr/license/">
+      Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.gnu.org/licenses/lgpl-3.0.txt
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Contributors:
+SINTEF - initial API and implementation
+   </license>
+
+   <url>
+      <discovery label="BVR Update Site" url="http://bvr.modelbased.net/update/site.xml"/>
+   </url>
+
+   <includes
+         id="no.sintef.bvr.usite.feature.model"
+         version="0.0.0"/>
+
+   <includes
+         id="no.sintef.bvr.usite.feature.splcatool"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="no.sintef.bvr.model"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="no.sintef.ict.splcatool"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
+      <import plugin="de.ovgu.featureide.fm.core" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="SPLAR" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.sat4j.core" version="2.3.5" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit" version="2.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common.ui" version="2.8.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.thirdparty" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.common" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore.xmi" version="2.9.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.9.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.thirdparty.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.tool.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="no.sintef.bvr.model" version="0.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.transaction" version="1.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.core.resources" version="3.8.101" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.105.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="no.sintef.bvr.ui.editor.common" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.model" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.tool" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common" version="2.9.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit.ui" version="2.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.9.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.filesystem" version="1.4.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.core"/>
+   </requires>
+
+   <plugin
+         id="no.sintef.bvr.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.constraints"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.tool"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.ui.editor.commands"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.ui.editor.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.ui.editor.mvc.vspec"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.ui.framework"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.thirdparty"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.dsl.node"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.engine.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.tool.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.thirdparty.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.ui.editor.mvc.type"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

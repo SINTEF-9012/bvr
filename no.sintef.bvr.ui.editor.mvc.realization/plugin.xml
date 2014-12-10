@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="no.sintef.bvr.ui.editor.mvc.realization.MVCRealizationEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            extensions="bvr"
+            icon="icons/sample.gif"
+            id="no.sintef.bvr.ui.editor.eclipse.editors.BVRRealizationEditor"
+            name="BVR Realization Editor (MVC)">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=window">
+         <menu
+               label="BVR Realization">
+            <command
+                  commandId="no.sintef.bvr.ui.editor.mvc.realization.command0"
+                  style="push">
+            </command>
+            <visibleWhen
+                  checkEnabled="true">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="no.sintef.bvr.ui.editor.eclipse.editors.BVRRealizationEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+            <menu
+                  label="Tools">
+               <command
+                     commandId="no.sintef.bvr.ui.editor.mvc.realization.command1"
+                     style="push">
+               </command>
+            </menu>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.OpenSetting"
+            id="no.sintef.bvr.ui.editor.mvc.realization.command0"
+            name="Options">
+      </command>
+      <command
+            defaultHandler="no.sintef.bvr.ui.editor.mvc.realization.action.CopyModel"
+            id="no.sintef.bvr.ui.editor.mvc.realization.command1"
+            name="Copy Model">
+      </command>
+   </extension>
+</plugin>

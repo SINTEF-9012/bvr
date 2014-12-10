@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_hXv7EPRCEeKD2YABUjdF0g" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_h_zZkPRCEeKD2YABUjdF0g" name="Office">
+    <ownedAttribute xmi:id="_s1SVYPRCEeKD2YABUjdF0g" name="printerPool" type="_m6ej0PRCEeKD2YABUjdF0g" aggregation="composite" association="_s1S8cPRCEeKD2YABUjdF0g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s1SVYfRCEeKD2YABUjdF0g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s1SVYvRCEeKD2YABUjdF0g" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_m6ej0PRCEeKD2YABUjdF0g" name="PrinterPool">
+    <ownedAttribute xmi:id="_wwZgEPRCEeKD2YABUjdF0g" name="printer" type="_oskzkPRCEeKD2YABUjdF0g" aggregation="composite" association="_wwZgE_RCEeKD2YABUjdF0g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wwZgEfRCEeKD2YABUjdF0g" name="a" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wwZgEvRCEeKD2YABUjdF0g" name="an" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_oskzkPRCEeKD2YABUjdF0g" name="Printer">
+    <ownedAttribute xmi:id="_zRTWkPRCEeKD2YABUjdF0g" name="cartridge" type="_p5hu4PRCEeKD2YABUjdF0g" aggregation="composite" association="_zRT9oPRCEeKD2YABUjdF0g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zRTWkfRCEeKD2YABUjdF0g" name="b" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zRTWkvRCEeKD2YABUjdF0g" name="bn" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_p5hu4PRCEeKD2YABUjdF0g" name="Cartridge"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_s1S8cPRCEeKD2YABUjdF0g" name="office_printerPool_1" memberEnd="_s1S8cfRCEeKD2YABUjdF0g _s1SVYPRCEeKD2YABUjdF0g">
+    <ownedEnd xmi:id="_s1S8cfRCEeKD2YABUjdF0g" name="office" type="_h_zZkPRCEeKD2YABUjdF0g" association="_s1S8cPRCEeKD2YABUjdF0g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s1S8cvRCEeKD2YABUjdF0g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s1S8c_RCEeKD2YABUjdF0g" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_wwZgE_RCEeKD2YABUjdF0g" name="printerPool_printer_1" memberEnd="_wwZgFPRCEeKD2YABUjdF0g _wwZgEPRCEeKD2YABUjdF0g">
+    <ownedEnd xmi:id="_wwZgFPRCEeKD2YABUjdF0g" name="printerPool" type="_m6ej0PRCEeKD2YABUjdF0g" association="_wwZgE_RCEeKD2YABUjdF0g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wwZgFfRCEeKD2YABUjdF0g" name="c" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wwZgFvRCEeKD2YABUjdF0g" name="cn" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_zRT9oPRCEeKD2YABUjdF0g" name="printer_cartridge_1" memberEnd="_zRT9ofRCEeKD2YABUjdF0g _zRTWkPRCEeKD2YABUjdF0g">
+    <ownedEnd xmi:id="_zRT9ofRCEeKD2YABUjdF0g" name="printer" type="_oskzkPRCEeKD2YABUjdF0g" association="_zRT9oPRCEeKD2YABUjdF0g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zRT9ovRCEeKD2YABUjdF0g" name="d" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zRT9o_RCEeKD2YABUjdF0g" name="dn" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

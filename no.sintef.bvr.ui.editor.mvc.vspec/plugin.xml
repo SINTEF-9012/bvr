@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="no.sintef.bvr.ui.editor.mvc.vspec.MVCVSpecEditor"
+            extensions="bvr"
+            icon="icons/sample.gif"
+            id="no.sintef.bvr.ui.editor.eclipse.editors.BVRVSpecEditorMVC"
+            name="BVR VSpec Editor (MVC)">
+      </editor>
+   </extension>
+</plugin>

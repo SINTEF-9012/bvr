@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_2_Rr0A_bEeOmS7DlYrP6Gw" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_7D_ecA_bEeOmS7DlYrP6Gw" name="Base">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ArAxUA_cEeOmS7DlYrP6Gw" name="Office">
+      <ownedAttribute xmi:id="_HK7bEA_cEeOmS7DlYrP6Gw" name="printerPool" type="_BwytoA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_HK8CIA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HK7bEQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HK7bEg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_BwytoA_cEeOmS7DlYrP6Gw" name="PrinterPool">
+      <ownedAttribute xmi:id="_JPZNMA_cEeOmS7DlYrP6Gw" name="extras" type="_C3hFIA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_JPZNMw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JPZNMQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JPZNMg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_C3hFIA_cEeOmS7DlYrP6Gw" name="Extras">
+      <ownedAttribute xmi:id="_Kp5cUA_cEeOmS7DlYrP6Gw" name="extraItem" type="_E5xQwA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_Kp6DYA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kp5cUQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kp5cUg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_E5xQwA_cEeOmS7DlYrP6Gw" name="ExtraItem"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_HK8CIA_cEeOmS7DlYrP6Gw" name="office_printerPool_1" memberEnd="_HK8CIQ_cEeOmS7DlYrP6Gw _HK7bEA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_HK8CIQ_cEeOmS7DlYrP6Gw" name="office" type="_ArAxUA_cEeOmS7DlYrP6Gw" association="_HK8CIA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HK8CIg_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HK8CIw_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JPZNMw_cEeOmS7DlYrP6Gw" name="printerPool_extras_1" memberEnd="_JPZNNA_cEeOmS7DlYrP6Gw _JPZNMA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_JPZNNA_cEeOmS7DlYrP6Gw" name="printerPool" type="_BwytoA_cEeOmS7DlYrP6Gw" association="_JPZNMw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JPZNNQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JPZNNg_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Kp6DYA_cEeOmS7DlYrP6Gw" name="extras_extraItem_1" memberEnd="_Kp6DYQ_cEeOmS7DlYrP6Gw _Kp5cUA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_Kp6DYQ_cEeOmS7DlYrP6Gw" name="extras" type="_C3hFIA_cEeOmS7DlYrP6Gw" association="_Kp6DYA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Kp6DYg_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Kp6DYw_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_8QUusA_bEeOmS7DlYrP6Gw" name="Lib">
+    <packagedElement xmi:type="uml:Class" xmi:id="_P6kEsA_cEeOmS7DlYrP6Gw" name="Extras">
+      <ownedAttribute xmi:id="_YNY2gA_cEeOmS7DlYrP6Gw" name="extraItem0" type="_ScWsAA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_YNZdkA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YNY2gQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YNY2gg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_aVRJAA_cEeOmS7DlYrP6Gw" name="extraItem1" type="_Tf2wYA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_aVRJAw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aVRJAQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aVRJAg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_bvfEQA_cEeOmS7DlYrP6Gw" name="extraItem2" type="_VJLeoA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_bvfEQw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bvfEQQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bvfEQg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ScWsAA_cEeOmS7DlYrP6Gw" name="ExtraItem0"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Tf2wYA_cEeOmS7DlYrP6Gw" name="ExtraItem1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VJLeoA_cEeOmS7DlYrP6Gw" name="ExtraItem2"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YNZdkA_cEeOmS7DlYrP6Gw" name="extras_extraItem0_1" memberEnd="_YNZdkQ_cEeOmS7DlYrP6Gw _YNY2gA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_YNZdkQ_cEeOmS7DlYrP6Gw" name="extras" type="_P6kEsA_cEeOmS7DlYrP6Gw" association="_YNZdkA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YNZdkg_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YNZdkw_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_aVRJAw_cEeOmS7DlYrP6Gw" name="extras_extraItem1_1" memberEnd="_aVRJBA_cEeOmS7DlYrP6Gw _aVRJAA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_aVRJBA_cEeOmS7DlYrP6Gw" name="extras" type="_P6kEsA_cEeOmS7DlYrP6Gw" association="_aVRJAw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aVRJBQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aVRJBg_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_bvfEQw_cEeOmS7DlYrP6Gw" name="extras_extraItem2_1" memberEnd="_bvfERA_cEeOmS7DlYrP6Gw _bvfEQA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_bvfERA_cEeOmS7DlYrP6Gw" name="extras" type="_P6kEsA_cEeOmS7DlYrP6Gw" association="_bvfEQw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bvfERQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bvfERg_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dtS0wA_cEeOmS7DlYrP6Gw" name="rOffice">
+      <ownedAttribute xmi:id="_kKoEkA_cEeOmS7DlYrP6Gw" name="rPrinterPool" type="_eqy-0A_cEeOmS7DlYrP6Gw" aggregation="composite" association="_kKoroA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kKoEkQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kKoEkg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_eqy-0A_cEeOmS7DlYrP6Gw" name="rPrinterPool">
+      <ownedAttribute xmi:id="_m1BOQA_cEeOmS7DlYrP6Gw" name="rExtras" type="_glH9gA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_m1BOQw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_m1BOQQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_m1BOQg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_glH9gA_cEeOmS7DlYrP6Gw" name="rExtras">
+      <ownedAttribute xmi:id="_oSFCIA_cEeOmS7DlYrP6Gw" name="rExtraItem" type="_iSVGMA_cEeOmS7DlYrP6Gw" aggregation="composite" association="_oSFpMA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oSFCIQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oSFCIg_cEeOmS7DlYrP6Gw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iSVGMA_cEeOmS7DlYrP6Gw" name="rExtraItem"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kKoroA_cEeOmS7DlYrP6Gw" name="rOffice_rPrinterPool_1" memberEnd="_kKoroQ_cEeOmS7DlYrP6Gw _kKoEkA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_kKoroQ_cEeOmS7DlYrP6Gw" name="rOffice" type="_dtS0wA_cEeOmS7DlYrP6Gw" association="_kKoroA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kKorog_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kKorow_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_m1BOQw_cEeOmS7DlYrP6Gw" name="rPrinterPool_rExtras_1" memberEnd="_m1BORA_cEeOmS7DlYrP6Gw _m1BOQA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_m1BORA_cEeOmS7DlYrP6Gw" name="rPrinterPool" type="_eqy-0A_cEeOmS7DlYrP6Gw" association="_m1BOQw_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_m1BORQ_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_m1BORg_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_oSFpMA_cEeOmS7DlYrP6Gw" name="rExtras_rExtraItem_1" memberEnd="_oSFpMQ_cEeOmS7DlYrP6Gw _oSFCIA_cEeOmS7DlYrP6Gw">
+      <ownedEnd xmi:id="_oSFpMQ_cEeOmS7DlYrP6Gw" name="rExtras" type="_glH9gA_cEeOmS7DlYrP6Gw" association="_oSFpMA_cEeOmS7DlYrP6Gw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oSFpMg_cEeOmS7DlYrP6Gw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oSFpMw_cEeOmS7DlYrP6Gw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

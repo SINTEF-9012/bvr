@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" name="test3">
+  <ownedVSpec xsi:type="bvr:Choice" name="R" isImpliedByParent="true">
+    <child xsi:type="bvr:VClassifier" name="A">
+      <child xsi:type="bvr:Variable" name="x" type="//@ownedVariabletype.0"/>
+      <instanceMultiplicity upper="-1" lower="1"/>
+    </child>
+    <child xsi:type="bvr:Choice" name="B">
+      <child xsi:type="bvr:Variable" name="y" type="//@ownedVariabletype.14"/>
+      <child xsi:type="bvr:Variable" name="z" type="//@ownedVariabletype.15"/>
+      <child xsi:type="bvr:Variable" name="a" type="//@ownedVariabletype.16"/>
+      <child xsi:type="bvr:Variable" name="b" type="//@ownedVariabletype.17"/>
+      <child xsi:type="bvr:Variable" name="c" type="//@ownedVariabletype.18"/>
+    </child>
+    <child xsi:type="bvr:Choice" name="C"/>
+  </ownedVSpec>
+  <ownedVSpec xsi:type="bvr:Choice" name="S"/>
+  <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint1">
+    <expression xsi:type="bvr:OperationCallExp" operation="lt">
+      <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0"/>
+      <argument xsi:type="bvr:OperationCallExp" operation="arithPlus">
+        <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.1/@child.0"/>
+        <argument xsi:type="bvr:IntegerLiteralExp" integer="5"/>
+      </argument>
+    </expression>
+  </ownedConstraint>
+  <ownedVSpecResolution xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0" decision="true">
+    <child xsi:type="bvr:VInstance" name="a1" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment1" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:IntegerLiteralExp"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.1" decision="true">
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment2" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.0">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:IntegerLiteralExp" integer="7"/>
+        </value>
+      </child>
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment3" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.1">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:RealLiteralExp" real="3.14159265358979323846264"/>
+        </value>
+      </child>
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment4" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.3">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:BooleanLiteralExp" bool="true"/>
+        </value>
+      </child>
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment5" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.2">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:StringLiteralExp" string="hello"/>
+        </value>
+      </child>
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment6" resolvedVSpec="//@ownedVSpec.0/@child.1/@child.4">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:UnlimitedLiteralExp" unlimited="5"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="bvr:VInstance" name="a2" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment7" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:IntegerLiteralExp"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="bvr:VInstance" name="a3" resolvedVSpec="//@ownedVSpec.0/@child.0">
+      <child xsi:type="bvr:VariableValueAssignment" name="variableAssignment7" resolvedVSpec="//@ownedVSpec.0/@child.0/@child.0">
+        <value xsi:type="bvr:PrimitiveValueSpecification">
+          <expression xsi:type="bvr:IntegerLiteralExp"/>
+        </value>
+      </child>
+    </child>
+    <child xsi:type="bvr:ChoiceResolutuion" resolvedVSpec="//@ownedVSpec.0/@child.2"/>
+  </ownedVSpecResolution>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Boolean"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Real"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Boolean"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="UnlimitedNatural"/>
+</bvr:ConfigurableUnit>

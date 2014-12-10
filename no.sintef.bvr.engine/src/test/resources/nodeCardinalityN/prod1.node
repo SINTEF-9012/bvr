@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node:Node xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:node="http:///node" xsi:schemaLocation="http:///node node.ecore">
+  <contains links="//@contains.1 //@contains.5" name="1"/>
+  <contains links="//@contains.2" name="2"/>
+  <contains links="//@contains.3" name="3"/>
+  <contains links="//@contains.4" name="4"/>
+  <contains name="5"/>
+  <contains links="//@contains.6" name="r2"/>
+  <contains links="//@contains.7" name="r22">
+    <contains links="//@contains.6" name="r2c"/>
+  </contains>
+  <contains links="//@contains.4" name="r222"/>
+</node:Node>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_KraWkFWpEeOxqYzTXOWfBA" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_N6wAYFWpEeOxqYzTXOWfBA" name="PackA">
+    <packagedElement xmi:type="uml:Class" xmi:id="_WImLkFWpEeOxqYzTXOWfBA" name="CA">
+      <ownedAttribute xmi:id="_brsAsFWpEeOxqYzTXOWfBA" name="cB" type="_Xnl5IFWpEeOxqYzTXOWfBA" association="_brsnwFWpEeOxqYzTXOWfBA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_brsAsVWpEeOxqYzTXOWfBA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_brsAslWpEeOxqYzTXOWfBA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Xnl5IFWpEeOxqYzTXOWfBA" name="CB"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_brsnwFWpEeOxqYzTXOWfBA" name="cA_cB_1" memberEnd="_brsnwVWpEeOxqYzTXOWfBA _brsAsFWpEeOxqYzTXOWfBA">
+      <ownedEnd xmi:id="_brsnwVWpEeOxqYzTXOWfBA" name="cA" type="_WImLkFWpEeOxqYzTXOWfBA" association="_brsnwFWpEeOxqYzTXOWfBA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_brsnwlWpEeOxqYzTXOWfBA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_brsnw1WpEeOxqYzTXOWfBA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_QjGisFWpEeOxqYzTXOWfBA" name="PackB">
+    <packagedElement xmi:type="uml:Class" xmi:id="_YqReIFWpEeOxqYzTXOWfBA" name="CC">
+      <ownedAttribute xmi:id="_c_DGAFWpEeOxqYzTXOWfBA" name="cD" type="_ZrDlsFWpEeOxqYzTXOWfBA" association="_c_DtEFWpEeOxqYzTXOWfBA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c_DGAVWpEeOxqYzTXOWfBA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c_DGAlWpEeOxqYzTXOWfBA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZrDlsFWpEeOxqYzTXOWfBA" name="CD"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_c_DtEFWpEeOxqYzTXOWfBA" name="cC_cD_1" memberEnd="_c_DtEVWpEeOxqYzTXOWfBA _c_DGAFWpEeOxqYzTXOWfBA">
+      <ownedEnd xmi:id="_c_DtEVWpEeOxqYzTXOWfBA" name="cC" type="_YqReIFWpEeOxqYzTXOWfBA" association="_c_DtEFWpEeOxqYzTXOWfBA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c_DtElWpEeOxqYzTXOWfBA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c_DtE1WpEeOxqYzTXOWfBA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

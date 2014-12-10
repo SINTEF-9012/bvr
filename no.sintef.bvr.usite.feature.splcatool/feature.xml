@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="no.sintef.bvr.usite.feature.splcatool"
+      label="SPLCATool"
+      version="1.0.0.qualifier"
+      provider-name="SINTEF">
+
+   <description url="http://modelbased.net/tools/bvr/">
+      The Software Product Line Covering Array Tool (SPLCATool) implements
+various algorithms for working with feature models and covering
+arrays. It includes various libraries from the community; thus,
+it integrates with formats and algorithms in the research community
+and from industry.
+   </description>
+
+   <copyright url="http://modelbased.net/tools/bvr/copyright/">
+      Copyright (c) 2014 SINTEF
+   </copyright>
+
+   <license url="http://modelbased.net/tools/bvr/license/">
+      Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.gnu.org/licenses/lgpl-3.0.txt
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Contributors:
+SINTEF - initial API and implementation
+   </license>
+
+   <url>
+      <discovery label="BVR Update Site" url="http://bvr.modelbased.net/update/site.xml"/>
+   </url>
+
+   <requires>
+      <import plugin="org.sat4j.core"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="no.sintef.bvr.model"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.junit"/>
+      <import plugin="no.sintef.bvr.constraints.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.common"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.json"/>
+   </requires>
+
+   <plugin
+         id="de.ovgu.featureide.fm.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.ict.splcatool"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="SPLAR"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.constraints.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

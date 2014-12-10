@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<bvr:ConfigurableUnit xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore" name="test3">
+  <ownedVSpec xsi:type="bvr:Choice" name="A" isImpliedByParent="true">
+    <child xsi:type="bvr:Choice" name="B">
+      <child xsi:type="bvr:Variable" name="x" type="//@ownedVariabletype.2"/>
+    </child>
+    <child xsi:type="bvr:Choice" name="C">
+      <child xsi:type="bvr:Variable" name="y" type="//@ownedVariabletype.3"/>
+    </child>
+  </ownedVSpec>
+  <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint3">
+    <expression xsi:type="bvr:OperationCallExp" operation="eq">
+      <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.0/@child.0"/>
+      <argument xsi:type="bvr:OperationCallExp" operation="arithPlus">
+        <argument xsi:type="bvr:VSpecRef" vSpec="//@ownedVSpec.0/@child.1/@child.0"/>
+        <argument xsi:type="bvr:IntegerLiteralExp" integer="5"/>
+      </argument>
+    </expression>
+  </ownedConstraint>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+  <ownedVariabletype xsi:type="bvr:PrimitveType" name="xx" type="Integer"/>
+</bvr:ConfigurableUnit>

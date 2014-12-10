@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Feature Model Core Plug-in
+Bundle-SymbolicName: de.ovgu.featureide.fm.core;singleton:=true
+Bundle-Version: 2.5.0.qualifier
+Bundle-ActivationPolicy: lazy
+Export-Package: de.ovgu.featureide.fm.core;uses:="org.prop4j,org.eclipse.core.resources",
+ de.ovgu.featureide.fm.core.configuration;uses:="de.ovgu.featureide.fm.core.model,org.eclipse.core.resources",
+ de.ovgu.featureide.fm.core.editing;uses:="org.prop4j,featureide.fm.core.model",
+ de.ovgu.featureide.fm.core.editing.evaluation,
+ de.ovgu.featureide.fm.core.io;uses:="de.ovgu.featureide.fm.core.model,org.eclipse.core.resources",
+ de.ovgu.featureide.fm.core.io.guidsl;uses:="org.prop4j,featureide.fm.core.model,org.eclipse.core.resources",
+ de.ovgu.featureide.fm.core.io.splconquerer,
+ de.ovgu.featureide.fm.core.io.waterloo,
+ de.ovgu.featureide.fm.core.io.xml,
+ guidsl,
+ org.prop4j
+Bundle-ClassPath: .,
+ lib/guidsl.jar
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: University of Magdeburg
+Import-Package: org.sat4j.core;version="2.3.5.v20130525",
+ org.sat4j.minisat;version="2.3.5.v20130525",
+ org.sat4j.specs,
+ org.sat4j.tools;version="2.3.5.v20130525"
+

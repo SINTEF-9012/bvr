@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+  http://www.gnu.org/licenses/lgpl-3.0.txt
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_kxlIoBrZEeO-VqfBtucCwA" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_kxlIoRrZEeO-VqfBtucCwA" name="Base">
+    <packagedElement xmi:type="uml:Package" xmi:id="_kxlIohrZEeO-VqfBtucCwA" name="Common">
+      <packagedElement xmi:type="uml:Class" xmi:id="_kxlIoxrZEeO-VqfBtucCwA" name="Install"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_kxlIpBrZEeO-VqfBtucCwA" name="Group">
+        <ownedAttribute xmi:id="_kxlIpRrZEeO-VqfBtucCwA" name="system" type="_kxlIsRrZEeO-VqfBtucCwA" aggregation="composite" association="_kxlIqRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIphrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIpxrZEeO-VqfBtucCwA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_kxlIqBrZEeO-VqfBtucCwA" name="Safe">
+      <packagedElement xmi:type="uml:Association" xmi:id="_kxlIqRrZEeO-VqfBtucCwA" name="group_system_1" memberEnd="_kxlIqhrZEeO-VqfBtucCwA _kxlIpRrZEeO-VqfBtucCwA">
+        <ownedEnd xmi:id="_kxlIqhrZEeO-VqfBtucCwA" name="group" type="_kxlIpBrZEeO-VqfBtucCwA" association="_kxlIqRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIqxrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIrBrZEeO-VqfBtucCwA" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_kxlIrRrZEeO-VqfBtucCwA" name="system_install_1" memberEnd="_kxlIrhrZEeO-VqfBtucCwA _kxlIshrZEeO-VqfBtucCwA">
+        <ownedEnd xmi:id="_kxlIrhrZEeO-VqfBtucCwA" name="system" type="_kxlIsRrZEeO-VqfBtucCwA" association="_kxlIrRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIrxrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIsBrZEeO-VqfBtucCwA" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_kxlIsRrZEeO-VqfBtucCwA" name="System">
+        <ownedAttribute xmi:id="_kxlIshrZEeO-VqfBtucCwA" name="install" type="_kxlIoxrZEeO-VqfBtucCwA" aggregation="composite" association="_kxlIrRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIsxrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlItBrZEeO-VqfBtucCwA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_kxlItRrZEeO-VqfBtucCwA" name="Lib">
+    <packagedElement xmi:type="uml:Package" xmi:id="_kxlIthrZEeO-VqfBtucCwA" name="Common">
+      <packagedElement xmi:type="uml:Class" xmi:id="_kxlItxrZEeO-VqfBtucCwA" name="Install"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_kxlIuBrZEeO-VqfBtucCwA" name="Group">
+        <ownedAttribute xmi:id="_kxlIuRrZEeO-VqfBtucCwA" name="system" type="_kxlIvRrZEeO-VqfBtucCwA" aggregation="composite" association="_kxlIxRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIuhrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIuxrZEeO-VqfBtucCwA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_kxlIvBrZEeO-VqfBtucCwA" name="Prime">
+      <packagedElement xmi:type="uml:Class" xmi:id="_kxlIvRrZEeO-VqfBtucCwA" name="System">
+        <ownedAttribute xmi:id="_kxlIvhrZEeO-VqfBtucCwA" name="install" type="_kxlItxrZEeO-VqfBtucCwA" aggregation="composite" association="_kxlIwRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIvxrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIwBrZEeO-VqfBtucCwA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_kxlIwRrZEeO-VqfBtucCwA" name="system_install_1" memberEnd="_kxlIwhrZEeO-VqfBtucCwA _kxlIvhrZEeO-VqfBtucCwA">
+        <ownedEnd xmi:id="_kxlIwhrZEeO-VqfBtucCwA" name="system" type="_kxlIvRrZEeO-VqfBtucCwA" association="_kxlIwRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIwxrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIxBrZEeO-VqfBtucCwA" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_kxlIxRrZEeO-VqfBtucCwA" name="group_system_1" memberEnd="_kxlIxhrZEeO-VqfBtucCwA _kxlIuRrZEeO-VqfBtucCwA">
+        <ownedEnd xmi:id="_kxlIxhrZEeO-VqfBtucCwA" name="group" type="_kxlIuBrZEeO-VqfBtucCwA" association="_kxlIxRrZEeO-VqfBtucCwA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kxlIxxrZEeO-VqfBtucCwA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kxlIyBrZEeO-VqfBtucCwA" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
