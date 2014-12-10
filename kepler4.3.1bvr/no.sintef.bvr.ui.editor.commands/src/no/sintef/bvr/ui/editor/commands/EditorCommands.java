@@ -28,6 +28,7 @@ import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.ChoiceVSpec;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
@@ -88,7 +89,7 @@ public interface EditorCommands {
 	
 	public void setName(NamedElement namedElement, String name);
 	
-	public void setIsImpliedByParent(Choice choice, boolean isImplied);
+	public void setIsImpliedByParent(ChoiceVSpec choice, boolean isImplied);
 	
 	public void setVNodeGroupMultiplicity(VNode vNode, MultiplicityInterval eObject);
 	

@@ -36,6 +36,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
+import no.sintef.bvr.tool.ui.command.event.ToggleOptionalEvent;
 import no.sintef.bvr.ui.framework.elements.ChoiceOccurencePanel;
 
 
@@ -100,6 +101,11 @@ class ChoiceOccurenceDropDown extends JPopupMenu {
 		pastesibling.addActionListener(new PasteSiblingEvent(cp, view));
 		add(pastesibling);
 		add(new JSeparator());
+		
+		// Toggle optional
+		JMenuItem toggleOptional = new JMenuItem(Constants.VSPEC_DROPDOWN_TOGGLE);
+		toggleOptional.addActionListener(new ToggleOptionalEvent(cp, view));
+		add(toggleOptional);
 		
 		// max/min
 		JMenuItem minimize = new JMenuItem(Constants.VSPEC_DROPDOWN_MINIMIZE);

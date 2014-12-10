@@ -18,15 +18,16 @@ import java.awt.event.ActionListener;
 
 
 
+
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
-import no.sintef.bvr.ui.framework.elements.ChoicePanel;
+import no.sintef.bvr.ui.framework.elements.VSpecPanel;
 
 
 public class ToggleOptionalEvent implements ActionListener {
-	private ChoicePanel p;
+	private VSpecPanel p;
 	private BVRNotifiableController controller;
 
-	public ToggleOptionalEvent(ChoicePanel p, BVRNotifiableController controller) {
+	public ToggleOptionalEvent(VSpecPanel p, BVRNotifiableController controller) {
 		this.p = p;
 		this.controller = controller;
 	}

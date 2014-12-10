@@ -72,7 +72,7 @@ public class AddChoiceOccurence<EDITOR_PANEL, MODEL_PANEL> implements Command<ED
 		ChoiceOccurencePanel cp = new ChoiceOccurencePanel();
 		nodes.add(cp);
         vmMap.put(cp, c);
-        Helper.bind(parent, cp, (BVRModelPanel) rootPanel.getModelPanel(), OPTION_STATE.MANDATORY, bindings);
+        Helper.bind(parent, cp, (BVRModelPanel) rootPanel.getModelPanel(), (!c.isIsImpliedByParent()) ? OPTION_STATE.OPTIONAL : OPTION_STATE.MANDATORY, bindings);
 		
 		CommandMouseListener listener = new CommandMouseListener();
         cp.addMouseListener(new ChoiceOccurenceDropDownListener(cp, vmMap, nodes, bindings, controller));

@@ -27,6 +27,7 @@ import java.util.List;
 
 
 
+
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -57,6 +58,7 @@ import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.ChoiceVSpec;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
@@ -131,7 +133,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
+	public void setIsImpliedByParent(ChoiceVSpec choice, boolean isImplied) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choice, BvrPackage.eINSTANCE.getChoiceVSpec_IsImpliedByParent(), isImplied);
 		testCommandExecution(editingDomain, cmd);

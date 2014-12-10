@@ -64,6 +64,7 @@ import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
+import bvr.ChoiceVSpec;
 import bvr.CompoundNode;
 import bvr.Constraint;
 import bvr.NamedElement;
@@ -299,7 +300,7 @@ public class SwingVSpecController<
 
 	@Override
 	public void toggleChoiceOptionalMandotary(GUI_NODE node) {
-		Choice choice = (Choice) vspecvmMap.get(node);
+		ChoiceVSpec choice = (ChoiceVSpec) vspecvmMap.get(node);
 		toolModel.toggleChoiceOptionalMandotary(choice);
 	}
 

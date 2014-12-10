@@ -29,6 +29,7 @@ import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.ChoiceVSpec;
 //import bvr.ChoiceResolutuion;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
@@ -37,10 +38,8 @@ import bvr.Constraint;
 import bvr.FragmentSubstitution;
 import bvr.FromBinding;
 import bvr.FromPlacement;
-import bvr.IntegerLiteralExp;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.NegResolution;
 import bvr.Note;
 import bvr.ObjectHandle;
 import bvr.PlacementBoundaryElement;
@@ -62,7 +61,6 @@ import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.VType;
 import bvr.ValueResolution;
-import bvr.ValueSpecification;
 import bvr.Variable;
 //import bvr.VariableValueAssignment;
 import bvr.Variabletype;
@@ -90,7 +88,7 @@ public class EditorMVCCommands implements EditorCommands {
 	}
 
 	@Override
-	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
+	public void setIsImpliedByParent(ChoiceVSpec choice, boolean isImplied) {
 		choice.setIsImpliedByParent(isImplied);
 	}
 	

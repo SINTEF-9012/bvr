@@ -45,6 +45,7 @@ import bvr.BoundaryElementBinding;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.ChoiceVSpec;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
@@ -241,7 +242,7 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void toggleChoiceOptionalMandotary(Choice choice) {
+	public void toggleChoiceOptionalMandotary(ChoiceVSpec choice) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 

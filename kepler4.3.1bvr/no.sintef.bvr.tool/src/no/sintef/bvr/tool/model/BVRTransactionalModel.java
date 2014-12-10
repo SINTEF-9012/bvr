@@ -67,6 +67,7 @@ import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.ChoiceVSpec;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.Constraint;
@@ -485,7 +486,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public void toggleChoiceOptionalMandotary(Choice choice) {
+	public void toggleChoiceOptionalMandotary(ChoiceVSpec choice) {
 		Context.eINSTANCE.getEditorCommands().setIsImpliedByParent(choice, !choice.isIsImpliedByParent());
 	}
 
