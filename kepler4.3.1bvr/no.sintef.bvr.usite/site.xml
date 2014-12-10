@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/no.sintef.bvr.usite.feature.model_1.0.0.201412041510.jar" id="no.sintef.bvr.usite.feature.model" version="1.0.0.201412041510">
+   <description name="BVR Tool Bundle Update Site" url="http://bvr.modelbased.net/update/site.xml">
+      The Base Variability Resolution (BVR) is a language to engineer software product lines. The BVR tool bundle is a set of plug-ins for Eclipse that implements and supports the BVR language. The bundle enables feature modeling, resolution, realization and derivation of products, their testing and analysis.
+   </description>
+   <feature url="features/no.sintef.bvr.usite.feature.model_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.model" version="1.0.0.qualifier">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.mvc.realization_1.0.0.201412041510.jar" id="no.sintef.bvr.usite.feature.mvc.realization" version="1.0.0.201412041510">
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.realization_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.mvc.realization" version="1.0.0.qualifier">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.mvc.resolutionV2_1.0.0.201412041510.jar" id="no.sintef.bvr.usite.feature.mvc.resolutionV2" version="1.0.0.201412041510">
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.resolutionV2_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.mvc.resolutionV2" version="1.0.0.qualifier">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.mvc.vspec_1.0.0.201412041510.jar" id="no.sintef.bvr.usite.feature.mvc.vspec" version="1.0.0.201412041510">
+   <feature url="features/no.sintef.bvr.usite.feature.mvc.vspec_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.mvc.vspec" version="1.0.0.qualifier" os="" ws="" nl="" arch="">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.papyrusadapter_1.0.0.201412041510.jar" id="no.sintef.bvr.usite.feature.papyrusadapter" version="1.0.0.201412041510">
+   <feature url="features/no.sintef.bvr.usite.feature.papyrusadapter_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.papyrusadapter" version="1.0.0.qualifier">
       <category name="BVREditors"/>
    </feature>
-   <feature url="features/no.sintef.bvr.usite.feature.splcatool_1.0.0.201412041510.jar" id="no.sintef.bvr.usite.feature.splcatool" version="1.0.0.201412041510">
+   <feature url="features/no.sintef.bvr.usite.feature.splcatool_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.splcatool" version="1.0.0.qualifier">
       <category name="BVREditors"/>
    </feature>
    <category-def name="BVREditors" label="BVR Editors">
