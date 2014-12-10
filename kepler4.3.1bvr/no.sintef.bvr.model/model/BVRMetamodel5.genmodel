@@ -34,10 +34,7 @@
       <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/isDefined"/>
       <genEnumLiterals ecoreEnumLiteral="BVRMetamodel5.ecore#//Operation/isUndefined"/>
     </genEnums>
-    <genClasses ecoreClass="BVRMetamodel5.ecore#//Choice">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//Choice/defaultResolution"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//Choice/isImpliedByParent"/>
-    </genClasses>
+    <genClasses ecoreClass="BVRMetamodel5.ecore#//Choice"/>
     <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//VSpec">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//VSpec/resolutionTime"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//VSpec/target"/>
@@ -259,6 +256,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/baseModelBase"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/baseModelLibraries"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BVRMetamodel5.ecore#//BVRModel/realizationModel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BVRMetamodel5.ecore#//ChoiceVSpec">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ChoiceVSpec/defaultResolution"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BVRMetamodel5.ecore#//ChoiceVSpec/isImpliedByParent"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

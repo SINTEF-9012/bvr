@@ -70,22 +70,10 @@
       </eAnnotations>
     </eLiterals>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//VSpec #//CompoundNode">
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//CompoundNode #//ChoiceVSpec">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p class=&quot;MsoNormal&quot;>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>A Choice is a VSpec and a VNode that represents a yes/no decision. When a VariationPoint is bound to a choice it is dependent upon whether the resolution is a PosResolution or a NegResolution to determine what VariationPoint to execute.&lt;/span>&lt;/p>&lt;p>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>&lt;/span>####CVLSemanticStart####&lt;/p>&lt;p>Invariant : If a choice is implied by parent, it must have a parent.&lt;/p>&lt;p>OCL :&lt;/p>&lt;p>-- Choice&lt;/p>&lt;p>-- If a choice is implied by parent, it must have a parent.&lt;/p>&lt;p>context Choice :&lt;/p>&lt;p>inv isImpliedByParentsImpliesAParent :&lt;/p>&lt;p>self.isImpliedByParent implies VSpec.allInstances()-&amp;gt;exists(vSpec | vSpec.childVSpec-&amp;gt;includes(self))&lt;/p>&lt;p>####CVLSemanticEnd####&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultResolution" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>The default resolution of this choice. (If True then the default is a PosResolution, if False then the default is a NegResolution)&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImpliedByParent" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="&lt;p>When True then resolving the parent VSpec positively implies deciding this choice  positively. A VSpec resolution is positive if it is a choice decided positively, or any classifier instantiation, or any value assignment to a variable.&lt;br>&lt;br>For a root choice, True implies it must be resolved positively.&lt;/p>"/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VSpec" abstract="true" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -294,7 +282,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ChoiceOccurrence" eSuperTypes="#//VSpec #//VNode">
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceOccurrence" eSuperTypes="#//VNode #//ChoiceVSpec">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>ChoiceOccurrence is similar to a Choice, but refers to a VType instead of having the ability to define a subordinate VNode structure.&lt;/p>"/>
     </eAnnotations>
@@ -1105,6 +1093,23 @@
         upperBound="-1" eType="#//VariationPoint" containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The realizationModel consists of the variation points used to respresent the realization of the variabilityModel given the resolutionModel. The variation points define the changes done with the base model to fulfill the configurations specified.&lt;/p>"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceVSpec" abstract="true" eSuperTypes="#//VSpec">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="&lt;p class=&quot;MsoNormal&quot;>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>A ChoiceVSpec is a VSpec which either Choice or ChoiceOccurence.&lt;/span>&lt;/p>&lt;p>&lt;span style=&quot;font-size:8pt;font-family:Tahoma;&quot;>&lt;/span>####CVLSemanticStart####&lt;/p>&lt;p>Invariant : If a choice is implied by parent, it must have a parent.&lt;/p>&lt;p>OCL :&lt;/p>&lt;p>-- Choice&lt;/p>&lt;p>-- If a choice is implied by parent, it must have a parent.&lt;/p>&lt;p>context Choice :&lt;/p>&lt;p>inv isImpliedByParentsImpliesAParent :&lt;/p>&lt;p>self.isImpliedByParent implies VSpec.allInstances()-&amp;gt;exists(vSpec | vSpec.childVSpec-&amp;gt;includes(self))&lt;/p>&lt;p>####CVLSemanticEnd####&lt;/p>"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultResolution" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>The default resolution of this choice. (If True then the default is a PosResolution, if False then the default is a NegResolution)&lt;/p>"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImpliedByParent" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>When True then resolving the parent VSpec positively implies deciding this choice  positively. A VSpec resolution is positive if it is a choice decided positively, or any classifier instantiation, or any value assignment to a variable.&lt;br>&lt;br>For a root choice, True implies it must be resolved positively.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -4,24 +4,19 @@ package bvr.impl;
 
 import bvr.BvrPackage;
 import bvr.ChoiceOccurrence;
-import bvr.Constraint;
-import bvr.MultiplicityInterval;
-import bvr.VNode;
+import bvr.ChoiceVSpec;
+import bvr.NamedElement;
+import bvr.Note;
+import bvr.Target;
+import bvr.VSpec;
 import bvr.VType;
-import bvr.Variable;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,45 +27,118 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getGroupMultiplicity <em>Group Multiplicity</em>}</li>
- *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getOwnedConstraint <em>Owned Constraint</em>}</li>
- *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getName <em>Name</em>}</li>
+ *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getNote <em>Note</em>}</li>
+ *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getResolutionTime <em>Resolution Time</em>}</li>
+ *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#isDefaultResolution <em>Default Resolution</em>}</li>
+ *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#isIsImpliedByParent <em>Is Implied By Parent</em>}</li>
  *   <li>{@link bvr.impl.ChoiceOccurrenceImpl#getVType <em>VType</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence {
+public class ChoiceOccurrenceImpl extends VNodeImpl implements ChoiceOccurrence {
 	/**
-	 * The cached value of the '{@link #getGroupMultiplicity() <em>Group Multiplicity</em>}' containment reference.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getGroupMultiplicity()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected MultiplicityInterval groupMultiplicity;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getOwnedConstraint() <em>Owned Constraint</em>}' containment reference list.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedConstraint()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> ownedConstraint;
+	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
+	 * The cached value of the '{@link #getNote() <em>Note</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariable()
+	 * @see #getNote()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Variable> variable;
+	protected EList<Note> note;
+
+	/**
+	 * The default value of the '{@link #getResolutionTime() <em>Resolution Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolutionTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESOLUTION_TIME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getResolutionTime() <em>Resolution Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResolutionTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected String resolutionTime = RESOLUTION_TIME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected Target target;
+
+	/**
+	 * The default value of the '{@link #isDefaultResolution() <em>Default Resolution</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefaultResolution()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEFAULT_RESOLUTION_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDefaultResolution() <em>Default Resolution</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefaultResolution()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean defaultResolution = DEFAULT_RESOLUTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsImpliedByParent() <em>Is Implied By Parent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsImpliedByParent()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMPLIED_BY_PARENT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsImpliedByParent() <em>Is Implied By Parent</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsImpliedByParent()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImpliedByParent = IS_IMPLIED_BY_PARENT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getVType() <em>VType</em>}' reference.
@@ -106,8 +174,8 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultiplicityInterval getGroupMultiplicity() {
-		return groupMultiplicity;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -115,14 +183,11 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetGroupMultiplicity(MultiplicityInterval newGroupMultiplicity, NotificationChain msgs) {
-		MultiplicityInterval oldGroupMultiplicity = groupMultiplicity;
-		groupMultiplicity = newGroupMultiplicity;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY, oldGroupMultiplicity, newGroupMultiplicity);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__NAME, oldName, name));
 	}
 
 	/**
@@ -130,18 +195,11 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setGroupMultiplicity(MultiplicityInterval newGroupMultiplicity) {
-		if (newGroupMultiplicity != groupMultiplicity) {
-			NotificationChain msgs = null;
-			if (groupMultiplicity != null)
-				msgs = ((InternalEObject)groupMultiplicity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY, null, msgs);
-			if (newGroupMultiplicity != null)
-				msgs = ((InternalEObject)newGroupMultiplicity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY, null, msgs);
-			msgs = basicSetGroupMultiplicity(newGroupMultiplicity, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<Note> getNote() {
+		if (note == null) {
+			note = new EObjectContainmentEList<Note>(Note.class, this, BvrPackage.CHOICE_OCCURRENCE__NOTE);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY, newGroupMultiplicity, newGroupMultiplicity));
+		return note;
 	}
 
 	/**
@@ -149,11 +207,8 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Constraint> getOwnedConstraint() {
-		if (ownedConstraint == null) {
-			ownedConstraint = new EObjectContainmentEList<Constraint>(Constraint.class, this, BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT);
-		}
-		return ownedConstraint;
+	public String getResolutionTime() {
+		return resolutionTime;
 	}
 
 	/**
@@ -161,11 +216,91 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Variable> getVariable() {
-		if (variable == null) {
-			variable = new EObjectContainmentEList<Variable>(Variable.class, this, BvrPackage.CHOICE_OCCURRENCE__VARIABLE);
+	public void setResolutionTime(String newResolutionTime) {
+		String oldResolutionTime = resolutionTime;
+		resolutionTime = newResolutionTime;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME, oldResolutionTime, resolutionTime));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Target getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Target)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BvrPackage.CHOICE_OCCURRENCE__TARGET, oldTarget, target));
+			}
 		}
-		return variable;
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Target basicGetTarget() {
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(Target newTarget) {
+		Target oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDefaultResolution() {
+		return defaultResolution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultResolution(boolean newDefaultResolution) {
+		boolean oldDefaultResolution = defaultResolution;
+		defaultResolution = newDefaultResolution;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION, oldDefaultResolution, defaultResolution));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsImpliedByParent() {
+		return isImpliedByParent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsImpliedByParent(boolean newIsImpliedByParent) {
+		boolean oldIsImpliedByParent = isImpliedByParent;
+		isImpliedByParent = newIsImpliedByParent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT, oldIsImpliedByParent, isImpliedByParent));
 	}
 
 	/**
@@ -214,12 +349,8 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY:
-				return basicSetGroupMultiplicity(null, msgs);
-			case BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT:
-				return ((InternalEList<?>)getOwnedConstraint()).basicRemove(otherEnd, msgs);
-			case BvrPackage.CHOICE_OCCURRENCE__VARIABLE:
-				return ((InternalEList<?>)getVariable()).basicRemove(otherEnd, msgs);
+			case BvrPackage.CHOICE_OCCURRENCE__NOTE:
+				return ((InternalEList<?>)getNote()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -232,12 +363,19 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY:
-				return getGroupMultiplicity();
-			case BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT:
-				return getOwnedConstraint();
-			case BvrPackage.CHOICE_OCCURRENCE__VARIABLE:
-				return getVariable();
+			case BvrPackage.CHOICE_OCCURRENCE__NAME:
+				return getName();
+			case BvrPackage.CHOICE_OCCURRENCE__NOTE:
+				return getNote();
+			case BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME:
+				return getResolutionTime();
+			case BvrPackage.CHOICE_OCCURRENCE__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
+			case BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION:
+				return isDefaultResolution();
+			case BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT:
+				return isIsImpliedByParent();
 			case BvrPackage.CHOICE_OCCURRENCE__VTYPE:
 				if (resolve) return getVType();
 				return basicGetVType();
@@ -254,16 +392,24 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY:
-				setGroupMultiplicity((MultiplicityInterval)newValue);
+			case BvrPackage.CHOICE_OCCURRENCE__NAME:
+				setName((String)newValue);
 				return;
-			case BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT:
-				getOwnedConstraint().clear();
-				getOwnedConstraint().addAll((Collection<? extends Constraint>)newValue);
+			case BvrPackage.CHOICE_OCCURRENCE__NOTE:
+				getNote().clear();
+				getNote().addAll((Collection<? extends Note>)newValue);
 				return;
-			case BvrPackage.CHOICE_OCCURRENCE__VARIABLE:
-				getVariable().clear();
-				getVariable().addAll((Collection<? extends Variable>)newValue);
+			case BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME:
+				setResolutionTime((String)newValue);
+				return;
+			case BvrPackage.CHOICE_OCCURRENCE__TARGET:
+				setTarget((Target)newValue);
+				return;
+			case BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION:
+				setDefaultResolution((Boolean)newValue);
+				return;
+			case BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT:
+				setIsImpliedByParent((Boolean)newValue);
 				return;
 			case BvrPackage.CHOICE_OCCURRENCE__VTYPE:
 				setVType((VType)newValue);
@@ -280,14 +426,23 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY:
-				setGroupMultiplicity((MultiplicityInterval)null);
+			case BvrPackage.CHOICE_OCCURRENCE__NAME:
+				setName(NAME_EDEFAULT);
 				return;
-			case BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT:
-				getOwnedConstraint().clear();
+			case BvrPackage.CHOICE_OCCURRENCE__NOTE:
+				getNote().clear();
 				return;
-			case BvrPackage.CHOICE_OCCURRENCE__VARIABLE:
-				getVariable().clear();
+			case BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME:
+				setResolutionTime(RESOLUTION_TIME_EDEFAULT);
+				return;
+			case BvrPackage.CHOICE_OCCURRENCE__TARGET:
+				setTarget((Target)null);
+				return;
+			case BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION:
+				setDefaultResolution(DEFAULT_RESOLUTION_EDEFAULT);
+				return;
+			case BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT:
+				setIsImpliedByParent(IS_IMPLIED_BY_PARENT_EDEFAULT);
 				return;
 			case BvrPackage.CHOICE_OCCURRENCE__VTYPE:
 				setVType((VType)null);
@@ -304,12 +459,18 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY:
-				return groupMultiplicity != null;
-			case BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT:
-				return ownedConstraint != null && !ownedConstraint.isEmpty();
-			case BvrPackage.CHOICE_OCCURRENCE__VARIABLE:
-				return variable != null && !variable.isEmpty();
+			case BvrPackage.CHOICE_OCCURRENCE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case BvrPackage.CHOICE_OCCURRENCE__NOTE:
+				return note != null && !note.isEmpty();
+			case BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME:
+				return RESOLUTION_TIME_EDEFAULT == null ? resolutionTime != null : !RESOLUTION_TIME_EDEFAULT.equals(resolutionTime);
+			case BvrPackage.CHOICE_OCCURRENCE__TARGET:
+				return target != null;
+			case BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION:
+				return defaultResolution != DEFAULT_RESOLUTION_EDEFAULT;
+			case BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT:
+				return isImpliedByParent != IS_IMPLIED_BY_PARENT_EDEFAULT;
 			case BvrPackage.CHOICE_OCCURRENCE__VTYPE:
 				return vType != null;
 		}
@@ -323,11 +484,24 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == VNode.class) {
+		if (baseClass == NamedElement.class) {
 			switch (derivedFeatureID) {
-				case BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY: return BvrPackage.VNODE__GROUP_MULTIPLICITY;
-				case BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT: return BvrPackage.VNODE__OWNED_CONSTRAINT;
-				case BvrPackage.CHOICE_OCCURRENCE__VARIABLE: return BvrPackage.VNODE__VARIABLE;
+				case BvrPackage.CHOICE_OCCURRENCE__NAME: return BvrPackage.NAMED_ELEMENT__NAME;
+				case BvrPackage.CHOICE_OCCURRENCE__NOTE: return BvrPackage.NAMED_ELEMENT__NOTE;
+				default: return -1;
+			}
+		}
+		if (baseClass == VSpec.class) {
+			switch (derivedFeatureID) {
+				case BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME: return BvrPackage.VSPEC__RESOLUTION_TIME;
+				case BvrPackage.CHOICE_OCCURRENCE__TARGET: return BvrPackage.VSPEC__TARGET;
+				default: return -1;
+			}
+		}
+		if (baseClass == ChoiceVSpec.class) {
+			switch (derivedFeatureID) {
+				case BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION: return BvrPackage.CHOICE_VSPEC__DEFAULT_RESOLUTION;
+				case BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT: return BvrPackage.CHOICE_VSPEC__IS_IMPLIED_BY_PARENT;
 				default: return -1;
 			}
 		}
@@ -341,15 +515,50 @@ public class ChoiceOccurrenceImpl extends VSpecImpl implements ChoiceOccurrence 
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == VNode.class) {
+		if (baseClass == NamedElement.class) {
 			switch (baseFeatureID) {
-				case BvrPackage.VNODE__GROUP_MULTIPLICITY: return BvrPackage.CHOICE_OCCURRENCE__GROUP_MULTIPLICITY;
-				case BvrPackage.VNODE__OWNED_CONSTRAINT: return BvrPackage.CHOICE_OCCURRENCE__OWNED_CONSTRAINT;
-				case BvrPackage.VNODE__VARIABLE: return BvrPackage.CHOICE_OCCURRENCE__VARIABLE;
+				case BvrPackage.NAMED_ELEMENT__NAME: return BvrPackage.CHOICE_OCCURRENCE__NAME;
+				case BvrPackage.NAMED_ELEMENT__NOTE: return BvrPackage.CHOICE_OCCURRENCE__NOTE;
+				default: return -1;
+			}
+		}
+		if (baseClass == VSpec.class) {
+			switch (baseFeatureID) {
+				case BvrPackage.VSPEC__RESOLUTION_TIME: return BvrPackage.CHOICE_OCCURRENCE__RESOLUTION_TIME;
+				case BvrPackage.VSPEC__TARGET: return BvrPackage.CHOICE_OCCURRENCE__TARGET;
+				default: return -1;
+			}
+		}
+		if (baseClass == ChoiceVSpec.class) {
+			switch (baseFeatureID) {
+				case BvrPackage.CHOICE_VSPEC__DEFAULT_RESOLUTION: return BvrPackage.CHOICE_OCCURRENCE__DEFAULT_RESOLUTION;
+				case BvrPackage.CHOICE_VSPEC__IS_IMPLIED_BY_PARENT: return BvrPackage.CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", resolutionTime: ");
+		result.append(resolutionTime);
+		result.append(", defaultResolution: ");
+		result.append(defaultResolution);
+		result.append(", isImpliedByParent: ");
+		result.append(isImpliedByParent);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ChoiceOccurrenceImpl

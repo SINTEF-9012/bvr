@@ -133,7 +133,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void setIsImpliedByParent(Choice choice, boolean isImplied) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choice, BvrPackage.eINSTANCE.getChoice_IsImpliedByParent(), isImplied);
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choice, BvrPackage.eINSTANCE.getChoiceVSpec_IsImpliedByParent(), isImplied);
 		testCommandExecution(editingDomain, cmd);
 	}
 	

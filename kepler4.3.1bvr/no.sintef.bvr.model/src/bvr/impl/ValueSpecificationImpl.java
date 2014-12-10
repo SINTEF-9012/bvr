@@ -60,7 +60,7 @@ public abstract class ValueSpecificationImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
 	 */
 	public Variabletype basicGetType() {
 		return variableType;
@@ -69,7 +69,7 @@ public abstract class ValueSpecificationImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * 
 	 */
 	public void setType(Variabletype newType) {
 		variableType = newType;

@@ -69,42 +69,6 @@ public interface BvrPackage extends EPackage {
 	int NAMED_ELEMENT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__NOTE = 1;
-
-	/**
-	 * The number of structural features of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link bvr.impl.VSpecImpl <em>VSpec</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,60 +77,6 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	int VSPEC = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC__NOTE = NAMED_ELEMENT__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC__RESOLUTION_TIME = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>VSpec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>VSpec</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VSPEC_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.ChoiceImpl <em>Choice</em>}' class.
@@ -179,123 +89,6 @@ public interface BvrPackage extends EPackage {
 	int CHOICE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__NAME = VSPEC__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__NOTE = VSPEC__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__TARGET = VSPEC__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__GROUP_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__OWNED_CONSTRAINT = VSPEC_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__VARIABLE = VSPEC_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__MEMBER = VSPEC_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Owned Targets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__OWNED_TARGETS = VSPEC_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__DEFAULT_RESOLUTION = VSPEC_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Is Implied By Parent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE__IS_IMPLIED_BY_PARENT = VSPEC_FEATURE_COUNT + 6;
-
-	/**
-	 * The number of structural features of the '<em>Choice</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 7;
-
-	/**
-	 * The number of operations of the '<em>Choice</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link bvr.impl.NoteImpl <em>Note</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -306,60 +99,6 @@ public interface BvrPackage extends EPackage {
 	int NOTE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTE__NOTE = NAMED_ELEMENT__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTE__KIND = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Expr</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTE__EXPR = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Note</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Note</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOTE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link bvr.impl.TargetImpl <em>Target</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -368,42 +107,6 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	int TARGET = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET__NOTE = NAMED_ELEMENT__NOTE;
-
-	/**
-	 * The number of structural features of the '<em>Target</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Target</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.VNodeImpl <em>VNode</em>}' class.
@@ -532,6 +235,303 @@ public interface BvrPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOUND_NODE_OPERATION_COUNT = VNODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__GROUP_MULTIPLICITY = COMPOUND_NODE__GROUP_MULTIPLICITY;
+
+	/**
+	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__OWNED_CONSTRAINT = COMPOUND_NODE__OWNED_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__VARIABLE = COMPOUND_NODE__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__MEMBER = COMPOUND_NODE__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Targets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__OWNED_TARGETS = COMPOUND_NODE__OWNED_TARGETS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__NAME = COMPOUND_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__NOTE = COMPOUND_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__RESOLUTION_TIME = COMPOUND_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__TARGET = COMPOUND_NODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__DEFAULT_RESOLUTION = COMPOUND_NODE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Is Implied By Parent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__IS_IMPLIED_BY_PARENT = COMPOUND_NODE_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of structural features of the '<em>Choice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_FEATURE_COUNT = COMPOUND_NODE_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Choice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OPERATION_COUNT = COMPOUND_NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__NOTE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC__NOTE = NAMED_ELEMENT__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC__RESOLUTION_TIME = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC__TARGET = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>VSpec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>VSpec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VSPEC_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__NOTE = NAMED_ELEMENT__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__KIND = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Expr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE__EXPR = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Note</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Note</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET__NOTE = NAMED_ELEMENT__NOTE;
+
+	/**
+	 * The number of structural features of the '<em>Target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Target</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.MultiplicityIntervalImpl <em>Multiplicity Interval</em>}' class.
@@ -1111,49 +1111,13 @@ public interface BvrPackage extends EPackage {
 	int CHOICE_OCCURRENCE = 16;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_OCCURRENCE__NAME = VSPEC__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_OCCURRENCE__NOTE = VSPEC__NOTE;
-
-	/**
-	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_OCCURRENCE__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CHOICE_OCCURRENCE__TARGET = VSPEC__TARGET;
-
-	/**
 	 * The feature id for the '<em><b>Group Multiplicity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_OCCURRENCE__GROUP_MULTIPLICITY = VSPEC_FEATURE_COUNT + 0;
+	int CHOICE_OCCURRENCE__GROUP_MULTIPLICITY = VNODE__GROUP_MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Owned Constraint</b></em>' containment reference list.
@@ -1162,7 +1126,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_OCCURRENCE__OWNED_CONSTRAINT = VSPEC_FEATURE_COUNT + 1;
+	int CHOICE_OCCURRENCE__OWNED_CONSTRAINT = VNODE__OWNED_CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
@@ -1171,7 +1135,61 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_OCCURRENCE__VARIABLE = VSPEC_FEATURE_COUNT + 2;
+	int CHOICE_OCCURRENCE__VARIABLE = VNODE__VARIABLE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__NAME = VNODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__NOTE = VNODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__RESOLUTION_TIME = VNODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__TARGET = VNODE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__DEFAULT_RESOLUTION = VNODE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Is Implied By Parent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_OCCURRENCE__IS_IMPLIED_BY_PARENT = VNODE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>VType</b></em>' reference.
@@ -1180,7 +1198,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_OCCURRENCE__VTYPE = VSPEC_FEATURE_COUNT + 3;
+	int CHOICE_OCCURRENCE__VTYPE = VNODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Choice Occurrence</em>' class.
@@ -1189,7 +1207,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_OCCURRENCE_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 4;
+	int CHOICE_OCCURRENCE_FEATURE_COUNT = VNODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Choice Occurrence</em>' class.
@@ -1198,7 +1216,7 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_OCCURRENCE_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+	int CHOICE_OCCURRENCE_OPERATION_COUNT = VNODE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link bvr.impl.VTypeImpl <em>VType</em>}' class.
@@ -4609,6 +4627,88 @@ public interface BvrPackage extends EPackage {
 	int BVR_MODEL_OPERATION_COUNT = VPACKAGE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link bvr.impl.ChoiceVSpecImpl <em>Choice VSpec</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see bvr.impl.ChoiceVSpecImpl
+	 * @see bvr.impl.BvrPackageImpl#getChoiceVSpec()
+	 * @generated
+	 */
+	int CHOICE_VSPEC = 68;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC__NAME = VSPEC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Note</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC__NOTE = VSPEC__NOTE;
+
+	/**
+	 * The feature id for the '<em><b>Resolution Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC__RESOLUTION_TIME = VSPEC__RESOLUTION_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC__TARGET = VSPEC__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Default Resolution</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC__DEFAULT_RESOLUTION = VSPEC_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Implied By Parent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC__IS_IMPLIED_BY_PARENT = VSPEC_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Choice VSpec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC_FEATURE_COUNT = VSPEC_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Choice VSpec</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_VSPEC_OPERATION_COUNT = VSPEC_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link bvr.PrimitiveTypeEnum <em>Primitive Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4616,7 +4716,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getPrimitiveTypeEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_ENUM = 68;
+	int PRIMITIVE_TYPE_ENUM = 69;
 
 	/**
 	 * The meta object id for the '{@link bvr.Operation <em>Operation</em>}' enum.
@@ -4626,7 +4726,7 @@ public interface BvrPackage extends EPackage {
 	 * @see bvr.impl.BvrPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 69;
+	int OPERATION = 70;
 
 
 	/**
@@ -4638,28 +4738,6 @@ public interface BvrPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getChoice();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.Choice#isDefaultResolution <em>Default Resolution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Resolution</em>'.
-	 * @see bvr.Choice#isDefaultResolution()
-	 * @see #getChoice()
-	 * @generated
-	 */
-	EAttribute getChoice_DefaultResolution();
-
-	/**
-	 * Returns the meta object for the attribute '{@link bvr.Choice#isIsImpliedByParent <em>Is Implied By Parent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Implied By Parent</em>'.
-	 * @see bvr.Choice#isIsImpliedByParent()
-	 * @see #getChoice()
-	 * @generated
-	 */
-	EAttribute getChoice_IsImpliedByParent();
 
 	/**
 	 * Returns the meta object for class '{@link bvr.VSpec <em>VSpec</em>}'.
@@ -6443,6 +6521,38 @@ public interface BvrPackage extends EPackage {
 	EReference getBVRModel_RealizationModel();
 
 	/**
+	 * Returns the meta object for class '{@link bvr.ChoiceVSpec <em>Choice VSpec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Choice VSpec</em>'.
+	 * @see bvr.ChoiceVSpec
+	 * @generated
+	 */
+	EClass getChoiceVSpec();
+
+	/**
+	 * Returns the meta object for the attribute '{@link bvr.ChoiceVSpec#isDefaultResolution <em>Default Resolution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Resolution</em>'.
+	 * @see bvr.ChoiceVSpec#isDefaultResolution()
+	 * @see #getChoiceVSpec()
+	 * @generated
+	 */
+	EAttribute getChoiceVSpec_DefaultResolution();
+
+	/**
+	 * Returns the meta object for the attribute '{@link bvr.ChoiceVSpec#isIsImpliedByParent <em>Is Implied By Parent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Implied By Parent</em>'.
+	 * @see bvr.ChoiceVSpec#isIsImpliedByParent()
+	 * @see #getChoiceVSpec()
+	 * @generated
+	 */
+	EAttribute getChoiceVSpec_IsImpliedByParent();
+
+	/**
 	 * Returns the meta object for enum '{@link bvr.PrimitiveTypeEnum <em>Primitive Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6494,22 +6604,6 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CHOICE = eINSTANCE.getChoice();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Resolution</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CHOICE__DEFAULT_RESOLUTION = eINSTANCE.getChoice_DefaultResolution();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Implied By Parent</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CHOICE__IS_IMPLIED_BY_PARENT = eINSTANCE.getChoice_IsImpliedByParent();
 
 		/**
 		 * The meta object literal for the '{@link bvr.impl.VSpecImpl <em>VSpec</em>}' class.
@@ -7988,6 +8082,32 @@ public interface BvrPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BVR_MODEL__REALIZATION_MODEL = eINSTANCE.getBVRModel_RealizationModel();
+
+		/**
+		 * The meta object literal for the '{@link bvr.impl.ChoiceVSpecImpl <em>Choice VSpec</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see bvr.impl.ChoiceVSpecImpl
+		 * @see bvr.impl.BvrPackageImpl#getChoiceVSpec()
+		 * @generated
+		 */
+		EClass CHOICE_VSPEC = eINSTANCE.getChoiceVSpec();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Resolution</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHOICE_VSPEC__DEFAULT_RESOLUTION = eINSTANCE.getChoiceVSpec_DefaultResolution();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Implied By Parent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHOICE_VSPEC__IS_IMPLIED_BY_PARENT = eINSTANCE.getChoiceVSpec_IsImpliedByParent();
 
 		/**
 		 * The meta object literal for the '{@link bvr.PrimitiveTypeEnum <em>Primitive Type Enum</em>}' enum.

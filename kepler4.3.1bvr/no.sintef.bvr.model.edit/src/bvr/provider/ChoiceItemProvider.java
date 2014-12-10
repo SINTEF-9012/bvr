@@ -32,7 +32,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ChoiceItemProvider
-	extends VSpecItemProvider
+	extends CompoundNodeItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -60,10 +60,79 @@ public class ChoiceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addNamePropertyDescriptor(object);
+			addResolutionTimePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 			addDefaultResolutionPropertyDescriptor(object);
 			addIsImpliedByParentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedElement_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
+				 BvrPackage.Literals.NAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Resolution Time feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addResolutionTimePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VSpec_resolutionTime_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_resolutionTime_feature", "_UI_VSpec_type"),
+				 BvrPackage.Literals.VSPEC__RESOLUTION_TIME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VSpec_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VSpec_target_feature", "_UI_VSpec_type"),
+				 BvrPackage.Literals.VSPEC__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -77,9 +146,9 @@ public class ChoiceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Choice_defaultResolution_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_defaultResolution_feature", "_UI_Choice_type"),
-				 BvrPackage.Literals.CHOICE__DEFAULT_RESOLUTION,
+				 getString("_UI_ChoiceVSpec_defaultResolution_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceVSpec_defaultResolution_feature", "_UI_ChoiceVSpec_type"),
+				 BvrPackage.Literals.CHOICE_VSPEC__DEFAULT_RESOLUTION,
 				 true,
 				 false,
 				 false,
@@ -99,9 +168,9 @@ public class ChoiceItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Choice_isImpliedByParent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Choice_isImpliedByParent_feature", "_UI_Choice_type"),
-				 BvrPackage.Literals.CHOICE__IS_IMPLIED_BY_PARENT,
+				 getString("_UI_ChoiceVSpec_isImpliedByParent_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ChoiceVSpec_isImpliedByParent_feature", "_UI_ChoiceVSpec_type"),
+				 BvrPackage.Literals.CHOICE_VSPEC__IS_IMPLIED_BY_PARENT,
 				 true,
 				 false,
 				 false,
@@ -122,11 +191,7 @@ public class ChoiceItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY);
-			childrenFeatures.add(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT);
-			childrenFeatures.add(BvrPackage.Literals.VNODE__VARIABLE);
-			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__MEMBER);
-			childrenFeatures.add(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS);
+			childrenFeatures.add(BvrPackage.Literals.NAMED_ELEMENT__NOTE);
 		}
 		return childrenFeatures;
 	}
@@ -181,15 +246,13 @@ public class ChoiceItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Choice.class)) {
+			case BvrPackage.CHOICE__NAME:
+			case BvrPackage.CHOICE__RESOLUTION_TIME:
 			case BvrPackage.CHOICE__DEFAULT_RESOLUTION:
 			case BvrPackage.CHOICE__IS_IMPLIED_BY_PARENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case BvrPackage.CHOICE__GROUP_MULTIPLICITY:
-			case BvrPackage.CHOICE__OWNED_CONSTRAINT:
-			case BvrPackage.CHOICE__VARIABLE:
-			case BvrPackage.CHOICE__MEMBER:
-			case BvrPackage.CHOICE__OWNED_TARGETS:
+			case BvrPackage.CHOICE__NOTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -209,58 +272,8 @@ public class ChoiceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BvrPackage.Literals.VNODE__GROUP_MULTIPLICITY,
-				 BvrFactory.eINSTANCE.createMultiplicityInterval()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
-				 BvrFactory.eINSTANCE.createConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
-				 BvrFactory.eINSTANCE.createOpaqueConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VNODE__OWNED_CONSTRAINT,
-				 BvrFactory.eINSTANCE.createBCLConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.VNODE__VARIABLE,
-				 BvrFactory.eINSTANCE.createVariable()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
-				 BvrFactory.eINSTANCE.createChoice()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
-				 BvrFactory.eINSTANCE.createVClassifier()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
-				 BvrFactory.eINSTANCE.createChoiceOccurrence()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
-				 BvrFactory.eINSTANCE.createVType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__MEMBER,
-				 BvrFactory.eINSTANCE.createVClassOccurrence()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(BvrPackage.Literals.COMPOUND_NODE__OWNED_TARGETS,
-				 BvrFactory.eINSTANCE.createTarget()));
+				(BvrPackage.Literals.NAMED_ELEMENT__NOTE,
+				 BvrFactory.eINSTANCE.createNote()));
 	}
 
 }

@@ -23,7 +23,7 @@ package bvr;
  * @model
  * @generated
  */
-public interface ChoiceOccurrence extends VSpec, VNode {
+public interface ChoiceOccurrence extends VNode, ChoiceVSpec {
 	/**
 	 * Returns the value of the '<em><b>VType</b></em>' reference.
 	 * <!-- begin-user-doc -->

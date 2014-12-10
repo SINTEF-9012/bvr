@@ -12,6 +12,7 @@ import bvr.BvrPackage;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.ChoiceVSpec;
 import bvr.ChoiceVariationPoint;
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
@@ -571,6 +572,13 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass choiceVSpecEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum primitiveTypeEnumEEnum = null;
 
 	/**
@@ -648,24 +656,6 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 */
 	public EClass getChoice() {
 		return choiceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getChoice_DefaultResolution() {
-		return (EAttribute)choiceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getChoice_IsImpliedByParent() {
-		return (EAttribute)choiceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2185,6 +2175,33 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getChoiceVSpec() {
+		return choiceVSpecEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getChoiceVSpec_DefaultResolution() {
+		return (EAttribute)choiceVSpecEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getChoiceVSpec_IsImpliedByParent() {
+		return (EAttribute)choiceVSpecEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getPrimitiveTypeEnum() {
 		return primitiveTypeEnumEEnum;
 	}
@@ -2227,8 +2244,6 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 
 		// Create classes and their features
 		choiceEClass = createEClass(CHOICE);
-		createEAttribute(choiceEClass, CHOICE__DEFAULT_RESOLUTION);
-		createEAttribute(choiceEClass, CHOICE__IS_IMPLIED_BY_PARENT);
 
 		vSpecEClass = createEClass(VSPEC);
 		createEAttribute(vSpecEClass, VSPEC__RESOLUTION_TIME);
@@ -2465,6 +2480,10 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		createEReference(bvrModelEClass, BVR_MODEL__BASE_MODEL_LIBRARIES);
 		createEReference(bvrModelEClass, BVR_MODEL__REALIZATION_MODEL);
 
+		choiceVSpecEClass = createEClass(CHOICE_VSPEC);
+		createEAttribute(choiceVSpecEClass, CHOICE_VSPEC__DEFAULT_RESOLUTION);
+		createEAttribute(choiceVSpecEClass, CHOICE_VSPEC__IS_IMPLIED_BY_PARENT);
+
 		// Create enums
 		primitiveTypeEnumEEnum = createEEnum(PRIMITIVE_TYPE_ENUM);
 		operationEEnum = createEEnum(OPERATION);
@@ -2498,8 +2517,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		choiceEClass.getESuperTypes().add(this.getVSpec());
 		choiceEClass.getESuperTypes().add(this.getCompoundNode());
+		choiceEClass.getESuperTypes().add(this.getChoiceVSpec());
 		vSpecEClass.getESuperTypes().add(this.getNamedElement());
 		noteEClass.getESuperTypes().add(this.getNamedElement());
 		targetEClass.getESuperTypes().add(this.getNamedElement());
@@ -2512,8 +2531,8 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		vClassifierEClass.getESuperTypes().add(this.getCompoundNode());
 		vSpecResolutionEClass.getESuperTypes().add(this.getNamedElement());
 		choiceResolutionEClass.getESuperTypes().add(this.getVSpecResolution());
-		choiceOccurrenceEClass.getESuperTypes().add(this.getVSpec());
 		choiceOccurrenceEClass.getESuperTypes().add(this.getVNode());
+		choiceOccurrenceEClass.getESuperTypes().add(this.getChoiceVSpec());
 		vTypeEClass.getESuperTypes().add(this.getCompoundNode());
 		vTypeEClass.getESuperTypes().add(this.getVPackageable());
 		vClassOccurrenceEClass.getESuperTypes().add(this.getVSpec());
@@ -2565,11 +2584,10 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		resolutionLiteralDefinitionEClass.getESuperTypes().add(this.getCompoundResolution());
 		resolutionLiteralUseEClass.getESuperTypes().add(this.getChoiceResolution());
 		bvrModelEClass.getESuperTypes().add(this.getVPackage());
+		choiceVSpecEClass.getESuperTypes().add(this.getVSpec());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(choiceEClass, Choice.class, "Choice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getChoice_DefaultResolution(), ecorePackage.getEBoolean(), "defaultResolution", null, 0, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getChoice_IsImpliedByParent(), ecorePackage.getEBoolean(), "isImpliedByParent", null, 1, 1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(vSpecEClass, VSpec.class, "VSpec", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVSpec_ResolutionTime(), ecorePackage.getEString(), "resolutionTime", null, 1, 1, VSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2806,6 +2824,10 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 		initEReference(getBVRModel_BaseModelLibraries(), this.getObjectHandle(), null, "baseModelLibraries", null, 0, -1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getBVRModel_RealizationModel(), this.getVariationPoint(), null, "realizationModel", null, 0, -1, BVRModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(choiceVSpecEClass, ChoiceVSpec.class, "ChoiceVSpec", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getChoiceVSpec_DefaultResolution(), ecorePackage.getEBoolean(), "defaultResolution", null, 0, 1, ChoiceVSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getChoiceVSpec_IsImpliedByParent(), ecorePackage.getEBoolean(), "isImpliedByParent", null, 1, 1, ChoiceVSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(primitiveTypeEnumEEnum, PrimitiveTypeEnum.class, "PrimitiveTypeEnum");
 		addEEnumLiteral(primitiveTypeEnumEEnum, PrimitiveTypeEnum.STRING);
@@ -2892,7 +2914,7 @@ public class BvrPackageImpl extends EPackageImpl implements BvrPackage {
 			 "com.ibm.xtools.activities.umlBBRealization", "1",
 			 "com.ibm.xtools.activities.umlBBComponent", "1",
 			 "com.ibm.xtools.activities.umlBBSequenceDiagram", "1"
-		   });																																																																																																																																																																																														
+		   });																																																																																																																																																																																															
 	}
 
 } //BvrPackageImpl

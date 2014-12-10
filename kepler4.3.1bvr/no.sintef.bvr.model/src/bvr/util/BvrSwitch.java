@@ -69,10 +69,11 @@ public class BvrSwitch<T> extends Switch<T> {
 			case BvrPackage.CHOICE: {
 				Choice choice = (Choice)theEObject;
 				T result = caseChoice(choice);
-				if (result == null) result = caseVSpec(choice);
 				if (result == null) result = caseCompoundNode(choice);
-				if (result == null) result = caseNamedElement(choice);
+				if (result == null) result = caseChoiceVSpec(choice);
 				if (result == null) result = caseVNode(choice);
+				if (result == null) result = caseVSpec(choice);
+				if (result == null) result = caseNamedElement(choice);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -186,8 +187,9 @@ public class BvrSwitch<T> extends Switch<T> {
 			case BvrPackage.CHOICE_OCCURRENCE: {
 				ChoiceOccurrence choiceOccurrence = (ChoiceOccurrence)theEObject;
 				T result = caseChoiceOccurrence(choiceOccurrence);
-				if (result == null) result = caseVSpec(choiceOccurrence);
 				if (result == null) result = caseVNode(choiceOccurrence);
+				if (result == null) result = caseChoiceVSpec(choiceOccurrence);
+				if (result == null) result = caseVSpec(choiceOccurrence);
 				if (result == null) result = caseNamedElement(choiceOccurrence);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -597,6 +599,14 @@ public class BvrSwitch<T> extends Switch<T> {
 				if (result == null) result = caseVPackage(bvrModel);
 				if (result == null) result = caseVPackageable(bvrModel);
 				if (result == null) result = caseNamedElement(bvrModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BvrPackage.CHOICE_VSPEC: {
+				ChoiceVSpec choiceVSpec = (ChoiceVSpec)theEObject;
+				T result = caseChoiceVSpec(choiceVSpec);
+				if (result == null) result = caseVSpec(choiceVSpec);
+				if (result == null) result = caseNamedElement(choiceVSpec);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1621,6 +1631,21 @@ public class BvrSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBVRModel(BVRModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Choice VSpec</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Choice VSpec</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseChoiceVSpec(ChoiceVSpec object) {
 		return null;
 	}
 
