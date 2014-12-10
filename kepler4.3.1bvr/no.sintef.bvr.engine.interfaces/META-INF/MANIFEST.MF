@@ -11,4 +11,6 @@ Require-Bundle: no.sintef.bvr.model;bundle-version="2.0.0",
 Export-Package: no.sintef.bvr.engine.interfaces.adjacent,
  no.sintef.bvr.engine.interfaces.common,
  no.sintef.bvr.engine.interfaces.fragment,
- no.sintef.bvr.engine.interfaces.operation
+ no.sintef.bvr.engine.interfaces.logging,
+ no.sintef.bvr.engine.interfaces.operation,
+ no.sintef.bvr.engine.interfaces.strategy
