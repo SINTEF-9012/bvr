@@ -20,6 +20,7 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.ResCommand;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import bvr.ChoiceOccurrence;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
 import bvr.VClassifier;
@@ -52,8 +53,9 @@ public class AddMissingResolutions implements ResCommand {
 		unresolved = true;
 		int instances = 0;
 		int min = 0;
-
+		
 		if(parent instanceof PosResolution) {
+			
 			for (VSpecResolution x :((CompoundResolution) parent).getMembers()) {
 				if (x.getResolvedVSpec().equals(target)) {
 					thisResolution.add(x);
@@ -64,7 +66,7 @@ public class AddMissingResolutions implements ResCommand {
 					}
 				}
 			}
-
+			
 			while(instances < min ){
 				thisResolution.addAll((ArrayList<VSpecResolution>) (new AddResolution().init(view, target, parent, true)).execute());
 				instances++;

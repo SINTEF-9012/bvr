@@ -18,27 +18,29 @@ import java.util.List;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.ResolutionModelIterator;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
+import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
-
-public class AddResolution implements ResCommand{
+public class AddResolution implements ResCommand {
 	private BVRToolModel view;
 	private VSpec target;
 	private boolean onlyOneInstance;
 	private VSpecResolution parent;
-/**
- * NOT TRANSACTIONAL
- * ONLY for use with nodes NOT added to model
- */
+
+	/**
+	 * NOT TRANSACTIONAL ONLY for use with nodes NOT added to model
+	 */
 	@Override
 	public ResCommand init(BVRToolModel view, VSpec vs, VSpecResolution vsr, boolean onlyOneInstance) {
 		this.view = view;
@@ -54,9 +56,9 @@ public class AddResolution implements ResCommand{
 		if (target instanceof Choice)
 			thisResolution.add(addResolution((Choice) target, parent));
 
-		if(target instanceof ChoiceOccurrence) 
+		if (target instanceof ChoiceOccurrence)
 			thisResolution.add(addResolution((ChoiceOccurrence) target, parent));
-		
+
 		if (target instanceof VClassifier) {
 			int min;
 			if (((VClassifier) target).getInstanceMultiplicity() != null && !onlyOneInstance) {
@@ -69,10 +71,11 @@ public class AddResolution implements ResCommand{
 			}
 			min = 0;
 		}
-		
-		if(target instanceof VClassOccurrence) {
+
+		if (target instanceof VClassOccurrence) {
 			VClassOccurrence vClassOccurence = (VClassOccurrence) target;
-			int min = (vClassOccurence.getInstanceMultiplicity() != null && !onlyOneInstance) ? vClassOccurence.getInstanceMultiplicity().getLower() : 1;
+			int min = (vClassOccurence.getInstanceMultiplicity() != null && !onlyOneInstance) ? vClassOccurence.getInstanceMultiplicity().getLower()
+					: 1;
 			for (int i = 0; i < min; i++)
 				thisResolution.add(addResolution((VClassOccurrence) target, parent));
 		}
@@ -81,42 +84,54 @@ public class AddResolution implements ResCommand{
 	}
 
 	private VSpecResolution addResolution(VClassifier target, VSpecResolution parent) {
-	
+
 		PosResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
-		thisResolution.setName("I " + view.getIncrementedInstanceCount());
+		thisResolution.setName("I:" + view.getIncrementedInstanceCount());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
-		
+
 		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}
 
 	// resolve Choice
 	private VSpecResolution addResolution(Choice target, VSpecResolution parent) {
-		
+
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName(target.getName());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
-		((CompoundResolution)parent).getMembers().add(thisResolution);
+		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}
-	
+
 	// resolve ChoiceOccurence
 	private VSpecResolution addResolution(ChoiceOccurrence target, VSpecResolution parent) {
-		
+
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName(target.getName());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
-		((CompoundResolution)parent).getMembers().add(thisResolution);
+
+		for (VNode t : target.getVType().getMember()) {
+			VSpec type = (VSpec) t;
+			ChoiceResolution newResolution = BvrFactory.eINSTANCE.createPosResolution();
+			newResolution.setName(type.getName());
+			newResolution = (PosResolution) CommonUtility.setResolved(newResolution, type);
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), type, newResolution, false);
+			((CompoundResolution) thisResolution).getMembers().add(newResolution);
+		}
+		/*
+		 * for (VNode node : ((CompoundNode) type).getMember()) { ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), (VSpec) node, thisResolution, false);
+		 * ((CompoundResolution) thisResolution).getMembers() .addAll((new AddResolution().init(view, (VSpec) type, thisResolution, false)).execute()); }
+		 */((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}
-	
+
 	// resolve VClassOccurrence
 	private VSpecResolution addResolution(VClassOccurrence target, VSpecResolution parent) {
-		
+
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
-		thisResolution.setName("I " + view.getIncrementedInstanceCount());
+		thisResolution.setName("I:" + view.getIncrementedInstanceCount());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
-		((CompoundResolution)parent).getMembers().add(thisResolution);
+		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}
 }
