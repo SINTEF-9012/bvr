@@ -541,7 +541,7 @@ abstract public class BVRToolModel {
 				if (x instanceof PosResolution) i++;
 			}
 		}
-		if (i < upper || i > upper || i < lower)
+		if ((i > upper && upper != -1)|| i < lower)
 			return true;
 
 		return false;
