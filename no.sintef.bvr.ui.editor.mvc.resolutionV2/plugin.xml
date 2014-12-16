@@ -9,7 +9,7 @@
             extensions="bvr"
             icon="icons/sample.gif"
             id="no.sintef.bvr.ui.editor.eclipse.editors.BVRResolutionV2EditorMVC"
-            name="BVR Resolution Editor V2 (MVC)">
+            name="BVR Resolution Editor(MVC)">
       </editor>
    </extension>
 </plugin>
