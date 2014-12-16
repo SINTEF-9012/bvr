@@ -20,9 +20,10 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.ResCommand;
 import no.sintef.bvr.tool.model.BVRToolModel;
-import bvr.ChoiceOccurrence;
+import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
+import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -32,20 +33,20 @@ public class AddMissingResolutions implements ResCommand {
 	private VSpec target;
 	boolean unresolved;
 	private VSpecResolution parent;
+
 	/**
-	 * NOT TRANSACTIONAL
-	 * ONLY for use with nodes NOT added to model
+	 * NOT TRANSACTIONAL ONLY for use with nodes NOT added to model
 	 */
 	@Override
-	public ResCommand init(BVRToolModel  view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
+	public ResCommand init(BVRToolModel view, VSpec target, VSpecResolution parent, boolean onlyOneInstance) {
 		this.view = view;
 		this.target = target;
 		this.parent = parent;
 		return this;
 	}
+
 	/**
-	 * NOT TRANSACTIONAL
-	 * ONLY for use with nodes NOT added to model
+	 * NOT TRANSACTIONAL ONLY for use with nodes NOT added to model
 	 */
 	@Override
 	public List<VSpecResolution> execute() {
@@ -53,25 +54,30 @@ public class AddMissingResolutions implements ResCommand {
 		unresolved = true;
 		int instances = 0;
 		int min = 0;
-		
-		if(parent instanceof PosResolution) {
-			
-			for (VSpecResolution x :((CompoundResolution) parent).getMembers()) {
+
+		if (parent instanceof PosResolution) {
+
+			for (VSpecResolution x : ((CompoundResolution) parent).getMembers()) {
 				if (x.getResolvedVSpec().equals(target)) {
 					thisResolution.add(x);
 					unresolved = false;
-					if(CommonUtility.isVSpecResolutionVClassifier(x)){
-						min = ((VClassifier)x.getResolvedVSpec()).getInstanceMultiplicity().getLower();
-						instances++;
+					if (CommonUtility.isVSpecResolutionVClassifier(x)) {
+						if (((ChoiceResolution) x).getResolvedVClassOcc() != null) {
+							min = ((VClassOccurrence) x.getResolvedVSpec()).getInstanceMultiplicity().getLower();
+							instances++;
+						} else {
+							min = ((VClassifier) x.getResolvedVSpec()).getInstanceMultiplicity().getLower();
+							instances++;
+						}
 					}
 				}
 			}
-			
-			while(instances < min ){
+
+			while (instances < min) {
 				thisResolution.addAll((ArrayList<VSpecResolution>) (new AddResolution().init(view, target, parent, true)).execute());
 				instances++;
 			}
-			if(unresolved)
+			if (unresolved)
 				thisResolution = (ArrayList<VSpecResolution>) (new AddResolution().init(view, target, parent, false)).execute();
 		}
 		return thisResolution;

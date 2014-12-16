@@ -16,21 +16,17 @@ package no.sintef.bvr.tool.controller.command;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
-
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.model.BVRToolModel;
-import no.sintef.bvr.tool.model.ResolutionModelIterator;
+
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
-import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.PosResolution;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
-import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 
@@ -111,12 +107,7 @@ public class AddResolution implements ResCommand {
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName(target.getName());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
-
-		resolveType(target.getVType().getMember(), thisResolution);
-		/*
-		 * for (VNode node : ((CompoundNode) type).getMember()) { ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), (VSpec) node, thisResolution, false);
-		 * ((CompoundResolution) thisResolution).getMembers() .addAll((new AddResolution().init(view, (VSpec) type, thisResolution, false)).execute()); }
-		 */((CompoundResolution) parent).getMembers().add(thisResolution);
+		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}
 
@@ -126,21 +117,8 @@ public class AddResolution implements ResCommand {
 		ChoiceResolution thisResolution = BvrFactory.eINSTANCE.createPosResolution();
 		thisResolution.setName("I:" + view.getIncrementedInstanceCount());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
-		resolveType(target.getVType().getMember(), thisResolution);
+
 		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
-	}
-	
-	private void resolveType(EList<VNode> eList, VSpecResolution thisResolution){
-			for (VNode t : eList) {
-				VSpec type = (VSpec) t;
-				ChoiceResolution newResolution = BvrFactory.eINSTANCE.createPosResolution();
-				newResolution.setName(type.getName());
-				newResolution = (PosResolution) CommonUtility.setResolved(newResolution, type);
-				ResolutionModelIterator.getInstance().iterateEmptyOnChildren(view, new AddMissingResolutions(), type, newResolution, false);
-				((CompoundResolution) thisResolution).getMembers().add(newResolution);
-		}
-
-
 	}
 }

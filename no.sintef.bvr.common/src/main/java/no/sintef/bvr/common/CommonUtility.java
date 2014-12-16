@@ -33,6 +33,7 @@ import bvr.PrimitveType;
 import bvr.ReplacementFragmentType;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
+import bvr.VNode;
 import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
@@ -53,22 +54,14 @@ public final class CommonUtility {
 	public static int isDerived(EStructuralFeature property) {
 		int value = 0x0 & MASK;
 		/*
-		 * The value of a derived feature is computed from other
-		 * features, so it doesn't represent any additional object
-		 * state. Framework classes, such as EcoreUtil.Copier,
-		 * that copy model objects will not attempt to copy such
-		 * features. The generated code is unaffected by the value
-		 * of the derived flag. Derived features are typically also
-		 * marked volatile and transient.
+		 * The value of a derived feature is computed from other features, so it doesn't represent any additional object state. Framework classes, such as EcoreUtil.Copier, that copy model objects
+		 * will not attempt to copy such features. The generated code is unaffected by the value of the derived flag. Derived features are typically also marked volatile and transient.
 		 */
 		int drvd = (property.isDerived()) ? MASK & DERIVED : value;
 
 		/*
-		 * Transient features are used to declare (modeled) data
-		 * whose lifetime never spans application invocations and
-		 * therefore doesn't need to be persisted. The (default XMI)
-		 * serializer will not save features that are declared to be
-		 * transient.
+		 * Transient features are used to declare (modeled) data whose lifetime never spans application invocations and therefore doesn't need to be persisted. The (default XMI) serializer will not
+		 * save features that are declared to be transient.
 		 */
 		int trnsnt = (property.isTransient()) ? MASK & TRANSIENT : value;
 
@@ -170,9 +163,19 @@ public final class CommonUtility {
 	}
 
 	public static boolean isVSpecResolutionVClassifier(VSpecResolution vSpecResolution) {
-		if ((vSpecResolution instanceof ChoiceResolution) && ((((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null)
-				|| ((ChoiceResolution) vSpecResolution).getResolvedVClassOcc() != null))
+		if ((vSpecResolution instanceof ChoiceResolution)
+				&& ((((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null) || ((ChoiceResolution) vSpecResolution)
+						.getResolvedVClassOcc() != null))
 			return true;
+		return false;
+	}
+
+	public static boolean isTypeNotNull(Object occurrence) {
+		if (occurrence instanceof ChoiceOccurrence)
+			return (((ChoiceOccurrence) occurrence).getVType() != null);
+		else if (occurrence instanceof VClassOccurrence)
+			return (((VClassOccurrence) occurrence).getVType() != null);
+
 		return false;
 	}
 
@@ -192,12 +195,14 @@ public final class CommonUtility {
 		}
 		return null;
 	}
-/**
- * use to set setResolvedVspec and setResolved_TYPE_
- * @param target
- * @param toResolve
- * @return
- */
+
+	/**
+	 * use to set setResolvedVspec and setResolved_TYPE_
+	 * 
+	 * @param target
+	 * @param toResolve
+	 * @return
+	 */
 	public static VSpecResolution setResolved(VSpecResolution target, VSpec toResolve) {
 
 		target.setResolvedVSpec(toResolve);
@@ -223,5 +228,28 @@ public final class CommonUtility {
 		}
 
 		return target;
+	}
+
+	public static boolean isOccurrence(VNode y) {
+		if (y instanceof ChoiceOccurrence) {
+			return true;
+		} else if (y instanceof VClassOccurrence) {
+			return true;
+		}
+		return false;
+	}
+
+	public static EList<VNode> getTypeMembers(VNode y) {
+		if (!isTypeNotNull(y))
+			return null;
+		if (y instanceof ChoiceOccurrence) {
+			ChoiceOccurrence typeRoot = (ChoiceOccurrence) y;
+			return typeRoot.getVType().getMember();
+		} else if (y instanceof VClassOccurrence) {
+			VClassOccurrence typeRoot = (VClassOccurrence) y;
+			return typeRoot.getVType().getMember();
+		}
+		return null;
+
 	}
 }
