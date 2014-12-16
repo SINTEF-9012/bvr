@@ -42,6 +42,7 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteChildEvent;
 import no.sintef.bvr.tool.ui.command.event.PasteSiblingEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecEvent;
+import no.sintef.bvr.tool.ui.command.event.SetGroupCustomEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToAltEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToNoneEvent;
 import no.sintef.bvr.tool.ui.command.event.SetGroupToOrEvent;
@@ -143,7 +144,9 @@ class ChoiceDropdown extends JPopupMenu {
 		JMenuItem or = new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_OR);
 		or.addActionListener(new SetGroupToOrEvent(cp, view));
 		group.add(or);
-		group.add(new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_CUSTOM));
+		JMenuItem cus = (new JMenuItem(Constants.VSPEC_DROPDOWN_SET_GROUP_CUSTOM));
+		cus.addActionListener(new SetGroupCustomEvent(cp, view));
+		group.add(cus);
 		add(group);
 				
 		// max/min

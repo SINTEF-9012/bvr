@@ -822,8 +822,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				if (c == parent) {
 					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
 					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
-					
-					
 					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(getBVRModel(), (VSpecResolution) parent);
 					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, getBVRModel());
 				}
