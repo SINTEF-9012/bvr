@@ -28,10 +28,12 @@ import java.util.List;
 
 
 
+
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -647,5 +649,16 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getCompoundNode_Member(), occurence);
 		testCommandExecution(editingDomain, cmd);
+	}
+	
+	@Override //TODO check impact on Batch execution
+	public void undo() {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		editingDomain.getCommandStack().undo();
+	}
+	@Override
+	public void redo() {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		editingDomain.getCommandStack().redo();
 	}
 }

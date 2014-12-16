@@ -196,4 +196,7 @@ public interface EditorCommands {
 
 	public void addChoiceVClassOccurence(CompoundNode parent,
 			VNode occurence);
+
+	void undo();
+	void redo();
 }
