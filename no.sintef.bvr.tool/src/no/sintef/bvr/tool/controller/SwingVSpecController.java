@@ -167,7 +167,7 @@ public class SwingVSpecController<
 	public void notifyViewUpdate() {
 		// Save scroll coordinates
 		Point vpos = vspecScrollPane.getViewport().getViewPosition();
-				
+
 		// Clear everything
 		BVRModelPanel cup = vSpecbvruikernel.getModelPanel();
 		cup.clear();

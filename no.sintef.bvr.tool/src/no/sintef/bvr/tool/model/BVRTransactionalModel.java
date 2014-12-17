@@ -831,16 +831,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
 			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
 			
-			
-			Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution(grandParent, parent);
-			if (parent instanceof PosResolution) {
-				Context.eINSTANCE.getEditorCommands().addChoiceResoulution( grandParent, (PosResolution) root);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), this);
-			}
-			else if(parent instanceof NegResolution){
-				Context.eINSTANCE.getEditorCommands().addChoiceResoulution(grandParent, (NegResolution) root);
-				InheritanceFacade.getInstance().passInheritance((ChoiceResolution)root, (root instanceof PosResolution), this);
-			}
+			ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) grandParent, (ChoiceResolution) parent, (ChoiceResolution) root);
 		}
 		
 	}
@@ -860,7 +851,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				ChoiceResolution negResolution = ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
 				buffer.put((NegResolution) negResolution, (PosResolution) toToggle);
 			} else {
-				PosResolution buffered = buffer.remove((NegResolution) toToggle);
+				PosResolution buffered = (PosResolution) buffer.remove( toToggle);
 				if(buffered != null) {
 					ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) parent, (ChoiceResolution) toToggle, (ChoiceResolution) buffered);
 				} else {

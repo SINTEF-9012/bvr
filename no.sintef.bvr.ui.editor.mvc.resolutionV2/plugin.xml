@@ -7,7 +7,7 @@
             class="no.sintef.bvr.ui.editor.mvc.resolutionV2.MVCResolutionEditorV2"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             extensions="bvr"
-            icon="icons/redo.png"
+            icon="icons/sample.gif"
             id="no.sintef.bvr.ui.editor.eclipse.editors.BVRResolutionV2EditorMVC"
             name="BVR Resolution Editor(MVC)">
       </editor>
@@ -83,7 +83,7 @@
                id="no.sintef.bvr.ui.editor.mvc.resolutionV2.toolbars.redoToolbar">
             <command
                   commandId="no.sintef.bvr.ui.editor.mvc.resolutionV2.command.redoCommand"
-                  icon="icons/sample.gif"
+                  icon="icons/redo.png"
                   tooltip="Redo"
                   id="no.sintef.bvr.ui.editor.mvc.resolutionV2.redoCommand">
             </command>

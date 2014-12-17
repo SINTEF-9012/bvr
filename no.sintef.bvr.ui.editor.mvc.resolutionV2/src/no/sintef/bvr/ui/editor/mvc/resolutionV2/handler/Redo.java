@@ -4,7 +4,6 @@ import java.awt.Toolkit;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.ui.command.event.RedoEvent;
-import no.sintef.bvr.tool.ui.command.event.UndoEvent;
 import no.sintef.bvr.ui.editor.common.ExecuteCommandEvent;
 
 import org.eclipse.core.commands.AbstractHandler;
