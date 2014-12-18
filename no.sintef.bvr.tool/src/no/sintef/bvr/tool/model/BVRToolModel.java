@@ -610,4 +610,9 @@ abstract public class BVRToolModel {
 	public void addVClassOccurence(CompoundNode compoundNode) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
+
+	public void removeUncontainedResolutions(VSpecResolution compoundNode) {
+		throw new UnexpectedException("Are you using default implementation?!");
+		
+	}
 }

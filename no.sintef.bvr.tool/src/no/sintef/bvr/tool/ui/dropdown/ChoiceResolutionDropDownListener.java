@@ -23,6 +23,7 @@ import javax.swing.JSeparator;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.ui.command.event.RemoveUncontainedResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
@@ -31,8 +32,6 @@ import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 import no.sintef.bvr.tool.ui.command.event.ValidateEvent;
-
-
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
 
 import org.eclipse.emf.ecore.EObject;
@@ -158,6 +157,9 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					add(maximize);
 					add(new JSeparator());
 				}
+				JMenuItem unCont= new JMenuItem(Constants.RESOLUTION_DROPDOWN_REMOVE_UNCONTAINED);
+				unCont.addActionListener(new RemoveUncontainedResolutionEvent(cp, controller));
+				add(unCont);
 			}
 		}
 

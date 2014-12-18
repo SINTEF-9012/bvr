@@ -114,6 +114,7 @@ public class Constants {
 	public static final String DEFAULT_TYPE_TITLE = "Undefined";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM = "Resolve ChoiceOccurence";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM = "Resolve VClassOccurence";
+	public static final String RESOLUTION_DROPDOWN_REMOVE_UNCONTAINED = "Remove uncontained resolutions";
 	
 	public static final String RESOLUTION_NEW = "New";
 	public static final String RESOLUTION_REMOVE = "Remove";
@@ -132,6 +133,7 @@ public class Constants {
 	public static final String RESOLUTION_MODELS_SHOWHIDE_GRP = "Show/Hide Grouping";
 	public static final String RESOLUTION_MODELS_SHOWHIDE_CNSTR = "Show/Hide Constraints";
 	public static final String RESOLUTION_MODELS_EXECUTE = "Execute";
+
 	
 	public static final String VSPEC_DROPDOWN_ADD = "Add";
 	public static final String VSPEC_DROPDOWN_ADD_CHOICE = "Choice";

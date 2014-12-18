@@ -95,4 +95,5 @@ public interface VSpecControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZABLE> 
 	public void addChoiceOccurence(GUI_NODE parent);
 
 	void addVClassOccurence(GUI_NODE parent);
+
 }

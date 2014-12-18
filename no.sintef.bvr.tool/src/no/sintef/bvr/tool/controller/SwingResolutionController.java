@@ -568,4 +568,9 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 		});
 		return command;
 	}
+	@Override
+	public void removeUncontainedResolutions(GUI_NODE parent) {
+		VSpecResolution vSpecResolution = (VSpecResolution)  getNamedElementByJComponent(parent);
+		toolModel.removeUncontainedResolutions(vSpecResolution);
+	}
 }

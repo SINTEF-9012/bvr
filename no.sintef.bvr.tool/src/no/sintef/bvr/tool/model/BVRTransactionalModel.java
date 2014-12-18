@@ -30,6 +30,7 @@ import no.sintef.bvr.tool.common.LoaderUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
+import no.sintef.bvr.tool.controller.command.RemoveUncontained;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.RethrownException;
@@ -1124,5 +1125,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void addVClassOccurence(CompoundNode compoundNode) {
 		VSpecFacade.eINSTANCE.appendVClassOccurence(compoundNode);
+	}
+	@Override
+	public void removeUncontainedResolutions(VSpecResolution parent){
+		if(parent != null)
+		ResolutionModelIterator.getInstance().iterateExisting(this, new RemoveUncontained(), parent.getResolvedVSpec(), parent, false);
+
 	}
 }

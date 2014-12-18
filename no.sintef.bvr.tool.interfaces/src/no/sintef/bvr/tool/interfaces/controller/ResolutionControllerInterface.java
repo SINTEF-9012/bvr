@@ -15,6 +15,8 @@ package no.sintef.bvr.tool.interfaces.controller;
 
 import java.util.List;
 
+import javax.swing.JComponent;
+
 import bvr.Constraint;
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
@@ -89,4 +91,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void executeProduct(SERIALIZABLE destFile);
 
 	public SimpleExeCommandInterface createRemoveAllResolutionsCommand();
+
+	public void removeUncontainedResolutions(GUI_NODE p);
 }
