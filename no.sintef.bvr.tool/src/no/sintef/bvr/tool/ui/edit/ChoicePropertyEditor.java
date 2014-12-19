@@ -30,6 +30,7 @@ import no.sintef.bvr.tool.controller.command.UpdateChoice;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.ui.framework.elements.CustomTextField;
 import bvr.CompoundNode;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -52,7 +53,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         JLabel l = new JLabel("Comment", JLabel.TRAILING);
 
         p.add(l);
-        JTextField comment = new JTextField(15);
+        CustomTextField comment = new CustomTextField(15);
 
         l.setLabelFor(comment);
         p.add(comment);
@@ -103,7 +104,7 @@ public class ChoicePropertyEditor extends ElementPropertyEditor{
         panel.setOpaque(false);
         
         // Name
-        final JTextField name = new JTextField(10);
+        final CustomTextField name = new CustomTextField(10);
         name.setText(v.getName());
         
         // Type

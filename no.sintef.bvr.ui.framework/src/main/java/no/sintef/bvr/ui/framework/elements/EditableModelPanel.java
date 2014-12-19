@@ -34,6 +34,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.TextField;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -46,13 +47,8 @@ import javax.swing.JDialog;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-
-
-
-
-
-
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 //import com.explodingpixels.macwidgets.HudWindow;
 
@@ -62,98 +58,119 @@ import javax.swing.JPanel;
 public class EditableModelPanel extends JLayeredPane {
 
 	private static final long serialVersionUID = 7573336297061006849L;
-	
+
 	private JPanel propertiesPanel = null;
-    private JButton closeProperties = new JButton("Close");
-    public JComponent modelPanel = null;
-    public JDialog dialog = null;
+	private JButton closeProperties = new JButton("Close");
+	public JComponent modelPanel = null;
+	public JDialog dialog = null;
 
-    public EditableModelPanel(JComponent _modelPanel) {
-    	this.setBackground(Color.WHITE);    	
-        modelPanel = _modelPanel;
-        closeProperties.setOpaque(false);
-        closeProperties.addMouseListener(new MouseAdapter() {
+	public EditableModelPanel(JComponent _modelPanel) {
+		this.setBackground(Color.WHITE);
+		modelPanel = _modelPanel;
+		closeProperties.setOpaque(false);
+		closeProperties.addMouseListener(new MouseAdapter() {
 
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                undisplayProperties();
-            }
-        });
-        propertiesPanel = new JPanel();
-        propertiesPanel.setLayout(new BorderLayout());
-        propertiesPanel.setOpaque(false);
-        this.setOpaque(false);
+			@Override
+			public void mouseClicked(MouseEvent me) {
+				undisplayProperties();
+			}
+		});
+		propertiesPanel = new JPanel();
+		propertiesPanel.setLayout(new BorderLayout());
+		propertiesPanel.setOpaque(false);
+		this.setOpaque(false);
 
-        addComponentListener(new ComponentAdapter() {
+		addComponentListener(new ComponentAdapter() {
 
-            @Override
-            public void componentResized(ComponentEvent e) {
-                modelPanel.setBounds(0, 0, getWidth(), getHeight());
-                propertiesPanel.setBounds(0, 0, getWidth(), getHeight());
-                doLayout();
-                repaint();
-                revalidate();
-            }
-            
-            @Override
-            public void componentHidden(ComponentEvent e) {
-            	//System.out.println("   hidden!");
-                undisplayProperties();
-            }
-        });
+			@Override
+			public void componentResized(ComponentEvent e) {
+				modelPanel.setBounds(0, 0, getWidth(), getHeight());
+				propertiesPanel.setBounds(0, 0, getWidth(), getHeight());
+				doLayout();
+				repaint();
+				revalidate();
+			}
 
-        add(modelPanel, JLayeredPane.DEFAULT_LAYER);
-        add(propertiesPanel, JLayeredPane.POPUP_LAYER);
-    }
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				// System.out.println("   hidden!");
+				undisplayProperties();
+			}
+		});
 
-    
+		add(modelPanel, JLayeredPane.DEFAULT_LAYER);
+		add(propertiesPanel, JLayeredPane.POPUP_LAYER);
+	}
 
-    //HudWindow hud = new HudWindow("Properties editor");
+	// HudWindow hud = new HudWindow("Properties editor");
 
-    public void displayProperties(JPanel prop) {
-        /*
-    	hud.getJDialog().setSize(320, 440);
-        hud.getJDialog().setLocationRelativeTo(null);
-        hud.getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        hud.setContentPane(prop);
-        hud.getJDialog().setVisible(true);
-        */
-    	if(dialog != null)
-    		dialog.dispose();
-    	
-    	dialog = new JDialog();
-    	dialog.setTitle("Properties editor");
-    	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    	dialog.setContentPane(prop);
-    	dialog.pack();
-    	dialog.setLocationRelativeTo(null);
-    	dialog.setVisible(true);
-    }
-    
-    public void displayProperties(JPanel content, Component parent, Dialog.ModalityType mode) {
-    	Window parentWindow = findWindow(parent);
-    	dialog = new JDialog(parentWindow, "Properties editor", mode);
-    	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    	dialog.setContentPane(content);
-    	dialog.pack();
-    	dialog.setLocationRelativeTo(parentWindow);
-    	dialog.setVisible(true);
-    }
+	public void displayProperties(final JPanel prop) {
+		/*
+		 * hud.getJDialog().setSize(320, 440); hud.getJDialog().setLocationRelativeTo(null); hud.getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); hud.setContentPane(prop);
+		 * hud.getJDialog().setVisible(true);
+		 */
+		if (dialog != null)
+			dialog.dispose();
 
-    public void undisplayProperties() {
-    	if(dialog != null)
-    		dialog.dispose();
-        //hud.getJDialog().setVisible(false);
-        //SelectInstanceCommand.unselect();
-    }
-    
-    public static Window findWindow(Component c) {
-        if (c == null) {
-            return JOptionPane.getRootFrame();
-        } else if (c instanceof Window) {
-            return (Window) c;
-        } else {
-            return findWindow(c.getParent());
-        }
-    }
+		dialog = new JDialog();
+		dialog.setTitle("Properties editor");
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setContentPane(prop);
+		dialog.pack();
+		setFocusRec(prop);
+		dialog.setLocationRelativeTo(null);
+		dialog.setVisible(true);
+	}
+
+	public void displayProperties(final JPanel content, Component parent, Dialog.ModalityType mode) {
+		Window parentWindow = findWindow(parent);
+		dialog = new JDialog(parentWindow, "Properties editor", mode);
+		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setContentPane(content);
+		dialog.pack();
+		dialog.setLocationRelativeTo(parentWindow);
+		setFocusRec(content);
+		dialog.setVisible(true);
+
+	}
+
+	public void undisplayProperties() {
+		if (dialog != null)
+			dialog.dispose();
+		// hud.getJDialog().setVisible(false);
+		// SelectInstanceCommand.unselect();
+	}
+
+	public static Window findWindow(Component c) {
+		if (c == null) {
+			return JOptionPane.getRootFrame();
+		} else if (c instanceof Window) {
+			return (Window) c;
+		} else {
+			return findWindow(c.getParent());
+		}
+	}
+
+	private boolean setFocusRec(final JPanel p) {
+		for (int i = 0; i < p.getComponentCount(); i++) {
+			if (p.getComponent(i) instanceof JTextField) {
+				setFocusInvokeLater(p.getComponent(i));
+				return true;
+			} else if (p.getComponent(i) instanceof JPanel) {
+				if (setFocusRec((JPanel) p.getComponent(i)))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	private void setFocusInvokeLater(final Component component) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				component.requestFocusInWindow();
+				//((JTextField) component).selectAll();
+			}
+		});
+	}
+
 }

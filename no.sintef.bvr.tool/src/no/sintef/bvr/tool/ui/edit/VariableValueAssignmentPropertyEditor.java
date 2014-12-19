@@ -27,6 +27,7 @@ import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.ui.framework.elements.CustomTextField;
 import bvr.ValueResolution;
 
 
@@ -46,7 +47,7 @@ public class VariableValueAssignmentPropertyEditor extends ElementPropertyEditor
         JLabel l2 = new JLabel("Value", JLabel.TRAILING);
 
         p2.add(l2);
-        JTextField textField2 = new JTextField(15);
+        CustomTextField textField2 = new CustomTextField(15);
 
         l2.setLabelFor(textField2);
         p2.add(textField2);

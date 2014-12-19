@@ -32,6 +32,7 @@ import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.ui.framework.elements.CustomTextField;
 import bvr.ChoiceOccurrence;
 import bvr.PrimitiveTypeEnum;
 import bvr.PrimitveType;
@@ -56,7 +57,7 @@ public class ChoiceOccurencePropertyEditor extends ElementPropertyEditor {
         JLabel lt = new JLabel("Type", JLabel.TRAILING);
 
         pt.add(lt);
-        JTextField type = new JTextField(15);
+        CustomTextField type = new CustomTextField(15);
 
         lt.setLabelFor(type);
         pt.add(type);

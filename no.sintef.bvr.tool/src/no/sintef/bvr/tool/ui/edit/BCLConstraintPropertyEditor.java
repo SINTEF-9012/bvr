@@ -26,6 +26,7 @@ import no.sintef.bvr.tool.controller.command.UpdateConstraint;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
+import no.sintef.bvr.ui.framework.elements.CustomTextField;
 import bvr.BCLConstraint;
 
 
@@ -45,7 +46,7 @@ public class BCLConstraintPropertyEditor extends ElementPropertyEditor {
         JLabel l2 = new JLabel("BCL Constraint", JLabel.TRAILING);
 
         p2.add(l2);
-        JTextField textField2 = new JTextField(15);
+        CustomTextField textField2 = new CustomTextField(15);
 
         l2.setLabelFor(textField2);
         p2.add(textField2);

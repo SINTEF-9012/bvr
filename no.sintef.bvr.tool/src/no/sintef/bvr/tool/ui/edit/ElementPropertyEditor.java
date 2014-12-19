@@ -13,6 +13,8 @@
  */
 package no.sintef.bvr.tool.ui.edit;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -30,8 +32,7 @@ import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
-
-
+import no.sintef.bvr.ui.framework.elements.CustomTextField;
 import bvr.NamedElement;
 
 abstract public class ElementPropertyEditor extends JPanel {
@@ -101,8 +102,8 @@ abstract public class ElementPropertyEditor extends JPanel {
         //l.setUI(new HudLabelUI());
 
         p.add(l);
-        JTextField textField = new JTextField(15);
-        
+        CustomTextField textField = new CustomTextField(15);
+       
         //textField.setUI(new HudTextFieldUI());
 
         l.setLabelFor(textField);
