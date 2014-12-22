@@ -35,7 +35,7 @@ public class SelectInstanceCommand<EDITOR_PANEL extends BVREditorPanel, MODEL_PA
 
     private BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> kernel;
     private static SelectElement currentlySelected = null;
-    
+    private JComponent parent;
     private SelectElement selectableElement;
     
 	public static void unselect() {
@@ -44,10 +44,10 @@ public class SelectInstanceCommand<EDITOR_PANEL extends BVREditorPanel, MODEL_PA
 			currentlySelected.setSelected(false);
 	}
 
-	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
+	public Command<EDITOR_PANEL, MODEL_PANEL> init(BVRUIKernelInterface<EDITOR_PANEL, MODEL_PANEL> rootPanel, Object p, JComponent parent_, Map<JComponent, NamedElement> vmMap, List<JComponent> nodes, List<Pair<JComponent, JComponent>> bindings, BVRNotifiableController view) {
 		
 		kernel = rootPanel;
-		
+		parent = parent_;
         if (p instanceof SelectElement) {
         	selectableElement = (SelectElement) p;
         }else{
@@ -64,7 +64,7 @@ public class SelectInstanceCommand<EDITOR_PANEL extends BVREditorPanel, MODEL_PA
 		
 		currentlySelected.setSelected(!currentlySelected.isSelected());
 
-		((BVREditorPanel) kernel.getEditorPanel()).showPropertyFor((JPanel) currentlySelected);
+		((BVREditorPanel) kernel.getEditorPanel()).showPropertyFor((JPanel) currentlySelected, parent);
 
 
         ((JPanel)currentlySelected).repaint();

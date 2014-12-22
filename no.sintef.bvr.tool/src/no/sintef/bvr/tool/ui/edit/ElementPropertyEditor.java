@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -67,7 +68,7 @@ abstract public class ElementPropertyEditor extends JPanel {
     
     
     public ElementPropertyEditor(BVRUIKernel _kernel, Command okCommand, NamedElement _obj, JComponent _node, BVRNotifiableController _controller) {
-
+    	
         this.setOpaque(false);
         this.setBorder(null);
         command = okCommand;
@@ -103,8 +104,8 @@ abstract public class ElementPropertyEditor extends JPanel {
 
         p.add(l);
         CustomTextField textField = new CustomTextField(15);
-       
-        //textField.setUI(new HudTextFieldUI());
+        textField.setName("a_name"); //TODO remove me
+       //textField.setUI(new HudTextFieldUI());
 
         l.setLabelFor(textField);
         p.add(textField);

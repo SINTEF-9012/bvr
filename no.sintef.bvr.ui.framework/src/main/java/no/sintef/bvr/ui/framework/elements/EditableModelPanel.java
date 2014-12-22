@@ -33,21 +33,24 @@ package no.sintef.bvr.ui.framework.elements;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dialog;
-import java.awt.TextField;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 //import com.explodingpixels.macwidgets.HudWindow;
@@ -104,7 +107,7 @@ public class EditableModelPanel extends JLayeredPane {
 
 	// HudWindow hud = new HudWindow("Properties editor");
 
-	public void displayProperties(final JPanel prop) {
+	public void displayProperties(JPanel prop) {
 		/*
 		 * hud.getJDialog().setSize(320, 440); hud.getJDialog().setLocationRelativeTo(null); hud.getJDialog().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); hud.setContentPane(prop);
 		 * hud.getJDialog().setVisible(true);
@@ -117,25 +120,38 @@ public class EditableModelPanel extends JLayeredPane {
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setContentPane(prop);
 		dialog.pack();
-		setFocusRec(prop);
 		dialog.setLocationRelativeTo(null);
 		dialog.setVisible(true);
+
 	}
 
-	public void displayProperties(final JPanel content, Component parent, Dialog.ModalityType mode) {
+	public void displayProperties(JPanel content, Component parent, Dialog.ModalityType mode) {
+		if (dialog != null)
+			dialog.dispose();
 		Window parentWindow = findWindow(parent);
 		dialog = new JDialog(parentWindow, "Properties editor", mode);
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setContentPane(content);
+		
 		dialog.pack();
 		dialog.setLocationRelativeTo(parentWindow);
-		setFocusRec(content);
-		dialog.setVisible(true);
+	
+		dialog.addWindowFocusListener(new WindowFocusListener() {
+		
+			public void windowLostFocus(WindowEvent e) {
 
+			}
+
+			public void windowGainedFocus(WindowEvent e) {
+				setFocusRec(dialog);
+			}
+		});
+		dialog.setVisible(true);
 	}
 
 	public void undisplayProperties() {
 		if (dialog != null)
+
 			dialog.dispose();
 		// hud.getJDialog().setVisible(false);
 		// SelectInstanceCommand.unselect();
@@ -151,26 +167,29 @@ public class EditableModelPanel extends JLayeredPane {
 		}
 	}
 
-	private boolean setFocusRec(final JPanel p) {
-		for (int i = 0; i < p.getComponentCount(); i++) {
-			if (p.getComponent(i) instanceof JTextField) {
-				setFocusInvokeLater(p.getComponent(i));
+	private boolean setFocusRec(final Container p) {
+		if (p == null) {
+			return false;
+		}
+		for(Component c : p.getComponents()){
+			if (c instanceof CustomTextField){
+				c.requestFocusInWindow();
 				return true;
-			} else if (p.getComponent(i) instanceof JPanel) {
-				if (setFocusRec((JPanel) p.getComponent(i)))
+			}
+			else{
+				if (setFocusRec((Container) c)){
 					return true;
+				}
 			}
 		}
+		for (int i = 0; i < p.getComponentCount(); i++) {
+				if (setFocusRec((Container) p.getComponent(i))) {
+					return true;
+				}
+			}
+		
 		return false;
 	}
 
-	private void setFocusInvokeLater(final Component component) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				component.requestFocusInWindow();
-				//((JTextField) component).selectAll();
-			}
-		});
-	}
 
 }

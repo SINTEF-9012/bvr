@@ -26,6 +26,8 @@ import java.awt.Window;
 
 
 
+
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -139,7 +141,7 @@ public class BVREditorPanel extends JPanel {
     }
 
     @SuppressWarnings("unchecked")
-	public void showPropertyFor(Object p) {
+	public void showPropertyFor(Object p, JComponent parent) {
     	if (p instanceof SelectElement) {
     		current = (SelectElement) p;
     	}
@@ -149,55 +151,55 @@ public class BVREditorPanel extends JPanel {
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateVClassifierCommand(elem);
         	VClassifierPropertyEditor prop = new VClassifierPropertyEditor(kernel, okCommand, (VClassifier) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof VClassOccurencePanel) {
         	VClassOccurencePanel elem = (VClassOccurencePanel) p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateVClassOccurenceCommand(elem);
 			VClassOccurencePropertyEditor prop = new VClassOccurencePropertyEditor(kernel, okCommand, (VClassOccurrence) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ChoicePanel) {
         	ChoicePanel elem = (ChoicePanel)p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
         	Command okCommand = controller.getVSpecControllerInterface().createUpdateChoiceCommand(elem);
         	ChoicePropertyEditor prop = new ChoicePropertyEditor(kernel, okCommand, (Choice) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ChoiceOccurencePanel) {
         	ChoiceOccurencePanel elem = (ChoiceOccurencePanel)p;
         	NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
         	Command okCommand = controller.getVSpecControllerInterface().createUpdateChoiceOccurenceCommand(elem);
         	ChoiceOccurencePropertyEditor prop = new ChoiceOccurencePropertyEditor(kernel, okCommand, (ChoiceOccurrence) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         } else if (p instanceof ParallelogramTitledPanel) {
         	ParallelogramTitledPanel elem = (ParallelogramTitledPanel)p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(elem);
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateBCLConstraintCommand(elem);
         	BCLConstraintPropertyEditor prop = new BCLConstraintPropertyEditor(kernel, okCommand, (BCLConstraint) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof BVRModelSymbolPanel) {
         	BVRModelSymbolPanel elem = (BVRModelSymbolPanel) p;
 			NamedElement object = (NamedElement) controller.getVSpecControllerInterface().getModelObjectByUINode(p);
 			Command okCommand = controller.getVSpecControllerInterface().createUpdateBVRModelCommand(elem);
         	BVRModelPropertyEditor prop = new BVRModelPropertyEditor(kernel, okCommand, (BVRModel) object, elem, controller);        	
-            editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+            editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof ChoiceResolutionPanel) {
         	ChoiceResolutionPanel vInstance = (ChoiceResolutionPanel) p;
         	NamedElement object = (NamedElement) controller.getResolutionControllerInterface().getModelObjectByUINode(vInstance);
         	Command okCommand = controller.getResolutionControllerInterface().createUpdateInstanceChoiceResolutionCommand(vInstance);
         	VInstancePropertyEditor prop = new VInstancePropertyEditor(kernel, okCommand, (ChoiceResolution) object, vInstance, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }else if (p instanceof VariableAssignmentPanel) {
         	VariableAssignmentPanel elem = (VariableAssignmentPanel) p;
         	NamedElement object = (NamedElement) controller.getResolutionControllerInterface().getModelObjectByUINode(p);
         	Command okCommand = controller.getResolutionControllerInterface().createUpdateVariableResolutionCommand(elem);
         	VariableValueAssignmentPropertyEditor prop = new VariableValueAssignmentPropertyEditor(kernel, okCommand, (ValueResolution) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         } else if (p instanceof VTypeRootSymbolPanel) {
         	VTypeRootSymbolPanel elem = (VTypeRootSymbolPanel) p;
         	NamedElement object = (NamedElement) controller.getVTypeControllerInterface().getModelObjectByUINode(p);
         	Command okCommand = controller.getVTypeControllerInterface().createUpdateVTypeCommand(elem);
         	BVRVTypePropertyEditor prop = new BVRVTypePropertyEditor(kernel, okCommand, (VType) object, elem, controller);
-        	editableModelPanel.displayProperties(prop, Context.eINSTANCE.getActiveJApplet(), Dialog.ModalityType.APPLICATION_MODAL);
+        	editableModelPanel.displayProperties(prop, parent, Dialog.ModalityType.APPLICATION_MODAL);
         }
         else{
         	throw new UnsupportedOperationException("Unsupported: " + p.getClass().getName());

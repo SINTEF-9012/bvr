@@ -100,7 +100,7 @@ public class VClassOccurencePropertyEditor extends ElementPropertyEditor {
         JLabel l2 = new JLabel("Lower", JLabel.TRAILING);
         p2.add(l2);
         
-        final JTextField textField2 = new JTextField(15);
+        final CustomTextField textField2 = new CustomTextField(15);
 
         l2.setLabelFor(textField2);
         p2.add(textField2);
@@ -122,7 +122,7 @@ public class VClassOccurencePropertyEditor extends ElementPropertyEditor {
         //l3.setUI(new HudLabelUI());
 
         p3.add(l3);
-        final JTextField textField3 = new JTextField(15);
+        final CustomTextField textField3 = new CustomTextField(15);
         //textField3.setUI(new HudTextFieldUI());
 
         l3.setLabelFor(textField3);

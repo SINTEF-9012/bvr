@@ -8,7 +8,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.Document;
 
 public class CustomTextField extends JTextField {
-
+private FocusListener fl;
 	/**
 	 * 
 	 */
@@ -56,5 +56,8 @@ public class CustomTextField extends JTextField {
 				});
 			}
 		});
+	}
+	public FocusListener getFocusListner(){
+		return fl;
 	}
 }
