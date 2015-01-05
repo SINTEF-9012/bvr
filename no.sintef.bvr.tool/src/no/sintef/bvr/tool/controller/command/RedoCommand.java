@@ -11,25 +11,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package no.sintef.bvr.ui.editor.common.action;
-
-import java.awt.Toolkit;
+package no.sintef.bvr.tool.controller.command;
 
 import no.sintef.bvr.tool.context.Context;
-import no.sintef.bvr.tool.controller.command.RedoCommand;
-import no.sintef.bvr.ui.editor.common.ExecuteCommandEvent;
+import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-
-
-public class Redo extends AbstractHandler {
+public class RedoCommand implements SimpleExeCommandInterface {
 
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(new ExecuteCommandEvent(Context.eINSTANCE.getActiveJApplet(), new RedoCommand()));
-		return null;
+	public void execute() {
+		Context.eINSTANCE.getEditorCommands().redo();
 	}
 
 }
