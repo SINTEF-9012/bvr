@@ -72,7 +72,7 @@ public class SetGroupCustomEvent implements ActionListener {
 				return;
 			}
 			if (upperInt >= lowerInt)
-				controller.getVSpecControllerInterface().setGroupMultiplicityCustom(p, upperInt, lowerInt);
+				controller.getVSpecControllerInterface().setGroupMultiplicityCustom(p, lowerInt, upperInt);
 			else {
 				JOptionPane.showMessageDialog(null, "lower limit must be <= upper limit");
 
