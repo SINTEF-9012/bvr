@@ -103,7 +103,6 @@ import bvr.Variabletype;
 import bvr.VariationPoint;
 import bvr.VType;
 
-
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver, ResourceSubject {
 	private Resource resource;
 
@@ -112,7 +111,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;
 	private List<ResourceObserver> observers;
-	
 
 	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
 		bvrm = x;
@@ -348,7 +346,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void addChoice(NamedElement parent) {
 		VSpecFacade.eINSTANCE.appendChoice(parent);
 	}
-	
+
 	@Override
 	public void addChoiceOrVClassifierResolution(VSpec resolvedVspec, VSpecResolution parent) {
 		ChoiceResolution cr = null;
@@ -431,7 +429,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			Target target = TargetFacade.eINSTANCE.testVSpecTarget((VSpec) namedElement);
 			Context.eINSTANCE.getEditorCommands().setName(target, name);
 		}
-		if(namedElement.getName() == null || !namedElement.getName().equals(name)){
+		if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 		}
 	}
@@ -780,12 +778,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 		CompoundNode variablityModel = model.getVariabilityModel();
 
-		if (variablityModel instanceof Choice) {
+		if ((variablityModel instanceof Choice) || (variablityModel instanceof VClassifier)) {
 			CommonUtility.setResolved(root, (VSpec) variablityModel);
 			root.setName(((NamedElement) variablityModel).getName() + "[" + resolutionCount +"]");
 			resolutionCount++;
 			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddResolution(), (VSpec) root.getResolvedChoice(), root, false);
-		} else {
+		}
+		else {
 			throw new UserInputError("model must start with a choice");
 		}
 		return root;
@@ -814,27 +813,27 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 		Context.eINSTANCE.getEditorCommands().removeBVRModelCompoundResolutions(model, resolutions);
 	}
-	
+
 	public void resolveSubtree(VSpecResolution parent) {
 		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) parent);
 		if (grandParent == null) {
-			for(Iterator<CompoundResolution> it = getBVRModel().getResolutionModels().iterator(); it.hasNext(); ){
+			for (Iterator<CompoundResolution> it = getBVRModel().getResolutionModels().iterator(); it.hasNext();) {
 				CompoundResolution c = it.next();
 				if (c == parent) {
 					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
-					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
+					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root,
+							false);
 					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(getBVRModel(), (VSpecResolution) parent);
 					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, getBVRModel());
 				}
 			}
-		}
-		else{
+		} else {
 			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
 			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
-			
+
 			ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) grandParent, (ChoiceResolution) parent, (ChoiceResolution) root);
 		}
-		
+
 	}
 
 	public void removeVSpecResolution(NamedElement toDelete) {
@@ -844,17 +843,19 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	public void toggleChoice(NamedElement toToggle) {
 		EObject parent = toToggle.eContainer();
-		if(!(parent instanceof ChoiceResolution))
+		if (!(parent instanceof ChoiceResolution))
 			return;
 
 		if (toToggle instanceof ChoiceResolution) {
-			if(toToggle instanceof PosResolution) {
-				ChoiceResolution negResolution = ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
+			if (toToggle instanceof PosResolution) {
+				ChoiceResolution negResolution = ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle,
+						!(toToggle instanceof PosResolution), this);
 				buffer.put((NegResolution) negResolution, (PosResolution) toToggle);
 			} else {
-				PosResolution buffered = (PosResolution) buffer.remove( toToggle);
-				if(buffered != null) {
-					ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) parent, (ChoiceResolution) toToggle, (ChoiceResolution) buffered);
+				PosResolution buffered = (PosResolution) buffer.remove(toToggle);
+				if (buffered != null) {
+					ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) parent, (ChoiceResolution) toToggle,
+							(ChoiceResolution) buffered);
 				} else {
 					ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
 					InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, this);
@@ -862,20 +863,20 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			}
 		}
 	}
-	
+
 	@Override
 	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
 		ValueResolution valueResolution = PrimitiveTypeFacade.getInstance().createDefaultValueResolution(variable);
 		Context.eINSTANCE.getEditorCommands().addValueResolution(compountResolution, valueResolution);
 	}
-	
+
 	@Override
 	public void toggleShowConstraints() {
 		showConstraints = !showConstraints;
 	}
-	
+
 	@Override
-	public boolean showConstraints(){
+	public boolean showConstraints() {
 		return showConstraints;
 	}
 
@@ -896,7 +897,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void setValueResolutionName(ValueResolution namedElement, String name) {
-		if(namedElement.getName().equals(name))
+		if (namedElement.getName().equals(name))
 			return;
 		Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 	}
@@ -915,41 +916,40 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public void addChoiceOrVClassifierResolution(VSpec vSpecToResolve,
-			VSpecResolution parentNamedElement, int instancesToResolve) {
-		for(int i = 0; i < instancesToResolve; i++)
+	public void addChoiceOrVClassifierResolution(VSpec vSpecToResolve, VSpecResolution parentNamedElement, int instancesToResolve) {
+		for (int i = 0; i < instancesToResolve; i++)
 			addChoiceOrVClassifierResolution(vSpecToResolve, parentNamedElement);
 	}
-	
+
 	@Override
 	public List<String> validateChoiceResolution(VSpecResolution vSpecResolution) {
 		Validate validator = new Validator();
 		validator.validate(this, vSpecResolution);
 		List<Constraint> invalidConstaraints = validator.getInvalidConstraints();
-		List<String> messages = new ArrayList<String>(); 
-		if(invalidConstaraints.size() == 0)
+		List<String> messages = new ArrayList<String>();
+		if (invalidConstaraints.size() == 0)
 			return messages;
-		
-		for(Constraint constraint : invalidConstaraints) {
+
+		for (Constraint constraint : invalidConstaraints) {
 			List<String> errors = validator.getConstraintValidationResultMessage(constraint);
 			messages.addAll(errors);
 		}
-		
+
 		return messages;
 	}
-	
+
 	@Override
 	public void executeResolution(File destFile, int index) {
-		if(index < 0 || getBVRModel().getResolutionModels().size() < index)
+		if (index < 0 || getBVRModel().getResolutionModels().size() < index)
 			throw new UnexpectedException("can not find resolution to execute " + index);
-		
-		if(destFile == null)
+
+		if (destFile == null)
 			throw new UnexpectedException("destinition file is not defined for a product" + destFile);
-		
+
 		final File destinationFile = destFile;
 		final int resolutionIndex = index;
 		Context.eINSTANCE.getEditorCommands().executeSimpleExeCommand(new SimpleExeCommandInterface() {
-			
+
 			@Override
 			public void execute() {
 				File newFile = new File(getFile().getAbsolutePath() + "_tmp");
@@ -969,18 +969,18 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 		});
 	}
-	
-	private void executeProduct(BVRToolModel tmpModel, PosResolution resolutionToExecute, File destFile){
+
+	private void executeProduct(BVRToolModel tmpModel, PosResolution resolutionToExecute, File destFile) {
 		HashMap<String, Object> keywords = new HashMap<String, Object>();
 		keywords.put("model", tmpModel.getBVRModel());
 		keywords.put("PosResolution", resolutionToExecute);
 		keywords.put("bvrModel", tmpModel);
 		keywords.put("destFile", destFile);
-				
+
 		DeriveProduct deriviator = new DeriveProduct(keywords);
 		deriviator.run();
 	}
-	
+
 	@Override
 	public void clearHighlightedObjects() {
 		Context.eINSTANCE.clearHighlights();
@@ -989,7 +989,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void attach(ResourceObserver observer) {
 		observers.add(observer);
-		
+
 	}
 
 	@Override
@@ -999,23 +999,23 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void notifyObservers() {
-		for(ResourceObserver observer : observers)
+		for (ResourceObserver observer : observers)
 			observer.update(this);
 	}
-	
+
 	@Override
-	public void modifyVType(VNode vNode, VType vType){
+	public void modifyVType(VNode vNode, VType vType) {
 		IBVRTransactionalVTypeState<VNode, VType> state = new VTypeState<VNode, VType>(vNode, vType, this);
-		for(ResourceObserver observer : observers)
+		for (ResourceObserver observer : observers)
 			observer.update(state);
 	}
-	
+
 	class VTypeState<VNODE extends VNode, VTYPE extends VType> implements IBVRTransactionalVTypeState<VNODE, VTYPE> {
-		
+
 		private VTYPE vType;
 		private VNODE vNode;
 		private ResourceSubject subject;
-		
+
 		public VTypeState(VNODE vNode, VTYPE vType, ResourceSubject subject) {
 			this.vNode = vNode;
 			this.vType = vType;
@@ -1034,7 +1034,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		@Override
 		public void attach(ResourceObserver observer) {
 			subject.attach(observer);
-			
+
 		}
 
 		@Override
@@ -1045,91 +1045,88 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		@Override
 		public void notifyObservers() {
 			subject.notifyObservers();
-		}	
+		}
 	}
-	
+
 	@Override
 	public void addVType(CompoundNode parent) {
 		VTypeFacade.eINSTANCE.appendVTypeCopoundNode(parent);
 	}
-	
+
 	@Override
 	public void removeVType(VType type) {
 		removeNamedElement(type);
 	}
-	
+
 	@Override
-	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence,
-			String strType) {
-		if(choiceOccurence.getVType() == null && strType.equals(Constants.DEFAULT_TYPE_TITLE))
+	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence, String strType) {
+		if (choiceOccurence.getVType() == null && strType.equals(Constants.DEFAULT_TYPE_TITLE))
 			return;
-		
-		if(choiceOccurence.getVType() != null && choiceOccurence.getVType().getName().equals(strType))
+
+		if (choiceOccurence.getVType() != null && choiceOccurence.getVType().getName().equals(strType))
 			return;
-		
+
 		VType vType = findTypeByName(strType);
-		
+
 		if (vType == null && !strType.equals(Constants.DEFAULT_TYPE_TITLE))
 			throw new UserInputError("cannot find VType : " + strType);
-		
+
 		VTypeFacade.eINSTANCE.setChoiceOccurenceVType(choiceOccurence, vType);
 	}
-	
+
 	private VType findTypeByName(String typeName) {
 		BVRModel model = getBVRModel();
 		TreeIterator<EObject> iterator = model.eAllContents();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			EObject eObject = iterator.next();
-			if(eObject instanceof VType && ((VType) eObject).getName().equals(typeName))
+			if (eObject instanceof VType && ((VType) eObject).getName().equals(typeName))
 				return (VType) eObject;
 		}
 		return null;
 	}
-	
+
 	@Override
-	public void setVClassOccurenceType(VClassOccurrence vclassOccurence,
-			String typeName) {
-		if(vclassOccurence.getVType() == null && typeName.equals(Constants.DEFAULT_TYPE_TITLE))
+	public void setVClassOccurenceType(VClassOccurrence vclassOccurence, String typeName) {
+		if (vclassOccurence.getVType() == null && typeName.equals(Constants.DEFAULT_TYPE_TITLE))
 			return;
-		
-		if(vclassOccurence.getVType() != null && vclassOccurence.getVType().getName().equals(typeName))
+
+		if (vclassOccurence.getVType() != null && vclassOccurence.getVType().getName().equals(typeName))
 			return;
-		
+
 		VType vType = findTypeByName(typeName);
-		
+
 		if (vType == null && !typeName.equals(Constants.DEFAULT_TYPE_TITLE))
 			throw new UserInputError("cannot find VType : " + typeName);
-		
+
 		VTypeFacade.eINSTANCE.setVClassOccurenceVType(vclassOccurence, vType);
 	}
-	
+
 	@Override
-	public void setVClassOccurenceLowerBound(VClassOccurrence vClassOccur,
-			int lowerBound) {
+	public void setVClassOccurenceLowerBound(VClassOccurrence vClassOccur, int lowerBound) {
 		MultiplicityInterval interval = vClassOccur.getInstanceMultiplicity();
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityLowerBound(interval, lowerBound);
 	}
-	
+
 	@Override
-	public void setVClassOccurenceUpperBound(VClassOccurrence vClassOccur,
-			int upperBound) {
+	public void setVClassOccurenceUpperBound(VClassOccurrence vClassOccur, int upperBound) {
 		MultiplicityInterval interval = vClassOccur.getInstanceMultiplicity();
 		Context.eINSTANCE.getEditorCommands().setGroupMultiplicityUpperBound(interval, upperBound);
 	}
-	
+
 	@Override
 	public void addChoiceOccurence(CompoundNode compoundNode) {
 		VSpecFacade.eINSTANCE.appendChoiceOccurence(compoundNode);
 	}
-	
+
 	@Override
 	public void addVClassOccurence(CompoundNode compoundNode) {
 		VSpecFacade.eINSTANCE.appendVClassOccurence(compoundNode);
 	}
+
 	@Override
-	public void removeUncontainedResolutions(VSpecResolution parent){
-		if(parent != null)
-		ResolutionModelIterator.getInstance().iterateExisting(this, new RemoveUncontained(), parent.getResolvedVSpec(), parent, false);
+	public void removeUncontainedResolutions(VSpecResolution parent) {
+		if (parent != null)
+			ResolutionModelIterator.getInstance().iterateExisting(this, new RemoveUncontained(), parent.getResolvedVSpec(), parent, false);
 
 	}
 }
