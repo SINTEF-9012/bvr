@@ -6,13 +6,13 @@ import java.util.List;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.model.BVRToolModel;
-
 import bvr.CompoundNode;
 import bvr.CompoundResolution;
-import bvr.NegResolution;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
+import bvr.Variable;
 
 public class RemoveUncontained implements ResCommand {
 	BVRToolModel toolModel;
@@ -29,24 +29,46 @@ public class RemoveUncontained implements ResCommand {
 
 	@Override
 	public List<VSpecResolution> execute() {
-		
+
 		List<VSpecResolution> toRemove = new ArrayList<VSpecResolution>();
-		if (!CommonUtility.isOccurrence((VNode) parent.getResolvedVSpec())) {
-			if (!(parent instanceof NegResolution)) {
+		
+		if (!(parent instanceof ValueResolution) && !CommonUtility.isOccurrence((VNode) parent.getResolvedVSpec())) {
+
+			if (parent instanceof CompoundResolution) {
 				for (VSpecResolution n : ((CompoundResolution) parent).getMembers()) {
+
 					boolean remove = true;
-					for (VNode v : ((CompoundNode) parent.getResolvedVSpec()).getMember()) {
-						if (v == null) {
-							remove = true;
-							break;
+					if (n instanceof ValueResolution) {
+						for (Variable var : ((VNode) parent.getResolvedVSpec()).getVariable()) {
+								if (var == null) {
+								remove = true;
+								break;
+							}
+							if (n.getResolvedVSpec() == null) {
+								remove = true;
+								break;
+							}
+							if (n.getResolvedVSpec().equals(var)) {
+								remove = false;
+								break;
+							}
+
 						}
-						if (n.getResolvedVSpec() == null) {
-							remove = true;
-							break;
-						}
-						if (n.getResolvedVSpec().equals(v)) {
-							remove = false;
-							break;
+					} else {
+						for (VNode v : ((CompoundNode) parent.getResolvedVSpec()).getMember()) {
+
+							if (v == null) {
+								remove = true;
+								break;
+							}
+							if (n.getResolvedVSpec() == null) {
+								remove = true;
+								break;
+							}
+							if (n.getResolvedVSpec().equals(v)) {
+								remove = false;
+								break;
+							}
 						}
 					}
 					if (remove) {

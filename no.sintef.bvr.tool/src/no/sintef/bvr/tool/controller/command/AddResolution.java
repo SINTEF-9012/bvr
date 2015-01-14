@@ -18,7 +18,7 @@ import java.util.List;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.model.BVRToolModel;
-
+import no.sintef.bvr.tool.model.PrimitiveTypeFacade;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
@@ -29,6 +29,8 @@ import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.ValueResolution;
+import bvr.Variable;
 
 public class AddResolution implements ResCommand {
 	private BVRToolModel view;
@@ -51,6 +53,8 @@ public class AddResolution implements ResCommand {
 	@Override
 	public List<VSpecResolution> execute() {
 		List<VSpecResolution> thisResolution = new ArrayList<VSpecResolution>();
+		if (target instanceof Variable)
+			thisResolution.add(addResolution((Variable) target, parent));
 		if (target instanceof Choice)
 			thisResolution.add(addResolution((Choice) target, parent));
 
@@ -118,6 +122,12 @@ public class AddResolution implements ResCommand {
 		thisResolution.setName("I:" + view.getIncrementedInstanceCount());
 		thisResolution = (PosResolution) CommonUtility.setResolved(thisResolution, target);
 
+		((CompoundResolution) parent).getMembers().add(thisResolution);
+		return thisResolution;
+	}
+	// resolve ValueResolution
+	private VSpecResolution addResolution(Variable target, VSpecResolution parent) {
+		ValueResolution thisResolution = PrimitiveTypeFacade.getInstance().createDefaultValueResolution(target);
 		((CompoundResolution) parent).getMembers().add(thisResolution);
 		return thisResolution;
 	}
