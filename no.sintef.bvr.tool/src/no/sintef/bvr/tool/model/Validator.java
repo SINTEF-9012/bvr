@@ -25,6 +25,7 @@ import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
+import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
 import bvr.BvrFactory;
 import bvr.Constraint;
 import bvr.VNode;
@@ -49,9 +50,12 @@ public class Validator implements Validate {
 			ca = toolModel.getBVRM().getCoveringArray();
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
+		}  catch (UnsupportedSPLCValidation e) {
+			throw new RethrownException(e.getMessage(), e);
 		} catch (BVRException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		}
+
 		CNF cnf;
 		try {
 			cnf = toolModel.getBVRM().getGUIDSL(new ContextConstraintFinderStrategy((VNode) CommonUtility.getResolvedVSpec(vsr))).getSXFM().getCNF();
@@ -60,7 +64,7 @@ public class Validator implements Validate {
 			if(!valid)
 				invalidConstraints.add(BvrFactory.eINSTANCE.createConstraint());
 		} catch (Exception e) {
-			throw new RethrownException("Validation failed:", e);
+			throw new RethrownException(e.getMessage(), e);
 		}
 	}
 

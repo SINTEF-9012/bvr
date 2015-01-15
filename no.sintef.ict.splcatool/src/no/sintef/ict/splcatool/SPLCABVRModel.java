@@ -31,6 +31,7 @@ import bvr.Choice;
 import bvr.ChoiceResolution;
 import bvr.CompoundResolution;
 import bvr.MultiplicityInterval;
+import bvr.NamedElement;
 import bvr.NegResolution;
 import bvr.OpaqueConstraint;
 import bvr.PosResolution;
@@ -124,12 +125,12 @@ public class SPLCABVRModel {
 		return model;
 	}
 
-	public GUIDSL getGUIDSL(IConstraintFinderStrategy strategy) throws IOException, UnsupportedModelException {
+	public GUIDSL getGUIDSL(IConstraintFinderStrategy strategy) throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
 		setConstrtaintFindStrategy(strategy);
 		return getGUIDSL();
 	}
 	
-	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException {
+	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
 		FeatureModel fm = new FeatureModel();
 		Feature root = recursiveConvert(fm, (Choice) model.getVariabilityModel()); // This is an assumption
 		fm.setRoot(root);
@@ -173,14 +174,17 @@ public class SPLCABVRModel {
 		return gd;
 	}
 
-	private Feature recursiveConvert(FeatureModel fm, Choice vs) throws UnsupportedModelException {
+	private Feature recursiveConvert(FeatureModel fm, Choice vs) throws UnsupportedModelException, UnsupportedSPLCValidation {
 		Feature f = new Feature(fm);
 		f.setName(vs.getName());
 		fm.addFeature(f);
 		
 		// Add children
 		for(VNode vc : vs.getMember()){
-			Choice c = (Choice)vc;
+			if(!(vc instanceof Choice))
+				throw new UnsupportedSPLCValidation(((NamedElement) vc).getName() + " is not a choice. Only choices are supported.");
+
+			Choice c = (Choice) vc;
 			Feature fc = recursiveConvert(fm, c);
 			fc.setMandatory(c.isIsImpliedByParent());
 			f.addChild(fc);
@@ -361,14 +365,17 @@ public class SPLCABVRModel {
 		Map<String, Boolean> as = new HashMap<String, Boolean>();
 		VSpec resolvedVSPec = CommonUtility.getResolvedVSpec(x);
 		if(!(resolvedVSPec instanceof Choice))
-			throw new BVRException(resolvedVSPec.getName() + " is not a choice resolution. Only choices supported in this mode.");
+			throw new UnsupportedSPLCValidation(resolvedVSPec.getName() + " is not a choice resolution. Only choices are supported.");
 		
 		if(!(x instanceof PosResolution || x instanceof NegResolution))
-			throw new BVRException(x.getName() + "choice resolution is neither PosResolution nor NegResolution");
+			throw new UnsupportedSPLCValidation(x.getName() + " is neither PosResolution nor NegResolution resolution. Only choices are supported.");
 		
 		as.put(CommonUtility.getResolvedVSpec(x).getName(), (x instanceof PosResolution) ? true : false);
 		if(x instanceof CompoundResolution){
-			for(VSpecResolution c : ((CompoundResolution) x).getMembers()){	
+			for(VSpecResolution c : ((CompoundResolution) x).getMembers()){
+				if(!(c instanceof ChoiceResolution))
+					throw new UnsupportedSPLCValidation(c.getName() + " is not a choice resolution. Only choices are supported.");
+
 				as.putAll(recurse((ChoiceResolution)c));
 			}
 		}

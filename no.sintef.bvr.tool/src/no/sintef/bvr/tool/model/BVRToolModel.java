@@ -39,6 +39,7 @@ import no.sintef.ict.splcatool.CoveringArrayFile;
 import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SPLCABVRModel;
+import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
@@ -356,6 +357,8 @@ abstract public class BVRToolModel {
 			ca = getBVRM().getCoveringArray();
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
+		} catch (UnsupportedSPLCValidation e) {
+			throw new RethrownException(e.getMessage(), e);
 		} catch (BVRException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		}
@@ -364,7 +367,7 @@ abstract public class BVRToolModel {
 			cnf = getBVRM().getGUIDSL(new DefaultConstraintFinderStrategy()).getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (Exception e) {
-			throw new RethrownException("Validation failed:", e);
+			throw new RethrownException(e.getMessage(), e);
 		}
 		return valid;
 	}
