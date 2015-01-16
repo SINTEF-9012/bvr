@@ -50,6 +50,7 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.json"/>
+      <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

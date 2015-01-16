@@ -80,6 +80,8 @@ SINTEF - initial API and implementation
       <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
+      <import plugin="no.sintef.bvr.constraints.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.constraints" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
