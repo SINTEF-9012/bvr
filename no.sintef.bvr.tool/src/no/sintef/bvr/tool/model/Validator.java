@@ -27,7 +27,7 @@ import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
 import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
-import no.sintef.ict.splcatool.strategy.NodeBasedResolutionFinderStrategy;
+import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
 import bvr.BvrFactory;
 import bvr.ChoiceResolution;
 import bvr.Constraint;
@@ -50,7 +50,7 @@ public class Validator implements Validate {
 		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
 		try {
-			IResolutionFinderStrategy strategy = new NodeBasedResolutionFinderStrategy((ChoiceResolution) vsr);
+			IResolutionFinderStrategy strategy = new SingleResolutionFinderStrategy((ChoiceResolution) vsr);
 			ca = toolModel.getBVRM().getCoveringArray(strategy);
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);

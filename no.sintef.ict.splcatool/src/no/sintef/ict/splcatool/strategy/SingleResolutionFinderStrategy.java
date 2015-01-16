@@ -9,12 +9,12 @@ import org.eclipse.emf.common.util.EList;
 import bvr.ChoiceResolution;
 
 
-public class NodeBasedResolutionFinderStrategy implements
+public class SingleResolutionFinderStrategy implements
 		IResolutionFinderStrategy {
 	
 	protected ChoiceResolution resolution;
 
-	public NodeBasedResolutionFinderStrategy(ChoiceResolution _resolution) {
+	public SingleResolutionFinderStrategy(ChoiceResolution _resolution) {
 		resolution = _resolution;
 	}
 

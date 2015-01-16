@@ -121,6 +121,7 @@ public class Constants {
 	public static final String RESOLUTION_REMOVE_ALL = "Remove All";
 	public static final String RESOLUTION_IMPORT = "Import...";
 	public static final String RESOLUTION_MODELS_CHOICES_ONLY = "Models With Choices";
+	public static final String RESOLUTION_MODEL_CHOICES_ONLY = "Model With Choices";
 	public static final String RESOLUTION_MODELS_CHOICES_ONLY_VALIDATE = "Validate Resolutions";
 	public static final String RESOLUTION_MODELS_CHOICES_CALC_COV = "Calculate Covarege";
 	public static final String RESOLUTION_MODELS_CHOICES_1_WISE = "1-Wise";

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package no.sintef.bvr.tool.ui.loader;
+package no.sintef.bvr.tool.ui.command.event;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,10 +23,10 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
-public class SATValidateResolutions implements ActionListener {
+public class SATValidateSingleResolution implements ActionListener {
 	private BVRNotifiableController controller;
 
-	public SATValidateResolutions(BVRNotifiableController _controller) {
+	public SATValidateSingleResolution(BVRNotifiableController _controller) {
 		this.controller = _controller;
 	}
 
@@ -34,7 +34,7 @@ public class SATValidateResolutions implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		boolean result = controller.getResolutionControllerInterface().performSATValidation();
+		boolean result = controller.getResolutionControllerInterface().performSATValidationSingleResolution();
 		List<String> message = controller.getResolutionControllerInterface().getSATValidationMessage();
 		JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), "Valid: " + result + " " + message);
 	}

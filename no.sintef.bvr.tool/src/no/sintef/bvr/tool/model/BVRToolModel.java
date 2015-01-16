@@ -25,8 +25,10 @@ import org.eclipse.emf.ecore.EObject;
 import splar.core.fm.FeatureModelException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.constraints.strategy.ContextConstraintFinderStrategy;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
+import no.sintef.bvr.tool.exception.ShowErrorException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
@@ -40,6 +42,7 @@ import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
 import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
+import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
@@ -372,6 +375,30 @@ abstract public class BVRToolModel {
 		return valid;
 	}
 	
+	public boolean performSATValidation(VSpecResolution resoluion) {
+		boolean valid = false;
+		CoveringArray ca;
+		satValidationMessage = new ArrayList<String>();
+		try {
+			SingleResolutionFinderStrategy strategy = new SingleResolutionFinderStrategy((ChoiceResolution) resoluion);
+			ca = getBVRM().getCoveringArray(strategy);
+		} catch (CSVException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		} catch (UnsupportedSPLCValidation e) {
+			throw new RethrownException(e.getMessage(), e);
+		} catch (BVRException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		}
+		CNF cnf;
+		try {
+			ContextConstraintFinderStrategy strategy = new ContextConstraintFinderStrategy((VNode) CommonUtility.getResolvedVSpec(resoluion));
+			cnf = getBVRM().getGUIDSL(strategy).getSXFM().getCNF();
+			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
+		} catch (Exception e) {
+			throw new RethrownException(e.getMessage(), e);
+		}
+		return valid;
+	}
 
 	public List<String> getSATValidationMessage() {
 		return satValidationMessage;
@@ -388,6 +415,8 @@ abstract public class BVRToolModel {
 			CoveringArray ca = getBVRM().getCoveringArray();
 			// Calculate
 			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
+		} catch (UnsupportedSPLCValidation e) {
+			throw new ShowErrorException(e.getMessage(), e);
 		} catch (FeatureModelException | IOException | UnsupportedModelException | BVRException | CSVException e) {
 			throw new RethrownException("Failed to calculate coverage", e);
 		}
@@ -618,4 +647,5 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 		
 	}
+
 }

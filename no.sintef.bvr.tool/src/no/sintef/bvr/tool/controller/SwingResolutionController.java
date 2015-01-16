@@ -43,6 +43,7 @@ import no.sintef.bvr.tool.decorator.SimpleExeCommandBatchDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVInstanceBatchCmdDecorator;
 import no.sintef.bvr.tool.decorator.UpdateVarValAssigBatchCmdDecorator;
 import no.sintef.bvr.tool.exception.BVRModelException;
+import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.ResolutionControllerInterface;
@@ -51,6 +52,7 @@ import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterfac
 import no.sintef.bvr.tool.interfaces.ui.editor.Pair;
 import no.sintef.bvr.tool.ui.context.StaticUICommands;
 import no.sintef.bvr.tool.ui.dropdown.ResolutionDropdownListener;
+import no.sintef.bvr.tool.ui.dropdown.ResolutionPanDropdownListener;
 import no.sintef.bvr.tool.ui.edit.BVREditorPanel;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
 import no.sintef.bvr.tool.model.BVRToolModel;
@@ -120,7 +122,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 				BVRUIKernel<BVREditorPanel, BVRModelPanel> resKernel = new BVRUIKernel<BVREditorPanel, BVRModelPanel>(rootController);
 				JScrollPane scrollPane = new JScrollPane(resKernel.getModelPanel(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 						JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-				scrollPane.addMouseListener(new ResolutionDropdownListener(rootController));
+				scrollPane.addMouseListener(new ResolutionPanDropdownListener(rootController));
 				EditableModelPanel epanel = new EditableModelPanel(scrollPane);
 				Map<JComponent, NamedElement> vmMap = new HashMap<JComponent, NamedElement>();
 				List<JComponent> nodes = new ArrayList<JComponent>();
@@ -572,5 +574,23 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	public void removeUncontainedResolutions(GUI_NODE parent) {
 		VSpecResolution vSpecResolution = (VSpecResolution)  getNamedElementByJComponent(parent);
 		toolModel.removeUncontainedResolutions(vSpecResolution);
+	}
+
+	@Override
+	public boolean performSATValidationSingleResolution() {
+		Iterator it = resolutionSubTabMap.entrySet().iterator();
+		VSpecResolution resoluion = null;
+		while (it.hasNext()) {
+			Map.Entry<VSpecResolution, JComponent> entry = (Entry<VSpecResolution, JComponent>) it.next();
+			if(entry.getValue().equals(resPane.getSelectedComponent())) {
+				resoluion = entry.getKey();
+				break;
+			}
+		}
+		
+		if(resoluion == null)
+			throw new UnexpectedException("can not find resolution to validate!");
+	
+		return toolModel.performSATValidation(resoluion);
 	}
 }

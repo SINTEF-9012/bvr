@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.jobs.Job;
 
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.exception.ShowErrorException;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 
 
@@ -46,6 +47,11 @@ public class CalculateCoverage implements ActionListener {
 				Integer cov = null;
 				try {
 					cov = controller.getResolutionControllerInterface().calculateCoverage(t);
+				} catch (ShowErrorException e) {
+					Context.eINSTANCE.logger.error("Calculating coverage failed:", e);
+					JOptionPane.showMessageDialog(Context.eINSTANCE.getActiveJApplet(), "Failed with message : " + e.getMessage(), "Error : see error log for more details!", JOptionPane.ERROR_MESSAGE);
+					Status status = new Status(Status.CANCEL, Constants.PLUGIN_ID, e.getMessage(), e);
+					return status;
 				} catch (Exception e) {
 					Context.eINSTANCE.logger.error("Calculating coverage failed:", e);
 					Status status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Calculating coverage failed (see log for more details): " + e.getMessage(), e);
