@@ -25,7 +25,7 @@ import no.sintef.ict.splcatool.FileUtility;
 import org.junit.Test;
 
 public class TestWriteCA {
-	@Test
+	//@Test
 	public void testWriteCA2() throws IOException, TimeoutException, CSVException, CoveringArrayGenerationException{
 		CNF cnf = new CNF("TestData/Artificial/test.dimacs", CNF.type.dimacs);
 		CoveringArray ca = cnf.getCoveringArrayGenerator("J11", 2, 1);
