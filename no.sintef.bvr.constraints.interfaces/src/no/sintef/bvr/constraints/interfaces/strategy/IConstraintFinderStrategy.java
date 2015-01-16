@@ -7,5 +7,5 @@ import bvr.VNode;
 
 public interface IConstraintFinderStrategy {
 
-	public List<Constraint> getConstraints(VNode node);
+	public List<Constraint> getConstraints();
 }

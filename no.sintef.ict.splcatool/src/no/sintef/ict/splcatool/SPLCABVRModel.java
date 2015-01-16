@@ -50,7 +50,7 @@ public class SPLCABVRModel {
 	
 	protected final static String utf8Encoding = "UTF-8"; 
 	
-	protected IConstraintFinderStrategy constFinder;
+	protected IConstraintFinderStrategy constFinder = new DefaultConstraintFinderStrategy(model);
 
 	public SPLCABVRModel(){
 		BvrPackage.eINSTANCE.eClass();
@@ -127,7 +127,9 @@ public class SPLCABVRModel {
 
 	public GUIDSL getGUIDSL(IConstraintFinderStrategy strategy) throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
 		setConstrtaintFindStrategy(strategy);
-		return getGUIDSL();
+		GUIDSL result = getGUIDSL();
+		setConstrtaintFindStrategy(new DefaultConstraintFinderStrategy(model));
+		return result;
 	}
 	
 	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
@@ -137,9 +139,10 @@ public class SPLCABVRModel {
 		
 		// Add constraints
 		//System.out.println(fm.getFeatureNames());
-		List<Constraint> constraints = (constFinder == null) ?
+		/*List<Constraint> constraints = (constFinder == null) ?
 					model.getVariabilityModel().getOwnedConstraint() :
-						constFinder.getConstraints(model.getVariabilityModel());
+						constFinder.getConstraints(model.getVariabilityModel());*/
+		List<Constraint> constraints = constFinder.getConstraints();
 					
 		for(Constraint c : constraints){
 			if(c instanceof OpaqueConstraint){
