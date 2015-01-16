@@ -53,30 +53,39 @@ public class SPLCABVRModel {
 	
 	protected final static String utf8Encoding = "UTF-8"; 
 	
-	protected IConstraintFinderStrategy constFinder = new DefaultConstraintFinderStrategy(model);
-	protected IResolutionFinderStrategy resolFinder = new DefaultResolutionFinderStrategy(model);
+	protected IConstraintFinderStrategy constFinder;
+	protected IResolutionFinderStrategy resolFinder;
 
 	public SPLCABVRModel(){
 		BvrPackage.eINSTANCE.eClass();
 		BvrFactory factory = BvrFactory.eINSTANCE;
 		model = factory.createBVRModel();
 		model.setName("BVR Model 1");
+		init();
 	}
 
 	public SPLCABVRModel(File f) {
 		model = loadFromFile(f);
+		init();
 	}
 	
 	public SPLCABVRModel(String bvrFileName, boolean isPlatform) {
 		model = (!isPlatform) ?  loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
+		init();
 	}
 
 	public SPLCABVRModel(BVRModel model) {
 		this.model = model;
+		init();
 	}
 
 	public SPLCABVRModel(String bvrfile) {
 		this(new File(bvrfile));
+	}
+	
+	protected void init() {
+		constFinder = new DefaultConstraintFinderStrategy(model);
+		resolFinder = new DefaultResolutionFinderStrategy(model);
 	}
 	
 	public void setConstrtaintFindStrategy(IConstraintFinderStrategy strategy) {
@@ -163,7 +172,6 @@ public class SPLCABVRModel {
 			}else if(c instanceof BCLConstraint){
 				BCLConstraint bc = (BCLConstraint)c;
 				String s = new BCLPrettyPrinter().prettyPrint(bc.getExpression().get(0), model); // This is an assumption
-				System.out.println(s);
 				NodeReader nr = new NodeReader();
 				Node n = nr.stringToNode(s, new ArrayList<String>(fm.getFeatureNames()));
 				fm.addPropositionalNode(n);

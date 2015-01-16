@@ -158,6 +158,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 		public BVRInnerModel(File f) {
 			model = loadFromFile(f);
+			init();
 		}
 
 		@Override
