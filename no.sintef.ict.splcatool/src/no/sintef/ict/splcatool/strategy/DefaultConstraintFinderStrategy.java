@@ -1,4 +1,4 @@
-package no.sintef.ict.splcatool;
+package no.sintef.ict.splcatool.strategy;
 
 import java.util.ArrayList;
 import java.util.List;

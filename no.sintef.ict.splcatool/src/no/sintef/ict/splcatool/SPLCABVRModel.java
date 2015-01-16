@@ -11,6 +11,9 @@ import java.util.Set;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
+import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultResolutionFinderStrategy;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -51,6 +54,7 @@ public class SPLCABVRModel {
 	protected final static String utf8Encoding = "UTF-8"; 
 	
 	protected IConstraintFinderStrategy constFinder = new DefaultConstraintFinderStrategy(model);
+	protected IResolutionFinderStrategy resolFinder = new DefaultResolutionFinderStrategy(model);
 
 	public SPLCABVRModel(){
 		BvrPackage.eINSTANCE.eClass();
@@ -77,6 +81,10 @@ public class SPLCABVRModel {
 	
 	public void setConstrtaintFindStrategy(IConstraintFinderStrategy strategy) {
 		constFinder = strategy;
+	}
+	
+	public void setResolutionFindStrategy(IResolutionFinderStrategy strategy) {
+		resolFinder = strategy;
 	}
 	
 	private BVRModel loadFromFile(File file){
@@ -302,6 +310,13 @@ public class SPLCABVRModel {
 		
 		return name;
 	}
+	
+	public CoveringArray getCoveringArray(IResolutionFinderStrategy strategy) throws BVRException, CSVException {
+		setResolutionFindStrategy(strategy);
+		CoveringArray result = getCoveringArray();
+		setResolutionFindStrategy(new DefaultResolutionFinderStrategy(model));
+		return result;
+	}
 
 	public CoveringArray getCoveringArray() throws BVRException, CSVException {
 		//System.out.println("--------------------------------");
@@ -310,12 +325,12 @@ public class SPLCABVRModel {
 		
 		// Read in
 		List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
-		for(CompoundResolution c : model.getResolutionModels()){
+		for(ChoiceResolution c : resolFinder.getResolutions()){
 			Map<String, Boolean> as = new HashMap<String, Boolean>();
-			if(c.getResolvedVClassifier() != null){
+			if(c.getResolvedVClassifier() != null)
 				throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
-			}
-			as.putAll(recurse((ChoiceResolution)c));
+
+			as.putAll(recurse((ChoiceResolution) c));
 			//System.out.println(as);
 			prods.add(as);
 		}

@@ -26,7 +26,10 @@ import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
+import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.strategy.NodeBasedResolutionFinderStrategy;
 import bvr.BvrFactory;
+import bvr.ChoiceResolution;
 import bvr.Constraint;
 import bvr.VNode;
 import bvr.VSpecResolution;
@@ -47,7 +50,8 @@ public class Validator implements Validate {
 		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
 		try {
-			ca = toolModel.getBVRM().getCoveringArray();
+			IResolutionFinderStrategy strategy = new NodeBasedResolutionFinderStrategy((ChoiceResolution) vsr);
+			ca = toolModel.getBVRM().getCoveringArray(strategy);
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		}  catch (UnsupportedSPLCValidation e) {
@@ -58,7 +62,8 @@ public class Validator implements Validate {
 
 		CNF cnf;
 		try {
-			cnf = toolModel.getBVRM().getGUIDSL(new ContextConstraintFinderStrategy((VNode) CommonUtility.getResolvedVSpec(vsr))).getSXFM().getCNF();
+			ContextConstraintFinderStrategy strategy = new ContextConstraintFinderStrategy((VNode) CommonUtility.getResolvedVSpec(vsr));
+			cnf = toolModel.getBVRM().getGUIDSL(strategy).getSXFM().getCNF();
 			boolean valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 			//do this stab for now since we do not actually have mapping yet, between problem messages and constraints
 			if(!valid)
