@@ -22,6 +22,10 @@ import org.junit.Test;
 
 
 public class CATest {
+	
+	final char LF = 0x0A;
+	final char CR = 0x0D;
+	
 	@Test
 	public void testLoadEmptyCA() throws IOException, CSVException{
 		CoveringArrayFile caf = new CoveringArrayFile(new File("TestData/Artificial/TestCSVs/car_fm.xml.empty.fp.csv"));
@@ -29,6 +33,10 @@ public class CATest {
 		
 		String a = new FileUtility().readFileAsString("TestData/Artificial/TestCSVs/car_fm.xml.empty.fp.csv");
 		String b = new FileUtility().readFileAsString("test.dat");
+		
+		//there is a bug in the utils above, you may end up with the different ending in expected and actual result...
+		a = a.replaceAll("(?<!" + CR + ")" + LF, ""+CR+""+LF);
+		b = b.replaceAll("(?<!" + CR + ")" + LF, ""+CR+""+LF);
 		
 		assertEquals(a, b);
 	}
@@ -39,8 +47,12 @@ public class CATest {
 		
 		caf.writeToFile("test.dat", CoveringArrayFile.Type.horizontal);
 		
+		//there is a bug in the utils above, you may end up with the different ending in expected and actual result...
 		String a = new FileUtility().readFileAsString("TestData/Artificial/TestCSVs/car_fm.xml.ca2.fp.csv");
 		String b = new FileUtility().readFileAsString("test.dat");
+		
+		a = a.replaceAll("(?<!" + CR + ")" + LF, ""+CR+""+LF);
+		b = b.replaceAll("(?<!" + CR + ")" + LF, ""+CR+""+LF);
 		
 		assertEquals(a, b);
 	}
@@ -59,8 +71,12 @@ public class CATest {
 			}
 		);
 		
+		//there is a bug in the utils above, you may end up with the different ending in expected and actual result...
 		String a = new FileUtility().readFileAsString("TestData/Artificial/TestCSVs/car_fm.xml.empty.fp.csv");
 		String b = new FileUtility().readFileAsString("test.dat");
+		
+		a = a.replaceAll("(?<!" + CR + ")" + LF, ""+CR+""+LF);
+		b = b.replaceAll("(?<!" + CR + ")" + LF, ""+CR+""+LF);
 		
 		assertEquals(a, b);
 	}
