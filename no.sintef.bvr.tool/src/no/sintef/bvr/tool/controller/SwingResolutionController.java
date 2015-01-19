@@ -132,7 +132,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 	
 				String tabtitle = (v.getName() != null) ? v.getName() : "null";
 	
-				resPane.addTab(tabtitle, null, epanel, "");
+				resPane.addTab(tabtitle, epanel);
 				resolutionEpanels.add(epanel);			
 				resolutionkernelsMap.put(epanel, resKernel);
 				resolutionPanesMap.put(epanel, scrollPane);
@@ -149,6 +149,8 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 				loadBVRResolutionView(v, resKernel, null, bvrModel, vmMap, nodes, bindings);
 			}
 		}
+
+		updateTabsTitles();
 	}
 
 	
@@ -182,6 +184,25 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 					loadBVRResolutionView(vs, bvruikernel, nextParent, bvrModel, vmMap, nodes, bindings);
 				}
 			}
+		}
+	}
+	
+	private void updateTabsTitles() {
+		int count = resPane.getTabCount();
+		for(int i = 0; i < count; i++) {
+			Component editablePanel = resPane.getComponentAt(i);
+			Iterator<Entry<VSpecResolution, JComponent>> it = resolutionSubTabMap.entrySet().iterator();
+			VSpecResolution resolution = null;
+			while(it.hasNext()) {
+				Entry<VSpecResolution, JComponent> item = it.next();
+				if(item.getValue().equals(editablePanel)) {
+					resolution = item.getKey();
+					break;
+				}
+			}
+			
+			if(resolution != null) 
+				resPane.setTitleAt(i, resolution.getName());
 		}
 	}
 
@@ -578,7 +599,7 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 
 	@Override
 	public boolean performSATValidationSingleResolution() {
-		Iterator it = resolutionSubTabMap.entrySet().iterator();
+		Iterator<Entry<VSpecResolution, JComponent>> it = resolutionSubTabMap.entrySet().iterator();
 		VSpecResolution resoluion = null;
 		while (it.hasNext()) {
 			Map.Entry<VSpecResolution, JComponent> entry = (Entry<VSpecResolution, JComponent>) it.next();
@@ -592,5 +613,32 @@ public class SwingResolutionController<GUI_NODE extends JComponent, MODEL_OBJECT
 			throw new UnexpectedException("can not find resolution to validate!");
 	
 		return toolModel.performSATValidation(resoluion);
+	}
+
+	@Override
+	public SimpleExeCommandInterface createRenameResolutionCommand(String name) {
+		Iterator<Entry<VSpecResolution, JComponent>> it = resolutionSubTabMap.entrySet().iterator();
+		VSpecResolution resoluion = null;
+		while (it.hasNext()) {
+			Map.Entry<VSpecResolution, JComponent> entry = (Entry<VSpecResolution, JComponent>) it.next();
+			if(entry.getValue().equals(resPane.getSelectedComponent())) {
+				resoluion = entry.getKey();
+				break;
+			}
+		}
+		
+		if(resoluion == null)
+			throw new UnexpectedException("can not find resolution to rename!");
+		
+		final NamedElement resToRename = resoluion;
+		final String newName = name;
+		SimpleExeCommandInterface command = new SimpleExeCommandBatchDecorator(new SimpleExeCommandInterface() {
+			@Override
+			public void execute() {
+				toolModel.updateName(resToRename, newName);
+			}
+		});		
+		
+		return command;
 	}
 }

@@ -117,6 +117,7 @@ public class Constants {
 	public static final String RESOLUTION_DROPDOWN_REMOVE_UNCONTAINED = "Remove uncontained resolutions";
 	
 	public static final String RESOLUTION_NEW = "New";
+	public static final String RESOLUTION_RENAME = "Rename";
 	public static final String RESOLUTION_REMOVE = "Remove";
 	public static final String RESOLUTION_REMOVE_ALL = "Remove All";
 	public static final String RESOLUTION_IMPORT = "Import...";

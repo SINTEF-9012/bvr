@@ -25,6 +25,7 @@ import no.sintef.bvr.tool.ui.command.event.DeleteResolution;
 import no.sintef.bvr.tool.ui.command.event.ExecuteResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.ExportModelImage;
 import no.sintef.bvr.tool.ui.command.event.NewResolvedResolutionEvent;
+import no.sintef.bvr.tool.ui.command.event.RenameResolution;
 import no.sintef.bvr.tool.ui.command.event.SATValidateSingleResolution;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowConstraintsEvent;
 import no.sintef.bvr.tool.ui.command.event.ToggleShowGroupEvent;
@@ -69,11 +70,17 @@ class ResV2PanDropdownMenu extends JPopupMenu {
 		JMenuItem newres = new JMenuItem(Constants.RESOLUTION_NEW);
 		newres.addActionListener(new NewResolvedResolutionEvent(controller));
 		add(newres);
-		if (controller.getResolutionControllerInterface().isResolutionModelSet()) {
-			JMenuItem remove = new JMenuItem(Constants.RESOLUTION_REMOVE);
-			remove.addActionListener(new DeleteResolution(controller));
-			add(remove);
-		}
+		
+		add(new JSeparator());
+		JMenuItem rename = new JMenuItem(Constants.RESOLUTION_RENAME);
+		rename.addActionListener(new RenameResolution(controller));
+		add(rename);
+		
+		add(new JSeparator());
+		
+		JMenuItem remove = new JMenuItem(Constants.RESOLUTION_REMOVE);
+		remove.addActionListener(new DeleteResolution(controller));
+		add(remove);
 
 		add(new JSeparator());
 		

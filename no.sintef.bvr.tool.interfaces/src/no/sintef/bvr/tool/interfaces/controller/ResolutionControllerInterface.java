@@ -95,4 +95,6 @@ public interface ResolutionControllerInterface<GUI_NODE, MODEL_OBJECT, SERIALIZA
 	public void removeUncontainedResolutions(GUI_NODE p);
 
 	public boolean performSATValidationSingleResolution();
+
+	public SimpleExeCommandInterface createRenameResolutionCommand(String name);
 }
