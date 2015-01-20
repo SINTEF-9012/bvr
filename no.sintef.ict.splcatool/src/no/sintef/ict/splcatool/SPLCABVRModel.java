@@ -12,6 +12,8 @@ import java.util.Set;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
 import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.interfaces.IVariabilityModelFinderStartegy;
+import no.sintef.ict.splcatool.strategy.DefaultVariabilityModelFinderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultResolutionFinderStrategy;
 
@@ -32,6 +34,7 @@ import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.Choice;
 import bvr.ChoiceResolution;
+import bvr.CompoundNode;
 import bvr.CompoundResolution;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
@@ -55,6 +58,7 @@ public class SPLCABVRModel {
 	
 	protected IConstraintFinderStrategy constFinder;
 	protected IResolutionFinderStrategy resolFinder;
+	protected IVariabilityModelFinderStartegy varmodelFinder;
 
 	public SPLCABVRModel(){
 		BvrPackage.eINSTANCE.eClass();
@@ -83,9 +87,14 @@ public class SPLCABVRModel {
 		this(new File(bvrfile));
 	}
 	
+	public void restoreDefaultStrategies() {
+		init();
+	}
+	
 	protected void init() {
 		constFinder = new DefaultConstraintFinderStrategy(model);
 		resolFinder = new DefaultResolutionFinderStrategy(model);
+		varmodelFinder = new DefaultVariabilityModelFinderStrategy(model);
 	}
 	
 	public void setConstrtaintFindStrategy(IConstraintFinderStrategy strategy) {
@@ -94,6 +103,10 @@ public class SPLCABVRModel {
 	
 	public void setResolutionFindStrategy(IResolutionFinderStrategy strategy) {
 		resolFinder = strategy;
+	}
+	
+	public void setVariabilityFindStrategy(IVariabilityModelFinderStartegy strategy) {
+		varmodelFinder = strategy;
 	}
 	
 	private BVRModel loadFromFile(File file){
@@ -141,17 +154,14 @@ public class SPLCABVRModel {
 	public BVRModel getRootBVRModel() {
 		return model;
 	}
-
-	public GUIDSL getGUIDSL(IConstraintFinderStrategy strategy) throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
-		setConstrtaintFindStrategy(strategy);
-		GUIDSL result = getGUIDSL();
-		setConstrtaintFindStrategy(new DefaultConstraintFinderStrategy(model));
-		return result;
-	}
 	
 	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
+		CompoundNode varModelTopNode = varmodelFinder.getVariabilityModel();
+		if(!(varModelTopNode instanceof Choice))
+			throw new UnsupportedSPLCValidation(((NamedElement) varModelTopNode).getName() + " is not a choice. Only choices are supported.");
+		
 		FeatureModel fm = new FeatureModel();
-		Feature root = recursiveConvert(fm, (Choice) model.getVariabilityModel()); // This is an assumption
+		Feature root = recursiveConvert(fm, (Choice) varModelTopNode); // This is an assumption
 		fm.setRoot(root);
 		
 		// Add constraints
@@ -319,13 +329,6 @@ public class SPLCABVRModel {
 		return name;
 	}
 	
-	public CoveringArray getCoveringArray(IResolutionFinderStrategy strategy) throws BVRException, CSVException {
-		setResolutionFindStrategy(strategy);
-		CoveringArray result = getCoveringArray();
-		setResolutionFindStrategy(new DefaultResolutionFinderStrategy(model));
-		return result;
-	}
-
 	public CoveringArray getCoveringArray() throws BVRException, CSVException {
 		//System.out.println("--------------------------------");
 		
@@ -336,7 +339,7 @@ public class SPLCABVRModel {
 		for(ChoiceResolution c : resolFinder.getResolutions()){
 			Map<String, Boolean> as = new HashMap<String, Boolean>();
 			if(c.getResolvedVClassifier() != null)
-				throw new BVRException(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+				throw new UnsupportedSPLCValidation(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
 
 			as.putAll(recurse((ChoiceResolution) c));
 			//System.out.println(as);

@@ -42,6 +42,7 @@ import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
 import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
+import no.sintef.ict.splcatool.strategy.SingleResVariabilityFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
@@ -379,24 +380,32 @@ abstract public class BVRToolModel {
 		boolean valid = false;
 		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
+		
+		VNode node = (VNode) CommonUtility.getResolvedVSpec(resoluion);
+		SingleResolutionFinderStrategy strRes = new SingleResolutionFinderStrategy((ChoiceResolution) resoluion);
+		ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
+		SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
+		
+		getBVRM().setResolutionFindStrategy(strRes);
+		getBVRM().setConstrtaintFindStrategy(strConst);
+		getBVRM().setVariabilityFindStrategy(resVar);
+		
 		try {
-			SingleResolutionFinderStrategy strategy = new SingleResolutionFinderStrategy((ChoiceResolution) resoluion);
-			ca = getBVRM().getCoveringArray(strategy);
+			ca = getBVRM().getCoveringArray();
+			CNF cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		} catch (UnsupportedSPLCValidation e) {
 			throw new RethrownException(e.getMessage(), e);
 		} catch (BVRException e) {
 			throw new RethrownException("Getting CA failed:", e);
-		}
-		CNF cnf;
-		try {
-			ContextConstraintFinderStrategy strategy = new ContextConstraintFinderStrategy((VNode) CommonUtility.getResolvedVSpec(resoluion));
-			cnf = getBVRM().getGUIDSL(strategy).getSXFM().getCNF();
-			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
+		} finally {
+			getBVRM().restoreDefaultStrategies();
 		}
+		
 		return valid;
 	}
 

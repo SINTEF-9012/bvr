@@ -27,6 +27,7 @@ import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.CoveringArray;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
 import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.strategy.SingleResVariabilityFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
 import bvr.BvrFactory;
 import bvr.ChoiceResolution;
@@ -47,29 +48,34 @@ public class Validator implements Validate {
 
 	@Override
 	public void validate(BVRToolModel toolModel, VSpecResolution vsr) {
-		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
+		
+		VNode node = (VNode) CommonUtility.getResolvedVSpec(vsr);
+		SingleResolutionFinderStrategy strRes = new SingleResolutionFinderStrategy((ChoiceResolution) vsr);
+		ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
+		SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
+		
+		toolModel.getBVRM().setResolutionFindStrategy(strRes);
+		toolModel.getBVRM().setConstrtaintFindStrategy(strConst);
+		toolModel.getBVRM().setVariabilityFindStrategy(resVar);
+		
 		try {
-			IResolutionFinderStrategy strategy = new SingleResolutionFinderStrategy((ChoiceResolution) vsr);
-			ca = toolModel.getBVRM().getCoveringArray(strategy);
+			CoveringArray ca = toolModel.getBVRM().getCoveringArray();
+			CNF cnf = toolModel.getBVRM().getGUIDSL().getSXFM().getCNF();
+			boolean valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
+			//do this stab for now since we do not actually have mapping yet, between problem messages and constraints
+			if(!valid)
+				invalidConstraints.add(BvrFactory.eINSTANCE.createConstraint());
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		}  catch (UnsupportedSPLCValidation e) {
 			throw new RethrownException(e.getMessage(), e);
 		} catch (BVRException e) {
 			throw new RethrownException("Getting CA failed:", e);
-		}
-
-		CNF cnf;
-		try {
-			ContextConstraintFinderStrategy strategy = new ContextConstraintFinderStrategy((VNode) CommonUtility.getResolvedVSpec(vsr));
-			cnf = toolModel.getBVRM().getGUIDSL(strategy).getSXFM().getCNF();
-			boolean valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
-			//do this stab for now since we do not actually have mapping yet, between problem messages and constraints
-			if(!valid)
-				invalidConstraints.add(BvrFactory.eINSTANCE.createConstraint());
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
+		} finally {
+			toolModel.getBVRM().restoreDefaultStrategies();
 		}
 	}
 
