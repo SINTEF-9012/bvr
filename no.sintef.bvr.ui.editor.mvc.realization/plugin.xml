@@ -16,7 +16,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="menu:org.eclipse.ui.main.menu?after=window">
+            locationURI="menu:org.eclipse.ui.main.menu">
          <menu
                label="BVR Realization">
             <command
