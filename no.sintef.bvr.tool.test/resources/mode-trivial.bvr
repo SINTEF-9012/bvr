@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="trivial">
+  <variabilityModel xsi:type="bvr:Choice" name="Choice0" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="Choice1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
+      <ownedTargets name="Choice1"/>
+    </member>
+    <member xsi:type="bvr:Choice" name="Choice2" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+      <ownedTargets name="Choice2"/>
+    </member>
+    <ownedTargets name="Choice0"/>
+  </variabilityModel>
+  <resolutionModels xsi:type="bvr:PosResolution" name="Choice0[1]" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
+    <members xsi:type="bvr:PosResolution" name="Choice1" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
+    <members xsi:type="bvr:PosResolution" name="Choice2" resolvedVSpec="//@variabilityModel/@member.1" resolvedChoice="//@variabilityModel/@member.1"/>
+  </resolutionModels>
+</bvr:BVRModel>

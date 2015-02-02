@@ -77,6 +77,7 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	
 		if(workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider() == null)
 			return new ArrayList<Object>();
+		
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();

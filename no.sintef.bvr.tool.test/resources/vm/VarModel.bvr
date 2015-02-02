@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="trivial">
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="choice2">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((PosResolution) Choice2).&lt;VSpec>resolvedVSpec[1]={Choice2}" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((PosResolution) Choice2).&lt;Choice>resolvedChoice[1]={Choice2}" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Choice) Choice0).&lt;VNode>member[1]={Choice2}" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.2"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.0/@sourceObject.3" outsideBoundaryElement="//@packageElement.0/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="../mode-trivial.bvr#//@variabilityModel/@member.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../mode-trivial.bvr#//@resolutionModels.0/@members.1"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../mode-trivial.bvr#//@variabilityModel"/>
+    </sourceObject>
+    <sourceObject/>
+  </packageElement>
+  <variabilityModel xsi:type="bvr:Choice" name="Choice0" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="Choice1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
+      <ownedTargets name="Choice1"/>
+    </member>
+    <member xsi:type="bvr:Choice" name="Choice2" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+      <ownedTargets name="Choice2"/>
+    </member>
+    <ownedTargets name="Choice0"/>
+  </variabilityModel>
+  <resolutionModels xsi:type="bvr:PosResolution" name="Choice0[1]" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
+    <members xsi:type="bvr:PosResolution" name="Choice1" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
+    <members xsi:type="bvr:PosResolution" name="Choice2" resolvedVSpec="//@variabilityModel/@member.1" resolvedChoice="//@variabilityModel/@member.1"/>
+  </resolutionModels>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="choice1">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((PosResolution) Choice1).&lt;VSpec>resolvedVSpec" propertyName="resolvedVSpec" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((PosResolution) Choice1).&lt;Choice>resolvedChoice" propertyName="resolvedChoice" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Choice) Choice0).&lt;VNode>member" propertyName="member" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@realizationModel.0/@sourceObject.3" insideBoundaryElement="//@realizationModel.0/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="../mode-trivial.bvr#//@variabilityModel/@member.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../mode-trivial.bvr#//@resolutionModels.0/@members.0"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="../mode-trivial.bvr#//@variabilityModel"/>
+    </sourceObject>
+    <sourceObject/>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution2" bindingVSpec="//@variabilityModel" placement="//@realizationModel.0" replacement="//@packageElement.0">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.0" toReplacement="//@packageElement.0/@replacementBoundaryElement.0"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.1" toReplacement="//@packageElement.0/@replacementBoundaryElement.1"/>
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.2" toReplacement="//@packageElement.0/@replacementBoundaryElement.2"/>
+  </realizationModel>
+</bvr:BVRModel>

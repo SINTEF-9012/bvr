@@ -31,6 +31,9 @@ public class ThirdPartySelectorNoEditorTest {
 		testProject.disposeTestProject();
 	}
 
+	/**
+	 * Assertion: If no editors aer opened then return 0 selected objects
+	 */
 	@Test
 	public void test() {
 		List<Object> selection = selector.getSelections();
