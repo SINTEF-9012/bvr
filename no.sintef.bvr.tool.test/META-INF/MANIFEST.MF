@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR :: Tool Test Plugin
+Bundle-SymbolicName: no.sintef.bvr.tool.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: no.sintef.bvr.tool.test.Activator
+Bundle-Vendor: SINTEF
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.pde.junit.runtime;bundle-version="3.4.300",
+ org.junit;bundle-version="4.11.0",
+ no.sintef.bvr.tool;bundle-version="1.0.0",
+ no.sintef.bvr.tool.interfaces;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Import-Package: no.sintef.bvr.test.common.utils,
+ no.sintef.bvr.tool.context

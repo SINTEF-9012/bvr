@@ -72,6 +72,9 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		if(activeEditor instanceof IBVREnabledEditor)
 			return ((IBVREnabledEditor) activeEditor).getSelectedObjects();
 
+		if(workbenchWindow.getActivePage().getActiveEditor() == null)
+			return new ArrayList<Object>();
+	
 		if(workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider() == null)
 			return new ArrayList<Object>();
 		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
