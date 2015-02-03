@@ -62,7 +62,7 @@ public class ProxyThirdPartyTreeEditor extends EditorPart
 		editor = (EditorPart) editorPart;
 		Viewer viewer = getViewer();
 		if(!(viewer instanceof TreeViewer))
-			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart should represent tree view editor, can not highlight anything");
+			throw new NotSupportedThirdPartyEditor("MultiPageEditorPart should represent tree view editor, can not highlight anything " + viewer);
 		treeViewer = (TreeViewer) viewer;
 			
 		// Extend the label provider to support colors and fonts

@@ -29,6 +29,7 @@ import org.junit.Test;
 import bvr.BVRModel;
 import bvr.BvrPackage;
 
+
 public class ThirdPartySelectorTest {
 	
 	private static TestProject testProject;
@@ -52,6 +53,7 @@ public class ThirdPartySelectorTest {
 	@BeforeClass
 	public static void setUp() throws Exception {
 		testProject = new TestProject("ThirdPartySelector1", Activator.PLUGIN_ID);
+		testProject.closeWelcome();
 		testProject.createFolders(testFolders);
 		testProject.createResources(testResources);
 		
@@ -93,7 +95,7 @@ public class ThirdPartySelectorTest {
 		assertTrue("Selection is made, but no object returned", selection.size() == 1);
 		
 		EObject eObject = selector.getEObject(selection.get(0));
-		assertTrue("Selected element doesn not correspond to the made selection", eObject.equals(model));
+		assertTrue("Selected element does not correspond to the made selection", eObject.equals(model));
 	}
 	
 	/**
@@ -101,13 +103,14 @@ public class ThirdPartySelectorTest {
 	 */
 	@Test
 	public void testEmptySelection() {
+		//select element
+		thirdpartyEditor.getSite().getSelectionProvider().setSelection(new StructuredSelection(model));
+		List<Object> selection = selector.getSelections();
+		assertTrue(selection.size() != 0);
 		
 		//select element
 		thirdpartyEditor.getSite().getSelectionProvider().setSelection(new StructuredSelection());
-		List<Object> selection = selector.getSelections();
+		selection = selector.getSelections();
 		assertTrue("Not empty selection", selection.size() == 0);
-		
-		
 	}
-
 }

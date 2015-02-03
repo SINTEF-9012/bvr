@@ -36,6 +36,10 @@ public abstract class BVRAbstractBaseLabelProvider implements ILabelProvider {
 	public void clearHighlighting() {
 		highlight.clear();
 	}
+	
+	public HashMap<String, Integer> getObjectToHighlight() {
+		return highlight;
+	}
 
 	public void highlightObjects(ArrayList<String> xmi_ids, int type) {
 		if (type == IBVREnabledEditor.HL_NONE) {

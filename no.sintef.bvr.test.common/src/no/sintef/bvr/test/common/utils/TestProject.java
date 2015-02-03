@@ -28,6 +28,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.intro.IIntroManager;
+import org.eclipse.ui.intro.IIntroPart;
 import org.osgi.framework.Bundle;
 
 public class TestProject {
@@ -88,6 +90,12 @@ public class TestProject {
 			IFile iFile = copyFileFromPlugin(resource.getSource(), resource.getTarget());
 			resource.setiFile(iFile);
 		}
+	}
+	
+	public void closeWelcome() {
+		IIntroManager manager = PlatformUI.getWorkbench().getIntroManager();
+		IIntroPart part = manager.getIntro();
+		manager.closeIntro(part);
 	}
 
 }
