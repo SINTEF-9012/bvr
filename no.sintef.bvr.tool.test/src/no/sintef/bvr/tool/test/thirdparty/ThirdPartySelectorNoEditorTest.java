@@ -10,24 +10,27 @@ import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 import no.sintef.bvr.tool.test.Activator;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ThirdPartySelectorNoEditorTest {
 	
-	private TestProject testProject;
-	private ModelSelector selector;
+	private static TestProject testProject;
+	private static ModelSelector selector;
 
-	@Before
-	public void setUp() throws Exception {
+	@BeforeClass
+	public static void setUp() throws Exception {
 		testProject = new TestProject("ThirdPartySelectorNoEditorTest1", Activator.PLUGIN_ID);
+		testProject.closeWelcome();
 		ThirdpartyEditorSelector.setWorkbeach(testProject.getActionWorkbenchWindow());
 		selector = ThirdpartyEditorSelector.getEditorSelector();
 		
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDown() throws Exception {
 		testProject.disposeTestProject();
 	}
 
