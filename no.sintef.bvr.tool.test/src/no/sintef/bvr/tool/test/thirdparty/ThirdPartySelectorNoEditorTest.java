@@ -26,6 +26,7 @@ public class ThirdPartySelectorNoEditorTest {
 		testProject.closeWelcome();
 		ThirdpartyEditorSelector.setWorkbeach(testProject.getActionWorkbenchWindow());
 		selector = ThirdpartyEditorSelector.getEditorSelector();
+		assertNotNull(selector);
 		
 	}
 

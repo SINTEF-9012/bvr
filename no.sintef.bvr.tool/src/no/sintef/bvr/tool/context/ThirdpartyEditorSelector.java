@@ -24,6 +24,7 @@ import no.sintef.bvr.thirdparty.editor.ProxyThirdPartyTreeEditor;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.tool.common.ModelSelector;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
@@ -33,6 +34,7 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.swt.widgets.Display;
+import org.osgi.framework.BundleException;
 
 public final class ThirdpartyEditorSelector implements ModelSelector {
 
@@ -46,8 +48,13 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		return singletone;
 	}
 	
-	public static void setWorkbeach(IWorkbenchWindow workbenchWindow){
+	public static void setWorkbeach(IWorkbenchWindow workbenchWindow) {
 		singletone.workbenchWindow = workbenchWindow;
+		try {
+			Platform.getBundle("no.sintef.bvr.papyrusdiagram.adapter").start();
+		} catch (BundleException e) {
+			Context.eINSTANCE.logger.warn("Can not load no.sintef.bvr.papyrusdiagram.adapter for some reasons");
+		}
 	}
 	
 	@Override
@@ -69,6 +76,17 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	@Override
 	public List<Object> getSelections() {
 		IEditorPart activeEditor = workbenchWindow.getActivePage().getActiveEditor();
+		
+		if(activeEditor == null) {
+			Context.eINSTANCE.logger.debug("can not find any active aditor in the ActivePage of the workbench");
+			return new ArrayList<Object>();
+		}
+		
+		IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) Platform.getAdapterManager().getAdapter(activeEditor, IBVREnabledEditor.class);
+		
+		if(bvrEnabledEditor != null)
+			return bvrEnabledEditor.getSelectedObjects();
+		
 		if(activeEditor instanceof IBVREnabledEditor)
 			return ((IBVREnabledEditor) activeEditor).getSelectedObjects();
 
@@ -127,7 +145,11 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		    public void run() {
 		    	for(IEditorReference ref : editorReferences){
 		    		IEditorPart editorPart = ref.getEditor(false);
-		    		if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
+		    		if(editorPart != null && Platform.getAdapterManager().getAdapter(editorPart, IBVREnabledEditor.class) != null) {
+		    			IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) Platform.getAdapterManager().getAdapter(editorPart, IBVREnabledEditor.class);
+		    			bvrEnabledEditor.clearHighlighting();
+		    			highlightObjects(bvrEnabledEditor, objects);
+		    		} else if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
 		    			try {
 		    				ProxyThirdPartyTreeEditor bvrEnabledEditor = new ProxyThirdPartyTreeEditor((EditorPart) editorPart);
 		    				bvrEnabledEditor.clearHighlighting();
@@ -167,7 +189,10 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 			public void run() {
 		    	for(IEditorReference ref : editorReferences){
 		    		IEditorPart editorPart = ref.getEditor(false);
-		    		if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
+		    		if(editorPart != null && Platform.getAdapterManager().getAdapter(editorPart, IBVREnabledEditor.class) != null) {
+		    			IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) Platform.getAdapterManager().getAdapter(editorPart, IBVREnabledEditor.class);
+		    			bvrEnabledEditor.clearHighlighting();
+		    		} else if(editorPart != null && !(editorPart instanceof IBVREnabledEditor)){
 		    			try {
 		    				IBVREnabledEditor editor = new ProxyThirdPartyTreeEditor((EditorPart) editorPart);
 		    				editor.clearHighlighting();

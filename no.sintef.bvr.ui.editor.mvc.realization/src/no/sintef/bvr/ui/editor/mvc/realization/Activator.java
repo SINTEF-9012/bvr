@@ -13,9 +13,13 @@
  ******************************************************************************/
 package no.sintef.bvr.ui.editor.mvc.realization;
 
+import static org.junit.Assert.fail;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 /**
  * The activator class controls the plug-in life cycle

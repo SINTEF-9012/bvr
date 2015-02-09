@@ -2,9 +2,7 @@ package no.sintef.bvr.thirdparty.test.editor;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -16,12 +14,6 @@ import no.sintef.bvr.tool.common.ModelSelector;
 import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 import no.sintef.bvr.thirdparty.test.Activator;
 
-import org.eclipse.core.resources.IWorkspaceRunnable;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -31,8 +23,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
