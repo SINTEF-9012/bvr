@@ -42,11 +42,6 @@ SINTEF - initial API and implementation
          id="no.sintef.bvr.usite.feature.splcatool"
          version="0.0.0"/>
 
-   <includes
-         id="no.sintef.bvr.usite.feature.papyrusadapter"
-         version="0.0.0"
-         optional="true"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.jface.text"/>
