@@ -84,19 +84,23 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 		
 		IBVREnabledEditor bvrEnabledEditor = (IBVREnabledEditor) Platform.getAdapterManager().getAdapter(activeEditor, IBVREnabledEditor.class);
 		
-		if(bvrEnabledEditor != null)
+		if(bvrEnabledEditor != null) {
+			Context.eINSTANCE.logger.debug("found suitabale adapter: " + bvrEnabledEditor + " for the editor: " + activeEditor);
 			return bvrEnabledEditor.getSelectedObjects();
+		}
 		
-		if(activeEditor instanceof IBVREnabledEditor)
+		if(activeEditor instanceof IBVREnabledEditor) {
+			Context.eINSTANCE.logger.debug("editor implements IBVREnabledEditor: " + activeEditor);
 			return ((IBVREnabledEditor) activeEditor).getSelectedObjects();
-
-		if(workbenchWindow.getActivePage().getActiveEditor() == null)
-			return new ArrayList<Object>();
+		}
 	
-		if(workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider() == null)
+		if(activeEditor.getSite().getSelectionProvider() == null) {
+			Context.eINSTANCE.logger.debug("can not find selection provider for editor, nothing to grab from selection, editor: " + activeEditor);
 			return new ArrayList<Object>();
+		}
 		
-		ISelection selection = workbenchWindow.getActivePage().getActiveEditor().getSite().getSelectionProvider().getSelection();
+		Context.eINSTANCE.logger.debug("using default selection provider to grab selected elements, editor: " + activeEditor);
+		ISelection selection = activeEditor.getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();
 	}
