@@ -38,6 +38,7 @@ public class TestProject {
 	protected String plugin_id;
 	protected IProgressMonitor progressMonitor;
 	protected String name;
+	protected static boolean closed = false;
 
 	public TestProject(String projectName, String _plugin_id)
 			throws CoreException {
@@ -63,7 +64,8 @@ public class TestProject {
 
 	public void disposeTestProject() throws CoreException {
 		iProject.close(progressMonitor);
-		iProject.delete(true, progressMonitor);
+		//iProject.delete(true, progressMonitor);
+		iProject.delete(true, true, progressMonitor);
 	}
 
 	public IFile copyFileFromPlugin(String source, String target)
@@ -93,9 +95,12 @@ public class TestProject {
 	}
 	
 	public void closeWelcome() {
-		IIntroManager manager = PlatformUI.getWorkbench().getIntroManager();
-		IIntroPart part = manager.getIntro();
-		manager.closeIntro(part);
+		if(!closed) {
+			IIntroManager manager = PlatformUI.getWorkbench().getIntroManager();
+			IIntroPart part = manager.getIntro();
+			manager.closeIntro(part);
+			closed = true;
+		}
 	}
 
 }

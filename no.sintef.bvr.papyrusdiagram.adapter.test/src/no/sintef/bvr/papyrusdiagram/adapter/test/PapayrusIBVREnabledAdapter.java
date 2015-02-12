@@ -2,6 +2,7 @@ package no.sintef.bvr.papyrusdiagram.adapter.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -11,10 +12,13 @@ import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor.IDProvider;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -43,36 +47,34 @@ public class PapayrusIBVREnabledAdapter {
 
 	};
 
-	private TestProject testProject;
+	private static TestProject testProject;
 
-	private FileEditorInput vmFileinput;
+	private static FileEditorInput vmFileinput;
 
-	private IWorkbenchPage activePage;
+	private static IWorkbenchPage activePage;
 
-	private IEditorPart thirdpartyEditor;
+	private static IEditorPart thirdpartyEditor;
 
-	private EObject eObject;
+	private static EObject eObject;
 
-	private IBVREnabledEditor bvrEnabledEditor;
+	private static IBVREnabledEditor bvrEnabledEditor;
 
-	private IEditorPart activeEditor;
+	private static IEditorPart activeEditor;
 
-	private List<?> editParts;
+	private static List<?> editParts;
 
-	// private FileEditorInput vmFileinput;
+	private static ArrayList<Object> papyrusParts;
+
 
 	@BeforeClass
-	public static void setUpClass() {
+	public static void setUpClass() throws Exception {
 		try {
 			Platform.getBundle("no.sintef.bvr.papyrusdiagram.adapter").start();
 		} catch (BundleException e) {
 			e.printStackTrace();
 			fail("Can not start adapter bundle");
 		}
-	}
-
-	@Before
-	public void setUp() throws Exception {
+		
 		testProject = new TestProject("PapayrusIBVREnabledAdapter", Activator.PLUGIN_ID);
 		testProject.closeWelcome();
 		testProject.createFolders(testFolders);
@@ -112,20 +114,36 @@ public class PapayrusIBVREnabledAdapter {
 		
 		//graphical elements to select
 		PapyrusMultiDiagramEditor papyrusEditor = (PapyrusMultiDiagramEditor) activeEditor;
+		
 		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) papyrusEditor.getActiveEditor())
 				.getDiagramGraphicalViewer();
 
 		editParts = gv.findEditPartsForElement(
 				IDProvider.getXMIId(eObject), EditPart.class);
 
-		assertTrue("can not find graphical elements", editParts.size() == 5);
+		assertEquals("can not find graphical elements", 5, editParts.size());
 		
+		//papyrus parts
+		papyrusParts = new ArrayList<Object>();
+		for(Object object : editParts) {
+			if(object instanceof IPapyrusEditPart)
+				papyrusParts.add(object);
+		}
+		
+		assertEquals("can not find papyrus graphical elements", 1, papyrusParts.size());
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDown() throws Exception {
 		thirdpartyEditor.dispose();
 		testProject.disposeTestProject();
+	}
+	
+	@Before
+	public void setUp() {
+		bvrEnabledEditor.selectObjects(new ArrayList<Object>());
+		//diagram should be selected at least
+		assertEquals(1, bvrEnabledEditor.getSelectedObjects().size());
 	}
 
 	@Test
@@ -136,5 +154,32 @@ public class PapayrusIBVREnabledAdapter {
 		
 		assertEquals("selected and grabbed elements do not match", editParts, selectedParts);
 	}
+	
+	@Test
+	public void testSelectElementsEmpty() {		
+		bvrEnabledEditor.selectObjects((List<Object>) editParts);
+		
+		List<Object> selectedParts = bvrEnabledEditor.getSelectedObjects();
+		
+		assertEquals("selected and grabbed elements do not match", editParts, selectedParts);
+		
+		bvrEnabledEditor.selectObjects(new ArrayList<Object>());
+		assertTrue("diselection does not work", bvrEnabledEditor.getSelectedObjects().size() == 1);
+	}
+	
+	@Test
+	public void testHighlight() {
+		bvrEnabledEditor.highlightObject(eObject, IBVREnabledEditor.HL_PLACEMENT);
+		
+		assertTrue(papyrusParts.size() != 0);
+		
+		for(Object object : papyrusParts) {
+			IPapyrusEditPart ep = (IPapyrusEditPart) object;
+			Color color = ep.getPrimaryShape().getForegroundColor();
+			
+			assertEquals("Highlight color does not match for " + object, IBVREnabledEditor.PLACEMENT, color);
+		}
+	}
+	
 
 }
