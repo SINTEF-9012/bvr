@@ -11,6 +11,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.junit;bundle-version="4.11.0",
  org.eclipse.ui.ide;bundle-version="3.9.1",
- no.sintef.bvr.thirdparty.interfaces;bundle-version="1.0.0"
+ no.sintef.bvr.thirdparty.interfaces;bundle-version="1.0.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
+ org.eclipse.gmf.runtime.diagram.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.ecore.resource,
+ org.eclipse.papyrus.editor,
+ org.eclipse.papyrus.infra.core,
+ org.eclipse.papyrus.infra.core.editor,
+ org.eclipse.papyrus.infra.gmfdiag.common,
+ org.eclipse.papyrus.infra.gmfdiag.common.editpart

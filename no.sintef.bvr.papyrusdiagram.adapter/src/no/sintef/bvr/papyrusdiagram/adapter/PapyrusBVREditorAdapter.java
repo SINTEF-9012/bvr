@@ -25,10 +25,11 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.ui.IEditorPart;
-
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 
@@ -151,7 +152,8 @@ public class PapyrusBVREditorAdapter implements IBVREnabledEditor {
 	 */
 	@Override
 	public void selectObjects(List<Object> objects) {
-		throw new UnsupportedOperationException("not implemented");
+		IStructuredSelection selection = new StructuredSelection(objects);
+		editor.getSite().getSelectionProvider().setSelection(selection);
 	}
 
 	/**
