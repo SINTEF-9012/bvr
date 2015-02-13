@@ -166,4 +166,16 @@ public class ProxyThirdPartyTreeEditor extends EditorPart
 	public void setFocus() {
 		editor.setFocus();
 	}
+
+	@Override
+	public List<EObject> getModelObjects(List<Object> objects) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getGraphicalObjects(List<EObject> objects) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

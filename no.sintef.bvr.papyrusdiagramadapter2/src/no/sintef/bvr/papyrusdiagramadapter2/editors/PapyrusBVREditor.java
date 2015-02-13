@@ -147,5 +147,17 @@ public class PapyrusBVREditor extends PapyrusMultiDiagramEditor implements IBVRE
 			}
 		}
 	}
+
+	@Override
+	public List<EObject> getModelObjects(List<Object> objects) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> getGraphicalObjects(List<EObject> objects) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

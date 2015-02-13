@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.osgi.framework.BundleException;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -209,4 +210,27 @@ public class PapayrusIBVREnabledAdapter {
 				ColorConstants.black, color);
 	}
 
+	@Test
+	public void tesGetModelObjects() {
+		List<EObject> modelObjects = bvrEnabledEditor
+				.getModelObjects(papyrusParts);
+
+		assertEquals(modelObjects.size(), 1);
+
+		assertEquals("Can not get model object from a diagram one", eObject,
+				modelObjects.get(0));
+	}
+
+	@Test
+	public void tesGetGraphicalObjects() {
+		List<EObject> modelObjects = new BasicEList<EObject>();
+		modelObjects.add(eObject);
+		List<Object> graphicalObjects = bvrEnabledEditor
+				.getGraphicalObjects(modelObjects);
+
+		assertEquals(graphicalObjects.size(), papyrusParts.size());
+
+		assertEquals("Can not get model object from a diagram one",
+				papyrusParts, graphicalObjects);
+	}
 }

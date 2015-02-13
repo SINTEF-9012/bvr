@@ -87,7 +87,24 @@ public interface IBVREnabledEditor {
 	 *            The IDs of the set of domain object which should be selected
 	 */
 	public void selectObjects(List<Object> objects);
+	
+	/**
+	 * Get list of model objects
+	 * 
+	 * @param objects
+	 * 			  Objects which should be resolved to model objects
+	 */
+	public List<EObject> getModelObjects(List<Object> objects);
+	
+	/**
+	 * Get list of graphical objects
+	 * 
+	 * @param objects
+	 * 			  Objects which should be resolved to graphical objects
+	 */
+	public List<Object> getGraphicalObjects(List<EObject> objects);
 
+	
 	abstract public static class IDProvider {
 
 		/**

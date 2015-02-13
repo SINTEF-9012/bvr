@@ -25,7 +25,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.graphics.Color;
@@ -33,6 +32,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 
+import no.sintef.bvr.thirdparty.interfaces.editor.AbstractBVREnabledEditor;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 
 // TODO: Auto-generated Javadoc
@@ -41,7 +41,7 @@ import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
  * adopts standard PapyrusMultiDiagramEditor editor to interact with BVR Tool
  * Bundle.
  */
-public class PapyrusBVREditorAdapter implements IBVREnabledEditor {
+public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 
 	private PapyrusMultiDiagramEditor editor;
 
