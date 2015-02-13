@@ -16,6 +16,7 @@ package no.sintef.bvr.tool.context;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,8 @@ import org.osgi.framework.BundleException;
 public final class ThirdpartyEditorSelector implements ModelSelector {
 
 	private IWorkbenchWindow workbenchWindow = null;
+
+
 	 
 	private static final ThirdpartyEditorSelector singletone = new ThirdpartyEditorSelector();
 	
@@ -59,16 +62,26 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	
 	@Override
 	public EObject getEObject(Object object) {
+		if(object instanceof EObject)
+			return (EObject) object;
+		
+		IEditorPart activeEditor = workbenchWindow.getActivePage().getActiveEditor();
+		IBVREnabledEditor bvrEneableAdapter = (IBVREnabledEditor) Platform.getAdapterManager().getAdapter(activeEditor, IBVREnabledEditor.class);
+		
+		if(bvrEneableAdapter != null) {
+			List<EObject> result = bvrEneableAdapter.getModelObjects(Arrays.asList(new Object [] {object}));
+			if(result.size() > 1)
+				Context.eINSTANCE.logger.warn("there are few model objects which correspnd to on graphical element, graphical: "+ object + " " + result);
+
+			return (result.size() != 0) ? result.get(0) : null;
+		}
+
 		EObject eObject = null;
-		if(object instanceof EObject){
-			eObject = (EObject) object;
-		}else{
-			try {
-				Method method = object.getClass().getMethod("resolveSemanticElement");
-				eObject = (EObject) method.invoke(object, new Object[0]);
-			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException error) {
-				throw new UnsupportedOperationException("Can not access a model object, blame your editor. We should fall into a brach where we chech that an editor implements BVR enabled editor interface");
-			}
+		try {
+			Method method = object.getClass().getMethod("resolveSemanticElement");
+			eObject = (EObject) method.invoke(object, new Object[0]);
+		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException error) {
+			throw new UnsupportedOperationException("Can not access a model object, blame your editor");
 		}
 		return eObject;
 	}

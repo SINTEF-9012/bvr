@@ -9,6 +9,7 @@ import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor.IDProvider;
+import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.ColorConstants;
@@ -39,13 +40,9 @@ public class PapayrusIBVREnabledAdapter {
 
 	private static String[] testFolders = { "TestFolder" };
 
-	private static TestResourceHolder[] testResources = {
-			new TestResourceHolder("/resources/model.di",
-					"/TestFolder/model.di"),
-			new TestResourceHolder("/resources/model.notation",
-					"/TestFolder/model.notation"),
-			new TestResourceHolder("/resources/model.uml",
-					"/TestFolder/model.uml")
+	private static TestResourceHolder[] testResources = { new TestResourceHolder("/resources/model.di", "/TestFolder/model.di"),
+			new TestResourceHolder("/resources/model.notation", "/TestFolder/model.notation"),
+			new TestResourceHolder("/resources/model.uml", "/TestFolder/model.uml")
 
 	};
 
@@ -76,8 +73,7 @@ public class PapayrusIBVREnabledAdapter {
 			fail("Can not start adapter bundle");
 		}
 
-		testProject = new TestProject("PapayrusIBVREnabledAdapter",
-				Activator.PLUGIN_ID);
+		testProject = new TestProject("PapayrusIBVREnabledAdapter", Activator.PLUGIN_ID);
 		testProject.closeWelcome();
 		testProject.createFolders(testFolders);
 		testProject.createResources(testResources);
@@ -87,44 +83,36 @@ public class PapayrusIBVREnabledAdapter {
 		assertNotNull(activePage);
 		// org.eclipse.emf.ecore.presentation.EcoreEditorID
 		// bvr.presentation.BvrEditorID
-		thirdpartyEditor = activePage.openEditor(vmFileinput,
-				"org.eclipse.papyrus.infra.core.papyrusEditor", true,
-				IWorkbenchPage.MATCH_ID | IWorkbenchPage.MATCH_INPUT);
+		thirdpartyEditor = activePage.openEditor(vmFileinput, "org.eclipse.papyrus.infra.core.papyrusEditor", true, IWorkbenchPage.MATCH_ID
+				| IWorkbenchPage.MATCH_INPUT);
 		assertNotNull(thirdpartyEditor);
 
 		// load uml resource
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION,
-				new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI("/" + testProject.getName()
-				+ testResources[2].getTarget(), true);
+		URI uri = URI.createPlatformResourceURI("/" + testProject.getName() + testResources[2].getTarget(), true);
 		Resource resource = resSet.getResource(uri, true);
 
 		// we select an object with name Class1 in the model
 		eObject = resource.getContents().get(0).eContents().get(0);
 		assertNotNull(eObject);
 
-		String name = (String) eObject.eGet(eObject.eClass()
-				.getEStructuralFeature("name"));
+		String name = (String) eObject.eGet(eObject.eClass().getEStructuralFeature("name"));
 		assertEquals("Class1", name);
 
 		// get adapter
 		activeEditor = activePage.getActiveEditor();
 		assertNotNull(activeEditor);
 
-		bvrEnabledEditor = (IBVREnabledEditor) Platform.getAdapterManager()
-				.getAdapter(activeEditor, IBVREnabledEditor.class);
+		bvrEnabledEditor = (IBVREnabledEditor) Platform.getAdapterManager().getAdapter(activeEditor, IBVREnabledEditor.class);
 		assertNotNull("Can not find adapter for this editor", bvrEnabledEditor);
 
 		// graphical elements to select
 		PapyrusMultiDiagramEditor papyrusEditor = (PapyrusMultiDiagramEditor) activeEditor;
 
-		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) papyrusEditor
-				.getActiveEditor()).getDiagramGraphicalViewer();
+		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) papyrusEditor.getActiveEditor()).getDiagramGraphicalViewer();
 
-		editParts = gv.findEditPartsForElement(IDProvider.getXMIId(eObject),
-				EditPart.class);
+		editParts = gv.findEditPartsForElement(IDProvider.getXMIId(eObject), EditPart.class);
 
 		assertEquals("can not find graphical elements", 5, editParts.size());
 
@@ -135,8 +123,7 @@ public class PapayrusIBVREnabledAdapter {
 				papyrusParts.add(object);
 		}
 
-		assertEquals("can not find papyrus graphical elements", 1,
-				papyrusParts.size());
+		assertEquals("can not find papyrus graphical elements", 1, papyrusParts.size());
 	}
 
 	@AfterClass
@@ -158,8 +145,7 @@ public class PapayrusIBVREnabledAdapter {
 
 		List<Object> selectedParts = bvrEnabledEditor.getSelectedObjects();
 
-		assertEquals("selected and grabbed elements do not match", editParts,
-				selectedParts);
+		assertEquals("selected and grabbed elements do not match", editParts, selectedParts);
 	}
 
 	@Test
@@ -168,58 +154,46 @@ public class PapayrusIBVREnabledAdapter {
 
 		List<Object> selectedParts = bvrEnabledEditor.getSelectedObjects();
 
-		assertEquals("selected and grabbed elements do not match", editParts,
-				selectedParts);
+		assertEquals("selected and grabbed elements do not match", editParts, selectedParts);
 
 		bvrEnabledEditor.selectObjects(new ArrayList<Object>());
-		assertTrue("diselection does not work", bvrEnabledEditor
-				.getSelectedObjects().size() == 1);
+		assertTrue("diselection does not work", bvrEnabledEditor.getSelectedObjects().size() == 1);
 	}
 
 	@Test
 	public void testHighlight() {
-		bvrEnabledEditor.highlightObject(eObject,
-				IBVREnabledEditor.HL_PLACEMENT);
+		bvrEnabledEditor.highlightObject(eObject, IBVREnabledEditor.HL_PLACEMENT);
 
 		IPapyrusEditPart ep = (IPapyrusEditPart) papyrusParts.get(0);
 		Color color = ep.getPrimaryShape().getForegroundColor();
 
-		assertEquals(
-				"Highlight color does not match for " + papyrusParts.get(0),
-				IBVREnabledEditor.PLACEMENT, color);
+		assertEquals("Highlight color does not match for " + papyrusParts.get(0), IBVREnabledEditor.PLACEMENT, color);
 	}
 
 	@Test
 	public void testClearHighlight() {
-		bvrEnabledEditor.highlightObject(eObject,
-				IBVREnabledEditor.HL_PLACEMENT);
+		bvrEnabledEditor.highlightObject(eObject, IBVREnabledEditor.HL_PLACEMENT);
 
 		IPapyrusEditPart ep = (IPapyrusEditPart) papyrusParts.get(0);
 		Color color = ep.getPrimaryShape().getForegroundColor();
 
-		assertEquals(
-				"Highlight color does not match for " + papyrusParts.get(0),
-				IBVREnabledEditor.PLACEMENT, color);
+		assertEquals("Highlight color does not match for " + papyrusParts.get(0), IBVREnabledEditor.PLACEMENT, color);
 
 		bvrEnabledEditor.clearHighlighting();
 
 		color = ep.getPrimaryShape().getForegroundColor();
 
-		assertEquals(
-				"Highlight color does not match for " + papyrusParts.get(0),
-				ColorConstants.black, color);
+		assertEquals("Highlight color does not match for " + papyrusParts.get(0), ColorConstants.black, color);
 	}
 
 	@Test
 	public void tesGetModelObjects() {
-		List<EObject> modelObjects = bvrEnabledEditor
-				.getModelObjects(papyrusParts);
+		List<EObject> modelObjects = bvrEnabledEditor.getModelObjects(papyrusParts);
 
 		assertEquals(modelObjects.size(), 1);
 
-		assertEquals("Can not get model object from a diagram one", eObject.eClass(),
-				modelObjects.get(0).eClass());
-		
+		assertEquals("Can not get model object from a diagram one", eObject.eClass(), modelObjects.get(0).eClass());
+
 		assertEquals("Can not get model object from a diagram one", eObject.eGet(eObject.eClass().getEStructuralFeature("name")),
 				modelObjects.get(0).eGet(modelObjects.get(0).eClass().getEStructuralFeature("name")));
 	}
@@ -228,12 +202,26 @@ public class PapayrusIBVREnabledAdapter {
 	public void tesGetGraphicalObjects() {
 		List<EObject> modelObjects = new BasicEList<EObject>();
 		modelObjects.add(eObject);
-		List<Object> graphicalObjects = bvrEnabledEditor
-				.getGraphicalObjects(modelObjects);
+		List<Object> graphicalObjects = bvrEnabledEditor.getGraphicalObjects(modelObjects);
 
 		assertEquals(graphicalObjects.size(), papyrusParts.size());
 
-		assertEquals("Can not get model object from a diagram one",
-				papyrusParts, graphicalObjects);
+		assertEquals("Can not get model object from a diagram one", papyrusParts, graphicalObjects);
+	}
+
+	@Test
+	public void testPapyrusThirdPartySelector() {
+		ThirdpartyEditorSelector.setWorkbeach(testProject.getActionWorkbenchWindow());
+		ThirdpartyEditorSelector selector = ThirdpartyEditorSelector.getEditorSelector();
+
+		EObject object = selector.getEObject(papyrusParts.get(0));
+
+		assertNotNull("Can not resolve model element", object);
+
+		assertEquals("Can not get model object from a diagram one", eObject.eClass(), object.eClass());
+
+		assertEquals("Can not get model object from a diagram one", eObject.eGet(eObject.eClass().getEStructuralFeature("name")),
+				object.eGet(object.eClass().getEStructuralFeature("name")));
+
 	}
 }

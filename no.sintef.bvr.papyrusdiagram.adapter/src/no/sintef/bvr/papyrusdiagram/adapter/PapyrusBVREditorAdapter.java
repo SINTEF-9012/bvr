@@ -70,15 +70,13 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 
 	@Override
 	public void clearHighlighting() {
-		for (Iterator<IFigure> it = foregroundColor.keySet().iterator(); it
-				.hasNext();) {
+		for (Iterator<IFigure> it = foregroundColor.keySet().iterator(); it.hasNext();) {
 			IFigure figure = (IFigure) it.next();
 			figure.setForegroundColor((Color) foregroundColor.get(figure));
 			figure.repaint();
 
 		}
-		for (Iterator<IFigure> it = backgroundColor.keySet().iterator(); it
-				.hasNext();) {
+		for (Iterator<IFigure> it = backgroundColor.keySet().iterator(); it.hasNext();) {
 			IFigure figure = (IFigure) it.next();
 			figure.setBackgroundColor((Color) backgroundColor.get(figure));
 			figure.repaint();
@@ -96,8 +94,7 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 	 */
 	@Override
 	public List<Object> getSelectedObjects() {
-		ISelection selection = editor.getSite().getSelectionProvider()
-				.getSelection();
+		ISelection selection = editor.getSite().getSelectionProvider().getSelection();
 		StructuredSelection structuredSelection = (StructuredSelection) selection;
 		return structuredSelection.toList();
 	}
@@ -142,8 +139,7 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 			c = IBVREnabledEditor.REPLACEMENT_IN_OUT;
 			break;
 		default:
-			throw new UnsupportedOperationException(
-					"coloring of this type is not supported " + type);
+			throw new UnsupportedOperationException("coloring of this type is not supported " + type);
 		}
 
 		setColor(eObject, c, editor.getActiveEditor());
@@ -173,19 +169,16 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 	 *            the editor
 	 */
 	public void setColor(EObject obj, Color fg, IEditorPart editor) {
-		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) editor)
-				.getDiagramGraphicalViewer();
+		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) editor).getDiagramGraphicalViewer();
 
-		List<?> editParts = gv.findEditPartsForElement(
-				IDProvider.getXMIId(obj), EditPart.class);
+		List<?> editParts = gv.findEditPartsForElement(IDProvider.getXMIId(obj), EditPart.class);
 
 		for (Object object : editParts) {
 			if (object instanceof IPapyrusEditPart) {
 				IPapyrusEditPart ep = (IPapyrusEditPart) object;
 
 				if (!foregroundColor.containsKey(ep.getPrimaryShape())) {
-					foregroundColor.put(ep.getPrimaryShape(), ep
-							.getPrimaryShape().getForegroundColor());
+					foregroundColor.put(ep.getPrimaryShape(), ep.getPrimaryShape().getForegroundColor());
 				}
 
 				ep.getPrimaryShape().setForegroundColor(fg);
@@ -203,33 +196,30 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 				eObject = (EObject) object;
 			} else {
 				if (object instanceof IGraphicalEditPart) {
-					eObject = ((IGraphicalEditPart) object)
-							.resolveSemanticElement();
+					eObject = ((IGraphicalEditPart) object).resolveSemanticElement();
 					eObjects.add(eObject);
 				}
 			}
 		}
 		return eObjects;
 	}
-	
+
 	@Override
 	public List<Object> getGraphicalObjects(List<EObject> objects) {
 		IEditorPart part = editor.getActiveEditor();
-		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) part)
-				.getDiagramGraphicalViewer();
-		
+		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) part).getDiagramGraphicalViewer();
+
 		HashSet<Object> grapthicalParts = new HashSet<Object>();
-		
-		for(EObject eObject : objects) {
-			List<?> editParts = gv.findEditPartsForElement(
-					IDProvider.getXMIId(eObject), EditPart.class);
-			for(Object diagramPart : editParts) {
-				if(diagramPart instanceof IPapyrusEditPart) {
+
+		for (EObject eObject : objects) {
+			List<?> editParts = gv.findEditPartsForElement(IDProvider.getXMIId(eObject), EditPart.class);
+			for (Object diagramPart : editParts) {
+				if (diagramPart instanceof IPapyrusEditPart) {
 					grapthicalParts.add(diagramPart);
-				}		
+				}
 			}
 		}
-		
+
 		return new ArrayList<Object>(grapthicalParts);
 	}
 }
