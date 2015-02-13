@@ -15,7 +15,9 @@ package no.sintef.bvr.papyrusdiagram.adapter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -208,5 +210,26 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 			}
 		}
 		return eObjects;
+	}
+	
+	@Override
+	public List<Object> getGraphicalObjects(List<EObject> objects) {
+		IEditorPart part = editor.getActiveEditor();
+		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) part)
+				.getDiagramGraphicalViewer();
+		
+		HashSet<Object> grapthicalParts = new HashSet<Object>();
+		
+		for(EObject eObject : objects) {
+			List<?> editParts = gv.findEditPartsForElement(
+					IDProvider.getXMIId(eObject), EditPart.class);
+			for(Object diagramPart : editParts) {
+				if(diagramPart instanceof IPapyrusEditPart) {
+					grapthicalParts.add(diagramPart);
+				}		
+			}
+		}
+		
+		return new ArrayList<Object>(grapthicalParts);
 	}
 }
