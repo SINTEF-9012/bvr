@@ -217,8 +217,11 @@ public class PapayrusIBVREnabledAdapter {
 
 		assertEquals(modelObjects.size(), 1);
 
-		assertEquals("Can not get model object from a diagram one", eObject,
-				modelObjects.get(0));
+		assertEquals("Can not get model object from a diagram one", eObject.eClass(),
+				modelObjects.get(0).eClass());
+		
+		assertEquals("Can not get model object from a diagram one", eObject.eGet(eObject.eClass().getEStructuralFeature("name")),
+				modelObjects.get(0).eGet(modelObjects.get(0).eClass().getEStructuralFeature("name")));
 	}
 
 	@Test

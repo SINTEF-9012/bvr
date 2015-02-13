@@ -13,6 +13,8 @@
  ******************************************************************************/
 package no.sintef.bvr.papyrusdiagram.adapter;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,8 +22,10 @@ import java.util.Map;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.viewers.ISelection;
@@ -187,9 +191,22 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 			}
 		}
 	}
-	
+
 	@Override
 	public List<EObject> getModelObjects(List<Object> objects) {
-		return super.getModelObjects(objects);
+		List<EObject> eObjects = new BasicEList<EObject>();
+		for (Object object : objects) {
+			EObject eObject = null;
+			if (object instanceof EObject) {
+				eObject = (EObject) object;
+			} else {
+				if (object instanceof IGraphicalEditPart) {
+					eObject = ((IGraphicalEditPart) object)
+							.resolveSemanticElement();
+					eObjects.add(eObject);
+				}
+			}
+		}
+		return eObjects;
 	}
 }
