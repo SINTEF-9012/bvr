@@ -13,8 +13,7 @@
  ******************************************************************************/
 package no.sintef.bvr.papyrusdiagram.adapter;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
