@@ -15,6 +15,7 @@ package no.sintef.bvr.tool.decorator;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.CommandBatchInterface;
+import no.sintef.bvr.tool.exception.BatchRethrownException;
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 public class SimpleExeCommandBatchDecorator implements SimpleExeCommandInterface,
@@ -34,14 +35,23 @@ public class SimpleExeCommandBatchDecorator implements SimpleExeCommandInterface
 	@Override
 	public void postExecute() {
 		Context.eINSTANCE.getEditorCommands().executeBatch();
-		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
 	}
 
 	@Override
 	public void execute() {
 		preExecute();
-		wrappedCommand.execute();
-		postExecute();
+		try {
+			wrappedCommand.execute();
+			postExecute();
+		} catch (Exception ex) {
+			throw new BatchRethrownException(ex);
+		} finally {
+			reset();
+		}
+	}
+
+	public void reset() {
+		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
 	}
 
 }

@@ -18,4 +18,5 @@ public interface CommandBatchInterface {
  
 	public void preExecute();	
 	public void postExecute();
+
 }

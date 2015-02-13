@@ -25,4 +25,8 @@ public class RethrownException extends AbstractError {
 	public RethrownException(String message, Throwable ex){
 		super(message, ex);
 	}
+	
+	public RethrownException(Throwable ex) {
+		super(ex);
+	}
 }

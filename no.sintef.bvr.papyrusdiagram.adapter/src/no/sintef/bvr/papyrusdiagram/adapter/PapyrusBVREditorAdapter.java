@@ -187,4 +187,9 @@ public class PapyrusBVREditorAdapter extends AbstractBVREnabledEditor {
 			}
 		}
 	}
+	
+	@Override
+	public List<EObject> getModelObjects(List<Object> objects) {
+		return super.getModelObjects(objects);
+	}
 }

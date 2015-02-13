@@ -458,7 +458,7 @@ abstract public class BVRToolModel {
 			 for(VSpecResolution resolution : resolutions)
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
-			throw new RethrownException("Failed to generate covering array", e);
+			throw new RethrownException(e.getMessage(), e);
 		}
 	}
 
