@@ -376,13 +376,14 @@ public class SPLCABVRModel {
 		}
 		
 		// Print
-		String csvString = "";
-		for(int i = 0; i < csv[0].length; i++){
+		
+		String csvString = convertCSVArrayToString(csv);
+		/*for(int i = 0; i < csv[0].length; i++){
 			for(int j = 0; j < csv.length; j++){
 				csvString += csv[j][i] + ";";
 			}
 			csvString += "\n";
-		}
+		}*/
 		
 		//System.out.println(csvString);
 		
@@ -411,7 +412,14 @@ public class SPLCABVRModel {
 		return as;
 	}
 
-	public String convertCSVArrayToString(String[][] expectedCSV) {
-		return "";
+	public String convertCSVArrayToString(String[][] csv) {
+		String csvString = "";
+		for(int i = 0; i < csv[0].length; i++){
+			for(int j = 0; j < csv.length; j++){
+				csvString += csv[j][i] + ";";
+			}
+			csvString += "\n";
+		}
+		return csvString;
 	}
 }
