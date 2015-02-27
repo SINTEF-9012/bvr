@@ -57,14 +57,41 @@ public class CSVGenerating {
 		String result = splcabvr.convertCSVArrayToString(expectedCSV);
 		assertEquals("CSV convertion is wrong", expectedCSVString, result);
 	}
-	
+
 	@Test
 	public void testGenerateCSVArry() {
 		String[][] result = splcabvr.generateCSVArray(prods);
-		
-		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV) +" actual -> " + Arrays.deepToString(result), isCSVArrayIsomorpthic(expectedCSV, result));
+		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV) + " actual -> " + Arrays.deepToString(result),
+				isCSVArrayIsomorpthic(expectedCSV, result));
 	}
-	
+
+	@Test
+	public void testProductsOfDifferentSize() {
+		prods = new ArrayList<Map<String, Boolean>>();
+		Map<String, Boolean> resoluton = new HashMap<String, Boolean>();
+		resoluton.put("TopChoice", true);
+		resoluton.put("DirectInputs", false);
+
+		Map<String, Boolean> resoluton1 = new HashMap<String, Boolean>();
+		resoluton1.put("TopChoice", true);
+		resoluton1.put("DirectOutputs", true);
+		resoluton1.put("DirectInputs", true);
+
+		prods.add(resoluton);
+		prods.add(resoluton1);
+
+		expectedCSV = new String[][] { { "Feature\\Product", "TopChoice", "DirectOutputs", "DirectInputs" }, { "1", "X", "-", "-" }, { "2", "X", "X", "X" } };
+		expectedCSVString = "Feature\\Product;1;2;\nTopChoice;X;X;\nDirectOutputs;-;X;\nDirectInputs;-;X;\n";
+
+		String[][] result = splcabvr.generateCSVArray(prods);
+		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV) + " actual -> " + Arrays.deepToString(result),
+				isCSVArrayIsomorpthic(expectedCSV, result));
+
+		String resultString = splcabvr.convertCSVArrayToString(expectedCSV);
+		assertEquals("CSV convertion is wrong", expectedCSVString, resultString);
+
+	}
+
 	private boolean isCSVArrayIsomorpthic(String[][] expected, String[][] actual) {
 		return Arrays.deepEquals(expected, actual);
 	}
