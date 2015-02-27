@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package no.sintef.bvr.tool;
+package no.sintef.ict.splcatool.test.tool;
 
 import static org.junit.Assert.*;
 

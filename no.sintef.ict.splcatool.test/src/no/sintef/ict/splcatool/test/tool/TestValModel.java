@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package no.sintef.bvr.tool;
+package no.sintef.ict.splcatool.test.tool;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,6 +19,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.sat4j.specs.ContradictionException;
@@ -36,22 +37,26 @@ import no.sintef.ict.splcatool.CoveringArray;
 
 public class TestValModel {
 	@Test
-	public void testValModel() throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException, BVRException{
-		assertTrue(validate(new File("../TestData/Artificial/valid.bvr")));
-		
+	public void testValModel() throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException,
+			BVRException {
+		assertTrue(validate(new File("TestData/Artificial/valid.bvr")));
+
 	}
 
-	private boolean validate(File f) throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException, BVRException {
+	private boolean validate(File f) throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException,
+			TimeoutException, BVRException {
 		BVRToolModel x = new BVRSimpleToolModel(f);
 		no.sintef.ict.splcatool.SPLCABVRModel z = x.getBVRM();
 		CoveringArray ca = z.getCoveringArray();
 		CNF cnf = z.getGUIDSL().getSXFM().getCNF();
-		boolean valid = CALib.verifyCA(cnf, ca, true, new ArrayList<String>());
+		List<String> log = new ArrayList<String>();
+		boolean valid = CALib.verifyCA(cnf, ca, true, log);
 		return valid;
 	}
-	
+
 	@Test
-	public void testValModel2() throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException, BVRException{
-		assertFalse(validate(new File("../TestData/Artificial/invalid.bvr")));
+	public void testValModel2() throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException,
+			BVRException {
+		assertFalse(validate(new File("TestData/Artificial/invalid.bvr")));
 	}
 }
