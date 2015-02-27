@@ -3,6 +3,7 @@ package no.sintef.ict.splcatool;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,9 +53,20 @@ public class CSVGenerating {
 	}
 
 	@Test
-	public void convertCSVArrayToString() {
+	public void testConvertCSVArrayToString() {
 		String result = splcabvr.convertCSVArrayToString(expectedCSV);
 		assertEquals("CSV convertion is wrong", expectedCSVString, result);
+	}
+	
+	@Test
+	public void testGenerateCSVArry() {
+		String[][] result = splcabvr.generateCSVArray(prods);
+		
+		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV) +" actual -> " + Arrays.deepToString(result), isCSVArrayIsomorpthic(expectedCSV, result));
+	}
+	
+	private boolean isCSVArrayIsomorpthic(String[][] expected, String[][] actual) {
+		return Arrays.deepEquals(expected, actual);
 	}
 
 }

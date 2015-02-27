@@ -346,46 +346,11 @@ public class SPLCABVRModel {
 			prods.add(as);
 		}
 		
-		// Get features
-		Set<String> fs = new HashSet<String>();
-		for(Map<String, Boolean> p : prods){
-			fs.addAll(p.keySet());		
-		}
-		//System.out.println(fs);
-		
 		// Convert
-		//System.out.println(prods);
-		//System.out.println("Size: " + (prods.size()+1) + ", " + (prods.get(0).size() + 1));
-		String csv[][] = new String[prods.size()+1][prods.get(0).size() + 1];
-		csv[0][0] = "Feature\\Product";
-		for(int i = 0; i < prods.size(); i++){
-			csv[i+1][0] = "" + (i+1);
-		}
-		
-		{
-		int i = 0;
-		for(String f : fs){
-			csv[0][i+1] = f;
-			int j = 0;
-			for(Map<String, Boolean> p : prods){
-				csv[j+1][i+1] = p.get(f)?"X":"-"; 
-				j++;
-			}
-			i++;
-		}
-		}
+		String csv[][] = generateCSVArray(prods);
 		
 		// Print
-		
 		String csvString = convertCSVArrayToString(csv);
-		/*for(int i = 0; i < csv[0].length; i++){
-			for(int j = 0; j < csv.length; j++){
-				csvString += csv[j][i] + ";";
-			}
-			csvString += "\n";
-		}*/
-		
-		//System.out.println(csvString);
 		
 		CoveringArray ca = new CoveringArrayFile(csvString);
 		return ca;
@@ -421,5 +386,35 @@ public class SPLCABVRModel {
 			csvString += "\n";
 		}
 		return csvString;
+	}
+
+	public String[][] generateCSVArray(List<Map<String, Boolean>> prods) {
+		// Get features
+		Set<String> fs = new HashSet<String>();
+		for(Map<String, Boolean> p : prods){
+			fs.addAll(p.keySet());		
+		}
+		
+		// Convert
+		String csv[][] = new String[prods.size()+1][fs.size() + 1];
+		csv[0][0] = "Feature\\Product";
+		for(int i = 0; i < prods.size(); i++){
+			csv[i+1][0] = "" + (i+1);
+		}
+		
+		{
+		int i = 0;
+		for(String f : fs){
+			csv[0][i+1] = f;
+			int j = 0;
+			for(Map<String, Boolean> p : prods){
+				Boolean decision = (p.get(f) != null && p.get(f)) ? true : false;
+				csv[j+1][i+1] = (decision) ? "X" : "-"; 
+				j++;
+			}
+			i++;
+		}
+		}
+		return csv;
 	}
 }
