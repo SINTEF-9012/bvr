@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="AzInput">
   <variabilityModel xsi:type="bvr:Choice" name="TopChoice" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
-    <member xsi:type="bvr:Choice" name="DirectOutputs" target="//@variabilityModel/@member.0/@ownedTargets.0">
-      <member xsi:type="bvr:Choice" name="DirectInputs" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
-        <member xsi:type="bvr:Choice" name="Choice0" target="//@variabilityModel/@member.0/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
-          <ownedTargets name="Choice0"/>
+    <member xsi:type="bvr:Choice" name="DirectInputs0" target="//@variabilityModel/@member.0/@ownedTargets.0">
+      <member xsi:type="bvr:Choice" name="DirectInputs1" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+        <member xsi:type="bvr:Choice" name="DirectInputs2" target="//@variabilityModel/@member.0/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+          <ownedTargets name="DirectInputs2"/>
+          <note name="comment" kind="comment" expr=""/>
         </member>
-        <member xsi:type="bvr:Choice" name="Choice1" target="//@variabilityModel/@member.0/@member.0/@member.1/@ownedTargets.0" isImpliedByParent="true">
-          <member xsi:type="bvr:Choice" name="Choice3" target="//@variabilityModel/@member.0/@member.0/@member.1/@member.0/@ownedTargets.0" isImpliedByParent="true">
-            <ownedTargets name="Choice3"/>
+        <member xsi:type="bvr:Choice" name="DirectInputs3" target="//@variabilityModel/@member.0/@member.0/@member.1/@ownedTargets.0" isImpliedByParent="true">
+          <member xsi:type="bvr:Choice" name="DirectInputs5" target="//@variabilityModel/@member.0/@member.0/@member.1/@member.0/@ownedTargets.0" isImpliedByParent="true">
+            <ownedTargets name="DirectInputs5"/>
+            <note name="comment" kind="comment" expr=""/>
           </member>
-          <member xsi:type="bvr:Choice" name="Choice4" target="//@variabilityModel/@member.0/@member.0/@member.1/@member.1/@ownedTargets.0" isImpliedByParent="true">
-            <ownedTargets name="Choice4"/>
+          <member xsi:type="bvr:Choice" name="DirectInputs6" target="//@variabilityModel/@member.0/@member.0/@member.1/@member.1/@ownedTargets.0" isImpliedByParent="true">
+            <ownedTargets name="DirectInputs6"/>
+            <note name="comment" kind="comment" expr=""/>
           </member>
-          <ownedTargets name="Choice1"/>
+          <ownedTargets name="DirectInputs3"/>
+          <note name="comment" kind="comment" expr=""/>
         </member>
-        <member xsi:type="bvr:Choice" name="Choice2" target="//@variabilityModel/@member.0/@member.0/@member.2/@ownedTargets.0" isImpliedByParent="true">
-          <ownedTargets name="Choice2"/>
+        <member xsi:type="bvr:Choice" name="DirectInputs4" target="//@variabilityModel/@member.0/@member.0/@member.2/@ownedTargets.0" isImpliedByParent="true">
+          <ownedTargets name="DirectInputs4"/>
+          <note name="comment" kind="comment" expr=""/>
         </member>
-        <ownedTargets name="DirectInputs"/>
+        <ownedTargets name="DirectInputs1"/>
         <note name="comment" kind="comment" expr=""/>
       </member>
-      <ownedTargets name="DirectOutputs"/>
+      <ownedTargets name="DirectInputs0"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
     <ownedTargets name="TopChoice"/>
     <note name="comment" kind="comment" expr=""/>
   </variabilityModel>
-  <resolutionModels xsi:type="bvr:PosResolution" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
-    <members xsi:type="bvr:NegResolution" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
+  <resolutionModels xsi:type="bvr:PosResolution" name="TopChoice[0]" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
+    <members xsi:type="bvr:NegResolution" name="DirectInputs0" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
   </resolutionModels>
 </bvr:BVRModel>
