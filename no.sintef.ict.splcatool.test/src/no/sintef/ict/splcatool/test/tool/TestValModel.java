@@ -60,4 +60,10 @@ public class TestValModel {
 			BVRException {
 		assertFalse(validate(new File("TestData/Artificial/invalid.bvr")));
 	}
+	
+	@Test
+	public void testValModel3() throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException, TimeoutException,
+			BVRException {
+		assertFalse(validate(new File("TestData/Artificial/resDiffSizeInvalid.bvr")));
+	}
 }

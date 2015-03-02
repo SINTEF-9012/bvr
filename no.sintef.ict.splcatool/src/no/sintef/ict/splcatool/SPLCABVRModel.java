@@ -336,16 +336,16 @@ public class SPLCABVRModel {
 		//System.out.println(cu.getOwnedVSpecResolution().size());
 		
 		// Read in
-		List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
+		List<Map<String, Boolean>> prods = extractResolvedVSpecProducts();
+		/*List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
 		for(ChoiceResolution c : resolFinder.getResolutions()){
 			Map<String, Boolean> as = new HashMap<String, Boolean>();
 			if(c.getResolvedVClassifier() != null)
 				throw new UnsupportedSPLCValidation(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
 
 			as.putAll(recurse((ChoiceResolution) c));
-			//System.out.println(as);
 			prods.add(as);
-		}
+		}*/
 		
 		// Convert
 		String csv[][] = generateCSVArray(prods);
