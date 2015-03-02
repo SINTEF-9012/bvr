@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  no.sintef.bvr.tool.interfaces,
  no.sintef.bvr.common
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.tool.ui.loader,
  no.sintef.bvr.ui.editor.common,
