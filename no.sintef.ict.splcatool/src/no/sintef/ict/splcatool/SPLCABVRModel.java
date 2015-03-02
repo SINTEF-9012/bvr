@@ -418,4 +418,9 @@ public class SPLCABVRModel {
 		}
 		return csv;
 	}
+
+	public List<Map<String, Boolean>> extractResolvedVSpecProducts() {
+		List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
+		return prods;
+	}
 }

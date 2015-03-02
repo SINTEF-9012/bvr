@@ -34,6 +34,7 @@ import no.sintef.ict.splcatool.CNF;
 import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CoveringArray;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 
 public class TestValModel {
 	@Test
@@ -46,7 +47,7 @@ public class TestValModel {
 	private boolean validate(File f) throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException,
 			TimeoutException, BVRException {
 		BVRToolModel x = new BVRSimpleToolModel(f);
-		no.sintef.ict.splcatool.SPLCABVRModel z = x.getBVRM();
+		SPLCABVRModel z = x.getBVRM();
 		CoveringArray ca = z.getCoveringArray();
 		CNF cnf = z.getGUIDSL().getSXFM().getCNF();
 		List<String> log = new ArrayList<String>();
