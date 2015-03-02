@@ -358,14 +358,28 @@ public class SPLCABVRModel {
 			throw new UnsupportedSPLCValidation(x.getName() + " is neither PosResolution nor NegResolution resolution. Only choices are supported.");
 		
 		as.put(resolvedVSPec.getName(), (x instanceof PosResolution) ? true : false);
+		
+		Set<VNode> childrenVSpec = new HashSet<VNode>(((CompoundNode) resolvedVSPec).getMember());
 		if(x instanceof CompoundResolution) {
+			Set<VSpec> processedChildrenVSpec= new HashSet<VSpec>();
 			for(VSpecResolution c : ((CompoundResolution) x).getMembers()){
 				if(!(c instanceof ChoiceResolution))
 					throw new UnsupportedSPLCValidation(c.getName() + " is not a choice resolution. Only choices are supported.");
-
+				
+				processedChildrenVSpec.add(CommonUtility.getResolvedVSpec(c));
 				as.putAll(recurse((ChoiceResolution)c));
 			}
+			//make sure that all vspecs are resolved explicitly
+			//if some vspecs were not resolved, make sure we add them to resolution as negatively resolved
+			//this is a core requirement by the SPLCATool
+			childrenVSpec.removeAll(processedChildrenVSpec);
+			for (VNode node : childrenVSpec)
+				as.putAll(recureseChoiceTraverse(node));
+			
 		} else if (x instanceof NegResolution) {
+			//make sure that all vspecs are resolved explicitly
+			//here we resolve them to false
+			//this is a core requirement by the SPLCATool
 			Choice choice = (Choice) resolvedVSPec;
 			EList<VNode> children = choice.getMember();
 			for (VNode child : children)
