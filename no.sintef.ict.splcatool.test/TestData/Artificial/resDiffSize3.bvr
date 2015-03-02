@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="AzInput">
+  <variabilityModel xsi:type="bvr:Choice" name="TopChoice" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="DirectOutputs" target="//@variabilityModel/@member.0/@ownedTargets.0">
+      <member xsi:type="bvr:Choice" name="DirectInputs" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+        <member xsi:type="bvr:Choice" name="Choice0" target="//@variabilityModel/@member.0/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+          <ownedTargets name="Choice0"/>
+        </member>
+        <member xsi:type="bvr:Choice" name="Choice1" target="//@variabilityModel/@member.0/@member.0/@member.1/@ownedTargets.0" isImpliedByParent="true">
+          <member xsi:type="bvr:Choice" name="Choice3" target="//@variabilityModel/@member.0/@member.0/@member.1/@member.0/@ownedTargets.0" isImpliedByParent="true">
+            <ownedTargets name="Choice3"/>
+          </member>
+          <member xsi:type="bvr:Choice" name="Choice4" target="//@variabilityModel/@member.0/@member.0/@member.1/@member.1/@ownedTargets.0" isImpliedByParent="true">
+            <ownedTargets name="Choice4"/>
+          </member>
+          <ownedTargets name="Choice1"/>
+        </member>
+        <member xsi:type="bvr:Choice" name="Choice2" target="//@variabilityModel/@member.0/@member.0/@member.2/@ownedTargets.0" isImpliedByParent="true">
+          <ownedTargets name="Choice2"/>
+        </member>
+        <ownedTargets name="DirectInputs"/>
+        <note name="comment" kind="comment" expr=""/>
+      </member>
+      <ownedTargets name="DirectOutputs"/>
+      <note name="comment" kind="comment" expr=""/>
+    </member>
+    <ownedTargets name="TopChoice"/>
+    <note name="comment" kind="comment" expr=""/>
+  </variabilityModel>
+  <resolutionModels xsi:type="bvr:PosResolution" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
+    <members xsi:type="bvr:NegResolution" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
+  </resolutionModels>
+</bvr:BVRModel>

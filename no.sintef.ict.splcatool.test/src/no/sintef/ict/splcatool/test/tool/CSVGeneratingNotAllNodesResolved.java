@@ -13,8 +13,6 @@ import java.util.Set;
 
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
-import no.sintef.ict.splcatool.BVRException;
-import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.junit.Before;
@@ -29,6 +27,13 @@ public class CSVGeneratingNotAllNodesResolved {
 	private SPLCABVRModel splcabvr;
 	private BVRToolModel bvrmodel;
 
+	private List<Map<String, Boolean>> expectedProds1;
+	private String expectedCSV1[][];
+	private Set<String> expectedFeatures1;
+	private String expectedCSVString1;
+	private SPLCABVRModel splcabvr1;
+	private BVRToolModel bvrmodel1;
+
 	@Before
 	public void setUp() throws Exception {
 		expectedProds = new ArrayList<Map<String, Boolean>>();
@@ -36,7 +41,6 @@ public class CSVGeneratingNotAllNodesResolved {
 		resoluton.put("TopChoice", true);
 		resoluton.put("DirectOutputs", false);
 		resoluton.put("DirectInputs", false);
-
 
 		expectedProds.add(resoluton);
 
@@ -53,6 +57,35 @@ public class CSVGeneratingNotAllNodesResolved {
 
 		bvrmodel = new BVRSimpleToolModel(new File("TestData/Artificial/resDiffSize2.bvr"));
 		splcabvr = bvrmodel.getBVRM();
+
+		expectedProds1 = new ArrayList<Map<String, Boolean>>();
+		Map<String, Boolean> resoluton1 = new HashMap<String, Boolean>();
+		resoluton1.put("TopChoice", true);
+		resoluton1.put("DirectOutputs", false);
+		resoluton1.put("DirectInputs", false);
+		resoluton1.put("Choice0", false);
+		resoluton1.put("Choice1", false);
+		resoluton1.put("Choice2", false);
+		resoluton1.put("Choice3", false);
+		resoluton1.put("Choice4", false);
+
+		expectedProds1.add(resoluton1);
+
+		assertTrue(expectedProds1.size() == 1);
+
+		expectedFeatures1 = new HashSet<String>();
+		expectedFeatures1.addAll(resoluton1.keySet());
+
+		assertTrue(expectedFeatures1.size() == 8);
+
+		expectedCSV1 = new String[][] {
+				{ "Feature\\Product", "TopChoice", "DirectOutputs", "DirectInputs", "Choice0", "Choice1", "Choice2", "Choice3", "Choice4" },
+				{ "1", "X", "-", "-", "-", "-", "-", "-", "-" } };
+
+		expectedCSVString1 = "Feature\\Product;1;\nTopChoice;X;\nDirectOutputs;-;\nDirectInputs;-;\nChoice0;-;\nChoice1;-;\nChoice2;-;Choice3;-;\nChoice4;-;\n";
+
+		bvrmodel1 = new BVRSimpleToolModel(new File("TestData/Artificial/resDiffSize3.bvr"));
+		splcabvr1 = bvrmodel1.getBVRM();
 	}
 
 	@Test
@@ -67,22 +100,25 @@ public class CSVGeneratingNotAllNodesResolved {
 		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV) + " actual -> " + Arrays.deepToString(result),
 				isCSVArrayIsomorpthic(expectedCSV, result));
 	}
-	
+
 	@Test
 	public void testProductExtraction() throws Exception {
 		List<Map<String, Boolean>> prods = splcabvr.extractResolvedVSpecProducts();
 		assertTrue("Actual product list is incorrect: expected -->" + expectedProds + " actual -->" + prods, doProductsEqual(expectedProds, prods));
 	}
 
+	@Test
+	public void testProductExtraction1() throws Exception {
+		List<Map<String, Boolean>> prods = splcabvr1.extractResolvedVSpecProducts();
+		assertTrue("Actual product list is incorrect: expected -->" + expectedProds1 + " actual -->" + prods, doProductsEqual(expectedProds1, prods));
+	}
+
 	private boolean doProductsEqual(List<Map<String, Boolean>> expected, List<Map<String, Boolean>> actual) {
 		return Arrays.equals(expected.toArray(), actual.toArray());
 	}
-	
-	
+
 	private boolean isCSVArrayIsomorpthic(String[][] expected, String[][] actual) {
 		return Arrays.deepEquals(expected, actual);
 	}
-	
-	
 
 }
