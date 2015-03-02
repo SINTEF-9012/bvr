@@ -1,4 +1,4 @@
-package no.sintef.ict.splcatool;
+package no.sintef.ict.splcatool.test.tool;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.junit.Before;
 import org.junit.Test;
