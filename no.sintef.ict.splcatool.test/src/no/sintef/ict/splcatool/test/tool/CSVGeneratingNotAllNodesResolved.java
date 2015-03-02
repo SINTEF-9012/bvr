@@ -13,6 +13,8 @@ import java.util.Set;
 
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.ict.splcatool.BVRException;
+import no.sintef.ict.splcatool.CSVException;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.junit.Before;
@@ -67,7 +69,7 @@ public class CSVGeneratingNotAllNodesResolved {
 	}
 	
 	@Test
-	public void testProductExtraction() {
+	public void testProductExtraction() throws Exception {
 		List<Map<String, Boolean>> prods = splcabvr.extractResolvedVSpecProducts();
 		assertTrue("Actual product list is incorrect: expected -->" + expectedProds + " actual -->" + prods, doProductsEqual(expectedProds, prods));
 	}

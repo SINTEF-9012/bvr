@@ -366,14 +366,32 @@ public class SPLCABVRModel {
 		if(!(x instanceof PosResolution || x instanceof NegResolution))
 			throw new UnsupportedSPLCValidation(x.getName() + " is neither PosResolution nor NegResolution resolution. Only choices are supported.");
 		
-		as.put(CommonUtility.getResolvedVSpec(x).getName(), (x instanceof PosResolution) ? true : false);
-		if(x instanceof CompoundResolution){
+		as.put(resolvedVSPec.getName(), (x instanceof PosResolution) ? true : false);
+		if(x instanceof CompoundResolution) {
 			for(VSpecResolution c : ((CompoundResolution) x).getMembers()){
 				if(!(c instanceof ChoiceResolution))
 					throw new UnsupportedSPLCValidation(c.getName() + " is not a choice resolution. Only choices are supported.");
 
 				as.putAll(recurse((ChoiceResolution)c));
 			}
+		} else if (x instanceof NegResolution) {
+			Choice choice = (Choice) resolvedVSPec;
+			EList<VNode> children = choice.getMember();
+			for (VNode child : children)
+				as.putAll(recureseChoiceTraverse(child));
+		}
+		return as;
+	}
+	
+	private Map<String, Boolean> recureseChoiceTraverse (VNode node) throws BVRException {
+		Map<String, Boolean> as = new HashMap<String, Boolean>();
+		if(!(node instanceof Choice))
+			throw new UnsupportedSPLCValidation(((NamedElement) node).getName() + " is not a choice resolution. Only choices are supported.");
+		Choice choice = (Choice) node;
+		as.put(choice.getName(), false);
+		EList<VNode> children = choice.getMember();
+		for(VNode vnode : children) {
+			as.putAll(recureseChoiceTraverse(vnode));
 		}
 		return as;
 	}
@@ -419,8 +437,16 @@ public class SPLCABVRModel {
 		return csv;
 	}
 
-	public List<Map<String, Boolean>> extractResolvedVSpecProducts() {
+	public List<Map<String, Boolean>> extractResolvedVSpecProducts() throws BVRException, CSVException {
 		List<Map<String, Boolean>> prods = new ArrayList<Map<String,Boolean>>();
+		for(ChoiceResolution c : resolFinder.getResolutions()){
+			Map<String, Boolean> as = new HashMap<String, Boolean>();
+			if(c.getResolvedVClassifier() != null)
+				throw new UnsupportedSPLCValidation(c.getName() + " is not a choice resolution. Only choices supported in this mode.");
+
+			as.putAll(recurse((ChoiceResolution) c));
+			prods.add(as);
+		}
 		return prods;
 	}
 }
