@@ -27,7 +27,7 @@ public class CNFClauseParser {
 
 	protected int index;
 	protected static String negationToken = "~";
-	protected static String tokens = negationToken + "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	protected static String tokens = negationToken + "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@";
 	
 	public CNFClauseParser() {
 	}
@@ -102,7 +102,7 @@ public class CNFClauseParser {
 			}		
 		}
 		else {
-			throw new CNFClauseParseException("Error parsing CNF clause '" + cnfClause + "' (please use only letter, digits and symbol '_' to name variables - to negate a variable use symbol '" + negationToken + "').");
+			throw new CNFClauseParseException("Error parsing CNF clause '" + cnfClause + "' (please use only letter, digits and symbols '_', '@' to name variables - to negate a variable use symbol '" + negationToken + "').");
 		}
 		return literal;		
 	}
