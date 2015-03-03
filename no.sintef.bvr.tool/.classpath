@@ -6,10 +6,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="lib/org.kevoree.extra.macwidgets-0.9.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/antlr-4.5-complete.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/swingx-all-1.6.5-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/batik-util-1.6-1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/antlr-4.0-complete.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/org.abego.treelayout.demo-1.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/batik-awt-util-1.6-1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/batik-dom-1.6-1.jar"/>

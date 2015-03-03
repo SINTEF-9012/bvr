@@ -4,7 +4,7 @@ Bundle-Name: BVR :: Constraints
 Bundle-SymbolicName: no.sintef.bvr.constraints
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
- lib/antlr-4.0-complete.jar
+ lib/antlr-4.5-complete.jar
 Export-Package: no.sintef.bvr.constraints.bcl,
  no.sintef.bvr.constraints.strategy,
  org.abego.treelayout,

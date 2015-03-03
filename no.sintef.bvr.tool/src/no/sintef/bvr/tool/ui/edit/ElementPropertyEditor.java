@@ -119,7 +119,7 @@ abstract public class ElementPropertyEditor extends JPanel {
 				Matcher matcher = pattern.matcher(text);
 				Boolean any = matcher.find();
 				if (any)
-					throw new UserInputError("Invalid VSpec name '" + text + "'");
+					throw new UserInputError("Invalid name '" + text + "'");
 				return true;
 			}
 		});
