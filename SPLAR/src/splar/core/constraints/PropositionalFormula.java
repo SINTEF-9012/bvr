@@ -260,7 +260,7 @@ class PFParser {
 	
 	protected static String letters = "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	protected static String digits = "0123456789";
-	protected static String others = "_";
+	protected static String others = "_@";
 	protected String all = letters + digits + others;
 	protected PropositionalFormula pformula;
 	protected String parsedFormula = "";
