@@ -17,7 +17,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.swing.InputVerifier;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,6 +33,7 @@ import javax.swing.text.BadLocationException;
 
 import no.sintef.bvr.tool.controller.command.UpdateNamedElement;
 import no.sintef.bvr.tool.exception.RethrownException;
+import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.interfaces.controller.command.Command;
 import no.sintef.bvr.tool.ui.editor.BVRUIKernel;
@@ -104,6 +108,21 @@ abstract public class ElementPropertyEditor extends JPanel {
 
         p.add(l);
         CustomTextField textField = new CustomTextField(15);
+        
+        textField.setInputVerifier(new InputVerifier() {
+			
+			@Override
+			public boolean verify(JComponent input) {
+				JTextField textField = (JTextField) input;
+				String text = textField.getText();
+				Pattern pattern = Pattern.compile("[^a-zA-Z_0-9]+");
+				Matcher matcher = pattern.matcher(text);
+				Boolean any = matcher.find();
+				if (any)
+					throw new UserInputError("Invalid VSpec name '" + text + "'");
+				return false;
+			}
+		});
         textField.setName("a_name"); //TODO remove me
        //textField.setUI(new HudTextFieldUI());
 
