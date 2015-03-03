@@ -116,6 +116,31 @@ public class testBCL {
 	}
 	
 	@Test
+	public void test1at() throws FileNotFoundException, IOException{
+		CharStream input = new ANTLRInputStream(new FileInputStream("TestData/test1at.bcl"));
+		BCLLexer lexer = new BCLLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		BCLParser parser = new BCLParser(tokens);
+		
+		// Build BVR
+		SPLCABVRModel cm = new SPLCABVRModel("TestData/test1.xmi");
+		//ConfigurableUnit cu = cm.getCU();
+		BVRModel model = cm.getRootBVRModel();
+		
+		// Build model
+		RuleNode root = parser.constraint().getRuleContext();
+		BCLConstraint c = BvrFactory.eINSTANCE.createBCLConstraint();
+		
+		BCLExpression e = new BCLBuilder().recurse((RuleNode)root.getChild(0), 0, model, false);
+		c.getExpression().add(e);
+		
+		// Pretty Print
+		String s = new BCLPrettyPrinter().prettyPrint(e, model);
+		
+		assertEquals("fax@1 implies printer", s);
+	}
+	
+	@Test
 	public void test2() throws FileNotFoundException, IOException{
 		CharStream input = new ANTLRInputStream(new FileInputStream("TestData/test2.bcl"));
 		BCLLexer lexer = new BCLLexer(input);
