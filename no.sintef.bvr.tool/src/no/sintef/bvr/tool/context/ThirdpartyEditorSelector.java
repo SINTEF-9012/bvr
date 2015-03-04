@@ -35,14 +35,11 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.swt.widgets.Display;
-import org.osgi.framework.BundleException;
+
 
 public final class ThirdpartyEditorSelector implements ModelSelector {
 
 	private IWorkbenchWindow workbenchWindow = null;
-
-
-	 
 	private static final ThirdpartyEditorSelector singletone = new ThirdpartyEditorSelector();
 	
 	public static ThirdpartyEditorSelector getEditorSelector(){
@@ -53,11 +50,6 @@ public final class ThirdpartyEditorSelector implements ModelSelector {
 	
 	public static void setWorkbeach(IWorkbenchWindow workbenchWindow) {
 		singletone.workbenchWindow = workbenchWindow;
-		try {
-			Platform.getBundle("no.sintef.bvr.papyrusdiagram.adapter").start();
-		} catch (BundleException e) {
-			Context.eINSTANCE.logger.warn("Can not load no.sintef.bvr.papyrusdiagram.adapter for some reasons");
-		}
 	}
 	
 	@Override
