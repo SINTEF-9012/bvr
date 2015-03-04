@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: BVR :: Papyrus Diagram EMF Adapter
 Bundle-SymbolicName: no.sintef.bvr.papyrusdiagram.adapter;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: no.sintef.bvr.papyrusdiagram.adapter.Activator
+Bundle-Activator: no.sintef.bvr.papyrusdiagram.adapter.PapyrusBVREditorActivator
 Bundle-Vendor: SINTEF
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

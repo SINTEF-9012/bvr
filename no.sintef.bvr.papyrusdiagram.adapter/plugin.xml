@@ -11,5 +11,11 @@
          </adapter>
       </factory>
    </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="no.sintef.bvr.papyrusdiagram.adapter.PapyrusBVREditorStartup">
+      </startup>
+   </extension>
 
 </plugin>
