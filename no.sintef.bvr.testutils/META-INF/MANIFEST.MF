@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR :: Common Test Utils
+Bundle-SymbolicName: no.sintef.bvr.testutils
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SINTEF
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.emf.common;bundle-version="2.9.2",
+ org.eclipse.emf.ecore;bundle-version="2.9.2"
+Export-Package: no.sintef.bvr.testutils.common
