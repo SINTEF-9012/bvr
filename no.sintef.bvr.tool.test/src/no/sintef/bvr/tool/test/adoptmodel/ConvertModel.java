@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 
 import no.sintef.bvr.testutils.common.TestUtils;
-import no.sintef.bvr.tool.interfaces.model.IBVRModelTransformation;
+import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.TransfFacade;
@@ -18,40 +18,40 @@ public class ConvertModel {
 
 	@Test
 	public void testTrivialModelConvertion() {		
-		CompoundNode srcVarModel = getVariabilityModel("resources/vm/trivial_src.bvr");
-		CompoundNode trgVarModel = getVariabilityModel("resources/vm/trivial_trg.bvr");
+		BVRToolModel srcVarModel = createBVRToolModel("resources/vm/trivial_src.bvr");
+		BVRToolModel trgVarModel = createBVRToolModel("resources/vm/trivial_trg.bvr");
 		
-		IBVRModelTransformation transformator = TransfFacade.eINSTANCE.getSPLCATransformator();
-		CompoundNode transformed = transformator.transformVarModelToSPLCA(srcVarModel);
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(srcVarModel.getBVRModel());
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
 		assertNotNull(transformed);
 		
-		assertTrue(TestUtils.isEObjectTreesIdentical(trgVarModel, transformed));
+		assertTrue(TestUtils.isEObjectTreesIdentical(trgVarModel.getBVRModel().getVariabilityModel(), transformed));
 
 	}
 	
 	@Test
 	public void testTrivialModelConstrConvertion() {		
-		CompoundNode srcVarModel = getVariabilityModel("resources/vm/trivial_const_src.bvr");
-		CompoundNode trgVarModel = getVariabilityModel("resources/vm/trivial_const_trg.bvr");
+		BVRToolModel srcVarModel = createBVRToolModel("resources/vm/trivial_const_src.bvr");
+		BVRToolModel trgVarModel = createBVRToolModel("resources/vm/trivial_const_trg.bvr");
 		
-		IBVRModelTransformation transformator = TransfFacade.eINSTANCE.getSPLCATransformator();
-		CompoundNode transformed = transformator.transformVarModelToSPLCA(srcVarModel);
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(srcVarModel.getBVRModel());
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
 		assertNotNull(transformed);
 		
-		assertTrue(TestUtils.isEObjectTreesIdentical(trgVarModel, transformed));
+		assertTrue(TestUtils.isEObjectTreesIdentical(trgVarModel.getBVRModel().getVariabilityModel(), transformed));
 
 	}
 	
 	@Test
 	public void testTrivialModelAllConvertion() {		
-		CompoundNode srcVarModel = getVariabilityModel("resources/vm/trivial_all_src.bvr");
-		CompoundNode trgVarModel = getVariabilityModel("resources/vm/trivial_all_trg.bvr");
+		BVRToolModel srcVarModel = createBVRToolModel("resources/vm/trivial_all_src.bvr");
+		BVRToolModel trgVarModel = createBVRToolModel("resources/vm/trivial_all_trg.bvr");
 		
-		IBVRModelTransformation transformator = TransfFacade.eINSTANCE.getSPLCATransformator();
-		CompoundNode transformed = transformator.transformVarModelToSPLCA(srcVarModel);
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(srcVarModel.getBVRModel());
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
 		assertNotNull(transformed);
 		
-		assertTrue(TestUtils.isEObjectTreesIdentical(trgVarModel, transformed));
+		assertTrue(TestUtils.isEObjectTreesIdentical(trgVarModel.getBVRModel().getVariabilityModel(), transformed));
 
 	}
 	

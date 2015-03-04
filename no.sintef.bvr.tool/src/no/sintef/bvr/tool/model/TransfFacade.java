@@ -1,15 +1,13 @@
 package no.sintef.bvr.tool.model;
 
-import no.sintef.bvr.tool.interfaces.model.IBVRModelTransformation;
+import bvr.BVRModel;
+import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 
 public final class TransfFacade {
 	
 	public static TransfFacade eINSTANCE = getInstance();
-	private IBVRModelTransformation transf;
 	
-	private TransfFacade() {
-		transf = new ModelSPLCATransformation();
-	}
+	
 	
 	private static TransfFacade getInstance() {
 		if(eINSTANCE == null) {
@@ -18,8 +16,8 @@ public final class TransfFacade {
 		return eINSTANCE;
 	}
 	
-	public IBVRModelTransformation getSPLCATransformator() {
-		return transf;
+	public IBVRSPLCAModelTransformator getSPLCATransformator(BVRModel model) {
+		return new BVRSPLCAModelTransformator(model) ;
 	}
 
 }
