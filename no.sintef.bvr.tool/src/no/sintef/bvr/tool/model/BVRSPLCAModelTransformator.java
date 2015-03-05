@@ -20,19 +20,25 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.CompoundNode;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.strategy.ModifyNodeStrategy;
+import no.sintef.bvr.tool.strategy.impl.BCLConstraintModifiyTargetsStrategy;
 import no.sintef.bvr.tool.strategy.impl.CreateTargetsModifyStrategy;
-import no.sintef.bvr.tool.strategy.impl.RemoveStaleTargets;
+import no.sintef.bvr.tool.strategy.impl.RemoveStaleTargetStrategy;
+
 
 public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 
-	private ModifyNodeStrategy[] compoundNodeModifiers = { new CreateTargetsModifyStrategy(), new RemoveStaleTargets() };
+	private ModifyNodeStrategy[] compoundNodeModifiers = { new CreateTargetsModifyStrategy(), new RemoveStaleTargetStrategy() };
+	private ModifyNodeStrategy[] constraintModifiers = {new BCLConstraintModifiyTargetsStrategy()};
 	private BVRModel model;
 	private CompoundNode copiedVarModel;
 	private List<CompoundNode> compundNodes;
+	private List<BCLConstraint> constraints;
+	private BVRModel copiedModel;
 
 	public BVRSPLCAModelTransformator(BVRModel _model) {
 		model = _model;
@@ -40,16 +46,20 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 
 	@Override
 	public CompoundNode transformVarModelToSPLCA() {
-		copiedVarModel = EcoreUtil.copy(model.getVariabilityModel());
-
+		copiedModel = EcoreUtil.copy(model);
+		copiedVarModel = copiedModel.getVariabilityModel();
 		compundNodes = new BasicEList<CompoundNode>();
 		compundNodes.add(copiedVarModel);
+		constraints = new BasicEList<BCLConstraint>();
 
 		TreeIterator<EObject> iterator = copiedVarModel.eAllContents();
 		while (iterator.hasNext()) {
 			EObject eObject = iterator.next();
 			if (eObject instanceof CompoundNode)
 				compundNodes.add((CompoundNode) eObject);
+			
+			if(eObject instanceof BCLConstraint)
+				constraints.add((BCLConstraint) eObject);
 		}
 
 		for (CompoundNode node : compundNodes) {
@@ -58,6 +68,18 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 					modifier.modify(node);
 			}
 		}
+		
+		for(BCLConstraint constraint : constraints) {
+			for (ModifyNodeStrategy modifier : constraintModifiers) {
+				if (modifier.accept(constraint)) {
+					if(modifier instanceof BCLConstraintModifiyTargetsStrategy)
+						((BCLConstraintModifiyTargetsStrategy) modifier).init(compundNodes, model);
+					
+					modifier.modify(constraint);
+				}
+			}
+		}
+		
 
 		return copiedVarModel;
 	}

@@ -74,6 +74,17 @@ public class ConstraintFacade {
 		}
 	}
 	
+	public BCLExpression testBCLConstraintString(BVRModel model, String constraint) {
+		BCLExpression expression;
+		try {
+			RuleNode root = parseBCL(constraint);
+			expression = new BCLBuilder(new BVRToolBCLBuilderStrategy()).recurse(root, 0, model, false);
+		} catch (UnsupportedOperationException e) {
+			throw new UserInputError("Failed to parse the constraint: '" + constraint + "' reason: " + e.getMessage());
+		}
+		return expression;
+	};
+	
 	private RuleNode parseBCL(String s){
 		CharStream input = new ANTLRInputStream(s);
 		BCLLexer lexer = new BCLLexer(input);

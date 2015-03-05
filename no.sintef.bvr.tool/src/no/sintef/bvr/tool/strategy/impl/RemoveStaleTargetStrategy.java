@@ -25,7 +25,7 @@ import bvr.Target;
 import bvr.VClassifier;
 import no.sintef.bvr.tool.strategy.ModifyNodeStrategy;
 
-public class RemoveStaleTargets implements ModifyNodeStrategy {
+public class RemoveStaleTargetStrategy implements ModifyNodeStrategy {
 
 	private Pattern pattern = Pattern.compile("@\\d+$");
 	
