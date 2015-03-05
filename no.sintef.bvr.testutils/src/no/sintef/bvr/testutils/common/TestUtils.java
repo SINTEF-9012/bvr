@@ -15,6 +15,7 @@ public class TestUtils {
 	
 	public static boolean isEObjectTreesIdentical(EObject srcObject, EObject trgEObject) {
 		List<List<EObject>> result = compareEObjectTreesIdentical(srcObject, trgEObject);
+		System.out.println("expected: " + result.get(0) + " actual: " + result.get(1));
 		return (result.get(0).isEmpty() && result.get(1).isEmpty()) ? true : false;
 	}
 	
@@ -35,28 +36,38 @@ public class TestUtils {
 		
 		List<List<EObject>> result = new ArrayList<List<EObject>>();
 		
+		
 		if(originaElements.size() != createdElements.size()) {
+			if(originaElements.size() > createdElements.size()) {
+				compareArrays(originaElements, createdElements);
+			}else {
+				compareArrays(createdElements, originaElements);
+			}
 			result.add(originaElements);
 			result.add(createdElements);
 			return result;
 		}
 		
-		EList<EObject> originalIterator = new BasicEList<EObject>(originaElements);
-		for(EObject originalEObject : originalIterator){
-			Iterator<EObject> createdIterator = createdElements.iterator();
-			while(createdIterator.hasNext()){
-				EObject copiedEObject = createdIterator.next();
-				if(compareEObject(originalEObject, copiedEObject)){
-					createdElements.remove(copiedEObject);
-					originaElements.remove(originalEObject);
-					break;
-				}
-			}
-		}
+		compareArrays(originaElements, createdElements);
 		
 		result.add(originaElements);
 		result.add(createdElements);
 		return result;
+	}
+	
+	private static void compareArrays(EList<EObject> first, EList<EObject> second) {
+		EList<EObject> originalIterator = new BasicEList<EObject>(first);
+		for(EObject originalEObject : originalIterator){
+			Iterator<EObject> createdIterator = second.iterator();
+			while(createdIterator.hasNext()){
+				EObject copiedEObject = createdIterator.next();
+				if(compareEObject(originalEObject, copiedEObject)){
+					second.remove(copiedEObject);
+					first.remove(originalEObject);
+					break;
+				}
+			}
+		}		
 	}
 	
 	public static boolean compareEObject(EObject originalEObject, EObject copiedEObject){

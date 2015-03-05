@@ -28,7 +28,8 @@
       <member xsi:type="bvr:ChoiceOccurrence" name="ChoiceOccurence0" vType="//@variabilityModel/@member.1/@member.2">
         <note name="comment" kind="comment" expr=""/>
       </member>
-      <member xsi:type="bvr:VClassifier" name="Classifier0" target="//@variabilityModel/@member.1/@member.4/@ownedTargets.0">
+      <member xsi:type="bvr:VClassifier" name="Classifier0@7" target="//@variabilityModel/@member.1/@member.4/@ownedTargets.0">
+        <note name="comment" kind="comment" expr=""/>
         <ownedTargets name="Classifier0"/>
         <instanceMultiplicity upper="1" lower="1"/>
       </member>
