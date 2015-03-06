@@ -15,7 +15,7 @@ public class TestUtils {
 	
 	public static boolean isEObjectTreesIdentical(EObject srcObject, EObject trgEObject) {
 		List<List<EObject>> result = compareEObjectTreesIdentical(srcObject, trgEObject);
-		System.out.println("expected: " + result.get(0) + " actual: " + result.get(1));
+		System.out.println("original: " + result.get(0) + " modified: " + result.get(1));
 		return (result.get(0).isEmpty() && result.get(1).isEmpty()) ? true : false;
 	}
 	
