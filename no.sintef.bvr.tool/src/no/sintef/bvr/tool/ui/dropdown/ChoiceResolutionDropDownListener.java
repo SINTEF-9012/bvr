@@ -21,6 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 
+import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
 import no.sintef.bvr.tool.ui.command.event.RemoveUncontainedResolutionEvent;
@@ -48,15 +49,13 @@ import bvr.VNode;
 import bvr.VSpec;
 import bvr.Variable;
 
-
 public class ChoiceResolutionDropDownListener extends MouseAdapter {
 
 	private ChoiceResolutionPanel cp;
 	private BVRNotifiableController view;
 	private ChoiceResolution c;
 
-	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolution c,
-			BVRNotifiableController view) {
+	public ChoiceResolutionDropDownListener(ChoiceResolutionPanel cp, ChoiceResolution c, BVRNotifiableController view) {
 		this.cp = cp;
 		this.view = view;
 		this.c = c;
@@ -84,22 +83,33 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 
 	public ChoiceResolutionDropdown(ChoiceResolutionPanel cp, ChoiceResolution c, BVRNotifiableController controller) {
 		// Add
-		if(c instanceof PosResolution){
-			if (c.getResolvedVSpec() instanceof CompoundNode) {
+		if (c instanceof PosResolution) {
+			VSpec vspec = CommonUtility.getResolvedVSpec(c);
+			if (vspec instanceof CompoundNode || vspec instanceof VClassOccurrence || vspec instanceof ChoiceOccurrence) {
 				JMenu resolve_choice = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM);
 				JMenu resolve_vclass = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM);
 				JMenu addMulTree = new JMenu(Constants.RESOLUTION_DROPDOWN_VINST_SUBTREE_ITEM);
 				JMenu resolve_choice_occ = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM);
 				JMenu resolve_vclass_occ = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM);
-				for (VNode x : ((CompoundNode) (c.getResolvedVSpec())).getMember()) {
+
+				CompoundNode compoundNode;
+				if (vspec instanceof ChoiceOccurrence) {
+					compoundNode = ((ChoiceOccurrence) vspec).getVType();
+				} else if (vspec instanceof VClassOccurrence) {
+					compoundNode = ((VClassOccurrence) vspec).getVType();
+				} else {
+					compoundNode = (CompoundNode) vspec;
+				}
+
+				for (VNode x : compoundNode.getMember()) {
 					JMenuItem addchild = new JMenuItem((((NamedElement) x).getName()));
-					if(x instanceof Choice) {
+					if (x instanceof Choice) {
 						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
 						resolve_choice.add(addchild);
-					} else if (x instanceof VClassifier){
+					} else if (x instanceof VClassifier) {
 						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
 						resolve_vclass.add(addchild);
-						
+
 						JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 						addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent(cp, (VClassifier) x, controller));
 						addMulTree.add(addChild);
@@ -112,12 +122,12 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					}
 				}
 				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
-				for(Variable var : ((VNode) c.getResolvedVSpec()).getVariable()){
+				for (Variable var : compoundNode.getVariable()) {
 					JMenuItem addchild = new JMenuItem(var.getName());
 					addchild.addActionListener(new AddValueResolutionEvent(cp, (Variable) var, controller));
 					resolve_variable.add(addchild);
 				}
-				
+
 				if (resolve_choice.getMenuComponents().length == 0)
 					resolve_choice.setEnabled(false);
 				if (resolve_variable.getMenuComponents().length == 0)
@@ -130,34 +140,33 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 					resolve_choice_occ.setEnabled(false);
 				if (resolve_vclass_occ.getMenuComponents().length == 0)
 					resolve_vclass_occ.setEnabled(false);
-	
+
 				add(resolve_choice);
 				add(resolve_variable);
 				add(resolve_vclass);
 				add(addMulTree);
 				add(resolve_choice_occ);
 				add(resolve_vclass_occ);
-				
-				if(resolve_choice.isEnabled() || resolve_vclass.isEnabled() ||
-						resolve_choice_occ.isEnabled() || resolve_vclass_occ.isEnabled()){
+
+				if (resolve_choice.isEnabled() || resolve_vclass.isEnabled() || resolve_choice_occ.isEnabled() || resolve_vclass_occ.isEnabled()) {
 					JMenuItem resTree = new JMenuItem(Constants.RESOLUTION_DROPDOWN_RESOLVE_SUBTREE_ITEM);
 					resTree.addActionListener(new AddSubTreeEvent(cp, controller));
 					add(resTree);
 				}
-				
-				if(resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled()
-						|| resolve_choice_occ.isEnabled() || resolve_vclass_occ.isEnabled()){
-					add( new JSeparator());
-					JMenuItem minimize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM); 
+
+				if (resolve_choice.isEnabled() || resolve_variable.isEnabled() || resolve_vclass.isEnabled() || resolve_choice_occ.isEnabled()
+						|| resolve_vclass_occ.isEnabled()) {
+					add(new JSeparator());
+					JMenuItem minimize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MININIZE_ITEM);
 					minimize.addActionListener(new MinimizeVSpecResolutionEvent(cp, controller));
 					add(minimize);
-					
-					JMenuItem maximize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MAXIMIZE_ITEM); 
+
+					JMenuItem maximize = new JMenuItem(Constants.RESOLUTION_DROPDOWN_MAXIMIZE_ITEM);
 					maximize.addActionListener(new MaximizeVSpecResolutionEvent(cp, controller));
 					add(maximize);
 					add(new JSeparator());
 				}
-				JMenuItem unCont= new JMenuItem(Constants.RESOLUTION_DROPDOWN_REMOVE_UNCONTAINED);
+				JMenuItem unCont = new JMenuItem(Constants.RESOLUTION_DROPDOWN_REMOVE_UNCONTAINED);
 				unCont.addActionListener(new RemoveUncontainedResolutionEvent(cp, controller));
 				add(unCont);
 			}
@@ -166,7 +175,7 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 		JMenuItem remove = new JMenuItem(Constants.RESOLUTION_DROPDOWN_REMOVE_ITEM);
 		remove.addActionListener(new RemoveVSpecResolutionEvent(cp, controller));
 		add(remove);
-		
+
 		add(new JSeparator());
 		JMenuItem validate = new JMenuItem(Constants.RESOLUTION_DROPDOWN_VALIDATE_ITEM);
 		validate.addActionListener(new ValidateEvent(cp, controller));
