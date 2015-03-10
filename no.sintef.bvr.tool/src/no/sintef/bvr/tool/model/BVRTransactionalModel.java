@@ -41,6 +41,7 @@ import no.sintef.bvr.tool.interfaces.model.IBVRTransactionalVTypeState;
 import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -112,7 +113,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private HashMap<NegResolution, PosResolution> buffer;
 	private List<ResourceObserver> observers;
 
-	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
+	public BVRTransactionalModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath();
@@ -136,7 +137,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM() {
+	public SPLCABVRModel getSPLCABVRModel() {
 		return bvrm;
 	}
 
@@ -154,7 +155,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		return resource;
 	}
 
-	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
+	private class BVRInnerModel extends SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
 			model = loadFromFile(f);

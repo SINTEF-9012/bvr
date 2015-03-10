@@ -56,7 +56,7 @@ public class CSVGeneratingNotAllNodesResolved {
 		expectedCSVString = "Feature\\Product;1;\nTopChoice;X;\nDirectOutputs;-;\nDirectInputs;-;\n";
 
 		bvrmodel = new BVRSimpleToolModel(new File("TestData/Artificial/resDiffSize2.bvr"));
-		splcabvr = bvrmodel.getBVRM();
+		splcabvr = bvrmodel.getSPLCABVRModel();
 
 		expectedProds1 = new ArrayList<Map<String, Boolean>>();
 		Map<String, Boolean> resoluton1 = new HashMap<String, Boolean>();
@@ -85,7 +85,7 @@ public class CSVGeneratingNotAllNodesResolved {
 		expectedCSVString1 = "Feature\\Product;1;\nTopChoice;X;\nDirectInputs0;-;\nDirectInputs1;-;\nDirectInputs2;-;\nDirectInputs3;-;\nDirectInputs4;-;\nDirectInputs5;-;\nDirectInputs6;-;\n";
 
 		bvrmodel1 = new BVRSimpleToolModel(new File("TestData/Artificial/resDiffSize3.bvr"));
-		splcabvr1 = bvrmodel1.getBVRM();
+		splcabvr1 = bvrmodel1.getSPLCABVRModel();
 	}
 
 	@Test

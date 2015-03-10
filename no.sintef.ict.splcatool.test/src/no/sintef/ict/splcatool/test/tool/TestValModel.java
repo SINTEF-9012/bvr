@@ -47,7 +47,7 @@ public class TestValModel {
 	private boolean validate(File f) throws CSVException, FeatureModelException, IOException, UnsupportedModelException, ContradictionException,
 			TimeoutException, BVRException {
 		BVRToolModel x = new BVRSimpleToolModel(f);
-		SPLCABVRModel z = x.getBVRM();
+		SPLCABVRModel z = x.getSPLCABVRModel();
 		CoveringArray ca = z.getCoveringArray();
 		CNF cnf = z.getGUIDSL().getSXFM().getCNF();
 		List<String> log = new ArrayList<String>();

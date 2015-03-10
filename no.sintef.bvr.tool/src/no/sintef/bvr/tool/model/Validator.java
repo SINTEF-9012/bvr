@@ -55,13 +55,13 @@ public class Validator implements Validate {
 		ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
 		SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
 		
-		toolModel.getBVRM().setResolutionFindStrategy(strRes);
-		toolModel.getBVRM().setConstrtaintFindStrategy(strConst);
-		toolModel.getBVRM().setVariabilityFindStrategy(resVar);
+		toolModel.getSPLCABVRModel().setResolutionFindStrategy(strRes);
+		toolModel.getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+		toolModel.getSPLCABVRModel().setVariabilityFindStrategy(resVar);
 		
 		try {
-			CoveringArray ca = toolModel.getBVRM().getCoveringArray();
-			CNF cnf = toolModel.getBVRM().getGUIDSL().getSXFM().getCNF();
+			CoveringArray ca = toolModel.getSPLCABVRModel().getCoveringArray();
+			CNF cnf = toolModel.getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
 			boolean valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 			//do this stab for now since we do not actually have mapping yet, between problem messages and constraints
 			if(!valid)
@@ -75,7 +75,7 @@ public class Validator implements Validate {
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
 		} finally {
-			toolModel.getBVRM().restoreDefaultStrategies();
+			toolModel.getSPLCABVRModel().restoreDefaultStrategies();
 		}
 	}
 

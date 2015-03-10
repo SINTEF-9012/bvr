@@ -130,7 +130,7 @@ public abstract class MVCEditor extends EditorPart implements ResourceObserver {
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		try {
-			toolModel.getBVRM().writeToFile(filename);
+			toolModel.getSPLCABVRModel().writeToFile(filename);
 			fileinput.getFile().refreshLocal(IResource.DEPTH_ZERO, null);
 			ResourceResourceSavedSubjectMap.eINSTANCE
 					.pokeResourceSubjects(resourceURI);

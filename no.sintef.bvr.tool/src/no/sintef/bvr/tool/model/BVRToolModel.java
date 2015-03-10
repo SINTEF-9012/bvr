@@ -135,7 +135,7 @@ abstract public class BVRToolModel {
 		return f.getAbsolutePath();
 	}
 	
-	public SPLCABVRModel getBVRM(){
+	public SPLCABVRModel getSPLCABVRModel(){
 		return bvrm;
 	}
 	
@@ -339,12 +339,12 @@ abstract public class BVRToolModel {
 
 	public void generatAllProducts() {
 		try {
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = new CoveringArrayComplete(cnf);
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			EList<VSpecResolution> resolutions = getSPLCABVRModel().getChoiceResolutions(gfm);
 			for (VSpecResolution resolution : resolutions)
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
@@ -358,7 +358,7 @@ abstract public class BVRToolModel {
 		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
 		try {
-			ca = getBVRM().getCoveringArray();
+			ca = getSPLCABVRModel().getCoveringArray();
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		} catch (UnsupportedSPLCValidation e) {
@@ -368,7 +368,7 @@ abstract public class BVRToolModel {
 		}
 		CNF cnf;
 		try {
-			cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
@@ -386,13 +386,13 @@ abstract public class BVRToolModel {
 		ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
 		SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
 		
-		getBVRM().setResolutionFindStrategy(strRes);
-		getBVRM().setConstrtaintFindStrategy(strConst);
-		getBVRM().setVariabilityFindStrategy(resVar);
+		getSPLCABVRModel().setResolutionFindStrategy(strRes);
+		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+		getSPLCABVRModel().setVariabilityFindStrategy(resVar);
 		
 		try {
-			ca = getBVRM().getCoveringArray();
-			CNF cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			ca = getSPLCABVRModel().getCoveringArray();
+			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
@@ -403,7 +403,7 @@ abstract public class BVRToolModel {
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
 		} finally {
-			getBVRM().restoreDefaultStrategies();
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
 		
 		return valid;
@@ -418,10 +418,10 @@ abstract public class BVRToolModel {
 		int cov;
 		try {
 			// Get FM:
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			// Get Covering Array
-			CoveringArray ca = getBVRM().getCoveringArray();
+			CoveringArray ca = getSPLCABVRModel().getCoveringArray();
 			// Calculate
 			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
 		} catch (UnsupportedSPLCValidation e) {
@@ -436,7 +436,7 @@ abstract public class BVRToolModel {
 	public void generateCoveringArray(int xWise) {
 		try {
 			removeAllResolutions();
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
 			
@@ -454,7 +454,7 @@ abstract public class BVRToolModel {
 			 
 			 ca.generate();
 			 GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			 EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			 EList<VSpecResolution> resolutions = getSPLCABVRModel().getChoiceResolutions(gfm);
 			 for(VSpecResolution resolution : resolutions)
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
@@ -480,9 +480,9 @@ abstract public class BVRToolModel {
 		GraphMLFM gfm;
 		try {
 			CoveringArray ca = new CoveringArrayFile(file);
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			gfm = gdsl.getGraphMLFMConf(ca);
-			getBVRM().getChoiceResolutions(gfm);
+			getSPLCABVRModel().getChoiceResolutions(gfm);
 		} catch (Exception e) {
 			throw new RethrownException("Importing resolutions failed: ", e);
 		}
