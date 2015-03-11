@@ -179,7 +179,7 @@ abstract public class BVRToolModel {
 		saved = true;
 	}
 	
-	public void addChoice(NamedElement parentVSpec) {
+	public Choice addChoice(NamedElement parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 	

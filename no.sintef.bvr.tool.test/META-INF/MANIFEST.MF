@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.7.0",
  no.sintef.bvr.thirdparty.interfaces,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- no.sintef.bvr.test.common;bundle-version="1.0.0"
+ no.sintef.bvr.test.common;bundle-version="1.0.0",
+ no.sintef.bvr.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.test.common.utils,

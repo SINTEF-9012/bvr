@@ -42,7 +42,7 @@ public class VSpecFacade {
 		return eINSTANCE;
 	}
 	
-	public void appendChoice(NamedElement parent) {
+	public Choice appendChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
 		c.setName(defaultChoiceName + choicCounter);
@@ -63,9 +63,10 @@ public class VSpecFacade {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
 		choicCounter++;
+		return c;
 	}
 	
-	public void appendVClassifier(NamedElement parent) {
+	public VClassifier appendVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		c.setName(defaultVClassifierName + classifierCount);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
@@ -88,17 +89,19 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
-		classifierCount++;		
+		classifierCount++;
+		return c;
 	}
 	
-	public void appendChoiceOccurence(CompoundNode parent) {
+	public ChoiceOccurrence appendChoiceOccurence(CompoundNode parent) {
 		ChoiceOccurrence occurence = BvrFactory.eINSTANCE.createChoiceOccurrence();
 		occurence.setName(defaultChoiceOccurenceName + choicCounter);
 		Context.eINSTANCE.getEditorCommands().addChoiceVClassOccurence(parent, occurence);
 		choicCounter ++;
+		return occurence;
 	}
 	
-	public void appendVClassOccurence(CompoundNode parent) {
+	public VClassOccurrence appendVClassOccurence(CompoundNode parent) {
 		VClassOccurrence occurence = BvrFactory.eINSTANCE.createVClassOccurrence();
 		occurence.setName(defaultVClassOccurenceName + classifierCount);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
@@ -107,5 +110,6 @@ public class VSpecFacade {
 		occurence.setInstanceMultiplicity(mi);
 		Context.eINSTANCE.getEditorCommands().addChoiceVClassOccurence(parent, occurence);
 		classifierCount ++;
+		return occurence;
 	}
 }

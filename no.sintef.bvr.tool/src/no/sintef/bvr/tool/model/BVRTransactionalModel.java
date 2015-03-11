@@ -345,8 +345,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public void addChoice(NamedElement parent) {
-		VSpecFacade.eINSTANCE.appendChoice(parent);
+	public Choice addChoice(NamedElement parent) {
+		return VSpecFacade.eINSTANCE.appendChoice(parent);
 	}
 
 	@Override
