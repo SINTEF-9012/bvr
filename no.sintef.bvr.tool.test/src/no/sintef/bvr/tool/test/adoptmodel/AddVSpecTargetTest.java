@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -52,6 +53,30 @@ public class AddVSpecTargetTest {
 		testProject.disposeTestProject();
 	}
 
+	private BVRToolModel transactionModel;
+
+	private BVRModel bvrModel;
+
+	private Choice choice;
+
+	private Choice anotherChoice;
+
+	@Before
+	public void setUp() {
+		transactionModel = Context.eINSTANCE.testBVRToolModel(resources[0].getiFile().getLocation().toFile());
+		assertNotNull(transactionModel);
+
+		bvrModel = transactionModel.getBVRModel();
+		assertNotNull(bvrModel);
+		assertTrue("model is not empty", bvrModel.eContents().size() == 0);
+
+		choice = transactionModel.addChoice(bvrModel);
+		assertNotNull(choice.getTarget());
+
+		anotherChoice = transactionModel.addChoice(choice);
+		assertNotNull(anotherChoice.getTarget());
+	}
+
 	@After
 	public void tearDown() {
 		Context.eINSTANCE.getBvrModels().clear();
@@ -59,39 +84,33 @@ public class AddVSpecTargetTest {
 	}
 
 	@Test
-	public void cerateChoiceTargetTest() {
-		BVRToolModel transactionModel = Context.eINSTANCE.testBVRToolModel(resources[0].getiFile().getLocation().toFile());
-		assertNotNull(transactionModel);
+	public void testDifferenTargets() {
+		assertNotEquals("Choices should not point to the same targets", choice.getTarget(), anotherChoice.getTarget());
+	}
 
-		BVRModel bvrModel = transactionModel.getBVRModel();
-		assertNotNull(bvrModel);
-		assertTrue("model is not empty", bvrModel.eContents().size() == 0);
+	@Test
+	public void testUpdateNames() {
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
-		Choice choice = transactionModel.addChoice(bvrModel);
-		Target target = choice.getTarget();
-		assertNotNull(target);
-
-		Choice anotherChoice = transactionModel.addChoice(choice);
-		Target anotherTarget = anotherChoice.getTarget();
-		assertNotNull(anotherTarget);
-		assertNotEquals("Choices should not point to the same targets", target, anotherTarget);
-
-		transactionModel.updateName(anotherChoice, target.getName());
-
-		assertTrue("choice name was not changed properly", anotherChoice.getName().startsWith(target.getName() + "@"));
+		assertTrue("choice name was not changed properly", anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
 		assertFalse("choices' name should be unique in vspec tree", anotherChoice.getName().equals(choice.getName()));
-		assertEquals("choices should reference the same target", target, anotherChoice.getTarget());
-		
+		assertEquals("choices should reference the same target", choice.getTarget(), anotherChoice.getTarget());
+	}
+
+	@Test
+	public void testNumberTragtes() {
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+
 		TreeIterator<EObject> iterator = bvrModel.eAllContents();
 		List<EObject> list = new ArrayList<EObject>();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			EObject eObject = iterator.next();
-			if(eObject instanceof Target)
+			if (eObject instanceof Target)
 				list.add(eObject);
 		}
-		
+
 		assertTrue("To many targets in the model", list.size() == 1);
-		assertEquals("Wrong target is referenced", target, list.get(0));
+		assertEquals("Wrong target is referenced", choice.getTarget(), list.get(0));
 	}
 
 }
