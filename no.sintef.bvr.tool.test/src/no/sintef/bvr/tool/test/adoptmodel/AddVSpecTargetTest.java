@@ -3,6 +3,8 @@ package no.sintef.bvr.tool.test.adoptmodel;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import no.sintef.bvr.common.logging.ConsoleLogger;
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -13,6 +15,8 @@ import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.test.Activator;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -76,8 +80,18 @@ public class AddVSpecTargetTest {
 
 		assertTrue("choice name was not changed properly", anotherChoice.getName().startsWith(target.getName() + "@"));
 		assertFalse("choices' name should be unique in vspec tree", anotherChoice.getName().equals(choice.getName()));
-
 		assertEquals("choices should reference the same target", target, anotherChoice.getTarget());
+		
+		TreeIterator<EObject> iterator = bvrModel.eAllContents();
+		List<EObject> list = new ArrayList<EObject>();
+		while(iterator.hasNext()) {
+			EObject eObject = iterator.next();
+			if(eObject instanceof Target)
+				list.add(eObject);
+		}
+		
+		assertTrue("To many targets in the model", list.size() == 1);
+		assertEquals("Wrong target is referenced", target, list.get(0));
 	}
 
 }
