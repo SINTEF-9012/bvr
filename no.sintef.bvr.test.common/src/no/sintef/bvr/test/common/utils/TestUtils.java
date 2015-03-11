@@ -1,4 +1,4 @@
-package no.sintef.bvr.testutils.common;
+package no.sintef.bvr.test.common.utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

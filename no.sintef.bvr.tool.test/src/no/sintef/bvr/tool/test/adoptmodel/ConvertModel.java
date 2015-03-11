@@ -17,7 +17,9 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
-import no.sintef.bvr.testutils.common.TestUtils;
+
+
+import no.sintef.bvr.test.common.utils.TestUtils;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
