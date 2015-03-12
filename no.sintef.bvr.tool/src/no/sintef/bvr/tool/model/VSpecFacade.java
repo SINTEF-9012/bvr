@@ -15,6 +15,7 @@ package no.sintef.bvr.tool.model;
 
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.interfaces.model.IIDProvider;
 import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -29,13 +30,19 @@ import bvr.VClassifier;
 public class VSpecFacade {
 
 	public static VSpecFacade eINSTANCE = getInstance();
-	private static int choicCounter = 0;
-	private static int classifierCount = 0;
 	private final static String defaultChoiceName = "Choice";
 	private final static String defaultVClassifierName = "Classifier";
 	private final static String defaultChoiceOccurenceName = "ChoiceOccurence";
 	private final static String defaultVClassOccurenceName = "VClassOccurence";
 	private final PostfixGeneratorFacade postfix = PostfixGeneratorFacade.eINSTANCE;
+
+	public IIDProvider choiceIDProvider;
+	public IIDProvider classifierIDProvider;
+
+	private VSpecFacade() {
+		choiceIDProvider = new DefaultIDProvider();
+		classifierIDProvider = new DefaultIDProvider();
+	}
 
 	private static VSpecFacade getInstance() {
 		if (eINSTANCE == null)
@@ -46,11 +53,12 @@ public class VSpecFacade {
 	public Choice appendChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
-		c.setName(defaultChoiceName + choicCounter + postfix.getUnique());
+		String targetName = defaultChoiceName + choiceIDProvider;
+		c.setName(targetName + postfix.getUnique());
 
 		// each vspec has to have target
 		Target target = BvrFactory.eINSTANCE.createTarget();
-		target.setName(c.getName());
+		target.setName(targetName);
 		((CompoundNode) c).getOwnedTargets().add(target);
 		c.setTarget(target);
 
@@ -63,13 +71,13 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
-		choicCounter++;
 		return c;
 	}
 
 	public VClassifier appendVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
-		c.setName(defaultVClassifierName + classifierCount + postfix.getUnique());
+		String targetName = defaultVClassifierName + classifierIDProvider;
+		c.setName(targetName + postfix.getUnique());
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
@@ -77,7 +85,7 @@ public class VSpecFacade {
 
 		// each vspec has to have target
 		Target target = BvrFactory.eINSTANCE.createTarget();
-		target.setName(c.getName());
+		target.setName(targetName);
 		((CompoundNode) c).getOwnedTargets().add(target);
 		c.setTarget(target);
 
@@ -90,27 +98,42 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
-		classifierCount++;
 		return c;
 	}
 
 	public ChoiceOccurrence appendChoiceOccurence(CompoundNode parent) {
 		ChoiceOccurrence occurence = BvrFactory.eINSTANCE.createChoiceOccurrence();
-		occurence.setName(defaultChoiceOccurenceName + choicCounter);
+		occurence.setName(defaultChoiceOccurenceName + choiceIDProvider);
 		Context.eINSTANCE.getEditorCommands().addChoiceVClassOccurence(parent, occurence);
-		choicCounter++;
 		return occurence;
 	}
 
 	public VClassOccurrence appendVClassOccurence(CompoundNode parent) {
 		VClassOccurrence occurence = BvrFactory.eINSTANCE.createVClassOccurrence();
-		occurence.setName(defaultVClassOccurenceName + classifierCount);
+		occurence.setName(defaultVClassOccurenceName + classifierIDProvider);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
 		occurence.setInstanceMultiplicity(mi);
 		Context.eINSTANCE.getEditorCommands().addChoiceVClassOccurence(parent, occurence);
-		classifierCount++;
 		return occurence;
+	}
+
+	private class DefaultIDProvider implements IIDProvider {
+
+		private Integer count = 0;
+
+		@Override
+		public String getUnique() {
+			String id = count.toString();
+			count++;
+			return id;
+		}
+
+		@Override
+		public String toString() {
+			return getUnique();
+		}
+
 	}
 }

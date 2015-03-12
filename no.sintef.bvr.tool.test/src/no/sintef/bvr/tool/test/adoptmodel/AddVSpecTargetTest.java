@@ -30,10 +30,12 @@ import no.sintef.bvr.common.logging.ConsoleLogger;
 import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.interfaces.model.IIDProvider;
 import no.sintef.bvr.tool.interfaces.model.IPostfixGenerator;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.PostfixGeneratorFacade;
+import no.sintef.bvr.tool.model.VSpecFacade;
 import no.sintef.bvr.tool.test.Activator;
 
 import org.eclipse.core.runtime.CoreException;
@@ -91,6 +93,8 @@ public class AddVSpecTargetTest {
 
 	@Before
 	public void setUp() {
+		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
+		VSpecFacade.eINSTANCE.classifierIDProvider = new DefaultIDProvider();
 		PostfixGeneratorFacade.eINSTANCE.setPostfixGenerator(new IPostfixGenerator() {
 
 			private int count = 0;
@@ -226,6 +230,24 @@ public class AddVSpecTargetTest {
 
 		assertEquals("Incorrect target name", "Choice0", choice.getTarget().getName());
 		assertEquals("Incorrect target name", "Choice0", anotherChoice.getTarget().getName());
+
+	}
+
+	private class DefaultIDProvider implements IIDProvider {
+
+		private Integer count = 0;
+
+		@Override
+		public String getUnique() {
+			String id = count.toString();
+			count++;
+			return id;
+		}
+
+		@Override
+		public String toString() {
+			return getUnique();
+		}
 
 	}
 
