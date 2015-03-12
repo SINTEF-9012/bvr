@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
 
@@ -27,7 +27,7 @@ import bvr.VClassOccurrence;
 import bvr.VClassifier;
 
 public class VSpecFacade {
-	
+
 	public static VSpecFacade eINSTANCE = getInstance();
 	private static int choicCounter = 0;
 	private static int classifierCount = 0;
@@ -35,17 +35,18 @@ public class VSpecFacade {
 	private final static String defaultVClassifierName = "Classifier";
 	private final static String defaultChoiceOccurenceName = "ChoiceOccurence";
 	private final static String defaultVClassOccurenceName = "VClassOccurence";
-	
+	private final PostfixGeneratorFacade postfix = PostfixGeneratorFacade.eINSTANCE;
+
 	private static VSpecFacade getInstance() {
-		if(eINSTANCE == null)
+		if (eINSTANCE == null)
 			eINSTANCE = new VSpecFacade();
 		return eINSTANCE;
 	}
-	
+
 	public Choice appendChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
-		c.setName(defaultChoiceName + choicCounter);
+		c.setName(defaultChoiceName + choicCounter + postfix.getUnique());
 
 		// each vspec has to have target
 		Target target = BvrFactory.eINSTANCE.createTarget();
@@ -57,7 +58,7 @@ public class VSpecFacade {
 			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parent);
 		} else if (parent instanceof BVRModel) {
 			BVRModel model = (BVRModel) parent;
-			if (model.getVariabilityModel() == null) 
+			if (model.getVariabilityModel() == null)
 				Context.eINSTANCE.getEditorCommands().addChoice(c, model);
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
@@ -65,10 +66,10 @@ public class VSpecFacade {
 		choicCounter++;
 		return c;
 	}
-	
+
 	public VClassifier appendVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
-		c.setName(defaultVClassifierName + classifierCount);
+		c.setName(defaultVClassifierName + classifierCount + postfix.getUnique());
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
@@ -92,15 +93,15 @@ public class VSpecFacade {
 		classifierCount++;
 		return c;
 	}
-	
+
 	public ChoiceOccurrence appendChoiceOccurence(CompoundNode parent) {
 		ChoiceOccurrence occurence = BvrFactory.eINSTANCE.createChoiceOccurrence();
 		occurence.setName(defaultChoiceOccurenceName + choicCounter);
 		Context.eINSTANCE.getEditorCommands().addChoiceVClassOccurence(parent, occurence);
-		choicCounter ++;
+		choicCounter++;
 		return occurence;
 	}
-	
+
 	public VClassOccurrence appendVClassOccurence(CompoundNode parent) {
 		VClassOccurrence occurence = BvrFactory.eINSTANCE.createVClassOccurrence();
 		occurence.setName(defaultVClassOccurenceName + classifierCount);
@@ -109,7 +110,7 @@ public class VSpecFacade {
 		mi.setUpper(1);
 		occurence.setInstanceMultiplicity(mi);
 		Context.eINSTANCE.getEditorCommands().addChoiceVClassOccurence(parent, occurence);
-		classifierCount ++;
+		classifierCount++;
 		return occurence;
 	}
 }
