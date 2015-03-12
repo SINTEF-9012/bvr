@@ -30,8 +30,10 @@ import no.sintef.bvr.common.logging.ConsoleLogger;
 import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.interfaces.model.IPostfixGenerator;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.PostfixGeneratorFacade;
 import no.sintef.bvr.tool.test.Activator;
 
 import org.eclipse.core.runtime.CoreException;
@@ -89,6 +91,16 @@ public class AddVSpecTargetTest {
 
 	@Before
 	public void setUp() {
+		PostfixGeneratorFacade.eINSTANCE.setPostfixGenerator(new IPostfixGenerator() {
+
+			private int count = 0;
+
+			@Override
+			public String getPostfix() {
+				return "@" + count++;
+			}
+		});
+
 		transactionModel = Context.eINSTANCE.testBVRToolModel(resources[0].getiFile().getLocation().toFile());
 		assertNotNull(transactionModel);
 
@@ -120,7 +132,8 @@ public class AddVSpecTargetTest {
 	public void testUpdateNames() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
-		assertTrue("choice name was not changed properly", anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
+		assertTrue("choice name was not changed properly: anotherChoice " + anotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
+				anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
 		assertFalse("choices' name should be unique in vspec tree", anotherChoice.getName().equals(choice.getName()));
 		assertEquals("choices should reference the same target", choice.getTarget(), anotherChoice.getTarget());
 	}
@@ -190,6 +203,30 @@ public class AddVSpecTargetTest {
 
 		assertTrue(targetMap.size() == targetList.size());
 		assertEquals("Target inconsistency", targetList.get(0), targetMap.keySet().iterator().next());
+	}
+
+	@Test
+	public void testVSpecNaming() {
+		assertEquals("Incorrect vspec name", "Choice0@0", choice.getName());
+		assertEquals("Incorrect vspec name", "Choice1@1", anotherChoice.getName());
+	}
+
+	@Test
+	public void testTargetNaming() {
+		assertEquals("Incorrect target name", "Choice0", choice.getTarget().getName());
+		assertEquals("Incorrect target name", "Choice1", anotherChoice.getTarget().getName());
+	}
+
+	@Test
+	public void testVSpecRenaming() {
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+
+		assertEquals("Incorrect vspec name", "Choice0@0", choice.getName());
+		assertEquals("Incorrect vspec name after renaming", "Choice0@2", anotherChoice.getName());
+
+		assertEquals("Incorrect target name", "Choice0", choice.getTarget().getName());
+		assertEquals("Incorrect target name", "Choice0", anotherChoice.getTarget().getName());
+
 	}
 
 }
