@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -60,6 +61,7 @@ import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
@@ -655,6 +657,10 @@ abstract public class BVRToolModel {
 	public void removeUncontainedResolutions(VSpecResolution compoundNode) {
 		throw new UnexpectedException("Are you using default implementation?!");
 		
+	}
+
+	public HashMap<Target, HashSet<VSpec>> getTargetVSpecMap() {
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 }

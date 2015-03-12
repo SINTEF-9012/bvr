@@ -1,9 +1,29 @@
+/*******************************************************************************
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
+ * http://www.gnu.org/licenses/lgpl-3.0.txt
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
 package no.sintef.bvr.tool.test.adoptmodel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import no.sintef.bvr.common.logging.ConsoleLogger;
@@ -27,14 +47,19 @@ import org.junit.Test;
 import bvr.BVRModel;
 import bvr.Choice;
 import bvr.Target;
-import bvr.TargetRef;
+import bvr.VSpec;
 
+/**
+ * @author anavas
+ *
+ */
 public class AddVSpecTargetTest {
 
 	private static String[] testFolders = { "TestFolder", "TestFolder/vm" };
 
 	private static TestResourceHolder[] resources = { new TestResourceHolder("/resources/vm/addvspectarget.bvr", "TestFolder/vm/addvspectarget.bvr") };
 
+	/** The test project. */
 	private static TestProject testProject;
 
 	@BeforeClass
@@ -111,6 +136,57 @@ public class AddVSpecTargetTest {
 
 		assertTrue("To many targets in the model", list.size() == 1);
 		assertEquals("Wrong target is referenced", choice.getTarget(), list.get(0));
+	}
+
+	@Test
+	public void testTargetVSpecMap() {
+		HashMap<Target, HashSet<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 2);
+
+		HashSet<VSpec> vspecs = targetMap.get(choice.getTarget());
+		assertTrue(vspecs != null && vspecs.size() == 1);
+		assertEquals("Vspec references wrong target", choice, vspecs.iterator().next());
+
+		vspecs = targetMap.get(anotherChoice.getTarget());
+		assertTrue(vspecs != null && vspecs.size() == 1);
+		assertEquals("VSpec references wrong target", anotherChoice, vspecs.iterator().next());
+	}
+
+	@Test
+	public void testTargetVSpecMapSameTarget() {
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+
+		HashMap<Target, HashSet<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 1);
+
+		HashSet<VSpec> vspecs = targetMap.get(choice.getTarget());
+		assertTrue(vspecs != null && vspecs.size() == 2);
+
+		Iterator<VSpec> iterator = vspecs.iterator();
+		VSpec vSpec = iterator.next();
+		VSpec anotherVSpec = iterator.next();
+
+		assertEquals("Vspec references wrong target", choice, vSpec);
+		assertEquals("Vspec references wrong target", anotherChoice, anotherVSpec);
+	}
+
+	@Test
+	public void testTargetVSpecMapModelConstince() {
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+
+		HashMap<Target, HashSet<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 1);
+
+		TreeIterator<EObject> iterator = bvrModel.eAllContents();
+		List<EObject> targetList = new ArrayList<EObject>();
+		while (iterator.hasNext()) {
+			EObject eObject = iterator.next();
+			if (eObject instanceof Target)
+				targetList.add(eObject);
+		}
+
+		assertTrue(targetMap.size() == targetList.size());
+		assertEquals("Target inconsistency", targetList.get(0), targetMap.keySet().iterator().next());
 	}
 
 }
