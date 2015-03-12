@@ -37,6 +37,7 @@ import no.sintef.bvr.tool.test.Activator;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -93,7 +94,7 @@ public class AddVSpecTargetTest {
 
 		bvrModel = transactionModel.getBVRModel();
 		assertNotNull(bvrModel);
-		assertTrue("model is not empty", bvrModel.eContents().size() == 0);
+		assertTrue("model is not empty " + bvrModel.eContents(), bvrModel.eContents().size() == 0);
 
 		choice = transactionModel.addChoice(bvrModel);
 		assertNotNull(choice.getTarget());
@@ -106,6 +107,8 @@ public class AddVSpecTargetTest {
 	public void tearDown() {
 		Context.eINSTANCE.getBvrModels().clear();
 		Context.eINSTANCE.getBvrViews().clear();
+		Context.eINSTANCE.disposeModel(transactionModel);
+		TransactionalEditingDomain.Registry.INSTANCE.remove("no.sintef.bvr.shared.EditingDomain");
 	}
 
 	@Test
