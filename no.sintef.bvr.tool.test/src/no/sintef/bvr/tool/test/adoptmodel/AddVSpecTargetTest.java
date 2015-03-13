@@ -58,6 +58,24 @@ import bvr.VSpec;
  */
 public class AddVSpecTargetTest {
 
+	private class DefaultIDProvider implements IIDProvider {
+
+		private Integer count = 0;
+
+		@Override
+		public String getUnique() {
+			String id = count.toString();
+			count++;
+			return id;
+		}
+
+		@Override
+		public String toString() {
+			return getUnique();
+		}
+
+	}
+
 	private static String[] testFolders = { "TestFolder", "TestFolder/vm" };
 
 	private static TestResourceHolder[] resources = { new TestResourceHolder("/resources/vm/addvspectarget.bvr", "TestFolder/vm/addvspectarget.bvr") };
@@ -226,22 +244,31 @@ public class AddVSpecTargetTest {
 		assertEquals("Incorrect target name", "Choice0", anotherChoice.getTarget().getName());
 	}
 
-	private class DefaultIDProvider implements IIDProvider {
+	@Test
+	public void appendVSpecSameName() {
+		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
+		Choice thirdChoice = transactionModel.addChoice(anotherChoice);
+		assertEquals("Icorrect name in the first place", "Choice0@2", thirdChoice.getName());
 
-		private Integer count = 0;
+		assertEquals("VSpecs do not reference the same target, however they have the same prefix name", choice.getTarget(), thirdChoice.getTarget());
 
-		@Override
-		public String getUnique() {
-			String id = count.toString();
-			count++;
-			return id;
+		Map<Target, Set<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 2);
+
+		Set<VSpec> vspecs = targetMap.get(choice.getTarget());
+		assertTrue("Target is not references by two vspecs", vspecs.size() == 2);
+
+		assertTrue("VSpec set does not contain expected vspec-> set:" + vspecs + " vspec:" + choice, vspecs.contains(choice));
+		assertTrue("VSpec set does not contain expected vspec-> set:" + vspecs + " vspec:" + thirdChoice, vspecs.contains(thirdChoice));
+
+		TreeIterator<EObject> iterator = bvrModel.eAllContents();
+		List<EObject> targetList = new ArrayList<EObject>();
+		while (iterator.hasNext()) {
+			EObject eObject = iterator.next();
+			if (eObject instanceof Target)
+				targetList.add(eObject);
 		}
-
-		@Override
-		public String toString() {
-			return getUnique();
-		}
-
+		assertTrue("Inconsistence between what in the model and logic model method returns", targetMap.size() == targetList.size());
 	}
 
 }
