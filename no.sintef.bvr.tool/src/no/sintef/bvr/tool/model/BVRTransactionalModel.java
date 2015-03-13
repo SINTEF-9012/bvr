@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
@@ -113,7 +114,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;
 	private List<ResourceObserver> observers;
-	private HashMap<Target, HashSet<VSpec>> targetVSpec;
 
 	public BVRTransactionalModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
@@ -135,7 +135,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
 		buffer = new HashMap<NegResolution, PosResolution>();
 		invalidConstraints = new ArrayList<Constraint>();
-		targetVSpec = new HashMap<Target, HashSet<VSpec>>();
 		checkModel();
 	}
 
@@ -349,7 +348,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public Choice addChoice(NamedElement parent) {
-		return VSpecFacade.eINSTANCE.appendChoice(parent);
+		return VSpecFacade.eINSTANCE.appendChoice(parent, getTargetVSpecMap());
 	}
 
 	@Override
@@ -432,8 +431,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// update corresponding target accordingly if namedElement is
 		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
-			Target target = TargetFacade.eINSTANCE.testVSpecTarget((VSpec) namedElement);
-			Context.eINSTANCE.getEditorCommands().setName(target, name);
+			VSpecFacade.eINSTANCE.updateName((VSpec) namedElement, name, getTargetVSpecMap());
 		}
 		if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
@@ -477,7 +475,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void addVClassifier(NamedElement parent) {
-		VSpecFacade.eINSTANCE.appendVClassifier(parent);
+		VSpecFacade.eINSTANCE.appendVClassifier(parent, getTargetVSpecMap());
 	}
 
 	@Override
@@ -1137,7 +1135,34 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public HashMap<Target, HashSet<VSpec>> getTargetVSpecMap() {
+	public Map<Target, Set<VSpec>> getTargetVSpecMap() {
+		Map<Target, Set<VSpec>> targetVSpec = new HashMap<Target, Set<VSpec>>();
+		BVRModel model = getBVRModel();
+		CompoundNode compoundNode = model.getVariabilityModel();
+		if (compoundNode != null) {
+			if (compoundNode instanceof VSpec)
+				collectVSpecTarget(targetVSpec, (VSpec) compoundNode);
+
+			TreeIterator<EObject> iterator = compoundNode.eAllContents();
+			while (iterator.hasNext()) {
+				EObject eObject = iterator.next();
+				if (eObject instanceof VSpec)
+					collectVSpecTarget(targetVSpec, (VSpec) eObject);
+			}
+		}
 		return targetVSpec;
 	}
+
+	private void collectVSpecTarget(Map<Target, Set<VSpec>> map, VSpec vSpec) {
+		Target target = vSpec.getTarget();
+		if (target != null) {
+			Set<VSpec> vSpecs = map.get(target);
+			if (vSpecs == null) {
+				vSpecs = new HashSet<VSpec>();
+				map.put(target, vSpecs);
+			}
+			vSpecs.add(vSpec);
+		}
+	}
+
 }

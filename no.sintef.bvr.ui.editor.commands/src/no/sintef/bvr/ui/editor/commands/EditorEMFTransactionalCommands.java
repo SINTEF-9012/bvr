@@ -1,39 +1,26 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.ui.editor.commands;
-
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
 import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterface;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.command.AbstractCommand;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -97,19 +84,19 @@ import bvr.VariationPoint;
 public class EditorEMFTransactionalCommands implements EditorCommands {
 
 	static private EditorEMFTransactionalCommands eINSTANCE = null;
-	
+
 	private boolean batchMode = false;
 	private ArrayList<AbstractCommand> queue = new ArrayList<AbstractCommand>();
-	
-	static public EditorEMFTransactionalCommands Get(){
-		if(eINSTANCE == null){
+
+	static public EditorEMFTransactionalCommands Get() {
+		if (eINSTANCE == null) {
 			eINSTANCE = new EditorEMFTransactionalCommands();
 		}
 		return eINSTANCE;
 	}
-	
+
 	private void testCommandExecution(TransactionalEditingDomain domain, AbstractCommand command) {
-		if(batchMode) {
+		if (batchMode) {
 			queue.add(command);
 		} else {
 			domain.getCommandStack().execute(command);
@@ -140,35 +127,36 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choice, BvrPackage.eINSTANCE.getChoiceVSpec_IsImpliedByParent(), isImplied);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
-	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound){
+	public void setGroupMultiplicityUpperBound(MultiplicityInterval mInterval, int upperBound) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, mInterval, BvrPackage.eINSTANCE.getMultiplicityInterval_Upper(), upperBound);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
-	public void setGroupMultiplicityLowerBound(MultiplicityInterval mInterval, int lowerBound){
+	public void setGroupMultiplicityLowerBound(MultiplicityInterval mInterval, int lowerBound) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, mInterval, BvrPackage.eINSTANCE.getMultiplicityInterval_Lower(), lowerBound);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
-	public void setTypeForVariable(Variable variable, Variabletype variableType){
+	public void setTypeForVariable(Variable variable, Variabletype variableType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variable, BvrPackage.eINSTANCE.getVariable_Type(), variableType);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void clearBCLConstraintExpressions(BCLConstraint constraint) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, constraint, BvrPackage.eINSTANCE.getBCLConstraint_Expression(), constraint.getExpression());
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, constraint, BvrPackage.eINSTANCE.getBCLConstraint_Expression(),
+				constraint.getExpression());
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void addBCLExpressionConstraint(BCLConstraint constraint, BCLExpression expression) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
@@ -179,34 +167,33 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public boolean testXMIResourceUnload(XMIResource resource, IEditorReference[] editorReferences) {
 		boolean isResourceUsed = false;
-		for(IEditorReference ref : editorReferences){
+		for (IEditorReference ref : editorReferences) {
 			IEditorPart editorPart = ref.getEditor(false);
-			if(editorPart != null) {
+			if (editorPart != null) {
 				IEditorInput editorInput = editorPart.getEditorInput();
-				if(editorInput instanceof FileEditorInput){
+				if (editorInput instanceof FileEditorInput) {
 					URIConverter converter = new ExtensibleURIConverterImpl();
-					URI emptyFileURI = URI.createFileURI(ResourcesPlugin.getWorkspace()
-							.getRoot().getLocation().toOSString() + File.separator);
+					URI emptyFileURI = URI.createFileURI(ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString() + File.separator);
 					URI emptyPlatformURI = URI.createPlatformResourceURI("/", false);
 					converter.getURIMap().put(emptyFileURI, emptyPlatformURI);
 					URI platformURI = converter.normalize(URI.createFileURI(((FileEditorInput) editorInput).getPath().toOSString()));
-					
+
 					TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 					Resource currentResource = editingDomain.getResourceSet().getResource(platformURI, true);
-					
-					if (currentResource.equals(resource)){
+
+					if (currentResource.equals(resource)) {
 						isResourceUsed = true;
 					}
-					
+
 				}
 			}
 		}
-		
-		if(!isResourceUsed)
+
+		if (!isResourceUsed)
 			resource.unload();
 		return isResourceUsed;
 	}
-	
+
 	@Override
 	public void addOwnedVariationType(BVRModel model, Variabletype variationType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
@@ -229,129 +216,118 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void addBoudaryElementBinding(
-			FragmentSubstitution fragmentSubsitution,
-			BoundaryElementBinding boundaryElementBinding) {
+	public void addBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBinding);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(),
+				boundaryElementBinding);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void removeBoudaryElementBinding(
-			FragmentSubstitution fragmentSubsitution,
-			BoundaryElementBinding boundaryElementBinding) {
+	public void removeBoudaryElementBinding(FragmentSubstitution fragmentSubsitution, BoundaryElementBinding boundaryElementBinding) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBinding);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(),
+				boundaryElementBinding);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void removeBoudaryElementBindings(
-			FragmentSubstitution fragmentSubsitution,
-			EList<BoundaryElementBinding> boundaryElementBindings) {
+	public void removeBoudaryElementBindings(FragmentSubstitution fragmentSubsitution, EList<BoundaryElementBinding> boundaryElementBindings) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBindings);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(),
+				boundaryElementBindings);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void clearBoudaryElementBindings(
-			FragmentSubstitution fragmentSubsitution) {
+	public void clearBoudaryElementBindings(FragmentSubstitution fragmentSubsitution) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), fragmentSubsitution.getBoundaryElementBinding());
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(),
+				fragmentSubsitution.getBoundaryElementBinding());
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addBoudaryElementBindings(
-			FragmentSubstitution fragmentSubsitution,
-			EList<BoundaryElementBinding> boundaryElementBindings) {
+	public void addBoudaryElementBindings(FragmentSubstitution fragmentSubsitution, EList<BoundaryElementBinding> boundaryElementBindings) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(), boundaryElementBindings);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, fragmentSubsitution, BvrPackage.eINSTANCE.getBoundaryElementBinding(),
+				boundaryElementBindings);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
-	public void setBindingVariationPoint(VariationPoint variationPoint,
-			VSpec vSpec) {
+	public void setBindingVariationPoint(VariationPoint variationPoint, VSpec vSpec) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, variationPoint, BvrPackage.eINSTANCE.getVariationPoint_BindingVSpec(), vSpec);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void setToBindingToReplacement(ToBinding toBinding,
-			ToReplacement toReplacement) {
+	public void setToBindingToReplacement(ToBinding toBinding, ToReplacement toReplacement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, toBinding, BvrPackage.eINSTANCE.getToBinding_ToReplacement(), toReplacement);
-		testCommandExecution(editingDomain, cmd);	
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void setFromBindingFromPlacement(FromBinding fromBinding,
-			FromPlacement fromPlacement) {
+	public void setFromBindingFromPlacement(FromBinding fromBinding, FromPlacement fromPlacement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, fromBinding, BvrPackage.eINSTANCE.getFromBinding_FromPlacement(), fromPlacement);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addObjectHandlePlacement(PlacementFragment placement,
-			ObjectHandle objectHandle) {
+	public void addObjectHandlePlacement(PlacementFragment placement, ObjectHandle objectHandle) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, placement, BvrPackage.eINSTANCE.getPlacementFragment_SourceObject(), objectHandle);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addObjectHandleReplacement(ReplacementFragmentType replacement,
-			ObjectHandle objectHandle) {
+	public void addObjectHandleReplacement(ReplacementFragmentType replacement, ObjectHandle objectHandle) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, replacement, BvrPackage.eINSTANCE.getReplacementFragmentType_SourceObject(), objectHandle);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, replacement, BvrPackage.eINSTANCE.getReplacementFragmentType_SourceObject(),
+				objectHandle);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addPlacementBoundaryElement(PlacementFragment placement,
-			PlacementBoundaryElement boundary) {
+	public void addPlacementBoundaryElement(PlacementFragment placement, PlacementBoundaryElement boundary) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, placement, BvrPackage.eINSTANCE.getPlacementFragment_PlacementBoundaryElement(), boundary);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, placement, BvrPackage.eINSTANCE.getPlacementFragment_PlacementBoundaryElement(),
+				boundary);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addReplacementBoundaryElement(
-			ReplacementFragmentType replacement,
-			ReplacementBoundaryElement boundary) {
+	public void addReplacementBoundaryElement(ReplacementFragmentType replacement, ReplacementBoundaryElement boundary) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, replacement, BvrPackage.eINSTANCE.getReplacementFragmentType_ReplacementBoundaryElement(), boundary);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, replacement,
+				BvrPackage.eINSTANCE.getReplacementFragmentType_ReplacementBoundaryElement(), boundary);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
 	public void clearInsideBElementToPlacement(ToPlacement boundary) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), boundary.getInsideBoundaryElement());
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(),
+				boundary.getInsideBoundaryElement());
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addInsideBElementToPlacement(ToPlacement boundary,
-			ObjectHandle objectHandle) {
+	public void addInsideBElementToPlacement(ToPlacement boundary, ObjectHandle objectHandle) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), objectHandle);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void addInsideBElementToPlacement(ToPlacement boundary,
-			EList<ObjectHandle> objectHandle) {
+	public void addInsideBElementToPlacement(ToPlacement boundary, EList<ObjectHandle> objectHandle) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, boundary, BvrPackage.eINSTANCE.getToPlacement_InsideBoundaryElement(), objectHandle);
 		testCommandExecution(editingDomain, cmd);
 	}
-
 
 	@Override
 	public void addChoice(Choice choice, BVRModel bvrModel) {
@@ -363,10 +339,10 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void addChoice(Choice choice, final CompoundNode compoundNode) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode(), (VNode) choice);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode(), choice);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void removeVariabilityModelBVRModel(BVRModel model, CompoundNode variabilityModel) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
@@ -417,12 +393,12 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void removeNamedElementVSpecResolution(
-			VSpecResolution vSpecParent, NamedElement namedElement) {
+	public void removeNamedElementVSpecResolution(VSpecResolution vSpecParent, NamedElement namedElement) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, vSpecParent, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand
+				.create(editingDomain, vSpecParent, BvrPackage.eINSTANCE.getCompoundResolution_Members(), namedElement);
 		testCommandExecution(editingDomain, cmd);
-		
+
 	}
 
 	@Override
@@ -431,7 +407,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode_Member(), vNode);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void removeConstraintVNode(VNode vNode, Constraint constraint) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
@@ -449,19 +425,19 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public VPackageable testPrimitiveTypes(BVRModel model) {
 		EList<VPackageable> packagableElements = model.getPackageElement();
-		PrimitveType primitiveType = null; 
-		for(VPackageable vPack : packagableElements){
-			if(vPack instanceof PrimitveType) {
+		PrimitveType primitiveType = null;
+		for (VPackageable vPack : packagableElements) {
+			if (vPack instanceof PrimitveType) {
 				primitiveType = (PrimitveType) vPack;
 				break;
 			}
 		}
-		
-		if(primitiveType == null){
+
+		if (primitiveType == null) {
 			primitiveType = BvrFactory.eINSTANCE.createPrimitveType();
 			addPackagableElementBVRModel(model, primitiveType);
 		}
-		
+
 		return primitiveType;
 	}
 
@@ -495,16 +471,16 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void executeBatch() {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
-			
+
 			@Override
 			protected void doExecute() {
-				for(AbstractCommand command : queue){
+				for (AbstractCommand command : queue) {
 					command.execute();
 				}
 				queue.clear();
 			}
 		});
-		
+
 	}
 
 	@Override
@@ -517,28 +493,28 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), cr);
-		testCommandExecution(editingDomain,cmd);
+		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void addChoiceResoulution(VSpecResolution vsper, ChoiceResolution cr, int index) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, vsper, BvrPackage.eINSTANCE.getVSpecResolution(), cr, index);
-		testCommandExecution(editingDomain,cmd);
+		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void setChoiceResolvedVSpec(ChoiceResolution cr, Choice target) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, cr, BvrPackage.eINSTANCE.getVSpecResolution_ResolvedVSpec(), target);
-		testCommandExecution(editingDomain,cmd);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
 	public void removeOwnedVSpecResolution(BVRModel bvrModel, VSpecResolution parent) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, bvrModel, BvrPackage.eINSTANCE.getBVRModel_ResolutionModels(), parent);
-		testCommandExecution(editingDomain,cmd);
+		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
@@ -591,22 +567,23 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	@Override
 	public void addValueResolution(CompoundResolution compountResolution, ValueResolution valueResolution) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compountResolution, BvrPackage.eINSTANCE.getCompoundResolution_Members(), valueResolution);
+		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, compountResolution, BvrPackage.eINSTANCE.getCompoundResolution_Members(),
+				valueResolution);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void setPrimitiveValueBCLExpression(
-			PrimitiveValueSpecification primitiveValue, BCLExpression expression) {
+	public void setPrimitiveValueBCLExpression(PrimitiveValueSpecification primitiveValue, BCLExpression expression) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
-		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, primitiveValue, BvrPackage.eINSTANCE.getPrimitiveValueSpecification_Expression(), expression);
+		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, primitiveValue, BvrPackage.eINSTANCE.getPrimitiveValueSpecification_Expression(),
+				expression);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
+
 	@Override
 	public void executeSimpleExeCommand(final SimpleExeCommandInterface command) {
 		final List<Exception> exceptions = new ArrayList<Exception>();
-		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();   
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 			@Override
 			protected void doExecute() {
@@ -617,7 +594,7 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 				}
 			}
 		});
-		if(exceptions.size() != 0)
+		if (exceptions.size() != 0)
 			throw new RuntimeException(exceptions.get(0));
 	}
 
@@ -629,16 +606,14 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 	}
 
 	@Override
-	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence,
-			VType vType) {
+	public void setChoiceOccurenceVType(ChoiceOccurrence choiceOccurence, VType vType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, choiceOccurence, BvrPackage.eINSTANCE.getChoiceOccurrence_VType(), vType);
 		testCommandExecution(editingDomain, cmd);
 	}
 
 	@Override
-	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence,
-			VType vType) {
+	public void setVClassOccurenceVType(VClassOccurrence vclassOccurence, VType vType) {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		SetCommand cmd = (SetCommand) SetCommand.create(editingDomain, vclassOccurence, BvrPackage.eINSTANCE.getVClassOccurrence_VType(), vType);
 		testCommandExecution(editingDomain, cmd);
@@ -650,15 +625,24 @@ public class EditorEMFTransactionalCommands implements EditorCommands {
 		AddCommand cmd = (AddCommand) AddCommand.create(editingDomain, parent, BvrPackage.eINSTANCE.getCompoundNode_Member(), occurence);
 		testCommandExecution(editingDomain, cmd);
 	}
-	
-	@Override //TODO check impact on Batch execution
+
+	@Override
+	// TODO check impact on Batch execution
 	public void undo() {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		editingDomain.getCommandStack().undo();
 	}
+
 	@Override
 	public void redo() {
 		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
 		editingDomain.getCommandStack().redo();
+	}
+
+	@Override
+	public void removeTargetCompoundNode(CompoundNode compoundNode, Target target) {
+		TransactionalEditingDomain editingDomain = testTransactionalEditingDomain();
+		RemoveCommand cmd = (RemoveCommand) RemoveCommand.create(editingDomain, compoundNode, BvrPackage.eINSTANCE.getCompoundNode_OwnedTargets(), target);
+		testCommandExecution(editingDomain, cmd);
 	}
 }

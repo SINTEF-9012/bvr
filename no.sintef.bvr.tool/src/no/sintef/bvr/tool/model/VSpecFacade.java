@@ -13,6 +13,9 @@
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
 
+import java.util.Map;
+import java.util.Set;
+
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.interfaces.model.IIDProvider;
@@ -26,6 +29,7 @@ import bvr.NamedElement;
 import bvr.Target;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
+import bvr.VSpec;
 
 public class VSpecFacade {
 
@@ -50,17 +54,29 @@ public class VSpecFacade {
 		return eINSTANCE;
 	}
 
-	public Choice appendChoice(NamedElement parent) {
+	private class DefaultIDProvider implements IIDProvider {
+
+		private Integer count = 0;
+
+		@Override
+		public String getUnique() {
+			String id = count.toString();
+			count++;
+			return id;
+		}
+
+		@Override
+		public String toString() {
+			return getUnique();
+		}
+
+	}
+
+	public Choice appendChoice(NamedElement parent, Map<Target, Set<VSpec>> map) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
 		String targetName = defaultChoiceName + choiceIDProvider;
 		c.setName(targetName + postfix.getUnique());
-
-		// each vspec has to have target
-		Target target = BvrFactory.eINSTANCE.createTarget();
-		target.setName(targetName);
-		((CompoundNode) c).getOwnedTargets().add(target);
-		c.setTarget(target);
 
 		if (parent instanceof CompoundNode) {
 			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parent);
@@ -71,10 +87,13 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
+
+		// each vspec has to have target
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(map, c, targetName);
 		return c;
 	}
 
-	public VClassifier appendVClassifier(NamedElement parent) {
+	public VClassifier appendVClassifier(NamedElement parent, Map<Target, Set<VSpec>> map) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		String targetName = defaultVClassifierName + classifierIDProvider;
 		c.setName(targetName + postfix.getUnique());
@@ -82,12 +101,6 @@ public class VSpecFacade {
 		mi.setLower(1);
 		mi.setUpper(1);
 		c.setInstanceMultiplicity(mi);
-
-		// each vspec has to have target
-		Target target = BvrFactory.eINSTANCE.createTarget();
-		target.setName(targetName);
-		((CompoundNode) c).getOwnedTargets().add(target);
-		c.setTarget(target);
 
 		if (parent instanceof CompoundNode) {
 			Context.eINSTANCE.getEditorCommands().addVClassifierToVSpec((CompoundNode) parent, c);
@@ -98,6 +111,9 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
+
+		// each vspec has to have target
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(map, c, targetName);
 		return c;
 	}
 
@@ -119,21 +135,8 @@ public class VSpecFacade {
 		return occurence;
 	}
 
-	private class DefaultIDProvider implements IIDProvider {
-
-		private Integer count = 0;
-
-		@Override
-		public String getUnique() {
-			String id = count.toString();
-			count++;
-			return id;
-		}
-
-		@Override
-		public String toString() {
-			return getUnique();
-		}
-
+	public void updateName(VSpec vSpec, String name, Map<Target, Set<VSpec>> map) {
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(map, vSpec, name);
+		Context.eINSTANCE.getEditorCommands().setName(vSpec, name + postfix.getUnique());
 	}
 }

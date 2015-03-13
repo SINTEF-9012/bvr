@@ -21,10 +21,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import no.sintef.bvr.common.logging.ConsoleLogger;
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -159,10 +159,10 @@ public class AddVSpecTargetTest {
 
 	@Test
 	public void testTargetVSpecMap() {
-		HashMap<Target, HashSet<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		Map<Target, Set<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
 		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 2);
 
-		HashSet<VSpec> vspecs = targetMap.get(choice.getTarget());
+		Set<VSpec> vspecs = targetMap.get(choice.getTarget());
 		assertTrue(vspecs != null && vspecs.size() == 1);
 		assertEquals("Vspec references wrong target", choice, vspecs.iterator().next());
 
@@ -175,10 +175,10 @@ public class AddVSpecTargetTest {
 	public void testTargetVSpecMapSameTarget() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
-		HashMap<Target, HashSet<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		Map<Target, Set<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
 		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 1);
 
-		HashSet<VSpec> vspecs = targetMap.get(choice.getTarget());
+		Set<VSpec> vspecs = targetMap.get(choice.getTarget());
 		assertTrue(vspecs != null && vspecs.size() == 2);
 
 		Iterator<VSpec> iterator = vspecs.iterator();
@@ -190,10 +190,10 @@ public class AddVSpecTargetTest {
 	}
 
 	@Test
-	public void testTargetVSpecMapModelConstince() {
+	public void testTargetVSpecMapModelConsistency() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
-		HashMap<Target, HashSet<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
+		Map<Target, Set<VSpec>> targetMap = transactionModel.getTargetVSpecMap();
 		assertTrue("target map is of the wrong size " + targetMap, targetMap.size() == 1);
 
 		TreeIterator<EObject> iterator = bvrModel.eAllContents();
@@ -229,7 +229,6 @@ public class AddVSpecTargetTest {
 
 		assertEquals("Incorrect target name", "Choice0", choice.getTarget().getName());
 		assertEquals("Incorrect target name", "Choice0", anotherChoice.getTarget().getName());
-
 	}
 
 	private class DefaultIDProvider implements IIDProvider {
