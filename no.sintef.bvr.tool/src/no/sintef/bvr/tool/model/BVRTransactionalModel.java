@@ -432,8 +432,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
 			VSpecFacade.eINSTANCE.updateName((VSpec) namedElement, name, getTargetVSpecMap());
-		}
-		if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
+		} else if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 		}
 	}

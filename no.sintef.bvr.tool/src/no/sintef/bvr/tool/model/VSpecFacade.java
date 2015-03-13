@@ -136,7 +136,11 @@ public class VSpecFacade {
 	}
 
 	public void updateName(VSpec vSpec, String name, Map<Target, Set<VSpec>> map) {
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(map, vSpec, name);
-		Context.eINSTANCE.getEditorCommands().setName(vSpec, name + postfix.getUnique());
+		String old_name = (vSpec.getTarget() != null) ? vSpec.getTarget().getName() : null;
+		if (!name.equals(old_name)) {
+			TargetFacade.eINSTANCE.testVSpecNewTargetName(map, vSpec, name);
+			String new_name = name + postfix.getUnique();
+			Context.eINSTANCE.getEditorCommands().setName(vSpec, new_name);
+		}
 	}
 }
