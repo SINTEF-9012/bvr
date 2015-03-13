@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.tool.common;
 
@@ -19,23 +19,23 @@ public class Constants {
 	public static final String GENERAL_CHOICE_MENU_ITEM = "Choice";
 	public static final String GENERAL_VCLASSIFIER_MENU_ITEM = "VClassifier";
 	public static final String GENERAL_PAST_AS_CHILD_MENU_ITEM = "Paste As Child";
-	
-	//relaization
+
+	// relaization
 	public static final int FRAG_SUBS_VARIATION_POINT_CLMN = 0;
 	public static final int FRAG_SUBS_VSPEC_CLMN = 1;
-	
+
 	public static final int FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT = 2;
 	public static final int FRAG_SUB_FS_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
 	public static final int SUB_FRAG_FS_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
 	public static final int BINDING_BOUNDARIES_CLICK_COUNT_TO_EDIT = FRAG_SUB_VSPEC_CLICK_COUNT_TO_EDIT;
-	
+
 	public static final int SUB_FRAG_KIND_CLMN = 0;
 	public static final int SUB_FRAG_FRAG_CLMN = 1;
-	
+
 	public static final int BINDING_TYPE_CLMN = 0;
 	public static final int BINDING_PROP_CLMN = 1;
 	public static final int BINDING_VALUE_CLMN = 2;
-	
+
 	public static final String REALIZATION_TAB_NAME = "Realization";
 	public static final String REALIZATION_VP_SUBTAB_NAME = "Variation points";
 	public static final String REALIZATION_MAIN_MENU_NAME = "Realization";
@@ -52,19 +52,19 @@ public class Constants {
 	public static final String REALIZATION_GENERATE_FROM_BINDING = "Generate FromBinding (from selection)";
 	public static final String REALIZATION_DELETE_BINDING = "Delete Binding";
 	public static final String REALIZATION_DELETE_ALL_BINDING = "Delete All Binding-s";
-	
+
 	public static final String TOOLS_MENU_NAME = "Help";
 	public static final String TOOLS_COPY_MODEL = "Copy model";
 	public static final String TOOLS_OPTIONS = "Options";
-	
+
 	public static final String FRAG_SUB_VP_CLMN_NAME = "Variation points";
 	public static final String FRAG_SUB_VSPEC_CLMN_NAME = "VSpec";
-	
+
 	public static final String SUB_FRAG_KIND_CLMN_NAME = "Kind";
 	public static final String SUB_FRAG_FRAG_CLMN_NAME = "Fragment";
 	public static final String SUB_FRAG_TYPE_PLC_NAME = "Placement";
 	public static final String SUB_FRAG_TYPE_RPLC_NAME = "Replacement";
-	
+
 	public static final String BINDING_TYPE_CLMN_NAME = "Type";
 	public static final String BINDING_PROPERTY_CLMN_NAME = "[Object].property";
 	public static final String BINDING_VALUE_CLMN_NAME = "Values";
@@ -72,36 +72,38 @@ public class Constants {
 	public static final String BINDING_TYPE_FROM_BINDING_NAME = "FromBinding";
 	public static final String BINDING_EDITOR_NAME = "Bindings";
 	public static final String NULL_NAME = "NULL";
-	
-	
+
 	public static final String RESOLUTION_EXECUTE_NAME = "Execute";
 	public static final String RESOLUTION_EXECUTE_ALL_NAME = "Execute All";
 	public static final String PLACEMENT_DEFAULT_NAME = "PlacementFragment";
 	public static final String REPLACEMENT_DEFAULT_NAME = "ReplacementFragment";
-	
-	
+
 	public static final int CODE_MODEL_SAVE_OK = 0;
 	public static final int CODE_MODEL_SAVE_INCORRECT_LOCATION = 1;
 	public static final int CODE_MODEL_SAVE_IOEXCEPTION = 2;
-	
+
 	public static final String SETTINGS_FROMPLACEMENT_PERMUTATION = "FromPlacement permutation";
 	public static final String SETTINGS_TOREPLACEMENT_PERMUTATION = "ToReplacement permutation";
 	public static final String SETTINGS_CONTAINMENT_SELECTION_MODE = "Containment selection mode";
 	public static final String SETTINGS_HIGHLIGHTING_MODE = "Highlightinh mode (on/off)";
-	
+
 	public static final String PLUGIN_ID = "no.sintef.bvr.tool";
-	
-	/*//placement colors
-	public static final Color RED = new Color(Display.getDefault(), 240, 70, 0); // placement elements
-	public static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0); //fromPlacement outside element
-	public static final Color VIOLET = new Color(Display.getDefault(), 126, 0, 123); //toPlacement outside element
-	
-	//replacement colors
-	public static final Color BLUE = new Color(Display.getDefault(), 50, 80, 250); //replacement elements
-	public static final Color GREEN = new Color(Display.getDefault(), 80, 210, 70); //fromReplacement outside element
-	public static final Color PINK = new Color(Display.getDefault(), 255, 0, 255); // toReplacement outside element
-	*/
-	
+
+	/*
+	 * //placement colors public static final Color RED = new
+	 * Color(Display.getDefault(), 240, 70, 0); // placement elements public
+	 * static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0);
+	 * //fromPlacement outside element public static final Color VIOLET = new
+	 * Color(Display.getDefault(), 126, 0, 123); //toPlacement outside element
+	 * 
+	 * //replacement colors public static final Color BLUE = new
+	 * Color(Display.getDefault(), 50, 80, 250); //replacement elements public
+	 * static final Color GREEN = new Color(Display.getDefault(), 80, 210, 70);
+	 * //fromReplacement outside element public static final Color PINK = new
+	 * Color(Display.getDefault(), 255, 0, 255); // toReplacement outside
+	 * element
+	 */
+
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_ITEM = "Resolve " + GENERAL_CHOICE_MENU_ITEM;
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_ITEM = "Resolve " + GENERAL_VCLASSIFIER_MENU_ITEM;
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM = "Resolve Varibale";
@@ -115,7 +117,7 @@ public class Constants {
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_CHOICE_OCC_ITEM = "Resolve ChoiceOccurence";
 	public static final String RESOLUTION_DROPDOWN_RESOLVE_VCLASS_OCC_ITEM = "Resolve VClassOccurence";
 	public static final String RESOLUTION_DROPDOWN_REMOVE_UNCONTAINED = "Remove uncontained resolutions";
-	
+
 	public static final String RESOLUTION_NEW = "New";
 	public static final String RESOLUTION_RENAME = "Rename";
 	public static final String RESOLUTION_REMOVE = "Remove";
@@ -136,7 +138,6 @@ public class Constants {
 	public static final String RESOLUTION_MODELS_SHOWHIDE_CNSTR = "Show/Hide Constraints";
 	public static final String RESOLUTION_MODELS_EXECUTE = "Execute";
 
-	
 	public static final String VSPEC_DROPDOWN_ADD = "Add";
 	public static final String VSPEC_DROPDOWN_ADD_CHOICE = "Choice";
 	public static final String VSPEC_DROPDOWN_ADD_VCLASSIFIER = "VClassifier";
@@ -158,5 +159,6 @@ public class Constants {
 	public static final String VSPEC_DROPDOWN_MINIMIZE = RESOLUTION_DROPDOWN_MININIZE_ITEM;
 	public static final String VSPEC_DROPDOWN_MAXIMIZE = RESOLUTION_DROPDOWN_MAXIMIZE_ITEM;
 	public static final String VSPEC_VTYPE_TITLE = "VType";
-	
+	public static final String NULL_TARGET = "[NULL]";
+
 }
