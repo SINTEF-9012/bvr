@@ -21,7 +21,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -181,12 +180,8 @@ public class AddVSpecTargetTest {
 		Set<VSpec> vspecs = targetMap.get(choice.getTarget());
 		assertTrue(vspecs != null && vspecs.size() == 2);
 
-		Iterator<VSpec> iterator = vspecs.iterator();
-		VSpec vSpec = iterator.next();
-		VSpec anotherVSpec = iterator.next();
-
-		assertEquals("Vspec references wrong target", choice, vSpec);
-		assertEquals("Vspec references wrong target", anotherChoice, anotherVSpec);
+		assertTrue("VSpec set does not contain expected vspec-> set:" + vspecs + " vspec:" + choice, vspecs.contains(choice));
+		assertTrue("VSpec set does not contain expected vspec-> set:" + vspecs + " vspec:" + anotherChoice, vspecs.contains(anotherChoice));
 	}
 
 	@Test
