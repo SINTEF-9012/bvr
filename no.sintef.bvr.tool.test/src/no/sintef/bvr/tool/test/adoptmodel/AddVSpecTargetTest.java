@@ -55,8 +55,7 @@ import bvr.Target;
 import bvr.VSpec;
 
 /**
- * @author anavas
- *
+ * @author anavas Run as JUnit Plug-in Test
  */
 public class AddVSpecTargetTest {
 
