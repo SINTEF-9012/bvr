@@ -30,10 +30,9 @@ public class PostfixGeneratorFacade {
 
 	private class DefaultPostfixGenerator implements IPostfixGenerator {
 
-		private Calendar calender = Calendar.getInstance();
-
 		@Override
 		public String getPostfix() {
+			Calendar calender = Calendar.getInstance();
 			Timestamp currentTimestamp = new Timestamp(calender.getTime().getTime());
 			return "@" + currentTimestamp.getTime();
 		}

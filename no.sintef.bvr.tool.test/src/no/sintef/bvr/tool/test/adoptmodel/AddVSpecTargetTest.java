@@ -271,4 +271,17 @@ public class AddVSpecTargetTest {
 		assertTrue("Inconsistence between what in the model and logic model method returns", targetMap.size() == targetList.size());
 	}
 
+	@Test
+	public void testPosfixUnique() {
+		PostfixGeneratorFacade.eINSTANCE.setPostfixGenerator(null);
+		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
+		Choice onechoice = transactionModel.addChoice(choice);
+		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
+		Choice secondchoice = transactionModel.addChoice(choice);
+
+		assertEquals("Targets should be the same", onechoice.getTarget(), secondchoice.getTarget());
+		assertNotEquals("Postfix is unique", onechoice.getName(), secondchoice.getName());
+
+	}
+
 }
