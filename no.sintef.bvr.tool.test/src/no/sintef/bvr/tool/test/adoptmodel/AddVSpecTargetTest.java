@@ -172,7 +172,7 @@ public class AddVSpecTargetTest {
 				list.add(eObject);
 		}
 
-		assertTrue("To many targets in the model", list.size() == 1);
+		assertEquals("To many targets in the model", 1, list.size());
 		assertEquals("Wrong target is referenced", choice.getTarget(), list.get(0));
 	}
 

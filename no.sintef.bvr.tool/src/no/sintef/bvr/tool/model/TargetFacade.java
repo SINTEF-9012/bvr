@@ -20,6 +20,7 @@ import java.util.Set;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.CompoundNode;
 import bvr.Target;
@@ -67,4 +68,33 @@ public class TargetFacade {
 		return target;
 	}
 
+	public Target testVSpecNewTargetName(BVRModel model, VSpec vSpec, String new_name) {
+		if (model.getVariabilityModel() == null)
+			throw new UnexpectedException("can not modify any targets since there is no variability model");
+
+		CompoundNode variabilityModel = model.getVariabilityModel();
+		Target target = vSpec.getTarget();
+		if (target == null) {
+			target = CommonUtility.getTragetByName(variabilityModel.getOwnedTargets(), new_name);
+			if (target == null) {
+				target = BvrFactory.eINSTANCE.createTarget();
+				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode(variabilityModel, target);
+			}
+		} else {
+			Target existingTopTarget = CommonUtility.getTragetByName(variabilityModel.getOwnedTargets(), new_name);
+			if (existingTopTarget == null) {
+				// move the referenced target to the top node
+				Context.eINSTANCE.getEditorCommands().removeTargetCompoundNode((CompoundNode) target.eContainer(), target);
+				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode(variabilityModel, target);
+			} else {
+				// if there is a proper target at the top, we simply remove the
+				// referenced one
+				Context.eINSTANCE.getEditorCommands().removeTargetCompoundNode((CompoundNode) target.eContainer(), target);
+				target = existingTopTarget;
+			}
+		}
+		Context.eINSTANCE.getEditorCommands().setVSpecTarget(vSpec, target);
+		Context.eINSTANCE.getEditorCommands().setName(target, new_name);
+		return target;
+	}
 }

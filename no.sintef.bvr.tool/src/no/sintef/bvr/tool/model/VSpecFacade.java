@@ -13,9 +13,6 @@
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
 
-import java.util.Map;
-import java.util.Set;
-
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.interfaces.model.IIDProvider;
@@ -26,7 +23,6 @@ import bvr.ChoiceOccurrence;
 import bvr.CompoundNode;
 import bvr.MultiplicityInterval;
 import bvr.NamedElement;
-import bvr.Target;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VSpec;
@@ -72,7 +68,7 @@ public class VSpecFacade {
 
 	}
 
-	public Choice appendChoice(NamedElement parent, Map<Target, Set<VSpec>> map) {
+	public Choice appendChoice(NamedElement parent, BVRModel bvr_model) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
 		String targetName = defaultChoiceName + choiceIDProvider;
@@ -89,11 +85,11 @@ public class VSpecFacade {
 		}
 
 		// each vspec has to have target
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(map, c, targetName);
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(bvr_model, c, targetName);
 		return c;
 	}
 
-	public VClassifier appendVClassifier(NamedElement parent, Map<Target, Set<VSpec>> map) {
+	public VClassifier appendVClassifier(NamedElement parent, BVRModel bvr_model) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		String targetName = defaultVClassifierName + classifierIDProvider;
 		c.setName(targetName + postfix.getUnique());
@@ -113,7 +109,7 @@ public class VSpecFacade {
 		}
 
 		// each vspec has to have target
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(map, c, targetName);
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(bvr_model, c, targetName);
 		return c;
 	}
 
@@ -135,10 +131,10 @@ public class VSpecFacade {
 		return occurence;
 	}
 
-	public void updateName(VSpec vSpec, String name, Map<Target, Set<VSpec>> map) {
+	public void updateName(VSpec vSpec, String name, BVRModel bvr_model) {
 		String old_name = (vSpec.getTarget() != null) ? vSpec.getTarget().getName() : null;
 		if (!name.equals(old_name)) {
-			TargetFacade.eINSTANCE.testVSpecNewTargetName(map, vSpec, name);
+			TargetFacade.eINSTANCE.testVSpecNewTargetName(bvr_model, vSpec, name);
 			String new_name = name + postfix.getUnique();
 			Context.eINSTANCE.getEditorCommands().setName(vSpec, new_name);
 		}

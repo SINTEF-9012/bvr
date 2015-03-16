@@ -348,7 +348,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public Choice addChoice(NamedElement parent) {
-		return VSpecFacade.eINSTANCE.appendChoice(parent, getTargetVSpecMap());
+		return VSpecFacade.eINSTANCE.appendChoice(parent, getBVRModel());
 	}
 
 	@Override
@@ -431,7 +431,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// update corresponding target accordingly if namedElement is
 		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
-			VSpecFacade.eINSTANCE.updateName((VSpec) namedElement, name, getTargetVSpecMap());
+			VSpecFacade.eINSTANCE.updateName((VSpec) namedElement, name, getBVRModel());
 		} else if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 		}
@@ -474,7 +474,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void addVClassifier(NamedElement parent) {
-		VSpecFacade.eINSTANCE.appendVClassifier(parent, getTargetVSpecMap());
+		VSpecFacade.eINSTANCE.appendVClassifier(parent, getBVRModel());
 	}
 
 	@Override
