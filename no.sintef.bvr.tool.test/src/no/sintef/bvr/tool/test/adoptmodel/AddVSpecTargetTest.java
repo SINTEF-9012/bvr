@@ -38,6 +38,7 @@ import no.sintef.bvr.tool.model.VSpecFacade;
 import no.sintef.bvr.tool.test.Activator;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -50,6 +51,7 @@ import org.junit.Test;
 
 import bvr.BVRModel;
 import bvr.Choice;
+import bvr.CompoundNode;
 import bvr.Target;
 import bvr.VSpec;
 
@@ -282,6 +284,19 @@ public class AddVSpecTargetTest {
 		assertEquals("Targets should be the same", onechoice.getTarget(), secondchoice.getTarget());
 		assertNotEquals("Postfix is unique", onechoice.getName(), secondchoice.getName());
 
+	}
+
+	@Test
+	public void testTargetsAtTheTop() {
+		CompoundNode variabilityModel = bvrModel.getVariabilityModel();
+		assertNotNull(variabilityModel);
+
+		EList<Target> targets = variabilityModel.getOwnedTargets();
+		assertTrue("Not all tragts are at the top of variability model", targets.size() == 2);
+
+		assertTrue("can not find expected target in the list: target " + choice.getTarget() + " list: " + targets, targets.contains(choice.getTarget()));
+		assertTrue("can not find expected target in the list: target " + anotherChoice.getTarget() + " list: " + targets,
+				targets.contains(anotherChoice.getTarget()));
 	}
 
 }
