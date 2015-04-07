@@ -261,7 +261,7 @@ public final class CommonUtility {
 
 	}
 
-	public static Target getTragetByName(List<Target> targets, String name) {
+	public static Target getTargetByName(List<Target> targets, String name) {
 		for (Target target : targets) {
 			if (target.getName().equals(name))
 				return target;

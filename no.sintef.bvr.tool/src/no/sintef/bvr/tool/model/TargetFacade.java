@@ -43,13 +43,13 @@ public class TargetFacade {
 	public Target testVSpecNewTargetName(Map<Target, Set<VSpec>> map, VSpec vSpec, String new_name) {
 		Target target = vSpec.getTarget();
 		if (target == null) {
-			target = CommonUtility.getTragetByName(new ArrayList<Target>(map.keySet()), new_name);
+			target = CommonUtility.getTargetByName(new ArrayList<Target>(map.keySet()), new_name);
 			if (target == null) {
 				target = BvrFactory.eINSTANCE.createTarget();
 				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode((CompoundNode) vSpec, target);
 			}
 		} else {
-			Target existingTarget = CommonUtility.getTragetByName(new ArrayList<Target>(map.keySet()), new_name);
+			Target existingTarget = CommonUtility.getTargetByName(new ArrayList<Target>(map.keySet()), new_name);
 			if (existingTarget != null) {
 				Set<VSpec> vSpecs = map.get(target);
 				if (vSpecs == null)
@@ -75,13 +75,13 @@ public class TargetFacade {
 		CompoundNode variabilityModel = model.getVariabilityModel();
 		Target target = vSpec.getTarget();
 		if (target == null) {
-			target = CommonUtility.getTragetByName(variabilityModel.getOwnedTargets(), new_name);
+			target = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), new_name);
 			if (target == null) {
 				target = BvrFactory.eINSTANCE.createTarget();
 				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode(variabilityModel, target);
 			}
 		} else {
-			Target existingTopTarget = CommonUtility.getTragetByName(variabilityModel.getOwnedTargets(), new_name);
+			Target existingTopTarget = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), new_name);
 			if (existingTopTarget == null) {
 				// move the referenced target to the top node
 				Context.eINSTANCE.getEditorCommands().removeTargetCompoundNode((CompoundNode) target.eContainer(), target);

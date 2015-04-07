@@ -283,6 +283,20 @@ public class AddVSpecTargetTest {
 
 		assertEquals("Targets should be the same", onechoice.getTarget(), secondchoice.getTarget());
 		assertNotEquals("Postfix is unique", onechoice.getName(), secondchoice.getName());
+	}
+
+	@Test
+	public void testChoiceUpdateAllNamedChanged() {
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+		assertEquals("Unexpected choice name", "Choice0@0", choice.getName());
+		assertEquals("Base choice name should be equal since they point to the same target", "Choice0@2", anotherChoice.getName());
+
+		// choices which are pointing to the same target should have the same
+		// base choice name
+		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
+		transactionModel.updateName(choice, "ChoiceChanged");
+		assertEquals("Base choice name does not correspond to changed name", "ChoiceChanged@3", choice.getName());
+		assertEquals("Base choice name does not correspond to changed name", "ChoiceChanged@4", anotherChoice.getName());
 
 	}
 
