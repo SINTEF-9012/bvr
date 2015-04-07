@@ -11,18 +11,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package no.sintef.bvr.tool.interfaces.model;
+package no.sintef.bvr.tool.interfaces.observer;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import bvr.BVRModel;
-import bvr.Target;
-import bvr.VSpec;
+public abstract class AbstractResourceSubject implements ResourceSubject {
 
-public interface IBVRToolModel {
+	protected List<ResourceObserver> observers = new ArrayList<ResourceObserver>();
 
-	public BVRModel getBVRModel();
+	@Override
+	public void attach(ResourceObserver observer) {
+		observers.add(observer);
+	}
 
-	public Map<Target, Set<VSpec>> getTargetVSpecMap();
+	@Override
+	public void detach(ResourceObserver observer) {
+		observers.remove(observer);
+
+	}
+
+	@Override
+	public void notifyObservers() {
+		for (ResourceObserver observer : observers)
+			observer.update(this);
+	}
+
 }

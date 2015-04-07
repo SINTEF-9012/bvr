@@ -131,10 +131,9 @@ public class VSpecFacade {
 		return occurence;
 	}
 
-	public void updateName(VSpec vSpec, String name, BVRModel bvr_model) {
-		String old_name = (vSpec.getTarget() != null) ? vSpec.getTarget().getName() : null;
-		if (!name.equals(old_name)) {
-			TargetFacade.eINSTANCE.testVSpecNewTargetName(bvr_model, vSpec, name);
+	public void updateName(VSpec vSpec, String name) {
+		String current_name = vSpec.getName();
+		if (!current_name.startsWith(name + postfix.getDelimiter())) {
 			String new_name = name + postfix.getUnique();
 			Context.eINSTANCE.getEditorCommands().setName(vSpec, new_name);
 		}

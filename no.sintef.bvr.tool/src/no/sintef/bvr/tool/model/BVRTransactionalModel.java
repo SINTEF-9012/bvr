@@ -41,7 +41,9 @@ import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterfac
 import no.sintef.bvr.tool.interfaces.model.IBVRTransactionalVTypeState;
 import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
+import no.sintef.bvr.tool.observer.ChangeVSpecName;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
+import no.sintef.bvr.tool.observer.TargetChangedSubject;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 
@@ -114,6 +116,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;
 	private List<ResourceObserver> observers;
+	private TargetChangedSubject targetChangedSubject;
 
 	public BVRTransactionalModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
@@ -130,6 +133,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	private void init() {
+		targetChangedSubject = new TargetChangedSubject();
+		targetChangedSubject.attach(new ChangeVSpecName(this));
+
 		observers = new ArrayList<ResourceObserver>();
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
@@ -431,7 +437,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// update corresponding target accordingly if namedElement is
 		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
-			VSpecFacade.eINSTANCE.updateName((VSpec) namedElement, name, getBVRModel());
+			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel(), (VSpec) namedElement, name);
+			targetChangedSubject.setTarget(target);
+			targetChangedSubject.notifyObservers();
 		} else if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 		}

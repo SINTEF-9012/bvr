@@ -116,10 +116,16 @@ public class AddVSpecTargetTest {
 		PostfixGeneratorFacade.eINSTANCE.setPostfixGenerator(new IPostfixGenerator() {
 
 			private int count = 0;
+			private final String DELIMITER = "@";
 
 			@Override
 			public String getPostfix() {
 				return "@" + count++;
+			}
+
+			@Override
+			public String getPostfixDelimiter() {
+				return DELIMITER;
 			}
 		});
 
@@ -295,8 +301,8 @@ public class AddVSpecTargetTest {
 		// base choice name
 		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
 		transactionModel.updateName(choice, "ChoiceChanged");
-		assertEquals("Base choice name does not correspond to changed name", "ChoiceChanged@3", choice.getName());
-		assertEquals("Base choice name does not correspond to changed name", "ChoiceChanged@4", anotherChoice.getName());
+		assertEquals("Base choice name does not correspond to changed name", "ChoiceChanged@3", anotherChoice.getName());
+		assertEquals("Base choice name does not correspond to changed name", "ChoiceChanged@4", choice.getName());
 
 	}
 

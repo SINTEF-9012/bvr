@@ -11,18 +11,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package no.sintef.bvr.tool.interfaces.model;
+package no.sintef.bvr.tool.observer;
 
-import java.util.Map;
-import java.util.Set;
-
-import bvr.BVRModel;
+import no.sintef.bvr.tool.interfaces.observer.AbstractResourceSubject;
 import bvr.Target;
-import bvr.VSpec;
 
-public interface IBVRToolModel {
+public class TargetChangedSubject extends AbstractResourceSubject {
 
-	public BVRModel getBVRModel();
+	private Target target;
 
-	public Map<Target, Set<VSpec>> getTargetVSpecMap();
+	public Target getTarget() {
+		return target;
+	}
+
+	public void setTarget(Target target) {
+		this.target = target;
+	}
+
 }

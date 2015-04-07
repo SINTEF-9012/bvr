@@ -28,11 +28,17 @@ public class PostfixGeneratorFacade {
 		return generator.getPostfix();
 	}
 
+	public String getDelimiter() {
+		return generator.getPostfixDelimiter();
+	}
+
 	public void setPostfixGenerator(IPostfixGenerator _generator) {
 		generator = (_generator == null) ? new DefaultPostfixGenerator() : _generator;
 	}
 
 	private class DefaultPostfixGenerator implements IPostfixGenerator {
+
+		private final String DELIMITER = "@";
 
 		@Override
 		public String getPostfix() {
@@ -44,7 +50,12 @@ public class PostfixGeneratorFacade {
 			// 999 vspecs per second, otherwise it will be a repetition
 			long postfix = (timestamp_sec * 1000) + (count & MASK_COUNT);
 			count++;
-			return "@" + postfix;
+			return DELIMITER + postfix;
+		}
+
+		@Override
+		public String getPostfixDelimiter() {
+			return DELIMITER;
 		}
 
 	}

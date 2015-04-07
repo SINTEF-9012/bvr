@@ -27,6 +27,7 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.ShowErrorException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.interfaces.model.IBVRToolModel;
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
@@ -74,7 +75,7 @@ import bvr.Variabletype;
 import bvr.VariationPoint;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-abstract public class BVRToolModel {
+abstract public class BVRToolModel implements IBVRToolModel {
 	protected SPLCABVRModel bvrm;
 	protected File f;
 	protected boolean platform = false;
@@ -446,7 +447,7 @@ abstract public class BVRToolModel {
 			 * for(CompoundResolution compoundResolution : compoundResolutions)
 			 * { if(compoundResolution instanceof PosResolution)
 			 * rootResolutions.add((PosResolution) compoundResolution); }
-			 * 
+			 *
 			 * if(rootResolutions.size() > 0){ CoveringArray startFrom =
 			 * getBVRM().getCoveringArray(); ca.startFrom(startFrom); }
 			 */
