@@ -1019,9 +1019,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		private VNODE vNode;
 		private ResourceSubject subject;
 
-		public VTypeState(VNODE vNode, VTYPE vType, ResourceSubject subject) {
-			this.vNode = vNode;
-			this.vType = vType;
+		public VTypeState(VNODE _vNode, VTYPE _vType, ResourceSubject _subject) {
+			this.vNode = _vNode;
+			this.vType = _vType;
+			this.subject = _subject;
 		}
 
 		@Override
