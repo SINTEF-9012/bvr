@@ -9,6 +9,10 @@ public class PostfixGeneratorFacade {
 
 	public static PostfixGeneratorFacade eINSTANCE = getInstance();
 	private IPostfixGenerator generator;
+	// bits are millesconds)
+	private final int MASK_COUNT = 0x3FF; // to mask count, so we use the last
+											// 10 bits
+	private int count = 0;
 
 	private PostfixGeneratorFacade() {
 		generator = new DefaultPostfixGenerator();
@@ -34,7 +38,13 @@ public class PostfixGeneratorFacade {
 		public String getPostfix() {
 			Calendar calender = Calendar.getInstance();
 			Timestamp currentTimestamp = new Timestamp(calender.getTime().getTime());
-			return "@" + currentTimestamp.getTime();
+			long temestamp_millsec = currentTimestamp.getTime();
+			long timestamp_sec = temestamp_millsec / 1000;
+			// hopefully we do not create vspec with velocity which is more than
+			// 999 vspecs per second, otherwise it will be a repetition
+			long postfix = (timestamp_sec * 1000) + (count & MASK_COUNT);
+			count++;
+			return "@" + postfix;
 		}
 
 	}
