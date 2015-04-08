@@ -358,7 +358,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// each vspec has to have target
 		Choice choice = VSpecFacade.eINSTANCE.appendChoice(parent);
 		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(choice.getName());
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel(), choice, targetName);
+		CompoundNode variabilityModel = (parent instanceof BVRModel) ? choice : getBVRModel().getVariabilityModel();
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(variabilityModel, choice, targetName);
 		return choice;
 	}
 
@@ -442,7 +443,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// update corresponding target accordingly if namedElement is
 		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
-			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel(), (VSpec) namedElement, name);
+			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), (VSpec) namedElement, name);
 			targetChangedSubject.setTarget(target);
 			targetChangedSubject.notifyObservers();
 		} else if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
@@ -489,7 +490,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public void addVClassifier(NamedElement parent) {
 		VClassifier vClassifier = VSpecFacade.eINSTANCE.appendVClassifier(parent);
 		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vClassifier.getName());
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel(), vClassifier, targetName);
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), vClassifier, targetName);
 	}
 
 	@Override

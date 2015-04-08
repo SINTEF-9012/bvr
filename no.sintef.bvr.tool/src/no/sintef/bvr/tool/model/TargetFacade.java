@@ -20,7 +20,6 @@ import java.util.Set;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UnexpectedException;
-import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.CompoundNode;
 import bvr.Target;
@@ -68,11 +67,7 @@ public class TargetFacade {
 		return target;
 	}
 
-	public Target testVSpecNewTargetName(BVRModel model, VSpec vSpec, String new_name) {
-		if (model.getVariabilityModel() == null)
-			throw new UnexpectedException("can not modify any targets since there is no variability model");
-
-		CompoundNode variabilityModel = model.getVariabilityModel();
+	public Target testVSpecNewTargetName(CompoundNode variabilityModel, VSpec vSpec, String new_name) {
 		Target target = vSpec.getTarget();
 		if (target == null) {
 			target = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), new_name);
