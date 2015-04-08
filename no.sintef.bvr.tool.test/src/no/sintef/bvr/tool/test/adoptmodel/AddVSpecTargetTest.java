@@ -155,6 +155,7 @@ public class AddVSpecTargetTest {
 		Context.eINSTANCE.getBvrViews().clear();
 		Context.eINSTANCE.disposeModel(transactionModel);
 		TransactionalEditingDomain.Registry.INSTANCE.remove("no.sintef.bvr.shared.EditingDomain");
+		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
 	}
 
 	@Test
@@ -165,6 +166,18 @@ public class AddVSpecTargetTest {
 	@Test
 	public void testUpdateNames() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+
+		assertTrue("choice name was not changed properly: anotherChoice " + anotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
+				anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
+		assertFalse("choices' name should be unique in vspec tree", anotherChoice.getName().equals(choice.getName()));
+		assertEquals("choices should reference the same target", choice.getTarget(), anotherChoice.getTarget());
+	}
+
+	@Test
+	public void testUpdateNamesBatch() {
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
 
 		assertTrue("choice name was not changed properly: anotherChoice " + anotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
 				anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
