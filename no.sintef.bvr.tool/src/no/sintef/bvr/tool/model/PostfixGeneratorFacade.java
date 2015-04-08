@@ -3,6 +3,7 @@ package no.sintef.bvr.tool.model;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
+import no.sintef.bvr.tool.exception.UnexpectedException;
 import no.sintef.bvr.tool.interfaces.model.IPostfixGenerator;
 
 public class PostfixGeneratorFacade {
@@ -32,6 +33,10 @@ public class PostfixGeneratorFacade {
 		return generator.getPostfixDelimiter();
 	}
 
+	public String removePostfix(String str) {
+		return generator.removePostfix(str);
+	}
+
 	public void setPostfixGenerator(IPostfixGenerator _generator) {
 		generator = (_generator == null) ? new DefaultPostfixGenerator() : _generator;
 	}
@@ -56,6 +61,18 @@ public class PostfixGeneratorFacade {
 		@Override
 		public String getPostfixDelimiter() {
 			return DELIMITER;
+		}
+
+		@Override
+		public String removePostfix(String str) {
+			if (!str.contains(DELIMITER))
+				throw new UnexpectedException("Invalid string, can not fine delimiter" + str);
+
+			String[] strings = str.split(DELIMITER);
+			if (strings.length != 2)
+				throw new UnexpectedException("Invalid string, delimiter does not split string in 2 parts (do not know how to remove delimeter): " + str);
+
+			return strings[0];
 		}
 
 	}

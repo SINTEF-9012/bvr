@@ -68,7 +68,7 @@ public class VSpecFacade {
 
 	}
 
-	public Choice appendChoice(NamedElement parent, BVRModel bvr_model) {
+	public Choice appendChoice(NamedElement parent) {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
 		String targetName = defaultChoiceName + choiceIDProvider;
@@ -83,13 +83,10 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
-
-		// each vspec has to have target
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(bvr_model, c, targetName);
 		return c;
 	}
 
-	public VClassifier appendVClassifier(NamedElement parent, BVRModel bvr_model) {
+	public VClassifier appendVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		String targetName = defaultVClassifierName + classifierIDProvider;
 		c.setName(targetName + postfix.getUnique());
@@ -107,9 +104,6 @@ public class VSpecFacade {
 		} else {
 			throw new UnexpectedException("parent is neither CompoundNode nor BVRModel, not supported");
 		}
-
-		// each vspec has to have target
-		TargetFacade.eINSTANCE.testVSpecNewTargetName(bvr_model, c, targetName);
 		return c;
 	}
 

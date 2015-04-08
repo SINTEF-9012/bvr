@@ -127,6 +127,12 @@ public class AddVSpecTargetTest {
 			public String getPostfixDelimiter() {
 				return DELIMITER;
 			}
+
+			@Override
+			public String removePostfix(String str) {
+				String[] strings = str.split(DELIMITER);
+				return strings[0];
+			}
 		});
 
 		transactionModel = Context.eINSTANCE.testBVRToolModel(resources[0].getiFile().getLocation().toFile());

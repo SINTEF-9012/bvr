@@ -355,7 +355,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public Choice addChoice(NamedElement parent) {
-		return VSpecFacade.eINSTANCE.appendChoice(parent, getBVRModel());
+		// each vspec has to have target
+		Choice choice = VSpecFacade.eINSTANCE.appendChoice(parent);
+		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(choice.getName());
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel(), choice, targetName);
+		return choice;
 	}
 
 	@Override
@@ -483,7 +487,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void addVClassifier(NamedElement parent) {
-		VSpecFacade.eINSTANCE.appendVClassifier(parent, getBVRModel());
+		VClassifier vClassifier = VSpecFacade.eINSTANCE.appendVClassifier(parent);
+		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vClassifier.getName());
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel(), vClassifier, targetName);
 	}
 
 	@Override
