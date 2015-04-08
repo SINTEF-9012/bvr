@@ -13,7 +13,6 @@
  ******************************************************************************/
 package no.sintef.bvr.tool.observer;
 
-import java.util.Map;
 import java.util.Set;
 
 import no.sintef.bvr.tool.interfaces.model.IBVRToolModel;
@@ -36,15 +35,20 @@ public class ChangeVSpecName implements ResourceObserver {
 		if (!(subject instanceof TargetChangedSubject))
 			return;
 
-		Target changedTarget = ((TargetChangedSubject) subject).getTarget();
+		TargetChangedSubject targetSubject = ((TargetChangedSubject) subject);
+
+		Target changedTarget = targetSubject.getTarget();
 		if (changedTarget == null)
 			return;
 
-		Map<Target, Set<VSpec>> targetMap = toolModel.getTargetVSpecMap();
-		Set<VSpec> vspecs = targetMap.get(changedTarget);
+		String new_name = targetSubject.getName();
+		if (new_name == null)
+			return;
+
+		Set<VSpec> vspecs = targetSubject.getVSpecs();
 		if (vspecs != null) {
 			for (VSpec vspec : vspecs)
-				VSpecFacade.eINSTANCE.updateName(vspec, changedTarget.getName());
+				VSpecFacade.eINSTANCE.updateName(vspec, new_name);
 		}
 	}
 

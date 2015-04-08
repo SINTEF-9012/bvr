@@ -13,12 +13,17 @@
  ******************************************************************************/
 package no.sintef.bvr.tool.observer;
 
+import java.util.Set;
+
 import no.sintef.bvr.tool.interfaces.observer.AbstractResourceSubject;
 import bvr.Target;
+import bvr.VSpec;
 
 public class TargetChangedSubject extends AbstractResourceSubject {
 
 	private Target target;
+	private String new_name;
+	private Set<VSpec> vspecs;
 
 	public Target getTarget() {
 		return target;
@@ -26,6 +31,22 @@ public class TargetChangedSubject extends AbstractResourceSubject {
 
 	public void setTarget(Target target) {
 		this.target = target;
+	}
+
+	public String getName() {
+		return new_name;
+	}
+
+	public void setName(String name) {
+		new_name = name;
+	}
+
+	public Set<VSpec> getVSpecs() {
+		return vspecs;
+	}
+
+	public void setVSpecs(Set<VSpec> vspecs) {
+		this.vspecs = vspecs;
 	}
 
 }

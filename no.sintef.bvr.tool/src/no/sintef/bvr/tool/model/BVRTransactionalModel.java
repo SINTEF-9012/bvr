@@ -443,8 +443,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		// update corresponding target accordingly if namedElement is
 		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
-			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), (VSpec) namedElement, name);
+			VSpec vSpec = (VSpec) namedElement;
+			Target old_target = vSpec.getTarget();
+			Set<VSpec> vspecs = getTargetVSpecMap().get(old_target);
+			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), vSpec, name);
 			targetChangedSubject.setTarget(target);
+			targetChangedSubject.setName(name);
+			targetChangedSubject.setVSpecs(vspecs);
 			targetChangedSubject.notifyObservers();
 		} else if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
