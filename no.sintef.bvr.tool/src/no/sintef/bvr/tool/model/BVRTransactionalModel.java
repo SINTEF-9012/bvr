@@ -229,7 +229,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 					ModelChecker.eINSTANCE.execute(getBVRModel());
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Model check failed", error);
-					status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Model check failed (see log for more details): " + error.getMessage(), error);
+					status = new Status(Status.WARNING, Constants.PLUGIN_ID, "Background model checking failed (see log for more details): "
+							+ error.getMessage(), error);
 				}
 				return status;
 			}

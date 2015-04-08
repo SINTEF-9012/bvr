@@ -41,11 +41,11 @@ public class ChangeVSpecName implements ResourceObserver {
 			return;
 
 		Map<Target, Set<VSpec>> targetMap = toolModel.getTargetVSpecMap();
-		Set<VSpec> vspecs = targetMap.get(((TargetChangedSubject) subject).getTarget());
-		for (VSpec vspec : vspecs) {
-			VSpecFacade.eINSTANCE.updateName(vspec, changedTarget.getName());
+		Set<VSpec> vspecs = targetMap.get(changedTarget);
+		if (vspecs != null) {
+			for (VSpec vspec : vspecs)
+				VSpecFacade.eINSTANCE.updateName(vspec, changedTarget.getName());
 		}
-
 	}
 
 }
