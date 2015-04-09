@@ -429,6 +429,65 @@ public class AddVSpecTargetTest {
 	}
 
 	@Test
+	public void testDoNotRemoveTargets() {
+		CompoundNode variabilityModel = transactionModel.getBVRModel().getVariabilityModel();
+		assertTrue(variabilityModel.getOwnedTargets().size() == 2);
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice thirdChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertTrue(variabilityModel.getOwnedTargets().size() == 3);
+		List<Target> bufferTargetList = new ArrayList<Target>(variabilityModel.getOwnedTargets());
+		bufferTargetList.remove(choice.getTarget());
+		bufferTargetList.remove(anotherChoice.getTarget());
+		bufferTargetList.remove(thirdChoice.getTarget());
+		assertTrue("There are targets which should be in the model " + bufferTargetList, bufferTargetList.size() == 0);
+
+		Target thirdTragetInitial = thirdChoice.getTarget();
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, anotherChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("Some targets have been removed " + variabilityModel.getOwnedTargets(), 3, variabilityModel.getOwnedTargets().size());
+		bufferTargetList = new ArrayList<Target>(variabilityModel.getOwnedTargets());
+		bufferTargetList.remove(choice.getTarget());
+		bufferTargetList.remove(anotherChoice.getTarget());
+		bufferTargetList.remove(thirdChoice.getTarget());
+		assertTrue("There should one target which is not used by any choice " + bufferTargetList, bufferTargetList.size() == 1);
+		assertEquals("Wrong target left", thirdTragetInitial, bufferTargetList.get(0));
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice fourthChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("Some targets have been removed " + variabilityModel.getOwnedTargets(), 4, variabilityModel.getOwnedTargets().size());
+		bufferTargetList = new ArrayList<Target>(variabilityModel.getOwnedTargets());
+		bufferTargetList.remove(choice.getTarget());
+		bufferTargetList.remove(anotherChoice.getTarget());
+		bufferTargetList.remove(thirdChoice.getTarget());
+		bufferTargetList.remove(fourthChoice.getTarget());
+		assertTrue("There should one target which is not used by any choice " + bufferTargetList, bufferTargetList.size() == 1);
+		assertEquals("Wrong target left", thirdTragetInitial, bufferTargetList.get(0));
+
+		Target fourthTragetInitial = fourthChoice.getTarget();
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(fourthChoice, anotherChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("Some targets have been removed " + variabilityModel.getOwnedTargets(), 4, variabilityModel.getOwnedTargets().size());
+		bufferTargetList = new ArrayList<Target>(variabilityModel.getOwnedTargets());
+		bufferTargetList.remove(choice.getTarget());
+		bufferTargetList.remove(anotherChoice.getTarget());
+		bufferTargetList.remove(thirdChoice.getTarget());
+		bufferTargetList.remove(fourthChoice.getTarget());
+		assertTrue("There should one target which is not used by any choice " + bufferTargetList, bufferTargetList.size() == 2);
+		bufferTargetList.remove(thirdTragetInitial);
+		bufferTargetList.remove(fourthTragetInitial);
+		assertTrue("Wrong target left " + bufferTargetList, bufferTargetList.size() == 0);
+	}
+
+	@Test
 	public void testRenameOneChoiceTheSameTarget() {
 		Target anotherTargetInitial = anotherChoice.getTarget();
 
