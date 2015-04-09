@@ -70,23 +70,29 @@ public class TargetFacade {
 	public Target testVSpecNewTargetName(CompoundNode variabilityModel, VSpec vSpec, String new_name) {
 		Target target = vSpec.getTarget();
 		if (target == null) {
+			// if target is not set just create one and add to the the top
 			target = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), new_name);
 			if (target == null) {
 				target = BvrFactory.eINSTANCE.createTarget();
 				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode(variabilityModel, target);
 			}
 		} else {
-			Target existingTopTarget = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), new_name);
-			if (existingTopTarget == null) {
-				// move the referenced target to the top node
+			// if a target was set from before, but it is not on the top, move
+			// this target on the top
+			// Otherwise if there is already one on the top with such name,
+			// simply use top target
+			Target top_target = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), target.getName());
+			if (top_target == null) {
 				Context.eINSTANCE.getEditorCommands().removeTargetCompoundNode((CompoundNode) target.eContainer(), target);
 				Context.eINSTANCE.getEditorCommands().addTargetToCompoundNode(variabilityModel, target);
 			} else {
-				// if there is a proper target at the top, we simply remove the
-				// referenced one
-				Context.eINSTANCE.getEditorCommands().removeTargetCompoundNode((CompoundNode) target.eContainer(), target);
-				target = existingTopTarget;
+				target = top_target;
 			}
+			// if there is already target with the new name on the top, use this
+			// one
+			Target new_target = CommonUtility.getTargetByName(variabilityModel.getOwnedTargets(), new_name);
+			if (new_target != null)
+				target = new_target;
 		}
 		Context.eINSTANCE.getEditorCommands().setVSpecTarget(vSpec, target);
 		Context.eINSTANCE.getEditorCommands().setName(target, new_name);
