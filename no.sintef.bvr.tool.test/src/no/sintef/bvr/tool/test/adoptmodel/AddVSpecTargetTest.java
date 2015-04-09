@@ -191,7 +191,7 @@ public class AddVSpecTargetTest {
 	}
 
 	@Test
-	public void testNumberTragtes() {
+	public void testNumberTargets() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
 		TreeIterator<EObject> iterator = bvrModel.eAllContents();
@@ -202,8 +202,9 @@ public class AddVSpecTargetTest {
 				list.add(eObject);
 		}
 
-		assertEquals("To many targets in the model", 1, list.size());
-		assertEquals("Wrong target is referenced", choice.getTarget(), list.get(0));
+		assertEquals("To many targets in the model or few", 2, list.size());
+		list.remove(choice.getTarget());
+		assertEquals("There should be one at least one not referenced target", 1, list.size());
 	}
 
 	@Test
@@ -249,8 +250,8 @@ public class AddVSpecTargetTest {
 				targetList.add(eObject);
 		}
 
-		assertTrue(targetMap.size() == targetList.size());
-		assertEquals("Target inconsistency", targetList.get(0), targetMap.keySet().iterator().next());
+		assertTrue(targetMap.size() + 1 == targetList.size());
+		assertTrue("Target inconsistency", targetList.contains(targetMap.keySet().iterator().next()));
 	}
 
 	@Test
