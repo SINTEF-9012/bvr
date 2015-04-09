@@ -21,11 +21,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import no.sintef.bvr.common.logging.ConsoleLogger;
+import no.sintef.bvr.engine.common.ResourceContentCopier;
+import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.tool.context.Context;
@@ -41,6 +44,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.PlatformUI;
 import org.junit.After;
@@ -80,7 +84,8 @@ public class AddVSpecTargetTest {
 
 	private static String[] testFolders = { "TestFolder", "TestFolder/vm" };
 
-	private static TestResourceHolder[] resources = { new TestResourceHolder("/resources/vm/addvspectarget.bvr", "TestFolder/vm/addvspectarget.bvr") };
+	private static TestResourceHolder[] resources = { new TestResourceHolder("/resources/vm/addvspectarget.bvr", "TestFolder/vm/addvspectarget.bvr"),
+			new TestResourceHolder("/resources/vm/addvspectarget_tosave.bvr", "TestFolder/vm/addvspectarget_tosave.bvr") };
 
 	/** The test project. */
 	private static TestProject testProject;
@@ -342,4 +347,84 @@ public class AddVSpecTargetTest {
 				targets.contains(anotherChoice.getTarget()));
 	}
 
+	@Test
+	public void testTargetsChangedProperlySaveTrivial() {
+		BVRModel model = transactionModel.getBVRModel();
+		Resource resource = model.eResource();
+
+		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
+		ResourceContentCopier copier = new ResourceContentCopier();
+		copier.copyResource(resource);
+		copyMap.put(resource, copier);
+
+		Context.eINSTANCE.writeProductsToFiles(copyMap, resources[0].getiFile().getLocation().toFile());
+	}
+
+	@Test
+	public void testTargetsChangedProperlySaveBug() {
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice thirdChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, anotherChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("Choices do not point to the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
+		assertTrue("Base name for choices referencing the same target are wrong : anotherChoice-->" + anotherChoice + ", thirdChoice-->" + thirdChoice
+				+ " expected--> " + anotherChoice.getTarget().getName(), anotherChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@")
+				&& thirdChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@"));
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice fourthChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, fourthChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		BVRModel model = transactionModel.getBVRModel();
+		Resource resource = model.eResource();
+
+		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
+		ResourceContentCopier copier = new ResourceContentCopier();
+		copier.copyResource(resource);
+		copyMap.put(resource, copier);
+
+		try {
+			Context.eINSTANCE.writeProductsToFiles(copyMap, resources[0].getiFile().getLocation().toFile());
+		} catch (UnsupportedOperationException e) {
+			assertTrue("Could not save vm due to " + e.getMessage(), false);
+		}
+	}
+
+	@Test
+	public void testRenameChoiceBug() {
+		Target anotherTargetInitial = anotherChoice.getTarget();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice thirdChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, anotherChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("Choices do not point to the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
+		assertTrue("Base name for choices referencing the same target are wrong : anotherChoice-->" + anotherChoice + ", thirdChoice-->" + thirdChoice
+				+ " expected--> " + anotherChoice.getTarget().getName(), anotherChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@")
+				&& thirdChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@"));
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice fourthChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, fourthChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("thirdChoice and fourthChoice should reference the same target", thirdChoice.getTarget(), fourthChoice.getTarget());
+		assertNotEquals("anotherChoice and thirdChoice should NOT reference the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
+		assertEquals("anotherChoice should NOT change its target", anotherTargetInitial, anotherChoice.getTarget());
+	}
 }
