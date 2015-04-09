@@ -399,7 +399,7 @@ public class AddVSpecTargetTest {
 	}
 
 	@Test
-	public void testRenameChoiceBug() {
+	public void testRenameOneChoiceAnotherExistingTarget() {
 		Target anotherTargetInitial = anotherChoice.getTarget();
 
 		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
@@ -426,5 +426,48 @@ public class AddVSpecTargetTest {
 		assertEquals("thirdChoice and fourthChoice should reference the same target", thirdChoice.getTarget(), fourthChoice.getTarget());
 		assertNotEquals("anotherChoice and thirdChoice should NOT reference the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
 		assertEquals("anotherChoice should NOT change its target", anotherTargetInitial, anotherChoice.getTarget());
+	}
+
+	@Test
+	public void testRenameOneChoiceTheSameTarget() {
+		Target anotherTargetInitial = anotherChoice.getTarget();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice thirdChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, anotherChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice fourthChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(thirdChoice, fourthChoice.getTarget().getName());
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		Target fourthTargetInitial = fourthChoice.getTarget();
+
+		assertEquals("thirdChoice and fourthChoice should reference the same target", thirdChoice.getTarget(), fourthChoice.getTarget());
+		assertEquals("fourthChoice should still referennce initial Target", fourthTargetInitial, fourthChoice.getTarget());
+		assertNotEquals("anotherChoice and thirdChoice should NOT reference the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
+
+		assertEquals("anotherChoice should NOT change its target", anotherTargetInitial, anotherChoice.getTarget());
+
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		transactionModel.updateName(fourthChoice, "ChangeNameForThirdFourth");
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+
+		assertEquals("anotherChoice should NOT change its target", anotherTargetInitial, anotherChoice.getTarget());
+		assertEquals("thirdChoice should NOT change its target", fourthTargetInitial, thirdChoice.getTarget());
+		assertEquals("fourthChoice should NOT change its target", fourthTargetInitial, fourthChoice.getTarget());
+		assertEquals("thirdChoice and fourthChoice should STILL reference the same target", thirdChoice.getTarget(), fourthChoice.getTarget());
+
+		assertTrue("Base name for choices referencing the same target are wrong : thirdChoice-->" + thirdChoice + ", fourthChoice-->" + fourthChoice
+				+ " expected--> " + fourthTargetInitial.getName(), thirdChoice.getName().startsWith(fourthTargetInitial.getName() + "@")
+				&& fourthChoice.getName().startsWith(fourthTargetInitial.getName() + "@"));
+
 	}
 }
