@@ -531,14 +531,18 @@ public class AddVSpecTargetTest {
 
 	}
 
-	private Choice testStandard_TargetExistsAndIsReferencedByAnotherChoice(int target_size, String expected_base_name) {
+	private Choice testStandard_createThirdChoiceBatch() {
+		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
+		Choice thirdChoice = transactionModel.addChoice(choice);
+		Context.eINSTANCE.getEditorCommands().executeBatch();
+		return thirdChoice;
+	}
+
+	private void testStandard_TargetExistsAndIsReferencedByAnotherChoice(Choice thirdChoice, int target_size, String expected_base_name) {
 		// String anotherChoiceBaseName = anotherChoice.getTarget().getName();
 		Target anotherTarget = anotherChoice.getTarget();
 		CompoundNode variabilityModel = transactionModel.getBVRModel().getVariabilityModel();
 
-		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
-		Choice thirdChoice = transactionModel.addChoice(choice);
-		Context.eINSTANCE.getEditorCommands().executeBatch();
 		Target thirdTraget = thirdChoice.getTarget();
 
 		assertFalse(anotherChoice.getTarget().equals(thirdChoice.getTarget()));
@@ -558,7 +562,6 @@ public class AddVSpecTargetTest {
 				thirdChoice.getName().startsWith(expected_base_name + "@"));
 
 		assertTrue("Not referenced target was removed... " + variabilityModel.getOwnedTargets(), variabilityModel.getOwnedTargets().contains(thirdTraget));
-		return thirdChoice;
 	}
 
 	@Test
@@ -568,7 +571,8 @@ public class AddVSpecTargetTest {
 		// 1) that they reference the same targets,
 		// 2) their base names are the same
 		// 3) the target of the choice1, is not removed
-		testStandard_TargetExistsAndIsReferencedByAnotherChoice(3, anotherChoice.getTarget().getName());
+		Choice thirdChoice = testStandard_createThirdChoiceBatch();
+		testStandard_TargetExistsAndIsReferencedByAnotherChoice(thirdChoice, 3, anotherChoice.getTarget().getName());
 	}
 
 	@Test
@@ -579,7 +583,9 @@ public class AddVSpecTargetTest {
 		// 2) their base names are the same
 		// 3) the target of the choice1, is not removed
 
-		Choice thirdChoice = testStandard_TargetExistsAndIsReferencedByAnotherChoice(3, anotherChoice.getTarget().getName());
+		Choice thirdChoice = testStandard_createThirdChoiceBatch();
+		Target thirdTargetInitial = thirdChoice.getTarget();
+		testStandard_TargetExistsAndIsReferencedByAnotherChoice(thirdChoice, 3, anotherChoice.getTarget().getName());
 
 		// Rename a choice which was name choice1 in the first place, so it
 		// references the target which was in the model
@@ -588,23 +594,21 @@ public class AddVSpecTargetTest {
 		// 6) choice0 should still reference its original target not the target
 		// of choice1
 
-		Target thirdTraget = thirdChoice.getTarget();
 		Target anotherTarget = anotherChoice.getTarget();
 		CompoundNode variabilityModel = transactionModel.getBVRModel().getVariabilityModel();
 		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
-		transactionModel.updateName(thirdChoice, thirdTraget.getName());
+		transactionModel.updateName(thirdChoice, thirdTargetInitial.getName());
 		Context.eINSTANCE.getEditorCommands().executeBatch();
 
 		assertTrue("Target was modified...", variabilityModel.getOwnedTargets().size() == 3);
 		assertFalse("Choices should reference different targets", anotherChoice.getTarget().equals(thirdChoice.getTarget()));
 		assertEquals("Target has been changed", anotherTarget, anotherChoice.getTarget());
-		assertEquals("Target has been changed", thirdTraget, thirdChoice.getTarget());
+		assertEquals("Choice do not reference initial target", thirdTargetInitial, thirdChoice.getTarget());
 
 		assertTrue("Base name is incorrect expected-->" + anotherTarget.getName() + " actual-->" + anotherChoice.getName(),
 				anotherChoice.getName().startsWith(anotherTarget.getName() + "@"));
-		assertTrue("Base name is incorrect expected-->" + thirdTraget.getName() + " actual-->" + thirdChoice.getName(),
-				thirdChoice.getName().startsWith(thirdTraget.getName() + "@"));
-
+		assertTrue("Base name is incorrect expected-->" + thirdTargetInitial.getName() + " actual-->" + thirdChoice.getName(), thirdChoice.getName()
+				.startsWith(thirdTargetInitial.getName() + "@"));
 	}
 
 	@Test
@@ -617,7 +621,8 @@ public class AddVSpecTargetTest {
 		// Rename one of the choices which references the same target to
 		// something else which is not in the model
 
-		Choice thirdChoice = testStandard_TargetExistsAndIsReferencedByAnotherChoice(3, anotherChoice.getTarget().getName());
+		Choice thirdChoice = testStandard_createThirdChoiceBatch();
+		testStandard_TargetExistsAndIsReferencedByAnotherChoice(thirdChoice, 3, anotherChoice.getTarget().getName());
 
 		// 4) check that amount of target is the same, target was not removed
 		// but renamed, choice base names changed and the same
