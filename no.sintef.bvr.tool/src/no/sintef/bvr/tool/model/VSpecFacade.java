@@ -137,4 +137,11 @@ public class VSpecFacade {
 				Context.eINSTANCE.getEditorCommands().setName(vSpec, name);
 		}
 	}
+
+	public String getBaseName(VSpec vSpec) {
+		if (vSpec instanceof Choice || vSpec instanceof VClassifier) {
+			return vSpec.getTarget().getName();
+		}
+		return vSpec.getName();
+	}
 }
