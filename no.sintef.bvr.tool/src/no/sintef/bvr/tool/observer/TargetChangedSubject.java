@@ -21,23 +21,24 @@ import bvr.VSpec;
 
 public class TargetChangedSubject extends AbstractResourceSubject {
 
-	private Target target;
+	private Target new_target;
+	private Target stale_target;
 	private String new_name;
 	private Set<VSpec> vspecs;
 
-	public Target getTarget() {
-		return target;
+	public Target getCurrentTarget() {
+		return new_target;
 	}
 
-	public void setTarget(Target target) {
-		this.target = target;
+	public void setCurrentTarget(Target target) {
+		new_target = target;
 	}
 
-	public String getName() {
+	public String getCurrentName() {
 		return new_name;
 	}
 
-	public void setName(String name) {
+	public void setCurrentName(String name) {
 		new_name = name;
 	}
 
@@ -47,6 +48,14 @@ public class TargetChangedSubject extends AbstractResourceSubject {
 
 	public void setVSpecs(Set<VSpec> vspecs) {
 		this.vspecs = vspecs;
+	}
+
+	public Target getStaleTarget() {
+		return stale_target;
+	}
+
+	public void setStaleTarget(Target stale_target) {
+		this.stale_target = stale_target;
 	}
 
 }

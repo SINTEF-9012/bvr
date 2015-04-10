@@ -37,11 +37,11 @@ public class ChangeVSpecName implements ResourceObserver {
 
 		TargetChangedSubject targetSubject = ((TargetChangedSubject) subject);
 
-		Target changedTarget = targetSubject.getTarget();
+		Target changedTarget = targetSubject.getCurrentTarget();
 		if (changedTarget == null)
 			return;
 
-		String new_name = targetSubject.getName();
+		String new_name = targetSubject.getCurrentName();
 		if (new_name == null)
 			return;
 
