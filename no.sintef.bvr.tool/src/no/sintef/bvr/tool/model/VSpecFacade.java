@@ -127,9 +127,14 @@ public class VSpecFacade {
 
 	public void updateName(VSpec vSpec, String name) {
 		String current_name = vSpec.getName();
-		if (!current_name.startsWith(name + postfix.getDelimiter())) {
-			String new_name = name + postfix.getUnique();
-			Context.eINSTANCE.getEditorCommands().setName(vSpec, new_name);
+		if (vSpec instanceof Choice || vSpec instanceof VClassifier) {
+			if (!current_name.startsWith(name + postfix.getDelimiter())) {
+				String new_name = name + postfix.getUnique();
+				Context.eINSTANCE.getEditorCommands().setName(vSpec, new_name);
+			}
+		} else {
+			if (!current_name.startsWith(name))
+				Context.eINSTANCE.getEditorCommands().setName(vSpec, name);
 		}
 	}
 }
