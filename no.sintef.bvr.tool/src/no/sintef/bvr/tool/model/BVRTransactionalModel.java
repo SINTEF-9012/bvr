@@ -446,6 +446,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			VSpec vSpec = (VSpec) namedElement;
 			Target old_target = vSpec.getTarget();
 			Set<VSpec> vspecs = getTargetVSpecMap().get(old_target);
+			VSpecFacade.eINSTANCE.updateName(vSpec, name);
 			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), vSpec, name);
 			targetChangedSubject.setStaleTarget(old_target);
 			targetChangedSubject.setCurrentTarget(target);

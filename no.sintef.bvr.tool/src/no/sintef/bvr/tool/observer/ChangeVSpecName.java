@@ -47,8 +47,10 @@ public class ChangeVSpecName implements ResourceObserver {
 
 		Set<VSpec> vspecs = targetSubject.getVSpecs();
 		if (vspecs != null) {
-			for (VSpec vspec : vspecs)
-				VSpecFacade.eINSTANCE.updateName(vspec, new_name);
+			if (changedTarget.equals(targetSubject.getStaleTarget())) {
+				for (VSpec vspec : vspecs)
+					VSpecFacade.eINSTANCE.updateName(vspec, new_name);
+			}
 		}
 	}
 
