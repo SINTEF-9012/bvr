@@ -558,7 +558,7 @@ public class AddVSpecTargetTest {
 
 		assertTrue("Base name is incorrect expected-->" + expected_base_name + " actual-->" + anotherChoice.getName(),
 				anotherChoice.getName().startsWith(expected_base_name + "@"));
-		assertTrue("Base name is incorrect expected-->" + expected_base_name + " actual-->" + anotherChoice.getName(),
+		assertTrue("Base name is incorrect expected-->" + expected_base_name + " actual-->" + thirdChoice.getName(),
 				thirdChoice.getName().startsWith(expected_base_name + "@"));
 
 		assertTrue("Not referenced target was removed... " + variabilityModel.getOwnedTargets(), variabilityModel.getOwnedTargets().contains(thirdTraget));
