@@ -1,23 +1,17 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
-
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CharStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.TokenStream;
-import org.antlr.v4.runtime.tree.RuleNode;
 
 import no.sintef.bvr.constraints.bcl.BCLBuilder;
 import no.sintef.bvr.constraints.bcl.BCLLexer;
@@ -26,6 +20,13 @@ import no.sintef.bvr.constraints.strategy.BVRToolBCLBuilderStrategy;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.UserInputError;
 import no.sintef.ict.splcatool.BCLPrettyPrinter;
+
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.RuleNode;
+
 import bvr.BCLConstraint;
 import bvr.BCLExpression;
 import bvr.BVRModel;
@@ -33,47 +34,47 @@ import bvr.BvrFactory;
 import bvr.TargetRef;
 import bvr.VNode;
 
-
 public class ConstraintFacade {
 	private static int constraintCount = 0;
 	private static final String defaultName = "Constraint";
 	private static final String defaultText = "[null]";
-	
+
 	public static ConstraintFacade eINSTANCE = getInstance();
-	
+
 	private static ConstraintFacade getInstance() {
-		if(eINSTANCE == null)
+		if (eINSTANCE == null)
 			eINSTANCE = new ConstraintFacade();
 		return eINSTANCE;
 	}
 
-	public BCLConstraint createBCLConstraint(VNode node){
+	public BCLConstraint createBCLConstraint(VNode node) {
 		BCLConstraint constraint = BvrFactory.eINSTANCE.createBCLConstraint();
-		constraint.setName(defaultName+constraintCount);
+		constraint.setName(defaultName + constraintCount);
 		constraintCount++;
-		
+
 		TargetRef ref = BvrFactory.eINSTANCE.createTargetRef();
-		ref.setTarget(null);		
+		ref.setTarget(null);
 		constraint.getExpression().add(ref);
-		
+
 		Context.eINSTANCE.getEditorCommands().addBCLConstraintVNode(node, constraint);
 		return constraint;
 	}
-	
-	public void updateBCLConstraint(BVRModel model, BCLConstraint constraint, String rawConstraint){
-		if(rawConstraint.equals(defaultText) || rawConstraint.equals(""))
+
+	public void updateBCLConstraint(BVRModel model, BCLConstraint constraint, String rawConstraint) {
+		if (rawConstraint.equals(defaultText) || rawConstraint.equals(""))
 			return;
-		
+
 		try {
 			RuleNode root = parseBCL(rawConstraint);
 			BCLExpression expression = new BCLBuilder(new BVRToolBCLBuilderStrategy()).recurse(root, 0, model, false);
 			Context.eINSTANCE.getEditorCommands().clearBCLConstraintExpressions(constraint);
 			Context.eINSTANCE.getEditorCommands().addBCLExpressionConstraint(constraint, expression);
 		} catch (UnsupportedOperationException e) {
+			Context.eINSTANCE.logger.error("Error caused by", e);
 			throw new UserInputError("Failed to parse the constraint: '" + rawConstraint + "' reason: " + e.getMessage());
 		}
 	}
-	
+
 	public BCLExpression testBCLConstraintString(BVRModel model, String constraint) {
 		BCLExpression expression;
 		try {
@@ -84,8 +85,8 @@ public class ConstraintFacade {
 		}
 		return expression;
 	};
-	
-	private RuleNode parseBCL(String s){
+
+	private RuleNode parseBCL(String s) {
 		CharStream input = new ANTLRInputStream(s);
 		BCLLexer lexer = new BCLLexer(input);
 		TokenStream tokens = new CommonTokenStream(lexer);
@@ -96,7 +97,7 @@ public class ConstraintFacade {
 
 	public String getBCLConstraintString(BVRModel rootBVRModel, BCLConstraint constraint) {
 		String text = defaultText;
-		if(constraint != null && constraint.getExpression().size() != 0)
+		if (constraint != null && constraint.getExpression().size() != 0)
 			text = new BCLPrettyPrinter().prettyPrint(constraint.getExpression().get(0), rootBVRModel);
 		return text;
 	}
@@ -104,16 +105,16 @@ public class ConstraintFacade {
 	public String formatConstraintString(String s, int length) {
 		String n = "";
 
-		for(;;){
-			if(s.length() < length){
+		for (;;) {
+			if (s.length() < length) {
 				n += s;
 				break;
 			}
 			int ws = s.substring(length).indexOf(" ");
-			if(ws == -1){
+			if (ws == -1) {
 				n += s;
 				break;
-			}else{
+			} else {
 				ws += length;
 				n += s.substring(0, ws).trim() + "\n";
 				s = s.substring(ws).trim();
