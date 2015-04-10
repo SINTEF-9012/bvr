@@ -574,7 +574,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public String getBCLConstraintString(BCLConstraint constraint) {
-		String str = ConstraintFacade.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+		String str = ConstraintFacade.eINSTANCE.getBCLConstraintString(constraint);
 		return ConstraintFacade.eINSTANCE.formatConstraintString(str, 15);
 	}
 

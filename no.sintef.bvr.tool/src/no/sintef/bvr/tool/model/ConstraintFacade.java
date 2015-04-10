@@ -95,10 +95,10 @@ public class ConstraintFacade {
 		return root;
 	}
 
-	public String getBCLConstraintString(BVRModel rootBVRModel, BCLConstraint constraint) {
+	public String getBCLConstraintString(BCLConstraint constraint) {
 		String text = defaultText;
 		if (constraint != null && constraint.getExpression().size() != 0)
-			text = new BCLPrettyPrinter().prettyPrint(constraint.getExpression().get(0), rootBVRModel);
+			text = new BCLPrettyPrinter().prettyPrint(constraint.getExpression().get(0));
 		return text;
 	}
 
