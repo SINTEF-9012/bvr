@@ -1,6 +1,7 @@
 package no.sintef.bvr.tool.test.splca;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -33,6 +34,8 @@ import org.junit.Test;
 
 import bvr.BVRModel;
 import bvr.CompoundResolution;
+import bvr.NegResolution;
+import bvr.VSpecResolution;
 
 public class TestCoveringArrayTrivialTranformation {
 
@@ -93,7 +96,7 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
-	public void testTrivialProductGenration() throws BVRException, CSVException {
+	public void testTrivialProductGeneration() throws BVRException, CSVException {
 		transactionModel.generateCoveringArray(2);
 
 		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
@@ -105,6 +108,68 @@ public class TestCoveringArrayTrivialTranformation {
 		assertTrue("Actual product list is incorrect: expected -->" + expectedProducts + " actual -->" + producedProducts,
 				TestUtils.compareProductResalutionsEqual(expectedProducts, producedProducts));
 
+	}
+
+	@Test
+	public void testTrivialAllProductGeneration() throws BVRException, CSVException {
+		transactionModel.generatAllProducts();
+
+		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
+		assertEquals("Wrong number of resolution is generated", bvrModelTarget.getResolutionModels().size(), resolutions.size());
+
+		List<Map<String, Boolean>> producedProducts = transactionModel.getSPLCABVRModel().extractResolvedVSpecProducts();
+		List<Map<String, Boolean>> expectedProducts = simpleToolModelTarget.getSPLCABVRModel().extractResolvedVSpecProducts();
+
+		assertTrue("Actual product list is incorrect: expected -->" + expectedProducts + " actual -->" + producedProducts,
+				TestUtils.compareProductResalutionsEqual(expectedProducts, producedProducts));
+
+	}
+
+	@Test
+	public void testTrivialAllProductValidation() throws BVRException, CSVException {
+		transactionModel.generatAllProducts();
+
+		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
+		assertEquals("Wrong number of resolution is generated", bvrModelTarget.getResolutionModels().size(), resolutions.size());
+
+		boolean result = transactionModel.performSATValidation();
+		assertTrue("product is actuall valid, however false is reported", result);
+	}
+
+	@Test
+	public void testTrivialSingleProductValidation() throws BVRException, CSVException {
+		transactionModel.generatAllProducts();
+
+		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
+		assertEquals("Wrong number of resolution is generated", bvrModelTarget.getResolutionModels().size(), resolutions.size());
+
+		boolean result = transactionModel.performSATValidation(resolutions.get(0));
+		assertTrue("product is actuall valid, however invalid is reported", result);
+	}
+
+	@Test
+	public void testTrivialSingleChoiceValidation() throws BVRException, CSVException {
+		transactionModel.generatAllProducts();
+
+		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
+		assertEquals("Wrong number of resolution is generated", bvrModelTarget.getResolutionModels().size(), resolutions.size());
+
+		VSpecResolution resolution = findNegativelyResolvedChoice(resolutions);
+		assertNotNull(resolution);
+
+		boolean result = transactionModel.performSATValidation(resolution);
+		assertFalse("NegResolution is actuall invalid, however valid is reported", result);
+	}
+
+	private VSpecResolution findNegativelyResolvedChoice(EList<CompoundResolution> resolutions) {
+		for (CompoundResolution resolution : resolutions) {
+			EList<VSpecResolution> res = resolution.getMembers();
+			for (VSpecResolution vspecres : res) {
+				if (vspecres instanceof NegResolution)
+					return vspecres;
+			}
+		}
+		return null;
 	}
 
 	private BVRToolModel createBVRToolModel(String filename) {
