@@ -34,15 +34,15 @@ import org.junit.Test;
 
 import bvr.BVRModel;
 import bvr.CompoundResolution;
-import bvr.NegResolution;
-import bvr.VSpecResolution;
 
-public class TestCoveringArrayTrivialTranformation {
+public class TestCoveringArrayConstTranformation {
 
 	private static String[] testFolders = { "TestFolder" };
 
-	private static TestResourceHolder[] resources = { new TestResourceHolder("/resources/vm/gen_product_src.bvr", "TestFolder/gen_product_src.bvr"),
-			new TestResourceHolder("/resources/vm/gen_product_trg.bvr", "TestFolder/gen_product_trg.bvr") };
+	private static TestResourceHolder[] resources = {
+			new TestResourceHolder("/resources/vm/gen_product_const_src.bvr", "TestFolder/gen_product_const_src.bvr"),
+			new TestResourceHolder("/resources/vm/gen_product_const_trg.bvr", "TestFolder/gen_product_const_trg.bvr"),
+			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg.bvr", "TestFolder/gen_product_const_invalid_trg.bvr") };
 
 	/** The test project. */
 	private static TestProject testProject;
@@ -71,6 +71,8 @@ public class TestCoveringArrayTrivialTranformation {
 
 	private BVRModel bvrModelTarget;
 
+	private BVRToolModel transactionModelInvalidModel;
+
 	@Before
 	public void setUp() throws Exception {
 		transactionModel = Context.eINSTANCE.testBVRToolModel(resources[0].getiFile().getLocation().toFile());
@@ -84,6 +86,9 @@ public class TestCoveringArrayTrivialTranformation {
 
 		bvrModelTarget = simpleToolModelTarget.getBVRModel();
 		assertNotNull(bvrModelTarget);
+
+		transactionModelInvalidModel = Context.eINSTANCE.testBVRToolModel(resources[2].getiFile().getLocation().toFile());
+		assertNotNull(transactionModelInvalidModel);
 	}
 
 	@After
@@ -96,7 +101,7 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
-	public void testTrivialProductGeneration() throws BVRException, CSVException {
+	public void testProductGeneration() throws BVRException, CSVException {
 		transactionModel.generateCoveringArray(2);
 
 		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
@@ -111,7 +116,7 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
-	public void testTrivialAllProductGeneration() throws BVRException, CSVException {
+	public void testAllProductGeneration() throws BVRException, CSVException {
 		transactionModel.generatAllProducts();
 
 		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
@@ -126,7 +131,7 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
-	public void testTrivialAllProductValidation() throws BVRException, CSVException {
+	public void testAllProductValidation() throws BVRException, CSVException {
 		transactionModel.generatAllProducts();
 
 		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
@@ -137,7 +142,7 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
-	public void testTrivialSingleProductValidation() throws BVRException, CSVException {
+	public void testSingleProductValidation() throws BVRException, CSVException {
 		transactionModel.generatAllProducts();
 
 		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
@@ -148,42 +153,9 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
-	public void testTrivialSingleChoiceValidation() throws BVRException, CSVException {
-		transactionModel.generatAllProducts();
-
-		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
-		assertEquals("Wrong number of resolution is generated", bvrModelTarget.getResolutionModels().size(), resolutions.size());
-
-		VSpecResolution resolution = findNegativelyResolvedChoice(resolutions);
-		assertNotNull(resolution);
-
-		boolean result = transactionModel.performSATValidation(resolution);
+	public void testInvalidProduct() {
+		boolean result = transactionModelInvalidModel.performSATValidation();
 		assertFalse("NegResolution is actuall invalid, however valid is reported", result);
-	}
-
-	@Test
-	public void testTrivialSingleChoiceValidation1() throws BVRException, CSVException {
-		transactionModel.generatAllProducts();
-
-		EList<CompoundResolution> resolutions = bvrModel.getResolutionModels();
-		assertEquals("Wrong number of resolution is generated", bvrModelTarget.getResolutionModels().size(), resolutions.size());
-
-		VSpecResolution resolution = findNegativelyResolvedChoice(resolutions);
-		assertNotNull(resolution);
-
-		List<String> result = transactionModel.validateChoiceResolution(resolution);
-		assertFalse("NegResolution is actuall invalid, however valid is reported", result.size() == 0);
-	}
-
-	private VSpecResolution findNegativelyResolvedChoice(EList<CompoundResolution> resolutions) {
-		for (CompoundResolution resolution : resolutions) {
-			EList<VSpecResolution> res = resolution.getMembers();
-			for (VSpecResolution vspecres : res) {
-				if (vspecres instanceof NegResolution)
-					return vspecres;
-			}
-		}
-		return null;
 	}
 
 	private BVRToolModel createBVRToolModel(String filename) {
