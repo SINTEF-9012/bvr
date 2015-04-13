@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.ui,
  no.sintef.bvr.test.common;bundle-version="1.0.0",
  no.sintef.bvr.common,
  no.sintef.bvr.ui.editor.commands,
- no.sintef.bvr.engine.interfaces
+ no.sintef.bvr.engine.interfaces,
+ no.sintef.ict.splcatool
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: no.sintef.bvr.engine.common,

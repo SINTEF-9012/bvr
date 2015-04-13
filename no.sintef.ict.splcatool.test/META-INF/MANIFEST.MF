@@ -10,4 +10,5 @@ Require-Bundle: no.sintef.ict.splcatool;bundle-version="0.1.0",
  org.junit;bundle-version="4.11.0",
  org.sat4j.core;bundle-version="2.3.5",
  SPLAR;bundle-version="1.0.0",
- de.ovgu.featureide.fm.core;bundle-version="2.5.0"
+ de.ovgu.featureide.fm.core;bundle-version="2.5.0",
+ no.sintef.bvr.test.common
