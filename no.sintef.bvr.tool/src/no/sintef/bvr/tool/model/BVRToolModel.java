@@ -152,6 +152,7 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		bvrm.getRootBVRModel().setVariabilityModel((CompoundNode) vSpec);
 	}
 
+	@Override
 	public BVRModel getBVRModel() {
 		return bvrm.getRootBVRModel();
 	}
@@ -352,29 +353,30 @@ abstract public class BVRToolModel implements IBVRToolModel {
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
 			throw new RethrownException("failed to generate products", e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
 	}
 
 	public boolean performSATValidation() {
 		boolean valid = false;
-		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
 		try {
-			ca = getSPLCABVRModel().getCoveringArray();
+			CoveringArray ca = getSPLCABVRModel().getCoveringArray();
+			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
+			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
 		} catch (UnsupportedSPLCValidation e) {
 			throw new RethrownException(e.getMessage(), e);
 		} catch (BVRException e) {
 			throw new RethrownException("Getting CA failed:", e);
-		}
-		CNF cnf;
-		try {
-			cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
-			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
+
 		return valid;
 	}
 
@@ -459,6 +461,8 @@ abstract public class BVRToolModel implements IBVRToolModel {
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
 	}
 
@@ -650,6 +654,7 @@ abstract public class BVRToolModel implements IBVRToolModel {
 
 	}
 
+	@Override
 	public Map<Target, Set<VSpec>> getTargetVSpecMap() {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}

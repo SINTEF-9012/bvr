@@ -42,7 +42,8 @@ public class TestCoveringArrayTrivialTranformation {
 	private static String[] testFolders = { "TestFolder" };
 
 	private static TestResourceHolder[] resources = { new TestResourceHolder("/resources/vm/gen_product_src.bvr", "TestFolder/gen_product_src.bvr"),
-			new TestResourceHolder("/resources/vm/gen_product_trg.bvr", "TestFolder/gen_product_trg.bvr") };
+			new TestResourceHolder("/resources/vm/gen_product_trg.bvr", "TestFolder/gen_product_trg.bvr"),
+			new TestResourceHolder("/resources/vm/trivial_validation_not_null.bvr", "TestFolder/trivial_validation_not_null.bvr") };
 
 	/** The test project. */
 	private static TestProject testProject;
@@ -71,10 +72,15 @@ public class TestCoveringArrayTrivialTranformation {
 
 	private BVRModel bvrModelTarget;
 
+	private BVRToolModel transactionModelResolution;
+
 	@Before
 	public void setUp() throws Exception {
 		transactionModel = Context.eINSTANCE.testBVRToolModel(resources[0].getiFile().getLocation().toFile());
 		assertNotNull(transactionModel);
+
+		transactionModelResolution = Context.eINSTANCE.testBVRToolModel(resources[2].getiFile().getLocation().toFile());
+		assertNotNull(transactionModelResolution);
 
 		bvrModel = transactionModel.getBVRModel();
 		assertNotNull(bvrModel);
@@ -91,8 +97,24 @@ public class TestCoveringArrayTrivialTranformation {
 		Context.eINSTANCE.getBvrModels().clear();
 		Context.eINSTANCE.getBvrViews().clear();
 		Context.eINSTANCE.disposeModel(transactionModel);
+		Context.eINSTANCE.disposeModel(transactionModelResolution);
 		TransactionalEditingDomain.Registry.INSTANCE.remove("no.sintef.bvr.shared.EditingDomain");
 		Context.eINSTANCE.getEditorCommands().disableBatchProcessing();
+	}
+
+	@Test
+	public void testSingleResolutionValidationNotNull() {
+		BVRModel bvr_model = transactionModelResolution.getBVRModel();
+		assertTrue(bvr_model.getResolutionModels().size() == 1);
+
+		CompoundResolution resolution = bvr_model.getResolutionModels().get(0);
+
+		try {
+			transactionModelResolution.performSATValidation(resolution);
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertFalse("Validation failed with exception: " + e.getMessage(), true);
+		}
 	}
 
 	@Test
