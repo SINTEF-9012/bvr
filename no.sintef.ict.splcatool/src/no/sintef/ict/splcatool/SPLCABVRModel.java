@@ -11,8 +11,10 @@ import java.util.Set;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
+import no.sintef.ict.splcatool.interfaces.IBVRModelHolderStrategy;
 import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
 import no.sintef.ict.splcatool.interfaces.IVariabilityModelFinderStartegy;
+import no.sintef.ict.splcatool.strategy.DefaultBVRModelHolderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultResolutionFinderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultVariabilityModelFinderStrategy;
@@ -59,6 +61,7 @@ public class SPLCABVRModel {
 	protected IConstraintFinderStrategy constFinder;
 	protected IResolutionFinderStrategy resolFinder;
 	protected IVariabilityModelFinderStartegy varmodelFinder;
+	protected IBVRModelHolderStrategy modelHolder;
 
 	public SPLCABVRModel() {
 		BvrPackage.eINSTANCE.eClass();
@@ -95,6 +98,7 @@ public class SPLCABVRModel {
 		constFinder = new DefaultConstraintFinderStrategy(model);
 		resolFinder = new DefaultResolutionFinderStrategy(model);
 		varmodelFinder = new DefaultVariabilityModelFinderStrategy(model);
+		modelHolder = new DefaultBVRModelHolderStrategy(model);
 	}
 
 	public void setConstrtaintFindStrategy(IConstraintFinderStrategy strategy) {
@@ -107,6 +111,10 @@ public class SPLCABVRModel {
 
 	public void setVariabilityFindStrategy(IVariabilityModelFinderStartegy strategy) {
 		varmodelFinder = strategy;
+	}
+
+	public void setBVRModelHolderStrategy(IBVRModelHolderStrategy strategy) {
+		modelHolder = strategy;
 	}
 
 	private BVRModel loadFromFile(File file) {
@@ -132,7 +140,7 @@ public class SPLCABVRModel {
 		ResourceSet resSet = new ResourceSetImpl();
 		URI uri = URI.createPlatformResourceURI(filename, true);
 		Resource resource = resSet.createResource(uri);
-		resource.getContents().add(model);
+		resource.getContents().add(modelHolder.getBVRModel());
 
 		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put(XMIResource.OPTION_ENCODING, utf8Encoding);
@@ -144,7 +152,7 @@ public class SPLCABVRModel {
 		ResourceSet resSet = new ResourceSetImpl();
 		URI uri = URI.createFileURI(filename);
 		Resource resource = resSet.createResource(uri);
-		resource.getContents().add(model);
+		resource.getContents().add(modelHolder.getBVRModel());
 
 		Map<Object, Object> options = new HashMap<Object, Object>();
 		options.put(XMIResource.OPTION_ENCODING, utf8Encoding);
@@ -152,7 +160,7 @@ public class SPLCABVRModel {
 	}
 
 	public BVRModel getRootBVRModel() {
-		return model;
+		return modelHolder.getBVRModel();
 	}
 
 	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {
@@ -247,7 +255,7 @@ public class SPLCABVRModel {
 	public void injectConfigurations(GraphMLFM gfm) {
 		EList<VSpecResolution> resolutions = getChoiceResolutions(gfm);
 		for (VSpecResolution resolution : resolutions)
-			model.getResolutionModels().add((CompoundResolution) resolution);
+			modelHolder.getBVRModel().getResolutionModels().add((CompoundResolution) resolution);
 	}
 
 	public EList<VSpecResolution> getChoiceResolutions(GraphMLFM gfm) {
@@ -280,7 +288,7 @@ public class SPLCABVRModel {
 
 		EList<VSpecResolution> resolutions = new BasicEList<VSpecResolution>();
 		for (Map<String, Boolean> conf : confs) {
-			ChoiceResolution cr = recursivelyResolve(conf, (Choice) model.getVariabilityModel());
+			ChoiceResolution cr = recursivelyResolve(conf, (Choice) modelHolder.getBVRModel().getVariabilityModel());
 			resolutions.add(cr);
 		}
 		return resolutions;
