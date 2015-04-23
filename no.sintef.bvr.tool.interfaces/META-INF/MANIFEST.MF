@@ -5,7 +5,8 @@ Bundle-SymbolicName: no.sintef.bvr.tool.interfaces
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SINTEF
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: no.sintef.bvr.tool.interfaces.controller,
+Export-Package: no.sintef.bvr.tool.interfaces.common,
+ no.sintef.bvr.tool.interfaces.controller,
  no.sintef.bvr.tool.interfaces.controller.command,
  no.sintef.bvr.tool.interfaces.model,
  no.sintef.bvr.tool.interfaces.observer,
