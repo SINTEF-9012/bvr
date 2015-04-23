@@ -15,6 +15,7 @@ package no.sintef.bvr.tool.model;
 
 import java.util.List;
 
+import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.strategy.ModifyNodeStrategy;
 import no.sintef.bvr.tool.strategy.impl.BCLConstraintModifiyTargetsStrategy;
@@ -24,7 +25,6 @@ import no.sintef.bvr.tool.strategy.impl.RemoveStaleTargetStrategy;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import bvr.BCLConstraint;
 import bvr.BVRModel;
@@ -39,14 +39,18 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 	private List<CompoundNode> compoundNodes;
 	private List<BCLConstraint> constraints;
 	private BVRModel copiedModel;
+	private IVarModelResolutionsCopier copier;
 
-	public BVRSPLCAModelTransformator(BVRModel _model) {
+	public BVRSPLCAModelTransformator(BVRModel _model, IVarModelResolutionsCopier _copier) {
 		model = _model;
+		copier = _copier;
 	}
 
 	@Override
 	public CompoundNode transformVarModelToSPLCA() {
-		copiedModel = EcoreUtil.copy(model);
+		copier.copyAbsractions(model);
+
+		copiedModel = copier.getCopiedBVRModel();
 		copiedVarModel = copiedModel.getVariabilityModel();
 		compoundNodes = new BasicEList<CompoundNode>();
 		compoundNodes.add(copiedVarModel);
@@ -81,6 +85,11 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 		}
 
 		return copiedVarModel;
+	}
+
+	@Override
+	public IVarModelResolutionsCopier getModelCopier() {
+		return copier;
 	}
 
 }
