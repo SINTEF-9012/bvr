@@ -42,7 +42,8 @@ public class TestCoveringArrayConstTranformation {
 	private static TestResourceHolder[] resources = {
 			new TestResourceHolder("/resources/vm/gen_product_const_src.bvr", "TestFolder/gen_product_const_src.bvr"),
 			new TestResourceHolder("/resources/vm/gen_product_const_trg.bvr", "TestFolder/gen_product_const_trg.bvr"),
-			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg.bvr", "TestFolder/gen_product_const_invalid_trg.bvr") };
+			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg.bvr", "TestFolder/gen_product_const_invalid_trg.bvr"),
+			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg1.bvr", "TestFolder/gen_product_const_invalid_trg1.bvr") };
 
 	/** The test project. */
 	private static TestProject testProject;
@@ -72,6 +73,7 @@ public class TestCoveringArrayConstTranformation {
 	private BVRModel bvrModelTarget;
 
 	private BVRToolModel transactionModelInvalidModel;
+	private BVRToolModel transactionModelInvalidModel1;
 
 	@Before
 	public void setUp() throws Exception {
@@ -89,6 +91,9 @@ public class TestCoveringArrayConstTranformation {
 
 		transactionModelInvalidModel = Context.eINSTANCE.testBVRToolModel(resources[2].getiFile().getLocation().toFile());
 		assertNotNull(transactionModelInvalidModel);
+
+		transactionModelInvalidModel1 = Context.eINSTANCE.testBVRToolModel(resources[3].getiFile().getLocation().toFile());
+		assertNotNull(transactionModelInvalidModel1);
 	}
 
 	@After
@@ -155,6 +160,12 @@ public class TestCoveringArrayConstTranformation {
 	@Test
 	public void testInvalidProduct() {
 		boolean result = transactionModelInvalidModel.performSATValidation();
+		assertFalse("NegResolution is actuall invalid, however valid is reported", result);
+	}
+
+	@Test
+	public void testInvalidProduct1() {
+		boolean result = transactionModelInvalidModel1.performSATValidation();
 		assertFalse("NegResolution is actuall invalid, however valid is reported", result);
 	}
 

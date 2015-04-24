@@ -19,7 +19,6 @@
   </variabilityModel>
   <resolutionModels xsi:type="bvr:PosResolution" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
     <members xsi:type="bvr:PosResolution" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
-    <members xsi:type="bvr:NegResolution" resolvedVSpec="//@variabilityModel/@member.1" resolvedChoice="//@variabilityModel/@member.1"/>
   </resolutionModels>
   <realizationModel xsi:type="bvr:PlacementFragment" name="Placement2">
     <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Property) class2).&lt;Type>type" propertyName="type" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.1"/>
