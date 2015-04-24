@@ -388,10 +388,11 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
 
+		// copy and transform model to the format which can be proccesed by
+		// splca tool
 		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
 		transformator.transformVarModelToSPLCA();
 		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
-
 		VSpecResolution copied_resolution = (VSpecResolution) ((Map) model_copier).get(resoluion);
 		BVRModel copied_model = model_copier.getCopiedBVRModel();
 

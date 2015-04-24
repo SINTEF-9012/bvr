@@ -118,6 +118,19 @@ public class TestCoveringArrayTrivialTranformation {
 	}
 
 	@Test
+	public void testAllResolutionsValidationNotNull() {
+		BVRModel bvr_model = transactionModelResolution.getBVRModel();
+		assertTrue(bvr_model.getResolutionModels().size() != 0);
+
+		try {
+			transactionModelResolution.performSATValidation();
+		} catch (Exception e) {
+			e.printStackTrace();
+			assertFalse("Validation failed with exception: " + e.getMessage(), true);
+		}
+	}
+
+	@Test
 	public void testTrivialProductGeneration() throws BVRException, CSVException {
 		transactionModel.generateCoveringArray(2);
 
