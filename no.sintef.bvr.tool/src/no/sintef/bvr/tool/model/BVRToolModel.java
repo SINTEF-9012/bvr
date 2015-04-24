@@ -353,36 +353,12 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	protected void copyBVRModelSetUpSPLCA() {
-		try {
-			IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
-			transformator.transformVarModelToSPLCA();
-			IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
-			BVRModel copied_model = model_copier.getCopiedBVRModel();
-
-			IResolutionFinderStrategy strRes = new DefaultResolutionFinderStrategy(copied_model);
-			IConstraintFinderStrategy strConst = new DefaultConstraintFinderStrategy(copied_model);
-			IVariabilityModelFinderStartegy strVM = new DefaultVariabilityModelFinderStrategy(copied_model);
-			IBVRModelHolderStrategy strMH = new DefaultBVRModelHolderStrategy(copied_model);
-			IResolveChoiceStrategy strRC = new CopierResolveChoiceStrategy(model_copier);
-
-			getSPLCABVRModel().setResolutionFindStrategy(strRes);
-			getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
-			getSPLCABVRModel().setVariabilityFindStrategy(strVM);
-			getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
-			getSPLCABVRModel().setResolveChoiceStrategy(strRC);
-		} catch (Exception e) {
-			getSPLCABVRModel().restoreDefaultStrategies();
-		}
-	}
-
 	public void generatAllProducts() {
-
-		// copy and transform model to the format which can be proccesed by
-		// splca tool
-		copyBVRModelSetUpSPLCA();
-
 		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
 			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = new CoveringArrayComplete(cnf);
@@ -402,11 +378,11 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		boolean valid = false;
 		satValidationMessage = new ArrayList<String>();
 
-		// copy and transform model to the format which can be proccesed by
-		// splca tool
-		copyBVRModelSetUpSPLCA();
-
 		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
 			CoveringArray ca = getSPLCABVRModel().getCoveringArray();
 			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
@@ -430,26 +406,26 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
 
-		// copy and transform model to the format which can be proccesed by
-		// splca tool
-		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
-		transformator.transformVarModelToSPLCA();
-		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
-		VSpecResolution copied_resolution = (VSpecResolution) ((Map) model_copier).get(resoluion);
-		BVRModel copied_model = model_copier.getCopiedBVRModel();
-
-		VNode node = (VNode) CommonUtility.getResolvedVSpec(copied_resolution);
-		SingleResolutionFinderStrategy strRes = new SingleResolutionFinderStrategy((ChoiceResolution) copied_resolution);
-		ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
-		SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
-		DefaultBVRModelHolderStrategy modelHoler = new DefaultBVRModelHolderStrategy(copied_model);
-
-		getSPLCABVRModel().setResolutionFindStrategy(strRes);
-		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
-		getSPLCABVRModel().setVariabilityFindStrategy(resVar);
-		getSPLCABVRModel().setBVRModelHolderStrategy(modelHoler);
-
 		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
+			transformator.transformVarModelToSPLCA();
+			IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
+			VSpecResolution copied_resolution = (VSpecResolution) ((Map) model_copier).get(resoluion);
+			BVRModel copied_model = model_copier.getCopiedBVRModel();
+
+			VNode node = (VNode) CommonUtility.getResolvedVSpec(copied_resolution);
+			SingleResolutionFinderStrategy strRes = new SingleResolutionFinderStrategy((ChoiceResolution) copied_resolution);
+			ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
+			SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
+			DefaultBVRModelHolderStrategy modelHoler = new DefaultBVRModelHolderStrategy(copied_model);
+
+			getSPLCABVRModel().setResolutionFindStrategy(strRes);
+			getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+			getSPLCABVRModel().setVariabilityFindStrategy(resVar);
+			getSPLCABVRModel().setBVRModelHolderStrategy(modelHoler);
+
 			ca = getSPLCABVRModel().getCoveringArray();
 			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
@@ -473,12 +449,12 @@ abstract public class BVRToolModel implements IBVRToolModel {
 	}
 
 	public Integer calculateCoverage(int t) {
-		// copy and transform model to the format which can be proccesed by
-		// splca tool
-		copyBVRModelSetUpSPLCA();
-
 		int cov;
 		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
 			// Get FM:
 			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
@@ -498,27 +474,11 @@ abstract public class BVRToolModel implements IBVRToolModel {
 
 	public void generateCoveringArray(int xWise) {
 		removeAllResolutions();
-
-		// copy and transform model to the format which can be proccesed by
-		// splca tool
-		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
-		transformator.transformVarModelToSPLCA();
-		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
-		BVRModel copied_model = model_copier.getCopiedBVRModel();
-
-		IResolutionFinderStrategy strRes = new DefaultResolutionFinderStrategy(copied_model);
-		IConstraintFinderStrategy strConst = new DefaultConstraintFinderStrategy(copied_model);
-		IVariabilityModelFinderStartegy strVM = new DefaultVariabilityModelFinderStrategy(copied_model);
-		IBVRModelHolderStrategy strMH = new DefaultBVRModelHolderStrategy(copied_model);
-		IResolveChoiceStrategy strRC = new CopierResolveChoiceStrategy(model_copier);
-
-		getSPLCABVRModel().setResolutionFindStrategy(strRes);
-		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
-		getSPLCABVRModel().setVariabilityFindStrategy(strVM);
-		getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
-		getSPLCABVRModel().setResolveChoiceStrategy(strRC);
-
 		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
 			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
@@ -738,6 +698,25 @@ abstract public class BVRToolModel implements IBVRToolModel {
 	@Override
 	public Map<Target, Set<VSpec>> getTargetVSpecMap() {
 		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	protected void copyBVRModelSetUpSPLCA() {
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
+		transformator.transformVarModelToSPLCA();
+		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
+		BVRModel copied_model = model_copier.getCopiedBVRModel();
+
+		IResolutionFinderStrategy strRes = new DefaultResolutionFinderStrategy(copied_model);
+		IConstraintFinderStrategy strConst = new DefaultConstraintFinderStrategy(copied_model);
+		IVariabilityModelFinderStartegy strVM = new DefaultVariabilityModelFinderStrategy(copied_model);
+		IBVRModelHolderStrategy strMH = new DefaultBVRModelHolderStrategy(copied_model);
+		IResolveChoiceStrategy strRC = new CopierResolveChoiceStrategy(model_copier);
+
+		getSPLCABVRModel().setResolutionFindStrategy(strRes);
+		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+		getSPLCABVRModel().setVariabilityFindStrategy(strVM);
+		getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
+		getSPLCABVRModel().setResolveChoiceStrategy(strRC);
 	}
 
 }

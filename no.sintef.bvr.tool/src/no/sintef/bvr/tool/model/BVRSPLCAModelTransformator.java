@@ -15,6 +15,7 @@ package no.sintef.bvr.tool.model;
 
 import java.util.List;
 
+import no.sintef.bvr.tool.exception.MalformedVarModelException;
 import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.strategy.ModifyNodeStrategy;
@@ -28,7 +29,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import bvr.BCLConstraint;
 import bvr.BVRModel;
+import bvr.Choice;
 import bvr.CompoundNode;
+import bvr.Target;
+import bvr.VClassifier;
+import bvr.VSpec;
 
 public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 
@@ -48,8 +53,9 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 
 	@Override
 	public CompoundNode transformVarModelToSPLCA() {
-		copier.copyAbsractions(model);
+		sanityModelCheck();
 
+		copier.copyAbsractions(model);
 		copiedModel = copier.getCopiedBVRModel();
 		copiedVarModel = copiedModel.getVariabilityModel();
 		compoundNodes = new BasicEList<CompoundNode>();
@@ -90,6 +96,36 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 	@Override
 	public IVarModelResolutionsCopier getModelCopier() {
 		return copier;
+	}
+
+	private void sanityModelCheck() {
+		CompoundNode variabilityModel = model.getVariabilityModel();
+		checkVSpec(variabilityModel, (VSpec) variabilityModel);
+
+		TreeIterator<EObject> contents = variabilityModel.eAllContents();
+
+		while (contents.hasNext()) {
+			EObject eObject = contents.next();
+			if (eObject instanceof Choice || eObject instanceof VClassifier)
+				checkVSpec(variabilityModel, (VSpec) eObject);
+		}
+
+	}
+
+	private void checkVSpec(CompoundNode varModel, VSpec vSpec) {
+		String choiceBaseName;
+		try {
+			choiceBaseName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vSpec.getName());
+		} catch (Exception ex) {
+			throw new MalformedVarModelException(ex.getMessage(), ex);
+		}
+
+		Target target = vSpec.getTarget();
+		if (target == null)
+			throw new MalformedVarModelException("target is not set for the choice " + vSpec);
+
+		if (!target.getName().equals(choiceBaseName))
+			throw new MalformedVarModelException("target name and base name of the vspec do not match " + vSpec + " " + target);
 	}
 
 }
