@@ -43,7 +43,8 @@ public class TestCoveringArrayConstTranformation {
 			new TestResourceHolder("/resources/vm/gen_product_const_src.bvr", "TestFolder/gen_product_const_src.bvr"),
 			new TestResourceHolder("/resources/vm/gen_product_const_trg.bvr", "TestFolder/gen_product_const_trg.bvr"),
 			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg.bvr", "TestFolder/gen_product_const_invalid_trg.bvr"),
-			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg1.bvr", "TestFolder/gen_product_const_invalid_trg1.bvr") };
+			new TestResourceHolder("/resources/vm/gen_product_const_invalid_trg1.bvr", "TestFolder/gen_product_const_invalid_trg1.bvr"),
+			new TestResourceHolder("/resources/vm/product_const.bvr", "TestFolder/product_const.bvr") };
 
 	/** The test project. */
 	private static TestProject testProject;
@@ -74,6 +75,7 @@ public class TestCoveringArrayConstTranformation {
 
 	private BVRToolModel transactionModelInvalidModel;
 	private BVRToolModel transactionModelInvalidModel1;
+	private BVRToolModel transactionModelCalculate;
 
 	@Before
 	public void setUp() throws Exception {
@@ -94,6 +96,9 @@ public class TestCoveringArrayConstTranformation {
 
 		transactionModelInvalidModel1 = Context.eINSTANCE.testBVRToolModel(resources[3].getiFile().getLocation().toFile());
 		assertNotNull(transactionModelInvalidModel1);
+
+		transactionModelCalculate = Context.eINSTANCE.testBVRToolModel(resources[4].getiFile().getLocation().toFile());
+		assertNotNull(transactionModelCalculate);
 	}
 
 	@After
@@ -167,6 +172,24 @@ public class TestCoveringArrayConstTranformation {
 	public void testInvalidProduct1() {
 		boolean result = transactionModelInvalidModel1.performSATValidation();
 		assertFalse("NegResolution is actuall invalid, however valid is reported", result);
+	}
+
+	@Test
+	public void testCalcultateCoveringNotNull() {
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		try {
+			result1 = transactionModelCalculate.calculateCoverage(1);
+			result2 = transactionModelCalculate.calculateCoverage(2);
+			result3 = transactionModelCalculate.calculateCoverage(3);
+		} catch (Exception ex) {
+			assertFalse("failed with message " + ex.getMessage(), true);
+		}
+
+		assertEquals("2-wise calculation is wrong", 100, result1);
+		assertEquals("2-wise calculation is wrong", 100, result2);
+		assertEquals("2-wise calculation is wrong", 100, result3);
 	}
 
 	private BVRToolModel createBVRToolModel(String filename) {
