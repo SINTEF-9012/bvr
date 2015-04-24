@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
 import no.sintef.bvr.constraints.strategy.ContextConstraintFinderStrategy;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
@@ -41,7 +42,13 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
+import no.sintef.ict.splcatool.interfaces.IBVRModelHolderStrategy;
+import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.interfaces.IVariabilityModelFinderStartegy;
 import no.sintef.ict.splcatool.strategy.DefaultBVRModelHolderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultResolutionFinderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultVariabilityModelFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResVariabilityFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
 
@@ -364,6 +371,24 @@ abstract public class BVRToolModel implements IBVRToolModel {
 	public boolean performSATValidation() {
 		boolean valid = false;
 		satValidationMessage = new ArrayList<String>();
+
+		// copy and transform model to the format which can be proccesed by
+		// splca tool
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
+		transformator.transformVarModelToSPLCA();
+		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
+		BVRModel copied_model = model_copier.getCopiedBVRModel();
+
+		IResolutionFinderStrategy strRes = new DefaultResolutionFinderStrategy(copied_model);
+		IConstraintFinderStrategy strConst = new DefaultConstraintFinderStrategy(copied_model);
+		IVariabilityModelFinderStartegy strVM = new DefaultVariabilityModelFinderStrategy(copied_model);
+		IBVRModelHolderStrategy strMH = new DefaultBVRModelHolderStrategy(copied_model);
+
+		getSPLCABVRModel().setResolutionFindStrategy(strRes);
+		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+		getSPLCABVRModel().setVariabilityFindStrategy(strVM);
+		getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
+
 		try {
 			CoveringArray ca = getSPLCABVRModel().getCoveringArray();
 			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
@@ -462,7 +487,7 @@ abstract public class BVRToolModel implements IBVRToolModel {
 			 * for(CompoundResolution compoundResolution : compoundResolutions)
 			 * { if(compoundResolution instanceof PosResolution)
 			 * rootResolutions.add((PosResolution) compoundResolution); }
-			 * 
+			 *
 			 * if(rootResolutions.size() > 0){ CoveringArray startFrom =
 			 * getBVRM().getCoveringArray(); ca.startFrom(startFrom); }
 			 */
