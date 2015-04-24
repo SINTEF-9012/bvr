@@ -496,8 +496,28 @@ abstract public class BVRToolModel implements IBVRToolModel {
 	}
 
 	public void generateCoveringArray(int xWise) {
+		removeAllResolutions();
+
+		// copy and transform model to the format which can be proccesed by
+		// splca tool
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
+		transformator.transformVarModelToSPLCA();
+		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
+		BVRModel copied_model = model_copier.getCopiedBVRModel();
+
+		IResolutionFinderStrategy strRes = new DefaultResolutionFinderStrategy(copied_model);
+		IConstraintFinderStrategy strConst = new DefaultConstraintFinderStrategy(copied_model);
+		IVariabilityModelFinderStartegy strVM = new DefaultVariabilityModelFinderStrategy(copied_model);
+		IBVRModelHolderStrategy strMH = new DefaultBVRModelHolderStrategy(copied_model);
+		IResolveChoiceStrategy strRC = new CopierResolveChoiceStrategy(model_copier);
+
+		getSPLCABVRModel().setResolutionFindStrategy(strRes);
+		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+		getSPLCABVRModel().setVariabilityFindStrategy(strVM);
+		getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
+		getSPLCABVRModel().setResolveChoiceStrategy(strRC);
+
 		try {
-			removeAllResolutions();
 			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
