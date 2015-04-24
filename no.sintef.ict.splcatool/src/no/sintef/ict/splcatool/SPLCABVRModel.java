@@ -13,8 +13,10 @@ import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
 import no.sintef.ict.splcatool.interfaces.IBVRModelHolderStrategy;
 import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.interfaces.IResolveChoiceStrategy;
 import no.sintef.ict.splcatool.interfaces.IVariabilityModelFinderStartegy;
 import no.sintef.ict.splcatool.strategy.DefaultBVRModelHolderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultResolveChoiceStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultResolutionFinderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultVariabilityModelFinderStrategy;
@@ -62,6 +64,7 @@ public class SPLCABVRModel {
 	protected IResolutionFinderStrategy resolFinder;
 	protected IVariabilityModelFinderStartegy varmodelFinder;
 	protected IBVRModelHolderStrategy modelHolder;
+	private IResolveChoiceStrategy choiceRes;
 
 	public SPLCABVRModel() {
 		BvrPackage.eINSTANCE.eClass();
@@ -99,6 +102,7 @@ public class SPLCABVRModel {
 		resolFinder = new DefaultResolutionFinderStrategy(model);
 		varmodelFinder = new DefaultVariabilityModelFinderStrategy(model);
 		modelHolder = new DefaultBVRModelHolderStrategy(model);
+		choiceRes = new DefaultResolveChoiceStrategy();
 	}
 
 	public void setConstrtaintFindStrategy(IConstraintFinderStrategy strategy) {
@@ -115,6 +119,10 @@ public class SPLCABVRModel {
 
 	public void setBVRModelHolderStrategy(IBVRModelHolderStrategy strategy) {
 		modelHolder = strategy;
+	}
+
+	public void setResolveChoiceStrategy(IResolveChoiceStrategy strategy) {
+		choiceRes = strategy;
 	}
 
 	private BVRModel loadFromFile(File file) {
@@ -302,7 +310,7 @@ public class SPLCABVRModel {
 		} else {
 			cr = BvrFactory.eINSTANCE.createNegResolution();
 		}
-		CommonUtility.setResolved(cr, choice);
+		CommonUtility.setResolved(cr, choiceRes.getOriginalVSpec(choice));
 
 		// Add children
 		for (VNode x : choice.getMember()) {

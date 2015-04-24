@@ -1,11 +1,14 @@
 package no.sintef.bvr.tool.common;
 
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
 import bvr.BVRModel;
@@ -72,6 +75,16 @@ public class VarModelResolutionsCopier extends Copier implements IVarModelResolu
 	@Override
 	public BVRModel getCopiedBVRModel() {
 		return copied;
+	}
+
+	@Override
+	public EObject getOriginalEObject(EObject eObject) {
+		Set<Entry<EObject, EObject>> entrySet = entrySet();
+		for (Entry<EObject, EObject> entry : entrySet) {
+			if (entry.getValue().equals(eObject))
+				return entry.getKey();
+		}
+		return null;
 	}
 
 }
