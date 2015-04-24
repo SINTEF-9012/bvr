@@ -184,6 +184,7 @@ public class TestCoveringArrayConstTranformation {
 			result2 = transactionModelCalculate.calculateCoverage(2);
 			result3 = transactionModelCalculate.calculateCoverage(3);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			assertFalse("failed with message " + ex.getMessage(), true);
 		}
 
