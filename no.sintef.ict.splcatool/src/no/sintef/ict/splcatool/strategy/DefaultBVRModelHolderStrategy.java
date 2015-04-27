@@ -8,12 +8,17 @@ public class DefaultBVRModelHolderStrategy implements IBVRModelHolderStrategy {
 	private BVRModel model;
 
 	public DefaultBVRModelHolderStrategy(BVRModel _model) {
-		model = _model;
+		setBVRModel(_model);
 	}
 
 	@Override
 	public BVRModel getBVRModel() {
 		return model;
+	}
+
+	@Override
+	public void setBVRModel(BVRModel _model) {
+		model = _model;
 	}
 
 }

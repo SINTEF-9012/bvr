@@ -56,36 +56,37 @@ import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 public class SPLCABVRModel {
-	protected BVRModel model;
 
 	protected final static String utf8Encoding = "UTF-8";
 
+	protected BVRModel buffered_model;
 	protected IConstraintFinderStrategy constFinder;
 	protected IResolutionFinderStrategy resolFinder;
 	protected IVariabilityModelFinderStartegy varmodelFinder;
 	protected IBVRModelHolderStrategy modelHolder;
 	private IResolveChoiceStrategy choiceRes;
+	
 
 	public SPLCABVRModel() {
 		BvrPackage.eINSTANCE.eClass();
 		BvrFactory factory = BvrFactory.eINSTANCE;
-		model = factory.createBVRModel();
-		model.setName("BVR Model 1");
+		buffered_model = factory.createBVRModel();
+		buffered_model.setName("BVR Model 1");
 		init();
 	}
 
 	public SPLCABVRModel(File f) {
-		model = loadFromFile(f);
+		buffered_model = loadFromFile(f);
 		init();
 	}
 
 	public SPLCABVRModel(String bvrFileName, boolean isPlatform) {
-		model = (!isPlatform) ? loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
+		buffered_model = (!isPlatform) ? loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
 		init();
 	}
 
 	public SPLCABVRModel(BVRModel model) {
-		this.model = model;
+		buffered_model = model;
 		init();
 	}
 
@@ -98,10 +99,10 @@ public class SPLCABVRModel {
 	}
 
 	protected void init() {
-		constFinder = new DefaultConstraintFinderStrategy(model);
-		resolFinder = new DefaultResolutionFinderStrategy(model);
-		varmodelFinder = new DefaultVariabilityModelFinderStrategy(model);
-		modelHolder = new DefaultBVRModelHolderStrategy(model);
+		constFinder = new DefaultConstraintFinderStrategy(buffered_model);
+		resolFinder = new DefaultResolutionFinderStrategy(buffered_model);
+		varmodelFinder = new DefaultVariabilityModelFinderStrategy(buffered_model);
+		modelHolder = new DefaultBVRModelHolderStrategy(buffered_model);
 		choiceRes = new DefaultResolveChoiceStrategy();
 	}
 

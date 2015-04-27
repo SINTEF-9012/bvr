@@ -5,4 +5,6 @@ import bvr.BVRModel;
 public interface IBVRModelHolderStrategy {
 
 	public BVRModel getBVRModel();
+	
+	public void setBVRModel(BVRModel model);
 }

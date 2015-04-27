@@ -166,13 +166,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private class BVRInnerModel extends SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
-			model = loadFromFile(f);
+			buffered_model = loadFromFile(f);
 			init();
-		}
-
-		@Override
-		public BVRModel getRootBVRModel() {
-			return model;
 		}
 
 		private BVRModel loadFromFile(File file) {
@@ -980,11 +975,14 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			public void execute() {
 				File newFile = new File(getFile().getAbsolutePath() + "_tmp");
 				BVREmptyModel tmpModel = new BVREmptyModel(newFile);
-				tmpModel.setBVRModel(EcoreUtil.copy(getBVRModel()));
+				BVRModel copied_bvr_model = EcoreUtil.copy(getBVRModel());
+				tmpModel.setBVRModel(copied_bvr_model);
 				try {
 					Context.eINSTANCE.writeModelToFile(tmpModel, tmpModel.getFile());
 					Context.eINSTANCE.reloadModel(tmpModel);
-					executeProduct(tmpModel, (PosResolution) tmpModel.getBVRModel().getResolutionModels().get(resolutionIndex), destinationFile);
+					BVRModel tmp_bvr_model = tmpModel.getBVRModel();
+					EList<CompoundResolution> tmp_resolutions = tmp_bvr_model.getResolutionModels();
+					executeProduct(tmpModel, (PosResolution) tmp_resolutions.get(resolutionIndex), destinationFile);
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Failed to execute product, resason : " + error.getMessage(), error);
 					throw new RethrownException("Failed to execute product, resason : " + error.getMessage(), error);
