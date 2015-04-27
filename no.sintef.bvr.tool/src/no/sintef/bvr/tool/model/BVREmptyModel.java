@@ -51,7 +51,7 @@ public class BVREmptyModel extends BVRToolModel {
 	private class BVRInnerModel extends SPLCABVRModel {
 		
 		public void setBVRModel(BVRModel _model){
-			buffered_model =_model;
+			loaded_model =_model;
 			init();
 		}
 

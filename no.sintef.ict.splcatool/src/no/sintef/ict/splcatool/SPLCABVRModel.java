@@ -59,7 +59,7 @@ public class SPLCABVRModel {
 
 	protected final static String utf8Encoding = "UTF-8";
 
-	protected BVRModel buffered_model;
+	protected BVRModel loaded_model;
 	protected IConstraintFinderStrategy constFinder;
 	protected IResolutionFinderStrategy resolFinder;
 	protected IVariabilityModelFinderStartegy varmodelFinder;
@@ -70,23 +70,23 @@ public class SPLCABVRModel {
 	public SPLCABVRModel() {
 		BvrPackage.eINSTANCE.eClass();
 		BvrFactory factory = BvrFactory.eINSTANCE;
-		buffered_model = factory.createBVRModel();
-		buffered_model.setName("BVR Model 1");
+		loaded_model = factory.createBVRModel();
+		loaded_model.setName("BVR Model 1");
 		init();
 	}
 
 	public SPLCABVRModel(File f) {
-		buffered_model = loadFromFile(f);
+		loaded_model = loadFromFile(f);
 		init();
 	}
 
 	public SPLCABVRModel(String bvrFileName, boolean isPlatform) {
-		buffered_model = (!isPlatform) ? loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
+		loaded_model = (!isPlatform) ? loadFromFile(new File(bvrFileName)) : loadFromPlatformFile(bvrFileName);
 		init();
 	}
 
 	public SPLCABVRModel(BVRModel model) {
-		buffered_model = model;
+		loaded_model = model;
 		init();
 	}
 
@@ -99,10 +99,10 @@ public class SPLCABVRModel {
 	}
 
 	protected void init() {
-		constFinder = new DefaultConstraintFinderStrategy(buffered_model);
-		resolFinder = new DefaultResolutionFinderStrategy(buffered_model);
-		varmodelFinder = new DefaultVariabilityModelFinderStrategy(buffered_model);
-		modelHolder = new DefaultBVRModelHolderStrategy(buffered_model);
+		constFinder = new DefaultConstraintFinderStrategy(loaded_model);
+		resolFinder = new DefaultResolutionFinderStrategy(loaded_model);
+		varmodelFinder = new DefaultVariabilityModelFinderStrategy(loaded_model);
+		modelHolder = new DefaultBVRModelHolderStrategy(loaded_model);
 		choiceRes = new DefaultResolveChoiceStrategy();
 	}
 
@@ -169,7 +169,7 @@ public class SPLCABVRModel {
 	}
 
 	public BVRModel getRootBVRModel() {
-		return modelHolder.getBVRModel();
+		return loaded_model;
 	}
 
 	public GUIDSL getGUIDSL() throws IOException, UnsupportedModelException, UnsupportedSPLCValidation {

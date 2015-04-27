@@ -163,10 +163,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		return resource;
 	}
 
+	//TO DO this is actually a mistake, why do we use splca tool as underlying model. This should be just a tool, but not a container which stores a bvr model, reads and writes model files 
 	private class BVRInnerModel extends SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
-			buffered_model = loadFromFile(f);
+			loaded_model = loadFromFile(f);
 			init();
 		}
 
