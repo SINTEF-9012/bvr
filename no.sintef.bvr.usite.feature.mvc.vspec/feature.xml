@@ -49,6 +49,7 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="no.sintef.bvr.constraints.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.ict.splcatool"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="de.ovgu.featureide.fm.core" version="2.5.0" match="greaterOrEqual"/>
@@ -62,6 +63,7 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.core.runtime" version="3.9.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.thirdparty.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.tool.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.constraints" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.transaction"/>
       <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.ui.ide"/>
@@ -84,8 +86,6 @@ SINTEF - initial API and implementation
       <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
-      <import plugin="no.sintef.bvr.constraints.interfaces" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="no.sintef.bvr.constraints" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -139,13 +139,6 @@ SINTEF - initial API and implementation
 
    <plugin
          id="no.sintef.bvr.thirdparty"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="no.sintef.dsl.node"
          download-size="0"
          install-size="0"
          version="0.0.0"

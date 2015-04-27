@@ -65,16 +65,11 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="no.sintef.bvr.constraints.interfaces" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2" version="4.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.common" version="1.8.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.types" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.uml.profile.l2" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.uml2.uml.profile.l3" version="1.1.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.engine.interfaces" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="com.google.guava"/>
-      <import plugin="org.eclipse.emf.compare"/>
-      <import plugin="org.eclipse.team.core"/>
-      <import plugin="org.eclipse.uml2.uml"/>
+      <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common" version="2.9.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="de.ovgu.featureide.fm.core" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="SPLAR" version="1.0.0" match="greaterOrEqual"/>
@@ -91,8 +86,6 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.ui.ide" version="3.9.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.filesystem" version="1.4.0" match="greaterOrEqual"/>
-      <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
    </requires>
 
@@ -154,13 +147,6 @@ SINTEF - initial API and implementation
 
    <plugin
          id="no.sintef.bvr.thirdparty"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="no.sintef.dsl.node"
          download-size="0"
          install-size="0"
          version="0.0.0"
