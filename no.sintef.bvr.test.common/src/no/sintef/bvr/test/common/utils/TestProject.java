@@ -102,5 +102,9 @@ public class TestProject {
 			closed = true;
 		}
 	}
+	
+	public IProject getIProject() {
+		return iProject;
+	}
 
 }
