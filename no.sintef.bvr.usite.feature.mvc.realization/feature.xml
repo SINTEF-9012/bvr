@@ -70,6 +70,7 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.common" version="2.9.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
+      <import plugin="com.google.guava" version="11.0.2" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="de.ovgu.featureide.fm.core" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="SPLAR" version="1.0.0" match="greaterOrEqual"/>
