@@ -1,17 +1,19 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.common;
+
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -20,25 +22,23 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectEList;
 
-import com.google.common.base.Throwables;
-
-import bvr.BVRModel;
 import bvr.BvrFactory;
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
 import bvr.ObjectHandle;
 import bvr.PlacementFragment;
-import bvr.PrimitveType;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
-import bvr.VPackageable;
 import bvr.VSpec;
 import bvr.VSpecResolution;
 import bvr.ValueResolution;
 import bvr.Variable;
+
+import com.google.common.base.Throwables;
 
 public final class CommonUtility {
 
@@ -48,20 +48,30 @@ public final class CommonUtility {
 
 	public static final int DERIVED = 0x1;
 	public static final int TRANSIENT = 0x2;
-	public static final int MASK = 0x1FF; // 9 bits are required to encode all properties
+	public static final int MASK = 0x1FF; // 9 bits are required to encode all
+											// properties
 
-	/* 000000000 - ok, 000000001-derived, 000000010 - transient, 000000011 -derived and transient etc */
+	/*
+	 * 000000000 - ok, 000000001-derived, 000000010 - transient, 000000011
+	 * -derived and transient etc
+	 */
 	public static int isDerived(EStructuralFeature property) {
 		int value = 0x0 & MASK;
 		/*
-		 * The value of a derived feature is computed from other features, so it doesn't represent any additional object state. Framework classes, such as EcoreUtil.Copier, that copy model objects
-		 * will not attempt to copy such features. The generated code is unaffected by the value of the derived flag. Derived features are typically also marked volatile and transient.
+		 * The value of a derived feature is computed from other features, so it
+		 * doesn't represent any additional object state. Framework classes,
+		 * such as EcoreUtil.Copier, that copy model objects will not attempt to
+		 * copy such features. The generated code is unaffected by the value of
+		 * the derived flag. Derived features are typically also marked volatile
+		 * and transient.
 		 */
 		int drvd = (property.isDerived()) ? MASK & DERIVED : value;
 
 		/*
-		 * Transient features are used to declare (modeled) data whose lifetime never spans application invocations and therefore doesn't need to be persisted. The (default XMI) serializer will not
-		 * save features that are declared to be transient.
+		 * Transient features are used to declare (modeled) data whose lifetime
+		 * never spans application invocations and therefore doesn't need to be
+		 * persisted. The (default XMI) serializer will not save features that
+		 * are declared to be transient.
 		 */
 		int trnsnt = (property.isTransient()) ? MASK & TRANSIENT : value;
 
@@ -138,8 +148,7 @@ public final class CommonUtility {
 				EList<EObject> eEObjects = (BasicEList<EObject>) targetObject;
 				eObjects.addAll(eEObjects);
 			} else if (targetObject != null) {
-				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: "
-						+ targetObject);
+				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: " + targetObject);
 			}
 		}
 		return eObjects;
@@ -164,8 +173,7 @@ public final class CommonUtility {
 
 	public static boolean isVSpecResolutionVClassifier(VSpecResolution vSpecResolution) {
 		if ((vSpecResolution instanceof ChoiceResolution)
-				&& ((((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null) || ((ChoiceResolution) vSpecResolution)
-						.getResolvedVClassOcc() != null))
+				&& ((((ChoiceResolution) vSpecResolution).getResolvedVClassifier() != null) || ((ChoiceResolution) vSpecResolution).getResolvedVClassOcc() != null))
 			return true;
 		return false;
 	}
@@ -198,7 +206,7 @@ public final class CommonUtility {
 
 	/**
 	 * use to set setResolvedVspec and setResolved_TYPE_
-	 * 
+	 *
 	 * @param target
 	 * @param toResolve
 	 * @return
@@ -251,5 +259,13 @@ public final class CommonUtility {
 		}
 		return null;
 
+	}
+
+	public static Target getTargetByName(List<Target> targets, String name) {
+		for (Target target : targets) {
+			if (target.getName().equals(name))
+				return target;
+		}
+		return null;
 	}
 }

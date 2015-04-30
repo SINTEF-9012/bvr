@@ -15,6 +15,7 @@ package no.sintef.bvr.tool.model;
 
 import java.io.File;
 
+import no.sintef.ict.splcatool.SPLCABVRModel;
 import bvr.BVRModel;
 
 
@@ -29,7 +30,7 @@ public class BVREmptyModel extends BVRToolModel {
 	}
 
 	@Override
-	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM() {
+	public SPLCABVRModel getSPLCABVRModel() {
 		return bvrm;
 	}
 
@@ -47,10 +48,11 @@ public class BVREmptyModel extends BVRToolModel {
 		return f;
 	}
 	
-	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
+	private class BVRInnerModel extends SPLCABVRModel {
 		
 		public void setBVRModel(BVRModel _model){
-			model =_model;
+			loaded_model =_model;
+			init();
 		}
 
 	}

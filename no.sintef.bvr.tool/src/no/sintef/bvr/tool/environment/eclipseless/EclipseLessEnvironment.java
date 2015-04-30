@@ -47,7 +47,7 @@ public class EclipseLessEnvironment extends AbstractEnvironment {
 	@Override
 	public void writeModelToFile(BVRToolModel model, File file) {
 		try {
-			model.getBVRM().writeToFile(file.getAbsolutePath());
+			model.getSPLCABVRModel().writeToFile(file.getAbsolutePath());
 			model.setFile(file);
 			configHelper.saveLastLocation(file.getAbsolutePath());
 		} catch (IOException e) {

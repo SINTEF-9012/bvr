@@ -42,7 +42,7 @@ literalexp : NUMBER
 	| 'true' | 'false';
 
 // VSpec names are composed of letters, digits, and underscores. Name cannot start with a digit.
-ID : ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+ID : ('a'..'z' | 'A'..'Z' | '_' ) ('a'..'z' | 'A'..'Z' | '_' | '0'..'9' | '@')*;
 
 // <Number> must be real number, unlimited natural, or integer number
 NUMBER : [0-9]+ ('.' [0-9]+)?;

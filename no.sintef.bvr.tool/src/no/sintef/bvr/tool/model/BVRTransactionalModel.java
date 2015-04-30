@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
 
@@ -17,9 +17,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.thirdparty.interfaces.editor.IBVREnabledEditor;
@@ -31,7 +33,6 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.controller.command.AddMissingResolutions;
 import no.sintef.bvr.tool.controller.command.AddResolution;
 import no.sintef.bvr.tool.controller.command.RemoveUncontained;
-import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.bvr.tool.exception.IllegalOperationException;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
@@ -40,7 +41,11 @@ import no.sintef.bvr.tool.interfaces.controller.command.SimpleExeCommandInterfac
 import no.sintef.bvr.tool.interfaces.model.IBVRTransactionalVTypeState;
 import no.sintef.bvr.tool.interfaces.observer.ResourceObserver;
 import no.sintef.bvr.tool.interfaces.observer.ResourceSubject;
+import no.sintef.bvr.tool.observer.ChangeVSpecName;
 import no.sintef.bvr.tool.observer.ResourceSetEditedSubject;
+import no.sintef.bvr.tool.observer.TargetChangedSubject;
+import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
+import no.sintef.ict.splcatool.SPLCABVRModel;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -97,11 +102,11 @@ import bvr.VClassifier;
 import bvr.VNode;
 import bvr.VSpec;
 import bvr.VSpecResolution;
+import bvr.VType;
 import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
-import bvr.VType;
 
 public class BVRTransactionalModel extends BVRToolModel implements ResourceObserver, ResourceSubject {
 	private Resource resource;
@@ -111,8 +116,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private NamedElement cutNamedElement = null;
 	private HashMap<NegResolution, PosResolution> buffer;
 	private List<ResourceObserver> observers;
+	private TargetChangedSubject targetChangedSubject;
 
-	public BVRTransactionalModel(File sf, no.sintef.ict.splcatool.SPLCABVRModel x) {
+	public BVRTransactionalModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
 		loadFilename = sf.getAbsolutePath();
@@ -127,6 +133,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	private void init() {
+		targetChangedSubject = new TargetChangedSubject();
+		targetChangedSubject.attach(new ChangeVSpecName(this));
+
 		observers = new ArrayList<ResourceObserver>();
 		minimizedVSpec = new ArrayList<VSpec>();
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
@@ -136,7 +145,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public no.sintef.ict.splcatool.SPLCABVRModel getBVRM() {
+	public SPLCABVRModel getSPLCABVRModel() {
 		return bvrm;
 	}
 
@@ -154,16 +163,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		return resource;
 	}
 
-	private class BVRInnerModel extends no.sintef.ict.splcatool.SPLCABVRModel {
+	//TO DO this is actually a mistake, why do we use splca tool as underlying model. This should be just a tool, but not a container which stores a bvr model, reads and writes model files 
+	private class BVRInnerModel extends SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
-			model = loadFromFile(f);
+			loaded_model = loadFromFile(f);
 			init();
-		}
-
-		@Override
-		public BVRModel getRootBVRModel() {
-			return model;
 		}
 
 		private BVRModel loadFromFile(File file) {
@@ -181,6 +186,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			return (BVRModel) resource.getContents().get(0);
 		}
 
+		@Override
 		public void writeToFile(String filename) throws IOException {
 
 			TransactionalEditingDomain editingDomain = Context.eINSTANCE.getEditorCommands().testTransactionalEditingDomain();
@@ -219,8 +225,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 					ModelChecker.eINSTANCE.execute(getBVRModel());
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Model check failed", error);
-					status = new Status(Status.ERROR, Constants.PLUGIN_ID, "Model check failed (see log for more details): " + error.getMessage(),
-							error);
+					status = new Status(Status.WARNING, Constants.PLUGIN_ID, "Background model checking failed (see log for more details): "
+							+ error.getMessage(), error);
 				}
 				return status;
 			}
@@ -327,8 +333,8 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 				Context.eINSTANCE.logger.error("inside boundary element reference is null for fromBoundary" + boundary);
 			}
 
-			EList<ObjectHandle> objectHandles = (isFromPlacement) ? ((FromPlacement) boundary).getOutsideBoundaryElement()
-					: ((FromReplacement) boundary).getOutsideBoundaryElement();
+			EList<ObjectHandle> objectHandles = (isFromPlacement) ? ((FromPlacement) boundary).getOutsideBoundaryElement() : ((FromReplacement) boundary)
+					.getOutsideBoundaryElement();
 			for (ObjectHandle oh : objectHandles) {
 				eObject = oh.getMOFRef();
 				if (eObject != null) {
@@ -344,8 +350,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	@Override
-	public void addChoice(NamedElement parent) {
-		VSpecFacade.eINSTANCE.appendChoice(parent);
+	public Choice addChoice(NamedElement parent) {
+		// each vspec has to have target
+		Choice choice = VSpecFacade.eINSTANCE.appendChoice(parent);
+		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(choice.getName());
+		CompoundNode variabilityModel = (parent instanceof BVRModel) ? choice : getBVRModel().getVariabilityModel();
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(variabilityModel, choice, targetName);
+		return choice;
 	}
 
 	@Override
@@ -425,12 +436,20 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void updateName(NamedElement namedElement, String name) {
-		// update corresponding target accordingly if namedElement is VClassifier or Choice
+		// update corresponding target accordingly if namedElement is
+		// VClassifier or Choice
 		if (namedElement instanceof VClassifier || namedElement instanceof Choice) {
-			Target target = TargetFacade.eINSTANCE.testVSpecTarget((VSpec) namedElement);
-			Context.eINSTANCE.getEditorCommands().setName(target, name);
-		}
-		if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
+			VSpec vSpec = (VSpec) namedElement;
+			Target old_target = vSpec.getTarget();
+			Set<VSpec> vspecs = getTargetVSpecMap().get(old_target);
+			VSpecFacade.eINSTANCE.updateName(vSpec, name);
+			Target target = TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), vSpec, name);
+			targetChangedSubject.setStaleTarget(old_target);
+			targetChangedSubject.setCurrentTarget(target);
+			targetChangedSubject.setCurrentName(name);
+			targetChangedSubject.setVSpecs(vspecs);
+			targetChangedSubject.notifyObservers();
+		} else if (namedElement.getName() == null || !namedElement.getName().equals(name)) {
 			Context.eINSTANCE.getEditorCommands().setName(namedElement, name);
 		}
 	}
@@ -472,7 +491,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public void addVClassifier(NamedElement parent) {
-		VSpecFacade.eINSTANCE.appendVClassifier(parent);
+		VClassifier vClassifier = VSpecFacade.eINSTANCE.appendVClassifier(parent);
+		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vClassifier.getName());
+		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), vClassifier, targetName);
 	}
 
 	@Override
@@ -549,7 +570,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	@Override
 	public String getBCLConstraintString(BCLConstraint constraint) {
-		String str = ConstraintFacade.eINSTANCE.getBCLConstraintString(bvrm.getRootBVRModel(), constraint);
+		String str = ConstraintFacade.eINSTANCE.getBCLConstraintString(constraint);
 		return ConstraintFacade.eINSTANCE.formatConstraintString(str, 15);
 	}
 
@@ -781,11 +802,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 		if ((variablityModel instanceof Choice) || (variablityModel instanceof VClassifier)) {
 			CommonUtility.setResolved(root, (VSpec) variablityModel);
-			root.setName(((NamedElement) variablityModel).getName() + "[" + resolutionCount +"]");
+			root.setName(((NamedElement) variablityModel).getName() + "[" + resolutionCount + "]");
 			resolutionCount++;
-			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddResolution(), (VSpec) root.getResolvedChoice(), root, false);
-		}
-		else {
+			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddResolution(), root.getResolvedChoice(), root, false);
+		} else {
 			throw new UserInputError("model must start with a choice");
 		}
 		return root;
@@ -815,21 +835,21 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		Context.eINSTANCE.getEditorCommands().removeBVRModelCompoundResolutions(model, resolutions);
 	}
 
+	@Override
 	public void resolveSubtree(VSpecResolution parent) {
-		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) parent);
+		VSpecResolution grandParent = ResolutionModelIterator.getInstance().getParent(getBVRModel(), parent);
 		if (grandParent == null) {
 			for (Iterator<CompoundResolution> it = getBVRModel().getResolutionModels().iterator(); it.hasNext();) {
 				CompoundResolution c = it.next();
 				if (c == parent) {
-					VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
-					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root,
-							false);
-					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(getBVRModel(), (VSpecResolution) parent);
+					VSpecResolution root = CloneResFacade.getResolution().cloneItStart(parent, this);
+					ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
+					Context.eINSTANCE.getEditorCommands().removeOwnedVSpecResolution(getBVRModel(), parent);
 					Context.eINSTANCE.getEditorCommands().createNewResolution((PosResolution) root, getBVRModel());
 				}
 			}
 		} else {
-			VSpecResolution root = CloneResFacade.getResolution().cloneItStart((VSpecResolution) parent, this);
+			VSpecResolution root = CloneResFacade.getResolution().cloneItStart(parent, this);
 			ResolutionModelIterator.getInstance().iterateEmptyOnChildren(this, new AddMissingResolutions(), parent.getResolvedVSpec(), root, false);
 
 			ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) grandParent, (ChoiceResolution) parent, (ChoiceResolution) root);
@@ -837,11 +857,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 	}
 
+	@Override
 	public void removeVSpecResolution(NamedElement toDelete) {
 		NamedElement parentNamedElement = ResolutionModelIterator.getInstance().getParent(getBVRModel(), (VSpecResolution) toDelete);
 		Context.eINSTANCE.getEditorCommands().removeNamedElementVSpecResolution((VSpecResolution) parentNamedElement, toDelete);
 	}
 
+	@Override
 	public void toggleChoice(NamedElement toToggle) {
 		EObject parent = toToggle.eContainer();
 		if (!(parent instanceof ChoiceResolution))
@@ -853,10 +875,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 						!(toToggle instanceof PosResolution), this);
 				buffer.put((NegResolution) negResolution, (PosResolution) toToggle);
 			} else {
-				PosResolution buffered = (PosResolution) buffer.remove(toToggle);
+				PosResolution buffered = buffer.remove(toToggle);
 				if (buffered != null) {
-					ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) parent, (ChoiceResolution) toToggle,
-							(ChoiceResolution) buffered);
+					ChangeChoiceFacade.eINSTANCE.replaceChoiceResolution((ChoiceResolution) parent, (ChoiceResolution) toToggle, (ChoiceResolution) buffered);
 				} else {
 					ChangeChoiceFacade.eINSTANCE.setChoiceResolution((ChoiceResolution) toToggle, !(toToggle instanceof PosResolution), this);
 					InheritanceFacade.getInstance().passInheritance((ChoiceResolution) toToggle, true, this);
@@ -955,11 +976,14 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			public void execute() {
 				File newFile = new File(getFile().getAbsolutePath() + "_tmp");
 				BVREmptyModel tmpModel = new BVREmptyModel(newFile);
-				tmpModel.setBVRModel(EcoreUtil.copy(getBVRModel()));
+				BVRModel copied_bvr_model = EcoreUtil.copy(getBVRModel());
+				tmpModel.setBVRModel(copied_bvr_model);
 				try {
 					Context.eINSTANCE.writeModelToFile(tmpModel, tmpModel.getFile());
 					Context.eINSTANCE.reloadModel(tmpModel);
-					executeProduct(tmpModel, (PosResolution) tmpModel.getBVRModel().getResolutionModels().get(resolutionIndex), destinationFile);
+					BVRModel tmp_bvr_model = tmpModel.getBVRModel();
+					EList<CompoundResolution> tmp_resolutions = tmp_bvr_model.getResolutionModels();
+					executeProduct(tmpModel, (PosResolution) tmp_resolutions.get(resolutionIndex), destinationFile);
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Failed to execute product, resason : " + error.getMessage(), error);
 					throw new RethrownException("Failed to execute product, resason : " + error.getMessage(), error);
@@ -1017,9 +1041,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		private VNODE vNode;
 		private ResourceSubject subject;
 
-		public VTypeState(VNODE vNode, VTYPE vType, ResourceSubject subject) {
-			this.vNode = vNode;
-			this.vType = vType;
+		public VTypeState(VNODE _vNode, VTYPE _vType, ResourceSubject _subject) {
+			this.vNode = _vNode;
+			this.vType = _vType;
+			this.subject = _subject;
 		}
 
 		@Override
@@ -1130,4 +1155,36 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			ResolutionModelIterator.getInstance().iterateExisting(this, new RemoveUncontained(), parent.getResolvedVSpec(), parent, false);
 
 	}
+
+	@Override
+	public Map<Target, Set<VSpec>> getTargetVSpecMap() {
+		Map<Target, Set<VSpec>> targetVSpec = new HashMap<Target, Set<VSpec>>();
+		BVRModel model = getBVRModel();
+		CompoundNode compoundNode = model.getVariabilityModel();
+		if (compoundNode != null) {
+			if (compoundNode instanceof VSpec)
+				collectVSpecTarget(targetVSpec, (VSpec) compoundNode);
+
+			TreeIterator<EObject> iterator = compoundNode.eAllContents();
+			while (iterator.hasNext()) {
+				EObject eObject = iterator.next();
+				if (eObject instanceof VSpec)
+					collectVSpecTarget(targetVSpec, (VSpec) eObject);
+			}
+		}
+		return targetVSpec;
+	}
+
+	private void collectVSpecTarget(Map<Target, Set<VSpec>> map, VSpec vSpec) {
+		Target target = vSpec.getTarget();
+		if (target != null) {
+			Set<VSpec> vSpecs = map.get(target);
+			if (vSpecs == null) {
+				vSpecs = new HashSet<VSpec>();
+				map.put(target, vSpecs);
+			}
+			vSpecs.add(vSpec);
+		}
+	}
+
 }

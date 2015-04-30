@@ -34,10 +34,10 @@ public class CalculateCoverage {
 
 	private int calcultaeCoverage(int n_wise, File f) throws IOException, UnsupportedModelException, FeatureModelException, BVRException, CSVException  {
 		BVRToolModel x = new BVRSimpleToolModel(f);
-		GUIDSL gdsl = x.getBVRM().getGUIDSL();
+		GUIDSL gdsl = x.getSPLCABVRModel().getGUIDSL();
 		CNF cnf = gdsl.getSXFM().getCNF();
 		// Get Covering Array
-		CoveringArray ca = x.getBVRM().getCoveringArray();
+		CoveringArray ca = x.getSPLCABVRModel().getCoveringArray();
 		// Calculate
 		int cov = (int) Math.round(CALib.calc_coverage(cnf, n_wise, ca));
 		return cov;

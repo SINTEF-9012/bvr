@@ -99,7 +99,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		}
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		try {
-			model.getBVRM().writeToPlatformFile(filepath);
+			model.getSPLCABVRModel().writeToPlatformFile(filepath);
 			model.setFile(file);
 			model.setPlatform(true);
 			model.setLoadFilename(filepath);

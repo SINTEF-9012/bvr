@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
 
@@ -18,18 +18,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
-import splar.core.fm.FeatureModelException;
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import no.sintef.bvr.common.CommonUtility;
+import no.sintef.bvr.constraints.interfaces.strategy.IConstraintFinderStrategy;
 import no.sintef.bvr.constraints.strategy.ContextConstraintFinderStrategy;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.exception.RethrownException;
 import no.sintef.bvr.tool.exception.ShowErrorException;
 import no.sintef.bvr.tool.exception.UnexpectedException;
+import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
+import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
+import no.sintef.bvr.tool.interfaces.model.IBVRToolModel;
+import no.sintef.bvr.tool.strategy.impl.CopierResolveChoiceStrategy;
 import no.sintef.ict.splcatool.BVRException;
 import no.sintef.ict.splcatool.CALib;
 import no.sintef.ict.splcatool.CNF;
@@ -41,9 +43,21 @@ import no.sintef.ict.splcatool.GUIDSL;
 import no.sintef.ict.splcatool.GraphMLFM;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 import no.sintef.ict.splcatool.UnsupportedSPLCValidation;
+import no.sintef.ict.splcatool.interfaces.IBVRModelHolderStrategy;
+import no.sintef.ict.splcatool.interfaces.IResolutionFinderStrategy;
+import no.sintef.ict.splcatool.interfaces.IResolveChoiceStrategy;
+import no.sintef.ict.splcatool.interfaces.IVariabilityModelFinderStartegy;
+import no.sintef.ict.splcatool.strategy.DefaultBVRModelHolderStrategy;
 import no.sintef.ict.splcatool.strategy.DefaultConstraintFinderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultResolutionFinderStrategy;
+import no.sintef.ict.splcatool.strategy.DefaultVariabilityModelFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResVariabilityFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
+import splar.core.fm.FeatureModelException;
 import bvr.BCLConstraint;
 import bvr.BVRModel;
 import bvr.BoundaryElementBinding;
@@ -60,6 +74,7 @@ import bvr.NamedElement;
 import bvr.PlacementFragment;
 import bvr.PosResolution;
 import bvr.ReplacementFragmentType;
+import bvr.Target;
 import bvr.VClassOccurrence;
 import bvr.VClassifier;
 import bvr.VNode;
@@ -70,9 +85,9 @@ import bvr.ValueResolution;
 import bvr.Variable;
 import bvr.Variabletype;
 import bvr.VariationPoint;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
-
-abstract public class BVRToolModel {
+abstract public class BVRToolModel implements IBVRToolModel {
 	protected SPLCABVRModel bvrm;
 	protected File f;
 	protected boolean platform = false;
@@ -89,20 +104,20 @@ abstract public class BVRToolModel {
 	public int getIncrementedInstanceCount() {
 		return instanceCount++;
 	}
-	
+
 	public BVRToolModel(File sf) {
 		f = sf;
 		bvrm = new SPLCABVRModel(f);
-		loadFilename = sf.getAbsolutePath(); 
+		loadFilename = sf.getAbsolutePath();
 	}
-	
+
 	public BVRToolModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
-		loadFilename = sf.getAbsolutePath(); 
+		loadFilename = sf.getAbsolutePath();
 	}
-	
-	public BVRToolModel(File sf, String loadLocation, boolean isPlatform){
+
+	public BVRToolModel(File sf, String loadLocation, boolean isPlatform) {
 		f = sf;
 		platform = isPlatform;
 		loadFilename = loadLocation;
@@ -112,11 +127,11 @@ abstract public class BVRToolModel {
 	public BVRToolModel() {
 		bvrm = new SPLCABVRModel();
 	}
-	
-	public void reload(){
+
+	public void reload() {
 		bvrm = (!platform) ? new SPLCABVRModel(f) : new SPLCABVRModel(loadFilename, platform);
 	}
-	
+
 	public void dispose() {
 		f = null;
 		bvrm = null;
@@ -125,21 +140,23 @@ abstract public class BVRToolModel {
 		platform = false;
 	}
 
-	String getShortFileName(){
-		if(f == null) return "unnamed model";
+	String getShortFileName() {
+		if (f == null)
+			return "unnamed model";
 		return f.getName();
 	}
 
-	String getLongFileName(){
-		if(f == null) return "unnamed model";
+	String getLongFileName() {
+		if (f == null)
+			return "unnamed model";
 		return f.getAbsolutePath();
 	}
-	
-	public SPLCABVRModel getBVRM(){
+
+	public SPLCABVRModel getSPLCABVRModel() {
 		return bvrm;
 	}
-	
-	public void setBVRM(SPLCABVRModel bvrm){
+
+	public void setBVRM(SPLCABVRModel bvrm) {
 		this.bvrm = bvrm;
 	}
 
@@ -147,67 +164,68 @@ abstract public class BVRToolModel {
 		bvrm.getRootBVRModel().setVariabilityModel((CompoundNode) vSpec);
 	}
 
+	@Override
 	public BVRModel getBVRModel() {
 		return bvrm.getRootBVRModel();
 	}
-	
-	public void setFile(File f){
+
+	public void setFile(File f) {
 		this.f = f;
 	}
 
 	public File getFile() {
 		return f;
 	}
-	
-	public void setPlatform(boolean isPlatform){
+
+	public void setPlatform(boolean isPlatform) {
 		platform = isPlatform;
 	}
-	
-	public void setLoadFilename(String loadName){		
+
+	public void setLoadFilename(String loadName) {
 		loadFilename = loadName;
 	}
-	
-	public boolean isNotSaved(){
+
+	public boolean isNotSaved() {
 		return !saved;
 	}
-	
-	public void markNotSaved(){
+
+	public void markNotSaved() {
 		saved = false;
 	}
 
 	public void markSaved() {
 		saved = true;
 	}
-	
-	public void addChoice(NamedElement parentVSpec) {
+
+	public Choice addChoice(NamedElement parentVSpec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public void minimaizeVSpec(VSpec vspec){
+
+	public void minimaizeVSpec(VSpec vspec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public void maximizeVSpec(VSpec vspec){
+
+	public void maximizeVSpec(VSpec vspec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public boolean isVSpecMinimized(VSpec vspec){
+
+	public boolean isVSpecMinimized(VSpec vspec) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public void minimaizeVSpecResolution(VSpecResolution vspecRes){
+
+	public void minimaizeVSpecResolution(VSpecResolution vspecRes) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public void maximizeVSpecResolution(VSpecResolution vspecRes){
+
+	public void maximizeVSpecResolution(VSpecResolution vspecRes) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes){
+
+	public boolean isVSpecResolutionMinimized(VSpecResolution vspecRes) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
-	public void updateVariable(Variable variable, String name, String typeName){
+
+	public void updateVariable(Variable variable, String name, String typeName) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
@@ -222,7 +240,7 @@ abstract public class BVRToolModel {
 	public String getNodesCommentText(NamedElement namedElement) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
+
 	public void addVariable(VNode parentNode) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
@@ -256,7 +274,7 @@ abstract public class BVRToolModel {
 	}
 
 	public void pastNamedElementAsChild(NamedElement parent) {
-		throw new UnexpectedException("Are you using default implementation?!");	
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public void pastNamedElementAsSibling(NamedElement sibling) {
@@ -266,7 +284,7 @@ abstract public class BVRToolModel {
 	public void setGroupMultiplicity(VNode parent, int lowerBound, int upperBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
-	
+
 	public void removeGroupMultiplicity(VNode parent) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
@@ -291,8 +309,7 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void createFragmentSubstitution(PlacementFragment placement,
-			ReplacementFragmentType replacement) {
+	public void createFragmentSubstitution(PlacementFragment placement, ReplacementFragmentType replacement) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
@@ -336,63 +353,38 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-
 	public void generatAllProducts() {
 		try {
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = new CoveringArrayComplete(cnf);
 			ca.generate();
 			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
+			EList<VSpecResolution> resolutions = getSPLCABVRModel().getChoiceResolutions(gfm);
 			for (VSpecResolution resolution : resolutions)
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
 			throw new RethrownException("failed to generate products", e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
 	}
-	
 
 	public boolean performSATValidation() {
 		boolean valid = false;
-		CoveringArray ca;
 		satValidationMessage = new ArrayList<String>();
+
 		try {
-			ca = getBVRM().getCoveringArray();
-		} catch (CSVException e) {
-			throw new RethrownException("Getting CA failed:", e);
-		} catch (UnsupportedSPLCValidation e) {
-			throw new RethrownException(e.getMessage(), e);
-		} catch (BVRException e) {
-			throw new RethrownException("Getting CA failed:", e);
-		}
-		CNF cnf;
-		try {
-			cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
-			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
-		} catch (Exception e) {
-			throw new RethrownException(e.getMessage(), e);
-		}
-		return valid;
-	}
-	
-	public boolean performSATValidation(VSpecResolution resoluion) {
-		boolean valid = false;
-		CoveringArray ca;
-		satValidationMessage = new ArrayList<String>();
-		
-		VNode node = (VNode) CommonUtility.getResolvedVSpec(resoluion);
-		SingleResolutionFinderStrategy strRes = new SingleResolutionFinderStrategy((ChoiceResolution) resoluion);
-		ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
-		SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
-		
-		getBVRM().setResolutionFindStrategy(strRes);
-		getBVRM().setConstrtaintFindStrategy(strConst);
-		getBVRM().setVariabilityFindStrategy(resVar);
-		
-		try {
-			ca = getBVRM().getCoveringArray();
-			CNF cnf = getBVRM().getGUIDSL().getSXFM().getCNF();
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
+			CoveringArray ca = getSPLCABVRModel().getCoveringArray();
+			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
 			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
 		} catch (CSVException e) {
 			throw new RethrownException("Getting CA failed:", e);
@@ -403,9 +395,52 @@ abstract public class BVRToolModel {
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
 		} finally {
-			getBVRM().restoreDefaultStrategies();
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
-		
+
+		return valid;
+	}
+
+	public boolean performSATValidation(VSpecResolution resoluion) {
+		boolean valid = false;
+		CoveringArray ca;
+		satValidationMessage = new ArrayList<String>();
+
+		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
+			transformator.transformVarModelToSPLCA();
+			IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
+			VSpecResolution copied_resolution = (VSpecResolution) ((Map) model_copier).get(resoluion);
+			BVRModel copied_model = model_copier.getCopiedBVRModel();
+
+			VNode node = (VNode) CommonUtility.getResolvedVSpec(copied_resolution);
+			SingleResolutionFinderStrategy strRes = new SingleResolutionFinderStrategy((ChoiceResolution) copied_resolution);
+			ContextConstraintFinderStrategy strConst = new ContextConstraintFinderStrategy(node);
+			SingleResVariabilityFinderStrategy resVar = new SingleResVariabilityFinderStrategy(node);
+			DefaultBVRModelHolderStrategy modelHoler = new DefaultBVRModelHolderStrategy(copied_model);
+
+			getSPLCABVRModel().setResolutionFindStrategy(strRes);
+			getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+			getSPLCABVRModel().setVariabilityFindStrategy(resVar);
+			getSPLCABVRModel().setBVRModelHolderStrategy(modelHoler);
+
+			ca = getSPLCABVRModel().getCoveringArray();
+			CNF cnf = getSPLCABVRModel().getGUIDSL().getSXFM().getCNF();
+			valid = CALib.verifyCA(cnf, ca, true, satValidationMessage);
+		} catch (CSVException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		} catch (UnsupportedSPLCValidation e) {
+			throw new RethrownException(e.getMessage(), e);
+		} catch (BVRException e) {
+			throw new RethrownException("Getting CA failed:", e);
+		} catch (Exception e) {
+			throw new RethrownException(e.getMessage(), e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
+		}
+
 		return valid;
 	}
 
@@ -413,63 +448,73 @@ abstract public class BVRToolModel {
 		return satValidationMessage;
 	}
 
-
 	public Integer calculateCoverage(int t) {
 		int cov;
 		try {
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
 			// Get FM:
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			// Get Covering Array
-			CoveringArray ca = getBVRM().getCoveringArray();
+			CoveringArray ca = getSPLCABVRModel().getCoveringArray();
 			// Calculate
 			cov = (int) Math.round(CALib.calc_coverage(cnf, t, ca));
 		} catch (UnsupportedSPLCValidation e) {
 			throw new ShowErrorException(e.getMessage(), e);
 		} catch (FeatureModelException | IOException | UnsupportedModelException | BVRException | CSVException e) {
 			throw new RethrownException("Failed to calculate coverage", e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
 		return cov;
 	}
 
-
 	public void generateCoveringArray(int xWise) {
+		removeAllResolutions();
 		try {
-			removeAllResolutions();
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			// copy and transform model to the format which can be proccesed by
+			// splca tool
+			copyBVRModelSetUpSPLCA();
+
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			CNF cnf = gdsl.getSXFM().getCNF();
 			CoveringArray ca = cnf.getCoveringArrayGenerator("J11", xWise, 1);
-			
-			/*EList<CompoundResolution> compoundResolutions = getBVRModel().getResolutionModels();
-			EList<PosResolution> rootResolutions = new BasicEList<PosResolution>();
-			for(CompoundResolution compoundResolution : compoundResolutions) {
-				if(compoundResolution instanceof PosResolution)
-					rootResolutions.add((PosResolution) compoundResolution);
-			}
-			
-			 if(rootResolutions.size() > 0){
-				 CoveringArray startFrom = getBVRM().getCoveringArray();
-				 ca.startFrom(startFrom);
-			 }*/
-			 
-			 ca.generate();
-			 GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
-			 EList<VSpecResolution> resolutions = getBVRM().getChoiceResolutions(gfm);
-			 for(VSpecResolution resolution : resolutions)
+
+			/*
+			 * EList<CompoundResolution> compoundResolutions =
+			 * getBVRModel().getResolutionModels(); EList<PosResolution>
+			 * rootResolutions = new BasicEList<PosResolution>();
+			 * for(CompoundResolution compoundResolution : compoundResolutions)
+			 * { if(compoundResolution instanceof PosResolution)
+			 * rootResolutions.add((PosResolution) compoundResolution); }
+			 *
+			 * if(rootResolutions.size() > 0){ CoveringArray startFrom =
+			 * getBVRM().getCoveringArray(); ca.startFrom(startFrom); }
+			 */
+
+			ca.generate();
+			GraphMLFM gfm = gdsl.getGraphMLFMConf(ca);
+			EList<VSpecResolution> resolutions = getSPLCABVRModel().getChoiceResolutions(gfm);
+			for (VSpecResolution resolution : resolutions)
 				addResolutionModel((CompoundResolution) resolution);
 		} catch (Exception e) {
 			throw new RethrownException(e.getMessage(), e);
+		} finally {
+			getSPLCABVRModel().restoreDefaultStrategies();
 		}
 	}
 
 	public void resolveSubtree(VSpecResolution parent) {
 		throw new UnexpectedException("Are you using default implementation?!");
-		
+
 	}
 
 	public void toggleChoice(NamedElement toToggle) {
 		throw new UnexpectedException("Are you using default implementation?!");
-		
+
 	}
 
 	public void removeVSpecResolution(NamedElement toDelete) {
@@ -480,9 +525,9 @@ abstract public class BVRToolModel {
 		GraphMLFM gfm;
 		try {
 			CoveringArray ca = new CoveringArrayFile(file);
-			GUIDSL gdsl = getBVRM().getGUIDSL();
+			GUIDSL gdsl = getSPLCABVRModel().getGUIDSL();
 			gfm = gdsl.getGraphMLFMConf(ca);
-			getBVRM().getChoiceResolutions(gfm);
+			getSPLCABVRModel().getChoiceResolutions(gfm);
 		} catch (Exception e) {
 			throw new RethrownException("Importing resolutions failed: ", e);
 		}
@@ -491,7 +536,7 @@ abstract public class BVRToolModel {
 	public String calculateCosts() {
 		int i = 0;
 		String cstr = "";
-		for(CompoundResolution resolution : getBVRModel().getResolutionModels()) {
+		for (CompoundResolution resolution : getBVRModel().getResolutionModels()) {
 			double d = (resolution instanceof PosResolution) ? calcCost(resolution) : Double.NaN;
 			i++;
 			cstr += i + " : " + d + "\n";
@@ -502,15 +547,15 @@ abstract public class BVRToolModel {
 	private double calcCost(ChoiceResolution resolution) {
 		String comment = NoteFacade.eINSTANCE.getCommentText(CommonUtility.getResolvedVSpec(resolution));
 		double d = 0;
-		try{
-			if(resolution instanceof PosResolution)
+		try {
+			if (resolution instanceof PosResolution)
 				d += Double.parseDouble(comment);
-		}catch(NumberFormatException n){
+		} catch (NumberFormatException n) {
 			d = Double.NaN;
 		}
 
-		if(resolution instanceof CompoundResolution) {
-			for(VSpecResolution c : ((CompoundResolution) resolution).getMembers()){
+		if (resolution instanceof CompoundResolution) {
+			for (VSpecResolution c : ((CompoundResolution) resolution).getMembers()) {
 				d += (c instanceof ChoiceResolution) ? calcCost((ChoiceResolution) c) : Double.NaN;
 			}
 		}
@@ -521,13 +566,11 @@ abstract public class BVRToolModel {
 		Context.eINSTANCE.getConfig().saveLastLocation(absolutePath);
 	}
 
-	public void addChoiceOrVClassifierResolution(VSpec resolvedVspec,
-			VSpecResolution parent) {
+	public void addChoiceOrVClassifierResolution(VSpec resolvedVspec, VSpecResolution parent) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void resolveVariable(CompoundResolution compountResolution,
-			Variable variable) {
+	public void resolveVariable(CompoundResolution compountResolution, Variable variable) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
@@ -555,19 +598,17 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public int getResolvedVClassifierCount(
-			CompoundResolution compoundResolution, VClassifier vclassifier) {
+	public int getResolvedVClassifierCount(CompoundResolution compoundResolution, VClassifier vclassifier) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void addChoiceOrVClassifierResolution(VSpec vSpecToResolve,
-			VSpecResolution parentNamedElement, int instancesToResolve) {
+	public void addChoiceOrVClassifierResolution(VSpec vSpecToResolve, VSpecResolution parentNamedElement, int instancesToResolve) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 	public boolean checkGroupError(CompoundResolution compoundResolution) {
-		VSpec vSpec = CommonUtility.getResolvedVSpec((VSpecResolution) compoundResolution);
-		if(vSpec == null)
+		VSpec vSpec = CommonUtility.getResolvedVSpec(compoundResolution);
+		if (vSpec == null)
 			throw new UnexpectedException("Resolution does not resolve any VSpec " + compoundResolution);
 
 		MultiplicityInterval multiplicity = ((VNode) vSpec).getGroupMultiplicity();
@@ -579,10 +620,11 @@ abstract public class BVRToolModel {
 		int i = 0;
 		for (VSpecResolution x : compoundResolution.getMembers()) {
 			if (x instanceof ChoiceResolution) {
-				if (x instanceof PosResolution) i++;
+				if (x instanceof PosResolution)
+					i++;
 			}
 		}
-		if ((i > upper && upper != -1)|| i < lower)
+		if ((i > upper && upper != -1) || i < lower)
 			return true;
 
 		return false;
@@ -591,7 +633,7 @@ abstract public class BVRToolModel {
 	public boolean showGrouping() {
 		return showGroupsResoultion;
 	}
-	
+
 	public void showGrouping(boolean grouping) {
 		showGroupsResoultion = grouping;
 	}
@@ -624,23 +666,19 @@ abstract public class BVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence,
-			String strType) {
+	public void setChoiceOccurenceType(ChoiceOccurrence choiceOccurence, String strType) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void setVClassOccurenceType(VClassOccurrence vclassOccurence,
-			String typeName) {
+	public void setVClassOccurenceType(VClassOccurrence vclassOccurence, String typeName) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void setVClassOccurenceUpperBound(VClassOccurrence vClassOccur,
-			int upperBound) {
+	public void setVClassOccurenceUpperBound(VClassOccurrence vClassOccur, int upperBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void setVClassOccurenceLowerBound(VClassOccurrence vClassOccur,
-			int lowerBound) {
+	public void setVClassOccurenceLowerBound(VClassOccurrence vClassOccur, int lowerBound) {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
@@ -654,7 +692,31 @@ abstract public class BVRToolModel {
 
 	public void removeUncontainedResolutions(VSpecResolution compoundNode) {
 		throw new UnexpectedException("Are you using default implementation?!");
-		
+
+	}
+
+	@Override
+	public Map<Target, Set<VSpec>> getTargetVSpecMap() {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	protected void copyBVRModelSetUpSPLCA() {
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(getBVRModel());
+		transformator.transformVarModelToSPLCA();
+		IVarModelResolutionsCopier model_copier = transformator.getModelCopier();
+		BVRModel copied_model = model_copier.getCopiedBVRModel();
+
+		IResolutionFinderStrategy strRes = new DefaultResolutionFinderStrategy(copied_model);
+		IConstraintFinderStrategy strConst = new DefaultConstraintFinderStrategy(copied_model);
+		IVariabilityModelFinderStartegy strVM = new DefaultVariabilityModelFinderStrategy(copied_model);
+		IBVRModelHolderStrategy strMH = new DefaultBVRModelHolderStrategy(copied_model);
+		IResolveChoiceStrategy strRC = new CopierResolveChoiceStrategy(model_copier);
+
+		getSPLCABVRModel().setResolutionFindStrategy(strRes);
+		getSPLCABVRModel().setConstrtaintFindStrategy(strConst);
+		getSPLCABVRModel().setVariabilityFindStrategy(strVM);
+		getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
+		getSPLCABVRModel().setResolveChoiceStrategy(strRC);
 	}
 
 }

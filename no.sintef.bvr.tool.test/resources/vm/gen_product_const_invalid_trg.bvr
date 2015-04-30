@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="namesd">
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="Replacement0">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.0"/>
+    <sourceObject/>
+  </packageElement>
+  <variabilityModel xsi:type="bvr:Choice" name="Choice1@1428674752001" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint0">
+      <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
+        <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@ownedTargets.1"/>
+        <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@ownedTargets.2"/>
+      </expression>
+    </ownedConstraint>
+    <member xsi:type="bvr:Choice" name="Choice2@1428674756002" target="//@variabilityModel/@ownedTargets.1" isImpliedByParent="true"/>
+    <member xsi:type="bvr:Choice" name="Choice3@1428674758003" target="//@variabilityModel/@ownedTargets.2"/>
+    <ownedTargets name="Choice1"/>
+    <ownedTargets name="Choice2"/>
+    <ownedTargets name="Choice3"/>
+  </variabilityModel>
+  <resolutionModels xsi:type="bvr:PosResolution" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel">
+    <members xsi:type="bvr:PosResolution" resolvedVSpec="//@variabilityModel/@member.0" resolvedChoice="//@variabilityModel/@member.0"/>
+    <members xsi:type="bvr:NegResolution" resolvedVSpec="//@variabilityModel/@member.1" resolvedChoice="//@variabilityModel/@member.1"/>
+  </resolutionModels>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="Placement2">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Property) class2).&lt;Type>type" propertyName="type" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Model) model).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.2"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@realizationModel.0/@sourceObject.3" insideBoundaryElement="//@realizationModel.0/@sourceObject.3"/>
+    <sourceObject>
+      <MOFRef href="model.uml#_EMz8YLWZEeOnK4VylCE3qg"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="model.uml#_Ezh-ILWZEeOnK4VylCE3qg"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="model.uml#_hVsqYLNlEeOXmIorH1C7_w"/>
+    </sourceObject>
+    <sourceObject/>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="FragmentSubstititution0" placement="//@realizationModel.0" replacement="//@packageElement.0"/>
+</bvr:BVRModel>

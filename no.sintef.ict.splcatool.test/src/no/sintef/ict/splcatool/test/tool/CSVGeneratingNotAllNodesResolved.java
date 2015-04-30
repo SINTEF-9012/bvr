@@ -1,6 +1,7 @@
 package no.sintef.ict.splcatool.test.tool;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import no.sintef.bvr.test.common.utils.TestUtils;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.ict.splcatool.SPLCABVRModel;
@@ -56,7 +58,7 @@ public class CSVGeneratingNotAllNodesResolved {
 		expectedCSVString = "Feature\\Product;1;\nTopChoice;X;\nDirectOutputs;-;\nDirectInputs;-;\n";
 
 		bvrmodel = new BVRSimpleToolModel(new File("TestData/Artificial/resDiffSize2.bvr"));
-		splcabvr = bvrmodel.getBVRM();
+		splcabvr = bvrmodel.getSPLCABVRModel();
 
 		expectedProds1 = new ArrayList<Map<String, Boolean>>();
 		Map<String, Boolean> resoluton1 = new HashMap<String, Boolean>();
@@ -79,13 +81,13 @@ public class CSVGeneratingNotAllNodesResolved {
 		assertTrue(expectedFeatures1.size() == 8);
 
 		expectedCSV1 = new String[][] {
-				{ "Feature\\Product", "TopChoice", "DirectInputs0", "DirectInputs1", "DirectInputs2", "DirectInputs3", "DirectInputs4", "DirectInputs5", "DirectInputs6" },
-				{ "1", "X", "-", "-", "-", "-", "-", "-", "-" } };
+				{ "Feature\\Product", "TopChoice", "DirectInputs0", "DirectInputs1", "DirectInputs2", "DirectInputs3", "DirectInputs4", "DirectInputs5",
+						"DirectInputs6" }, { "1", "X", "-", "-", "-", "-", "-", "-", "-" } };
 
 		expectedCSVString1 = "Feature\\Product;1;\nTopChoice;X;\nDirectInputs0;-;\nDirectInputs1;-;\nDirectInputs2;-;\nDirectInputs3;-;\nDirectInputs4;-;\nDirectInputs5;-;\nDirectInputs6;-;\n";
 
 		bvrmodel1 = new BVRSimpleToolModel(new File("TestData/Artificial/resDiffSize3.bvr"));
-		splcabvr1 = bvrmodel1.getBVRM();
+		splcabvr1 = bvrmodel1.getSPLCABVRModel();
 	}
 
 	@Test
@@ -104,35 +106,33 @@ public class CSVGeneratingNotAllNodesResolved {
 	@Test
 	public void testProductExtraction() throws Exception {
 		List<Map<String, Boolean>> prods = splcabvr.extractResolvedVSpecProducts();
-		assertTrue("Actual product list is incorrect: expected -->" + expectedProds + " actual -->" + prods, doProductsEqual(expectedProds, prods));
-		
+		assertTrue("Actual product list is incorrect: expected -->" + expectedProds + " actual -->" + prods,
+				TestUtils.compareProductResalutionsEqual(expectedProds, prods));
+
 		String[][] result = splcabvr.generateCSVArray(expectedProds);
-		
+
 		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV) + " actual -> " + Arrays.deepToString(result),
 				isCSVArrayIsomorpthic(expectedCSV, result));
-		
+
 		String str = splcabvr.convertCSVArrayToString(result);
-		
+
 		assertEquals("String is incorrect", expectedCSVString, str);
 	}
 
 	@Test
 	public void testProductExtraction1() throws Exception {
 		List<Map<String, Boolean>> prods = splcabvr1.extractResolvedVSpecProducts();
-		assertTrue("Actual product list is incorrect: expected -->" + expectedProds1 + " actual -->" + prods, doProductsEqual(expectedProds1, prods));
-		
+		assertTrue("Actual product list is incorrect: expected -->" + expectedProds1 + " actual -->" + prods,
+				TestUtils.compareProductResalutionsEqual(expectedProds1, prods));
+
 		String[][] result = splcabvr1.generateCSVArray(prods);
-		
+
 		assertTrue("Incorrected CSV array: expected -> " + Arrays.deepToString(expectedCSV1) + " actual -> " + Arrays.deepToString(result),
 				isCSVArrayIsomorpthic(expectedCSV1, result));
-		
-		String str = splcabvr.convertCSVArrayToString(result);
-		
-		assertEquals("String is incorrect", expectedCSVString1, str);
-	}
 
-	private boolean doProductsEqual(List<Map<String, Boolean>> expected, List<Map<String, Boolean>> actual) {
-		return Arrays.equals(expected.toArray(), actual.toArray());
+		String str = splcabvr.convertCSVArrayToString(result);
+
+		assertEquals("String is incorrect", expectedCSVString1, str);
 	}
 
 	private boolean isCSVArrayIsomorpthic(String[][] expected, String[][] actual) {

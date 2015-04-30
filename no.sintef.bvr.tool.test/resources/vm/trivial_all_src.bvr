@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="src">
+  <packageElement xsi:type="bvr:PrimitveType" name="Integer" type="Integer"/>
+  <variabilityModel xsi:type="bvr:Choice" name="A@0" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint0">
+      <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
+        <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0"/>
+        <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@member.1/@ownedTargets.0"/>
+      </expression>
+    </ownedConstraint>
+    <member xsi:type="bvr:Choice" name="B@1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
+      <member xsi:type="bvr:Choice" name="D@3" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+        <ownedTargets name="D"/>
+        <note name="comment" kind="comment" expr=""/>
+      </member>
+      <ownedTargets name="B"/>
+      <note name="comment" kind="comment" expr=""/>
+    </member>
+    <member xsi:type="bvr:Choice" name="C@2" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+      <variable name="Var0" type="//@packageElement.0"/>
+      <member xsi:type="bvr:Choice" name="D@4" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+        <note name="comment" kind="comment" expr=""/>
+      </member>
+      <member xsi:type="bvr:Choice" name="C@5" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+        <note name="comment" kind="comment" expr=""/>
+      </member>
+      <member xsi:type="bvr:VType" name="SomeType"/>
+      <member xsi:type="bvr:ChoiceOccurrence" name="ChoiceOccurence0" vType="//@variabilityModel/@member.1/@member.2">
+        <note name="comment" kind="comment" expr=""/>
+      </member>
+      <member xsi:type="bvr:VClassifier" name="Classifier0@7" target="//@variabilityModel/@member.1/@member.4/@ownedTargets.0">
+        <note name="comment" kind="comment" expr=""/>
+        <ownedTargets name="Classifier0"/>
+        <instanceMultiplicity upper="1" lower="1"/>
+      </member>
+      <member xsi:type="bvr:VClassOccurrence" name="VClassOccurence1" vType="//@variabilityModel/@member.1/@member.2">
+        <note name="comment" kind="comment"/>
+        <instanceMultiplicity upper="1" lower="1"/>
+      </member>
+      <ownedTargets name="C"/>
+      <note name="comment" kind="comment" expr=""/>
+    </member>
+    <ownedTargets name="A"/>
+    <note name="comment" kind="comment" expr=""/>
+  </variabilityModel>
+</bvr:BVRModel>

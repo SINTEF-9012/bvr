@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="trivial">
+  <packageElement xsi:type="bvr:ReplacementFragmentType" name="rA">
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="((Model) null).&lt;PackageableElement>packagedElement[1]={rA}" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.1"/>
+    <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.0/@sourceObject.2" outsideBoundaryElement="//@packageElement.0/@sourceObject.2"/>
+    <sourceObject>
+      <MOFRef href="trivial_lib.uml#_vUKLoOzdEeSkuuAmnRDYKw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="trivial_lib.uml#_tokMgOzdEeSkuuAmnRDYKw"/>
+    </sourceObject>
+    <sourceObject/>
+  </packageElement>
+  <variabilityModel xsi:type="bvr:Choice" name="test@1430146505026" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <ownedTargets name="test"/>
+    <note name="comment" kind="comment" expr=""/>
+  </variabilityModel>
+  <resolutionModels xsi:type="bvr:PosResolution" name="test@1430146505026[2]" resolvedVSpec="//@variabilityModel" resolvedChoice="//@variabilityModel"/>
+  <realizationModel xsi:type="bvr:PlacementFragment" name="A">
+    <placementBoundaryElement xsi:type="bvr:ToPlacement" name="((Model) null).&lt;PackageableElement>packagedElement" propertyName="packagedElement" insideBoundaryElement="//@realizationModel.0/@sourceObject.0" outsideBoundaryElement="//@realizationModel.0/@sourceObject.1"/>
+    <placementBoundaryElement xsi:type="bvr:FromPlacement" name="NULL" outsideBoundaryElement="//@realizationModel.0/@sourceObject.2" insideBoundaryElement="//@realizationModel.0/@sourceObject.2"/>
+    <sourceObject>
+      <MOFRef href="trivial_base.uml#_oDjEwOzdEeSkuuAmnRDYKw"/>
+    </sourceObject>
+    <sourceObject>
+      <MOFRef href="trivial_base.uml#_mc5QAOzdEeSkuuAmnRDYKw"/>
+    </sourceObject>
+    <sourceObject/>
+  </realizationModel>
+  <realizationModel xsi:type="bvr:FragmentSubstitution" name="fs" bindingVSpec="//@variabilityModel" placement="//@realizationModel.0" replacement="//@packageElement.0">
+    <boundaryElementBinding xsi:type="bvr:ToBinding" toPlacement="//@realizationModel.0/@placementBoundaryElement.0" toReplacement="//@packageElement.0/@replacementBoundaryElement.0"/>
+  </realizationModel>
+</bvr:BVRModel>

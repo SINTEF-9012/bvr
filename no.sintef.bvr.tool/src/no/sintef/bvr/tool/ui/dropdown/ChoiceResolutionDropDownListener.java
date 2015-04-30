@@ -1,15 +1,15 @@
 /*******************************************************************************
- * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June
+ * 2007; you may not use this file except in compliance with the License. You
+ * may obtain a copy of the License at
+ *
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  ******************************************************************************/
 package no.sintef.bvr.tool.ui.dropdown;
 
@@ -24,19 +24,17 @@ import javax.swing.JSeparator;
 import no.sintef.bvr.common.CommonUtility;
 import no.sintef.bvr.tool.common.Constants;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
-import no.sintef.bvr.tool.ui.command.event.RemoveUncontainedResolutionEvent;
-import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
+import no.sintef.bvr.tool.model.VSpecFacade;
 import no.sintef.bvr.tool.ui.command.event.AddSubTreeEvent;
 import no.sintef.bvr.tool.ui.command.event.AddValueResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MaximizeVSpecResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.MinimizeVSpecResolutionEvent;
+import no.sintef.bvr.tool.ui.command.event.RemoveUncontainedResolutionEvent;
 import no.sintef.bvr.tool.ui.command.event.RemoveVSpecResolutionEvent;
+import no.sintef.bvr.tool.ui.command.event.ResolveChoiceVClassifierEvent;
 import no.sintef.bvr.tool.ui.command.event.ShowAddMultipleChoicesFromVSpecDialogAndAddEvent;
 import no.sintef.bvr.tool.ui.command.event.ValidateEvent;
 import no.sintef.bvr.ui.framework.elements.ChoiceResolutionPanel;
-
-import org.eclipse.emf.ecore.EObject;
-
 import bvr.Choice;
 import bvr.ChoiceOccurrence;
 import bvr.ChoiceResolution;
@@ -61,11 +59,13 @@ public class ChoiceResolutionDropDownListener extends MouseAdapter {
 		this.c = c;
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.isPopupTrigger())
 			doPop(e);
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.isPopupTrigger())
 			doPop(e);
@@ -104,27 +104,30 @@ class ChoiceResolutionDropdown extends JPopupMenu {
 				for (VNode x : compoundNode.getMember()) {
 					JMenuItem addchild = new JMenuItem((((NamedElement) x).getName()));
 					if (x instanceof Choice) {
-						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, x, controller));
 						resolve_choice.add(addchild);
+						addchild.setText(VSpecFacade.eINSTANCE.getBaseName((VSpec) x));
 					} else if (x instanceof VClassifier) {
-						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, x, controller));
 						resolve_vclass.add(addchild);
+						addchild.setText(VSpecFacade.eINSTANCE.getBaseName((VSpec) x));
 
 						JMenuItem addChild = new JMenuItem(((VSpec) x).getName());
 						addChild.addActionListener(new ShowAddMultipleChoicesFromVSpecDialogAndAddEvent(cp, (VClassifier) x, controller));
 						addMulTree.add(addChild);
+						addChild.setText(VSpecFacade.eINSTANCE.getBaseName((VSpec) x));
 					} else if (x instanceof ChoiceOccurrence) {
-						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, x, controller));
 						resolve_choice_occ.add(addchild);
 					} else if (x instanceof VClassOccurrence) {
-						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, (EObject) x, controller));
+						addchild.addActionListener(new ResolveChoiceVClassifierEvent(cp, x, controller));
 						resolve_vclass_occ.add(addchild);
 					}
 				}
 				JMenu resolve_variable = new JMenu(Constants.RESOLUTION_DROPDOWN_RESOLVE_VAR_ITEM);
 				for (Variable var : compoundNode.getVariable()) {
 					JMenuItem addchild = new JMenuItem(var.getName());
-					addchild.addActionListener(new AddValueResolutionEvent(cp, (Variable) var, controller));
+					addchild.addActionListener(new AddValueResolutionEvent(cp, var, controller));
 					resolve_variable.add(addchild);
 				}
 
