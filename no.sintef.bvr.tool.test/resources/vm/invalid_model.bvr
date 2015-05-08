@@ -4,7 +4,7 @@
     <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.0"/>
     <sourceObject/>
   </packageElement>
-  <variabilityModel xsi:type="bvr:Choice" name="Choice1" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+  <variabilityModel xsi:type="bvr:Choice" name="Choice1"  isImpliedByParent="true">
     <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint0">
       <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
         <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@ownedTargets.1"/>

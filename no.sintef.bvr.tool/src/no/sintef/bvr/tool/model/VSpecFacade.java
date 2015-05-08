@@ -34,7 +34,6 @@ public class VSpecFacade {
 	private final static String defaultVClassifierName = "Classifier";
 	private final static String defaultChoiceOccurenceName = "ChoiceOccurence";
 	private final static String defaultVClassOccurenceName = "VClassOccurence";
-	private final PostfixGeneratorFacade postfix = PostfixGeneratorFacade.eINSTANCE;
 
 	public IIDProvider choiceIDProvider;
 	public IIDProvider classifierIDProvider;
@@ -72,7 +71,7 @@ public class VSpecFacade {
 		Choice c = BvrFactory.eINSTANCE.createChoice();
 		c.setIsImpliedByParent(true);
 		String targetName = defaultChoiceName + choiceIDProvider;
-		c.setName(targetName + postfix.getUnique());
+		c.setName(targetName);
 
 		if (parent instanceof CompoundNode) {
 			Context.eINSTANCE.getEditorCommands().addChoice(c, (CompoundNode) parent);
@@ -89,7 +88,7 @@ public class VSpecFacade {
 	public VClassifier appendVClassifier(NamedElement parent) {
 		VClassifier c = BvrFactory.eINSTANCE.createVClassifier();
 		String targetName = defaultVClassifierName + classifierIDProvider;
-		c.setName(targetName + postfix.getUnique());
+		c.setName(targetName);
 		MultiplicityInterval mi = BvrFactory.eINSTANCE.createMultiplicityInterval();
 		mi.setLower(1);
 		mi.setUpper(1);
@@ -127,15 +126,9 @@ public class VSpecFacade {
 
 	public void updateName(VSpec vSpec, String name) {
 		String current_name = vSpec.getName();
-		if (vSpec instanceof Choice || vSpec instanceof VClassifier) {
-			if (!current_name.startsWith(name + postfix.getDelimiter())) {
-				String new_name = name + postfix.getUnique();
-				Context.eINSTANCE.getEditorCommands().setName(vSpec, new_name);
-			}
-		} else {
-			if (!current_name.startsWith(name))
-				Context.eINSTANCE.getEditorCommands().setName(vSpec, name);
-		}
+		if (!current_name.startsWith(name))
+			Context.eINSTANCE.getEditorCommands().setName(vSpec, name);
+
 	}
 
 	public String getBaseName(VSpec vSpec) {

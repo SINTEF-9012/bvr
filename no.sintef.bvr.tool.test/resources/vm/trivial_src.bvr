@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bvr:BVRModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bvr="http:///bvr.ecore/2.0.0" name="src">
-  <variabilityModel xsi:type="bvr:Choice" name="A@0" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
-    <member xsi:type="bvr:Choice" name="B@1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
-      <member xsi:type="bvr:Choice" name="D@3" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+  <variabilityModel xsi:type="bvr:Choice" name="A" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="B" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
+      <member xsi:type="bvr:Choice" name="D" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
         <ownedTargets name="D"/>
         <note name="comment" kind="comment" expr=""/>
       </member>
       <ownedTargets name="B"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
-    <member xsi:type="bvr:Choice" name="C@2" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
-      <member xsi:type="bvr:Choice" name="D@4" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="C" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+      <member xsi:type="bvr:Choice" name="D" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
         <note name="comment" kind="comment" expr=""/>
       </member>
-      <member xsi:type="bvr:Choice" name="C@5" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+      <member xsi:type="bvr:Choice" name="C" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
         <note name="comment" kind="comment" expr=""/>
       </member>
       <ownedTargets name="C"/>

@@ -4,15 +4,15 @@
     <replacementBoundaryElement xsi:type="bvr:ToReplacement" name="NULL" insideBoundaryElement="//@packageElement.0/@sourceObject.0" outsideBoundaryElement="//@packageElement.0/@sourceObject.0"/>
     <sourceObject/>
   </packageElement>
-  <variabilityModel xsi:type="bvr:Choice" name="Choice1@1428674752001" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+  <variabilityModel xsi:type="bvr:Choice" name="Choice1" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
     <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint0">
       <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
         <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@ownedTargets.1"/>
         <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@ownedTargets.2"/>
       </expression>
     </ownedConstraint>
-    <member xsi:type="bvr:Choice" name="Choice2@1428674756002" target="//@variabilityModel/@ownedTargets.1" isImpliedByParent="true"/>
-    <member xsi:type="bvr:Choice" name="Choice3@1428674758003" target="//@variabilityModel/@ownedTargets.2"/>
+    <member xsi:type="bvr:Choice" name="Choice2" target="//@variabilityModel/@ownedTargets.1" isImpliedByParent="true"/>
+    <member xsi:type="bvr:Choice" name="Choice3" target="//@variabilityModel/@ownedTargets.2"/>
     <ownedTargets name="Choice1"/>
     <ownedTargets name="Choice2"/>
     <ownedTargets name="Choice3"/>

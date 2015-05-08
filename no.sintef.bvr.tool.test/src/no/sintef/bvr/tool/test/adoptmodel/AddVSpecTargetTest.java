@@ -32,11 +32,14 @@ import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.tool.context.Context;
+import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
+import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.interfaces.model.IIDProvider;
 import no.sintef.bvr.tool.interfaces.model.IPostfixGenerator;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.PostfixGeneratorFacade;
+import no.sintef.bvr.tool.model.TransfFacade;
 import no.sintef.bvr.tool.model.VSpecFacade;
 import no.sintef.bvr.tool.test.Activator;
 
@@ -172,9 +175,21 @@ public class AddVSpecTargetTest {
 	public void testUpdateNames() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
-		assertTrue("choice name was not changed properly: anotherChoice " + anotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
-				anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
-		assertFalse("choices' name should be unique in vspec tree", anotherChoice.getName().equals(choice.getName()));
+		assertEquals("Names do not match", choice.getTarget().getName(), anotherChoice.getName());
+		assertEquals("Names do not match", choice.getTarget().getName(), choice.getName());
+
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(bvrModel);
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
+		assertNotNull(transformed);
+		IVarModelResolutionsCopier copier = transformator.getModelCopier();
+		assertNotNull(copier);
+
+		Choice copiedChoice = (Choice) ((Map) copier).get(choice);
+		Choice copiedAnotherChoice = (Choice) ((Map) copier).get(anotherChoice);
+
+		assertTrue("choice name was not changed properly: anotherChoice " + copiedAnotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
+				copiedAnotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
+		assertFalse("choices' name should be unique in vspec tree", copiedAnotherChoice.getName().equals(copiedChoice.getName()));
 		assertEquals("choices should reference the same target", choice.getTarget(), anotherChoice.getTarget());
 	}
 
@@ -184,9 +199,21 @@ public class AddVSpecTargetTest {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 		Context.eINSTANCE.getEditorCommands().executeBatch();
 
-		assertTrue("choice name was not changed properly: anotherChoice " + anotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
-				anotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
-		assertFalse("choices' name should be unique in vspec tree", anotherChoice.getName().equals(choice.getName()));
+		assertEquals("Names do not match", choice.getTarget().getName(), anotherChoice.getName());
+		assertEquals("Names do not match", choice.getTarget().getName(), choice.getName());
+
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(bvrModel);
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
+		assertNotNull(transformed);
+		IVarModelResolutionsCopier copier = transformator.getModelCopier();
+		assertNotNull(copier);
+
+		Choice copiedChoice = (Choice) ((Map) copier).get(choice);
+		Choice copiedAnotherChoice = (Choice) ((Map) copier).get(anotherChoice);
+
+		assertTrue("choice name was not changed properly: anotherChoice " + copiedAnotherChoice.getName() + ", targetName: " + choice.getTarget().getName(),
+				copiedAnotherChoice.getName().startsWith(choice.getTarget().getName() + "@"));
+		assertFalse("choices' name should be unique in vspec tree", copiedAnotherChoice.getName().equals(copiedChoice.getName()));
 		assertEquals("choices should reference the same target", choice.getTarget(), anotherChoice.getTarget());
 	}
 
@@ -256,8 +283,20 @@ public class AddVSpecTargetTest {
 
 	@Test
 	public void testVSpecNaming() {
-		assertEquals("Incorrect vspec name", "Choice0@0", choice.getName());
-		assertEquals("Incorrect vspec name", "Choice1@1", anotherChoice.getName());
+		assertEquals("Incorrect vspec name", "Choice0", choice.getName());
+		assertEquals("Incorrect vspec name", "Choice1", anotherChoice.getName());
+
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(bvrModel);
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
+		assertNotNull(transformed);
+		IVarModelResolutionsCopier copier = transformator.getModelCopier();
+		assertNotNull(copier);
+
+		Choice copiedChoice = (Choice) ((Map) copier).get(choice);
+		Choice copiedAnotherChoice = (Choice) ((Map) copier).get(anotherChoice);
+
+		assertEquals("Incorrect vspec name", "Choice0@0", copiedChoice.getName());
+		assertEquals("Incorrect vspec name", "Choice1@1", copiedAnotherChoice.getName());
 	}
 
 	@Test
@@ -270,18 +309,31 @@ public class AddVSpecTargetTest {
 	public void testVSpecRenaming() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
 
-		assertEquals("Incorrect vspec name", "Choice0@0", choice.getName());
-		assertEquals("Incorrect vspec name after renaming", "Choice0@2", anotherChoice.getName());
+		assertEquals("Incorrect vspec name", "Choice0", choice.getName());
+		assertEquals("Incorrect vspec name after renaming", "Choice0", anotherChoice.getName());
 
 		assertEquals("Incorrect target name", "Choice0", choice.getTarget().getName());
 		assertEquals("Incorrect target name", "Choice0", anotherChoice.getTarget().getName());
+
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(bvrModel);
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
+		assertNotNull(transformed);
+		IVarModelResolutionsCopier copier = transformator.getModelCopier();
+		assertNotNull(copier);
+
+		Choice copiedChoice = (Choice) ((Map) copier).get(choice);
+		Choice copiedAnotherChoice = (Choice) ((Map) copier).get(anotherChoice);
+
+		assertEquals("Incorrect vspec name", "Choice0@0", copiedChoice.getName());
+		assertEquals("Incorrect vspec name after renaming", "Choice0@1", copiedAnotherChoice.getName());
+
 	}
 
 	@Test
 	public void appendVSpecSameName() {
 		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
 		Choice thirdChoice = transactionModel.addChoice(anotherChoice);
-		assertEquals("Icorrect name in the first place", "Choice0@2", thirdChoice.getName());
+		assertEquals("Icorrect name in the first place", "Choice0", thirdChoice.getName());
 
 		assertEquals("VSpecs do not reference the same target, however they have the same prefix name", choice.getTarget(), thirdChoice.getTarget());
 
@@ -312,26 +364,30 @@ public class AddVSpecTargetTest {
 		VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
 		Choice secondchoice = transactionModel.addChoice(choice);
 
+		IBVRSPLCAModelTransformator transformator = TransfFacade.eINSTANCE.getSPLCATransformator(bvrModel);
+		CompoundNode transformed = transformator.transformVarModelToSPLCA();
+		assertNotNull(transformed);
+		IVarModelResolutionsCopier copier = transformator.getModelCopier();
+		assertNotNull(copier);
+
+		Choice copiedOnechoice = (Choice) ((Map) copier).get(onechoice);
+		Choice copiedSecondchoice = (Choice) ((Map) copier).get(secondchoice);
+
 		assertEquals("Targets should be the same", onechoice.getTarget(), secondchoice.getTarget());
-		assertNotEquals("Postfix is unique", onechoice.getName(), secondchoice.getName());
+		assertNotEquals("Postfix is unique", copiedOnechoice.getName(), copiedSecondchoice.getName());
 	}
 
 	@Test
 	public void testChoiceUpdateAllNamedChanged() {
 		transactionModel.updateName(anotherChoice, choice.getTarget().getName());
-		assertEquals("Unexpected choice name", "Choice0@0", choice.getName());
-		assertEquals("Base choice name should be equal since they point to the same target", "Choice0@2", anotherChoice.getName());
+		assertEquals("Unexpected choice name", "Choice0", choice.getName());
+		assertEquals("Base choice name should be equal since they point to the same target", "Choice0", anotherChoice.getName());
 
 		// choices which are pointing to the same target should have the same
 		// base choice name
-		// VSpecFacade.eINSTANCE.choiceIDProvider = new DefaultIDProvider();
 		transactionModel.updateName(choice, "ChoiceChanged");
-		assertTrue("Base choice name does not correspond to changed name", anotherChoice.getName().startsWith("ChoiceChanged@"));
-		assertTrue("Base choice name does not correspond to changed name", choice.getName().startsWith("ChoiceChanged@"));
-		// assertEquals("Base choice name does not correspond to changed name",
-		// "ChoiceChanged@3", anotherChoice.getName());
-		// assertEquals("Base choice name does not correspond to changed name",
-		// "ChoiceChanged@4", choice.getName());
+		assertTrue("Base choice name does not correspond to changed name", anotherChoice.getName().equals("ChoiceChanged"));
+		assertTrue("Base choice name does not correspond to changed name", choice.getName().equals("ChoiceChanged"));
 
 	}
 
@@ -373,8 +429,8 @@ public class AddVSpecTargetTest {
 
 		assertEquals("Choices do not point to the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
 		assertTrue("Base name for choices referencing the same target are wrong : anotherChoice-->" + anotherChoice + ", thirdChoice-->" + thirdChoice
-				+ " expected--> " + anotherChoice.getTarget().getName(), anotherChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@")
-				&& thirdChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@"));
+				+ " expected--> " + anotherChoice.getTarget().getName(), anotherChoice.getName().equals(anotherChoice.getTarget().getName())
+				&& thirdChoice.getName().equals(anotherChoice.getTarget().getName()));
 
 		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
 		Choice fourthChoice = transactionModel.addChoice(choice);
@@ -413,8 +469,8 @@ public class AddVSpecTargetTest {
 
 		assertEquals("Choices do not point to the same target", anotherChoice.getTarget(), thirdChoice.getTarget());
 		assertTrue("Base name for choices referencing the same target are wrong : anotherChoice-->" + anotherChoice + ", thirdChoice-->" + thirdChoice
-				+ " expected--> " + anotherChoice.getTarget().getName(), anotherChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@")
-				&& thirdChoice.getName().startsWith(anotherChoice.getTarget().getName() + "@"));
+				+ " expected--> " + anotherChoice.getTarget().getName(), anotherChoice.getName().equals(anotherChoice.getTarget().getName())
+				&& thirdChoice.getName().equals(anotherChoice.getTarget().getName()));
 
 		Context.eINSTANCE.getEditorCommands().enableBatchProcessing();
 		Choice fourthChoice = transactionModel.addChoice(choice);
@@ -526,8 +582,8 @@ public class AddVSpecTargetTest {
 		assertEquals("thirdChoice and fourthChoice should STILL reference the same target", thirdChoice.getTarget(), fourthChoice.getTarget());
 
 		assertTrue("Base name for choices referencing the same target are wrong : thirdChoice-->" + thirdChoice + ", fourthChoice-->" + fourthChoice
-				+ " expected--> " + fourthTargetInitial.getName(), thirdChoice.getName().startsWith(fourthTargetInitial.getName() + "@")
-				&& fourthChoice.getName().startsWith(fourthTargetInitial.getName() + "@"));
+				+ " expected--> " + fourthTargetInitial.getName(), thirdChoice.getName().equals(fourthTargetInitial.getName())
+				&& fourthChoice.getName().equals(fourthTargetInitial.getName()));
 
 	}
 
@@ -557,9 +613,9 @@ public class AddVSpecTargetTest {
 		assertEquals("Target has been changed", anotherTarget, anotherChoice.getTarget());
 
 		assertTrue("Base name is incorrect expected-->" + expected_base_name + " actual-->" + anotherChoice.getName(),
-				anotherChoice.getName().startsWith(expected_base_name + "@"));
+				anotherChoice.getName().equals(expected_base_name));
 		assertTrue("Base name is incorrect expected-->" + expected_base_name + " actual-->" + thirdChoice.getName(),
-				thirdChoice.getName().startsWith(expected_base_name + "@"));
+				thirdChoice.getName().equals(expected_base_name));
 
 		assertTrue("Not referenced target was removed... " + variabilityModel.getOwnedTargets(), variabilityModel.getOwnedTargets().contains(thirdTraget));
 	}
@@ -606,9 +662,9 @@ public class AddVSpecTargetTest {
 		assertEquals("Choice do not reference initial target", thirdTargetInitial, thirdChoice.getTarget());
 
 		assertTrue("Base name is incorrect expected-->" + anotherTarget.getName() + " actual-->" + anotherChoice.getName(),
-				anotherChoice.getName().startsWith(anotherTarget.getName() + "@"));
-		assertTrue("Base name is incorrect expected-->" + thirdTargetInitial.getName() + " actual-->" + thirdChoice.getName(), thirdChoice.getName()
-				.startsWith(thirdTargetInitial.getName() + "@"));
+				anotherChoice.getName().equals(anotherTarget.getName()));
+		assertTrue("Base name is incorrect expected-->" + thirdTargetInitial.getName() + " actual-->" + thirdChoice.getName(),
+				thirdChoice.getName().equals(thirdTargetInitial.getName()));
 	}
 
 	@Test
@@ -640,8 +696,8 @@ public class AddVSpecTargetTest {
 		assertTrue("Choices should reference teh same target", anotherChoice.getTarget().equals(thirdChoice.getTarget()));
 		assertEquals("Target has been changed", anotherTarget, anotherChoice.getTarget());
 
-		assertTrue("Base name is incorrect expected-->" + new_name + " actual-->" + anotherChoice.getName(), anotherChoice.getName().startsWith(new_name + "@"));
-		assertTrue("Base name is incorrect expected-->" + new_name + " actual-->" + anotherChoice.getName(), thirdChoice.getName().startsWith(new_name + "@"));
+		assertTrue("Base name is incorrect expected-->" + new_name + " actual-->" + anotherChoice.getName(), anotherChoice.getName().equals(new_name));
+		assertTrue("Base name is incorrect expected-->" + new_name + " actual-->" + anotherChoice.getName(), thirdChoice.getName().equals(new_name));
 
 		assertTrue("Not referenced target was removed... " + variabilityModel.getOwnedTargets(), variabilityModel.getOwnedTargets().contains(thirdTraget));
 

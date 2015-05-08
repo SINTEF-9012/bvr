@@ -20,6 +20,7 @@ import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.strategy.ModifyNodeStrategy;
 import no.sintef.bvr.tool.strategy.impl.BCLConstraintModifiyTargetsStrategy;
+import no.sintef.bvr.tool.strategy.impl.ChoiceVClassifierNameModifyStrategy;
 import no.sintef.bvr.tool.strategy.impl.CreateTargetsModifyStrategy;
 import no.sintef.bvr.tool.strategy.impl.RemoveStaleTargetStrategy;
 
@@ -37,7 +38,8 @@ import bvr.VSpec;
 
 public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 
-	private ModifyNodeStrategy[] compoundNodeModifiers = { new CreateTargetsModifyStrategy(), new RemoveStaleTargetStrategy() };
+	private ModifyNodeStrategy[] compoundNodeModifiers = { new ChoiceVClassifierNameModifyStrategy(), new CreateTargetsModifyStrategy(),
+			new RemoveStaleTargetStrategy() };
 	private ModifyNodeStrategy[] constraintModifiers = { new BCLConstraintModifiyTargetsStrategy() };
 	private BVRModel model;
 	private CompoundNode copiedVarModel;
@@ -113,12 +115,12 @@ public class BVRSPLCAModelTransformator implements IBVRSPLCAModelTransformator {
 	}
 
 	private void checkVSpec(CompoundNode varModel, VSpec vSpec) {
-		String choiceBaseName;
-		try {
-			choiceBaseName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vSpec.getName());
-		} catch (Exception ex) {
-			throw new MalformedVarModelException(ex.getMessage(), ex);
-		}
+		String choiceBaseName = vSpec.getName();
+//		try {
+//			choiceBaseName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vSpec.getName());
+//		} catch (Exception ex) {
+//			throw new MalformedVarModelException(ex.getMessage(), ex);
+//		}
 
 		Target target = vSpec.getTarget();
 		if (target == null)

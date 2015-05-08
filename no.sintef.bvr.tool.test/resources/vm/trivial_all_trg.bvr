@@ -15,14 +15,14 @@
       </expression>
     </ownedConstraint>
     <member xsi:type="bvr:Choice" name="B@1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
-      <member xsi:type="bvr:Choice" name="D@3" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
-        <ownedTargets name="D@3"/>
+      <member xsi:type="bvr:Choice" name="D@2" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+        <ownedTargets name="D@2"/>
         <note name="comment" kind="comment" expr=""/>
       </member>
       <ownedTargets name="B@1"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
-    <member xsi:type="bvr:Choice" name="C@2" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="C@3" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
       <variable name="Var0" type="//@packageElement.0"/>
       <member xsi:type="bvr:Choice" name="D@4" target="//@variabilityModel/@member.1/@member.0/@ownedTargets.0" isImpliedByParent="true">
         <ownedTargets name="D@4"/>
@@ -36,16 +36,16 @@
       <member xsi:type="bvr:ChoiceOccurrence" name="ChoiceOccurence0" vType="//@variabilityModel/@member.1/@member.2">
         <note name="comment" kind="comment" expr=""/>
       </member>
-      <member xsi:type="bvr:VClassifier" name="Classifier0@7" target="//@variabilityModel/@member.1/@member.4/@ownedTargets.0">
+      <member xsi:type="bvr:VClassifier" name="Classifier0@6" target="//@variabilityModel/@member.1/@member.4/@ownedTargets.0">
         <note name="comment" kind="comment" expr=""/>
-        <ownedTargets name="Classifier0@7"/>
+        <ownedTargets name="Classifier0@6"/>
         <instanceMultiplicity upper="1" lower="1"/>
       </member>
       <member xsi:type="bvr:VClassOccurrence" name="VClassOccurence1" vType="//@variabilityModel/@member.1/@member.2">
         <note name="comment" kind="comment"/>
         <instanceMultiplicity upper="1" lower="1"/>
       </member>
-      <ownedTargets name="C@2"/>
+      <ownedTargets name="C@3"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
     <ownedTargets name="A@0"/>

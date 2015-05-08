@@ -163,7 +163,9 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		return resource;
 	}
 
-	//TO DO this is actually a mistake, why do we use splca tool as underlying model. This should be just a tool, but not a container which stores a bvr model, reads and writes model files 
+	// TO DO this is actually a mistake, why do we use splca tool as underlying
+	// model. This should be just a tool, but not a container which stores a bvr
+	// model, reads and writes model files
 	private class BVRInnerModel extends SPLCABVRModel {
 
 		public BVRInnerModel(File f) {
@@ -353,7 +355,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	public Choice addChoice(NamedElement parent) {
 		// each vspec has to have target
 		Choice choice = VSpecFacade.eINSTANCE.appendChoice(parent);
-		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(choice.getName());
+		String targetName = choice.getName();
 		CompoundNode variabilityModel = (parent instanceof BVRModel) ? choice : getBVRModel().getVariabilityModel();
 		TargetFacade.eINSTANCE.testVSpecNewTargetName(variabilityModel, choice, targetName);
 		return choice;
@@ -492,7 +494,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void addVClassifier(NamedElement parent) {
 		VClassifier vClassifier = VSpecFacade.eINSTANCE.appendVClassifier(parent);
-		String targetName = PostfixGeneratorFacade.eINSTANCE.removePostfix(vClassifier.getName());
+		String targetName = vClassifier.getName();
 		TargetFacade.eINSTANCE.testVSpecNewTargetName(getBVRModel().getVariabilityModel(), vClassifier, targetName);
 	}
 

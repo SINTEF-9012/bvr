@@ -5,31 +5,31 @@
   <packageElement xsi:type="bvr:PrimitveType" name="Boolean" type="Boolean"/>
   <packageElement xsi:type="bvr:PrimitveType" name="Real" type="Real"/>
   <packageElement xsi:type="bvr:PrimitveType" name="UnlimitedNatural" type="UnlimitedNatural"/>
-  <variabilityModel xsi:type="bvr:Choice" name="A@0" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
+  <variabilityModel xsi:type="bvr:Choice" name="A" target="//@variabilityModel/@ownedTargets.0" isImpliedByParent="true">
     <ownedConstraint xsi:type="bvr:BCLConstraint" name="Constraint0">
       <expression xsi:type="bvr:OperationCallExp" operation="logImplies">
         <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0"/>
         <argument xsi:type="bvr:TargetRef" target="//@variabilityModel/@ownedTargets.1"/>
       </expression>
     </ownedConstraint>
-    <member xsi:type="bvr:Choice" name="B@1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
-      <member xsi:type="bvr:Choice" name="D@3" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="B" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
+      <member xsi:type="bvr:Choice" name="D" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
         <ownedTargets name="D"/>
         <note name="comment" kind="comment" expr=""/>
       </member>
       <ownedTargets name="B"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
-    <member xsi:type="bvr:Choice" name="C@2" target="//@variabilityModel/@ownedTargets.1">
-      <member xsi:type="bvr:Choice" name="D@4" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="C" target="//@variabilityModel/@ownedTargets.1">
+      <member xsi:type="bvr:Choice" name="D" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
         <note name="comment" kind="comment" expr=""/>
       </member>
-      <member xsi:type="bvr:Choice" name="C@5" target="//@variabilityModel/@ownedTargets.1">
+      <member xsi:type="bvr:Choice" name="C" target="//@variabilityModel/@ownedTargets.1">
         <note name="comment" kind="comment" expr=""/>
       </member>
       <note name="comment" kind="comment" expr=""/>
     </member>
-    <member xsi:type="bvr:Choice" name="C@1429795894001" target="//@variabilityModel/@ownedTargets.1">
+    <member xsi:type="bvr:Choice" name="C" target="//@variabilityModel/@ownedTargets.1">
       <note name="comment" kind="comment" expr=""/>
     </member>
     <ownedTargets name="A"/>

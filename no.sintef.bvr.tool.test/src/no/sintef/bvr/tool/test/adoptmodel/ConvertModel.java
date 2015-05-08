@@ -21,15 +21,48 @@ import java.io.File;
 import no.sintef.bvr.test.common.utils.TestUtils;
 import no.sintef.bvr.tool.exception.MalformedVarModelException;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
+import no.sintef.bvr.tool.interfaces.model.IPostfixGenerator;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.PostfixGeneratorFacade;
 import no.sintef.bvr.tool.model.TransfFacade;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import bvr.CompoundNode;
 
+//IMPORTANT NOTE:
+//most of the test cases here depends on the way we work through the model
+//thus test cases may fail if it changes....
+//should be fixed at some point
+
 public class ConvertModel {
+
+	@Before
+	public void setUp() {
+		PostfixGeneratorFacade.eINSTANCE.setPostfixGenerator(new IPostfixGenerator() {
+
+			private int count = 0;
+			private final String DELIMITER = "@";
+
+			@Override
+			public String getPostfix() {
+				return "@" + count++;
+			}
+
+			@Override
+			public String getPostfixDelimiter() {
+				return DELIMITER;
+			}
+
+			@Override
+			public String removePostfix(String str) {
+				String[] strings = str.split(DELIMITER);
+				return strings[0];
+			}
+		});
+	}
 
 	@Test
 	public void testTrivialModelConvertion() {

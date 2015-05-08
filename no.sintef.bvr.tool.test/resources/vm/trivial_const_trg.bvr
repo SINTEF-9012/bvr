@@ -14,14 +14,14 @@
       </expression>
     </ownedConstraint>
     <member xsi:type="bvr:Choice" name="B@1" target="//@variabilityModel/@member.0/@ownedTargets.0" isImpliedByParent="true">
-      <member xsi:type="bvr:Choice" name="D@3" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
-        <ownedTargets name="D@3"/>
+      <member xsi:type="bvr:Choice" name="D@2" target="//@variabilityModel/@member.0/@member.0/@ownedTargets.0" isImpliedByParent="true">
+        <ownedTargets name="D@2"/>
         <note name="comment" kind="comment" expr=""/>
       </member>
       <ownedTargets name="B@1"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
-    <member xsi:type="bvr:Choice" name="C@2" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
+    <member xsi:type="bvr:Choice" name="C@3" target="//@variabilityModel/@member.1/@ownedTargets.0" isImpliedByParent="true">
       <member xsi:type="bvr:Choice" name="D@4" target="//@variabilityModel/@member.1/@member.0/@ownedTargets.0" isImpliedByParent="true">
         <ownedTargets name="D@4"/>
         <note name="comment" kind="comment" expr=""/>
@@ -30,7 +30,7 @@
         <ownedTargets name="C@5"/>
         <note name="comment" kind="comment" expr=""/>
       </member>
-      <ownedTargets name="C@2"/>
+      <ownedTargets name="C@3"/>
       <note name="comment" kind="comment" expr=""/>
     </member>
     <ownedTargets name="A@0"/>
