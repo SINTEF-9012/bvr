@@ -10,10 +10,6 @@ public class PostfixGeneratorFacade {
 
 	public static PostfixGeneratorFacade eINSTANCE = getInstance();
 	private IPostfixGenerator generator;
-	// bits are millesconds)
-	private final int MASK_COUNT = 0x3FF; // to mask count, so we use the last
-											// 10 bits
-	private int count = 0;
 
 	private PostfixGeneratorFacade() {
 		generator = new DefaultPostfixGenerator();
@@ -44,9 +40,13 @@ public class PostfixGeneratorFacade {
 	private class DefaultPostfixGenerator implements IPostfixGenerator {
 
 		private final String DELIMITER = "@";
+		private int count = 0;
+		// bits are millesconds)
+		private final int MASK_COUNT = 0x3FF; // to mask count, so we use the
+												// last
+												// 10 bits
 
-		@Override
-		public String getPostfix() {
+		private String getPostfixTimestampBased() {
 			Calendar calender = Calendar.getInstance();
 			Timestamp currentTimestamp = new Timestamp(calender.getTime().getTime());
 			long temestamp_millsec = currentTimestamp.getTime();
@@ -56,6 +56,15 @@ public class PostfixGeneratorFacade {
 			long postfix = (timestamp_sec * 1000) + (count & MASK_COUNT);
 			count++;
 			return DELIMITER + postfix;
+		}
+
+		private String getPostfixCountBased() {
+			return DELIMITER + ++count;
+		}
+
+		@Override
+		public String getPostfix() {
+			return getPostfixCountBased();
 		}
 
 		@Override
