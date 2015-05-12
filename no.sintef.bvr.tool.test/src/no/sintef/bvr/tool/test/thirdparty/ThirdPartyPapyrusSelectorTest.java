@@ -1,8 +1,9 @@
 package no.sintef.bvr.tool.test.thirdparty;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,13 +16,11 @@ import no.sintef.bvr.tool.test.Activator;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -35,12 +34,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bvr.BVRModel;
-import bvr.BvrPackage;
-
-
 public class ThirdPartyPapyrusSelectorTest {
-	
+
 	private static TestProject testProject;
 	private static ModelSelector selector;
 	private static FileEditorInput vmFileinput;
@@ -48,16 +43,12 @@ public class ThirdPartyPapyrusSelectorTest {
 	private static IWorkbenchPage activePage;
 	private static EObject selectedEObject;
 
-	
-	private static String[] testFolders = {
-		"TestFolder"
-	};
-	
-	private static TestResourceHolder[] testResources = {
-		new TestResourceHolder("/resources/model.uml", "/TestFolder/model.uml"),
-		new TestResourceHolder("/resources/model.notation", "/TestFolder/model.notation"),
-		new TestResourceHolder("/resources/model.di", "/TestFolder/model.di")
-		
+	private static String[] testFolders = { "TestFolder" };
+
+	private static TestResourceHolder[] testResources = { new TestResourceHolder("/resources/model.uml", "/TestFolder/model.uml"),
+			new TestResourceHolder("/resources/model.notation", "/TestFolder/model.notation"),
+			new TestResourceHolder("/resources/model.di", "/TestFolder/model.di")
+
 	};
 
 	@BeforeClass
@@ -66,22 +57,22 @@ public class ThirdPartyPapyrusSelectorTest {
 		testProject.closeWelcome();
 		testProject.createFolders(testFolders);
 		testProject.createResources(testResources);
-		
-		//open bvr editor
-		vmFileinput = new FileEditorInput(testResources[2].getiFile());		
+
+		// open bvr editor
+		vmFileinput = new FileEditorInput(testResources[2].getiFile());
 		activePage = testProject.getActionWorkbenchWindow().getActivePage();
 		assertNotNull(activePage);
 		thirdpartyEditor = activePage.openEditor(vmFileinput, "no.sintef.bvr.papyrusdiagramadapter2.editors.PapyrusBVREditor", true);
-		assertNotNull(thirdpartyEditor);	
-		
-		//Open bvr file
+		assertNotNull(thirdpartyEditor);
+
+		// Open bvr file
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		ResourceSet resSet = new ResourceSetImpl();
-		URI uri = URI.createPlatformResourceURI("/"+ testProject.getName() + testResources[0].getTarget(), true);
+		URI uri = URI.createPlatformResourceURI("/" + testProject.getName() + testResources[0].getTarget(), true);
 		Resource resource = resSet.getResource(uri, true);
 		selectedEObject = resource.getContents().get(0).eContents().get(0);
-		
-		//set up selector
+
+		// set up selector
 		ThirdpartyEditorSelector.setWorkbeach(testProject.getActionWorkbenchWindow());
 		selector = ThirdpartyEditorSelector.getEditorSelector();
 	}
@@ -91,17 +82,17 @@ public class ThirdPartyPapyrusSelectorTest {
 		thirdpartyEditor.dispose();
 		testProject.disposeTestProject();
 	}
-	
-	
+
 	@Before
 	public void setUp() throws Exception {
-		//ModelEditPart exactly ome element should be slected, i.e. opened a tab with class diagram
-		//TODO should be dome properly
+		// ModelEditPart exactly ome element should be slected, i.e. opened a
+		// tab with class diagram
+		// TODO should be dome properly
 		thirdpartyEditor.getSite().getSelectionProvider().setSelection(new StructuredSelection());
 		List<Object> selection = selector.getSelections();
-		assertTrue(selection.size() == 1);		
+		assertTrue(selection.size() == 1);
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 	}
@@ -111,53 +102,53 @@ public class ThirdPartyPapyrusSelectorTest {
 	 */
 	@Test
 	public void testSelection() {
-		//find corresponding graphical elements in the diagram
-		IEditorPart activePapyrusDiagram = ((CoreMultiDiagramEditor)thirdpartyEditor).getActiveEditor();
+		// find corresponding graphical elements in the diagram
+		IEditorPart activePapyrusDiagram = ((CoreMultiDiagramEditor) thirdpartyEditor).getActiveEditor();
 		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) activePapyrusDiagram).getDiagramGraphicalViewer();
-		
+
 		List<?> editParts = gv.findEditPartsForElement(IBVREnabledEditor.IDProvider.getXMIId(selectedEObject), EditPart.class);
-		
+
 		assertTrue("Can not find papyrus diagram part corresponding to the object", editParts.size() != 0);
-		
-		//select element
+
+		// select element
 		thirdpartyEditor.getSite().getSelectionProvider().setSelection(new StructuredSelection(editParts));
 		List<Object> selection = selector.getSelections();
-		assertTrue("Pre-defined selection does not correspond to actual selection", selection.size() == editParts.size());	
+		assertTrue("Pre-defined selection does not correspond to actual selection", selection.size() == editParts.size());
 		assertEquals("Pre-defined selection does not correspond to actual selection", selection, editParts);
 	}
-	
+
 	@Test
 	public void testSelectionEObject() {
-		//find corresponding graphical elements in the diagram
-		IEditorPart activePapyrusDiagram = ((CoreMultiDiagramEditor)thirdpartyEditor).getActiveEditor();
+		// find corresponding graphical elements in the diagram
+		IEditorPart activePapyrusDiagram = ((CoreMultiDiagramEditor) thirdpartyEditor).getActiveEditor();
 		IDiagramGraphicalViewer gv = ((IDiagramWorkbenchPart) activePapyrusDiagram).getDiagramGraphicalViewer();
-		
+
 		List<?> editParts = gv.findEditPartsForElement(IBVREnabledEditor.IDProvider.getXMIId(selectedEObject), EditPart.class);
-		
+
 		assertTrue("Can not find papyrus diagram part corresponding to the object", editParts.size() != 0);
-		
-		//select element
+
+		// select element
 		thirdpartyEditor.getSite().getSelectionProvider().setSelection(new StructuredSelection(editParts));
 		List<Object> selection = selector.getSelections();
-		assertTrue("Pre-defined selection does not correspond to actual selection", selection.size() == editParts.size());	
+		assertTrue("Pre-defined selection does not correspond to actual selection", selection.size() == editParts.size());
 		assertEquals("Pre-defined selection does not correspond to actual selection", selection, editParts);
-		
+
 		HashSet<EObject> eObjects = new HashSet<EObject>();
-		for(Object object : selection) {
+		for (Object object : selection) {
 			EObject eObject = selector.getEObject(object);
-			if(eObject != null)
+			if (eObject != null)
 				eObjects.add(eObject);
 		}
-		
+
 		assertTrue(eObjects.size() == 1);
-		
+
 		String expectedName = (String) selectedEObject.eGet(selectedEObject.eClass().getEStructuralFeature("name"));
-		
+
 		EObject eObject = eObjects.iterator().next();
 		String actualName = (String) eObject.eGet(eObject.eClass().getEStructuralFeature("name"));
-		
+
 		assertEquals("Pre-defined selected eObject does not correspond to actual ", selectedEObject.eClass().getName(), eObject.eClass().getName());
 		assertEquals("Pre-defined selected eObject does not correspond to actual ", expectedName, actualName);
-		
+
 	}
 }

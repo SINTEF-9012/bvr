@@ -1,7 +1,0 @@
-# Tracing options for the no.sintef.bvr.gmf.vspec plug-in
-
-# Common issues
-no.sintef.bvr.gmf.vspec/debug=false
-
-# Visual IDs
-no.sintef.bvr.gmf.vspec/debug/visualID=false
