@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EObjectEList;
 
 import bvr.BvrFactory;
 import bvr.Choice;
@@ -144,11 +143,12 @@ public final class CommonUtility {
 			if (targetObject instanceof EObject) {
 				EObject targetEObject = (EObject) targetObject;
 				eObjects.add(targetEObject);
-			} else if (targetObject instanceof BasicEList) {
-				EList<EObject> eEObjects = (BasicEList<EObject>) targetObject;
+			} else if (targetObject instanceof EList) {
+				EList<? extends EObject> eEObjects = (EList<? extends EObject>) targetObject;
 				eObjects.addAll(eEObjects);
 			} else if (targetObject != null) {
-				throw new UnsupportedOperationException("an element referenced by " + reference + " is neither EObject nor BasicEList: " + targetObject);
+				throw new UnsupportedOperationException("Cannot perform operation : an element referenced by " + reference + " of " + eObject
+						+ " is neither EObject nor EList: class -> " + targetObject.getClass() + " object ->" + targetObject);
 			}
 		}
 		return eObjects;
@@ -161,10 +161,11 @@ public final class CommonUtility {
 				Object value = source.eGet(reference);
 				if (value instanceof EObject) {
 					eObjects.add((EObject) value);
-				} else if (value instanceof EObjectEList) {
+				} else if (value instanceof EList) {
 					eObjects.addAll((EList<? extends EObject>) value);
 				} else if (value != null) {
-					throw new UnsupportedOperationException("reference " + reference + " does not point to EObject nor EObjectList :" + value);
+					throw new UnsupportedOperationException("Cannot perform operation: reference " + reference + " of " + source
+							+ " does not point to EObject nor EList :" + value);
 				}
 			}
 		}
