@@ -38,6 +38,10 @@ SINTEF - initial API and implementation
       <discovery label="BVR Update Site" url="http://bvr.modelbased.net/update/site.xml"/>
    </url>
 
+   <includes
+         id="no.sintef.bvr.usite.feature.featureidecore"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="no.sintef.bvr.model"/>
@@ -53,13 +57,6 @@ SINTEF - initial API and implementation
       <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.resources"/>
    </requires>
-
-   <plugin
-         id="de.ovgu.featureide.fm.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="no.sintef.bvr.model.edit"
