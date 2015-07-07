@@ -1,26 +1,68 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Feature Model Core Plug-in
+Bundle-Name: Feature Model Core Plug-In
 Bundle-SymbolicName: de.ovgu.featureide.fm.core;singleton:=true
-Bundle-Version: 2.5.0.qualifier
+Bundle-Version: 2.7.4.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources
 Bundle-ActivationPolicy: lazy
-Export-Package: de.ovgu.featureide.fm.core;uses:="org.prop4j,org.eclipse.core.resources",
+Export-Package: Jakarta.DRAttributes,
+ Jakarta.SwingUtils;uses:="javax.swing",
+ Jakarta.collection,
+ Jakarta.io;uses:="Jakarta.collection,Jakarta.string",
+ Jakarta.loader,
+ Jakarta.string,
+ Jakarta.symtab,
+ Jakarta.util;uses:="Jakarta.loader",
+ de.ovgu.featureide.fm.core;uses:="org.prop4j,org.eclipse.core.resources",
  de.ovgu.featureide.fm.core.configuration;uses:="de.ovgu.featureide.fm.core.model,org.eclipse.core.resources",
+ de.ovgu.featureide.fm.core.constraint,
+ de.ovgu.featureide.fm.core.constraint.analysis,
  de.ovgu.featureide.fm.core.editing;uses:="org.prop4j,featureide.fm.core.model",
  de.ovgu.featureide.fm.core.editing.evaluation,
  de.ovgu.featureide.fm.core.io;uses:="de.ovgu.featureide.fm.core.model,org.eclipse.core.resources",
  de.ovgu.featureide.fm.core.io.guidsl;uses:="org.prop4j,featureide.fm.core.model,org.eclipse.core.resources",
  de.ovgu.featureide.fm.core.io.splconquerer,
+ de.ovgu.featureide.fm.core.io.sxfm,
+ de.ovgu.featureide.fm.core.io.velvet,
  de.ovgu.featureide.fm.core.io.waterloo,
  de.ovgu.featureide.fm.core.io.xml,
+ de.ovgu.featureide.fm.core.job,
+ de.ovgu.featureide.fm.core.job.util,
  guidsl,
- org.prop4j
-Bundle-ClassPath: .,
- lib/guidsl.jar
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: University of Magdeburg
-Import-Package: org.sat4j.core;version="2.3.5.v20130525",
- org.sat4j.minisat;version="2.3.5.v20130525",
+ org.prop4j,
+ org.sat4j;uses:="org.sat4j.core,org.sat4j.specs,org.sat4j.reader",
+ org.sat4j.core;uses:="org.sat4j.specs",
+ org.sat4j.minisat;uses:="org.sat4j.minisat.core,org.sat4j.core,org.sat4j.specs",
+ org.sat4j.minisat.constraints;uses:="org.sat4j.minisat.core,org.sat4j.specs",
+ org.sat4j.minisat.constraints.card;uses:="org.sat4j.minisat.core,org.sat4j.specs",
+ org.sat4j.minisat.constraints.cnf;uses:="org.sat4j.minisat.core,org.sat4j.specs",
+ org.sat4j.minisat.core;uses:="org.sat4j.specs",
+ org.sat4j.minisat.learning;uses:="org.sat4j.minisat.core",
+ org.sat4j.minisat.orders;uses:="org.sat4j.minisat.core",
+ org.sat4j.minisat.restarts;uses:="org.sat4j.minisat.core",
+ org.sat4j.opt;uses:="org.sat4j.tools,org.sat4j.specs",
+ org.sat4j.pb,
+ org.sat4j.pb.constraints,
+ org.sat4j.pb.constraints.pb,
+ org.sat4j.pb.core,
+ org.sat4j.pb.orders,
+ org.sat4j.pb.reader,
+ org.sat4j.pb.tools,
+ org.sat4j.reader;uses:="org.sat4j.specs",
  org.sat4j.specs,
- org.sat4j.tools;version="2.3.5.v20130525"
+ org.sat4j.tools;uses:="org.sat4j.specs",
+ org.sat4j.tools.encoding,
+ org.sat4j.tools.xplain
+Bundle-ClassPath: .,
+ lib/guidsl.jar,
+ lib/jakarta.jar,
+ lib/org.sat4j.core.jar,
+ lib/annotations.jar,
+ lib/guava-r09.jar,
+ lib/org.sat4j.pb.jar,
+ lib/antlr-3.4.jar
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Activator: de.ovgu.featureide.fm.core.FMCorePlugin
+Bundle-Vendor: University of Magdeburg
 

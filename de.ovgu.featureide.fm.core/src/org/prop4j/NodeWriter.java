@@ -1,9 +1,29 @@
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
+ *
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * See http://featureide.cs.ovgu.de/ for further information.
+ */
 package org.prop4j;
 
 /**
  * Converts a propositional node to a String object.
  * 
- * @author Thomas Thüm
+ * @author Thomas Thuem
  */
 public class NodeWriter {
 	
@@ -15,12 +35,18 @@ public class NodeWriter {
 	/**
 	 * long textual representation
 	 */
-	public final static String[] textualSymbols = new String[] {"not ", " and ", " or ", " implies ", " iff ", ", ", "choose", "atleast", "atmost"};
+	public final static String[] textualSymbols = new String[] {"not ", "and", "or", "implies", "iff", ", ", "choose", "atleast", "atmost"};
 	
 	/**
 	 * short textual representation
 	 */
 	public final static String[] shortSymbols = new String[] {"-", " & ", " | ", " => ", " <=> ", ", ", "choose", "atleast", "atmost"};
+	
+	public final static String noSymbol = " no symbol ";
+	/**
+	 * java textual representation
+	 */
+	public final static String[] javaSymbols = new String[] {"!", " && ", " || ", noSymbol, " == ", noSymbol, noSymbol, noSymbol, noSymbol};
 	
 	/**
 	 * Converts the given node into a short textual representation.
@@ -55,6 +81,7 @@ public class NodeWriter {
 		return nodeToString(node, symbols, optionalBrackets, null);
 	}
 
+
 	/**
 	 * Converts the given node into a specified textual representation.
 	 * 
@@ -64,12 +91,46 @@ public class NodeWriter {
 	 * @param parent the class of the node's parent or null if not available
 	 * @return the textual representation
 	 */
-	protected static String nodeToString(Node node, String[] symbols, boolean optionalBrackets, Class<? extends Node> parent) {
+	protected static String nodeToString(Node node, String[] symbols, boolean optionalBrackets, Class<? extends Node> parent)
+	{
+		return nodeToString(node, symbols, optionalBrackets, false, parent);
+	}
+	
+	protected static String nodeToString(Node node, String[] symbols, boolean optionalBrackets, boolean addQuotationMarks)
+	{
+		return nodeToString(node, symbols, optionalBrackets, addQuotationMarks, null);
+	}
+	
+	
+	/**
+	 * Converts the given node into a specified textual representation.
+	 * 
+	 * @param node a propositional node to convert
+	 * @param symbols array containing strings for: not, and, or, implies, iff, seperator, choose, atleast and atmost
+	 * @param optionalBrackets a flag identifying if not necessary brackets will be added
+	 * @param parent the class of the node's parent or null if not available
+	 * @param Surrounds feature name sincluding whitespaces with quotation marks
+	 * @return the textual representation
+	 */
+	protected static String nodeToString(Node node, String[] symbols, boolean optionalBrackets, boolean addQuotationMarks, Class<? extends Node> parent) {
 		if (node instanceof Literal)
-			return (((Literal) node).positive ? "" : symbols[0]) + ((Literal) node).var;
+		{
+			if (addQuotationMarks)
+			{
+				String returnnode = (((Literal) node).positive ? "" : symbols[0] );
+				if (((Literal) node).var.toString().contains(" "))
+					returnnode += "\""  + ((Literal) node).var + "\"";
+				else 
+					returnnode += ((Literal) node).var;
+				return returnnode;
+			}else
+			{
+				return (((Literal) node).positive ? "" : symbols[0] ) + ((Literal) node).var;
+			}
+		}
 		if (node instanceof Not)
-			return symbols[0] + nodeToString(node.getChildren()[0], symbols, optionalBrackets, node.getClass());
-		return multipleNodeToString(node, symbols, optionalBrackets, parent);
+			return symbols[0] + " " + nodeToString(node.getChildren()[0], symbols, optionalBrackets, addQuotationMarks, node.getClass());
+		return multipleNodeToString(node, symbols, optionalBrackets, parent, addQuotationMarks);
 	}
 
 	/**
@@ -81,18 +142,19 @@ public class NodeWriter {
 	 * @param parent the class of the node's parent or null if not available
 	 * @return the textual representation
 	 */
-	protected static String multipleNodeToString(Node node, String[] symbols, boolean optionalBrackets, Class<? extends Node> parent) {
+	protected static String multipleNodeToString(Node node, String[] symbols, boolean optionalBrackets, Class<? extends Node> parent, boolean addQuotationMarks) {
 		Node[] children = node.getChildren();
 		if (children.length < 1)
 			return "???";
 		if (children.length == 1)
-			return nodeToString(children[0], symbols, optionalBrackets, parent);
+			return nodeToString(children[0], symbols, optionalBrackets,addQuotationMarks, parent);
 
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		String separator = getSeparator(node, symbols);
-		for (Node child : children)
-			s += separator + nodeToString(child, symbols, optionalBrackets, node.getClass());
-		s = s.substring(separator.length());
+		for (Node child : children) {
+			s.append(separator);
+			s.append(nodeToString(child, symbols, optionalBrackets,addQuotationMarks, node.getClass()));
+		}
 		
 		String prefix = "";
 		if (node instanceof Choose)
@@ -106,9 +168,9 @@ public class NodeWriter {
 		int orderChild = order(node.getClass());
 		optionalBrackets = optionalBrackets || prefix.length() > 0 || orderParent > orderChild;
 		optionalBrackets |= orderParent == orderChild && orderParent == order(Implies.class);
-		s = optionalBrackets ? "(" + s + ")" : s;
-		
-		return prefix + s;
+		return prefix + (optionalBrackets ? 
+					"(" + s.toString().substring(separator.length()) + ")" : 
+					s.toString().substring(separator.length()));
 	}
 	
 	/**
@@ -145,13 +207,13 @@ public class NodeWriter {
 	 */
 	protected static String getSeparator(Node node, String[] symbols) {
 		if (node instanceof And)
-			return symbols[1];
+			return " " + symbols[1] + " ";
 		if (node instanceof Or)
-			return symbols[2];
+			return " " + symbols[2] + " ";
 		if (node instanceof Implies)
-			return symbols[3];
+			return " " + symbols[3] + " ";
 		if (node instanceof Equals)
-			return symbols[4];
+			return " " + symbols[4] + " ";
 		if (node instanceof Choose)
 			return symbols[5];
 		if (node instanceof AtLeast)

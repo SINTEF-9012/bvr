@@ -1,20 +1,22 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.editing.evaluation;
 
@@ -36,7 +38,11 @@ import de.ovgu.featureide.fm.core.FMCorePlugin;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 
-
+/**
+ * A generator for feature models.
+ * 
+ * @author Thomas Thüm
+ */
 public abstract class Generator {
 	
 	public static final int TIMEOUT = 60;
@@ -61,7 +67,7 @@ public abstract class Generator {
 		while (count < numberOfFeatures) {
 			int parentIndex = random.nextInt(leaves.size());
 			Feature parent = leaves.remove(parentIndex);
-			fm.renameFeature(parent.getName(), "A" + parent.getName().substring(1));
+			fm.getRenamingsManager().renameFeature(parent.getName(), "A" + parent.getName().substring(1));
 			int childrenCount = random.nextInt(maxChildren) + 1;
 			childrenCount = Math.min(childrenCount, numberOfFeatures - count);
 			for (int i = 1; i <= childrenCount; i++) {
@@ -79,20 +85,20 @@ public abstract class Generator {
 				parent.changeToOr();
 			count += childrenCount;
 		}
-		fm.performRenamings();
+		fm.getRenamingsManager().performRenamings();
 		return fm;
 	}
 	
 	public static void generateConstraints(FeatureModel fm, Random random, int numberOfConstraints) {
 		boolean valid = true;
 		try {
-			valid = fm.isValid();
+			valid = fm.getAnalyser().isValid();
 			if (!valid)
 				FMCorePlugin.getDefault().logInfo("Feature model not valid!");
 		} catch (TimeoutException e) {
 			FMCorePlugin.getDefault().logError(e);
 		}
-		Object[] names = fm.getOldFeatureNames().toArray();
+		Object[] names = fm.getRenamingsManager().getOldFeatureNames().toArray();
 		int k = 0;
 		for (int i = 0; i < numberOfConstraints;) {
 			Node node = getRandomLiteral(names, random);
@@ -114,7 +120,7 @@ public abstract class Generator {
 			}
 			fm.addPropositionalNode(node);
 			try {
-				if (!valid || fm.isValid()) {
+				if (!valid || fm.getAnalyser().isValid()) {
 					i++;
 					System.out.println("E\t" + i + "\t" + node);
 				}
@@ -130,7 +136,7 @@ public abstract class Generator {
 	}
 
 	public static FeatureModel refactoring(FeatureModel originalFM, long id, int numberOfEdits) {
-		FeatureModel fm = (FeatureModel) originalFM.clone();
+		FeatureModel fm = originalFM.clone();
 		Random random = new Random(id);
 		
 		for (int i = 0; i < numberOfEdits; i++) {
@@ -181,7 +187,7 @@ public abstract class Generator {
 	}
 
 	public static FeatureModel generalization(FeatureModel originalFM, long id, int numberOfEdits) {
-		FeatureModel fm = (FeatureModel) originalFM.clone();
+		FeatureModel fm = originalFM.clone();
 		Random random = new Random(id);
 		
 		for (int i = 0; i < numberOfEdits; i++) {
@@ -304,11 +310,11 @@ public abstract class Generator {
 	public static FeatureModel arbitraryEdits(FeatureModel originalFM, long id, int numberOfEdits) {
 		boolean valid = false;
 		try {
-			valid = originalFM.isValid();
+			valid = originalFM.getAnalyser().isValid();
 		} catch (TimeoutException e) {
 			FMCorePlugin.getDefault().logError(e);
 		}
-		FeatureModel fm = (FeatureModel) originalFM.clone();
+		FeatureModel fm = originalFM.clone();
 		Random random = new Random(id);
 		
 		for (int i = 0; i < numberOfEdits; i++) {
@@ -393,14 +399,14 @@ public abstract class Generator {
 				//delete or add constraint
 				if (fm.getPropositionalNodes().size() > 0 && random.nextBoolean()) {
 					int index = random.nextInt(fm.getPropositionalNodes().size());
-					fm.removePropositionalNode(index);
+					fm.removeConstraint(index);
 				}
 				else
 					generateConstraints(fm, random, 1);
 			}
 			
 			try {
-				if (valid && !fm.isValid()) {
+				if (valid && !fm.getAnalyser().isValid()) {
 					System.out.println("Void feature model by arbitrary edit	" + r);
 					fm = backup;
 					i--;

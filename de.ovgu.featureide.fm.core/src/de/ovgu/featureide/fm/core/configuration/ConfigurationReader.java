@@ -1,20 +1,22 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.configuration;
 
@@ -24,32 +26,75 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.StringTokenizer;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 
 import de.ovgu.featureide.fm.core.FMCorePlugin;
-import de.ovgu.featureide.fm.core.Feature;
 
+/**
+ * Reads a configuration from file or String.
+ */
 public class ConfigurationReader {
 
-	private Configuration configuration;
+	public static class Warning {
+		private final String message;
+		private final int position;
 
-	private LinkedList<String> warnings = new LinkedList<String>();
-	private LinkedList<Integer> positions = new LinkedList<Integer>();
+		public Warning(String message, int position) {
+			this.message = message;
+			this.position = position;
+		}
+
+		public String getMessage() {
+			return message;
+		}
+
+		public int getPosition() {
+			return position;
+		}
+	}
+
+	private final Configuration configuration;
+
+	private final LinkedList<Warning> warnings = new LinkedList<Warning>();
 
 	public ConfigurationReader(Configuration configuration) {
 		this.configuration = configuration;
 	}
 
+	public boolean readFromFile(IFile file) throws CoreException, IOException {
+		if (file.isAccessible()) {
+			final String fileName = file.getRawLocation().toOSString();
+
+			final int extensionIndex = fileName.lastIndexOf(".");
+			final String extension = (extensionIndex > -1) ? fileName.substring(extensionIndex + 1) : null;
+
+			return readFromInputStream(new FileInputStream(fileName), ConfigurationFormat.getFormatByExtension(extension));
+		}
+		return false;
+	}
+
 	public boolean readFromString(String text) {
-		InputStream inputStream = null;
+		InputStream inputStream = new ByteArrayInputStream(text.getBytes(Charset.availableCharsets().get("UTF-8")));
+		return readFromInputStream(inputStream, new DefaultFormat());
+	}
+
+	public boolean readFromString(String text, ConfigurationFormat format) {
+		InputStream inputStream = new ByteArrayInputStream(text.getBytes(Charset.availableCharsets().get("UTF-8")));
+		return readFromInputStream(inputStream, format);
+	}
+
+	private boolean readFromInputStream(InputStream inputStream, ConfigurationFormat format) {
 		try {
-			inputStream = new ByteArrayInputStream(text.getBytes());
-			return readFromInputStream(inputStream);
+			read(inputStream, format);
 		} catch (IOException e) {
 			FMCorePlugin.getDefault().logError(e);
+			return false;
 		} finally {
 			if (inputStream != null) {
 				try {
@@ -59,81 +104,24 @@ public class ConfigurationReader {
 				}
 			}
 		}
-		return false;
+		return warnings.isEmpty();
 	}
 
-	private boolean readFromInputStream(InputStream inputStream)
-			throws IOException {
-		configuration.resetValues();
+	private void read(InputStream inputStream, ConfigurationFormat format) throws IOException {
+		warnings.clear();
 		BufferedReader reader = null;
-		String line = null;
-		Integer lineNumber = 1;
-		boolean successful = true;
 		try {
-			reader = new BufferedReader(new InputStreamReader(inputStream));
-			while ((line = reader.readLine()) != null) {
-				if (line.startsWith("#") || line.isEmpty()) {
-					lineNumber++;
-					continue;
-				}
-				// the string tokenizer is used to also support the expression
-				// format used by FeatureHouse
-				StringTokenizer tokenizer = new StringTokenizer(line);
-				LinkedList<String> hiddenFeatures = new LinkedList<String>();
-				while (tokenizer.hasMoreTokens()) {
-					String name = tokenizer.nextToken();
-					Feature feature = configuration.getFeatureModel()
-							.getFeature(name);
-					if (feature != null && feature.isHidden()) {
-						hiddenFeatures.add(name);
-					} else {
-						try {
-							configuration.setManual(name, Selection.SELECTED);
-						} catch (FeatureNotFoundException e) {
-							successful = false;
-							warnings.add("Feature " + name
-									+ " does not exist anymore");
-							positions.add(lineNumber);
-						} catch (SelectionNotPossibleException e) {
-							successful = false;
-							warnings.add("Feature " + name
-									+ " cannot be selected anymore");
-							positions.add(lineNumber);
-						}
-					}
-					lineNumber++;
-				}
-				for (String name : hiddenFeatures) {
-					try {
-						configuration.setManual(name, Selection.SELECTED);
-					} catch (FeatureNotFoundException e) {
-						successful = false;
-						warnings.add("Feature " + name
-								+ " does not exist anymore");
-						positions.add(lineNumber);
-					} catch (SelectionNotPossibleException e) {
-						successful = false;
-						warnings.add("Feature " + name
-								+ " cannot be selected anymore");
-						positions.add(lineNumber);
-					}
-					lineNumber++;
-				}
-			}
+			reader = new BufferedReader(new InputStreamReader(inputStream, Charset.availableCharsets().get("UTF-8")));
+			warnings.addAll(format.read(reader, configuration));
 		} finally {
 			if (reader != null) {
 				reader.close();
 			}
 		}
-		return successful;
 	}
 
-	public List<String> getWarnings() {
+	public List<Warning> getWarnings() {
 		return Collections.unmodifiableList(warnings);
-	}
-
-	public List<Integer> getPositions() {
-		return Collections.unmodifiableList(positions);
 	}
 
 }

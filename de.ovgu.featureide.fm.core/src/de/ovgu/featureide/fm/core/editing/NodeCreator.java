@@ -1,27 +1,33 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.editing;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.prop4j.And;
 import org.prop4j.AtMost;
@@ -49,34 +55,80 @@ public class NodeCreator {
 		return createNodes(featureModel, true);
 	}
 
-	public static Node createNodes(FeatureModel featureModel,
-			boolean ignoreAbstractFeatures) {
-		if (ignoreAbstractFeatures)
-			return createNodes(featureModel, EMPTY_MAP);
-		HashMap<Object, Node> replacingMap = calculateReplacingMap(featureModel);
-		return createNodes(featureModel, replacingMap);
+	public static Node createNodes(FeatureModel featureModel, boolean ignoreAbstractFeatures) {
+		return createNodes(featureModel, ignoreAbstractFeatures 
+			? EMPTY_MAP 
+			: calculateReplacingMap(featureModel));
+	}
+	
+	public static Node createNodes(FeatureModel featureModel, Set<String> removeFeatures) {
+		return createNodes(featureModel, calculateReplacingMap(featureModel, removeFeatures), removeFeatures);
 	}
 
 	public static Node createNodes(FeatureModel featureModel,
-			HashMap<Object, Node> replacingMap) {
+			Map<Object, Node> replacingMap) {
 		Feature root = featureModel.getRoot();
 		LinkedList<Node> nodes = new LinkedList<Node>();
 		if (root != null) {
-			nodes.add(new Literal(getVariable(root, featureModel)));
+			nodes.add(new Literal(getVariable(root.getName(), featureModel)));
 			// convert grammar rules into propositional formulas
 			createNodes(nodes, root, featureModel, true, replacingMap);
 			// add extra constraints
-			for (Node node : featureModel.getPropositionalNodes())
+			for (Node node : new ArrayList<Node>(featureModel.getPropositionalNodes()))
 				nodes.add(node.clone());
 		}
 		And and = new And(nodes);
 		and = (And) replaceAbstractVariables(and, replacingMap, false);
 		and = eliminateAbstractVariables(and, replacingMap, featureModel);
-		return and;
+		return replaceNames(and,featureModel);
+	}
+	
+	public static Node createNodes(FeatureModel featureModel,
+			Map<Object, Node> replacingMap, Set<String> removeFeatures) {
+		Feature root = featureModel.getRoot();
+		LinkedList<Node> nodes = new LinkedList<Node>();
+		if (root != null) {
+			nodes.add(new Literal(getVariable(root.getName(), featureModel)));
+			// convert grammar rules into propositional formulas
+			createNodes(nodes, root, featureModel, true, replacingMap);
+			// add extra constraints
+			for (Node node : new ArrayList<Node>(featureModel.getPropositionalNodes()))
+				nodes.add(node.clone());
+		}
+		And and = new And(nodes);
+		and = (And) replaceAbstractVariables(and, replacingMap, false);
+		and = eliminateAbstractVariables(and, replacingMap, featureModel, removeFeatures);
+		return replaceNames(and,featureModel);
+	}
+
+	/**
+	 * @param and
+	 * @param featureModel
+	 * @return
+	 */
+	private static Node replaceNames(Node node, FeatureModel featureModel) {
+		if (node == null) {
+			return null;
+		}
+		if (node instanceof Literal) {
+			Literal literal = (Literal) node;
+			if (literal.var instanceof String) {
+				literal.var = featureModel.getRenamingsManager().getOldName((String) literal.var);
+			}
+		} else {
+			Node[] children = node.getChildren();
+			for (int i = 0; i < children.length; i++) {
+				children[i] = replaceNames(children[i],featureModel);
+				if (children[i] == null)
+					return null;
+			}
+		}
+		
+		return node;
 	}
 
 	public static Node replaceAbstractVariables(Node node,
-			HashMap<Object, Node> map, boolean replaceNull) {
+			Map<Object, Node> map, boolean replaceNull) {
 		if (node == null)
 			return null;
 		if (node instanceof Literal) {
@@ -115,7 +167,7 @@ public class NodeCreator {
 	};
 
 	public static And eliminateAbstractVariables(And and,
-			HashMap<Object, Node> map, FeatureModel featureModel) {
+			Map<Object, Node> map, FeatureModel featureModel) {
 		for (Entry<Object, Node> entry : map.entrySet())
 			if (entry.getValue() == null) {
 				String name = entry.getKey().toString();
@@ -142,15 +194,56 @@ public class NodeCreator {
 					and = new And(children);
 				}
 			}
-		Node[] concreteFeatures = new Node[featureModel.countConcreteFeatures() + 1];
+		Node[] concreteFeatures = new Node[featureModel.getAnalyser().countConcreteFeatures() + 1];
 		int i = 0;
 		for (Feature feature : featureModel.getFeatures())
 			if (feature.isConcrete())
-				concreteFeatures[i++] = new Literal(getVariable(feature,
-						featureModel));
+				concreteFeatures[i++] = new Literal(getVariable(feature.getName(), featureModel));
 		concreteFeatures[i] = new Literal(varTrue);
 		return new And(and, varTrue, new Not(varFalse),
 				new Or(concreteFeatures));
+	}
+	
+	public static And eliminateAbstractVariables(And and,
+			Map<Object, Node> map, FeatureModel featureModel, Set<String> removeFeatures) {
+		for (Entry<Object, Node> entry : map.entrySet())
+			if (entry.getValue() == null) {
+				String name = entry.getKey().toString();
+				List<Node> nochange = new LinkedList<Node>();
+				List<Node> change = new LinkedList<Node>();
+				calculateNodesToReplace(and.getChildren(), name, nochange,
+						change);
+				if (!change.isEmpty()) {
+					Node toChange = new And(change);
+					Node trueNode = replaceFeature(toChange.clone(), name,
+							varTrue);
+					Node falseNode = replaceFeature(toChange.clone(), name, varFalse);
+					Node newPart = simplify(new Or(trueNode, falseNode));
+					newPart = simplify(newPart.toCNF());
+					if (!(newPart instanceof And))
+						newPart = new And(newPart);
+					Node[] children = new Node[nochange.size()
+							+ newPart.getChildren().length];
+					int i = 0;
+					for (Node child : nochange)
+						children[i++] = child;
+					for (Node child : newPart.getChildren())
+						children[i++] = child;
+					and = new And(children);
+				}
+			}
+		
+		List<Node> featureList = new ArrayList<Node>(featureModel.getFeatures().size() - removeFeatures.size());
+		for (Feature feature : featureModel.getFeatures()) {
+			if (!removeFeatures.contains(feature.getName())) {
+				featureList.add(new Literal(getVariable(feature.getName(), featureModel)));
+			}
+		}
+		Node[] concreteFeatures = new Node[featureList.size() + 1];
+		featureList.toArray(concreteFeatures);
+			
+		concreteFeatures[concreteFeatures.length - 1] = new Literal(varTrue);
+		return new And(and, varTrue, new Not(varFalse), new Or(concreteFeatures));
 	}
 
 	private static void calculateNodesToReplace(Node[] children,
@@ -182,7 +275,7 @@ public class NodeCreator {
 				return new Literal(varFalse);
 			return lit;
 		}
-		Node[] children = node.getChildren();
+		final Node[] children = node.getChildren();
 		int removeChildren = 0;
 		for (int i = 0; i < children.length; i++) {
 			Node child = simplify(children[i]);
@@ -256,20 +349,41 @@ public class NodeCreator {
 			}
 			children[i] = child;
 		}
-		if (removeChildren == 0)
-			return node;
-		if (children.length - removeChildren == 0) {
-			if (node instanceof And)
+		final int newSize = children.length - removeChildren;
+		switch (newSize) {
+		case 0:
+			if (node instanceof And) {
 				return new Literal(varTrue);
-			if (node instanceof Or)
+			}
+			if (node instanceof Or) {
 				return new Literal(varFalse);
+			}
+			break;
+		case 1:
+			if (node instanceof And || node instanceof Or) {
+				for (Node child : children) {
+					if (child != null) {
+						return child;
+					}
+				}
+			}
+			break;
+		default:
+			break;
 		}
-		Node[] newChildren = new Node[children.length - removeChildren];
+		if (removeChildren == 0) {
+			return node;
+		}
+		
+		final Node[] newChildren = new Node[newSize];
 		int i = 0;
-		for (Node child : children)
-			if (child != null)
+		for (Node child : children) {
+			if (child != null) {
 				newChildren[i++] = child;
+			}
+		}
 		node.setChildren(newChildren);
+		
 		return node;
 	}
 
@@ -289,19 +403,20 @@ public class NodeCreator {
 		return node;
 	}
 
-	private static void createNodes(LinkedList<Node> nodes,
+	@SuppressWarnings("unchecked")
+	private static void createNodes(Collection<Node> nodes,
 			Feature rootFeature, FeatureModel featureModel, boolean recursive,
-			HashMap<Object, Node> replacings) {
+			Map<Object, Node> replacings) {
 		if (rootFeature == null || !rootFeature.hasChildren())
 			return;
 
-		String s = getVariable(rootFeature, featureModel);
+		String s = getVariable(rootFeature.getName(), featureModel);
 
 		Node[] children = new Node[rootFeature.getChildrenCount()];
-		for (int i = 0; i < children.length; i++) {
-			String var = getVariable(rootFeature.getChildren().get(i),
-					featureModel);
-			children[i] = new Literal(var);
+		int i = 0;
+		for (Feature rootChild : rootFeature.getChildren()) {
+			String var = getVariable(rootChild.getName(), featureModel);
+			children[i++] = new Literal(var);
 		}
 		Node definition = children.length == 1 ? children[0] : new Or(children);
 
@@ -311,7 +426,7 @@ public class NodeCreator {
 			LinkedList<Node> manChildren = new LinkedList<Node>();
 			for (Feature feature : rootFeature.getChildren())
 				if (feature.isMandatory()) {
-					String var = getVariable(feature, featureModel);
+					String var = getVariable(feature.getName(), featureModel);
 					manChildren.add(new Literal(var));
 				}
 
@@ -325,7 +440,7 @@ public class NodeCreator {
 			nodes.add(new Implies(definition, new Literal(s)));
 		} else {
 			// add constraint S <=> (A | B | C)
-			if (replacings.get(featureModel.getOldName(rootFeature.getName())) == null)
+			if (replacings.get(featureModel.getRenamingsManager().getOldName(rootFeature.getName())) == null)
 				nodes.add(new Equals(new Literal(s), definition));
 
 			if (rootFeature.isAlternative()) {
@@ -336,7 +451,7 @@ public class NodeCreator {
 		}
 
 		if (recursive)
-			for (Feature feature : rootFeature.getChildren())
+			for (Feature feature : (LinkedList<Feature>)rootFeature.getChildren().clone())
 				createNodes(nodes, feature, featureModel, true, replacings);
 	}
 
@@ -344,12 +459,24 @@ public class NodeCreator {
 		HashMap<Object, Node> map = new HashMap<Object, Node>();
 		for (Feature feature : featureModel.getFeatures()) {
 			if (feature.isAbstract()) {
-				String var = getVariable(feature, featureModel);
+				String var = getVariable(feature.getName(), featureModel);
 				Node replacing = calculateReplacing(var, featureModel);
 				replacing = NodeCreator.replaceAbstractVariables(replacing,
 						map, true);
 				updateMap(map, var, replacing);
 			}
+		}
+		return map;
+	}
+	
+	public static HashMap<Object, Node> calculateReplacingMap(FeatureModel featureModel, Set<String> featureNames) {
+		HashMap<Object, Node> map = new HashMap<Object, Node>();
+		for (String featureName : featureNames) {
+			String var = getVariable(featureName, featureModel);
+			Feature feature = getFeature(var, featureModel);
+			Node replacing = calculateReplacing(featureModel, feature, featureNames);
+			replacing = NodeCreator.replaceAbstractVariables(replacing, map, true);
+			updateMap(map, var, replacing);
 		}
 		return map;
 	}
@@ -359,13 +486,10 @@ public class NodeCreator {
 	 */
 	private static void updateMap(HashMap<Object, Node> map, Object var,
 			Node replacing) {
-		for (Object key : map.keySet()) {
-			Node value = map.get(key);
+		for (Entry<Object, Node> entry : map.entrySet()) {
 			HashMap<Object, Node> tempMap = new HashMap<Object, Node>();
 			tempMap.put(var, replacing);
-			value = NodeCreator
-					.replaceAbstractVariables(value, tempMap, true);
-			map.put(key, value);
+			entry.setValue(NodeCreator.replaceAbstractVariables(entry.getValue(), tempMap, true));
 		}
 		map.put(var, replacing);
 	}
@@ -383,21 +507,51 @@ public class NodeCreator {
 				return null;
 			if ((parent.isAnd() && feature.isMandatorySet())
 					|| (!parent.isAnd() && parent.getChildrenCount() == 1))
-				return new Literal(featureModel.getOldName(parent.getName()));
+				return new Literal(featureModel.getRenamingsManager().getOldName(parent.getName()));
 			return null;
 		}
 		if (feature.isAnd()) {
 			for (Feature child : feature.getChildren())
 				if (child.isMandatorySet() && child.isConcrete())
-					return new Literal(featureModel.getOldName(child.getName()));
+					return new Literal(featureModel.getRenamingsManager().getOldName(child.getName()));
 			for (Feature child : feature.getChildren())
 				if (child.isMandatorySet())
-					return new Literal(featureModel.getOldName(child.getName()));
+					return new Literal(featureModel.getRenamingsManager().getOldName(child.getName()));
 			return null;
 		}
 		LinkedList<Node> children = new LinkedList<Node>();
 		for (Feature child : feature.getChildren()) {
-			String var2 = featureModel.getOldName(child.getName());
+			String var2 = featureModel.getRenamingsManager().getOldName(child.getName());
+			children.add(new Literal(var2));
+		}
+		if (children.size() == 1)
+			return children.getFirst();
+		return new Or(children);
+	}
+	
+	private static Node calculateReplacing(FeatureModel featureModel,
+			Feature feature, Set<String> featureNames) {
+		if (!feature.hasChildren()) {
+			Feature parent = feature.getParent();
+			if (parent == null || featureNames.contains(parent.getName()))
+				return null;
+			if ((parent.isAnd() && feature.isMandatorySet())
+					|| (!parent.isAnd() && parent.getChildrenCount() == 1))
+				return new Literal(featureModel.getRenamingsManager().getOldName(parent.getName()));
+			return null;
+		}
+		if (feature.isAnd()) {
+			for (Feature child : feature.getChildren())
+				if (child.isMandatorySet() && !featureNames.contains(child.getName()))
+					return new Literal(featureModel.getRenamingsManager().getOldName(child.getName()));
+			for (Feature child : feature.getChildren())
+				if (child.isMandatorySet())
+					return new Literal(featureModel.getRenamingsManager().getOldName(child.getName()));
+			return null;
+		}
+		LinkedList<Node> children = new LinkedList<Node>();
+		for (Feature child : feature.getChildren()) {
+			String var2 = featureModel.getRenamingsManager().getOldName(child.getName());
 			children.add(new Literal(var2));
 		}
 		if (children.size() == 1)
@@ -406,12 +560,16 @@ public class NodeCreator {
 	}
 
 	private static Feature getFeature(Object var, FeatureModel featureModel) {
-		String currentName = featureModel.getNewName((String) var);
+		String currentName = featureModel.getRenamingsManager().getNewName((String) var);
 		return featureModel.getFeature(currentName);
 	}
 
+	public static String getVariable(String featureName, FeatureModel featureModel) {
+		return featureModel.getRenamingsManager().getOldName(featureName);
+	}
+	
 	public static String getVariable(Feature feature, FeatureModel featureModel) {
-		return featureModel.getOldName(feature.getName());
+		return featureModel.getRenamingsManager().getOldName(feature.getName());
 	}
 
 }

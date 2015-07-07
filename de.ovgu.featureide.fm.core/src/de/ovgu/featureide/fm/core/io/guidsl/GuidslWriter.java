@@ -1,20 +1,22 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.io.guidsl;
 
@@ -27,12 +29,10 @@ import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.AbstractFeatureModelWriter;
 
-
 /**
  * Writes a feature model in the GUIDSL format (grammar).
  * 
  * @author Thomas Thuem
- *
  */
 public class GuidslWriter extends AbstractFeatureModelWriter {
 
@@ -53,7 +53,7 @@ public class GuidslWriter extends AbstractFeatureModelWriter {
 	
 	public String writeToString() {
 		//open a string buffer for writing
-		StringBuffer out = new StringBuffer();// = new BufferedWriter(new FileWriter(file));
+		StringBuilder out = new StringBuilder();// = new BufferedWriter(new FileWriter(file));
 
 		//write generating information
 //		DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.MEDIUM, Locale.ENGLISH);
@@ -78,12 +78,12 @@ public class GuidslWriter extends AbstractFeatureModelWriter {
 		return out.toString();
 	}
 	
-	private void writeComments(StringBuffer out) {
+	private void writeComments(StringBuilder out) {
 		for (int i = 0; i<featureModel.getComments().size(); i++)
 			out.append("//" + featureModel.getComments().get(i) + "\n");
 	}
 
-	private void writeGrammarDefinition(StringBuffer out) {
+	private void writeGrammarDefinition(StringBuilder out) {
 		Feature root = featureModel.getRoot();
 		if (root != null) {
 			if (root.isOr()) {
@@ -100,7 +100,7 @@ public class GuidslWriter extends AbstractFeatureModelWriter {
 			out.append("\r\n");
 	}
 
-	private void writePropositionalConstraints(StringBuffer out) {
+	private void writePropositionalConstraints(StringBuilder out) {
 		if (featureModel.getPropositionalNodes().isEmpty())
 			return;
 		out.append("%%\r\n\r\n");
@@ -114,7 +114,7 @@ public class GuidslWriter extends AbstractFeatureModelWriter {
 //			out.append(featureModel.getAnnotations() + "\r\n\r\n");
 //	}
 
-	private void writeRule(Feature mainFeature, StringBuffer out) {
+	private void writeRule(Feature mainFeature, StringBuilder out) {
 		
 //		if (mainFeature.isAbstract())
 //			this.hasAbstract = true;
@@ -188,7 +188,7 @@ public class GuidslWriter extends AbstractFeatureModelWriter {
 		return feature.isMandatory() ? feature.getName() : "[" + feature.getName() + "]";
 	}
 
-	private void writeChildRules(Feature mainFeature, LinkedList<Feature> mainChildren, StringBuffer out) {
+	private void writeChildRules(Feature mainFeature, LinkedList<Feature> mainChildren, StringBuilder out) {
 		for (int i = 0; i < mainChildren.size(); i++) {
 			Feature feature = mainChildren.get(i);
 			if (!mainFeature.isAnd() && feature.hasInlineRule()) {

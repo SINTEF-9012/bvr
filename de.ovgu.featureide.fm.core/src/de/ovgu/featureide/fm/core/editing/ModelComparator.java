@@ -1,20 +1,22 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.editing;
 
@@ -60,8 +62,6 @@ public class ModelComparator {
 	private Set<String> addedFeatures;
 
 	private Set<String> deletedFeatures;
-
-	private Set<String> replaceFeatures;
 
 	private Node oldRoot;
 
@@ -153,9 +153,9 @@ public class ModelComparator {
 		Set<String> addedFeatures = new HashSet<String>();
 		for (Feature feature : newModel.getFeatures())
 			if (feature.isConcrete()) {
-				String name = newModel.getOldName(feature.getName());
+				String name = newModel.getRenamingsManager().getOldName(feature.getName());
 				Feature associatedFeature = oldModel.getFeature(oldModel
-						.getNewName(name));
+						.getRenamingsManager().getNewName(name));
 				if (associatedFeature == null || associatedFeature.isAbstract())
 					addedFeatures.add(name);
 			}
@@ -164,14 +164,15 @@ public class ModelComparator {
 
 	private void optimizeReplacingMaps(HashMap<Object, Node> oldMap, HashMap<Object, Node> newMap) {
 		List<Object> toBeRemoved = new LinkedList<Object>();
-		for (Entry<Object, Node> entry : oldMap.entrySet())
-			if (newMap.containsKey(entry.getKey())) {
-				Object var = entry.getKey();
+		for (Entry<Object, Node> entry : oldMap.entrySet()) {
+			Object var = entry.getKey();
+			if (newMap.containsKey(var)) {
 				Node oldRepl = entry.getValue();
-				Node newRepl = newMap.get(entry.getKey());
+				Node newRepl = newMap.get(var);
 				if (oldRepl != null && oldRepl.equals(newRepl))
 					toBeRemoved.add(var);
 			}
+		}
 		for (Object var : toBeRemoved) {
 			oldMap.remove(var);
 			newMap.remove(var);
@@ -184,7 +185,7 @@ public class ModelComparator {
 			return node;
 		LinkedList<Node> children = new LinkedList<Node>();
 		for (Object var : addedFeatures)
-			children.add(new Literal((String) var, false));
+			children.add(new Literal(var, false));
 		return new And(node, new And(children));
 	}
 
@@ -207,7 +208,7 @@ public class ModelComparator {
 		return updatedNodes.isEmpty() ? null : new And(updatedNodes);
 	}
 
-	private boolean implies(Node a, Node b, ExampleCalculator example)
+	public boolean implies(Node a, Node b, ExampleCalculator example)
 			throws TimeoutException {
 		if (b == null)
 			return true;
@@ -215,8 +216,7 @@ public class ModelComparator {
 		if (!strategy.contains(Strategy.SingleTesting)) {
 			Node node = new And(a.clone(), new Not(b.clone()));
 			SatSolver solver = new SatSolver(node, timeout);
-			boolean valid = !solver.isSatisfiable();
-			return valid;
+			return !solver.isSatisfiable();
 		}
 
 		example.setLeft(a);
@@ -258,10 +258,6 @@ public class ModelComparator {
 		return deletedFeatures;
 	}
 
-	public Set<String> getReplaceFeatures() {
-		return replaceFeatures;
-	}
-
 	public Node getOldRoot() {
 		return oldRoot;
 	}
@@ -282,7 +278,11 @@ public class ModelComparator {
 		return implies;
 	}
 
-	public boolean isImplied() {
+	public boolean isImplied() {		
+		if (isImplied == null) {
+			FMCorePlugin.getDefault().reportBug(278);
+			return false;
+		}
 		return isImplied;
 	}
 

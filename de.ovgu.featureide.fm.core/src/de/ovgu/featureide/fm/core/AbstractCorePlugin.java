@@ -1,29 +1,36 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core;
+ 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
+import org.osgi.framework.BundleContext;
 
 /**
  * A default implementation for non-UI plug-ins within FeatureIDE.
  * 
  * @author Thomas Thuem
  */
-abstract public class AbstractCorePlugin {
+abstract public class AbstractCorePlugin extends Plugin {
 
 	/**
 	 * Returns the plug-in ID as specified at the plug-in manifest.
@@ -32,6 +39,23 @@ abstract public class AbstractCorePlugin {
 	 */
 	abstract public String getID();
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 */
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		logInfo("Starting FeatureIDE plug-in '" + getID() + "'");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 */
+	public void stop(BundleContext context) throws Exception {
+		logInfo("Stopping FeatureIDE plug-in '" + getID() + "'");
+		super.stop(context);
+	}
 	
 	/**
 	 * Convenience method for easy and clean logging. All messages collected by
@@ -44,7 +68,7 @@ abstract public class AbstractCorePlugin {
 	 *            A message that should be written to the eclipse log file
 	 */
 	public void logInfo(String message) {
-
+		log(IStatus.INFO, message, new Exception());
 	}
 
 	/**
@@ -55,7 +79,7 @@ abstract public class AbstractCorePlugin {
 	 *            A message that should be written to the eclipse log file
 	 */
 	public void logWarning(String message) {
-
+		log(IStatus.WARNING, message, new Exception());
 	}
 
 	/**
@@ -69,6 +93,7 @@ abstract public class AbstractCorePlugin {
 	 *            Exception containing the stack trace
 	 */
 	public void logError(String message, Throwable exception) {
+		log(IStatus.ERROR, message, exception);
 	}
 
 	/**
@@ -92,7 +117,13 @@ abstract public class AbstractCorePlugin {
 	 * @param exception
 	 */
 	private void log(int severity, String message, Throwable exception) {
-
+		if (isDebugging())
+			getLog().log(new Status(severity, getID(), message, exception));
 	}
+	
+	public void reportBug(int ticket) {
+		logWarning("This is a bug. Please report it. See Ticket #" + ticket + ".");
+	}
+
 
 }

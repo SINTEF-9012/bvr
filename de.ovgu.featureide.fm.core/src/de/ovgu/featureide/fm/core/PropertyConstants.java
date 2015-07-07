@@ -1,20 +1,22 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core;
 
@@ -26,25 +28,20 @@ package de.ovgu.featureide.fm.core;
  */
 public interface PropertyConstants {
 
-	public final static String MODEL_DATA_LOADED = "MODEL_DATA_LOADED";
-	public final static String REDRAW_DIAGRAM = "REDRAW_DIAGRAM";
-	public final static String MODEL_DATA_CHANGED = "MODEL_DATA_CHANGED";
-
-	public final static String NAME_CHANGED = "NAME_CHANGED";
-
-	public final static String LOCATION_CHANGED = "LOCATION_CHANGED";// should
-																		// not
-																		// occur
-																		// in
-																		// CORE
-																		// feature.
-
-	public final static String MANDANTORY_CHANGED = "MANDANTORY_CHANGED";
-
-	public final static String PARENT_CHANGED = "PARENT_CHANGED";
-
-	public final static String CHILDREN_CHANGED = "CHILDREN_CHANGED";
-
-	public final static String FEATURE_NAME_CHANGED = "NAME_CHANGED";// oldname->newname
-
+	String MODEL_DATA_LOADED = "MODEL_DATA_LOADED";
+	String REDRAW_DIAGRAM = "REDRAW_DIAGRAM";
+	String MODEL_DATA_CHANGED = "MODEL_DATA_CHANGED";
+	String MODEL_LAYOUT_CHANGED = "MODEL_LAYOUT_CHANGED";
+	String LEGEND_LAYOUT_CHANGED = "LEGEND_LAYOUT_CHANGED";
+	String REFRESH_ACTIONS = "REFRESH_ACTIONS";
+	String NAME_CHANGED = "NAME_CHANGED";
+	String LOCATION_CHANGED = "LOCATION_CHANGED";
+	String COLOR_CHANGED = "COLOR_CHANGED";
+	String MANDATORY_CHANGED = "MANDATORY_CHANGED";
+	String HIDDEN_CHANGED = "HIDDEN_CHANGED";
+	String PARENT_CHANGED = "PARENT_CHANGED";
+	String CHILDREN_CHANGED = "CHILDREN_CHANGED";
+	String FEATURE_NAME_CHANGED = "NAME_CHANGED";
+	String ATTRIBUTE_CHANGED = "ATTRIBUTE_CHANGED";
+	String CONSTRAINT_SELECTED = "CONSTRAINT_SELECTED";
 }

@@ -1,34 +1,41 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.configuration;
 
 import de.ovgu.featureide.fm.core.Feature;
 
+/**
+ * A representation of a selectable feature for the configuration process.
+ */
 public class SelectableFeature extends TreeElement {
 
 	private Selection manual = Selection.UNDEFINED;
 
 	private Selection automatic = Selection.UNDEFINED;
+	
+	private Selection recommended = Selection.UNDEFINED;
 
-	private Feature feature;
+	private final Feature feature;
 
-	private Configuration configuration;
+	private final Configuration configuration;
 
 	private String name;
 
@@ -46,10 +53,11 @@ public class SelectableFeature extends TreeElement {
 	}
 
 	protected void setManual(Selection manual) {
-		if (manual == Selection.UNDEFINED || automatic == Selection.UNDEFINED)
+		if (manual == Selection.UNDEFINED || automatic == Selection.UNDEFINED) {
 			this.manual = manual;
-		else if (manual != automatic)
-			throw new SelectionNotPossibleException(feature.getName(), manual);
+		} else if (manual != automatic) {
+			throw new SelectionNotPossibleException(getName(), manual);
+		}
 	}
 
 	public Selection getAutomatic() {
@@ -57,15 +65,17 @@ public class SelectableFeature extends TreeElement {
 	}
 
 	protected void setAutomatic(Selection automatic) {
-		if (automatic == Selection.UNDEFINED || manual == Selection.UNDEFINED || manual == automatic)
+		if (automatic == Selection.UNDEFINED || manual == Selection.UNDEFINED || manual == automatic) {
 			this.automatic = automatic;
-		else
+		} else {
 			throw new AutomaticalSelectionNotPossibleException(feature.getName(), automatic);
+		}
 	}
 
 	public String getName() {
-		if (name != null)
+		if (name != null) {
 			return name;
+		}
 		return feature == null ? null : feature.getName();
 	}
 
@@ -83,6 +93,14 @@ public class SelectableFeature extends TreeElement {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Selection getRecommended() {
+		return recommended;
+	}
+	
+	public void setRecommended(Selection recommended) {
+		this.recommended = recommended;
 	}
 
 }

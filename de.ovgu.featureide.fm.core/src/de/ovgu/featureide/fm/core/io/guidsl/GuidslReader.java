@@ -1,43 +1,24 @@
-/* FeatureIDE - An IDE to support feature-oriented software development
- * Copyright (C) 2005-2011  FeatureIDE Team, University of Magdeburg
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2015  FeatureIDE team, University of Magdeburg, Germany
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- * See http://www.fosd.de/featureide/ for further information.
+ * See http://featureide.cs.ovgu.de/ for further information.
  */
 package de.ovgu.featureide.fm.core.io.guidsl;
-
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.prop4j.And;
-import org.prop4j.Choose;
-import org.prop4j.Equals;
-import org.prop4j.Implies;
-import org.prop4j.Literal;
-import org.prop4j.Node;
-import org.prop4j.Not;
-import org.prop4j.Or;
-import org.prop4j.SatSolver;
-
-import de.ovgu.featureide.fm.core.Feature;
-import de.ovgu.featureide.fm.core.FeatureModel;
-import de.ovgu.featureide.fm.core.io.AbstractFeatureModelReader;
-import de.ovgu.featureide.fm.core.io.ModelWarning;
-import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 import guidsl.AstListNode;
 import guidsl.AstNode;
@@ -76,6 +57,28 @@ import guidsl.TermName;
 import guidsl.Var;
 import guidsl.VarStmt;
 
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+
+import org.prop4j.And;
+import org.prop4j.Choose;
+import org.prop4j.Equals;
+import org.prop4j.Implies;
+import org.prop4j.Literal;
+import org.prop4j.Node;
+import org.prop4j.Not;
+import org.prop4j.Or;
+import org.prop4j.SatSolver;
+
+import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.io.AbstractFeatureModelReader;
+import de.ovgu.featureide.fm.core.io.ModelWarning;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+
 /**
  * Parses the feature models in the GUIDSL format (grammar).
  * 
@@ -108,7 +111,7 @@ public class GuidslReader extends AbstractFeatureModelReader {
 	}
 
 	@Override
-	public void parseInputStream(InputStream inputStream)
+	protected void parseInputStream(InputStream inputStream)
 	throws UnsupportedModelException {
 
 		warnings.clear();
@@ -130,7 +133,7 @@ public class GuidslReader extends AbstractFeatureModelReader {
 	private List<String> stringToList(String str){
 		List<String> result = new LinkedList<String>();
 		while(str.contains("\n")){
-			int ind = str.indexOf("\n");
+			int ind = str.indexOf('\n');
 			if (ind>0)
 				result.add(str.substring(0,ind-1));
 			str = str.substring(ind + 1);
@@ -155,7 +158,7 @@ public class GuidslReader extends AbstractFeatureModelReader {
 		while (guidsl.contains("//"))
 		{
 			guidsl = guidsl.substring(guidsl.indexOf("//"));
-			int index = guidsl.indexOf("\n");
+			int index = guidsl.indexOf('\n');
 			if (index > 0)
 				comments.add(guidsl.substring(2,index-1));
 			else comments.add(guidsl.substring(2,guidsl.length()-1));
@@ -168,10 +171,14 @@ public class GuidslReader extends AbstractFeatureModelReader {
 
 		Prods prods = ((MainModel) root).getProds();
 		AstListNode astListNode = (AstListNode) prods.arg[0];
-		do {
+		
+		readGProductionRoot((GProduction) astListNode.arg[0]);
+		astListNode = (AstListNode) astListNode.right;
+		
+		while (astListNode != null) {
 			readGProduction((GProduction) astListNode.arg[0]);
 			astListNode = (AstListNode) astListNode.right;
-		} while (astListNode != null);
+		}
 
 		AstOptNode consOptNode = (AstOptNode) prods.right;
 		if (consOptNode.arg.length > 0 && consOptNode.arg[0] != null)
@@ -190,13 +197,13 @@ public class GuidslReader extends AbstractFeatureModelReader {
 			List<String> list = stringToList(annotations);
 			for(int i=0; i<list.size(); i++){
 				String line = list.get(i);
-				if(line.indexOf("{") > 0){
-					String tempLine = line.substring(line.indexOf("{")).toLowerCase();
+				if(line.contains("{")){
+					String tempLine = line.substring(line.indexOf('{')).toLowerCase(Locale.ENGLISH);
 					if(tempLine.contains("hidden")){
 						int ix = tempLine.indexOf("hidden");
 						String ch = tempLine.substring(ix-1,ix);
 						if (ch.equals(" ") || ch.equals("{")){
-							String featName = line.substring(0,line.indexOf("{")-1);
+							String featName = line.substring(0,line.indexOf('{')-1);
 							if (featureModel.getFeature(featName) != null)
 								featureModel.getFeature(featName).setHidden(true);
 							else 
@@ -220,12 +227,8 @@ public class GuidslReader extends AbstractFeatureModelReader {
 
 		featureModel.handleModelDataLoaded();
 	}
-
-	private void readGProduction(GProduction gProduction) throws UnsupportedModelException {
-		String name = gProduction.getIDENTIFIER().name;
-		Feature feature = featureModel.getFeature(name);
-		if (feature == null) 
-			throw new UnsupportedModelException("The compound feature '" + name + "' have to occur on a right side of a rule before using it on a left side!", gProduction.getIDENTIFIER().lineNum());
+	
+	private void readGProduction(GProduction gProduction, Feature feature) throws UnsupportedModelException {
 		feature.setAND(false);
 		Pats pats = gProduction.getPats();
 		AstListNode astListNode = (AstListNode) pats.arg[0];
@@ -236,6 +239,22 @@ public class GuidslReader extends AbstractFeatureModelReader {
 			astListNode = (AstListNode) astListNode.right;
 		} while (astListNode != null);
 		simplify(feature);
+	}
+	
+	private void readGProduction(GProduction gProduction) throws UnsupportedModelException {
+		final String name = gProduction.getIDENTIFIER().name;
+		final Feature feature = featureModel.getFeature(gProduction.getIDENTIFIER().name);
+		if (feature == null) {
+			throw new UnsupportedModelException("The compound feature '" + name + "' have to occur on a right side of a rule before using it on a left side!", gProduction.getIDENTIFIER().lineNum());
+		}
+		readGProduction(gProduction, feature);
+	}
+	
+	private void readGProductionRoot(GProduction gProduction) throws UnsupportedModelException {
+		final Feature root = new Feature(featureModel, gProduction.getIDENTIFIER().name);
+		featureModel.addFeature(root);
+		featureModel.setRoot(root);
+		readGProduction(gProduction, root);
 	}
 
 	private Feature readPat(Pat pat) throws UnsupportedModelException {
@@ -380,7 +399,7 @@ public class GuidslReader extends AbstractFeatureModelReader {
 
 	public Node readPropositionalString(String propString, FeatureModel featureModel) throws UnsupportedModelException{
 		//String featureString = new FeatureModelWriter(featureModel).writeToString();
-		StringBuffer featureString= new StringBuffer(
+		StringBuilder featureString= new StringBuilder(
 				new GuidslWriter(featureModel).writeToString());		
 
 		if( featureModel.getConstraintCount()== 0)
