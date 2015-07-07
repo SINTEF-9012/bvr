@@ -39,11 +39,11 @@ SINTEF - initial API and implementation
    </url>
 
    <requires>
-      <import plugin="org.sat4j.core"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="no.sintef.bvr.model"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.junit"/>
+      <import plugin="org.sat4j.core"/>
       <import plugin="no.sintef.bvr.constraints.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.common"/>
       <import plugin="org.eclipse.emf.common"/>
@@ -51,6 +51,7 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.json"/>
       <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources"/>
    </requires>
 
    <plugin
