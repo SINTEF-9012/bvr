@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Copyright (c)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ ******************************************************************************/
 /**
  */
 package bvr;
@@ -89,7 +96,7 @@ public interface FromReplacement extends ReplacementBoundaryElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Outside model elements that are referred by model elements inside the fragment. Used to distinguish multiplicity references.</p>
+	 * <p>Outsideï¿½modelï¿½elementsï¿½thatï¿½areï¿½referredï¿½byï¿½modelï¿½elementsï¿½insideï¿½theï¿½fragment.ï¿½Usedï¿½toï¿½distinguishï¿½multiplicity references.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Outside Boundary Element</em>' reference list.
 	 * @see bvr.BvrPackage#getFromReplacement_OutsideBoundaryElement()

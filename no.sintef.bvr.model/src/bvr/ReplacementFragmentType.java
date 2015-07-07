@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Copyright (c)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ ******************************************************************************/
 /**
  */
 package bvr;
@@ -10,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Replacement Fragment Type defines a fragment of the base model that will be used as replacement for some placement fragment<br>of the base model.</p><p>Constraints:</p><p>The placements contained in a replacement fragments should only involve model elements which are inside the replacement fragment. These placements can be used in all instances of a replacement fragment.</p><p>Semantics:</p><p>The semantics of Replacement Fragment Type can be found under Fragment Substitution.</p><p>####CVLSemanticStart####</p><p>Invariant :</p><p>OCL :</p><p></p><p>####CVLSemanticEnd####</p><p></p>
+ * <p>Replacementï¿½Fragmentï¿½Typeï¿½definesï¿½aï¿½fragmentï¿½ofï¿½theï¿½baseï¿½modelï¿½thatï¿½willï¿½beï¿½usedï¿½asï¿½replacementï¿½forï¿½someï¿½placementï¿½fragment<br>ofï¿½theï¿½baseï¿½model.</p><p>Constraints:</p><p>The placements contained in a replacement fragments should only involve model elements which are inside the replacement fragment. These placements can be used in all instances of a replacement fragment.</p><p>Semantics:</p><p>The semantics of Replacement Fragment Type can be found under Fragment Substitution.</p><p>####CVLSemanticStart####</p><p>Invariant :</p><p>OCL :</p><p></p><p>####CVLSemanticEnd####</p><p></p>
  * <!-- end-model-doc -->
  *
  * <p>

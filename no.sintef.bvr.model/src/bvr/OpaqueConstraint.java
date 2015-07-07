@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Copyright (c)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ ******************************************************************************/
 /**
  */
 package bvr;
@@ -9,7 +16,7 @@ package bvr;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Opaque Constraint imposes additional restrictions that cannot be expressed in the basic constraint language.</p><p>Opaque constraints can be expressed in any language (given by the language attribute) but cannot be directly understood as BVR.</p><p>Typically an opaque constraint must be used if there is a need to express universal quantification or other advanced expressiveness. OCL is an obvious choice for such a more advanced constraint language.</p><p></p><p></p><p></p>
+ * <p>An Opaqueï¿½Constraintï¿½imposesï¿½additionalï¿½restrictionsï¿½thatï¿½cannotï¿½beï¿½expressedï¿½inï¿½theï¿½basic constraintï¿½language.</p><p>Opaque constraints can be expressed in any language (given by the language attribute) but cannot be directly understood as BVR.</p><p>Typically an opaque constraint must be used if there is a need to expressï¿½universalï¿½quantification or other advanced expressiveness. OCL is an obvious choice for such a more advanced constraint language.</p><p></p><p></p><p></p>
  * <!-- end-model-doc -->
  *
  * <p>

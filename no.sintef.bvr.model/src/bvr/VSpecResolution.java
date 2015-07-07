@@ -1,3 +1,10 @@
+/*******************************************************************************
+ * Copyright (c)
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ ******************************************************************************/
 /**
  */
 package bvr;
@@ -29,7 +36,7 @@ public interface VSpecResolution extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The VSpec this VSpecResolution resolves.Due to VSpec inheritance and VClassifiers, a given VSpec may have several VSpecResolutions resolving it, where each resolution is in the context of its parent.</p>
+	 * <p>Theï¿½VSpecï¿½thisï¿½VSpecResolutionï¿½resolves.Due toï¿½VSpec inheritance and VClassifiers, a given VSpec may have several VSpecResolutions resolving it, where each resolution is in the context of its parent.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resolved VSpec</em>' reference.
 	 * @see #setResolvedVSpec(VSpec)
