@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) All rights reserved. This program and the accompanying
+ * materials are made available under the terms of the Eclipse Public License
+ * v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  ******************************************************************************/
 package no.sintef.bvr.tool.environment.eclipse;
-
 
 import no.sintef.bvr.thirdparty.common.Constants;
 import no.sintef.bvr.thirdparty.common.Utility;
@@ -16,31 +14,31 @@ import no.sintef.bvr.tool.environment.ConfigHelper;
 public class EclipseConfigHelper extends AbstractConfigHelper {
 
 	private final String propertyFileName = "";
-	
+
 	private static final EclipseConfigHelper configHelper = new EclipseConfigHelper();
-	
-	public static ConfigHelper getConfig(){
+
+	public static ConfigHelper getConfig() {
 		return configHelper;
 	}
-	
-	private void setProperty(String name, String value){
+
+	private void setProperty(String name, String value) {
 		Utility.setValueToPropertyStore(Constants.PLUGIN_ID_BVR_LAUNCHER, name, value);
 	}
-	
-	private String getProperty(String name){
+
+	private String getProperty(String name) {
 		return Utility.getValueFromPropertyStore(Constants.PLUGIN_ID_BVR_LAUNCHER, name);
 	}
-	
+
 	@Override
 	public String lastLocation() {
 		return getProperty(propertyLastLocation);
 	}
-	
+
 	@Override
 	public void saveLastLocation(String loc) {
 		setProperty(propertyLastLocation, loc);
 	}
-	
+
 	@Override
 	public String getPropertyFileName() {
 		return propertyFileName;
@@ -88,5 +86,16 @@ public class EclipseConfigHelper extends AbstractConfigHelper {
 	public boolean isHighlightingMode() {
 		String value = getProperty(propertyHighlightingMode);
 		return (value.equals("") || defaultHighlightingMode.equals(value)) ? true : false;
+	}
+
+	@Override
+	public boolean isIntersectionDetectionMode() {
+		String value = getProperty(propertyIntersectionDetection);
+		return (value.equals("") || defaultIntersectionDetectionMode.equals(value)) ? true : false;
+	}
+
+	@Override
+	public void setIntersectionDetectionMode(boolean isSet) {
+		setProperty(propertyIntersectionDetection, (isSet) ? "true" : "false");
 	}
 }

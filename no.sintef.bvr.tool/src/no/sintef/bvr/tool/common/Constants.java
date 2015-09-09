@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (c)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) All rights reserved. This program and the accompanying
+ * materials are made available under the terms of the Eclipse Public License
+ * v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  ******************************************************************************/
 package no.sintef.bvr.tool.common;
@@ -79,7 +78,8 @@ public class Constants {
 	public static final String SETTINGS_FROMPLACEMENT_PERMUTATION = "FromPlacement permutation";
 	public static final String SETTINGS_TOREPLACEMENT_PERMUTATION = "ToReplacement permutation";
 	public static final String SETTINGS_CONTAINMENT_SELECTION_MODE = "Containment selection mode";
-	public static final String SETTINGS_HIGHLIGHTING_MODE = "Highlightinh mode (on/off)";
+	public static final String SETTINGS_HIGHLIGHTING_MODE = "Highlight fragments";
+	public static final String SETTINGS_DETECT_INERSECTION = "Detect intersection";
 
 	public static final String PLUGIN_ID = "no.sintef.bvr.tool";
 
@@ -89,7 +89,7 @@ public class Constants {
 	 * static final Color ORANGE = new Color(Display.getDefault(), 240, 170, 0);
 	 * //fromPlacement outside element public static final Color VIOLET = new
 	 * Color(Display.getDefault(), 126, 0, 123); //toPlacement outside element
-	 * 
+	 *
 	 * //replacement colors public static final Color BLUE = new
 	 * Color(Display.getDefault(), 50, 80, 250); //replacement elements public
 	 * static final Color GREEN = new Color(Display.getDefault(), 80, 210, 70);
