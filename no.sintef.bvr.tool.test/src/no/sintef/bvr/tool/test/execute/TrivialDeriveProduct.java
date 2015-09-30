@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (c)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) All rights reserved. This program and the accompanying
+ * materials are made available under the terms of the Eclipse Public License
+ * v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  ******************************************************************************/
 package no.sintef.bvr.tool.test.execute;
@@ -16,6 +15,7 @@ import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.model.BVRToolModel;
+import no.sintef.bvr.tool.model.BVRTransactionalModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
@@ -95,6 +95,21 @@ public class TrivialDeriveProduct {
 			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
 		} catch (Exception ex) {
 			assertFalse("execution failed with message " + ex.getMessage(), true);
+		}
+	}
+
+	@Test
+	public void runDefualtDeriviationTest() {
+		File file = testResources[0].getiFile().getLocation().toFile();
+		BVRTransactionalModel model = (BVRTransactionalModel) Context.eINSTANCE.testBVRToolModel(file);
+		IFile iProduct = testProject.getIProject().getFile("/TestFolder/products/product");
+		File fileProduct = iProduct.getLocation().toFile();
+
+		model.executeResolution(fileProduct, 0);
+		try {
+			model.executeResolution(fileProduct, 0);
+		} catch (Exception e) {
+			assertFalse("execution failed with message " + e.getMessage(), true);
 		}
 	}
 }
