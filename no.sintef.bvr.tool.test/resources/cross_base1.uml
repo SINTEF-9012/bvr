@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_bBJAYHfwEeWeS4PU0kZqmg">
+  <elementImport xmi:id="_LgmOMHfxEeWeS4PU0kZqmg" alias="imported_stereotype">
+    <importedElement xmi:type="uml:Stereotype" href="cross_base2.uml#_GixCQHfxEeWeS4PU0kZqmg"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AM_zAHfxEeWeS4PU0kZqmg" name="A"/>
+</uml:Model>
