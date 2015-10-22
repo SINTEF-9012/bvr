@@ -198,6 +198,7 @@ public final class Context {
 	public void disposeModel(BVRToolModel model) {
 		File file = model.getFile();
 		loadedModels.remove(file);
+		model.dispose();
 	}
 
 	public void setActiveJApplet(JApplet jApplet) {

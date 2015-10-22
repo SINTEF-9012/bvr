@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (c)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) All rights reserved. This program and the accompanying
+ * materials are made available under the terms of the Eclipse Public License
+ * v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  ******************************************************************************/
 package no.sintef.bvr.tool.model;
@@ -41,9 +40,11 @@ import no.sintef.bvr.tool.observer.TargetChangedSubject;
 import no.sintef.bvr.tool.strategy.impl.BindingCalculatorContext;
 import no.sintef.ict.splcatool.SPLCABVRModel;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.BasicEList;
@@ -56,9 +57,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.ISelectionService;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 import bvr.BCLConstraint;
 import bvr.BVRModel;
@@ -112,6 +120,11 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private List<ResourceObserver> observers;
 	private TargetChangedSubject targetChangedSubject;
 
+	private ISelection bmodel_selection;
+	private ISelectionListener selectionListener;
+
+	private List<String> bm_files_path;
+
 	public BVRTransactionalModel(File sf, SPLCABVRModel x) {
 		bvrm = x;
 		f = sf;
@@ -127,6 +140,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	}
 
 	private void init() {
+		bm_files_path = new ArrayList<String>();
+		selectionListener = new BVRModelSelectionListener(this);
+		Display.getDefault().syncExec(new BVRBaseModelSelectionSetterRunnable(selectionListener));
+
 		targetChangedSubject = new TargetChangedSubject();
 		targetChangedSubject.attach(new ChangeVSpecName(this));
 
@@ -136,6 +153,12 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		buffer = new HashMap<NegResolution, PosResolution>();
 		invalidConstraints = new ArrayList<Constraint>();
 		checkModel();
+	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		Display.getDefault().syncExec(new BVRBaseModelSelectionUnsetterRunnable(selectionListener));
 	}
 
 	@Override
@@ -343,6 +366,17 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void updateBaseModelFiles(List<String> paths) {
+		bm_files_path.clear();
+		bm_files_path.addAll(paths);
+	}
+
+	@Override
+	public List<String> getBaseModelPaths() {
+		return bm_files_path;
 	}
 
 	@Override
@@ -956,6 +990,10 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		return messages;
 	}
 
+	public BVRToolModel getBVRToolModel() {
+		return this;
+	}
+
 	@Override
 	public void executeResolution(File destFile, int index) {
 		if (index < 0 || getBVRModel().getResolutionModels().size() < index)
@@ -970,32 +1008,37 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 			@Override
 			public void execute() {
-				File newFile = new File(getFile().getAbsolutePath() + "_tmp");
-				BVREmptyModel tmpModel = new BVREmptyModel(newFile);
-				BVRModel copied_bvr_model = EcoreUtil.copy(getBVRModel());
-				tmpModel.setBVRModel(copied_bvr_model);
+				// File newFile = new File(getFile().getAbsolutePath() +
+				// "_tmp");
+				// /BVREmptyModel tmpModel = new BVREmptyModel(newFile);
+				// BVRModel copied_bvr_model = EcoreUtil.copy(getBVRModel());
+				// /tmpModel.setBVRModel(copied_bvr_model);
 				try {
-					Context.eINSTANCE.writeModelToFile(tmpModel, tmpModel.getFile());
-					Context.eINSTANCE.reloadModel(tmpModel);
-					BVRModel tmp_bvr_model = tmpModel.getBVRModel();
-					EList<CompoundResolution> tmp_resolutions = tmp_bvr_model.getResolutionModels();
-					executeProduct(tmpModel, (PosResolution) tmp_resolutions.get(resolutionIndex), destinationFile);
+					// Context.eINSTANCE.writeModelToFile(tmpModel,
+					// tmpModel.getFile());
+					// Context.eINSTANCE.reloadModel(tmpModel);
+					// BVRModel tmp_bvr_model = tmpModel.getBVRModel();
+					// EList<CompoundResolution> tmp_resolutions =
+					// tmp_bvr_model.getResolutionModels();
+					// executeProduct(tmpModel, (PosResolution)
+					// tmp_resolutions.get(resolutionIndex), destinationFile);
+					executeProduct(getBVRToolModel(), (PosResolution) getBVRModel().getResolutionModels().get(resolutionIndex), destinationFile);
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Failed to execute product, resason : " + error.getMessage(), error);
 					throw new RethrownException("Failed to execute product, resason : " + error.getMessage(), error);
 				} finally {
-					Context.eINSTANCE.nullSetModel(tmpModel);
+					// Context.eINSTANCE.nullSetModel(tmpModel);
 				}
 			}
 
 		});
 	}
 
-	private void executeProduct(BVRToolModel tmpModel, PosResolution resolutionToExecute, File destFile) {
+	private void executeProduct(BVRToolModel toolModel, PosResolution resolutionToExecute, File destFile) {
 		HashMap<String, Object> keywords = new HashMap<String, Object>();
-		keywords.put("model", tmpModel.getBVRModel());
+		keywords.put("model", toolModel.getBVRModel());
 		keywords.put("PosResolution", resolutionToExecute);
-		keywords.put("bvrModel", tmpModel);
+		keywords.put("bvrModel", toolModel);
 		keywords.put("destFile", destFile);
 
 		DeriveProduct deriviator = new DeriveProduct(keywords);
@@ -1183,4 +1226,62 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		}
 	}
 
+	private class BVRBaseModelSelectionSetterRunnable implements Runnable {
+
+		private String navigator_id = "org.eclipse.ui.views.ResourceNavigator";
+		private ISelectionListener listener;
+
+		public BVRBaseModelSelectionSetterRunnable(ISelectionListener _listener) {
+			listener = _listener;
+		}
+
+		@Override
+		public void run() {
+			IWorkbenchWindow active_workbench = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			ISelectionService selection_service = active_workbench.getSelectionService();
+			selection_service.addSelectionListener(navigator_id, listener);
+		}
+	}
+
+	private class BVRBaseModelSelectionUnsetterRunnable implements Runnable {
+
+		private String navigator_id = "org.eclipse.ui.views.ResourceNavigator";
+		private ISelectionListener listener;
+
+		public BVRBaseModelSelectionUnsetterRunnable(ISelectionListener _listener) {
+			listener = _listener;
+		}
+
+		@Override
+		public void run() {
+			IWorkbenchWindow active_workbench = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+			ISelectionService selection_service = active_workbench.getSelectionService();
+			selection_service.removeSelectionListener(navigator_id, listener);
+		}
+	}
+
+	private class BVRModelSelectionListener implements ISelectionListener {
+
+		private BVRToolModel model;
+
+		public BVRModelSelectionListener(final BVRToolModel _model) {
+			model = _model;
+		}
+
+		@Override
+		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+			if (selection instanceof StructuredSelection) {
+				Iterator<Object> iterator = ((StructuredSelection) bmodel_selection).iterator();
+				List<String> paths = new ArrayList<String>();
+				while (iterator.hasNext()) {
+					Object element = iterator.next();
+					IFile iFile = (IFile) Platform.getAdapterManager().getAdapter(element, IFile.class);
+					if (iFile != null)
+						paths.add(iFile.getFullPath().toString());
+				}
+				model.updateBaseModelFiles(paths);
+			}
+		}
+
+	}
 }

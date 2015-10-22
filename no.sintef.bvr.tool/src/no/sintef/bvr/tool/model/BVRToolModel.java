@@ -47,7 +47,6 @@ import no.sintef.ict.splcatool.strategy.DefaultVariabilityModelFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResVariabilityFinderStrategy;
 import no.sintef.ict.splcatool.strategy.SingleResolutionFinderStrategy;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -484,7 +483,7 @@ abstract public class BVRToolModel implements IBVRToolModel {
 			 * for(CompoundResolution compoundResolution : compoundResolutions)
 			 * { if(compoundResolution instanceof PosResolution)
 			 * rootResolutions.add((PosResolution) compoundResolution); }
-			 * 
+			 *
 			 * if(rootResolutions.size() > 0){ CoveringArray startFrom =
 			 * getBVRM().getCoveringArray(); ca.startFrom(startFrom); }
 			 */
@@ -644,10 +643,6 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
-	public void executeResolution(File destFile, int index, IFile[] base_model) {
-		throw new UnexpectedException("Are you using default implementation?!");
-	}
-
 	public void clearHighlightedObjects() {
 		throw new UnexpectedException("Are you using default implementation?!");
 	}
@@ -715,6 +710,14 @@ abstract public class BVRToolModel implements IBVRToolModel {
 		getSPLCABVRModel().setVariabilityFindStrategy(strVM);
 		getSPLCABVRModel().setBVRModelHolderStrategy(strMH);
 		getSPLCABVRModel().setResolveChoiceStrategy(strRC);
+	}
+
+	public void updateBaseModelFiles(List<String> paths) {
+		throw new UnexpectedException("Are you using default implementation?!");
+	}
+
+	public List<String> getBaseModelPaths() {
+		throw new UnexpectedException("Are you using default implementation?!");
 	}
 
 }

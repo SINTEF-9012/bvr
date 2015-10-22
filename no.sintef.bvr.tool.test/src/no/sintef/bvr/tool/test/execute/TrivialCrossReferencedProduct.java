@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.io.File;
+import java.util.Arrays;
 
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -88,10 +89,11 @@ public class TrivialCrossReferencedProduct {
 		IFile iProduct = testProject.getIProject().getFile(productPrefix);
 		File fileProduct = iProduct.getLocation().toFile();
 
-		IFile[] base_model = { testResources[1].getiFile(), testResources[2].getiFile() };
+		String[] base_model = { testResources[1].getiFile().getFullPath().toString(), testResources[2].getiFile().getFullPath().toString() };
+		model.updateBaseModelFiles(Arrays.asList(base_model));
 
 		try {
-			model.executeResolution(fileProduct, 0, base_model);
+			model.executeResolution(fileProduct, 0);
 		} catch (Exception e) {
 			assertFalse("execution failed with message " + e.getMessage(), true);
 		}
@@ -104,10 +106,11 @@ public class TrivialCrossReferencedProduct {
 		IFile iProduct = testProject.getIProject().getFile(productPrefix);
 		File fileProduct = iProduct.getLocation().toFile();
 
-		IFile[] base_model = { testResources[1].getiFile(), testResources[2].getiFile() };
+		String[] base_model = { testResources[1].getiFile().getFullPath().toString(), testResources[2].getiFile().getFullPath().toString() };
+		model.updateBaseModelFiles(Arrays.asList(base_model));
 
 		try {
-			model.executeResolution(fileProduct, 0, base_model);
+			model.executeResolution(fileProduct, 0);
 		} catch (Exception e) {
 			assertFalse("execution failed with message " + e.getMessage(), true);
 		}
@@ -137,10 +140,11 @@ public class TrivialCrossReferencedProduct {
 		IFile iProduct = testProject.getIProject().getFile(productPrefix);
 		File fileProduct = iProduct.getLocation().toFile();
 
-		IFile[] base_model = { testResources[1].getiFile(), testResources[2].getiFile() };
+		String[] base_model = { testResources[1].getiFile().getFullPath().toString(), testResources[2].getiFile().getFullPath().toString() };
+		model.updateBaseModelFiles(Arrays.asList(base_model));
 
 		try {
-			model.executeResolution(fileProduct, 0, base_model);
+			model.executeResolution(fileProduct, 0);
 		} catch (Exception e) {
 			assertFalse("execution failed with message " + e.getMessage(), true);
 		}
