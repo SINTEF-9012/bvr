@@ -39,4 +39,8 @@ public interface ISubstitutionEngine {
 
 	public void setIntersectionDetectionMode(boolean mode);
 
+	public IResourceContentCopier getResourceContentCopier();
+
+	void setCopyBaseModelMap(HashMap<Resource, IResourceContentCopier> map);
+
 }

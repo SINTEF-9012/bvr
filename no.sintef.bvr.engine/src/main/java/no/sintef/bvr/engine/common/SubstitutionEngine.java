@@ -31,11 +31,9 @@ import no.sintef.bvr.engine.operation.impl.FragmentSubOperation;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import bvr.FragmentSubstitution;
-import bvr.ObjectHandle;
 import bvr.PlacementFragment;
 import bvr.ReplacementFragmentType;
 
@@ -52,6 +50,7 @@ public final class SubstitutionEngine implements ISubstitutionEngine {
 	private ReplacPlacCotainmentResolver placementInReplacementResolver;
 	private PlacementCrossingFinder placementCrossingFinder;
 	private Boolean detectIntersection = true;
+	private IResourceContentCopier resourceCopier = new ResourceContentCopier();
 
 	private static SubstitutionEngine getEngine() {
 		return new SubstitutionEngine();
@@ -73,7 +72,7 @@ public final class SubstitutionEngine implements ISubstitutionEngine {
 			// since FragmentSubstitutionHolder actually loads all resources as
 			// a side effect
 			// which we lately use to define 'base model'
-			computeCopyBaseModel();
+			// computeCopyBaseModel();
 
 			if (detectIntersection) {
 				placementCrossingFinder = new PlacementCrossingFinder(fsMap.values());
@@ -89,6 +88,11 @@ public final class SubstitutionEngine implements ISubstitutionEngine {
 		} catch (BasicBVREngineException e) {
 			throw new UnsupportedOperationException(e);
 		}
+	}
+
+	@Override
+	public IResourceContentCopier getResourceContentCopier() {
+		return resourceCopier;
 	}
 
 	@Override
@@ -117,7 +121,7 @@ public final class SubstitutionEngine implements ISubstitutionEngine {
 		return context.getCopyBaseModelMap();
 	}
 
-	private void computeCopyBaseModel() {
+	/*private void computeCopyBaseModel() {
 		EList<Resource> baseResources = new BasicEList<Resource>();
 		EList<FragmentSubstitution> fragments = new BasicEList<FragmentSubstitution>(fsMap.keySet());
 		for (FragmentSubstitution fragment : fragments) {
@@ -138,6 +142,11 @@ public final class SubstitutionEngine implements ISubstitutionEngine {
 			copyMap.put(resource, copier);
 		}
 		context.setCopyBaseModelMap(copyMap);
+	}*/
+
+	@Override
+	public void setCopyBaseModelMap(HashMap<Resource, IResourceContentCopier> map) {
+		context.setCopyBaseModelMap(map);
 	}
 
 	@Override

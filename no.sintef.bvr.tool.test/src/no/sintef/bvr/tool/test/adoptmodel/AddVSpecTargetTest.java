@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (c)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) All rights reserved. This program and the accompanying
+ * materials are made available under the terms of the Eclipse Public License
+ * v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  ******************************************************************************/
 package no.sintef.bvr.tool.test.adoptmodel;
@@ -405,7 +404,9 @@ public class AddVSpecTargetTest {
 
 		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
 		ResourceContentCopier copier = new ResourceContentCopier();
-		copier.copyResource(resource);
+		copier.copyResourceContents(resource);
+		copier.copyCrossContentsReferences();
+		//copier.copyResource(resource);
 		copyMap.put(resource, copier);
 
 		Context.eINSTANCE.writeProductsToFiles(copyMap, resources[0].getiFile().getLocation().toFile());
@@ -439,7 +440,9 @@ public class AddVSpecTargetTest {
 
 		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
 		ResourceContentCopier copier = new ResourceContentCopier();
-		copier.copyResource(resource);
+		//copier.copyResource(resource);
+		copier.copyResourceContents(resource);
+		copier.copyCrossContentsReferences();
 		copyMap.put(resource, copier);
 
 		try {

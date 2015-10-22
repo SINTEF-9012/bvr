@@ -9,6 +9,7 @@ package no.sintef.bvr.tool.test.execute;
 import static org.junit.Assert.assertFalse;
 
 import java.io.File;
+import java.util.Arrays;
 
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -105,7 +106,9 @@ public class TrivialDeriveProduct {
 		IFile iProduct = testProject.getIProject().getFile("/TestFolder/products/product");
 		File fileProduct = iProduct.getLocation().toFile();
 
-		model.executeResolution(fileProduct, 0);
+		String[] model_paths = { testResources[1].getiFile().getFullPath().toString() };
+		model.updateBaseModelFiles(Arrays.asList(model_paths));
+
 		try {
 			model.executeResolution(fileProduct, 0);
 		} catch (Exception e) {
