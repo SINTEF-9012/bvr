@@ -120,7 +120,6 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	private List<ResourceObserver> observers;
 	private TargetChangedSubject targetChangedSubject;
 
-	private ISelection bmodel_selection;
 	private ISelectionListener selectionListener;
 
 	private List<String> bm_files_path;
@@ -1008,29 +1007,13 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 
 			@Override
 			public void execute() {
-				// File newFile = new File(getFile().getAbsolutePath() +
-				// "_tmp");
-				// /BVREmptyModel tmpModel = new BVREmptyModel(newFile);
-				// BVRModel copied_bvr_model = EcoreUtil.copy(getBVRModel());
-				// /tmpModel.setBVRModel(copied_bvr_model);
 				try {
-					// Context.eINSTANCE.writeModelToFile(tmpModel,
-					// tmpModel.getFile());
-					// Context.eINSTANCE.reloadModel(tmpModel);
-					// BVRModel tmp_bvr_model = tmpModel.getBVRModel();
-					// EList<CompoundResolution> tmp_resolutions =
-					// tmp_bvr_model.getResolutionModels();
-					// executeProduct(tmpModel, (PosResolution)
-					// tmp_resolutions.get(resolutionIndex), destinationFile);
 					executeProduct(getBVRToolModel(), (PosResolution) getBVRModel().getResolutionModels().get(resolutionIndex), destinationFile);
 				} catch (Exception error) {
 					Context.eINSTANCE.logger.error("Failed to execute product, resason : " + error.getMessage(), error);
 					throw new RethrownException("Failed to execute product, resason : " + error.getMessage(), error);
-				} finally {
-					// Context.eINSTANCE.nullSetModel(tmpModel);
 				}
 			}
-
 		});
 	}
 
@@ -1271,7 +1254,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		@Override
 		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 			if (selection instanceof StructuredSelection) {
-				Iterator<Object> iterator = ((StructuredSelection) bmodel_selection).iterator();
+				Iterator<Object> iterator = ((StructuredSelection) selection).iterator();
 				List<String> paths = new ArrayList<String>();
 				while (iterator.hasNext()) {
 					Object element = iterator.next();
