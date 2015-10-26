@@ -24,7 +24,7 @@ public class ComputeBaseModelHandler implements ExecutionHandler {
 	@Override
 	public void handleRequest(ExecutionRequest request) throws AbstractError {
 
-		BVRTransactionalModel bvr_tool_model = (BVRTransactionalModel) request.getDataField("model");
+		BVRTransactionalModel bvr_tool_model = (BVRTransactionalModel) request.getDataField("bvrModel");
 		URI bvr_platform_uri = bvr_tool_model.getResource().getURI();
 		List<String> base_model_files = bvr_tool_model.getBaseModelPaths();
 		default_strategy.copyBaseModel(request, bvr_platform_uri, base_model_files);

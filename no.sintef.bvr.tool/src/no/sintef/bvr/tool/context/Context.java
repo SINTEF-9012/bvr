@@ -27,6 +27,7 @@ import no.sintef.bvr.tool.environment.Environment;
 import no.sintef.bvr.tool.filter.BVRFilter;
 import no.sintef.bvr.tool.filter.FMFilter;
 import no.sintef.bvr.tool.interfaces.controller.BVRNotifiableController;
+import no.sintef.bvr.tool.interfaces.model.IBVREditingDomain;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.BVRTransactionalModel;
@@ -219,6 +220,10 @@ public final class Context {
 		} else {
 			logger.debug("do not know how to set systems look and fell for " + OSDetector.getOSType());
 		}
+	}
+
+	public void setCurrentExecutionEditingDomain(IBVREditingDomain editingDomain) {
+		environment.setCurrentExecutionEditingDomain(editingDomain);
 	}
 
 }

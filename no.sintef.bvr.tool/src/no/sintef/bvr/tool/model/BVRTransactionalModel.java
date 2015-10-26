@@ -152,7 +152,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 		minimizedVSpecResolution = new ArrayList<VSpecResolution>();
 		buffer = new HashMap<NegResolution, PosResolution>();
 		invalidConstraints = new ArrayList<Constraint>();
-		checkModel();
+		//checkModel();
 	}
 
 	@Override
@@ -229,7 +229,7 @@ public class BVRTransactionalModel extends BVRToolModel implements ResourceObser
 	@Override
 	public void update(ResourceSubject subject) {
 		if (subject instanceof ResourceSetEditedSubject) {
-			checkModel();
+			//checkModel();
 		}
 	}
 

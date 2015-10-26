@@ -26,10 +26,12 @@ import no.sintef.bvr.test.common.utils.TestProject;
 import no.sintef.bvr.test.common.utils.TestResourceHolder;
 import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.interfaces.common.IVarModelResolutionsCopier;
+import no.sintef.bvr.tool.interfaces.model.IBVREditingDomain;
 import no.sintef.bvr.tool.interfaces.model.IBVRSPLCAModelTransformator;
 import no.sintef.bvr.tool.interfaces.model.IIDProvider;
 import no.sintef.bvr.tool.interfaces.model.IPostfixGenerator;
 import no.sintef.bvr.tool.logging.impl.DefaultLogger;
+import no.sintef.bvr.tool.model.BVREditingDomainFacade;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.PostfixGeneratorFacade;
 import no.sintef.bvr.tool.model.TransfFacade;
@@ -404,6 +406,8 @@ public class AddVSpecTargetTest {
 
 		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
 		ResourceContentCopier copier = new ResourceContentCopier();
+		IBVREditingDomain executionDomain = BVREditingDomainFacade.eINSTANCE.testExecutionEditingDomain(resource.getResourceSet());
+		copier.set(executionDomain.getEditingDomain());
 		copier.copyResourceContents(resource);
 		copier.copyCrossContentsReferences();
 		//copier.copyResource(resource);
@@ -440,7 +444,9 @@ public class AddVSpecTargetTest {
 
 		HashMap<Resource, IResourceContentCopier> copyMap = new HashMap<Resource, IResourceContentCopier>();
 		ResourceContentCopier copier = new ResourceContentCopier();
-		//copier.copyResource(resource);
+		IBVREditingDomain executionDomain = BVREditingDomainFacade.eINSTANCE.testExecutionEditingDomain(resource.getResourceSet());
+		copier.set(executionDomain.getEditingDomain());
+
 		copier.copyResourceContents(resource);
 		copier.copyCrossContentsReferences();
 		copyMap.put(resource, copier);

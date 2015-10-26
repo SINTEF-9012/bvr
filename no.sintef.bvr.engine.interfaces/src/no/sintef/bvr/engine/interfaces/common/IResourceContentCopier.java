@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 public interface IResourceContentCopier {
 
@@ -20,5 +21,7 @@ public interface IResourceContentCopier {
 	public Collection<EObject> getCopiedContents(Resource resource);
 
 	void reset();
+
+	void set(TransactionalEditingDomain editingDomain);
 
 }

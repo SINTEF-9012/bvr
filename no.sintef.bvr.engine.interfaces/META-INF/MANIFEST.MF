@@ -14,3 +14,4 @@ Export-Package: no.sintef.bvr.engine.interfaces.adjacent,
  no.sintef.bvr.engine.interfaces.logging,
  no.sintef.bvr.engine.interfaces.operation,
  no.sintef.bvr.engine.interfaces.strategy
+Import-Package: org.eclipse.emf.transaction

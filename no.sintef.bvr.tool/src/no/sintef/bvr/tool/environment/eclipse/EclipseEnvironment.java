@@ -26,6 +26,8 @@ import no.sintef.bvr.tool.context.ThirdpartyEditorSelector;
 import no.sintef.bvr.tool.environment.AbstractEnvironment;
 import no.sintef.bvr.tool.environment.ConfigHelper;
 import no.sintef.bvr.tool.exception.RethrownException;
+import no.sintef.bvr.tool.interfaces.model.IBVREditingDomain;
+import no.sintef.bvr.tool.model.BVREditingDomainFacade;
 import no.sintef.bvr.tool.model.BVRSimpleToolModel;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
@@ -35,7 +37,6 @@ import no.sintef.bvr.ui.editor.commands.EditorEMFTransactionalCommands;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -45,12 +46,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.ResourceSetListenerImpl;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IWorkbenchWindow;
 
+import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 
 public class EclipseEnvironment extends AbstractEnvironment {
@@ -61,14 +60,13 @@ public class EclipseEnvironment extends AbstractEnvironment {
 	private ResetableLogger problemLogger = ProblemLoger.getLogger();
 
 	private ConfigHelper configHelper = EclipseConfigHelper.getConfig();
-	EList<TransactionalEditingDomain> editingDomains;
 	private EditorCommands commands = EditorEMFTransactionalCommands.Get();
+	private IBVREditingDomain currentExecutionEditingDomain;
 
 	public EclipseEnvironment(IWorkbenchWindow workbench) {
 		iworkbench = workbench;
 		ThirdpartyEditorSelector.setWorkbeach(iworkbench);
 		editorselector = ThirdpartyEditorSelector.getEditorSelector();
-		editingDomains = new BasicEList<TransactionalEditingDomain>();
 	}
 
 	@Override
@@ -116,6 +114,18 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		filepath = filepath.replaceAll(Utility.getWorkspaceRowLocation(), "");
 		final HashMap<ResourceSet, String> messages = new HashMap<ResourceSet, String>();
 
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+
+		IBVREditingDomain executionEditingDomain = getCurrentExecutionEditingDomain();
+
+		if (executionEditingDomain == null) {
+			logger.warn("current editing domain is not set, creating one to perform fragment substitutions. This can cause 'cannot modify without a write transaction' exception if model is openned in another transaction domain");
+			executionEditingDomain = BVREditingDomainFacade.eINSTANCE.testExecutionEditingDomain(resSet);
+		}
+
+		TransactionalEditingDomain editingDomain = executionEditingDomain.getEditingDomain();
+
 		for (Map.Entry<Resource, IResourceContentCopier> entry : baseProductMap.entrySet()) {
 			final Resource resource = entry.getKey();
 
@@ -124,103 +134,91 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			String productName = prefix + "_" + baseName;
 			String productFullName = filepath + productName;
 
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
-			final ResourceSet resSet = new ResourceSetImpl();
 			logger.debug("product project uri " + productFullName);
 			URI uri = URI.createPlatformResourceURI(productFullName, true);
 			logger.debug("saving the product to file with platform uri " + uri);
-			final Resource productResource = resSet.createResource(uri);
-
-			TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
-			editingDomain.addResourceSetListener(new ResourceSetListenerImpl() {
-
-				@Override
-				public void resourceSetChanged(ResourceSetChangeEvent event) {
-					Transaction transaction = event.getTransaction();
-					HashMap<String, Object> info = Utility.parseTransaction(transaction);
-					if ((Boolean) info.get(Utility.isOk))
-						return;
-					event.getEditingDomain().getResourceSet();
-					messages.put(event.getEditingDomain().getResourceSet(), (String) info.get(Utility.message));
-				}
-
-			});
+			Resource productResource = resSet.createResource(uri);
 
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 
 				@Override
 				protected void doExecute() {
-					//TO DO:
-					//we should actually save a copy of the base model which we copied in the first place before all transformations,
-					//but the engine currently performs substitutions on the base model;
-					//thus we simply copy the contents of the base model and save it
-					//ResourceContentCopier product = entry.getValue();
-					//productResource.getContents().addAll(product.values());
+					productResource.getContents().addAll(baseProductMap.get(resource).getCopiedContents(resource));
 
-					//productResource.getContents().addAll(EcoreUtil.copyAll(resource.getContents()));
+				}
 
-					IResourceContentCopier product = entry.getValue();
-					productResource.getContents().addAll(product.getCopiedContents(resource));
+			});
+
+		}
+
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+
+			@Override
+			protected void doExecute() {
+				//TO DO:
+				//we should actually save a copy of the base model which we copied in the first place before all transformations,
+				//but the engine currently performs substitutions on the base model;
+				//thus we simply copy the contents of the base model and save it
+				//ResourceContentCopier product = entry.getValue();
+				//productResource.getContents().addAll(product.values());
+
+				//productResource.getContents().addAll(EcoreUtil.copyAll(resource.getContents()));
+
+				for (Resource resource : resSet.getResources()) {
+
+					//IResourceContentCopier product = entry.getValue();
+					//productResource.getContents().addAll(product.getCopiedContents(resource));
 
 					Map<Object, Object> options = new HashMap<Object, Object>();
 					options.put(XMIResource.OPTION_ENCODING, ((XMIResource) resource).getEncoding());
 					try {
-						productResource.save(options);
+						resource.save(options);
 					} catch (Exception e) {
 						logger.error("some exception", e);
 						messages.put(resSet, e.getMessage());
 					}
 				}
-			});
-		}
+			}
+		});
 
 		if (!messages.isEmpty()) {
 			String throwMessage = new String();
 			for (Map.Entry<ResourceSet, String> message : messages.entrySet()) {
-				ResourceSet resSet = message.getKey();
+				ResourceSet resSet1 = message.getKey();
 				String msg = message.getValue();
-				throwMessage += resSet.getResources() + " : " + msg + "\n";
+				throwMessage += resSet1.getResources() + " : " + msg + "\n";
+			}
+			throw new UnsupportedOperationException(throwMessage);
+		}
+
+		List<String> error_messages = executionEditingDomain.getErrorMessages();
+		if (!error_messages.isEmpty()) {
+			String throwMessage = new String();
+			for (String message : error_messages) {
+				throwMessage += executionEditingDomain.getResourceSet().getResources() + " : " + message + "\n";
 			}
 			throw new UnsupportedOperationException(throwMessage);
 		}
 	}
 
-	public TransactionalEditingDomain getEdititingDomain(EList<TransactionalEditingDomain> editingDomains, ResourceSet resSet) {
-		for (TransactionalEditingDomain domain : editingDomains) {
-			if (domain.getResourceSet().equals(resSet))
-				return domain;
-		}
-		return null;
-	}
-
 	@Override
 	public void performSubstitutions(List<SymbolVSpec> symbols) {
 		final HashMap<FragmentSubstitution, String> messagesFS = new HashMap<FragmentSubstitution, String>();
-		final HashMap<ResourceSet, String> messagesRS = new HashMap<ResourceSet, String>();
+		IBVREditingDomain executionEditingDomain = getCurrentExecutionEditingDomain();
+
 		for (final SymbolVSpec symbol : symbols) {
 			logger.debug("processing Symbol " + symbol.getVSpec());
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
 
-			bvr.BVRModel bvrModel = symbol.getScope().getBVRModel();
+			BVRModel bvrModel = symbol.getScope().getBVRModel();
 			ResourceSet resSet = bvrModel.eResource().getResourceSet();
-			TransactionalEditingDomain editingDomain = getEdititingDomain(editingDomains, resSet);
-			if (editingDomain == null) {
-				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resSet);
-				editingDomain.addResourceSetListener(new ResourceSetListenerImpl() {
 
-					@Override
-					public void resourceSetChanged(ResourceSetChangeEvent event) {
-						Transaction transaction = event.getTransaction();
-						HashMap<String, Object> info = Utility.parseTransaction(transaction);
-						if ((Boolean) info.get(Utility.isOk))
-							return;
-						event.getEditingDomain().getResourceSet();
-						messagesRS.put(event.getEditingDomain().getResourceSet(), (String) info.get(Utility.message));
-					}
-
-				});
-				editingDomains.add(editingDomain);
+			if (executionEditingDomain == null) {
+				logger.warn("current editing domain is not set, creating one to perform fragment substitutions. This can cause 'cannot modify without a write transaction' exception if model is openned in another transaction domain");
+				executionEditingDomain = BVREditingDomainFacade.eINSTANCE.testExecutionEditingDomain(resSet);
 			}
+
+			TransactionalEditingDomain editingDomain = executionEditingDomain.getEditingDomain();
 
 			for (final FragmentSubstitution fragment : fragments) {
 				logger.debug("processing FragmentSubstitution " + fragment);
@@ -242,12 +240,12 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			}
 		}
 
+		List<String> messagesRS = executionEditingDomain.getErrorMessages();
+
 		if (!messagesRS.isEmpty() || !messagesFS.isEmpty()) {
 			String throwMessage = new String();
-			for (Map.Entry<ResourceSet, String> message : messagesRS.entrySet()) {
-				ResourceSet resSet = message.getKey();
-				String msg = message.getValue();
-				throwMessage += "Resource problem " + resSet.getResources() + " : " + msg + "\n";
+			for (String message : messagesRS) {
+				throwMessage += "Resource problem " + executionEditingDomain.getResourceSet().getResources() + " : " + message + "\n";
 			}
 			for (Map.Entry<FragmentSubstitution, String> message : messagesFS.entrySet()) {
 				FragmentSubstitution fs = message.getKey();
@@ -323,6 +321,16 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			throw new RethrownException("failed to remove file", e);
 		}
 		model.dispose();
+	}
+
+	@Override
+	public void setCurrentExecutionEditingDomain(IBVREditingDomain editingDomain) {
+		currentExecutionEditingDomain = editingDomain;
+	}
+
+	@Override
+	public IBVREditingDomain getCurrentExecutionEditingDomain() {
+		return currentExecutionEditingDomain;
 	}
 
 }

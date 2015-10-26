@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (c)
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) All rights reserved. This program and the accompanying
+ * materials are made available under the terms of the Eclipse Public License
+ * v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  ******************************************************************************/
 package no.sintef.bvr.tool.environment;
@@ -17,6 +16,7 @@ import no.sintef.bvr.common.logging.Logger;
 import no.sintef.bvr.common.logging.ResetableLogger;
 import no.sintef.bvr.engine.interfaces.common.IResourceContentCopier;
 import no.sintef.bvr.tool.exception.UnimplementedBVRException;
+import no.sintef.bvr.tool.interfaces.model.IBVREditingDomain;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpec;
 import no.sintef.bvr.ui.editor.commands.EditorCommands;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 public class AbstractEnvironment implements Environment {
-	
+
 	@Override
 	public BVRToolModel loadModelFromFile(File file) {
 		throw new UnimplementedBVRException("loadModelFromFile is not implemented");
@@ -53,8 +53,7 @@ public class AbstractEnvironment implements Environment {
 	}
 
 	@Override
-	public void highlightObjects(
-			EList<HashMap<EObject, Integer>> objectsToHighlightList) {
+	public void highlightObjects(EList<HashMap<EObject, Integer>> objectsToHighlightList) {
 		throw new UnimplementedBVRException("highlightObjects is not implemented");
 
 	}
@@ -70,8 +69,7 @@ public class AbstractEnvironment implements Environment {
 	}
 
 	@Override
-	public void writeProductsToFiles(
-			HashMap<Resource, IResourceContentCopier> baseProductMap, File file) {
+	public void writeProductsToFiles(HashMap<Resource, IResourceContentCopier> baseProductMap, File file) {
 		throw new UnimplementedBVRException("writeProductsToFiles is not implemented");
 	}
 
@@ -84,7 +82,7 @@ public class AbstractEnvironment implements Environment {
 	public Logger getLogger() {
 		throw new UnimplementedBVRException("getLogger is not implemented");
 	}
-	
+
 	@Override
 	public ResetableLogger getProblemLogger() {
 		throw new UnimplementedBVRException("getProblemLogger is not implemented");
@@ -103,5 +101,15 @@ public class AbstractEnvironment implements Environment {
 	@Override
 	public void disposeModel(BVRToolModel model) {
 		throw new UnimplementedBVRException("disposeModel is not implemented for this environment");
+	}
+
+	@Override
+	public IBVREditingDomain getCurrentExecutionEditingDomain() {
+		throw new UnimplementedBVRException("getCurrentExecutionEditingDomain is not implemented for this environment");
+	}
+
+	@Override
+	public void setCurrentExecutionEditingDomain(IBVREditingDomain editingDomain) {
+		throw new UnimplementedBVRException("setCurrentExecutionEditingDomain is not implemented for this environment");
 	}
 }
