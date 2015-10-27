@@ -42,7 +42,7 @@ public class ExecuteResolutionEvent implements ActionListener {
 
 		boolean result = StaticUICommands.showConfirmationDialog(Context.eINSTANCE.getActiveJApplet(), "Is it a correct base model?",
 				"Base model consists of the following files:\n " + bm_files_paths
-						+ "\nIf the base model is incorrect, select base model files in the Navigator View of Eclipse (got to Window->Show View->Navigator).");
+						+ "\nIf the base model is incorrect, select base model files in the Eclipse Navigator View (Window->Show View->Navigator).");
 
 		if (!result)
 			return;

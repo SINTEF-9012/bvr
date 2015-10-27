@@ -10,6 +10,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import no.sintef.bvr.engine.common.SubstitutionEngine;
 import no.sintef.bvr.test.common.utils.TestProject;
@@ -18,9 +19,11 @@ import no.sintef.bvr.tool.context.Context;
 import no.sintef.bvr.tool.model.BVRToolModel;
 import no.sintef.bvr.tool.model.BVRTransactionalModel;
 import no.sintef.bvr.tool.primitive.SymbolVSpecResolutionTable;
+import no.sintef.bvr.tool.primitive.impl.SingleExecutionRequest;
+import no.sintef.bvr.tool.strategy.impl.CopyBaseModelStrategy;
 import no.sintef.bvr.tool.strategy.impl.RRComposerStrategy;
 import no.sintef.bvr.tool.strategy.impl.RealizationStrategyBottomUp;
-import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeable;
+import no.sintef.bvr.tool.strategy.impl.ScopeResolverStrategyScopeless;
 import no.sintef.bvr.tool.test.Activator;
 
 import org.eclipse.core.resources.IFile;
@@ -75,6 +78,7 @@ public class TrivialDeriveProduct {
 		Context.eINSTANCE.getBvrModels().clear();
 		Context.eINSTANCE.getBvrViews().clear();
 		Context.eINSTANCE.disposeModel(toolModel);
+		Context.eINSTANCE.setCurrentExecutionEditingDomain(null);
 	}
 
 	@Test
@@ -82,12 +86,23 @@ public class TrivialDeriveProduct {
 		BVRModel model = toolModel.getBVRModel();
 		VSpecResolution vSpecResolution = model.getResolutionModels().get(0);
 
+		HashMap<String, Object> keywords = new HashMap<String, Object>();
+		keywords.put("model", model);
+		keywords.put("PosResolution", vSpecResolution);
+		SingleExecutionRequest request = new SingleExecutionRequest(keywords);
+
+		String[] model_paths = { testResources[1].getiFile().getFullPath().toString() };
+
+		CopyBaseModelStrategy copyBaseModelStrategy = new CopyBaseModelStrategy();
 		RRComposerStrategy composer = new RRComposerStrategy();
-		ScopeResolverStrategyScopeable scopeResolver = new ScopeResolverStrategyScopeable();
+		ScopeResolverStrategyScopeless scopeResolver = new ScopeResolverStrategyScopeless();
 		RealizationStrategyBottomUp productResolver = new RealizationStrategyBottomUp();
 
 		try {
-			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable(model, (PosResolution) vSpecResolution);
+			copyBaseModelStrategy.copyBaseModel(request, model.eResource().getURI(), Arrays.asList(model_paths));
+
+			SymbolVSpecResolutionTable symbolTable = composer.buildSymbolTable((BVRModel) request.getDataField("model"),
+					(PosResolution) request.getDataField("PosResolution"));
 			scopeResolver.resolveScopes(symbolTable);
 			productResolver.deriveProduct(symbolTable);
 
@@ -95,6 +110,7 @@ public class TrivialDeriveProduct {
 			File fileProduct = iProduct.getLocation().toFile();
 			Context.eINSTANCE.writeProductsToFiles(Context.eINSTANCE.getSubEngine().getCopiedBaseModels(), fileProduct);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			assertFalse("execution failed with message " + ex.getMessage(), true);
 		}
 	}
@@ -112,6 +128,7 @@ public class TrivialDeriveProduct {
 		try {
 			model.executeResolution(fileProduct, 0);
 		} catch (Exception e) {
+			e.printStackTrace();
 			assertFalse("execution failed with message " + e.getMessage(), true);
 		}
 	}

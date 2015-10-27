@@ -22,7 +22,7 @@ public class ScopeResolverExecutionHandler implements ExecutionHandler {
 	public ScopeResolverExecutionHandler(ExecutionHandler successor) {
 		this.successor = successor;
 		defaultStrategy = new ScopeResolverStrategyScopeless();
-		//this.defaultStrategy = new ScopeResolverStrategyScopeable();
+		//defaultStrategy = new ScopeResolverStrategyScopeable();
 	}
 
 	@Override

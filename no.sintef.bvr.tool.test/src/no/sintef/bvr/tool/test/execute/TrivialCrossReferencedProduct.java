@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.junit.After;
@@ -80,6 +81,7 @@ public class TrivialCrossReferencedProduct {
 		Context.eINSTANCE.getBvrModels().clear();
 		Context.eINSTANCE.getBvrViews().clear();
 		Context.eINSTANCE.disposeModel(toolModel);
+		Context.eINSTANCE.setCurrentExecutionEditingDomain(null);
 	}
 
 	@Test
@@ -159,5 +161,31 @@ public class TrivialCrossReferencedProduct {
 		PackageableElement importedElement = elementImport.getImportedElement();
 
 		assertEquals("Cross-reference is incorrect", "platform:/resource" + productsURI[1], importedElement.eResource().getURI().toString());
+	}
+
+	@Test
+	public void runDefualtDeriviationTest3() {
+		File file = testResources[0].getiFile().getLocation().toFile();
+		BVRTransactionalModel model = (BVRTransactionalModel) Context.eINSTANCE.testBVRToolModel(file);
+		IFile iProduct = testProject.getIProject().getFile(productPrefix);
+		File fileProduct = iProduct.getLocation().toFile();
+
+		String[] base_model = { testResources[1].getiFile().getFullPath().toString(), testResources[2].getiFile().getFullPath().toString() };
+		model.updateBaseModelFiles(Arrays.asList(base_model));
+
+		try {
+			model.executeResolution(fileProduct, 0);
+		} catch (Exception e) {
+			assertFalse("execution failed with message " + e.getMessage(), true);
+		}
+
+		ResourceSet resSet = new ResourceSetImpl();
+		URI product_base1 = URI.createPlatformResourceURI(productsURI[0], true);
+
+		Resource resource = resSet.getResource(product_base1, true);
+
+		Class replacedElement = (Class) resource.getContents().get(0).eContents().get(1);
+
+		assertEquals("Replacement is incorrect!", "replacedA", replacedElement.getName());
 	}
 }

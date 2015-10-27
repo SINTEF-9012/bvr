@@ -30,7 +30,6 @@ public class DeriveProduct {
 		ExecutionRealizationHandler realization = new ExecutionRealizationHandler(saveProduct);
 		ScopeResolverExecutionHandler scopeResolving = new ScopeResolverExecutionHandler(realization);
 		IntersactionResolverExecutionHandler intersectionResolver = new IntersactionResolverExecutionHandler(scopeResolving);
-		// starter = new ParserExecutionHandler(intersectionResolver);
 		ParserExecutionHandler parser = new ParserExecutionHandler(intersectionResolver);
 		starter = new ComputeBaseModelHandler(parser);
 

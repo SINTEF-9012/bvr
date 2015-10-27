@@ -50,6 +50,10 @@ public class CopyBaseModelStrategy implements IComputeBaseModelStrategy {
 		if (copiedResolution == null)
 			throw new UnexpectedException("Cannot find resolution to execute for in the copied models!");
 
+		BVRModel copiedBVRModel = (BVRModel) ((Map) copier).get(buf_bvr_model);
+		if (copiedBVRModel == null)
+			throw new UnexpectedException("Cannot find copied bvr model!");
+
 		HashMap<Resource, IResourceContentCopier> map = new HashMap<Resource, IResourceContentCopier>();
 
 		for (String base_model_path : base_model_paths) {
@@ -63,7 +67,7 @@ public class CopyBaseModelStrategy implements IComputeBaseModelStrategy {
 
 		Context.eINSTANCE.getSubEngine().setCopyBaseModelMap(map);
 
-		request.setDataField("model", bvr_resource.getContents().get(0));
+		request.setDataField("model", copiedBVRModel);
 		request.setDataField("PosResolution", copiedResolution);
 	}
 }

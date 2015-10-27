@@ -49,7 +49,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IWorkbenchWindow;
 
-import bvr.BVRModel;
 import bvr.FragmentSubstitution;
 
 public class EclipseEnvironment extends AbstractEnvironment {
@@ -135,7 +134,7 @@ public class EclipseEnvironment extends AbstractEnvironment {
 			String productFullName = filepath + productName;
 
 			logger.debug("product project uri " + productFullName);
-			URI uri = URI.createPlatformResourceURI(productFullName, true);
+			URI uri = URI.createPlatformResourceURI(productFullName, false);
 			logger.debug("saving the product to file with platform uri " + uri);
 			Resource productResource = resSet.createResource(uri);
 
@@ -209,15 +208,6 @@ public class EclipseEnvironment extends AbstractEnvironment {
 		for (final SymbolVSpec symbol : symbols) {
 			logger.debug("processing Symbol " + symbol.getVSpec());
 			EList<FragmentSubstitution> fragments = symbol.getFragmentSubstitutionsToExecute();
-
-			BVRModel bvrModel = symbol.getScope().getBVRModel();
-			ResourceSet resSet = bvrModel.eResource().getResourceSet();
-
-			if (executionEditingDomain == null) {
-				logger.warn("current editing domain is not set, creating one to perform fragment substitutions. This can cause 'cannot modify without a write transaction' exception if model is openned in another transaction domain");
-				executionEditingDomain = BVREditingDomainFacade.eINSTANCE.testExecutionEditingDomain(resSet);
-			}
-
 			TransactionalEditingDomain editingDomain = executionEditingDomain.getEditingDomain();
 
 			for (final FragmentSubstitution fragment : fragments) {
