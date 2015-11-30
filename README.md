@@ -6,5 +6,5 @@ See http://modelbased.net/tools/bvr-tool/
 
 ### Source Installation Requirements
 1. Eclipse Modeling Tools - Kepler SR2 revision
-2. Papyrus UML v0.10 for third-party integration plugins
+2. Papyrus UML v0.10.1 for third-party integration plugins
 3. Java 8
