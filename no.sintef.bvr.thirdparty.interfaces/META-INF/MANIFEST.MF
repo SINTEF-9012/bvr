@@ -6,7 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.util,
- org.eclipse.gmf.runtime.emf.core.util,
  org.eclipse.swt.graphics,
  org.eclipse.swt.widgets
 Export-Package: no.sintef.bvr.thirdparty.interfaces.editor
