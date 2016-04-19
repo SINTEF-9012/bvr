@@ -14,7 +14,7 @@
    </copyright>
 
    <license url="http://modelbased.net/tools/bvr/license/">
-Copyright (c)
+      Copyright (c)
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
@@ -52,9 +52,9 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.emf.edit" version="2.9.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.edit.ui" version="2.9.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.9.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui" version="1.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.filesystem" version="1.4.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.thirdparty.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.transaction"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="de.ovgu.featureide.fm.core" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="SPLAR" version="1.0.0" match="greaterOrEqual"/>
@@ -65,7 +65,6 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.9.1" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.tool.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.constraints" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.transaction"/>
       <import plugin="org.eclipse.jface"/>
       <import plugin="no.sintef.bvr.model" version="0.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.transaction" version="1.4.0" match="greaterOrEqual"/>
@@ -75,7 +74,6 @@ SINTEF - initial API and implementation
       <import plugin="org.eclipse.ui.workbench"/>
       <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gmf.runtime.emf.core"/>
    </requires>
 
    <plugin
