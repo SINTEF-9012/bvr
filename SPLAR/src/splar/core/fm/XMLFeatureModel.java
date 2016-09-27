@@ -141,36 +141,41 @@ public class XMLFeatureModel extends FeatureModel {
 		CNFClauseParser cnfClauseParser = new CNFClauseParser();
 
 		Scanner scanner = new Scanner(constraints);
-		String line = "";
-		while (scanner.hasNextLine()) {
-			line = scanner.nextLine().trim();
-			if (line.trim().length() > 0) {
-				int index1 = line.indexOf(":");
-				if (index1 != -1) {
-					String constraintName = line.substring(0, index1).trim();
-					String constraintFormula = line.substring(index1 + 1).trim();
-					try {
-						CNFClause cnfClause = cnfClauseParser.parse(constraintFormula);
-						for (BooleanVariableInterface var : cnfClause.getVariables()) {
-							if (getNodeByID(var.getID()) == null) {
-								throw new FeatureModelException("Error parsing extra constraint labelled '" + constraintName + "' (variable id '" + var.getID()
-										+ "' used in the formula is not defined in the feature tree).");
+		try {
+			String line = "";
+			while (scanner.hasNextLine()) {
+				line = scanner.nextLine().trim();
+				if (line.trim().length() > 0) {
+					int index1 = line.indexOf(":");
+					if (index1 != -1) {
+						String constraintName = line.substring(0, index1).trim();
+						String constraintFormula = line.substring(index1 + 1).trim();
+						try {
+							CNFClause cnfClause = cnfClauseParser.parse(constraintFormula);
+							for (BooleanVariableInterface var : cnfClause.getVariables()) {
+								if (getNodeByID(var.getID()) == null) {
+									throw new FeatureModelException("Error parsing extra constraint labelled '" + constraintName + "' (variable id '"
+											+ var.getID() + "' used in the formula is not defined in the feature tree).");
+								}
 							}
+							addConstraint(new PropositionalFormula(constraintName, cnfClause.toString2()));
+						} catch (CNFClauseParseException e1) {
+							throw new FeatureModelException("Error parsing extra constraint labelled '" + constraintName + "' (" + e1.getMessage() + "').", e1);
+						} catch (FeatureModelException e2) {
+							throw e2;
+						} catch (Exception e3) {
+							throw new FeatureModelException("Error parsing extra constraint labelled '" + constraintName + "' (Line: " + line + "').", e3);
 						}
-						addConstraint(new PropositionalFormula(constraintName, cnfClause.toString2()));
-					} catch (CNFClauseParseException e1) {
-						throw new FeatureModelException("Error parsing extra constraint labelled '" + constraintName + "' (" + e1.getMessage() + "').", e1);
-					} catch (FeatureModelException e2) {
-						throw e2;
-					} catch (Exception e3) {
-						throw new FeatureModelException("Error parsing extra constraint labelled '" + constraintName + "' (Line: " + line + "').", e3);
-					} finally {
-						scanner.close();
 					}
 				}
 			}
+		} catch (FeatureModelException ex) {
+			throw ex;
+		} catch (Exception ex) {
+			throw new FeatureModelException("Unexpected parsing exception of constraints", ex);
+		} finally {
+			scanner.close();
 		}
-		scanner.close();
 	}
 
 	protected FeatureTreeNode parseFeatureTree(String featureTree) throws IOException, FeatureModelException {
