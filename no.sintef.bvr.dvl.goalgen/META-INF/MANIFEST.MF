@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR DVL :: Goal Generator
+Bundle-SymbolicName: no.sintef.bvr.dvl.goalgen
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SINTEF
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: no.sintef.bvr.model;bundle-version="2.0.0",
+ no.sintef.bvr.dvl.goalgen.interfaces,
+ org.eclipse.emf.common,
+ org.eclipse.core.resources,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.9.1"
+Export-Package: no.sintef.bvr.dvl.goalgen.main

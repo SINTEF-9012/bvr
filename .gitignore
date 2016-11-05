@@ -8,3 +8,4 @@ cvl.properties
 /bin
 .gitignore
 *.launch
+.DS_Store

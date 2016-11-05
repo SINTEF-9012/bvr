@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="no.sintef.bvr.dvl.goalgen.popup.contribution1"
+            nameFilter="*.bvr"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               label="DVL Goals"
+               path="additions"
+               id="no.sintef.bvr.dvl.goalgen.popup.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Extract Resolutions"
+               class="no.sintef.bvr.dvl.goalgen.popup.popup.actions.ExtractResolutions"
+               menubarPath="no.sintef.bvr.dvl.goalgen.popup.menu1/group1"
+               enablesFor="1"
+               id="no.sintef.bvr.dvl.goalgen.popup.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

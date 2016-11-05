@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DVL BVR :: Goal Generator Interfaces
+Bundle-SymbolicName: no.sintef.bvr.dvl.goalgen.interfaces
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SINTEF
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: no.sintef.bvr.dvl.goalgen.interfaces.main,
+ no.sintef.bvr.dvl.goalgen.interfaces.pojo
+Require-Bundle: no.sintef.bvr.model;bundle-version="2.0.0"

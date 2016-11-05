@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Popup
+Bundle-SymbolicName: no.sintef.bvr.dvl.goalgen.popup;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: no.sintef.bvr.dvl.goalgen.popup.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ no.sintef.bvr.dvl.goalgen;bundle-version="1.0.0",
+ no.sintef.bvr.dvl.goalgen.interfaces;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
