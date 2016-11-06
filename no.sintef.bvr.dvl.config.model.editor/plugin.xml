@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated dvlconfig -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="dvlconfig.presentation.DvlconfigModelWizardID"
+            name="%_UI_DvlconfigModelWizard_label"
+            class="dvlconfig.presentation.DvlconfigModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DvlconfigModelFile.gif">
+         <description>%_UI_DvlconfigModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated dvlconfig -->
+      <editor
+            id="dvlconfig.presentation.DvlconfigEditorID"
+            name="%_UI_DvlconfigEditor_label"
+            icon="icons/full/obj16/DvlconfigModelFile.gif"
+            extensions="dvlconfig"
+            class="dvlconfig.presentation.DvlconfigEditor"
+            contributorClass="dvlconfig.presentation.DvlconfigActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
