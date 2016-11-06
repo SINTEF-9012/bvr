@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR DVL :: Execution
+Bundle-SymbolicName: no.sintef.bvr.dvl.execution
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SINTEF
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: no.sintef.bvr.dvl.execution.interfaces;bundle-version="1.0.0",
+ no.sintef.bvr.dvl.config.model;bundle-version="0.1.0"
+Export-Package: no.sintef.bvr.dvl.execution.main

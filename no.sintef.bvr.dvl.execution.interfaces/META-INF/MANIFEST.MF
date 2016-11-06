@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: BVR DVL :: Exectution Interfaces
+Bundle-SymbolicName: no.sintef.bvr.dvl.execution.interfaces
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SINTEF
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: no.sintef.bvr.dvl.execution.interfaces.errors,
+ no.sintef.bvr.dvl.execution.interfaces.main
