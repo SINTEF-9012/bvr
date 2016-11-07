@@ -1,11 +1,19 @@
 package no.sintef.bvr.dvl.execution.interfaces.main;
 
+import java.util.List;
+
+
+
+
+import org.eclipse.core.resources.IFile;
+
+import no.sintef.bvr.dvl.execution.interfaces.errors.ConfigError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.PlannerError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.RealisationError;
 
 public interface IDVLExecutor {
 
-	public String[] getOperators(String product) throws PlannerError;
+	public List<String> getOperators(IFile realisation) throws PlannerError, ConfigError;
 	
-	public void deriveProduct(String[] operators) throws RealisationError;
+	public void deriveProduct(List<String> operators) throws RealisationError;
 }

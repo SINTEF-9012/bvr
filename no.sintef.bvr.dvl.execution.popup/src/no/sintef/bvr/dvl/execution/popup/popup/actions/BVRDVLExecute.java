@@ -1,7 +1,9 @@
 package no.sintef.bvr.dvl.execution.popup.popup.actions;
 
 import java.util.Iterator;
+import java.util.List;
 
+import no.sintef.bvr.dvl.execution.interfaces.errors.ConfigError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.PlannerError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.RealisationError;
 import no.sintef.bvr.dvl.execution.interfaces.main.IDVLExecutor;
@@ -56,8 +58,8 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 			return;
 		}
 		
-		String path_to_config = config_file.getFullPath().toOSString();
-		IDVLExecutor executor = new DVLExecutor(path_to_config);
+		//String path_to_config = config_file.getFullPath().toOSString();
+		IDVLExecutor executor = new DVLExecutor(config_file);
 		
 		Iterator<?> iterator = selection.iterator();
 		while(iterator.hasNext()) {
@@ -70,9 +72,9 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 				continue;
 			}
 			
-			String path_resolution = ifile.getFullPath().toOSString();
 			try {
-				String[] operators = executor.getOperators(path_resolution);
+				//String path_resolution = ifile.getLocation().toOSString();
+				List<String> operators = executor.getOperators(ifile);
 				executor.deriveProduct(operators);
 			}catch(PlannerError ex) {
 				MessageDialog.openError(
@@ -86,6 +88,12 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 						"BVR DVL::Execution",
 						"Failed to execute plan and "
 						+ "derive a product for " +ifile.getName() + 
+						" due to " + ex.getMessage());
+			} catch (ConfigError ex) {
+				MessageDialog.openError(
+						shell,
+						"BVR DVL::Execution",
+						"Check config. Configuration failure " +
 						" due to " + ex.getMessage());
 			}
 			
