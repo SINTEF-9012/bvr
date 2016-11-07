@@ -73,28 +73,27 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 			}
 			
 			try {
-				//String path_resolution = ifile.getLocation().toOSString();
 				List<String> operators = executor.getOperators(ifile);
-				executor.deriveProduct(operators);
+				executor.deriveProduct(getBaseName(ifile), operators);
 			}catch(PlannerError ex) {
 				MessageDialog.openError(
 						shell,
 						"BVR DVL::Execution",
-						"Failed to find plan for " +ifile.getName() + 
-						" due to " + ex.getMessage());
+						"Failed to find plan for '" +ifile.getName() + 
+						"' due to:\n'" + ex.getMessage() + "'");
 			}catch(RealisationError ex) {
 				MessageDialog.openError(
 						shell,
 						"BVR DVL::Execution",
 						"Failed to execute plan and "
-						+ "derive a product for " +ifile.getName() + 
-						" due to " + ex.getMessage());
+						+ "derive a product for '" +ifile.getName() + 
+						"' due to:\n '" + ex.getMessage()+ "'");
 			} catch (ConfigError ex) {
 				MessageDialog.openError(
 						shell,
 						"BVR DVL::Execution",
 						"Check config. Configuration failure " +
-						" due to " + ex.getMessage());
+						"due to:\n '" + ex.getMessage()+ "'");
 			}
 			
 		}
@@ -111,6 +110,12 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 					"Failed to refresh project");
 			e.printStackTrace();
 		}
+	}
+	
+	private String getBaseName(IFile ifile) {
+		String name = ifile.getName().replace(ifile.getFileExtension(), "");
+		name = name.replace(".", "");
+		return name;
 	}
 	
 	private IFile getConfiguration(IStructuredSelection selection) {

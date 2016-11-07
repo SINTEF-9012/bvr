@@ -1,6 +1,7 @@
 package no.sintef.bvr.dvl.execution.main;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import no.sintef.bvr.dvl.execution.interfaces.main.IDVLExecutor;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -45,6 +47,9 @@ import no.sintef.bvr.planner.repository.WriterException;
 import no.sintef.bvr.planner.repository.ecore.EcoreOperatorReader;
 import no.sintef.bvr.planner.repository.interfaces.IOperatorsReader;
 import no.sintef.dvl.realisation.core.interfaces.engine.IRealisationEngine;
+import no.sintef.dvl.realisation.core.interfaces.errors.OperatorNotConfigurable;
+import no.sintef.dvl.realisation.core.interfaces.errors.OperatorNotConfigured;
+import no.sintef.dvl.realisation.core.interfaces.errors.OperatorNotLocatedException;
 
 public class DVLExecutor implements IDVLExecutor {
 	
@@ -89,7 +94,7 @@ public class DVLExecutor implements IDVLExecutor {
 
 
 	@Override
-	public void deriveProduct(List<String> operators) throws RealisationError, ConfigError {
+	public void deriveProduct(String product_name, List<String> operators) throws RealisationError, ConfigError {
 		Map<String, String> map = getOperatorsMap();
 		
 		List<String> keys = new ArrayList<String>();
@@ -121,8 +126,21 @@ public class DVLExecutor implements IDVLExecutor {
 			throw new RealisationError(e.getMessage(), e);
 		}
 		
+		try {
+			engine.initializeEngine(getResources(), product_name, config_file.getProject());
+			engine.realiseProduct(oper_to_exe);
+		} catch (IOException e) {
+			throw new RealisationError(e.getMessage(), e);
+		} catch (CoreException e) {
+			throw new RealisationError(e.getMessage(), e);
+		} catch(OperatorNotLocatedException e) {
+			throw new RealisationError(e.getMessage(), e);
+		} catch(OperatorNotConfigurable e) {
+			throw new RealisationError(e.getMessage(), e);
+		} catch(OperatorNotConfigured e) {
+			throw new RealisationError(e.getMessage(), e);
+		}
 		
-		System.out.println(oper_to_exe);
 		
 	}
 	
@@ -132,6 +150,16 @@ public class DVLExecutor implements IDVLExecutor {
 		EList<Operator> oprs = config.getOperators();
 		for(Operator op : oprs) map.put(op.getKey(), op.getValue());
 		return map;
+	}
+	
+	private List<String> getResources() {
+		List<String> resources = new ArrayList<String>();
+		Config config = getDVLConfig();
+		EList<dvlconfig.Resource> list = config.getResources();
+		for(dvlconfig.Resource res : list)
+			resources.add(res.getLocation());
+		
+		return resources;
 	}
 	
 	private Operators operators() throws ReaderException {

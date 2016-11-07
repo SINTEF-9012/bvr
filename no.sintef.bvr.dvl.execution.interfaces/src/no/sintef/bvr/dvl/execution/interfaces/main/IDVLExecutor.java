@@ -5,6 +5,7 @@ import java.util.List;
 
 
 
+
 import org.eclipse.core.resources.IFile;
 
 import no.sintef.bvr.dvl.execution.interfaces.errors.ConfigError;
@@ -15,5 +16,5 @@ public interface IDVLExecutor {
 
 	public List<String> getOperators(IFile realisation) throws PlannerError, ConfigError;
 	
-	public void deriveProduct(List<String> operators) throws RealisationError, ConfigError;
+	public void deriveProduct(String product_name, List<String> operators) throws RealisationError, ConfigError;
 }
