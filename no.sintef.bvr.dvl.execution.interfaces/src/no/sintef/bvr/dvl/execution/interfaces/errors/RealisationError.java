@@ -10,4 +10,8 @@ public class RealisationError extends Exception {
 	public RealisationError(String message, Throwable original) {
 		super(message, original);
 	}
+	
+	public RealisationError(String message) {
+		super(message);
+	}
 }

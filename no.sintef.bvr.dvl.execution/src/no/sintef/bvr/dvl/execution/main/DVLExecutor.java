@@ -2,7 +2,9 @@ package no.sintef.bvr.dvl.execution.main;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import no.sintef.bvr.dvl.execution.interfaces.errors.ConfigError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.PlannerError;
@@ -11,16 +13,20 @@ import no.sintef.bvr.dvl.execution.interfaces.main.IDVLExecutor;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.osgi.framework.Bundle;
 
 import dvlconfig.Config;
 import dvlconfig.DvlconfigPackage;
 
 
+import dvlconfig.Operator;
 import dvlconfig.Original;
 import dvlconfig.Realop;
 import no.sintef.autorealspl.converter.main.BVREcoreVarModelToOperatorConverter;
@@ -38,6 +44,7 @@ import no.sintef.bvr.planner.repository.Repository;
 import no.sintef.bvr.planner.repository.WriterException;
 import no.sintef.bvr.planner.repository.ecore.EcoreOperatorReader;
 import no.sintef.bvr.planner.repository.interfaces.IOperatorsReader;
+import no.sintef.dvl.realisation.core.interfaces.engine.IRealisationEngine;
 
 public class DVLExecutor implements IDVLExecutor {
 	
@@ -67,6 +74,7 @@ public class DVLExecutor implements IDVLExecutor {
 		try {
 			PlanningProblem problem = new PlanningProblem(operators(), origin(), goal());
 			Plan solution = problem.solve();
+			operators.addAll(solution.getInvokedOperators());
 			store(solution);
 		} catch (ReaderException e) {
 			e.printStackTrace();
@@ -81,8 +89,49 @@ public class DVLExecutor implements IDVLExecutor {
 
 
 	@Override
-	public void deriveProduct(List<String> operators) throws RealisationError {
-
+	public void deriveProduct(List<String> operators) throws RealisationError, ConfigError {
+		Map<String, String> map = getOperatorsMap();
+		
+		List<String> keys = new ArrayList<String>();
+		
+		for(String operator : operators) {
+			String key = map.get(operator);
+			if(key == null)
+				throw new ConfigError("Could not find operator in the config file: " + operator);	
+			keys.add(key);
+		}
+		
+		String[] oper_to_exe = new String[keys.size()]; 
+		oper_to_exe = keys.toArray(oper_to_exe);
+		
+		Bundle bundle = Platform.getBundle("no.sintef.dvl.realisation.core");
+		if(bundle == null)
+			throw new RealisationError("Cannot find operators, you should install them!"); 
+		
+		Class<?>  clazz;
+		IRealisationEngine engine;
+		try {
+			clazz = bundle.loadClass("no.sintef.dvl.realisation.engine.AF3RealisationEngine");
+			engine = (IRealisationEngine) clazz.newInstance();
+		} catch (ClassNotFoundException e) {
+			throw new RealisationError("Cannot find a class to start operators", e);
+		} catch (InstantiationException e) {
+			throw new RealisationError(e.getMessage(), e);
+		} catch (IllegalAccessException e) {
+			throw new RealisationError(e.getMessage(), e);
+		}
+		
+		
+		System.out.println(oper_to_exe);
+		
+	}
+	
+	private Map<String, String> getOperatorsMap() {
+		Map<String, String> map = new HashMap<String, String>();
+		Config config = getDVLConfig();
+		EList<Operator> oprs = config.getOperators();
+		for(Operator op : oprs) map.put(op.getKey(), op.getValue());
+		return map;
 	}
 	
 	private Operators operators() throws ReaderException {

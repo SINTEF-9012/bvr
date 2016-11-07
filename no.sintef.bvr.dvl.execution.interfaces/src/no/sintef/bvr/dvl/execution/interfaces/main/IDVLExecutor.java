@@ -15,5 +15,5 @@ public interface IDVLExecutor {
 
 	public List<String> getOperators(IFile realisation) throws PlannerError, ConfigError;
 	
-	public void deriveProduct(List<String> operators) throws RealisationError;
+	public void deriveProduct(List<String> operators) throws RealisationError, ConfigError;
 }

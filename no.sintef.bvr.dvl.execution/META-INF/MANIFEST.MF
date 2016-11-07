@@ -12,7 +12,8 @@ Require-Bundle: no.sintef.bvr.dvl.execution.interfaces;bundle-version="1.0.0",
  org.eclipse.emf.common;bundle-version="2.9.2",
  org.eclipse.emf.ecore;bundle-version="2.9.2",
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1",
- org.eclipse.xtext;bundle-version="2.10.0"
+ org.eclipse.xtext;bundle-version="2.10.0",
+ no.sintef.dvl.realisation.core.interfaces;bundle-version="1.0.0"
 Export-Package: no.sintef.bvr.dvl.execution.main
 Bundle-ClassPath: .,
  libs/Planner-0.1-SNAPSHOT.jar,
