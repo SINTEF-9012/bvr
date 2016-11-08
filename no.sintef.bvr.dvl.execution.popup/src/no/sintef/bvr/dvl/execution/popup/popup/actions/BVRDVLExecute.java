@@ -1,19 +1,24 @@
 package no.sintef.bvr.dvl.execution.popup.popup.actions;
 
+
 import java.util.Iterator;
 import java.util.List;
 
+import no.sintef.bvr.dvl.execution.popup.Activator;
 import no.sintef.bvr.dvl.execution.interfaces.errors.ConfigError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.PlannerError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.RealisationError;
 import no.sintef.bvr.dvl.execution.interfaces.main.IDVLExecutor;
 import no.sintef.bvr.dvl.execution.main.DVLExecutor;
 
+
+
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -21,6 +26,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+
+
 
 public class BVRDVLExecute implements IObjectActionDelegate {
 
@@ -58,8 +65,6 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 			return;
 		}
 		
-		//String path_to_config = config_file.getFullPath().toOSString();
-		IDVLExecutor executor = new DVLExecutor(config_file);
 		
 		Iterator<?> iterator = selection.iterator();
 		while(iterator.hasNext()) {
@@ -72,44 +77,37 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 				continue;
 			}
 			
-			try {
-				List<String> operators = executor.getOperators(ifile);
-				executor.deriveProduct(getBaseName(ifile), operators);
-			}catch(PlannerError ex) {
-				MessageDialog.openError(
-						shell,
-						"BVR DVL::Execution",
-						"Failed to find plan for '" +ifile.getName() + 
-						"' due to:\n'" + ex.getMessage() + "'");
-			}catch(RealisationError ex) {
-				MessageDialog.openError(
-						shell,
-						"BVR DVL::Execution",
-						"Failed to execute plan and "
-						+ "derive a product for '" +ifile.getName() + 
-						"' due to:\n '" + ex.getMessage()+ "'");
-			} catch (ConfigError ex) {
-				MessageDialog.openError(
-						shell,
-						"BVR DVL::Execution",
-						"Check config. Configuration failure " +
-						"due to:\n '" + ex.getMessage()+ "'");
-			}
+			Job job = new Job("Realising the product: " + ifile.getName()) {
+				
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+					Status status = new Status(Status.OK, Activator.PLUGIN_ID, "OK!");
+					try {
+						IDVLExecutor executor = new DVLExecutor(config_file);
+						List<String> operators = executor.getOperators(ifile);
+						executor.deriveProduct(getBaseName(ifile), operators);
+					}catch(PlannerError ex) {
+						status = new Status(Status.ERROR, Activator.PLUGIN_ID, 
+								"Failed to find plan for '" +ifile.getName() + 
+								"' due to:\n'" + ex.getMessage() + "'",  ex);
+					}catch(RealisationError ex) {
+						status = new Status(Status.ERROR, Activator.PLUGIN_ID, 
+								"Failed to execute plan and "
+								+ "derive a product for '" +ifile.getName() + 
+								"' due to:\n '" + ex.getMessage()+ "'",  ex);
+					} catch (ConfigError ex) {
+						status = new Status(Status.ERROR, Activator.PLUGIN_ID, 
+								"Check config. Configuration failure " +
+										"due to:\n '" + ex.getMessage()+ "'",  ex);
+					}
+					
+					return status;
+				}
+			};
 			
+			job.schedule();		
 		}
-		try {
-			config_file.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-			MessageDialog.openInformation(
-					shell,
-					"BVR DVL::Execution",
-					"All product are derived!");
-		} catch (CoreException e) {
-			MessageDialog.openError(
-					shell,
-					"BVR DVL::Execution",
-					"Failed to refresh project");
-			e.printStackTrace();
-		}
+
 	}
 	
 	private String getBaseName(IFile ifile) {
@@ -134,5 +132,4 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 	public void selectionChanged(IAction action, ISelection selection) {
 		currentSelection = selection;
 	}
-
 }
