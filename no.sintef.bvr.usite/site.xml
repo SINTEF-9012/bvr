@@ -15,6 +15,9 @@
    <feature url="features/no.sintef.bvr.usite.feature.papyrusdiagram.adapter_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.papyrusdiagram.adapter" version="1.0.0.qualifier">
       <category name="BVREditors"/>
    </feature>
+   <feature url="features/no.sintef.bvr.usite.feature.autoreal_1.0.0.qualifier.jar" id="no.sintef.bvr.usite.feature.autoreal" version="1.0.0.qualifier">
+      <category name="BVREditors"/>
+   </feature>
    <category-def name="BVREditors" label="BVR Editors">
       <description>
          BVR Tool Bundle

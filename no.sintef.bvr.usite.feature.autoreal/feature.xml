@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="no.sintef.bvr.usite.feature.autoreal"
+      label="BVR DVL Realisation"
+      version="1.0.0.qualifier"
+      provider-name="SINTEF">
+
+   <description url="http://modelbased.net/tools/bvr/">
+      BVR Automatic Realisation plugin
+   </description>
+
+   <copyright url="http://modelbased.net/tools/bvr/copyright/">
+      Copyright (c) 2014 SINTEF
+   </copyright>
+
+   <license url="http://modelbased.net/tools/bvr/license/">
+      Licensed under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3, 29 June 2007;
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.gnu.org/licenses/lgpl-3.0.txt
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Contributors:
+SINTEF - initial API and implementation
+   </license>
+
+   <url>
+      <discovery label="BVR Update Site" url="http://bvr.modelbased.net/update/site.xml"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="no.sintef.bvr.dvl.execution.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.dvl.config.model" version="0.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.xtext"/>
+      <import plugin="no.sintef.dvl.realisation.core.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="no.sintef.bvr.dvl.execution" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.model"/>
+      <import plugin="no.sintef.bvr.dvl.goalgen" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.dvl.goalgen.interfaces" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.equinox.common"/>
+   </requires>
+
+   <plugin
+         id="no.sintef.bvr.dvl.config.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.config.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.config.model.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.execution"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.execution.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.execution.popup"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.goalgen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.goalgen.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.bvr.dvl.goalgen.popup"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="no.sintef.dvl.realisation.core.interfaces"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
