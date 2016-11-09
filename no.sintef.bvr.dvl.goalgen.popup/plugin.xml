@@ -9,7 +9,7 @@
             nameFilter="*.bvr"
             objectClass="org.eclipse.core.resources.IFile">
          <menu
-               label="DVL Goals"
+               label="BVR DVL"
                path="additions"
                id="no.sintef.bvr.dvl.goalgen.popup.menu1">
             <separator
@@ -17,7 +17,7 @@
             </separator>
          </menu>
          <action
-               label="Extract Resolutions"
+               label="Generate Goals"
                class="no.sintef.bvr.dvl.goalgen.popup.popup.actions.ExtractResolutions"
                menubarPath="no.sintef.bvr.dvl.goalgen.popup.menu1/group1"
                enablesFor="1"
