@@ -13,9 +13,14 @@ import no.sintef.bvr.dvl.execution.main.DVLExecutor;
 
 
 
+
+
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
@@ -86,6 +91,7 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 						IDVLExecutor executor = new DVLExecutor(config_file);
 						List<String> operators = executor.getOperators(ifile);
 						executor.deriveProduct(getBaseName(ifile), operators);
+						config_file.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 					}catch(PlannerError ex) {
 						status = new Status(Status.ERROR, Activator.PLUGIN_ID, 
 								"Failed to find plan for '" +ifile.getName() + 
@@ -99,6 +105,9 @@ public class BVRDVLExecute implements IObjectActionDelegate {
 						status = new Status(Status.ERROR, Activator.PLUGIN_ID, 
 								"Check config. Configuration failure " +
 										"due to:\n '" + ex.getMessage()+ "'",  ex);
+					} catch (CoreException e) {
+						status = new Status(Status.WARNING, Activator.PLUGIN_ID, 
+								"Could not refresh workspace..., please do it manually");
 					}
 					
 					return status;
