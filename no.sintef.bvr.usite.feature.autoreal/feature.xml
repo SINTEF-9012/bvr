@@ -35,24 +35,23 @@ SINTEF - initial API and implementation
    </url>
 
    <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="no.sintef.bvr.dvl.execution.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.dvl.config.model" version="0.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.common"/>
-      <import plugin="org.eclipse.xtext"/>
       <import plugin="no.sintef.dvl.realisation.core.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="no.sintef.bvr.dvl.execution" version="1.0.0" match="greaterOrEqual"/>
-      <import plugin="no.sintef.bvr.model"/>
       <import plugin="no.sintef.bvr.dvl.goalgen" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="no.sintef.bvr.dvl.goalgen.interfaces" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.equinox.common"/>
+      <import plugin="org.eclipse.core.resources" version="3.8.101" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common" version="2.9.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.9.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore.xmi" version="2.9.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext" version="2.10.0" match="greaterOrEqual"/>
+      <import plugin="no.sintef.bvr.model" version="2.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
