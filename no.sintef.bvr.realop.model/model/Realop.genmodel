@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/no.sintef.bvr.realop.model/src" modelPluginID="no.sintef.bvr.realop.model"
+    modelName="Realop" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Realop.ecore</foreignModel>
+  <genPackages prefix="Realop" disposableProviderFactory="true" ecorePackage="Realop.ecore#/">
+    <genClasses ecoreClass="Realop.ecore#//Realop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//Realop/operators"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//Operator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Realop.ecore#//Operator/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//Operator/expPre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//Operator/expPost"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//Expression"/>
+    <genClasses ecoreClass="Realop.ecore#//OrExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//OrExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//OrExp/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//AndExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//AndExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//AndExp/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//XorExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//XorExp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//XorExp/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//NotExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Realop.ecore#//NotExp/exp"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//IsRealised">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Realop.ecore#//IsRealised/featureName"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//IsPositive">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Realop.ecore#//IsPositive/featureName"/>
+    </genClasses>
+    <genClasses ecoreClass="Realop.ecore#//IsNegative">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Realop.ecore#//IsNegative/featureName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

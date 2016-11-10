@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import no.sintef.autorealspl.converter.main.BVREcoreVarModelToOperatorConverter;
-import no.sintef.autorealspl.converter.main.IConverter;
+import no.sintef.bvr.dvl.execution.autoreal.EcoreModelOperatorsReader;
 import no.sintef.bvr.dvl.execution.interfaces.errors.ConfigError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.PlannerError;
 import no.sintef.bvr.dvl.execution.interfaces.errors.RealisationError;
@@ -23,7 +22,6 @@ import no.sintef.bvr.planner.repository.PropertiesStateReader;
 import no.sintef.bvr.planner.repository.ReaderException;
 import no.sintef.bvr.planner.repository.Repository;
 import no.sintef.bvr.planner.repository.WriterException;
-import no.sintef.bvr.planner.repository.ecore.EcoreOperatorReader;
 import no.sintef.bvr.planner.repository.interfaces.IOperatorsReader;
 import no.sintef.dvl.realisation.core.interfaces.engine.IRealisationEngine;
 import no.sintef.dvl.realisation.core.interfaces.errors.OperatorNotConfigurable;
@@ -180,8 +178,7 @@ public class DVLExecutor implements IDVLExecutor {
 	}
 
 	private IOperatorsReader operatorsReader(Settings settings) {
-		IConverter ecore_converter = new BVREcoreVarModelToOperatorConverter();
-		return new EcoreOperatorReader(ecore_converter, settings.getOperatorsLocation());
+		return new EcoreModelOperatorsReader(settings.getOperatorsLocation());
 	}
 
 	private void configureSettingsFromConfig(Settings settings) throws ConfigError {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Realop -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="realop.presentation.RealopModelWizardID"
+            name="%_UI_RealopModelWizard_label"
+            class="realop.presentation.RealopModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/RealopModelFile.gif">
+         <description>%_UI_RealopModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Realop -->
+      <editor
+            id="realop.presentation.RealopEditorID"
+            name="%_UI_RealopEditor_label"
+            icon="icons/full/obj16/RealopModelFile.gif"
+            extensions="realop"
+            class="realop.presentation.RealopEditor"
+            contributorClass="realop.presentation.RealopActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -3,7 +3,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/guice-4.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/no.sintef.autorealspl.converter-0.0.1-SNAPSHOT.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/no.sintef.autorealspl.converter.interfaces-0.0.1-SNAPSHOT.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/no.sintef.xtext.dsl.operator-1.0.0-SNAPSHOT.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/Planner-0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
