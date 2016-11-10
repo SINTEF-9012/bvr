@@ -9,6 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  no.sintef.bvr.dvl.execution;bundle-version="1.0.0",
- no.sintef.bvr.dvl.execution.interfaces;bundle-version="1.0.0"
+ no.sintef.bvr.dvl.execution.interfaces;bundle-version="1.0.0",
+ no.sintef.dvl.realisation.core.interfaces;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

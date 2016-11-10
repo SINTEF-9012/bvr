@@ -8,3 +8,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: no.sintef.bvr.dvl.execution.interfaces.errors,
  no.sintef.bvr.dvl.execution.interfaces.main
 Require-Bundle: org.eclipse.core.resources
+Import-Package: no.sintef.dvl.realisation.core.interfaces.errors
