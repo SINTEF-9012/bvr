@@ -3,6 +3,7 @@ The Base Variability Resolution (BVR) is a language to engineer software product
 
 ### Downloads and Installation
 See https://bvr-tool.sintef.cloud
+Please refer to https://github.com/SINTEF-9012/bvr.modelbased.net for the sources of the BVR update site
 
 ### Source Installation Requirements
 1. Eclipse Modeling Tools - BVR was developed on eclipse Kepler SR2, but also seems to work on eclipse Neon
